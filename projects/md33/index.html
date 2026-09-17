@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD-33 · Framework Forense</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    min-height: 100%;
+    background: #04080f;
+    color: #e9eef5;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+  #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.6; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 25% 25%, rgba(100,180,255,0.05), transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(0,150,255,0.04), transparent 60%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+  .hero { text-align: center; margin-bottom: 50px; }
+  pre.banner {
+    color: #64b4ff; font-size: 9px; line-height: 1.1; margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(100,180,255,0.5); white-space: pre; overflow-x: auto; display: inline-block; text-align: left;
+  }
+  h1 {
+    font-size: clamp(22px, 4vw, 36px); color: #64b4ff; letter-spacing: 5px;
+    margin-bottom: 12px; text-shadow: 0 0 30px rgba(100,180,255,0.4); font-weight: 700;
+  }
+  .sub { font-size: 11px; color: #00ff41; letter-spacing: 3px; margin-bottom: 30px; opacity: 0.9; }
+  .desc { max-width: 620px; margin: 0 auto 30px; font-size: 13px; line-height: 1.8; color: #b8c4cc; }
+  .layers {
+    max-width: 620px; margin: 0 auto 30px; padding: 18px 22px;
+    border: 1px solid rgba(100,180,255,0.25); background: rgba(100,180,255,0.03);
+    font-size: 11px; color: #64b4ff; text-align: left; line-height: 1.9;
+  }
+  .layers strong { color: #00ff41; display: block; margin-bottom: 8px; letter-spacing: 2px; font-size: 10px; }
+  .layers .row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(100,180,255,0.1); padding: 4px 0; }
+  .layers .row:last-child { border-bottom: none; }
+  .layers .row span:first-child { color: #8892a0; }
+  .warning {
+    max-width: 620px; margin: 0 auto 30px; padding: 14px 20px;
+    border-left: 3px solid #64b4ff; background: rgba(100,180,255,0.05);
+    font-size: 11px; color: #88c4ff; text-align: left; line-height: 1.7;
+  }
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  a.btn {
+    display: inline-block; padding: 12px 28px; border: 1px solid #64b4ff; color: #64b4ff;
+    text-decoration: none; letter-spacing: 3px; font-size: 11px; font-weight: 700;
+    transition: all 0.3s ease; background: rgba(100,180,255,0.02);
+  }
+  a.btn:hover { background: #64b4ff; color: #04080f; box-shadow: 0 0 30px rgba(100,180,255,0.5); }
+  a.btn.green { border-color: #00ff41; color: #00ff41; }
+  a.btn.green:hover { background: #00ff41; color: #04080f; box-shadow: 0 0 30px rgba(0,255,65,0.5); }
+  .footer { text-align: center; font-size: 9px; color: #4a5568; letter-spacing: 2px; padding-top: 30px; border-top: 1px solid rgba(100,180,255,0.1); }
+  .footer a { color: #4a5568; text-decoration: none; }
+  .footer a:hover { color: #64b4ff; }
+  @media (max-width: 700px) { pre.banner { display: none; } .wrap { padding: 30px 16px; } }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hero">
+    <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+║ ▓   ███╗   ███╗██████╗        ██████╗ ██████╗                              ▓ ║
+║ ▓   ████╗ ████║██╔══██╗      ██╔════╝ ╚════██╗                             ▓ ║
+║ ▓   ██╔████╔██║██║  ██║█████╗███████╗  █████╔╝                             ▓ ║
+║ ▓   ██║╚██╔╝██║██║  ██║╚════╝╚════██║  ╚═══██╗                             ▓ ║
+║ ▓   ██║ ╚═╝ ██║██████╔╝      ██████╔╝ ██████╔╝                             ▓ ║
+║ ▓   ╚═╝     ╚═╝╚═════╝       ╚═════╝  ╚═════╝                              ▓ ║
+║ ▓   F R A M E W O R K   F O R E N S E                                       ║
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+    <h1>MD-33 FORENSE</h1>
+    <div class="sub">CADENA DE CUSTODIA DIGITAL</div>
+    <p class="desc">
+      Framework de verificación forense de evidencia digital conforme a
+      ISO/IEC 27037 e ISO/IEC 17025. Script Python genérico + plantilla
+      de acta bilingüe ES/EN.
+    </p>
+    <div class="layers">
+      <strong>CAPAS DE VERIFICACIÓN</strong>
+      <div class="row"><span>DOCUMENTAL</span><span>ISO 27037</span></div>
+      <div class="row"><span>CRIPTOGRÁFICA</span><span>ISO 17025</span></div>
+      <div class="row"><span>TEMPORAL</span><span>RFC 3161</span></div>
+      <div class="row"><span>BLOCKCHAIN</span><span>EIP-191</span></div>
+    </div>
+    <div class="warning">
+      ⚠ "Conforme a ISO 27037" significa que el protocolo sigue las guías
+      de esa norma. NO implica certificación externa ni respaldo oficial.
+      El caso demostrativo es ficción; el framework es real y usable.
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/md33/README.md" target="_blank">LEER README</a>
+      <a class="btn green" href="https://github.com/Marcorojas17/kronos-protocol/tree/main/projects/md33" target="_blank">VER CÓDIGO</a>
+    </div>
+  </div>
+  <div class="footer">
+    © 2026 · MD-33 · v1.0 · CC0
+  </div>
+</div>
+
+<script>
+// Fondo: grid forense con línea de escaneo vertical
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, scanY = 0;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+
+function draw() {
+  ctx.fillStyle = 'rgba(4, 8, 15, 0.15)';
+  ctx.fillRect(0, 0, w, h);
+
+  // Grid
+  const gridSize = 40;
+  ctx.strokeStyle = 'rgba(100, 180, 255, 0.08)';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  for (let x = 0; x < w; x += gridSize) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, h);
+  }
+  for (let y = 0; y < h; y += gridSize) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+  }
+  ctx.stroke();
+
+  // Puntos en intersecciones aleatorias
+  if (Math.random() > 0.85) {
+    const x = Math.floor(Math.random() * (w / gridSize)) * gridSize;
+    const y = Math.floor(Math.random() * (h / gridSize)) * gridSize;
+    ctx.fillStyle = 'rgba(100, 180, 255, 0.6)';
+    ctx.fillRect(x - 1, y - 1, 3, 3);
+  }
+
+  // Línea de escaneo vertical
+  scanY += 1.5;
+  if (scanY > h) scanY = 0;
+
+  const grad = ctx.createLinearGradient(0, scanY - 60, 0, scanY + 60);
+  grad.addColorStop(0, 'rgba(0, 255, 65, 0)');
+  grad.addColorStop(0.5, 'rgba(0, 255, 65, 0.35)');
+  grad.addColorStop(1, 'rgba(0, 255, 65, 0)');
+
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, scanY - 60, w, 120);
+
+  ctx.fillStyle = 'rgba(0, 255, 65, 0.6)';
+  ctx.fillRect(0, scanY, w, 1);
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+</body>
+</html>
