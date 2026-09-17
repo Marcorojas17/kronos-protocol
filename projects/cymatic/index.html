@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYMATIC STUDIO</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    min-height: 100%;
+    background: #050810;
+    color: #e9eef5;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+  #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.7; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.06), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(168,85,247,0.06), transparent 60%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+  .hero { text-align: center; margin-bottom: 50px; }
+  pre.banner {
+    color: #00ffff; font-size: 9px; line-height: 1.1; margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(0,255,255,0.5); white-space: pre; overflow-x: auto; display: inline-block; text-align: left;
+  }
+  h1 {
+    font-size: clamp(22px, 4vw, 36px); color: #00ffff; letter-spacing: 5px;
+    margin-bottom: 12px; text-shadow: 0 0 30px rgba(0,255,255,0.4); font-weight: 700;
+    background: linear-gradient(135deg, #00ffff, #a855f7, #ff00cc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: grad 6s ease-in-out infinite alternate;
+  }
+  @keyframes grad { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+  .sub { font-size: 11px; color: #a855f7; letter-spacing: 3px; margin-bottom: 30px; opacity: 0.9; }
+  .desc { max-width: 620px; margin: 0 auto 30px; font-size: 13px; line-height: 1.8; color: #b8c4cc; }
+  .features {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; max-width: 700px; margin: 0 auto 30px;
+  }
+  .feat {
+    padding: 14px 16px; border: 1px solid rgba(0,255,255,0.15);
+    background: rgba(0,255,255,0.02); font-size: 10.5px; color: #8892a0;
+    line-height: 1.6; text-align: left;
+  }
+  .feat strong { color: #00ffff; display: block; margin-bottom: 4px; font-size: 10px; letter-spacing: 1px; }
+  .warning {
+    max-width: 620px; margin: 0 auto 30px; padding: 14px 20px;
+    border-left: 3px solid #a855f7; background: rgba(168,85,247,0.05);
+    font-size: 11px; color: #c4a8ff; text-align: left; line-height: 1.7;
+  }
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  a.btn {
+    display: inline-block; padding: 12px 28px; border: 1px solid #00ffff; color: #00ffff;
+    text-decoration: none; letter-spacing: 3px; font-size: 11px; font-weight: 700;
+    transition: all 0.3s ease; background: rgba(0,255,255,0.02);
+  }
+  a.btn:hover { background: #00ffff; color: #050810; box-shadow: 0 0 30px rgba(0,255,255,0.5); }
+  a.btn.purple { border-color: #a855f7; color: #a855f7; }
+  a.btn.purple:hover { background: #a855f7; color: #050810; box-shadow: 0 0 30px rgba(168,85,247,0.5); }
+  .footer { text-align: center; font-size: 9px; color: #4a5568; letter-spacing: 2px; padding-top: 30px; border-top: 1px solid rgba(0,255,255,0.1); }
+  .footer a { color: #4a5568; text-decoration: none; }
+  .footer a:hover { color: #00ffff; }
+  @media (max-width: 700px) { pre.banner { display: none; } .wrap { padding: 30px 16px; } }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hero">
+    <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+║ ▓  ██████╗██╗   ██╗███╗   ███╗ █████╗ ████████╗██╗ ██████╗                 ▓ ║
+║ ▓ ██╔════╝╚██╗ ██╔╝████╗ ████║██╔══██╗╚══██╔══╝██║██╔════╝                 ▓ ║
+║ ▓ ██║      ╚████╔╝ ██╔████╔██║███████║   ██║   ██║██║                      ▓ ║
+║ ▓ ██║       ╚██╔╝  ██║╚██╔╝██║██╔══██║   ██║   ██║██║                      ▓ ║
+║ ▓ ╚██████╗   ██║   ██║ ╚═╝ ██║██║  ██║   ██║   ██║╚██████╗                 ▓ ║
+║ ▓  ╚═════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝                 ▓ ║
+║ ▓   W E B G L 2   ·   v 1 9   ·   D E M O                                   ║
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+    <h1>CYMATIC STUDIO</h1>
+    <div class="sub">AUDIO REACTIVO · WEBGL2 · SIN BACKEND</div>
+    <p class="desc">
+      Motor de visualización de audio reactivo. Convierte una frecuencia
+      en geometría procedural en tiempo real, 100% en el navegador.
+    </p>
+    <div class="features">
+      <div class="feat"><strong>5 GEOMETRÍAS</strong>Chladni · Toroide · Metatrón · Flor de Vida · Merkaba</div>
+      <div class="feat"><strong>16,000 PARTÍCULAS</strong>Shaders GLSL personalizados sobre WebGL2</div>
+      <div class="feat"><strong>5 PALETAS</strong>Cyan · Aurum · Neon · Esmeralda · Nebula</div>
+      <div class="feat"><strong>EXPORT</strong>PNG + grabación WebM · 60fps</div>
+    </div>
+    <div class="warning">
+      ⚠ No detecta voz humana. No es biometría. No es IA generativa.
+      No simula fluidos con Navier-Stokes. Es un visualizador de audio
+      con shaders procedurales.
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/cymatic/README.md" target="_blank">LEER README</a>
+      <a class="btn purple" href="https://github.com/Marcorojas17/kronos-protocol/tree/main/projects/cymatic" target="_blank">VER CÓDIGO</a>
+    </div>
+  </div>
+  <div class="footer">
+    © 2026 · CYMATIC STUDIO · v19 · MIT
+  </div>
+</div>
+
+<script>
+// Fondo: partículas geométricas cyan + púrpura
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, particles;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  const count = Math.floor((w * h) / 18000);
+  particles = Array.from({ length: count }, () => {
+    const angle = Math.random() * Math.PI * 2;
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: Math.cos(angle) * (0.2 + Math.random() * 0.4),
+      vy: Math.sin(angle) * (0.2 + Math.random() * 0.4),
+      size: 1 + Math.random() * 2.5,
+      hue: Math.random() > 0.5 ? 180 : 285,
+      phase: Math.random() * Math.PI * 2,
+    };
+  });
+}
+
+function draw() {
+  ctx.fillStyle = 'rgba(5, 8, 16, 0.12)';
+  ctx.fillRect(0, 0, w, h);
+
+  const time = performance.now() * 0.001;
+
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > w) p.vx *= -1;
+    if (p.y < 0 || p.y > h) p.vy *= -1;
+
+    const pulse = 0.6 + 0.4 * Math.sin(time * 2 + p.phase);
+    const alpha = 0.4 * pulse;
+    ctx.fillStyle = p.hue === 180
+      ? `rgba(0, 255, 255, ${alpha})`
+      : `rgba(168, 85, 247, ${alpha})`;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+</body>
+</html>
