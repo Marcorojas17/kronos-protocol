@@ -1,0 +1,158 @@
+<!-- Auditado por 🛡️ GUARDIAN-SHA ✅ -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verify — Kronos Protocol</title>
+<meta name="description" content="Verificador SHA-256 soberano. 0 CDN. 0 npm. Verificable en 2099 sin GitHub.">
+<style>
+:root{--oro:#c9a44c;--negro:#05070b;--gris:#0d1017;--linea:#1e2229;--texto:#e8e4d8;--apagado:#7a7565}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--negro)}
+body{color:var(--texto);font:15px/1.6 -apple-system,system-ui,sans-serif;min-height:100vh;padding:1.5rem 1rem 3rem}
+.w{max-width:720px;margin:0 auto}
+h1,h2{font-family:Georgia,'Times New Roman',serif;color:var(--oro);font-weight:400}
+h1{font-size:2.1rem;line-height:1.1}
+h2{font-size:1.15rem;margin:2rem 0 .7rem;border-bottom:1px solid var(--linea);padding-bottom:.5rem}
+.sub{color:var(--apagado);font-size:.9rem;margin:.4rem 0 1.8rem;font-style:italic}
+.c{background:var(--gris);border:1px solid var(--linea);border-radius:10px;padding:1.2rem;margin-bottom:1.2rem}
+.drop{border:1.5px dashed #2a2d34;border-radius:10px;padding:2rem 1rem;text-align:center;cursor:pointer;background:#080a0e}
+.drop:hover,.drop.on{border-color:var(--oro);background:#0d1017}
+.drop strong{color:var(--oro);display:block;margin-bottom:.3rem;font-family:Georgia,serif;font-size:1.05rem}
+.drop span{color:var(--apagado);font-size:.85rem}
+input[type=text]{width:100%;background:#080a0e;border:1px solid var(--linea);border-radius:8px;padding:.75rem .9rem;color:var(--texto);font:12px ui-monospace,Consolas,monospace;margin-top:.8rem}
+input[type=text]:focus{outline:none;border-color:var(--oro)}
+.hash{font:12px ui-monospace,Consolas,monospace;word-break:break-all;background:#080a0e;border:1px solid var(--linea);border-radius:8px;padding:.9rem;margin-top:.7rem;color:var(--apagado);line-height:1.5}
+.hash.ok{border-color:#2e5a2e;color:#8adb8a;background:#0a140a}
+.hash.bad{border-color:#5a2e2e;color:#db8a8a;background:#140a0a}
+.row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.8rem}
+.btn{background:var(--oro);color:var(--negro);border:0;padding:.75rem 1.3rem;border-radius:8px;font:600 14px system-ui;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--oro);border:1.5px solid var(--oro)}
+.meta{font-size:.8rem;color:var(--apagado);margin-top:.5rem;line-height:1.5}
+.meta code{background:#080a0e;padding:.15rem .4rem;border-radius:4px;color:#a8a496;font-size:.85em}
+.anc{border-left:3px solid var(--oro);padding-left:1rem;margin:.6rem 0}
+.anc .k{color:var(--oro);font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}
+.anc .v{font:11px ui-monospace,Consolas,monospace;color:#a8a496;word-break:break-all;margin-top:.15rem}
+footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--linea);font-size:.75rem;color:#5a5650;text-align:center;line-height:1.7}
+footer code{color:#8a8676}
+a{color:var(--oro);text-decoration:none}
+.badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.5rem;justify-content:center}
+.badge{border:1px solid var(--linea);border-radius:999px;padding:.2rem .7rem;font-size:.7rem;color:var(--apagado)}
+.tier{display:grid;gap:.7rem;grid-template-columns:1fr}
+@media(min-width:560px){.tier{grid-template-columns:1fr 1fr 1fr}}
+.t{background:#080a0e;border:1px solid var(--linea);border-radius:10px;padding:1rem;text-align:center}
+.t .p{font-family:Georgia,serif;color:var(--oro);font-size:1.3rem;margin:.2rem 0}
+.t .n{font-size:.7rem;color:var(--apagado);text-transform:uppercase;letter-spacing:.08em}
+.t .d{font-size:.75rem;color:#8a8676;margin-top:.4rem}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Verificar</h1>
+  <p class="sub">SHA-256 real. Calculado en tu navegador. Sin servidor. Sin terminal. Sin CDN. Verificable en 2099.</p>
+
+  <div class="c">
+    <div class="drop" id="d">
+      <strong>Suelta un archivo aquí</strong>
+      <span>o toca para seleccionar desde tu dispositivo</span>
+      <input type="file" id="f" hidden>
+    </div>
+    <input type="text" id="e" placeholder="Pega el SHA-256 esperado (opcional, 64 hex)" spellcheck="false" autocomplete="off">
+    <div id="o"></div>
+  </div>
+
+  <h2>Auto-auditoría de este archivo</h2>
+  <div class="c">
+    <p class="meta">Este HTML se hashea a sí mismo cuando lo sirve GitHub Pages:</p>
+    <div class="hash" id="self">Calculando SHA-256 de verify.html…</div>
+    <p class="meta">Copia ese hash → pégalo en <code>evidence/manifest.json</code> → queda auditado por 🛡️ GUARDIAN-SHA.</p>
+  </div>
+
+  <h2>Anclas soberanas</h2>
+  <div class="c">
+    <div class="anc"><div class="k">Custodio</div><div class="v">Marco Antonio Rojas Valdovinos · Acta 2607086319439</div></div>
+    <div class="anc"><div class="k">Safe Creative</div><div class="v">User 2607085517331 · Obra 2608056639878</div></div>
+    <div class="anc"><div class="k">Hash madre</div><div class="v">ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738</div></div>
+    <div class="anc"><div class="k">TX soberana</div><div class="v">0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466</div></div>
+  </div>
+
+  <h2>Niveles</h2>
+  <div class="tier">
+    <div class="t"><div class="n">Free</div><div class="p">$0</div><div class="d">Verify público</div></div>
+    <div class="t"><div class="n">Sello FDV</div><div class="p">$500</div><div class="d">100 pzas · MXN</div></div>
+    <div class="t"><div class="n">Evidence OS</div><div class="p">$499</div><div class="d">por mes · API</div></div>
+  </div>
+
+  <div class="row" style="justify-content:center;margin-top:1.5rem">
+    <a class="btn" href="https://github.com/sponsors/marcorojas17" target="_blank" rel="noopener">Patrocina el estándar</a>
+    <a class="btn ghost" href="./index.html">Volver al imperio</a>
+  </div>
+
+  <div class="badges">
+    <span class="badge">#c9a44c / #05070b</span>
+    <span class="badge">0 CDN · 0 npm</span>
+    <span class="badge">MIT</span>
+    <span class="badge">2099-soberano</span>
+  </div>
+
+  <footer>
+    No es asesoría legal. Verificación técnica documental. Fuente: DOF / Safe Creative.<br>
+    TX <code>0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466</code><br><br>
+    © Marco Antonio Rojas Valdovinos — Acta 2607086319439
+  </footer>
+</div>
+
+<script>
+(()=>{
+  const d=document.getElementById('d'),f=document.getElementById('f'),o=document.getElementById('o'),e=document.getElementById('e');
+  const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const sha=async buf=>hex(await crypto.subtle.digest('SHA-256',buf));
+
+  async function audit(name,size,hash){
+    const exp=e.value.trim().toLowerCase().replace(/^0x/,'');
+    let cls='',msg='';
+    if(exp.length===64){
+      if(exp===hash){cls='ok';msg='✓ COINCIDE — archivo íntegro';}
+      else{cls='bad';msg='✗ NO COINCIDE — hash alterado o incorrecto';}
+    }
+    o.innerHTML=`<p class="meta"><strong style="color:var(--oro)">${name}</strong> · ${size} bytes</p>
+      <div class="hash ${cls}">${hash}</div>
+      ${msg?`<div class="row" style="color:${cls==='ok'?'#8adb8a':'#db8a8a'};font-weight:600">${msg}</div>`:''}
+      <div class="row"><button class="btn ghost" id="cp">Copiar hash</button></div>`;
+    document.getElementById('cp').onclick=()=>navigator.clipboard.writeText(hash);
+  }
+
+  async function handle(file){
+    if(!file)return;
+    o.innerHTML='<div class="hash">Calculando SHA-256…</div>';
+    try{audit(file.name,file.size,await sha(await file.arrayBuffer()));}
+    catch(err){o.innerHTML='<div class="hash bad">Error: '+err.message+'</div>';}
+  }
+
+  d.onclick=()=>f.click();
+  f.onchange=ev=>handle(ev.target.files[0]);
+  ['dragover','dragenter'].forEach(k=>d.addEventListener(k,ev=>{ev.preventDefault();d.classList.add('on');}));
+  ['dragleave','drop'].forEach(k=>d.addEventListener(k,ev=>{ev.preventDefault();d.classList.remove('on');}));
+  d.addEventListener('drop',ev=>handle(ev.dataTransfer.files[0]));
+  e.addEventListener('input',()=>{if(f.files[0])handle(f.files[0]);});
+
+  (async()=>{
+    const el=document.getElementById('self');
+    if(location.protocol==='file:'){
+      el.textContent='Abre esta página desde GitHub Pages para auto-hashear.';
+      return;
+    }
+    try{
+      const r=await fetch(location.pathname,{cache:'no-store'});
+      const b=await r.arrayBuffer();
+      el.textContent=await sha(b);
+      el.className='hash ok';
+    }catch(err){
+      el.textContent='Auto-hash no disponible: '+err.message;
+    }
+  })();
+})();
+</script>
+</body>
+</html>
