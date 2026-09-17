@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMD-33 ○_● · Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#05070b; color:#e8e4d8;
+    font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh; padding:2rem 1rem;
+  }
+  header {
+    text-align:center; margin-bottom:2rem;
+  }
+  h1 {
+    font-family:'Cinzel',serif; font-weight:600;
+    font-size:clamp(22px, 5vw, 36px);
+    letter-spacing:6px; color:#00eaff;
+    margin-bottom:0.5rem;
+  }
+  .sub {
+    color:#8892a0; font-size:11px; letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  .mermaid {
+    max-width:1100px; margin:2rem auto;
+    background:rgba(10,14,21,0.6);
+    border:1px solid rgba(0,234,255,0.15);
+    border-radius:8px;
+    padding:1.5rem;
+    overflow-x:auto;
+  }
+  footer {
+    text-align:center; margin-top:3rem;
+    color:#4b6b7a; font-size:10px;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  footer a { color:#4b6b7a; text-decoration:none; }
+  footer a:hover { color:#00eaff; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>DMD-33 ○_●</h1>
+    <div class="sub">Flujo de inicio a fin · v0.1</div>
+  </header>
+
+  <div class="mermaid">
+flowchart TD
+    A([INICIO DMD-33]) --> B[Boot: hardware + OS + servicios]
+    B --> C{Autodiagnóstico OK?}
+    C -- No --> C1[Modo seguro<br/>LED ámbar + log]
+    C1 --> Z([FIN: espera intervención])
+    C -- Sí --> D[Standby consciente<br/>○_● respira]
+    D --> E{Entrada detectada?}
+    E -- Voz --> F1[Whisper STT]
+    E -- Visión --> F2[YOLO + OpenCV]
+    E -- Sensor --> F3[Térmico/EM/IMU]
+    E -- Táctil/App --> F4[WebSocket/MQTT]
+    E -- No --> D
+    F1 --> G[Contexto + memoria vectorial]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+    G --> H[LLM local razona<br/>Ollama + RAG]
+    H --> I{Decisión válida?}
+    I -- No --> I1[Failsafe + log + aviso]
+    I1 --> D
+    I -- Sí --> J[Orquestador distribuye]
+    J --> K1[Control energía / BMS]
+    J --> K2[Audio + voz Piper]
+    J --> K3[LEDs + electroimanes]
+    J --> K4[Cymatic engine<br/>patrón de onda]
+    J --> K5[Holograma / AR]
+    K4 --> L[Sincronía audiovisual<br/>sonido ↔ patrón]
+    K1 --> M[Feedback sensores]
+    K2 --> M
+    K3 --> M
+    L --> M
+    K5 --> M
+    M --> N{Objetivo cumplido?}
+    N -- No --> H
+    N -- Sí --> O[Registrar en memoria]
+    O --> P{¿Nuevo ciclo?}
+    P -- Sí --> D
+    P -- No --> Q([FIN: standby consciente])
+  </div>
+
+  <footer>
+    <a href="index.html">← Volver a DMD-33</a>
+  </footer>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#0a0e15',
+        primaryTextColor: '#e8e4d8',
+        primaryBorderColor: '#00eaff',
+        lineColor: '#4b6b7a',
+        secondaryColor: '#00eaff',
+        tertiaryColor: '#0a0e15',
+        fontFamily: 'Inter, sans-serif'
+      }
+    });
+  </script>
+</body>
+</html>
