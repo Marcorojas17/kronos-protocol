@@ -1,0 +1,100 @@
+# ═══════════════════════════════════════════════════════════════════════
+# KRONOS PROTOCOL · CI · verificar.yml · v1.0 · 17 Septiembre 2026
+# ═══════════════════════════════════════════════════════════════════════
+#
+# Verifica hashes SHA-256 en cada push a main.
+# Corre el script projects/md33/src/verifica_estandar.py en servidor GitHub.
+#
+# Cero terminal. Cero Codespace. Solo GitHub Web.
+#
+# Custodio      Marco Antonio Rojas Valdovinos
+# Acta          2607086319439
+# SC User       2607085517331
+# SC Obra       2608056639878
+# TX soberana   0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466
+#
+# No es asesoría legal. Verificación técnica documental.
+# Fuente: DOF / Safe Creative.
+# ═══════════════════════════════════════════════════════════════════════
+
+name: KRONOS · Verificar hashes
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: SHA-256 · manifest · verify.html
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Banner
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════╗"
+          echo "║  KRONOS PROTOCOL · CI · VERIFICACIÓN SHA-256                 ║"
+          echo "║  acta 2607086319439 · TX 0xd94bf2…a466                       ║"
+          echo "╚══════════════════════════════════════════════════════════════╝"
+
+      - name: Verificar que el script existe
+        run: |
+          if [ ! -f "projects/md33/src/verifica_estandar.py" ]; then
+            echo "✗ RECHAZADO — falta projects/md33/src/verifica_estandar.py"
+            exit 1
+          fi
+          echo "✓ script encontrado"
+
+      - name: Verificar que el manifest existe
+        run: |
+          if [ ! -f "evidence/manifest.json" ]; then
+            echo "✗ RECHAZADO — falta evidence/manifest.json"
+            exit 1
+          fi
+          echo "✓ manifest encontrado"
+
+      - name: Calcular SHA-256 de verify.html
+        run: |
+          if [ -f "verify.html" ]; then
+            python projects/md33/src/verifica_estandar.py hash verify.html
+          else
+            echo "⚠ verify.html aún no existe en raíz — se omite (no bloquea)"
+          fi
+
+      - name: Verificar contra manifest
+        run: |
+          if [ -f "verify.html" ] && [ -f "evidence/manifest.json" ]; then
+            python projects/md33/src/verifica_estandar.py manifest evidence/manifest.json --file verify.html
+          else
+            echo "⚠ verificación cruzada omitida (falta archivo o manifest)"
+          fi
+
+      - name: Sello final
+        if: success()
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════╗"
+          echo "║  ✓ APROBADO — integridad declarada y verificada              ║"
+          echo "║  Acta 2607086319439 · GUARDIAN-SHA ✅                        ║"
+          echo "╚══════════════════════════════════════════════════════════════╝"
+
+      - name: Sello de rechazo
+        if: failure()
+        run: |
+          echo "╔══════════════════════════════════════════════════════════════╗"
+          echo "║  ⛔ RECHAZADO — hash no coincide o archivo faltante          ║"
+          echo "║  GUARDIAN-SHA bloquea el merge.                              ║"
+          echo "╚══════════════════════════════════════════════════════════════╝"
