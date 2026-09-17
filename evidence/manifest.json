@@ -1,0 +1,87 @@
+{
+  "$schema": "https://marcorojas17.github.io/kronos-protocol/evidence/manifest.schema.json",
+  "version": "1.0.0",
+  "generated_utc": "2026-09-17T00:00:00Z",
+  "custodian": {
+    "name": "Marco Antonio Rojas Valdovinos",
+    "acta": "2607086319439",
+    "safe_creative_user": "2607085517331",
+    "safe_creative_obra": "2608056639878",
+    "architecture_acta": "2607146379465",
+    "role": "Responsable de custodia documental",
+    "github": "marcorojas17"
+  },
+  "sovereign_anchors": {
+    "hash_madre_sha256": "ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738",
+    "tx_soberana": "0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466",
+    "network": "Ethereum Mainnet",
+    "explorer": "https://etherscan.io/tx/0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466"
+  },
+  "artifacts": [
+    {
+      "path": "verify.html",
+      "url": "https://marcorojas17.github.io/kronos-protocol/verify.html",
+      "sha256": "8af012395c314540ffb8e1e3216390bf79fd1f0416a67e0a253a2ce2ba5d563a",
+      "method": "Web Crypto API — SHA-256 — auto-hash en GitHub Pages",
+      "audited_by": "GUARDIAN-SHA",
+      "audit_status": "APROBADO",
+      "audited_utc": "2026-09-17T00:00:00Z",
+      "tsa": {
+        "status": "PENDIENTE",
+        "tsr_path": "evidence/verify.html.tsr",
+        "tsa_url": "https://freetsa.org/tsr",
+        "tsa_ca": "evidence/tsa.crt",
+        "openssl_verify": "openssl ts -verify -in evidence/verify.html.tsr -data verify.html -CAfile evidence/tsa.crt",
+        "assigned_to": "GUARDIAN-TSA"
+      }
+    }
+  ],
+  "policy": {
+    "standard": "ETSI EN 319 422 + RFC 3161 + NIST SP 800-53 AU-10",
+    "offline_verifiable": true,
+    "github_dependency": false,
+    "cdn_dependency": false,
+    "npm_dependency": false,
+    "arctic_vault_target": true,
+    "size_limit_kb": 20
+  },
+  "guardians_active": [
+    "GUARDIAN-SHA"
+  ],
+  "guardians_pending": [
+    "GUARDIAN-TSA",
+    "GUARDIAN-ACTA",
+    "GUARDIAN-MRR",
+    "GUARDIAN-VAULT"
+  ],
+  "legal_disclaimer": "Este manifiesto es un registro tecnico de trazabilidad documental. No constituye asesoria legal, dictamen pericial ni cadena de custodia judicial. La fuente original de los datos es DOF y Safe Creative. La verificacion es reproducible offline con OpenSSL y PowerShell. Marco Antonio Rojas Valdovinos actua como responsable de custodia documental, no como perito titulado. No es asesoria legal. Verificacion tecnica documental.",
+  "verification_commands": {
+    "windows_powershell": "Get-FileHash .\\verify.html -Algorithm SHA256",
+    "linux_openssl": "openssl dgst -sha256 verify.html",
+    "tsa_verify": "openssl ts -verify -in evidence/verify.html.tsr -data verify.html -CAfile evidence/tsa.crt",
+    "browser_self_hash": "https://marcorojas17.github.io/kronos-protocol/verify.html#auto-auditoria"
+  },
+  "sponsorship": {
+    "github_sponsors": "https://github.com/sponsors/marcorojas17",
+    "tx": "0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466"
+  },
+  "tiers": {
+    "free": {
+      "name": "Verify",
+      "price_mxn": 0,
+      "artifact": "verify.html"
+    },
+    "sello_fdv": {
+      "name": "Sello FDV",
+      "price_mxn": 500,
+      "units": 100,
+      "obra": "2608056639878"
+    },
+    "evidence_os": {
+      "name": "Evidence OS",
+      "price_mxn": 499,
+      "period": "mensual",
+      "acta": "2607086319439"
+    }
+  }
+}
