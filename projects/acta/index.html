@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acta Fundacional + SCDR-001</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    min-height: 100%;
+    background: #0a0d10;
+    color: #e9eef5;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+  #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.55; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(201,164,76,0.08), transparent 65%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+  .hero { text-align: center; margin-bottom: 50px; }
+  pre.banner {
+    color: #c9a44c; font-size: 9px; line-height: 1.1; margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(201,164,76,0.5); white-space: pre; overflow-x: auto; display: inline-block; text-align: left;
+  }
+  h1 {
+    font-size: clamp(22px, 4vw, 36px); color: #c9a44c; letter-spacing: 5px;
+    margin-bottom: 12px; text-shadow: 0 0 30px rgba(201,164,76,0.4); font-weight: 700;
+  }
+  .sub { font-size: 11px; color: #ffcc00; letter-spacing: 3px; margin-bottom: 30px; opacity: 0.9; }
+  .desc { max-width: 620px; margin: 0 auto 30px; font-size: 13px; line-height: 1.8; color: #b8c4cc; }
+  .cert {
+    max-width: 620px; margin: 0 auto 30px; padding: 18px 22px;
+    border: 1px solid rgba(201,164,76,0.25); background: rgba(201,164,76,0.03);
+    font-size: 11px; color: #c9a44c; text-align: left; line-height: 1.9;
+  }
+  .cert strong { color: #ffcc00; display: block; margin-bottom: 8px; letter-spacing: 2px; font-size: 10px; }
+  .cert code { color: #b8c4cc; font-size: 10px; word-break: break-all; }
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  a.btn {
+    display: inline-block; padding: 12px 28px; border: 1px solid #c9a44c; color: #c9a44c;
+    text-decoration: none; letter-spacing: 3px; font-size: 11px; font-weight: 700;
+    transition: all 0.3s ease; background: rgba(201,164,76,0.02);
+  }
+  a.btn:hover { background: #c9a44c; color: #0a0d10; box-shadow: 0 0 30px rgba(201,164,76,0.5); }
+  a.btn.green { border-color: #00ff41; color: #00ff41; }
+  a.btn.green:hover { background: #00ff41; color: #0a0d10; box-shadow: 0 0 30px rgba(0,255,65,0.5); }
+  .footer { text-align: center; font-size: 9px; color: #4a5568; letter-spacing: 2px; padding-top: 30px; border-top: 1px solid rgba(201,164,76,0.1); }
+  .footer a { color: #4a5568; text-decoration: none; }
+  .footer a:hover { color: #c9a44c; }
+  @media (max-width: 700px) { pre.banner { display: none; } .wrap { padding: 30px 16px; } }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hero">
+    <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+║ ▓    █████╗  ██████╗████████╗ █████╗     ██╗   ██╗ █████╗                  ▓ ║
+║ ▓   ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗    ██║   ██║██╔══██╗                 ▓ ║
+║ ▓   ███████║██║        ██║   ███████║    ██║   ██║███████║                 ▓ ║
+║ ▓   ██╔══██║██║        ██║   ██╔══██║    ╚██╗ ██╔╝██╔══██║                 ▓ ║
+║ ▓   ██║  ██║╚██████╗   ██║   ██║  ██║     ╚████╔╝ ██║  ██║                 ▓ ║
+║ ▓   ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝      ╚═══╝  ╚═╝  ╚═╝                 ▓ ║
+║ ▓   S C D R - 0 0 1   ·   A C T A   F U N D A C I O N A L                   ║
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+    <h1>ACTA FUNDACIONAL</h1>
+    <div class="sub">CO-CREATIVIDAD HUMANO-IA POR FASE CREATIVA</div>
+    <p class="desc">
+      Metodología para declarar porcentajes de co-creatividad humano-IA
+      por fase creativa. Caso cero: acta fundacional sellada con timestamp
+      cualificado eIDAS.
+    </p>
+    <div class="cert">
+      <strong>REGISTRO VERIFICABLE</strong>
+      Safe Creative · <code>2607086319439</code><br>
+      SHA-256 · <code>41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3</code><br>
+      QTSA · Firmaprofesional ICA B02 QUALIFIED 2022<br>
+      Fecha · 8 julio 2026 · 07:02 UTC
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://www.safecreative.org/certificate/2607086319439" target="_blank">VER CERTIFICADO</a>
+      <a class="btn green" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/acta/README.md" target="_blank">LEER README</a>
+    </div>
+  </div>
+  <div class="footer">
+    © 2026 · ACTA FUNDACIONAL + SCDR-001 · v1.0
+  </div>
+</div>
+
+<script>
+// Fondo: ondas concéntricas doradas (tipo sello)
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, t = 0;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+
+function draw() {
+  ctx.fillStyle = 'rgba(10, 13, 16, 0.08)';
+  ctx.fillRect(0, 0, w, h);
+
+  const cx = w / 2;
+  const cy = h / 2;
+  const maxR = Math.max(w, h) * 0.6;
+
+  for (let i = 0; i < 6; i++) {
+    const phase = (t * 0.005 + i * 0.5) % 1;
+    const r = phase * maxR;
+    const alpha = (1 - phase) * 0.35;
+
+    ctx.strokeStyle = `rgba(201, 164, 76, ${alpha})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Punto central
+  ctx.fillStyle = 'rgba(255, 204, 0, 0.6)';
+  ctx.beginPath();
+  ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  t++;
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+</body>
+</html>
