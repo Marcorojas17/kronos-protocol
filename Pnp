@@ -1,0 +1,30 @@
+# KRONOS PROTOCOL v1.0 - EVIDENCE-OS
+**Estándar Mundial de Evidencia Criptográfica Soberana**
+
+Si no es verificable por hash, no existe.
+
+## Verificación en 10 segundos (Sin terminal, sin confiar en mí)
+Cualquier perito hostil en Alemania puede verificar la autenticidad de este estándar usando su propio navegador. 
+
+1. Abre el verificador en vivo: [https://tu-usuario.github.io/kronos-protocol/verify.html](https://tu-usuario.github.io/kronos-protocol/verify.html)
+2. Carga este archivo `verify.html` en el verificador.
+3. El navegador calculará el SHA-256 usando WebCrypto nativo (cero dependencias).
+
+**SHA-256 Oficial del verify.html:** `[PEGA AQUÍ EL HASH QUE OBTUVISTE EN EL PASO 2]`
+
+## Prueba de Soberanía (Blockchain)
+El hash de mi obra "FDV Sello Híbrido" está anclado en Ethereum. Si GitHub y Safe Creative quiebran, Etherscan sigue siendo la verdad.
+- **SHA-256 Blockchain:** `ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738`
+- **TX Ethereum:** [0xd94bf2d1c1187...ed6a466](https://etherscan.io/tx/0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466)
+
+## Niveles de Implementación
+- **FREE:** Verificador público (Medallas GitHub).
+- **$500 MXN:** Lote de 100 sellos físicos FDV Sello Híbrido.
+- **$499/mes:** Evidence OS ilimitado para despachos de PI.
+
+## Archive / No Verificado
+Todo lo no probado (K4, kronos-2099, quantum-sovereign claims) vive en `/archive/` con advertencia explícita. La honestidad es nuestro moat. No inflamos.
+
+---
+**FDV SISTEMA INFALSIFICABLE ORIGINAL 2026**
+Marco Antonio Rojas Valdovinos | Acta: 2607086319439 | Safe Creative: 2607085517331
