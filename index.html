@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS PROTOCOL</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    background: #0a0d10;
+    color: #e9eef5;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+
+  /* Fondo animado: canvas */
+  #bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.55;
+  }
+
+  /* Gradiente de refuerzo */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(0,255,65,0.06), transparent 60%),
+                radial-gradient(circle at 70% 80%, rgba(0,255,255,0.05), transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Contenido */
+  .wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  /* Bloque ASCII del título */
+  pre.banner {
+    color: #00ff41;
+    font-size: 10px;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(0,255,65,0.4);
+    white-space: pre;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(24px, 4vw, 42px);
+    color: #00ff41;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 30px rgba(0,255,65,0.5);
+    font-weight: 700;
+  }
+
+  .sub {
+    font-size: 13px;
+    color: #c9a44c;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  .desc {
+    max-width: 640px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #b8c4cc;
+    margin-bottom: 50px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  a.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    background: rgba(0,255,65,0.02);
+  }
+
+  a.btn:hover {
+    background: #00ff41;
+    color: #0a0d10;
+    box-shadow: 0 0 30px rgba(0,255,65,0.5);
+  }
+
+  a.btn.gold {
+    border-color: #c9a44c;
+    color: #c9a44c;
+  }
+
+  a.btn.gold:hover {
+    background: #c9a44c;
+    color: #0a0d10;
+    box-shadow: 0 0 30px rgba(201,164,76,0.5);
+  }
+
+  .footer {
+    margin-top: 60px;
+    font-size: 10px;
+    color: #4a5568;
+    letter-spacing: 2px;
+  }
+
+  .footer a {
+    color: #4a5568;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer a:hover {
+    color: #00ff41;
+    border-bottom-color: #00ff41;
+  }
+
+  @media (max-width: 600px) {
+    pre.banner { display: none; }
+    .sub { font-size: 11px; letter-spacing: 2px; }
+    a.btn { padding: 12px 24px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<div class="wrap">
+  <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+║ ▓                                                                          ▓ ║
+║━━ ▓   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                  ▓ ║
+║ ▓   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                  ▓ ║
+║ ▓   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                  ▓ ║
+║ ▓   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                  ▓ ║
+║ ▓   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                  ▓ ║
+║ ▓   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                  ▓ ║
+║ ▓                                                                          ▓ ║
+║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
+║ ▓   P R O T O C O L   ·   U N I F I E D   R E P O S I T O R Y              ▓ ║
+║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
+║ ▓                                                                          ▓ ║
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+
+  <h1>KRONOS PROTOCOL</h1>
+  <div class="sub">Verificación · Evidencia · Co-creatividad</div>
+
+  <p class="desc">
+    Prototipos de verificación criptográfica, evidencia digital
+    y metodología de co-creatividad humano-IA.
+    Acta fundacional registrada el 8 de julio de 2026.
+  </p>
+
+  <div class="buttons">
+    <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol#readme" target="_blank">LEER README</a>
+    <a class="btn gold" href="https://www.safecreative.org/certificate/2607086319439" target="_blank">VER ACTA</a>
+    <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GITHUB</a>
+  </div>
+
+  <div class="footer">
+    © 2026 MARCO ANTONIO ROJAS VALDOVINOS ·
+    <a href="https://www.safecreative.org/certificate/2607086319439" target="_blank">2607086319439</a>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// FONDO ANIMADO · Matrix rain sutil + partículas
+// ═══════════════════════════════════════════════════════════════
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+let w, h, cols, drops;
+const chars = 'KTP01KRONOS日月火水木金土01アイウエオカキクケコ▓░█▒'.split('');
+const fontSize = 14;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  cols = Math.floor(w / fontSize);
+  drops = new Array(cols).fill(0).map(() => Math.random() * h / fontSize);
+}
+
+function draw() {
+  // Estela semitransparente
+  ctx.fillStyle = 'rgba(10, 13, 16, 0.06)';
+  ctx.fillRect(0, 0, w, h);
+
+  // Texto matrix
+  ctx.font = fontSize + 'px monospace';
+
+  for (let i = 0; i < cols; i++) {
+    const ch = chars[Math.floor(Math.random() * chars.length)];
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+
+    // 2% de los caracteres en dorado
+    if (Math.random() > 0.98) {
+      ctx.fillStyle = '#c9a44c';
+    } else {
+      // Gradiente verde según posición vertical
+      const brightness = 0.35 + (drops[i] % 8) * 0.08;
+      ctx.fillStyle = `rgba(0, 255, 65, ${brightness})`;
+    }
+
+    ctx.fillText(ch, x, y);
+
+    // Reinicio aleatorio
+    if (y > h && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+</body>
+</html>
