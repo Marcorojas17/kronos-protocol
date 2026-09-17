@@ -17,6 +17,7 @@
     --ink-2: #0a0e15;
     --text: #e8e4d8;
     --text-dim: #8892a0;
+    --cyan: #00eaff;
   }
   html, body {
     background: var(--ink);
@@ -203,6 +204,24 @@
   }
   a.card:hover::before { opacity: 1; }
   a.card:hover::after { width: 100%; }
+
+  /* ── CARD DMD-33 · acento cyan ── */
+  a.card.dmd33 {
+    border-color: rgba(0, 234, 255, 0.18);
+  }
+  a.card.dmd33::after {
+    background: linear-gradient(90deg, var(--cyan), transparent);
+  }
+  a.card.dmd33:hover {
+    border-color: rgba(0, 234, 255, 0.5);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 234, 255, 0.08);
+  }
+  a.card.dmd33 .label { color: var(--cyan); }
+  a.card.dmd33 .foot .status { color: var(--cyan); }
+  a.card.dmd33 .foot .status::before {
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+  }
 
   .card .label {
     font-size: 9px;
@@ -408,7 +427,7 @@
   <section id="projects">
     <div class="section-head">
       <h2>Proyectos</h2>
-      <span class="count">06 · Activos</span>
+      <span class="count">07 · Activos</span>
     </div>
 
     <div class="projects">
@@ -440,6 +459,16 @@
         <div class="foot">
           <span class="status">Funcional</span>
           <span>v19</span>
+        </div>
+      </a>
+
+      <a class="card dmd33" href="projects/dmd-33/">
+        <span class="label">Orbe · En vivo</span>
+        <h3>DMD-33 ○_●</h3>
+        <p>Orbe vivo que respira, escucha y responde. Hardware existente + software propio. Cymatic como sistema nervioso visual. 100% navegador.</p>
+        <div class="foot">
+          <span class="status">Vivo</span>
+          <span>v0.1</span>
         </div>
       </a>
 
@@ -536,7 +565,6 @@
     positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
     positions[i * 3 + 2] = r * Math.cos(phi);
 
-    // Dorado vs crema
     const isGold = Math.random() > 0.4;
     if (isGold) {
       colors[i * 3]     = 0.79;
@@ -556,7 +584,6 @@
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
   geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-  // Shader simple para puntos
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 },
@@ -595,7 +622,6 @@
   const points = new THREE.Points(geometry, material);
   scene.add(points);
 
-  // Mouse parallax
   let mx = 0, my = 0, tx = 0, ty = 0;
   window.addEventListener('mousemove', (e) => {
     mx = (e.clientX / window.innerWidth) * 2 - 1;
@@ -607,7 +633,6 @@
     requestAnimationFrame(animate);
     const t = (performance.now() - t0) * 0.001;
 
-    // Suavizado
     tx += (mx - tx) * 0.03;
     ty += (my - ty) * 0.03;
 
