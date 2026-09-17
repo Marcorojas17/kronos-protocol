@@ -337,10 +337,6 @@ function draw() {
     freqDisplay.textContent = Math.round(peakFreq) + ' Hz';
     freqDisplay.style.opacity = 0.08 + smoothLevel * 0.15;
   }
-
-  if (recording && recorder) {
-    // El recorder captura el canvas vía captureStream
-  }
 }
 
 function drawSymmetry(intensity, p) {
@@ -460,7 +456,6 @@ function drawParticles(intensity, p) {
   ctx.globalAlpha = 1;
 }
 
-// Recording
 let recorder = null;
 let recording = false;
 let chunks = [];
@@ -492,7 +487,6 @@ function toggleRecording() {
   }
 }
 
-// Presets
 function savePreset() {
   const preset = { mode, palette, sensitivity, speed };
   const presets = JSON.parse(localStorage.getItem('cymatic_presets') || '[]');
@@ -529,7 +523,6 @@ function updateLabels() {
   document.getElementById('speedVal').textContent = speed.toFixed(1);
 }
 
-// UI events
 document.querySelectorAll('.mode-btn').forEach(b => {
   b.addEventListener('click', () => setMode(parseInt(b.dataset.mode)));
 });
@@ -557,7 +550,6 @@ function hideUI() {
   document.querySelectorAll('.ui, #hint').forEach(el => el.classList.toggle('hidden', uiHidden));
 }
 
-// Drag & drop
 window.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('active'); });
 window.addEventListener('dragleave', e => {
   if (e.clientX === 0 && e.clientY === 0) dropzone.classList.remove('active');
@@ -568,7 +560,6 @@ window.addEventListener('drop', e => {
   if (e.dataTransfer.files.length > 0) loadFile(e.dataTransfer.files[0]);
 });
 
-// Keyboard
 window.addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
   if (['1','2','3','4','5'].includes(k)) setMode(parseInt(k) - 1);
@@ -584,7 +575,6 @@ window.addEventListener('keydown', e => {
   if (k === 'l') loadLastPreset();
 });
 
-// Init
 updateLabels();
 loadLastPreset();
 draw();
