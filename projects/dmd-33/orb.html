@@ -2,170 +2,202 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DMD-33 ○_● · Orbe vivo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>DMD-33 ○_●</title>
 <style>
-  :root {
-    --cyan: #00eaff;
-    --amber: #ffb300;
-    --red: #ff3344;
-    --bg: #05070d;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: #e6f7ff;
+  :root { --bg:#05070d; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%; background: var(--bg); color: #e6f7ff;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    display: flex; flex-direction: column; align-items: center;
-    min-height: 100vh; overflow: hidden;
+    overflow: hidden;
   }
-  header {
-    padding: 1.2rem; letter-spacing: 6px; color: var(--cyan);
-    font-weight: 300; font-size: 1.1rem;
-  }
-  #stage { position: relative; width: 100vw; flex: 1; }
-  #cymatic {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    display: block;
-  }
+  #stage { position: fixed; inset: 0; }
+  #cymatic { position: absolute; inset: 0; width: 100%; height: 100%; }
   #orb {
     position: absolute; top: 50%; left: 50%;
-    width: 120px; height: 120px; border-radius: 50%;
+    width: 140px; height: 140px; border-radius: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at 35% 35%, #fff, var(--cyan) 40%, #003a4d 90%);
-    box-shadow: 0 0 60px var(--cyan), inset 0 0 25px #fff;
-    animation: pulse 2.6s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 35%, #fff, #00eaff 40%, #003a4d 90%);
+    box-shadow: 0 0 80px #00eaff, inset 0 0 30px #fff;
+    animation: respira 2.8s ease-in-out infinite;
     pointer-events: none;
+    transition: background 0.8s, box-shadow 0.8s;
   }
-  @keyframes pulse {
+  @keyframes respira {
     0%,100% { transform: translate(-50%,-50%) scale(1); }
-    50%     { transform: translate(-50%,-50%) scale(1.08); }
+    50%     { transform: translate(-50%,-50%) scale(1.1); }
   }
   #estado {
-    position: absolute; bottom: 1.2rem; left: 50%;
+    position: absolute; bottom: 2rem; left: 50%;
     transform: translateX(-50%);
-    color: var(--cyan); letter-spacing: 3px; font-size: 0.85rem;
-    background: #000a; padding: 0.4rem 1rem; border-radius: 20px;
+    letter-spacing: 6px; font-size: 0.8rem; font-weight: 300;
+    padding: 0.5rem 1.2rem; border-radius: 30px;
+    background: #000a; border: 1px solid currentColor;
+    transition: color 0.8s;
   }
-  nav {
-    padding: 1rem; display: flex; gap: 1rem;
+  #nombre {
+    position: absolute; top: 2rem; left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 8px; font-size: 1rem; font-weight: 300;
+    color: #00eaff; opacity: 0.7;
   }
-  nav a {
-    color: var(--cyan); text-decoration: none;
-    border: 1px solid var(--cyan); padding: 0.4rem 0.9rem;
-    border-radius: 20px; font-size: 0.8rem; letter-spacing: 2px;
+  #hint {
+    position: absolute; bottom: 5rem; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem; color: #4b6b7a; letter-spacing: 2px;
+    opacity: 0; transition: opacity 1s;
   }
-  nav a:hover { background: var(--cyan); color: #000; }
+  #hint.visible { opacity: 0.7; }
 </style>
 </head>
 <body>
-  <header>DMD-33 ○_●</header>
-
   <div id="stage">
     <canvas id="cymatic"></canvas>
     <div id="orb"></div>
+    <div id="nombre">DMD-33 ○_●</div>
     <div id="estado">STANDBY</div>
+    <div id="hint">toca la pantalla para despertar</div>
   </div>
 
-  <nav>
-    <a href="../cymatic/live-pro.html">CYMATIC LIVE-PRO</a>
-    <a href="../cymatic/studio.html">CYMATIC STUDIO</a>
-    <a href="./flow.html">FLOW</a>
-  </nav>
+<script>
+  // ═══════════════════════════════════════════════════
+  // DMD-33 · v0.1 · Orbe vivo
+  // El final esperado: una URL que se siente viva.
+  // ═══════════════════════════════════════════════════
 
-<script type="module">
-  // ─────────────────────────────────────────────
-  // DMD-33 · Orquestador de estado
-  // Traduce estado → audio sintético → CYMATIC
-  // ─────────────────────────────────────────────
   const canvas = document.getElementById('cymatic');
   const ctx = canvas.getContext('2d');
-  const estadoEl = document.getElementById('estado');
   const orb = document.getElementById('orb');
+  const estadoEl = document.getElementById('estado');
+  const hint = document.getElementById('hint');
 
+  let W, H;
   function resize() {
-    canvas.width = canvas.clientWidth * devicePixelRatio;
-    canvas.height = canvas.clientHeight * devicePixelRatio;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = canvas.width = canvas.clientWidth * dpr;
+    H = canvas.height = canvas.clientHeight * dpr;
   }
-  window.addEventListener('resize', resize); resize();
+  window.addEventListener('resize', resize);
+  resize();
 
-  // ── Motor cymatic embebido (versión mínima) ──
-  let t = 0;
-  const state = {
-    modo: 'standby',
-    freq: 40,        // Hz sintético
-    energia: 0.2,    // 0..1
-    color: [0, 234, 255],
+  // ─── Estados del DMD-33 ───
+  const ESTADOS = {
+    dormido:    { color: [40,  70,  90],   freq: 0.5, energia: 0.15, label: 'DORMIDO'    },
+    standby:    { color: [0,   234, 255],  freq: 1.0, energia: 0.35, label: 'STANDBY'    },
+    escuchando: { color: [0,   234, 255],  freq: 1.6, energia: 0.65, label: 'ESCUCHANDO' },
+    pensando:   { color: [180, 90,  255],  freq: 2.4, energia: 0.85, label: 'PENSANDO'   },
+    respuesta:  { color: [0,   255, 180],  freq: 3.0, energia: 1.00, label: 'RESPUESTA'  },
+    alerta:     { color: [255, 51,  68],   freq: 4.5, energia: 0.95, label: 'ALERTA'     },
   };
 
-  const modos = {
-    standby:   { freq: 40,  color: [0, 234, 255] },
-    escuchando:{ freq: 440, color: [0, 234, 255] },
-    pensando:  { freq: 220, color: [180, 90, 255] },
-    alerta:    { freq: 880, color: [255, 51, 68]  },
-    respuesta: { freq: 660, color: [0, 255, 180]  },
-  };
+  let estadoActual = 'dormido';
+  let targetEnergia = ESTADOS.dormido.energia;
+  let energia = 0.15;
+  let targetColor = ESTADOS.dormido.color.slice();
+  let color = ESTADOS.dormido.color.slice();
+  let fase = 0;
+  let activo = false;
 
+  function setEstado(nombre) {
+    if (!ESTADOS[nombre] || nombre === estadoActual) return;
+    estadoActual = nombre;
+    const e = ESTADOS[nombre];
+    targetEnergia = e.energia;
+    targetColor = e.color.slice();
+    estadoEl.textContent = e.label;
+    estadoEl.style.color = `rgb(${e.color.join(',')})`;
+    orb.style.background = `radial-gradient(circle at 35% 35%, #fff,
+      rgb(${e.color.join(',')}) 40%, #003a4d 90%)`;
+    orb.style.boxShadow = `0 0 80px rgb(${e.color.join(',')}), inset 0 0 30px #fff`;
+  }
+
+  // ─── Motor cymatic embebido (Chladni) ───
   function chladni(x, y, n, m) {
-    return Math.sin(n*Math.PI*x)*Math.sin(m*Math.PI*y)
-         - Math.sin(m*Math.PI*x)*Math.sin(n*Math.PI*y);
+    return Math.sin(n * Math.PI * x) * Math.sin(m * Math.PI * y)
+         - Math.sin(m * Math.PI * x) * Math.sin(n * Math.PI * y);
   }
 
+  let frame = 0;
   function render() {
-    const w = canvas.width, h = canvas.height;
-    const img = ctx.createImageData(w, h);
-    const e = state.energia;
-    const n = 2 + e * 6;
-    const m = 3 + e * 5;
-    const [r, g, b] = state.color;
+    // interpolación suave hacia el estado objetivo
+    energia += (targetEnergia - energia) * 0.05;
+    for (let i = 0; i < 3; i++) {
+      color[i] += (targetColor[i] - color[i]) * 0.05;
+    }
 
-    // submuestreo para rendimiento en móvil
-    const step = 2;
-    for (let y = 0; y < h; y += step) {
-      for (let x = 0; x < w; x += step) {
-        const v = Math.abs(chladni(x/w, y/h, n, m));
-        const glow = Math.max(0, 1 - v * 2.2) * e;
-        for (let dy = 0; dy < step; dy++) {
-          for (let dx = 0; dx < step; dx++) {
-            const i = ((y+dy)*w + (x+dx)) * 4;
-            img.data[i]   = r * glow;
-            img.data[i+1] = g * glow;
-            img.data[i+2] = b * glow;
-            img.data[i+3] = 255;
+    const step = 3; // submuestreo para rendimiento móvil
+    const img = ctx.createImageData(W, H);
+    const n = 2 + energia * 5;
+    const m = 3 + energia * 4;
+    const [r, g, b] = color;
+    const t = fase;
+
+    for (let y = 0; y < H; y += step) {
+      const yv = y / H;
+      for (let x = 0; x < W; x += step) {
+        const xv = x / W;
+        const v = Math.abs(chladni(xv, yv, n + Math.sin(t) * 0.3, m));
+        const glow = Math.max(0, 1 - v * 2.0) * energia * 0.9;
+        for (let dy = 0; dy < step && y + dy < H; dy++) {
+          for (let dx = 0; dx < step && x + dx < W; dx++) {
+            const i = ((y + dy) * W + (x + dx)) * 4;
+            img.data[i]     = r * glow;
+            img.data[i + 1] = g * glow;
+            img.data[i + 2] = b * glow;
+            img.data[i + 3] = 255;
           }
         }
       }
     }
     ctx.putImageData(img, 0, 0);
-    t += 0.02;
+    fase += 0.015 + energia * 0.01;
+    frame++;
     requestAnimationFrame(render);
   }
-
-  function setEstado(nombre) {
-    if (!modos[nombre]) return;
-    state.modo = nombre;
-    state.freq = modos[nombre].freq;
-    state.color = modos[nombre].color;
-    estadoEl.textContent = nombre.toUpperCase();
-    orb.style.background = `radial-gradient(circle at 35% 35%, #fff,
-      rgb(${state.color.join(',')}) 40%, #003a4d 90%)`;
-    orb.style.boxShadow = `0 0 60px rgb(${state.color.join(',')}), inset 0 0 25px #fff`;
-  }
-
-  // ── Ciclo de estado (simulación v0.1) ──
-  const ciclo = ['standby','escuchando','pensando','respuesta','standby','alerta','standby'];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % ciclo.length;
-    setEstado(ciclo[idx]);
-    state.energia = 0.2 + Math.random() * 0.6;
-  }, 4000);
-
   render();
 
-  // ── Cuando conectes micrófono real, reemplazas esto
-  // por el analyser de tu live-pro.html ──
-  window.DMD33 = { setEstado, state };
+  // ─── Ciclo de presencia (simulado v0.1) ───
+  function despertar() {
+    if (activo) return;
+    activo = true;
+    hint.classList.remove('visible');
+    const ciclo = [
+      ['standby',    1200],
+      ['escuchando', 2500],
+      ['pensando',   2000],
+      ['respuesta',  2200],
+      ['standby',    1500],
+      ['escuchando', 1800],
+      ['pensando',   1600],
+      ['respuesta',  2000],
+      ['standby',    2500],
+      ['dormido',    3000],
+    ];
+    let i = 0;
+    function paso() {
+      if (i >= ciclo.length) { activo = false; return; }
+      const [nombre, ms] = ciclo[i++];
+      setEstado(nombre);
+      setTimeout(paso, ms);
+    }
+    paso();
+  }
+
+  // ─── Interacción ───
+  document.body.addEventListener('click', despertar);
+  document.body.addEventListener('touchstart', despertar, { passive: true });
+
+  setTimeout(() => hint.classList.add('visible'), 3000);
+  setTimeout(() => setEstado('standby'), 800);
+
+  // ─── API pública para futuras versiones ───
+  window.DMD33 = {
+    setEstado,
+    getEstado: () => estadoActual,
+    getEnergia: () => energia,
+    estados: Object.keys(ESTADOS),
+  };
 </script>
 </body>
 </html>
