@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMD-33 ○_●</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#05070b; color:#e8e4d8;
+    font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; padding:2rem;
+    text-align:center;
+  }
+  .orb {
+    width:120px; height:120px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fff, #00eaff 40%, #003a4d 90%);
+    box-shadow:0 0 80px #00eaff, inset 0 0 30px #fff;
+    animation:respira 2.8s ease-in-out infinite;
+    margin-bottom:2.5rem;
+  }
+  @keyframes respira {
+    0%,100% { transform:scale(1); }
+    50%     { transform:scale(1.1); }
+  }
+  h1 {
+    font-family:'Cinzel',serif; font-weight:600;
+    font-size:clamp(28px, 6vw, 48px);
+    letter-spacing:6px; color:#00eaff;
+    margin-bottom:1rem;
+  }
+  .sub {
+    color:#8892a0; font-size:13px; letter-spacing:3px;
+    text-transform:uppercase; margin-bottom:3rem;
+  }
+  .nav {
+    display:flex; flex-direction:column; gap:0.8rem;
+    width:100%; max-width:320px;
+  }
+  .nav a {
+    display:block; padding:1rem 1.6rem;
+    border:1px solid rgba(0,234,255,0.3);
+    color:#00eaff; text-decoration:none;
+    letter-spacing:3px; font-size:11px;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:all 0.4s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .nav a:hover {
+    background:rgba(0,234,255,0.08);
+    border-color:#00eaff;
+    transform:translateY(-2px);
+  }
+  footer {
+    margin-top:3rem; color:#4b6b7a; font-size:10px;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  footer a { color:#4b6b7a; text-decoration:none; }
+  footer a:hover { color:#00eaff; }
+</style>
+</head>
+<body>
+  <div class="orb"></div>
+  <h1>DMD-33 ○_●</h1>
+  <div class="sub">Orbe vivo · v0.1</div>
+
+  <nav class="nav">
+    <a href="orb.html">Orbe vivo</a>
+    <a href="flow.html">Diagrama de flujo</a>
+    <a href="../cymatic/live-pro.html">Cymatic Live-Pro</a>
+    <a href="../cymatic/studio.html">Cymatic Studio</a>
+  </nav>
+
+  <footer>
+    <a href="../../">← Volver a Kronos Protocol</a>
+  </footer>
+</body>
+</html>
