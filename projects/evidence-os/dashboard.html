@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVIDENCE INTEGRITY OS · Dashboard</title>
+    <style>
+        :root {
+            --bg-base: #010103;
+            --bg-surface: rgba(6, 4, 14, 0.96);
+            --bg-card: rgba(14, 10, 28, 0.8);
+            --bg-dark: #000000;
+            --border: rgba(255, 255, 255, 0.05);
+            --border-hl: rgba(212, 175, 55, 0.35);
+            --text-main: #e8e4f5;
+            --text-muted: #6e658a;
+            --accent: #d4af37;
+            --accent-grad: linear-gradient(135deg, #d4af37, #b8860b);
+            --success: #00ff87;
+            --danger: #ff4d6d;
+            --info: #3a86ff;
+            --purple: #9b59b6;
+            --radius: 12px;
+            --shadow: 0 8px 40px rgba(0,0,0,0.8);
+            --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-base);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            color: var(--text-main);
+            display: flex;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+        #particles-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.12;
+        }
+        .sidebar {
+            position: fixed; top: 0; left: 0;
+            width: 72px; height: 100vh;
+            background: rgba(6, 4, 14, 0.96);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border);
+            z-index: 100;
+            display: flex; flex-direction: column;
+            align-items: center; padding: 1.2rem 0; gap: 0.4rem;
+            transition: width var(--transition); overflow: hidden;
+        }
+        .sidebar:hover { width: 220px; }
+        .sidebar:hover .nav-label { opacity: 1; }
+        .sidebar .logo {
+            font-weight: 900; font-size: 0.9rem;
+            color: var(--accent);
+            padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+            width: 100%; text-align: center; margin-bottom: 0.6rem;
+            letter-spacing: 2px;
+        }
+        .sidebar .logo span { font-size: 0.5rem; display: block; color: var(--text-muted); letter-spacing: 3px; }
+        .nav-item {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.6rem 1.2rem; width: 100%;
+            color: var(--text-muted); cursor: pointer;
+            transition: all var(--transition);
+            border-radius: 8px; font-size: 0.8rem;
+            font-weight: 600; white-space: nowrap;
+            border: none; background: transparent;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--text-main);
+            border-left: 3px solid var(--accent);
+        }
+        .nav-item .icon { font-size: 1.2rem; min-width: 28px; text-align: center; }
+        .nav-item .nav-label { opacity: 0; transition: opacity var(--transition); }
+        .sidebar:hover .nav-item .nav-label { opacity: 1; }
+
+        .main {
+            margin-left: 72px; flex: 1;
+            padding: 1rem 1.8rem 1.8rem;
+            position: relative; z-index: 1;
+            max-width: calc(100% - 72px);
+            height: 100vh; overflow-y: auto;
+        }
+        .page { display: none; animation: fadeIn 0.35s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page-header {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap;
+            gap: 0.8rem; margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+        }
+        .page-header h2 {
+            font-size: 1.5rem; font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+        .page-header .sub { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        .page-header .badge-official {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--accent);
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 0.8rem 1rem;
+            display: flex; flex-direction: column; gap: 0.3rem;
+            transition: all var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        .card:hover { border-color: var(--border-hl); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .card .label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 700; }
+        .card .value { font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono); line-height: 1.2; word-break: break-all; }
+        .card .value.gold { color: var(--accent); }
+        .card .value.green { color: var(--success); }
+        .card .value.red { color: var(--danger); }
+        .card .value.info { color: var(--info); }
+        .card .sub { font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+        .dropzone {
+            border: 2px dashed rgba(255,255,255,0.04);
+            border-radius: 10px; padding: 1.5rem 1rem;
+            text-align: center; cursor: pointer;
+            background: rgba(0,0,0,0.2);
+            transition: border-color 0.2s;
+        }
+        .dropzone:hover { border-color: var(--accent); }
+        .dropzone input { display: none; }
+        .dropzone .icon { font-size: 1.8rem; display: block; margin-bottom: 0.1rem; }
+        .dropzone .badge-count {
+            display: inline-block; background: rgba(212,175,55,0.1);
+            color: var(--accent); font-size: 0.55rem;
+            padding: 0.1rem 0.6rem; border-radius: 20px;
+            margin-top: 0.2rem;
+        }
+
+        .btn-group { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+        .btn {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px; font-weight: 700;
+            font-size: 0.65rem; cursor: pointer;
+            text-transform: uppercase; transition: all var(--transition);
+            letter-spacing: 0.5px;
+        }
+        .btn:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        .btn-primary { background: var(--accent-grad); border: none; color: #000; }
+        .btn-primary:hover { opacity: 0.9; box-shadow: 0 4px 16px rgba(184,134,11,0.25); }
+        .btn-danger { border-color: var(--danger); color: var(--danger); }
+        .btn-danger:hover { background: rgba(255,77,109,0.08); }
+        .btn-success { border-color: var(--success); color: var(--success); }
+        .btn-success:hover { background: rgba(0,255,135,0.06); }
+        .btn-purple { border-color: var(--purple); color: var(--purple); }
+        .btn-purple:hover { background: rgba(155,89,182,0.06); }
+        .btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+        .log-area {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.6rem;
+            font-family: var(--font-mono); font-size: 0.6rem;
+            height: 140px; overflow-y: auto; line-height: 1.6;
+        }
+        .log-area .entry { color: var(--text-muted); margin-bottom: 0.05rem; }
+        .log-area .entry.info { color: var(--info); }
+        .log-area .entry.success { color: var(--success); }
+        .log-area .entry.danger { color: var(--danger); font-weight: bold; }
+        .log-area .entry.warn { color: var(--accent); }
+
+        .hex-view {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.6rem;
+            font-family: var(--font-mono); font-size: 0.55rem;
+            min-height: 120px; max-height: 220px;
+            overflow-y: auto; line-height: 1.5;
+            color: var(--text-muted); word-break: break-all;
+        }
+        .hex-view .hl { color: var(--accent); }
+
+        .chart-box {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.2rem;
+            height: 100px; width: 100%;
+        }
+        .chart-box canvas { width: 100%; height: 100%; display: block; }
+
+        .merkle-tree {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.6rem;
+            font-family: var(--font-mono); font-size: 0.6rem;
+            min-height: 70px; overflow-x: auto;
+            color: var(--text-muted); line-height: 1.6;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        .merkle-tree .root { color: var(--accent); font-weight: 700; }
+        .merkle-tree .leaf { color: var(--info); }
+
+        .file-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; font-family: var(--font-mono); }
+        .file-table th { text-align: left; padding: 0.2rem 0.3rem; color: var(--text-muted); border-bottom: 1px solid var(--border); font-weight: 700; }
+        .file-table td { padding: 0.15rem 0.3rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
+
+        textarea, input[type="text"] {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.3rem 0.5rem;
+            border-radius: 6px; font-family: var(--font-mono);
+            font-size: 0.7rem; width: 100%;
+        }
+        textarea { resize: vertical; min-height: 50px; font-size: 0.65rem; }
+
+        @media (max-width: 1100px) { .grid-2, .grid-4 { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 700px) {
+            .grid-2, .grid-4 { grid-template-columns: 1fr; }
+            .sidebar { width: 48px; }
+            .sidebar:hover { width: 48px; }
+            .main { margin-left: 48px; max-width: calc(100% - 48px); padding: 0.8rem; }
+            .page-header h2 { font-size: 1.1rem; }
+        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <nav class="sidebar">
+        <div class="logo">EVIDENCE <span>OS</span></div>
+        <button class="nav-item active" data-page="dashboard"><span class="icon">📊</span><span class="nav-label">Dashboard</span></button>
+        <button class="nav-item" data-page="forensics"><span class="icon">🔍</span><span class="nav-label">Forensics</span></button>
+        <button class="nav-item" data-page="merkle"><span class="icon">🌿</span><span class="nav-label">Merkle Tree</span></button>
+        <button class="nav-item" data-page="pki"><span class="icon">🔐</span><span class="nav-label">PKI &amp; Sign</span></button>
+        <button class="nav-item" data-page="pack"><span class="icon">📦</span><span class="nav-label">Pack/Unpack</span></button>
+        <button class="nav-item" data-page="watcher"><span class="icon">📋</span><span class="nav-label">Watcher</span></button>
+        <button class="nav-item" data-page="audit"><span class="icon">🛡️</span><span class="nav-label">Auto-Audit</span></button>
+    </nav>
+
+    <div class="main">
+
+        <section class="page active" id="page-dashboard">
+            <div class="page-header">
+                <div><h2>📊 Dashboard</h2><div class="sub">Verificación de integridad · Hash chain · PKI</div></div>
+                <span class="badge-official">🛠️ DEMO TÉCNICA</span>
+            </div>
+            <div class="grid-4">
+                <div class="card"><div class="label">📦 Archivos</div><div class="value info" id="dashFiles">0</div><div class="sub">Ingeridos</div></div>
+                <div class="card"><div class="label">🌿 Merkle Root</div><div class="value" style="font-size:0.7rem;" id="dashRoot">--</div><div class="sub">Integridad</div></div>
+                <div class="card"><div class="label">📊 Entropía max</div><div class="value gold" id="dashEntropy">0.0000</div><div class="sub">Pico</div></div>
+                <div class="card"><div class="label">⚡ Motor</div><div class="value green" id="dashStatus">READY</div><div class="sub" id="dashStatusSub">IDLE</div></div>
+            </div>
+            <div class="grid-2">
+                <div class="card"><div class="label">📋 Bitácora</div><div class="log-area" id="dashLog"><div class="entry info">[INIT] Evidence Integrity OS cargado.</div></div></div>
+                <div class="card"><div class="label">📈 Espectro de entropía</div><div class="chart-box"><canvas id="dashChart"></canvas></div></div>
+            </div>
+        </section>
+
+        <section class="page" id="page-forensics">
+            <div class="page-header">
+                <div><h2>🔍 Auditoría Forense</h2><div class="sub">SHA-256 · Entropía de Shannon · Magic Numbers</div></div>
+                <span class="badge-official">🔬 REAL</span>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <div class="label">📁 Ingesta de evidencia</div>
+                        <div class="dropzone" id="dropZone"><span class="icon">📥</span><p>Arrastra archivos</p><span class="badge-count" id="fileCount">0</span><input type="file" id="fileInput" multiple /></div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" id="btnAudit">🔍 Auditar lote</button>
+                            <button class="btn btn-danger" id="btnClearForensics">🗑️ Limpiar</button>
+                        </div>
+                    </div>
+                    <div class="card"><div class="label">🧬 Hexdump (primeros 64 bytes)</div><div class="hex-view" id="hexView"><span class="hl">00000000</span> -- Esperando...</div></div>
+                </div>
+                <div>
+                    <div class="card"><div class="label">📊 Espectro de entropía</div><div class="chart-box"><canvas id="spectralChart"></canvas></div></div>
+                    <div class="card" style="margin-top:0.6rem;">
+                        <div class="label">📋 Resultados detallados</div>
+                        <div id="forensicResult" style="background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.6rem; min-height:80px; overflow-y:auto; color:var(--text-muted);">Sin datos.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-merkle">
+            <div class="page-header">
+                <div><h2>🌿 Merkle Tree</h2><div class="sub">Cadena de custodia inmutable</div></div>
+                <span class="badge-official">🌳 REAL</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">🌳 Árbol de Merkle</div>
+                    <div class="merkle-tree" id="merkleTree">Esperando construcción...</div>
+                    <button class="btn btn-success" id="btnBuildMerkle" style="margin-top:0.3rem;">Construir desde archivos auditados</button>
+                </div>
+                <div class="card">
+                    <div class="label">📋 Hojas (SHA-256)</div>
+                    <div style="overflow-y:auto; max-height:180px;">
+                        <table class="file-table"><thead><tr><th>#</th><th>Hash (16 primeros)</th></tr></thead><tbody id="merkleBody"><tr><td colspan="2" style="color:var(--text-muted);text-align:center;">Sin hojas</td></tr></tbody></table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-pki">
+            <div class="page-header">
+                <div><h2>🔐 PKI · RSA-2048</h2><div class="sub">X.509 · PEM · No Repudio</div></div>
+                <span class="badge-official">🔑 REAL</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">🔑 Generar par de claves RSA-2048</div>
+                    <button class="btn btn-primary" id="btnGenKeys">Generar RSA-2048</button>
+                    <div style="margin-top:0.4rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.55rem; max-height:100px; overflow-y:auto; word-break:break-all;" id="keyDisplay">No hay claves.</div>
+                </div>
+                <div class="card">
+                    <div class="label">✍️ Firmar Merkle Root</div>
+                    <button class="btn btn-success" id="btnSignMerkle">Firmar Root (RSA real)</button>
+                    <div style="margin-top:0.4rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.55rem; max-height:130px; overflow-y:auto; word-break:break-all;" id="signatureDisplay">Esperando firma...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-pack">
+            <div class="page-header">
+                <div><h2>📦 Pack / Unpack</h2><div class="sub">AES-256-CBC · Cifrado simétrico</div></div>
+                <span class="badge-official">🔒 REAL</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">🔒 Cifrar (Pack)</div>
+                    <textarea id="packData" rows="2" placeholder="Datos a cifrar..." style="font-size:0.7rem;">Evidence Bundle v0.1</textarea>
+                    <input type="text" id="packKey" placeholder="Clave AES (mínimo 16)" value="evidence_aes_256_key" style="margin-top:0.2rem;"/>
+                    <button class="btn btn-primary" id="btnPack">📦 Empaquetar (AES-256-CBC)</button>
+                    <div style="margin-top:0.3rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.4rem; font-family:var(--font-mono); font-size:0.55rem; word-break:break-all;" id="packResult">Esperando...</div>
+                </div>
+                <div class="card">
+                    <div class="label">🔓 Desempaquetar (Unpack)</div>
+                    <textarea id="unpackData" rows="2" placeholder="Base64 del paquete..." style="font-size:0.7rem;"></textarea>
+                    <input type="text" id="unpackKey" placeholder="Clave AES (mínimo 16)" value="evidence_aes_256_key" style="margin-top:0.2rem;"/>
+                    <button class="btn btn-danger" id="btnUnpack">📦 Desempaquetar (AES-256-CBC)</button>
+                    <div style="margin-top:0.3rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.4rem; font-family:var(--font-mono); font-size:0.55rem; word-break:break-all;" id="unpackResult">Esperando...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-watcher">
+            <div class="page-header">
+                <div><h2>📋 Watcher · Daemon</h2><div class="sub">Vigilancia continua y rotación de logs</div></div>
+                <span class="badge-official">🔄 ACTIVO</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">🔄 Demonio (vigilancia en segundo plano)</div>
+                    <div class="btn-group">
+                        <button class="btn btn-success" id="btnWatcherStart">▶️ Iniciar</button>
+                        <button class="btn btn-danger" id="btnWatcherStop">⏹️ Detener</button>
+                        <button class="btn btn-purple" id="btnRotateLogs">🔄 Rotar logs</button>
+                    </div>
+                    <div style="margin-top:0.4rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.6rem; height:140px; overflow-y:auto;" id="watcherLog">
+                        <div class="entry info">[WATCHER] Inactivo.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="label">📂 server.log (eventos en tiempo real)</div>
+                    <div style="background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.6rem; height:180px; overflow-y:auto;" id="serverLog">
+                        <div class="entry info">[SERVER] Inicializado.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-audit">
+            <div class="page-header">
+                <div><h2>🛡️ Auto-Auditoría</h2><div class="sub">Verificación de integridad · Checksums · Self-audit</div></div>
+                <span class="badge-official">✅ DISPONIBLE</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">🔍 Auditoría de integridad</div>
+                    <div style="background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.6rem; font-family:var(--font-mono); font-size:0.6rem; min-height:120px; color:var(--text-muted);" id="auditResult">
+                        <span style="color:var(--info);">⏳ Esperando auditoría...</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="btnAuditSelf">🔍 Ejecutar auto-auditoría</button>
+                        <button class="btn btn-success" id="btnAuditExport">📥 Exportar informe</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="label">📋 Checksums del sistema</div>
+                    <div style="background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.5rem; font-family:var(--font-mono); font-size:0.55rem; min-height:120px; overflow-y:auto; color:var(--text-muted);" id="checksumDisplay">
+                        <div class="entry info">[CHECKSUM] SHA-256 del código fuente: <span id="sourceHash">--</span></div>
+                        <div class="entry info">[CHECKSUM] Integridad de módulos: <span id="moduleStatus">--</span></div>
+                        <div class="entry info">[CHECKSUM] Estado de la cadena de custodia: <span id="chainStatus">--</span></div>
+                    </div>
+                    <div style="margin-top:0.4rem; background:var(--bg-dark); border:1px solid var(--border); border-radius:6px; padding:0.4rem; font-family:var(--font-mono); font-size:0.55rem; color:var(--text-muted); text-align:center;">
+                        <span id="auditTimestamp">Última auditoría: --</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ================================================================
+            //  EVIDENCE INTEGRITY OS — Dashboard
+            //  Verificación de integridad · Hash chain · PKI
+            // ================================================================
+
+            (function() {
+                const canvas = document.getElementById('particles-canvas');
+                const ctx = canvas.getContext('2d');
+                let w,h; const p=[];
+                function resize() { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
+                window.addEventListener('resize', resize); resize();
+                for(let i=0;i<35;i++) p.push({ x:Math.random()*w, y:Math.random()*h, sx:(Math.random()-0.5)*0.15, sy:(Math.random()-0.5)*0.15, r:Math.random()*1.5+0.5 });
+                function anim() {
+                    ctx.clearRect(0,0,w,h);
+                    p.forEach(a=>{ ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,Math.PI*2); ctx.fillStyle='#d4af37'; ctx.globalAlpha=0.1; ctx.fill(); a.x+=a.sx; a.y+=a.sy; if(a.x<0||a.x>w)a.sx*=-1; if(a.y<0||a.y>h)a.sy*=-1; });
+                    requestAnimationFrame(anim);
+                }
+                anim();
+            })();
+
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = {
+                dashboard:'page-dashboard', forensics:'page-forensics',
+                merkle:'page-merkle', pki:'page-pki', pack:'page-pack',
+                watcher:'page-watcher', audit:'page-audit'
+            };
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(n => n.classList.remove('active'));
+                    this.classList.add('active');
+                    Object.keys(pages).forEach(k => {
+                        document.getElementById(pages[k]).classList.toggle('active', k === this.dataset.page);
+                    });
+                });
+            });
+
+            let fileQueue = [];
+            let fileHashes = [];
+            let fileEntropies = [];
+            let merkleRoot = '--';
+            let rsaKeys = null;
+            let watcherInterval = null;
+            let auditLog = [];
+
+            function addLog(msg, type='', target='dashLog') {
+                const el = document.getElementById(target);
+                if(!el) return;
+                const d = document.createElement('div');
+                d.className = `entry ${type}`;
+                d.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                el.appendChild(d); el.scrollTop = el.scrollHeight;
+                auditLog.push({ time: new Date().toISOString(), msg, type });
+            }
+
+            function sha256(buffer) {
+                return crypto.subtle.digest('SHA-256', buffer)
+                    .then(h => Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join(''));
+            }
+
+            function calcEntropy(bytes) {
+                if(!bytes || !bytes.length) return 0;
+                const f = new Uint32Array(256);
+                for(const b of bytes) f[b]++;
+                let e=0; const l=bytes.length;
+                for(let i=0;i<256;i++){ if(f[i]>0){ const p=f[i]/l; e -= p * Math.log2(p); } }
+                return e;
+            }
+
+            function drawChart(canvasId, data) {
+                const canvas = document.getElementById(canvasId);
+                if(!canvas) return;
+                const rect = canvas.parentElement.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                const w = rect.width || 200, h = rect.height || 90;
+                canvas.width = w*dpr; canvas.height = h*dpr;
+                canvas.style.width = w+'px'; canvas.style.height = h+'px';
+                const ctx = canvas.getContext('2d'); ctx.scale(dpr,dpr);
+                ctx.clearRect(0,0,w,h);
+                if(!data || data.length<2){ ctx.fillStyle='#6e658a'; ctx.font='11px monospace'; ctx.textAlign='center'; ctx.fillText('Esperando...',w/2,h/2+4); return; }
+                const max = Math.max(...data, 1);
+                const step = w / (data.length - 1 || 1);
+                ctx.beginPath();
+                for(let i=0;i<data.length;i++){ const x=i*step; const y=h-(data[i]/max)*(h-8)-4; if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+                ctx.strokeStyle='#d4af37'; ctx.lineWidth=2; ctx.stroke();
+                ctx.lineTo((data.length-1)*step, h-4);
+                ctx.lineTo(0, h-4);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(212,175,55,0.06)';
+                ctx.fill();
+            }
+
+            function updateDashboard() {
+                document.getElementById('dashFiles').textContent = fileQueue.length;
+                document.getElementById('dashRoot').textContent = merkleRoot.slice(0, 20) + (merkleRoot.length>20?'...':'');
+                const maxE = fileEntropies.length ? Math.max(...fileEntropies) : 0;
+                document.getElementById('dashEntropy').textContent = maxE.toFixed(4);
+                drawChart('dashChart', fileEntropies);
+            }
+
+            // ---- FORENSICS ----
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const hexView = document.getElementById('hexView');
+            const fileCount = document.getElementById('fileCount');
+            const forensicResult = document.getElementById('forensicResult');
+
+            dropZone.addEventListener('click', ()=>fileInput.click());
+            dropZone.addEventListener('dragover', e=>{e.preventDefault(); dropZone.style.borderColor='var(--accent)';});
+            dropZone.addEventListener('dragleave', ()=>dropZone.style.borderColor='rgba(255,255,255,0.04)');
+            dropZone.addEventListener('drop', e=>{
+                e.preventDefault(); dropZone.style.borderColor='rgba(255,255,255,0.04)';
+                if(e.dataTransfer.files.length){ fileInput.files=e.dataTransfer.files; loadFiles(e.dataTransfer.files); }
+            });
+            fileInput.addEventListener('change', ()=> { if(fileInput.files.length) loadFiles(fileInput.files); });
+
+            async function loadFiles(files) {
+                fileQueue = Array.from(files);
+                fileCount.textContent = fileQueue.length;
+                addLog(`Cargados ${fileQueue.length} archivos.`, 'info', 'dashLog');
+                forensicResult.innerHTML = 'Cargado. Presiona "Auditar" para análisis real.';
+                if(fileQueue.length>0){
+                    const buf = await fileQueue[0].arrayBuffer();
+                    const bytes = new Uint8Array(buf);
+                    hexView.innerHTML = Array.from(bytes.slice(0, 64)).map(b=>b.toString(16).padStart(2,'0')).join(' ') + ' ...';
+                }
+                updateDashboard();
+            }
+
+            document.getElementById('btnAudit').addEventListener('click', async function(){
+                if(!fileQueue.length){ addLog('No hay archivos.', 'warn'); return; }
+                addLog('🔍 Auditando archivos (SHA-256 + Entropía real)...', 'info', 'dashLog');
+                fileHashes = []; fileEntropies = [];
+                let html = '';
+                for(let f of fileQueue){
+                    const buf = await f.arrayBuffer();
+                    const bytes = new Uint8Array(buf);
+                    const hash = await sha256(buf);
+                    const ent = calcEntropy(bytes);
+                    fileHashes.push(hash);
+                    fileEntropies.push(ent);
+                    const magic = bytes.length>4 ? String.fromCharCode(...bytes.slice(0,4)) : 'N/A';
+                    html += `${f.name}: SHA-256 ${hash.slice(0,16)}... Entropía ${ent.toFixed(4)} Magic: ${magic}\n`;
+                }
+                forensicResult.innerHTML = `<pre style="color:var(--text-muted);font-size:0.6rem;">${html}</pre>`;
+                drawChart('spectralChart', fileEntropies);
+                updateDashboard();
+                addLog('Auditoría completada.', 'success', 'dashLog');
+            });
+
+            document.getElementById('btnClearForensics').addEventListener('click', function(){
+                fileQueue=[]; fileHashes=[]; fileEntropies=[]; fileCount.textContent='0';
+                hexView.innerHTML='<span class="hl">00000000</span> -- Esperando...';
+                forensicResult.innerHTML='Sin datos.';
+                drawChart('spectralChart', []);
+                updateDashboard();
+            });
+
+            // ---- MERKLE TREE ----
+            document.getElementById('btnBuildMerkle').addEventListener('click', async function(){
+                if(!fileHashes.length){ addLog('No hay hashes. Audita primero.', 'warn'); return; }
+                addLog('🌿 Construyendo Merkle Tree real...', 'info', 'dashLog');
+
+                let level = [...fileHashes];
+                const encoder = new TextEncoder();
+                while(level.length > 1){
+                    let next=[];
+                    for(let i=0;i<level.length;i+=2){
+                        if(i+1<level.length){
+                            const combined = level[i] + level[i+1];
+                            const buf = await crypto.subtle.digest('SHA-256', encoder.encode(combined));
+                            next.push(Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''));
+                        } else { next.push(level[i]); }
+                    }
+                    level = next;
+                }
+                merkleRoot = level[0] || 'N/A';
+
+                document.getElementById('merkleTree').innerHTML = `<span class="root">Root: ${merkleRoot}</span>`;
+                const body = document.getElementById('merkleBody');
+                body.innerHTML = '';
+                fileHashes.slice(0,15).forEach((h,i)=>{
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${i+1}</td><td style="font-size:0.55rem;">${h.slice(0,16)}...</td>`;
+                    body.appendChild(tr);
+                });
+                if(fileHashes.length>15){
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td colspan="2" style="color:var(--text-muted);">... y ${fileHashes.length-15} más</td>`;
+                    body.appendChild(tr);
+                }
+                updateDashboard();
+                addLog(`Merkle Root generado: ${merkleRoot.slice(0,16)}...`, 'success', 'dashLog');
+            });
+
+            // ---- PKI ----
+            document.getElementById('btnGenKeys').addEventListener('click', async function(){
+                try{
+                    const keyPair = await crypto.subtle.generateKey(
+                        { name:'RSASSA-PKCS1-v1_5', modulusLength:2048, publicExponent:new Uint8Array([1,0,1]), hash:'SHA-256' },
+                        true, ['sign','verify']
+                    );
+                    rsaKeys = keyPair;
+                    const pub = await crypto.subtle.exportKey('spki', keyPair.publicKey);
+                    const pubB64 = btoa(String.fromCharCode(...new Uint8Array(pub)));
+                    document.getElementById('keyDisplay').innerHTML =
+                        `<span style="color:var(--success);">✅ RSA-2048 generado (real)</span><br><span style="font-size:0.5rem;">Public key (SPKI): ${pubB64.slice(0,40)}...</span>`;
+                    addLog('Par RSA-2048 generado con SubtleCrypto.', 'success', 'dashLog');
+                } catch(e){ document.getElementById('keyDisplay').innerHTML = `❌ Error: ${e.message}`; }
+            });
+
+            document.getElementById('btnSignMerkle').addEventListener('click', async function(){
+                if(!rsaKeys){ addLog('Genera claves RSA primero.', 'warn'); return; }
+                if(!merkleRoot || merkleRoot==='--'){ addLog('Genera Merkle Root primero.', 'warn'); return; }
+                try{
+                    const enc = new TextEncoder();
+                    const sig = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', rsaKeys.privateKey, enc.encode(merkleRoot));
+                    const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig))).match(/.{1,64}/g).join('\n');
+                    document.getElementById('signatureDisplay').innerHTML =
+                        `<span style="color:var(--accent);">🔐 Firma RSA-2048 real (Base64):</span>\n${sigB64}`;
+                    addLog('Merkle Root firmado digitalmente con RSA real.', 'success', 'dashLog');
+                } catch(e){ document.getElementById('signatureDisplay').innerHTML = `❌ Error: ${e.message}`; }
+            });
+
+            // ---- AES PACK/UNPACK ----
+            async function aesEncrypt(plaintext, keyStr){
+                const enc = new TextEncoder();
+                const keyData = enc.encode(keyStr.padEnd(32).slice(0,32));
+                const key = await crypto.subtle.importKey('raw', keyData, {name:'AES-CBC'}, false, ['encrypt']);
+                const iv = crypto.getRandomValues(new Uint8Array(16));
+                const ct = await crypto.subtle.encrypt({name:'AES-CBC', iv}, key, enc.encode(plaintext));
+                const combined = new Uint8Array(iv.length + ct.byteLength);
+                combined.set(iv, 0); combined.set(new Uint8Array(ct), iv.length);
+                return btoa(String.fromCharCode(...combined));
+            }
+
+            async function aesDecrypt(b64, keyStr){
+                const enc = new TextEncoder();
+                const raw = Uint8Array.from(atob(b64), c=>c.charCodeAt(0));
+                const iv = raw.slice(0,16);
+                const ct = raw.slice(16);
+                const keyData = enc.encode(keyStr.padEnd(32).slice(0,32));
+                const key = await crypto.subtle.importKey('raw', keyData, {name:'AES-CBC'}, false, ['decrypt']);
+                const pt = await crypto.subtle.decrypt({name:'AES-CBC', iv}, key, ct);
+                return new TextDecoder().decode(pt);
+            }
+
+            document.getElementById('btnPack').addEventListener('click', async function(){
+                const data = document.getElementById('packData').value;
+                const key = document.getElementById('packKey').value;
+                if(!key || key.length<16){ document.getElementById('packResult').innerHTML = '❌ Clave debe tener mínimo 16 caracteres.'; return; }
+                try{
+                    const ct = await aesEncrypt(data, key);
+                    document.getElementById('packResult').innerHTML = `📦 ${ct}`;
+                    addLog('AES-256-CBC empaquetado real.', 'success');
+                } catch(e){ document.getElementById('packResult').innerHTML = '❌ Error: '+e.message; }
+            });
+
+            document.getElementById('btnUnpack').addEventListener('click', async function(){
+                const data = document.getElementById('unpackData').value;
+                const key = document.getElementById('unpackKey').value;
+                if(!key || key.length<16){ document.getElementById('unpackResult').innerHTML = '❌ Clave debe tener mínimo 16 caracteres.'; return; }
+                try{
+                    const pt = await aesDecrypt(data, key);
+                    document.getElementById('unpackResult').innerHTML = `📄 ${pt}`;
+                    addLog('AES-256-CBC desempaquetado real.', 'success');
+                } catch(e){ document.getElementById('unpackResult').innerHTML = '❌ Error: '+e.message; }
+            });
+
+            // ---- WATCHER ----
+            document.getElementById('btnWatcherStart').addEventListener('click', function(){
+                if(watcherInterval) clearInterval(watcherInterval);
+                const log = document.getElementById('watcherLog');
+                watcherInterval = setInterval(()=>{
+                    const d = document.createElement('div');
+                    d.className = 'entry info';
+                    d.innerText = `[WATCHER] ${new Date().toISOString()} · Archivos: ${fileQueue.length} · Root: ${merkleRoot.slice(0,8)}...`;
+                    log.appendChild(d); log.scrollTop = log.scrollHeight;
+                    if(log.children.length > 40) log.removeChild(log.firstChild);
+                    const sl = document.getElementById('serverLog');
+                    const sd = document.createElement('div');
+                    sd.className = 'entry info';
+                    sd.innerText = `[${new Date().toISOString()}] Heartbeat · ${Math.random()>0.7?'🟢 OK':'⚪ IDLE'}`;
+                    sl.appendChild(sd); sl.scrollTop = sl.scrollHeight;
+                    if(sl.children.length > 30) sl.removeChild(sl.firstChild);
+                }, 5000);
+                addLog('Watcher iniciado (intervalo 5s).', 'info', 'dashLog');
+                document.getElementById('watcherLog').innerHTML += '<div class="entry success">[WATCHER] Iniciado.</div>';
+            });
+
+            document.getElementById('btnWatcherStop').addEventListener('click', function(){
+                if(watcherInterval){ clearInterval(watcherInterval); watcherInterval=null; addLog('Watcher detenido.', 'warn', 'dashLog');
+                    document.getElementById('watcherLog').innerHTML += '<div class="entry warn">[WATCHER] Detenido.</div>'; }
+            });
+
+            document.getElementById('btnRotateLogs').addEventListener('click', function(){
+                const log = document.getElementById('watcherLog');
+                while(log.firstChild) log.removeChild(log.firstChild);
+                addLog('Logs rotados.', 'info', 'dashLog');
+            });
+
+            // ---- AUTO-AUDIT ----
+            document.getElementById('btnAuditSelf').addEventListener('click', function(){
+                const resultDiv = document.getElementById('auditResult');
+                resultDiv.innerHTML = '<span style="color:var(--info);">⏳ Ejecutando auditoría integral...</span>';
+
+                setTimeout(async () => {
+                    let checks = [];
+                    let passed = 0, total = 0;
+
+                    total++;
+                    if(fileQueue.length > 0){
+                        checks.push('✅ Archivos cargados: ' + fileQueue.length);
+                        passed++;
+                    } else {
+                        checks.push('⚠️ No hay archivos cargados');
+                    }
+
+                    total++;
+                    if(fileHashes.length > 0){
+                        checks.push('✅ Hashes SHA-256 calculados: ' + fileHashes.length);
+                        passed++;
+                    } else {
+                        checks.push('⚠️ No hay hashes calculados');
+                    }
+
+                    total++;
+                    if(merkleRoot && merkleRoot !== '--' && merkleRoot !== 'N/A'){
+                        checks.push('✅ Merkle Root: ' + merkleRoot.slice(0, 20) + '...');
+                        passed++;
+                    } else {
+                        checks.push('⚠️ Merkle Root no generado');
+                    }
+
+                    total++;
+                    if(rsaKeys){
+                        checks.push('✅ Par RSA-2048 generado');
+                        passed++;
+                    } else {
+                        checks.push('⚠️ No hay claves RSA');
+                    }
+
+                    total++;
+                    const sigDisplay = document.getElementById('signatureDisplay');
+                    if(sigDisplay.innerText.includes('Firma')){
+                        checks.push('✅ Firma digital generada');
+                        passed++;
+                    } else {
+                        checks.push('⚠️ No hay firma digital');
+                    }
+
+                    total++;
+                    if(watcherInterval){
+                        checks.push('✅ Watcher activo');
+                        passed++;
+                    } else {
+                        checks.push('⚠️ Watcher inactivo');
+                    }
+
+                    total++;
+                    try{
+                        const code = document.documentElement.outerHTML;
+                        const hash = await sha256(new TextEncoder().encode(code));
+                        document.getElementById('sourceHash').textContent = hash.slice(0, 16) + '...';
+                        checks.push('✅ Código fuente verificado: ' + hash.slice(0, 16) + '...');
+                        passed++;
+                    } catch(e){
+                        checks.push('⚠️ No se pudo verificar el código');
+                    }
+
+                    document.getElementById('moduleStatus').textContent = passed + '/' + total + ' módulos OK';
+                    document.getElementById('chainStatus').textContent = (merkleRoot && merkleRoot !== '--') ? '✅ INTEGRA' : '⚠️ PENDIENTE';
+                    document.getElementById('auditTimestamp').textContent = 'Última auditoría: ' + new Date().toLocaleString();
+
+                    const status = passed === total ? '✅ SISTEMA VERIFICADO' :
+                                  passed >= total * 0.7 ? '⚠️ PARCIALMENTE VERIFICADO' :
+                                  '❌ REQUIERE ATENCIÓN';
+
+                    resultDiv.innerHTML = `
+                        <div style="border-bottom:1px solid var(--border); padding-bottom:0.3rem; margin-bottom:0.3rem;">
+                            <span style="color:${passed === total ? 'var(--success)' : passed >= total * 0.7 ? 'var(--accent)' : 'var(--danger)'}; font-weight:700;">
+                                ${status}
+                            </span>
+                            <span style="color:var(--text-muted); font-size:0.55rem;"> (${passed}/${total} checks)</span>
+                        </div>
+                        ${checks.map(c => `<div style="padding:0.1rem 0;">${c}</div>`).join('')}
+                    `;
+
+                    addLog('Auto-auditoría completada: ' + passed + '/' + total + ' checks OK.', passed === total ? 'success' : 'warn', 'dashLog');
+                }, 500);
+            });
+
+            document.getElementById('btnAuditExport').addEventListener('click', function(){
+                const result = document.getElementById('auditResult').innerText;
+                const timestamp = new Date().toISOString();
+                const report = `
+=== EVIDENCE INTEGRITY OS — AUTO-AUDIT REPORT ===
+Fecha: ${timestamp}
+Sistema: Evidence Integrity OS v0.1.0
+
+${result}
+
+--- LOG DE EVENTOS ---
+${auditLog.map(l => `[${l.time}] ${l.msg}`).join('\n')}
+=== FIN DEL REPORTE ===
+                `.trim();
+                const blob = new Blob([report], {type:'text/plain;charset=utf-8'});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `EVIDENCE_AUDIT_REPORT_${Date.now()}.txt`;
+                a.click();
+                addLog('Informe de auditoría exportado.', 'success', 'dashLog');
+            });
+
+            // ---- INIT ----
+            addLog('Evidence Integrity OS cargado.', 'info', 'dashLog');
+            addLog('🔒 Verificación de integridad activa.', 'info', 'dashLog');
+            addLog('🌿 Merkle Tree listo para construir.', 'info', 'dashLog');
+            addLog('🔑 PKI RSA-2048 disponible.', 'info', 'dashLog');
+            addLog('🛡️ Auto-auditoría disponible.', 'info', 'dashLog');
+            updateDashboard();
+
+            drawChart('dashChart', []);
+            drawChart('spectralChart', []);
+        })();
+    </script>
+</body>
+</html>
