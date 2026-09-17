@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYMATIC STUDIO · v24</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-primary: #020308;
+    --bg-card: rgba(4, 7, 16, 0.75);
+    --border-color: rgba(0, 255, 204, 0.08);
+    --border-hover: rgba(0, 255, 204, 0.25);
+    --text-primary: #f0f4f8;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #475569;
+    --accent-cyan: #00ffcc;
+    --accent-magenta: #ff00cc;
+    --accent-purple: #9d4edd;
+    --accent-gold: #f0a030;
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 204, 0.02);
+    --shadow-glow: 0 0 60px rgba(0, 255, 204, 0.06);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-med: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --font-sans: 'Space Grotesk', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(0,255,204,0.02) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+.app-wrapper {
+    position: relative; z-index: 1;
+    max-width: 1600px; margin: 0 auto;
+    padding: 40px 30px 60px;
+}
+.header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+.logo {
+    font-family: var(--font-sans);
+    font-size: 2.6rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-magenta));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradShift 6s ease-in-out infinite alternate;
+    letter-spacing: -1px;
+}
+.logo small { font-size: 0.8rem; font-weight: 400; -webkit-text-fill-color: rgba(255,255,255,0.3); margin-left: 8px; }
+@keyframes gradShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+.nav-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.nav-links a {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8rem; font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: var(--transition-fast);
+}
+.nav-links a:hover { color: var(--accent-cyan); border-color: var(--border-hover); background: rgba(0,255,204,0.02); }
+.btn-return {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.btn-return:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.btn-return.hidden { display: none; }
+
+.version-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+    position: relative; z-index: 2;
+}
+.version-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-med);
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+}
+.version-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow);
+}
+.version-card.special {
+    border-color: rgba(240, 160, 48, 0.2);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(4,7,16,0.95) 100%);
+}
+.version-card.special:hover { border-color: var(--accent-gold); }
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem; font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 40px;
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 12px;
+    border: 1px solid transparent;
+}
+.tag.free { background: rgba(100,116,139,0.1); color: #94a3b8; border-color: rgba(255,255,255,0.03); }
+.tag.pro { background: rgba(0,255,204,0.05); color: var(--accent-cyan); border-color: rgba(0,255,204,0.1); }
+.tag.ultra { background: rgba(168,85,247,0.05); color: var(--accent-purple); border-color: rgba(168,85,247,0.1); }
+.tag.enterprise { background: rgba(255,0,204,0.05); color: var(--accent-magenta); border-color: rgba(255,0,204,0.1); }
+.tag.absolute { background: rgba(240,160,48,0.1); color: var(--accent-gold); border-color: rgba(240,160,48,0.2); }
+
+.version-card h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 2px; }
+.version-card .version-id { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary); margin-bottom: 8px; }
+.version-card .tier { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin: 8px 0 12px; letter-spacing: 1px; }
+
+.version-card ul { list-style: none; padding: 12px 0 0; flex: 1; }
+.version-card ul li {
+    padding: 4px 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.version-card ul li::before { content: '✦'; color: var(--accent-cyan); font-size: 0.7rem; }
+
+.btn-open {
+    margin-top: 16px;
+    padding: 12px 0;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    border: none;
+    border-radius: var(--radius-md);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+.btn-open:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0,255,204,0.2); }
+.btn-open.gold { background: linear-gradient(135deg, var(--accent-gold), var(--accent-magenta)); color: #000; }
+.btn-open.gold:hover { box-shadow: 0 0 30px rgba(240,160,48,0.3); }
+
+.demo-view {
+    display: none;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-top: 20px;
+    position: relative; z-index: 2;
+    min-height: 400px;
+}
+.demo-view.active { display: block; animation: fadeSlideIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.demo-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+.demo-header h2 {
+    font-size: 1.8rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.demo-container {
+    width: 100%; aspect-ratio: 16/9;
+    background: #000;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+.hud {
+    position: absolute; top: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 8px rgba(0,255,204,0.6);
+    z-index: 10;
+    flex-wrap: wrap; gap: 8px;
+}
+.hud span { background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(0,255,204,0.15); }
+.hud .hint { color: var(--text-tertiary); border-color: rgba(255,255,255,0.05); }
+
+.footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    position: relative; z-index: 2;
+}
+.footer a { color: var(--accent-cyan); text-decoration: none; transition: var(--transition-fast); }
+.footer a:hover { color: var(--text-primary); }
+
+@media (max-width: 768px) {
+    .app-wrapper { padding: 20px 16px 40px; }
+    .logo { font-size: 1.8rem; }
+    .version-grid { grid-template-columns: 1fr; }
+    .nav-links a { font-size: 0.7rem; padding: 4px 8px; }
+    .demo-header h2 { font-size: 1.3rem; }
+    .demo-container { aspect-ratio: auto; height: 260px; }
+    .hud { font-size: 0.55rem; }
+}
+</style>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+}
+</script>
+</head>
+<body>
+
+<div class="app-wrapper">
+
+    <header class="header">
+        <div class="logo">CYMATIC <small>STUDIO</small></div>
+        <nav class="nav-links">
+            <a href="#demo">Demo</a>
+            <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
+        </nav>
+        <div>
+            <button class="btn-return hidden" id="btnBack" onclick="goBack()">← Volver</button>
+        </div>
+    </header>
+
+    <div id="versionGrid" class="version-grid">
+
+        <div class="version-card" data-version="v1.0">
+            <span class="tag free">GRATIS</span>
+            <h3>Quantum Seed</h3>
+            <div class="version-id">v1.0</div>
+            <div class="tier">NIVEL · BÁSICO</div>
+            <ul>
+                <li>Motor de ondas cimáticas</li>
+                <li>Interacción por mouse</li>
+                <li>3 modos de geometría</li>
+            </ul>
+            <button class="btn-open" onclick="abrirDemo('v1.0')">Abrir Demo</button>
+        </div>
+
+        <div class="version-card" data-version="v3.0">
+            <span class="tag pro">PRO</span>
+            <h3>Cymatic Core</h3>
+            <div class="version-id">v3.0</div>
+            <div class="tier">NIVEL · PRO</div>
+            <ul>
+                <li>5 modos de geometría sagrada</li>
+                <li>Paletas de color</li>
+                <li>Slider de frecuencia</li>
+            </ul>
+            <button class="btn-open" onclick="abrirDemo('v3.0')">Abrir Demo</button>
+        </div>
+
+        <div class="version-card" data-version="v8.0">
+            <span class="tag pro">PRO+</span>
+            <h3>Quantum Bloom</h3>
+            <div class="version-id">v8.0</div>
+            <div class="tier">NIVEL · PRO+</div>
+            <ul>
+                <li>5 modos + 5 paletas</li>
+                <li>Post-procesado Bloom</li>
+                <li>Exportación de frames PNG</li>
+                <li>Grabación de video WebM</li>
+            </ul>
+            <button class="btn-open" onclick="abrirDemo('v8.0')">Abrir Demo</button>
+        </div>
+
+        <div class="version-card" data-version="v15.0">
+            <span class="tag ultra">ULTRA</span>
+            <h3>Omni-Sensory</h3>
+            <div class="version-id">v15.0</div>
+            <div class="tier">NIVEL · ULTRA</div>
+            <ul>
+                <li>Todo lo de PRO+</li>
+                <li>Desplazamiento procedural tipo fluido</li>
+                <li>Tri-banda de audio</li>
+                <li>Cristales interactivos</li>
+            </ul>
+            <button class="btn-open" onclick="abrirDemo('v15.0')">Abrir Demo</button>
+        </div>
+
+        <div class="version-card" data-version="v21.5">
+            <span class="tag enterprise">ENTERPRISE</span>
+            <h3>Singular Quantum</h3>
+            <div class="version-id">v21.5</div>
+            <div class="tier">NIVEL · ENTERPRISE</div>
+            <ul>
+                <li>Todo lo de ULTRA</li>
+                <li>FFT en tiempo real</li>
+                <li>Drag & Drop de archivos MP3</li>
+                <li>Sintetizador aditivo</li>
+            </ul>
+            <button class="btn-open" onclick="abrirDemo('v21.5')">Abrir Demo</button>
+        </div>
+
+        <div class="version-card special" data-version="v24">
+            <span class="tag absolute">QUANTUM CORE</span>
+            <h3>Quantum Core v24</h3>
+            <div class="version-id">v24.0</div>
+            <div class="tier">NIVEL · COMPLETO</div>
+            <ul>
+                <li>Motor Three.js WebGL2</li>
+                <li>Shaders GLSL personalizados</li>
+                <li>Sintetizador de 8 osciladores</li>
+                <li>Cristales octaédricos interactivos</li>
+                <li>Ondas de terreno procedurales</li>
+            </ul>
+            <button class="btn-open gold" onclick="abrirDemo('v24')">Desplegar Motor</button>
+        </div>
+
+    </div>
+
+    <div id="demoView" class="demo-view">
+        <div class="demo-header">
+            <h2 id="demoTitle">CYMATIC STUDIO</h2>
+            <button class="btn-return" onclick="goBack()">← Volver</button>
+        </div>
+        <div class="demo-container" id="demoContainer">
+            <div class="hud">
+                <span id="hudDim">1D · Filamento</span>
+                <span id="hudFps">-- FPS</span>
+                <span class="hint">Teclas: 1-2-3 · Q · F · ESPACIO · P</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            CYMATIC STUDIO · v24 ·
+            <a href="https://github.com/Marcorojas17/kronos-protocol">github.com/Marcorojas17/kronos-protocol</a>
+        </div>
+    </footer>
+
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+let modoDimension = 1;
+let modoCuantico = false;
+let figuraIndex = 0;
+const FIGURAS = ['Chladni', 'Lissajous', 'Espiral', 'Mandala'];
+let audioContext = null;
+let analyser = null;
+let dataArray = null;
+let nivelAudio = 0;
+let synthActivo = false;
+let osciladores = [];
+const waveform = 'sine';
+const frecuenciaBase = 440;
+let demoActivo = false;
+
+let scene, camera, renderer, composer, controls;
+let pointsMesh, terrain, refLine;
+let geometry, material;
+const COUNT = 3000;
+let boids = [];
+let cristales = [];
+let mouseX = 0, mouseY = 0;
+const teclas = {};
+let lastTime = performance.now();
+let frameCount = 0;
+
+const demoView = document.getElementById('demoView');
+const demoContainer = document.getElementById('demoContainer');
+const versionGrid = document.getElementById('versionGrid');
+const btnBack = document.getElementById('btnBack');
+const hudDim = document.getElementById('hudDim');
+const hudFps = document.getElementById('hudFps');
+
+function activarMicrofono() {
+    if (analyser) return;
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => {
+        if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const src = audioContext.createMediaStreamSource(stream);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 32;
+        src.connect(analyser);
+        dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }).catch(() => {});
+}
+
+function toggleSintetizador() {
+    if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    synthActivo = !synthActivo;
+    if (synthActivo) {
+        const freqs = [frecuenciaBase, frecuenciaBase * 1.5, frecuenciaBase * 2];
+        for (let i = 0; i < 3; i++) {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = waveform;
+            osc.frequency.value = freqs[i];
+            gain.gain.value = 0.03;
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.start();
+            osciladores.push({ osc, gain, base: freqs[i] });
+        }
+    } else {
+        osciladores.forEach(o => { try { o.osc.stop(); } catch (e) {} });
+        osciladores = [];
+    }
+}
+
+function initMotor() {
+    while (demoContainer.firstChild) {
+        if (demoContainer.firstChild.classList && demoContainer.firstChild.classList.contains('hud')) break;
+        demoContainer.removeChild(demoContainer.firstChild);
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    demoContainer.insertBefore(canvas, demoContainer.firstChild);
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x020308);
+    scene.fog = new THREE.FogExp2(0x020308, 0.008);
+
+    camera = new THREE.PerspectiveCamera(60, demoContainer.clientWidth / demoContainer.clientHeight, 0.1, 100);
+    camera.position.set(0, 2, 8);
+    camera.lookAt(0, 0, 0);
+
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+    renderer.setSize(demoContainer.clientWidth, demoContainer.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.target.set(0, 0, 0);
+    controls.minDistance = 2;
+    controls.maxDistance = 20;
+
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(demoContainer.clientWidth, demoContainer.clientHeight), 0.2, 0.3, 0.1);
+    composer.addPass(bloomPass);
+
+    geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(COUNT * 3);
+    const colors = new Float32Array(COUNT * 3);
+    const sizes = new Float32Array(COUNT);
+
+    for (let i = 0; i < COUNT; i++) {
+        const i3 = i * 3;
+        positions[i3] = (Math.random() - 0.5) * 10;
+        positions[i3 + 1] = 0;
+        positions[i3 + 2] = 0;
+        colors[i3] = 0.0;
+        colors[i3 + 1] = 0.8 + Math.random() * 0.2;
+        colors[i3 + 2] = 0.6 + Math.random() * 0.4;
+        sizes[i] = 0.03 + Math.random() * 0.05;
+        boids.push({
+            pos: new THREE.Vector3(positions[i3], 0, 0),
+            target3D: new THREE.Vector3((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6),
+            vel: new THREE.Vector3((Math.random() - 0.5) * 0.02, (Math.random() - 0.5) * 0.02, (Math.random() - 0.5) * 0.02),
+            fase: Math.random() * Math.PI * 2
+        });
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    const canvasTex = document.createElement('canvas');
+    canvasTex.width = 32; canvasTex.height = 32;
+    const ctx = canvasTex.getContext('2d');
+    const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    grad.addColorStop(0, 'rgba(255,255,255,1)');
+    grad.addColorStop(0.3, 'rgba(255,255,255,0.8)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 32, 32);
+    const texture = new THREE.CanvasTexture(canvasTex);
+
+    material = new THREE.PointsMaterial({
+        size: 0.08, map: texture,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false, transparent: true,
+        vertexColors: true, opacity: 0.9, sizeAttenuation: true
+    });
+    pointsMesh = new THREE.Points(geometry, material);
+    scene.add(pointsMesh);
+
+    const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-8, 0, 0), new THREE.Vector3(8, 0, 0)]);
+    refLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0x00ffcc, transparent: true, opacity: 0.15 }));
+    scene.add(refLine);
+
+    const meshGeo = new THREE.PlaneGeometry(16, 16, 30, 30);
+    terrain = new THREE.Mesh(meshGeo, new THREE.MeshBasicMaterial({ color: 0x00ffcc, wireframe: true, transparent: true, opacity: 0.03 }));
+    terrain.rotation.x = -Math.PI / 2;
+    terrain.position.y = -2.5;
+    scene.add(terrain);
+
+    const cristalGeo = new THREE.OctahedronGeometry(0.2, 0);
+    window.crearCristal = function () {
+        const idx = Math.floor(Math.random() * COUNT);
+        const posAttr = geometry.attributes.position;
+        const p = new THREE.Vector3(posAttr.array[idx * 3], posAttr.array[idx * 3 + 1], posAttr.array[idx * 3 + 2]);
+        const mat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.9 });
+        const mesh = new THREE.Mesh(cristalGeo, mat);
+        mesh.position.copy(p);
+        mesh.userData = { baseY: p.y, rotSpeed: Math.random() * 0.02 + 0.01, phase: Math.random() * Math.PI * 2 };
+        scene.add(mesh);
+        cristales.push(mesh);
+    };
+
+    window.capturarFoto = function () {
+        composer.render();
+        const link = document.createElement('a');
+        link.download = `CYMATIC_${Date.now()}.png`;
+        link.href = renderer.domElement.toDataURL('image/png');
+        link.click();
+    };
+
+    window.cambiarFigura = function () {
+        figuraIndex = (figuraIndex + 1) % FIGURAS.length;
+    };
+
+    window.addEventListener('keydown', (e) => {
+        const k = e.key.toLowerCase();
+        teclas[k] = true;
+        if (e.key === '1') { modoDimension = 1; hudDim.textContent = '1D · Filamento'; }
+        if (e.key === '2') { modoDimension = 2; hudDim.textContent = '2D · Plano'; }
+        if (e.key === '3') { modoDimension = 3; hudDim.textContent = '3D · Espacio'; }
+        if (k === 'q') {
+            modoCuantico = !modoCuantico;
+            hudDim.textContent = modoCuantico ? '⚛ Cuántico' : '1D · Filamento';
+        }
+        if (e.key === ' ') { e.preventDefault(); window.crearCristal(); }
+        if (k === 'p') window.capturarFoto();
+        if (k === 'f') window.cambiarFigura();
+    });
+    window.addEventListener('keyup', (e) => { teclas[e.key.toLowerCase()] = false; });
+
+    window.addEventListener('mousemove', (e) => {
+        const rect = demoContainer.getBoundingClientRect();
+        mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const now = performance.now();
+        frameCount++;
+        if (now >= lastTime + 1000) {
+            hudFps.textContent = Math.round((frameCount * 1000) / (now - lastTime)) + ' FPS';
+            frameCount = 0;
+            lastTime = now;
+        }
+
+        nivelAudio = 0;
+        if (analyser && dataArray) {
+            analyser.getByteFrequencyData(dataArray);
+            let sum = 0;
+            for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+            nivelAudio = sum / dataArray.length;
+        }
+
+        if (synthActivo && osciladores.length > 0) {
+            osciladores.forEach(o => {
+                try {
+                    const mod = (nivelAudio / 255) * 50;
+                    o.osc.frequency.setTargetAtTime(o.base + mod, audioContext.currentTime, 0.1);
+                } catch (e) {}
+            });
+        }
+
+        const posAttr = geometry.attributes.position;
+        const arrayPos = posAttr.array;
+        const time = now * 0.001;
+
+        for (let i = 0; i < COUNT; i++) {
+            const boid = boids[i];
+            const target = new THREE.Vector3();
+            const fig = FIGURAS[figuraIndex];
+
+            if (modoCuantico) {
+                const amp = 2.0 + (nivelAudio * 0.04);
+                target.set(
+                    Math.sin(time + boid.fase) * amp,
+                    Math.cos(time * 1.3 + boid.fase) * amp,
+                    Math.sin(time * 0.7 + boid.fase) * amp
+                );
+            } else if (modoDimension === 1) {
+                const amp = 0.3 + (nivelAudio * 0.03);
+                const x = boid.pos.x;
+                target.x = x;
+                if (fig === 'Chladni') target.y = Math.sin(x * 1.5 + time * 3) * amp * 2;
+                else if (fig === 'Lissajous') target.y = Math.sin(x * 2 + time * 2) * amp * 1.5;
+                else if (fig === 'Espiral') {
+                    const r = 0.5 + (x + 5) / 10 * 2;
+                    target.x = Math.cos(time * 0.5 + x) * r;
+                    target.y = Math.sin(time * 0.5 + x) * r * 0.5;
+                } else {
+                    target.y = Math.sin(x * 2 + time * 2) * amp * 1.5;
+                    target.z = Math.cos(x * 2 + time * 1.5) * amp * 0.8;
+                }
+                target.z = target.z || 0;
+            } else if (modoDimension === 2) {
+                const rad = 2.5 + Math.sin(time + boid.fase) * (0.3 + nivelAudio * 0.02);
+                const ang = boid.fase + time * 0.2;
+                target.x = Math.cos(ang) * rad;
+                target.y = Math.sin(ang) * rad;
+                target.z = 0;
+            } else {
+                const factor = 1.0 + (nivelAudio * 0.05);
+                target.copy(boid.target3D).multiplyScalar(factor);
+            }
+
+            if (teclas['w']) boid.vel.y += 0.002;
+            if (teclas['s']) boid.vel.y -= 0.002;
+            if (teclas['a']) boid.vel.x -= 0.002;
+            if (teclas['d']) boid.vel.x += 0.002;
+
+            boid.vel.clampLength(0, 0.12);
+            boid.pos.lerp(target, 0.05);
+            boid.pos.add(boid.vel);
+            boid.vel.multiplyScalar(0.95);
+
+            arrayPos[i * 3] = boid.pos.x;
+            arrayPos[i * 3 + 1] = boid.pos.y;
+            arrayPos[i * 3 + 2] = boid.pos.z;
+        }
+        posAttr.needsUpdate = true;
+
+        pointsMesh.rotation.y = mouseX * 0.5;
+        pointsMesh.rotation.x = mouseY * 0.3;
+
+        cristales.forEach(c => {
+            c.rotation.y += c.userData.rotSpeed;
+            c.rotation.x += 0.005;
+            c.position.y = c.userData.baseY + Math.sin(time * 2 + c.userData.phase) * 0.15 + (nivelAudio * 0.01);
+        });
+
+        const terrainPos = terrain.geometry.attributes.position;
+        for (let i = 0; i < terrainPos.count; i++) {
+            const x = terrainPos.array[i * 3];
+            const z = terrainPos.array[i * 3 + 1];
+            const d = Math.sqrt(x * x + z * z);
+            terrainPos.array[i * 3 + 2] = Math.sin(d * 0.8 - time * 2) * (0.08 + nivelAudio * 0.001);
+        }
+        terrainPos.needsUpdate = true;
+
+        controls.update();
+        composer.render();
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+        if (renderer && camera && composer) {
+            const w = demoContainer.clientWidth;
+            const h = demoContainer.clientHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+            composer.setSize(w, h);
+        }
+    });
+    resizeObserver.observe(demoContainer);
+
+    animate();
+}
+
+window.abrirDemo = function (version) {
+    versionGrid.style.display = 'none';
+    demoView.classList.add('active');
+    btnBack.classList.remove('hidden');
+    document.getElementById('demoTitle').textContent = `CYMATIC STUDIO · ${version.toUpperCase()}`;
+    if (!demoActivo) {
+        demoActivo = true;
+        initMotor();
+        activarMicrofono();
+    }
+};
+
+window.goBack = function () {
+    versionGrid.style.display = 'grid';
+    demoView.classList.remove('active');
+    btnBack.classList.add('hidden');
+};
+
+// Toggle de sintetizador accesible desde teclado 'M'
+window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'm' && demoActivo) {
+        toggleSintetizador();
+    }
+});
+</script>
+
+</body>
+</html>
