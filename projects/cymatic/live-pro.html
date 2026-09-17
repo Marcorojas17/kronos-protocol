@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYMATIC LIVE · Visualizador de Audio</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #05060a;
+  --panel: rgba(10, 14, 22, 0.75);
+  --border: rgba(255,255,255,0.08);
+  --text: #e8ecf5;
+  --dim: #8892a0;
+  --accent: #00ffcc;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  overflow: hidden;
+  height: 100vh;
+}
+canvas { display: block; position: fixed; top:0; left:0; width:100%; height:100%; }
+
+.ui {
+  position: fixed; z-index: 10;
+  background: var(--panel);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.ui.hidden { opacity: 0; pointer-events: none; transform: translateY(-10px); }
+
+#topbar { top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+#topbar .brand { font-weight: 700; letter-spacing: 3px; color: var(--accent); font-size: 14px; }
+#topbar .brand small { color: var(--dim); font-weight: 400; letter-spacing: 1px; font-size: 10px; margin-left: 8px; }
+#topbar .status { font-size: 11px; color: var(--dim); }
+#topbar .status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+#controls { bottom: 16px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding: 14px 20px; }
+
+.control-group { display: flex; flex-direction: column; gap: 4px; min-width: 100px; }
+.control-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); font-weight: 600; }
+.control-group input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.mode-buttons, .palette-buttons { display: flex; gap: 6px; }
+.mode-btn, .palette-btn {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.mode-btn:hover, .palette-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.mode-btn.active, .palette-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.action-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,255,204,0.3); }
+.action-btn.ghost { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+.action-btn.ghost:hover { background: rgba(255,255,255,0.1); box-shadow: none; }
+.action-btn.recording { background: #ff4d6d; color: #fff; }
+
+#freq-display {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(48px, 12vw, 180px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  z-index: 5;
+  letter-spacing: -4px;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.3s ease;
+}
+
+#hint {
+  position: fixed;
+  bottom: 90px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 2px;
+  z-index: 10;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#dropzone {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--accent);
+  border: 4px dashed var(--accent);
+  letter-spacing: 3px;
+}
+#dropzone.active { display: flex; }
+
+@media (max-width: 900px) {
+  #controls { padding: 10px 12px; gap: 10px; }
+  .control-group { min-width: 70px; }
+  #topbar { padding: 10px 14px; }
+  #topbar .brand { font-size: 12px; letter-spacing: 2px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div id="freq-display">--</div>
+
+<div id="topbar" class="ui">
+  <div class="brand">CYMATIC LIVE <small>v1.0</small></div>
+  <div class="status"><span class="dot"></span><span id="statusText">Esperando audio</span></div>
+</div>
+
+<div id="controls" class="ui">
+  <div class="control-group">
+    <label>Modo</label>
+    <div class="mode-buttons" id="modeButtons">
+      <button class="mode-btn active" data-mode="0">Symmetry</button>
+      <button class="mode-btn" data-mode="1">Wave</button>
+      <button class="mode-btn" data-mode="2">Bars</button>
+      <button class="mode-btn" data-mode="3">Chladni</button>
+      <button class="mode-btn" data-mode="4">Particles</button>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label>Paleta</label>
+    <div class="palette-buttons" id="paletteButtons">
+      <button class="palette-btn active" data-palette="0">Cyan</button>
+      <button class="palette-btn" data-palette="1">Gold</button>
+      <button class="palette-btn" data-palette="2">Magenta</button>
+      <button class="palette-btn" data-palette="3">Emerald</button>
+      <button class="palette-btn" data-palette="4">Nebula</button>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label>Sensibilidad <span id="sensVal">1.0</span></label>
+    <input type="range" id="sensitivity" min="0.2" max="3.0" step="0.1" value="1.0">
+  </div>
+
+  <div class="control-group">
+    <label>Velocidad <span id="speedVal">1.0</span></label>
+    <input type="range" id="speed" min="0.2" max="2.5" step="0.1" value="1.0">
+  </div>
+
+  <button class="action-btn" id="btnMic">🎤 MICRÓFONO</button>
+  <button class="action-btn ghost" id="btnRecord">⏺ GRABAR</button>
+  <button class="action-btn ghost" id="btnPreset">💾 PRESET</button>
+  <button class="action-btn ghost" id="btnFull">⛶ PERFORMANCE</button>
+</div>
+
+<div id="hint">Teclas: 1-5 modos · Q/W/E/R/T paletas · F performance · M mic · R record · H ocultar UI</div>
+
+<div id="dropzone">SOLTÁ UN ARCHIVO DE AUDIO AQUÍ</div>
+
+<script>
+(() => {
+'use strict';
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const freqDisplay = document.getElementById('freq-display');
+const statusText = document.getElementById('statusText');
+const dropzone = document.getElementById('dropzone');
+
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+
+let audioCtx = null;
+let analyser = null;
+let freqData = null;
+let timeData = null;
+let sourceNode = null;
+let mediaStream = null;
+let audioElement = null;
+
+let mode = 0;
+let palette = 0;
+let sensitivity = 1.0;
+let speed = 1.0;
+let uiHidden = false;
+
+let peakFreq = 0;
+let peakLevel = 0;
+let smoothLevel = 0;
+let time = 0;
+
+const PALETTES = [
+  { name:'Cyan',     bg:'#05060a', a:'#00ffcc', b:'#0088ff', c:'#ffffff' },
+  { name:'Gold',     bg:'#0a0805', a:'#ffcc3a', b:'#ff8820', c:'#ffffff' },
+  { name:'Magenta',  bg:'#0a0510', a:'#ff00cc', b:'#8800ff', c:'#ffffff' },
+  { name:'Emerald',  bg:'#05100a', a:'#00ff66', b:'#00aa44', c:'#ffffff' },
+  { name:'Nebula',   bg:'#05050f', a:'#a855f7', b:'#00aaff', c:'#ff00cc' }
+];
+
+let particles = [];
+for (let i = 0; i < 200; i++) {
+  particles.push({
+    angle: Math.random() * Math.PI * 2,
+    radius: 100 + Math.random() * 300,
+    baseRadius: 100 + Math.random() * 300,
+    speed: 0.001 + Math.random() * 0.005,
+    size: 1 + Math.random() * 3,
+    phase: Math.random() * Math.PI * 2
+  });
+}
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 2048;
+    analyser.smoothingTimeConstant = 0.7;
+    freqData = new Uint8Array(analyser.frequencyBinCount);
+    timeData = new Uint8Array(analyser.fftSize);
+  }
+}
+
+async function startMic() {
+  try {
+    initAudio();
+    if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    sourceNode = audioCtx.createMediaStreamSource(mediaStream);
+    sourceNode.connect(analyser);
+    statusText.textContent = 'Micrófono activo';
+  } catch (e) {
+    statusText.textContent = 'Permiso denegado';
+  }
+}
+
+async function loadFile(file) {
+  try {
+    initAudio();
+    if (sourceNode) { try { sourceNode.disconnect(); } catch(e){} }
+    if (audioElement) { audioElement.pause(); audioElement = null; }
+    const arrayBuffer = await file.arrayBuffer();
+    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+    audioElement = new Audio(URL.createObjectURL(file));
+    audioElement.crossOrigin = 'anonymous';
+    audioElement.loop = true;
+    sourceNode = audioCtx.createMediaElementSource(audioElement);
+    sourceNode.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    await audioElement.play();
+    statusText.textContent = file.name;
+  } catch (e) {
+    statusText.textContent = 'Error al cargar';
+  }
+}
+
+function detectPeak() {
+  let maxVal = 0;
+  let maxIdx = 0;
+  for (let i = 2; i < freqData.length; i++) {
+    if (freqData[i] > maxVal) { maxVal = freqData[i]; maxIdx = i; }
+  }
+  const nyquist = audioCtx ? audioCtx.sampleRate / 2 : 22050;
+  peakFreq = (maxIdx / freqData.length) * nyquist;
+  peakLevel = maxVal / 255;
+  smoothLevel += (peakLevel - smoothLevel) * 0.15;
+}
+
+function draw() {
+  requestAnimationFrame(draw);
+  time += 0.016 * speed;
+
+  if (analyser) {
+    analyser.getByteFrequencyData(freqData);
+    analyser.getByteTimeDomainData(timeData);
+    detectPeak();
+  }
+
+  const p = PALETTES[palette];
+
+  ctx.fillStyle = p.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2;
+  const cy = H / 2;
+  const intensity = smoothLevel * sensitivity;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  if (mode === 0) drawSymmetry(intensity, p);
+  else if (mode === 1) drawWave(intensity, p);
+  else if (mode === 2) drawBars(intensity, p);
+  else if (mode === 3) drawChladni(intensity, p);
+  else if (mode === 4) drawParticles(intensity, p);
+
+  ctx.restore();
+
+  if (peakFreq > 0) {
+    freqDisplay.textContent = Math.round(peakFreq) + ' Hz';
+    freqDisplay.style.opacity = 0.08 + smoothLevel * 0.15;
+  }
+
+  if (recording && recorder) {
+    // El recorder captura el canvas vía captureStream
+  }
+}
+
+function drawSymmetry(intensity, p) {
+  const symmetry = 8;
+  const baseR = 60 + intensity * 250;
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = p.a;
+  ctx.shadowColor = p.a;
+  ctx.shadowBlur = 20 * intensity;
+
+  for (let k = 0; k < symmetry; k++) {
+    ctx.save();
+    ctx.rotate((Math.PI * 2 / symmetry) * k + time * 0.2);
+    ctx.beginPath();
+    for (let a = 0; a < 360; a += 3) {
+      const rad = a * Math.PI / 180;
+      const chaos = (peakFreq / 200) || 1;
+      const r = baseR + Math.sin(rad * chaos + time) * 40 * intensity + Math.sin(rad * 3 + time * 2) * 15;
+      const x = Math.cos(rad) * r;
+      const y = Math.sin(rad) * r;
+      if (a === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+  }
+  ctx.shadowBlur = 0;
+}
+
+function drawWave(intensity, p) {
+  const w = W * 0.8;
+  const h = H * 0.4;
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = p.a;
+  ctx.shadowColor = p.a;
+  ctx.shadowBlur = 15;
+
+  for (let layer = 0; layer < 3; layer++) {
+    ctx.beginPath();
+    const offset = layer * 0.1;
+    for (let i = 0; i < timeData.length; i++) {
+      const x = -w/2 + (i / timeData.length) * w;
+      const v = (timeData[i] - 128) / 128;
+      const y = v * h * (0.5 + intensity * 0.8) * (1 - offset * 2);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+  ctx.shadowBlur = 0;
+}
+
+function drawBars(intensity, p) {
+  const count = 64;
+  const barW = W * 0.7 / count;
+  const startX = -W * 0.35;
+  const maxH = H * 0.6 * (1 + intensity);
+
+  for (let i = 0; i < count; i++) {
+    const v = freqData[i * 4] / 255;
+    const h = v * maxH;
+    const x = startX + i * barW;
+    const grad = ctx.createLinearGradient(0, 0, 0, -h);
+    grad.addColorStop(0, p.a);
+    grad.addColorStop(1, p.b);
+    ctx.fillStyle = grad;
+    ctx.shadowColor = p.a;
+    ctx.shadowBlur = 15 * intensity;
+    ctx.fillRect(x, -h, barW - 2, h);
+    ctx.fillRect(x, 0, barW - 2, h * 0.3);
+  }
+  ctx.shadowBlur = 0;
+}
+
+function drawChladni(intensity, p) {
+  const size = 40 + intensity * 80;
+  const cols = Math.floor(W / size);
+  const rows = Math.floor(H / size);
+  const startX = -W / 2;
+  const startY = -H / 2;
+  const chaos = (peakFreq / 100) || 1;
+
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      const px = startX + x * size + size / 2;
+      const py = startY + y * size + size / 2;
+      const d = Math.sqrt(px * px + py * py) / 200;
+      const val = Math.sin(px * chaos * 0.01 + time) * Math.cos(py * chaos * 0.01 + time);
+      const alpha = Math.abs(val) * intensity * 0.8;
+      if (alpha > 0.05) {
+        ctx.fillStyle = p.a;
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(px, py, size * 0.15 * Math.abs(val), 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawParticles(intensity, p) {
+  particles.forEach((pt, i) => {
+    pt.angle += pt.speed * speed * (1 + intensity);
+    const targetRadius = pt.baseRadius * (1 + intensity * 0.8);
+    pt.radius += (targetRadius - pt.radius) * 0.05;
+    const x = Math.cos(pt.angle) * pt.radius;
+    const y = Math.sin(pt.angle) * pt.radius;
+    const size = pt.size * (1 + intensity * 2);
+    ctx.fillStyle = i % 3 === 0 ? p.a : (i % 3 === 1 ? p.b : p.c);
+    ctx.globalAlpha = 0.6 + intensity * 0.4;
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+
+// Recording
+let recorder = null;
+let recording = false;
+let chunks = [];
+
+function toggleRecording() {
+  if (!recording) {
+    chunks = [];
+    const stream = canvas.captureStream(60);
+    recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
+    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: 'video/webm' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cymatic-live-${Date.now()}.webm`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+    recorder.start();
+    recording = true;
+    document.getElementById('btnRecord').classList.add('recording');
+    document.getElementById('btnRecord').textContent = '⏹ DETENER';
+  } else {
+    recorder.stop();
+    recording = false;
+    document.getElementById('btnRecord').classList.remove('recording');
+    document.getElementById('btnRecord').textContent = '⏺ GRABAR';
+  }
+}
+
+// Presets
+function savePreset() {
+  const preset = { mode, palette, sensitivity, speed };
+  const presets = JSON.parse(localStorage.getItem('cymatic_presets') || '[]');
+  presets.push(preset);
+  localStorage.setItem('cymatic_presets', JSON.stringify(presets));
+  alert('Preset guardado (' + presets.length + ' en total)');
+}
+
+function loadLastPreset() {
+  const presets = JSON.parse(localStorage.getItem('cymatic_presets') || '[]');
+  if (presets.length === 0) return;
+  const p = presets[presets.length - 1];
+  setMode(p.mode);
+  setPalette(p.palette);
+  sensitivity = p.sensitivity; document.getElementById('sensitivity').value = p.sensitivity;
+  speed = p.speed; document.getElementById('speed').value = p.speed;
+  updateLabels();
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.mode) === m);
+  });
+}
+function setPalette(p) {
+  palette = p;
+  document.querySelectorAll('.palette-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.palette) === p);
+  });
+}
+function updateLabels() {
+  document.getElementById('sensVal').textContent = sensitivity.toFixed(1);
+  document.getElementById('speedVal').textContent = speed.toFixed(1);
+}
+
+// UI events
+document.querySelectorAll('.mode-btn').forEach(b => {
+  b.addEventListener('click', () => setMode(parseInt(b.dataset.mode)));
+});
+document.querySelectorAll('.palette-btn').forEach(b => {
+  b.addEventListener('click', () => setPalette(parseInt(b.dataset.palette)));
+});
+document.getElementById('sensitivity').addEventListener('input', e => {
+  sensitivity = parseFloat(e.target.value); updateLabels();
+});
+document.getElementById('speed').addEventListener('input', e => {
+  speed = parseFloat(e.target.value); updateLabels();
+});
+document.getElementById('btnMic').addEventListener('click', startMic);
+document.getElementById('btnRecord').addEventListener('click', toggleRecording);
+document.getElementById('btnPreset').addEventListener('click', savePreset);
+document.getElementById('btnFull').addEventListener('click', toggleFullscreen);
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+  else document.exitFullscreen();
+}
+
+function hideUI() {
+  uiHidden = !uiHidden;
+  document.querySelectorAll('.ui, #hint').forEach(el => el.classList.toggle('hidden', uiHidden));
+}
+
+// Drag & drop
+window.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('active'); });
+window.addEventListener('dragleave', e => {
+  if (e.clientX === 0 && e.clientY === 0) dropzone.classList.remove('active');
+});
+window.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('active');
+  if (e.dataTransfer.files.length > 0) loadFile(e.dataTransfer.files[0]);
+});
+
+// Keyboard
+window.addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if (['1','2','3','4','5'].includes(k)) setMode(parseInt(k) - 1);
+  if (k === 'q') setPalette(0);
+  if (k === 'w') setPalette(1);
+  if (k === 'e') setPalette(2);
+  if (k === 'r') { if (!e.ctrlKey && !e.metaKey) toggleRecording(); }
+  if (k === 't') setPalette(4);
+  if (k === 'f') toggleFullscreen();
+  if (k === 'm') startMic();
+  if (k === 'h') hideUI();
+  if (k === 'p') savePreset();
+  if (k === 'l') loadLastPreset();
+});
+
+// Init
+updateLabels();
+loadLastPreset();
+draw();
+
+})();
+</script>
+</body>
+</html>
