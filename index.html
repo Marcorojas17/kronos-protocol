@@ -4,427 +4,629 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS PROTOCOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --ink-2: #0a0e15;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
   html, body {
-    min-height: 100%;
-    background: #0a0d10;
-    color: #e9eef5;
-    font-family: 'Courier New', monospace;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  #bg {
+  /* ── FONDO 3D ── */
+  #webgl {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 0;
-    opacity: 0.35;
+    pointer-events: none;
   }
-
-  body::before {
-    content: '';
+  .vignette {
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(circle at 20% 20%, rgba(0,255,65,0.05), transparent 55%),
-      radial-gradient(circle at 80% 80%, rgba(201,164,76,0.04), transparent 55%);
+      radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
     z-index: 1;
     pointer-events: none;
   }
 
+  /* ── LAYOUT ── */
   .wrap {
     position: relative;
     z-index: 2;
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 50px 24px 80px;
+    padding: 40px 32px 100px;
   }
 
-  .hero {
-    text-align: center;
-    margin-bottom: 60px;
+  /* ── HEADER ── */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 80px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
   }
-
-  pre.banner {
-    color: #00ff41;
-    font-size: 9px;
-    line-height: 1.1;
-    margin-bottom: 28px;
-    text-shadow: 0 0 20px rgba(0,255,65,0.4);
-    white-space: pre;
-    overflow-x: auto;
-    display: inline-block;
-    text-align: left;
-  }
-
-  h1 {
-    font-size: clamp(22px, 4vw, 38px);
-    color: #00ff41;
-    letter-spacing: 6px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 30px rgba(0,255,65,0.4);
-    font-weight: 700;
-    font-family: 'Courier New', monospace;
-  }
-
-  .sub {
-    font-size: 12px;
-    color: #c9a44c;
+  header.top .mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
     letter-spacing: 4px;
-    margin-bottom: 30px;
-    opacity: 0.9;
   }
-
-  .desc {
-    max-width: 620px;
-    margin: 0 auto 20px;
-    font-size: 13px;
-    line-height: 1.8;
-    color: #b8c4cc;
+  header.top .mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
   }
-
-  .meta {
-    font-size: 10px;
-    color: #4a5568;
-    letter-spacing: 2px;
-    margin-top: 18px;
-  }
-
-  .meta a {
-    color: #c9a44c;
+  header.top nav a {
+    color: var(--text-dim);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: 0.2s;
+    margin-left: 28px;
+    transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 60px 0 100px;
+    max-width: 780px;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(44px, 8vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 560px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .meta a:hover {
-    border-bottom-color: #c9a44c;
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
+    margin: 80px 0;
   }
 
-  /* Grid de proyectos */
+  /* ── SECTION HEADER ── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .section-head .count {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+
+  /* ── GRID DE PROYECTOS ── */
   .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 18px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
   }
-
-  .card {
-    border: 1px solid rgba(0,255,65,0.15);
-    background: rgba(10,13,16,0.75);
-    backdrop-filter: blur(10px);
-    padding: 24px 22px;
-    transition: all 0.3s ease;
+  a.card {
+    display: block;
     text-decoration: none;
     color: inherit;
-    display: block;
+    padding: 32px 28px 28px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
     position: relative;
     overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 4px;
   }
-
-  .card::before {
+  a.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,164,76,0.08) 0%, transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  a.card::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: #00ff41;
-    opacity: 0;
-    transition: opacity 0.3s;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-
-  .card:hover {
-    border-color: rgba(0,255,65,0.4);
-    background: rgba(10,13,16,0.9);
-    transform: translateY(-2px);
+  a.card:hover {
+    border-color: rgba(201,164,76,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,164,76,0.06);
   }
+  a.card:hover::before { opacity: 1; }
+  a.card:hover::after { width: 100%; }
 
-  .card:hover::before {
-    opacity: 1;
-  }
-
-  .card .tag {
+  .card .label {
     font-size: 9px;
-    color: #c9a44c;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
     display: block;
+    opacity: 0.85;
   }
-
   .card h3 {
-    font-size: 14px;
-    color: #00ff41;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-
-  .card p {
-    font-size: 11.5px;
-    color: #8892a0;
-    line-height: 1.6;
+    font-family: 'Cinzel', serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text);
     margin-bottom: 14px;
-    font-family: 'Courier New', monospace;
+    line-height: 1.2;
   }
-
-  .card .status {
-    font-size: 9px;
-    color: #4a5568;
-    letter-spacing: 1px;
-    border-top: 1px solid rgba(0,255,65,0.1);
-    padding-top: 10px;
+  .card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    font-weight: 300;
+    min-height: 66px;
+  }
+  .card .foot {
     display: flex;
     justify-content: space-between;
-  }
-
-  .card .status .dot {
-    color: #00ff41;
-  }
-
-  .card.archive {
-    border-color: rgba(201,164,76,0.15);
-  }
-
-  .card.archive h3 {
-    color: #c9a44c;
-  }
-
-  .card.archive .status .dot {
-    color: #c9a44c;
-  }
-
-  /* Botones */
-  .actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 50px;
-  }
-
-  a.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border: 1px solid #00ff41;
-    color: #00ff41;
-    text-decoration: none;
-    letter-spacing: 3px;
-    font-size: 11px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    background: rgba(0,255,65,0.02);
-  }
-
-  a.btn:hover {
-    background: #00ff41;
-    color: #0a0d10;
-    box-shadow: 0 0 30px rgba(0,255,65,0.4);
-  }
-
-  a.btn.gold {
-    border-color: #c9a44c;
-    color: #c9a44c;
-  }
-
-  a.btn.gold:hover {
-    background: #c9a44c;
-    color: #0a0d10;
-    box-shadow: 0 0 30px rgba(201,164,76,0.4);
-  }
-
-  .footer {
-    text-align: center;
-    font-size: 9px;
-    color: #4a5568;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid rgba(201,164,76,0.12);
+    font-size: 10px;
     letter-spacing: 2px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(0,255,65,0.08);
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .card .foot .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold);
+  }
+  .card .foot .status::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
   }
 
-  .footer a {
-    color: #4a5568;
+  /* ── CTA ── */
+  .cta {
+    margin-top: 100px;
+    text-align: center;
+    padding: 80px 32px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 4px;
+    position: relative;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cta h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+  }
+  .cta p {
+    font-size: 14px;
+    color: var(--text-dim);
+    max-width: 500px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  a.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: 0.2s;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold);
+    background: rgba(201,164,76,0.02);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--gold);
+    background: rgba(201,164,76,0.08);
   }
 
-  .footer a:hover {
-    color: #00ff41;
-    border-bottom-color: #00ff41;
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--gold); }
+  footer .sig {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    letter-spacing: 3px;
   }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
-    pre.banner { display: none; }
-    .sub { font-size: 10px; letter-spacing: 2px; }
-    a.btn { padding: 10px 20px; font-size: 10px; }
-    .wrap { padding: 30px 16px 60px; }
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    header.top { padding-bottom: 40px; }
+    .hero { padding: 30px 0 60px; }
+    .divider { margin: 50px 0; }
+    .card p { min-height: auto; }
+    .cta { padding: 50px 24px; }
+    footer { flex-direction: column; }
   }
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
+
+<canvas id="webgl"></canvas>
+<div class="vignette"></div>
 
 <div class="wrap">
 
-  <div class="hero">
-    <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
-║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
-║ ▓                                                                          ▓ ║
-║ ▓   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                  ▓ ║
-║ ▓   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                  ▓ ║
-║ ▓   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                  ▓ ║
-║ ▓   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                  ▓ ║
-║ ▓   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                  ▓ ║
-║ ▓   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                  ▓ ║
-║ ▓                                                                          ▓ ║
-║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
-║ ▓   P R O T O C O L   ·   U N I F I E D   R E P O S I T O R Y              ▓ ║
-║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
-║ ▓                                                                          ▓ ║
-║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
-╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+  <header class="top">
+    <div class="mark">KRONOS PROTOCOL</div>
+    <nav>
+      <a href="#projects">Proyectos</a>
+      <a href="#contact">Contacto</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GitHub</a>
+    </nav>
+  </header>
 
-    <h1>KRONOS PROTOCOL</h1>
-    <div class="sub">VERIFICACIÓN · EVIDENCIA · CO-CREATIVIDAD</div>
-
-    <p class="desc">
-      Prototipos de verificación criptográfica, evidencia digital
+  <section class="hero">
+    <div class="eyebrow">Verificación · Evidencia · Co-creatividad</div>
+    <h1 class="title">El registro<br>de lo que<br>es real.</h1>
+    <p class="lede">
+      Prototipos de <strong>verificación criptográfica</strong>, evidencia digital
       y metodología de co-creatividad humano-IA.
+      Acta fundacional sellada con timestamp cualificado <strong>eIDAS</strong> y
+      anclada en la blockchain de Ethereum.
     </p>
+  </section>
 
-    <div class="meta">
-      ACTA FUNDACIONAL · <a href="https://www.safecreative.org/certificate/2607086319439" target="_blank">2607086319439</a> · 8 JULIO 2026
+  <div class="divider"></div>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Proyectos</h2>
+      <span class="count">06 · Activos</span>
     </div>
-  </div>
 
-  <div class="projects">
+    <div class="projects">
 
-    <a class="card" href="projects/evidence-os/">
-      <span class="tag">[ PLATAFORMA ]</span>
-      <h3>EVIDENCE INTEGRITY OS</h3>
-      <p>Paquete .evidence verificable. SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T. API HTTP. Revisión legal MX pendiente.</p>
-      <div class="status">
-        <span><span class="dot">●</span> PRE-ALPHA</span>
-        <span>NÚCLEO 100%</span>
-      </div>
-    </a>
+      <a class="card" href="projects/evidence-os/">
+        <span class="label">Plataforma</span>
+        <h3>Evidence Integrity OS</h3>
+        <p>Paquete .evidence verificable. SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T. API HTTP. Alineación NOM-151.</p>
+        <div class="foot">
+          <span class="status">Pre-alpha</span>
+          <span>Núcleo 100%</span>
+        </div>
+      </a>
 
-    <a class="card" href="projects/acta/">
-      <span class="tag">[ METODOLOGÍA ]</span>
-      <h3>ACTA + SCDR-001</h3>
-      <p>Co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS QTSA Firmaprofesional B02.</p>
-      <div class="status">
-        <span><span class="dot">●</span> REGISTRADO</span>
-        <span>SAFE CREATIVE</span>
-      </div>
-    </a>
+      <a class="card" href="projects/acta/">
+        <span class="label">Metodología</span>
+        <h3>Acta + SCDR-001</h3>
+        <p>Co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS QTSA Firmaprofesional B02.</p>
+        <div class="foot">
+          <span class="status">Registrado</span>
+          <span>Safe Creative</span>
+        </div>
+      </a>
 
-    <a class="card" href="projects/cymatic/">
-      <span class="tag">[ DEMO ]</span>
-      <h3>CYMATIC STUDIO</h3>
-      <p>Motor WebGL2 de visualización de audio reactivo. 16,000 partículas. 5 geometrías procedurales. 100% cliente.</p>
-      <div class="status">
-        <span><span class="dot">●</span> FUNCIONAL</span>
-        <span>v19</span>
-      </div>
-    </a>
+      <a class="card" href="projects/cymatic/">
+        <span class="label">Demo</span>
+        <h3>Cymatic Studio</h3>
+        <p>Motor WebGL2 de visualización de audio reactivo. 16,000 partículas. 5 geometrías procedurales. 100% cliente.</p>
+        <div class="foot">
+          <span class="status">Funcional</span>
+          <span>v19</span>
+        </div>
+      </a>
 
-    <a class="card" href="projects/md33/">
-      <span class="tag">[ FRAMEWORK ]</span>
-      <h3>MD-33 FORENSE</h3>
-      <p>Verificación forense de evidencia digital. Script Python genérico. Plantilla de acta bilingüe ES/EN. 4 jurisdicciones.</p>
-      <div class="status">
-        <span><span class="dot">●</span> USABLE</span>
-        <span>ISO 27037</span>
-      </div>
-    </a>
+      <a class="card" href="projects/md33/">
+        <span class="label">Framework</span>
+        <h3>MD-33 Forense</h3>
+        <p>Verificación forense de evidencia digital. Script Python genérico. Plantilla de acta bilingüe ES/EN. 4 jurisdicciones.</p>
+        <div class="foot">
+          <span class="status">Usable</span>
+          <span>ISO 27037</span>
+        </div>
+      </a>
 
-    <a class="card" href="projects/yejida/">
-      <span class="tag">[ CAUSA ]</span>
-      <h3>YEJIDÁ KABALÁH</h3>
-      <p>88 constelaciones IAU + interpretación cabalística. 100% local, sin tracking. Donaciones a gatitos callejeros.</p>
-      <div class="status">
-        <span><span class="dot">●</span> EN CONSTRUCCIÓN</span>
-        <span>PWA</span>
-      </div>
-    </a>
+      <a class="card" href="projects/yejida/">
+        <span class="label">Causa</span>
+        <h3>Yejidá Kabaláh</h3>
+        <p>88 constelaciones IAU + interpretación cabalística. 100% local, sin tracking. Donaciones a gatitos callejeros.</p>
+        <div class="foot">
+          <span class="status">Construcción</span>
+          <span>PWA</span>
+        </div>
+      </a>
 
-    <a class="card" href="projects/kronos-vault/">
-      <span class="tag">[ LEGADO ]</span>
-      <h3>KRONOS VAULT</h3>
-      <p>Arquitectura de legado digital. 6 principios explícitos. Registro Safe Creative 2607146379465. Licencia dual.</p>
-      <div class="status">
-        <span><span class="dot">●</span> GÉNESIS</span>
-        <span>v0.1.0</span>
-      </div>
-    </a>
+      <a class="card" href="projects/kronos-vault/">
+        <span class="label">Legado</span>
+        <h3>Kronos Vault</h3>
+        <p>Arquitectura de legado digital. 6 principios explícitos. Registro Safe Creative 2607146379465. Licencia dual.</p>
+        <div class="foot">
+          <span class="status">Génesis</span>
+          <span>v0.1.0</span>
+        </div>
+      </a>
 
-  </div>
+    </div>
+  </section>
 
-  <div class="actions">
-    <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol#readme" target="_blank">LEER README</a>
-    <a class="btn gold" href="https://www.safecreative.org/certificate/2607086319439" target="_blank">VER ACTA</a>
-    <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GITHUB</a>
-  </div>
+  <div class="divider"></div>
 
-  <div class="footer">
-    © 2026 MARCO ANTONIO ROJAS VALDOVINOS ·
-    <a href="https://github.com/Marcorojas17/kronos-protocol/blob/main/archive/README.md">ARCHIVE</a> ·
-    <a href="https://github.com/Marcorojas17/kronos-protocol/issues">ISSUES</a>
-  </div>
+  <section class="cta" id="contact">
+    <h2>Acta fundacional</h2>
+    <p>
+      Registro <strong style="color: var(--gold);">2607086319439</strong> · 8 de julio de 2026 · 07:02 UTC · QTSA Firmaprofesional B02 · Anclaje Ethereum
+    </p>
+    <div class="btns">
+      <a class="btn solid" href="https://www.safecreative.org/certificate/2607086319439" target="_blank">Ver certificado</a>
+      <a class="btn ghost" href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">Explorar repositorio</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span class="sig">Kronos Protocol · v1.0</span>
+    <span>
+      <a href="https://github.com/Marcorojas17/kronos-protocol/issues">Issues</a> ·
+      <a href="archive/">Archive</a>
+    </span>
+  </footer>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 // ═══════════════════════════════════════════════════════════════
-// MATRIX RAIN · fondo animado sutil
+// Campo de partículas doradas 3D · responde al mouse
 // ═══════════════════════════════════════════════════════════════
-const canvas = document.getElementById('bg');
-const ctx = canvas.getContext('2d');
+(function() {
+  const canvas = document.getElementById('webgl');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x05070b, 0.035);
 
-let w, h, cols, drops;
-const chars = 'KTP01KRONOS日月火水木金土01アイウエオカキクケコ▓░█▒'.split('');
-const fontSize = 14;
+  const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 22);
 
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-  cols = Math.floor(w / fontSize);
-  drops = new Array(cols).fill(0).map(() => Math.random() * h / fontSize);
-}
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-function draw() {
-  ctx.fillStyle = 'rgba(10, 13, 16, 0.06)';
-  ctx.fillRect(0, 0, w, h);
+  const COUNT = 1800;
+  const positions = new Float32Array(COUNT * 3);
+  const colors = new Float32Array(COUNT * 3);
+  const sizes = new Float32Array(COUNT);
 
-  ctx.font = fontSize + 'px monospace';
+  for (let i = 0; i < COUNT; i++) {
+    const r = 8 + Math.random() * 22;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
 
-  for (let i = 0; i < cols; i++) {
-    const ch = chars[Math.floor(Math.random() * chars.length)];
-    const x = i * fontSize;
-    const y = drops[i] * fontSize;
+    positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
 
-    if (Math.random() > 0.98) {
-      ctx.fillStyle = '#c9a44c';
+    // Dorado vs crema
+    const isGold = Math.random() > 0.4;
+    if (isGold) {
+      colors[i * 3]     = 0.79;
+      colors[i * 3 + 1] = 0.64;
+      colors[i * 3 + 2] = 0.30;
     } else {
-      const brightness = 0.3 + (drops[i] % 8) * 0.07;
-      ctx.fillStyle = `rgba(0, 255, 65, ${brightness})`;
+      colors[i * 3]     = 0.95;
+      colors[i * 3 + 1] = 0.90;
+      colors[i * 3 + 2] = 0.67;
     }
 
-    ctx.fillText(ch, x, y);
-
-    if (y > h && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
-    drops[i]++;
+    sizes[i] = 0.5 + Math.random() * 1.8;
   }
 
-  requestAnimationFrame(draw);
-}
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-window.addEventListener('resize', resize);
-resize();
-draw();
+  // Shader simple para puntos
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
+    },
+    vertexShader: `
+      attribute float size;
+      attribute vec3 color;
+      varying vec3 vColor;
+      varying float vAlpha;
+      uniform float uTime;
+      uniform float uPixelRatio;
+      void main() {
+        vColor = color;
+        vAlpha = 0.4 + 0.6 * (0.5 + 0.5 * sin(uTime * 1.5 + position.x * 0.3 + position.y * 0.2));
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * uPixelRatio * (180.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        float d = length(gl_PointCoord - vec2(0.5));
+        if (d > 0.5) discard;
+        float a = smoothstep(0.5, 0.0, d) * vAlpha;
+        gl_FragColor = vec4(vColor, a);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  // Mouse parallax
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  window.addEventListener('mousemove', (e) => {
+    mx = (e.clientX / window.innerWidth) * 2 - 1;
+    my = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  let t0 = performance.now();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = (performance.now() - t0) * 0.001;
+
+    // Suavizado
+    tx += (mx - tx) * 0.03;
+    ty += (my - ty) * 0.03;
+
+    points.rotation.y = t * 0.04 + tx * 0.4;
+    points.rotation.x = Math.sin(t * 0.15) * 0.1 + ty * 0.2;
+
+    material.uniforms.uTime.value = t;
+
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  animate();
+})();
 </script>
 </body>
 </html>
