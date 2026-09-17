@@ -91,7 +91,7 @@
     </p>
     <div class="features">
       <div class="feat"><strong>5 GEOMETRÍAS</strong>Chladni · Toroide · Metatrón · Flor de Vida · Merkaba</div>
-      <div class="feat"><strong>16,000 PARTÍCULAS</strong>Shaders GLSL personalizados sobre WebGL2</div>
+      <div class="feat"><strong>3,000 PARTÍCULAS</strong>Shaders GLSL personalizados sobre WebGL2</div>
       <div class="feat"><strong>5 PALETAS</strong>Cyan · Aurum · Neon · Esmeralda · Nebula</div>
       <div class="feat"><strong>EXPORT</strong>PNG + grabación WebM · 60fps</div>
     </div>
@@ -101,7 +101,8 @@
       con shaders procedurales.
     </div>
     <div class="actions">
-      <a class="btn" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/cymatic/README.md" target="_blank">LEER README</a>
+      <a class="btn" href="./studio.html">ABRIR DEMO</a>
+      <a class="btn purple" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/cymatic/README.md" target="_blank">LEER README</a>
       <a class="btn purple" href="https://github.com/Marcorojas17/kronos-protocol/tree/main/projects/cymatic" target="_blank">VER CÓDIGO</a>
     </div>
   </div>
@@ -111,7 +112,6 @@
 </div>
 
 <script>
-// Fondo: partículas geométricas cyan + púrpura
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 let w, h, particles;
@@ -137,26 +137,21 @@ function resize() {
 function draw() {
   ctx.fillStyle = 'rgba(5, 8, 16, 0.12)';
   ctx.fillRect(0, 0, w, h);
-
   const time = performance.now() * 0.001;
-
   for (const p of particles) {
     p.x += p.vx;
     p.y += p.vy;
     if (p.x < 0 || p.x > w) p.vx *= -1;
     if (p.y < 0 || p.y > h) p.vy *= -1;
-
     const pulse = 0.6 + 0.4 * Math.sin(time * 2 + p.phase);
     const alpha = 0.4 * pulse;
     ctx.fillStyle = p.hue === 180
       ? `rgba(0, 255, 255, ${alpha})`
       : `rgba(168, 85, 247, ${alpha})`;
-
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
     ctx.fill();
   }
-
   requestAnimationFrame(draw);
 }
 
