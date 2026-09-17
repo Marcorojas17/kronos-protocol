@@ -1,5 +1,5 @@
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
-<!-- KRONOS PROTOCOL · README UNIFICADO · v1.0 · 16 Septiembre 2026        -->
+<!-- KRONOS PROTOCOL · README · v1.1 · 16 Septiembre 2026                 -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 ```text
@@ -16,7 +16,7 @@
 ║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
 ║ ▓   P R O T O C O L   ·   U N I F I E D   R E P O S I T O R Y              ▓ ║
 ║ ▓   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ▓ ║
-║ ▓   v 1 . 0   ·   2 0 2 6   ·   M A R C O   R O J A S                      ▓ ║
+║ ▓   v 1 . 1   ·   2 0 2 6   ·   M A R C O   R O J A S                      ▓ ║
 ║ ▓                                                                          ▓ ║
 ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -27,30 +27,57 @@
 ---
 
 ```text
-┌─[ 00 ]────────────────────────────────────────── IDENTIDAD ─┐
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
+┌─[ 00 ]────────────────────────────────────────────── IDENTIDAD ─┐
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 | Campo | Valor |
 |:---|:---|
 | **Autor** | Marco Antonio Rojas Valdovinos |
-| **Acta fundacional** | Safe Creative `2607086319439` |
-| **Fecha** | 8 julio 2026 · 07:02 UTC |
-| **QTSA** | Firmaprofesional ICA B02 QUALIFIED 2022 |
-| **SHA-256 del acta** | `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3` |
-| **Verificación pública** | [safecreative.org/certificate](https://www.safecreative.org/certificate/2607086319439) |
+| **Registros Safe Creative** | 6 · verificables con QTSA Firmaprofesional B02 |
+| **Anclaje blockchain** | Ethereum Mainnet |
+| **Verificación pública** | [safecreative.org](https://www.safecreative.org) |
 | **GitHub** | [@Marcorojas17](https://github.com/Marcorojas17) |
 
 ---
 
 ```text
-┌─[ 01 ]────────────────────────────────────────── QUÉ ES ESTO ─┐
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
+┌─[ 01 ]─────────────────────────── REGISTROS VERIFICABLES ─┐
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-Este repositorio agrupa **seis proyectos independientes**. Cada uno con su propio estado, stack y madurez. No todos son productos. Algunos son demos. Otros son exploraciones.
+Cada registro fue emitido por Safe Creative S.L. (NIF B99161739, Zaragoza, España) con sello de tiempo cualificado **Firmaprofesional ICA B02 QUALIFIED QTSA 2022**.
+
+| ID | Título | Fecha | Humano / IA |
+|:---|:---|:---|:---:|
+| `2607086319439` | Acta Fundacional del Movimiento | 8 jul 2026 | 51/49 · 51/49 · 51/49 |
+| `2607146379465` | KRONOS — Arquitectura de Legado Digital | 14 jul 2026 | 100/0 · 100/0 · 60/40 |
+| `2608156740085` | KÓDICE V1.3 — Protocolo de Identidad Simbólica | 15 ago 2026 | 100/0 · 100/0 · 100/0 |
+| `2608166741669` | Ecosistema KÓDICE-KRONOS-FDV Plan 2026-2031 | 16 ago 2026 | 100/0 · 100/0 · 100/0 |
+| `2608176749334` | KRONOS 360 — Certificación Forense TimeLock | 17 ago 2026 | 100/0 · 100/0 · 100/0 |
+| `2608276846490` | KRONOS 28 v1.0 — Ecosistema Blockchain Híbrido | 27 ago 2026 | 100/0 · 100/0 · 70/30 |
+
+**Acta fundacional (caso cero):**
+
+```text
+  ID ................. 2607086319439
+  SHA-256 ............ 41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3
+  QTSA ............... Firmaprofesional ICA B02 QUALIFIED 2022
+  Anclaje Ethereum ... 0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
+  Fecha .............. 8 de julio de 2026 · 07:02 UTC
+```
+
+---
+
+```text
+┌─[ 02 ]────────────────────────────────── QUÉ ES ESTO ─┐
+│                                                        │
+└────────────────────────────────────────────────────────┘
+```
+
+Este repositorio agrupa **seis proyectos independientes**. Cada uno con su propio estado, stack y madurez.
 
 **La regla es simple:** cada carpeta dice la verdad sobre sí misma.
 
@@ -66,114 +93,84 @@ Este repositorio agrupa **seis proyectos independientes**. Cada uno con su propi
 ---
 
 ```text
-┌─[ 02 ]────────────────────────────── PROYECTOS REALES ─┐
+┌─[ 03 ]────────────────────────────── PROYECTOS REALES ─┐
 │                                                          │
 └──────────────────────────────────────────────────────────┘
 ```
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ evidence-os/                          │
-        │  Plataforma de evidencia digital         │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+### `projects/evidence-os/` · Evidence Integrity OS
 
-Paquete `.evidence` verificable · SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T · API FastAPI + UI + pagos · tests de seguridad.
+Plataforma de integridad, trazabilidad y verificación de evidencia digital para México y Latinoamérica.
 
-**Estado:** pre-alpha · núcleo 100% · revisión legal MX pendiente
-**No es:** certificación NOM-151, ni asesoría legal, ni admisibilidad judicial automática.
+- Paquete `.evidence` verificable: SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T
+- API HTTP (FastAPI) + UI + procesador de pagos
+- Tests de seguridad (algorithm confusion, dictionary attack, corruption)
+- Alineación de diseño con NOM-151, Código de Comercio, CNPP
 
----
+**Estado:** pre-alpha · núcleo 100% · revisión legal México pendiente.
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ acta/                                 │
-        │  Acta Fundacional + SCDR-001             │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+### `projects/acta/` · Acta Fundacional + SCDR-001
 
-Metodología de co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS.
+Metodología para declarar co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS.
 
-| Fase | Humano | IA |
-|:---|:---:|:---:|
-| Concepto y visión | 51% | 49% |
-| Dirección creativa | 51% | 49% |
-| Producción | 51% | 49% |
+- Documento registrado: 8 julio 2026, 07:02 UTC
+- SHA-256: `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3`
+- Verificación: [Safe Creative](https://www.safecreative.org/certificate/2607086319439)
+- Declaración por fase: Concepto 51/49 · Dirección 51/49 · Producción 51/49
 
-**Estado:** documento registrado · metodología en definición
-**No es:** notariado digital, ni prueba de humanidad biológica.
+**Estado:** documento registrado · metodología en definición.
 
----
+### `projects/cymatic/` · CYMATIC STUDIO
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ cymatic/                              │
-        │  CYMATIC STUDIO · WebGL2                 │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+Motor WebGL2 de visualización de audio reactivo. Convierte una frecuencia en geometría procedural en tiempo real.
 
-Motor de visualización de audio reactivo. 16,000 partículas · 5 geometrías procedurales (Chladni, Toroide, Metatrón, Flor de Vida, Merkaba) · 5 paletas · exportación PNG + grabación WebM.
+- 16,000 partículas · 5 geometrías (Chladni, Toroide, Metatrón, Flor de Vida, Merkaba)
+- 5 paletas · 5 modos · drag & drop de audio
+- Exportación PNG + grabación WebM
+- Stack: Three.js + Web Audio API + shaders GLSL propios
 
-**Estado:** demo funcional · v19
-**No es:** detector de voz humana, biometría, ni IA generativa.
+**Estado:** demo funcional · v19.
 
----
+### `projects/md33/` · MD-33 Framework Forense
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ md33/                                 │
-        │  Framework forense                       │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+Framework de verificación forense de evidencia digital conforme a ISO/IEC 27037.
 
-Framework de verificación forense conforme a ISO/IEC 27037. Script Python genérico + plantilla bilingüe ES/EN + modelo de cadena de custodia.
+- Script Python `verifica_estandar.py` (genérico)
+- Plantilla bilingüe ES/EN de acta pericial
+- Modelo de cadena de custodia con hash + firma + timestamp
+- Tabla de cumplimiento por país (MX, USA, UE, Israel)
 
 **Estado:** framework usable · caso demostrativo ficticio separado del real.
 
----
+### `projects/yejida/` · Yejidá Kabaláh
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ yejida/                               │
-        │  Astronomía + cábala + gatitos           │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+Astronomía real + interpretación cabalística. 100% de donaciones a gatitos callejeros.
 
-88 constelaciones IAU · catálogo Hipparcos + Messier · vanilla JS + PWA · 100% local. **Todo lo recaudado va a gatitos callejeros.**
+- 88 constelaciones IAU · Catálogo Hipparcos + Messier + NGC
+- Vanilla JS + PWA · 100% local, sin tracking
 
-**Estado:** en construcción · causa activa
-**No es:** producto comercial.
+**Estado:** en construcción · causa activa.
 
----
+### `projects/kronos-vault/` · Kronos Vault
 
-```text
-        ┌──────────────────────────────────────────┐
-        │  ▓ kronos-vault/                         │
-        │  Legado digital · 6 principios           │
-        └──────────────────┬───────────────────────┘
-                           │
-                           ▼
-```
+Arquitectura de legado digital con 6 principios explícitos.
 
-Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · Citación obligatoria · Defensa activa. Registro `2607146379465`.
+1. Integridad
+2. Trazabilidad
+3. No comercialización
+4. No entrenamiento de IA
+5. Citación obligatoria
+6. Defensa activa
 
-**Estado:** borrador fase Génesis
-**No es:** certificación ISO ni promesa de perpetuidad.
+- Registro: Safe Creative `2607146379465`
+- Licencia: CC BY-NC-ND 4.0 (obra) · MIT (schemas y tests)
+
+**Estado:** borrador fase Génesis.
 
 ---
 
 ```text
-┌─[ 03 ]────────────────────────── ARCHIVE · NARRATIVA ─┐
+┌─[ 04 ]────────────────────────── ARCHIVE · NARRATIVA ─┐
 │                                                        │
 └────────────────────────────────────────────────────────┘
 ```
@@ -192,7 +189,7 @@ Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · 
 ---
 
 ```text
-┌─[ 04 ]─────────────────────── LÍMITES EXPLÍCITOS ─┐
+┌─[ 05 ]─────────────────────── LÍMITES EXPLÍCITOS ─┐
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -216,7 +213,7 @@ Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · 
 ---
 
 ```text
-┌─[ 05 ]───────────────────────────────── LICENCIA ─┐
+┌─[ 06 ]───────────────────────────────── LICENCIA ─┐
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -230,15 +227,15 @@ Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · 
 ---
 
 ```text
-┌─[ 06 ]───────────────────────────────── CONTACTO ─┐
+┌─[ 07 ]───────────────────────────────── CONTACTO ─┐
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
 
 ```text
   GitHub .......... @Marcorojas17
+  Repositorio ..... github.com/Marcorojas17/kronos-protocol
   Issues .......... github.com/Marcorojas17/kronos-protocol/issues
-  Verificación .... safecreative.org/certificate/2607086319439
 ```
 
 ---
@@ -247,11 +244,12 @@ Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · 
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
 ║ ▓                                                                          ▓ ║
-║ ▓   [ KRONOS PROTOCOL · v1.0 · 2026 ]                                     ▓ ║
+║ ▓   [ KRONOS PROTOCOL · v1.1 · 2026 ]                                     ▓ ║
 ║ ▓                                                                          ▓ ║
-║ ▓   ▸ 6 proyectos reales                                                  ▓ ║
-║ ▓   ▸ 1 estándar propuesto (KTP-001)                                      ▓ ║
-║ ▸ 1 acta fundacional verificable                                          ▓ ║
+║ ▓   ▸ 6 registros Safe Creative verificables                              ▓ ║
+║ ▸ 6 proyectos en projects/                                                ▓ ║
+║ ▓   ▸ 1 acta fundacional verificable                                      ▓ ║
+║ ▸ 1 anclaje en Ethereum Mainnet                                           ▓ ║
 ║ ▓   ▸ 6 documentos en archive                                             ▓ ║
 ║ ▓                                                                          ▓ ║
 ║ ▓   root@kronos:~# ./status                                                ▓ ║
@@ -267,4 +265,4 @@ Integridad · Trazabilidad · No comercialización · No entrenamiento de IA · 
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
-<!-- FIN DEL README · KRONOS PROTOCOL · v1.0 -->
+<!-- FIN DEL README · KRONOS PROTOCOL · v1.1 -->
