@@ -1,0 +1,61 @@
+{
+  "name": "DMD-33 ○_●",
+  "short_name": "DMD-33",
+  "description": "Orbe vivo verificable. SHA-256 ee0369… · TX 0xd94b… · Safe Creative 2607086319439.",
+  "start_url": "./orb.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05070b",
+  "theme_color": "#c9a44c",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "categories": ["utilities", "productivity", "security"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzA1MDcwYiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTYwIiBmaWxsPSJ1cmwoI2cpIi8+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iNDAlIiBjeT0iMzUlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZmOGUwIi8+PHN0b3Agb2Zmc2V0PSI0NSUiIHN0b3AtY29sb3I9IiNjOWE0NGMiLz48c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iIzJhMWYwOCIvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjx0ZXh0IHg9IjI1NiIgeT0iNDYwIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI0OCIgZmlsbD0iI2M5YTQ0YyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjQiPkTwn5GzPC90ZXh0Pjwvc3ZnPg==",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzA1MDcwYiIgcng9IjM2Ii8+PGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNjAiIGZpbGw9InVybCgjZykiLz48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImciIGN4PSI0MCUiIGN5PSIzNSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmY4ZTAiLz48c3RvcCBvZmZzZXQ9IjQ1JSIgc3RvcC1jb2xvcj0iI2M5YTQ0YyIvPjxzdG9wIG9mZnNldD0iOTUlIiBzdG9wLWNvbG9yPSIjMmExZjA4Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Orbe vivo",
+      "short_name": "Orbe",
+      "url": "./orb.html",
+      "description": "Activa el orbe y habla"
+    },
+    {
+      "name": "GitHub",
+      "short_name": "GitHub",
+      "url": "https://github.com/Marcorojas17/kronos-protocol",
+      "description": "Código fuente"
+    }
+  ],
+  "protocol_handlers": [],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "id": "/kronos-protocol/projects/dmd-33/",
+  "scope_extensions": [],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "kronos": {
+    "sha256": "ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738",
+    "tx": "0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466",
+    "safe_creative": "2607086319439",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "anio": "2026",
+    "horizonte": "2099",
+    "license": "CC BY-NC-ND 4.0 + NOAI",
+    "guardian": "GUARDIAN-SHA"
+  }
+}
