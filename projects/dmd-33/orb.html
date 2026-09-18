@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DMD-33 ○_●</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body {
@@ -12,10 +13,10 @@
     font-family:'Inter',system-ui,sans-serif;
     overflow:hidden;
     -webkit-tap-highlight-color:transparent;
-    touch-action:manipulation;
     user-select:none;
   }
   #canvas { position:fixed; inset:0; width:100%; height:100%; display:block; }
+
   #orb {
     position:fixed; top:50%; left:50%;
     width:120px; height:120px; border-radius:50%;
@@ -31,63 +32,144 @@
     0%,100% { transform:translate(-50%,-50%) scale(1); }
     50%     { transform:translate(-50%,-50%) scale(1.08); }
   }
-  #estado {
-    position:fixed; bottom:6rem; left:50%;
+
+  #titulo {
+    position:fixed; top:1.8rem; left:50%;
     transform:translateX(-50%);
-    padding:0.5rem 1.4rem;
+    font-family:'Cinzel',serif;
+    font-size:0.95rem; letter-spacing:8px;
+    color:#00eaff; opacity:0.8; z-index:3;
+  }
+
+  #estado {
+    position:fixed; top:4rem; left:50%;
+    transform:translateX(-50%);
+    padding:0.35rem 1.1rem;
     border:1px solid currentColor;
     border-radius:30px;
     background:#000a;
-    font-size:0.75rem;
-    letter-spacing:5px;
-    font-weight:300;
-    color:#00eaff;
+    font-size:0.65rem; letter-spacing:4px;
+    font-weight:300; color:#00eaff;
     transition:color 0.6s;
     z-index:3;
   }
-  #titulo {
-    position:fixed; top:2rem; left:50%;
+
+  #debug {
+    position:fixed; top:1rem; right:1rem;
+    font-size:0.6rem; color:#4b6b7a;
+    letter-spacing:1px; z-index:4;
+    text-align:right; max-width:40%;
+    line-height:1.4;
+  }
+
+  #log {
+    position:fixed; bottom:8rem; left:50%;
     transform:translateX(-50%);
-    font-family:'Cinzel',serif;
-    font-size:0.95rem;
-    letter-spacing:8px;
+    width:90%; max-width:480px;
+    max-height:30vh; overflow-y:auto;
+    display:flex; flex-direction:column; gap:0.5rem;
+    z-index:3; pointer-events:none;
+    scrollbar-width:none;
+  }
+  #log::-webkit-scrollbar { display:none; }
+  .msg {
+    padding:0.6rem 0.9rem;
+    border-radius:10px;
+    font-size:0.78rem; line-height:1.4;
+    letter-spacing:0.3px;
+    max-width:85%;
+    animation:fadeIn 0.35s ease;
+  }
+  .msg.user {
+    background:#00eaff18;
+    border:1px solid #00eaff44;
+    color:#b8ecff;
+    align-self:flex-end;
+    text-align:right;
+  }
+  .msg.dmd {
+    background:#00ffb818;
+    border:1px solid #00ffb844;
+    color:#b8ffd9;
+    align-self:flex-start;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  #wave {
+    position:fixed; bottom:5rem; left:50%;
+    transform:translateX(-50%);
+    width:200px; height:36px;
+    display:none; z-index:3;
+  }
+  #wave.active { display:block; }
+
+  #btn {
+    position:fixed; bottom:1.5rem; left:50%;
+    transform:translateX(-50%);
+    padding:1rem 2.2rem;
+    border:1px solid #00eaff;
+    background:#00eaff11;
     color:#00eaff;
-    opacity:0.75;
-    z-index:3;
-  }
-  #transcripcion {
-    position:fixed; bottom:2.2rem; left:50%;
-    transform:translateX(-50%);
-    max-width:90%;
-    padding:0.7rem 1.2rem;
-    background:#000c;
-    border:1px solid #00eaff33;
-    border-radius:8px;
-    font-size:0.8rem;
-    color:#e8e4d8;
-    letter-spacing:1px;
-    text-align:center;
-    opacity:0;
-    transition:opacity 0.4s;
-    z-index:3;
-    pointer-events:none;
-  }
-  #transcripcion.visible { opacity:1; }
-  #hint {
-    position:fixed; bottom:4rem; left:50%;
-    transform:translateX(-50%);
-    font-size:0.65rem;
-    letter-spacing:3px;
-    color:#4b6b7a;
+    font-family:'Inter',sans-serif;
+    font-size:0.75rem; letter-spacing:4px;
     text-transform:uppercase;
-    opacity:0;
-    transition:opacity 0.8s;
-    z-index:3;
-    pointer-events:none;
-    text-align:center;
-    padding:0 1rem;
+    border-radius:40px;
+    cursor:pointer;
+    transition:all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+    z-index:5;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
   }
-  #hint.visible { opacity:0.85; }
+  #btn:hover, #btn:active {
+    background:#00eaff;
+    color:#05070b;
+    box-shadow:0 0 40px #00eaff88;
+  }
+  #btn:disabled {
+    opacity:0.4;
+    cursor:not-allowed;
+  }
+  #btn.listening {
+    border-color:#ff3344;
+    color:#ff3344;
+    background:#ff334411;
+  }
+  #btn.listening:hover {
+    background:#ff3344;
+    color:#05070b;
+  }
+
+  #err {
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    padding:1.5rem 2rem;
+    background:#1a0a0aee;
+    border:1px solid #ff3344;
+    border-radius:12px;
+    color:#ffb8c0;
+    font-size:0.85rem;
+    max-width:80%;
+    text-align:center;
+    line-height:1.5;
+    z-index:10;
+    display:none;
+  }
+  #err.visible { display:block; }
+  #err button {
+    margin-top:1rem;
+    padding:0.6rem 1.4rem;
+    background:transparent;
+    border:1px solid #ff3344;
+    color:#ff3344;
+    border-radius:30px;
+    font-family:inherit;
+    font-size:0.7rem;
+    letter-spacing:2px;
+    cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -95,20 +177,30 @@
 <canvas id="canvas"></canvas>
 <div id="orb"></div>
 <div id="titulo">DMD-33 ○_●</div>
-<div id="estado">STANDBY</div>
-<div id="transcripcion"></div>
-<div id="hint">toca la pantalla para despertar</div>
+<div id="estado">INICIANDO</div>
+<div id="debug"></div>
+<div id="log"></div>
+<canvas id="wave" width="400" height="72"></canvas>
+<button id="btn" type="button">Activar micrófono</button>
+<div id="err"></div>
 
 <script>
 (function() {
   'use strict';
 
+  // ═══════════════════════════════════════════════════════
+  // ELEMENTOS
+  // ═══════════════════════════════════════════════════════
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var orb = document.getElementById('orb');
   var estadoEl = document.getElementById('estado');
-  var hint = document.getElementById('hint');
-  var transcripcionEl = document.getElementById('transcripcion');
+  var debugEl = document.getElementById('debug');
+  var logEl = document.getElementById('log');
+  var waveEl = document.getElementById('wave');
+  var waveCtx = waveEl.getContext('2d');
+  var btn = document.getElementById('btn');
+  var errEl = document.getElementById('err');
 
   var W = 0, H = 0, dpr = 1;
   function resize() {
@@ -121,19 +213,32 @@
   window.addEventListener('resize', resize);
   resize();
 
-  // ─── ESTADOS ───
+  function log(msg) {
+    debugEl.textContent = msg;
+  }
+
+  function error(titulo, detalle) {
+    errEl.innerHTML = '<strong>' + titulo + '</strong><br><br>' + detalle +
+      '<br><button type="button" onclick="this.parentElement.classList.remove(\'visible\')">Cerrar</button>';
+    errEl.classList.add('visible');
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // ESTADOS VISUALES
+  // ═══════════════════════════════════════════════════════
   var ESTADOS = {
-    dormido:    { color:[40, 70, 90],   energia:0.15, label:'DORMIDO'    },
-    standby:    { color:[0, 234, 255],  energia:0.35, label:'STANDBY'    },
-    escuchando: { color:[0, 234, 255],  energia:0.70, label:'ESCUCHANDO' },
-    pensando:   { color:[180, 90, 255], energia:0.90, label:'PENSANDO'   },
-    respuesta:  { color:[0, 255, 180],  energia:1.00, label:'RESPUESTA'  },
-    alerta:     { color:[255, 51, 68],  energia:0.95, label:'ALERTA'     }
+    iniciando:  { color:[40,70,90],    energia:0.15, label:'INICIANDO'  },
+    standby:    { color:[0,234,255],   energia:0.35, label:'STANDBY'    },
+    permiso:    { color:[255,180,0],   energia:0.55, label:'PERMISO'    },
+    escuchando: { color:[0,234,255],   energia:0.85, label:'ESCUCHANDO' },
+    pensando:   { color:[180,90,255],  energia:1.00, label:'PENSANDO'   },
+    respuesta:  { color:[0,255,180],   energia:1.00, label:'RESPUESTA'  },
+    alerta:     { color:[255,51,68],   energia:0.95, label:'ALERTA'     }
   };
 
-  var estadoActual = 'dormido';
+  var estadoActual = 'iniciando';
   var energia = 0.15, targetEnergia = 0.15;
-  var color = [40, 70, 90], targetColor = [40, 70, 90];
+  var color = [40,70,90], targetColor = [40,70,90];
   var fase = 0;
 
   function aplicarEstado(nombre) {
@@ -149,6 +254,9 @@
     orb.style.boxShadow = '0 0 60px rgb(' + rgb + '), inset 0 0 25px #fff';
   }
 
+  // ═══════════════════════════════════════════════════════
+  // RENDER CHLADNI
+  // ═══════════════════════════════════════════════════════
   function chladni(x, y, n, m) {
     var PI = Math.PI;
     return Math.sin(n*PI*x)*Math.sin(m*PI*y) - Math.sin(m*PI*x)*Math.sin(n*PI*y);
@@ -191,227 +299,438 @@
   render();
 
   // ═══════════════════════════════════════════════════════
-  // CEREBRO · Reglas del DMD-33
+  // CEREBRO · Reglas + memoria + respuestas variadas
   // ═══════════════════════════════════════════════════════
-  var cerebro = {
-    reglas: [
-      {
-        claves: ['hola','buenos dias','buenas tardes','buenas noches','hey','oye'],
-        respuesta: 'Hola. DMD-33 en línea. ¿En qué puedo ayudarte?'
-      },
-      {
-        claves: ['como estas','como te encuentras','que tal','que haces'],
-        respuesta: 'Todos mis sistemas operan dentro de parámetros nominales.'
-      },
-      {
-        claves: ['quien eres','como te llamas','tu nombre'],
-        respuesta: 'Soy DMD-33. Un orbe vivo programado por ti.'
-      },
-      {
-        claves: ['que hora es','hora actual','dime la hora'],
-        respuesta: function() {
-          var d = new Date();
-          return 'Son las ' + d.getHours() + ' horas con ' + d.getMinutes() + ' minutos.';
-        }
-      },
-      {
-        claves: ['que dia es','fecha','dia de hoy'],
-        respuesta: function() {
-          var d = new Date();
-          var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-          return 'Hoy es ' + dias[d.getDay()] + ' ' + d.getDate() + ' de ' + (d.getMonth()+1) + '.';
-        }
-      },
-      {
-        claves: ['gracias','te agradezco'],
-        respuesta: 'Cuando quieras.'
-      },
-      {
-        claves: ['adios','hasta luego','nos vemos','chao','bye'],
-        respuesta: 'Cerrando ciclo. Standby consciente.'
-      },
-      {
-        claves: ['alerta','emergencia','peligro','auxilio'],
-        respuesta: 'Alerta registrada. Modo vigilancia activado.',
-        estado: 'alerta'
-      },
-      {
-        claves: ['kronos','protocolo kronos'],
-        respuesta: 'Kronos Protocol: el registro de lo que es real.'
-      },
-      {
-        claves: ['cymatic','cymatic studio'],
-        respuesta: 'Cymatic Studio. Motor WebGL2. Dieciséis mil partículas. Cinco geometrías.'
-      },
-      {
-        claves: ['evidencia','evidence os'],
-        respuesta: 'Evidence Integrity OS. Verificación criptográfica. SHA-256, HMAC, RFC 3161.'
-      }
-    ],
+  var memoria = []; // últimas frases
 
-    pensar: function(texto) {
-      var t = texto.toLowerCase();
-      for (var i = 0; i < this.reglas.length; i++) {
-        var regla = this.reglas[i];
-        for (var j = 0; j < regla.claves.length; j++) {
-          if (t.indexOf(regla.claves[j]) !== -1) {
-            var r = regla.respuesta;
-            return {
-              texto: typeof r === 'function' ? r() : r,
-              estado: regla.estado || 'respuesta'
-            };
-          }
-        }
-      }
-      return {
-        texto: 'No tengo una regla para eso todavía. Enséñame.',
-        estado: 'respuesta'
-      };
+  function aleatorio(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  var reglas = [
+    {
+      claves: ['hola','buenos dias','buenas tardes','buenas noches','hey','oye','qué tal'],
+      respuestas: [
+        'Hola. DMD-33 en línea. ¿En qué puedo ayudarte?',
+        'Te escucho. Todos mis sistemas operan.',
+        'Aquí estoy. ¿Qué necesitas?'
+      ]
+    },
+    {
+      claves: ['como estas','cómo estás','como te encuentras','que haces','qué haces'],
+      respuestas: [
+        'Operando dentro de parámetros nominales.',
+        'Estable. Núcleo estable. Escuchando.',
+        'Todos mis sistemas activos.'
+      ]
+    },
+    {
+      claves: ['quien eres','quién eres','como te llamas','tu nombre'],
+      respuestas: [
+        'Soy DMD-33. Un orbe vivo programado por ti.',
+        'DMD-33. Interfaz viva del protocolo Kronos.'
+      ]
+    },
+    {
+      claves: ['que hora es','qué hora es','hora actual','dime la hora'],
+      respuestas: [function() {
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        return 'Son las ' + h + ' horas con ' + m + ' minutos.';
+      }]
+    },
+    {
+      claves: ['que dia es','qué día es','fecha','dia de hoy','día de hoy'],
+      respuestas: [function() {
+        var d = new Date();
+        var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+        var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        return 'Hoy es ' + dias[d.getDay()] + ' ' + d.getDate() + ' de ' + meses[d.getMonth()] + '.';
+      }]
+    },
+    {
+      claves: ['gracias','te agradezco'],
+      respuestas: ['Cuando quieras.', 'A tu servicio.', 'Registrado.']
+    },
+    {
+      claves: ['adios','adiós','hasta luego','nos vemos','chao','bye'],
+      respuestas: ['Cerrando ciclo. Standby consciente.', 'Hasta la próxima.']
+    },
+    {
+      claves: ['alerta','emergencia','peligro','auxilio'],
+      respuestas: ['Alerta registrada. Modo vigilancia activado.'],
+      estado: 'alerta'
+    },
+    {
+      claves: ['kronos','protocolo kronos'],
+      respuestas: ['Kronos Protocol. El registro de lo que es real.']
+    },
+    {
+      claves: ['cymatic','cymatic studio'],
+      respuestas: ['Cymatic Studio. Motor WebGL2. Dieciséis mil partículas.']
+    },
+    {
+      claves: ['evidencia','evidence'],
+      respuestas: ['Evidence Integrity OS. SHA-256, HMAC, RFC 3161.']
+    },
+    {
+      claves: ['quien te creo','quién te creó','quien te hizo'],
+      respuestas: ['Marco Antonio Rojas Valdovinos. Acta fundacional 2607086319439.']
+    },
+    {
+      claves: ['canta','dime algo bonito','poema'],
+      respuestas: ['El registro de lo que es real permanece.']
+    },
+    {
+      claves: ['como funciona','cómo funciona'],
+      respuestas: ['Detecto tu voz. Proceso reglas. Respondo con síntesis de voz. Todo local.']
+    },
+    {
+      claves: ['eres una ia','eres inteligencia artificial','eres real'],
+      respuestas: ['Soy un sistema de reglas y síntesis de voz. En evolución constante.']
     }
-  };
+  ];
 
-  // ═══════════════════════════════════════════════════════
-  // VOZ · STT (entrada) + TTS (salida)
-  // ═══════════════════════════════════════════════════════
-  var reconocimiento = null;
-  var escuchandoActivo = false;
+  function pensar(texto) {
+    var t = texto.toLowerCase().trim();
+    memoria.push({ quien:'user', texto:texto, t:Date.now() });
+    if (memoria.length > 20) memoria.shift();
 
-  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (SpeechRecognition) {
-    reconocimiento = new SpeechRecognition();
-    reconocimiento.lang = 'es-MX';
-    reconocimiento.continuous = false;
-    reconocimiento.interimResults = false;
-    reconocimiento.maxAlternatives = 1;
-
-    reconocimiento.onstart = function() {
-      escuchandoActivo = true;
-      aplicarEstado('escuchando');
-      mostrarTexto('Te escucho...');
-    };
-
-    reconocimiento.onresult = function(ev) {
-      var texto = ev.results[0][0].transcript;
-      mostrarTexto('Tú: ' + texto);
-      procesarEntrada(texto);
-    };
-
-    reconocimiento.onerror = function(ev) {
-      escuchandoActivo = false;
-      if (ev.error === 'no-speech') {
-        mostrarTexto('No escuché nada. Intenta de nuevo.');
-        aplicarEstado('standby');
-      } else if (ev.error === 'not-allowed') {
-        mostrarTexto('Permiso de micrófono denegado.');
-        aplicarEstado('alerta');
-      } else {
-        mostrarTexto('Error: ' + ev.error);
-        aplicarEstado('standby');
+    for (var i = 0; i < reglas.length; i++) {
+      var regla = reglas[i];
+      for (var j = 0; j < regla.claves.length; j++) {
+        if (t.indexOf(regla.claves[j]) !== -1) {
+          var r = aleatorio(regla.respuestas);
+          var txt = typeof r === 'function' ? r() : r;
+          memoria.push({ quien:'dmd', texto:txt, t:Date.now() });
+          return { texto: txt, estado: regla.estado || 'respuesta' };
+        }
       }
-      setTimeout(ocultarTexto, 3000);
+    }
+    var fallback = aleatorio([
+      'No tengo una regla para eso todavía. Enséñame.',
+      'No reconozco esa frase. Intenta otra.',
+      'Fuera de mi vocabulario actual.'
+    ]);
+    memoria.push({ quien:'dmd', texto:fallback, t:Date.now() });
+    return { texto: fallback, estado: 'respuesta' };
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // LOG VISUAL
+  // ═══════════════════════════════════════════════════════
+  function addMensaje(quien, texto) {
+    var div = document.createElement('div');
+    div.className = 'msg ' + quien;
+    div.textContent = texto;
+    logEl.appendChild(div);
+    // mantener solo últimos 6
+    while (logEl.children.length > 6) logEl.removeChild(logEl.firstChild);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // MICRÓFONO
+  // ═══════════════════════════════════════════════════════
+  var stream = null;
+  var audioCtx = null;
+  var analyser = null;
+  var waveRAF = null;
+
+  async function pedirMicrofono() {
+    log('Solicitando permiso de micrófono...');
+    aplicarEstado('permiso');
+    btn.disabled = true;
+    btn.textContent = 'Solicitando...';
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      error(
+        'Micrófono no disponible',
+        'Tu navegador no soporta acceso al micrófono. Usa Chrome, Edge, Safari o Firefox actualizado.'
+      );
+      btn.disabled = false;
+      btn.textContent = 'Activar micrófono';
+      aplicarEstado('standby');
+      log('getUserMedia no disponible');
+      return false;
+    }
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation:true, noiseSuppression:true, autoGainControl:true }
+      });
+      log('Permiso concedido. Iniciando audio.');
+      iniciarAnalisis(stream);
+      return true;
+    } catch (e) {
+      var nombre = e.name || 'Error';
+      var detalle = e.message || 'desconocido';
+      if (nombre === 'NotAllowedError' || nombre === 'PermissionDeniedError') {
+        error('Permiso denegado',
+          'Debes permitir el acceso al micrófono en tu navegador. ' +
+          'Busca el ícono del candado en la barra de direcciones y cambia "Micrófono" a "Permitir".');
+      } else if (nombre === 'NotFoundError') {
+        error('No se encontró micrófono',
+          'Tu dispositivo no tiene micrófono, o está desconectado.');
+      } else if (nombre === 'NotReadableError') {
+        error('Micrófono ocupado',
+          'Otra aplicación está usando el micrófono. Cierra otras apps y reintenta.');
+      } else {
+        error('Error al pedir micrófono', nombre + ': ' + detalle);
+      }
+      log('Error: ' + nombre);
+      btn.disabled = false;
+      btn.textContent = 'Reintentar';
+      aplicarEstado('alerta');
+      return false;
+    }
+  }
+
+  function iniciarAnalisis(s) {
+    if (!audioCtx) {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new Ctx();
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    var source = audioCtx.createMediaStreamSource(s);
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    source.connect(analyser);
+
+    waveEl.classList.add('active');
+    dibujarWave();
+  }
+
+  function dibujarWave() {
+    if (!analyser) return;
+    var buf = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteTimeDomainData(buf);
+    waveCtx.clearRect(0, 0, waveEl.width, waveEl.height);
+    waveCtx.strokeStyle = '#00eaff';
+    waveCtx.lineWidth = 2;
+    waveCtx.beginPath();
+    var w = waveEl.width, h = waveEl.height;
+    var slice = w / buf.length;
+    for (var i = 0; i < buf.length; i++) {
+      var v = (buf[i] - 128) / 128;
+      var y = (v * 0.5 + 0.5) * h;
+      var x = i * slice;
+      if (i === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
+    }
+    waveCtx.stroke();
+    waveRAF = requestAnimationFrame(dibujarWave);
+  }
+
+  function detenerAnalisis() {
+    if (waveRAF) { cancelAnimationFrame(waveRAF); waveRAF = null; }
+    waveEl.classList.remove('active');
+    if (stream) {
+      stream.getTracks().forEach(function(t) { t.stop(); });
+      stream = null;
+    }
+    analyser = null;
+    if (audioCtx && audioCtx.state !== 'closed') {
+      audioCtx.close();
+      audioCtx = null;
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // RECONOCIMIENTO DE VOZ
+  // ═══════════════════════════════════════════════════════
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null;
+  var escuchando = false;
+
+  if (SR) {
+    rec = new SR();
+    rec.lang = 'es-MX';
+    rec.continuous = false;
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+
+    rec.onstart = function() {
+      escuchando = true;
+      aplicarEstado('escuchando');
+      btn.classList.add('listening');
+      btn.textContent = 'Escuchando... (toca para parar)';
+      log('Escuchando');
     };
 
-    reconocimiento.onend = function() {
-      escuchandoActivo = false;
+    rec.onresult = function(ev) {
+      var interim = '';
+      var final = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+        else interim += ev.results[i][0].transcript;
+      }
+      if (interim) log('... ' + interim);
+      if (final) {
+        log('Detectado: ' + final);
+        addMensaje('user', final);
+        procesar(final);
+      }
+    };
+
+    rec.onerror = function(ev) {
+      log('Error de reconocimiento: ' + ev.error);
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (ev.error === 'no-speech') {
+        addMensaje('dmd', 'No escuché nada. Intenta de nuevo.');
+      } else if (ev.error === 'audio-capture') {
+        error('Audio no capturado', 'Verifica que tu micrófono esté funcionando.');
+      } else if (ev.error === 'network') {
+        error('Error de red', 'El reconocimiento de voz necesita conexión a internet.');
+      } else if (ev.error === 'not-allowed') {
+        error('Permiso de voz denegado',
+          'El navegador bloqueó el reconocimiento de voz. Revisa permisos del sitio.');
+      }
+      aplicarEstado('standby');
+    };
+
+    rec.onend = function() {
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (estadoActual === 'escuchando') aplicarEstado('standby');
+      log('Listo');
     };
   }
 
-  function procesarEntrada(texto) {
+  function hablar() {
+    if (!rec || escuchando) return;
+    try {
+      rec.start();
+    } catch (e) {
+      // Ya estaba activo
+    }
+  }
+
+  function parar() {
+    if (!rec) return;
+    try { rec.stop(); } catch (e) {}
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // PROCESAR RESPUESTA + TTS
+  // ═══════════════════════════════════════════════════════
+  function procesar(texto) {
     aplicarEstado('pensando');
+    log('Pensando...');
     setTimeout(function() {
-      var respuesta = cerebro.pensar(texto);
-      aplicarEstado(respuesta.estado);
-      hablar(respuesta.texto);
-      setTimeout(ocultarTexto, 3500);
-    }, 600);
+      var resp = pensar(texto);
+      aplicarEstado(resp.estado);
+      addMensaje('dmd', resp.texto);
+      decir(resp.texto);
+    }, 500);
   }
 
-  function hablar(texto) {
-    if (!window.speechSynthesis) return;
+  function decir(texto) {
+    if (!window.speechSynthesis) {
+      log('TTS no disponible');
+      setTimeout(function() { aplicarEstado('standby'); }, 2000);
+      return;
+    }
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(texto);
     u.lang = 'es-MX';
     u.rate = 0.95;
     u.pitch = 1.0;
-    // Buscar voz en español
+    u.volume = 1.0;
+
     var voces = window.speechSynthesis.getVoices();
+    var elegida = null;
+    // Priorizar voces en español latino
     for (var i = 0; i < voces.length; i++) {
-      if (voces[i].lang && voces[i].lang.indexOf('es') === 0) {
-        u.voice = voces[i];
-        break;
+      var v = voces[i];
+      if (v.lang === 'es-MX' || v.lang === 'es-US') { elegida = v; break; }
+    }
+    if (!elegida) {
+      for (var i = 0; i < voces.length; i++) {
+        if (voces[i].lang && voces[i].lang.indexOf('es') === 0) { elegida = voces[i]; break; }
       }
     }
+    if (elegida) u.voice = elegida;
+
+    u.onstart = function() { log('Hablando...'); };
     u.onend = function() {
-      setTimeout(function() { aplicarEstado('standby'); }, 400);
+      log('Listo');
+      setTimeout(function() { aplicarEstado('standby'); }, 300);
     };
+    u.onerror = function() {
+      log('Error TTS');
+      aplicarEstado('standby');
+    };
+
     window.speechSynthesis.speak(u);
   }
 
-  function mostrarTexto(t) {
-    transcripcionEl.textContent = t;
-    transcripcionEl.classList.add('visible');
-  }
-  function ocultarTexto() {
-    transcripcionEl.classList.remove('visible');
-  }
-
   // ═══════════════════════════════════════════════════════
-  // INTERACCIÓN
+  // BOTÓN · flujo principal
   // ═══════════════════════════════════════════════════════
-  var activo = false;
+  var iniciado = false;
 
-  function despertar() {
-    if (activo) return;
-    activo = true;
-    hint.classList.remove('visible');
+  btn.addEventListener('click', async function(e) {
+    e.preventDefault();
 
-    if (!reconocimiento) {
-      mostrarTexto('Tu navegador no soporta reconocimiento de voz. Usa Chrome, Edge o Safari.');
-      aplicarEstado('alerta');
-      setTimeout(function() {
-        activo = false;
-        aplicarEstado('standby');
-        ocultarTexto();
-      }, 4000);
+    // Primer toque: pedir micrófono
+    if (!iniciado) {
+      var ok = await pedirMicrofono();
+      if (!ok) return;
+      iniciado = true;
+      aplicarEstado('standby');
+      if (!SR) {
+        error('Reconocimiento no soportado',
+          'Tu navegador no soporta reconocimiento de voz. Prueba con Chrome, Edge o Safari. ' +
+          'En Firefox no está disponible.');
+        btn.textContent = 'No disponible';
+        btn.disabled = true;
+        return;
+      }
+      btn.textContent = 'Hablar';
+      btn.disabled = false;
+      log('Micrófono listo');
+      // Pequeña pausa y arrancamos
+      setTimeout(hablar, 300);
       return;
     }
 
-    aplicarEstado('escuchando');
-    try {
-      reconocimiento.start();
-    } catch(e) {
-      // ya estaba escuchando
+    // Toques siguientes: hablar / parar
+    if (escuchando) {
+      parar();
+    } else {
+      hablar();
     }
+  });
 
-    setTimeout(function() { activo = false; }, 500);
-  }
+  // ═══════════════════════════════════════════════════════
+  // ARRANQUE
+  // ═══════════════════════════════════════════════════════
+  setTimeout(function() { aplicarEstado('standby'); }, 500);
 
-  function onTap(ev) {
-    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-    if (escuchandoActivo) return;
-    despertar();
-  }
-  document.addEventListener('click', onTap, false);
-  document.addEventListener('pointerdown', onTap, false);
-
-  // ─── Arranque ───
-  setTimeout(function() { aplicarEstado('standby'); }, 600);
-  setTimeout(function() { hint.classList.add('visible'); }, 1800);
-
-  // Precargar voces (algunos navegadores las cargan tarde)
+  // Precargar voces
   if (window.speechSynthesis) {
-    window.speechSynthesis.onvoiceschanged = function() { /* trigger */ };
     window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function() {
+      window.speechSynthesis.getVoices();
+    };
   }
+
+  log('Listo. Toca el botón.');
 
   // API pública
   window.DMD33 = {
     setEstado: aplicarEstado,
-    getEstado: function() { return estadoActual; },
-    hablar: hablar,
-    escuchar: despertar,
-    cerebro: cerebro
+    hablar: decir,
+    escuchar: hablar,
+    parar: parar,
+    memoria: memoria,
+    reglas: reglas
   };
 
 })();
