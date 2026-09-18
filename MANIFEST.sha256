@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-18T08:31:53Z
+# Generado: 2026-09-18T08:32:29Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 32d188a7c70ef4b4b98add937ded9bd58d1a56498e1c283fd35e2290b297f8ec  ./CHANGELOG.md
@@ -12,7 +12,7 @@ d02b3eeb6e526fbd7ae9d292ac3780f0a56fe46a034cb505be3eab48c8b765ef  ./GOVERNANCE.m
 57ab26374b3c61141777e5756e05fd9693fe0e60b9da00ae848b41a2759e2253  ./_config.yml
 a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/navigation.yml
 3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
-cb86f683d26df4e2147170408e4addf9ffac31357e07cbc002c9b1a3abedc7b2  ./certificates/README.md
+3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
 3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
 dac2406e40a11b3c0e15b3712c8066a79a83e9168886ce47759204f68660fb5d  ./guardian.py
