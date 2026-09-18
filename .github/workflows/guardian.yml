@@ -1,0 +1,128 @@
+name: GUARDIAN-SHA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  guardian:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generar MANIFEST.sha256
+        run: |
+          echo "# KRONOS PROTOCOL · MANIFEST SHA-256" > MANIFEST.sha256
+          echo "# Generado: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> MANIFEST.sha256
+          echo "# Autor: Marco Antonio Rojas Valdovinos" >> MANIFEST.sha256
+          echo "" >> MANIFEST.sha256
+          find . -type f \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            -not -path './.github/*' \
+            -not -name 'MANIFEST.sha256' \
+            -not -name '*.png' -not -name '*.jpg' -not -name '*.jpeg' \
+            -not -name '*.webm' -not -name '*.mp4' \
+            | sort | while read f; do
+              hash=$(sha256sum "$f" | cut -d' ' -f1)
+              echo "$hash  $f" >> MANIFEST.sha256
+            done
+
+      - name: Actualizar robots.txt con bloqueo IA
+        run: |
+          cat > robots.txt << 'EOF'
+          # KRONOS PROTOCOL · robots.txt
+          # Co-Creatividad Simbiótica y Respeto Digital
+          # SEAL: 2607086319439
+
+          User-agent: GPTBot
+          Disallow: /
+
+          User-agent: ChatGPT-User
+          Disallow: /
+
+          User-agent: CCBot
+          Disallow: /
+
+          User-agent: anthropic-ai
+          Disallow: /
+
+          User-agent: ClaudeBot
+          Disallow: /
+
+          User-agent: Claude-Web
+          Disallow: /
+
+          User-agent: Google-Extended
+          Disallow: /
+
+          User-agent: PerplexityBot
+          Disallow: /
+
+          User-agent: Bytespider
+          Disallow: /
+
+          User-agent: Amazonbot
+          Disallow: /
+
+          User-agent: Applebot-Extended
+          Disallow: /
+
+          User-agent: FacebookBot
+          Disallow: /
+
+          User-agent: cohere-ai
+          Disallow: /
+
+          User-agent: Meta-ExternalAgent
+          Disallow: /
+
+          User-agent: ImagesiftBot
+          Disallow: /
+
+          User-agent: Omgilibot
+          Disallow: /
+
+          User-agent: YouBot
+          Disallow: /
+
+          User-agent: Diffbot
+          Disallow: /
+
+          User-agent: *
+          Disallow: /archive/
+          Allow: /
+          EOF
+
+      - name: Validar sintaxis de HTML
+        run: |
+          sudo apt-get install -y tidy > /dev/null 2>&1 || true
+          mkdir -p /tmp/tidycheck
+          find . -name "*.html" -not -path './.git/*' | while read f; do
+            echo "Verificando: $f"
+            tidy -q -e "$f" 2>&1 | grep -E "Error" && echo "  ⚠️  Warnings en $f" || echo "  ✅ OK"
+          done
+
+      - name: Commit MANIFEST y robots.txt
+        run: |
+          git config user.name "GUARDIAN-SHA Bot"
+          git config user.email "guardian@kronos.protocol"
+          git add MANIFEST.sha256 robots.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "🛡️ guardian: actualizar MANIFEST.sha256 y robots.txt [skip ci]"
+            git push
+          else
+            echo "Sin cambios que commitear"
+          fi
