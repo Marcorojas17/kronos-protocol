@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-18T16:29:39Z
+# Generado: 2026-09-18T16:30:39Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 32d188a7c70ef4b4b98add937ded9bd58d1a56498e1c283fd35e2290b297f8ec  ./CHANGELOG.md
@@ -28,7 +28,8 @@ c9acbcd97c9ea435b607de0b741c50353cd574b0283690dfdb083553fa6a58cc  ./movimiento/i
 8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
 4d9839e925614e2daa972fe6ed91ffe77708760bd90c17b94835dd0149652f54  ./projects/bobeda/bobeda.html
 3869f20d69bbffc6b703e518f18be74a332a93436f2c6cad6bc53f6416ef0810  ./projects/bobeda/index.html
-360edad91d4550d26ed88bf7f047b2c9f78f7549b5993a66d28590f4e683121e  ./projects/boveda/privacidad.html
+3869f20d69bbffc6b703e518f18be74a332a93436f2c6cad6bc53f6416ef0810  ./projects/boveda/index.html
+71f4bb5aa6bc5262be1b98c1e25bcf12e6e2c5557d8110712afc4551ee3c96be  ./projects/boveda/privacidad.html
 94120dd66fab810b77b63465308a68461430e26b1469a4ddd2ac73898404a920  ./projects/boveda/terminos.html
 fc75bb93ff3440b913ac909aca272af5c15799a1570f011495ffb51d587e80a3  ./projects/cymatic/README.md
 247e16d0f2597366f5c809053b52f4401dbb98227d4ca95ef0433ed7729f7763  ./projects/cymatic/index.html
