@@ -1,0 +1,9 @@
+title: Kronos-Protocol
+description: Prototipos de verificación criptográfica, evidencia digital y metodología de co-creatividad humano-IA
+theme: minima
+baseurl: "/kronos-protocol"
+url: "https://marcorojas17.github.io"
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
