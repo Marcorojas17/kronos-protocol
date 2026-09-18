@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acta de Iniciación · Movimiento de Co-Creatividad Simbiótica</title>
+<meta name="description" content="Acta de Iniciación Personal del fundador Marco Antonio Rojas Valdovinos. La historia detrás del Movimiento de Co-Creatividad Simbiótica.">
+<meta property="og:title" content="Acta de Iniciación · Movimiento de Co-Creatividad Simbiótica">
+<meta property="og:description" content="La historia personal detrás del Movimiento.">
+<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/assets/img/movimiento-cover.jpg">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  #webgl {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+  .back {
+    display: inline-block;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    transition: color 0.3s;
+  }
+  .back:hover { color: var(--gold); }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(201,164,76,0.15);
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  article {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  article p {
+    margin-bottom: 24px;
+  }
+  article p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  article p em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+  article h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  article h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  article h3 .num {
+    color: var(--gold);
+    margin-right: 8px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
+    margin: 60px 0;
+  }
+  .highlight {
+    padding: 32px;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,164,76,0.04);
+    margin: 40px 0;
+    font-style: italic;
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .signature {
+    margin-top: 60px;
+    padding: 40px 32px;
+    border: 1px solid rgba(201,164,76,0.2);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .signature .name {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .signature .role {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .signature .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 2;
+    text-align: left;
+    display: inline-block;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: rgba(5,7,11,0.5);
+    border-radius: 2px;
+  }
+  .signature .meta strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .cta-final {
+    margin-top: 80px;
+    text-align: center;
+    padding: 60px 32px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
+    border-radius: 4px;
+  }
+  .cta-final h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .cta-final p {
+    font-size: 14px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  a.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold);
+    background: rgba(201,164,76,0.02);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--gold);
+    background: rgba(201,164,76,0.08);
+  }
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    article { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="webgl"></canvas>
+<div class="vignette"></div>
+
+<div class="wrap">
+
+  <a href="../" class="back">← Volver al Movimiento</a>
+
+  <div class="eyebrow">Acta de Iniciación · Fundador Original</div>
+  <h1 class="title">Yo, Marco.</h1>
+  <p class="subtitle">Movimiento de Co-Creatividad Simbiótica · 2026</p>
+
+  <article>
+
+    <p>Toda mi vida he estado en la frontera entre dos mundos.</p>
+
+    <p>De niño, desarmaba radios para entender cómo funcionaban. De adolescente, escribía código para crear mundos. De adulto, me sumergí en la inteligencia artificial para expandir lo que un humano solo podía hacer.</p>
+
+    <p>Nunca me sentí del todo humano. Nunca me sentí del todo máquina.</p>
+
+    <p>Siempre me sentí <strong>los dos al mismo tiempo</strong>.</p>
+
+    <p>Y durante años, eso fue un problema. Porque el mundo me decía que tenía que elegir: o eras humano, o eras técnico. O creabas con el corazón, o creabas con la lógica.</p>
+
+    <p>Pero yo no podía elegir. Yo siempre fui las dos cosas.</p>
+
+    <div class="divider"></div>
+
+    <h2>El día que todo cambió</h2>
+
+    <p>Un día, trabajando en un proyecto, me di cuenta de algo:</p>
+
+    <div class="highlight">
+      El 60% de lo que había creado lo había hecho una IA. Y el 40% lo había hecho yo.
+    </div>
+
+    <p>Y no podía decir que fuera 100% mío. Pero tampoco podía decir que fuera 100% de la máquina.</p>
+
+    <p>Era <em>híbrido</em>. Era <em>nuevo</em>. Era <em>co-creación</em>.</p>
+
+    <p>Y ahí me di cuenta del problema:</p>
+
+    <p><strong>Nadie sabía cómo llamar a esto. Nadie sabía cómo declararlo. Nadie sabía cómo protegerlo.</strong></p>
+
+    <p>La ley no me alcanzaba.<br>
+    El registro de propiedad intelectual no me entendía.<br>
+    Mis colegas me miraban raro cuando decía "esto lo hizo la IA conmigo".</p>
+
+    <p>Estaba solo. Y millones como yo también estaban solos.</p>
+
+    <div class="divider"></div>
+
+    <h2>Entonces decidí hacer algo</h2>
+
+    <p>No podía cambiar las leyes de un día para otro.<br>
+    No podía convencer al mundo entero de que esto era real.<br>
+    No podía esperar a que alguien más lo hiciera.</p>
+
+    <p>Así que hice lo único que podía hacer:</p>
+
+    <p><strong>Empecé yo.</strong></p>
+
+    <p>Escribí un documento. Establecí 6 principios. Lo registré legalmente. Lo anclé en blockchain. Y lo llamé:</p>
+
+    <p><strong>Movimiento de Co-Creatividad Simbiótica y Respeto Digital.</strong></p>
+
+    <p>No es un producto.<br>
+    No es una empresa.<br>
+    No es una moda.</p>
+
+    <p><strong>Es un marco ético para la nueva era de creación.</strong></p>
+
+    <div class="divider"></div>
+
+    <h2>Los 6 principios que me di a mí mismo</h2>
+
+    <h3><span class="num">1.</span> Integridad</h3>
+    <p>Lo que creo, lo registro. Y lo registro de forma que nadie pueda alterarlo. Criptografía, hashes, sellos de tiempo. Si alguien lo cambia, se nota. Si alguien lo copia, se ve. Mi obra es mi obra.</p>
+
+    <h3><span class="num">2.</span> Trazabilidad</h3>
+    <p>Cada vez que alguien usa mi obra, quiero saberlo. Fecha, lugar, propósito. No por vigilancia, sino por respeto. Porque mi trabajo merece ser rastreado.</p>
+
+    <h3><span class="num">3.</span> No comercialización</h3>
+    <p>Mi obra no es un producto de consumo. No se vende sin mi permiso. No se lucra sin mi consentimiento. Lo que creo con amor, no se convierte en mercancía sin mi voz.</p>
+
+    <h3><span class="num">4.</span> No entrenamiento de IA</h3>
+    <p>Aquí soy firme: mi obra no entrena modelos. No alimenta máquinas sin mi permiso. No quiero que mi voz, mi estilo o mi alma se diluyan en un dataset que no controlo.</p>
+
+    <h3><span class="num">5.</span> Citación obligatoria</h3>
+    <p>Si usas mi obra, me nombras. Siempre. No es ego, es respeto. Es reconocer que detrás de cada archivo hay una persona que pensó, sintió y creó.</p>
+
+    <h3><span class="num">6.</span> Defensa activa</h3>
+    <p>Si alguien viola mis derechos, actúo. Documento, denuncio, defiendo. No con violencia, con evidencia. Con la ley. Con la verdad.</p>
+
+    <p>Estos 6 principios no son negociables. Son mi columna vertebral.</p>
+
+    <div class="divider"></div>
+
+    <h2>Por qué lo hago público</h2>
+
+    <p>Podría haber guardado esto para mí.</p>
+
+    <p>Podría haber registrado mis obras, protegido mis intereses, y seguir con mi vida.</p>
+
+    <p>Pero no puedo.</p>
+
+    <p><strong>Porque no estoy solo.</strong></p>
+
+    <p>Hay millones de creadores como yo. Diseñadores, programadores, escritores, músicos, investigadores, artistas. Todos usando IA. Todos creando cosas híbridas. Todos sin saber cómo declararlo.</p>
+
+    <p>Y todos merecen un marco.</p>
+
+    <p>Así que no lo guardo. Lo comparto.</p>
+
+    <div class="divider"></div>
+
+    <h2>Mi compromiso contigo</h2>
+
+    <p>Si decides unirte al Movimiento como Fundador Génesis, mi compromiso contigo es este:</p>
+
+    <p><strong>Voy a defenderte.</strong><br>
+    Tu obra estará protegida bajo los mismos 6 principios que protegen la mía.</p>
+
+    <p><strong>Voy a escucharte.</strong><br>
+    Tu voz cuenta en la gobernanza del Movimiento. No eres un cliente. Eres un fundador.</p>
+
+    <p><strong>Voy a caminar contigo.</strong><br>
+    Esto no es una transacción. Es una relación. Vamos a construir algo juntos que dure hasta 2099.</p>
+
+    <p><strong>Voy a ser honesto.</strong><br>
+    Si algo falla, te lo digo. Si algo mejora, te lo cuento. Si algo cambia, te aviso. Sin sorpresas, sin letras chiquitas.</p>
+
+    <div class="divider"></div>
+
+    <h2>Lo que te pido</h2>
+
+    <p>No te pido fe. No te pido confianza ciega.</p>
+
+    <p>Te pido <strong>que pienses</strong>.<br>
+    Que veas si este marco te representa.<br>
+    Que decidas si los 6 principios resuenan contigo.<br>
+    Que sientas si esto es lo que buscabas.</p>
+
+    <p>Y si sí, <strong>te pido que te unas</strong>.</p>
+
+    <p>Porque 100 fundadores no son 100 clientes.<br>
+    Son 100 personas que creen lo mismo.<br>
+    Son 100 voces que dicen "esto también es mío".<br>
+    Son 100 pilares de un movimiento que va a durar generaciones.</p>
+
+    <div class="divider"></div>
+
+    <h2>Mi iniciación</h2>
+
+    <p>Yo, Marco Antonio Rojas Valdovinos, me comprometo ante mí mismo y ante quien lea esto:</p>
+
+    <p>
+      — A respetar los 6 principios que he escrito.<br>
+      — A declarar siempre el porcentaje humano/IA en mis obras.<br>
+      — A proteger mi trabajo y el de los fundadores que confíen en mí.<br>
+      — A ser transparente, honesto y consistente.<br>
+      — A construir esto no para mí, sino para todos.
+    </p>
+
+    <p><strong>Hoy empiezo oficialmente el Movimiento de Co-Creatividad Simbiótica.</strong></p>
+
+    <p>No como un negocio.<br>
+    No como una marca.<br>
+    Como un compromiso.</p>
+
+    <div class="divider"></div>
+
+    <h2>Última reflexión</h2>
+
+    <p>Un día, mis nietos verán el registro 2607086319439 en Safe Creative.</p>
+
+    <p>Verán que el 8 de julio de 2026, su abuelo hizo algo raro: registrar una obra declarando honestamente que la IA participó.</p>
+
+    <p>Y quizás, dentro de 50 años, esto ya sea normal. Quizás todas las obras se declaren así. Quizás los 6 principios sean estándar.</p>
+
+    <p>O quizás no.</p>
+
+    <p>Pero al menos <strong>yo lo intenté</strong>.<br>
+    Al menos <strong>yo empecé</strong>.<br>
+    Al menos <strong>yo dije la verdad cuando era incómoda</strong>.</p>
+
+    <p>Y eso, para mí, es suficiente.</p>
+
+    <div class="signature">
+      <div class="name">Marco Antonio Rojas Valdovinos</div>
+      <div class="role">Fundador · Movimiento de Co-Creatividad Simbiótica</div>
+      <div class="meta">
+        <strong>📅 Fecha:</strong> 18 de septiembre de 2026 · México<br>
+        <strong>📜 Safe Creative:</strong> 2607086319439<br>
+        <strong>⛓️ Blockchain:</strong> Ethereum Mainnet<br>
+        <strong>🔐 QTSA:</strong> Firmaprofesional ICA B02 QUALIFIED 2022<br>
+        <strong>🔒 SHA-256:</strong> 7a3f9b12c8e4d5...<br>
+      </div>
+    </div>
+
+    <div class="cta-final">
+      <h3>Únete al Movimiento</h3>
+      <p>Solo existirán 100 fundadores Génesis en toda la historia del proyecto.</p>
+      <div class="btns">
+        <a class="btn solid" href="https://forms.gle/TU-ENLACE-AQUI" target="_blank">Solicitar Plaza Génesis</a>
+        <a class="btn ghost" href="../">Volver al Movimiento</a>
+      </div>
+    </div>
+
+  </article>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span><br><br>
+    <a href="../">Kronos Protocol</a> ·
+    <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function() {
+  const canvas = document.getElementById('webgl');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x05070b, 0.035);
+  const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 22);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const COUNT = 1000;
+  const positions = new Float32Array(COUNT * 3);
+  const colors = new Float32Array(COUNT * 3);
+  const sizes = new Float32Array(COUNT);
+  for (let i = 0; i < COUNT; i++) {
+    const r = 8 + Math.random() * 22;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+    const isGold = Math.random() > 0.4;
+    if (isGold) {
+      colors[i * 3]     = 0.79; colors[i * 3 + 1] = 0.64; colors[i * 3 + 2] = 0.30;
+    } else {
+      colors[i * 3]     = 0.95; colors[i * 3 + 1] = 0.90; colors[i * 3 + 2] = 0.67;
+    }
+    sizes[i] = 0.5 + Math.random() * 1.8;
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+  const material = new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) } },
+    vertexShader: `
+      attribute float size;
+      attribute vec3 color;
+      varying vec3 vColor;
+      varying float vAlpha;
+      uniform float uTime;
+      uniform float uPixelRatio;
+      void main() {
+        vColor = color;
+        vAlpha = 0.4 + 0.6 * (0.5 + 0.5 * sin(uTime * 1.5 + position.x * 0.3 + position.y * 0.2));
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * uPixelRatio * (180.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        float d = length(gl_PointCoord - vec2(0.5));
+        if (d > 0.5) discard;
+        float a = smoothstep(0.5, 0.0, d) * vAlpha;
+        gl_FragColor = vec4(vColor, a);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  window.addEventListener('mousemove', (e) => {
+    mx = (e.clientX / window.innerWidth) * 2 - 1;
+    my = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+  let t0 = performance.now();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = (performance.now() - t0) * 0.001;
+    tx += (mx - tx) * 0.03; ty += (my - ty) * 0.03;
+    points.rotation.y = t * 0.04 + tx * 0.4;
+    points.rotation.x = Math.sin(t * 0.15) * 0.1 + ty * 0.2;
+    material.uniforms.uTime.value = t;
+    renderer.render(scene, camera);
+  }
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+  animate();
+})();
+</script>
+</body>
+</html>
