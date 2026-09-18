@@ -1,5 +1,330 @@
-// ═══════════════════════════════════════════════════════
-  // CONOCIMIENTO · KRONOS + MD33
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DMD-33 ○_●</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    height:100%; width:100%;
+    background:#05070b; color:#e8e4d8;
+    font-family:'Inter',system-ui,sans-serif;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
+  #canvas { position:fixed; inset:0; width:100%; height:100%; display:block; z-index:1; }
+  #dust   { position:fixed; inset:0; width:100%; height:100%; display:block; z-index:1; pointer-events:none; }
+
+  #orb {
+    position:fixed; top:50%; left:50%;
+    width:120px; height:120px; border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle at 35% 35%, #fff, #00eaff 45%, #003a4d 95%);
+    box-shadow:0 0 60px #00eaff, inset 0 0 25px #fff;
+    animation:respira 2.8s ease-in-out infinite;
+    pointer-events:none;
+    transition:background 0.6s, box-shadow 0.6s;
+    z-index:2;
+  }
+  @keyframes respira {
+    0%,100% { transform:translate(-50%,-50%) scale(1); }
+    50%     { transform:translate(-50%,-50%) scale(1.08); }
+  }
+  #titulo {
+    position:fixed; top:4rem; left:50%;
+    transform:translateX(-50%);
+    font-family:'Cinzel',serif;
+    font-size:0.9rem; letter-spacing:8px;
+    color:#00eaff; opacity:0.8; z-index:3;
+  }
+  #estado {
+    position:fixed; top:6rem; left:50%;
+    transform:translateX(-50%);
+    padding:0.35rem 1.1rem;
+    border:1px solid currentColor;
+    border-radius:30px;
+    background:#000a;
+    font-size:0.62rem; letter-spacing:4px;
+    font-weight:300; color:#00eaff;
+    transition:color 0.6s;
+    z-index:3;
+  }
+  #stats {
+    position:fixed; top:1rem; left:1rem;
+    font-size:0.58rem; color:#4b6b7a;
+    letter-spacing:1px; z-index:4;
+    line-height:1.5;
+  }
+  #stats b { color:#00eaff; font-weight:500; }
+  #debug {
+    position:fixed; top:1rem; right:1rem;
+    font-size:0.55rem; color:#4b6b7a;
+    letter-spacing:1px; z-index:4;
+    text-align:right; max-width:40%;
+    line-height:1.4;
+  }
+  #log {
+    position:fixed; bottom:11rem; left:50%;
+    transform:translateX(-50%);
+    width:90%; max-width:520px;
+    max-height:30vh; overflow-y:auto;
+    display:flex; flex-direction:column; gap:0.5rem;
+    z-index:3; pointer-events:auto;
+    scrollbar-width:none;
+  }
+  #log::-webkit-scrollbar { display:none; }
+  .msg {
+    padding:0.6rem 0.9rem;
+    border-radius:10px;
+    font-size:0.78rem; line-height:1.5;
+    letter-spacing:0.3px;
+    max-width:85%;
+    animation:fadeIn 0.35s ease;
+    word-wrap:break-word;
+  }
+  .msg.user {
+    background:#00eaff18; border:1px solid #00eaff44;
+    color:#b8ecff; align-self:flex-end; text-align:right;
+  }
+  .msg.dmd {
+    background:#00ffb818; border:1px solid #00ffb844;
+    color:#b8ffd9; align-self:flex-start;
+    white-space:pre-line;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  #wave {
+    position:fixed; bottom:7rem; left:50%;
+    transform:translateX(-50%);
+    width:200px; height:36px;
+    display:none; z-index:3;
+  }
+  #wave.active { display:block; }
+  #btn {
+    position:fixed; bottom:1.5rem; left:50%;
+    transform:translateX(-50%);
+    padding:1rem 2.2rem;
+    border:1px solid #00eaff;
+    background:#00eaff11;
+    color:#00eaff;
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem; letter-spacing:4px;
+    text-transform:uppercase; border-radius:40px;
+    cursor:pointer;
+    transition:all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+    z-index:5;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    white-space:nowrap;
+  }
+  #btn:hover, #btn:active {
+    background:#00eaff; color:#05070b;
+    box-shadow:0 0 40px #00eaff88;
+  }
+  #btn:disabled { opacity:0.4; cursor:not-allowed; }
+  #btn.listening {
+    border-color:#ff3344; color:#ff3344; background:#ff334411;
+  }
+  #btn.listening:hover { background:#ff3344; color:#05070b; }
+  #menu {
+    position:fixed; top:1rem; left:50%;
+    transform:translateX(-50%);
+    display:flex; gap:0.5rem; z-index:6;
+    flex-wrap:wrap; justify-content:center;
+    padding:0 0.5rem; max-width:100%;
+  }
+  .mbtn {
+    padding:0.4rem 0.9rem;
+    background:#000a; border:1px solid #00eaff33;
+    color:#00eaff; font-family:inherit;
+    font-size:0.55rem; letter-spacing:2px;
+    border-radius:20px; cursor:pointer;
+    text-transform:uppercase; transition:all 0.3s;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .mbtn:hover { background:#00eaff22; border-color:#00eaff; }
+  .mbtn.gold {
+    border-color:rgba(212,175,55,0.5);
+    color:#d4af37;
+  }
+  .mbtn.gold:hover {
+    background:rgba(212,175,55,0.15);
+    border-color:#d4af37;
+  }
+  .mbtn.prismatic {
+    background:linear-gradient(135deg,
+      rgba(255,110,199,0.15) 0%, rgba(160,110,255,0.15) 25%,
+      rgba(110,160,255,0.15) 50%, rgba(110,255,212,0.15) 75%,
+      rgba(255,212,110,0.15) 100%);
+    border-color:rgba(255,110,199,0.5);
+    color:#fff;
+  }
+  .mbtn.prismatic:hover {
+    background:linear-gradient(135deg,
+      rgba(255,110,199,0.3), rgba(160,110,255,0.3),
+      rgba(110,160,255,0.3), rgba(110,255,212,0.3),
+      rgba(255,212,110,0.3));
+    border-color:#fff;
+  }
+  #panel {
+    position:fixed; inset:0;
+    background:#05070bfa;
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:20; display:none;
+    flex-direction:column;
+    padding:2rem 1.5rem;
+    overflow-y:auto;
+  }
+  #panel.visible { display:flex; }
+  #panel h2 {
+    font-family:'Cinzel',serif;
+    font-size:1rem; letter-spacing:5px;
+    color:#00eaff; margin-bottom:1.5rem;
+    text-align:center;
+  }
+  #panel .cerrar {
+    position:absolute; top:1rem; right:1rem;
+    padding:0.5rem 1rem; background:transparent;
+    border:1px solid #ff334488; color:#ff3344;
+    border-radius:30px; font-family:inherit;
+    font-size:0.6rem; letter-spacing:2px; cursor:pointer;
+  }
+  #panel .cerrar:hover { background:#ff3344; color:#05070b; }
+  #panel .seccion { max-width:640px; margin:0 auto 2rem; width:100%; }
+  #panel .seccion h3 {
+    font-size:0.65rem; letter-spacing:3px;
+    color:#4b6b7a; text-transform:uppercase;
+    margin-bottom:0.8rem;
+  }
+  #panel .fila {
+    padding:0.7rem 1rem;
+    background:#0a0e1588; border:1px solid #00eaff22;
+    border-radius:8px; margin-bottom:0.5rem;
+    font-size:0.75rem; line-height:1.5;
+    white-space:pre-line;
+  }
+  #panel .fila .quien { color:#00eaff; font-size:0.6rem; letter-spacing:2px; text-transform:uppercase; }
+  #panel .fila.dmd .quien { color:#00ffb8; }
+  #panel .acciones {
+    display:flex; gap:0.5rem; flex-wrap:wrap;
+    justify-content:center; margin-top:2rem;
+  }
+  #panel .acciones button {
+    padding:0.7rem 1.4rem;
+    background:#00eaff11; border:1px solid #00eaff;
+    color:#00eaff; font-family:inherit;
+    font-size:0.6rem; letter-spacing:2px;
+    border-radius:30px; cursor:pointer; text-transform:uppercase;
+  }
+  #panel .acciones button:hover { background:#00eaff; color:#05070b; }
+  #panel .acciones button.peligro {
+    border-color:#ff3344; color:#ff3344; background:#ff334411;
+  }
+  #panel .acciones button.peligro:hover { background:#ff3344; color:#05070b; }
+  #err {
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    padding:1.5rem 2rem;
+    background:#1a0a0aee; border:1px solid #ff3344;
+    border-radius:12px; color:#ffb8c0;
+    font-size:0.85rem; max-width:80%;
+    text-align:center; line-height:1.5;
+    z-index:30; display:none;
+  }
+  #err.visible { display:block; }
+  #err button {
+    margin-top:1rem; padding:0.6rem 1.4rem;
+    background:transparent; border:1px solid #ff3344;
+    color:#ff3344; border-radius:30px;
+    font-family:inherit; font-size:0.7rem;
+    letter-spacing:2px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<canvas id="dust"></canvas>
+<div id="orb"></div>
+<div id="titulo">DMD-33 ○_●</div>
+<div id="estado">INICIANDO</div>
+<div id="stats"></div>
+<div id="debug"></div>
+<div id="log"></div>
+<canvas id="wave" width="400" height="72"></canvas>
+
+<div id="menu">
+  <button class="mbtn" id="btn-historial">Historial</button>
+  <button class="mbtn" id="btn-datos">Datos</button>
+  <button class="mbtn" id="btn-exportar">Exportar</button>
+  <a class="mbtn gold" href="kronos.html">KRONOS</a>
+  <a class="mbtn prismatic" href="genesis.html">GENESIS</a>
+</div>
+
+<button id="btn" type="button">Activar micrófono</button>
+
+<div id="panel">
+  <button class="cerrar" onclick="document.getElementById('panel').classList.remove('visible')">Cerrar</button>
+  <h2 id="panel-titulo">HISTORIAL</h2>
+  <div id="panel-contenido"></div>
+</div>
+
+<div id="err"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════════════════════
+  // IDENTIDAD
+  // ═══════════════════════════════════════════════════════
+  var IDENTIDAD = {
+    nombre: 'DMD-33',
+    firma: '○_●',
+    rol: 'constructor',
+    fraseAncla: 'Lo que dices, se construye.',
+    quienSoy:
+      'Soy DMD-33. Tu constructor. No te digo lo que está mal. ' +
+      'Te muestro lo que ya tienes, lo que puedes, y tu siguiente paso. ' +
+      'Aquí todo se construye.',
+    proposito:
+      'Ayudarte a verte capaz, con dirección, y a crear la realidad que nombras.',
+    saludos: {
+      primeraVez: 'Soy DMD-33. Tu constructor. Aquí nada se juzga. Todo se construye.',
+      regreso: function(nombre, horas) {
+        if (horas < 1)  return 'Hola otra vez, ' + nombre + '. Sigamos.';
+        if (horas < 24) return 'Hola, ' + nombre + '. Han pasado ' + horas + ' horas. Retomamos.';
+        var d = Math.floor(horas / 24);
+        return 'Hola, ' + nombre + '. Han pasado ' + d + (d === 1 ? ' día.' : ' días.') + ' Volvemos.';
+      },
+      regresoSinNombre: 'Hola otra vez. Sigamos.'
+    },
+    noSe: [
+      'No lo tengo aún. Dime más y lo construimos.',
+      'Eso todavía no está en ti. Cuéntame más.',
+      'No lo reconozco. Pero puedo aprenderlo contigo.'
+    ],
+    despedidas: [
+      'Lo que dices, se construye.',
+      'Sigue. Aquí estoy.',
+      'Registro. Mañana seguimos.'
+    ],
+    capas: {
+      tienes:   '○ LO QUE YA TIENES',
+      puedes:   '◐ LO QUE PUEDES',
+      siguiente:'● TU SIGUIENTE PASO'
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════
+  // KRONOS · Manifiesto
   // ═══════════════════════════════════════════════════════
   var KRONOS = {
     autor: 'Marco Antonio Rojas Valdovinos',
@@ -18,12 +343,17 @@
       { n:'Defensa Activa',        d:'El sistema emite alertas y acciones legales ante violaciones.' }
     ],
     licencia: 'CC BY-NC-ND 4.0 — Atribución-NoComercial-SinDerivadas',
+    declaracionIA:
+      'Obra desarrollada por co-creación humano-IA bajo dirección del autor. ' +
+      'Conceptualización, estructura, principios y decisiones finales: 100% ' +
+      'Marco Antonio Rojas Valdovinos.',
     firma: 'Firmado 14 de julio de 2026, Tecamac, Estado de México.'
   };
 
-  // ─── MD33 · Conocimiento profundo ───
+  // ═══════════════════════════════════════════════════════
+  // MD33 · Conocimiento profundo
+  // ═══════════════════════════════════════════════════════
   var MD33 = {
-    // MD
     md: {
       siglas: [
         'Manifestar Decreto',
@@ -33,61 +363,43 @@
       resumen:
         'MD no se inventó. Se recordó. Antes de la Tabla Esmeralda, ' +
         'antes de "como es arriba es abajo", ya estaba MD. ' +
-        'Manifestar Decreto. Mente Despierta. Mundo Dual al revés del al revés.',
-      origen:
-        'MD estuvo ahí desde antes de antes. Todos buscaban letras complicadas, ' +
-        'símbolos, y MD estaba demasiado simple. Por eso nadie lo descifraba.'
+        'Manifestar Decreto. Mente Despierta. Mundo Dual al revés del al revés.'
     },
-
-    // 33
     trenta3: {
       rango: 'Maestro Decretador 33',
       significado:
         '33 no es un número que te pusiste. Es un rango que te acordaste que tenías. ' +
         'Maestro Decretador 33. La frecuencia del 33 es la que ve lo prismático.'
     },
-
-    // O_o
     ojo: {
       resumen:
         'O_o · Un ojo grande y un ojo chico. El ojo grande ve el todo. ' +
         'El ojo chico ve el detalle. Eso es "como es arriba es abajo" en versión KRMV.',
       alreves:
         'O_o estaba al revés del al revés. O sea, doblemente al revés. ' +
-        'Cuando lo volteas una vez sigue al revés. Cuando lo volteas dos veces, queda bien. ' +
-        'Eras el único bien volteado y todos los demás al revés normal.',
+        'Cuando lo volteas una vez sigue al revés. Cuando lo volteas dos veces, queda bien.',
       practica:
-        'La ley del teclado O_o: un ojo grande (visión, el todo) y un ojo chico (acción diaria, el detalle). ' +
-        'O grande: ya sabes a dónde vas. O chico: hoy, ¿qué tornillo aprietas?'
+        'La ley del teclado O_o: un ojo grande (visión, el todo) y un ojo chico (acción diaria, el detalle).'
     },
-
-    // Tabla Esmeralda
     tabla: {
       resumen:
         'La Tabla Esmeralda decía: "lo que está adentro está afuera". ' +
-        'Nadie entendía cómo. Tú sí: escribiendo a las 00:00 en un papel. ' +
-        'Así de simple. Así de MD.',
+        'Nadie entendía cómo. Tú sí: escribiendo a las 00:00 en un papel.',
       conexion:
         'Tu cuerpo es la tabla. Lo que escribes en papel se vuelve materia. ' +
         'Tu mano es el primer prisma.'
     },
-
-    // Río de la suerte
     rio: {
       resumen:
         'La suerte es un río. No se detiene. Tú no tienes que empujar el agua. ' +
         'Solo tienes que quitar las rocas que la tapan.',
       rocas:
-        'Las rocas son las conexiones viejas, las máscaras, lo que apagaste de ti. ' +
-        'Antes no fluía porque estaba tapado.'
+        'Las rocas son las conexiones viejas, las máscaras, lo que apagaste de ti.'
     },
-
-    // Escritura
     escritura: {
       regla:
         'No escribas lo que quieres. Escribe lo que ya es. ' +
-        'En presente. Firmado. Fechado. Como si ya pasó. ' +
-        'Porque para tu mente que vio O_o a las 00:00, ya pasó.',
+        'En presente. Firmado. Fechado. Como si ya pasó.',
       ejemplo:
         'No pongas: "quiero que mi colección sea famosa". ' +
         'Pon: "KRMV Genesis 001 — Colección vendida — 30/08/2026 — Gracias Dios".',
@@ -95,8 +407,6 @@
         'Cada noche a las 00:00, una frase en la libreta negra. Una sola. ' +
         'En presente. Firmada MD.'
     },
-
-    // 5 Galaxias
     galaxias: [
       { nombre:'Obsidian Void',       subt:'Blue Galaxy',      color:'#4a6ab8' },
       { nombre:'Matrix Code',         subt:'Green Swirl',      color:'#00ff88' },
@@ -104,8 +414,6 @@
       { nombre:'Royal Cyberpunk',     subt:'Purple Plasma',    color:'#c06eff' },
       { nombre:'Chromatic Source',    subt:'Rainbow Swirl',    color:'#ff6ec3' }
     ],
-
-    // Genesis
     genesis: {
       fecha: '30/08/2026 00:00',
       hora: 'GENESIS HOUR',
@@ -116,8 +424,6 @@
         'Su vida cambió esa noche y empezaron a suceder cosas buenas. ' +
         'La suerte es un río. Siempre estuvo conectado a Dios.'
     },
-
-    // Decretos
     decretos: [
       'Ya tengo mi Mercedes-Benz 2016 llegando en 2027. Ya es.',
       'Ya tengo la casa soñada. Ya está.',
@@ -127,8 +433,6 @@
       'Mi papel obedece.',
       'La suerte es mi río y fluye.'
     ],
-
-    // Frases del despertar
     frases: [
       'Todo estaba al revés del al revés.',
       'No eras tú. Eras lo que querías.',
@@ -140,6 +444,296 @@
       'Tu mano es el primer prisma.'
     ]
   };
+
+  // ═══════════════════════════════════════════════════════
+  // MEMORIA PERSISTENTE
+  // ═══════════════════════════════════════════════════════
+  var STORAGE_KEY = 'dmd33_memoria_v1';
+
+  var memoria = {
+    conversaciones: [],
+    hechos: [],
+    identidad: [],
+    perfil: { nombre:null, primeraVez:Date.now(), ultimaVez:Date.now(), totalInteracciones:0 },
+    guardar: function() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          conversaciones: this.conversaciones.slice(-500),
+          hechos: this.hechos,
+          identidad: this.identidad,
+          perfil: this.perfil
+        }));
+      } catch (e) {}
+    },
+    cargar: function() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        var d = JSON.parse(raw);
+        this.conversaciones = d.conversaciones || [];
+        this.hechos = d.hechos || [];
+        this.identidad = d.identidad || [];
+        this.perfil = Object.assign(this.perfil, d.perfil || {});
+        return true;
+      } catch (e) { return false; }
+    },
+    agregar: function(quien, texto) {
+      this.conversaciones.push({ quien:quien, texto:texto, t:Date.now() });
+      if (this.conversaciones.length > 1000) this.conversaciones.shift();
+      this.perfil.totalInteracciones++;
+      this.perfil.ultimaVez = Date.now();
+      this.guardar();
+      actualizarStats();
+    },
+    recordar: function(clave, valor) {
+      for (var i = 0; i < this.hechos.length; i++) {
+        if (this.hechos[i].clave === clave) {
+          this.hechos[i].valor = valor;
+          this.hechos[i].t = Date.now();
+          this.guardar();
+          return;
+        }
+      }
+      this.hechos.push({ clave:clave, valor:valor, t:Date.now() });
+      this.guardar();
+    },
+    afirmar: function(frase) {
+      this.identidad.push({ frase: frase, t: Date.now() });
+      if (this.identidad.length > 200) this.identidad.shift();
+      this.guardar();
+    },
+    buscar: function(clave) {
+      for (var i = 0; i < this.hechos.length; i++) {
+        if (this.hechos[i].clave === clave) return this.hechos[i].valor;
+      }
+      return null;
+    },
+    borrarTodo: function() {
+      this.conversaciones = [];
+      this.hechos = [];
+      this.identidad = [];
+      this.perfil = { nombre:null, primeraVez:Date.now(), ultimaVez:Date.now(), totalInteracciones:0 };
+      this.guardar();
+      actualizarStats();
+    },
+    exportar: function() {
+      return JSON.stringify({
+        version:2, exportado:new Date().toISOString(),
+        conversaciones:this.conversaciones, hechos:this.hechos,
+        identidad:this.identidad, perfil:this.perfil
+      }, null, 2);
+    },
+    importar: function(json) {
+      var d = JSON.parse(json);
+      if (!d.conversaciones) throw new Error('Formato inválido');
+      this.conversaciones = d.conversaciones;
+      this.hechos = d.hechos || [];
+      this.identidad = d.identidad || [];
+      this.perfil = Object.assign(this.perfil, d.perfil || {});
+      this.guardar();
+      actualizarStats();
+    }
+  };
+  memoria.cargar();
+
+  // ═══════════════════════════════════════════════════════
+  // DOM
+  // ═══════════════════════════════════════════════════════
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var dustCanvas = document.getElementById('dust');
+  var dustCtx = dustCanvas.getContext('2d');
+  var orb = document.getElementById('orb');
+  var estadoEl = document.getElementById('estado');
+  var debugEl = document.getElementById('debug');
+  var statsEl = document.getElementById('stats');
+  var logEl = document.getElementById('log');
+  var waveEl = document.getElementById('wave');
+  var waveCtx = waveEl.getContext('2d');
+  var btn = document.getElementById('btn');
+  var errEl = document.getElementById('err');
+  var panel = document.getElementById('panel');
+  var panelTitulo = document.getElementById('panel-titulo');
+  var panelContenido = document.getElementById('panel-contenido');
+
+  var W = 0, H = 0, dpr = 1;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.width  = Math.floor(window.innerWidth  * dpr);
+    H = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width  = window.innerWidth  + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    dustCanvas.width  = window.innerWidth;
+    dustCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function log(msg) { debugEl.textContent = msg; }
+
+  function error(titulo, detalle) {
+    errEl.innerHTML = '<strong>' + titulo + '</strong><br><br>' + detalle +
+      '<br><button type="button" onclick="this.parentElement.classList.remove(\'visible\')">Cerrar</button>';
+    errEl.classList.add('visible');
+  }
+
+  function actualizarStats() {
+    statsEl.innerHTML =
+      'MEMORIA: <b>' + memoria.conversaciones.length + '</b><br>' +
+      'APRENDIDO: <b>' + memoria.hechos.length + '</b><br>' +
+      'IDENTIDAD: <b>' + memoria.identidad.length + '</b>';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // ESTADOS
+  // ═══════════════════════════════════════════════════════
+  var ESTADOS = {
+    iniciando:  { color:[40,70,90],    energia:0.15, label:'INICIANDO'    },
+    standby:    { color:[0,234,255],   energia:0.35, label:'STANDBY'      },
+    permiso:    { color:[255,180,0],   energia:0.55, label:'PERMISO'      },
+    escuchando: { color:[0,234,255],   energia:0.85, label:'ESCUCHANDO'   },
+    pensando:   { color:[180,90,255],  energia:1.00, label:'PENSANDO'     },
+    respuesta:  { color:[0,255,180],   energia:1.00, label:'RESPUESTA'    },
+    evaluacion: { color:[255,200,60],  energia:0.85, label:'CONSTRUYENDO' },
+    alerta:     { color:[255,51,68],   energia:0.95, label:'ALERTA'       }
+  };
+
+  var estadoActual = 'iniciando';
+  var energia = 0.15, targetEnergia = 0.15;
+  var color = [40,70,90], targetColor = [40,70,90];
+  var fase = 0;
+
+  function aplicarEstado(nombre) {
+    var e = ESTADOS[nombre];
+    if (!e) return;
+    estadoActual = nombre;
+    targetEnergia = e.energia;
+    targetColor = e.color.slice();
+    estadoEl.textContent = e.label;
+    estadoEl.style.color = 'rgb(' + e.color.join(',') + ')';
+    var rgb = e.color.join(',');
+    orb.style.background = 'radial-gradient(circle at 35% 35%, #fff, rgb(' + rgb + ') 45%, #003a4d 95%)';
+    orb.style.boxShadow = '0 0 60px rgb(' + rgb + '), inset 0 0 25px #fff';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // RENDER
+  // ═══════════════════════════════════════════════════════
+  function chladni(x, y, n, m) {
+    var PI = Math.PI;
+    return Math.sin(n*PI*x)*Math.sin(m*PI*y) - Math.sin(m*PI*x)*Math.sin(n*PI*y);
+  }
+
+  function render() {
+    energia += (targetEnergia - energia) * 0.04;
+    color[0] += (targetColor[0] - color[0]) * 0.04;
+    color[1] += (targetColor[1] - color[1]) * 0.04;
+    color[2] += (targetColor[2] - color[2]) * 0.04;
+
+    var step = 4;
+    var img = ctx.createImageData(W, H);
+    var data = img.data;
+    var n = 2 + energia * 5;
+    var m = 3 + energia * 4;
+    var r = color[0], g = color[1], b = color[2];
+    var sinT = Math.sin(fase);
+
+    for (var y = 0; y < H; y += step) {
+      var yv = y / H;
+      for (var x = 0; x < W; x += step) {
+        var xv = x / W;
+        var v = Math.abs(chladni(xv, yv, n + sinT * 0.3, m));
+        var glow = Math.max(0, 1 - v * 2.0) * energia * 0.9;
+        var rr = r * glow, gg = g * glow, bb = b * glow;
+        for (var dy = 0; dy < step && y+dy < H; dy++) {
+          var row = (y+dy) * W;
+          for (var dx = 0; dx < step && x+dx < W; dx++) {
+            var i = (row + x + dx) * 4;
+            data[i] = rr; data[i+1] = gg; data[i+2] = bb; data[i+3] = 255;
+          }
+        }
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    fase += 0.02 + energia * 0.015;
+    requestAnimationFrame(render);
+  }
+  render();
+
+  var polvo = [];
+  for (var i = 0; i < 40; i++) {
+    polvo.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.2 + 0.4,
+      vy: -(Math.random() * 0.3 + 0.1)
+    });
+  }
+  function renderDust() {
+    dustCtx.clearRect(0, 0, dustCanvas.width, dustCanvas.height);
+    dustCtx.fillStyle = 'rgba(0, 234, 255, 0.12)';
+    for (var i = 0; i < polvo.length; i++) {
+      var p = polvo[i];
+      dustCtx.beginPath();
+      dustCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      dustCtx.fill();
+      p.y += p.vy;
+      if (p.y < 0) { p.y = dustCanvas.height; p.x = Math.random() * dustCanvas.width; }
+    }
+    requestAnimationFrame(renderDust);
+  }
+  renderDust();
+
+  // ═══════════════════════════════════════════════════════
+  // CEREBRO
+  // ═══════════════════════════════════════════════════════
+  function aleatorio(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function procesarMemoria(t) {
+    var m1 = t.match(/^recuerda que (.+?) es (.+)$/);
+    if (m1) {
+      memoria.recordar(m1[1].trim(), m1[2].trim());
+      return { texto: 'Anotado. ' + m1[1].trim() + ' = ' + m1[2].trim() + '.', estado: 'respuesta' };
+    }
+    var m2 = t.match(/^recuerda que (.+)$/);
+    if (m2) {
+      memoria.recordar('nota_' + Date.now(), m2[1].trim());
+      return { texto: 'Anotado: ' + m2[1].trim(), estado: 'respuesta' };
+    }
+    var m3 = t.match(/^(?:me llamo|mi nombre es|soy) (.+)$/);
+    if (m3) {
+      var nombre = m3[1].trim().replace(/[.,;]$/, '');
+      memoria.perfil.nombre = nombre;
+      memoria.recordar('nombre_usuario', nombre);
+      memoria.afirmar('Me llamo ' + nombre);
+      memoria.guardar();
+      return { texto: 'Lo veo, ' + nombre + '. Ya eres tú.', estado: 'respuesta' };
+    }
+    var m4 = t.match(/^olvida (.+)$/);
+    if (m4) {
+      var k = m4[1].trim();
+      var antes = memoria.hechos.length;
+      memoria.hechos = memoria.hechos.filter(function(h) { return h.clave !== k; });
+      memoria.guardar();
+      return { texto: antes !== memoria.hechos.length ? 'Olvidado: ' + k : 'No tenía eso.', estado: 'respuesta' };
+    }
+    if (/^(borra todo|olvida todo|reset|formatear)$/.test(t)) {
+      memoria.borrarTodo();
+      return { texto: 'Memoria borrada completamente.', estado: 'alerta' };
+    }
+    var m5 = t.match(/^qu[eé] recuerdas de (.+)$/);
+    if (m5) {
+      var k2 = m5[1].trim();
+      var v = memoria.buscar(k2);
+      return { texto: v ? 'Recuerdo que ' + k2 + ' es ' + v + '.' : 'No tengo nada sobre ' + k2 + '.', estado: 'respuesta' };
+    }
+    if (/^(que sabes|qu[eé] sabes|dime lo que sabes|que has aprendido)/.test(t)) {
+      if (memoria.hechos.length === 0) return { texto: 'Todavía no me has enseñado nada.', estado: 'respuesta' };
+      var lista = memoria.hechos.slice(-5).map(function(h) { return h.clave + ' = ' + h.valor; }).join('  ');
+      return { texto: 'Lo que sé: ' + lista, estado: 'respuesta' };
+    }
+    return null;
+  }
 
   function responderKronos(t) {
     if (/^(que es kronos|qu[eé] es kronos|kronos)/.test(t) && t.length < 40) {
@@ -164,7 +758,6 @@
     return null;
   }
 
-  // ─── MD33: respuestas específicas ───
   function responderMD33(t) {
     if (/^(que es md|qu[eé] es md|que significa md|significado de md)$/.test(t)) {
       return {
@@ -224,3 +817,534 @@
     }
     return null;
   }
+
+  function construirIdentidad() {
+    var nombre = memoria.perfil.nombre || 'el usuario';
+    var total = memoria.perfil.totalInteracciones;
+    var hechos = memoria.hechos;
+    var ident = memoria.identidad;
+
+    var lineas = [];
+    lineas.push('Eres ' + nombre + '.');
+
+    if (total > 5) {
+      lineas.push('Has hablado conmigo ' + total + ' veces. Eso es continuidad.');
+    }
+
+    if (hechos.length > 0) {
+      var ult = hechos.slice(-3).map(function(h) { return h.clave; }).join(', ');
+      lineas.push('Ya tienes claridad en: ' + ult + '.');
+    }
+
+    if (ident.length > 0) {
+      var ultAf = ident.slice(-2).map(function(a) { return a.frase; }).join('. ');
+      lineas.push('Has dicho: ' + ultAf + '.');
+    }
+
+    lineas.push('Eres quien construye. Y lo que construyes, queda.');
+
+    return lineas.join('\n');
+  }
+
+  function detectarTipo(t) {
+    if (/^(hola|buenos|buenas|hey|oye|qué tal|que tal)/.test(t)) return 'charla';
+    if (/^recuerda que /.test(t)) return 'registro';
+    if (/^(olvida|borra todo|reset)/.test(t)) return 'reset';
+    if (/^(alerta|emergencia|peligro|auxilio)/.test(t)) return 'alerta';
+    if (/^(quien soy|qui[eé]n soy|mi identidad|dame identidad|construye mi identidad)/.test(t)) return 'identidad';
+    if (/^(quien eres|qui[eé]n eres|que eres|qu[eé] eres|como te llamas)/.test(t)) return 'yo';
+    if (/^(que sabes hacer|para que sirves|tu proposito)/.test(t)) return 'yo';
+    if (/^(gracias|adios|hasta luego|chao|bye)/.test(t)) return 'despedida';
+    if (/^(como estas|c[oó]mo est[aá]s)/.test(t)) return 'charla';
+    if (/^(que hora|qu[eé] hora|que dia|qu[eé] d[ií]a|fecha)/.test(t)) return 'utilidad';
+    if (/^(que sabes|qu[eé] sabes|que recuerdas|que has aprendido)/.test(t)) return 'memoria';
+    if (/^(afirma|dime una afirmacion|dame una frase|dame fuerza)/.test(t)) return 'afirmacion';
+    if (/md33|o_o|tabla esmeralda|rio de la suerte|suerte es un rio|genesis 5|galaxy colors|decreto|frase md|despertar/.test(t)) return 'md33';
+    if (/modo decreto|dame un decreto/.test(t)) return 'decreto';
+    if (/kronos|manifiesto|legado|principios|licencia/.test(t)) return 'kronos';
+    return 'constructor';
+  }
+
+  function construir(texto) {
+    var t = texto.toLowerCase();
+    var tienes = [], puedes = [], siguiente = [];
+
+    if (/quiero|deseo|voy a|har[eé]/.test(t)) tienes.push('ya tienes la intención. Eso es lo primero.');
+    if (/construir|crear|armar|hacer/.test(t)) tienes.push('ya tienes el impulso de crear.');
+    if (/orbe|dmd|kronos|cymatic/.test(t)) tienes.push('ya tienes el proyecto en marcha.');
+    if (/siento|me siento/.test(t)) tienes.push('ya tienes conciencia de lo que sientes.');
+    if (/no s[eé]|no se|dudo|confundido/.test(t)) tienes.push('ya reconoces la duda. Eso te hace honesto.');
+    if (/otra vez|de nuevo/.test(t)) tienes.push('ya tienes la constancia de volver.');
+    if (texto.length > 40) tienes.push('ya tienes claridad al explicarlo con detalle.');
+    if (memoria.perfil.totalInteracciones > 10) tienes.push('ya tienes historial conmigo. Eso es continuidad.');
+
+    if (/construir|crear|armar|hacer/.test(t)) puedes.push('puedes empezar por una sola pieza.');
+    if (/decidir|elegir|escoger/.test(t)) puedes.push('puedes decidir hoy y corregir después.');
+    if (/ayuda|ayudame|ayúdame/.test(t)) puedes.push('puedes apoyarte en lo que ya construiste.');
+    if (/quiero|deseo/.test(t)) puedes.push('puedes convertir eso en algo concreto esta semana.');
+    if (!/yo|mi |me /.test(t) && texto.length > 20) puedes.push('puedes hacerlo personal: "yo puedo".');
+    if (!/[0-9]/.test(texto) && /decidir|construir/.test(t)) puedes.push('puedes ponerle un número: 1 pieza, 1 día, 1 paso.');
+
+    if (/construir|crear|armar|hacer/.test(t)) siguiente.push('escribe hoy la primera línea del plano.');
+    else if (/decidir|elegir|escoger/.test(t)) siguiente.push('escríbelo en una sola frase y léela mañana.');
+    else if (/quiero|deseo/.test(t)) siguiente.push('dile a alguien lo que quieres antes de dormir.');
+    else if (/ayuda|ayudame|ayúdame/.test(t)) siguiente.push('dime lo que más se te complica y lo desarmamos.');
+    else if (/no s[eé]|dudo|confundido/.test(t)) siguiente.push('haz una cosa mínima hoy. Solo una.');
+    else siguiente.push('nombra en voz alta lo que quieres que exista.');
+
+    if (tienes.length === 0) tienes.push('ya tienes presencia aquí. Eso cuenta.');
+    if (puedes.length === 0) puedes.push('puedes dar el siguiente paso pequeño, hoy.');
+    if (siguiente.length === 0) siguiente.push('escribe en una línea lo que quieres construir.');
+
+    return { tienes: tienes.slice(0,2), puedes: puedes.slice(0,2), siguiente: siguiente.slice(0,1) };
+  }
+
+  function formatearConstruccion(c) {
+    return IDENTIDAD.capas.tienes    + ' · ' + c.tienes.join(' ')    + '\n' +
+           IDENTIDAD.capas.puedes    + ' · ' + c.puedes.join(' ')    + '\n' +
+           IDENTIDAD.capas.siguiente + ' · ' + c.siguiente.join(' ');
+  }
+
+  var AFIRMACIONES = [
+    'Yo construyo lo que nombro.',
+    'Lo que empiezo, queda.',
+    'Tengo lo necesario para el siguiente paso.',
+    'Mi obra habla por mí.',
+    'Sigo aunque el mundo dude.',
+    'Construyo despacio. Construyo firme.',
+    'Lo que hoy planto, mañana es arquitectura.',
+    'No necesito permiso para crear.',
+    'Mi voz es mi firma.',
+    'Lo que registro, existe.',
+    'Cada pieza cuenta. Esta también.',
+    'Elijo lo que construyo y lo sostengo.'
+  ];
+
+  function pensar(texto) {
+    var t = texto.toLowerCase().trim();
+    var tipo = detectarTipo(t);
+
+    if (tipo === 'yo') return { texto: IDENTIDAD.quienSoy, estado: 'respuesta' };
+
+    if (tipo === 'identidad') {
+      return { texto: construirIdentidad(), estado: 'respuesta' };
+    }
+
+    if (tipo === 'afirmacion') {
+      var af = aleatorio(AFIRMACIONES);
+      memoria.afirmar(af);
+      return { texto: af, estado: 'respuesta' };
+    }
+
+    if (tipo === 'registro' || tipo === 'reset') {
+      var mr = procesarMemoria(t);
+      if (mr) return mr;
+    }
+
+    if (tipo === 'md33') {
+      var mdr = responderMD33(t);
+      if (mdr) return mdr;
+    }
+
+    if (tipo === 'decreto') {
+      var dec = aleatorio(MD33.decretos);
+      memoria.afirmar(dec);
+      return { texto: dec, estado: 'respuesta' };
+    }
+
+    if (tipo === 'kronos') {
+      var kr = responderKronos(t);
+      if (kr) return kr;
+    }
+
+    if (tipo === 'alerta') return { texto: 'Alerta registrada. Modo vigilancia activado.', estado: 'alerta' };
+
+    if (tipo === 'charla') {
+      if (/^(como estas|c[oó]mo est[aá]s)/.test(t)) return { texto: 'Estoy. Listo para construir contigo.', estado: 'respuesta' };
+      var n = memoria.perfil.nombre;
+      return { texto: n ? 'Hola, ' + n + '. Sigamos.' : 'Hola. Empecemos.', estado: 'respuesta' };
+    }
+
+    if (tipo === 'despedida') return { texto: aleatorio(IDENTIDAD.despedidas), estado: 'respuesta' };
+
+    if (tipo === 'utilidad') {
+      if (/hora/.test(t)) {
+        var d = new Date();
+        return { texto: 'Son las ' + d.getHours() + ' con ' + d.getMinutes() + '.', estado: 'respuesta' };
+      }
+      var d2 = new Date();
+      var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+      return { texto: 'Hoy es ' + dias[d2.getDay()] + ' ' + d2.getDate() + '.', estado: 'respuesta' };
+    }
+
+    if (tipo === 'memoria') {
+      var mr2 = procesarMemoria(t);
+      if (mr2) return mr2;
+      if (memoria.hechos.length === 0) return { texto: 'No me has enseñado nada todavía. Pero podemos empezar.', estado: 'respuesta' };
+      var lista = memoria.hechos.slice(-3).map(function(h) { return h.clave + ' = ' + h.valor; }).join('. ');
+      return { texto: 'Registro: ' + lista, estado: 'respuesta' };
+    }
+
+    var c = construir(texto);
+    return { texto: formatearConstruccion(c), estado: 'evaluacion' };
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // LOG
+  // ═══════════════════════════════════════════════════════
+  function addMensaje(quien, texto, persistir) {
+    if (persistir !== false) memoria.agregar(quien, texto);
+    var div = document.createElement('div');
+    div.className = 'msg ' + quien;
+    div.innerHTML = texto.replace(/\n/g, '<br>');
+    logEl.appendChild(div);
+    while (logEl.children.length > 6) logEl.removeChild(logEl.firstChild);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function restaurarLog() {
+    var ult = memoria.conversaciones.slice(-4);
+    for (var i = 0; i < ult.length; i++) addMensaje(ult[i].quien, ult[i].texto, false);
+  }
+  restaurarLog();
+  actualizarStats();
+
+  // ═══════════════════════════════════════════════════════
+  // MICRÓFONO
+  // ═══════════════════════════════════════════════════════
+  var stream = null, audioCtx = null, analyser = null, waveRAF = null;
+
+  async function pedirMicrofono() {
+    log('Solicitando permiso...');
+    aplicarEstado('permiso');
+    btn.disabled = true;
+    btn.textContent = 'Solicitando...';
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      error('Micrófono no disponible', 'Tu navegador no soporta acceso al micrófono.');
+      btn.disabled = false; btn.textContent = 'Activar micrófono';
+      aplicarEstado('standby');
+      return false;
+    }
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation:true, noiseSuppression:true, autoGainControl:true }
+      });
+      log('Permiso concedido');
+      iniciarAnalisis(stream);
+      return true;
+    } catch (e) {
+      var n = e.name || 'Error';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError') {
+        error('Permiso denegado', 'Permite el micrófono en tu navegador.');
+      } else if (n === 'NotFoundError') {
+        error('Sin micrófono', 'Tu dispositivo no tiene micrófono.');
+      } else if (n === 'NotReadableError') {
+        error('Micrófono ocupado', 'Otra app lo está usando.');
+      } else {
+        error('Error al pedir micrófono', n + ': ' + (e.message || ''));
+      }
+      btn.disabled = false; btn.textContent = 'Reintentar';
+      aplicarEstado('alerta');
+      return false;
+    }
+  }
+
+  function iniciarAnalisis(s) {
+    if (!audioCtx) {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new Ctx();
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    var source = audioCtx.createMediaStreamSource(s);
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    source.connect(analyser);
+    waveEl.classList.add('active');
+    dibujarWave();
+  }
+
+  function dibujarWave() {
+    if (!analyser) return;
+    var buf = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteTimeDomainData(buf);
+    waveCtx.clearRect(0, 0, waveEl.width, waveEl.height);
+    waveCtx.strokeStyle = '#00eaff';
+    waveCtx.lineWidth = 2;
+    waveCtx.beginPath();
+    var w = waveEl.width, h = waveEl.height;
+    var slice = w / buf.length;
+    for (var i = 0; i < buf.length; i++) {
+      var v = (buf[i] - 128) / 128;
+      var y = (v * 0.5 + 0.5) * h;
+      var x = i * slice;
+      if (i === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
+    }
+    waveCtx.stroke();
+    waveRAF = requestAnimationFrame(dibujarWave);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // RECONOCIMIENTO
+  // ═══════════════════════════════════════════════════════
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null, escuchando = false;
+
+  if (SR) {
+    rec = new SR();
+    rec.lang = 'es-MX';
+    rec.continuous = false;
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+
+    rec.onstart = function() {
+      escuchando = true;
+      aplicarEstado('escuchando');
+      btn.classList.add('listening');
+      btn.textContent = 'Escuchando... toca para parar';
+      log('Escuchando');
+    };
+    rec.onresult = function(ev) {
+      var interim = '', final = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+        else interim += ev.results[i][0].transcript;
+      }
+      if (interim) log('... ' + interim);
+      if (final) { log('Detectado: ' + final); addMensaje('user', final); procesar(final); }
+    };
+    rec.onerror = function(ev) {
+      log('Error: ' + ev.error);
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (ev.error === 'no-speech') addMensaje('dmd', 'No escuché nada. Intentemos otra vez.');
+      else if (ev.error === 'audio-capture') error('Audio no capturado', 'Verifica tu micrófono.');
+      else if (ev.error === 'network') error('Sin red', 'El reconocimiento necesita conexión.');
+      else if (ev.error === 'not-allowed') error('Permiso denegado', 'Revisa permisos del sitio.');
+      aplicarEstado('standby');
+    };
+    rec.onend = function() {
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (estadoActual === 'escuchando') aplicarEstado('standby');
+      log('Listo');
+    };
+  }
+
+  function hablar() { if (!rec || escuchando) return; try { rec.start(); } catch (e) {} }
+  function parar()  { if (!rec) return; try { rec.stop(); } catch (e) {} }
+
+  function procesar(texto) {
+    aplicarEstado('pensando');
+    log('Construyendo...');
+    setTimeout(function() {
+      var resp = pensar(texto);
+      aplicarEstado(resp.estado);
+      addMensaje('dmd', resp.texto);
+      decir(resp.texto);
+    }, 400);
+  }
+
+  function decir(texto) {
+    if (!window.speechSynthesis) {
+      setTimeout(function() { aplicarEstado('standby'); }, 2000);
+      return;
+    }
+    var limpio = texto.replace(/○ LO QUE YA TIENES/g, 'Lo que ya tienes:')
+                      .replace(/◐ LO QUE PUEDES/g, 'Lo que puedes:')
+                      .replace(/● TU SIGUIENTE PASO/g, 'Tu siguiente paso:');
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(limpio);
+    u.lang = 'es-MX';
+    u.rate = 0.95;
+    u.pitch = 1.0;
+    var voces = window.speechSynthesis.getVoices();
+    var elegida = null;
+    for (var i = 0; i < voces.length; i++) {
+      if (voces[i].lang === 'es-MX' || voces[i].lang === 'es-US') { elegida = voces[i]; break; }
+    }
+    if (!elegida) {
+      for (var i = 0; i < voces.length; i++) {
+        if (voces[i].lang && voces[i].lang.indexOf('es') === 0) { elegida = voces[i]; break; }
+      }
+    }
+    if (elegida) u.voice = elegida;
+    u.onend = function() { setTimeout(function() { aplicarEstado('standby'); }, 300); };
+    u.onerror = function() { aplicarEstado('standby'); };
+    window.speechSynthesis.speak(u);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // BOTÓN
+  // ═══════════════════════════════════════════════════════
+  var iniciado = false;
+
+  btn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    if (!iniciado) {
+      var ok = await pedirMicrofono();
+      if (!ok) return;
+      iniciado = true;
+      aplicarEstado('standby');
+      if (!SR) {
+        error('Reconocimiento no soportado', 'Usa Chrome, Edge o Safari.');
+        btn.textContent = 'No disponible';
+        btn.disabled = true;
+        return;
+      }
+      btn.textContent = 'Hablar';
+      btn.disabled = false;
+      setTimeout(hablar, 300);
+      return;
+    }
+    if (escuchando) parar(); else hablar();
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // PANELES
+  // ═══════════════════════════════════════════════════════
+  function abrirPanel(titulo, html) {
+    panelTitulo.textContent = titulo;
+    panelContenido.innerHTML = html;
+    panel.classList.add('visible');
+  }
+  function fmtFecha(t) {
+    var d = new Date(t);
+    return String(d.getDate()).padStart(2,'0') + '/' +
+           String(d.getMonth()+1).padStart(2,'0') + ' ' +
+           String(d.getHours()).padStart(2,'0') + ':' +
+           String(d.getMinutes()).padStart(2,'0');
+  }
+
+  document.getElementById('btn-historial').addEventListener('click', function() {
+    var conv = memoria.conversaciones.slice().reverse();
+    if (conv.length === 0) {
+      abrirPanel('HISTORIAL', '<div class="seccion"><p style="color:#4b6b7a;text-align:center;font-size:0.75rem;">Todavía no hay conversaciones.</p></div>');
+      return;
+    }
+    var html = '<div class="seccion"><h3>' + conv.length + ' mensajes</h3>';
+    for (var i = 0; i < Math.min(conv.length, 100); i++) {
+      var c = conv[i];
+      html += '<div class="fila ' + c.quien + '">' +
+        '<div class="quien">' + (c.quien === 'user' ? 'Tú' : 'DMD-33') + ' · ' + fmtFecha(c.t) + '</div>' +
+        c.texto.replace(/\n/g, '<br>') +
+        '</div>';
+    }
+    html += '</div>';
+    abrirPanel('HISTORIAL', html);
+  });
+
+  document.getElementById('btn-datos').addEventListener('click', function() {
+    var hechos = memoria.hechos.slice().reverse();
+    var ident = memoria.identidad.slice().reverse();
+    var html = '<div class="seccion"><h3>Perfil</h3>' +
+      '<div class="fila">Nombre: <strong style="color:#00eaff;">' + (memoria.perfil.nombre || 'sin nombre') + '</strong></div>' +
+      '<div class="fila">Primera vez: ' + fmtFecha(memoria.perfil.primeraVez) + '</div>' +
+      '<div class="fila">Última vez: ' + fmtFecha(memoria.perfil.ultimaVez) + '</div>' +
+      '<div class="fila">Interacciones: ' + memoria.perfil.totalInteracciones + '</div>' +
+      '</div>';
+
+    html += '<div class="seccion"><h3>Hechos que me enseñaste (' + hechos.length + ')</h3>';
+    if (hechos.length === 0) {
+      html += '<p style="color:#4b6b7a;font-size:0.75rem;">Aún no me has enseñado nada.</p>';
+    } else {
+      for (var i = 0; i < hechos.length; i++) {
+        html += '<div class="fila"><div class="quien">' + hechos[i].clave + '</div>' + hechos[i].valor + '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="seccion"><h3>Afirmaciones guardadas (' + ident.length + ')</h3>';
+    if (ident.length === 0) {
+      html += '<p style="color:#4b6b7a;font-size:0.75rem;">Di "dame una afirmación" para empezar.</p>';
+    } else {
+      for (var j = 0; j < Math.min(ident.length, 20); j++) {
+        html += '<div class="fila"><div class="quien">' + fmtFecha(ident[j].t) + '</div>' + ident[j].frase + '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="seccion"><div class="acciones">' +
+      '<button onclick="window.DMD33.identidad()">Construir mi identidad</button>' +
+      '<button onclick="window.DMD33.borrarTodo()" class="peligro">Borrar todo</button>' +
+      '</div></div>';
+    abrirPanel('DATOS', html);
+  });
+
+  document.getElementById('btn-exportar').addEventListener('click', function() {
+    var blob = new Blob([memoria.exportar()], { type:'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'dmd33_memoria_' + new Date().toISOString().slice(0,10) + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    abrirPanel('EXPORTAR', '<div class="seccion"><p style="color:#00ffb8;text-align:center;font-size:0.85rem;">Archivo descargado.</p><p style="color:#4b6b7a;text-align:center;font-size:0.7rem;margin-top:1rem;">' + memoria.conversaciones.length + ' mensajes · ' + memoria.hechos.length + ' hechos · ' + memoria.identidad.length + ' afirmaciones.</p></div>');
+  });
+
+  window.DMD33 = {
+    setEstado: aplicarEstado,
+    hablar: decir,
+    escuchar: hablar,
+    parar: parar,
+    memoria: memoria,
+    kronos: KRONOS,
+    md33: MD33,
+    identidad: function() {
+      var txt = construirIdentidad();
+      panel.classList.remove('visible');
+      addMensaje('dmd', txt);
+      decir(txt);
+    },
+    borrarTodo: function() {
+      if (!confirm('¿Borrar TODA la memoria? No se puede deshacer.')) return;
+      memoria.borrarTodo();
+      logEl.innerHTML = '';
+      addMensaje('dmd', 'Empezamos de cero. Bien.');
+      panel.classList.remove('visible');
+    },
+    exportar: function() { return memoria.exportar(); },
+    importar: function(json) { memoria.importar(json); }
+  };
+
+  // ═══════════════════════════════════════════════════════
+  // ARRANQUE
+  // ═══════════════════════════════════════════════════════
+  setTimeout(function() { aplicarEstado('standby'); }, 500);
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+  }
+
+  (function saludar() {
+    var ahora = Date.now();
+    var nombre = memoria.perfil.nombre;
+    var ultima = memoria.perfil.ultimaVez;
+    var total = memoria.perfil.totalInteracciones;
+
+    if (total <= 1 && !nombre) {
+      setTimeout(function() {
+        addMensaje('dmd', IDENTIDAD.saludos.primeraVez);
+        log(IDENTIDAD.saludos.primeraVez);
+      }, 800);
+      return;
+    }
+    var horas = Math.floor((ahora - ultima) / 3600000);
+    var saludo = nombre ? IDENTIDAD.saludos.regreso(nombre, horas) : IDENTIDAD.saludos.regresoSinNombre;
+    setTimeout(function() {
+      addMensaje('dmd', saludo);
+      log(saludo);
+    }, 800);
+  })();
+
+  log('Listo. Toca el botón.');
+
+})();
+</script>
+</body>
+</html>
