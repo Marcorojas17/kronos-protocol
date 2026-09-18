@@ -1,0 +1,52 @@
+# KRONOS PROTOCOL · MANIFEST SHA-256
+# Generado: 2026-09-18T04:45:50Z
+# Autor: Marco Antonio Rojas Valdovinos
+
+4f71c5501d20c8ba4ee1e0763baeef2be26a7891b3bf0d3a5cb4f6a6bb51bfec  ./CHANGELOG.md
+d02b3eeb6e526fbd7ae9d292ac3780f0a56fe46a034cb505be3eab48c8b765ef  ./GOVERNANCE.md
+6013bb0dac40080b1d7e286c13aaa379ee5e4b85c48d754f9dcb02fbb5f065ac  ./LICENSE
+4a326429628b12f086513cb7da45e0f07dae99af52184bcaf4d02b97b998ce21  ./PROTOCOL.md
+80edb9085aa5573a334324905adc112efc86298d57e6001b8f6ab6ecf34a6597  ./Pnp
+f1c542062c0f04dee55ffbb32ac02ef7f4a9dd4b94b9478c167b6de40bf291fb  ./README.md
+8dca74a6d90cbf665a34b5510c4ca4185546298db3d893f56c4f13cf1934e177  ./SECURITY.md
+3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
+79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
+3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
+dac2406e40a11b3c0e15b3712c8066a79a83e9168886ce47759204f68660fb5d  ./guardian.py
+c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GUARDIAN-ACTA.md
+897dd5b3f8bb5e12dafa2818487dbff7622ce79b1c529a1ae4b01517ec5d9177  ./guardians/GUARDIAN-MRR.md
+63671c07988f06d2af6bad7a9ce17d33a86b8e3b065210a14f266e364948f398  ./guardians/GUARDIAN-SHA.md
+cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GUARDIAN-TSA.md
+22eb4afcbab180fb92734b26bd2b57ea4098a6d89953730f1c433b7dfa5c6468  ./guardians/GUARDIAN-VAULT.md
+5b345ed7321f413d394897b37fbb7d840425b7c608d5a4e0f59cede11bb33c8a  ./index.html
+79cc5f0bc8f0aa37084f9d6647943e53889316dcbd28a5d94cecd5aa30f7379f  ./luxury.html
+07efb4aa3f557049e45f552375e2e05aec6ea02879032333f89a142728e57a73  ./projects/acta/README.md
+8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
+fc75bb93ff3440b913ac909aca272af5c15799a1570f011495ffb51d587e80a3  ./projects/cymatic/README.md
+247e16d0f2597366f5c809053b52f4401dbb98227d4ca95ef0433ed7729f7763  ./projects/cymatic/index.html
+27176c181b59bcd4e82a257edd0f2a6af65283b5cc20db374b8566a6aa0a3eae  ./projects/cymatic/live-pro.html
+63d91cb1c69819657ffa7a9f6995e6ed6a3c2fef41c1f7a4f5e4b01ca763d2a8  ./projects/cymatic/studio.html
+ab2e61f3ee62abba6ca2d44aa376734acb52e3210183e608e663d8401150e053  ./projects/dmd-33/README.md
+08e2a40442ce25169f8bd3b524eecb0549803d57823ca12e50975555be6cf2c2  ./projects/dmd-33/espejo.html
+746ac7f87c10fca56b08530e476ce739670ff3b8e5c43babc8fbcd2c81ff96ac  ./projects/dmd-33/flow.html
+0807b3eaad0e5f156aeeebce647c74e1ddd3818e86f7ea2e85c4d430f54972f0  ./projects/dmd-33/genesis.html
+162f15569cc3ed19716381e8a13e2d432eeaea7b24f4988ae038eba0a30bcac1  ./projects/dmd-33/index.html
+c674d69739c71e54ff3de90a192f3c344b32c7094b9bbc8b3a9e673eb48a3bbd  ./projects/dmd-33/kronos.html
+3b1f654a4e350621c9ddad76166d58ba4be1bad6af7444b0152ed4783b261245  ./projects/dmd-33/manifest.json
+1ae3164e38379eac160b5a85756ddaaf58b608202ffc7e2e23195d370c93d38e  ./projects/dmd-33/orb.html
+d9e7f6faa6d1e0f813f0df8dad761a9831d9ffa33858bc502b20b23713ac9ab5  ./projects/dmd-33/sw.js
+e4e1bfe8d2b37647d740130a167ce2eb0ce72c954f4f2744ff9fc8076747405b  ./projects/evidence-os/README.md
+a3b6ca1f1bf335e9b440ddf60c02ee2336a7ebc2e53da16351b9b5c97e7cf867  ./projects/evidence-os/dashboard.html
+cdac5c77e39a207a76a470c3971321b85009f4a015d4dc5b58e57bb9df1ec069  ./projects/evidence-os/index.html
+e0641883d01d6622e1f018a69bbf0a444155ac525740b2659dd50eafbb06bb23  ./projects/evidence-os/index1.html
+da6a2fb2ad651812995a516ac170dd9fabc476cdff46ab58eee261022d37cae7  ./projects/k4-framework/README.md
+2230025bb4e8375864245f90a3c4c034752c773fca891696284f19263d1822d5  ./projects/kronos-vault/README.md
+af316ecccf1b10802b2ad3f993dfa4a36960b637ca5b37039ea400fca54b9be1  ./projects/kronos-vault/index.html
+7be72eb6c061fef2377afc856e9e3ec95e35b000c07b91c86ca9b16d494a3e46  ./projects/md33/README.md
+a24fab7dea1bc84ba1464b0e759489ecb54c77699beee50e26c6ab835e61139c  ./projects/md33/index.html
+72c2c5169f1008fa2509b84ebc229597453bcb466de24713de7ced7708d8b890  ./projects/md33/src/verifica_estandar.py
+d51a4852bce0e69b3a5a258817362ac83ca60a71f2e1a196833b36ac12464f7f  ./projects/yejida/README.md
+bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
+bf28aaaeabb281e98f16dddf16f45baba55c9513dcc7762fe43f46d153969422  ./protocol/KTP-001.md
+a9805d2c9455c6f05260701679374cf3e9c7215b150083808e471d830ccad390  ./verifier.py
+8af012395c314540ffb8e1e3216390bf79fd1f0416a67e0a253a2ce2ba5d563a  ./verify.html
