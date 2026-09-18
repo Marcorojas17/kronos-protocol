@@ -12,9 +12,7 @@
     font-family:'Inter',system-ui,sans-serif;
     min-height:100vh; padding:2rem 1rem;
   }
-  header {
-    text-align:center; margin-bottom:2rem;
-  }
+  header { text-align:center; margin-bottom:2rem; }
   h1 {
     font-family:'Cinzel',serif; font-weight:600;
     font-size:clamp(22px, 5vw, 36px);
@@ -45,48 +43,44 @@
 <body>
   <header>
     <h1>DMD-33 ○_●</h1>
-    <div class="sub">Flujo de inicio a fin · v0.1</div>
+    <div class="sub">Flujo · v0.2</div>
   </header>
 
   <div class="mermaid">
 flowchart TD
-    A([INICIO DMD-33]) --> B[Boot: hardware + OS + servicios]
+    A([INICIO]) --> B[Boot: hardware + OS + servicios]
     B --> C{Autodiagnóstico OK?}
     C -- No --> C1[Modo seguro<br/>LED ámbar + log]
-    C1 --> Z([FIN: espera intervención])
-    C -- Sí --> D[Standby consciente<br/>○_● respira]
+    C1 --> Z([FIN: espera])
+    C -- Sí --> D[Standby<br/>○_● respira]
     D --> E{Entrada detectada?}
-    E -- Voz --> F1[Whisper STT]
-    E -- Visión --> F2[YOLO + OpenCV]
-    E -- Sensor --> F3[Térmico/EM/IMU]
-    E -- Táctil/App --> F4[WebSocket/MQTT]
+    E -- Voz --> F1[SpeechRecognition es-MX]
+    E -- Memoria --> F2[localStorage]
+    E -- Táctil/App --> F3[Botón / menú]
     E -- No --> D
-    F1 --> G[Contexto + memoria vectorial]
+    F1 --> G[Contexto + memoria]
     F2 --> G
     F3 --> G
-    F4 --> G
-    G --> H[LLM local razona<br/>Ollama + RAG]
-    H --> I{Decisión válida?}
-    I -- No --> I1[Failsafe + log + aviso]
-    I1 --> D
-    I -- Sí --> J[Orquestador distribuye]
-    J --> K1[Control energía / BMS]
-    J --> K2[Audio + voz Piper]
-    J --> K3[LEDs + electroimanes]
-    J --> K4[Cymatic engine<br/>patrón de onda]
-    J --> K5[Holograma / AR]
-    K4 --> L[Sincronía audiovisual<br/>sonido ↔ patrón]
-    K1 --> M[Feedback sensores]
-    K2 --> M
-    K3 --> M
-    L --> M
-    K5 --> M
+    G --> H[Motor espejo<br/>Veo / No veo / Puede ser]
+    H --> I{Tipo de pregunta?}
+    I -- Identidad --> J1[Quién soy]
+    I -- Registro --> J2[Recordar / Aprender]
+    I -- Reflejo --> J3[Veo / No veo / Puede ser]
+    I -- Utilidad --> J4[Hora / Fecha]
+    I -- Charla --> J5[Hola / Te veo]
+    J1 --> K[Respuesta + voz]
+    J2 --> K
+    J3 --> K
+    J4 --> K
+    J5 --> K
+    K --> L[Persistir en memoria]
+    L --> M[Feedback sensores]
     M --> N{Objetivo cumplido?}
     N -- No --> H
     N -- Sí --> O[Registrar en memoria]
     O --> P{¿Nuevo ciclo?}
     P -- Sí --> D
-    P -- No --> Q([FIN: standby consciente])
+    P -- No --> Q([FIN: standby espejo])
   </div>
 
   <footer>
