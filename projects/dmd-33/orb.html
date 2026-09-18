@@ -2,202 +2,243 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DMD-33 ○_●</title>
 <style>
-  :root { --bg:#05070d; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
   html, body {
-    height: 100%; background: var(--bg); color: #e6f7ff;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    overflow: hidden;
+    height:100%; width:100%;
+    background:#05070b; color:#e8e4d8;
+    font-family:'Inter',system-ui,sans-serif;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+    cursor:pointer;
+    user-select:none;
   }
-  #stage { position: fixed; inset: 0; }
-  #cymatic { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #canvas {
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    display:block;
+  }
   #orb {
-    position: absolute; top: 50%; left: 50%;
-    width: 140px; height: 140px; border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle at 35% 35%, #fff, #00eaff 40%, #003a4d 90%);
-    box-shadow: 0 0 80px #00eaff, inset 0 0 30px #fff;
-    animation: respira 2.8s ease-in-out infinite;
-    pointer-events: none;
-    transition: background 0.8s, box-shadow 0.8s;
+    position:fixed; top:50%; left:50%;
+    width:120px; height:120px; border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle at 35% 35%, #fff, #00eaff 45%, #003a4d 95%);
+    box-shadow:0 0 60px #00eaff, inset 0 0 25px #fff;
+    animation:respira 2.8s ease-in-out infinite;
+    pointer-events:none;
+    transition:background 0.6s, box-shadow 0.6s;
+    z-index:2;
   }
   @keyframes respira {
-    0%,100% { transform: translate(-50%,-50%) scale(1); }
-    50%     { transform: translate(-50%,-50%) scale(1.1); }
+    0%,100% { transform:translate(-50%,-50%) scale(1); }
+    50%     { transform:translate(-50%,-50%) scale(1.08); }
   }
   #estado {
-    position: absolute; bottom: 2rem; left: 50%;
-    transform: translateX(-50%);
-    letter-spacing: 6px; font-size: 0.8rem; font-weight: 300;
-    padding: 0.5rem 1.2rem; border-radius: 30px;
-    background: #000a; border: 1px solid currentColor;
-    transition: color 0.8s;
+    position:fixed; bottom:2.5rem; left:50%;
+    transform:translateX(-50%);
+    padding:0.5rem 1.4rem;
+    border:1px solid currentColor;
+    border-radius:30px;
+    background:#000a;
+    font-size:0.75rem;
+    letter-spacing:5px;
+    font-weight:300;
+    color:#00eaff;
+    transition:color 0.6s;
+    z-index:3;
   }
-  #nombre {
-    position: absolute; top: 2rem; left: 50%;
-    transform: translateX(-50%);
-    letter-spacing: 8px; font-size: 1rem; font-weight: 300;
-    color: #00eaff; opacity: 0.7;
+  #titulo {
+    position:fixed; top:2rem; left:50%;
+    transform:translateX(-50%);
+    font-family:'Cinzel',serif;
+    font-size:0.95rem;
+    letter-spacing:8px;
+    color:#00eaff;
+    opacity:0.75;
+    z-index:3;
   }
   #hint {
-    position: absolute; bottom: 5rem; left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.7rem; color: #4b6b7a; letter-spacing: 2px;
-    opacity: 0; transition: opacity 1s;
+    position:fixed; bottom:5.5rem; left:50%;
+    transform:translateX(-50%);
+    font-size:0.65rem;
+    letter-spacing:3px;
+    color:#4b6b7a;
+    text-transform:uppercase;
+    opacity:0;
+    transition:opacity 0.8s;
+    z-index:3;
+    pointer-events:none;
   }
-  #hint.visible { opacity: 0.7; }
+  #hint.visible { opacity:0.85; }
 </style>
 </head>
 <body>
-  <div id="stage">
-    <canvas id="cymatic"></canvas>
-    <div id="orb"></div>
-    <div id="nombre">DMD-33 ○_●</div>
-    <div id="estado">STANDBY</div>
-    <div id="hint">toca la pantalla para despertar</div>
-  </div>
+
+<canvas id="canvas"></canvas>
+<div id="orb"></div>
+<div id="titulo">DMD-33 ○_●</div>
+<div id="estado">STANDBY</div>
+<div id="hint">toca la pantalla para despertar</div>
 
 <script>
-  // ═══════════════════════════════════════════════════
-  // DMD-33 · v0.1 · Orbe vivo
-  // El final esperado: una URL que se siente viva.
-  // ═══════════════════════════════════════════════════
+(function() {
+  'use strict';
 
-  const canvas = document.getElementById('cymatic');
-  const ctx = canvas.getContext('2d');
-  const orb = document.getElementById('orb');
-  const estadoEl = document.getElementById('estado');
-  const hint = document.getElementById('hint');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var orb = document.getElementById('orb');
+  var estadoEl = document.getElementById('estado');
+  var hint = document.getElementById('hint');
 
-  let W, H;
+  var W = 0, H = 0, dpr = 1;
+
   function resize() {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    W = canvas.width = canvas.clientWidth * dpr;
-    H = canvas.height = canvas.clientHeight * dpr;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.width  = Math.floor(window.innerWidth  * dpr);
+    H = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width  = window.innerWidth  + 'px';
+    canvas.style.height = window.innerHeight + 'px';
   }
   window.addEventListener('resize', resize);
   resize();
 
-  // ─── Estados del DMD-33 ───
-  const ESTADOS = {
-    dormido:    { color: [40,  70,  90],   freq: 0.5, energia: 0.15, label: 'DORMIDO'    },
-    standby:    { color: [0,   234, 255],  freq: 1.0, energia: 0.35, label: 'STANDBY'    },
-    escuchando: { color: [0,   234, 255],  freq: 1.6, energia: 0.65, label: 'ESCUCHANDO' },
-    pensando:   { color: [180, 90,  255],  freq: 2.4, energia: 0.85, label: 'PENSANDO'   },
-    respuesta:  { color: [0,   255, 180],  freq: 3.0, energia: 1.00, label: 'RESPUESTA'  },
-    alerta:     { color: [255, 51,  68],   freq: 4.5, energia: 0.95, label: 'ALERTA'     },
+  // ── Estados del DMD-33 ──
+  var ESTADOS = {
+    dormido:    { color:[40, 70, 90],   energia:0.15, label:'DORMIDO'    },
+    standby:    { color:[0, 234, 255],  energia:0.35, label:'STANDBY'    },
+    escuchando: { color:[0, 234, 255],  energia:0.60, label:'ESCUCHANDO' },
+    pensando:   { color:[180, 90, 255], energia:0.85, label:'PENSANDO'   },
+    respuesta:  { color:[0, 255, 180],  energia:1.00, label:'RESPUESTA'  },
+    alerta:     { color:[255, 51, 68],  energia:0.95, label:'ALERTA'     }
   };
 
-  let estadoActual = 'dormido';
-  let targetEnergia = ESTADOS.dormido.energia;
-  let energia = 0.15;
-  let targetColor = ESTADOS.dormido.color.slice();
-  let color = ESTADOS.dormido.color.slice();
-  let fase = 0;
-  let activo = false;
+  var estadoActual = 'dormido';
+  var energia = 0.15, targetEnergia = 0.15;
+  var color = [40, 70, 90], targetColor = [40, 70, 90];
+  var fase = 0;
+  var activo = false;
 
-  function setEstado(nombre) {
-    if (!ESTADOS[nombre] || nombre === estadoActual) return;
+  function aplicarEstado(nombre) {
+    var e = ESTADOS[nombre];
+    if (!e) return;
     estadoActual = nombre;
-    const e = ESTADOS[nombre];
     targetEnergia = e.energia;
     targetColor = e.color.slice();
     estadoEl.textContent = e.label;
-    estadoEl.style.color = `rgb(${e.color.join(',')})`;
-    orb.style.background = `radial-gradient(circle at 35% 35%, #fff,
-      rgb(${e.color.join(',')}) 40%, #003a4d 90%)`;
-    orb.style.boxShadow = `0 0 80px rgb(${e.color.join(',')}), inset 0 0 30px #fff`;
+    estadoEl.style.color = 'rgb(' + e.color.join(',') + ')';
+    var rgb = e.color.join(',');
+    orb.style.background = 'radial-gradient(circle at 35% 35%, #fff, rgb(' + rgb + ') 45%, #003a4d 95%)';
+    orb.style.boxShadow = '0 0 60px rgb(' + rgb + '), inset 0 0 25px #fff';
   }
 
-  // ─── Motor cymatic embebido (Chladni) ───
+  // ── Chladni ──
   function chladni(x, y, n, m) {
-    return Math.sin(n * Math.PI * x) * Math.sin(m * Math.PI * y)
-         - Math.sin(m * Math.PI * x) * Math.sin(n * Math.PI * y);
+    var PI = Math.PI;
+    return Math.sin(n * PI * x) * Math.sin(m * PI * y)
+         - Math.sin(m * PI * x) * Math.sin(n * PI * y);
   }
 
-  let frame = 0;
+  var running = true;
+
   function render() {
-    // interpolación suave hacia el estado objetivo
-    energia += (targetEnergia - energia) * 0.05;
-    for (let i = 0; i < 3; i++) {
-      color[i] += (targetColor[i] - color[i]) * 0.05;
-    }
+    if (!running) return;
 
-    const step = 3; // submuestreo para rendimiento móvil
-    const img = ctx.createImageData(W, H);
-    const n = 2 + energia * 5;
-    const m = 3 + energia * 4;
-    const [r, g, b] = color;
-    const t = fase;
+    energia += (targetEnergia - energia) * 0.04;
+    color[0] += (targetColor[0] - color[0]) * 0.04;
+    color[1] += (targetColor[1] - color[1]) * 0.04;
+    color[2] += (targetColor[2] - color[2]) * 0.04;
 
-    for (let y = 0; y < H; y += step) {
-      const yv = y / H;
-      for (let x = 0; x < W; x += step) {
-        const xv = x / W;
-        const v = Math.abs(chladni(xv, yv, n + Math.sin(t) * 0.3, m));
-        const glow = Math.max(0, 1 - v * 2.0) * energia * 0.9;
-        for (let dy = 0; dy < step && y + dy < H; dy++) {
-          for (let dx = 0; dx < step && x + dx < W; dx++) {
-            const i = ((y + dy) * W + (x + dx)) * 4;
-            img.data[i]     = r * glow;
-            img.data[i + 1] = g * glow;
-            img.data[i + 2] = b * glow;
-            img.data[i + 3] = 255;
+    var step = 4;
+    var img = ctx.createImageData(W, H);
+    var data = img.data;
+    var n = 2 + energia * 5;
+    var m = 3 + energia * 4;
+    var r = color[0], g = color[1], b = color[2];
+    var sinT = Math.sin(fase);
+
+    for (var y = 0; y < H; y += step) {
+      var yv = y / H;
+      for (var x = 0; x < W; x += step) {
+        var xv = x / W;
+        var v = Math.abs(chladni(xv, yv, n + sinT * 0.3, m));
+        var glow = Math.max(0, 1 - v * 2.0) * energia * 0.9;
+        var rr = r * glow, gg = g * glow, bb = b * glow;
+        for (var dy = 0; dy < step && y + dy < H; dy++) {
+          var row = (y + dy) * W;
+          for (var dx = 0; dx < step && x + dx < W; dx++) {
+            var i = (row + x + dx) * 4;
+            data[i]     = rr;
+            data[i + 1] = gg;
+            data[i + 2] = bb;
+            data[i + 3] = 255;
           }
         }
       }
     }
     ctx.putImageData(img, 0, 0);
-    fase += 0.015 + energia * 0.01;
-    frame++;
+    fase += 0.02 + energia * 0.015;
+
     requestAnimationFrame(render);
   }
   render();
 
-  // ─── Ciclo de presencia (simulado v0.1) ───
+  // ── Ciclo de presencia ──
+  var tiempoInicial = [
+    ['standby',    1200],
+    ['escuchando', 2200],
+    ['pensando',   1800],
+    ['respuesta',  2000],
+    ['standby',    1400],
+    ['escuchando', 1600],
+    ['pensando',   1500],
+    ['respuesta',  1800],
+    ['standby',    2000],
+    ['dormido',    2500]
+  ];
+
   function despertar() {
     if (activo) return;
     activo = true;
     hint.classList.remove('visible');
-    const ciclo = [
-      ['standby',    1200],
-      ['escuchando', 2500],
-      ['pensando',   2000],
-      ['respuesta',  2200],
-      ['standby',    1500],
-      ['escuchando', 1800],
-      ['pensando',   1600],
-      ['respuesta',  2000],
-      ['standby',    2500],
-      ['dormido',    3000],
-    ];
-    let i = 0;
+    var i = 0;
     function paso() {
-      if (i >= ciclo.length) { activo = false; return; }
-      const [nombre, ms] = ciclo[i++];
-      setEstado(nombre);
-      setTimeout(paso, ms);
+      if (i >= tiempoInicial.length) {
+        activo = false;
+        setTimeout(function() { hint.classList.add('visible'); }, 800);
+        return;
+      }
+      var par = tiempoInicial[i];
+      i++;
+      aplicarEstado(par[0]);
+      setTimeout(paso, par[1]);
     }
     paso();
   }
 
-  // ─── Interacción ───
-  document.body.addEventListener('click', despertar);
-  document.body.addEventListener('touchstart', despertar, { passive: true });
+  // ── Interacción ──
+  function onTap(ev) {
+    if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+    despertar();
+  }
+  document.addEventListener('click', onTap, false);
+  document.addEventListener('touchstart', onTap, { passive: false });
+  document.addEventListener('pointerdown', onTap, false);
 
-  setTimeout(() => hint.classList.add('visible'), 3000);
-  setTimeout(() => setEstado('standby'), 800);
+  // ── Arranque ──
+  setTimeout(function() { aplicarEstado('standby'); }, 600);
+  setTimeout(function() { hint.classList.add('visible'); }, 1800);
 
-  // ─── API pública para futuras versiones ───
+  // API pública
   window.DMD33 = {
-    setEstado,
-    getEstado: () => estadoActual,
-    getEnergia: () => energia,
-    estados: Object.keys(ESTADOS),
+    setEstado: aplicarEstado,
+    getEstado: function() { return estadoActual; },
+    despertar: despertar
   };
+
+})();
 </script>
 </body>
 </html>
