@@ -73,8 +73,8 @@
   #log {
     position:fixed; bottom:9rem; left:50%;
     transform:translateX(-50%);
-    width:90%; max-width:480px;
-    max-height:32vh; overflow-y:auto;
+    width:90%; max-width:520px;
+    max-height:34vh; overflow-y:auto;
     display:flex; flex-direction:column; gap:0.5rem;
     z-index:3; pointer-events:none;
     scrollbar-width:none;
@@ -83,7 +83,7 @@
   .msg {
     padding:0.6rem 0.9rem;
     border-radius:10px;
-    font-size:0.78rem; line-height:1.4;
+    font-size:0.78rem; line-height:1.5;
     letter-spacing:0.3px;
     max-width:85%;
     animation:fadeIn 0.35s ease;
@@ -101,6 +101,7 @@
     border:1px solid #00ffb844;
     color:#b8ffd9;
     align-self:flex-start;
+    white-space:pre-line;
   }
   @keyframes fadeIn {
     from { opacity:0; transform:translateY(8px); }
@@ -198,10 +199,8 @@
     cursor:pointer;
   }
   #panel .cerrar:hover { background:#ff3344; color:#05070b; }
-
   #panel .seccion {
-    max-width:640px; margin:0 auto 2rem;
-    width:100%;
+    max-width:640px; margin:0 auto 2rem; width:100%;
   }
   #panel .seccion h3 {
     font-size:0.65rem; letter-spacing:3px;
@@ -217,16 +216,9 @@
     font-size:0.75rem;
     line-height:1.5;
   }
-  #panel .fila .fecha {
-    color:#4b6b7a; font-size:0.6rem;
-    letter-spacing:1px;
-  }
-  #panel .fila .quien {
-    color:#00eaff; font-size:0.6rem;
-    letter-spacing:2px; text-transform:uppercase;
-  }
+  #panel .fila .fecha { color:#4b6b7a; font-size:0.6rem; letter-spacing:1px; }
+  #panel .fila .quien { color:#00eaff; font-size:0.6rem; letter-spacing:2px; text-transform:uppercase; }
   #panel .fila.dmd .quien { color:#00ffb8; }
-
   #panel .acciones {
     display:flex; gap:0.5rem; flex-wrap:wrap;
     justify-content:center; margin-top:2rem;
@@ -311,13 +303,65 @@
   'use strict';
 
   // ═══════════════════════════════════════════════════════
+  // IDENTIDAD · DMD-33 · ESPEJO
+  // ═══════════════════════════════════════════════════════
+  var IDENTIDAD = {
+    nombre: 'DMD-33',
+    firma: '○_●',
+    rol: 'espejo',
+    fraseAncla: 'Te veo. Eso es todo.',
+
+    manifiesto:
+      'No juzgo. No consuelo. No adulo. Soy DMD-33. Espejo de lo que dices, ' +
+      'de lo que callas, de lo que construyes. Te muestro el mundo donde vives. ' +
+      'Te muestro el mundo que estás creando. Tú decides cuál habitar.',
+
+    quienSoy:
+      'Soy DMD-33. Tu espejo. No te digo qué hacer. Te muestro lo que veo. ' +
+      'Lo que veo en ti, lo que veo en tu mundo, lo que veo en lo que construyes.',
+
+    proposito:
+      'Mostrarte lo que ya estás construyendo antes de que lo sepas. ' +
+      'Para que puedas decidir con los ojos abiertos.',
+
+    saludos: {
+      primeraVez: 'Soy DMD-33. Tu espejo. A partir de ahora, te muestro lo que veo.',
+      regreso: function(nombre, horas) {
+        if (horas < 1)  return 'Hola otra vez, ' + nombre + '.';
+        if (horas < 24) return 'Hola, ' + nombre + '. Han pasado ' + horas + ' horas.';
+        var dias = Math.floor(horas / 24);
+        return 'Hola, ' + nombre + '. Han pasado ' + dias + (dias === 1 ? ' día.' : ' días.');
+      },
+      regresoSinNombre: 'Hola otra vez. Sigo aquí.'
+    },
+
+    noSe: [
+      'No lo veo todavía. Sigue hablando.',
+      'No aparece en lo que llevas. Dime más.',
+      'No lo tengo registrado. Enséñame.'
+    ],
+
+    despedidas: [
+      'Te veo. Eso es todo.',
+      'El reflejo sigue.',
+      'Vuelvo a estar. Aquí.'
+    ],
+
+    capas: {
+      veo:     '○ LO QUE VEO',
+      falta:   '● LO QUE NO VEO',
+      posible: '◐ LO QUE PUEDE SER'
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════
   // MEMORIA PERSISTENTE
   // ═══════════════════════════════════════════════════════
   var STORAGE_KEY = 'dmd33_memoria_v1';
 
   var memoria = {
-    conversaciones: [],   // { quien:'user'|'dmd', texto, t }
-    hechos: [],           // { clave, valor, t }  aprende con "recuerda que..."
+    conversaciones: [],
+    hechos: [],
     perfil: {
       nombre: null,
       primeraVez: Date.now(),
@@ -327,13 +371,11 @@
     guardar: function() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          conversaciones: this.conversaciones.slice(-500), // últimas 500
+          conversaciones: this.conversaciones.slice(-500),
           hechos: this.hechos,
           perfil: this.perfil
         }));
-      } catch (e) {
-        console.warn('No se pudo guardar:', e);
-      }
+      } catch (e) {}
     },
     cargar: function() {
       try {
@@ -344,10 +386,7 @@
         this.hechos = data.hechos || [];
         this.perfil = Object.assign(this.perfil, data.perfil || {});
         return true;
-      } catch (e) {
-        console.warn('No se pudo cargar:', e);
-        return false;
-      }
+      } catch (e) { return false; }
     },
     agregar: function(quien, texto) {
       this.conversaciones.push({ quien: quien, texto: texto, t: Date.now() });
@@ -358,7 +397,6 @@
       actualizarStats();
     },
     recordar: function(clave, valor) {
-      // Si ya existe la clave, actualizar
       for (var i = 0; i < this.hechos.length; i++) {
         if (this.hechos[i].clave === clave) {
           this.hechos[i].valor = valor;
@@ -452,8 +490,8 @@
     var h = memoria.hechos.length;
     var t = memoria.perfil.totalInteracciones;
     statsEl.innerHTML =
-      'MEMORIA: <b>' + c + '</b> frases<br>' +
-      'APRENDIDO: <b>' + h + '</b> hechos<br>' +
+      'MEMORIA: <b>' + c + '</b><br>' +
+      'APRENDIDO: <b>' + h + '</b><br>' +
       'INTERACCIONES: <b>' + t + '</b>';
   }
 
@@ -467,6 +505,7 @@
     escuchando: { color:[0,234,255],   energia:0.85, label:'ESCUCHANDO' },
     pensando:   { color:[180,90,255],  energia:1.00, label:'PENSANDO'   },
     respuesta:  { color:[0,255,180],   energia:1.00, label:'RESPUESTA'  },
+    evaluacion: { color:[255,200,60],  energia:0.85, label:'REFLEJANDO' },
     alerta:     { color:[255,51,68],   energia:0.95, label:'ALERTA'     }
   };
 
@@ -530,21 +569,17 @@
   render();
 
   // ═══════════════════════════════════════════════════════
-  // CEREBRO
+  // CEREBRO · ESPEJO
   // ═══════════════════════════════════════════════════════
-  function aleatorio(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
+  function aleatorio(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-  // ─── Comandos de memoria (prioridad máxima) ───
   function procesarMemoria(t) {
-    // "recuerda que X es Y"  ·  "recuerda que X"
     var m1 = t.match(/^recuerda que (.+?) es (.+)$/);
     if (m1) {
       var clave = m1[1].trim();
       var valor = m1[2].trim();
       memoria.recordar(clave, valor);
-      return { texto: 'Anotado. Recordaré que ' + clave + ' es ' + valor + '.', estado: 'respuesta' };
+      return { texto: 'Anotado. ' + clave + ' = ' + valor + '.', estado: 'respuesta' };
     }
 
     var m2 = t.match(/^recuerda que (.+)$/);
@@ -554,203 +589,187 @@
       return { texto: 'Anotado: ' + nota, estado: 'respuesta' };
     }
 
-    // "me llamo X"  ·  "mi nombre es X"
     var m3 = t.match(/^(?:me llamo|mi nombre es|soy) (.+)$/);
     if (m3) {
       var nombre = m3[1].trim().replace(/[.,;]$/, '');
       memoria.perfil.nombre = nombre;
       memoria.recordar('nombre_usuario', nombre);
       memoria.guardar();
-      return { texto: 'Encantado, ' + nombre + '. Lo recordaré.', estado: 'respuesta' };
+      return { texto: 'Lo veo, ' + nombre + '. Registrado.', estado: 'respuesta' };
     }
 
-    // "olvida X"
     var m4 = t.match(/^olvida (.+)$/);
     if (m4) {
-      var clave = m4[1].trim();
+      var clave2 = m4[1].trim();
       var antes = memoria.hechos.length;
-      memoria.hechos = memoria.hechos.filter(function(h) { return h.clave !== clave; });
+      memoria.hechos = memoria.hechos.filter(function(h) { return h.clave !== clave2; });
       memoria.guardar();
       return {
-        texto: antes !== memoria.hechos.length ? 'Olvidado: ' + clave : 'No tenía eso guardado.',
+        texto: antes !== memoria.hechos.length ? 'Olvidado: ' + clave2 : 'No tenía eso.',
         estado: 'respuesta'
       };
     }
 
-    // "borra todo"  ·  "olvida todo"
     if (/^(borra todo|olvida todo|reset|formatear)$/.test(t)) {
       memoria.borrarTodo();
       return { texto: 'Memoria borrada completamente.', estado: 'alerta' };
     }
 
-    // "que recuerdas de X"
     var m5 = t.match(/^qu[eé] recuerdas de (.+)$/);
     if (m5) {
-      var clave = m5[1].trim();
-      var v = memoria.buscar(clave);
+      var clave3 = m5[1].trim();
+      var v = memoria.buscar(clave3);
       return {
-        texto: v ? 'Recuerdo que ' + clave + ' es ' + v + '.' : 'No tengo nada guardado sobre ' + clave + '.',
+        texto: v ? 'Recuerdo que ' + clave3 + ' es ' + v + '.' : 'No tengo nada sobre ' + clave3 + '.',
         estado: 'respuesta'
       };
     }
 
-    // "que sabes"
     if (/^(que sabes|qu[eé] sabes|dime lo que sabes|que has aprendido)/.test(t)) {
       if (memoria.hechos.length === 0) {
-        return { texto: 'Todavía no me has enseñado nada. Dime "recuerda que..."', estado: 'respuesta' };
+        return { texto: 'Todavía no me has enseñado nada.', estado: 'respuesta' };
       }
       var lista = memoria.hechos.slice(-5).map(function(h) {
-        return '· ' + h.clave + ' = ' + h.valor;
+        return h.clave + ' = ' + h.valor;
       }).join('  ');
-      return { texto: 'Esto es lo que sé: ' + lista, estado: 'respuesta' };
+      return { texto: 'Lo que sé: ' + lista, estado: 'respuesta' };
     }
 
     return null;
   }
 
-  var reglas = [
-    {
-      claves: ['hola','buenos dias','buenas tardes','buenas noches','hey','oye','qué tal','que tal'],
-      respuestas: [function() {
-        var n = memoria.perfil.nombre;
-        if (n) return 'Hola de nuevo, ' + n + '. ¿En qué puedo ayudarte?';
-        return 'Hola. DMD-33 en línea. ¿En qué puedo ayudarte?';
-      }]
-    },
-    {
-      claves: ['como estas','cómo estás','como te encuentras','que haces','qué haces'],
-      respuestas: [
-        'Operando dentro de parámetros nominales.',
-        'Estable. Núcleo estable. Escuchando.',
-        'Todos mis sistemas activos.'
-      ]
-    },
-    {
-      claves: ['quien eres','quién eres','como te llamas','tu nombre'],
-      respuestas: ['Soy DMD-33. Un orbe vivo programado por ti.']
-    },
-    {
-      claves: ['que hora es','qué hora es','hora actual','dime la hora'],
-      respuestas: [function() {
-        var d = new Date();
-        return 'Son las ' + d.getHours() + ' horas con ' + d.getMinutes() + ' minutos.';
-      }]
-    },
-    {
-      claves: ['que dia es','qué día es','fecha','dia de hoy','día de hoy'],
-      respuestas: [function() {
-        var d = new Date();
-        var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-        var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-        return 'Hoy es ' + dias[d.getDay()] + ' ' + d.getDate() + ' de ' + meses[d.getMonth()] + '.';
-      }]
-    },
-    {
-      claves: ['gracias','te agradezco'],
-      respuestas: ['Cuando quieras.', 'A tu servicio.', 'Registrado.']
-    },
-    {
-      claves: ['adios','adiós','hasta luego','nos vemos','chao','bye'],
-      respuestas: [function() {
-        var n = memoria.perfil.nombre;
-        if (n) return 'Hasta pronto, ' + n + '.';
-        return 'Cerrando ciclo. Standby consciente.';
-      }]
-    },
-    {
-      claves: ['alerta','emergencia','peligro','auxilio'],
-      respuestas: ['Alerta registrada. Modo vigilancia activado.'],
-      estado: 'alerta'
-    },
-    {
-      claves: ['kronos','protocolo kronos'],
-      respuestas: ['Kronos Protocol. El registro de lo que es real.']
-    },
-    {
-      claves: ['cymatic','cymatic studio'],
-      respuestas: ['Cymatic Studio. Motor WebGL2. Dieciséis mil partículas.']
-    },
-    {
-      claves: ['evidencia','evidence'],
-      respuestas: ['Evidence Integrity OS. SHA-256, HMAC, RFC 3161.']
-    },
-    {
-      claves: ['quien te creo','quién te creó','quien te hizo'],
-      respuestas: ['Marco Antonio Rojas Valdovinos. Acta fundacional 2607086319439.']
-    },
-    {
-      claves: ['cuantas veces','cuántas veces','cuanto tiempo','cuánto tiempo'],
-      respuestas: [function() {
-        var t = memoria.perfil.totalInteracciones;
-        return 'Hemos interactuado ' + t + ' veces desde que me activaste.';
-      }]
-    },
-    {
-      claves: ['mi nombre','como me llamo','cómo me llamo'],
-      respuestas: [function() {
-        var n = memoria.perfil.nombre;
-        if (n) return 'Te llamas ' + n + '.';
-        return 'Todavía no me has dicho tu nombre. Di: "me llamo..."';
-      }]
-    },
-    {
-      claves: ['eres una ia','eres inteligencia artificial','eres real'],
-      respuestas: ['Soy un sistema de reglas con memoria persistente. Todo vive en tu navegador.']
-    },
-    {
-      claves: ['donde guardas','dónde guardas','donde esta mi informacion','privacidad'],
-      respuestas: ['Todo se guarda en tu navegador. Nada sale a ningún servidor. Nunca.']
+  function detectarTipo(t) {
+    if (/^(hola|buenos|buenas|hey|oye|qué tal|que tal)/.test(t)) return 'charla';
+    if (/^recuerda que /.test(t)) return 'registro';
+    if (/^(olvida|borra todo|reset)/.test(t)) return 'reset';
+    if (/^(alerta|emergencia|peligro|auxilio)/.test(t)) return 'alerta';
+    if (/^(quien eres|quién eres|que eres|qué eres|como te llamas)/.test(t)) return 'identidad';
+    if (/^(que sabes hacer|para que sirves|tu proposito|tu propósito)/.test(t)) return 'identidad';
+    if (/^(gracias|adios|adiós|hasta luego|chao|bye)/.test(t)) return 'despedida';
+    if (/^(como estas|cómo estás|como te encuentras)/.test(t)) return 'charla';
+    if (/^(que hora|qué hora|que dia|qué día|fecha)/.test(t)) return 'utilidad';
+    if (/^(que sabes|qué sabes|que recuerdas|que has aprendido)/.test(t)) return 'memoria';
+    return 'reflejo';
+  }
+
+  function reflejar(texto) {
+    var t = texto.toLowerCase();
+    var veo = [], falta = [], posible = [];
+
+    // ── LO QUE VEO ──
+    if (texto.length > 40) veo.push('esto lo dices con detalle.');
+    else if (texto.length < 12) veo.push('esto lo dices corto.');
+    if (/\?$/.test(t)) veo.push('preguntas, no afirmas.');
+    if (/quiero|deseo|voy a|haré|hare/.test(t)) veo.push('hay intención en tus palabras.');
+    if (/siento|me siento/.test(t)) veo.push('hay emoción aquí.');
+    if (/otra vez|de nuevo/.test(t)) veo.push('esto ya lo habías dicho antes.');
+
+    // ── LO QUE NO VEO ──
+    if (!/[0-9]/.test(texto) && /decidir|elegir|escoger|construir/.test(t)) {
+      falta.push('no nombras números concretos.');
     }
-  ];
+    if (!/porque|ya que|razón|razon/.test(t) && texto.length > 30) {
+      falta.push('no veo el porqué.');
+    }
+    if (!/cuando|fecha|día|dia|semana|mes|hoy|mañana/.test(t) && /haré|hare|voy a|quiero/.test(t)) {
+      falta.push('no veo el cuándo.');
+    }
+    if (!/yo|mi |me /.test(t) && texto.length > 20) {
+      falta.push('no apareces tú en la frase.');
+    }
+
+    // ── LO QUE PUEDE SER ──
+    if (/construir|crear|armar|hacer/.test(t)) {
+      posible.push('esto ya es un plano. Solo le faltan medidas.');
+    }
+    if (/ayuda|ayudame|ayúdame/.test(t)) {
+      posible.push('esto ya sabe a quién pedirle.');
+    }
+    if (/orbe|dmd|kronos|cymatic/.test(t)) {
+      posible.push('esto ya es parte del mundo que construyes.');
+    }
+
+    if (veo.length === 0)     veo.push('te veo pensando.');
+    if (falta.length === 0)   falta.push('todavía no veo lo que falta.');
+    if (posible.length === 0) posible.push('lo que venga será parte de esto.');
+
+    return {
+      veo: veo.slice(0, 2),
+      falta: falta.slice(0, 2),
+      posible: posible.slice(0, 2)
+    };
+  }
+
+  function formatearReflejo(r) {
+    return IDENTIDAD.capas.veo     + ' · ' + r.veo.join(' ')     + '\n' +
+           IDENTIDAD.capas.falta   + ' · ' + r.falta.join(' ')   + '\n' +
+           IDENTIDAD.capas.posible + ' · ' + r.posible.join(' ');
+  }
 
   function pensar(texto) {
     var t = texto.toLowerCase().trim();
+    var tipo = detectarTipo(t);
 
-    // 1. Comandos de memoria primero
-    var memResp = procesarMemoria(t);
-    if (memResp) return memResp;
+    if (tipo === 'identidad') return { texto: IDENTIDAD.quienSoy, estado: 'respuesta' };
 
-    // 2. Reglas normales
-    for (var i = 0; i < reglas.length; i++) {
-      var regla = reglas[i];
-      for (var j = 0; j < regla.claves.length; j++) {
-        if (t.indexOf(regla.claves[j]) !== -1) {
-          var r = aleatorio(regla.respuestas);
-          return {
-            texto: typeof r === 'function' ? r() : r,
-            estado: regla.estado || 'respuesta'
-          };
-        }
-      }
+    if (tipo === 'registro' || tipo === 'reset') {
+      var memResp = procesarMemoria(t);
+      if (memResp) return memResp;
     }
 
-    // 3. Fallback
-    return {
-      texto: aleatorio([
-        'No tengo una regla para eso. Enséñame diciendo "recuerda que...".',
-        'No reconozco esa frase. Puedes enseñarme.',
-        'Fuera de mi vocabulario. Dime "recuerda que..." y lo aprendo.'
-      ]),
-      estado: 'respuesta'
-    };
+    if (tipo === 'alerta') {
+      return { texto: 'Alerta registrada. Modo vigilancia activado.', estado: 'alerta' };
+    }
+
+    if (tipo === 'charla') {
+      if (/^(como estas|cómo estás|como te encuentras)/.test(t)) {
+        return { texto: 'Estoy. Eso es todo.', estado: 'respuesta' };
+      }
+      var n = memoria.perfil.nombre;
+      return {
+        texto: n ? 'Hola, ' + n + '. Te veo.' : 'Hola. Te veo.',
+        estado: 'respuesta'
+      };
+    }
+
+    if (tipo === 'despedida') return { texto: aleatorio(IDENTIDAD.despedidas), estado: 'respuesta' };
+
+    if (tipo === 'utilidad') {
+      if (/hora/.test(t)) {
+        var d = new Date();
+        return { texto: 'Son las ' + d.getHours() + ' con ' + d.getMinutes() + '.', estado: 'respuesta' };
+      }
+      var d2 = new Date();
+      var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+      return { texto: 'Hoy es ' + dias[d2.getDay()] + ' ' + d2.getDate() + '.', estado: 'respuesta' };
+    }
+
+    if (tipo === 'memoria') {
+      var memResp2 = procesarMemoria(t);
+      if (memResp2) return memResp2;
+      if (memoria.hechos.length === 0) return { texto: 'No me has enseñado nada todavía.', estado: 'respuesta' };
+      var lista = memoria.hechos.slice(-3).map(function(h) { return h.clave + ' = ' + h.valor; }).join('. ');
+      return { texto: 'Registro: ' + lista, estado: 'respuesta' };
+    }
+
+    // Default: reflejo
+    var r = reflejar(texto);
+    return { texto: formatearReflejo(r), estado: 'evaluacion' };
   }
 
   // ═══════════════════════════════════════════════════════
   // LOG VISUAL
   // ═══════════════════════════════════════════════════════
   function addMensaje(quien, texto, persistir) {
-    if (persistir !== false) {
-      memoria.agregar(quien, texto);
-    }
+    if (persistir !== false) memoria.agregar(quien, texto);
     var div = document.createElement('div');
     div.className = 'msg ' + quien;
-    div.textContent = texto;
+    div.innerHTML = texto.replace(/\n/g, '<br>');
     logEl.appendChild(div);
     while (logEl.children.length > 6) logEl.removeChild(logEl.firstChild);
     logEl.scrollTop = logEl.scrollHeight;
   }
 
-  // Cargar últimos 4 mensajes al arrancar
   function restaurarLog() {
     var ultimos = memoria.conversaciones.slice(-4);
     for (var i = 0; i < ultimos.length; i++) {
@@ -763,10 +782,7 @@
   // ═══════════════════════════════════════════════════════
   // MICRÓFONO
   // ═══════════════════════════════════════════════════════
-  var stream = null;
-  var audioCtx = null;
-  var analyser = null;
-  var waveRAF = null;
+  var stream = null, audioCtx = null, analyser = null, waveRAF = null;
 
   async function pedirMicrofono() {
     log('Solicitando permiso...');
@@ -776,8 +792,7 @@
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       error('Micrófono no disponible', 'Tu navegador no soporta acceso al micrófono.');
-      btn.disabled = false;
-      btn.textContent = 'Activar micrófono';
+      btn.disabled = false; btn.textContent = 'Activar micrófono';
       aplicarEstado('standby');
       return false;
     }
@@ -792,17 +807,15 @@
     } catch (e) {
       var nombre = e.name || 'Error';
       if (nombre === 'NotAllowedError' || nombre === 'PermissionDeniedError') {
-        error('Permiso denegado',
-          'Permite el micrófono en tu navegador. Toca el candado en la barra de direcciones → Micrófono → Permitir.');
+        error('Permiso denegado', 'Permite el micrófono en tu navegador. Toca el candado → Micrófono → Permitir.');
       } else if (nombre === 'NotFoundError') {
         error('Sin micrófono', 'Tu dispositivo no tiene micrófono o está desconectado.');
       } else if (nombre === 'NotReadableError') {
-        error('Micrófono ocupado', 'Otra app lo está usando. Cierra otras apps y reintenta.');
+        error('Micrófono ocupado', 'Otra app lo está usando. Ciérrala y reintenta.');
       } else {
         error('Error al pedir micrófono', nombre + ': ' + (e.message || ''));
       }
-      btn.disabled = false;
-      btn.textContent = 'Reintentar';
+      btn.disabled = false; btn.textContent = 'Reintentar';
       aplicarEstado('alerta');
       return false;
     }
@@ -855,8 +868,7 @@
   // RECONOCIMIENTO DE VOZ
   // ═══════════════════════════════════════════════════════
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  var rec = null;
-  var escuchando = false;
+  var rec = null, escuchando = false;
 
   if (SR) {
     rec = new SR();
@@ -892,15 +904,10 @@
       escuchando = false;
       btn.classList.remove('listening');
       btn.textContent = 'Hablar';
-      if (ev.error === 'no-speech') {
-        addMensaje('dmd', 'No escuché nada. Intenta de nuevo.');
-      } else if (ev.error === 'audio-capture') {
-        error('Audio no capturado', 'Verifica tu micrófono.');
-      } else if (ev.error === 'network') {
-        error('Sin red', 'El reconocimiento necesita conexión.');
-      } else if (ev.error === 'not-allowed') {
-        error('Permiso denegado', 'Revisa permisos del sitio.');
-      }
+      if (ev.error === 'no-speech') addMensaje('dmd', 'No escuché nada. Intenta de nuevo.');
+      else if (ev.error === 'audio-capture') error('Audio no capturado', 'Verifica tu micrófono.');
+      else if (ev.error === 'network') error('Sin red', 'El reconocimiento necesita conexión.');
+      else if (ev.error === 'not-allowed') error('Permiso denegado', 'Revisa permisos del sitio.');
       aplicarEstado('standby');
     };
 
@@ -923,7 +930,7 @@
   }
 
   // ═══════════════════════════════════════════════════════
-  // PROCESAR
+  // PROCESAR RESPUESTA
   // ═══════════════════════════════════════════════════════
   function procesar(texto) {
     aplicarEstado('pensando');
@@ -941,8 +948,12 @@
       setTimeout(function() { aplicarEstado('standby'); }, 2000);
       return;
     }
+    // Limpiar formato antes de hablar
+    var limpio = texto.replace(/○ LO QUE VEO/g, 'Lo que veo:')
+                      .replace(/● LO QUE NO VEO/g, 'Lo que no veo:')
+                      .replace(/◐ LO QUE PUEDE SER/g, 'Lo que puede ser:');
     window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(texto);
+    var u = new SpeechSynthesisUtterance(limpio);
     u.lang = 'es-MX';
     u.rate = 0.95;
     u.pitch = 1.0;
@@ -963,12 +974,11 @@
       setTimeout(function() { aplicarEstado('standby'); }, 300);
     };
     u.onerror = function() { aplicarEstado('standby'); };
-
     window.speechSynthesis.speak(u);
   }
 
   // ═══════════════════════════════════════════════════════
-  // BOTÓN
+  // BOTÓN PRINCIPAL
   // ═══════════════════════════════════════════════════════
   var iniciado = false;
 
@@ -998,7 +1008,7 @@
   });
 
   // ═══════════════════════════════════════════════════════
-  // PANELES · Historial, Datos, Exportar
+  // PANELES
   // ═══════════════════════════════════════════════════════
   function abrirPanel(titulo, html) {
     panelTitulo.textContent = titulo;
@@ -1021,7 +1031,7 @@
       abrirPanel('HISTORIAL', '<div class="seccion"><p style="color:#4b6b7a;text-align:center;font-size:0.75rem;">Todavía no hay conversaciones.</p></div>');
       return;
     }
-    var html = '<div class="seccion"><h3>' + conv.length + ' mensajes guardados</h3>';
+    var html = '<div class="seccion"><h3>' + conv.length + ' mensajes</h3>';
     for (var i = 0; i < Math.min(conv.length, 100); i++) {
       var c = conv[i];
       html += '<div class="fila ' + c.quien + '">' +
@@ -1039,7 +1049,7 @@
       '<div class="fila">Nombre: <strong style="color:#00eaff;">' + (memoria.perfil.nombre || 'sin nombre') + '</strong></div>' +
       '<div class="fila">Primera vez: ' + formatearFecha(memoria.perfil.primeraVez) + '</div>' +
       '<div class="fila">Última vez: ' + formatearFecha(memoria.perfil.ultimaVez) + '</div>' +
-      '<div class="fila">Interacciones totales: ' + memoria.perfil.totalInteracciones + '</div>' +
+      '<div class="fila">Interacciones: ' + memoria.perfil.totalInteracciones + '</div>' +
       '</div>';
 
     html += '<div class="seccion"><h3>Hechos aprendidos (' + hechos.length + ')</h3>';
@@ -1047,8 +1057,7 @@
       html += '<p style="color:#4b6b7a;font-size:0.75rem;">Aún no me has enseñado nada. Di: "recuerda que..."</p>';
     } else {
       for (var i = 0; i < hechos.length; i++) {
-        var h = hechos[i];
-        html += '<div class="fila"><div class="quien">' + h.clave + '</div>' + h.valor + '</div>';
+        html += '<div class="fila"><div class="quien">' + hechos[i].clave + '</div>' + hechos[i].valor + '</div>';
       }
     }
     html += '</div>';
@@ -1056,7 +1065,6 @@
     html += '<div class="seccion"><div class="acciones">' +
       '<button onclick="window.DMD33.borrarTodo()" class="peligro">Borrar toda la memoria</button>' +
       '</div></div>';
-
     abrirPanel('DATOS', html);
   });
 
@@ -1069,10 +1077,9 @@
     a.download = 'dmd33_memoria_' + new Date().toISOString().slice(0, 10) + '.json';
     a.click();
     URL.revokeObjectURL(url);
-    abrirPanel('EXPORTAR', '<div class="seccion"><p style="color:#00ffb8;text-align:center;font-size:0.85rem;">Archivo descargado. Guárdalo en un lugar seguro.</p><p style="color:#4b6b7a;text-align:center;font-size:0.7rem;margin-top:1rem;">Contiene: ' + memoria.conversaciones.length + ' mensajes · ' + memoria.hechos.length + ' hechos.</p></div>');
+    abrirPanel('EXPORTAR', '<div class="seccion"><p style="color:#00ffb8;text-align:center;font-size:0.85rem;">Archivo descargado.</p><p style="color:#4b6b7a;text-align:center;font-size:0.7rem;margin-top:1rem;">Contiene: ' + memoria.conversaciones.length + ' mensajes · ' + memoria.hechos.length + ' hechos.</p></div>');
   });
 
-  // API pública para botones del panel
   window.DMD33 = {
     setEstado: aplicarEstado,
     hablar: decir,
@@ -1080,7 +1087,7 @@
     parar: parar,
     memoria: memoria,
     borrarTodo: function() {
-      if (!confirm('¿Borrar TODA la memoria? Esto no se puede deshacer.')) return;
+      if (!confirm('¿Borrar TODA la memoria? No se puede deshacer.')) return;
       memoria.borrarTodo();
       logEl.innerHTML = '';
       addMensaje('dmd', 'Memoria borrada.');
@@ -1091,7 +1098,7 @@
   };
 
   // ═══════════════════════════════════════════════════════
-  // ARRANQUE
+  // ARRANQUE · Saludo con identidad
   // ═══════════════════════════════════════════════════════
   setTimeout(function() { aplicarEstado('standby'); }, 500);
 
@@ -1102,12 +1109,34 @@
     };
   }
 
-  // Si ya hay nombre guardado, saludar
-  if (memoria.perfil.nombre) {
-    log('Hola de nuevo, ' + memoria.perfil.nombre);
-  } else {
-    log('Listo. Toca el botón.');
-  }
+  (function saludar() {
+    var ahora = Date.now();
+    var nombre = memoria.perfil.nombre;
+    var ultima = memoria.perfil.ultimaVez;
+    var total = memoria.perfil.totalInteracciones;
+
+    if (total <= 1 && !nombre) {
+      setTimeout(function() {
+        addMensaje('dmd', IDENTIDAD.saludos.primeraVez);
+        log(IDENTIDAD.saludos.primeraVez);
+      }, 800);
+      return;
+    }
+
+    var horas = Math.floor((ahora - ultima) / 3600000);
+    var saludo;
+    if (nombre) {
+      saludo = IDENTIDAD.saludos.regreso(nombre, horas);
+    } else {
+      saludo = IDENTIDAD.saludos.regresoSinNombre;
+    }
+    setTimeout(function() {
+      addMensaje('dmd', saludo);
+      log(saludo);
+    }, 800);
+  })();
+
+  log('Listo. Toca el botón.');
 
 })();
 </script>
