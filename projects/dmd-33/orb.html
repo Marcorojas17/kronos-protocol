@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- 🛡️ GUARDIAN-SHA ✅ -->
-<!-- DMD-33 ○_● · orb.html · v1.0 · 2026 -->
+<!-- DMD-33 ○_● · orb.html · v1.1 · 2026 -->
 <!-- SHA obra: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738 -->
 <!-- TX: 0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466 -->
 <html lang="es">
@@ -310,6 +310,16 @@ setTimeout(function(){addMsg('a',l.join('\n'))},800)})();
 dbgSet('Listo. Toca el botón.');
 
 })();
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js', {scope:'./'})
+      .then(function(){ console.log('SW online 2099'); })
+      .catch(function(e){ console.log('SW:', e); });
+  });
+}
 </script>
 </body>
 </html>
