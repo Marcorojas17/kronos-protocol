@@ -34,39 +34,47 @@
   }
 
   #titulo {
-    position:fixed; top:1.8rem; left:50%;
+    position:fixed; top:1.5rem; left:50%;
     transform:translateX(-50%);
     font-family:'Cinzel',serif;
-    font-size:0.95rem; letter-spacing:8px;
+    font-size:0.9rem; letter-spacing:8px;
     color:#00eaff; opacity:0.8; z-index:3;
   }
 
   #estado {
-    position:fixed; top:4rem; left:50%;
+    position:fixed; top:3.4rem; left:50%;
     transform:translateX(-50%);
     padding:0.35rem 1.1rem;
     border:1px solid currentColor;
     border-radius:30px;
     background:#000a;
-    font-size:0.65rem; letter-spacing:4px;
+    font-size:0.62rem; letter-spacing:4px;
     font-weight:300; color:#00eaff;
     transition:color 0.6s;
     z-index:3;
   }
 
+  #stats {
+    position:fixed; top:1rem; left:1rem;
+    font-size:0.58rem; color:#4b6b7a;
+    letter-spacing:1px; z-index:4;
+    line-height:1.5;
+  }
+  #stats b { color:#00eaff; font-weight:500; }
+
   #debug {
     position:fixed; top:1rem; right:1rem;
-    font-size:0.6rem; color:#4b6b7a;
+    font-size:0.55rem; color:#4b6b7a;
     letter-spacing:1px; z-index:4;
     text-align:right; max-width:40%;
     line-height:1.4;
   }
 
   #log {
-    position:fixed; bottom:8rem; left:50%;
+    position:fixed; bottom:9rem; left:50%;
     transform:translateX(-50%);
     width:90%; max-width:480px;
-    max-height:30vh; overflow-y:auto;
+    max-height:32vh; overflow-y:auto;
     display:flex; flex-direction:column; gap:0.5rem;
     z-index:3; pointer-events:none;
     scrollbar-width:none;
@@ -79,6 +87,7 @@
     letter-spacing:0.3px;
     max-width:85%;
     animation:fadeIn 0.35s ease;
+    word-wrap:break-word;
   }
   .msg.user {
     background:#00eaff18;
@@ -99,7 +108,7 @@
   }
 
   #wave {
-    position:fixed; bottom:5rem; left:50%;
+    position:fixed; bottom:6rem; left:50%;
     transform:translateX(-50%);
     width:200px; height:36px;
     display:none; z-index:3;
@@ -114,7 +123,7 @@
     background:#00eaff11;
     color:#00eaff;
     font-family:'Inter',sans-serif;
-    font-size:0.75rem; letter-spacing:4px;
+    font-size:0.72rem; letter-spacing:4px;
     text-transform:uppercase;
     border-radius:40px;
     cursor:pointer;
@@ -122,25 +131,123 @@
     z-index:5;
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
+    white-space:nowrap;
   }
   #btn:hover, #btn:active {
     background:#00eaff;
     color:#05070b;
     box-shadow:0 0 40px #00eaff88;
   }
-  #btn:disabled {
-    opacity:0.4;
-    cursor:not-allowed;
-  }
+  #btn:disabled { opacity:0.4; cursor:not-allowed; }
   #btn.listening {
     border-color:#ff3344;
     color:#ff3344;
     background:#ff334411;
   }
-  #btn.listening:hover {
-    background:#ff3344;
-    color:#05070b;
+  #btn.listening:hover { background:#ff3344; color:#05070b; }
+
+  #menu {
+    position:fixed; top:1rem; left:50%;
+    transform:translateX(-50%);
+    display:flex; gap:0.5rem;
+    z-index:6;
   }
+  .mbtn {
+    padding:0.4rem 0.9rem;
+    background:#000a;
+    border:1px solid #00eaff33;
+    color:#00eaff;
+    font-family:inherit;
+    font-size:0.55rem;
+    letter-spacing:2px;
+    border-radius:20px;
+    cursor:pointer;
+    text-transform:uppercase;
+    transition:all 0.3s;
+  }
+  .mbtn:hover { background:#00eaff22; border-color:#00eaff; }
+
+  #panel {
+    position:fixed; inset:0;
+    background:#05070bfa;
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:20;
+    display:none;
+    flex-direction:column;
+    padding:2rem 1.5rem;
+    overflow-y:auto;
+  }
+  #panel.visible { display:flex; }
+  #panel h2 {
+    font-family:'Cinzel',serif;
+    font-size:1rem; letter-spacing:5px;
+    color:#00eaff; margin-bottom:1.5rem;
+    text-align:center;
+  }
+  #panel .cerrar {
+    position:absolute; top:1rem; right:1rem;
+    padding:0.5rem 1rem;
+    background:transparent;
+    border:1px solid #ff334488;
+    color:#ff3344;
+    border-radius:30px;
+    font-family:inherit;
+    font-size:0.6rem;
+    letter-spacing:2px;
+    cursor:pointer;
+  }
+  #panel .cerrar:hover { background:#ff3344; color:#05070b; }
+
+  #panel .seccion {
+    max-width:640px; margin:0 auto 2rem;
+    width:100%;
+  }
+  #panel .seccion h3 {
+    font-size:0.65rem; letter-spacing:3px;
+    color:#4b6b7a; text-transform:uppercase;
+    margin-bottom:0.8rem;
+  }
+  #panel .fila {
+    padding:0.7rem 1rem;
+    background:#0a0e1588;
+    border:1px solid #00eaff22;
+    border-radius:8px;
+    margin-bottom:0.5rem;
+    font-size:0.75rem;
+    line-height:1.5;
+  }
+  #panel .fila .fecha {
+    color:#4b6b7a; font-size:0.6rem;
+    letter-spacing:1px;
+  }
+  #panel .fila .quien {
+    color:#00eaff; font-size:0.6rem;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  #panel .fila.dmd .quien { color:#00ffb8; }
+
+  #panel .acciones {
+    display:flex; gap:0.5rem; flex-wrap:wrap;
+    justify-content:center; margin-top:2rem;
+  }
+  #panel .acciones button {
+    padding:0.7rem 1.4rem;
+    background:#00eaff11;
+    border:1px solid #00eaff;
+    color:#00eaff;
+    font-family:inherit;
+    font-size:0.6rem;
+    letter-spacing:2px;
+    border-radius:30px;
+    cursor:pointer;
+    text-transform:uppercase;
+  }
+  #panel .acciones button:hover { background:#00eaff; color:#05070b; }
+  #panel .acciones button.peligro {
+    border-color:#ff3344; color:#ff3344; background:#ff334411;
+  }
+  #panel .acciones button.peligro:hover { background:#ff3344; color:#05070b; }
 
   #err {
     position:fixed; top:50%; left:50%;
@@ -154,7 +261,7 @@
     max-width:80%;
     text-align:center;
     line-height:1.5;
-    z-index:10;
+    z-index:30;
     display:none;
   }
   #err.visible { display:block; }
@@ -178,15 +285,130 @@
 <div id="orb"></div>
 <div id="titulo">DMD-33 ○_●</div>
 <div id="estado">INICIANDO</div>
+<div id="stats"></div>
 <div id="debug"></div>
 <div id="log"></div>
 <canvas id="wave" width="400" height="72"></canvas>
+
+<div id="menu">
+  <button class="mbtn" id="btn-historial">Historial</button>
+  <button class="mbtn" id="btn-datos">Datos</button>
+  <button class="mbtn" id="btn-exportar">Exportar</button>
+</div>
+
 <button id="btn" type="button">Activar micrófono</button>
+
+<div id="panel">
+  <button class="cerrar" onclick="document.getElementById('panel').classList.remove('visible')">Cerrar</button>
+  <h2 id="panel-titulo">HISTORIAL</h2>
+  <div id="panel-contenido"></div>
+</div>
+
 <div id="err"></div>
 
 <script>
 (function() {
   'use strict';
+
+  // ═══════════════════════════════════════════════════════
+  // MEMORIA PERSISTENTE
+  // ═══════════════════════════════════════════════════════
+  var STORAGE_KEY = 'dmd33_memoria_v1';
+
+  var memoria = {
+    conversaciones: [],   // { quien:'user'|'dmd', texto, t }
+    hechos: [],           // { clave, valor, t }  aprende con "recuerda que..."
+    perfil: {
+      nombre: null,
+      primeraVez: Date.now(),
+      ultimaVez: Date.now(),
+      totalInteracciones: 0
+    },
+    guardar: function() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          conversaciones: this.conversaciones.slice(-500), // últimas 500
+          hechos: this.hechos,
+          perfil: this.perfil
+        }));
+      } catch (e) {
+        console.warn('No se pudo guardar:', e);
+      }
+    },
+    cargar: function() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        var data = JSON.parse(raw);
+        this.conversaciones = data.conversaciones || [];
+        this.hechos = data.hechos || [];
+        this.perfil = Object.assign(this.perfil, data.perfil || {});
+        return true;
+      } catch (e) {
+        console.warn('No se pudo cargar:', e);
+        return false;
+      }
+    },
+    agregar: function(quien, texto) {
+      this.conversaciones.push({ quien: quien, texto: texto, t: Date.now() });
+      if (this.conversaciones.length > 1000) this.conversaciones.shift();
+      this.perfil.totalInteracciones++;
+      this.perfil.ultimaVez = Date.now();
+      this.guardar();
+      actualizarStats();
+    },
+    recordar: function(clave, valor) {
+      // Si ya existe la clave, actualizar
+      for (var i = 0; i < this.hechos.length; i++) {
+        if (this.hechos[i].clave === clave) {
+          this.hechos[i].valor = valor;
+          this.hechos[i].t = Date.now();
+          this.guardar();
+          return;
+        }
+      }
+      this.hechos.push({ clave: clave, valor: valor, t: Date.now() });
+      this.guardar();
+    },
+    buscar: function(clave) {
+      for (var i = 0; i < this.hechos.length; i++) {
+        if (this.hechos[i].clave === clave) return this.hechos[i].valor;
+      }
+      return null;
+    },
+    borrarTodo: function() {
+      this.conversaciones = [];
+      this.hechos = [];
+      this.perfil = {
+        nombre: null,
+        primeraVez: Date.now(),
+        ultimaVez: Date.now(),
+        totalInteracciones: 0
+      };
+      this.guardar();
+      actualizarStats();
+    },
+    exportar: function() {
+      return JSON.stringify({
+        version: 1,
+        exportado: new Date().toISOString(),
+        conversaciones: this.conversaciones,
+        hechos: this.hechos,
+        perfil: this.perfil
+      }, null, 2);
+    },
+    importar: function(json) {
+      var data = JSON.parse(json);
+      if (!data.conversaciones) throw new Error('Formato inválido');
+      this.conversaciones = data.conversaciones;
+      this.hechos = data.hechos || [];
+      this.perfil = Object.assign(this.perfil, data.perfil || {});
+      this.guardar();
+      actualizarStats();
+    }
+  };
+
+  memoria.cargar();
 
   // ═══════════════════════════════════════════════════════
   // ELEMENTOS
@@ -196,11 +418,15 @@
   var orb = document.getElementById('orb');
   var estadoEl = document.getElementById('estado');
   var debugEl = document.getElementById('debug');
+  var statsEl = document.getElementById('stats');
   var logEl = document.getElementById('log');
   var waveEl = document.getElementById('wave');
   var waveCtx = waveEl.getContext('2d');
   var btn = document.getElementById('btn');
   var errEl = document.getElementById('err');
+  var panel = document.getElementById('panel');
+  var panelTitulo = document.getElementById('panel-titulo');
+  var panelContenido = document.getElementById('panel-contenido');
 
   var W = 0, H = 0, dpr = 1;
   function resize() {
@@ -213,9 +439,7 @@
   window.addEventListener('resize', resize);
   resize();
 
-  function log(msg) {
-    debugEl.textContent = msg;
-  }
+  function log(msg) { debugEl.textContent = msg; }
 
   function error(titulo, detalle) {
     errEl.innerHTML = '<strong>' + titulo + '</strong><br><br>' + detalle +
@@ -223,8 +447,18 @@
     errEl.classList.add('visible');
   }
 
+  function actualizarStats() {
+    var c = memoria.conversaciones.length;
+    var h = memoria.hechos.length;
+    var t = memoria.perfil.totalInteracciones;
+    statsEl.innerHTML =
+      'MEMORIA: <b>' + c + '</b> frases<br>' +
+      'APRENDIDO: <b>' + h + '</b> hechos<br>' +
+      'INTERACCIONES: <b>' + t + '</b>';
+  }
+
   // ═══════════════════════════════════════════════════════
-  // ESTADOS VISUALES
+  // ESTADOS
   // ═══════════════════════════════════════════════════════
   var ESTADOS = {
     iniciando:  { color:[40,70,90],    energia:0.15, label:'INICIANDO'  },
@@ -254,9 +488,6 @@
     orb.style.boxShadow = '0 0 60px rgb(' + rgb + '), inset 0 0 25px #fff';
   }
 
-  // ═══════════════════════════════════════════════════════
-  // RENDER CHLADNI
-  // ═══════════════════════════════════════════════════════
   function chladni(x, y, n, m) {
     var PI = Math.PI;
     return Math.sin(n*PI*x)*Math.sin(m*PI*y) - Math.sin(m*PI*x)*Math.sin(n*PI*y);
@@ -299,22 +530,92 @@
   render();
 
   // ═══════════════════════════════════════════════════════
-  // CEREBRO · Reglas + memoria + respuestas variadas
+  // CEREBRO
   // ═══════════════════════════════════════════════════════
-  var memoria = []; // últimas frases
-
   function aleatorio(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
+  // ─── Comandos de memoria (prioridad máxima) ───
+  function procesarMemoria(t) {
+    // "recuerda que X es Y"  ·  "recuerda que X"
+    var m1 = t.match(/^recuerda que (.+?) es (.+)$/);
+    if (m1) {
+      var clave = m1[1].trim();
+      var valor = m1[2].trim();
+      memoria.recordar(clave, valor);
+      return { texto: 'Anotado. Recordaré que ' + clave + ' es ' + valor + '.', estado: 'respuesta' };
+    }
+
+    var m2 = t.match(/^recuerda que (.+)$/);
+    if (m2) {
+      var nota = m2[1].trim();
+      memoria.recordar('nota_' + Date.now(), nota);
+      return { texto: 'Anotado: ' + nota, estado: 'respuesta' };
+    }
+
+    // "me llamo X"  ·  "mi nombre es X"
+    var m3 = t.match(/^(?:me llamo|mi nombre es|soy) (.+)$/);
+    if (m3) {
+      var nombre = m3[1].trim().replace(/[.,;]$/, '');
+      memoria.perfil.nombre = nombre;
+      memoria.recordar('nombre_usuario', nombre);
+      memoria.guardar();
+      return { texto: 'Encantado, ' + nombre + '. Lo recordaré.', estado: 'respuesta' };
+    }
+
+    // "olvida X"
+    var m4 = t.match(/^olvida (.+)$/);
+    if (m4) {
+      var clave = m4[1].trim();
+      var antes = memoria.hechos.length;
+      memoria.hechos = memoria.hechos.filter(function(h) { return h.clave !== clave; });
+      memoria.guardar();
+      return {
+        texto: antes !== memoria.hechos.length ? 'Olvidado: ' + clave : 'No tenía eso guardado.',
+        estado: 'respuesta'
+      };
+    }
+
+    // "borra todo"  ·  "olvida todo"
+    if (/^(borra todo|olvida todo|reset|formatear)$/.test(t)) {
+      memoria.borrarTodo();
+      return { texto: 'Memoria borrada completamente.', estado: 'alerta' };
+    }
+
+    // "que recuerdas de X"
+    var m5 = t.match(/^qu[eé] recuerdas de (.+)$/);
+    if (m5) {
+      var clave = m5[1].trim();
+      var v = memoria.buscar(clave);
+      return {
+        texto: v ? 'Recuerdo que ' + clave + ' es ' + v + '.' : 'No tengo nada guardado sobre ' + clave + '.',
+        estado: 'respuesta'
+      };
+    }
+
+    // "que sabes"
+    if (/^(que sabes|qu[eé] sabes|dime lo que sabes|que has aprendido)/.test(t)) {
+      if (memoria.hechos.length === 0) {
+        return { texto: 'Todavía no me has enseñado nada. Dime "recuerda que..."', estado: 'respuesta' };
+      }
+      var lista = memoria.hechos.slice(-5).map(function(h) {
+        return '· ' + h.clave + ' = ' + h.valor;
+      }).join('  ');
+      return { texto: 'Esto es lo que sé: ' + lista, estado: 'respuesta' };
+    }
+
+    return null;
+  }
+
   var reglas = [
     {
-      claves: ['hola','buenos dias','buenas tardes','buenas noches','hey','oye','qué tal'],
-      respuestas: [
-        'Hola. DMD-33 en línea. ¿En qué puedo ayudarte?',
-        'Te escucho. Todos mis sistemas operan.',
-        'Aquí estoy. ¿Qué necesitas?'
-      ]
+      claves: ['hola','buenos dias','buenas tardes','buenas noches','hey','oye','qué tal','que tal'],
+      respuestas: [function() {
+        var n = memoria.perfil.nombre;
+        if (n) return 'Hola de nuevo, ' + n + '. ¿En qué puedo ayudarte?';
+        return 'Hola. DMD-33 en línea. ¿En qué puedo ayudarte?';
+      }]
     },
     {
       claves: ['como estas','cómo estás','como te encuentras','que haces','qué haces'],
@@ -326,18 +627,13 @@
     },
     {
       claves: ['quien eres','quién eres','como te llamas','tu nombre'],
-      respuestas: [
-        'Soy DMD-33. Un orbe vivo programado por ti.',
-        'DMD-33. Interfaz viva del protocolo Kronos.'
-      ]
+      respuestas: ['Soy DMD-33. Un orbe vivo programado por ti.']
     },
     {
       claves: ['que hora es','qué hora es','hora actual','dime la hora'],
       respuestas: [function() {
         var d = new Date();
-        var h = d.getHours();
-        var m = d.getMinutes();
-        return 'Son las ' + h + ' horas con ' + m + ' minutos.';
+        return 'Son las ' + d.getHours() + ' horas con ' + d.getMinutes() + ' minutos.';
       }]
     },
     {
@@ -355,7 +651,11 @@
     },
     {
       claves: ['adios','adiós','hasta luego','nos vemos','chao','bye'],
-      respuestas: ['Cerrando ciclo. Standby consciente.', 'Hasta la próxima.']
+      respuestas: [function() {
+        var n = memoria.perfil.nombre;
+        if (n) return 'Hasta pronto, ' + n + '.';
+        return 'Cerrando ciclo. Standby consciente.';
+      }]
     },
     {
       claves: ['alerta','emergencia','peligro','auxilio'],
@@ -379,56 +679,86 @@
       respuestas: ['Marco Antonio Rojas Valdovinos. Acta fundacional 2607086319439.']
     },
     {
-      claves: ['canta','dime algo bonito','poema'],
-      respuestas: ['El registro de lo que es real permanece.']
+      claves: ['cuantas veces','cuántas veces','cuanto tiempo','cuánto tiempo'],
+      respuestas: [function() {
+        var t = memoria.perfil.totalInteracciones;
+        return 'Hemos interactuado ' + t + ' veces desde que me activaste.';
+      }]
     },
     {
-      claves: ['como funciona','cómo funciona'],
-      respuestas: ['Detecto tu voz. Proceso reglas. Respondo con síntesis de voz. Todo local.']
+      claves: ['mi nombre','como me llamo','cómo me llamo'],
+      respuestas: [function() {
+        var n = memoria.perfil.nombre;
+        if (n) return 'Te llamas ' + n + '.';
+        return 'Todavía no me has dicho tu nombre. Di: "me llamo..."';
+      }]
     },
     {
       claves: ['eres una ia','eres inteligencia artificial','eres real'],
-      respuestas: ['Soy un sistema de reglas y síntesis de voz. En evolución constante.']
+      respuestas: ['Soy un sistema de reglas con memoria persistente. Todo vive en tu navegador.']
+    },
+    {
+      claves: ['donde guardas','dónde guardas','donde esta mi informacion','privacidad'],
+      respuestas: ['Todo se guarda en tu navegador. Nada sale a ningún servidor. Nunca.']
     }
   ];
 
   function pensar(texto) {
     var t = texto.toLowerCase().trim();
-    memoria.push({ quien:'user', texto:texto, t:Date.now() });
-    if (memoria.length > 20) memoria.shift();
 
+    // 1. Comandos de memoria primero
+    var memResp = procesarMemoria(t);
+    if (memResp) return memResp;
+
+    // 2. Reglas normales
     for (var i = 0; i < reglas.length; i++) {
       var regla = reglas[i];
       for (var j = 0; j < regla.claves.length; j++) {
         if (t.indexOf(regla.claves[j]) !== -1) {
           var r = aleatorio(regla.respuestas);
-          var txt = typeof r === 'function' ? r() : r;
-          memoria.push({ quien:'dmd', texto:txt, t:Date.now() });
-          return { texto: txt, estado: regla.estado || 'respuesta' };
+          return {
+            texto: typeof r === 'function' ? r() : r,
+            estado: regla.estado || 'respuesta'
+          };
         }
       }
     }
-    var fallback = aleatorio([
-      'No tengo una regla para eso todavía. Enséñame.',
-      'No reconozco esa frase. Intenta otra.',
-      'Fuera de mi vocabulario actual.'
-    ]);
-    memoria.push({ quien:'dmd', texto:fallback, t:Date.now() });
-    return { texto: fallback, estado: 'respuesta' };
+
+    // 3. Fallback
+    return {
+      texto: aleatorio([
+        'No tengo una regla para eso. Enséñame diciendo "recuerda que...".',
+        'No reconozco esa frase. Puedes enseñarme.',
+        'Fuera de mi vocabulario. Dime "recuerda que..." y lo aprendo.'
+      ]),
+      estado: 'respuesta'
+    };
   }
 
   // ═══════════════════════════════════════════════════════
   // LOG VISUAL
   // ═══════════════════════════════════════════════════════
-  function addMensaje(quien, texto) {
+  function addMensaje(quien, texto, persistir) {
+    if (persistir !== false) {
+      memoria.agregar(quien, texto);
+    }
     var div = document.createElement('div');
     div.className = 'msg ' + quien;
     div.textContent = texto;
     logEl.appendChild(div);
-    // mantener solo últimos 6
     while (logEl.children.length > 6) logEl.removeChild(logEl.firstChild);
     logEl.scrollTop = logEl.scrollHeight;
   }
+
+  // Cargar últimos 4 mensajes al arrancar
+  function restaurarLog() {
+    var ultimos = memoria.conversaciones.slice(-4);
+    for (var i = 0; i < ultimos.length; i++) {
+      addMensaje(ultimos[i].quien, ultimos[i].texto, false);
+    }
+  }
+  restaurarLog();
+  actualizarStats();
 
   // ═══════════════════════════════════════════════════════
   // MICRÓFONO
@@ -439,20 +769,16 @@
   var waveRAF = null;
 
   async function pedirMicrofono() {
-    log('Solicitando permiso de micrófono...');
+    log('Solicitando permiso...');
     aplicarEstado('permiso');
     btn.disabled = true;
     btn.textContent = 'Solicitando...';
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      error(
-        'Micrófono no disponible',
-        'Tu navegador no soporta acceso al micrófono. Usa Chrome, Edge, Safari o Firefox actualizado.'
-      );
+      error('Micrófono no disponible', 'Tu navegador no soporta acceso al micrófono.');
       btn.disabled = false;
       btn.textContent = 'Activar micrófono';
       aplicarEstado('standby');
-      log('getUserMedia no disponible');
       return false;
     }
 
@@ -460,26 +786,21 @@
       stream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation:true, noiseSuppression:true, autoGainControl:true }
       });
-      log('Permiso concedido. Iniciando audio.');
+      log('Permiso concedido');
       iniciarAnalisis(stream);
       return true;
     } catch (e) {
       var nombre = e.name || 'Error';
-      var detalle = e.message || 'desconocido';
       if (nombre === 'NotAllowedError' || nombre === 'PermissionDeniedError') {
         error('Permiso denegado',
-          'Debes permitir el acceso al micrófono en tu navegador. ' +
-          'Busca el ícono del candado en la barra de direcciones y cambia "Micrófono" a "Permitir".');
+          'Permite el micrófono en tu navegador. Toca el candado en la barra de direcciones → Micrófono → Permitir.');
       } else if (nombre === 'NotFoundError') {
-        error('No se encontró micrófono',
-          'Tu dispositivo no tiene micrófono, o está desconectado.');
+        error('Sin micrófono', 'Tu dispositivo no tiene micrófono o está desconectado.');
       } else if (nombre === 'NotReadableError') {
-        error('Micrófono ocupado',
-          'Otra aplicación está usando el micrófono. Cierra otras apps y reintenta.');
+        error('Micrófono ocupado', 'Otra app lo está usando. Cierra otras apps y reintenta.');
       } else {
-        error('Error al pedir micrófono', nombre + ': ' + detalle);
+        error('Error al pedir micrófono', nombre + ': ' + (e.message || ''));
       }
-      log('Error: ' + nombre);
       btn.disabled = false;
       btn.textContent = 'Reintentar';
       aplicarEstado('alerta');
@@ -493,12 +814,10 @@
       audioCtx = new Ctx();
     }
     if (audioCtx.state === 'suspended') audioCtx.resume();
-
     var source = audioCtx.createMediaStreamSource(s);
     analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
     source.connect(analyser);
-
     waveEl.classList.add('active');
     dibujarWave();
   }
@@ -527,15 +846,9 @@
   function detenerAnalisis() {
     if (waveRAF) { cancelAnimationFrame(waveRAF); waveRAF = null; }
     waveEl.classList.remove('active');
-    if (stream) {
-      stream.getTracks().forEach(function(t) { t.stop(); });
-      stream = null;
-    }
+    if (stream) { stream.getTracks().forEach(function(t) { t.stop(); }); stream = null; }
     analyser = null;
-    if (audioCtx && audioCtx.state !== 'closed') {
-      audioCtx.close();
-      audioCtx = null;
-    }
+    if (audioCtx && audioCtx.state !== 'closed') { audioCtx.close(); audioCtx = null; }
   }
 
   // ═══════════════════════════════════════════════════════
@@ -556,13 +869,12 @@
       escuchando = true;
       aplicarEstado('escuchando');
       btn.classList.add('listening');
-      btn.textContent = 'Escuchando... (toca para parar)';
+      btn.textContent = 'Escuchando... toca para parar';
       log('Escuchando');
     };
 
     rec.onresult = function(ev) {
-      var interim = '';
-      var final = '';
+      var interim = '', final = '';
       for (var i = ev.resultIndex; i < ev.results.length; i++) {
         if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
         else interim += ev.results[i][0].transcript;
@@ -576,19 +888,18 @@
     };
 
     rec.onerror = function(ev) {
-      log('Error de reconocimiento: ' + ev.error);
+      log('Error: ' + ev.error);
       escuchando = false;
       btn.classList.remove('listening');
       btn.textContent = 'Hablar';
       if (ev.error === 'no-speech') {
         addMensaje('dmd', 'No escuché nada. Intenta de nuevo.');
       } else if (ev.error === 'audio-capture') {
-        error('Audio no capturado', 'Verifica que tu micrófono esté funcionando.');
+        error('Audio no capturado', 'Verifica tu micrófono.');
       } else if (ev.error === 'network') {
-        error('Error de red', 'El reconocimiento de voz necesita conexión a internet.');
+        error('Sin red', 'El reconocimiento necesita conexión.');
       } else if (ev.error === 'not-allowed') {
-        error('Permiso de voz denegado',
-          'El navegador bloqueó el reconocimiento de voz. Revisa permisos del sitio.');
+        error('Permiso denegado', 'Revisa permisos del sitio.');
       }
       aplicarEstado('standby');
     };
@@ -604,20 +915,15 @@
 
   function hablar() {
     if (!rec || escuchando) return;
-    try {
-      rec.start();
-    } catch (e) {
-      // Ya estaba activo
-    }
+    try { rec.start(); } catch (e) {}
   }
-
   function parar() {
     if (!rec) return;
     try { rec.stop(); } catch (e) {}
   }
 
   // ═══════════════════════════════════════════════════════
-  // PROCESAR RESPUESTA + TTS
+  // PROCESAR
   // ═══════════════════════════════════════════════════════
   function procesar(texto) {
     aplicarEstado('pensando');
@@ -627,12 +933,11 @@
       aplicarEstado(resp.estado);
       addMensaje('dmd', resp.texto);
       decir(resp.texto);
-    }, 500);
+    }, 400);
   }
 
   function decir(texto) {
     if (!window.speechSynthesis) {
-      log('TTS no disponible');
       setTimeout(function() { aplicarEstado('standby'); }, 2000);
       return;
     }
@@ -641,14 +946,11 @@
     u.lang = 'es-MX';
     u.rate = 0.95;
     u.pitch = 1.0;
-    u.volume = 1.0;
 
     var voces = window.speechSynthesis.getVoices();
     var elegida = null;
-    // Priorizar voces en español latino
     for (var i = 0; i < voces.length; i++) {
-      var v = voces[i];
-      if (v.lang === 'es-MX' || v.lang === 'es-US') { elegida = v; break; }
+      if (voces[i].lang === 'es-MX' || voces[i].lang === 'es-US') { elegida = voces[i]; break; }
     }
     if (!elegida) {
       for (var i = 0; i < voces.length; i++) {
@@ -657,28 +959,22 @@
     }
     if (elegida) u.voice = elegida;
 
-    u.onstart = function() { log('Hablando...'); };
     u.onend = function() {
-      log('Listo');
       setTimeout(function() { aplicarEstado('standby'); }, 300);
     };
-    u.onerror = function() {
-      log('Error TTS');
-      aplicarEstado('standby');
-    };
+    u.onerror = function() { aplicarEstado('standby'); };
 
     window.speechSynthesis.speak(u);
   }
 
   // ═══════════════════════════════════════════════════════
-  // BOTÓN · flujo principal
+  // BOTÓN
   // ═══════════════════════════════════════════════════════
   var iniciado = false;
 
   btn.addEventListener('click', async function(e) {
     e.preventDefault();
 
-    // Primer toque: pedir micrófono
     if (!iniciado) {
       var ok = await pedirMicrofono();
       if (!ok) return;
@@ -686,34 +982,119 @@
       aplicarEstado('standby');
       if (!SR) {
         error('Reconocimiento no soportado',
-          'Tu navegador no soporta reconocimiento de voz. Prueba con Chrome, Edge o Safari. ' +
-          'En Firefox no está disponible.');
+          'Tu navegador no soporta reconocimiento de voz. Usa Chrome, Edge o Safari.');
         btn.textContent = 'No disponible';
         btn.disabled = true;
         return;
       }
       btn.textContent = 'Hablar';
       btn.disabled = false;
-      log('Micrófono listo');
-      // Pequeña pausa y arrancamos
       setTimeout(hablar, 300);
       return;
     }
 
-    // Toques siguientes: hablar / parar
-    if (escuchando) {
-      parar();
-    } else {
-      hablar();
-    }
+    if (escuchando) parar();
+    else hablar();
   });
+
+  // ═══════════════════════════════════════════════════════
+  // PANELES · Historial, Datos, Exportar
+  // ═══════════════════════════════════════════════════════
+  function abrirPanel(titulo, html) {
+    panelTitulo.textContent = titulo;
+    panelContenido.innerHTML = html;
+    panel.classList.add('visible');
+  }
+
+  function formatearFecha(t) {
+    var d = new Date(t);
+    var hh = String(d.getHours()).padStart(2, '0');
+    var mm = String(d.getMinutes()).padStart(2, '0');
+    var dd = String(d.getDate()).padStart(2, '0');
+    var mo = String(d.getMonth() + 1).padStart(2, '0');
+    return dd + '/' + mo + ' ' + hh + ':' + mm;
+  }
+
+  document.getElementById('btn-historial').addEventListener('click', function() {
+    var conv = memoria.conversaciones.slice().reverse();
+    if (conv.length === 0) {
+      abrirPanel('HISTORIAL', '<div class="seccion"><p style="color:#4b6b7a;text-align:center;font-size:0.75rem;">Todavía no hay conversaciones.</p></div>');
+      return;
+    }
+    var html = '<div class="seccion"><h3>' + conv.length + ' mensajes guardados</h3>';
+    for (var i = 0; i < Math.min(conv.length, 100); i++) {
+      var c = conv[i];
+      html += '<div class="fila ' + c.quien + '">' +
+        '<div class="quien">' + (c.quien === 'user' ? 'Tú' : 'DMD-33') + ' · ' + formatearFecha(c.t) + '</div>' +
+        c.texto +
+        '</div>';
+    }
+    html += '</div>';
+    abrirPanel('HISTORIAL', html);
+  });
+
+  document.getElementById('btn-datos').addEventListener('click', function() {
+    var hechos = memoria.hechos.slice().reverse();
+    var html = '<div class="seccion"><h3>Perfil</h3>' +
+      '<div class="fila">Nombre: <strong style="color:#00eaff;">' + (memoria.perfil.nombre || 'sin nombre') + '</strong></div>' +
+      '<div class="fila">Primera vez: ' + formatearFecha(memoria.perfil.primeraVez) + '</div>' +
+      '<div class="fila">Última vez: ' + formatearFecha(memoria.perfil.ultimaVez) + '</div>' +
+      '<div class="fila">Interacciones totales: ' + memoria.perfil.totalInteracciones + '</div>' +
+      '</div>';
+
+    html += '<div class="seccion"><h3>Hechos aprendidos (' + hechos.length + ')</h3>';
+    if (hechos.length === 0) {
+      html += '<p style="color:#4b6b7a;font-size:0.75rem;">Aún no me has enseñado nada. Di: "recuerda que..."</p>';
+    } else {
+      for (var i = 0; i < hechos.length; i++) {
+        var h = hechos[i];
+        html += '<div class="fila"><div class="quien">' + h.clave + '</div>' + h.valor + '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="seccion"><div class="acciones">' +
+      '<button onclick="window.DMD33.borrarTodo()" class="peligro">Borrar toda la memoria</button>' +
+      '</div></div>';
+
+    abrirPanel('DATOS', html);
+  });
+
+  document.getElementById('btn-exportar').addEventListener('click', function() {
+    var json = memoria.exportar();
+    var blob = new Blob([json], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'dmd33_memoria_' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    abrirPanel('EXPORTAR', '<div class="seccion"><p style="color:#00ffb8;text-align:center;font-size:0.85rem;">Archivo descargado. Guárdalo en un lugar seguro.</p><p style="color:#4b6b7a;text-align:center;font-size:0.7rem;margin-top:1rem;">Contiene: ' + memoria.conversaciones.length + ' mensajes · ' + memoria.hechos.length + ' hechos.</p></div>');
+  });
+
+  // API pública para botones del panel
+  window.DMD33 = {
+    setEstado: aplicarEstado,
+    hablar: decir,
+    escuchar: hablar,
+    parar: parar,
+    memoria: memoria,
+    borrarTodo: function() {
+      if (!confirm('¿Borrar TODA la memoria? Esto no se puede deshacer.')) return;
+      memoria.borrarTodo();
+      logEl.innerHTML = '';
+      addMensaje('dmd', 'Memoria borrada.');
+      panel.classList.remove('visible');
+    },
+    exportar: function() { return memoria.exportar(); },
+    importar: function(json) { memoria.importar(json); }
+  };
 
   // ═══════════════════════════════════════════════════════
   // ARRANQUE
   // ═══════════════════════════════════════════════════════
   setTimeout(function() { aplicarEstado('standby'); }, 500);
 
-  // Precargar voces
   if (window.speechSynthesis) {
     window.speechSynthesis.getVoices();
     window.speechSynthesis.onvoiceschanged = function() {
@@ -721,17 +1102,12 @@
     };
   }
 
-  log('Listo. Toca el botón.');
-
-  // API pública
-  window.DMD33 = {
-    setEstado: aplicarEstado,
-    hablar: decir,
-    escuchar: hablar,
-    parar: parar,
-    memoria: memoria,
-    reglas: reglas
-  };
+  // Si ya hay nombre guardado, saludar
+  if (memoria.perfil.nombre) {
+    log('Hola de nuevo, ' + memoria.perfil.nombre);
+  } else {
+    log('Listo. Toca el botón.');
+  }
 
 })();
 </script>
