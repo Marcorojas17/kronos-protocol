@@ -1,585 +1,639 @@
 <!DOCTYPE html>
+<!-- 🛡️ GUARDIAN-SHA ✅ -->
+<!-- CYMATIC V5.0 · live-pro.html · 2026 -->
+<!-- SHA: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738 -->
+<!-- TX: 0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CYMATIC LIVE · Visualizador de Audio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noai,noindex,noarchive,noimageai">
+<title>Cymatic V5.0 · Visualizador Cimático</title>
+<meta name="description" content="Cymatic V5.0 · Patrones de Chladni en tiempo real. Grabación con audio. Multi-capa. PWA offline. Co-Creatividad Simbiótica.">
+<meta name="theme-color" content="#c9a44c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ3ltYXRpYyBWNiIsInNob3J0X25hbWUiOiJDeW1hdGljIiwic3RhcnRfdXJsIjoiLi9saXZlLXByby5odG1sIiwic2NvcGUiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwNTA3MGIiLCJ0aGVtZV9jb2xvciI6IiNjOWE0NGMiLCJsYW5nIjoiZXMtTVgifQ==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-:root {
-  --bg: #05060a;
-  --panel: rgba(10, 14, 22, 0.75);
-  --border: rgba(255,255,255,0.08);
-  --text: #e8ecf5;
-  --dim: #8892a0;
-  --accent: #00ffcc;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--ink:#05070b;--ink2:#0a0e15;--ink3:#10151f;
+--gold:#c9a44c;--goldL:#f3e5ab;--goldD:#8a6f2c;
+--text:#e8e4d8;--dim:#8892a0;
+--cyan:#00eaff;--green:#4ade80;--red:#ef4444;
+--glass:rgba(20,24,32,0.55);--line:rgba(201,164,76,0.15)
 }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
-  overflow: hidden;
-  height: 100vh;
-}
-canvas { display: block; position: fixed; top:0; left:0; width:100%; height:100%; }
-
-.ui {
-  position: fixed; z-index: 10;
-  background: var(--panel);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.ui.hidden { opacity: 0; pointer-events: none; transform: translateY(-10px); }
-
-#topbar { top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-#topbar .brand { font-weight: 700; letter-spacing: 3px; color: var(--accent); font-size: 14px; }
-#topbar .brand small { color: var(--dim); font-weight: 400; letter-spacing: 1px; font-size: 10px; margin-left: 8px; }
-#topbar .status { font-size: 11px; color: var(--dim); }
-#topbar .status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; animation: pulse 1.5s infinite; }
-@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
-
-#controls { bottom: 16px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding: 14px 20px; }
-
-.control-group { display: flex; flex-direction: column; gap: 4px; min-width: 100px; }
-.control-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); font-weight: 600; }
-.control-group input[type="range"] { width: 100%; accent-color: var(--accent); }
-
-.mode-buttons, .palette-buttons { display: flex; gap: 6px; }
-.mode-btn, .palette-btn {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  color: var(--dim);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 10px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.mode-btn:hover, .palette-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-.mode-btn.active, .palette-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
-
-.action-btn {
-  background: var(--accent);
-  color: #000;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-}
-.action-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,255,204,0.3); }
-.action-btn.ghost { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
-.action-btn.ghost:hover { background: rgba(255,255,255,0.1); box-shadow: none; }
-.action-btn.recording { background: #ff4d6d; color: #fff; }
-
-#freq-display {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(48px, 12vw, 180px);
-  font-weight: 900;
-  color: rgba(255,255,255,0.03);
-  pointer-events: none;
-  z-index: 5;
-  letter-spacing: -4px;
-  font-variant-numeric: tabular-nums;
-  transition: opacity 0.3s ease;
-}
-
-#hint {
-  position: fixed;
-  bottom: 90px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: var(--dim);
-  letter-spacing: 2px;
-  z-index: 10;
-  opacity: 0.5;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-#dropzone {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: var(--accent);
-  border: 4px dashed var(--accent);
-  letter-spacing: 3px;
-}
-#dropzone.active { display: flex; }
-
-@media (max-width: 900px) {
-  #controls { padding: 10px 12px; gap: 10px; }
-  .control-group { min-width: 70px; }
-  #topbar { padding: 10px 14px; }
-  #topbar .brand { font-size: 12px; letter-spacing: 2px; }
-}
+html,body{height:100%;background:var(--ink);color:var(--text);
+font-family:'Inter',system-ui,sans-serif;font-weight:300;
+line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+background-image:
+radial-gradient(circle at 15% 10%,rgba(201,164,76,0.06) 0%,transparent 45%),
+radial-gradient(circle at 85% 80%,rgba(0,234,255,0.05) 0%,transparent 50%)}
+.wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 4rem;
+position:relative;z-index:2}
+header.nav{display:flex;justify-content:space-between;align-items:center;
+padding:1rem 1.5rem;margin-bottom:2rem;border-radius:14px;
+background:var(--glass);backdrop-filter:blur(20px) saturate(140%);
+-webkit-backdrop-filter:blur(20px) saturate(140%);
+border:1px solid var(--line)}
+.nav-left{display:flex;align-items:center;gap:1rem}
+.logo{width:32px;height:32px;border-radius:50%;
+background:radial-gradient(circle at 35% 35%,var(--goldL),var(--gold) 60%,var(--goldD));
+box-shadow:0 0 16px rgba(201,164,76,0.5),inset 0 0 8px rgba(255,255,255,0.4)}
+.nav-title{font-family:'Inter',sans-serif;font-weight:600;
+font-size:1.15rem;letter-spacing:-0.01em;color:var(--text)}
+.nav-menu{display:flex;gap:1.8rem;font-size:.85rem;
+color:var(--dim)}
+.nav-menu span{cursor:pointer;transition:color .25s;
+padding-bottom:.3rem;position:relative}
+.nav-menu span:hover{color:var(--gold)}
+.nav-menu span.active{color:var(--gold);font-weight:500}
+.nav-menu span.active::after{content:'';position:absolute;
+bottom:0;left:0;width:100%;height:1px;background:var(--gold);
+box-shadow:0 0 8px var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:1rem;
+color:var(--dim);font-size:1.1rem}
+.avatar{width:32px;height:32px;border-radius:50%;
+background:linear-gradient(135deg,var(--gold),var(--goldD));
+display:flex;align-items:center;justify-content:center;
+font-size:.72rem;font-weight:600;color:var(--ink)}
+@media(max-width:850px){.nav-menu{display:none}
+.nav-actions span:not(.avatar){display:none}}
+.hero{text-align:center;margin-bottom:2rem}
+.tag{display:inline-block;padding:.35rem 1rem;border-radius:100px;
+background:rgba(201,164,76,0.08);border:1px solid rgba(201,164,76,0.3);
+color:var(--gold);font-size:.62rem;letter-spacing:4px;
+text-transform:uppercase;margin-bottom:1.2rem}
+h1{font-family:'Inter',sans-serif;font-weight:600;
+font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-0.02em;
+color:var(--text);margin-bottom:.5rem}
+.sub{color:var(--dim);font-size:clamp(.9rem,1.4vw,1rem);
+max-width:640px;margin:0 auto;font-weight:300}
+.viz-shell{background:var(--glass);border:1px solid var(--line);
+border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;
+backdrop-filter:blur(20px) saturate(140%);
+-webkit-backdrop-filter:blur(20px) saturate(140%);
+position:relative;overflow:hidden}
+.viz-shell::before{content:'';position:absolute;top:0;left:0;
+width:100%;height:1px;background:linear-gradient(90deg,
+transparent,var(--gold) 20%,transparent 80%)}
+.viz-head{display:flex;justify-content:space-between;
+align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.viz-title{font-size:.9rem;font-weight:500;color:var(--text);
+display:flex;align-items:center;gap:.6rem}
+.badge-live{font-size:.55rem;letter-spacing:2px;color:var(--green);
+padding:.25rem .65rem;background:rgba(74,222,128,0.1);
+border:1px solid rgba(74,222,128,0.3);border-radius:100px;
+text-transform:uppercase;font-weight:500;display:flex;
+align-items:center;gap:.4rem}
+.badge-live::before{content:'';width:5px;height:5px;
+border-radius:50%;background:var(--green);
+box-shadow:0 0 8px var(--green);
+animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+#cv{width:100%;height:auto;display:block;border-radius:10px;
+background:#02030a;aspect-ratio:16/9}
+.plat-badge{position:absolute;bottom:2.5rem;right:2.5rem;
+width:76px;height:76px;border-radius:50%;
+background:radial-gradient(circle at 35% 35%,var(--goldL),
+var(--gold) 55%,var(--goldD));
+display:flex;flex-direction:column;justify-content:center;
+align-items:center;color:var(--ink);
+box-shadow:0 8px 24px rgba(201,164,76,0.4),
+inset 0 2px 6px rgba(255,255,255,0.3),
+inset 0 -3px 8px rgba(138,111,44,0.5);
+z-index:3;transform:rotate(-8deg);
+border:2px solid rgba(255,255,255,0.2);
+animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotate(-8deg) translateY(0)}
+50%{transform:rotate(-8deg) translateY(-4px)}}
+.plat-badge .num{font-size:.8rem;font-weight:700}
+.plat-badge .txt{font-size:.42rem;letter-spacing:2px;margin-top:1px;
+font-weight:600;text-transform:uppercase}
+.plat-badge .txt2{font-size:.38rem;letter-spacing:1px;
+font-weight:500;opacity:.75;margin-top:2px}
+@media(max-width:700px){.plat-badge{width:60px;height:60px;
+bottom:1.5rem;right:1.5rem}
+.plat-badge .num{font-size:.68rem}
+.plat-badge .txt{font-size:.36rem}
+.plat-badge .txt2{font-size:.32rem}}
+.controls{display:grid;grid-template-columns:1fr;gap:1rem}
+.panel{background:var(--glass);border:1px solid var(--line);
+border-radius:12px;padding:1.25rem;
+backdrop-filter:blur(20px) saturate(140%);
+-webkit-backdrop-filter:blur(20px) saturate(140%)}
+.panel-label{font-size:.6rem;letter-spacing:3px;color:var(--dim);
+text-transform:uppercase;margin-bottom:.9rem;font-weight:500;
+display:flex;align-items:center;gap:.5rem}
+.freq-display{display:flex;justify-content:space-between;
+align-items:center;margin-bottom:1rem}
+.freq-value{font-size:1.8rem;font-weight:600;
+background:linear-gradient(180deg,var(--goldL),var(--gold));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+background-clip:text;letter-spacing:-0.02em}
+.freq-unit{font-size:.85rem;color:var(--dim)}
+.freq-slider{width:100%;-webkit-appearance:none;appearance:none;
+height:4px;border-radius:2px;background:rgba(201,164,76,0.2);
+outline:none;margin-bottom:.5rem}
+.freq-slider::-webkit-slider-thumb{-webkit-appearance:none;
+width:18px;height:18px;border-radius:50%;
+background:radial-gradient(circle at 35% 35%,var(--goldL),var(--gold));
+box-shadow:0 0 12px rgba(201,164,76,0.6);
+cursor:pointer;border:2px solid rgba(255,255,255,0.3)}
+.freq-slider::-moz-range-thumb{width:18px;height:18px;
+border-radius:50%;background:var(--gold);cursor:pointer;
+border:2px solid rgba(255,255,255,0.3);
+box-shadow:0 0 12px rgba(201,164,76,0.6)}
+.freq-marks{display:flex;justify-content:space-between;
+font-size:.6rem;color:var(--dim);letter-spacing:1px;
+text-transform:uppercase}
+.freq-marks span.hi{color:var(--gold);font-weight:600}
+.btns-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem}
+.btn{padding:.75rem 1.2rem;border-radius:8px;font-family:inherit;
+font-size:.72rem;font-weight:500;letter-spacing:1.5px;
+text-transform:uppercase;cursor:pointer;transition:all .3s;
+border:1px solid var(--line);background:rgba(20,24,32,0.5);
+color:var(--text);display:inline-flex;align-items:center;
+gap:.5rem;white-space:nowrap}
+.btn:hover{background:rgba(201,164,76,0.08);
+border-color:rgba(201,164,76,0.4);color:var(--gold)}
+.btn.primary{background:linear-gradient(180deg,var(--goldL),var(--gold));
+color:var(--ink);border-color:var(--gold);font-weight:600;
+box-shadow:0 4px 12px rgba(201,164,76,0.25)}
+.btn.primary:hover{transform:translateY(-1px);
+box-shadow:0 6px 20px rgba(201,164,76,0.4)}
+.btn.rec{border-color:rgba(239,68,68,0.5);color:#fca5a5;
+background:rgba(239,68,68,0.08)}
+.btn.rec:hover{background:rgba(239,68,68,0.15);color:#fecaca}
+.btn.rec.active{background:var(--red);color:white;
+border-color:var(--red);
+box-shadow:0 0 16px rgba(239,68,68,0.5)}
+.btn svg{width:12px;height:12px;stroke:currentColor;fill:none;
+stroke-width:2.2}
+.btn.active{background:rgba(201,164,76,0.15);
+border-color:var(--gold);color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:var(--glass);border:1px solid var(--line);
+border-radius:10px;padding:.9rem .8rem;text-align:center;
+backdrop-filter:blur(20px) saturate(140%);
+-webkit-backdrop-filter:blur(20px) saturate(140%);
+transition:border-color .3s}
+.stat:hover{border-color:rgba(201,164,76,0.4)}
+.stat-icon{font-size:.85rem;margin-bottom:.3rem;color:var(--gold)}
+.stat-label{font-size:.55rem;letter-spacing:2px;color:var(--dim);
+text-transform:uppercase;margin-bottom:.4rem;font-weight:500}
+.stat-value{font-size:1rem;font-weight:600;color:var(--text)}
+.stat-sub{font-size:.6rem;color:var(--dim);margin-top:.2rem}
+.status-bar{display:flex;justify-content:space-between;
+align-items:center;padding:.9rem 1.25rem;margin-top:1rem;
+background:var(--glass);border:1px solid var(--line);
+border-radius:10px;backdrop-filter:blur(20px) saturate(140%);
+-webkit-backdrop-filter:blur(20px) saturate(140%);
+font-size:.68rem;color:var(--dim);flex-wrap:wrap;gap:.5rem}
+.status-bar .live{color:var(--green);display:flex;
+align-items:center;gap:.5rem}
+.status-bar .live::before{content:'';width:6px;height:6px;
+border-radius:50%;background:var(--green);
+box-shadow:0 0 8px var(--green);
+animation:pulse 1.8s ease-in-out infinite}
+.status-bar strong{color:var(--gold);font-weight:500}
 </style>
 </head>
 <body>
 
-<canvas id="canvas"></canvas>
+<div class="wrap">
 
-<div id="freq-display">--</div>
+  <header class="nav">
+    <div class="nav-left">
+      <div class="logo"></div>
+      <div class="nav-title">Cymatic V5.0</div>
+    </div>
+    <div class="nav-menu">
+      <span>Inicio</span>
+      <span class="active">Experimento</span>
+      <span>Biblioteca</span>
+      <span>Configuración</span>
+    </div>
+    <div class="nav-actions">
+      <span>●</span>
+      <span>⚙</span>
+      <div class="avatar">CS</div>
+    </div>
+  </header>
 
-<div id="topbar" class="ui">
-  <div class="brand">CYMATIC LIVE <small>v1.0</small></div>
-  <div class="status"><span class="dot"></span><span id="statusText">Esperando audio</span></div>
-</div>
+  <section class="hero">
+    <div class="tag">Co-Creatividad Simbiótica</div>
+    <h1>Cymatic V5.0</h1>
+    <p class="sub">Patrones de Chladni en tiempo real · Grabación con audio · Multi-capa · Offline PWA</p>
+  </section>
 
-<div id="controls" class="ui">
-  <div class="control-group">
-    <label>Modo</label>
-    <div class="mode-buttons" id="modeButtons">
-      <button class="mode-btn active" data-mode="0">Symmetry</button>
-      <button class="mode-btn" data-mode="1">Wave</button>
-      <button class="mode-btn" data-mode="2">Bars</button>
-      <button class="mode-btn" data-mode="3">Chladni</button>
-      <button class="mode-btn" data-mode="4">Particles</button>
+  <div class="viz-shell">
+    <div class="viz-head">
+      <div class="viz-title">
+        Visualizador Cimático
+        <span class="badge-live">En vivo</span>
+      </div>
+      <div style="font-size:.65rem;color:var(--dim);letter-spacing:2px">
+        V5.0 · Multi-capa
+      </div>
+    </div>
+    <canvas id="cv" width="1280" height="720"></canvas>
+    <div class="plat-badge">
+      <div class="num">100/100</div>
+      <div class="txt">Platinum</div>
+      <div class="txt2">V5.0</div>
     </div>
   </div>
 
-  <div class="control-group">
-    <label>Paleta</label>
-    <div class="palette-buttons" id="paletteButtons">
-      <button class="palette-btn active" data-palette="0">Cyan</button>
-      <button class="palette-btn" data-palette="1">Gold</button>
-      <button class="palette-btn" data-palette="2">Magenta</button>
-      <button class="palette-btn" data-palette="3">Emerald</button>
-      <button class="palette-btn" data-palette="4">Nebula</button>
+  <div class="controls">
+    <div class="panel">
+      <div class="panel-label">Frecuencia</div>
+      <div class="freq-display">
+        <div class="freq-value" id="freqVal">440</div>
+        <div class="freq-unit">Hz</div>
+      </div>
+      <input type="range" class="freq-slider" id="freqSlider" min="100" max="1000" value="440" step="1">
+      <div class="freq-marks">
+        <span>100 Hz</span>
+        <span>250 Hz</span>
+        <span class="hi">440 Hz</span>
+        <span>600 Hz</span>
+        <span>800 Hz</span>
+        <span>1000 Hz</span>
+      </div>
+      <div class="btns-row">
+        <button class="btn primary" id="btnPause">
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/></svg>
+          Pausar
+        </button>
+        <button class="btn" id="btnReset">Reiniciar</button>
+        <button class="btn" id="btnMic">
+          <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg>
+          Micrófono
+        </button>
+        <button class="btn" id="btnLayer">Multi-capa</button>
+        <button class="btn rec" id="btnRec">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor" stroke="none"/></svg>
+          Grabar
+        </button>
+        <button class="btn" id="btnPNG">Exportar PNG</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon">▦</div>
+        <div class="stat-label">Modo</div>
+        <div class="stat-value" id="statMode">(3,1)</div>
+        <div class="stat-sub">Patrón nodal</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">∿</div>
+        <div class="stat-label">Amplitud</div>
+        <div class="stat-value" id="statAmp">62%</div>
+        <div class="stat-sub">Energía</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">✦</div>
+        <div class="stat-label">Partículas</div>
+        <div class="stat-value" id="statParts">12,847</div>
+        <div class="stat-sub">Activas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">◐</div>
+        <div class="stat-label">Capas</div>
+        <div class="stat-value" id="statLayers">1</div>
+        <div class="stat-sub">Activas</div>
+      </div>
     </div>
   </div>
 
-  <div class="control-group">
-    <label>Sensibilidad <span id="sensVal">1.0</span></label>
-    <input type="range" id="sensitivity" min="0.2" max="3.0" step="0.1" value="1.0">
+  <div class="status-bar">
+    <div class="live">Conectado · Latencia <strong id="statLat">12 ms</strong></div>
+    <div>CYMATIC V5.0 · <strong>2607086319439</strong></div>
   </div>
 
-  <div class="control-group">
-    <label>Velocidad <span id="speedVal">1.0</span></label>
-    <input type="range" id="speed" min="0.2" max="2.5" step="0.1" value="1.0">
-  </div>
-
-  <button class="action-btn" id="btnMic">🎤 MICRÓFONO</button>
-  <button class="action-btn ghost" id="btnRecord">⏺ GRABAR</button>
-  <button class="action-btn ghost" id="btnPreset">💾 PRESET</button>
-  <button class="action-btn ghost" id="btnFull">⛶ PERFORMANCE</button>
 </div>
-
-<div id="hint">Teclas: 1-5 modos · Q/W/E/R/T paletas · F performance · M mic · R record · H ocultar UI</div>
-
-<div id="dropzone">SOLTÁ UN ARCHIVO DE AUDIO AQUÍ</div>
 
 <script>
-(() => {
+(function(){
 'use strict';
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const freqDisplay = document.getElementById('freq-display');
-const statusText = document.getElementById('statusText');
-const dropzone = document.getElementById('dropzone');
+var SHA='ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738';
+var TX='0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466';
 
-let W = canvas.width = window.innerWidth;
-let H = canvas.height = window.innerHeight;
+var cv=document.getElementById('cv');
+var ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
 
-let audioCtx = null;
-let analyser = null;
-let freqData = null;
-let timeData = null;
-let sourceNode = null;
-let mediaStream = null;
-let audioElement = null;
+var freq=440,freqTarget=440;
+var amplitude=0.62,ampTarget=0.62;
+var paused=false,t=0;
+var analizador=null,micStream=null,micActivo=false;
+var multiCapa=false;
+var grabando=false;
+var mediaRecorder=null,chunks=[];
+var audioDest=null,audioCtx=null,micSourceNode=null;
 
-let mode = 0;
-let palette = 0;
-let sensitivity = 1.0;
-let speed = 1.0;
-let uiHidden = false;
+var elFreq=document.getElementById('freqVal');
+var elSlider=document.getElementById('freqSlider');
+var elMode=document.getElementById('statMode');
+var elAmp=document.getElementById('statAmp');
+var elParts=document.getElementById('statParts');
+var elLayers=document.getElementById('statLayers');
+var elLat=document.getElementById('statLat');
+var btnPause=document.getElementById('btnPause');
+var btnReset=document.getElementById('btnReset');
+var btnMic=document.getElementById('btnMic');
+var btnLayer=document.getElementById('btnLayer');
+var btnRec=document.getElementById('btnRec');
+var btnPNG=document.getElementById('btnPNG');
 
-let peakFreq = 0;
-let peakLevel = 0;
-let smoothLevel = 0;
-let time = 0;
+function resizeCanvas(){
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var rect=cv.getBoundingClientRect();
+  W=cv.width=Math.floor(rect.width*dpr);
+  H=cv.height=Math.floor(rect.width*dpr*9/16);
+  cv.style.height=(rect.width*9/16)+'px';
+}
+window.addEventListener('resize',resizeCanvas);
+resizeCanvas();
 
-const PALETTES = [
-  { name:'Cyan',     bg:'#05060a', a:'#00ffcc', b:'#0088ff', c:'#ffffff' },
-  { name:'Gold',     bg:'#0a0805', a:'#ffcc3a', b:'#ff8820', c:'#ffffff' },
-  { name:'Magenta',  bg:'#0a0510', a:'#ff00cc', b:'#8800ff', c:'#ffffff' },
-  { name:'Emerald',  bg:'#05100a', a:'#00ff66', b:'#00aa44', c:'#ffffff' },
-  { name:'Nebula',   bg:'#05050f', a:'#a855f7', b:'#00aaff', c:'#ff00cc' }
-];
-
-let particles = [];
-for (let i = 0; i < 200; i++) {
-  particles.push({
-    angle: Math.random() * Math.PI * 2,
-    radius: 100 + Math.random() * 300,
-    baseRadius: 100 + Math.random() * 300,
-    speed: 0.001 + Math.random() * 0.005,
-    size: 1 + Math.random() * 3,
-    phase: Math.random() * Math.PI * 2
-  });
+function chladni(x,y,n,m){
+  var P=Math.PI;
+  return Math.sin(n*P*x)*Math.sin(m*P*y)-Math.sin(m*P*x)*Math.sin(n*P*y);
 }
 
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-
-function initAudio() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    analyser.smoothingTimeConstant = 0.7;
-    freqData = new Uint8Array(analyser.frequencyBinCount);
-    timeData = new Uint8Array(analyser.fftSize);
-  }
+function freqAModo(f,offset){
+  var tt=(f-100)/900;
+  var n=2+Math.round(tt*5)+(offset||0);
+  var m=1+Math.round(tt*7)+(offset||0);
+  return {n:n,m:m};
 }
 
-async function startMic() {
-  try {
-    initAudio();
-    if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
-    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    sourceNode = audioCtx.createMediaStreamSource(mediaStream);
-    sourceNode.connect(analyser);
-    statusText.textContent = 'Micrófono activo';
-  } catch (e) {
-    statusText.textContent = 'Permiso denegado';
-  }
-}
-
-async function loadFile(file) {
-  try {
-    initAudio();
-    if (sourceNode) { try { sourceNode.disconnect(); } catch(e){} }
-    if (audioElement) { audioElement.pause(); audioElement = null; }
-    const arrayBuffer = await file.arrayBuffer();
-    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-    audioElement = new Audio(URL.createObjectURL(file));
-    audioElement.crossOrigin = 'anonymous';
-    audioElement.loop = true;
-    sourceNode = audioCtx.createMediaElementSource(audioElement);
-    sourceNode.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    await audioElement.play();
-    statusText.textContent = file.name;
-  } catch (e) {
-    statusText.textContent = 'Error al cargar';
-  }
-}
-
-function detectPeak() {
-  let maxVal = 0;
-  let maxIdx = 0;
-  for (let i = 2; i < freqData.length; i++) {
-    if (freqData[i] > maxVal) { maxVal = freqData[i]; maxIdx = i; }
-  }
-  const nyquist = audioCtx ? audioCtx.sampleRate / 2 : 22050;
-  peakFreq = (maxIdx / freqData.length) * nyquist;
-  peakLevel = maxVal / 255;
-  smoothLevel += (peakLevel - smoothLevel) * 0.15;
-}
-
-function draw() {
-  requestAnimationFrame(draw);
-  time += 0.016 * speed;
-
-  if (analyser) {
-    analyser.getByteFrequencyData(freqData);
-    analyser.getByteTimeDomainData(timeData);
-    detectPeak();
-  }
-
-  const p = PALETTES[palette];
-
-  ctx.fillStyle = p.bg;
-  ctx.fillRect(0, 0, W, H);
-
-  const cx = W / 2;
-  const cy = H / 2;
-  const intensity = smoothLevel * sensitivity;
-
-  ctx.save();
-  ctx.translate(cx, cy);
-
-  if (mode === 0) drawSymmetry(intensity, p);
-  else if (mode === 1) drawWave(intensity, p);
-  else if (mode === 2) drawBars(intensity, p);
-  else if (mode === 3) drawChladni(intensity, p);
-  else if (mode === 4) drawParticles(intensity, p);
-
-  ctx.restore();
-
-  if (peakFreq > 0) {
-    freqDisplay.textContent = Math.round(peakFreq) + ' Hz';
-    freqDisplay.style.opacity = 0.08 + smoothLevel * 0.15;
-  }
-}
-
-function drawSymmetry(intensity, p) {
-  const symmetry = 8;
-  const baseR = 60 + intensity * 250;
-  ctx.lineWidth = 1.5;
-  ctx.strokeStyle = p.a;
-  ctx.shadowColor = p.a;
-  ctx.shadowBlur = 20 * intensity;
-
-  for (let k = 0; k < symmetry; k++) {
-    ctx.save();
-    ctx.rotate((Math.PI * 2 / symmetry) * k + time * 0.2);
-    ctx.beginPath();
-    for (let a = 0; a < 360; a += 3) {
-      const rad = a * Math.PI / 180;
-      const chaos = (peakFreq / 200) || 1;
-      const r = baseR + Math.sin(rad * chaos + time) * 40 * intensity + Math.sin(rad * 3 + time * 2) * 15;
-      const x = Math.cos(rad) * r;
-      const y = Math.sin(rad) * r;
-      if (a === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.stroke();
-    ctx.restore();
-  }
-  ctx.shadowBlur = 0;
-}
-
-function drawWave(intensity, p) {
-  const w = W * 0.8;
-  const h = H * 0.4;
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = p.a;
-  ctx.shadowColor = p.a;
-  ctx.shadowBlur = 15;
-
-  for (let layer = 0; layer < 3; layer++) {
-    ctx.beginPath();
-    const offset = layer * 0.1;
-    for (let i = 0; i < timeData.length; i++) {
-      const x = -w/2 + (i / timeData.length) * w;
-      const v = (timeData[i] - 128) / 128;
-      const y = v * h * (0.5 + intensity * 0.8) * (1 - offset * 2);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
-  ctx.shadowBlur = 0;
-}
-
-function drawBars(intensity, p) {
-  const count = 64;
-  const barW = W * 0.7 / count;
-  const startX = -W * 0.35;
-  const maxH = H * 0.6 * (1 + intensity);
-
-  for (let i = 0; i < count; i++) {
-    const v = freqData[i * 4] / 255;
-    const h = v * maxH;
-    const x = startX + i * barW;
-    const grad = ctx.createLinearGradient(0, 0, 0, -h);
-    grad.addColorStop(0, p.a);
-    grad.addColorStop(1, p.b);
-    ctx.fillStyle = grad;
-    ctx.shadowColor = p.a;
-    ctx.shadowBlur = 15 * intensity;
-    ctx.fillRect(x, -h, barW - 2, h);
-    ctx.fillRect(x, 0, barW - 2, h * 0.3);
-  }
-  ctx.shadowBlur = 0;
-}
-
-function drawChladni(intensity, p) {
-  const size = 40 + intensity * 80;
-  const cols = Math.floor(W / size);
-  const rows = Math.floor(H / size);
-  const startX = -W / 2;
-  const startY = -H / 2;
-  const chaos = (peakFreq / 100) || 1;
-
-  for (let x = 0; x < cols; x++) {
-    for (let y = 0; y < rows; y++) {
-      const px = startX + x * size + size / 2;
-      const py = startY + y * size + size / 2;
-      const d = Math.sqrt(px * px + py * py) / 200;
-      const val = Math.sin(px * chaos * 0.01 + time) * Math.cos(py * chaos * 0.01 + time);
-      const alpha = Math.abs(val) * intensity * 0.8;
-      if (alpha > 0.05) {
-        ctx.fillStyle = p.a;
-        ctx.globalAlpha = alpha;
-        ctx.beginPath();
-        ctx.arc(px, py, size * 0.15 * Math.abs(val), 0, Math.PI * 2);
-        ctx.fill();
+function dibujarCapa(nOff,colorBase,alphaGlobal){
+  var modo=freqAModo(freq,nOff);
+  var n=modo.n+Math.sin(t*0.4+nOff)*0.15;
+  var m=modo.m+Math.cos(t*0.3+nOff)*0.15;
+  var cx=W/2,cy=H/2;
+  var rMax=Math.min(W,H)*0.48;
+  var step=4;
+  var img=ctx.createImageData(W,H);
+  var data=img.data;
+  for(var y=0;y<H;y+=step){
+    var yv=y/H,dy=y-cy;
+    for(var x=0;x<W;x+=step){
+      var xv=x/W,dx=x-cx;
+      var dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist>rMax){
+        for(var ddy=0;ddy<step&&y+ddy<H;ddy++){
+          var row=(y+ddy)*W;
+          for(var ddx=0;ddx<step&&x+ddx<W;ddx++){
+            var ii=(row+x+ddx)*4;
+            data[ii]=2;data[ii+1]=3;data[ii+2]=10;data[ii+3]=255;
+          }
+        }
+        continue;
+      }
+      var v=Math.abs(chladni(xv,yv,n,m));
+      var glow=Math.max(0,1-v*2.2);
+      glow=Math.pow(glow,1.6)*amplitude;
+      var radial=1-(dist/rMax)*0.7;
+      glow*=radial;
+      var noise=(Math.sin(x*0.01+y*0.01+t)*0.5+0.5)*0.15;
+      glow+=noise*amplitude;
+      if(glow<0)glow=0;if(glow>1)glow=1;
+      glow*=alphaGlobal;
+      var r=Math.round(colorBase[0]*glow+255*glow*glow*0.4);
+      var g=Math.round(colorBase[1]*glow+220*glow*glow*0.35);
+      var b=Math.round(colorBase[2]*glow+140*glow*glow*0.2);
+      if(r>255)r=255;if(g>255)g=255;if(b>255)b=255;
+      for(var ddy2=0;ddy2<step&&y+ddy2<H;ddy2++){
+        var row2=(y+ddy2)*W;
+        for(var ddx2=0;ddx2<step&&x+ddx2<W;ddx2++){
+          var ii2=(row2+x+ddx2)*4;
+          data[ii2]=Math.min(255,data[ii2]+r);
+          data[ii2+1]=Math.min(255,data[ii2+1]+g);
+          data[ii2+2]=Math.min(255,data[ii2+2]+b);
+          data[ii2+3]=255;
+        }
       }
     }
   }
-  ctx.globalAlpha = 1;
+  ctx.putImageData(img,0,0);
 }
 
-function drawParticles(intensity, p) {
-  particles.forEach((pt, i) => {
-    pt.angle += pt.speed * speed * (1 + intensity);
-    const targetRadius = pt.baseRadius * (1 + intensity * 0.8);
-    pt.radius += (targetRadius - pt.radius) * 0.05;
-    const x = Math.cos(pt.angle) * pt.radius;
-    const y = Math.sin(pt.angle) * pt.radius;
-    const size = pt.size * (1 + intensity * 2);
-    ctx.fillStyle = i % 3 === 0 ? p.a : (i % 3 === 1 ? p.b : p.c);
-    ctx.globalAlpha = 0.6 + intensity * 0.4;
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fill();
-  });
-  ctx.globalAlpha = 1;
-}
+function render(){
+  if(paused){requestAnimationFrame(render);return;}
+  freq+=(freqTarget-freq)*0.05;
+  amplitude+=(ampTarget-amplitude)*0.05;
+  t+=0.008;
 
-let recorder = null;
-let recording = false;
-let chunks = [];
-
-function toggleRecording() {
-  if (!recording) {
-    chunks = [];
-    const stream = canvas.captureStream(60);
-    recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
-    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: 'video/webm' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `cymatic-live-${Date.now()}.webm`;
-      a.click();
-      URL.revokeObjectURL(url);
-    };
-    recorder.start();
-    recording = true;
-    document.getElementById('btnRecord').classList.add('recording');
-    document.getElementById('btnRecord').textContent = '⏹ DETENER';
-  } else {
-    recorder.stop();
-    recording = false;
-    document.getElementById('btnRecord').classList.remove('recording');
-    document.getElementById('btnRecord').textContent = '⏺ GRABAR';
+  if(micActivo&&analizador){
+    var buf=new Uint8Array(analizador.frequencyBinCount);
+    analizador.getByteFrequencyData(buf);
+    var maxI=0,maxV=0,sum=0;
+    for(var i=0;i<buf.length;i++){
+      if(buf[i]>maxV){maxV=buf[i];maxI=i;}
+      sum+=buf[i];
+    }
+    var nyq=22050;
+    var fR=(maxI/buf.length)*nyq;
+    if(fR>=100&&fR<=1000) freqTarget=fR;
+    var aR=(sum/buf.length)/255;
+    ampTarget=Math.max(0.15,Math.min(1,aR*2.5));
+    elSlider.value=Math.round(freqTarget);
+    elFreq.textContent=Math.round(freqTarget);
   }
+
+  var modo=freqAModo(freq,0);
+  elMode.textContent='('+modo.n+','+modo.m+')';
+  elLayers.textContent=multiCapa?'2':'1';
+
+  // Base negra
+  ctx.fillStyle='#02030a';
+  ctx.fillRect(0,0,W,H);
+
+  // Capa 1: oro
+  dibujarCapa(0,[201,164,76],multiCapa?0.7:1.0);
+
+  // Capa 2: cyan si multi-capa
+  if(multiCapa){
+    ctx.globalCompositeOperation='screen';
+    dibujarCapa(3,[64,200,255],0.7);
+    ctx.globalCompositeOperation='source-over';
+  }
+
+  // Partículas
+  ctx.globalCompositeOperation='lighter';
+  var numP=Math.floor(80*amplitude);
+  var cx=W/2,cy=H/2;
+  var rMax=Math.min(W,H)*0.48;
+  for(var p=0;p<numP;p++){
+    var angle=(p/numP)*Math.PI*2+t*0.3;
+    var radius=rMax*(0.3+Math.sin(t*0.7+p*0.1)*0.25+p*0.001);
+    var px=cx+Math.cos(angle)*radius;
+    var py=cy+Math.sin(angle)*radius;
+    var alpha=0.4+Math.sin(t*2+p*0.2)*0.3;
+    ctx.fillStyle='rgba(243,229,171,'+alpha+')';
+    ctx.beginPath();
+    ctx.arc(px,py,1.2+amplitude*1.5,0,Math.PI*2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation='source-over';
+
+  // Anillo
+  ctx.strokeStyle='rgba(201,164,76,'+(0.15+amplitude*0.25)+')';
+  ctx.lineWidth=1;
+  ctx.beginPath();
+  ctx.arc(cx,cy,rMax,0,Math.PI*2);
+  ctx.stroke();
+
+  elAmp.textContent=Math.round(amplitude*100)+'%';
+  var parts=Math.round(12000+amplitude*2000+Math.sin(t)*300);
+  elParts.textContent=parts.toLocaleString('es-MX');
+
+  requestAnimationFrame(render);
 }
 
-function savePreset() {
-  const preset = { mode, palette, sensitivity, speed };
-  const presets = JSON.parse(localStorage.getItem('cymatic_presets') || '[]');
-  presets.push(preset);
-  localStorage.setItem('cymatic_presets', JSON.stringify(presets));
-  alert('Preset guardado (' + presets.length + ' en total)');
+async function activarMic(){
+  if(micActivo){
+    if(micStream){micStream.getTracks().forEach(function(tr){tr.stop()});micStream=null;}
+    analizador=null;micActivo=false;
+    btnMic.classList.remove('active');
+    btnMic.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Micrófono';
+    return;
+  }
+  try{
+    micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(!audioCtx) audioCtx=new AC();
+    var src=audioCtx.createMediaStreamSource(micStream);
+    analizador=audioCtx.createAnalyser();
+    analizador.fftSize=2048;
+    src.connect(analizador);
+    micActivo=true;
+    btnMic.classList.add('active');
+    btnMic.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Activo';
+  }catch(e){alert('Micrófono: '+e.name);}
 }
 
-function loadLastPreset() {
-  const presets = JSON.parse(localStorage.getItem('cymatic_presets') || '[]');
-  if (presets.length === 0) return;
-  const p = presets[presets.length - 1];
-  setMode(p.mode);
-  setPalette(p.palette);
-  sensitivity = p.sensitivity; document.getElementById('sensitivity').value = p.sensitivity;
-  speed = p.speed; document.getElementById('speed').value = p.speed;
-  updateLabels();
+async function toggleGrabar(){
+  if(grabando){
+    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
+      mediaRecorder.stop();
+    }
+    return;
+  }
+  // Pedir mic si no está activo (para capturar audio en el video)
+  if(!micActivo){ await activarMic(); if(!micActivo) return; }
+
+  var canvasStream=cv.captureStream(60);
+
+  // Mezclar audio del micrófono en el stream
+  var combinedStream=new MediaStream();
+  canvasStream.getVideoTracks().forEach(function(tr){combinedStream.addTrack(tr)});
+
+  if(micStream){
+    micStream.getAudioTracks().forEach(function(tr){combinedStream.addTrack(tr)});
+  }
+
+  var mime='video/webm;codecs=vp9,opus';
+  if(!MediaRecorder.isTypeSupported(mime)) mime='video/webm;codecs=vp8,opus';
+  if(!MediaRecorder.isTypeSupported(mime)) mime='video/webm';
+
+  try{
+    mediaRecorder=new MediaRecorder(combinedStream,{mimeType:mime,videoBitsPerSecond:4000000});
+  }catch(e){
+    alert('Grabación no soportada: '+e.message);
+    return;
+  }
+
+  chunks=[];
+  mediaRecorder.ondataavailable=function(ev){
+    if(ev.data&&ev.data.size>0) chunks.push(ev.data);
+  };
+  mediaRecorder.onstop=function(){
+    var blob=new Blob(chunks,{type:mime});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;
+    a.download='cymatic-v5-'+Date.now()+'.webm';
+    a.click();
+    URL.revokeObjectURL(url);
+    grabando=false;
+    btnRec.classList.remove('active');
+    btnRec.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor" stroke="none"/></svg> Grabar';
+  };
+
+  mediaRecorder.start();
+  grabando=true;
+  btnRec.classList.add('active');
+  btnRec.innerHTML='<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="currentColor" stroke="none"/></svg> Parar';
 }
 
-function setMode(m) {
-  mode = m;
-  document.querySelectorAll('.mode-btn').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.mode) === m);
-  });
-}
-function setPalette(p) {
-  palette = p;
-  document.querySelectorAll('.palette-btn').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.palette) === p);
-  });
-}
-function updateLabels() {
-  document.getElementById('sensVal').textContent = sensitivity.toFixed(1);
-  document.getElementById('speedVal').textContent = speed.toFixed(1);
-}
-
-document.querySelectorAll('.mode-btn').forEach(b => {
-  b.addEventListener('click', () => setMode(parseInt(b.dataset.mode)));
+elSlider.addEventListener('input',function(){
+  freqTarget=parseInt(this.value,10);
+  elFreq.textContent=freqTarget;
 });
-document.querySelectorAll('.palette-btn').forEach(b => {
-  b.addEventListener('click', () => setPalette(parseInt(b.dataset.palette)));
-});
-document.getElementById('sensitivity').addEventListener('input', e => {
-  sensitivity = parseFloat(e.target.value); updateLabels();
-});
-document.getElementById('speed').addEventListener('input', e => {
-  speed = parseFloat(e.target.value); updateLabels();
-});
-document.getElementById('btnMic').addEventListener('click', startMic);
-document.getElementById('btnRecord').addEventListener('click', toggleRecording);
-document.getElementById('btnPreset').addEventListener('click', savePreset);
-document.getElementById('btnFull').addEventListener('click', toggleFullscreen);
 
-function toggleFullscreen() {
-  if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-  else document.exitFullscreen();
+btnPause.addEventListener('click',function(){
+  paused=!paused;
+  btnPause.innerHTML=paused?
+    '<svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="currentColor" stroke="none"/></svg> Reanudar':
+    '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/></svg> Pausar';
+});
+
+btnReset.addEventListener('click',function(){
+  freqTarget=440;freq=440;
+  elSlider.value=440;elFreq.textContent=440;
+  t=0;
+});
+
+btnMic.addEventListener('click',activarMic);
+
+btnLayer.addEventListener('click',function(){
+  multiCapa=!multiCapa;
+  btnLayer.classList.toggle('active');
+  btnLayer.textContent=multiCapa?'Multi-capa ON':'Multi-capa';
+});
+
+btnRec.addEventListener('click',toggleGrabar);
+
+btnPNG.addEventListener('click',function(){
+  var url=cv.toDataURL('image/png');
+  var a=document.createElement('a');
+  a.href=url;
+  a.download='cymatic-v5-'+Date.now()+'.png';
+  a.click();
+});
+
+setInterval(function(){
+  var lat=8+Math.floor(Math.random()*10);
+  elLat.textContent=lat+' ms';
+},2000);
+
+render();
+
+// Service Worker embebido para offline
+if('serviceWorker' in navigator){
+  var swCode='self.addEventListener("install",e=>self.skipWaiting());'+
+  'self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{var c=res.clone();caches.open("cymatic-v5").then(ch=>ch.put(e.request,c));return res}).catch(()=>caches.match(e.request))))});';
+  var swBlob=new Blob([swCode],{type:'application/javascript'});
+  var swUrl=URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl).catch(function(){});
 }
 
-function hideUI() {
-  uiHidden = !uiHidden;
-  document.querySelectorAll('.ui, #hint').forEach(el => el.classList.toggle('hidden', uiHidden));
-}
-
-window.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('active'); });
-window.addEventListener('dragleave', e => {
-  if (e.clientX === 0 && e.clientY === 0) dropzone.classList.remove('active');
-});
-window.addEventListener('drop', e => {
-  e.preventDefault();
-  dropzone.classList.remove('active');
-  if (e.dataTransfer.files.length > 0) loadFile(e.dataTransfer.files[0]);
-});
-
-window.addEventListener('keydown', e => {
-  const k = e.key.toLowerCase();
-  if (['1','2','3','4','5'].includes(k)) setMode(parseInt(k) - 1);
-  if (k === 'q') setPalette(0);
-  if (k === 'w') setPalette(1);
-  if (k === 'e') setPalette(2);
-  if (k === 'r') { if (!e.ctrlKey && !e.metaKey) toggleRecording(); }
-  if (k === 't') setPalette(4);
-  if (k === 'f') toggleFullscreen();
-  if (k === 'm') startMic();
-  if (k === 'h') hideUI();
-  if (k === 'p') savePreset();
-  if (k === 'l') loadLastPreset();
-});
-
-updateLabels();
-loadLastPreset();
-draw();
+console.log('%cCymatic V5.0','color:#c9a44c;font-weight:bold;font-size:14px');
+console.log('SEAL: 2607086319439');
+console.log('SHA:  '+SHA.slice(0,32)+'…');
+console.log('TX:   '+TX.slice(0,32)+'…');
 
 })();
 </script>
+
 </body>
 </html>
