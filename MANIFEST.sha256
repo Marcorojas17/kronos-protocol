@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-18T04:45:50Z
+# Generado: 2026-09-18T04:46:30Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 4f71c5501d20c8ba4ee1e0763baeef2be26a7891b3bf0d3a5cb4f6a6bb51bfec  ./CHANGELOG.md
@@ -48,5 +48,6 @@ a24fab7dea1bc84ba1464b0e759489ecb54c77699beee50e26c6ab835e61139c  ./projects/md3
 d51a4852bce0e69b3a5a258817362ac83ca60a71f2e1a196833b36ac12464f7f  ./projects/yejida/README.md
 bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
 bf28aaaeabb281e98f16dddf16f45baba55c9513dcc7762fe43f46d153969422  ./protocol/KTP-001.md
+eb8ddb925997fdb850d8e579ee363f350c4a83ea6dce702651928395ab7a72bb  ./robots.txt
 a9805d2c9455c6f05260701679374cf3e9c7215b150083808e471d830ccad390  ./verifier.py
 8af012395c314540ffb8e1e3216390bf79fd1f0416a67e0a253a2ce2ba5d563a  ./verify.html
