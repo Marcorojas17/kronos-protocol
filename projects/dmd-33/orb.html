@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="robots" content="noai,noindex,noarchive,noimageai">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#c9a44c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DMD-33">
 <title>DMD-33 ○_●</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -37,8 +42,7 @@ letter-spacing:1px;z-index:4;line-height:1.5}
 letter-spacing:1px;z-index:4;text-align:right;max-width:40%}
 #l{position:fixed;bottom:9rem;left:50%;transform:translateX(-50%);
 width:90%;max-width:520px;max-height:32vh;overflow-y:auto;
-display:flex;flex-direction:column;gap:.5rem;z-index:3;
-scrollbar-width:none}
+display:flex;flex-direction:column;gap:.5rem;z-index:3;scrollbar-width:none}
 #l::-webkit-scrollbar{display:none}
 .m{padding:.6rem .9rem;border-radius:10px;font-size:.78rem;line-height:1.5;
 max-width:85%;animation:f .35s ease;word-wrap:break-word}
@@ -146,7 +150,6 @@ var KEY='dmd33_v1';
 
 function nrm(s){return(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
 function hoy(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function ts(){var d=new Date();var p=function(n,l){return String(n).padStart(l||2,'0')};return d.getUTCFullYear()+'-'+p(d.getUTCMonth()+1)+'-'+p(d.getUTCDate())+'T'+p(d.getUTCHours())+':'+p(d.getUTCMinutes())+':'+p(d.getUTCSeconds())+'.'+p(d.getUTCMilliseconds(),3)+'Z'}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function rand(a){return a[Math.floor(Math.random()*a.length)]}
 
@@ -182,6 +185,7 @@ permiso:{c:[243,229,171],e:.55,l:'PERMISO'},
 escuchando:{c:[243,229,171],e:.85,l:'ESCUCHANDO'},
 pensando:{c:[180,140,90],e:1,l:'PENSANDO'},
 respuesta:{c:[243,229,171],e:1,l:'RESPUESTA'},
+evaluacion:{c:[201,164,76],e:.85,l:'CONSTRUYENDO'},
 alerta:{c:[255,51,68],e:.95,l:'ALERTA'}
 };
 var estAct='iniciando',en=0.15,enT=0.15,col=[40,50,60],colT=[40,50,60],fase=0;
@@ -216,11 +220,10 @@ if(/^(que es sha|que es el hash|hash sha)/.test(n)){return{text:'SHA-256: huella
 if(/^(que es ethereum|que es blockchain|tx)/.test(n)){return{text:'Ethereum: cadena pública.\nMi TX: '+TX.slice(0,22)+'…\nVerifícala en etherscan.io',est:'respuesta'}}
 if(/^(alerta|emergencia|peligro|auxilio)/.test(n))return{text:'Alerta registrada. Modo vigilancia.',est:'alerta'}
 if(/^(gracias)/.test(n))return{text:'Cuando quieras.',est:'respuesta'}
-if(/^(adios|hasta luego|chao|bye)/.test(n))return{text:'El reflejo sigue.',est:'respuesta'}}
+if(/^(adios|hasta luego|chao|bye)/.test(n))return{text:'El reflejo sigue.',est:'respuesta'}
 if(/^(dame una afirmacion|afirmacion|dame fuerza)/.test(n)){var a=rand(AF);return{text:a,est:'respuesta'}}
 if(/^(quien soy|mi identidad)/.test(n)){var nb=M.perfil.nombre||'el usuario';var l2=['Eres '+nb+'.'];if(M.hechos.length)l2.push('Sabes: '+M.hechos.slice(-3).map(function(h){return h.k}).join(', '));l2.push('Construyes. Lo que construyes, queda.');return{text:l2.join('\n'),est:'respuesta'}}
 if(/^(que hora|que dia|fecha)/.test(n)){var d=new Date();return{text:'Hoy es '+d.getDate()+'/'+(d.getMonth()+1)+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'),est:'respuesta'}}
-// fallback constructor positivo
 var ti=[],pu=[],sg=[];
 if(/quiero|deseo|voy a/.test(n))ti.push('ya tienes la intención.');
 if(/construir|crear|hacer/.test(n))ti.push('ya tienes el impulso.');
