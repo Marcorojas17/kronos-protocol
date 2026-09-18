@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DMD-33 · Espejo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    height:100%; width:100%;
+    background:#0a0a0c; color:#d8d8dc;
+    font-family:'Inter',system-ui,sans-serif;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
+  #orb {
+    position:fixed; top:38%; left:50%;
+    width:96px; height:96px; border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle at 40% 35%, #fff, #c8c8cc 60%, #2a2a30 100%);
+    box-shadow:0 0 40px rgba(200,200,220,0.25), inset 0 0 20px rgba(255,255,255,0.4);
+    animation:respira 3.4s ease-in-out infinite;
+    pointer-events:none;
+    transition:background 0.6s, box-shadow 0.6s;
+    z-index:2;
+  }
+  @keyframes respira {
+    0%,100% { transform:translate(-50%,-50%) scale(1); }
+    50%     { transform:translate(-50%,-50%) scale(1.06); }
+  }
+  #titulo {
+    position:fixed; top:2.5rem; left:50%;
+    transform:translateX(-50%);
+    font-size:0.7rem; letter-spacing:6px;
+    color:#6a6a72; z-index:3;
+  }
+  #estado {
+    position:fixed; top:4rem; left:50%;
+    transform:translateX(-50%);
+    font-size:0.58rem; letter-spacing:4px;
+    color:#8a8a92; z-index:3;
+    transition:color 0.4s;
+  }
+  #stats {
+    position:fixed; top:1rem; left:1rem;
+    font-size:0.58rem; color:#55555c;
+    letter-spacing:1px; z-index:4;
+    line-height:1.6;
+  }
+  #stats b { color:#c8c8cc; font-weight:500; }
+  #stats .warn { color:#e0a050; }
+  #debug {
+    position:fixed; top:1rem; right:1rem;
+    font-size:0.55rem; color:#55555c;
+    letter-spacing:1px; z-index:4;
+    text-align:right; max-width:40%;
+    line-height:1.4;
+  }
+  #log {
+    position:fixed; bottom:11rem; left:50%;
+    transform:translateX(-50%);
+    width:90%; max-width:540px;
+    max-height:34vh; overflow-y:auto;
+    display:flex; flex-direction:column; gap:0.5rem;
+    z-index:3; pointer-events:auto;
+    scrollbar-width:none;
+  }
+  #log::-webkit-scrollbar { display:none; }
+  .msg {
+    padding:0.6rem 0.9rem;
+    border-radius:6px;
+    font-size:0.78rem; line-height:1.55;
+    max-width:88%;
+    animation:fadeIn 0.3s ease;
+    word-wrap:break-word;
+  }
+  .msg.user {
+    background:#1a1a1f; border:1px solid #2a2a30;
+    color:#a8a8b0; align-self:flex-end; text-align:right;
+  }
+  .msg.dmd {
+    background:#12121a; border:1px solid #22222c;
+    color:#d8d8dc; align-self:flex-start;
+    white-space:pre-line;
+  }
+  .msg.dmd.hecho {
+    border-color:#2a4a30; color:#a8d8b0;
+  }
+  .msg.dmd.pendiente {
+    border-color:#4a3a20; color:#d8b878;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(6px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  #btn {
+    position:fixed; bottom:1.5rem; left:50%;
+    transform:translateX(-50%);
+    padding:1rem 2.4rem;
+    border:1px solid #3a3a44;
+    background:#14141a;
+    color:#c8c8cc;
+    font-family:inherit;
+    font-size:0.68rem; letter-spacing:4px;
+    text-transform:uppercase; border-radius:4px;
+    cursor:pointer;
+    transition:all 0.3s;
+    z-index:5;
+    white-space:nowrap;
+  }
+  #btn:hover, #btn:active {
+    background:#22222a; border-color:#66666e; color:#fff;
+  }
+  #btn:disabled { opacity:0.4; cursor:not-allowed; }
+  #btn.listening {
+    border-color:#a04a4a; color:#e08888; background:#1a1010;
+  }
+  #menu {
+    position:fixed; top:1rem; left:50%;
+    transform:translateX(-50%);
+    display:flex; gap:0.5rem; z-index:6;
+    flex-wrap:wrap; justify-content:center;
+    padding:0 0.5rem; max-width:100%;
+  }
+  .mbtn {
+    padding:0.4rem 0.9rem;
+    background:#0f0f14; border:1px solid #2a2a30;
+    color:#8a8a92; font-family:inherit;
+    font-size:0.55rem; letter-spacing:2px;
+    border-radius:3px; cursor:pointer;
+    text-transform:uppercase; transition:all 0.25s;
+  }
+  .mbtn:hover { background:#1a1a22; border-color:#4a4a54; color:#c8c8cc; }
+  #panel {
+    position:fixed; inset:0;
+    background:#0a0a0cf5;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    z-index:20; display:none;
+    flex-direction:column;
+    padding:2rem 1.5rem;
+    overflow-y:auto;
+  }
+  #panel.visible { display:flex; }
+  #panel h2 {
+    font-size:0.85rem; letter-spacing:5px;
+    color:#c8c8cc; margin-bottom:1.5rem;
+    text-align:center;
+    text-transform:uppercase; font-weight:400;
+  }
+  #panel .cerrar {
+    position:absolute; top:1rem; right:1rem;
+    padding:0.5rem 1rem; background:transparent;
+    border:1px solid #3a3a44; color:#8a8a92;
+    border-radius:3px; font-family:inherit;
+    font-size:0.6rem; letter-spacing:2px; cursor:pointer;
+  }
+  #panel .cerrar:hover { background:#1a1a22; color:#fff; }
+  #panel .seccion { max-width:640px; margin:0 auto 2rem; width:100%; }
+  #panel .seccion h3 {
+    font-size:0.6rem; letter-spacing:3px;
+    color:#6a6a72; text-transform:uppercase;
+    margin-bottom:0.8rem;
+  }
+  #panel .fila {
+    padding:0.7rem 1rem;
+    background:#0f0f14; border:1px solid #22222c;
+    border-radius:4px; margin-bottom:0.5rem;
+    font-size:0.75rem; line-height:1.5;
+    white-space:pre-line;
+    color:#c8c8cc;
+  }
+  #panel .fila .quien {
+    color:#6a6a72; font-size:0.55rem;
+    letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:0.3rem;
+  }
+  #panel .fila.hecho { border-left:3px solid #2a4a30; }
+  #panel .fila.pendiente { border-left:3px solid #4a3a20; }
+  #panel .acciones {
+    display:flex; gap:0.5rem; flex-wrap:wrap;
+    justify-content:center; margin-top:2rem;
+  }
+  #panel .acciones button {
+    padding:0.7rem 1.4rem;
+    background:#14141a; border:1px solid #3a3a44;
+    color:#c8c8cc; font-family:inherit;
+    font-size:0.6rem; letter-spacing:2px;
+    border-radius:3px; cursor:pointer; text-transform:uppercase;
+  }
+  #panel .acciones button:hover { background:#22222a; }
+  #panel .acciones button.peligro {
+    border-color:#4a2a2a; color:#d09090;
+  }
+  #panel .acciones button.peligro:hover { background:#1a1010; }
+  #err {
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    padding:1.5rem 2rem;
+    background:#1a1010; border:1px solid #4a2a2a;
+    border-radius:6px; color:#d8a8a8;
+    font-size:0.85rem; max-width:80%;
+    text-align:center; line-height:1.5;
+    z-index:30; display:none;
+  }
+  #err.visible { display:block; }
+  #err button {
+    margin-top:1rem; padding:0.6rem 1.4rem;
+    background:transparent; border:1px solid #4a2a2a;
+    color:#d8a8a8; border-radius:3px;
+    font-family:inherit; font-size:0.7rem;
+    letter-spacing:2px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="orb"></div>
+<div id="titulo">DMD-33 · ESPEJO</div>
+<div id="estado">INICIANDO</div>
+<div id="stats"></div>
+<div id="debug"></div>
+<div id="log"></div>
+
+<div id="menu">
+  <button class="mbtn" id="btn-historial">Historial</button>
+  <button class="mbtn" id="btn-pendientes">Pendientes</button>
+  <button class="mbtn" id="btn-reporte">Reporte</button>
+  <button class="mbtn" id="btn-exportar">Exportar</button>
+</div>
+
+<button id="btn" type="button">Activar micrófono</button>
+
+<div id="panel">
+  <button class="cerrar" onclick="document.getElementById('panel').classList.remove('visible')">Cerrar</button>
+  <h2 id="panel-titulo">HISTORIAL</h2>
+  <div id="panel-contenido"></div>
+</div>
+
+<div id="err"></div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════════════════════════════════════════════════
+  // UTILIDADES
+  // ═══════════════════════════════════════════════════════
+  function normalizar(s) {
+    return (s || '').toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function hoyISO() {
+    var d = new Date();
+    return d.getFullYear() + '-' +
+      String(d.getMonth()+1).padStart(2,'0') + '-' +
+      String(d.getDate()).padStart(2,'0');
+  }
+
+  function diasDesde(ts) {
+    return Math.floor((Date.now() - ts) / 86400000);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // ESTADO PERSISTENTE
+  // ═══════════════════════════════════════════════════════
+  var STORAGE_KEY = 'dmd33_espejo_v1';
+
+  var estado = {
+    hechos: [],        // { texto, t, ts }
+    compromisos: [],   // { texto, t, ts, cumplido, cumplidoEn, cumplidoTs }
+    conversaciones: [],
+    perfil: { nombre:null, primeraVez:Date.now(), ultimaVez:Date.now(), totalInteracciones:0 },
+
+    guardar: function() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          hechos: this.hechos.slice(-500),
+          compromisos: this.compromisos.slice(-500),
+          conversaciones: this.conversaciones.slice(-500),
+          perfil: this.perfil
+        }));
+      } catch (e) {}
+    },
+    cargar: function() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        var d = JSON.parse(raw);
+        this.hechos = d.hechos || [];
+        this.compromisos = d.compromisos || [];
+        this.conversaciones = d.conversaciones || [];
+        this.perfil = Object.assign(this.perfil, d.perfil || {});
+        return true;
+      } catch (e) { return false; }
+    },
+    agregarHecho: function(texto) {
+      this.hechos.push({ texto: texto, t: hoyISO(), ts: Date.now() });
+      if (this.hechos.length > 1000) this.hechos.shift();
+      this.guardar();
+      actualizarStats();
+    },
+    agregarCompromiso: function(texto) {
+      this.compromisos.push({
+        texto: texto, t: hoyISO(), ts: Date.now(),
+        cumplido: false, cumplidoEn: null, cumplidoTs: null
+      });
+      if (this.compromisos.length > 1000) this.compromisos.shift();
+      this.guardar();
+      actualizarStats();
+    },
+    marcarCumplido: function(indice) {
+      if (indice >= 0 && indice < this.compromisos.length) {
+        this.compromisos[indice].cumplido = true;
+        this.compromisos[indice].cumplidoEn = hoyISO();
+        this.compromisos[indice].cumplidoTs = Date.now();
+        this.guardar();
+        actualizarStats();
+        return this.compromisos[indice];
+      }
+      return null;
+    },
+    pendientes: function() {
+      return this.compromisos.filter(function(c) { return !c.cumplido; });
+    },
+    cumplidos: function() {
+      return this.compromisos.filter(function(c) { return c.cumplido; });
+    },
+    borrarTodo: function() {
+      this.hechos = [];
+      this.compromisos = [];
+      this.conversaciones = [];
+      this.perfil = { nombre:null, primeraVez:Date.now(), ultimaVez:Date.now(), totalInteracciones:0 };
+      this.guardar();
+      actualizarStats();
+    },
+    exportar: function() {
+      return JSON.stringify({
+        version:1, exportado:new Date().toISOString(),
+        hechos:this.hechos, compromisos:this.compromisos,
+        conversaciones:this.conversaciones, perfil:this.perfil
+      }, null, 2);
+    },
+    registrarConversacion: function(quien, texto) {
+      this.conversaciones.push({ quien:quien, texto:texto, ts:Date.now() });
+      if (this.conversaciones.length > 1000) this.conversaciones.shift();
+      this.perfil.totalInteracciones++;
+      this.perfil.ultimaVez = Date.now();
+      this.guardar();
+      actualizarStats();
+    }
+  };
+  estado.cargar();
+
+  // ═══════════════════════════════════════════════════════
+  // DOM
+  // ═══════════════════════════════════════════════════════
+  var orb = document.getElementById('orb');
+  var estadoEl = document.getElementById('estado');
+  var debugEl = document.getElementById('debug');
+  var statsEl = document.getElementById('stats');
+  var logEl = document.getElementById('log');
+  var btn = document.getElementById('btn');
+  var errEl = document.getElementById('err');
+  var panel = document.getElementById('panel');
+  var panelTitulo = document.getElementById('panel-titulo');
+  var panelContenido = document.getElementById('panel-contenido');
+
+  function log(msg) { debugEl.textContent = msg; }
+
+  function error(titulo, detalle) {
+    errEl.innerHTML = '<strong>' + titulo + '</strong><br><br>' + detalle +
+      '<br><button type="button" onclick="this.parentElement.classList.remove(\'visible\')">Cerrar</button>';
+    errEl.classList.add('visible');
+  }
+
+  function actualizarStats() {
+    var p = estado.pendientes().length;
+    var c = estado.cumplidos().length;
+    var h = estado.hechos.length;
+    var pend = p > 0 ? '<span class="warn">' + p + '</span>' : '0';
+    statsEl.innerHTML =
+      'HECHOS: <b>' + h + '</b><br>' +
+      'CUMPLIDOS: <b>' + c + '</b><br>' +
+      'PENDIENTES: <b>' + pend + '</b>';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // ESTADOS VISUALES
+  // ═══════════════════════════════════════════════════════
+  var ESTADOS = {
+    iniciando:  { color:'#c8c8cc', label:'INICIANDO'  },
+    standby:    { color:'#8a8a92', label:'EN ESPERA'  },
+    permiso:    { color:'#a89878', label:'PERMISO'    },
+    escuchando: { color:'#c8c8cc', label:'ESCUCHANDO' },
+    pensando:   { color:'#8888a8', label:'PROCESANDO' },
+    guardado:   { color:'#a8d8b0', label:'REGISTRADO' },
+    reporte:    { color:'#a8b8d8', label:'REPORTE'    },
+    alerta:     { color:'#d8a0a0', label:'REVISAR'    }
+  };
+
+  var estadoActual = 'iniciando';
+
+  function aplicarEstado(nombre) {
+    var e = ESTADOS[nombre];
+    if (!e) return;
+    estadoActual = nombre;
+    estadoEl.textContent = e.label;
+    estadoEl.style.color = e.color;
+
+    if (nombre === 'escuchando') {
+      orb.style.background = 'radial-gradient(circle at 40% 35%, #fff, #e0e0e8 60%, #3a3a44 100%)';
+      orb.style.boxShadow = '0 0 50px rgba(220,220,240,0.4), inset 0 0 20px rgba(255,255,255,0.5)';
+    } else if (nombre === 'guardado') {
+      orb.style.background = 'radial-gradient(circle at 40% 35%, #e0ffe8, #a8d8b0 60%, #2a3a30 100%)';
+      orb.style.boxShadow = '0 0 50px rgba(168,216,176,0.4), inset 0 0 20px rgba(255,255,255,0.4)';
+    } else if (nombre === 'reporte') {
+      orb.style.background = 'radial-gradient(circle at 40% 35%, #e0e8ff, #a8b8d8 60%, #2a2a3a 100%)';
+      orb.style.boxShadow = '0 0 50px rgba(168,184,216,0.4), inset 0 0 20px rgba(255,255,255,0.4)';
+    } else if (nombre === 'alerta') {
+      orb.style.background = 'radial-gradient(circle at 40% 35%, #ffe0e0, #d8a0a0 60%, #3a2a2a 100%)';
+      orb.style.boxShadow = '0 0 50px rgba(216,160,160,0.4), inset 0 0 20px rgba(255,255,255,0.4)';
+    } else {
+      orb.style.background = 'radial-gradient(circle at 40% 35%, #fff, #c8c8cc 60%, #2a2a30 100%)';
+      orb.style.boxShadow = '0 0 40px rgba(200,200,220,0.25), inset 0 0 20px rgba(255,255,255,0.4)';
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // CEREBRO
+  // ═══════════════════════════════════════════════════════
+
+  // Verifica si un texto tiene cuándo/cómo concretos
+  function tieneCuando(texto) {
+    return /(hoy|mañana|manana|lunes|martes|miercoles|miércoles|jueves|viernes|sabado|sábado|domingo|esta semana|proxima semana|próxima semana|esta noche|en la manana|en la mañana|en la tarde|en la noche|a las \d|\d{1,2}(:\d{2})?|por la (mañana|tarde|noche))/.test(texto);
+  }
+  function tieneComo(texto) {
+    return /(voy a|hare|haré|empezare|empezaré|primero|paso 1|mediante|usando|con |a traves|a través)/.test(texto) && texto.length > 15;
+  }
+
+  // Detecta tipo de entrada
+  function detectarTipo(n) {
+    // RESET
+    if (/^(borra todo|olvida todo|reset|formatear|empezar de cero)$/.test(n)) return 'reset';
+
+    // Preguntas de reporte
+    if (/^(como voy|que tal voy|cómo voy|como estoy|dame el reporte|reporte|cuantos pendientes|cuántos pendientes|pendientes|que me falta|qué me falta)/.test(n)) return 'reporte';
+    if (/^(que he hecho|qué he hecho|que hice|qué hice|mis hechos|historial|dime lo que he hecho)/.test(n)) return 'hechos';
+    if (/^(que no he hecho|qué no he hecho|que tengo pendiente|qué tengo pendiente|que me falta por hacer|qué me falta por hacer)/.test(n)) return 'pendientes';
+
+    // Marcar compromiso como cumplido
+    var mMar = n.match(/^(marca como hecho|marcar como hecho|ya hice|ya cumpli|ya cumplí|termine|terminé)\s+(.+)$/);
+    if (mMar) return 'marcar';
+
+    // Nombre
+    if (/^(me llamo|mi nombre es|soy)\s+/.test(n)) return 'nombre';
+
+    // Identidad
+    if (/^(quien eres|quién eres|que eres|qué eres|para que sirves|para qué sirves|como funcionas|cómo funcionas)$/.test(n)) return 'identidad';
+
+    // Utilidad
+    if (/^(que hora es|qué hora es|dime la hora)$/.test(n)) return 'utilidad';
+    if (/^(que dia es|qué día es|dime la fecha)$/.test(n)) return 'utilidad';
+
+    // Hechos — hice / terminé / logré
+    if (/^(hoy hice|hice|termine|terminé|complete|completé|logre|logré|avance|avancé|ya\s+)/.test(n)) return 'hecho';
+    if (/\bhoy\b.*\b(hice|termine|terminé|complete|completé|logre|logré)\b/.test(n)) return 'hecho';
+
+    // Compromisos — voy a / haré / quiero
+    if (/^(voy a|hare|haré|quiero|pienso|me propongo|tengo que|debo|necesito hacer|voy hacer|empiezo|empezaré|empiezare|empiezo a)\s+/.test(n)) return 'compromiso';
+
+    // Todo lo demás
+    return 'reflejo';
+  }
+
+  function procesarHecho(texto, n) {
+    // Extraer la acción después del verbo
+    var accion = texto.replace(/^(hoy\s+)?(hice|termin[eé]|complet[eé]|logr[eé]|avanc[eé]|ya\s+)/i, '').trim();
+    if (accion.length < 2) accion = texto.trim();
+    estado.agregarHecho(accion);
+
+    var total = estado.hechos.length;
+    var hoy = estado.hechos.filter(function(h) { return h.t === hoyISO(); }).length;
+
+    return {
+      texto: 'Registrado. ' + accion + '\nHoy: ' + hoy + ' hechos. En total: ' + total + '.',
+      estado: 'guardado',
+      clase: 'hecho'
+    };
+  }
+
+  function procesarCompromiso(texto, n) {
+    var accion = texto.replace(/^(voy a|har[eé]|quiero|pienso|me propongo|tengo que|debo|necesito hacer|voy hacer|empiezo|empezar[eé]|empiezo a)\s+/i, '').trim();
+
+    var faltaCuando = !tieneCuando(n);
+    var faltaComo = !tieneComo(n);
+
+    // Solo guardar si tiene alguna concreción mínima
+    if (accion.length < 5) {
+      return {
+        texto: 'Eso es muy general. No puedo registrarlo.\nDime qué harás exactamente.',
+        estado: 'alerta',
+        clase: ''
+      };
+    }
+
+    // Guardar como compromiso aunque falten detalles, pero reflejar la falta
+    estado.agregarCompromiso(accion);
+
+    var aviso = '';
+    if (faltaCuando && faltaComo) {
+      aviso = 'Registrado como compromiso.\nOjo: no oí cuándo. No oí cómo.\nUn compromiso sin cuándo ni cómo es solo deseo.';
+    } else if (faltaCuando) {
+      aviso = 'Registrado. Pero no oí el cuándo. ¿Cuándo?';
+    } else if (faltaComo) {
+      aviso = 'Registrado. Pero no oí el cómo. ¿Qué parte harás primero?';
+    } else {
+      aviso = 'Registrado como compromiso. Con cuándo y con cómo. Eso es un plan.';
+    }
+
+    return { texto: aviso, estado: 'guardado', clase: '' };
+  }
+
+  function marcarCompromiso(n) {
+    var m = n.match(/^(?:marca como hecho|marcar como hecho|ya hice|ya cumpli|ya cumplí|termine|terminé)\s+(.+)$/);
+    if (!m) return null;
+    var texto = m[1].trim();
+
+    // Buscar compromiso pendiente más parecido
+    var pendientes = estado.pendientes();
+    var mejor = null;
+    var mejorPunt = 0;
+    for (var i = 0; i < estado.compromisos.length; i++) {
+      var c = estado.compromisos[i];
+      if (c.cumplido) continue;
+      var palabras = texto.split(/\s+/);
+      var punt = 0;
+      var cN = normalizar(c.texto);
+      for (var j = 0; j < palabras.length; j++) {
+        if (palabras[j].length > 3 && cN.indexOf(normalizar(palabras[j])) !== -1) punt++;
+      }
+      if (punt > mejorPunt) { mejorPunt = punt; mejor = i; }
+    }
+
+    if (mejor === null || mejorPunt === 0) {
+      // No encontró, guardarlo como hecho nuevo
+      estado.agregarHecho(texto);
+      return {
+        texto: 'Registrado como hecho: ' + texto + '\n(No encontré un compromiso previo que coincida.)',
+        estado: 'guardado',
+        clase: 'hecho'
+      };
+    }
+
+    var c2 = estado.marcarCumplido(mejor);
+    return {
+      texto: 'Cumplido: ' + c2.texto + '\nLo dijiste el ' + c2.t + '. Hoy ' + hoyISO() + '. Bien.',
+      estado: 'guardado',
+      clase: 'hecho'
+    };
+  }
+
+  function reporte() {
+    var total = estado.compromisos.length;
+    var cumpl = estado.cumplidos().length;
+    var pend = estado.pendientes().length;
+    var hechos = estado.hechos.length;
+
+    if (total === 0 && hechos === 0) {
+      return {
+        texto: 'Aún no hay datos.\nDime algo que hiciste hoy, o algo que vas a hacer.\nAsí empieza el registro.',
+        estado: 'reporte'
+      };
+    }
+
+    var ratio = total > 0 ? Math.round((cumpl / total) * 100) : 0;
+
+    var texto = 'Compromisos: ' + total + '.\nCumplidos: ' + cumpl + '.\nPendientes: ' + pend + '.\nHechos registrados: ' + hechos + '.';
+    if (total > 0) texto += '\nCumplimiento: ' + ratio + '%.';
+
+    return { texto: texto, estado: 'reporte' };
+  }
+
+  function listaHechos() {
+    if (estado.hechos.length === 0) {
+      return { texto: 'No hay hechos registrados todavía.', estado: 'reporte' };
+    }
+    var ult = estado.hechos.slice(-10).reverse();
+    var lineas = ult.map(function(h) {
+      return '· ' + h.t + ' · ' + h.texto;
+    }).join('\n');
+    return { texto: 'Últimos hechos:\n' + lineas, estado: 'reporte' };
+  }
+
+  function listaPendientes() {
+    var pend = estado.pendientes();
+    if (pend.length === 0) {
+      return { texto: 'No hay pendientes. Todo lo registrado está cumplido.', estado: 'reporte' };
+    }
+    var ordenados = pend.slice().sort(function(a, b) { return a.ts - b.ts; });
+    var lineas = ordenados.slice(0, 10).map(function(c) {
+      var d = diasDesde(c.ts);
+      var edad = d === 0 ? 'hoy' : (d === 1 ? 'ayer' : 'hace ' + d + ' días');
+      return '· ' + edad + ' · ' + c.texto;
+    }).join('\n');
+    return {
+      texto: 'Pendientes (' + pend.length + '):\n' + lineas + '\n\n¿Qué haces con ellos?',
+      estado: 'alerta'
+    };
+  }
+
+  function reflejoCrudo(texto, n) {
+    // Si es pregunta, reflejar sin adornos
+    var esPregunta = /\?$/.test(texto.trim());
+
+    if (esPregunta) {
+      return {
+        texto: 'No tengo una respuesta para eso.\nReformula: ¿qué hiciste o qué vas a hacer?',
+        estado: 'standby'
+      };
+    }
+
+    // Si es frase con "quiero" o "debería" sin acción
+    if (/(quiero|deberia|debería|me gustaria|me gustaría|sueno|sueño|algun dia|algún día)/.test(n) && !tieneCuando(n)) {
+      return {
+        texto: 'Oí: "' + texto + '"\nNo oí cuándo.\nNo oí qué parte harás primero.\nSin eso, es deseo. No es plan.',
+        estado: 'alerta'
+      };
+    }
+
+    // Reflejo honesto
+    return {
+      texto: 'Oí: "' + texto + '"\nNo es un hecho ni un compromiso claro.\n¿Qué vas a hacer con eso?',
+      estado: 'standby'
+    };
+  }
+
+  function identidad() {
+    return {
+      texto:
+        'Soy un espejo.\n' +
+        'No aplaudo. No prometo. No te doy rangos.\n' +
+        'Registro lo que dices que hiciste. Registro lo que dices que harás.\n' +
+        'Te devuelvo el dato. Nada más.\n\n' +
+        'Si dices un hecho, lo guardo.\n' +
+        'Si dices un compromiso sin cuándo ni cómo, te lo señalo.\n' +
+        'Si preguntas cómo vas, te doy el número.',
+      estado: 'reporte'
+    };
+  }
+
+  function procesarNombre(texto, n) {
+    var m = n.match(/^(?:me llamo|mi nombre es|soy)\s+(.+)$/);
+    if (m) {
+      var nombre = m[1].trim().replace(/[.,;]$/, '');
+      // Capitalizar
+      nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+      estado.perfil.nombre = nombre;
+      estado.guardar();
+      return { texto: 'Registrado. ' + nombre + '.', estado: 'guardado' };
+    }
+    return null;
+  }
+
+  function pensar(texto) {
+    var n = normalizar(texto);
+    var tipo = detectarTipo(n);
+
+    if (tipo === 'reset') {
+      estado.borrarTodo();
+      logEl.innerHTML = '';
+      return { texto: 'Todo borrado. Empezamos de cero.', estado: 'alerta' };
+    }
+
+    if (tipo === 'identidad') return identidad();
+    if (tipo === 'reporte') return reporte();
+    if (tipo === 'hechos') return listaHechos();
+    if (tipo === 'pendientes') return listaPendientes();
+    if (tipo === 'marcar') return marcarCompromiso(n) || { texto: 'No pude identificar el compromiso.', estado: 'alerta' };
+    if (tipo === 'nombre') {
+      var rn = procesarNombre(texto, n);
+      if (rn) return rn;
+    }
+    if (tipo === 'hecho') return procesarHecho(texto, n);
+    if (tipo === 'compromiso') return procesarCompromiso(texto, n);
+
+    if (tipo === 'utilidad') {
+      if (/hora/.test(n)) {
+        var d = new Date();
+        return { texto: 'Son las ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0') + '.', estado: 'standby' };
+      }
+      var d2 = new Date();
+      var dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+      return { texto: 'Hoy es ' + dias[d2.getDay()] + ' ' + d2.getDate() + '.', estado: 'standby' };
+    }
+
+    return reflejoCrudo(texto, n);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // LOG VISUAL
+  // ═══════════════════════════════════════════════════════
+  function addMensaje(quien, texto, clase) {
+    var div = document.createElement('div');
+    div.className = 'msg ' + quien + (clase ? ' ' + clase : '');
+    div.innerHTML = texto.replace(/\n/g, '<br>');
+    logEl.appendChild(div);
+    while (logEl.children.length > 6) logEl.removeChild(logEl.firstChild);
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function restaurarLog() {
+    var ult = estado.conversaciones.slice(-4);
+    for (var i = 0; i < ult.length; i++) addMensaje(ult[i].quien, ult[i].texto, '');
+  }
+  restaurarLog();
+  actualizarStats();
+
+  // ═══════════════════════════════════════════════════════
+  // RECONOCIMIENTO DE VOZ
+  // ═══════════════════════════════════════════════════════
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null, escuchando = false, iniciado = false;
+  var paradaManual = false, autoEscucha = true;
+
+  // Micrófono
+  var stream = null, audioCtx = null;
+
+  async function pedirMicrofono() {
+    log('Solicitando permiso...');
+    aplicarEstado('permiso');
+    btn.disabled = true;
+    btn.textContent = 'Solicitando...';
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      error('Micrófono no disponible', 'Tu navegador no soporta acceso al micrófono.');
+      btn.disabled = false; btn.textContent = 'Activar micrófono';
+      aplicarEstado('standby');
+      return false;
+    }
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation:true, noiseSuppression:true, autoGainControl:true }
+      });
+      log('Permiso concedido');
+      if (!audioCtx) {
+        var Ctx = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new Ctx();
+      }
+      return true;
+    } catch (e) {
+      var nn = e.name || 'Error';
+      if (nn === 'NotAllowedError' || nn === 'PermissionDeniedError') {
+        error('Permiso denegado', 'Permite el micrófono en tu navegador.');
+      } else if (nn === 'NotFoundError') {
+        error('Sin micrófono', 'Tu dispositivo no tiene micrófono.');
+      } else if (nn === 'NotReadableError') {
+        error('Micrófono ocupado', 'Otra app lo está usando.');
+      } else {
+        error('Error al pedir micrófono', nn + ': ' + (e.message || ''));
+      }
+      btn.disabled = false; btn.textContent = 'Reintentar';
+      aplicarEstado('alerta');
+      return false;
+    }
+  }
+
+  if (SR) {
+    rec = new SR();
+    rec.lang = 'es-MX';
+    rec.continuous = false;
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+
+    rec.onstart = function() {
+      escuchando = true;
+      aplicarEstado('escuchando');
+      btn.classList.add('listening');
+      btn.textContent = 'Escuchando...';
+      log('Escuchando');
+    };
+    rec.onresult = function(ev) {
+      var interim = '', final = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+        else interim += ev.results[i][0].transcript;
+      }
+      if (interim) log('... ' + interim);
+      if (final) { log('Detectado: ' + final); responder(final); }
+    };
+    rec.onerror = function(ev) {
+      log('Error: ' + ev.error);
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (estadoActual === 'escuchando') aplicarEstado('standby');
+    };
+    rec.onend = function() {
+      escuchando = false;
+      btn.classList.remove('listening');
+      btn.textContent = 'Hablar';
+      if (estadoActual === 'escuchando') aplicarEstado('standby');
+      log('Listo');
+    };
+  }
+
+  function hablar() { if (!rec || escuchando) return; try { rec.start(); } catch (e) {} }
+  function parar() { paradaManual = true; if (!rec) return; try { rec.stop(); } catch (e) {} }
+
+  function intentarAutoEscucha() {
+    if (!iniciado || !autoEscucha || paradaManual) return;
+    if (escuchando) return;
+    setTimeout(function() {
+      if (iniciado && !escuchando && !paradaManual && estadoActual === 'standby') hablar();
+    }, 1000);
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // PROCESAR
+  // ═══════════════════════════════════════════════════════
+  function responder(texto) {
+    estado.registrarConversacion('user', texto);
+    addMensaje('user', texto, '');
+    aplicarEstado('pensando');
+    log('Procesando...');
+
+    setTimeout(function() {
+      var resp = pensar(texto);
+      aplicarEstado(resp.estado);
+      addMensaje('dmd', resp.texto, resp.clase || '');
+      estado.registrarConversacion('dmd', resp.texto);
+      decir(resp.texto);
+    }, 350);
+  }
+
+  function decir(texto) {
+    if (!window.speechSynthesis) {
+      setTimeout(function() { aplicarEstado('standby'); intentarAutoEscucha(); }, 3500);
+      return;
+    }
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    var u = new SpeechSynthesisUtterance(texto);
+    u.lang = 'es-MX';
+    u.rate = 0.95;
+    u.pitch = 1.0;
+    var voces = window.speechSynthesis.getVoices();
+    var elegida = null;
+    for (var i = 0; i < voces.length; i++) {
+      if (voces[i].lang === 'es-MX' || voces[i].lang === 'es-US') { elegida = voces[i]; break; }
+    }
+    if (!elegida) {
+      for (var j = 0; j < voces.length; j++) {
+        if (voces[j].lang && voces[j].lang.indexOf('es') === 0) { elegida = voces[j]; break; }
+      }
+    }
+    if (elegida) u.voice = elegida;
+
+    var durMax = Math.min(30000, Math.max(4000, texto.length * 100));
+    var safety = setTimeout(function() {
+      aplicarEstado('standby');
+      intentarAutoEscucha();
+    }, durMax);
+
+    u.onend = function() {
+      clearTimeout(safety);
+      setTimeout(function() { aplicarEstado('standby'); intentarAutoEscucha(); }, 300);
+    };
+    u.onerror = function() {
+      clearTimeout(safety);
+      aplicarEstado('standby');
+      intentarAutoEscucha();
+    };
+    try { window.speechSynthesis.speak(u); }
+    catch (e) {
+      clearTimeout(safety);
+      aplicarEstado('standby');
+      intentarAutoEscucha();
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // BOTÓN
+  // ═══════════════════════════════════════════════════════
+  btn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    if (!iniciado) {
+      var ok = await pedirMicrofono();
+      if (!ok) return;
+      iniciado = true;
+      paradaManual = false;
+      aplicarEstado('standby');
+      if (!SR) {
+        error('Reconocimiento no soportado', 'Usa Chrome, Edge o Safari.');
+        btn.textContent = 'No disponible';
+        btn.disabled = true;
+        return;
+      }
+      btn.textContent = 'Hablar';
+      btn.disabled = false;
+      setTimeout(hablar, 300);
+      return;
+    }
+    if (escuchando) { paradaManual = true; parar(); }
+    else { paradaManual = false; hablar(); }
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // PANELES
+  // ═══════════════════════════════════════════════════════
+  function abrirPanel(titulo, html) {
+    panelTitulo.textContent = titulo;
+    panelContenido.innerHTML = html;
+    panel.classList.add('visible');
+  }
+
+  function fmtFecha(ts) {
+    var d = new Date(ts);
+    return String(d.getDate()).padStart(2,'0') + '/' +
+           String(d.getMonth()+1).padStart(2,'0') + ' ' +
+           String(d.getHours()).padStart(2,'0') + ':' +
+           String(d.getMinutes()).padStart(2,'0');
+  }
+
+  document.getElementById('btn-historial').addEventListener('click', function() {
+    var conv = estado.conversaciones.slice().reverse();
+    if (conv.length === 0) {
+      abrirPanel('HISTORIAL', '<div class="seccion"><p style="color:#6a6a72;text-align:center;font-size:0.75rem;">Sin conversaciones.</p></div>');
+      return;
+    }
+    var html = '<div class="seccion"><h3>' + conv.length + ' mensajes</h3>';
+    for (var i = 0; i < Math.min(conv.length, 100); i++) {
+      var c = conv[i];
+      html += '<div class="fila">' +
+        '<div class="quien">' + (c.quien === 'user' ? 'Tú' : 'Espejo') + ' · ' + fmtFecha(c.ts) + '</div>' +
+        c.texto.replace(/\n/g, '<br>') +
+        '</div>';
+    }
+    html += '</div>';
+    abrirPanel('HISTORIAL', html);
+  });
+
+  document.getElementById('btn-pendientes').addEventListener('click', function() {
+    var pend = estado.pendientes().slice().sort(function(a, b) { return a.ts - b.ts; });
+    var cumpl = estado.cumplidos();
+    var html = '<div class="seccion"><h3>Pendientes (' + pend.length + ')</h3>';
+    if (pend.length === 0) {
+      html += '<p style="color:#6a6a72;font-size:0.75rem;">Nada pendiente.</p>';
+    } else {
+      for (var i = 0; i < pend.length; i++) {
+        var d = diasDesde(pend[i].ts);
+        var edad = d === 0 ? 'hoy' : (d === 1 ? 'ayer' : 'hace ' + d + ' días');
+        html += '<div class="fila pendiente">' +
+          '<div class="quien">' + edad + ' · ' + pend[i].t + '</div>' +
+          pend[i].texto +
+          '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="seccion"><h3>Cumplidos (' + cumpl.length + ')</h3>';
+    if (cumpl.length === 0) {
+      html += '<p style="color:#6a6a72;font-size:0.75rem;">Nada cumplido todavía.</p>';
+    } else {
+      var ult = cumpl.slice(-20).reverse();
+      for (var j = 0; j < ult.length; j++) {
+        html += '<div class="fila hecho">' +
+          '<div class="quien">' + ult[j].t + ' → ' + ult[j].cumplidoEn + '</div>' +
+          ult[j].texto +
+          '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="seccion"><div class="acciones">' +
+      '<button onclick="window.Espejo.borrarTodo()" class="peligro">Borrar todo</button>' +
+      '</div></div>';
+
+    abrirPanel('PENDIENTES', html);
+  });
+
+  document.getElementById('btn-reporte').addEventListener('click', function() {
+    var r = reporte();
+    var hechos = estado.hechos.slice(-15).reverse();
+    var html = '<div class="seccion"><h3>Reporte</h3>' +
+      '<div class="fila">' + r.texto.replace(/\n/g, '<br>') + '</div>' +
+      '</div>';
+    html += '<div class="seccion"><h3>Últimos hechos (' + estado.hechos.length + ')</h3>';
+    if (hechos.length === 0) {
+      html += '<p style="color:#6a6a72;font-size:0.75rem;">Sin hechos registrados.</p>';
+    } else {
+      for (var i = 0; i < hechos.length; i++) {
+        html += '<div class="fila hecho"><div class="quien">' + hechos[i].t + '</div>' + hechos[i].texto + '</div>';
+      }
+    }
+    html += '</div>';
+    abrirPanel('REPORTE', html);
+  });
+
+  document.getElementById('btn-exportar').addEventListener('click', function() {
+    var blob = new Blob([estado.exportar()], { type:'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'espejo_' + hoyISO() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    abrirPanel('EXPORTAR', '<div class="seccion"><p style="color:#a8d8b0;text-align:center;font-size:0.85rem;">Descargado.</p><p style="color:#6a6a72;text-align:center;font-size:0.7rem;margin-top:1rem;">' + estado.hechos.length + ' hechos · ' + estado.compromisos.length + ' compromisos.</p></div>');
+  });
+
+  window.Espejo = {
+    setEstado: aplicarEstado,
+    hablar: decir,
+    memoria: estado,
+    borrarTodo: function() {
+      if (!confirm('¿Borrar TODOS los datos?')) return;
+      estado.borrarTodo();
+      logEl.innerHTML = '';
+      addMensaje('dmd', 'Borrado. Empezamos de cero.', '');
+      panel.classList.remove('visible');
+    },
+    exportar: function() { return estado.exportar(); }
+  };
+
+  // ═══════════════════════════════════════════════════════
+  // ARRANQUE
+  // ═══════════════════════════════════════════════════════
+  setTimeout(function() { aplicarEstado('standby'); }, 500);
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+  }
+
+  // Saludo sobrio
+  (function saludar() {
+    var nombre = estado.perfil.nombre;
+    var total = estado.perfil.totalInteracciones;
+    var pend = estado.pendientes().length;
+
+    if (total <= 1 && !nombre) {
+      setTimeout(function() {
+        addMensaje('dmd', 'Soy un espejo.\nRegistro lo que haces y lo que dices que harás.\nNo aplaudo. No prometo.\nHabla cuando quieras.', '');
+      }, 800);
+      return;
+    }
+
+    var lineas = [];
+    if (nombre) lineas.push('Hola, ' + nombre + '.');
+    if (pend > 0) {
+      lineas.push('Tienes ' + pend + (pend === 1 ? ' pendiente.' : ' pendientes.'));
+      lineas.push('Di "pendientes" para verlos.');
+    } else {
+      lineas.push('Sin pendientes acumulados.');
+    }
+    setTimeout(function() {
+      addMensaje('dmd', lineas.join('\n'), '');
+    }, 800);
+  })();
+
+  log('Listo. Toca el botón.');
+
+})();
+</script>
+</body>
+</html>
