@@ -26,8 +26,6 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* ── FONDO 3D ── */
   #webgl {
     position: fixed;
     top: 0; left: 0;
@@ -43,8 +41,6 @@
     z-index: 1;
     pointer-events: none;
   }
-
-  /* ── LAYOUT ── */
   .wrap {
     position: relative;
     z-index: 2;
@@ -52,8 +48,6 @@
     margin: 0 auto;
     padding: 40px 32px 100px;
   }
-
-  /* ── HEADER ── */
   header.top {
     display: flex;
     justify-content: space-between;
@@ -88,7 +82,6 @@
   }
   header.top nav a:hover { color: var(--gold); }
 
-  /* ── HERO ── */
   .hero {
     padding: 60px 0 100px;
     max-width: 780px;
@@ -131,15 +124,11 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  /* ── DIVIDER ── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
     margin: 80px 0;
   }
-
-  /* ── SECTION HEADER ── */
   .section-head {
     display: flex;
     align-items: baseline;
@@ -159,8 +148,6 @@
     letter-spacing: 2px;
     color: var(--text-dim);
   }
-
-  /* ── GRID DE PROYECTOS ── */
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -204,8 +191,6 @@
   }
   a.card:hover::before { opacity: 1; }
   a.card:hover::after { width: 100%; }
-
-  /* ── CARD DMD-33 · acento cyan ── */
   a.card.dmd33 {
     border-color: rgba(0, 234, 255, 0.18);
   }
@@ -222,8 +207,6 @@
     background: var(--cyan);
     box-shadow: 0 0 8px var(--cyan);
   }
-
-  /* ── CARD BÓVEDA · acento verde forense ── */
   a.card.boveda {
     border-color: rgba(16, 185, 129, 0.2);
   }
@@ -240,7 +223,6 @@
     background: #10B981;
     box-shadow: 0 0 8px #10B981;
   }
-
   .card .label {
     font-size: 9px;
     letter-spacing: 3px;
@@ -296,8 +278,6 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
   }
-
-  /* ── CTA ── */
   .cta {
     margin-top: 100px;
     text-align: center;
@@ -373,8 +353,6 @@
     border-color: var(--gold);
     background: rgba(201,164,76,0.08);
   }
-
-  /* ── FOOTER ── */
   footer {
     margin-top: 100px;
     padding-top: 40px;
@@ -399,8 +377,6 @@
     color: var(--gold);
     letter-spacing: 3px;
   }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     .wrap { padding: 24px 20px 60px; }
     header.top nav { display: none; }
@@ -424,6 +400,7 @@
     <div class="mark">KRONOS PROTOCOL</div>
     <nav>
       <a href="#projects">Proyectos</a>
+      <a href="movimiento/">Movimiento</a> <!-- ← AÑADIDO -->
       <a href="#contact">Contacto</a>
       <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GitHub</a>
     </nav>
