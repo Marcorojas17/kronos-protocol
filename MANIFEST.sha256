@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-18T05:14:43Z
+# Generado: 2026-09-18T05:16:54Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 4f71c5501d20c8ba4ee1e0763baeef2be26a7891b3bf0d3a5cb4f6a6bb51bfec  ./CHANGELOG.md
@@ -18,7 +18,7 @@ c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GU
 63671c07988f06d2af6bad7a9ce17d33a86b8e3b065210a14f266e364948f398  ./guardians/GUARDIAN-SHA.md
 cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GUARDIAN-TSA.md
 22eb4afcbab180fb92734b26bd2b57ea4098a6d89953730f1c433b7dfa5c6468  ./guardians/GUARDIAN-VAULT.md
-5b345ed7321f413d394897b37fbb7d840425b7c608d5a4e0f59cede11bb33c8a  ./index.html
+645c8236dba79fc9263742b6180e6f56aeece722ced47814e4ad9d674d997aa4  ./index.html
 79cc5f0bc8f0aa37084f9d6647943e53889316dcbd28a5d94cecd5aa30f7379f  ./luxury.html
 07efb4aa3f557049e45f552375e2e05aec6ea02879032333f89a142728e57a73  ./projects/acta/README.md
 8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
