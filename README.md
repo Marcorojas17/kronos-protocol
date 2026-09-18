@@ -1,4 +1,4 @@
-<!-- KRONOS PROTOCOL · README v1.0 · 2026 -->
+<!-- KRONOS PROTOCOL · README v1.1 · 2026 -->
 
 ```text
 ╔══════════════════════════════════════════════════════════════════════════╗
@@ -96,31 +96,63 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 ```text
 ┌─[ 03 ]───────────────────────────────────────────── PROYECTOS ─┐
 │                                                                │
-│  ▸ Cymatic Studio                                              │
-│    Visualizador WebGL2 audio-reactivo. 5 geometrías            │
-│    procedurales. Corre en navegador, sin servidor.             │
-│    → projects/cymatic/live-pro.html                            │
-│                                                                │
-│  ▸ DMD-33 ○_●                                                  │
-│    Orbe interactivo con reconocimiento de voz. Persistencia    │
-│    local en el navegador. Sin backend.                         │
-│    → projects/dmd-33/orb.html                                  │
-│                                                                │
-│  ▸ Espejo                                                      │
-│    Registro de hábitos y compromisos. Cierre de ciclo          │
-│    semanal. Sin envío de datos a servidores.                   │
-│    → projects/dmd-33/espejo.html                               │
-│                                                                │
-│  ▸ Evidence Integrity OS                                       │
-│    Paquete de evidencia verificable. SHA-256 + HMAC +          │
-│    RFC 3161 + JWS. API HTTP.                                   │
+│  ▸ EVIDENCE INTEGRITY OS                                       │
+│    Paquete .evidence verificable. SHA-256 + HMAC + RFC 3161    │
+│    + JWS detached + PAdES-B-T. API HTTP con FastAPI.           │
 │    → projects/evidence-os/                                     │
 │                                                                │
-│  ▸ Genesis 5 Galaxy Colors                                     │
-│    Certificado visual con cinco galaxias procedurales.         │
-│    → projects/dmd-33/genesis.html                              │
+│  ▸ ACTA + SCDR-001                                             │
+│    Metodología de co-creatividad humano-IA por fase creativa.  │
+│    Caso cero: acta fundacional sellada con timestamp           │
+│    cualificado eIDAS.                                          │
+│    → projects/acta/                                            │
+│                                                                │
+│  ▸ MD-33 FORENSE                                               │
+│    Framework de verificación forense de evidencia digital.     │
+│    Script Python genérico + plantilla de acta bilingüe         │
+│    ES/EN. Alineación declarada a ISO 27037 e ISO 17025.        │
+│    → projects/md33/                                            │
+│                                                                │
+│  ▸ YEJIDÁ KABALÁH                                              │
+│    88 constelaciones IAU + interpretación cabalística.         │
+│    100% local. Sin tracking, sin cookies, sin servidores.      │
+│    PWA instalable.                                             │
+│    → projects/yejida/                                          │
+│                                                                │
+│  ▸ KRONOS VAULT                                                │
+│    Preservación, autenticidad y trazabilidad de obras          │
+│    digitales mediante cadenas de custodia criptográficas       │
+│    y re-anclajes periódicos.                                   │
+│    → projects/kronos-vault/                                    │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
+```
+
+**Demos y variantes:**
+
+```text
+┌─[ 03.b ]──────────────────────────── DEMOS & VARIANTES ─┐
+│                                                          │
+│  ▸ CYMATIC STUDIO                                        │
+│    Visualizador WebGL2 audio-reactivo. 5 geometrías      │
+│    procedurales. Corre en navegador, sin servidor.       │
+│    → projects/cymatic/live-pro.html                      │
+│                                                          │
+│  ▸ DMD-33 ○_● ORBE                                       │
+│    Orbe interactivo con reconocimiento de voz.           │
+│    Persistencia local. Sin backend.                      │
+│    → projects/dmd-33/orb.html                            │
+│                                                          │
+│  ▸ ESPEJO                                                │
+│    Registro de hábitos y compromisos. Cierre semanal.    │
+│    Sin envío de datos a servidores.                      │
+│    → projects/dmd-33/espejo.html                         │
+│                                                          │
+│  ▸ GENESIS 5 GALAXY COLORS                               │
+│    Certificado visual con cinco galaxias procedurales.   │
+│    → projects/dmd-33/genesis.html                        │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -274,4 +306,4 @@ shasum -a 256 archivo.pdf
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
-<!-- KRONOS PROTOCOL README · v1.0 · 2026 -->
+<!-- KRONOS PROTOCOL README · v1.1 · 2026 -->
