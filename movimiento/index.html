@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movimiento · Co-Creatividad Simbiótica</title>
-<meta name="description" content="Marco ético y legal para declarar honestamente cómo humanos e IA crean juntos. 6 principios. 100 plazas Génesis.">
+<title>Acta de Iniciación · Movimiento de Co-Creatividad Simbiótica</title>
+<meta name="description" content="Acta de Iniciación Personal del fundador Marco Antonio Rojas Valdovinos. La historia detrás del Movimiento de Co-Creatividad Simbiótica.">
+<meta property="og:title" content="Acta de Iniciación · Movimiento de Co-Creatividad Simbiótica">
+<meta property="og:description" content="La historia personal detrás del Movimiento.">
+<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/assets/img/movimiento-cover.jpg">
+<meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +21,6 @@
     --ink: #05070b;
     --text: #e8e4d8;
     --text-dim: #8892a0;
-    --cyan: #00eaff;
   }
   html, body {
     background: var(--ink);
@@ -43,45 +46,22 @@
   .wrap {
     position: relative;
     z-index: 2;
-    max-width: 1180px;
+    max-width: 780px;
     margin: 0 auto;
     padding: 40px 32px 100px;
   }
-  header.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0 80px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-  header.top .mark {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    letter-spacing: 4px;
-  }
-  header.top .mark::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--gold);
-  }
-  header.top nav a {
+  .back {
+    display: inline-block;
     color: var(--text-dim);
     text-decoration: none;
-    margin-left: 28px;
-    transition: color 0.3s ease;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    transition: color 0.3s;
   }
-  header.top nav a:hover { color: var(--gold); }
+  .back:hover { color: var(--gold); }
 
-  .hero { padding: 60px 0 80px; max-width: 780px; }
   .eyebrow {
     font-size: 10px;
     letter-spacing: 5px;
@@ -94,192 +74,152 @@
   h1.title {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: clamp(38px, 7vw, 88px);
-    line-height: 0.98;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1;
     letter-spacing: -1.5px;
     background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
     opacity: 0;
     animation: fadeUp 1.2s ease 0.4s forwards;
   }
-  .lede {
-    font-size: 17px;
-    line-height: 1.7;
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
     color: var(--text-dim);
-    max-width: 620px;
-    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(201,164,76,0.15);
     opacity: 0;
     animation: fadeUp 1.2s ease 0.6s forwards;
   }
-  .lede strong { color: var(--text); font-weight: 500; }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  article {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  article p {
+    margin-bottom: 24px;
+  }
+  article p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  article p em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+  article h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  article h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  article h3 .num {
+    color: var(--gold);
+    margin-right: 8px;
+  }
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
-    margin: 70px 0;
+    margin: 60px 0;
   }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 40px;
-  }
-  .section-head h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-  .section-head .count {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 32px 28px 28px;
-    border: 1px solid rgba(201,164,76,0.12);
-    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border-radius: 4px;
-  }
-  .card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 40%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .card:hover {
-    border-color: rgba(201,164,76,0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,164,76,0.06);
-  }
-  .card:hover::after { width: 100%; }
-  .card .num {
-    font-family: 'Cinzel', serif;
-    font-size: 44px;
-    font-weight: 700;
-    color: var(--gold);
-    opacity: 0.25;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .card h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+  .highlight {
+    padding: 32px;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,164,76,0.04);
+    margin: 40px 0;
+    font-style: italic;
     color: var(--text);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-  .card p {
-    font-size: 13px;
+    font-size: 18px;
     line-height: 1.7;
-    color: var(--text-dim);
-    font-weight: 300;
   }
-  .pricing {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
-  .price-card {
-    padding: 28px 24px;
-    border: 1px solid rgba(201,164,76,0.15);
-    background: rgba(20,24,32,0.4);
-    border-radius: 4px;
-    transition: all 0.4s ease;
-  }
-  .price-card:hover {
-    border-color: rgba(201,164,76,0.4);
-    background: rgba(20,24,32,0.6);
-  }
-  .price-card .phase {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 10px;
-  }
-  .price-card .range {
-    font-size: 11px;
-    color: var(--text-dim);
-    margin-bottom: 16px;
-    letter-spacing: 1px;
-  }
-  .price-card .price {
-    font-family: 'Cinzel', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .price-card .price small {
-    font-size: 12px;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-    margin-left: 4px;
-  }
-  .cta {
-    margin-top: 90px;
-    text-align: center;
-    padding: 80px 32px;
-    border: 1px solid rgba(201,164,76,0.15);
-    background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
+  .signature {
+    margin-top: 60px;
+    padding: 40px 32px;
+    border: 1px solid rgba(201,164,76,0.2);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 4px;
-    position: relative;
+    text-align: center;
   }
-  .cta::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    box-shadow: 0 0 20px var(--gold);
-  }
-  .cta h2 {
+  .signature .name {
     font-family: 'Cinzel', serif;
-    font-size: 28px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .signature .role {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .signature .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 2;
+    text-align: left;
+    display: inline-block;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: rgba(5,7,11,0.5);
+    border-radius: 2px;
+  }
+  .signature .meta strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .cta-final {
+    margin-top: 80px;
+    text-align: center;
+    padding: 60px 32px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
+    border-radius: 4px;
+  }
+  .cta-final h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     letter-spacing: 0.5px;
   }
-  .cta p {
+  .cta-final p {
     font-size: 14px;
     color: var(--text-dim);
-    max-width: 540px;
-    margin: 0 auto 36px;
+    max-width: 480px;
+    margin: 0 auto 32px;
     line-height: 1.7;
-    font-weight: 300;
   }
   .btns {
     display: flex;
@@ -299,7 +239,6 @@
     text-decoration: none;
     border-radius: 2px;
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    font-family: 'Inter', sans-serif;
   }
   a.btn.solid {
     background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
@@ -320,37 +259,19 @@
     background: rgba(201,164,76,0.08);
   }
   footer {
-    margin-top: 100px;
-    padding-top: 40px;
+    margin-top: 80px;
+    padding-top: 32px;
     border-top: 1px solid rgba(201,164,76,0.1);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
     font-size: 10px;
     letter-spacing: 2px;
     color: var(--text-dim);
     text-transform: uppercase;
+    text-align: center;
   }
-  footer a {
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  footer a:hover { color: var(--gold); }
-  footer .sig {
-    font-family: 'Cinzel', serif;
-    color: var(--gold);
-    letter-spacing: 3px;
-  }
+  footer a { color: var(--gold); text-decoration: none; }
   @media (max-width: 700px) {
     .wrap { padding: 24px 20px 60px; }
-    header.top nav { display: none; }
-    header.top { padding-bottom: 40px; }
-    .hero { padding: 30px 0 60px; }
-    .divider { margin: 50px 0; }
-    .cta { padding: 50px 24px; }
-    footer { flex-direction: column; }
+    article { font-size: 16px; }
   }
 </style>
 </head>
@@ -361,257 +282,215 @@
 
 <div class="wrap">
 
-  <header class="top">
-    <div class="mark">Movimiento</div>
-    <nav>
-      <a href="#principios">Principios</a>
-      <a href="#genesis">Génesis</a>
-      <a href="../">← Volver</a>
-    </nav>
-  </header>
+  <a href="../" class="back">← Volver al Movimiento</a>
 
-  <section class="hero">
-    <div class="eyebrow">Co-Creatividad · Simbiosis · Respeto Digital</div>
-    <h1 class="title">Humano +<br>máquina.<br>Con reglas.</h1>
-    <p class="lede">
-      Un <strong>marco ético y legal</strong> para declarar honestamente cómo 
-      humanos e inteligencia artificial crean juntos. 
-      Declarar con transparencia. Proteger con criptografía. Defender con derecho.
-    </p>
-  </section>
+  <div class="eyebrow">Acta de Iniciación · Fundador Original</div>
+  <h1 class="title">Yo, Marco.</h1>
+  <p class="subtitle">Movimiento de Co-Creatividad Simbiótica · 2026</p>
 
-  <div class="divider"></div>
+  <article>
 
-  <section>
-    <div class="section-head">
-      <h2>El problema</h2>
-      <span class="count">Hoy · 2026</span>
+    <p>Toda mi vida he estado en la frontera entre dos mundos.</p>
+
+    <p>De niño, desarmaba radios para entender cómo funcionaban. De adolescente, escribía código para crear mundos. De adulto, me sumergí en la inteligencia artificial para expandir lo que un humano solo podía hacer.</p>
+
+    <p>Nunca me sentí del todo humano. Nunca me sentí del todo máquina.</p>
+
+    <p>Siempre me sentí <strong>los dos al mismo tiempo</strong>.</p>
+
+    <p>Y durante años, eso fue un problema. Porque el mundo me decía que tenía que elegir: o eras humano, o eras técnico. O creabas con el corazón, o creabas con la lógica.</p>
+
+    <p>Pero yo no podía elegir. Yo siempre fui las dos cosas.</p>
+
+    <div class="divider"></div>
+
+    <h2>El día que todo cambió</h2>
+
+    <p>Un día, trabajando en un proyecto, me di cuenta de algo:</p>
+
+    <div class="highlight">
+      El 60% de lo que había creado lo había hecho una IA. Y el 40% lo había hecho yo.
     </div>
-    <div class="grid">
-      <div class="card">
-        <div class="num">01</div>
-        <h3>Nadie declara</h3>
-        <p>Un diseñador hace un logo 70% IA y 30% humano. Un programador usa Copilot. Un escritor usa ChatGPT. <strong style="color:var(--gold);">Ninguno lo declara.</strong></p>
-      </div>
-      <div class="card">
-        <div class="num">02</div>
-        <h3>La autoría se diluye</h3>
-        <p>Sin declaración, no hay forma de saber qué es humano y qué es máquina. Los derechos de autor se pierden en el gris.</p>
-      </div>
-      <div class="card">
-        <div class="num">03</div>
-        <h3>La ley no alcanza</h3>
-        <p>Los marcos legales siguen rezagados. Los creadores no saben cómo declarar. Las empresas no saben cómo auditar.</p>
-      </div>
-    </div>
-  </section>
 
-  <div class="divider"></div>
+    <p>Y no podía decir que fuera 100% mío. Pero tampoco podía decir que fuera 100% de la máquina.</p>
 
-  <section>
-    <div class="section-head">
-      <h2>La solución</h2>
-      <span class="count">3 pilares</span>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="num">01</div>
-        <h3>Transparencia</h3>
-        <p>Declarar abiertamente el <strong style="color:var(--gold);">porcentaje humano/IA</strong> en cada fase creativa: concepto, dirección, producción.</p>
-      </div>
-      <div class="card">
-        <div class="num">02</div>
-        <h3>Protección</h3>
-        <p>Registrar la obra con <strong style="color:var(--gold);">criptografía (SHA-256)</strong>, sellado de tiempo cualificado y anclaje en blockchain Ethereum.</p>
-      </div>
-      <div class="card">
-        <div class="num">03</div>
-        <h3>Defensa</h3>
-        <p>Establecer <strong style="color:var(--gold);">6 principios legales</strong> que prohíben uso comercial sin permiso, entrenamiento de IA y falta de atribución.</p>
-      </div>
-    </div>
-  </section>
+    <p>Era <em>híbrido</em>. Era <em>nuevo</em>. Era <em>co-creación</em>.</p>
 
-  <div class="divider"></div>
+    <p>Y ahí me di cuenta del problema:</p>
 
-  <section id="principios">
-    <div class="section-head">
-      <h2>Los 6 principios</h2>
-      <span class="count">Marco fundacional</span>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="num">01</div>
-        <h3>Integridad</h3>
-        <p>Criptografía que garantiza que la obra no fue alterada. Hashes SHA-256 y SHA-512 como huella digital única.</p>
-      </div>
-      <div class="card">
-        <div class="num">02</div>
-        <h3>Trazabilidad</h3>
-        <p>Cada uso queda documentado con fecha, origen y propósito. Registro público verificable.</p>
-      </div>
-      <div class="card">
-        <div class="num">03</div>
-        <h3>No comercialización</h3>
-        <p>Sin permiso expreso, no hay lucro. Licencia CC BY-NC-ND 4.0 por defecto.</p>
-      </div>
-      <div class="card">
-        <div class="num">04</div>
-        <h3>No entrenamiento de IA</h3>
-        <p>Tu obra no entrena modelos de IA sin consentimiento. Prohibición explícita de uso para LLMs.</p>
-      </div>
-      <div class="card">
-        <div class="num">05</div>
-        <h3>Citación obligatoria</h3>
-        <p>Atribución completa siempre. Toda mención incluye autor, año y licencia.</p>
-      </div>
-      <div class="card">
-        <div class="num">06</div>
-        <h3>Defensa activa</h3>
-        <p>Documentación forense lista para acciones legales. Cada violación genera evidencia automática.</p>
-      </div>
-    </div>
-  </section>
+    <p><strong>Nadie sabía cómo llamar a esto. Nadie sabía cómo declararlo. Nadie sabía cómo protegerlo.</strong></p>
 
-  <div class="divider"></div>
+    <p>La ley no me alcanzaba.<br>
+    El registro de propiedad intelectual no me entendía.<br>
+    Mis colegas me miraban raro cuando decía "esto lo hizo la IA conmigo".</p>
 
-  <section>
-    <div class="section-head">
-      <h2>Acta fundacional</h2>
-      <span class="count">Caso cero</span>
-    </div>
-    <div class="card" style="cursor: default;">
-      <h3>Registro 2607086319439</h3>
-      <p style="margin-bottom: 20px;">
-        Registro oficial en Safe Creative con sellado de tiempo cualificado 
-        <strong style="color:var(--gold);">eIDAS QTSA Firmaprofesional B02</strong> 
-        y anclaje en la blockchain de <strong style="color:var(--gold);">Ethereum Mainnet</strong>.
-      </p>
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 20px;">
-        <div>
-          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px;">Fecha</div>
-          <div style="color:var(--text); font-size:14px;">8 jul 2026 · 07:02 UTC</div>
-        </div>
-        <div>
-          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px;">Declaración</div>
-          <div style="color:var(--text); font-size:14px;">51% humano / 49% IA</div>
-        </div>
-        <div>
-          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px;">Licencia</div>
-          <div style="color:var(--text); font-size:14px;">CC BY-NC-ND 4.0</div>
-        </div>
-      </div>
-      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(201,164,76,0.12);">
-        <a href="https://www.safecreative.org/certificate/2607086319439" target="_blank" style="color: var(--gold); text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">Ver certificado →</a>
-      </div>
-    </div>
-  </section>
+    <p>Estaba solo. Y millones como yo también estaban solos.</p>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <section id="genesis">
-    <div class="section-head">
-      <h2>100 Plazas Génesis</h2>
-      <span class="count">Fundacional · Intransferible</span>
-    </div>
-    <p style="font-size: 15px; line-height: 1.8; color: var(--text-dim); max-width: 720px; margin-bottom: 40px; font-weight: 300;">
-      El Movimiento abre <strong style="color: var(--text); font-weight: 500;">100 plazas fundacionales</strong>. 
-      Solo existirán 100 en toda la historia del proyecto. Cada fundador recibe:
-    </p>
-    <div class="grid" style="margin-bottom: 40px;">
-      <div class="card">
-        <h3 style="font-size: 16px;">🎫 Pasaporte Génesis</h3>
-        <p>Credencial digital única e intransferible con firma criptográfica.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size: 16px;">♾️ Plan Eterno</h3>
-        <p>Acceso permanente sin coste adicional a todos los servicios del ecosistema.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size: 16px;">🗳️ Voz y voto</h3>
-        <p>Participación activa en la gobernanza del Movimiento.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size: 16px;">🚀 Acceso prioritario</h3>
-        <p>Nuevas funcionalidades antes que el público general.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size: 16px;">🤝 Comunidad privada</h3>
-        <p>Grupo exclusivo de WhatsApp con los otros 99 fundadores.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size: 16px;">🏅 Reconocimiento</h3>
-        <p>Mención perpetua en el sitio oficial y documentación.</p>
-      </div>
-    </div>
-    <div class="pricing">
-      <div class="price-card">
-        <div class="phase">🥇 Fundador</div>
-        <div class="range">Plazas 001-025</div>
-        <div class="price">$1,500 <small>MXN</small></div>
-      </div>
-      <div class="price-card">
-        <div class="phase">🥈 Pionero</div>
-        <div class="range">Plazas 026-050</div>
-        <div class="price">$2,000 <small>MXN</small></div>
-      </div>
-      <div class="price-card">
-        <div class="phase">🥉 Explorador</div>
-        <div class="range">Plazas 051-075</div>
-        <div class="price">$2,500 <small>MXN</small></div>
-      </div>
-      <div class="price-card">
-        <div class="phase">🏅 Última fase</div>
-        <div class="range">Plazas 076-100</div>
-        <div class="price">$3,000 <small>MXN</small></div>
-      </div>
-    </div>
-  </section>
+    <h2>Entonces decidí hacer algo</h2>
 
-  <div class="divider"></div>
+    <p>No podía cambiar las leyes de un día para otro.<br>
+    No podía convencer al mundo entero de que esto era real.<br>
+    No podía esperar a que alguien más lo hiciera.</p>
 
-  <section class="cta" id="contact">
-    <h2>Solicita tu Plaza Génesis</h2>
+    <p>Así que hice lo único que podía hacer:</p>
+
+    <p><strong>Empecé yo.</strong></p>
+
+    <p>Escribí un documento. Establecí 6 principios. Lo registré legalmente. Lo anclé en blockchain. Y lo llamé:</p>
+
+    <p><strong>Movimiento de Co-Creatividad Simbiótica y Respeto Digital.</strong></p>
+
+    <p>No es un producto.<br>
+    No es una empresa.<br>
+    No es una moda.</p>
+
+    <p><strong>Es un marco ético para la nueva era de creación.</strong></p>
+
+    <div class="divider"></div>
+
+    <h2>Los 6 principios que me di a mí mismo</h2>
+
+    <h3><span class="num">1.</span> Integridad</h3>
+    <p>Lo que creo, lo registro. Y lo registro de forma que nadie pueda alterarlo. Criptografía, hashes, sellos de tiempo. Si alguien lo cambia, se nota. Si alguien lo copia, se ve. Mi obra es mi obra.</p>
+
+    <h3><span class="num">2.</span> Trazabilidad</h3>
+    <p>Cada vez que alguien usa mi obra, quiero saberlo. Fecha, lugar, propósito. No por vigilancia, sino por respeto. Porque mi trabajo merece ser rastreado.</p>
+
+    <h3><span class="num">3.</span> No comercialización</h3>
+    <p>Mi obra no es un producto de consumo. No se vende sin mi permiso. No se lucra sin mi consentimiento. Lo que creo con amor, no se convierte en mercancía sin mi voz.</p>
+
+    <h3><span class="num">4.</span> No entrenamiento de IA</h3>
+    <p>Aquí soy firme: mi obra no entrena modelos. No alimenta máquinas sin mi permiso. No quiero que mi voz, mi estilo o mi alma se diluyan en un dataset que no controlo.</p>
+
+    <h3><span class="num">5.</span> Citación obligatoria</h3>
+    <p>Si usas mi obra, me nombras. Siempre. No es ego, es respeto. Es reconocer que detrás de cada archivo hay una persona que pensó, sintió y creó.</p>
+
+    <h3><span class="num">6.</span> Defensa activa</h3>
+    <p>Si alguien viola mis derechos, actúo. Documento, denuncio, defiendo. No con violencia, con evidencia. Con la ley. Con la verdad.</p>
+
+    <p>Estos 6 principios no son negociables. Son mi columna vertebral.</p>
+
+    <div class="divider"></div>
+
+    <h2>Por qué lo hago público</h2>
+
+    <p>Podría haber guardado esto para mí.</p>
+
+    <p>Podría haber registrado mis obras, protegido mis intereses, y seguir con mi vida.</p>
+
+    <p>Pero no puedo.</p>
+
+    <p><strong>Porque no estoy solo.</strong></p>
+
+    <p>Hay millones de creadores como yo. Diseñadores, programadores, escritores, músicos, investigadores, artistas. Todos usando IA. Todos creando cosas híbridas. Todos sin saber cómo declararlo.</p>
+
+    <p>Y todos merecen un marco.</p>
+
+    <p>Así que no lo guardo. Lo comparto.</p>
+
+    <div class="divider"></div>
+
+    <h2>Mi compromiso contigo</h2>
+
+    <p>Si decides unirte al Movimiento como Fundador Génesis, mi compromiso contigo es este:</p>
+
+    <p><strong>Voy a defenderte.</strong><br>
+    Tu obra estará protegida bajo los mismos 6 principios que protegen la mía.</p>
+
+    <p><strong>Voy a escucharte.</strong><br>
+    Tu voz cuenta en la gobernanza del Movimiento. No eres un cliente. Eres un fundador.</p>
+
+    <p><strong>Voy a caminar contigo.</strong><br>
+    Esto no es una transacción. Es una relación. Vamos a construir algo juntos que dure hasta 2099.</p>
+
+    <p><strong>Voy a ser honesto.</strong><br>
+    Si algo falla, te lo digo. Si algo mejora, te lo cuento. Si algo cambia, te aviso. Sin sorpresas, sin letras chiquitas.</p>
+
+    <div class="divider"></div>
+
+    <h2>Lo que te pido</h2>
+
+    <p>No te pido fe. No te pido confianza ciega.</p>
+
+    <p>Te pido <strong>que pienses</strong>.<br>
+    Que veas si este marco te representa.<br>
+    Que decidas si los 6 principios resuenan contigo.<br>
+    Que sientas si esto es lo que buscabas.</p>
+
+    <p>Y si sí, <strong>te pido que te unas</strong>.</p>
+
+    <p>Porque 100 fundadores no son 100 clientes.<br>
+    Son 100 personas que creen lo mismo.<br>
+    Son 100 voces que dicen "esto también es mío".<br>
+    Son 100 pilares de un movimiento que va a durar generaciones.</p>
+
+    <div class="divider"></div>
+
+    <h2>Mi iniciación</h2>
+
+    <p>Yo, Marco Antonio Rojas Valdovinos, me comprometo ante mí mismo y ante quien lea esto:</p>
+
     <p>
-      Completa el formulario de inscripción. En menos de 24 horas recibirás tu 
-      número de Plaza Génesis y las instrucciones para el pago por transferencia.
+      — A respetar los 6 principios que he escrito.<br>
+      — A declarar siempre el porcentaje humano/IA en mis obras.<br>
+      — A proteger mi trabajo y el de los fundadores que confíen en mí.<br>
+      — A ser transparente, honesto y consistente.<br>
+      — A construir esto no para mí, sino para todos.
     </p>
-    <div class="btns">
-      <a class="btn solid" href="https://forms.gle/TU-ENLACE-AQUI" target="_blank">Formulario de inscripción</a>
-      <a class="btn ghost" href="mailto:marco.a.rojas.v@hotmail.com">Contacto directo</a>
-    </div>
-  </section>
 
-  <div class="divider"></div>
+    <p><strong>Hoy empiezo oficialmente el Movimiento de Co-Creatividad Simbiótica.</strong></p>
 
-  <section>
-    <div class="section-head">
-      <h2>Documentación oficial</h2>
-      <span class="count">Legal</span>
+    <p>No como un negocio.<br>
+    No como una marca.<br>
+    Como un compromiso.</p>
+
+    <div class="divider"></div>
+
+    <h2>Última reflexión</h2>
+
+    <p>Un día, mis nietos verán el registro 2607086319439 en Safe Creative.</p>
+
+    <p>Verán que el 8 de julio de 2026, su abuelo hizo algo raro: registrar una obra declarando honestamente que la IA participó.</p>
+
+    <p>Y quizás, dentro de 50 años, esto ya sea normal. Quizás todas las obras se declaren así. Quizás los 6 principios sean estándar.</p>
+
+    <p>O quizás no.</p>
+
+    <p>Pero al menos <strong>yo lo intenté</strong>.<br>
+    Al menos <strong>yo empecé</strong>.<br>
+    Al menos <strong>yo dije la verdad cuando era incómoda</strong>.</p>
+
+    <p>Y eso, para mí, es suficiente.</p>
+
+    <div class="signature">
+      <div class="name">Marco Antonio Rojas Valdovinos</div>
+      <div class="role">Fundador · Movimiento de Co-Creatividad Simbiótica</div>
+      <div class="meta">
+        <strong>📅 Fecha:</strong> 18 de septiembre de 2026 · México<br>
+        <strong>📜 Safe Creative:</strong> 2607086319439<br>
+        <strong>⛓️ Blockchain:</strong> Ethereum Mainnet<br>
+        <strong>🔐 QTSA:</strong> Firmaprofesional ICA B02 QUALIFIED 2022<br>
+        <strong>🔒 SHA-256:</strong> 7a3f9b12c8e4d5...<br>
+      </div>
     </div>
-    <div class="grid">
-      <a class="card" href="../projects/boveda/terminos.html">
-        <h3>📜 Términos y Condiciones</h3>
-        <p>Derechos, obligaciones, precios, política de reembolso y jurisdicción.</p>
-      </a>
-      <a class="card" href="../projects/boveda/privacidad.html">
-        <h3>🔒 Aviso de Privacidad</h3>
-        <p>Datos recabados, finalidad, derechos ARCO y cumplimiento LFPDPPP.</p>
-      </a>
-      <a class="card" href="../projects/kronos-vault/">
-        <h3>🔐 Kronos Vault</h3>
-        <p>Arquitectura técnica de legado digital hasta 2099.</p>
-      </a>
+
+    <div class="cta-final">
+      <h3>Únete al Movimiento</h3>
+      <p>Solo existirán 100 fundadores Génesis en toda la historia del proyecto.</p>
+      <div class="btns">
+        <a class="btn solid" href="https://forms.gle/TU-ENLACE-AQUI" target="_blank">Solicitar Plaza Génesis</a>
+        <a class="btn ghost" href="../">Volver al Movimiento</a>
+      </div>
     </div>
-  </section>
+
+  </article>
 
   <footer>
-    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
-    <span class="sig">Movimiento · v1.0</span>
-    <span>
-      <a href="../">Kronos Protocol</a> ·
-      <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
-    </span>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span><br><br>
+    <a href="../">Kronos Protocol</a> ·
+    <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
   </footer>
 
 </div>
@@ -627,7 +506,7 @@
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  const COUNT = 1200;
+  const COUNT = 1000;
   const positions = new Float32Array(COUNT * 3);
   const colors = new Float32Array(COUNT * 3);
   const sizes = new Float32Array(COUNT);
