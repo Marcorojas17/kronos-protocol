@@ -223,6 +223,24 @@
     box-shadow: 0 0 8px var(--cyan);
   }
 
+  /* ── CARD BÓVEDA · acento verde forense ── */
+  a.card.boveda {
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  a.card.boveda::after {
+    background: linear-gradient(90deg, #10B981, transparent);
+  }
+  a.card.boveda:hover {
+    border-color: rgba(16, 185, 129, 0.55);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(16, 185, 129, 0.1);
+  }
+  a.card.boveda .label { color: #10B981; }
+  a.card.boveda .foot .status { color: #10B981; }
+  a.card.boveda .foot .status::before {
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+  }
+
   .card .label {
     font-size: 9px;
     letter-spacing: 3px;
@@ -427,7 +445,7 @@
   <section id="projects">
     <div class="section-head">
       <h2>Proyectos</h2>
-      <span class="count">07 · Activos</span>
+      <span class="count">08 · Activos</span>
     </div>
 
     <div class="projects">
@@ -469,6 +487,16 @@
         <div class="foot">
           <span class="status">Vivo</span>
           <span>v1.1 · PWA</span>
+        </div>
+      </a>
+
+      <a class="card boveda" href="projects/boveda/boveda.html">
+        <span class="label">Forense · Audio</span>
+        <h3>Bóveda de Voz</h3>
+        <p>Graba tu voz. Genera certificado forense SHA-256 con patrón cimático. Conforme a ISO/IEC 27037 y NOM-151-SCFI-2016.</p>
+        <div class="foot">
+          <span class="status">Nuevo</span>
+          <span>v1.0 · ISO 27037</span>
         </div>
       </a>
 
@@ -531,9 +559,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-// ═══════════════════════════════════════════════════════════════
-// Campo de partículas doradas 3D · responde al mouse
-// ═══════════════════════════════════════════════════════════════
 (function() {
   const canvas = document.getElementById('webgl');
   const scene = new THREE.Scene();
