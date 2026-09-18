@@ -1,4 +1,4 @@
-<!-- KRONOS PROTOCOL · README v1.1 · 2026 -->
+<!-- KRONOS PROTOCOL · README v1.2 · 2026 -->
 
 ```text
 ╔══════════════════════════════════════════════════════════════════════════╗
@@ -13,16 +13,14 @@
 ║          P R O T O C O L    ·    ○_●    ·    2 0 2 6                   ║
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
-```
 
-**Prueba de autoría verificable. Registro de obra digital con sellado cualificado.**
+Prueba de autoría verificable. Registro de obra digital con sellado cualificado.
 
-**Estado:** activo · en construcción · sin clientes comerciales
+🌐 Movimiento de Co-Creatividad Simbiótica → · Humano + máquina. Con reglas.
 
----
+Estado: activo · en construcción · sin clientes comerciales
 
-```text
-┌─[ 00 ]────────────────────────────────────────────── IDENTIDAD ─┐
+,┌─[ 00 ]────────────────────────────────────────────── IDENTIDAD ─┐
 │                                                                  │
 │  · Autor          Marco Antonio Rojas Valdovinos                 │
 │  · Ubicación      Toluca, Estado de México, México               │
@@ -32,13 +30,11 @@
 │  · Inicio         8 de julio de 2026                             │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
-```
 
-**Estado:** verificable · identidad pública · sin afiliación institucional
 
----
+Estado: verificable · identidad pública · sin afiliación institucional
 
-```text
+
 ┌─[ 01 ]──────────────────────────────────── REGISTROS VERIFICABLES ─┐
 │                                                                     │
 │  Todos los registros están anclados en Safe Creative con sellado    │
@@ -55,23 +51,20 @@
 │  ✓  2608176749334   SISTEMA KRONOS 360 · Protocolo Forense          │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
-```
 
-**Verificación manual:**
 
-```bash
+Verificación manual:
+
+
 # Comprobar cualquier registro en Safe Creative
 open https://www.safecreative.org/certificate/2607086319439
 
 # Comprobar transacción blockchain en Ethereum
 open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
-```
 
-**Estado:** verificable · hashes SHA-256/512 coincidentes · sin reclamaciones abiertas
 
----
+Estado: verificable · hashes SHA-256/512 coincidentes · sin reclamaciones abiertas
 
-```text
 ┌─[ 02 ]───────────────────────────────────────────── QUÉ ES ESTO ─┐
 │                                                                  │
 │  Un repositorio de documentación técnica y prueba de autoría.    │
@@ -89,11 +82,8 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │    ✗ Certificaciones institucionales                             │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
-```
 
----
 
-```text
 ┌─[ 03 ]───────────────────────────────────────────── PROYECTOS ─┐
 │                                                                │
 │  ▸ EVIDENCE INTEGRITY OS                                       │
@@ -126,11 +116,10 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │    → projects/kronos-vault/                                    │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
-```
 
-**Demos y variantes:**
 
-```text
+Demos y variantes
+
 ┌─[ 03.b ]──────────────────────────── DEMOS & VARIANTES ─┐
 │                                                          │
 │  ▸ CYMATIC STUDIO                                        │
@@ -153,11 +142,8 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │    → projects/dmd-33/genesis.html                        │
 │                                                          │
 └──────────────────────────────────────────────────────────┘
-```
 
----
 
-```text
 ┌─[ 04 ]──────────────────────────────────────────── LÍMITES ✗ ─┐
 │                                                               │
 │  Este repositorio NO es:                                      │
@@ -174,11 +160,7 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │  construyendo sistemas de prueba de autoría verificable.      │
 │                                                               │
 └───────────────────────────────────────────────────────────────┘
-```
 
----
-
-```text
 ┌─[ 05 ]─────────────────────────────────────────────── STACK ─┐
 │                                                              │
 │  Frontend                                                    │
@@ -202,11 +184,7 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │    ▸ Safe Creative (registro de obra)                        │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
-```
 
----
-
-```text
 ┌─[ 06 ]────────────────────────────────────── HERRAMIENTAS ─┐
 │                                                              │
 │  Desarrollo                                                  │
@@ -224,11 +202,7 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │  herramienta, no como coautora.                              │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
-```
 
----
-
-```text
 ┌─[ 07 ]─────────────────────────────────── CÓMO VERIFICAR ─┐
 │                                                            │
 │  Cada registro Safe Creative tiene:                        │
@@ -246,21 +220,54 @@ open https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae
 │    3. Verifica la transacción en etherscan.io              │
 │                                                            │
 └────────────────────────────────────────────────────────────┘
-```
+Comando de verificacion local
 
-**Comando de verificación local:**
-
-```bash
 # Calcular SHA-256 de un archivo local
 shasum -a 256 archivo.pdf
 
 # Comparar con el registrado en el certificado Safe Creative
-```
 
----
+┌─[ 08 ]─────────────────────────── MOVIMIENTO ─┐
+│                                                │
+│  El Movimiento de Co-Creatividad Simbiótica   │
+│  y Respeto Digital es el marco ético que      │
+│  rige este repositorio.                        │
+│                                                │
+│  6 principios fundamentales:                   │
+│                                                │
+│    1. 🛡️ Integridad                            │
+│    2. 🔍 Trazabilidad                          │
+│    3. 🚫 No comercialización                   │
+│    4. 🤖 No entrenamiento de IA                │
+│    5. 📝 Citación obligatoria                  │
+│    6. ⚖️ Defensa activa                        │
+│                                                │
+│  Documentos:                                   │
+│    ▸ Landing         → movimiento/             │
+│    ▸ Iniciación      → movimiento/iniciacion/  │
+│    ▸ Términos        → boveda/terminos.html    │
+│    ▸ Privacidad      → boveda/privacidad.html  │
+│                                                │
+└────────────────────────────────────────────────┘
 
-```text
-┌─[ 08 ]─────────────────────────────────────────── LICENCIA ─┐
+
+Enlaces publicos
+
+
+# Landing del Movimiento
+open https://marcorojas17.github.io/kronos-protocol/movimiento/
+
+# Acta de Iniciación del fundador
+open https://marcorojas17.github.io/kronos-protocol/movimiento/iniciacion/
+
+# Términos y Condiciones
+open https://marcorojas17.github.io/kronos-protocol/projects/boveda/terminos.html
+
+# Aviso de Privacidad
+open https://marcorojas17.github.io/kronos-protocol/projects/boveda/privacidad.html
+
+
+┌─[ 09 ]─────────────────────────────────────────── LICENCIA ─┐
 │                                                             │
 │  Creative Commons BY-NC-ND 4.0                              │
 │                                                             │
@@ -273,12 +280,9 @@ shasum -a 256 archivo.pdf
 │    "Marco Antonio Rojas Valdovinos — KRONOS 2026"           │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
-```
 
----
 
-```text
-┌─[ 09 ]─────────────────────────────────────────── CONTACTO ─┐
+┌─[ 10 ]─────────────────────────────────────────── CONTACTO ─┐
 │                                                             │
 │  · Email       marco.a.rojas.v@hotmail.com                  │
 │  · GitHub      github.com/Marcorojas17                      │
@@ -287,13 +291,11 @@ shasum -a 256 archivo.pdf
 │  Disponibilidad:                                            │
 │    ▸ Proyectos freelance · desarrollo web                   │
 │    ▸ Empleo junior · desarrollo frontend / full stack       │
+│    ▸ Fundador del Movimiento de Co-Creatividad Simbiótica   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
-```
 
----
 
-```text
 ╔══════════════════════════════════════════════════════════════════════════╗
 ║                                                                          ║
 ║          KRONOS PROTOCOL · ○_● · MMXXVI                                  ║
@@ -304,6 +306,3 @@ shasum -a 256 archivo.pdf
 ║          © 2026 Marco Antonio Rojas Valdovinos                           ║
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
-```
-
-<!-- KRONOS PROTOCOL README · v1.1 · 2026 -->
