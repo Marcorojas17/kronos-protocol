@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T02:35:40Z
+# Generado: 2026-09-19T02:36:28Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -12,6 +12,7 @@ d02b3eeb6e526fbd7ae9d292ac3780f0a56fe46a034cb505be3eab48c8b765ef  ./GOVERNANCE.m
 8dca74a6d90cbf665a34b5510c4ca4185546298db3d893f56c4f13cf1934e177  ./SECURITY.md
 5dc97c78ca7dc3292d65f380a0948759baef70d0ababddfa1cfca69fae0b3a24  ./_config.yml
 a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/navigation.yml
+464e5b7c9ff23fabd128c02a0ac516e8c647c93872edca35042eb74cf9e0413a  ./admin.html
 3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
 720b0dbb3f95378c3b722a1fc9127c35c35647d0b09db894ffe63859dad2578e  ./assets/css/animations.css
 157e2e9966f905b105d98cc04dde07739fa03b3541a9c2f974c236469bc50672  ./assets/css/components.css
@@ -72,6 +73,7 @@ a24fab7dea1bc84ba1464b0e759489ecb54c77699beee50e26c6ab835e61139c  ./projects/md3
 d51a4852bce0e69b3a5a258817362ac83ca60a71f2e1a196833b36ac12464f7f  ./projects/yejida/README.md
 bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
 bf28aaaeabb281e98f16dddf16f45baba55c9513dcc7762fe43f46d153969422  ./protocol/KTP-001.md
+5cc74a46a08a38d9e84bec785fb26bcdb783832b63fa04f204cc43f8c27d4311  ./registrar.html
 eb8ddb925997fdb850d8e579ee363f350c4a83ea6dce702651928395ab7a72bb  ./robots.txt
 3472d6b4a55d4f88357af855eb4e322418e7487f41e9eb0e2185469a3a292c49  ./servicios.html
 b4662590168922d67bba385fe95afa193be3ddee1cfc19bd09c5503dbae09eb2  ./sitemap.xml
