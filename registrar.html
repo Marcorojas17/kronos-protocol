@@ -4,14 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registrar obra · KRONOS PROTOCOL</title>
-<meta name="description" content="Genera un folio criptográfico único y descarga tu certificado SHA-256 firmado con folio, hash y timestamp.">
+<meta name="description" content="Genera un folio criptográfico único y descarga tu certificado SHA-256 visual (Black Card), PDF Prisma o TXT ASCII.">
 <meta name="theme-color" content="#05070b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/animations.css">
+<style>
+  /* ── Estilos locales del formulario ── */
+  .page-head { padding: 20px 0 60px; max-width: 780px; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 5px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.page-title {
+    font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: clamp(38px, 7vw, 76px);
+    line-height: 1; letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .lede {
+    font-size: 16px; line-height: 1.7;
+    color: var(--text-dim); max-width: 600px;
+    font-weight: 300;
+    opacity: 0; animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  /* Botones específicos de esta página */
+  .acciones-cert {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .acciones-cert .btn { width: 100%; justify-content: center; }
+
+  .nota-final {
+    margin-top: 18px;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    letter-spacing: 1px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,164,76,0.05);
+    border-radius: 2px;
+  }
+  .nota-final strong { color: var(--gold); font-weight: 600; }
+  .nota-final em { color: var(--text); font-style: normal; font-weight: 500; }
+</style>
 </head>
 <body>
 
@@ -19,23 +69,25 @@
 <div class="vignette"></div>
 
 <div class="wrap">
-  <header class="nav">
-    <a href="index.html" class="nav__logo">KRONOS PROTOCOL</a>
-    <ul class="nav__links">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="verify.html">Verificar</a></li>
-      <li><a href="registrar.html" class="is-active">Registrar</a></li>
-      <li><a href="luxury.html">Editorial</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
-    </ul>
+
+  <header class="top">
+    <a href="index.html" class="mark">KRONOS PROTOCOL</a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="verify.html">Cadena</a>
+      <a href="verificar-certificado.html">Verificar</a>
+      <a href="registrar.html" class="is-active">Registrar</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GitHub</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <div class="eyebrow">Registro · SHA-256 · Certificado</div>
-    <h1 class="title">Registrar<br>nueva obra.</h1>
+  <section class="page-head">
+    <div class="eyebrow">Registro · SHA-256 · Certificado visual</div>
+    <h1 class="page-title">Registrar<br>nueva obra.</h1>
     <p class="lede">
-      Completa los metadatos. El sistema generará un <strong>folio único</strong> y su
-      <strong>hash SHA-256</strong>. Podrás descargar el certificado y verificar la obra después.
+      Completa los metadatos. El sistema generará un <strong>folio único</strong>, su
+      <strong>hash SHA-256</strong> y podrás descargar el certificado en
+      <strong>4 formatos</strong>: visual Black Card, PDF Prisma, TXT ASCII o JSON raw.
     </p>
   </section>
 
@@ -44,14 +96,14 @@
   <section>
     <div class="section-head">
       <h2>Metadatos</h2>
-      <span class="count">Local · Privado</span>
+      <span class="count">Local · Privado · Sin servidor</span>
     </div>
 
-    <form id="register-form" class="form">
+    <form id="register-form" class="form" autocomplete="off">
       <div class="form__grid">
         <div class="form__row">
           <label class="form__label" for="titulo">Título *</label>
-          <input class="input" id="titulo" required>
+          <input class="input" id="titulo" required placeholder="Nombre de la obra">
         </div>
         <div class="form__row">
           <label class="form__label" for="autor">Autor *</label>
@@ -67,6 +119,8 @@
             <option>Código</option>
             <option>Obra Visual</option>
             <option>Audio</option>
+            <option>Documento</option>
+            <option>Otro</option>
           </select>
         </div>
         <div class="form__row">
@@ -74,93 +128,170 @@
           <select class="input" id="licencia">
             <option>CC BY-NC-ND 4.0</option>
             <option>CC BY-NC-SA 4.0</option>
+            <option>CC BY 4.0</option>
             <option>MIT</option>
             <option>Todos los derechos reservados</option>
           </select>
         </div>
       </div>
+
       <div class="form__row">
         <label class="form__label" for="descripcion">Descripción</label>
-        <textarea class="input" id="descripcion" rows="3"></textarea>
+        <textarea class="input" id="descripcion" rows="3" placeholder="Breve descripción de la obra (opcional)"></textarea>
       </div>
+
       <div class="form__row">
         <label class="form__label" for="contenido">Contenido / Hash de la obra</label>
-        <textarea class="input" id="contenido" rows="5" placeholder="Pega aquí el texto íntegro o el hash SHA-256 del archivo original…"></textarea>
+        <textarea class="input" id="contenido" rows="5" placeholder="Pega aquí el texto íntegro de la obra, o el hash SHA-256 del archivo original. Se incluirá en el payload canónico del certificado."></textarea>
       </div>
-      <button type="submit" class="btn btn--primary btn--block">Generar Folio y Certificado</button>
+
+      <button type="submit" class="btn btn--primary btn--block">
+        Generar Folio y Certificado
+      </button>
     </form>
 
     <div id="register-result" class="result" hidden></div>
   </section>
 
-  <footer class="section-head" style="margin-top:80px;padding-top:40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">
+  <div class="divider"></div>
+
+  <section class="nota-final">
+    <strong>Los 4 formatos del certificado:</strong><br>
+    🎴 <em>Black Card (JSON)</em> · Tarjeta oscura dorada con QR, ribbon "OFICIAL" y hash cian.<br>
+    🔮 <em>PDF Prisma</em> · Cristal hexagonal de 6 universos (S·K·R·O·N·O) con base ornamentada. Se abre y se imprime directo.<br>
+    📜 <em>TXT ASCII</em> · Documento de texto premium con payload canónico y bloque base64.<br>
+    💾 <em>JSON raw</em> · Datos puros para automatización y verificación externa.
+  </section>
+
+  <footer class="top" style="margin-top:80px;padding:40px 0 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:10px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;padding-bottom:0;">
     <span>© 2026 Marco Antonio Rojas Valdovinos</span>
     <span style="font-family:'Cinzel',serif;color:var(--gold);letter-spacing:3px;">Kronos Protocol · Registrar</span>
     <span>
-      <a href="verify.html">Verificar</a> ·
+      <a href="verify.html">Cadena</a> ·
+      <a href="verificar-certificado.html">Certificado</a> ·
       <a href="admin.html" style="opacity:.4">◈ admin</a>
     </span>
   </footer>
+
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- LIBRERÍAS Y MÓDULOS                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="assets/js/crypto-handler.js"></script>
+<script src="assets/js/certificate-renderer.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/registrar.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- WEBGL DE FONDO (idéntico al index)                               -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <script>
 (function webgl() {
   const canvas = document.getElementById('webgl');
   if (!canvas || typeof THREE === 'undefined') return;
+
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x05070b, 0.035);
-  const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 1000);
+
+  const camera = new THREE.PerspectiveCamera(65, innerWidth / innerHeight, 0.1, 1000);
   camera.position.set(0, 0, 22);
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  const COUNT = 1200;
-  const pos = new Float32Array(COUNT * 3);
-  const col = new Float32Array(COUNT * 3);
-  const siz = new Float32Array(COUNT);
+
+  const COUNT = 1400;
+  const positions = new Float32Array(COUNT * 3);
+  const colors = new Float32Array(COUNT * 3);
+  const sizes = new Float32Array(COUNT);
+
   for (let i = 0; i < COUNT; i++) {
-    const r = 8 + Math.random() * 22, t = Math.random() * Math.PI * 2, p = Math.acos(2 * Math.random() - 1);
-    pos[i*3] = r * Math.sin(p) * Math.cos(t);
-    pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
-    pos[i*3+2] = r * Math.cos(p);
-    const g = Math.random() > 0.4;
-    col[i*3] = g ? 0.79 : 0.95; col[i*3+1] = g ? 0.64 : 0.90; col[i*3+2] = g ? 0.30 : 0.67;
-    siz[i] = 0.5 + Math.random() * 1.8;
+    const r = 8 + Math.random() * 22;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+
+    positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+
+    const isGold = Math.random() > 0.4;
+    colors[i * 3]     = isGold ? 0.79 : 0.95;
+    colors[i * 3 + 1] = isGold ? 0.64 : 0.90;
+    colors[i * 3 + 2] = isGold ? 0.30 : 0.67;
+
+    sizes[i] = 0.5 + Math.random() * 1.8;
   }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  geo.setAttribute('size', new THREE.BufferAttribute(siz, 1));
-  const mat = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uPixelRatio: { value: Math.min(devicePixelRatio, 2) } },
-    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; varying float vAlpha; uniform float uTime; uniform float uPixelRatio; void main(){ vColor=color; vAlpha=0.4+0.6*(0.5+0.5*sin(uTime*1.5+position.x*0.3+position.y*0.2)); vec4 mv=modelViewMatrix*vec4(position,1.0); gl_PointSize=size*uPixelRatio*(180.0/-mv.z); gl_Position=projectionMatrix*mv; }`,
-    fragmentShader: `varying vec3 vColor; varying float vAlpha; void main(){ float d=length(gl_PointCoord-vec2(0.5)); if(d>0.5)discard; float a=smoothstep(0.5,0.0,d)*vAlpha; gl_FragColor=vec4(vColor,a); }`,
-    transparent: true, blending: THREE.AdditiveBlending, depthWrite: false
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uPixelRatio: { value: Math.min(devicePixelRatio, 2) }
+    },
+    vertexShader: `
+      attribute float size;
+      attribute vec3 color;
+      varying vec3 vColor;
+      varying float vAlpha;
+      uniform float uTime;
+      uniform float uPixelRatio;
+      void main() {
+        vColor = color;
+        vAlpha = 0.4 + 0.6 * (0.5 + 0.5 * sin(uTime * 1.5 + position.x * 0.3 + position.y * 0.2));
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * uPixelRatio * (180.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        float d = length(gl_PointCoord - vec2(0.5));
+        if (d > 0.5) discard;
+        float a = smoothstep(0.5, 0.0, d) * vAlpha;
+        gl_FragColor = vec4(vColor, a);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
   });
-  const points = new THREE.Points(geo, mat);
+
+  const points = new THREE.Points(geometry, material);
   scene.add(points);
-  let mx=0,my=0,tx=0,ty=0;
-  addEventListener('mousemove', e => { mx=(e.clientX/innerWidth)*2-1; my=(e.clientY/innerHeight)*2-1; });
+
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  addEventListener('mousemove', (e) => {
+    mx = (e.clientX / innerWidth) * 2 - 1;
+    my = (e.clientY / innerHeight) * 2 - 1;
+  });
+
   let t0 = performance.now();
-  (function loop(){
+  (function loop() {
     requestAnimationFrame(loop);
-    const t = (performance.now()-t0)*0.001;
-    tx += (mx-tx)*0.03; ty += (my-ty)*0.03;
-    points.rotation.y = t*0.04 + tx*0.4;
-    points.rotation.x = Math.sin(t*0.15)*0.1 + ty*0.2;
-    mat.uniforms.uTime.value = t;
+    const t = (performance.now() - t0) * 0.001;
+    tx += (mx - tx) * 0.03;
+    ty += (my - ty) * 0.03;
+    points.rotation.y = t * 0.04 + tx * 0.4;
+    points.rotation.x = Math.sin(t * 0.15) * 0.1 + ty * 0.2;
+    material.uniforms.uTime.value = t;
     renderer.render(scene, camera);
   })();
+
   addEventListener('resize', () => {
-    camera.aspect = innerWidth/innerHeight;
+    camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(innerWidth, innerHeight);
   });
 })();
 </script>
+
 </body>
 </html>
