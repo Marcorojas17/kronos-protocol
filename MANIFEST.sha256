@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T16:58:52Z
+# Generado: 2026-09-19T17:00:14Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -38,7 +38,7 @@ c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GU
 63671c07988f06d2af6bad7a9ce17d33a86b8e3b065210a14f266e364948f398  ./guardians/GUARDIAN-SHA.md
 cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GUARDIAN-TSA.md
 22eb4afcbab180fb92734b26bd2b57ea4098a6d89953730f1c433b7dfa5c6468  ./guardians/GUARDIAN-VAULT.md
-ed6ddde49cea45899c3564a8af7052516d53d65dd073607138bc07594324658b  ./index.html
+c1d091bd824164addf53298ccb4ac2c92765312a8e60e1a338888b596a36295d  ./index.html
 0ef7aa93b627aafe3f1b4bc64dccf010a487703eea30a7b79de6d5a565d020c4  ./logs/log.json
 79cc5f0bc8f0aa37084f9d6647943e53889316dcbd28a5d94cecd5aa30f7379f  ./luxury.html
 039108f9570e96df0f3d646f0470e646d6a48cd13e7ad8bed5c9a75a224ea472  ./manifest.json
@@ -86,7 +86,7 @@ d51a4852bce0e69b3a5a258817362ac83ca60a71f2e1a196833b36ac12464f7f  ./projects/yej
 bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
 bf28aaaeabb281e98f16dddf16f45baba55c9513dcc7762fe43f46d153969422  ./protocol/KTP-001.md
 0b0f8f22fbf3739893f399e38ef05fd058728ae016e1a084f8d2b0e8409898c2  ./registrar.html
-68b4c331e1b862dcd819696d4b33cb4cc45348e99b0884d830bedc59ae0ddb20  ./robots.txt
+eb8ddb925997fdb850d8e579ee363f350c4a83ea6dce702651928395ab7a72bb  ./robots.txt
 3472d6b4a55d4f88357af855eb4e322418e7487f41e9eb0e2185469a3a292c49  ./servicios.html
 55f4aefd11da17dee771fc12e311c0141b5fc821bb3bdc97a7e436988ed33dd4  ./sitemap.xml
 8fa237da581c6f6fb916095ff27b80ba576decd83b4ae6f2260a297c63ae6151  ./verificar-certificado.html
