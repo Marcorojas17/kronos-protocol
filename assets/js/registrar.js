@@ -1,5 +1,6 @@
 /* ============================================================
-   KRONOS PROTOCOL · registrar.js v3
+   KRONOS PROTOCOL · registrar.js v4
+   Feedback visual en cada descarga (toast + método usado)
    ============================================================ */
 (function () {
   'use strict';
@@ -28,7 +29,6 @@
       const usadas = parseInt(localStorage.getItem('kronos_plazas_usadas') || '0', 10);
       localStorage.setItem('kronos_plazas_usadas', String(usadas + 1));
 
-      // Guardar temporalmente para que verificar-certificado.html lo pueda cargar por URL
       sessionStorage.setItem('kronos_ultimo_certificado', JSON.stringify(registro));
 
       const v = await KronosCrypto.verificarRegistroOffline(registro);
@@ -42,27 +42,62 @@
         <div class="result__row"><span>Fecha</span><span>${Kronos.formatDate(registro.timestamp)}</span></div>
         <div class="result__row"><span>Verificación local</span><span style="color:${v.ok ? '#10B981' : '#ff4d6d'}">${v.ok ? '✓ OK' : '✗ FALLO'}</span></div>
 
-        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn-certificado btn--sm" id="dl-cert">⬇ Descargar certificado (.txt)</button>
-          <button class="btn btn-recibo btn--sm" id="dl-json">⬇ Recibo offline (.json)</button>
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-certificado btn--sm" id="dl-cert" type="button">⬇ Descargar certificado (.txt)</button>
+          <button class="btn btn-recibo btn--sm" id="dl-json" type="button">⬇ Recibo offline (.json)</button>
           <a class="btn btn--ghost btn--sm" href="verificar-certificado.html">Verificar sin descargar</a>
         </div>
 
         <p style="margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6;letter-spacing:1px">
-          Para verificar el certificado, abre
-          <a href="verificar-certificado.html" style="color:var(--gold)">verificar-certificado.html</a>
-          y arrastra el archivo descargado. <strong style="color:var(--gold)">Sin terminal, sin consola, sin internet.</strong>
+          El certificado incluye el <strong style="color:var(--gold)">payload canónico</strong>
+          y el <strong style="color:var(--gold)">hash SHA-256</strong> en formato ASCII premium.
+          Verifícalo arrastrándolo en
+          <a href="verificar-certificado.html" style="color:var(--gold)">verificar-certificado.html</a>.
         </p>
       `;
 
-      document.getElementById('dl-cert').addEventListener('click', () => {
-        KronosCrypto.descargarCertificado(registro);
-        Kronos.toast('Certificado .txt descargado', 'ok');
+      /* ---- Descarga del certificado TXT ---- */
+      document.getElementById('dl-cert').addEventListener('click', async function () {
+        const b = this;
+        b.disabled = true;
+        const orig = b.textContent;
+        b.textContent = 'Preparando…';
+        try {
+          const res = await KronosCrypto.descargarCertificado(registro);
+          if (res.ok) {
+            Kronos.toast('Certificado .txt descargado (' + res.metodo + ')', 'ok');
+          } else {
+            Kronos.toast('Error al descargar el certificado', 'error');
+          }
+        } catch (err) {
+          console.error(err);
+          Kronos.toast('Error: ' + err.message, 'error');
+        } finally {
+          b.disabled = false;
+          b.textContent = orig;
+        }
       });
 
-      document.getElementById('dl-json').addEventListener('click', () => {
-        KronosCrypto.descargarReciboJSON(registro);
-        Kronos.toast('Recibo .json descargado', 'ok');
+      /* ---- Descarga del recibo JSON ---- */
+      document.getElementById('dl-json').addEventListener('click', async function () {
+        const b = this;
+        b.disabled = true;
+        const orig = b.textContent;
+        b.textContent = 'Preparando…';
+        try {
+          const res = await KronosCrypto.descargarReciboJSON(registro);
+          if (res.ok) {
+            Kronos.toast('Recibo .json descargado (' + res.metodo + ')', 'ok');
+          } else {
+            Kronos.toast('Error al descargar el recibo', 'error');
+          }
+        } catch (err) {
+          console.error(err);
+          Kronos.toast('Error: ' + err.message, 'error');
+        } finally {
+          b.disabled = false;
+          b.textContent = orig;
+        }
       });
 
       Kronos.toast('Folio registrado y verificado', 'ok');
