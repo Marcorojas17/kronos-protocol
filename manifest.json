@@ -1,0 +1,54 @@
+{
+  "name": "KRONOS PROTOCOL",
+  "short_name": "KRONOS",
+  "description": "El registro de lo que es real. Verificación criptográfica, evidencia digital y co-creatividad humano-IA.",
+  "start_url": "/kronos-protocol/",
+  "scope": "/kronos-protocol/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities", "education"],
+  "icons": [
+    {
+      "src": "/kronos-protocol/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/kronos-protocol/assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/kronos-protocol/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/kronos-protocol/assets/img/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Movimiento",
+      "short_name": "Movimiento",
+      "url": "/kronos-protocol/movimiento/",
+      "description": "Movimiento de Co-Creatividad Simbiótica"
+    },
+    {
+      "name": "Registro Génesis",
+      "short_name": "Génesis",
+      "url": "/kronos-protocol/movimiento/genesis/",
+      "description": "Las 100 Plazas Génesis"
+    }
+  ]
+}
