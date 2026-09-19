@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T05:12:01Z
+# Generado: 2026-09-19T05:14:24Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -39,6 +39,7 @@ cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GU
 79cc5f0bc8f0aa37084f9d6647943e53889316dcbd28a5d94cecd5aa30f7379f  ./luxury.html
 04ccc0e5ac5ee2d7fef9d3cefc8a9526e5d5eee49b26b30e5ff49fd3336fc787  ./movimiento/assets/art/README.md
 ef4ebd5f26bbf1a4b620cebeb1086d5eda7053abe37ee47a779224afc4c3ed08  ./movimiento/carta-bienvenida.html
+033da5e58530ec996cd72cfc953a2923f9e31e293957333402f3612fd73cd63f  ./movimiento/faq.md
 4b85657e9fadd57c4ac4878a9dae295d780bfbfe9e792d05db2abc0126d2068d  ./movimiento/genesis.md
 a943a7f29e2b4c22f999ed16052beb210e95c44b0f172d4c97d5dc628e6e6c4d  ./movimiento/index.html
 c9deee7afe961bf30c57e98efcc30aa9177b1da4f0d64218b9a5b5741d5d1a7a  ./movimiento/iniciacion.html
