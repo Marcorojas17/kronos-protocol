@@ -1,9 +1,44 @@
-title: Kronos-Protocol
-description: Prototipos de verificación criptográfica, evidencia digital y metodología de co-creatividad humano-IA
-theme: minima
+title: Kronos Protocol
+description: Verificación criptográfica, evidencia digital y co-creatividad humano-IA.
+author: Marco Antonio Rojas Valdovinos
+email: marco.a.rojas.v@hotmail.com
+
+# ⚠️ CRÍTICO: Ajusta baseurl si el repo NO se llama kronos-protocol
 baseurl: "/kronos-protocol"
 url: "https://marcorojas17.github.io"
+
+safe_creative: "2607086319439"
+license_code: MIT
+license_work: CC BY-NC-ND 4.0
+horizon: 2099
+
+# Jekyll
 markdown: kramdown
+highlighter: rouge
+theme: null
+
+# ⚠️ Excluir archivos que NO deben procesarse
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .github
+  - "*.py"
+  - guardian.py
+  - verifier.py
+  - MANIFEST.sha256
+  - Pnp
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: null
+
+# Plugins (opcionales)
 plugins:
-  - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-seo-tag
