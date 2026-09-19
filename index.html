@@ -83,7 +83,7 @@
   header.top nav a:hover { color: var(--gold); }
 
   .hero {
-    padding: 60px 0 100px;
+    padding: 60px 0 80px;
     max-width: 780px;
   }
   .eyebrow {
@@ -148,6 +148,127 @@
     letter-spacing: 2px;
     color: var(--text-dim);
   }
+
+  /* ── SECCIÓN MOVIMIENTO DESTACADA ── */
+  .movimiento-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 48px 40px;
+    border: 1px solid rgba(201,164,76,0.3);
+    background: linear-gradient(155deg, rgba(201,164,76,0.08) 0%, rgba(10,14,21,0.85) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .movimiento-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent 60%);
+  }
+  .movimiento-hero:hover {
+    border-color: rgba(201,164,76,0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,164,76,0.12);
+  }
+  .movimiento-hero .label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .movimiento-hero h3 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  .movimiento-hero h3 em {
+    font-style: normal;
+    background: linear-gradient(180deg, #fff8e0, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .movimiento-hero p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .movimiento-hero p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .movimiento-hero .arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    transition: gap 0.3s;
+  }
+  .movimiento-hero:hover .arrow {
+    gap: 14px;
+  }
+  .movimiento-visual {
+    aspect-ratio: 2/3;
+    border: 1px solid rgba(201,164,76,0.25);
+    background: linear-gradient(180deg, rgba(10,14,21,0.9), rgba(20,24,32,0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .movimiento-visual::before {
+    content: '◆';
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.15;
+    text-shadow: 0 0 60px var(--gold);
+  }
+  .movimiento-visual::after {
+    content: '51% HUMANO · 49% IA';
+    position: absolute;
+    bottom: 20px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  @media (max-width: 700px) {
+    .movimiento-hero {
+      grid-template-columns: 1fr;
+      padding: 32px 24px;
+    }
+    .movimiento-visual {
+      aspect-ratio: 3/1;
+    }
+  }
+
+  /* ── GRID DE PROYECTOS ── */
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -191,12 +312,8 @@
   }
   a.card:hover::before { opacity: 1; }
   a.card:hover::after { width: 100%; }
-  a.card.dmd33 {
-    border-color: rgba(0, 234, 255, 0.18);
-  }
-  a.card.dmd33::after {
-    background: linear-gradient(90deg, var(--cyan), transparent);
-  }
+  a.card.dmd33 { border-color: rgba(0, 234, 255, 0.18); }
+  a.card.dmd33::after { background: linear-gradient(90deg, var(--cyan), transparent); }
   a.card.dmd33:hover {
     border-color: rgba(0, 234, 255, 0.5);
     box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 234, 255, 0.08);
@@ -207,12 +324,8 @@
     background: var(--cyan);
     box-shadow: 0 0 8px var(--cyan);
   }
-  a.card.boveda {
-    border-color: rgba(16, 185, 129, 0.2);
-  }
-  a.card.boveda::after {
-    background: linear-gradient(90deg, #10B981, transparent);
-  }
+  a.card.boveda { border-color: rgba(16, 185, 129, 0.2); }
+  a.card.boveda::after { background: linear-gradient(90deg, #10B981, transparent); }
   a.card.boveda:hover {
     border-color: rgba(16, 185, 129, 0.55);
     box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(16, 185, 129, 0.1);
@@ -399,8 +512,8 @@
   <header class="top">
     <div class="mark">KRONOS PROTOCOL</div>
     <nav>
+      <a href="#movimiento">Movimiento</a>
       <a href="#projects">Proyectos</a>
-      <a href="movimiento/">Movimiento</a> <!-- ← AÑADIDO -->
       <a href="#contact">Contacto</a>
       <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GitHub</a>
     </nav>
@@ -418,6 +531,37 @@
   </section>
 
   <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN MOVIMIENTO DESTACADA                                    -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+
+  <section id="movimiento">
+    <div class="section-head">
+      <h2>Movimiento</h2>
+      <span class="count">100 Plazas Génesis · 2026</span>
+    </div>
+
+    <a class="movimiento-hero" href="movimiento/">
+      <div>
+        <span class="label">Co-Creatividad Simbiótica · Respeto Digital</span>
+        <h3>Humano <em>+</em> máquina.<br>Con reglas.</h3>
+        <p>
+          Un marco ético y legal para declarar honestamente cómo humanos e IA 
+          crean juntos. <strong>6 principios</strong>. <strong>100 plazas 
+          fundacionales</strong>. <strong>Hasta 2099</strong>.
+        </p>
+        <span class="arrow">Explorar el Movimiento →</span>
+      </div>
+      <div class="movimiento-visual"></div>
+    </a>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- PROYECTOS                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
 
   <section id="projects">
     <div class="section-head">
