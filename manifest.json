@@ -13,10 +13,22 @@
   "categories": ["productivity", "utilities", "education"],
   "icons": [
     {
+      "src": "/kronos-protocol/movimiento/assets/k-avatar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/kronos-protocol/movimiento/assets/k-avatar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "/kronos-protocol/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/kronos-protocol/assets/img/icon-192.png",
