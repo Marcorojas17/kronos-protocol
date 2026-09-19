@@ -1,0 +1,83 @@
+/* ============================================================
+   KRONOS PROTOCOL · animations.css
+   ============================================================ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glow-text {
+  0%, 100% { text-shadow: 0 0 12px rgba(201, 164, 76, 0.4); }
+  50%      { text-shadow: 0 0 24px rgba(201, 164, 76, 0.8); }
+}
+
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Spinner de carga */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(201,164,76,.25);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Aplicaciones automáticas */
+.hero h1, .hero .lede, .hero .eyebrow {
+  animation: fadeUp 1s var(--ease) both;
+}
+.hero h1      { animation-delay: .2s; }
+.hero .lede   { animation-delay: .4s; }
+.hero .eyebrow{ animation-delay: 0s; }
+
+.card, .module, .service, .principle, .step {
+  animation: fadeUp .5s var(--ease) both;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ink-2); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--gold), var(--gold-deep));
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+::selection {
+  background: rgba(201, 164, 76, 0.35);
+  color: var(--gold-light);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Respeto a usuarios con motion reducido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
