@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T02:57:10Z
+# Generado: 2026-09-19T03:04:38Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -20,7 +20,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 03e2451d06d5662f3834990dc3486d065dc110870d51d25d72d53a4316642333  ./assets/data/folios.json
 9efb9204500e817683a6b037846459172e77b1c4c854f38cc68a3221515678ff  ./assets/js/admin.js
 64f1d5938d8e7de3b17e966381c43b8a2459c19a045afdd7abdfa3cd3259708c  ./assets/js/app.js
-e53e94d97465ca1db2ef74c0aab7b8d9d2b9d2aa1deae79ad51a1df414b09b60  ./assets/js/crypto-handler.js
+9fd5b38f74a9f68aee25db8624da847c788d11c49e7553cc2d0fa2587bde5cc8  ./assets/js/crypto-handler.js
 da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/particles.js
 ac0a827d88c7f53c1d3170435e800b96ccb635d707b167957902c6c66fffda80  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
