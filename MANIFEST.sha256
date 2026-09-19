@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T02:24:06Z
+# Generado: 2026-09-19T02:24:59Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -16,6 +16,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 720b0dbb3f95378c3b722a1fc9127c35c35647d0b09db894ffe63859dad2578e  ./assets/css/animations.css
 157e2e9966f905b105d98cc04dde07739fa03b3541a9c2f974c236469bc50672  ./assets/css/components.css
 99a4e5811f77c9c514df987ff5268385d08727b5d9249bd1e9f4436ce849aec3  ./assets/css/main.css
+c816aac7edbf7674b91ba5e2f6ea16f924c4891b2f0d31e4317bcd8966554d57  ./assets/js/crypto-handler.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
 3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
