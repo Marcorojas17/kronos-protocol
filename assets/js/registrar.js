@@ -1,6 +1,6 @@
 /* ============================================================
-   KRONOS PROTOCOL · registrar.js v5
-   4 acciones: JSON visual + PDF Prisma + TXT ASCII + JSON raw
+   KRONOS PROTOCOL · registrar.js v6
+   5 acciones: Black Card · Prisma · SCDR · TXT · JSON raw
    ============================================================ */
 (function () {
   'use strict';
@@ -41,88 +41,61 @@
         <div class="result__row"><span>Fecha</span><span>${Kronos.formatDate(registro.timestamp)}</span></div>
         <div class="result__row"><span>Verificación local</span><span style="color:${v.ok ? '#10B981' : '#ff4d6d'}">${v.ok ? '✓ OK' : '✗ FALLO'}</span></div>
 
-        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn-certificado btn--sm" id="btn-json-cert" type="button">
-            🎴 Certificado visual (JSON)
-          </button>
-          <button class="btn btn-certificado btn--sm" id="btn-pdf-prisma" type="button">
-            🔮 Certificado PDF (Prisma)
-          </button>
-          <button class="btn btn-recibo btn--sm" id="btn-txt-ascii" type="button">
-            📜 TXT ASCII
-          </button>
-          <button class="btn btn-recibo btn--sm" id="btn-json-raw" type="button">
-            💾 JSON raw
-          </button>
+        <div class="acciones-cert">
+          <button class="btn btn-certificado btn--sm" id="btn-black-pdf" type="button">🎴 Black Card PDF</button>
+          <button class="btn btn-certificado btn--sm" id="btn-prisma-pdf" type="button">🔮 Prisma PDF</button>
+          <button class="btn btn-certificado btn--sm" id="btn-scdr-pdf" type="button">🏛 SCDR Génesis PDF</button>
+          <button class="btn btn-recibo btn--sm" id="btn-txt-ascii" type="button">📜 TXT ASCII</button>
+          <button class="btn btn-recibo btn--sm" id="btn-json-raw" type="button">💾 JSON raw</button>
         </div>
 
-        <p style="margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6;letter-spacing:1px">
-          <strong style="color:var(--gold)">Certificado visual (JSON):</strong> se abre en ventana nueva con diseño black card + QR.<br>
-          <strong style="color:var(--gold)">Certificado PDF (Prisma):</strong> se abre con diseño Prisma Genesis. Pulsa <em>Imprimir → Guardar como PDF</em>.<br>
-          <strong style="color:var(--gold)">TXT ASCII:</strong> formato texto premium con payload canónico.<br>
-          <strong style="color:var(--gold)">JSON raw:</strong> datos puros para automatización.
-        </p>
+        <div class="nota-final">
+          <strong>Black Card PDF</strong> · tarjeta oscura dorada con QR.<br>
+          <strong>Prisma PDF</strong> · cristal hexagonal de 6 universos con brillo creativo.<br>
+          <strong>SCDR Génesis PDF</strong> · certificado formal con emblema, artículos, firmas y sello dorado.<br>
+          <strong>TXT ASCII</strong> · documento premium con payload canónico.<br>
+          <strong>JSON raw</strong> · datos puros para automatización.
+        </div>
       `;
 
-      /* ── Certificado visual JSON (Black Card) ── */
-      document.getElementById('btn-json-cert').addEventListener('click', function () {
-        try {
-          const win = KronosCertificate.abrirOficial(registro);
-          if (win) Kronos.toast('Certificado visual abierto', 'ok');
-        } catch (err) {
-          Kronos.toast('Error: ' + err.message, 'error');
-        }
-      });
-
-      /* ── Certificado PDF (Prisma) ── */
-      document.getElementById('btn-pdf-prisma').addEventListener('click', function () {
-        try {
-          const win = KronosCertificate.abrirPrisma(registro);
-          if (win) {
-            Kronos.toast('Pulsa "Guardar como PDF" en la nueva pestaña', 'ok');
-            // Auto-disparar diálogo de impresión después de cargar
-            setTimeout(() => {
-              try { win.focus(); win.print(); } catch (e) {}
-            }, 1200);
+      /* Helper para descargas */
+      async function conBoton(botonId, fn, msgOk) {
+        const b = document.getElementById(botonId);
+        b.addEventListener('click', async function () {
+          const o = b.textContent;
+          b.disabled = true;
+          b.textContent = '⏳ Generando…';
+          try {
+            const res = await fn();
+            if (res && res.ok) Kronos.toast(msgOk || 'Descargado', 'ok');
+          } catch (err) {
+            console.error(err);
+            Kronos.toast('Error: ' + err.message, 'error');
+          } finally {
+            b.disabled = false;
+            b.textContent = o;
           }
-        } catch (err) {
-          Kronos.toast('Error: ' + err.message, 'error');
-        }
-      });
+        });
+      }
 
-      /* ── TXT ASCII ── */
-      document.getElementById('btn-txt-ascii').addEventListener('click', async function () {
-        const b = this;
-        b.disabled = true;
-        const o = b.textContent;
-        b.textContent = 'Preparando…';
-        try {
-          const res = await KronosCrypto.descargarCertificado(registro);
-          Kronos.toast(res.ok ? 'TXT descargado (' + res.metodo + ')' : 'Error al descargar', res.ok ? 'ok' : 'error');
-        } catch (err) {
-          Kronos.toast('Error: ' + err.message, 'error');
-        } finally {
-          b.disabled = false;
-          b.textContent = o;
-        }
-      });
+      /* 1. Black Card PDF */
+      await conBoton('btn-black-pdf', () => KronosCertificate.descargarPDFOficial(registro), 'Black Card PDF descargado');
 
-      /* ── JSON raw ── */
-      document.getElementById('btn-json-raw').addEventListener('click', async function () {
-        const b = this;
-        b.disabled = true;
-        const o = b.textContent;
-        b.textContent = 'Preparando…';
-        try {
-          const res = await KronosCrypto.descargarReciboJSON(registro);
-          Kronos.toast(res.ok ? 'JSON descargado (' + res.metodo + ')' : 'Error al descargar', res.ok ? 'ok' : 'error');
-        } catch (err) {
-          Kronos.toast('Error: ' + err.message, 'error');
-        } finally {
-          b.disabled = false;
-          b.textContent = o;
-        }
-      });
+      /* 2. Prisma PDF */
+      await conBoton('btn-prisma-pdf', () => KronosCertificate.descargarPDFPrisma(registro), 'Prisma PDF descargado');
+
+      /* 3. SCDR Génesis PDF */
+      await conBoton('btn-scdr-pdf', () => KronosCertificate.descargarPDFSCDR(registro), 'SCDR Génesis PDF descargado');
+
+      /* 4. TXT ASCII */
+      await conBoton('btn-txt-ascii', async () => {
+        return await KronosCrypto.descargarCertificado(registro);
+      }, 'TXT ASCII descargado');
+
+      /* 5. JSON raw */
+      await conBoton('btn-json-raw', async () => {
+        return await KronosCrypto.descargarReciboJSON(registro);
+      }, 'JSON raw descargado');
 
       Kronos.toast('Folio registrado y verificado', 'ok');
       form.reset();
