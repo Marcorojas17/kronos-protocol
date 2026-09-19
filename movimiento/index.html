@@ -7,7 +7,7 @@
 <meta name="description" content="Marco ético y legal para declarar honestamente cómo humanos e IA crean juntos. 6 principios. 100 plazas Génesis.">
 <meta property="og:title" content="Movimiento de Co-Creatividad Simbiótica">
 <meta property="og:description" content="Humano + máquina. Con reglas. 6 principios. 100 plazas Génesis.">
-<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/assets/img/movimiento-cover.jpg">
+<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/hero-kronos.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,10 +142,7 @@
     border-bottom: 1px solid rgba(201,164,76,0.3);
     transition: all 0.3s;
   }
-  .hero-cta a:hover {
-    border-color: var(--gold);
-    gap: 14px;
-  }
+  .hero-cta a:hover { border-color: var(--gold); gap: 14px; }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -697,8 +694,7 @@
   const founders = [];
   for (let i = 0; i < 100; i++) {
     founders.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
+      x: Math.random() * W, y: Math.random() * H,
       r: Math.random() * 1.4 + 0.5,
       vx: (Math.random() - 0.5) * 0.15,
       vy: -Math.random() * 0.25 - 0.05,
@@ -738,8 +734,7 @@
   function drawFounders(time) {
     for (let i = 0; i < founders.length; i++) {
       const f = founders[i];
-      f.x += f.vx;
-      f.y += f.vy;
+      f.x += f.vx; f.y += f.vy;
       if (f.x < -10) f.x = W + 10;
       if (f.x > W + 10) f.x = -10;
       if (f.y < -10) { f.y = H + 10; f.x = Math.random() * W; }
@@ -762,17 +757,14 @@
   function drawConnections() {
     for (let i = 0; i < founders.length; i++) {
       for (let j = i + 1; j < founders.length; j++) {
-        const a = founders[i];
-        const b = founders[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
+        const a = founders[i], b = founders[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
         const dist = dx * dx + dy * dy;
         if (dist < 14000) {
-          const opacity = (1 - dist / 14000) * 0.05;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(201, 164, 76, ${opacity})`;
+          ctx.strokeStyle = `rgba(201, 164, 76, ${(1 - dist / 14000) * 0.05})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
