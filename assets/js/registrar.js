@@ -1,6 +1,6 @@
 /* ============================================================
-   KRONOS PROTOCOL · registrar.js
-   Formulario de registro de folios
+   KRONOS PROTOCOL · registrar.js v2
+   Genera folio + certificado auto-verificable + recibo offline
    ============================================================ */
 (function () {
   'use strict';
@@ -26,9 +26,11 @@
         contenido:   document.getElementById('contenido').value.trim()
       });
 
-      // Incrementar plazas usadas
       const usadas = parseInt(localStorage.getItem('kronos_plazas_usadas') || '0', 10);
       localStorage.setItem('kronos_plazas_usadas', String(usadas + 1));
+
+      // Verificación inmediata offline
+      const v = await KronosCrypto.verificarRegistroOffline(registro);
 
       result.hidden = false;
       result.className = 'result result--success';
@@ -37,17 +39,31 @@
         <div class="result__row"><span>Folio</span><span>${registro.folio}</span></div>
         <div class="result__row"><span>Hash</span><span>${registro.hash}</span></div>
         <div class="result__row"><span>Fecha</span><span>${Kronos.formatDate(registro.timestamp)}</span></div>
-        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn--primary btn--sm" id="dl-cert">⬇ Descargar certificado</button>
+        <div class="result__row"><span>Verificación local</span><span style="color:${v.ok ? '#10B981' : '#ff4d6d'}">${v.ok ? '✓ OK' : '✗ FALLO'}</span></div>
+
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-certificado btn--sm" id="dl-cert">⬇ Descargar certificado (.txt)</button>
+          <button class="btn btn-recibo btn--sm" id="dl-json">⬇ Recibo offline (.json)</button>
           <a class="btn btn--ghost btn--sm" href="verify.html?folio=${registro.folio}">Verificar ahora</a>
         </div>
+
+        <p style="margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6;letter-spacing:1px">
+          El certificado .txt incluye el <strong style="color:var(--gold)">payload canónico</strong> y el <strong style="color:var(--gold)">hash SHA-256</strong>.
+          Puedes verificarlo sin internet con cualquier herramienta SHA-256.
+        </p>
       `;
 
       document.getElementById('dl-cert').addEventListener('click', () => {
         KronosCrypto.descargarCertificado(registro);
+        Kronos.toast('Certificado .txt descargado', 'ok');
       });
 
-      Kronos.toast('Folio registrado y anclado localmente', 'ok');
+      document.getElementById('dl-json').addEventListener('click', () => {
+        KronosCrypto.descargarReciboJSON(registro);
+        Kronos.toast('Recibo .json descargado', 'ok');
+      });
+
+      Kronos.toast('Folio registrado y verificado', 'ok');
       form.reset();
     } catch (err) {
       console.error(err);
@@ -60,75 +76,3 @@
     }
   });
 })();
-
-/* ═══════════════════════════════════════════════════════════════ */
-/* BOTÓN CERTIFICADO · Pulsación multicolor                         */
-/* ═══════════════════════════════════════════════════════════════ */
-.btn-certificado {
-  position: relative;
-  background: linear-gradient(90deg, #c9a44c 0%, #00eaff 33%, #10B981 66%, #c9a44c 100%);
-  background-size: 300% 100%;
-  color: #05070b !important;
-  font-weight: 700;
-  letter-spacing: 3px;
-  overflow: hidden;
-  border: 0;
-  animation:
-    cert-rainbow  4s linear infinite,
-    cert-pulse    2.4s ease-in-out infinite;
-}
-
-@keyframes cert-rainbow {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
-
-@keyframes cert-pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 20px rgba(201,164,76,0.55),
-      0 0 40px rgba(201,164,76,0.25);
-    transform: scale(1);
-  }
-  33% {
-    box-shadow:
-      0 0 30px rgba(0,234,255,0.75),
-      0 0 60px rgba(0,234,255,0.35);
-    transform: scale(1.018);
-  }
-  66% {
-    box-shadow:
-      0 0 30px rgba(16,185,129,0.75),
-      0 0 60px rgba(16,185,129,0.35);
-    transform: scale(1.018);
-  }
-}
-
-/* Destello que barre el botón */
-.btn-certificado::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-  animation: cert-shine 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes cert-shine {
-  0%   { left: -100%; }
-  50%  { left: 100%; }
-  100% { left: 100%; }
-}
-
-/* Variante secundaria (JSON recibo) */
-.btn-recibo {
-  background: rgba(0,234,255,0.08);
-  border: 1px solid rgba(0,234,255,0.4);
-  color: #00eaff;
-  font-weight: 600;
-}
-.btn-recibo:hover {
-  background: rgba(0,234,255,0.15);
-  box-shadow: 0 0 25px rgba(0,234,255,0.4);
-}
