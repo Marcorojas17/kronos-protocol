@@ -1,6 +1,6 @@
 /* ============================================================
-   KRONOS PROTOCOL · registrar.js v4
-   Feedback visual en cada descarga (toast + método usado)
+   KRONOS PROTOCOL · registrar.js v5
+   4 acciones: JSON visual + PDF Prisma + TXT ASCII + JSON raw
    ============================================================ */
 (function () {
   'use strict';
@@ -28,7 +28,6 @@
 
       const usadas = parseInt(localStorage.getItem('kronos_plazas_usadas') || '0', 10);
       localStorage.setItem('kronos_plazas_usadas', String(usadas + 1));
-
       sessionStorage.setItem('kronos_ultimo_certificado', JSON.stringify(registro));
 
       const v = await KronosCrypto.verificarRegistroOffline(registro);
@@ -43,60 +42,85 @@
         <div class="result__row"><span>Verificación local</span><span style="color:${v.ok ? '#10B981' : '#ff4d6d'}">${v.ok ? '✓ OK' : '✗ FALLO'}</span></div>
 
         <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn-certificado btn--sm" id="dl-cert" type="button">⬇ Descargar certificado (.txt)</button>
-          <button class="btn btn-recibo btn--sm" id="dl-json" type="button">⬇ Recibo offline (.json)</button>
-          <a class="btn btn--ghost btn--sm" href="verificar-certificado.html">Verificar sin descargar</a>
+          <button class="btn btn-certificado btn--sm" id="btn-json-cert" type="button">
+            🎴 Certificado visual (JSON)
+          </button>
+          <button class="btn btn-certificado btn--sm" id="btn-pdf-prisma" type="button">
+            🔮 Certificado PDF (Prisma)
+          </button>
+          <button class="btn btn-recibo btn--sm" id="btn-txt-ascii" type="button">
+            📜 TXT ASCII
+          </button>
+          <button class="btn btn-recibo btn--sm" id="btn-json-raw" type="button">
+            💾 JSON raw
+          </button>
         </div>
 
         <p style="margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6;letter-spacing:1px">
-          El certificado incluye el <strong style="color:var(--gold)">payload canónico</strong>
-          y el <strong style="color:var(--gold)">hash SHA-256</strong> en formato ASCII premium.
-          Verifícalo arrastrándolo en
-          <a href="verificar-certificado.html" style="color:var(--gold)">verificar-certificado.html</a>.
+          <strong style="color:var(--gold)">Certificado visual (JSON):</strong> se abre en ventana nueva con diseño black card + QR.<br>
+          <strong style="color:var(--gold)">Certificado PDF (Prisma):</strong> se abre con diseño Prisma Genesis. Pulsa <em>Imprimir → Guardar como PDF</em>.<br>
+          <strong style="color:var(--gold)">TXT ASCII:</strong> formato texto premium con payload canónico.<br>
+          <strong style="color:var(--gold)">JSON raw:</strong> datos puros para automatización.
         </p>
       `;
 
-      /* ---- Descarga del certificado TXT ---- */
-      document.getElementById('dl-cert').addEventListener('click', async function () {
-        const b = this;
-        b.disabled = true;
-        const orig = b.textContent;
-        b.textContent = 'Preparando…';
+      /* ── Certificado visual JSON (Black Card) ── */
+      document.getElementById('btn-json-cert').addEventListener('click', function () {
         try {
-          const res = await KronosCrypto.descargarCertificado(registro);
-          if (res.ok) {
-            Kronos.toast('Certificado .txt descargado (' + res.metodo + ')', 'ok');
-          } else {
-            Kronos.toast('Error al descargar el certificado', 'error');
-          }
+          const win = KronosCertificate.abrirOficial(registro);
+          if (win) Kronos.toast('Certificado visual abierto', 'ok');
         } catch (err) {
-          console.error(err);
           Kronos.toast('Error: ' + err.message, 'error');
-        } finally {
-          b.disabled = false;
-          b.textContent = orig;
         }
       });
 
-      /* ---- Descarga del recibo JSON ---- */
-      document.getElementById('dl-json').addEventListener('click', async function () {
-        const b = this;
-        b.disabled = true;
-        const orig = b.textContent;
-        b.textContent = 'Preparando…';
+      /* ── Certificado PDF (Prisma) ── */
+      document.getElementById('btn-pdf-prisma').addEventListener('click', function () {
         try {
-          const res = await KronosCrypto.descargarReciboJSON(registro);
-          if (res.ok) {
-            Kronos.toast('Recibo .json descargado (' + res.metodo + ')', 'ok');
-          } else {
-            Kronos.toast('Error al descargar el recibo', 'error');
+          const win = KronosCertificate.abrirPrisma(registro);
+          if (win) {
+            Kronos.toast('Pulsa "Guardar como PDF" en la nueva pestaña', 'ok');
+            // Auto-disparar diálogo de impresión después de cargar
+            setTimeout(() => {
+              try { win.focus(); win.print(); } catch (e) {}
+            }, 1200);
           }
         } catch (err) {
-          console.error(err);
+          Kronos.toast('Error: ' + err.message, 'error');
+        }
+      });
+
+      /* ── TXT ASCII ── */
+      document.getElementById('btn-txt-ascii').addEventListener('click', async function () {
+        const b = this;
+        b.disabled = true;
+        const o = b.textContent;
+        b.textContent = 'Preparando…';
+        try {
+          const res = await KronosCrypto.descargarCertificado(registro);
+          Kronos.toast(res.ok ? 'TXT descargado (' + res.metodo + ')' : 'Error al descargar', res.ok ? 'ok' : 'error');
+        } catch (err) {
           Kronos.toast('Error: ' + err.message, 'error');
         } finally {
           b.disabled = false;
-          b.textContent = orig;
+          b.textContent = o;
+        }
+      });
+
+      /* ── JSON raw ── */
+      document.getElementById('btn-json-raw').addEventListener('click', async function () {
+        const b = this;
+        b.disabled = true;
+        const o = b.textContent;
+        b.textContent = 'Preparando…';
+        try {
+          const res = await KronosCrypto.descargarReciboJSON(registro);
+          Kronos.toast(res.ok ? 'JSON descargado (' + res.metodo + ')' : 'Error al descargar', res.ok ? 'ok' : 'error');
+        } catch (err) {
+          Kronos.toast('Error: ' + err.message, 'error');
+        } finally {
+          b.disabled = false;
+          b.textContent = o;
         }
       });
 
