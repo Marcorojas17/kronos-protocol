@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T02:51:24Z
+# Generado: 2026-09-19T02:52:13Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -22,7 +22,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 64f1d5938d8e7de3b17e966381c43b8a2459c19a045afdd7abdfa3cd3259708c  ./assets/js/app.js
 e52017b2ae901ce4f35e2dbc2c6d09d8ce96ff2f5a2823df90e436187ff854ff  ./assets/js/crypto-handler.js
 da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/particles.js
-8f55bee28ccd20cf978819b9d7be2a52a1b6e924f3dc22130720af78f29f2639  ./assets/js/registrar.js
+96d6f08a388cabbd3ad47d5c7fe739b11cfd207bf988c148c5df465c82f3aa14  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
