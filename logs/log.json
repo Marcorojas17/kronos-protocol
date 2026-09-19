@@ -36,3 +36,16 @@
     "hash": "PLACEHOLDER_HASH_3"
   }
 ]
+
+const {hashSha256} = window.KronosVerifier;
+(async () => {
+  const entradas = [/* pega aquí el array del log.json */];
+  let prev = null;
+  for (const e of entradas) {
+    const c = [String(e.n), e.cuando, e.accion, String(e.principio), e.entrada, e.proposito, e.autor, e.anio, e.hash_previo || 'GENESIS'].join('|');
+    e.hash = await hashSha256(c);
+    e.hash_previo = prev;
+    prev = e.hash;
+  }
+  console.log(JSON.stringify(entradas, null, 2));
+})();
