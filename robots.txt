@@ -59,5 +59,3 @@ Disallow: /
 User-agent: *
 Disallow: /archive/
 Allow: /
-
-Sitemap: https://marcorojas17.github.io/kronos-protocol/sitemap.xml
