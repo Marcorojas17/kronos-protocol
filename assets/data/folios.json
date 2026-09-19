@@ -1,0 +1,24 @@
+[
+  {
+    "folio": "KR-2026-GEN0-0001",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "titulo": "Manifiesto de Co-Creatividad Simbiótica",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "tipo": "Manifiesto",
+    "licencia": "CC BY-NC-ND 4.0",
+    "descripcion": "Documento fundacional del Movimiento. 51% humano · 49% IA.",
+    "timestamp": "2026-07-08T07:02:00.000Z",
+    "verificaciones": 0
+  },
+  {
+    "folio": "KR-2026-GEN0-0002",
+    "hash": "a3f5b1c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8",
+    "titulo": "Carta de Bienvenida a los Génesis",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "tipo": "Texto",
+    "licencia": "CC BY-NC-ND 4.0",
+    "descripcion": "Mensaje de apertura para las 100 plazas fundacionales.",
+    "timestamp": "2026-07-08T07:02:00.000Z",
+    "verificaciones": 0
+  }
+]
