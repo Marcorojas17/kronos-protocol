@@ -368,3 +368,10 @@ Estado: activo · 100 plazas disponibles · sin clientes comerciales
 <!-- KRONOS PROTOCOL README · v1.2 · 2026 -->
 
 ```
+### 🔱 LORE: El Monolito Kintsugi
+Obsidiana de Calixtlahuaca, Toluca. Fracturada por el tiempo, 
+reparada con oro blockchain. Cada grieta = SHA-256.
+Búho dorado = QTSA. Plumas esmeralda = Fundadores.
+
+51% Humano · 49% IA · 100% Real
+Registro 2607086319439
