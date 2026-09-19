@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · KRONOS PROTOCOL</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05070b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="login-card__logo">◈</div>
+    <h1>Acceso Restringido</h1>
+    <p class="login-card__sub">Panel exclusivo del fundador</p>
+    <form id="login-form" class="form">
+      <div class="form__row">
+        <label class="form__label" for="user">Usuario</label>
+        <input class="input" id="user" placeholder="marco" required autocomplete="username">
+      </div>
+      <div class="form__row">
+        <label class="form__label" for="pass">Contraseña</label>
+        <input class="input" id="pass" type="password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button class="btn btn--primary btn--block" type="submit">Ingresar</button>
+    </form>
+    <p id="login-error" class="login-error" hidden>Credenciales incorrectas.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="dashboard" hidden>
+  <aside class="sidebar">
+    <div class="sidebar__brand">◈ KRONOS</div>
+    <nav class="sidebar__nav">
+      <a href="#" class="is-active" data-view="overview">📊 Resumen</a>
+      <a href="#" data-view="folios">📜 Folios</a>
+      <a href="#" data-view="nuevo">➕ Nuevo</a>
+      <a href="#" data-view="export">⬇ Exportar</a>
+      <a href="#" data-view="settings">⚙ Ajustes</a>
+    </nav>
+    <button id="logout-btn" class="btn btn--ghost btn--sm">Cerrar sesión</button>
+  </aside>
+
+  <main class="content">
+    <header class="content__header">
+      <h1 id="view-title">Resumen</h1>
+      <span class="content__user">marco · fundador</span>
+    </header>
+
+    <section id="view-overview" class="view">
+      <div class="grid grid--4">
+        <div class="kpi"><span class="kpi__num" id="kpi-total">0</span><span class="kpi__label">Folios</span></div>
+        <div class="kpi"><span class="kpi__num" id="kpi-verif">0</span><span class="kpi__label">Verificaciones</span></div>
+        <div class="kpi"><span class="kpi__num" id="kpi-plazas">100</span><span class="kpi__label">Plazas libres</span></div>
+        <div class="kpi"><span class="kpi__num">v1.0</span><span class="kpi__label">Versión</span></div>
+      </div>
+    </section>
+
+    <section id="view-folios" class="view" hidden>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr><th>Folio</th><th>Título</th><th>Tipo</th><th>Fecha</th><th>Acciones</th></tr>
+          </thead>
+          <tbody id="folios-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="view-nuevo" class="view" hidden>
+      <form id="admin-new-form" class="form" style="max-width:520px">
+        <div class="form__row">
+          <label class="form__label" for="a-titulo">Título</label>
+          <input class="input" id="a-titulo" required>
+        </div>
+        <div class="form__row">
+          <label class="form__label" for="a-tipo">Tipo</label>
+          <input class="input" id="a-tipo" placeholder="Texto, Poema, Ensayo…" required>
+        </div>
+        <div class="form__row">
+          <label class="form__label" for="a-desc">Descripción</label>
+          <textarea class="input" id="a-desc" rows="3"></textarea>
+        </div>
+        <button class="btn btn--primary" type="submit">Añadir Folio</button>
+      </form>
+    </section>
+
+    <section id="view-export" class="view" hidden>
+      <p style="color:var(--text-dim);margin-bottom:20px;">Descarga el archivo completo de folios en formato JSON.</p>
+      <button id="export-btn" class="btn btn--primary">⬇ Descargar folios.json</button>
+    </section>
+
+    <section id="view-settings" class="view" hidden>
+      <p style="color:var(--text-dim);">Próximamente: cambio de contraseña, anclaje Ethereum y modo mantenimiento.</p>
+    </section>
+  </main>
+</div>
+
+<script src="assets/js/crypto-handler.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
