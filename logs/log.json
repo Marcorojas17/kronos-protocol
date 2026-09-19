@@ -1,0 +1,38 @@
+[
+  {
+    "n": 1,
+    "cuando": "2026-07-08T07:02:00Z",
+    "accion": "Acta fundacional registrada",
+    "principio": 1,
+    "entrada": "Registro Safe Creative 2607086319439",
+    "proposito": "Anclar el acta fundacional del protocolo Kronos",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "anio": "2026",
+    "hash_previo": null,
+    "hash": "PLACEHOLDER_HASH_1"
+  },
+  {
+    "n": 2,
+    "cuando": "2026-07-08T07:05:00Z",
+    "accion": "Sellado de tiempo cualificado eIDAS",
+    "principio": 2,
+    "entrada": "QTSA Firmaprofesional B02",
+    "proposito": "Garantizar trazabilidad temporal del acta",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "anio": "2026",
+    "hash_previo": "PLACEHOLDER_HASH_1",
+    "hash": "PLACEHOLDER_HASH_2"
+  },
+  {
+    "n": 3,
+    "cuando": "2026-07-08T07:10:00Z",
+    "accion": "Anclaje en Ethereum Mainnet",
+    "principio": 1,
+    "entrada": "Transacción blockchain",
+    "proposito": "Inmutabilidad pública del registro",
+    "autor": "Marco Antonio Rojas Valdovinos",
+    "anio": "2026",
+    "hash_previo": "PLACEHOLDER_HASH_2",
+    "hash": "PLACEHOLDER_HASH_3"
+  }
+]
