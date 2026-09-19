@@ -1,9 +1,12 @@
 /* ============================================================
    KRONOS PROTOCOL · animations.css
-   Keyframes, glow, transiciones, botones animados
+   Keyframes, glow, transiciones, botones animados, verificador
    ============================================================ */
 
-/* ── KEYFRAMES BASE ── */
+/* ═══════════════════════════════════════════════════════════════ */
+/* 1. KEYFRAMES BASE                                                */
+/* ═══════════════════════════════════════════════════════════════ */
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -43,40 +46,70 @@
   50%      { transform: translateY(-8px); }
 }
 
-/* ── SPINNER DE CARGA ── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-10px); }
+  40%      { transform: translateX(10px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* 2. SPINNER DE CARGA                                              */
+/* ═══════════════════════════════════════════════════════════════ */
+
 .spinner {
   width: 16px;
   height: 16px;
   border: 2px solid rgba(201,164,76,.25);
-  border-top-color: var(--gold);
+  border-top-color: var(--gold, #c9a44c);
   border-radius: 50%;
   animation: spin .7s linear infinite;
   display: inline-block;
   vertical-align: middle;
 }
 
-/* ── APLICACIONES AUTOMÁTICAS ── */
-.hero h1, .hero .lede, .hero .eyebrow {
+/* ═══════════════════════════════════════════════════════════════ */
+/* 3. APLICACIONES AUTOMÁTICAS                                      */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.hero h1,
+.hero .lede,
+.hero .eyebrow {
   animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
+
 .hero h1       { animation-delay: .2s; }
 .hero .lede    { animation-delay: .4s; }
 .hero .eyebrow { animation-delay: 0s; }
 
-.card, .module, .service, .principle, .step, .kpi {
+.card,
+.module,
+.service,
+.principle,
+.step,
+.kpi,
+.entry {
   animation: fadeUp .5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
-/* BOTÓN CERTIFICADO · Pulsación multicolor dorado→cian→verde       */
+/* 4. BOTÓN CERTIFICADO · Pulsación multicolor dorado→cian→verde   */
 /* ═══════════════════════════════════════════════════════════════ */
+
 .btn-certificado {
   position: relative;
-  background: linear-gradient(90deg, #c9a44c 0%, #00eaff 33%, #10B981 66%, #c9a44c 100%);
+  background: linear-gradient(
+    90deg,
+    #c9a44c 0%,
+    #00eaff 33%,
+    #10B981 66%,
+    #c9a44c 100%
+  );
   background-size: 300% 100%;
   color: #05070b !important;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   overflow: hidden;
   border: 0;
   animation:
@@ -116,7 +149,12 @@
   position: absolute;
   top: 0; left: -100%;
   width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.55),
+    transparent
+  );
   animation: cert-shine 3s ease-in-out infinite;
   pointer-events: none;
 }
@@ -127,7 +165,6 @@
   100% { left: 100%; }
 }
 
-/* Hover sobre el botón certificado */
 .btn-certificado:hover {
   animation-play-state: paused, paused;
   transform: translateY(-2px) scale(1.02);
@@ -135,14 +172,16 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
-/* BOTÓN RECIBO JSON · cian sobrio                                  */
+/* 5. BOTÓN RECIBO JSON · cian sobrio                               */
 /* ═══════════════════════════════════════════════════════════════ */
+
 .btn-recibo {
   background: rgba(0,234,255,0.08);
   border: 1px solid rgba(0,234,255,0.4);
   color: #00eaff;
   font-weight: 600;
 }
+
 .btn-recibo:hover {
   background: rgba(0,234,255,0.15);
   border-color: #00eaff;
@@ -151,7 +190,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
-/* VERIFICADOR DE CERTIFICADO · animaciones de resultado            */
+/* 6. VERIFICADOR DE CERTIFICADO · animaciones de resultado         */
 /* ═══════════════════════════════════════════════════════════════ */
 
 /* Aparición del bloque de resultado */
@@ -194,14 +233,6 @@
     shake 0.5s ease-in-out 0.6s;
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%      { transform: translateX(-10px); }
-  40%      { transform: translateX(10px); }
-  60%      { transform: translateX(-6px); }
-  80%      { transform: translateX(6px); }
-}
-
 /* Aparición secuencial de las filas de detalles */
 .detalles .fila {
   animation: fadeUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -215,37 +246,65 @@
 .detalles .fila:nth-child(7) { animation-delay: 0.35s; }
 .detalles .fila:nth-child(8) { animation-delay: 0.40s; }
 
-/* ── SCROLLBAR PERSONALIZADA ── */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--ink-2, #0a0e15); }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--gold), var(--gold-deep));
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+/* ═══════════════════════════════════════════════════════════════ */
+/* 7. TOAST · notificaciones flotantes                              */
+/* ═══════════════════════════════════════════════════════════════ */
 
-/* ── SELECCIÓN DE TEXTO ── */
-::selection {
-  background: rgba(201, 164, 76, 0.35);
-  color: var(--gold-light);
-}
-
-/* ── FOCO ACCESIBLE ── */
-:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* ── TOAST (notificaciones flotantes) ── */
 .kronos-toast {
   animation: fadeUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
-/* RESPETO A USUARIOS CON MOTION REDUCIDO                          */
+/* 8. SCROLLBAR PERSONALIZADA                                       */
 /* ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink-2, #0a0e15);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    var(--gold, #c9a44c),
+    var(--gold-deep, #8a6f2c)
+  );
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light, #f3e5ab);
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* 9. SELECCIÓN DE TEXTO                                            */
+/* ═══════════════════════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(201, 164, 76, 0.35);
+  color: var(--gold-light, #f3e5ab);
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* 10. FOCO ACCESIBLE                                               */
+/* ═══════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--gold, #c9a44c);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* 11. RESPETO A USUARIOS CON MOTION REDUCIDO                       */
+/* ═══════════════════════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
