@@ -1,6 +1,5 @@
 /* ============================================================
-   KRONOS PROTOCOL · registrar.js v2
-   Genera folio + certificado auto-verificable + recibo offline
+   KRONOS PROTOCOL · registrar.js v3
    ============================================================ */
 (function () {
   'use strict';
@@ -29,7 +28,9 @@
       const usadas = parseInt(localStorage.getItem('kronos_plazas_usadas') || '0', 10);
       localStorage.setItem('kronos_plazas_usadas', String(usadas + 1));
 
-      // Verificación inmediata offline
+      // Guardar temporalmente para que verificar-certificado.html lo pueda cargar por URL
+      sessionStorage.setItem('kronos_ultimo_certificado', JSON.stringify(registro));
+
       const v = await KronosCrypto.verificarRegistroOffline(registro);
 
       result.hidden = false;
@@ -44,12 +45,13 @@
         <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
           <button class="btn btn-certificado btn--sm" id="dl-cert">⬇ Descargar certificado (.txt)</button>
           <button class="btn btn-recibo btn--sm" id="dl-json">⬇ Recibo offline (.json)</button>
-          <a class="btn btn--ghost btn--sm" href="verify.html?folio=${registro.folio}">Verificar ahora</a>
+          <a class="btn btn--ghost btn--sm" href="verificar-certificado.html">Verificar sin descargar</a>
         </div>
 
         <p style="margin-top:16px;font-size:11px;color:var(--text-dim);line-height:1.6;letter-spacing:1px">
-          El certificado .txt incluye el <strong style="color:var(--gold)">payload canónico</strong> y el <strong style="color:var(--gold)">hash SHA-256</strong>.
-          Puedes verificarlo sin internet con cualquier herramienta SHA-256.
+          Para verificar el certificado, abre
+          <a href="verificar-certificado.html" style="color:var(--gold)">verificar-certificado.html</a>
+          y arrastra el archivo descargado. <strong style="color:var(--gold)">Sin terminal, sin consola, sin internet.</strong>
         </p>
       `;
 
