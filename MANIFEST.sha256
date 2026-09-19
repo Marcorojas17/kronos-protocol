@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T04:47:33Z
+# Generado: 2026-09-19T05:12:01Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -42,6 +42,7 @@ ef4ebd5f26bbf1a4b620cebeb1086d5eda7053abe37ee47a779224afc4c3ed08  ./movimiento/c
 4b85657e9fadd57c4ac4878a9dae295d780bfbfe9e792d05db2abc0126d2068d  ./movimiento/genesis.md
 a943a7f29e2b4c22f999ed16052beb210e95c44b0f172d4c97d5dc628e6e6c4d  ./movimiento/index.html
 c9deee7afe961bf30c57e98efcc30aa9177b1da4f0d64218b9a5b5741d5d1a7a  ./movimiento/iniciacion.html
+77159bbc9b2c00b1a0b0a7a31507823eabb7daa7f9028c10adcc83e880a34923  ./movimiento/manifiesto.md
 07efb4aa3f557049e45f552375e2e05aec6ea02879032333f89a142728e57a73  ./projects/acta/README.md
 8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
 4d9839e925614e2daa972fe6ed91ffe77708760bd90c17b94835dd0149652f54  ./projects/bobeda/bobeda.html
