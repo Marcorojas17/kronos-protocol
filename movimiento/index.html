@@ -18,6 +18,7 @@
     --gold: #c9a44c;
     --gold-light: #f3e5ab;
     --gold-deep: #8a6f2c;
+    --cyan: #00eaff;
     --ink: #05070b;
     --text: #e8e4d8;
     --text-dim: #8892a0;
@@ -29,7 +30,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-  #webgl {
+  #bg-canvas {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -75,6 +76,11 @@
     background: var(--gold);
     border-radius: 50%;
     box-shadow: 0 0 12px var(--gold);
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
   }
   header.top nav a {
     color: var(--text-dim);
@@ -381,7 +387,7 @@
 </head>
 <body>
 
-<canvas id="webgl"></canvas>
+<canvas id="bg-canvas"></canvas>
 <div class="vignette"></div>
 
 <div class="wrap">
@@ -658,93 +664,213 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* FONDO VIVO — El latido 51/49 + 100 partículas (una por fundador)      */
+/* ═══════════════════════════════════════════════════════════════════════ */
 (function() {
-  const canvas = document.getElementById('webgl');
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x05070b, 0.035);
-  const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 0, 22);
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  const COUNT = 1200;
-  const positions = new Float32Array(COUNT * 3);
-  const colors = new Float32Array(COUNT * 3);
-  const sizes = new Float32Array(COUNT);
-  for (let i = 0; i < COUNT; i++) {
-    const r = 8 + Math.random() * 22;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
-    positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
-    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-    positions[i * 3 + 2] = r * Math.cos(phi);
-    const isGold = Math.random() > 0.4;
-    if (isGold) {
-      colors[i * 3]     = 0.79; colors[i * 3 + 1] = 0.64; colors[i * 3 + 2] = 0.30;
-    } else {
-      colors[i * 3]     = 0.95; colors[i * 3 + 1] = 0.90; colors[i * 3 + 2] = 0.67;
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let W = 0, H = 0, DPR = 1;
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── 100 partículas doradas = 100 fundadores Génesis ── */
+  const founders = [];
+  const FOUNDER_COUNT = 100;
+
+  for (let i = 0; i < FOUNDER_COUNT; i++) {
+    founders.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.4 + 0.5,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -Math.random() * 0.25 - 0.05,
+      baseOpacity: Math.random() * 0.5 + 0.2,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.5 + Math.random() * 1.5
+    });
+  }
+
+  /* ── Dibuja el latido 51/49 — dos ondas entrelazadas ── */
+  function drawHeartbeat(time) {
+    const centerY = H * 0.52;
+    const amplitude = Math.min(H * 0.08, 90);
+    const frequency = 0.006;
+    const speed = time * 0.0008;
+    const step = 4;
+
+    /* Onda HUMANA (dorada) — latido orgánico con irregularidad */
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed) * amplitude;
+      /* Latido irregular: un pulso cada ~200px */
+      const beat = Math.sin(x * 0.05 + speed * 3) * 0.4 + 0.6;
+      /* Pico ocasional (como un latido real) */
+      const spike = Math.pow(Math.abs(Math.sin(x * 0.02 + speed * 2)), 8) * amplitude * 0.6;
+      const y = centerY + baseWave * beat - spike;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
     }
-    sizes[i] = 0.5 + Math.random() * 1.8;
+    ctx.strokeStyle = 'rgba(201, 164, 76, 0.28)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    /* Reflejo suave de la onda humana */
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed) * amplitude;
+      const beat = Math.sin(x * 0.05 + speed * 3) * 0.4 + 0.6;
+      const spike = Math.pow(Math.abs(Math.sin(x * 0.02 + speed * 2)), 8) * amplitude * 0.6;
+      const y = centerY + baseWave * beat - spike;
+      if (x === 0) ctx.moveTo(x, y + 3);
+      else ctx.lineTo(x, y + 3);
+    }
+    ctx.strokeStyle = 'rgba(201, 164, 76, 0.08)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    /* Onda IA (cian) — digital, regular, matemática */
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed + Math.PI) * amplitude;
+      /* Pulso digital: cuadrado suave */
+      const digital = Math.sin(x * 0.08 + speed * 4) * 0.15;
+      const y = centerY + baseWave + digital * amplitude;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(0, 234, 255, 0.22)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    /* Reflejo suave de la onda IA */
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed + Math.PI) * amplitude;
+      const digital = Math.sin(x * 0.08 + speed * 4) * 0.15;
+      const y = centerY + baseWave + digital * amplitude;
+      if (x === 0) ctx.moveTo(x, y + 3);
+      else ctx.lineTo(x, y + 3);
+    }
+    ctx.strokeStyle = 'rgba(0, 234, 255, 0.06)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    /* Punto de cruce luminoso — donde las dos ondas se encuentran */
+    const crossX = W / 2;
+    const crossY = centerY;
+    const gradient = ctx.createRadialGradient(crossX, crossY, 0, crossX, crossY, 80);
+    gradient.addColorStop(0, 'rgba(243, 229, 171, 0.15)');
+    gradient.addColorStop(0.4, 'rgba(201, 164, 76, 0.05)');
+    gradient.addColorStop(1, 'rgba(201, 164, 76, 0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(crossX, crossY, 80, 0, Math.PI * 2);
+    ctx.fill();
   }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-  const material = new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) } },
-    vertexShader: `
-      attribute float size;
-      attribute vec3 color;
-      varying vec3 vColor;
-      varying float vAlpha;
-      uniform float uTime;
-      uniform float uPixelRatio;
-      void main() {
-        vColor = color;
-        vAlpha = 0.4 + 0.6 * (0.5 + 0.5 * sin(uTime * 1.5 + position.x * 0.3 + position.y * 0.2));
-        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = size * uPixelRatio * (180.0 / -mvPosition.z);
-        gl_Position = projectionMatrix * mvPosition;
+
+  /* ── Dibuja las 100 partículas ── */
+  function drawFounders(time) {
+    for (let i = 0; i < founders.length; i++) {
+      const f = founders[i];
+
+      /* Movimiento suave */
+      f.x += f.vx;
+      f.y += f.vy;
+
+      /* Wrap alrededor de la pantalla */
+      if (f.x < -10) f.x = W + 10;
+      if (f.x > W + 10) f.x = -10;
+      if (f.y < -10) { f.y = H + 10; f.x = Math.random() * W; }
+      if (f.y > H + 10) f.y = -10;
+
+      /* Pulso de opacidad */
+      const pulse = Math.sin(time * 0.001 * f.pulseSpeed + f.pulse) * 0.3 + 0.7;
+      const opacity = f.baseOpacity * pulse;
+
+      /* Glow dorado */
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r * 3, 0, Math.PI * 2);
+      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 3);
+      g.addColorStop(0, `rgba(201, 164, 76, ${opacity * 0.3})`);
+      g.addColorStop(1, 'rgba(201, 164, 76, 0)');
+      ctx.fillStyle = g;
+      ctx.fill();
+
+      /* Punto central */
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(243, 229, 171, ${opacity})`;
+      ctx.fill();
+    }
+  }
+
+  /* ── Conexiones sutiles entre partículas cercanas ── */
+  function drawConnections() {
+    for (let i = 0; i < founders.length; i++) {
+      for (let j = i + 1; j < founders.length; j++) {
+        const a = founders[i];
+        const b = founders[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = dx * dx + dy * dy;
+
+        if (dist < 14000) {
+          const opacity = (1 - dist / 14000) * 0.05;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(201, 164, 76, ${opacity})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
       }
-    `,
-    fragmentShader: `
-      varying vec3 vColor;
-      varying float vAlpha;
-      void main() {
-        float d = length(gl_PointCoord - vec2(0.5));
-        if (d > 0.5) discard;
-        float a = smoothstep(0.5, 0.0, d) * vAlpha;
-        gl_FragColor = vec4(vColor, a);
-      }
-    `,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
-  });
-  const points = new THREE.Points(geometry, material);
-  scene.add(points);
-  let mx = 0, my = 0, tx = 0, ty = 0;
-  window.addEventListener('mousemove', (e) => {
-    mx = (e.clientX / window.innerWidth) * 2 - 1;
-    my = (e.clientY / window.innerHeight) * 2 - 1;
-  });
-  let t0 = performance.now();
+    }
+  }
+
+  /* ── Loop principal ── */
+  let start = performance.now();
   function animate() {
+    const t = performance.now() - start;
+
+    /* Fondo base con degradado sutil */
+    ctx.fillStyle = 'rgba(5, 7, 11, 0.25)';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Halo radial dorado en el centro (respira) */
+    const breathe = Math.sin(t * 0.0006) * 0.15 + 0.4;
+    const haloGrad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.6);
+    haloGrad.addColorStop(0, `rgba(201, 164, 76, ${0.03 * breathe})`);
+    haloGrad.addColorStop(0.5, 'rgba(201, 164, 76, 0.005)');
+    haloGrad.addColorStop(1, 'rgba(5, 7, 11, 0)');
+    ctx.fillStyle = haloGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    /* Latido 51/49 */
+    drawHeartbeat(t);
+
+    /* Conexiones entre fundadores */
+    drawConnections();
+
+    /* 100 fundadores */
+    drawFounders(t);
+
     requestAnimationFrame(animate);
-    const t = (performance.now() - t0) * 0.001;
-    tx += (mx - tx) * 0.03; ty += (my - ty) * 0.03;
-    points.rotation.y = t * 0.04 + tx * 0.4;
-    points.rotation.x = Math.sin(t * 0.15) * 0.1 + ty * 0.2;
-    material.uniforms.uTime.value = t;
-    renderer.render(scene, camera);
   }
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+
   animate();
 })();
 </script>
