@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenido al Movimiento · Fundador Génesis</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     LOGO EXCLUSIVO PARA FUNDADORES
+     Tetris + Glitch animado
+     ═══════════════════════════════════════════════════════════ */
+  .logo-fundador {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    line-height: 1.15;
+    white-space: pre;
+    margin: 0 auto 40px;
+    padding: 0;
+    text-align: center;
+    letter-spacing: 0;
+    filter: drop-shadow(0 0 12px rgba(201,164,76,0.4));
+    animation: colorShift 8s ease-in-out infinite;
+  }
+  @keyframes colorShift {
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(255,51,102,0.5)); }
+    16% { filter: drop-shadow(0 0 12px rgba(255,153,51,0.5)); }
+    33% { filter: drop-shadow(0 0 12px rgba(255,221,0,0.5)); }
+    50% { filter: drop-shadow(0 0 12px rgba(51,255,102,0.5)); }
+    66% { filter: drop-shadow(0 0 12px rgba(51,221,255,0.5)); }
+    83% { filter: drop-shadow(0 0 12px rgba(170,51,255,0.5)); }
+  }
+
+  /* Ajuste responsive */
+  @media (max-width: 500px) {
+    .logo-fundador { font-size: 6px; }
+  }
+  @media (max-width: 380px) {
+    .logo-fundador { font-size: 4.5px; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     CARD PRINCIPAL
+     ═══════════════════════════════════════════════════════════ */
+  .card {
+    max-width: 680px;
+    text-align: center;
+    padding: 60px 40px;
+    border: 1px solid rgba(201,164,76,0.2);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.85) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 4px;
+    position: relative;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 20px var(--gold);
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  p strong { color: var(--text); font-weight: 500; }
+
+  /* ═══════════════════════════════════════════════════════════
+     PASOS
+     ═══════════════════════════════════════════════════════════ */
+  .steps {
+    text-align: left;
+    margin: 40px 0;
+    padding: 32px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: rgba(201,164,76,0.02);
+    border-radius: 4px;
+  }
+  .steps h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .steps ol {
+    margin-left: 20px;
+    color: var(--text-dim);
+    counter-reset: step;
+    list-style: none;
+  }
+  .steps ol li {
+    font-size: 15px;
+    margin-bottom: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    padding-left: 32px;
+    position: relative;
+    counter-increment: step;
+  }
+  .steps ol li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .steps ol li strong { color: var(--text); font-weight: 500; }
+
+  /* ═══════════════════════════════════════════════════════════
+     BADGE EXCLUSIVO
+     ═══════════════════════════════════════════════════════════ */
+  .badge-exclusivo {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid rgba(201,164,76,0.4);
+    border-radius: 40px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    background: rgba(201,164,76,0.05);
+  }
+  .badge-exclusivo::before {
+    content: '✦ ';
+  }
+  .badge-exclusivo::after {
+    content: ' ✦';
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BOTONES
+     ═══════════════════════════════════════════════════════════ */
+  .btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  a.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold);
+    background: rgba(201,164,76,0.02);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--gold);
+    background: rgba(201,164,76,0.08);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ */
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ══════════════════════════════════════════════════════════
+       LOGO EXCLUSIVO TETRIS - Solo lo ven los fundadores
+       ══════════════════════════════════════════════════════════ -->
+  <pre class="logo-fundador"><span style="color:#ff3366">██╗  ██╗</span><span style="color:#ff9933">██████╗ </span><span style="color:#ffdd00"> ██████╗ </span><span style="color:#33ff66">███╗   ██╗</span> <span style="color:#33ddff">██████╗ </span><span style="color:#aa33ff">███████╗</span>
+<span style="color:#ff3366">██║ ██╔╝</span><span style="color:#ff9933">██╔══██╗</span><span style="color:#ffdd00">██╔═══██╗</span><span style="color:#33ff66">████╗  ██║</span><span style="color:#33ddff">██╔═══██╗</span><span style="color:#aa33ff">██╔════╝</span>
+<span style="color:#ff3366">█████╔╝ </span><span style="color:#ff9933">██████╔╝</span><span style="color:#ffdd00">██║   ██║</span><span style="color:#33ff66">██╔██╗ ██║</span><span style="color:#33ddff">██║   ██║</span><span style="color:#aa33ff">███████╗</span>
+<span style="color:#ff3366">██╔═██╗ </span><span style="color:#ff9933">██╔══██╗</span><span style="color:#ffdd00">██║   ██║</span><span style="color:#33ff66">██║╚██╗██║</span><span style="color:#33ddff">██║   ██║</span><span style="color:#aa33ff">╚════██║</span>
+<span style="color:#ff3366">██║  ██╗</span><span style="color:#ff9933">██║  ██║</span><span style="color:#ffdd00">╚██████╔╝</span><span style="color:#33ff66">██║ ╚████║</span><span style="color:#33ddff">╚██████╔╝</span><span style="color:#aa33ff">███████║</span>
+<span style="color:#ff3366">╚═╝  ╚═╝</span><span style="color:#ff9933">╚═╝  ╚═╝</span><span style="color:#ffdd00"> ╚═════╝ </span><span style="color:#33ff66">╚═╝  ╚═══╝</span> <span style="color:#33ddff">╚═════╝ </span><span style="color:#aa33ff">╚══════╝</span></pre>
+
+  <div class="badge-exclusivo">Acceso Fundador Desbloqueado</div>
+
+  <div class="eyebrow">Movimiento de Co-Creatividad Simbiótica</div>
+  <h1>Bienvenido al Movimiento.</h1>
+  <div class="subtitle">Fundador Génesis · Confirmación recibida</div>
+
+  <p>Tu solicitud fue recibida. En menos de <strong>24 horas</strong> recibirás un email con todos los detalles.</p>
+  <p>Este logo <strong>solo lo ven los fundadores</strong>. Es tu credencial visual.</p>
+
+  <div class="steps">
+    <h2>Próximos pasos</h2>
+    <ol>
+      <li><strong>Revisa tu email</strong> (bandeja de entrada y spam) — te enviaremos tu número de Plaza Génesis y los datos bancarios.</li>
+      <li><strong>Realiza la transferencia</strong> por el monto de tu fase. Guarda el comprobante.</li>
+      <li><strong>Envía el comprobante</strong> respondiendo al email.</li>
+      <li><strong>Recibe tu Pasaporte Génesis</strong> en PDF firmado criptográficamente.</li>
+      <li><strong>Únete al grupo privado</strong> de WhatsApp con los otros 99 fundadores.</li>
+    </ol>
+  </div>
+
+  <p>Mientras tanto, puedes explorar el Movimiento:</p>
+
+  <div class="btns">
+    <a class="btn solid" href="iniciacion.html">Leer la Iniciación</a>
+    <a class="btn ghost" href="index.html">Volver al Movimiento</a>
+  </div>
+
+  <footer>
+    <a href="index.html">Movimiento</a> ·
+    <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
+  </footer>
+
+</div>
+</body>
+</html>
