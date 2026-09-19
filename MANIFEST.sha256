@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-19T05:45:04Z
+# Generado: 2026-09-19T05:45:38Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -86,9 +86,9 @@ d51a4852bce0e69b3a5a258817362ac83ca60a71f2e1a196833b36ac12464f7f  ./projects/yej
 bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
 bf28aaaeabb281e98f16dddf16f45baba55c9513dcc7762fe43f46d153969422  ./protocol/KTP-001.md
 0b0f8f22fbf3739893f399e38ef05fd058728ae016e1a084f8d2b0e8409898c2  ./registrar.html
-40daa31bf3ab80a832919b4123a8c9cc00eef9ba0d1ccd8003ec2400f53f6cd7  ./robots.txt
+eb8ddb925997fdb850d8e579ee363f350c4a83ea6dce702651928395ab7a72bb  ./robots.txt
 3472d6b4a55d4f88357af855eb4e322418e7487f41e9eb0e2185469a3a292c49  ./servicios.html
-b4662590168922d67bba385fe95afa193be3ddee1cfc19bd09c5503dbae09eb2  ./sitemap.xml
+55f4aefd11da17dee771fc12e311c0141b5fc821bb3bdc97a7e436988ed33dd4  ./sitemap.xml
 8fa237da581c6f6fb916095ff27b80ba576decd83b4ae6f2260a297c63ae6151  ./verificar-certificado.html
 a9805d2c9455c6f05260701679374cf3e9c7215b150083808e471d830ccad390  ./verifier.py
 0e5f8876acccb8003e4d36dcd77429e0859ec495908ef9305293670a2eed3ffe  ./verify.html
