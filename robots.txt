@@ -1,11 +1,15 @@
+# ═══════════════════════════════════════════════════════════════
 # KRONOS PROTOCOL · robots.txt
 # Co-Creatividad Simbiótica y Respeto Digital
 # SEAL: 2607086319439
+# ═══════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────
+# BOTS DE ENTRENAMIENTO — BLOQUEADOS
+# (No pueden usar tu contenido para entrenar modelos)
+# ─────────────────────────────────────────────────────────────
 
 User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
 Disallow: /
 
 User-agent: CCBot
@@ -21,9 +25,6 @@ User-agent: Claude-Web
 Disallow: /
 
 User-agent: Google-Extended
-Disallow: /
-
-User-agent: PerplexityBot
 Disallow: /
 
 User-agent: Bytespider
@@ -56,6 +57,32 @@ Disallow: /
 User-agent: Diffbot
 Disallow: /
 
+# ─────────────────────────────────────────────────────────────
+# BOTS DE CITACIÓN — PERMITIDOS
+# (Pueden citar tu contenido en respuestas, no entrenar)
+# ─────────────────────────────────────────────────────────────
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ─────────────────────────────────────────────────────────────
+# REGLAS GENERALES
+# ─────────────────────────────────────────────────────────────
+
 User-agent: *
 Disallow: /archive/
+Disallow: /movimiento/gracias.html
+Disallow: /movimiento/fundador.html
 Allow: /
+
+# ─────────────────────────────────────────────────────────────
+# SITEMAP
+# ─────────────────────────────────────────────────────────────
+
+Sitemap: https://marcorojas17.github.io/kronos-protocol/sitemap.xml
