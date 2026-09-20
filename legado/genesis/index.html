@@ -44,6 +44,29 @@
   .continuar-siguiente .btn {
     display: inline-flex;
   }
+  .btn-limpiar-wrap {
+    text-align: center;
+    margin-top: 16px;
+  }
+  .btn-limpiar {
+    background: none;
+    border: none;
+    color: #8892a0;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.3s;
+    text-decoration: underline;
+    text-decoration-color: rgba(136,146,160,0.3);
+    text-underline-offset: 4px;
+  }
+  .btn-limpiar:hover {
+    color: #c9a44c;
+    text-decoration-color: rgba(201,164,76,0.5);
+  }
 </style>
 </head>
 <body>
@@ -92,15 +115,15 @@
       <span class="count">Local-first · Sin backend</span>
     </div>
 
-    <form id="form-genesis" novalidate>
+    <form id="form-genesis" novalidate autocomplete="off">
       <div class="field">
         <label for="nombre">Nombre del fundador <span class="req">*</span></label>
-        <input type="text" id="nombre" name="nombre" required placeholder="Cómo quieres ser reconocido">
+        <input type="text" id="nombre" name="nombre" required placeholder="Cómo quieres ser reconocido" autocomplete="off">
       </div>
 
       <div class="field">
         <label for="intencion">Intención fundacional <span class="req">*</span></label>
-        <textarea id="intencion" name="intencion" required placeholder="En una frase: ¿qué quieres dejar al mundo con este legado?"></textarea>
+        <textarea id="intencion" name="intencion" required placeholder="En una frase: ¿qué quieres dejar al mundo con este legado?" autocomplete="off"></textarea>
         <div class="hint">Mínimo 20 caracteres. Esta frase quedará sellada para siempre.</div>
       </div>
 
@@ -118,6 +141,12 @@
         <span>Sellar génesis</span>
         <span class="arrow">→</span>
       </button>
+
+      <div class="btn-limpiar-wrap">
+        <button type="button" class="btn-limpiar" id="btn-limpiar-manual">
+          Limpiar campos manualmente
+        </button>
+      </div>
 
       <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
     </form>
@@ -171,6 +200,7 @@
 
 </main>
 
-<script src="genesis.js" type="module"></script>
+<!-- CACHE BUSTER v=3 -->
+<script src="genesis.js?v=3" type="module"></script>
 </body>
 </html>
