@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T03:41:28Z
+# Generado: 2026-09-20T03:41:58Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -107,6 +107,7 @@ bb2283d082f2613d702f57b62baee432d57aa73ec6deca666f931006c8456725  ./legado/manif
 77393076e2823bb53026f11b76de9e95d09b045a19214291d9df4d579db157e0  ./manifest.json
 4e96d023c5a8b0fa3df4d7e204569e09b75df9e37d80731bbc0a2be77c82a7b0  ./modulos/boveda-voz/boveda.js
 e72c16092c396a2cf98f0e5ba796e860ce05a2a5a57aa069561f93a0e6e55bce  ./modulos/boveda-voz/index.html
+93f9aaf8975d071734cdcf3063085b59d2f736473722251eec9967b9de2e6672  ./modulos/boveda-voz/manual.html
 fb057a16c8f196987795cca9093575121d18adcd5e58047c0d1648082018cc86  ./modulos/boveda-voz/styles.css
 777649812d06cdc4de2527ee4c53987a35f1adace1322ccff9a9fc4dc8ea8dc2  ./modulos/evidence-os/AUTORIA
 d430f8f52bb3aa61fd89bd34b227de15a056dcc679165a430549ed536ce63217  ./modulos/evidence-os/README.md
