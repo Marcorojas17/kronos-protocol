@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Exportar · Inventario · Restaurar · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · bundle < 26KB gzip |
+| **Humano** | Export + restore completo en < 30 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano decide archivar · IA cifra y firma · paquete verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 6.1 abre la Capa 6 con el paquete `.legado` cifrado: empaqueta todo el ecosistema, lo cifra con AES-GCM-256, firma el manifiesto con Ed25519 y permite restauración en tres modos. Alineado a ISO 22301.
+
+**3 lecciones:**
+1. Separar manifiesto público del cipher privado permite verificación sin exponer datos.
+2. Los tres modos de restauración (verificar/fusionar/reemplazar) cubren todos los escenarios.
+3. Cifrar todo el ecosistema con la misma clave AES del Cripto Core mantiene coherencia.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Exportar el ecosistema y guardar el `.legado` externamente.
+3. Restaurar en modo verificación para confirmar integridad.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Verificación criptográfica del cipher contra `cipher_hash` del manifiesto.
+2. Exportación incremental: solo cambios desde el último paquete.
+3. Firma adicional del paquete completo (no solo del manifiesto) con hash chain.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** pérdida de contraseña maestra → **Mitigación:** exportar manifiesto + guardar contraseña en gestor (Bitwarden, 1Password).
+2. **Riesgo:** paquete corrupto → **Mitigación:** exportaciones redundantes en 3 medios distintos.
+
+**1 idea audaz:**
+Convertir el paquete `.legado` en un formato abierto especificado en un RFC público (comunidad pueda verificar sin la app original).
+
+**1 conexión con otro módulo:**
+`cierre/fin-digno` (módulo 6.2) usará este paquete como el "último aliento" del legado, con cláusula de resurrección.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 6.1 · EXPORT CIFRADO · v1.0                     ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 6 (Cierre)                                ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
