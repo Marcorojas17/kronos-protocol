@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T03:49:33Z
+# Generado: 2026-09-20T03:50:07Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -128,6 +128,7 @@ bad877813beb40416bfaae032d519a0989283ffcf9b1e7577d6f652983d09080  ./movimiento/i
 77159bbc9b2c00b1a0b0a7a31507823eabb7daa7f9028c10adcc83e880a34923  ./movimiento/manifiesto.md
 1dac044da629a8b26c52b19a246ec18de187de81a6afb5e3d7a2241690d1e050  ./movimiento/roadmap.md
 63a61a6e35a6a7ca52559b486e12b686fd32f2c09e90a53024ac1732cab3d54a  ./movimiento/solicitar_plaza.html
+0c89ee657962c09abc59fe5f799b22f8417669fba2283bd9ed75694a22c4d409  ./orquestacion/event-bus/AUTORIA
 d4c48d0e874c97edb7ac208475804589e910d18522f35519b39099c2f998d569  ./orquestacion/event-bus/README.md
 4ee495a8186d5fdb2a997a361d6e474fcb552f892bc0d4b3f07cde79e1a61303  ./orquestacion/event-bus/bus.js
 6932afa76ef416b5d5eadf920698527fb72f287c69bd3704a290f9967965d0dc  ./orquestacion/event-bus/index.html
