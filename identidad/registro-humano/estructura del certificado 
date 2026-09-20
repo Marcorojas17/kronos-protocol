@@ -1,0 +1,14 @@
+{
+  "protocolo": "LEGADO-HUMANO-IA",
+  "version": "identidad-humana-1.0",
+  "timestamp": "...",
+  "alias": "...",
+  "nombre": "...",
+  "pais": "...",
+  "rol": "...",
+  "proposito": "...",
+  "huella": "64 caracteres hex",
+  "payload_hash": "...",
+  "firma_ed25519": "...",
+  "clave_publica": "..."
+}
