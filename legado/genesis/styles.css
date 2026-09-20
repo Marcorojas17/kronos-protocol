@@ -71,3 +71,72 @@ footer .sig{font-family:'Fraunces',serif;color:var(--gold);letter-spacing:3px}
   *{animation:none!important;transition:none!important}
   #liquido{display:none}
 }
+
+/* Estilos añadidos para Génesis v10 */
+.continuar-filosofia {
+  margin-top: 80px;
+  padding: 16px 20px;
+  border: 1px solid rgba(124,58,237,0.35);
+  background: rgba(124,58,237,0.04);
+  border-radius: 4px;
+  text-align: center;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.continuar-filosofia .label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #b794f6;
+  margin-bottom: 10px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.continuar-filosofia .btn-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(180deg, #d4b9ff 0%, #7C3AED 100%);
+  border-radius: 2px;
+  box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.continuar-filosofia .btn-mini:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(124,58,237,0.5);
+}
+.btn-limpiar-wrap {
+  text-align: center;
+  margin-top: 12px;
+}
+.btn-limpiar {
+  background: none;
+  border: none;
+  color: #8892a0;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 6px 14px;
+  transition: color 0.3s;
+  text-decoration: underline;
+  text-decoration-color: rgba(136,146,160,0.3);
+  text-underline-offset: 4px;
+}
+.btn-limpiar:hover {
+  color: #c9a44c;
+  text-decoration-color: rgba(201,164,76,0.5);
+}
