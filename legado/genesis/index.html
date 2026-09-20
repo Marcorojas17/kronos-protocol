@@ -9,77 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<!-- FIX 1 · Dexie CDN · DEBE ir antes de styles.css y genesis.js -->
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
-<style>
-  /* Botón compacto de continuar a filosofía */
-  .continuar-filosofia {
-    margin-top: 80px;
-    padding: 16px 20px;
-    border: 1px solid rgba(124,58,237,0.35);
-    background: rgba(124,58,237,0.04);
-    border-radius: 4px;
-    text-align: center;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .continuar-filosofia .label {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #b794f6;
-    margin-bottom: 10px;
-    font-weight: 500;
-    opacity: 0.8;
-  }
-  .continuar-filosofia .btn-mini {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #fff;
-    background: linear-gradient(180deg, #d4b9ff 0%, #7C3AED 100%);
-    border-radius: 2px;
-    box-shadow: 0 4px 14px rgba(124,58,237,0.3);
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .continuar-filosofia .btn-mini:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(124,58,237,0.5);
-  }
-  .btn-limpiar-wrap {
-    text-align: center;
-    margin-top: 12px;
-  }
-  .btn-limpiar {
-    background: none;
-    border: none;
-    color: #8892a0;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 6px 14px;
-    transition: color 0.3s;
-    text-decoration: underline;
-    text-decoration-color: rgba(136,146,160,0.3);
-    text-underline-offset: 4px;
-  }
-  .btn-limpiar:hover {
-    color: #c9a44c;
-    text-decoration-color: rgba(201,164,76,0.5);
-  }
-</style>
 </head>
 <body>
 
@@ -149,6 +81,13 @@
         </select>
       </div>
 
+      <!-- FIX 2 · Contraseña maestra real · mínimo 12 caracteres -->
+      <div class="field">
+        <label for="masterPassword">Contraseña maestra <span class="req">*</span></label>
+        <input type="password" id="masterPassword" name="masterPassword" required minlength="12" placeholder="Mínimo 12 caracteres · cifra tu Génesis en reposo" autocomplete="new-password">
+        <div class="hint">Se usa PBKDF2 (600k iteraciones) + AES-GCM-256. No se guarda en ningún lado. Si la pierdes, no podrás descifrar el backup de IndexedDB, pero el certificado público seguirá en localStorage.</div>
+      </div>
+
       <button type="submit" class="btn platinum" id="btn-sellar">
         <span>Sellar génesis</span>
         <span class="arrow">→</span>
@@ -191,10 +130,10 @@
     </div>
   </section>
 
-  <!-- BOTÓN COMPACTO HASTA ABAJO, ANTES DEL FOOTER -->
+  <!-- FIX 4 · Ruta absoluta a Filosofía -->
   <div class="continuar-filosofia">
     <span class="label">Siguiente · Capa 0</span>
-    <a href="../filosofia/" class="btn-mini">
+    <a href="https://marcorojas17.github.io/kronos-protocol/legado/filosofia/?v=10" class="btn-mini">
       <span>Continuar a Filosofía</span>
       <span>→</span>
     </a>
@@ -212,7 +151,7 @@
 
 </main>
 
-<!-- CACHE BUSTER v=4 -->
-<script src="genesis.js?v=4" type="module"></script>
+<!-- CACHE BUSTER v=10 -->
+<script src="genesis.js?v=10" type="module"></script>
 </body>
 </html>
