@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T06:18:02Z
+# Generado: 2026-09-20T06:20:35Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -92,7 +92,7 @@ c1d87df30d93ad5ee984a2f5cec97e3b82a39f3eb9338389c543fb148d5456b4  ./identidad/ro
 c3f9055c85ce286f1a445336306c78857f24215f6cddb1207e3761ce94f1a6f2  ./identidad/roles-permisos/roles.js
 46254fc29b8f7515c5fda1b124b218c9eb2cf4fa334659ed5d6bc368db949971  ./identidad/roles-permisos/styles.css
 9a6a9536a6deeece25d0f913eebddbd6ddf77f115b06631892e6f4fe339a86ca  ./index.html
-9d372444941da153bc611bbf3b878d2b7fa17fb7a48b72e827c838ceaa986b70  ./kodice-secreto/index.html
+9a6a9536a6deeece25d0f913eebddbd6ddf77f115b06631892e6f4fe339a86ca  ./kodice-secreto/index.html
 062457935684bc1eafefda484343ccaad791779c18868419ac286fd84eb522af  ./legado/autoria/FIRMA DE AUTORIA
 b92e3bd62adef210ba5a6960641bdfd40e2e53763f677bc43022cbd5dddf24a2  ./legado/autoria/README.md
 2ccd0988598444558c4c0272808c309c16c1a0d4f9c4b8a3a53edea0a9c47912  ./legado/autoria/autoria.js
