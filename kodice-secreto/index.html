@@ -3,578 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KODICE SECRETO · Certificado Verificable</title>
-<meta name="description" content="Visor holográfico de certificados KRONOS. Pega un JSON firmado y obtén un Kodice Secreto verificable.">
+<title>KODICE SECRETO · Prisma Cromático</title>
+<meta name="description" content="Prisma cromático infalsificable. 6 universos. 6 principios. Verificación cuántica 2026.">
 <meta name="theme-color" content="#02030a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --ink: #02030a;
-    --ink-2: #0a0f1f;
-    --text: #e8f0ff;
-    --dim: #5a7ab0;
-    --cyan: #00eaff;
-    --magenta: #ff00d4;
-    --violeta: #7C3AED;
-    --gold: #f0d878;
-    --grid: rgba(0,234,255,0.06);
-  }
-  html, body {
-    background: var(--ink);
-    color: var(--text);
-    font-family: 'Rajdhani', system-ui, sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Fondo: grid + scanlines + aurora */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 40px 40px;
-    z-index: 0;
-    pointer-events: none;
-  }
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 2px,
-      rgba(0,234,255,0.015) 3px,
-      transparent 4px
-    );
-    z-index: 1;
-    pointer-events: none;
-    animation: scan 8s linear infinite;
-  }
-  @keyframes scan {
-    from { background-position: 0 0; }
-    to { background-position: 0 100px; }
-  }
-  .aurora {
-    position: fixed; inset: 0;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(124,58,237,0.18) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(255,0,212,0.12) 0%, transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(0,234,255,0.08) 0%, transparent 50%);
-    z-index: 0;
-    pointer-events: none;
-    animation: float 20s ease-in-out infinite alternate;
-  }
-  @keyframes float {
-    from { transform: scale(1) translate(0,0); }
-    to { transform: scale(1.1) translate(-20px,20px); }
-  }
-
-  .wrap {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    text-align: center;
-    margin-bottom: 32px;
-  }
-  .lock {
-    width: 64px; height: 64px;
-    margin: 0 auto 16px;
-    display: block;
-    filter: drop-shadow(0 0 12px var(--cyan)) drop-shadow(0 0 24px var(--magenta));
-  }
-  h1.kodice {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: clamp(32px, 7vw, 68px);
-    letter-spacing: 4px;
-    line-height: 1;
-    background: linear-gradient(180deg, #ffffff 0%, #c8f0ff 30%, #ff9cf0 60%, #00eaff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    text-shadow: 0 0 40px rgba(0,234,255,0.3);
-  }
-  h1.kodice::before,
-  h1.kodice::after {
-    content: attr(data-txt);
-    position: absolute;
-    left: 0; right: 0;
-    top: 0;
-    font-family: inherit;
-    font-weight: inherit;
-    font-size: inherit;
-    letter-spacing: inherit;
-    pointer-events: none;
-  }
-  h1.kodice::before {
-    color: #ff00d4;
-    -webkit-text-fill-color: #ff00d4;
-    transform: translate(-3px, 0);
-    opacity: 0.55;
-    mix-blend-mode: screen;
-  }
-  h1.kodice::after {
-    color: #00eaff;
-    -webkit-text-fill-color: #00eaff;
-    transform: translate(3px, 0);
-    opacity: 0.55;
-    mix-blend-mode: screen;
-  }
-  .subtitle {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: var(--cyan);
-    margin-top: 12px;
-    text-transform: uppercase;
-    text-shadow: 0 0 12px rgba(0,234,255,0.6);
-  }
-  .subtitle small {
-    display: block;
-    color: var(--dim);
-    font-size: 9px;
-    letter-spacing: 4px;
-    margin-top: 6px;
-    text-shadow: none;
-  }
-
-  /* ── INPUT PANEL ── */
-  .panel-input {
-    margin: 32px 0;
-    padding: 24px;
-    border: 1px solid rgba(0,234,255,0.25);
-    background: rgba(10,15,31,0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-    clip-path: polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
-  }
-  .panel-input::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 1px;
-    background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
-  }
-  .panel-input label {
-    display: block;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--cyan);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-  .panel-input textarea {
-    width: 100%;
-    min-height: 140px;
-    padding: 14px;
-    background: rgba(2,3,10,0.7);
-    border: 1px solid rgba(0,234,255,0.2);
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    line-height: 1.6;
-    resize: vertical;
-    outline: none;
-    border-radius: 3px;
-    transition: border-color 0.3s;
-  }
-  .panel-input textarea:focus { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,234,255,0.2); }
-  .panel-input textarea::placeholder { color: rgba(90,122,176,0.5); }
-
-  .btn-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--magenta) 100%);
-    color: #02030a;
-    box-shadow: 0 0 24px rgba(0,234,255,0.35);
-    clip-path: polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(255,0,212,0.6); }
-  .btn.ghost {
-    background: rgba(0,234,255,0.05);
-    color: var(--cyan);
-    border: 1px solid rgba(0,234,255,0.4);
-    box-shadow: none;
-  }
-  .btn.ghost:hover { background: rgba(0,234,255,0.12); box-shadow: 0 0 24px rgba(0,234,255,0.3); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .feedback {
-    margin-top: 16px;
-    padding: 12px 16px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 500;
-    display: none;
-  }
-  .feedback.ok { display: block; background: rgba(0,234,255,0.08); border: 1px solid rgba(0,234,255,0.4); color: var(--cyan); }
-  .feedback.err { display: block; background: rgba(255,0,100,0.08); border: 1px solid rgba(255,0,100,0.4); color: #ff5c7a; }
-
-  /* ── TARJETA KODICE ── */
-  .kodice-card {
-    margin-top: 40px;
-    padding: 32px 28px;
-    border: 2px solid transparent;
-    background:
-      linear-gradient(rgba(10,15,31,0.9), rgba(10,15,31,0.9)) padding-box,
-      linear-gradient(135deg, var(--cyan), var(--magenta), var(--violeta), var(--cyan)) border-box;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    position: relative;
-    overflow: hidden;
-    clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-    box-shadow: 0 0 60px rgba(0,234,255,0.15), inset 0 0 60px rgba(255,0,212,0.05);
-    display: none;
-  }
-  .kodice-card.on { display: block; animation: fadeUp 0.8s ease; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Esquinas decorativas */
-  .kodice-card .corner {
-    position: absolute;
-    width: 24px; height: 24px;
-    border: 2px solid var(--cyan);
-  }
-  .kodice-card .corner.tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-  .kodice-card .corner.tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-color: var(--magenta); }
-  .kodice-card .corner.bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-color: var(--magenta); }
-  .kodice-card .corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0,234,255,0.2);
-    margin-bottom: 24px;
-  }
-  .card-lock {
-    width: 48px; height: 48px;
-    filter: drop-shadow(0 0 8px var(--cyan));
-    flex-shrink: 0;
-  }
-  .card-titles { flex: 1; }
-  .card-titles h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(20px, 4vw, 32px);
-    font-weight: 900;
-    letter-spacing: 3px;
-    background: linear-gradient(180deg, #fff 0%, #c8f0ff 50%, #ff9cf0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    text-shadow: 0 0 24px rgba(0,234,255,0.4);
-  }
-  .card-titles .badge {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--cyan);
-    margin-top: 8px;
-    text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(0,234,255,0.6);
-  }
-  .card-titles .badge-id {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--dim);
-    margin-top: 4px;
-    letter-spacing: 2px;
-  }
-
-  .card-section {
-    padding: 18px 20px;
-    border: 1px solid rgba(0,234,255,0.2);
-    background: rgba(2,3,10,0.5);
-    margin-bottom: 16px;
-    border-radius: 3px;
-    position: relative;
-  }
-  .card-section .label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--cyan);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: block;
-    font-weight: 600;
-  }
-  .card-section .label.mag { color: var(--magenta); }
-  .card-section .value {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(16px, 3vw, 22px);
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(0,234,255,0.4);
-    word-break: break-word;
-  }
-  .card-section .value.mono {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    color: var(--cyan);
-    text-shadow: none;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .card-grid .card-section { margin-bottom: 0; }
-
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0,234,255,0.2);
-    margin-top: 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .card-footer .stamp {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--dim);
-    text-transform: uppercase;
-  }
-  .card-footer .stamp.valid {
-    color: #00ff88;
-    text-shadow: 0 0 8px rgba(0,255,136,0.6);
-  }
-
-  /* Sello circular holográfico */
-  .seal {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--violeta), var(--cyan));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: spin 8s linear infinite;
-    opacity: 0.85;
-  }
-  .seal::before {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border-radius: 50%;
-    background: var(--ink-2);
-  }
-  .seal::after {
-    content: '✓';
-    position: absolute;
-    font-size: 32px;
-    color: var(--cyan);
-    text-shadow: 0 0 16px var(--cyan);
-    font-weight: 700;
-    z-index: 1;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .seal-txt {
-    position: absolute;
-    bottom: -2px;
-    right: 24px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 7px;
-    letter-spacing: 2px;
-    color: var(--cyan);
-    text-transform: uppercase;
-    text-align: center;
-    opacity: 0.9;
-  }
-
-  @media (max-width: 600px) {
-    .card-grid { grid-template-columns: 1fr; }
-    .kodice-card { padding: 24px 18px; }
-    .card-header { flex-direction: column; align-items: flex-start; }
-    .seal { width: 60px; height: 60px; }
-    .seal::after { font-size: 24px; }
-  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#02030a;color:#e8f0ff;font-family:'Rajdhani',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,234,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,234,255,.04) 1px,transparent 1px);background-size:40px 40px;z-index:0;pointer-events:none}
+  .aurora{position:fixed;inset:0;background:radial-gradient(circle at 20% 30%,rgba(124,58,237,.18) 0%,transparent 40%),radial-gradient(circle at 80% 70%,rgba(255,0,212,.12) 0%,transparent 45%),radial-gradient(circle at 50% 50%,rgba(0,234,255,.08) 0%,transparent 50%);z-index:0;pointer-events:none;animation:float 20s ease-in-out infinite alternate}
+  @keyframes float{from{transform:scale(1) translate(0,0)}to{transform:scale(1.1) translate(-20px,20px)}}
+  .wrap{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:40px 20px 80px}
+  .header{text-align:center;margin-bottom:32px}
+  h1.kodice{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(28px,6vw,54px);letter-spacing:6px;line-height:1;background:linear-gradient(180deg,#ffffff 0%,#c8f0ff 30%,#ff9cf0 60%,#00eaff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 40px rgba(0,234,255,.3)}
+  .subtitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;color:#00eaff;margin-top:12px;text-transform:uppercase;text-shadow:0 0 12px rgba(0,234,255,.6)}
+  .subtitle small{display:block;color:#5a7ab0;font-size:9px;letter-spacing:4px;margin-top:6px;text-shadow:none}
+  .panel-input{margin:32px 0;padding:24px;border:1px solid rgba(0,234,255,.25);background:rgba(10,15,31,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:6px;position:relative;overflow:hidden}
+  .panel-input::before{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,#00eaff,#ff00d4,transparent)}
+  .panel-input label{display:block;font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;color:#00eaff;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+  .panel-input textarea{width:100%;min-height:140px;padding:14px;background:rgba(2,3,10,.7);border:1px solid rgba(0,234,255,.2);color:#e8f0ff;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;resize:vertical;outline:none;border-radius:3px;transition:border-color .3s}
+  .panel-input textarea:focus{border-color:#00eaff;box-shadow:0 0 20px rgba(0,234,255,.2)}
+  .panel-input textarea::placeholder{color:rgba(90,122,176,.5)}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;border-radius:3px;transition:all .35s cubic-bezier(.2,.8,.2,1);background:linear-gradient(135deg,#00eaff 0%,#ff00d4 100%);color:#02030a;box-shadow:0 0 24px rgba(0,234,255,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(255,0,212,.6)}
+  .btn.ghost{background:rgba(0,234,255,.05);color:#00eaff;border:1px solid rgba(0,234,255,.4);box-shadow:none}
+  .btn.ghost:hover{background:rgba(0,234,255,.12);box-shadow:0 0 24px rgba(0,234,255,.3)}
+  .feedback{margin-top:16px;padding:12px 16px;border-radius:3px;font-size:13px;font-weight:500;display:none}
+  .feedback.ok{display:block;background:rgba(0,234,255,.08);border:1px solid rgba(0,234,255,.4);color:#00eaff}
+  .feedback.err{display:block;background:rgba(255,0,100,.08);border:1px solid rgba(255,0,100,.4);color:#ff5c7a}
+  .canvas-wrap{margin-top:32px;display:none;justify-content:center}
+  .canvas-wrap.on{display:flex}
+  #kodice-canvas{max-width:100%;height:auto;border-radius:8px;box-shadow:0 20px 80px rgba(0,0,0,.8),0 0 60px rgba(0,234,255,.15)}
+  .acciones-export{display:none;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .acciones-export.on{display:flex}
 </style>
 </head>
 <body>
-
 <div class="aurora"></div>
 
 <div class="wrap">
-
   <div class="header">
-    <svg class="lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="11" stroke="url(#grad1)" stroke-width="1.2"/>
-      <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="url(#grad1)" stroke-width="1.4" stroke-linecap="round"/>
-      <rect x="6" y="11" width="12" height="9" rx="1.5" stroke="url(#grad1)" stroke-width="1.4"/>
-      <circle cx="12" cy="15.5" r="1.3" fill="url(#grad1)"/>
-      <line x1="12" y1="16.5" x2="12" y2="18" stroke="url(#grad1)" stroke-width="1.4" stroke-linecap="round"/>
-      <defs>
-        <linearGradient id="grad1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00eaff"/>
-          <stop offset="0.5" stop-color="#ff00d4"/>
-          <stop offset="1" stop-color="#7C3AED"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <h1 class="kodice" data-txt="KODICE SECRETO">KODICE SECRETO</h1>
+    <h1 class="kodice">KODICE SECRETO</h1>
     <div class="subtitle">
-      Certificado Infalsificable · Verificación Cuántica 2026
+      Prisma Cromático Infalsificable
       <small>KODICE·SEC·2026</small>
     </div>
   </div>
 
-  <!-- PANEL DE ENTRADA -->
   <div class="panel-input">
-    <label for="input-json">Acceso restringido · Inicio de sesión segura</label>
-    <textarea id="input-json" placeholder='Pega aquí cualquier certificado .json generado por tus módulos (génesis, identidad, evidence, fin-digno, etc.)'></textarea>
+    <label for="input-json">Pega un certificado .json del ecosistema</label>
+    <textarea id="input-json" placeholder='Pega aquí el .json del génesis, identidad, evidencia, bóveda o fin-digno...'></textarea>
     <div class="btn-row">
-      <button class="btn" id="btn-render">Iniciar sesión →</button>
+      <button class="btn" id="btn-render">Generar prisma →</button>
       <button class="btn ghost" id="btn-ejemplo">Cargar ejemplo</button>
       <button class="btn ghost" id="btn-limpiar">Limpiar</button>
     </div>
     <div class="feedback" id="fb"></div>
   </div>
 
-  <!-- TARJETA -->
-  <div class="kodice-card" id="card">
-    <div class="corner tl"></div>
-    <div class="corner tr"></div>
-    <div class="corner bl"></div>
-    <div class="corner br"></div>
-
-    <div class="card-header">
-      <svg class="card-lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="11" stroke="url(#grad2)" stroke-width="1.2"/>
-        <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="url(#grad2)" stroke-width="1.4" stroke-linecap="round"/>
-        <rect x="6" y="11" width="12" height="9" rx="1.5" stroke="url(#grad2)" stroke-width="1.4"/>
-        <circle cx="12" cy="15.5" r="1.3" fill="url(#grad2)"/>
-        <defs>
-          <linearGradient id="grad2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00eaff"/>
-            <stop offset="0.5" stop-color="#ff00d4"/>
-            <stop offset="1" stop-color="#7C3AED"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="card-titles">
-        <h2 id="c-title">KODICE SECRETO</h2>
-        <div class="badge">Certificado Infalsificable · Verificación Cuántica 2026</div>
-        <div class="badge-id" id="c-id">ID: —</div>
-      </div>
-    </div>
-
-    <div class="card-section">
-      <span class="label">Titular del certificado</span>
-      <div class="value" id="c-titular">—</div>
-    </div>
-
-    <div class="card-grid">
-      <div class="card-section">
-        <span class="label">Protocolo</span>
-        <div class="value mono" id="c-protocolo">—</div>
-      </div>
-      <div class="card-section">
-        <span class="label mag">Válido hasta</span>
-        <div class="value mono" id="c-valido">—</div>
-      </div>
-    </div>
-
-    <div class="card-section">
-      <span class="label">Huella SHA-256 / Firma Ed25519</span>
-      <div class="value mono" id="c-hash">—</div>
-    </div>
-
-    <div class="card-section">
-      <span class="label mag">Tipo de evidencia</span>
-      <div class="value" id="c-tipo">—</div>
-    </div>
-
-    <div class="card-footer">
-      <span class="stamp valid">✓ Verificado</span>
-      <span class="stamp">Sesión encriptada · TLS 1.3</span>
-      <span class="stamp">KODICE·SEC·2026</span>
-    </div>
-
-    <div class="seal"></div>
-    <div class="seal-txt">SEGURIDAD<br>CRIPTO<br>INFALSIFICABLE</div>
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="kodice-canvas" width="1080" height="1440"></canvas>
   </div>
 
-  <div class="btn-row" id="acciones-export" style="display:none; justify-content:center; margin-top:24px;">
-    <button class="btn" id="btn-descargar-png">Descargar PNG</button>
+  <div class="acciones-export" id="acciones">
+    <button class="btn" id="btn-descargar-png">Descargar PNG cromático</button>
     <button class="btn ghost" id="btn-copiar-json">Copiar JSON</button>
   </div>
-
 </div>
 
 <script>
 (function() {
   const $ = (id) => document.getElementById(id);
   const fb = $('fb');
-  const card = $('card');
+  const canvasWrap = $('canvas-wrap');
+  const canvas = $('kodice-canvas');
+  const acciones = $('acciones');
   let certActual = null;
 
-  // ── Ejemplo de certificado para probar ──
   const EJEMPLO = {
     protocolo: 'LEGADO-HUMANO-IA',
-    version: 'fin-digno-1.0',
-    tipo: 'cierre-legado',
-    timestamp: '2026-09-19T18:00:00.000Z',
-    fundador_nombre: 'Marco Antonio Rojas Valdovinos',
-    fundador_alias: 'Marco R.',
-    fundador_huella: 'a3f8b1c9e2d7f4a8b3c6e1d9f2a5b8c7e4d1f9a6c3b7e2d5f8a1c4b9e6d3f7a2',
-    motivo: 'voluntario',
-    hash_cierre: '0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e',
-    firma_ed25519: 'e4a8b3c6e1d9f2a5b8c7e4d1f9a6c3b7e2d5f8a1c4b9e6d3f7a2a3f8b1c9e2d7f4'
+    version: 'genesis-1.0',
+    timestamp: '2026-09-20T05:49:37.705Z',
+    fundador: 'Marco Antonio Rojas Valdovinos',
+    fundador_alias: 'Kronos',
+    intencion: 'DMD-33 KRONOS PROTOCOL IA',
+    coautoria_ia: 'KRONOS IA',
+    manifiesto_hash: '1b221de660180b164ad0e6708acbbd5d83da59007bf7f49ec45f243912ace82c',
+    firma_ed25519: '2a12b84c8cb1eccc21bb864752e632bd2bb2d20c1d7c37f4a1e61879742f637320921af88bfe9cf8821a7dbc6f8e72f17b1e8408c4401971856af2a658807008',
+    clave_publica: '07278f69f9095ce3f1491540a7122f7c636e23950c065c53239fbbdc924a4542'
   };
 
   function setFb(tipo, msg) {
@@ -582,54 +101,386 @@
     fb.innerHTML = msg;
   }
 
-  function renderCert(cert) {
-    certActual = cert;
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
 
-    // Detectar campos por tipo de certificado
-    const titular = cert.fundador_nombre
-      || cert.firmante_nombre
-      || cert.nombre
-      || cert.firmante
-      || 'Sin titular';
+  function dibujarKodice(cert) {
+    const W = 1080, H = 1440;
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
 
-    const idCert = cert.id_evidencia
-      || cert.id_evento
-      || (cert.manifiesto && cert.manifiesto.total_registros && 'LEG-' + cert.manifiesto.total_registros)
-      || 'KOD·' + Date.now().toString(36).toUpperCase();
+    // Fondo negro profundo
+    ctx.fillStyle = '#02030a';
+    ctx.fillRect(0, 0, W, H);
+
+    // Aurora de fondo
+    const aurora = ctx.createRadialGradient(W * 0.5, H * 0.35, 0, W * 0.5, H * 0.35, W * 0.8);
+    aurora.addColorStop(0, 'rgba(124,58,237,0.18)');
+    aurora.addColorStop(0.4, 'rgba(255,0,212,0.08)');
+    aurora.addColorStop(1, 'rgba(0,234,255,0)');
+    ctx.fillStyle = aurora;
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(0,234,255,0.035)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 45) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 45) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    // Marco dorado
+    const marcoPad = 40;
+    ctx.strokeStyle = '#c9a44c';
+    ctx.lineWidth = 2;
+    roundRect(ctx, marcoPad, marcoPad, W - marcoPad * 2, H - marcoPad * 2, 8);
+    ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(201,164,76,0.4)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, marcoPad + 10, marcoPad + 10, W - marcoPad * 2 - 20, H - marcoPad * 2 - 20, 6);
+    ctx.stroke();
+
+    // Esquinas doradas
+    const cornerL = 50;
+    ctx.strokeStyle = '#e5c76b';
+    ctx.lineWidth = 3;
+    const corners = [
+      [marcoPad, marcoPad, 1, 1],
+      [W - marcoPad, marcoPad, -1, 1],
+      [marcoPad, H - marcoPad, 1, -1],
+      [W - marcoPad, H - marcoPad, -1, -1]
+    ];
+    for (const [cx, cy, dx, dy] of corners) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + dy * cornerL);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx + dx * cornerL, cy);
+      ctx.stroke();
+    }
+
+    // TÍTULO
+    ctx.font = '900 64px Cinzel, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    ctx.fillStyle = 'rgba(255,0,212,0.5)';
+    ctx.fillText('KODICE SECRETO', W / 2 - 2, 115);
+    ctx.fillStyle = 'rgba(0,234,255,0.5)';
+    ctx.fillText('KODICE SECRETO', W / 2 + 2, 115);
+
+    const gradTitulo = ctx.createLinearGradient(0, 110, 0, 180);
+    gradTitulo.addColorStop(0, '#ffffff');
+    gradTitulo.addColorStop(0.5, '#c8f0ff');
+    gradTitulo.addColorStop(1, '#ff9cf0');
+    ctx.fillStyle = gradTitulo;
+    ctx.fillText('KODICE SECRETO', W / 2, 115);
+
+    // Subtítulo
+    ctx.font = '600 14px Orbitron, sans-serif';
+    ctx.fillStyle = '#00eaff';
+    ctx.fillText('CERTIFICADO INFALSIFICABLE · VERIFICACIÓN CUÁNTICA 2026', W / 2, 195);
+    ctx.font = '600 11px Orbitron, sans-serif';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.fillText('KODICE·SEC·2026', W / 2, 218);
+
+    // PRISMA · 6 paneles cromáticos
+    const paneles = [
+      { c1: '#4C1D95', c2: '#C4B5FD', letra: 'S', nombre: 'SINCRO',     desc: 'PRINCIPIO DE SINCRONÍA' },
+      { c1: '#991B1B', c2: '#F472B6', letra: 'K', nombre: 'KINÉTICA',   desc: 'PRINCIPIO DE MOVIMIENTO' },
+      { c1: '#B45309', c2: '#FBBF24', letra: 'R', nombre: 'REALIDAD',   desc: 'PRINCIPIO DE REALIDAD' },
+      { c1: '#D97706', c2: '#FEF3C7', letra: 'O', nombre: 'ORDEN',      desc: 'PRINCIPIO DE ORDEN' },
+      { c1: '#065F46', c2: '#6EE7B7', letra: 'N', nombre: 'NATURALEZA', desc: 'PRINCIPIO DE NATURALEZA' },
+      { c1: '#0369A1', c2: '#67E8F9', letra: 'O', nombre: 'ORIGEN',     desc: 'PRINCIPIO DE ORIGEN' }
+    ];
+
+    const prismaY = 260;
+    const prismaH = 500;
+    const prismaX = marcoPad + 60;
+    const prismaW = W - (marcoPad + 60) * 2;
+    const panelW = prismaW / 6;
+
+    // Punta superior (diamante)
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(W / 2, prismaY - 40);
+    ctx.lineTo(prismaX + prismaW, prismaY);
+    ctx.lineTo(prismaX, prismaY);
+    ctx.closePath();
+
+    const gradPunta = ctx.createLinearGradient(prismaX, prismaY - 40, prismaX + prismaW, prismaY);
+    gradPunta.addColorStop(0, '#ff00d4');
+    gradPunta.addColorStop(0.33, '#00eaff');
+    gradPunta.addColorStop(0.66, '#7C3AED');
+    gradPunta.addColorStop(1, '#f0d878');
+    ctx.fillStyle = gradPunta;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // 6 paneles
+    for (let i = 0; i < 6; i++) {
+      const p = paneles[i];
+      const px = prismaX + i * panelW;
+
+      const grad = ctx.createLinearGradient(px, prismaY, px, prismaY + prismaH);
+      grad.addColorStop(0, p.c1);
+      grad.addColorStop(0.5, p.c2);
+      grad.addColorStop(1, p.c1);
+      ctx.fillStyle = grad;
+      ctx.fillRect(px, prismaY, panelW - 2, prismaH);
+
+      // Brillo especular
+      const brillo = ctx.createLinearGradient(px, 0, px + panelW, 0);
+      brillo.addColorStop(0, 'rgba(255,255,255,0)');
+      brillo.addColorStop(0.5, 'rgba(255,255,255,0.18)');
+      brillo.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = brillo;
+      ctx.fillRect(px, prismaY, panelW - 2, prismaH);
+
+      // Línea divisoria dorada
+      if (i < 5) {
+        ctx.strokeStyle = 'rgba(201,164,76,0.6)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(px + panelW - 1, prismaY);
+        ctx.lineTo(px + panelW - 1, prismaY + prismaH);
+        ctx.stroke();
+      }
+
+      // Letra grande
+      ctx.save();
+      ctx.globalAlpha = 0.92;
+      ctx.font = '900 88px Cinzel, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = p.c2;
+      ctx.shadowBlur = 24;
+      ctx.fillText(p.letra, px + panelW / 2 - 1, prismaY + prismaH / 2 - 40);
+      ctx.restore();
+
+      // Nombre
+      ctx.save();
+      ctx.font = '700 14px Cinzel, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(p.letra + ' · ' + p.nombre, px + panelW / 2 - 1, prismaY + prismaH - 90);
+      ctx.restore();
+
+      // Descripción
+      ctx.save();
+      ctx.font = '500 9px Orbitron, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      const palabras = p.desc.split(' ');
+      const mitad = Math.ceil(palabras.length / 2);
+      const l1 = palabras.slice(0, mitad).join(' ');
+      const l2 = palabras.slice(mitad).join(' ');
+      ctx.fillText(l1, px + panelW / 2 - 1, prismaY + prismaH - 60);
+      ctx.fillText(l2, px + panelW / 2 - 1, prismaY + prismaH - 46);
+      ctx.restore();
+    }
+
+    // Borde del prisma
+    ctx.strokeStyle = 'rgba(201,164,76,0.8)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(prismaX, prismaY, prismaW, prismaH);
+
+    // Punta inferior
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(prismaX, prismaY + prismaH);
+    ctx.lineTo(prismaX + prismaW, prismaY + prismaH);
+    ctx.lineTo(W / 2, prismaY + prismaH + 40);
+    ctx.closePath();
+    const gradBase = ctx.createLinearGradient(prismaX, prismaY + prismaH, prismaX + prismaW, prismaY + prismaH + 40);
+    gradBase.addColorStop(0, '#00eaff');
+    gradBase.addColorStop(0.33, '#7C3AED');
+    gradBase.addColorStop(0.66, '#ff00d4');
+    gradBase.addColorStop(1, '#f0d878');
+    ctx.fillStyle = gradBase;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // Pedestal dorado
+    const pedY = prismaY + prismaH + 70;
+    const pedW = 520;
+    const pedX = (W - pedW) / 2;
+    const pedH = 90;
+
+    const gradPed = ctx.createLinearGradient(pedX, pedY, pedX + pedW, pedY + pedH);
+    gradPed.addColorStop(0, '#8a6f2c');
+    gradPed.addColorStop(0.3, '#e5c76b');
+    gradPed.addColorStop(0.5, '#f0d878');
+    gradPed.addColorStop(0.7, '#e5c76b');
+    gradPed.addColorStop(1, '#8a6f2c');
+    ctx.fillStyle = gradPed;
+    roundRect(ctx, pedX, pedY, pedW, pedH, 4);
+    ctx.fill();
+
+    ctx.fillStyle = 'rgba(2,3,10,0.85)';
+    roundRect(ctx, pedX + 8, pedY + 8, pedW - 16, pedH - 16, 3);
+    ctx.fill();
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = '700 18px Cinzel, serif';
+    ctx.fillStyle = '#e5c76b';
+    ctx.fillText('PRISMA INFALSIFICABLE', W / 2, pedY + 28);
+    ctx.font = '600 11px Orbitron, sans-serif';
+    ctx.fillStyle = '#c9a44c';
+    ctx.fillText('· 6 UNIVERSOS · 6 PRINCIPIOS · KRONOS ·', W / 2, pedY + 52);
+    ctx.font = '500 10px JetBrains Mono, monospace';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.fillText('KODICE·SEC·2026', W / 2, pedY + 72);
+
+    // DATOS DEL CERTIFICADO
+    const dataY = pedY + pedH + 40;
+
+    const titular = cert.fundador || cert.firmante_nombre || cert.nombre || cert.firmante || 'Sin titular';
+    ctx.textAlign = 'center';
+    ctx.font = '600 11px Orbitron, sans-serif';
+    ctx.fillStyle = '#00eaff';
+    ctx.fillText('TITULAR DEL CERTIFICADO', W / 2, dataY);
+    ctx.font = '700 28px Cinzel, serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.shadowColor = '#00eaff';
+    ctx.shadowBlur = 16;
+    ctx.fillText(titular.toUpperCase(), W / 2, dataY + 34);
+    ctx.shadowBlur = 0;
+
+    // Bloque de datos técnicos
+    const blockY = dataY + 80;
+    const blockX = marcoPad + 60;
+    const blockW = W - (marcoPad + 60) * 2;
+    const blockH = 260;
+
+    ctx.strokeStyle = 'rgba(0,234,255,0.35)';
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, blockX, blockY, blockW, blockH, 6);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#00eaff';
+    ctx.lineWidth = 2.5;
+    const cs = 20;
+    const bCorners = [
+      [blockX, blockY, 1, 1],
+      [blockX + blockW, blockY, -1, 1],
+      [blockX, blockY + blockH, 1, -1],
+      [blockX + blockW, blockY + blockH, -1, -1]
+    ];
+    for (const [cx, cy, dx, dy] of bCorners) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + dy * cs);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx + dx * cs, cy);
+      ctx.stroke();
+    }
 
     const protocolo = (cert.protocolo || 'KRONOS') + ' · ' + (cert.version || 'v1.0');
+    const id = cert.id_evidencia || cert.id_evento || 'KOD·' + Date.now().toString(36).toUpperCase();
+    const valido = cert.valido_hasta || (cert.timestamp && new Date(new Date(cert.timestamp).getTime() + 365 * 24 * 3600 * 1000).toISOString().slice(0, 10)) || '31 DIC 2026';
+    const hash = cert.manifiesto_hash || cert.hash_sha256 || cert.payload_hash || cert.hash_cierre || cert.hash || '—';
+    const firma = cert.firma_ed25519 || '—';
 
-    const valido = cert.valido_hasta
-      || (cert.timestamp && new Date(new Date(cert.timestamp).getTime() + 365*24*3600*1000).toISOString().slice(0,10))
-      || '31 DIC 2026';
+    const lineas = [
+      ['PROTOCOLO', protocolo],
+      ['ID ÚNICO', id],
+      ['VÁLIDO HASTA', new Date(valido).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase()],
+      ['HASH SHA-256', hash.slice(0, 62) + (hash.length > 62 ? '…' : '')],
+      ['FIRMA ED25519', firma.slice(0, 62) + (firma.length > 62 ? '…' : '')]
+    ];
 
-    const hash = cert.hash_cierre
-      || cert.hash_sha256
-      || cert.payload_hash
-      || cert.manifiesto_hash
-      || cert.hash_evento
-      || cert.hash
-      || '—';
+    let ly = blockY + 32;
+    for (const [k, v] of lineas) {
+      ctx.textAlign = 'left';
+      ctx.font = '600 10px Orbitron, sans-serif';
+      ctx.fillStyle = '#00eaff';
+      ctx.fillText(k, blockX + 24, ly);
 
-    const firma = cert.firma_ed25519 || '';
-    const hashCompleto = hash + (firma ? ' · ' + firma.slice(0, 16) + '…' : '');
+      ctx.font = '500 13px JetBrains Mono, monospace';
+      ctx.fillStyle = '#e8f0ff';
+      ctx.fillText(v, blockX + 24, ly + 20);
+      ly += 48;
+    }
 
-    const tipo = cert.tipo_evidencia
-      || cert.tipo
-      || (cert.motivo ? 'Cierre ' + cert.motivo : '')
-      || 'Certificado verificable';
+    // Sello inferior
+    const sealY = H - 200;
+    ctx.textAlign = 'center';
+    ctx.font = '600 12px Orbitron, sans-serif';
+    ctx.fillStyle = '#00ff88';
+    ctx.shadowColor = '#00ff88';
+    ctx.shadowBlur = 12;
+    ctx.fillText('✓ VERIFICADO · AUTENTICIDAD CONFIRMADA', W / 2, sealY);
+    ctx.shadowBlur = 0;
 
-    $('c-title').textContent = 'KODICE SECRETO';
-    $('c-id').textContent = 'ID: ' + idCert;
-    $('c-titular').textContent = titular;
-    $('c-protocolo').textContent = protocolo;
-    $('c-valido').textContent = new Date(valido).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
-    $('c-hash').textContent = hashCompleto;
-    $('c-tipo').textContent = tipo;
+    ctx.font = '500 9px Orbitron, sans-serif';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.fillText('SESIÓN ENCRIPTADA · TLS 1.3 · KODICE·SEC·2026', W / 2, sealY + 24);
 
-    card.classList.add('on');
-    $('acciones-export').style.display = 'flex';
-    setFb('ok', '<strong>✓ Certificado renderizado.</strong> El Kodice Secreto está listo.');
+    // Círculo holográfico
+    const circX = W - 160;
+    const circY = sealY + 60;
+    const circR = 40;
+    const gradCirc = ctx.createLinearGradient(circX - circR, circY - circR, circX + circR, circY + circR);
+    gradCirc.addColorStop(0, '#00eaff');
+    gradCirc.addColorStop(0.5, '#ff00d4');
+    gradCirc.addColorStop(1, '#7C3AED');
+    ctx.beginPath();
+    ctx.arc(circX, circY, circR, 0, Math.PI * 2);
+    ctx.fillStyle = gradCirc;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(circX, circY, circR - 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#02030a';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(circX, circY, circR - 10, 0, Math.PI * 2);
+    ctx.strokeStyle = '#00eaff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.font = '900 28px Rajdhani, sans-serif';
+    ctx.fillStyle = '#00eaff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✓', circX, circY);
+
+    ctx.font = '500 8px Orbitron, sans-serif';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.textBaseline = 'top';
+    ctx.fillText('SEGURIDAD CRIPTO', circX, circY + circR + 8);
+
+    return canvas;
+  }
+
+  function renderizar(cert) {
+    certActual = cert;
+    dibujarKodice(cert);
+    canvasWrap.classList.add('on');
+    acciones.classList.add('on');
   }
 
   $('btn-render').addEventListener('click', () => {
@@ -637,7 +488,8 @@
     if (!raw) return setFb('err', '<strong>✗ Pega un certificado JSON primero.</strong>');
     try {
       const cert = JSON.parse(raw);
-      renderCert(cert);
+      renderizar(cert);
+      setFb('ok', '<strong>✓ Prisma cromático generado.</strong> Descarga el PNG.');
     } catch (e) {
       setFb('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
     }
@@ -645,52 +497,44 @@
 
   $('btn-ejemplo').addEventListener('click', () => {
     $('input-json').value = JSON.stringify(EJEMPLO, null, 2);
-    renderCert(EJEMPLO);
+    renderizar(EJEMPLO);
+    setFb('ok', '<strong>✓ Ejemplo generado.</strong>');
   });
 
   $('btn-limpiar').addEventListener('click', () => {
     $('input-json').value = '';
-    card.classList.remove('on');
-    $('acciones-export').style.display = 'none';
+    canvasWrap.classList.remove('on');
+    acciones.classList.remove('on');
     fb.className = 'feedback';
     certActual = null;
+  });
+
+  $('btn-descargar-png').addEventListener('click', () => {
+    if (!canvas) return;
+    try {
+      canvas.toBlob((blob) => {
+        if (!blob) return setFb('err', '<strong>✗ No se pudo generar el blob.</strong>');
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'kodice-secreto-' + Date.now() + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        setFb('ok', '<strong>✓ PNG descargado.</strong> Revísalo en tu galería.');
+      }, 'image/png', 1.0);
+    } catch (e) {
+      setFb('err', '<strong>✗ Error:</strong> ' + e.message);
+    }
   });
 
   $('btn-copiar-json').addEventListener('click', async () => {
     if (!certActual) return;
     try {
       await navigator.clipboard.writeText(JSON.stringify(certActual, null, 2));
-      setFb('ok', '<strong>✓ JSON copiado al portapapeles.</strong>');
+      setFb('ok', '<strong>✓ JSON copiado.</strong>');
     } catch { setFb('err', '<strong>✗ No se pudo copiar.</strong>'); }
-  });
-
-  $('btn-descargar-png').addEventListener('click', async () => {
-    if (!card.classList.contains('on')) return;
-    try {
-      // Usamos html2canvas vía CDN inyectado
-      if (typeof html2canvas === 'undefined') {
-        await new Promise((res, rej) => {
-          const s = document.createElement('script');
-          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-          s.onload = res;
-          s.onerror = rej;
-          document.head.appendChild(s);
-        });
-      }
-      const canvas = await html2canvas(card, {
-        backgroundColor: '#02030a',
-        scale: 2,
-        useCORS: true
-      });
-      const url = canvas.toDataURL('image/png');
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'kodice-secreto-' + Date.now() + '.png';
-      a.click();
-      setFb('ok', '<strong>✓ PNG descargado.</strong>');
-    } catch (e) {
-      setFb('err', '<strong>✗ Error al exportar:</strong> ' + e.message);
-    }
   });
 })();
 </script>
