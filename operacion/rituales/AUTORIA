@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Grid de rituales · Modal de ejecución · Historial · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · bundle < 24KB gzip |
+| **Humano** | Ejecutar ritual firmado en < 1 min |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano ejecuta disciplina · IA estructura y firma · historial verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 5.2 cierra la Capa 5 con el sistema de rituales: tres frecuencias canónicas (diario, semanal, mensual), ejecución firmada y caducidad automática. La disciplina del legado.
+
+**3 lecciones:**
+1. La caducidad calculada desde la última ejecución es más justa que un calendario rígido.
+2. Firmar cada ritual convierte la disciplina en evidencia verificable.
+3. Los 3 rituales cubren las 3 dimensiones críticas: integridad, respaldo, anclaje.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Cargar rituales y ejecutar uno de prueba.
+3. Exportar el historial firmado.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Notificaciones vía Notification API (recordatorios locales nativos).
+2. Ejecución automática de backups si el ritual semanal no se ejecuta.
+3. Integración con Google Calendar / .ics exportable.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** fundador olvida ejecutar → **Mitigación:** futura notificación push local.
+2. **Riesgo:** marcar "óptimo" sin revisar → **Mitigación:** cruzar notas con métricas reales del dashboard en v2.0.
+
+**1 idea audaz:**
+Convertir los rituales en un "anillo de compromiso anual": cada año el fundador firma un ritual especial de revisión total, encadenado al anterior con hash chain.
+
+**1 conexión con otro módulo:**
+`cierre/export-cifrado` (módulo 6.1) usará el historial de rituales como metadato del paquete de legado final.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 5.2 · RITUALES · v1.0                           ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Cierra la Capa 5 (Operación) al 100%                   ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
