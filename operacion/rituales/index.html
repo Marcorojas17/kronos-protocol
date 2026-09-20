@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rituales · Legado Humano–IA</title>
+<meta name="description" content="Rituales diarios, semanales y mensuales firmados con Ed25519. Mantén vivo el legado.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#rituales">Rituales</a>
+      <a href="#historial">Historial</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 5.2 · Capa 5 · Operación</div>
+    <h1 class="title">La disciplina<br>que mantiene<br>vivo el legado.</h1>
+    <p class="lede">
+      Tres rituales canónicos: <strong>diario</strong>, <strong>semanal</strong>
+      y <strong>mensual</strong>. Cada ejecución se firma con <strong>Ed25519</strong>.
+      Sin servidores. Sin recordatorios en la nube. <strong>Tu disciplina</strong>.
+    </p>
+  </section>
+
+  <section id="rituales" class="rituales">
+    <div class="section-head">
+      <h2>Rituales Canónicos</h2>
+      <span class="count">3 frecuencias</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+    </div>
+
+    <div class="acciones-top">
+      <button class="btn" id="btn-cargar">Cargar rituales</button>
+      <button class="btn ghost" id="btn-refrescar">Refrescar</button>
+      <button class="btn ghost" id="btn-exportar">Exportar historial</button>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="grid-rituales" id="grid-rituales" hidden></div>
+  </section>
+
+  <section id="historial" class="historial" hidden>
+    <div class="section-head">
+      <h2>Historial Firmado</h2>
+      <span class="count" id="count-historial">0 ejecuciones</span>
+    </div>
+    <div class="lista-historial" id="lista-historial">
+      <div class="empty">Sin ejecuciones registradas.</div>
+    </div>
+  </section>
+
+  <section class="modal" id="modal-ejecutar" hidden>
+    <div class="modal-content">
+      <div class="modal-head">
+        <h3 id="modal-titulo">Ejecutar ritual</h3>
+        <button class="modal-close" id="modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>Notas de la ejecución <span class="req">*</span></label>
+          <textarea id="modal-notas" placeholder="¿Qué hiciste? ¿Encontraste algo? ¿Qué sigue?" minlength="10"></textarea>
+        </div>
+        <div class="field">
+          <label>Estado del ecosistema</label>
+          <select id="modal-estado">
+            <option value="optimo">🟢 Óptimo · todo en orden</option>
+            <option value="estable">🟡 Estable · sin incidencias graves</option>
+            <option value="atencion">🔴 Atención · requiere acción</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn ghost" id="modal-cancelar">Cancelar</button>
+        <button class="btn" id="modal-ejecutar">Firmar ejecución</button>
+      </div>
+      <div class="feedback" id="feedback-modal" role="alert"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 5.2 · Rituales</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../dashboard-salud/">Dashboard</a> ·
+      <a href="../../orquestacion/event-bus/">Event Bus</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { Rituales } from './rituales.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { EventBus } from '../../orquestacion/event-bus/bus.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const feedbackModal = $('feedback-modal');
+  const gridRituales = $('grid-rituales');
+  const listaHistorial = $('lista-historial');
+  const countHistorial = $('count-historial');
+  const modal = $('modal-ejecutar');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const bus = new EventBus(core, storage);
+  const rituales = new Rituales(core, storage, bus);
+
+  let humanoActual = null;
+  let historialActual = [];
+  let ritualSeleccionado = null;
+
+  function setFb(el, tipo, msg) {
+    el.className = 'feedback ' + tipo;
+    el.innerHTML = msg;
+  }
+
+  function tiempoRestante(fechaISO) {
+    if (!fechaISO) return '—';
+    const diff = new Date(fechaISO).getTime() - Date.now();
+    if (diff <= 0) return 'VENCIDO';
+    const h = Math.floor(diff / 3600000);
+    const d = Math.floor(h / 24);
+    if (d > 0) return 'en ' + d + 'd';
+    if (h > 0) return 'en ' + h + 'h';
+    return 'en ' + Math.floor(diff / 60000) + 'm';
+  }
+
+  function renderRituales(rs) {
+    gridRituales.hidden = false;
+    gridRituales.innerHTML = rs.map(r => {
+      const vencido = r.vencido;
+      const estado = vencido ? '🔴 VENCIDO' : '🟢 AL DÍA';
+      return `
+      <div class="ritual-card ${vencido ? 'vencido' : ''}" data-id="${r.id}">
+        <div class="ritual-head">
+          <span class="ritual-nombre">${r.nombre}</span>
+          <span class="ritual-estado">${estado}</span>
+        </div>
+        <div class="ritual-desc">${r.descripcion}</div>
+        <div class="ritual-meta">
+          <span><strong>${r.ejecuciones}</strong> ejecuciones</span>
+          <span>Próxima: <strong>${tiempoRestante(r.proxima_fecha)}</strong></span>
+        </div>
+        <button class="btn ritual-btn" data-id="${r.id}">Ejecutar ritual</button>
+      </div>`;
+    }).join('');
+
+    gridRituales.querySelectorAll('.ritual-btn').forEach(b => {
+      b.addEventListener('click', (e) => {
+        e.stopPropagation();
+        abrirModal(b.dataset.id);
+      });
+    });
+  }
+
+  function renderHistorial(h) {
+    historialActual = h;
+    if (!h || h.length === 0) {
+      listaHistorial.innerHTML = '<div class="empty">Sin ejecuciones registradas.</div>';
+      countHistorial.textContent = '0 ejecuciones';
+      return;
+    }
+    countHistorial.textContent = h.length + ' ejecuciones';
+    listaHistorial.innerHTML = h.map(e => `
+      <div class="hist-item">
+        <div class="hist-head">
+          <span class="hist-ritual">${e.ritual_nombre}</span>
+          <span class="hist-fecha">${new Date(e.timestamp).toLocaleString('es-MX')}</span>
+        </div>
+        <div class="hist-estado">${e.estado === 'optimo' ? '🟢' : e.estado === 'estable' ? '🟡' : '🔴'} ${e.estado}</div>
+        <div class="hist-notas">${e.notas}</div>
+        <div class="hist-hash">${(e.firma_ed25519 || '').slice(0, 48)}…</div>
+      </div>
+    `).join('');
+  }
+
+  async function cargar() {
+    const pass = $('password').value;
+    if (pass.length < 8) return setFb(feedback, 'error', '<strong>✗ Contraseña muy corta.</strong>');
+    try {
+      await core.init(pass);
+      await storage.init();
+      await bus.init();
+      humanoActual = await idHumana.recuperar();
+      if (!humanoActual) throw new Error('Falta identidad humana (módulo 2.1).');
+
+      const estado = await rituales.estado(humanoActual);
+      renderRituales(estado.rituales);
+      const hist = await rituales.historial();
+      renderHistorial(hist);
+
+      $('historial').hidden = false;
+      setFb(feedback, 'success', '<strong>✓ Rituales cargados.</strong> ' + estado.rituales.length + ' canónicos · ' + hist.length + ' ejecuciones.');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    }
+  }
+
+  function abrirModal(id) {
+    const r = rituales.RITUALES.find(x => x.id === id);
+    if (!r) return;
+    ritualSeleccionado = r;
+    $('modal-titulo').textContent = 'Ejecutar: ' + r.nombre;
+    $('modal-notas').value = '';
+    $('modal-estado').value = 'optimo';
+    feedbackModal.className = 'feedback';
+    modal.hidden = false;
+  }
+
+  function cerrarModal() {
+    modal.hidden = true;
+    ritualSeleccionado = null;
+  }
+
+  $('modal-close').addEventListener('click', cerrarModal);
+  $('modal-cancelar').addEventListener('click', cerrarModal);
+
+  $('modal-ejecutar').addEventListener('click', async () => {
+    if (!ritualSeleccionado || !humanoActual) return;
+    const notas = $('modal-notas').value.trim();
+    if (notas.length < 10) return setFb(feedbackModal, 'error', '<strong>✗ Notas muy cortas.</strong> Mínimo 10 caracteres.');
+
+    try {
+      await rituales.ejecutar(ritualSeleccionado.id, notas, $('modal-estado').value, humanoActual);
+      setFb(feedbackModal, 'success', '<strong>✓ Ritual firmado.</strong>');
+      setTimeout(async () => {
+        cerrarModal();
+        await cargar();
+      }, 800);
+    } catch (err) {
+      setFb(feedbackModal, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-cargar').addEventListener('click', cargar);
+  $('btn-refrescar').addEventListener('click', cargar);
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      const blob = await rituales.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rituales-historial-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb(feedback, 'success', '<strong>✓ Historial exportado.</strong>');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+</script>
+</body>
+</html>
