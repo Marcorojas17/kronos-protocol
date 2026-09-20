@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// GÉNESIS · Legado Humano–IA · v1.0.6
-// Certificado Black Card premium + offline + sin fantasía
+// GÉNESIS · Legado Humano–IA · v1.0.7
+// Black Card premium + Opción B (vista limpia al recargar)
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -79,7 +79,7 @@ async function exportarPubKey(pubKey) {
   return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// ─── HUELLA VISUAL DEL HASH (no QR, patrón identificador) ───
+// ─── HUELLA VISUAL DEL HASH ─────────────────────────────────
 function dibujarHuellaVisual(canvas, hashHex) {
   const size = 21;
   const scale = 8;
@@ -109,7 +109,7 @@ function dibujarHuellaVisual(canvas, hashHex) {
   return canvas.toDataURL('image/png');
 }
 
-// ─── GENERAR CERTIFICADO HTML (Black Card premium) ──────────
+// ─── GENERAR CERTIFICADO HTML (Black Card) ──────────────────
 function generarCertificadoHTML(cert, huellaDataUrl) {
   const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
     dateStyle: 'long', timeStyle: 'short'
@@ -148,7 +148,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
       radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 50%);
   }
-
   .black-card {
     width: 420px;
     max-width: 100%;
@@ -180,7 +179,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     width: 100%; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-
   .card-header {
     border-bottom: 1px solid rgba(255,255,255,0.08);
     padding-bottom: 16px;
@@ -201,7 +199,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     margin-top: 4px;
     text-transform: uppercase;
   }
-
   .dictamen-status {
     font-family: 'Fraunces', serif;
     font-size: 22px;
@@ -225,7 +222,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     70%  { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
-
   .data-label {
     font-size: 9px;
     color: rgba(255,255,255,0.4);
@@ -252,7 +248,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     color: var(--text);
     letter-spacing: 0.3px;
   }
-
   .huella-placeholder {
     width: 120px; height: 120px;
     background: #0A0A0B;
@@ -278,7 +273,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     text-transform: uppercase;
     margin-bottom: 12px;
   }
-
   .btn-print {
     margin-top: 24px;
     width: 100%;
@@ -296,7 +290,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     border-radius: 3px;
   }
   .btn-print:hover { background: var(--gold); color: #000; }
-
   .footer-tx {
     font-size: 8px;
     color: rgba(255,255,255,0.25);
@@ -305,7 +298,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     letter-spacing: 1px;
     line-height: 1.6;
   }
-
   @media print {
     body { background: #fff; padding: 0; }
     .btn-print { display: none; }
@@ -319,55 +311,41 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
 </style>
 </head>
 <body>
-
 <div class="black-card">
   <div class="card-header">
     <div class="logo-text">KRONOS</div>
     <div class="logo-sub">Legado Humano–IA · Génesis</div>
   </div>
-
   <div class="data-label">Veredicto de integridad</div>
   <div class="dictamen-status">
     <span class="pulse-dot"></span> SELLADO · VÁLIDO
   </div>
-
   <div class="data-label">ID de protocolo</div>
   <div class="data-value gold">${idCorto}</div>
-
   <div class="data-label">Fundador</div>
   <div class="data-value serif">${cert.fundador}</div>
-
   <div class="data-label">Intención fundacional</div>
   <div class="data-value serif" style="font-weight:400;font-size:13px;">${cert.intencion}</div>
-
   <div class="data-label">Co-autoría IA</div>
   <div class="data-value gold">${cert.coautoria_ia}</div>
-
   <div class="data-label">Fecha de sellado</div>
   <div class="data-value">${fecha}</div>
-
   <div class="huella-placeholder">
     <img src="${huellaDataUrl}" alt="Huella visual del hash">
   </div>
   <div class="huella-label">Huella visual · derivada del hash</div>
-
   <div class="data-label">Hash SHA-256 del manifiesto</div>
   <div class="data-value small">${cert.manifiesto_hash}</div>
-
   <div class="data-label">Firma Ed25519</div>
   <div class="data-value small">${cert.firma_ed25519}</div>
-
   <div class="data-label">Clave pública</div>
   <div class="data-value small">${cert.clave_publica}</div>
-
   <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
-
   <div class="footer-tx">
     Verificación: SHA-256(manifiesto) = hash declarado · Ed25519(clave_pública) = firma<br>
     © 2026 ${cert.fundador} + ${cert.coautoria_ia} · Documento generado localmente
   </div>
 </div>
-
 </body>
 </html>`;
 }
@@ -377,7 +355,6 @@ function descargarCertificado(cert) {
   const canvas = document.createElement('canvas');
   const huellaUrl = dibujarHuellaVisual(canvas, cert.manifiesto_hash);
 
-  // 1. Descargar HTML (Black Card)
   const htmlContenido = generarCertificadoHTML(cert, huellaUrl);
   const blobHTML = new Blob([htmlContenido], { type: 'text/html;charset=utf-8' });
   const urlHTML = URL.createObjectURL(blobHTML);
@@ -389,7 +366,6 @@ function descargarCertificado(cert) {
   document.body.removeChild(aHTML);
   setTimeout(() => URL.revokeObjectURL(urlHTML), 2000);
 
-  // 2. Descargar JSON
   const jsonSalida = {
     ...cert,
     huella_visual: 'Patrón derivado del hash · no es QR escaneable',
@@ -410,7 +386,6 @@ function descargarCertificado(cert) {
 // ─── PERSISTENCIA DEXIE ─────────────────────────────────────
 const DB_NAME = 'KronosProtocol';
 const DB_VERSION = 1;
-
 async function abrirDB() {
   if (typeof Dexie === 'undefined') {
     throw new Error('Dexie no cargado · verifica el CDN en index.html');
@@ -452,25 +427,37 @@ function limpiarCampos() {
   try { localStorage.removeItem('legado_genesis_draft'); } catch (e) {}
 }
 
-// ── Al cargar: leer último certificado de localStorage ─────
+// ═════════════════════════════════════════════════════════════
+// OPCIÓN B · Al cargar: NO restaurar vista. Página limpia.
+// El certificado se guarda en memoria para poder descargarlo,
+// pero NO se muestra en pantalla al recargar.
+// ═════════════════════════════════════════════════════════════
 (async function initLimpio() {
+  // Limpiar campos siempre
   limpiarCampos();
+
+  // Ocultar resultado visualmente
+  if (resultado) resultado.hidden = true;
+  if (hashOut) hashOut.textContent = '—';
+  if (firmaOut) firmaOut.textContent = '—';
+  if (pubOut) pubOut.textContent = '—';
+
+  // Resetear badge
+  if (badge) {
+    badge.classList.remove('sellado');
+    const txt = badge.querySelector('.txt');
+    if (txt) txt.textContent = 'Sin sellar';
+  }
+  if (estadoCount) estadoCount.textContent = 'Esperando';
+
+  // Cargar certificado previo SOLO en memoria (no mostrar)
   try {
     const rawSel = localStorage.getItem('legado_genesis_last');
     if (rawSel) {
       const cert = JSON.parse(rawSel);
       if (cert && cert.manifiesto_hash) {
-        if (hashOut) hashOut.textContent = cert.manifiesto_hash || '—';
-        if (firmaOut) firmaOut.textContent = cert.firma_ed25519 || '—';
-        if (pubOut) pubOut.textContent = cert.clave_publica || '—';
-        if (resultado) resultado.hidden = false;
-        if (badge) {
-          badge.classList.add('sellado');
-          const txt = badge.querySelector('.txt');
-          if (txt) txt.textContent = 'Sellado · ' + new Date(cert.timestamp).toLocaleString('es-MX');
-        }
-        if (estadoCount) estadoCount.textContent = 'Génesis activo';
         certificadoActual = cert;
+        console.log('[génesis] certificado previo detectado (no mostrado en pantalla)');
       }
     }
   } catch (e) { /* silencio */ }
@@ -557,7 +544,7 @@ form.addEventListener('submit', async (e) => {
     if (resultado) resultado.hidden = false;
 
     feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Génesis sellado.</strong> Campos limpiados. Descarga el certificado Black Card + JSON.';
+    feedback.innerHTML = '<strong>✓ Génesis sellado.</strong> Descarga el certificado Black Card + JSON. Al recargar, la página se limpiará.';
 
     if (badge) {
       badge.classList.add('sellado');
