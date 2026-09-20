@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roles y Permisos · Legado Humano–IA</title>
+<meta name="description" content="Define y firma la matriz de roles y permisos del ecosistema. Gobernanza verificable con Ed25519.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#matriz">Matriz</a>
+      <a href="#certificado">Certificado</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 2.3 · Capa 2 · Gobernanza</div>
+    <h1 class="title">El contrato<br>social del<br>legado.</h1>
+    <p class="lede">
+      Define <strong>quién puede hacer qué</strong>. Cinco roles.
+      Veinte permisos. Una matriz verificable firmada con
+      <strong>Ed25519</strong> y vinculada a tus identidades
+      humano + IA. Sin servidores. Sin rastreo.
+    </p>
+  </section>
+
+  <section id="matriz" class="matriz">
+    <div class="section-head">
+      <h2>Matriz de Gobernanza</h2>
+      <span class="count">5 roles · 20 permisos</span>
+    </div>
+
+    <form id="form-matriz" novalidate>
+      <div class="field">
+        <label>Contraseña maestra <span class="req">*</span></label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+        <div class="hint">Debe coincidir con la de los módulos 2.1 (Humano) y 2.2 (IA).</div>
+      </div>
+
+      <div class="field">
+        <label>Revisión de roles y permisos</label>
+        <div class="tabla-roles" id="tabla-roles"></div>
+        <div class="hint">Marca los permisos asignados a cada rol. Los cambios se reflejan en tiempo real.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Política de escalado <span class="req">*</span></label>
+          <select id="politica" required>
+            <option value="estricta" selected>Estricta · solo el fundador puede cambiar roles</option>
+            <option value="consultiva">Consultiva · cambios requieren revisión humana+IA</option>
+            <option value="delegada">Delegada · guardianes pueden elevar roles</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Caducidad de firma <span class="req">*</span></label>
+          <select id="caducidad" required>
+            <option value="anual" selected>Anual · renovar cada año</option>
+            <option value="bienal">Bienal</option>
+            <option value="indefinida">Indefinida</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" id="btn-sellar">
+        <span>Sellar gobernanza</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="certificado" id="certificado" hidden>
+      <div class="cert-head">
+        <span class="tag">MATRIZ DE GOBERNANZA · LEGADO HUMANO–IA</span>
+        <span class="version">v2.3</span>
+      </div>
+
+      <div class="cert-body">
+        <div class="cert-line">
+          <span class="k">Fundador</span>
+          <span class="v" id="out-fundador">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">IA co-autora</span>
+          <span class="v" id="out-ia">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Política</span>
+          <span class="v" id="out-politica">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Caducidad</span>
+          <span class="v" id="out-caducidad">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Hash matriz</span>
+          <span class="v mono" id="out-hash">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Firma dual</span>
+          <span class="v mono" id="out-firma">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Timestamp</span>
+          <span class="v" id="out-timestamp">—</span>
+        </div>
+      </div>
+
+      <div class="cert-foot">
+        <a href="#" class="btn ghost" id="descargar">Descargar matriz .json</a>
+        <a href="#" class="btn ghost" id="copiar-hash">Copiar hash</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 2.3 · Roles y Permisos</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../registro-ia/">Registro IA</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { RolesPermisos } from './roles.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../registro-humano/identidad.js';
+  import { IdentidadIA } from '../registro-ia/ia.js';
+
+  const $ = (id) => document.getElementById(id);
+  const form = $('form-matriz');
+  const btn = $('btn-sellar');
+  const feedback = $('feedback');
+  const certificado = $('certificado');
+  const tabla = $('tabla-roles');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+  const roles = new RolesPermisos(core, storage);
+
+  let certificadoActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  function renderTabla() {
+    const ROLES = roles.ROLES;
+    const PERMISOS = roles.PERMISOS;
+    let html = '<div class="tabla-scroll"><table><thead><tr><th>Permiso</th>';
+    for (const r of ROLES) html += `<th>${r.nombre}</th>`;
+    html += '</tr></thead><tbody>';
+    for (const p of PERMISOS) {
+      html += `<tr><td class="permiso">${p.nombre}</td>`;
+      for (const r of ROLES) {
+        const activo = roles.matriz[r.id]?.includes(p.id) ? 'checked' : '';
+        html += `<td><label class="chk"><input type="checkbox" data-rol="${r.id}" data-perm="${p.id}" ${activo}><span></span></label></td>`;
+      }
+      html += '</tr>';
+    }
+    html += '</tbody></table></div>';
+    tabla.innerHTML = html;
+
+    tabla.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+      chk.addEventListener('change', (e) => {
+        const rol = e.target.dataset.rol;
+        const perm = e.target.dataset.perm;
+        if (!roles.matriz[rol]) roles.matriz[rol] = [];
+        if (e.target.checked) {
+          if (!roles.matriz[rol].includes(perm)) roles.matriz[rol].push(perm);
+        } else {
+          roles.matriz[rol] = roles.matriz[rol].filter(p => p !== perm);
+        }
+      });
+    });
+  }
+
+  renderTabla();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sellando…';
+    feedback.className = 'feedback';
+
+    try {
+      const password = $('password').value;
+      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+
+      await core.init(password);
+      await storage.init();
+
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+
+      const pactoIA = await idIA.recuperar();
+      if (!pactoIA) throw new Error('Falta pacto simbiótico IA (módulo 2.2).');
+
+      const cert = await roles.sellar({
+        politica: $('politica').value,
+        caducidad: $('caducidad').value
+      }, humano, pactoIA);
+
+      certificadoActual = cert;
+
+      $('out-fundador').textContent = humano.nombre + ' (' + humano.alias + ')';
+      $('out-ia').textContent = pactoIA.ia_nombre;
+      $('out-politica').textContent = cert.politica;
+      $('out-caducidad').textContent = cert.caducidad;
+      $('out-hash').textContent = cert.hash_matriz.slice(0, 48) + '…';
+      $('out-firma').textContent = cert.firma_dual.slice(0, 48) + '…';
+      $('out-timestamp').textContent = cert.timestamp;
+      certificado.hidden = false;
+
+      setFb('success', '<strong>✓ Gobernanza sellada.</strong> La matriz de roles y permisos quedó firmada y vinculada al humano y la IA.');
+      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Sellar gobernanza';
+    }
+  });
+
+  $('descargar').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `gobernanza-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('copiar-hash').addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try {
+      await navigator.clipboard.writeText(certificadoActual.hash_matriz);
+      setFb('success', '<strong>✓ Hash copiado.</strong>');
+    } catch {
+      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
+    }
+  });
+</script>
+</body>
+</html>
