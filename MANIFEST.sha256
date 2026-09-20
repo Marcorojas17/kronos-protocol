@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T04:23:35Z
+# Generado: 2026-09-20T04:24:10Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -37,6 +37,7 @@ c7cf5724b2514809c82a96da9dc2fe530f65def164c2c3429713d432fe9bf076  ./cierre/expor
 73cf95f9a147d184d4a098a226d983994cecd3172ae1834c5e1b765161f6dd05  ./cierre/export-cifrado/index.html
 62790599c250d3244fbbb1f538e34987bc3eb20773e3b1533b229a2a12428e24  ./cierre/export-cifrado/manual.html
 5e96935bee8ebcb8a4a42dcffd3c19c1ce8cffdea1c1a261e1492cb31a3e528a  ./cierre/export-cifrado/styles.css
+97b322af4fb474110d1b960ca2ac10a73c42ad2fff5f9c061144c73dad35bbcf  ./cierre/fin-digno/AUTORIA
 05e872e8f47c4bb2ba6778b9b1150931b133c615c5dc33ee745a5ec73f0703d1  ./cierre/fin-digno/README.md
 0a6ca7563a58517921005451dc88842348a6a3a1b401e1db400813d8e339a020  ./cierre/fin-digno/fin.js
 3622f7dd6fdc3d4e8f1711013ababd267185387b526a3bf591b7d52663e05e17  ./cierre/fin-digno/index.html
