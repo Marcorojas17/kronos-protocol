@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Registro de módulos · Grafo de conexiones · Enrutamiento · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · bundle < 24KB gzip |
+| **Humano** | 14 módulos registrados + grafo visible en < 5 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define módulos · IA registra y enruta · grafo verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Router de Módulos cierra la Capa 4 con un registro dinámico firmado y enrutamiento vía Event Bus. Los 14 módulos del ecosistema se descubren entre sí sin acoplamiento directo.
+
+**3 lecciones:**
+1. El registro firmado convierte "qué módulos existen" en un hecho verificable, no en una suposición.
+2. Enrutar vía bus desacopla totalmente: Evidence OS nunca importa Bóveda de Voz.
+3. El grafo visual convierte el ecosistema abstracto en algo tangible y presentable.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Inicializar router y verificar los 14 módulos.
+3. Enrutar una llamada de prueba a `evidence-os`.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Grafo interactivo con D3.js: click en nodo para enrutar.
+2. Descubrimiento P2P entre dispositivos vía WebRTC.
+3. Registro incremental: añadir módulos sin re-firmar todo.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** módulos desactualizados en el registro → **Mitigación:** versión semántica + verificación de hash en cada enrutamiento.
+2. **Riesgo:** enrutamiento a módulo caído → **Mitigación:** timeout + fallback vía bus log.
+
+**1 idea audaz:**
+Convertir el router en un "sistema de archivos virtual" del legado: cada módulo expone un "path" lógico, y enrutar se siente como navegar un directorio.
+
+**1 conexión con otro módulo:**
+`operacion/dashboard-salud` (módulo 5.1) leerá este registro para mostrar el estado de cada módulo en tiempo real.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 4.2 · ROUTER DE MÓDULOS · v1.0                  ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Cierra la Capa 4 (Orquestación) al 100%                ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
