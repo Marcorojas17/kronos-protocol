@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Grabadora · Resultado + cimático · Verificación (vía Evidence OS) · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 28KB gzip |
+| **Humano** | Audio grabado + sellado + huella visual en < 30 s |
+| **Económico** | $0/mes · sin backend · sin subir audio a nube |
+| **Simbiótico** | Humano aporta voz · IA captura y visualiza · certificado verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** La Bóveda de Voz añade la dimensión sensorial al ecosistema: captura audio en vivo, lo hashea, genera una huella cimática del espectro y lo sella como paquete `.evidence`. Reutiliza toda la cadena 2.x y 3.1.
+
+**3 lecciones:**
+1. El hash sobre `audio || cymatic` impide sustituir la huella por separado.
+2. El AnalyserNode permite construir un promedio espectral sin librerías externas.
+3. La paleta rosa-coral comunica sensibilidad auditiva frente al teal forense de Evidence OS.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Probar grabación en escritorio y móvil.
+3. Sellar un audio de prueba y verificar con Evidence OS.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Detección de voz sintética (anti-deepfake) vía modelo BYOK.
+2. Transcripción automática con Whisper API (BYOK).
+3. Comparación de dos audios para detectar ediciones (análisis de discontinuidades).
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** confusión entre integridad y autenticidad vocal → **Mitigación:** manuales declaran honestamente la limitación.
+2. **Riesgo:** micrófono denegado en HTTP → **Mitigación:** GitHub Pages siempre sirve HTTPS.
+
+**1 idea audaz:**
+Convertir la huella cimática en un identificador biométrico-acústico del firmante: cada persona produce patrones espectrales únicos, usables como segunda verificación.
+
+**1 conexión con otro módulo:**
+`modulos/cymatic-studio` (futuro) llevará la visualización cimática a nivel artístico, reutilizando el motor espectral de esta bóveda.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 3.2 · BÓVEDA DE VOZ · v1.0                      ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Capa 3 (Módulos) avanza al 100% de sus 2 módulos base  ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
