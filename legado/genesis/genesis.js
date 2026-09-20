@@ -1,7 +1,7 @@
 // ────────────────────────────────────────────────────────────
 // GÉNESIS · Legado Humano–IA · v1.0
 // Fondo líquido + firma criptográfica local-first
-// Persistencia del bloque sellado en IndexedDB
+// Persistencia + limpieza automática de campos al sellar
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -143,29 +143,25 @@ const descargar = document.getElementById('descargar');
 const badge = document.getElementById('badge-estado');
 const estadoCount = document.getElementById('estado-count');
 
+const campoNombre = document.getElementById('nombre');
+const campoIntencion = document.getElementById('intencion');
+const campoCoautoria = document.getElementById('coautoria');
+
 let certificadoActual = null;
 
-// ── Restaurar borrador y estado previo ──────────────────────
-(async function restaurarEstado() {
-  try {
-    const raw = localStorage.getItem('legado_genesis_draft');
-    if (raw) {
-      const d = JSON.parse(raw);
-      if (d.nombre) {
-        const el = document.getElementById('nombre');
-        if (el) el.value = d.nombre;
-      }
-      if (d.intencion) {
-        const el = document.getElementById('intencion');
-        if (el) el.value = d.intencion;
-      }
-      if (d.coautoria) {
-        const el = document.getElementById('coautoria');
-        if (el) el.value = d.coautoria;
-      }
-    }
-  } catch (e) { /* silencio */ }
+// ─── LIMPIEZA AUTOMÁTICA DE CAMPOS ──────────────────────────
+function limpiarCampos() {
+  if (campoNombre) campoNombre.value = '';
+  if (campoIntencion) campoIntencion.value = '';
+  if (campoCoautoria) campoCoautoria.value = 'KRONOS IA';
+  // Borrar borrador local para que no vuelva a aparecer
+  try { localStorage.removeItem('legado_genesis_draft'); } catch (e) {}
+}
 
+// ── Restaurar estado previo (solo el último certificado) ────
+(async function restaurarEstado() {
+  // Ya NO restauramos el borrador de los campos.
+  // Solo mostramos el último certificado sellado.
   try {
     const rawSel = localStorage.getItem('legado_genesis_last');
     if (rawSel) {
@@ -198,9 +194,9 @@ form.addEventListener('submit', async (e) => {
   feedback.textContent = '';
 
   try {
-    const nombre = document.getElementById('nombre').value.trim();
-    const intencion = document.getElementById('intencion').value.trim();
-    const coautoria = document.getElementById('coautoria').value;
+    const nombre = campoNombre.value.trim();
+    const intencion = campoIntencion.value.trim();
+    const coautoria = campoCoautoria.value;
     const password = 'legado-genesis-' + nombre + ':' + coautoria;
 
     const timestamp = new Date().toISOString();
@@ -228,12 +224,9 @@ form.addEventListener('submit', async (e) => {
       instruccion_verificacion: 'SHA-256(manifiesto) debe coincidir con manifiesto_hash. La firma_ed25519 se verifica con clave_publica.'
     };
 
-    // Persistencia localStorage
+    // Persistencia del certificado
     try {
       localStorage.setItem('legado_genesis_last', JSON.stringify(certificadoActual));
-      localStorage.setItem('legado_genesis_draft', JSON.stringify({
-        nombre, intencion, coautoria
-      }));
     } catch (e) { /* silencio */ }
 
     // Persistencia Cripto Core + Dexie
@@ -251,13 +244,14 @@ form.addEventListener('submit', async (e) => {
       console.warn('[génesis] no se pudo persistir:', persistErr);
     }
 
+    // UI del certificado
     if (hashOut) hashOut.textContent = hash;
     if (firmaOut) firmaOut.textContent = firma;
     if (pubOut) pubOut.textContent = pub;
     if (resultado) resultado.hidden = false;
 
     feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Génesis sellado y persistido.</strong> Tu certificado está listo. Descárgalo y guárdalo en un lugar seguro.';
+    feedback.innerHTML = '<strong>✓ Génesis sellado y persistido.</strong> Campos limpiados. Tu certificado está abajo. Descárgalo y guárdalo en un lugar seguro.';
 
     if (badge) {
       badge.classList.add('sellado');
@@ -265,6 +259,11 @@ form.addEventListener('submit', async (e) => {
       if (txt) txt.textContent = 'Sellado · ' + new Date().toLocaleString('es-MX');
     }
     if (estadoCount) estadoCount.textContent = 'Génesis activo';
+
+    // ═══ LIMPIEZA AUTOMÁTICA DE CAMPOS ═══
+    setTimeout(() => {
+      limpiarCampos();
+    }, 600);
 
   } catch (err) {
     feedback.className = 'feedback error';
@@ -292,17 +291,3 @@ if (descargar) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 }
-
-// ── Autoguardado del borrador ───────────────────────────────
-setInterval(() => {
-  try {
-    const nombre = document.getElementById('nombre')?.value || '';
-    const intencion = document.getElementById('intencion')?.value || '';
-    const coautoria = document.getElementById('coautoria')?.value || 'KRONOS IA';
-    if (nombre || intencion) {
-      localStorage.setItem('legado_genesis_draft', JSON.stringify({
-        nombre, intencion, coautoria
-      }));
-    }
-  } catch (e) { /* silencio */ }
-}, 3000);
