@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Cripto Core · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--cian)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(14,165,183,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(14,165,183,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--cian);border-bottom-color:var(--cian)}
+  .panel{display:none}
+  .panel.active{display:block}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Demo</a>
+      <a href="manual.html">Manual</a>
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 1.1</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Cripto Core.</h1>
+    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Demuestra el núcleo criptográfico: cifra, firma, persiste en IndexedDB y verifica la integridad de la cadena.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Abre <code>cimiento/cripto-core/index.html</code>.</li>
+        <li>Escribe una contraseña maestra (mín. 8 caracteres).</li>
+        <li>Escribe el texto que quieres cifrar.</li>
+        <li>Toca "Cifrar + firmar + persistir".</li>
+        <li>Recarga la página y toca "Recuperar de IndexedDB" para descifrar.</li>
+        <li>Toca "Verificar cadena" para comprobar integridad.</li>
+      </ul>
+      <h3>¿Qué evitar?</h3>
+      <ul>
+        <li>No olvides la contraseña: sin ella, los datos son ilegibles.</li>
+        <li>No uses este demo con datos reales sensibles todavía (es infraestructura).</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración en módulos superiores</h3>
+      <p>Importa <code>CriptoCore</code> desde <code>core.js</code>:</p>
+      <pre class="code" style="font-size:12px;padding:16px">import { CriptoCore } from '../cimiento/cripto-core/core.js';
+const core = new CriptoCore();
+await core.init(password);
+await core.guardar({ tipo: 'x', payload: {...} });</pre>
+      <h3>Parámetros por defecto</h3>
+      <ul>
+        <li>PBKDF2 · SHA-256 · 600,000 iteraciones · salt 32B.</li>
+        <li>AES-GCM · 256 bits · IV 12B random por bloque.</li>
+        <li>Ed25519 · par persistente en localStorage.</li>
+        <li>IndexedDB: base <code>legado_cripto_core</code> · store <code>cadena</code>.</li>
+      </ul>
+      <h3>Backup</h3>
+      <p>Exporta el contenido de IndexedDB con herramientas del navegador (DevTools → Application → IndexedDB). El certificado completo de cada bloque incluye cipher + iv + hash + firma.</p>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Robo del dispositivo:</strong> los datos están cifrados con tu contraseña.</li>
+        <li><strong>Alteración de IndexedDB:</strong> el hash chain detecta cualquier cambio.</li>
+        <li><strong>Falsificación de bloques:</strong> la firma Ed25519 es infalsificable sin la clave privada.</li>
+        <li><strong>MITM:</strong> no hay red, todo es local.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>PBKDF2</code> con 600k iteraciones (alineado a OWASP 2024).</li>
+        <li><code>AES-GCM-256</code> con IV único por operación.</li>
+        <li><code>Ed25519</code> para firma digital de cada bloque.</li>
+        <li><code>SHA-256</code> para hash chain.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>No hay anclaje blockchain todavía (módulo 1.3 lo hará).</li>
+        <li>La clave privada se guarda en <code>localStorage</code>: un XSS exitoso podría robarla. CSP estricta mitiga esto.</li>
+        <li>Este módulo no reemplaza una auditoría profesional antes de usarse con datos reales sensibles.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 1.1</span>
+    <span><a href="./">Demo</a> · <a href="../../legado/manifiesto/">Manifiesto</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script type="module">
+  // Cargar fondo líquido desde core.js visual (solo animación)
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[14,165,183],[124,58,237],[201,162,39],[245,158,11]];
+    const blobs = Array.from({length:5}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 220 + Math.random()*300,
+      vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0007 + b.x*.002)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.24)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
