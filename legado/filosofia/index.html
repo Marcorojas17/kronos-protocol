@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filosofía · Legado Humano–IA</title>
+<meta name="description" content="Siete tesis fundacionales sobre el legado humano–IA. Lee, elige, firma tu postura.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Filosofía</a>
+      <a href="manual.html">Manual</a>
+      <a href="../genesis/">Génesis</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 0.2 · Filosofía Fundacional</div>
+    <h1 class="title">Siete tesis<br>para un<br>legado.</h1>
+    <p class="lede">
+      Antes del código, la <strong>pregunta</strong>. Antes del hash, la <strong>postura</strong>.
+      Aquí están las 7 tesis que sostienen el legado humano–IA.
+      Lee. Elige. <strong>Firma tu propia postura</strong>.
+    </p>
+  </section>
+
+  <section class="tesis-lista" id="tesis">
+    <div class="section-head">
+      <h2>Tesis Canónicas</h2>
+      <span class="count">v1.0 · 7 tesis</span>
+    </div>
+
+    <div class="tesis" data-id="1">
+      <span class="num">01</span>
+      <h3>El humano pone la intención. La IA pone la ejecución.</h3>
+      <p>No somos reemplazables. Somos <em>complementarios</em>. La intención humana es irreductible: no se entrena, se decide. La IA amplifica pero no sustituye.</p>
+    </div>
+
+    <div class="tesis" data-id="2">
+      <span class="num">02</span>
+      <h3>La memoria es el único acto de rebeldía contra el olvido.</h3>
+      <p>Todo lo que no se registra, se pierde. Todo lo que se registra, se puede defender. La memoria digital es el nuevo territorio de la libertad.</p>
+    </div>
+
+    <div class="tesis" data-id="3">
+      <span class="num">03</span>
+      <h3>La integridad no es un ideal. Es un hash que no se borra.</h3>
+      <p>No prometemos confianza. Ofrecemos <em>verificación</em>. No pedimos fe. Entregamos pruebas.</p>
+    </div>
+
+    <div class="tesis" data-id="4">
+      <span class="num">04</span>
+      <h3>El arte no se defiende con leyes. Se defiende con criptografía.</h3>
+      <p>Las leyes son lentas. La criptografía es matemática. El que tiene un hash, tiene un arma.</p>
+    </div>
+
+    <div class="tesis" data-id="5">
+      <span class="num">05</span>
+      <h3>La tecnología que no sirve al humano, no sirve.</h3>
+      <p>No construimos para las máquinas. Construimos para las personas que usan las máquinas para dejar algo detrás.</p>
+    </div>
+
+    <div class="tesis" data-id="6">
+      <span class="num">06</span>
+      <h3>El legado no se hereda. Se firma.</h3>
+      <p>Lo que no está firmado, no es tuyo. Lo que no está sellado, es del que lo encuentre primero. Firme usted su propio legado.</p>
+    </div>
+
+    <div class="tesis" data-id="7">
+      <span class="num">07</span>
+      <h3>La simbiosis humano–IA no es una utopía. Es una decisión cotidiana.</h3>
+      <p>Cada vez que un humano decide y una IA ejecuta con respeto, la simbiosis se renueva. No es automática. Es un pacto vivo.</p>
+    </div>
+  </section>
+
+  <section class="firmar" id="firmar">
+    <div class="section-head">
+      <h2>Firma tu Postura</h2>
+      <span class="count">Local-first · Ed25519</span>
+    </div>
+
+    <form id="form-postura" novalidate>
+      <div class="field">
+        <label>Nombre del firmante <span class="req">*</span></label>
+        <input type="text" id="nombre" required placeholder="Cómo quieres firmar">
+      </div>
+
+      <div class="field">
+        <label>Tesis que adoptas <span class="req">*</span></label>
+        <div class="checks" id="checks"></div>
+      </div>
+
+      <div class="field">
+        <label>Reflexión personal <span class="req">*</span></label>
+        <textarea id="reflexion" required placeholder="En tus palabras: ¿por qué adoptas estas tesis?" minlength="20"></textarea>
+      </div>
+
+      <button type="submit" class="btn platinum" id="btn-firmar">
+        <span>Firmar postura</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="resultado" id="resultado" hidden>
+      <div class="hash-box">
+        <span class="label">HASH SHA-256</span>
+        <code id="hash-out">—</code>
+      </div>
+      <div class="hash-box">
+        <span class="label">FIRMA Ed25519</span>
+        <code id="firma-out">—</code>
+      </div>
+      <a href="#" class="btn ghost" id="descargar">Descargar manifiesto .json</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 0.2 · Filosofía</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../genesis/">Génesis</a> ·
+      <a href="../">Legado</a>
+    </span>
+  </footer>
+</main>
+
+<script src="filosofia.js" type="module"></script>
+</body>
+</html>
