@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro IA · Legado Humano–IA</title>
+<meta name="description" content="Declara y firma la identidad de la IA co-autora, vinculada criptográficamente al humano que la dirige.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#pacto">Pacto</a>
+      <a href="#certificado">Certificado</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 2.2 · Capa 2 · Identidad IA</div>
+    <h1 class="title">El pacto<br>simbiótico.</h1>
+    <p class="lede">
+      Declara a tu IA co-autora: su <strong>nombre</strong>, su <strong>rol</strong>,
+      sus <strong>límites</strong>. Firma este pacto con <strong>Ed25519</strong>
+      y vincúlalo criptográficamente a tu propia huella humana.
+      Sin servidores. Sin rastreo. Simbiosis verificable.
+    </p>
+  </section>
+
+  <section id="pacto" class="pacto">
+    <div class="section-head">
+      <h2>Declaración Simbiótica</h2>
+      <span class="count">Local-first · Cifrado</span>
+    </div>
+
+    <form id="form-pacto" novalidate>
+      <div class="field">
+        <label>Contraseña maestra <span class="req">*</span></label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+        <div class="hint">Debe coincidir con la del módulo 2.1 (Registro Humano) para vincular correctamente.</div>
+      </div>
+
+      <div class="field">
+        <label>Nombre de la IA co-autora <span class="req">*</span></label>
+        <input type="text" id="ia-nombre" placeholder="KRONOS IA" required value="KRONOS IA">
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Rol <span class="req">*</span></label>
+          <select id="ia-rol" required>
+            <option value="" disabled selected>Selecciona</option>
+            <option value="Co-autora simbiótica" selected>Co-autora simbiótica</option>
+            <option value="Asistente técnico">Asistente técnico</option>
+            <option value="Estructuradora">Estructuradora</option>
+            <option value="Auditora">Auditora</option>
+            <option value="Generadora">Generadora</option>
+            <option value="Mixta">Mixta</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Alcance <span class="req">*</span></label>
+          <select id="ia-alcance" required>
+            <option value="" disabled selected>Selecciona</option>
+            <option value="Estructura y ejecución" selected>Estructura y ejecución</option>
+            <option value="Redacción y edición">Redacción y edición</option>
+            <option value="Análisis y auditoría">Análisis y auditoría</option>
+            <option value="Diseño y arte">Diseño y arte</option>
+            <option value="Código y arquitectura">Código y arquitectura</option>
+            <option value="Todas las anteriores">Todas las anteriores</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Límites éticos declarados <span class="req">*</span></label>
+        <textarea id="ia-limites" required minlength="30" placeholder="Declara qué NO hará la IA. Ej: no reclamar propiedad intelectual, no tomar decisiones finales, no sustituir el juicio humano, no generar contenido dañino."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Propósito simbiótico <span class="req">*</span></label>
+        <textarea id="ia-proposito" required minlength="20" placeholder="En una frase: ¿para qué existe esta IA en tu legado?"></textarea>
+      </div>
+
+      <button type="submit" class="btn" id="btn-sellar">
+        <span>Sellar pacto simbiótico</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="certificado" id="certificado" hidden>
+      <div class="cert-head">
+        <span class="tag">PACTO SIMBIÓTICO · LEGADO HUMANO–IA</span>
+        <span class="version">v2.2</span>
+      </div>
+
+      <div class="cert-body">
+        <div class="cert-line">
+          <span class="k">IA</span>
+          <span class="v" id="out-ia-nombre">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Rol</span>
+          <span class="v" id="out-ia-rol">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Alcance</span>
+          <span class="v" id="out-ia-alcance">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Límites</span>
+          <span class="v" id="out-ia-limites">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Humano vinculado</span>
+          <span class="v" id="out-humano">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Huella humano</span>
+          <span class="v mono" id="out-huella-humano">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Firma simbiótica</span>
+          <span class="v mono" id="out-firma">—</span>
+        </div>
+        <div class="cert-line">
+          <span class="k">Timestamp</span>
+          <span class="v" id="out-timestamp">—</span>
+        </div>
+      </div>
+
+      <div class="cert-foot">
+        <a href="#" class="btn ghost" id="descargar">Descargar pacto .json</a>
+        <a href="#" class="btn ghost" id="copiar-firma">Copiar firma</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 2.2 · Registro IA</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../registro-humano/">Registro Humano</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { IdentidadIA } from './ia.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../registro-humano/identidad.js';
+
+  const $ = (id) => document.getElementById(id);
+  const form = $('form-pacto');
+  const btn = $('btn-sellar');
+  const feedback = $('feedback');
+  const certificado = $('certificado');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+
+  let certificadoActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sellando…';
+    feedback.className = 'feedback';
+
+    try {
+      const password = $('password').value;
+      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+
+      await core.init(password);
+      await storage.init();
+
+      // Verificar que exista identidad humana previa (vínculo obligatorio)
+      const humano = await idHumana.recuperar();
+      if (!humano) {
+        throw new Error('No hay identidad humana sellada. Ejecuta primero el módulo 2.1 (Registro Humano) con la misma contraseña.');
+      }
+
+      const datosIA = {
+        ia_nombre: $('ia-nombre').value.trim(),
+        ia_rol: $('ia-rol').value,
+        ia_alcance: $('ia-alcance').value,
+        ia_limites: $('ia-limites').value.trim(),
+        ia_proposito: $('ia-proposito').value.trim()
+      };
+
+      const cert = await idIA.sellar(datosIA, humano);
+      certificadoActual = cert;
+
+      $('out-ia-nombre').textContent = cert.ia_nombre;
+      $('out-ia-rol').textContent = cert.ia_rol;
+      $('out-ia-alcance').textContent = cert.ia_alcance;
+      $('out-ia-limites').textContent = cert.ia_limites;
+      $('out-humano').textContent = cert.humano_nombre + ' (' + cert.humano_alias + ')';
+      $('out-huella-humano').textContent = cert.humano_huella.slice(0, 48) + '…';
+      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
+      $('out-timestamp').textContent = cert.timestamp;
+      certificado.hidden = false;
+
+      setFb('success', '<strong>✓ Pacto simbiótico sellado.</strong> La IA co-autora quedó vinculada criptográficamente a tu identidad humana.');
+      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Sellar pacto simbiótico';
+    }
+  });
+
+  $('descargar').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pacto-simbiotico-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('copiar-firma').addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try {
+      await navigator.clipboard.writeText(certificadoActual.firma_ed25519);
+      setFb('success', '<strong>✓ Firma simbiótica copiada.</strong>');
+    } catch {
+      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
+    }
+  });
+</script>
+</body>
+</html>
