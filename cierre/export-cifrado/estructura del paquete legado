@@ -1,0 +1,13 @@
+{
+  "manifiesto": {
+    "protocolo": "LEGADO-HUMANO-IA",
+    "total_registros": 42,
+    "tipos": [...],
+    "cipher_hash": "0x...",
+    "manifiesto_hash": "0x...",
+    "firma_ed25519": "...",
+    "clave_publica": "..."
+  },
+  "cipher": "hex...",
+  "iv": "hex..."
+}
