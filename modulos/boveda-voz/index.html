@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bóveda de Voz · Legado Humano–IA</title>
+<meta name="description" content="Graba audio, sella su hash SHA-256 y genera huella cimática forense. ISO/IEC 27037. Local-first.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#grabar">Grabar</a>
+      <a href="#resultado">Resultado</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.2 · Capa 3 · Audio Forense</div>
+    <h1 class="title">Tu voz,<br>sellada<br>para siempre.</h1>
+    <p class="lede">
+      Graba audio desde tu micrófono. Se hashea con <strong>SHA-256</strong>,
+      se analiza con <strong>FFT</strong>, se dibuja su huella
+      <strong>cimática</strong>, y se sella como paquete <code>.evidence</code>
+      alineado a <strong>ISO/IEC 27037</strong>. Sin subir nada a la nube.
+    </p>
+  </section>
+
+  <section id="grabar" class="grabar">
+    <div class="section-head">
+      <h2>Grabación Forense</h2>
+      <span class="count">100% local · MediaRecorder</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+      <div class="hint">Misma contraseña de los módulos 2.1, 2.2, 2.3 y 3.1.</div>
+    </div>
+
+    <div class="field">
+      <label>Declaración de autoría <span class="req">*</span></label>
+      <textarea id="declaracion" placeholder="Declaro que este audio es mío o tengo derecho a sellarlo." minlength="20"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Tipo de audio <span class="req">*</span></label>
+      <select id="tipo">
+        <option value="testimonio">Testimonio</option>
+        <option value="obra-musical">Obra musical</option>
+        <option value="nota-periodistica">Nota periodística</option>
+        <option value="evidencia-legal">Evidencia legal</option>
+        <option value="memoria-personal">Memoria personal</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="grabadora">
+      <div class="wave-wrap">
+        <canvas id="wave" width="800" height="160"></canvas>
+      </div>
+
+      <div class="controles">
+        <button class="btn grabando" id="btn-iniciar" disabled>
+          <span class="rec-dot"></span>
+          <span>Iniciar grabación</span>
+        </button>
+        <button class="btn ghost" id="btn-detener" disabled>
+          <span>Detener</span>
+        </button>
+      </div>
+
+      <div class="timer" id="timer">00:00</div>
+
+      <audio id="audio-preview" controls hidden></audio>
+    </div>
+
+    <button class="btn" id="btn-sellar" disabled style="margin-top:24px">
+      <span>Sellar audio como .evidence</span>
+      <span class="arrow">→</span>
+    </button>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="resultado" class="resultado" hidden>
+    <div class="section-head">
+      <h2>Certificado Forense</h2>
+      <span class="count">ISO/IEC 27037</span>
+    </div>
+
+    <div class="grid-resultado">
+      <div class="cymatic-wrap">
+        <span class="label">Huella cimática</span>
+        <canvas id="cymatic" width="400" height="400"></canvas>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="k">ID evidencia</span><span class="v mono" id="out-id">—</span></div>
+        <div class="stat"><span class="k">Duración</span><span class="v" id="out-dur">—</span></div>
+        <div class="stat"><span class="k">Tamaño</span><span class="v" id="out-tam">—</span></div>
+        <div class="stat"><span class="k">Hash SHA-256</span><span class="v mono" id="out-hash">—</span></div>
+        <div class="stat"><span class="k">HMAC</span><span class="v mono" id="out-hmac">—</span></div>
+        <div class="stat"><span class="k">Firma Ed25519</span><span class="v mono" id="out-firma">—</span></div>
+        <div class="stat"><span class="k">Sello temporal</span><span class="v" id="out-ts">—</span></div>
+      </div>
+    </div>
+
+    <div class="acciones">
+      <a href="#" class="btn ghost" id="descargar-audio">Descargar audio</a>
+      <a href="#" class="btn ghost" id="descargar-cymatic">Descargar huella PNG</a>
+      <a href="#" class="btn ghost" id="descargar-evidence">Descargar .evidence</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.2 · Bóveda de Voz</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../evidence-os/">Evidence OS</a> ·
+      <a href="../../identidad/roles-permisos/">Gobernanza</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { BovedaVoz } from './boveda.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { IdentidadIA } from '../../identidad/registro-ia/ia.js';
+  import { RolesPermisos } from '../../identidad/roles-permisos/roles.js';
+  import { EvidenceOS } from '../evidence-os/evidence.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const resultado = $('resultado');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+  const roles = new RolesPermisos(core, storage);
+  const evidence = new EvidenceOS(core, storage);
+  const boveda = new BovedaVoz();
+
+  let audioBlob = null;
+  let audioBuffer = null;
+  let cymaticDataUrl = null;
+  let frecuenciaPromedio = null;
+  let duracionSeg = 0;
+  let paqueteActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  // Waveform en vivo
+  const waveCanvas = $('wave');
+  const waveCtx = waveCanvas.getContext('2d');
+
+  function dibujarWaveform(data) {
+    waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+    waveCtx.fillStyle = 'rgba(244,63,94,0.05)';
+    waveCtx.fillRect(0, 0, waveCanvas.width, waveCanvas.height);
+    waveCtx.strokeStyle = '#F9A8D4';
+    waveCtx.lineWidth = 2;
+    waveCtx.beginPath();
+    const slice = waveCanvas.width / data.length;
+    for (let i = 0; i < data.length; i++) {
+      const v = (data[i] - 128) / 128;
+      const y = waveCanvas.height / 2 + v * (waveCanvas.height / 2.4);
+      const x = i * slice;
+      if (i === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
+    }
+    waveCtx.stroke();
+  }
+
+  // Timer
+  let timerInterval = null;
+  let segundos = 0;
+  function actualizarTimer() {
+    const m = String(Math.floor(segundos / 60)).padStart(2, '0');
+    const s = String(segundos % 60).padStart(2, '0');
+    $('timer').textContent = `${m}:${s}`;
+  }
+
+  // Verificar identidades al cargar
+  (async () => {
+    try {
+      // No inicializamos core aún; solo habilitamos botón cuando haya contraseña
+    } catch (e) { /* silencio */ }
+  })();
+
+  $('password').addEventListener('input', () => {
+    const ok = $('password').value.length >= 8;
+    $('btn-iniciar').disabled = !ok;
+  });
+
+  $('btn-iniciar').addEventListener('click', async () => {
+    const password = $('password').value;
+    if (password.length < 8) return setFb('error', '<strong>✗ Contraseña muy corta.</strong>');
+
+    try {
+      await core.init(password);
+      await storage.init();
+
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+      const pactoIA = await idIA.recuperar();
+      if (!pactoIA) throw new Error('Falta pacto IA (módulo 2.2).');
+      const gobernanza = await roles.recuperar();
+      if (!gobernanza) throw new Error('Falta gobernanza (módulo 2.3).');
+
+      await boveda.iniciar();
+      $('btn-iniciar').disabled = true;
+      $('btn-detener').disabled = false;
+      $('btn-iniciar').classList.add('rec-activo');
+      $('btn-iniciar').querySelector('span:last-child').textContent = 'Grabando…';
+
+      segundos = 0;
+      actualizarTimer();
+      timerInterval = setInterval(() => {
+        segundos++;
+        actualizarTimer();
+      }, 1000);
+
+      boveda.onWaveform = dibujarWaveform;
+
+      setFb('success', '<strong>● Grabando.</strong> Habla con claridad. Toca "Detener" cuando termines.');
+    } catch (err) {
+      setFb('error', '<strong>✗ No se pudo iniciar:</strong> ' + err.message);
+      console.error(err);
+    }
+  });
+
+  $('btn-detener').addEventListener('click', async () => {
+    try {
+      const res = await boveda.detener();
+      clearInterval(timerInterval);
+      audioBlob = res.blob;
+      audioBuffer = res.buffer;
+      frecuenciaPromedio = res.frecuenciaPromedio;
+      duracionSeg = res.duracionSeg;
+
+      // Dibujar huella cimática
+      cymaticDataUrl = boveda.dibujarCimatico($('cymatic'), frecuenciaPromedio);
+
+      // Preview de audio
+      const url = URL.createObjectURL(audioBlob);
+      $('audio-preview').src = url;
+      $('audio-preview').hidden = false;
+
+      $('btn-iniciar').disabled = false;
+      $('btn-detener').disabled = true;
+      $('btn-iniciar').classList.remove('rec-activo');
+      $('btn-iniciar').querySelector('span:last-child').textContent = 'Iniciar grabación';
+      $('btn-sellar').disabled = false;
+
+      setFb('success', '<strong>✓ Grabación lista.</strong> Escúchala y si te convence, sella el paquete.');
+    } catch (err) {
+      setFb('error', '<strong>✗ Error al detener:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-sellar').addEventListener('click', async () => {
+    if (!audioBlob) return setFb('error', '<strong>✗ No hay grabación.</strong>');
+    const declaracion = $('declaracion').value.trim();
+    if (declaracion.length < 20) return setFb('error', '<strong>✗ Declaración muy corta.</strong> Mínimo 20 caracteres.');
+
+    $('btn-sellar').disabled = true;
+    $('btn-sellar').querySelector('span').textContent = 'Sellando…';
+
+    try {
+      const humano = await idHumana.recuperar();
+      const pactoIA = await idIA.recuperar();
+      const gobernanza = await roles.recuperar();
+
+      // Combinar audio + huella cimática en un solo buffer para hashear
+      const cymaticBytes = new TextEncoder().encode(cymaticDataUrl || '');
+      const combinado = new Uint8Array(audioBuffer.byteLength + cymaticBytes.byteLength);
+      combinado.set(new Uint8Array(audioBuffer), 0);
+      combinado.set(cymaticBytes, audioBuffer.byteLength);
+
+      const tipo = $('tipo').value;
+      const paquete = await evidence.sellar({
+        contenidoBytes: combinado,
+        nombreArchivo: `audio-${tipo}-${Date.now()}.webm`,
+        tipoMime: audioBlob.type || 'audio/webm',
+        tipo: 'audio-' + tipo,
+        declaracion,
+        notas: `Duración: ${duracionSeg.toFixed(2)}s · Huella cimática incluida`,
+        humano,
+        pactoIA,
+        gobernanza
+      });
+
+      // Añadir metadata específica de audio
+      paquete.audio_meta = {
+        duracion_seg: duracionSeg,
+        frecuencia_promedio: Array.from(frecuenciaPromedio.slice(0, 64)),
+        cymatic_data_url: cymaticDataUrl ? '(incluida en hash)' : null,
+        iso_norma: 'ISO/IEC 27037'
+      };
+
+      paqueteActual = paquete;
+
+      $('out-id').textContent = paquete.id_evidencia;
+      $('out-dur').textContent = duracionSeg.toFixed(2) + ' s';
+      $('out-tam').textContent = audioBuffer.byteLength + ' bytes audio';
+      $('out-hash').textContent = paquete.hash_sha256.slice(0, 48) + '…';
+      $('out-hmac').textContent = paquete.hmac_sha256.slice(0, 48) + '…';
+      $('out-firma').textContent = paquete.firma_ed25519.slice(0, 48) + '…';
+      $('out-ts').textContent = paquete.timestamp;
+      resultado.hidden = false;
+
+      setFb('success', '<strong>✓ Audio sellado.</strong> Certificado forense listo. Descarga los archivos.');
+      resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      $('btn-sellar').disabled = false;
+      $('btn-sellar').querySelector('span').textContent = 'Sellar audio como .evidence';
+    }
+  });
+
+  $('descargar-audio').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!audioBlob) return;
+    const url = URL.createObjectURL(audioBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `boveda-audio-${Date.now()}.webm`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('descargar-cymatic').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!cymaticDataUrl) return;
+    const a = document.createElement('a');
+    a.href = cymaticDataUrl;
+    a.download = `boveda-huella-${Date.now()}.png`;
+    a.click();
+  });
+
+  $('descargar-evidence').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!paqueteActual) return;
+    const blob = evidence.exportarEvidence(paqueteActual);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = paqueteActual.id_evidencia + '.evidence';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+</script>
+</body>
+</html>
