@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T02:34:04Z
+# Generado: 2026-09-20T02:35:45Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -40,6 +40,7 @@ c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GU
 cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GUARDIAN-TSA.md
 22eb4afcbab180fb92734b26bd2b57ea4098a6d89953730f1c433b7dfa5c6468  ./guardians/GUARDIAN-VAULT.md
 e8b8f5b8e5b87b7759e81567800f98e0ba8dfcfe99e5fd58c6d949e61a225671  ./index.html
+ad6c23327ae5a343c8eede1eb9fd8023f57753f0b017c580682a1aedfc7d1fc9  ./legado/autoria/index.html
 4092b82f2af0e5e0db0b403b89b7e279599ba2919dc116b6e45cd9695b758c85  ./legado/filosofia/FIRMA DE AUTORIA
 8df01a9243bbe9237176d56c92e6691f41ba7e7392102560c12a6d6854e0a4cf  ./legado/filosofia/README.md
 0f87664c8c0a8dbbc99cdb97d5124dfdea7248250591a677cfe45931fef06c22  ./legado/filosofia/filosofia.js
