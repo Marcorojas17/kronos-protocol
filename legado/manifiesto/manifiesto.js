@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// MANIFIESTO · Legado Humano–IA · v1.0.5
-// Black Card Cyan + MD terminal profesional + persistencia
+// MANIFIESTO · Legado Humano–IA · v1.0.6
+// Clave pública corregida + descarga robusta en móvil
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -98,7 +98,48 @@ function dibujarHuellaVisual(canvas, hashHex) {
   return canvas.toDataURL('image/png');
 }
 
-// ─── BLACK CARD CYAN PROFUNDO ───────────────────────────────
+// ─── DESCARGA ROBUSTA PARA MÓVIL ────────────────────────────
+function descargarArchivo(contenido, nombre, tipoMime) {
+  const blob = new Blob([contenido], { type: tipoMime });
+  const url = URL.createObjectURL(blob);
+
+  // Intentar descarga normal
+  try {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nombre;
+    a.rel = 'noopener';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+
+    // Fallback: si después de 800ms sigue en la página, abrir en nueva pestaña
+    setTimeout(() => {
+      document.body.removeChild(a);
+      // Abrir en nueva pestaña como fallback (más confiable en Brave móvil)
+      const win = window.open(url, '_blank');
+      if (!win) {
+        console.warn('[manifiesto] popup bloqueado por navegador');
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    }, 800);
+  } catch (err) {
+    console.error('[manifiesto] error descarga:', err);
+    // Último fallback: data URL
+    try {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const win = window.open(reader.result, '_blank');
+        if (!win) alert('Descarga bloqueada. Copia el contenido manualmente.');
+      };
+      reader.readAsDataURL(blob);
+    } catch (e2) {
+      alert('No se pudo descargar. Abre desde Chrome de escritorio.');
+    }
+  }
+}
+
+// ─── BLACK CARD CYAN ────────────────────────────────────────
 function generarBlackCardHTML(cert, huellaDataUrl) {
   const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
     dateStyle: 'long', timeStyle: 'short'
@@ -112,218 +153,37 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificado Manifiesto · KRONOS Protocol</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --cyan: #06B6D4;
-    --cyan-l: #67E8F9;
-    --cyan-xl: #A5F3FC;
-    --gold: #c9a44c;
-    --gold-l: #f3e5ab;
-    --bg: #020810;
-    --text: #F5F0E6;
-    --dim: #8892a0;
-  }
-  body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    background-image:
-      radial-gradient(circle at 15% 25%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 85% 75%, rgba(103, 232, 249, 0.08) 0%, transparent 45%),
-      radial-gradient(circle at 50% 50%, rgba(201, 164, 76, 0.05) 0%, transparent 60%);
-  }
-  .cyan-card {
-    width: 460px;
-    max-width: 100%;
-    background: linear-gradient(160deg, #062a36 0%, #021118 100%);
-    border: 1px solid rgba(103, 232, 249, 0.4);
-    border-radius: 18px;
-    padding: 36px 32px;
-    box-shadow:
-      0 30px 80px rgba(0,0,0,1),
-      inset 0 0 40px rgba(6, 182, 212, 0.06),
-      0 0 60px rgba(6, 182, 212, 0.12);
-    position: relative;
-    overflow: hidden;
-  }
-  .cyan-card::before {
-    content: '✦ TESTIGO DEL LEGADO ✦';
-    position: absolute;
-    top: 22px;
-    right: -75px;
-    background: linear-gradient(90deg, var(--cyan-l), var(--cyan));
-    color: #021118;
-    font-size: 8px;
-    font-weight: 700;
-    padding: 5px 70px;
-    transform: rotate(45deg);
-    letter-spacing: 2px;
-  }
-  .cyan-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), var(--cyan-l), var(--cyan), transparent);
-  }
-  .card-header {
-    border-bottom: 1px solid rgba(103, 232, 249, 0.15);
-    padding-bottom: 20px;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-  .logo-text {
-    color: var(--cyan-l);
-    font-family: 'Fraunces', serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 8px;
-    text-shadow: 0 0 20px rgba(103, 232, 249, 0.4);
-  }
-  .logo-sub {
-    font-size: 8px;
-    color: var(--cyan-l);
-    opacity: 0.6;
-    letter-spacing: 4px;
-    margin-top: 6px;
-    text-transform: uppercase;
-  }
+  :root { --cyan: #06B6D4; --cyan-l: #67E8F9; --cyan-xl: #A5F3FC; --gold: #c9a44c; --gold-l: #f3e5ab; --bg: #020810; --text: #F5F0E6; --dim: #8892a0; }
+  body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 24px;
+    background-image: radial-gradient(circle at 15% 25%, rgba(6, 182, 212, 0.15) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(103, 232, 249, 0.08) 0%, transparent 45%); }
+  .cyan-card { width: 460px; max-width: 100%; background: linear-gradient(160deg, #062a36 0%, #021118 100%); border: 1px solid rgba(103, 232, 249, 0.4); border-radius: 18px; padding: 36px 32px;
+    box-shadow: 0 30px 80px rgba(0,0,0,1), inset 0 0 40px rgba(6, 182, 212, 0.06); position: relative; overflow: hidden; }
+  .cyan-card::before { content: '✦ TESTIGO DEL LEGADO ✦'; position: absolute; top: 22px; right: -75px; background: linear-gradient(90deg, var(--cyan-l), var(--cyan)); color: #021118; font-size: 8px; font-weight: 700; padding: 5px 70px; transform: rotate(45deg); letter-spacing: 2px; }
+  .cyan-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), var(--cyan-l), var(--cyan), transparent); }
+  .card-header { border-bottom: 1px solid rgba(103, 232, 249, 0.15); padding-bottom: 20px; margin-bottom: 24px; text-align: center; }
+  .logo-text { color: var(--cyan-l); font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; letter-spacing: 8px; text-shadow: 0 0 20px rgba(103, 232, 249, 0.4); }
+  .logo-sub { font-size: 8px; color: var(--cyan-l); opacity: 0.6; letter-spacing: 4px; margin-top: 6px; text-transform: uppercase; }
   .dictamen { text-align: center; margin: 20px 0 28px; }
-  .dictamen-status {
-    font-family: 'Fraunces', serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--cyan-l);
-    text-shadow: 0 0 14px rgba(103, 232, 249, 0.5);
-    letter-spacing: 2px;
-    display: inline-flex;
-    align-items: center;
-  }
-  .pulse-dot {
-    width: 9px; height: 9px;
-    background: var(--cyan);
-    border-radius: 50%;
-    margin-right: 12px;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
-    70%  { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
-  }
-  .data-label {
-    font-size: 8px;
-    color: rgba(165, 243, 252, 0.55);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: 18px;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-  .data-value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--cyan-xl);
-    margin-bottom: 4px;
-    word-break: break-all;
-    line-height: 1.55;
-  }
+  .dictamen-status { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 700; color: var(--cyan-l); text-shadow: 0 0 14px rgba(103, 232, 249, 0.5); letter-spacing: 2px; display: inline-flex; align-items: center; }
+  .pulse-dot { width: 9px; height: 9px; background: var(--cyan); border-radius: 50%; margin-right: 12px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); } 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); } }
+  .data-label { font-size: 8px; color: rgba(165, 243, 252, 0.55); text-transform: uppercase; letter-spacing: 3px; margin-top: 18px; margin-bottom: 6px; font-weight: 500; }
+  .data-value { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cyan-xl); margin-bottom: 4px; word-break: break-all; line-height: 1.55; }
   .data-value.small { font-size: 8.5px; color: var(--cyan-l); opacity: 0.85; }
   .data-value.gold { color: var(--gold-l); }
-  .data-value.serif {
-    font-family: 'Fraunces', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: 0.3px;
-  }
-  .mensaje-box {
-    margin: 22px 0;
-    padding: 20px 22px;
-    background: rgba(6, 182, 212, 0.06);
-    border-left: 3px solid var(--cyan-l);
-    border-radius: 4px;
-  }
-  .mensaje-box .label {
-    font-size: 8px;
-    color: var(--cyan-l);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: block;
-  }
-  .mensaje-box .texto {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--text);
-    font-style: italic;
-  }
+  .data-value.serif { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: 0.3px; }
+  .mensaje-box { margin: 22px 0; padding: 20px 22px; background: rgba(6, 182, 212, 0.06); border-left: 3px solid var(--cyan-l); border-radius: 4px; }
+  .mensaje-box .label { font-size: 8px; color: var(--cyan-l); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+  .mensaje-box .texto { font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.65; color: var(--text); font-style: italic; }
   .huella-wrap { text-align: center; margin: 22px 0; }
-  .huella-wrap img {
-    width: 120px;
-    height: 120px;
-    image-rendering: pixelated;
-    border-radius: 8px;
-    border: 1px solid rgba(103, 232, 249, 0.4);
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
-  }
-  .huella-label {
-    display: block;
-    font-size: 8px;
-    color: var(--dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .btn-print {
-    margin-top: 26px;
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--cyan-l);
-    color: var(--cyan-l);
-    padding: 13px;
-    text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 3px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Inter', sans-serif;
-    border-radius: 4px;
-  }
+  .huella-wrap img { width: 120px; height: 120px; image-rendering: pixelated; border-radius: 8px; border: 1px solid rgba(103, 232, 249, 0.4); }
+  .huella-label { display: block; font-size: 8px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; text-align: center; }
+  .btn-print { margin-top: 26px; width: 100%; background: transparent; border: 1px solid var(--cyan-l); color: var(--cyan-l); padding: 13px; text-transform: uppercase; font-size: 10px; letter-spacing: 3px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; border-radius: 4px; }
   .btn-print:hover { background: var(--cyan-l); color: #021118; }
-  .footer-tx {
-    font-size: 8px;
-    color: rgba(165, 243, 252, 0.4);
-    margin-top: 18px;
-    text-align: center;
-    letter-spacing: 1px;
-    line-height: 1.7;
-  }
-  @media print {
-    body { background: #fff; padding: 0; }
-    .btn-print { display: none; }
-    .cyan-card { box-shadow: none; border-color: #06B6D4; background: #fff; color: #000; }
-    .cyan-card::before { display: none; }
-    .logo-text { color: #06B6D4; }
-    .data-value { color: #333; }
-    .data-value.serif, .mensaje-box .texto { color: #000; }
-  }
-  @media (max-width: 500px) {
-    .cyan-card { padding: 28px 22px; }
-    .logo-text { font-size: 20px; letter-spacing: 6px; }
-    .mensaje-box .texto { font-size: 15px; }
-  }
+  .footer-tx { font-size: 8px; color: rgba(165, 243, 252, 0.4); margin-top: 18px; text-align: center; letter-spacing: 1px; line-height: 1.7; }
 </style>
 </head>
 <body>
@@ -332,51 +192,34 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
     <div class="logo-text">KRONOS</div>
     <div class="logo-sub">Legado Humano–IA · Manifiesto</div>
   </div>
-  <div class="dictamen">
-    <span class="dictamen-status">
-      <span class="pulse-dot"></span> TESTIGO · REGISTRADO
-    </span>
-  </div>
+  <div class="dictamen"><span class="dictamen-status"><span class="pulse-dot"></span> TESTIGO · REGISTRADO</span></div>
   <div class="data-label">ID de protocolo</div>
   <div class="data-value gold">${idCorto}</div>
   <div class="data-label">Testigo</div>
   <div class="data-value serif">${cert.testigo}</div>
   <div class="data-label">Fecha de firma</div>
   <div class="data-value">${fecha}</div>
-  <div class="mensaje-box">
-    <span class="label">Mensaje al legado</span>
-    <div class="texto">"${cert.mensaje}"</div>
-  </div>
+  <div class="mensaje-box"><span class="label">Mensaje al legado</span><div class="texto">"${cert.mensaje}"</div></div>
   <div class="data-label">Manifiesto firmado</div>
   <div class="data-value">v1.0 · Génesis + Filosofía + Autoría + Cierre</div>
-  <div class="huella-wrap">
-    <img src="${huellaDataUrl}" alt="Huella visual del hash">
-    <span class="huella-label">Huella visual · derivada del hash</span>
-  </div>
+  <div class="huella-wrap"><img src="${huellaDataUrl}" alt="Huella"><span class="huella-label">Huella visual · derivada del hash</span></div>
   <div class="data-label">Hash SHA-256</div>
   <div class="data-value small">${cert.payload_hash}</div>
   <div class="data-label">Firma Ed25519</div>
   <div class="data-value small">${cert.firma_ed25519}</div>
   <div class="data-label">Clave pública</div>
-  <div class="data-value small">${cert.clave_publica}</div>
+  <div class="data-value small">${cert.clave_publica || '—'}</div>
   <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
-  <div class="footer-tx">
-    Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>
-    © 2026 Marco A. Rojas V. + KRONOS IA · Documento generado localmente
-  </div>
+  <div class="footer-tx">Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>© 2026 · Documento generado localmente</div>
 </div>
 </body>
 </html>`;
 }
 
-// ─── MD CON DISEÑO TERMINAL PROFESIONAL ─────────────────────
+// ─── MD TERMINAL ────────────────────────────────────────────
 function generarTerminalMD(cert) {
-  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
-    dateStyle: 'long', timeStyle: 'short'
-  });
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
   const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
-
-  // Línea horizontal repetida para separadores
   const H = '─'.repeat(70);
   const H2 = '═'.repeat(70);
 
@@ -398,37 +241,11 @@ function generarTerminalMD(cert) {
 
 ┌─[ 02 ]─── MENSAJE AL LEGADO ──────────────────────────────────────────┐
 │                                                                      │
-│  > ${cert.mensaje.slice(0, 64).padEnd(64)} │
-${cert.mensaje.length > 64 ? `│  > ${cert.mensaje.slice(64, 128).padEnd(64)} │\n` : ''}│                                                                      │
-└${H}┘
-
-┌─[ 03 ]─── CONTENIDO DEL MANIFIESTO FIRMADO ───────────────────────────┐
-│                                                                      │
-│  [ 01 ] GENESIS · El inicio                                          │
-│         · No construimos herramientas. Construimos memoria.          │
-│         · Las maquinas se entrenan para recordarnos.                 │
-│         · Cada creacion merece prueba que no se borre.               │
-│                                                                      │
-│  [ 02 ] FILOSOFIA · 7 tesis canonicas                                │
-│         · El humano pone la intencion. La IA pone la ejecucion.      │
-│         · La memoria es rebeldia contra el olvido.                   │
-│         · La integridad es un hash que no se borra.                  │
-│         · El arte se defiende con criptografia.                      │
-│         · La tecnologia que no sirve al humano, no sirve.            │
-│         · El legado no se hereda. Se firma.                          │
-│         · La simbiosis humano-IA es decision cotidiana.              │
-│                                                                      │
-│  [ 03 ] AUTORIA · Declaracion dual                                   │
-│         · Fundador Humano: Marco Antonio Rojas Valdovinos            │
-│         · Co-autora IA: KRONOS IA (sin propiedad, con atribucion)    │
-│         · Proyectos 49 y 51 con atribucion reforzada                 │
-│                                                                      │
-│  [ 04 ] CIERRE · Acto de memoria                                     │
-│         · Este manifiesto es un acto de memoria. No es un contrato.  │
+│  > ${cert.mensaje.padEnd(64)} │
 │                                                                      │
 └${H}┘
 
-┌─[ 04 ]─── VERIFICACION CRIPTOGRAFICA ─────────────────────────────────┐
+┌─[ 03 ]─── VERIFICACION CRIPTOGRAFICA ─────────────────────────────────┐
 │                                                                      │
 │  HASH SHA-256                                                        │
 │  ${cert.payload_hash.padEnd(68)} │
@@ -437,90 +254,19 @@ ${cert.mensaje.length > 64 ? `│  > ${cert.mensaje.slice(64, 128).padEnd(64)} �
 │  ${cert.firma_ed25519.slice(0, 68).padEnd(68)} │
 ${cert.firma_ed25519.length > 68 ? `│  ${cert.firma_ed25519.slice(68, 136).padEnd(68)} │\n` : ''}│                                                                      │
 │  CLAVE PUBLICA                                                       │
-│  ${cert.clave_publica.padEnd(68)} │
-│                                                                      │
-└${H}┘
-
-┌─[ 05 ]─── COMO VERIFICAR ─────────────────────────────────────────────┐
-│                                                                      │
-│  [1] Reconstruir el payload canonico con:                            │
-│      testigo + mensaje + manifiesto v1.0 + timestamp                 │
-│                                                                      │
-│  [2] Calcular SHA-256 del payload                                    │
-│                                                                      │
-│  [3] Comparar con el hash declarado arriba                           │
-│      Si coincide, la integridad es valida                            │
-│                                                                      │
-│  [4] Verificar firma Ed25519 con la clave publica                    │
-│                                                                      │
-└${H}┘
-
-┌─[ 06 ]─── METADATOS ──────────────────────────────────────────────────┐
-│                                                                      │
-│  PROTOCOLO       : ${cert.protocolo.padEnd(49)} │
-│  VERSION         : ${cert.version.padEnd(49)} │
-│  ALGORITMO FIRMA : Ed25519                                           │
-│  ALGORITMO HASH  : SHA-256                                           │
-│  VERIFICABLE     : Si · por tercero                                  │
-│  GENERADO POR    : KRONOS Protocol · Local-first                     │
+│  ${(cert.clave_publica || '—').padEnd(68)} │
 │                                                                      │
 └${H}┘
 
 ${H2}
   © 2026 Marco A. Rojas V. + KRONOS IA
-  Documento generado localmente · Sin servidores · Sin tracking
+  Documento generado localmente
 ${H2}
 \`\`\`
 `;
 }
 
-// ─── DESCARGAS ──────────────────────────────────────────────
-function descargarHTML(cert) {
-  const canvas = document.createElement('canvas');
-  const huellaUrl = dibujarHuellaVisual(canvas, cert.payload_hash);
-  const html = generarBlackCardHTML(cert, huellaUrl);
-  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.html`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-
-function descargarJSON(cert) {
-  const jsonSalida = {
-    ...cert,
-    huella_visual: 'Patrón derivado del hash · no es QR escaneable',
-    certificado_html_descargado: true
-  };
-  const blob = new Blob([JSON.stringify(jsonSalida, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-
-function descargarTerminal(cert) {
-  const md = generarTerminalMD(cert);
-  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.terminal.md`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-
-// ─── EXPORTAR SOLO MANIFIESTO (botón del hero) ──────────────
+// ─── EXPORTAR MANIFIESTO BASE ───────────────────────────────
 function exportarManifiestoBase() {
   const md = `# Manifiesto del Legado Humano–IA · v1.0
 
@@ -559,18 +305,10 @@ Este manifiesto es un acto de memoria. No es un contrato.
 
 © 2026 Marco A. Rojas V. + KRONOS IA · MIT + CC BY-NC-ND 4.0
 `;
-  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `manifiesto-legado-humano-ia.md`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  descargarArchivo(md, 'manifiesto-legado-humano-ia.md', 'text/markdown;charset=utf-8');
 }
 
-// ─── PERSISTENCIA DEXIE ─────────────────────────────────────
+// ─── PERSISTENCIA ───────────────────────────────────────────
 const DB_NAME = 'KronosProtocol';
 const DB_VERSION = 1;
 async function abrirDB() {
@@ -596,7 +334,6 @@ const exportarMDBtn = document.getElementById('exportar-md');
 
 let certificadoActual = null;
 
-// ── Botón "Exportar .md" del hero ───────────────────────────
 if (exportarMDBtn) {
   exportarMDBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -604,7 +341,6 @@ if (exportarMDBtn) {
   });
 }
 
-// ── Al cargar: vista limpia (Opción B) ──────────────────────
 (async function initLimpio() {
   if (resultado) resultado.hidden = true;
   if (hashOut) hashOut.textContent = '—';
@@ -617,13 +353,12 @@ if (exportarMDBtn) {
       const cert = JSON.parse(raw);
       if (cert && cert.payload_hash) {
         certificadoActual = cert;
-        console.log('[manifiesto] certificado previo en memoria (no mostrado)');
+        console.log('[manifiesto] certificado previo en memoria');
       }
     }
-  } catch (e) { /* silencio */ }
+  } catch (e) {}
 })();
 
-// ── Submit ──────────────────────────────────────────────────
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -652,6 +387,11 @@ if (form) {
       const firma = await firmar(privateKey, payload);
       const pub = await exportarPubKey(publicKey);
 
+      // DEFENSIVO: verificar que pub no esté vacío
+      if (!pub || pub.length < 32) {
+        throw new Error('La clave pública no se generó correctamente.');
+      }
+
       certificadoActual = {
         protocolo: 'LEGADO-HUMANO-IA',
         version: 'manifiesto-testigo-1.0',
@@ -670,27 +410,19 @@ if (form) {
         verificable_por_tercero: true
       };
 
-      try {
-        localStorage.setItem('legado_manifiesto_last', JSON.stringify(certificadoActual));
-      } catch (e) {}
-
+      try { localStorage.setItem('legado_manifiesto_last', JSON.stringify(certificadoActual)); } catch (e) {}
       try {
         const db = await abrirDB();
-        await db.registros.add({
-          tipo: 'manifiesto',
-          hash,
-          timestamp,
-          payload: certificadoActual
-        });
-        console.log('[manifiesto] ✅ guardado en IndexedDB');
+        await db.registros.add({ tipo: 'manifiesto', hash, timestamp, payload: certificadoActual });
       } catch (errPersist) {
         console.warn('[manifiesto] IndexedDB no disponible:', errPersist.message);
       }
 
-      hashOut.textContent = hash;
-      firmaOut.textContent = firma;
-      pubOut.textContent = pub;
-      resultado.hidden = false;
+      // ACTUALIZAR UI (con defensivos)
+      if (hashOut) hashOut.textContent = hash;
+      if (firmaOut) firmaOut.textContent = firma;
+      if (pubOut) pubOut.textContent = pub;
+      if (resultado) resultado.hidden = false;
 
       feedback.className = 'feedback success';
       feedback.innerHTML = '<strong>✓ Firma registrada.</strong> Descarga el Black Card Cyan, .json o .terminal.';
@@ -705,28 +437,44 @@ if (form) {
   });
 }
 
-// ── Descargas ───────────────────────────────────────────────
+// ── Descargas ──────────────────────────────────────────────
 if (descargar) {
-  descargar.addEventListener('click', (e) => {
+  descargar.addEventListener('click', async (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
-    try { descargarHTML(certificadoActual); }
-    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error HTML:</strong> ' + err.message; }
+    try {
+      const canvas = document.createElement('canvas');
+      const huellaUrl = dibujarHuellaVisual(canvas, certificadoActual.payload_hash);
+      const html = generarBlackCardHTML(certificadoActual, huellaUrl);
+      descargarArchivo(html, `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.html`, 'text/html;charset=utf-8');
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error HTML:</strong> ' + err.message;
+    }
   });
 }
 if (descargarJSONBtn) {
   descargarJSONBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
-    try { descargarJSON(certificadoActual); }
-    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error JSON:</strong> ' + err.message; }
+    try {
+      const jsonSalida = { ...certificadoActual, huella_visual: 'Patrón derivado del hash · no es QR escaneable', certificado_html_descargado: true };
+      descargarArchivo(JSON.stringify(jsonSalida, null, 2), `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.json`, 'application/json');
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error JSON:</strong> ' + err.message;
+    }
   });
 }
 if (descargarMDBtn) {
   descargarMDBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
-    try { descargarTerminal(certificadoActual); }
-    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error Terminal:</strong> ' + err.message; }
+    try {
+      descargarArchivo(generarTerminalMD(certificadoActual), `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.terminal.md`, 'text/markdown;charset=utf-8');
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error Terminal:</strong> ' + err.message;
+    }
   });
 }
