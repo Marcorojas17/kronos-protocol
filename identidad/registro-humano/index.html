@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Humano · Legado Humano–IA</title>
+<meta name="description" content="Crea tu identidad firmada con Ed25519. Huella criptográfica única de 64 caracteres. Local-first.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#registro">Registro</a>
+      <a href="#pasaporte">Pasaporte</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 2.1 · Capa 2 · Identidad Humana</div>
+    <h1 class="title">Tu huella<br>en el legado.</h1>
+    <p class="lede">
+      Una identidad <strong>firmada con Ed25519</strong>.
+      Una huella criptográfica única de <strong>64 caracteres</strong>.
+      Un pasaporte digital que prueba quién eres en todo el ecosistema.
+      Sin servidores. Sin rastreo. Sin intermediarios.
+    </p>
+  </section>
+
+  <section id="registro" class="registro">
+    <div class="section-head">
+      <h2>Formulario de Identidad</h2>
+      <span class="count">Local-first · Cifrado</span>
+    </div>
+
+    <form id="form-identidad" novalidate>
+      <div class="grid-2">
+        <div class="field">
+          <label>Contraseña maestra <span class="req">*</span></label>
+          <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+        </div>
+        <div class="field">
+          <label>Alias o seudónimo <span class="req">*</span></label>
+          <input type="text" id="alias" placeholder="Cómo te reconocerán" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" id="nombre" placeholder="Tu nombre legal" required>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>País <span class="req">*</span></label>
+          <input type="text" id="pais" placeholder="México" required>
+        </div>
+        <div class="field">
+          <label>Rol declarado <span class="req">*</span></label>
+          <select id="rol" required>
+            <option value="" disabled selected>Selecciona</option>
+            <option value="Fundador">Fundador</option>
+            <option value="Creador">Creador</option>
+            <option value="Artista">Artista</option>
+            <option value="Investigador">Investigador</option>
+            <option value="Colaborador">Colaborador</option>
+            <option value="Guardian">Guardián</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Propósito personal <span class="req">*</span></label>
+        <textarea id="proposito" placeholder="En una frase: ¿para qué estás aquí?" required minlength="20"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Correo de contacto (opcional)</label>
+        <input type="email" id="correo" placeholder="tu@correo.com">
+      </div>
+
+      <button type="submit" class="btn" id="btn-sellar">
+        <span>Sellar identidad</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="pasaporte" id="pasaporte" hidden>
+      <div class="pasaporte-head">
+        <span class="tag">PASAPORTE DIGITAL · LEGADO HUMANO–IA</span>
+        <span class="version">v2.1</span>
+      </div>
+
+      <div class="pasaporte-body">
+        <div class="pasaporte-line">
+          <span class="k">Alias</span>
+          <span class="v" id="out-alias">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">Nombre</span>
+          <span class="v" id="out-nombre">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">País</span>
+          <span class="v" id="out-pais">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">Rol</span>
+          <span class="v" id="out-rol">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">Huella</span>
+          <span class="v mono" id="out-huella">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">Firma</span>
+          <span class="v mono" id="out-firma">—</span>
+        </div>
+        <div class="pasaporte-line">
+          <span class="k">Emitido</span>
+          <span class="v" id="out-fecha">—</span>
+        </div>
+      </div>
+
+      <div class="pasaporte-foot">
+        <a href="#" class="btn ghost" id="descargar">Descargar pasaporte .json</a>
+        <a href="#" class="btn ghost" id="copiar-huella">Copiar huella</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 2.1 · Registro Humano</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../cimiento/cripto-core/">Cripto Core</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { IdentidadHumana } from './identidad.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+
+  const $ = (id) => document.getElementById(id);
+  const form = $('form-identidad');
+  const btn = $('btn-sellar');
+  const feedback = $('feedback');
+  const pasaporte = $('pasaporte');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const identidad = new IdentidadHumana(core, storage);
+
+  let certificadoActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sellando…';
+    feedback.className = 'feedback';
+
+    try {
+      const password = $('password').value;
+      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+
+      await core.init(password);
+      await storage.init();
+
+      const datos = {
+        alias: $('alias').value.trim(),
+        nombre: $('nombre').value.trim(),
+        pais: $('pais').value.trim(),
+        rol: $('rol').value,
+        proposito: $('proposito').value.trim(),
+        correo: $('correo').value.trim()
+      };
+
+      const cert = await identidad.sellar(datos);
+      certificadoActual = cert;
+
+      $('out-alias').textContent = cert.alias;
+      $('out-nombre').textContent = cert.nombre;
+      $('out-pais').textContent = cert.pais;
+      $('out-rol').textContent = cert.rol;
+      $('out-huella').textContent = cert.huella;
+      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
+      $('out-fecha').textContent = cert.timestamp;
+      pasaporte.hidden = false;
+
+      setFb('success', '<strong>✓ Identidad sellada.</strong> Tu huella criptográfica es única y ha quedado firmada con Ed25519.');
+      pasaporte.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Sellar identidad';
+    }
+  });
+
+  $('descargar').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pasaporte-${certificadoActual.alias}-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('copiar-huella').addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try {
+      await navigator.clipboard.writeText(certificadoActual.huella);
+      setFb('success', '<strong>✓ Huella copiada al portapapeles.</strong>');
+    } catch {
+      setFb('error', '<strong>✗ No se pudo copiar.</strong> Cópiala manualmente.');
+    }
+  });
+</script>
+</body>
+</html>
