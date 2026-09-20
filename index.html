@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS PROTOCOL · El registro de lo que es real</title>
-<meta name="description" content="Prototipos de verificación criptográfica, evidencia digital y metodología de co-creatividad humano-IA. Acta fundacional sellada con eIDAS y anclada en Ethereum.">
+<meta name="description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas · 18 módulos platino · Acta fundacional sellada con eIDAS y anclada en Ethereum.">
 <meta name="author" content="Marco Antonio Rojas Valdovinos">
-<meta name="keywords" content="KRONOS, verificación criptográfica, SHA-256, eIDAS, Ethereum, co-creatividad, IA, Safe Creative, México">
+<meta name="keywords" content="KRONOS, LEGADO HUMANO-IA, verificación criptográfica, SHA-256, Ed25519, eIDAS, Ethereum, co-creatividad, IA, Safe Creative, México">
 <link rel="canonical" href="https://marcorojas17.github.io/kronos-protocol/">
 <meta name="theme-color" content="#05070b">
 <link rel="icon" href="/kronos-protocol/movimiento/assets/k-avatar.png" type="image/png">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta property="og:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta property="og:description" content="Verificación criptográfica, evidencia digital y co-creatividad humano-IA. Acta fundacional sellada con eIDAS y anclada en Ethereum.">
+<meta property="og:description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas · 18 módulos platino.">
 <meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,17 +24,17 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta name="twitter:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta name="twitter:description" content="Verificación criptográfica, evidencia digital y co-creatividad humano-IA.">
+<meta name="twitter:description" content="7 capas · 18 módulos platino de verificación criptográfica.">
 <meta name="twitter:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "KRONOS PROTOCOL",
-  "alternateName": "KRONOS",
+  "alternateName": "LEGADO HUMANO-IA",
   "url": "https://marcorojas17.github.io/kronos-protocol/",
   "logo": "https://marcorojas17.github.io/kronos-protocol/movimiento/assets/k-avatar.png",
-  "description": "Prototipos de verificación criptográfica, evidencia digital y metodología de co-creatividad humano-IA.",
+  "description": "Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas, 18 módulos.",
   "founder": {
     "@type": "Person",
     "name": "Marco Antonio Rojas Valdovinos",
@@ -52,7 +52,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -65,6 +65,14 @@
     --text-dim: #8892a0;
     --cyan: #00eaff;
     --platinum: #b794f6;
+    --jade: #10B981;
+    --teal: #0D9488;
+    --rosa: #EC4899;
+    --azul: #2563EB;
+    --ambar: #F59E0B;
+    --hielo: #93C5FD;
+    --violeta: #7C3AED;
+    --ceremonial: #1E40AF;
   }
   html, body {
     background: var(--ink);
@@ -72,6 +80,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
   #webgl {
     position: fixed;
@@ -160,7 +169,7 @@
     font-size: 17px;
     line-height: 1.7;
     color: var(--text-dim);
-    max-width: 560px;
+    max-width: 620px;
     font-weight: 300;
     opacity: 0;
     animation: fadeUp 1.2s ease 0.6s forwards;
@@ -196,7 +205,7 @@
     color: var(--text-dim);
   }
 
-  /* ── SECCIÓN MOVIMIENTO DESTACADA ── */
+  /* ── MOVIMIENTO ── */
   .movimiento-hero {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -258,10 +267,7 @@
     font-weight: 300;
     margin-bottom: 24px;
   }
-  .movimiento-hero p strong {
-    color: var(--text);
-    font-weight: 500;
-  }
+  .movimiento-hero p strong { color: var(--text); font-weight: 500; }
   .movimiento-hero .arrow {
     display: inline-flex;
     align-items: center;
@@ -283,17 +289,154 @@
     border-radius: 2px;
     position: relative;
   }
-  @media (max-width: 700px) {
-    .movimiento-hero {
-      grid-template-columns: 1fr;
-      padding: 32px 24px;
-    }
-    .movimiento-visual {
-      aspect-ratio: 3/1;
-    }
+
+  /* ── LEGADO · 7 CAPAS ── */
+  .legado-intro {
+    max-width: 720px;
+    margin-bottom: 60px;
+  }
+  .legado-intro p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .legado-intro p strong { color: var(--text); font-weight: 500; }
+
+  .capa {
+    margin-bottom: 48px;
+    padding: 32px 32px 28px;
+    border: 1px solid rgba(201,164,76,0.14);
+    background: linear-gradient(155deg, rgba(20,24,32,0.45) 0%, rgba(10,14,21,0.7) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.5s ease;
+  }
+  .capa::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--capa-color, var(--gold)), transparent 70%);
+  }
+  .capa:hover { border-color: rgba(201,164,76,0.3); }
+  .capa-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .capa-title {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .capa-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--capa-color, var(--gold));
+    text-transform: uppercase;
+  }
+  .capa-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  .capa-status {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--capa-color, var(--gold));
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .capa-status::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--capa-color, var(--gold));
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--capa-color, var(--gold));
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .capa-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 24px;
+    max-width: 780px;
+  }
+  .modulos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  a.modulo-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 18px 18px 16px;
+    border: 1px solid rgba(201,164,76,0.1);
+    background: rgba(10,14,21,0.55);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  a.modulo-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 30%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--capa-color, var(--gold)), transparent);
+    transition: width 0.5s ease;
+  }
+  a.modulo-card:hover {
+    border-color: var(--capa-color, rgba(201,164,76,0.4));
+    transform: translateY(-2px);
+    background: rgba(20,24,32,0.75);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  }
+  a.modulo-card:hover::after { width: 100%; }
+  .modulo-card .m-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--capa-color, var(--gold));
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.85;
+  }
+  .modulo-card .m-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+  .modulo-card .m-desc {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    font-weight: 300;
   }
 
-  /* ── GRID DE PROYECTOS ── */
+  /* ── GRID DE PROYECTOS ORIGINALES ── */
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -339,40 +482,22 @@
   a.card:hover::after { width: 100%; }
   a.card.dmd33 { border-color: rgba(0, 234, 255, 0.18); }
   a.card.dmd33::after { background: linear-gradient(90deg, var(--cyan), transparent); }
-  a.card.dmd33:hover {
-    border-color: rgba(0, 234, 255, 0.5);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 234, 255, 0.08);
-  }
+  a.card.dmd33:hover { border-color: rgba(0, 234, 255, 0.5); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 234, 255, 0.08); }
   a.card.dmd33 .label { color: var(--cyan); }
   a.card.dmd33 .foot .status { color: var(--cyan); }
-  a.card.dmd33 .foot .status::before {
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-  }
+  a.card.dmd33 .foot .status::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
   a.card.boveda { border-color: rgba(16, 185, 129, 0.2); }
   a.card.boveda::after { background: linear-gradient(90deg, #10B981, transparent); }
-  a.card.boveda:hover {
-    border-color: rgba(16, 185, 129, 0.55);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(16, 185, 129, 0.1);
-  }
+  a.card.boveda:hover { border-color: rgba(16, 185, 129, 0.55); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(16, 185, 129, 0.1); }
   a.card.boveda .label { color: #10B981; }
   a.card.boveda .foot .status { color: #10B981; }
-  a.card.boveda .foot .status::before {
-    background: #10B981;
-    box-shadow: 0 0 8px #10B981;
-  }
+  a.card.boveda .foot .status::before { background: #10B981; box-shadow: 0 0 8px #10B981; }
   a.card.miner { border-color: rgba(183, 148, 246, 0.22); }
   a.card.miner::after { background: linear-gradient(90deg, var(--platinum), transparent); }
-  a.card.miner:hover {
-    border-color: rgba(183, 148, 246, 0.55);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(183, 148, 246, 0.12);
-  }
+  a.card.miner:hover { border-color: rgba(183, 148, 246, 0.55); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(183, 148, 246, 0.12); }
   a.card.miner .label { color: var(--platinum); }
   a.card.miner .foot .status { color: var(--platinum); }
-  a.card.miner .foot .status::before {
-    background: var(--platinum);
-    box-shadow: 0 0 8px var(--platinum);
-  }
+  a.card.miner .foot .status::before { background: var(--platinum); box-shadow: 0 0 8px var(--platinum); }
   .card .label {
     font-size: 9px;
     letter-spacing: 3px;
@@ -428,6 +553,8 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
   }
+
+  /* ── CTA ── */
   .cta {
     margin-top: 100px;
     text-align: center;
@@ -460,7 +587,7 @@
   .cta p {
     font-size: 14px;
     color: var(--text-dim);
-    max-width: 500px;
+    max-width: 560px;
     margin: 0 auto 36px;
     line-height: 1.7;
     font-weight: 300;
@@ -527,6 +654,16 @@
     color: var(--gold);
     letter-spacing: 3px;
   }
+
+  /* ── COLORES POR CAPA ── */
+  .capa[data-color="gold"] { --capa-color: var(--gold); }
+  .capa[data-color="cyan"] { --capa-color: var(--cyan); }
+  .capa[data-color="jade"] { --capa-color: var(--jade); }
+  .capa[data-color="teal"] { --capa-color: var(--teal); }
+  .capa[data-color="azul"] { --capa-color: var(--azul); }
+  .capa[data-color="hielo"] { --capa-color: var(--hielo); }
+  .capa[data-color="violeta"] { --capa-color: var(--violeta); }
+
   @media (max-width: 700px) {
     .wrap { padding: 24px 20px 60px; }
     header.top nav { display: none; }
@@ -536,6 +673,13 @@
     .card p { min-height: auto; }
     .cta { padding: 50px 24px; }
     footer { flex-direction: column; }
+    .movimiento-hero { grid-template-columns: 1fr; padding: 32px 24px; }
+    .movimiento-visual { aspect-ratio: 3/1; }
+    .capa { padding: 24px 20px 20px; }
+    .modulos-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .modulos-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -549,9 +693,9 @@
   <header class="top">
     <div class="mark">KRONOS PROTOCOL</div>
     <nav>
+      <a href="#legado">Legado</a>
       <a href="movimiento/">Movimiento</a>
       <a href="#projects">Proyectos</a>
-      <a href="#contact">Contacto</a>
       <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
@@ -562,13 +706,227 @@
     <p class="lede">
       Prototipos de <strong>verificación criptográfica</strong>, evidencia digital
       y metodología de co-creatividad humano-IA.
-      Acta fundacional sellada con timestamp cualificado <strong>eIDAS</strong> y
-      anclada en la blockchain de Ethereum.
+      Un ecosistema de <strong>7 capas</strong> y <strong>18 módulos platino</strong>
+      sellado con eIDAS y anclado en la blockchain de Ethereum.
     </p>
   </section>
 
   <div class="divider"></div>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LEGADO HUMANO-IA · 7 CAPAS                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="legado">
+    <div class="section-head">
+      <h2>Legado Humano–IA</h2>
+      <span class="count">7 Capas · 18 Módulos · 100%</span>
+    </div>
+
+    <div class="legado-intro">
+      <p>
+        El ecosistema <strong>LEGADO HUMANO–IA</strong> es la segunda gran arquitectura
+        de KRONOS Protocol. Siete capas que van del génesis al cierre, cada una
+        declarando su <strong>propósito</strong>, mostrando su <strong>flujo</strong>,
+        entregando su <strong>resultado</strong> y documentándose en manuales navegables.
+        Sin terminal. Sin codespace. Sin backend propio.
+      </p>
+    </div>
+
+    <!-- CAPA 0 · GÉNESIS -->
+    <div class="capa" data-color="gold">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 0</span>
+          <span class="capa-name">Génesis</span>
+        </div>
+        <span class="capa-status">4 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Manifiesto, filosofía, autoría y génesis fundacional. El momento cero del legado humano–IA.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="legado/genesis/">
+          <span class="m-num">0.1 · Génesis</span>
+          <span class="m-nombre">Génesis Fundacional</span>
+          <span class="m-desc">Sella tu intención con Ed25519.</span>
+        </a>
+        <a class="modulo-card" href="legado/filosofia/">
+          <span class="m-num">0.2 · Filosofía</span>
+          <span class="m-nombre">Filosofía del Legado</span>
+          <span class="m-desc">7 tesis fundacionales firmadas.</span>
+        </a>
+        <a class="modulo-card" href="legado/autoria/">
+          <span class="m-num">0.3 · Autoría</span>
+          <span class="m-nombre">Autoría Dual</span>
+          <span class="m-desc">Humano + IA con atribución reforzada.</span>
+        </a>
+        <a class="modulo-card" href="legado/manifiesto/">
+          <span class="m-num">0.4 · Manifiesto</span>
+          <span class="m-nombre">Manifiesto Navegable</span>
+          <span class="m-desc">Génesis + Filosofía + Autoría unificados.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 1 · CIMIENTO -->
+    <div class="capa" data-color="cyan">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 1</span>
+          <span class="capa-name">Cimiento</span>
+        </div>
+        <span class="capa-status">3 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Núcleo criptográfico reutilizable: cifrado, firma, hash chain, persistencia y anclaje a Ethereum.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="cimiento/cripto-core/">
+          <span class="m-num">1.1 · Núcleo</span>
+          <span class="m-nombre">Cripto Core</span>
+          <span class="m-desc">AES-GCM-256 + PBKDF2 + Ed25519.</span>
+        </a>
+        <a class="modulo-card" href="cimiento/storage-dexie/">
+          <span class="m-num">1.2 · Persistencia</span>
+          <span class="m-nombre">Storage Dexie</span>
+          <span class="m-desc">IndexedDB versionado con migraciones.</span>
+        </a>
+        <a class="modulo-card" href="cimiento/anclaje-ethereum/">
+          <span class="m-num">1.3 · Blockchain</span>
+          <span class="m-nombre">Anclaje Ethereum</span>
+          <span class="m-desc">Raíz Merkle a mainnet vía MetaMask.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 2 · IDENTIDAD -->
+    <div class="capa" data-color="jade">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 2</span>
+          <span class="capa-name">Identidad</span>
+        </div>
+        <span class="capa-status">3 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Identidad humana, identidad IA y gobernanza. La simbiosis queda declarada, vinculada y verificable.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="identidad/registro-humano/">
+          <span class="m-num">2.1 · Humano</span>
+          <span class="m-nombre">Registro Humano</span>
+          <span class="m-desc">Huella criptográfica de 64 caracteres.</span>
+        </a>
+        <a class="modulo-card" href="identidad/registro-ia/">
+          <span class="m-num">2.2 · IA</span>
+          <span class="m-nombre">Registro IA</span>
+          <span class="m-desc">Pacto simbiótico firmado.</span>
+        </a>
+        <a class="modulo-card" href="identidad/roles-permisos/">
+          <span class="m-num">2.3 · Gobernanza</span>
+          <span class="m-nombre">Roles y Permisos</span>
+          <span class="m-desc">5 roles × 20 permisos firmados.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 3 · MÓDULOS -->
+    <div class="capa" data-color="teal">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 3</span>
+          <span class="capa-name">Módulos Operativos</span>
+        </div>
+        <span class="capa-status">2 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Activos reales del ecosistema: evidencia digital forense y audio con huella cimática. NOM-151 e ISO/IEC 27037.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="modulos/evidence-os/">
+          <span class="m-num">3.1 · Evidencia</span>
+          <span class="m-nombre">Evidence OS</span>
+          <span class="m-desc">Paquetes .evidence verificables.</span>
+        </a>
+        <a class="modulo-card" href="modulos/boveda-voz/">
+          <span class="m-num">3.2 · Audio</span>
+          <span class="m-nombre">Bóveda de Voz</span>
+          <span class="m-desc">Grabación forense + huella cimática.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 4 · ORQUESTACIÓN -->
+    <div class="capa" data-color="azul">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 4</span>
+          <span class="capa-name">Orquestación</span>
+        </div>
+        <span class="capa-status">2 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Bus de eventos local y router dinámico de módulos. Los activos se comunican sin acoplamiento directo.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="orquestacion/event-bus/">
+          <span class="m-num">4.1 · Bus</span>
+          <span class="m-nombre">Event Bus</span>
+          <span class="m-desc">Pub/sub firmado cross-tab.</span>
+        </a>
+        <a class="modulo-card" href="orquestacion/router-modulos/">
+          <span class="m-num">4.2 · Router</span>
+          <span class="m-nombre">Router de Módulos</span>
+          <span class="m-desc">14 módulos registrados y enrutables.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 5 · OPERACIÓN -->
+    <div class="capa" data-color="hielo">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 5</span>
+          <span class="capa-name">Operación</span>
+        </div>
+        <span class="capa-status">2 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Centro de mando y disciplina. Métricas de salud en vivo y rituales periódicos firmados que mantienen vivo el legado.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="operacion/dashboard-salud/">
+          <span class="m-num">5.1 · Dashboard</span>
+          <span class="m-nombre">Dashboard Salud</span>
+          <span class="m-desc">Radar de 5 dimensiones + métricas.</span>
+        </a>
+        <a class="modulo-card" href="operacion/rituales/">
+          <span class="m-num">5.2 · Rituales</span>
+          <span class="m-nombre">Rituales</span>
+          <span class="m-desc">Diario, semanal y mensual firmados.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA 6 · CIERRE -->
+    <div class="capa" data-color="violeta">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 6</span>
+          <span class="capa-name">Cierre</span>
+        </div>
+        <span class="capa-status">2 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Testamento cifrado y fin digno. Todo el ecosistema empaquetado, firmado y con cláusula de resurrección. ISO 22301.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="cierre/export-cifrado/">
+          <span class="m-num">6.1 · Export</span>
+          <span class="m-nombre">Export Cifrado</span>
+          <span class="m-desc">Paquete .legado AES-GCM-256.</span>
+        </a>
+        <a class="modulo-card" href="cierre/fin-digno/">
+          <span class="m-num">6.2 · Cierre</span>
+          <span class="m-nombre">Fin Digno</span>
+          <span class="m-desc">Carta final + cláusula de resurrección.</span>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- MOVIMIENTO                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="movimiento">
     <div class="section-head">
       <h2>Movimiento</h2>
@@ -592,9 +950,12 @@
 
   <div class="divider"></div>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PROYECTOS ORIGINALES                                        -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="projects">
     <div class="section-head">
-      <h2>Proyectos</h2>
+      <h2>Prototipos KRONOS</h2>
       <span class="count">09 · Activos</span>
     </div>
 
@@ -695,6 +1056,9 @@
 
   <div class="divider"></div>
 
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CTA                                                         -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="cta" id="contact">
     <h2>Acta fundacional</h2>
     <p>
@@ -702,15 +1066,17 @@
     </p>
     <div class="btns">
       <a class="btn solid" href="https://www.safecreative.org/certificate/2607086319439" target="_blank" rel="noopener">Ver certificado</a>
-      <a class="btn ghost" href="movimiento/">Explorar el Movimiento</a>
+      <a class="btn ghost" href="#legado">Explorar el Legado</a>
+      <a class="btn ghost" href="movimiento/">Movimiento</a>
       <a class="btn ghost" href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener">Repositorio</a>
     </div>
   </section>
 
   <footer>
     <span>© 2026 Marco Antonio Rojas Valdovinos</span>
-    <span class="sig">Kronos Protocol · v1.0</span>
+    <span class="sig">Kronos Protocol · v1.0 · Legado Humano–IA</span>
     <span>
+      <a href="#legado">Legado</a> ·
       <a href="movimiento/">Movimiento</a> ·
       <a href="projects/boveda/terminos.html">Términos</a> ·
       <a href="projects/boveda/privacidad.html">Privacidad</a> ·
