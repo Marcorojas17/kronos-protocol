@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// FILOSOFÍA · Legado Humano–IA · v1.0.3
-// Black Card Amatista + persistencia + descarga HTML/JSON
+// FILOSOFÍA · Legado Humano–IA · v1.0.4
+// Black Card Amatista + Opción B (vista limpia al recargar)
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -98,14 +98,12 @@ function dibujarHuellaVisual(canvas, hashHex) {
   return canvas.toDataURL('image/png');
 }
 
-// ─── BLACK CARD AMATISTA (diferente a Génesis) ──────────────
+// ─── BLACK CARD AMATISTA ────────────────────────────────────
 function generarCertificadoHTML(cert, huellaDataUrl) {
   const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
     dateStyle: 'long', timeStyle: 'short'
   });
   const idCorto = 'KRMV-FIL-' + cert.payload_hash.slice(0, 10).toUpperCase();
-
-  // Lista de tesis adoptadas
   const tesisTexto = (cert.tesis_adoptadas || []).join(', ');
 
   return `<!DOCTYPE html>
@@ -143,7 +141,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
       radial-gradient(circle at 85% 75%, rgba(196, 181, 253, 0.08) 0%, transparent 45%),
       radial-gradient(circle at 50% 50%, rgba(201, 164, 76, 0.05) 0%, transparent 60%);
   }
-
   .filosofia-card {
     width: 460px;
     max-width: 100%;
@@ -178,7 +175,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     width: 100%; height: 2px;
     background: linear-gradient(90deg, transparent, var(--violeta), var(--violeta-l), var(--violeta), transparent);
   }
-
   .card-header {
     border-bottom: 1px solid rgba(167, 139, 250, 0.15);
     padding-bottom: 20px;
@@ -201,7 +197,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     margin-top: 6px;
     text-transform: uppercase;
   }
-
   .dictamen {
     text-align: center;
     margin: 20px 0 28px;
@@ -228,7 +223,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     70%  { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
-
   .data-label {
     font-size: 8px;
     color: rgba(196, 181, 253, 0.55);
@@ -256,7 +250,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     letter-spacing: 0.5px;
     font-style: italic;
   }
-
   .tesis-adoptadas {
     margin: 20px 0;
     padding: 16px 20px;
@@ -278,7 +271,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     color: var(--violeta-xl);
     letter-spacing: 0.5px;
   }
-
   .reflexion-box {
     margin: 22px 0;
     padding: 20px 22px;
@@ -314,7 +306,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     color: var(--text);
     text-align: left;
   }
-
   .huella-wrap {
     text-align: center;
     margin: 22px 0;
@@ -336,7 +327,6 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     margin-top: 10px;
     text-align: center;
   }
-
   .btn-print {
     margin-top: 26px;
     width: 100%;
@@ -353,11 +343,7 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     font-family: 'Inter', sans-serif;
     border-radius: 4px;
   }
-  .btn-print:hover {
-    background: var(--violeta-l);
-    color: #0d0518;
-  }
-
+  .btn-print:hover { background: var(--violeta-l); color: #0d0518; }
   .footer-tx {
     font-size: 8px;
     color: rgba(196, 181, 253, 0.4);
@@ -366,16 +352,10 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
     letter-spacing: 1px;
     line-height: 1.7;
   }
-
   @media print {
     body { background: #fff; padding: 0; }
     .btn-print { display: none; }
-    .filosofia-card {
-      box-shadow: none;
-      border-color: #7C3AED;
-      background: #fff;
-      color: #000;
-    }
+    .filosofia-card { box-shadow: none; border-color: #7C3AED; background: #fff; color: #000; }
     .filosofia-card::before { display: none; }
     .logo-text { color: #7C3AED; }
     .data-value { color: #333; }
@@ -391,63 +371,48 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
 </style>
 </head>
 <body>
-
 <div class="filosofia-card">
   <div class="card-header">
     <div class="logo-text">KRONOS</div>
     <div class="logo-sub">Legado Humano–IA · Filosofía</div>
   </div>
-
   <div class="dictamen">
     <span class="dictamen-status">
       <span class="pulse-dot"></span> POSTURA FIRMADA · VÁLIDA
     </span>
   </div>
-
   <div class="data-label">ID de protocolo</div>
   <div class="data-value gold">${idCorto}</div>
-
   <div class="data-label">Firmante</div>
   <div class="data-value serif">${cert.firmante}</div>
-
   <div class="data-label">Co-autoría IA</div>
   <div class="data-value">${cert.coautoria_ia}</div>
-
   <div class="data-label">Fecha de firma</div>
   <div class="data-value">${fecha}</div>
-
   <div class="tesis-adoptadas">
     <span class="label">Tesis adoptadas</span>
     <div class="lista">${tesisTexto}</div>
   </div>
-
   <div class="reflexion-box">
     <span class="label">Reflexión personal</span>
     <div class="texto">${cert.reflexion}</div>
   </div>
-
   <div class="huella-wrap">
     <img src="${huellaDataUrl}" alt="Huella visual del hash">
     <span class="huella-label">Huella visual · derivada del hash</span>
   </div>
-
   <div class="data-label">Hash SHA-256</div>
   <div class="data-value small">${cert.payload_hash}</div>
-
   <div class="data-label">Firma Ed25519</div>
   <div class="data-value small">${cert.firma_ed25519}</div>
-
   <div class="data-label">Clave pública</div>
   <div class="data-value small">${cert.clave_publica}</div>
-
   <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
-
   <div class="footer-tx">
     Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>
     © 2026 ${cert.firmante} + ${cert.coautoria_ia} · Documento generado localmente
   </div>
 </div>
-
 </body>
 </html>`;
 }
@@ -457,7 +422,6 @@ function descargarCertificado(cert) {
   const canvas = document.createElement('canvas');
   const huellaUrl = dibujarHuellaVisual(canvas, cert.payload_hash);
 
-  // 1. HTML
   const htmlContenido = generarCertificadoHTML(cert, huellaUrl);
   const blobHTML = new Blob([htmlContenido], { type: 'text/html;charset=utf-8' });
   const urlHTML = URL.createObjectURL(blobHTML);
@@ -469,7 +433,6 @@ function descargarCertificado(cert) {
   document.body.removeChild(aHTML);
   setTimeout(() => URL.revokeObjectURL(urlHTML), 2000);
 
-  // 2. JSON
   const jsonSalida = {
     ...cert,
     huella_visual: 'Patrón derivado del hash · no es QR escaneable',
@@ -528,18 +491,26 @@ if (checks) {
   console.log('[filosofía] checkboxes generados:', checks.children.length);
 }
 
-// ── Restaurar último certificado al cargar ──────────────────
+// ═════════════════════════════════════════════════════════════
+// OPCIÓN B · Al cargar: NO restaurar vista. Página limpia.
+// El certificado se guarda en memoria para poder descargarlo,
+// pero NO se muestra en pantalla al recargar.
+// ═════════════════════════════════════════════════════════════
 (async function initLimpio() {
+  // Ocultar resultado
+  if (resultado) resultado.hidden = true;
+  if (hashOut) hashOut.textContent = '—';
+  if (firmaOut) firmaOut.textContent = '—';
+  if (pubOut) pubOut.textContent = '—';
+
+  // Cargar certificado previo SOLO en memoria (no mostrar)
   try {
     const raw = localStorage.getItem('legado_filosofia_last');
     if (raw) {
       const cert = JSON.parse(raw);
       if (cert && cert.payload_hash) {
-        if (hashOut) hashOut.textContent = cert.payload_hash;
-        if (firmaOut) firmaOut.textContent = cert.firma_ed25519;
-        if (pubOut) pubOut.textContent = cert.clave_publica;
-        if (resultado) resultado.hidden = false;
         certificadoActual = cert;
+        console.log('[filosofía] certificado previo detectado (no mostrado en pantalla)');
       }
     }
   } catch (e) { /* silencio */ }
@@ -613,7 +584,7 @@ if (form) {
       resultado.hidden = false;
 
       feedback.className = 'feedback success';
-      feedback.innerHTML = '<strong>✓ Postura firmada.</strong> Descarga el certificado Black Card + JSON.';
+      feedback.innerHTML = '<strong>✓ Postura firmada.</strong> Descarga el certificado Black Card + JSON. Al recargar, la página se limpiará.';
     } catch (err) {
       feedback.className = 'feedback error';
       feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
