@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Demo interactiva (4 pasos)** → `index.html`.
+3. **Panel de resultados + lista** → `index.html`.
+4. **Esquema Dexie** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 20KB gzip (con Dexie CDN) |
+| **Humano** | Guardar, listar, filtrar y exportar en < 10 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define esquema · IA implementa migraciones |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 1.2 establece la capa de persistencia estructurada versionada del ecosistema. Sobre el Cripto Core, añade índices, migraciones y export/import. Cero backend.
+
+**3 lecciones:**
+1. Dexie.js sobre IndexedDB da consultas indexadas sin sacrificar local-first.
+2. Las migraciones versionadas protegen los datos ante cambios de esquema.
+3. Separar Cripto Core (cripto) de Storage Dexie (persistencia) mantiene SOLID.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Probar guardar, recargar, listar y exportar.
+3. Verificar que la migración v1→v2 se registra en la tabla `migraciones`.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Índice full-text sobre payload descifrado en memoria (búsqueda local).
+2. Compresión LZ antes de cifrar para payloads grandes.
+3. Sync manual vía FS Access API (elegir carpeta, guardar `.lhi`).
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** Dexie CDN caído → **Mitigación:** descargar Dexie y servirlo localmente (self-hosted).
+2. **Riesgo:** índices visibles revelan metadatos → **Mitigación:** hashear `tipo` con sal fija antes de indexar.
+
+**1 idea audaz:**
+Convertir Storage Dexie en un mini-motor de sincronización P2P por WebRTC para compartir registros cifrados entre dispositivos sin servidor.
+
+**1 conexión con otro módulo:**
+Todos los módulos de Capa 2–6 usarán `StorageDexie` para persistir sus datos estructurados. Es la capa de datos real del ecosistema.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 1.2 · STORAGE DEXIE · v1.0                      ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Avanza la Capa 1 (Cimiento) al 66%                     ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
