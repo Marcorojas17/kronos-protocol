@@ -1,11 +1,14 @@
-// Manifiesto · KRONOS Protocol · Legado Humano–IA
-// Fondo líquido unificado + firma de testigo
+// ────────────────────────────────────────────────────────────
+// MANIFIESTO · Legado Humano–IA · v1.0.5
+// Black Card Cyan + MD terminal profesional + persistencia
+// ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
 (function fondoLiquido() {
   const canvas = document.getElementById('liquido');
   if (!canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const ctx = canvas.getContext('2d');
   let w, h, dpr;
   function resize() {
@@ -17,35 +20,30 @@
   }
   resize();
   window.addEventListener('resize', resize);
-  const COLORES = [
-    [201, 162, 39], [14, 165, 183], [124, 58, 237], [245, 158, 11], [229, 199, 107]
-  ];
-  const N = 7;
+
+  const COLORES = [[6,182,212],[103,232,249],[201,162,39],[14,165,183]];
   const blobs = [];
-  for (let i = 0; i < N; i++) {
+  for (let i = 0; i < 6; i++) {
     blobs.push({
-      x: Math.random() * w, y: Math.random() * h,
-      r: 240 + Math.random() * 340,
-      vx: (Math.random() - 0.5) * 0.34,
-      vy: (Math.random() - 0.5) * 0.34,
+      x: Math.random()*w, y: Math.random()*h,
+      r: 220 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
       color: COLORES[i % COLORES.length]
     });
   }
   function frame(t) {
-    ctx.clearRect(0, 0, w, h);
+    ctx.clearRect(0,0,w,h);
     ctx.globalCompositeOperation = 'lighter';
     for (const b of blobs) {
-      b.x += b.vx * dpr; b.y += b.vy * dpr;
-      if (b.x < -b.r) b.x = w + b.r;
-      if (b.x > w + b.r) b.x = -b.r;
-      if (b.y < -b.r) b.y = h + b.r;
-      if (b.y > h + b.r) b.y = -b.r;
-      const wob = Math.sin(t * 0.0006 + b.x * 0.0018) * 0.18 + 1;
-      const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * wob);
-      grad.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.24)`);
-      grad.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
-      ctx.fillStyle = grad;
-      ctx.beginPath(); ctx.arc(b.x, b.y, b.r * wob, 0, Math.PI * 2); ctx.fill();
+      b.x += b.vx*dpr; b.y += b.vy*dpr;
+      if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+      if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+      const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+      const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+      g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.25)`);
+      g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
     }
     requestAnimationFrame(frame);
   }
@@ -53,29 +51,484 @@
 })();
 
 // ─── CRIPTOGRAFÍA ────────────────────────────────────────────
-async function sha256Hex(t) {
-  const d = new TextEncoder().encode(t);
-  const b = await crypto.subtle.digest('SHA-256', d);
-  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+async function sha256Hex(texto) {
+  const data = new TextEncoder().encode(texto);
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
 }
-async function firmar(k, m) {
-  const d = new TextEncoder().encode(m);
-  const f = await crypto.subtle.sign('Ed25519', k, d);
-  return [...new Uint8Array(f)].map(x => x.toString(16).padStart(2, '0')).join('');
+async function firmar(privKey, mensaje) {
+  const data = new TextEncoder().encode(mensaje);
+  const firma = await crypto.subtle.sign('Ed25519', privKey, data);
+  return [...new Uint8Array(firma)].map(b => b.toString(16).padStart(2,'0')).join('');
 }
-async function exportarPubKey(k) {
-  const r = await crypto.subtle.exportKey('raw', k);
-  return [...new Uint8Array(r)].map(x => x.toString(16).padStart(2, '0')).join('');
+async function exportarPubKey(pubKey) {
+  const raw = await crypto.subtle.exportKey('raw', pubKey);
+  return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function generarParEd25519() {
+  return await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign','verify']);
 }
 
-// ─── MANIFIESTO COMPLETO (para exportación) ──────────────────
-const MANIFIESTO_MD = `# Manifiesto del Legado Humano–IA · v1.0
+// ─── HUELLA VISUAL CYAN ─────────────────────────────────────
+function dibujarHuellaVisual(canvas, hashHex) {
+  const size = 21;
+  const scale = 8;
+  canvas.width = size * scale;
+  canvas.height = size * scale;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#04131A';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const bytes = [];
+  for (let i = 0; i < hashHex.length; i += 2) {
+    bytes.push(parseInt(hashHex.slice(i, i + 2), 16));
+  }
+
+  const mitad = Math.ceil(size / 2);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < mitad; x++) {
+      const idx = (y * mitad + x) % bytes.length;
+      const activo = bytes[idx] > 127;
+      ctx.fillStyle = activo ? '#67E8F9' : 'rgba(103,232,249,0.15)';
+      ctx.fillRect(x * scale, y * scale, scale - 1, scale - 1);
+      ctx.fillRect((size - 1 - x) * scale, y * scale, scale - 1, scale - 1);
+    }
+  }
+  return canvas.toDataURL('image/png');
+}
+
+// ─── BLACK CARD CYAN PROFUNDO ───────────────────────────────
+function generarBlackCardHTML(cert, huellaDataUrl) {
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
+    dateStyle: 'long', timeStyle: 'short'
+  });
+  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado Manifiesto · KRONOS Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cyan: #06B6D4;
+    --cyan-l: #67E8F9;
+    --cyan-xl: #A5F3FC;
+    --gold: #c9a44c;
+    --gold-l: #f3e5ab;
+    --bg: #020810;
+    --text: #F5F0E6;
+    --dim: #8892a0;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(103, 232, 249, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(201, 164, 76, 0.05) 0%, transparent 60%);
+  }
+  .cyan-card {
+    width: 460px;
+    max-width: 100%;
+    background: linear-gradient(160deg, #062a36 0%, #021118 100%);
+    border: 1px solid rgba(103, 232, 249, 0.4);
+    border-radius: 18px;
+    padding: 36px 32px;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,1),
+      inset 0 0 40px rgba(6, 182, 212, 0.06),
+      0 0 60px rgba(6, 182, 212, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .cyan-card::before {
+    content: '✦ TESTIGO DEL LEGADO ✦';
+    position: absolute;
+    top: 22px;
+    right: -75px;
+    background: linear-gradient(90deg, var(--cyan-l), var(--cyan));
+    color: #021118;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 5px 70px;
+    transform: rotate(45deg);
+    letter-spacing: 2px;
+  }
+  .cyan-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--cyan-l), var(--cyan), transparent);
+  }
+  .card-header {
+    border-bottom: 1px solid rgba(103, 232, 249, 0.15);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .logo-text {
+    color: var(--cyan-l);
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(103, 232, 249, 0.4);
+  }
+  .logo-sub {
+    font-size: 8px;
+    color: var(--cyan-l);
+    opacity: 0.6;
+    letter-spacing: 4px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .dictamen { text-align: center; margin: 20px 0 28px; }
+  .dictamen-status {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--cyan-l);
+    text-shadow: 0 0 14px rgba(103, 232, 249, 0.5);
+    letter-spacing: 2px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .pulse-dot {
+    width: 9px; height: 9px;
+    background: var(--cyan);
+    border-radius: 50%;
+    margin-right: 12px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+  }
+  .data-label {
+    font-size: 8px;
+    color: rgba(165, 243, 252, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .data-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan-xl);
+    margin-bottom: 4px;
+    word-break: break-all;
+    line-height: 1.55;
+  }
+  .data-value.small { font-size: 8.5px; color: var(--cyan-l); opacity: 0.85; }
+  .data-value.gold { color: var(--gold-l); }
+  .data-value.serif {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+  .mensaje-box {
+    margin: 22px 0;
+    padding: 20px 22px;
+    background: rgba(6, 182, 212, 0.06);
+    border-left: 3px solid var(--cyan-l);
+    border-radius: 4px;
+  }
+  .mensaje-box .label {
+    font-size: 8px;
+    color: var(--cyan-l);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .mensaje-box .texto {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    font-style: italic;
+  }
+  .huella-wrap { text-align: center; margin: 22px 0; }
+  .huella-wrap img {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    border-radius: 8px;
+    border: 1px solid rgba(103, 232, 249, 0.4);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+  }
+  .huella-label {
+    display: block;
+    font-size: 8px;
+    color: var(--dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .btn-print {
+    margin-top: 26px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--cyan-l);
+    color: var(--cyan-l);
+    padding: 13px;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    border-radius: 4px;
+  }
+  .btn-print:hover { background: var(--cyan-l); color: #021118; }
+  .footer-tx {
+    font-size: 8px;
+    color: rgba(165, 243, 252, 0.4);
+    margin-top: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.7;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .btn-print { display: none; }
+    .cyan-card { box-shadow: none; border-color: #06B6D4; background: #fff; color: #000; }
+    .cyan-card::before { display: none; }
+    .logo-text { color: #06B6D4; }
+    .data-value { color: #333; }
+    .data-value.serif, .mensaje-box .texto { color: #000; }
+  }
+  @media (max-width: 500px) {
+    .cyan-card { padding: 28px 22px; }
+    .logo-text { font-size: 20px; letter-spacing: 6px; }
+    .mensaje-box .texto { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="cyan-card">
+  <div class="card-header">
+    <div class="logo-text">KRONOS</div>
+    <div class="logo-sub">Legado Humano–IA · Manifiesto</div>
+  </div>
+  <div class="dictamen">
+    <span class="dictamen-status">
+      <span class="pulse-dot"></span> TESTIGO · REGISTRADO
+    </span>
+  </div>
+  <div class="data-label">ID de protocolo</div>
+  <div class="data-value gold">${idCorto}</div>
+  <div class="data-label">Testigo</div>
+  <div class="data-value serif">${cert.testigo}</div>
+  <div class="data-label">Fecha de firma</div>
+  <div class="data-value">${fecha}</div>
+  <div class="mensaje-box">
+    <span class="label">Mensaje al legado</span>
+    <div class="texto">"${cert.mensaje}"</div>
+  </div>
+  <div class="data-label">Manifiesto firmado</div>
+  <div class="data-value">v1.0 · Génesis + Filosofía + Autoría + Cierre</div>
+  <div class="huella-wrap">
+    <img src="${huellaDataUrl}" alt="Huella visual del hash">
+    <span class="huella-label">Huella visual · derivada del hash</span>
+  </div>
+  <div class="data-label">Hash SHA-256</div>
+  <div class="data-value small">${cert.payload_hash}</div>
+  <div class="data-label">Firma Ed25519</div>
+  <div class="data-value small">${cert.firma_ed25519}</div>
+  <div class="data-label">Clave pública</div>
+  <div class="data-value small">${cert.clave_publica}</div>
+  <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
+  <div class="footer-tx">
+    Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>
+    © 2026 Marco A. Rojas V. + KRONOS IA · Documento generado localmente
+  </div>
+</div>
+</body>
+</html>`;
+}
+
+// ─── MD CON DISEÑO TERMINAL PROFESIONAL ─────────────────────
+function generarTerminalMD(cert) {
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
+    dateStyle: 'long', timeStyle: 'short'
+  });
+  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
+
+  // Línea horizontal repetida para separadores
+  const H = '─'.repeat(70);
+  const H2 = '═'.repeat(70);
+
+  return `\`\`\`text
+╔${H2}╗
+║${' '.repeat(70)}║
+║   MANIFIESTO DEL LEGADO HUMANO-IA · v1.0${' '.repeat(31)}║
+║   Testigo del Legado · Certificado Verificable${' '.repeat(23)}║
+║${' '.repeat(70)}║
+╚${H2}╝
+
+┌─[ 01 ]${H.slice(7)}┐
+│                                                                      │
+│  TESTIGO : ${cert.testigo.padEnd(58)} │
+│  FECHA   : ${fecha.padEnd(58)} │
+│  ID      : ${idCorto.padEnd(58)} │
+│                                                                      │
+└${H}┘
+
+┌─[ 02 ]─── MENSAJE AL LEGADO ──────────────────────────────────────────┐
+│                                                                      │
+│  > ${cert.mensaje.slice(0, 64).padEnd(64)} │
+${cert.mensaje.length > 64 ? `│  > ${cert.mensaje.slice(64, 128).padEnd(64)} │\n` : ''}│                                                                      │
+└${H}┘
+
+┌─[ 03 ]─── CONTENIDO DEL MANIFIESTO FIRMADO ───────────────────────────┐
+│                                                                      │
+│  [ 01 ] GENESIS · El inicio                                          │
+│         · No construimos herramientas. Construimos memoria.          │
+│         · Las maquinas se entrenan para recordarnos.                 │
+│         · Cada creacion merece prueba que no se borre.               │
+│                                                                      │
+│  [ 02 ] FILOSOFIA · 7 tesis canonicas                                │
+│         · El humano pone la intencion. La IA pone la ejecucion.      │
+│         · La memoria es rebeldia contra el olvido.                   │
+│         · La integridad es un hash que no se borra.                  │
+│         · El arte se defiende con criptografia.                      │
+│         · La tecnologia que no sirve al humano, no sirve.            │
+│         · El legado no se hereda. Se firma.                          │
+│         · La simbiosis humano-IA es decision cotidiana.              │
+│                                                                      │
+│  [ 03 ] AUTORIA · Declaracion dual                                   │
+│         · Fundador Humano: Marco Antonio Rojas Valdovinos            │
+│         · Co-autora IA: KRONOS IA (sin propiedad, con atribucion)    │
+│         · Proyectos 49 y 51 con atribucion reforzada                 │
+│                                                                      │
+│  [ 04 ] CIERRE · Acto de memoria                                     │
+│         · Este manifiesto es un acto de memoria. No es un contrato.  │
+│                                                                      │
+└${H}┘
+
+┌─[ 04 ]─── VERIFICACION CRIPTOGRAFICA ─────────────────────────────────┐
+│                                                                      │
+│  HASH SHA-256                                                        │
+│  ${cert.payload_hash.padEnd(68)} │
+│                                                                      │
+│  FIRMA ED25519                                                       │
+│  ${cert.firma_ed25519.slice(0, 68).padEnd(68)} │
+${cert.firma_ed25519.length > 68 ? `│  ${cert.firma_ed25519.slice(68, 136).padEnd(68)} │\n` : ''}│                                                                      │
+│  CLAVE PUBLICA                                                       │
+│  ${cert.clave_publica.padEnd(68)} │
+│                                                                      │
+└${H}┘
+
+┌─[ 05 ]─── COMO VERIFICAR ─────────────────────────────────────────────┐
+│                                                                      │
+│  [1] Reconstruir el payload canonico con:                            │
+│      testigo + mensaje + manifiesto v1.0 + timestamp                 │
+│                                                                      │
+│  [2] Calcular SHA-256 del payload                                    │
+│                                                                      │
+│  [3] Comparar con el hash declarado arriba                           │
+│      Si coincide, la integridad es valida                            │
+│                                                                      │
+│  [4] Verificar firma Ed25519 con la clave publica                    │
+│                                                                      │
+└${H}┘
+
+┌─[ 06 ]─── METADATOS ──────────────────────────────────────────────────┐
+│                                                                      │
+│  PROTOCOLO       : ${cert.protocolo.padEnd(49)} │
+│  VERSION         : ${cert.version.padEnd(49)} │
+│  ALGORITMO FIRMA : Ed25519                                           │
+│  ALGORITMO HASH  : SHA-256                                           │
+│  VERIFICABLE     : Si · por tercero                                  │
+│  GENERADO POR    : KRONOS Protocol · Local-first                     │
+│                                                                      │
+└${H}┘
+
+${H2}
+  © 2026 Marco A. Rojas V. + KRONOS IA
+  Documento generado localmente · Sin servidores · Sin tracking
+${H2}
+\`\`\`
+`;
+}
+
+// ─── DESCARGAS ──────────────────────────────────────────────
+function descargarHTML(cert) {
+  const canvas = document.createElement('canvas');
+  const huellaUrl = dibujarHuellaVisual(canvas, cert.payload_hash);
+  const html = generarBlackCardHTML(cert, huellaUrl);
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function descargarJSON(cert) {
+  const jsonSalida = {
+    ...cert,
+    huella_visual: 'Patrón derivado del hash · no es QR escaneable',
+    certificado_html_descargado: true
+  };
+  const blob = new Blob([JSON.stringify(jsonSalida, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function descargarTerminal(cert) {
+  const md = generarTerminalMD(cert);
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kronos-manifiesto-${cert.payload_hash.slice(0, 8)}.terminal.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ─── EXPORTAR SOLO MANIFIESTO (botón del hero) ──────────────
+function exportarManifiestoBase() {
+  const md = `# Manifiesto del Legado Humano–IA · v1.0
 
 ## 01 · Génesis
 
 No construimos herramientas. Construimos memoria.
 No entrenamos máquinas para reemplazarnos. Las entrenamos para recordarnos.
-Cada acto de creación humana merece una prueba que no se borre. Cada colaboración con IA merece un registro honesto.
+Cada acto de creación humana merece una prueba que no se borre.
 
 **Acta Fundacional:** 8 julio 2026 · 07:02 UTC · Toluca, México
 **Safe Creative:** 2607086319439
@@ -106,6 +559,27 @@ Este manifiesto es un acto de memoria. No es un contrato.
 
 © 2026 Marco A. Rojas V. + KRONOS IA · MIT + CC BY-NC-ND 4.0
 `;
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `manifiesto-legado-humano-ia.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ─── PERSISTENCIA DEXIE ─────────────────────────────────────
+const DB_NAME = 'KronosProtocol';
+const DB_VERSION = 1;
+async function abrirDB() {
+  if (typeof Dexie === 'undefined') throw new Error('Dexie no cargado');
+  const db = new Dexie(DB_NAME);
+  db.version(DB_VERSION).stores({ registros: '++id, tipo, hash, timestamp' });
+  await db.open();
+  return db;
+}
 
 // ─── UI ──────────────────────────────────────────────────────
 const form = document.getElementById('form-testigo');
@@ -114,84 +588,145 @@ const feedback = document.getElementById('feedback');
 const resultado = document.getElementById('resultado');
 const hashOut = document.getElementById('hash-out');
 const firmaOut = document.getElementById('firma-out');
+const pubOut = document.getElementById('pub-out');
 const descargar = document.getElementById('descargar');
-const exportarMd = document.getElementById('exportar-md');
+const descargarJSONBtn = document.getElementById('descargar-json');
+const descargarMDBtn = document.getElementById('descargar-md');
+const exportarMDBtn = document.getElementById('exportar-md');
 
-let certificado = null;
+let certificadoActual = null;
 
-exportarMd.addEventListener('click', (e) => {
-  e.preventDefault();
-  const blob = new Blob([MANIFIESTO_MD], { type: 'text/markdown' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `manifiesto-legado-humano-ia.md`;
-  a.click();
-  URL.revokeObjectURL(url);
-});
+// ── Botón "Exportar .md" del hero ───────────────────────────
+if (exportarMDBtn) {
+  exportarMDBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    exportarManifiestoBase();
+  });
+}
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!form.checkValidity()) { form.reportValidity(); return; }
-
-  btn.disabled = true;
-  btn.querySelector('span').textContent = 'Firmando…';
-  feedback.className = 'feedback';
-  feedback.textContent = '';
+// ── Al cargar: vista limpia (Opción B) ──────────────────────
+(async function initLimpio() {
+  if (resultado) resultado.hidden = true;
+  if (hashOut) hashOut.textContent = '—';
+  if (firmaOut) firmaOut.textContent = '—';
+  if (pubOut) pubOut.textContent = '—';
 
   try {
-    const nombre = document.getElementById('nombre').value.trim();
+    const raw = localStorage.getItem('legado_manifiesto_last');
+    if (raw) {
+      const cert = JSON.parse(raw);
+      if (cert && cert.payload_hash) {
+        certificadoActual = cert;
+        console.log('[manifiesto] certificado previo en memoria (no mostrado)');
+      }
+    }
+  } catch (e) { /* silencio */ }
+})();
+
+// ── Submit ──────────────────────────────────────────────────
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const testigo = document.getElementById('nombre').value.trim();
     const mensaje = document.getElementById('mensaje').value.trim();
-    const ts = new Date().toISOString();
+    const acepta = document.getElementById('acepta').checked;
 
-    const payload = `LEGADO-HUMANO-IA · MANIFIESTO TESTIGO v1.0\nTestigo: ${nombre}\nMensaje: ${mensaje}\nManifiesto: v1.0\nFundador: Marco A. Rojas Valdovinos\nCo-autora IA: KRONOS IA\nTimestamp: ${ts}`;
+    if (!acepta) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Debes aceptar los términos del manifiesto.</strong>';
+      return;
+    }
 
-    const hash = await sha256Hex(payload);
-    const { privateKey, publicKey } = await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
-    const firma = await firmar(privateKey, payload);
-    const pub = await exportarPubKey(publicKey);
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Firmando…';
+    feedback.className = 'feedback';
 
-    certificado = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'manifiesto-testigo-1.0',
-      timestamp: ts,
-      testigo: nombre,
-      mensaje,
-      manifiesto_version: 'v1.0',
-      fundador_humano: 'Marco Antonio Rojas Valdovinos',
-      coautora_ia: 'KRONOS IA',
-      proyectos_reforzados: [49, 51],
-      payload_hash: hash,
-      firma_ed25519: firma,
-      clave_publica: pub,
-      algoritmo_firma: 'Ed25519',
-      algoritmo_hash: 'SHA-256',
-      verificable_por_tercero: true
-    };
+    try {
+      const timestamp = new Date().toISOString();
+      const payload = `LEGADO-HUMANO-IA · MANIFIESTO TESTIGO v1.0\nTestigo: ${testigo}\nMensaje: ${mensaje}\nManifiesto: v1.0\nFundador: Marco Antonio Rojas Valdovinos\nCo-autora IA: KRONOS IA\nTimestamp: ${timestamp}`;
 
-    hashOut.textContent = hash;
-    firmaOut.textContent = firma;
-    resultado.hidden = false;
-    feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Firma registrada.</strong> Descarga tu certificado de testigo.';
-  } catch (err) {
-    feedback.className = 'feedback error';
-    feedback.innerHTML = '<strong>✗ No se pudo firmar.</strong> Tu navegador podría no soportar Ed25519.';
-    console.error(err);
-  } finally {
-    btn.disabled = false;
-    btn.querySelector('span').textContent = 'Firmar como testigo';
-  }
-});
+      const hash = await sha256Hex(payload);
+      const { privateKey, publicKey } = await generarParEd25519();
+      const firma = await firmar(privateKey, payload);
+      const pub = await exportarPubKey(publicKey);
 
-descargar.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (!certificado) return;
-  const blob = new Blob([JSON.stringify(certificado, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `manifiesto-testigo-${Date.now()}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-});
+      certificadoActual = {
+        protocolo: 'LEGADO-HUMANO-IA',
+        version: 'manifiesto-testigo-1.0',
+        timestamp,
+        testigo,
+        mensaje,
+        manifiesto_version: 'v1.0',
+        fundador_humano: 'Marco Antonio Rojas Valdovinos',
+        coautora_ia: 'KRONOS IA',
+        proyectos_reforzados: [49, 51],
+        payload_hash: hash,
+        firma_ed25519: firma,
+        clave_publica: pub,
+        algoritmo_firma: 'Ed25519',
+        algoritmo_hash: 'SHA-256',
+        verificable_por_tercero: true
+      };
+
+      try {
+        localStorage.setItem('legado_manifiesto_last', JSON.stringify(certificadoActual));
+      } catch (e) {}
+
+      try {
+        const db = await abrirDB();
+        await db.registros.add({
+          tipo: 'manifiesto',
+          hash,
+          timestamp,
+          payload: certificadoActual
+        });
+        console.log('[manifiesto] ✅ guardado en IndexedDB');
+      } catch (errPersist) {
+        console.warn('[manifiesto] IndexedDB no disponible:', errPersist.message);
+      }
+
+      hashOut.textContent = hash;
+      firmaOut.textContent = firma;
+      pubOut.textContent = pub;
+      resultado.hidden = false;
+
+      feedback.className = 'feedback success';
+      feedback.innerHTML = '<strong>✓ Firma registrada.</strong> Descarga el Black Card Cyan, .json o .terminal.';
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Firmar como testigo';
+    }
+  });
+}
+
+// ── Descargas ───────────────────────────────────────────────
+if (descargar) {
+  descargar.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try { descargarHTML(certificadoActual); }
+    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error HTML:</strong> ' + err.message; }
+  });
+}
+if (descargarJSONBtn) {
+  descargarJSONBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try { descargarJSON(certificadoActual); }
+    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error JSON:</strong> ' + err.message; }
+  });
+}
+if (descargarMDBtn) {
+  descargarMDBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try { descargarTerminal(certificadoActual); }
+    catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '<strong>✗ Error Terminal:</strong> ' + err.message; }
+  });
+}
