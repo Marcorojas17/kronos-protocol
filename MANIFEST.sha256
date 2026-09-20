@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T00:14:37Z
+# Generado: 2026-09-20T00:15:15Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -79,6 +79,7 @@ cdac5c77e39a207a76a470c3971321b85009f4a015d4dc5b58e57bb9df1ec069  ./projects/evi
 e0641883d01d6622e1f018a69bbf0a444155ac525740b2659dd50eafbb06bb23  ./projects/evidence-os/index1.html
 a820b134622620addc9b26424703e663c8626b2a6a1fc09f7b8df76f4dfbd34b  ./projects/genesis-miner/README.md
 c26310e9f6db8f79c103b75e7bc79ae3f51a755a00b12a05f3c701f63f29341e  ./projects/genesis-miner/genesis_miner.py.
+ee3a6466eb02cf1aa215d7f163a18e3e99a4c93624f56bce3f295ca4a764a930  ./projects/genesis-miner/index.html
 da6a2fb2ad651812995a516ac170dd9fabc476cdff46ab58eee261022d37cae7  ./projects/k4-framework/README.md
 2230025bb4e8375864245f90a3c4c034752c773fca891696284f19263d1822d5  ./projects/kronos-vault/README.md
 af316ecccf1b10802b2ad3f993dfa4a36960b637ca5b37039ea400fca54b9be1  ./projects/kronos-vault/index.html
