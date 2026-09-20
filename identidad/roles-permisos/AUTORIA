@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Formulario + matriz interactiva** → `index.html`.
+3. **Certificado de gobernanza** → `index.html`.
+4. **Panel de acciones (descargar, copiar hash)** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 24KB gzip |
+| **Humano** | Matriz firmada + validaciones en < 30 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define jerarquía · IA valida · firma dual |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 2.3 cierra la Capa 2 con la matriz de gobernanza firmada. 5 roles, 20 permisos, política y caducidad. Vinculada criptográficamente al humano y a la IA co-autora.
+
+**3 lecciones:**
+1. La firma dual (humano + IA + gobernanza) crea un vínculo verificable robusto.
+2. La matriz interactiva editable permite experimentar sin romper la firma.
+3. La política "estricta" es la opción segura por defecto.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Ejecutar 2.1 → 2.2 → 2.3 en orden.
+3. Verificar la matriz con `roles.verificar(cert, humano, pactoIA)`.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Roles personalizados por el fundador (además de los 5 canónicos).
+2. Delegación temporal: permisos con expiración automática.
+3. Árbol de jerarquía visual tipo grafo (D3.js).
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** permisos excesivos al Colaborador → **Mitigación:** matriz por defecto conservadora.
+2. **Riesgo:** confusión entre rol y usuario → **Mitigación:** un usuario puede tener varios roles, separado en Capa 5 (Operación).
+
+**1 idea audaz:**
+Convertir la matriz en un contrato de gobernanza evolutivo: cada versión firmada se encadena a la anterior con hash chain, creando la historia completa del poder en el legado.
+
+**1 conexión con otro módulo:**
+Todos los módulos de Capa 3–6 verificarán permisos contra esta matriz antes de ejecutar operaciones sensibles.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 2.3 · ROLES Y PERMISOS · v1.0                   ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Cierra la Capa 2 (Identidad) al 100%                   ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
