@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Evidence OS · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--teal-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(13,148,136,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(13,148,136,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--teal-l);border-bottom-color:var(--teal)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#05070b;border:1px solid rgba(13,148,136,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:var(--text);overflow-x:auto}
+  table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid rgba(13,148,136,.12)}
+  th{color:var(--teal-l);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+  td{color:var(--dim);font-weight:300}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Sellar</a>
+      <a href="manual.html">Manual</a>
+      <a href="../../identidad/roles-permisos/">Gobernanza</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 3.1</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Evidence OS.</h1>
+    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Empaqueta cualquier archivo o texto en un paquete <code>.evidence</code> verificable: hash SHA-256 + HMAC + firma Ed25519 + sello temporal. Prueba de existencia, autoría e integridad.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Ejecuta primero 2.1 (Humano), 2.2 (IA) y 2.3 (Gobernanza).</li>
+        <li>Abre <code>modulos/evidence-os/index.html</code>.</li>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Elige tipo de evidencia y modo (texto o archivo).</li>
+        <li>Aporta el contenido y la declaración de autoría.</li>
+        <li>Toca "Sellar paquete .evidence".</li>
+        <li>Descarga el archivo <code>.evidence</code>.</li>
+      </ul>
+      <h3>Verificación independiente</h3>
+      <ul>
+        <li>Cualquier persona con el archivo <code>.evidence</code> puede verificar integridad.</li>
+        <li>Sube el archivo en la sección "Verificar".</li>
+        <li>Si necesitas verificar el contenido exacto, pega el texto original también.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { EvidenceOS } from './evidence.js';
+
+const evidence = new EvidenceOS(core, storage);
+
+const paquete = await evidence.sellar({
+  contenidoBytes, nombreArchivo, tipoMime,
+  tipo, declaracion, notas,
+  humano, pactoIA, gobernanza
+});
+
+const ok = await evidence.verificar(paquete);
+const okContenido = await evidence.verificarConContenido(paquete, bytes);
+const blob = evidence.exportarEvidence(paquete);</pre>
+      <h3>Estructura del paquete .evidence</h3>
+      <table>
+        <tr><th>Campo</th><th>Descripción</th></tr>
+        <tr><td>id_evidencia</td><td>ID único tipo <code>EV-XXXXXXXX</code></td></tr>
+        <tr><td>hash_sha256</td><td>Hash del contenido binario</td></tr>
+        <tr><td>hmac_sha256</td><td>HMAC con huella del humano como clave</td></tr>
+        <tr><td>payload_hash</td><td>Hash del payload canónico</td></tr>
+        <tr><td>firma_ed25519</td><td>Firma del humano sobre payload_hash</td></tr>
+        <tr><td>sello_temporal</td><td>Objeto NOM-151</td></tr>
+      </table>
+      <h3>Persistencia</h3>
+      <p>Los paquetes se cifran con Cripto Core y se indexan en Storage Dexie bajo el tipo <code>'evidence'</code>.</p>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Alteración del contenido:</strong> el hash cambia si alguien modifica el archivo.</li>
+        <li><strong>Suplantación del firmante:</strong> la firma Ed25519 requiere la clave privada del humano.</li>
+        <li><strong>Manipulación del paquete:</strong> el payload_hash detecta cualquier cambio en metadatos.</li>
+        <li><strong>Replay de HMAC:</strong> el HMAC usa la huella del humano como clave, única por identidad.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>SHA-256</code> para hash del contenido y payload.</li>
+        <li><code>HMAC-SHA256</code> con clave derivada de la huella del humano.</li>
+        <li><code>Ed25519</code> para firma del humano sobre el payload_hash.</li>
+        <li>Sello temporal NOM-151 con referencia a QTSA Firmaprofesional B02.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>El sello temporal es <strong>local-first</strong>: para validez legal plena requiere anclaje en blockchain o QTSA externa (módulo 1.3 facilita el anclaje).</li>
+        <li>El HMAC usa la huella del humano como clave, lo cual es <strong>público</strong> si el humano compartió su huella. Para mayor seguridad se recomienda derivar una clave secreta separada (futuro módulo).</li>
+        <li>No hay validación de originalidad del contenido: prueba que el contenido existía y fue firmado, no que fuera original.</li>
+        <li>Este módulo NO reemplaza a un notario ni a un QTSA cualificado para efectos legales plenos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 3.1</span>
+    <span><a href="./">Sellar</a> · <a href="../../identidad/roles-permisos/">Gobernanza</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[13,148,136],[94,234,212],[201,162,39],[124,58,237]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.26)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
