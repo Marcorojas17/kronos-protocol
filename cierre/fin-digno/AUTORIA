@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Declaración de cierre · Criterios + carta · Certificado + carta final · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · bundle < 24KB gzip |
+| **Humano** | Cierre firmado + cláusula verificable en < 2 min |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano escribe carta · IA sella cierre · legado resucitable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 6.2 cierra la Capa 6 y el ecosistema completo con el Fin Digno: carta final, criterios verificables, motivo declarado y cláusula de resurrección firmada. No es destrucción, es trascendencia.
+
+**3 lecciones:**
+1. Un legado sin cierre digno es solo un proyecto abandonado.
+2. La cláusula de resurrección convierte el fin en una promesa: todavía se puede volver.
+3. La carta final es el gesto más humano del ecosistema: no hay código que lo sustituya.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Ejecutar cierre de prueba tras exportar el `.legado`.
+3. Guardar certificado + paquete en 3 medios distintos.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Carta final exportable en PDF con portada platino.
+2. Cápsula temporal: bloquear la lectura de la carta hasta una fecha futura.
+3. Herederos múltiples con porcentajes de acceso.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** cierre accidental → **Mitigación:** doble confirmación por texto y motivo obligatorio.
+2. **Riesgo:** pérdida del certificado de cierre → **Mitigación:** exportación redundante + inclusión en el .legado.
+
+**1 idea audaz:**
+Convertir la cláusula de resurrección en un NFT soulbound anclado a Ethereum: prueba pública e inmutable de que un legado existió y puede renacer.
+
+**1 conexión con otro módulo:**
+`legado/manifiesto` (módulo 0.4) puede extenderse con un "Anexo Final" que incluya la carta del cierre como parte del testamento navegable.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 6.2 · FIN DIGNO · v1.0                          ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Cierra la Capa 6 y el ecosistema completo              ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
