@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T03:52:51Z
+# Generado: 2026-09-20T03:53:29Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -135,6 +135,7 @@ d4c48d0e874c97edb7ac208475804589e910d18522f35519b39099c2f998d569  ./orquestacion
 c5a7017724707422860fc76f0d67ba25128b17dae59612d5c7626d944517a5f8  ./orquestacion/event-bus/manual.html
 d9feda15e1d5716906c942cd9c558a83baab530e51d87ffd97c24654fdf1dac9  ./orquestacion/event-bus/styles.css
 8fe27884525de1069d6010cd9cd22ba4f3af225ba572f6ad8dd7e0be76793662  ./orquestacion/router-modulos/index.html
+fc0a44b1913740c9b3bff7ece3fc13f5a0d551835396bfc5cc088fc1dce1b558  ./orquestacion/router-modulos/styles.css
 07efb4aa3f557049e45f552375e2e05aec6ea02879032333f89a142728e57a73  ./projects/acta/README.md
 8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
 4d9839e925614e2daa972fe6ed91ffe77708760bd90c17b94835dd0149652f54  ./projects/bobeda/bobeda.html
