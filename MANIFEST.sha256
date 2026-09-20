@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T04:02:30Z
+# Generado: 2026-09-20T04:02:54Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -128,6 +128,7 @@ bad877813beb40416bfaae032d519a0989283ffcf9b1e7577d6f652983d09080  ./movimiento/i
 77159bbc9b2c00b1a0b0a7a31507823eabb7daa7f9028c10adcc83e880a34923  ./movimiento/manifiesto.md
 1dac044da629a8b26c52b19a246ec18de187de81a6afb5e3d7a2241690d1e050  ./movimiento/roadmap.md
 63a61a6e35a6a7ca52559b486e12b686fd32f2c09e90a53024ac1732cab3d54a  ./movimiento/solicitar_plaza.html
+bc69069b0c56344c680c150f7aa9f1c2748e4ae1f05dfee1515069921f007137  ./operacion/dashboard-salud/AUTORIA
 6bacfb76d09a9d38ecd9ee788779a13541fd5f30fb03ddc4a09269ad56137ce8  ./operacion/dashboard-salud/README.md
 567edb66e4101ea79da623a5bdb7c24f2ccf5b7dc1cd6271d147c05dcb295f56  ./operacion/dashboard-salud/dashboard.js
 eea4353ce342294b7389a15befb52d82aa08a74ec5fe7dcc543a15ef153476a9  ./operacion/dashboard-salud/index.html
