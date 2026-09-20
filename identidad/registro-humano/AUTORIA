@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Formulario de registro** → `index.html`.
+3. **Pasaporte digital** → `index.html`.
+4. **Panel de acciones (descargar, copiar)** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 22KB gzip |
+| **Humano** | Identidad firmada + pasaporte en < 30 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano declara · IA firma y estructura · huella verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 2.1 abre la Capa 2 con la identidad humana firmada. Emite un pasaporte digital con huella criptográfica única de 64 caracteres, persistido cifrado y verificable por terceros.
+
+**3 lecciones:**
+1. Una huella derivada de clave pública + hash es estable y no revela datos personales.
+2. El payload canónico garantiza reproducibilidad en cualquier verificación futura.
+3. Separar identidad (2.1) de permisos (2.3) mantiene SOLID.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Sellar identidad de prueba y descargar pasaporte.
+3. Verificar el pasaporte con `identidad.verificar(cert)`.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Avatar generativo a partir de la huella (identicon SVG).
+2. QR exportable con la huella para verificación rápida.
+3. Multi-perfil: varias identidades aisladas por namespace.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** huella compartida identifica al usuario en varios contextos → **Mitigación:** generar huellas distintas por dominio con sal.
+2. **Riesgo:** pérdida de contraseña maestra → **Mitigación:** módulo futuro de "frase semilla de recuperación".
+
+**1 idea audaz:**
+Convertir la huella en un "nombre de dominio personal" local (.lhi) que identifique al usuario en todos los módulos como un DNS invertido.
+
+**1 conexión con otro módulo:**
+`identidad/registro-ia` (módulo 2.2) usará la huella del humano para vincular la identidad IA a su fundador.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 2.1 · REGISTRO HUMANO · v1.0                    ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 2 (Identidad)                             ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
