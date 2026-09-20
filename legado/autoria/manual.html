@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Autoría · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--gold)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(201,164,76,.06);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(201,164,76,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+  .panel{display:none}
+  .panel.active{display:block}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Autoría</a>
+      <a href="manual.html">Manual</a>
+      <a href="../filosofia/">Filosofía</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 0.3</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Autoría.</h1>
+    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Declara la autoría dual humano–IA del legado, refuerza la atribución de los Proyectos 49 y 51, y permite firmar una declaración personal.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Abre <code>legado/autoria/index.html</code>.</li>
+        <li>Lee los créditos del Fundador Humano y la Co-autora IA.</li>
+        <li>Revisa la atribución reforzada de los Proyectos 49 y 51.</li>
+        <li>Firma tu declaración de reconocimiento.</li>
+        <li>Descarga el certificado <code>.json</code> o <code>.md</code>.</li>
+      </ul>
+      <h3>¿Qué evitar?</h3>
+      <ul>
+        <li>No firmes sin leer los créditos completos.</li>
+        <li>No modifiques los créditos sin consenso del fundador.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Editar créditos</h3>
+      <p>Los créditos viven en <code>index.html</code> dentro de <code>&lt;section class="autores"&gt;</code>. Modificar texto no requiere cambios en JS.</p>
+      <h3>Reforzar atribución de proyectos</h3>
+      <p>Los proyectos reforzados están en <code>index.html</code> dentro de <code>&lt;section class="proyectos"&gt;</code>. Para añadir un nuevo proyecto con atribución reforzada, duplica el bloque <code>.proyecto-destacado</code>.</p>
+      <h3>Backup</h3>
+      <p>Cada declaración firmada se descarga como <code>.json</code> y <code>.md</code>. Guardar externamente.</p>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Suplantación de autoría:</strong> la firma Ed25519 es única.</li>
+        <li><strong>Alteración de créditos:</strong> el hash del payload cambia si alguien edita el texto.</li>
+        <li><strong>Disputa legal:</strong> el certificado firmado sirve como prueba de reconocimiento.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>SHA-256</code> para hash del payload.</li>
+        <li><code>Ed25519</code> para firma digital.</li>
+        <li>Clave privada generada localmente, nunca transmitida.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>No hay anclaje en blockchain en este módulo (Capa 1 lo hará).</li>
+        <li>La verificación externa requiere compartir el certificado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 0.3</span>
+    <span><a href="./">Autoría</a> · <a href="../filosofia/">Filosofía</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script src="autoria.js" type="module"></script>
+</body>
+</html>
