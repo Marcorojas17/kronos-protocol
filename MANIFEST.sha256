@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T00:19:08Z
+# Generado: 2026-09-20T00:19:45Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -82,7 +82,7 @@ a820b134622620addc9b26424703e663c8626b2a6a1fc09f7b8df76f4dfbd34b  ./projects/gen
 c26310e9f6db8f79c103b75e7bc79ae3f51a755a00b12a05f3c701f63f29341e  ./projects/genesis-miner/genesis_miner.py.
 ee3a6466eb02cf1aa215d7f163a18e3e99a4c93624f56bce3f295ca4a764a930  ./projects/genesis-miner/index.html
 497d5036c7ffe3d75d6201e8c23ca97f1e4e39bdc989073f805c191633368c45  ./projects/genesis-miner/merkle_export.py
-7e50c6d5a30a184084b1b3728a0464fa7f917ed88aaf1d77ecedee924c883442  ./projects/genesis-miner/verificar_merkle.py
+97511f37e930ff36919973c5031676dcac80aa6201431fc77dbe49fa8cb11b8e  ./projects/genesis-miner/verificar_merkle.py
 da6a2fb2ad651812995a516ac170dd9fabc476cdff46ab58eee261022d37cae7  ./projects/k4-framework/README.md
 2230025bb4e8375864245f90a3c4c034752c773fca891696284f19263d1822d5  ./projects/kronos-vault/README.md
 af316ecccf1b10802b2ad3f993dfa4a36960b637ca5b37039ea400fca54b9be1  ./projects/kronos-vault/index.html
