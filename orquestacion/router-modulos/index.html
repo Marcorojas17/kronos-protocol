@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Router de Módulos · Legado Humano–IA</title>
+<meta name="description" content="Registro dinámico de módulos y enrutamiento firmado vía Event Bus. Sin acoplamiento directo.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#registro">Registro</a>
+      <a href="#grafo">Grafo</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 4.2 · Capa 4 · Router de Módulos</div>
+    <h1 class="title">El router<br>que enlaza<br>el ecosistema.</h1>
+    <p class="lede">
+      Cada módulo se <strong>registra</strong> con su canal, capacidades y
+      versión. El router <strong>enruta</strong> llamadas entre módulos
+      sin acoplamiento directo. Todo firmado. Todo verificable.
+      <strong>Sin servidores</strong>.
+    </p>
+  </section>
+
+  <section id="registro" class="registro">
+    <div class="section-head">
+      <h2>Registro de Módulos</h2>
+      <span class="count" id="count-modulos">— módulos</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+      <div class="hint">Misma de los módulos previos.</div>
+    </div>
+
+    <div class="acciones-top">
+      <button class="btn" id="btn-inicializar">Inicializar router</button>
+      <button class="btn ghost" id="btn-refrescar">Refrescar registro</button>
+      <button class="btn ghost" id="btn-exportar">Exportar registro</button>
+    </div>
+
+    <div class="lista-modulos" id="lista-modulos">
+      <div class="empty">Inicializa el router para descubrir los módulos registrados.</div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="grafo" class="grafo">
+    <div class="section-head">
+      <h2>Grafo de Conexiones</h2>
+      <span class="count">Módulo → Canal</span>
+    </div>
+
+    <canvas id="grafo-canvas" width="1000" height="480"></canvas>
+
+    <div class="section-head" style="margin-top:48px">
+      <h2>Probar Enrutamiento</h2>
+      <span class="count">Llamada directa vía bus</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Módulo destino <span class="req">*</span></label>
+        <select id="destino"></select>
+      </div>
+      <div class="field">
+        <label>Tipo de evento <span class="req">*</span></label>
+        <input type="text" id="tipo-evento" placeholder="ej: consulta.estado" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Payload JSON</label>
+      <textarea id="payload" placeholder='{"query":"estado"}'></textarea>
+    </div>
+
+    <button class="btn" id="btn-enrutar">Enrutar llamada</button>
+
+    <div class="feedback" id="feedback-route" role="alert"></div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 4.2 · Router de Módulos</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../event-bus/">Event Bus</a> ·
+      <a href="../../modulos/evidence-os/">Evidence OS</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { RouterModulos } from './router.js';
+  import { EventBus } from '../event-bus/bus.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const feedbackRoute = $('feedback-route');
+  const listaModulos = $('lista-modulos');
+  const countModulos = $('count-modulos');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core, storage);
+  const storageInst = new StorageDexie(core);
+  const bus = new EventBus(core, storageInst);
+  const router = new RouterModulos(core, storageInst, bus);
+  const idHumana = new IdentidadHumana(core, storageInst);
+
+  let modulosActuales = [];
+  let grafoDibujado = false;
+
+  function setFb(el, tipo, msg) {
+    el.className = 'feedback ' + tipo;
+    el.innerHTML = msg;
+  }
+
+  function renderLista(modulos) {
+    if (!modulos || modulos.length === 0) {
+      listaModulos.innerHTML = '<div class="empty">Sin módulos registrados.</div>';
+      countModulos.textContent = '0 módulos';
+      return;
+    }
+    countModulos.textContent = modulos.length + ' módulos';
+    listaModulos.innerHTML = modulos.map(m => `
+      <div class="modulo">
+        <div class="modulo-head">
+          <span class="modulo-nombre">${m.nombre}</span>
+          <span class="modulo-version">v${m.version}</span>
+        </div>
+        <div class="modulo-canal">${m.canal}</div>
+        <div class="modulo-capacidades">
+          ${(m.capacidades || []).map(c => `<span class="cap">${c}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderSelect(modulos) {
+    $('destino').innerHTML = modulos.map(m => 
+      `<option value="${m.id_modulo}">${m.nombre} · ${m.canal}</option>`
+    ).join('');
+  }
+
+  function dibujarGrafo(modulos) {
+    const canvas = $('grafo-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // Fondo
+    ctx.fillStyle = '#05070b';
+    ctx.fillRect(0, 0, W, H);
+
+    const cx = W / 2;
+    const cy = H / 2;
+    const radio = Math.min(W, H) / 2.6;
+
+    // Nodos
+    const n = modulos.length || 1;
+    const nodos = modulos.map((m, i) => {
+      const ang = (i / n) * Math.PI * 2 - Math.PI / 2;
+      return {
+        ...m,
+        x: cx + Math.cos(ang) * radio,
+        y: cy + Math.sin(ang) * radio,
+        ang
+      };
+    });
+
+    // Conexiones al centro
+    ctx.strokeStyle = 'rgba(16,185,129,0.25)';
+    ctx.lineWidth = 1.5;
+    for (const nd of nodos) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(nd.x, nd.y);
+      ctx.stroke();
+    }
+
+    // Núcleo
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
+    grad.addColorStop(0, 'rgba(16,185,129,0.9)');
+    grad.addColorStop(1, 'rgba(16,185,129,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#F5F0E6';
+    ctx.font = 'bold 13px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('ROUTER', cx, cy);
+
+    // Nodos
+    for (const nd of nodos) {
+      const color = nd.color || '#10B981';
+      ctx.beginPath();
+      ctx.arc(nd.x, nd.y, 22, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(10,14,21,0.9)';
+      ctx.fill();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Inicial
+      ctx.fillStyle = color;
+      ctx.font = 'bold 14px JetBrains Mono, monospace';
+      ctx.fillText(nd.nombre.charAt(0).toUpperCase(), nd.x, nd.y);
+
+      // Etiqueta
+      ctx.fillStyle = '#F5F0E6';
+      ctx.font = '11px Inter, sans-serif';
+      const labelY = nd.y > cy ? nd.y + 40 : nd.y - 40;
+      ctx.fillText(nd.nombre, nd.x, labelY);
+      ctx.fillStyle = '#8892a0';
+      ctx.font = '9px JetBrains Mono, monospace';
+      ctx.fillText(nd.canal, nd.x, labelY + 14);
+    }
+
+    grafoDibujado = true;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb(feedback, 'error', '<strong>✗ Contraseña muy corta.</strong>');
+      return false;
+    }
+    await core.init(pass);
+    await storageInst.init();
+    await bus.init();
+    return true;
+  }
+
+  $('btn-inicializar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+
+      modulosActuales = await router.inicializar(humano);
+      renderLista(modulosActuales);
+      renderSelect(modulosActuales);
+      dibujarGrafo(modulosActuales);
+      setFb(feedback, 'success', '<strong>✓ Router inicializado.</strong> ' + modulosActuales.length + ' módulos registrados y firmados.');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    }
+  });
+
+  $('btn-refrescar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      modulosActuales = await router.listar();
+      renderLista(modulosActuales);
+      renderSelect(modulosActuales);
+      dibujarGrafo(modulosActuales);
+      setFb(feedback, 'success', '<strong>✓ ' + modulosActuales.length + ' módulos cargados.</strong>');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const blob = await router.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `router-registro-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb(feedback, 'success', '<strong>✓ Registro exportado.</strong>');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-enrutar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const destino = $('destino').value;
+      const tipo = $('tipo-evento').value.trim();
+      if (!destino || !tipo) throw new Error('Destino y tipo requeridos.');
+
+      let payload = {};
+      const payloadTexto = $('payload').value.trim();
+      if (payloadTexto) {
+        try { payload = JSON.parse(payloadTexto); }
+        catch { throw new Error('Payload no es JSON válido.'); }
+      }
+
+      const resultado = await router.enrutar(destino, tipo, payload);
+      setFb(feedbackRoute, 'success', '<strong>✓ Llamada enrutada.</strong> Evento ID: ' + resultado.evento.id_evento);
+    } catch (err) {
+      setFb(feedbackRoute, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+</script>
+</body>
+</html>
