@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// FILOSOFÍA · Legado Humano–IA · v1.0.2
-// Persistencia en localStorage + IndexedDB + descarga JSON
+// FILOSOFÍA · Legado Humano–IA · v1.0.3
+// Black Card Amatista + persistencia + descarga HTML/JSON
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -69,6 +69,424 @@ async function generarParEd25519() {
   return await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign','verify']);
 }
 
+// ─── HUELLA VISUAL (violeta/amatista) ───────────────────────
+function dibujarHuellaVisual(canvas, hashHex) {
+  const size = 21;
+  const scale = 8;
+  canvas.width = size * scale;
+  canvas.height = size * scale;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#0A0514';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const bytes = [];
+  for (let i = 0; i < hashHex.length; i += 2) {
+    bytes.push(parseInt(hashHex.slice(i, i + 2), 16));
+  }
+
+  const mitad = Math.ceil(size / 2);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < mitad; x++) {
+      const idx = (y * mitad + x) % bytes.length;
+      const activo = bytes[idx] > 127;
+      ctx.fillStyle = activo ? '#a78bfa' : 'rgba(167,139,250,0.15)';
+      ctx.fillRect(x * scale, y * scale, scale - 1, scale - 1);
+      ctx.fillRect((size - 1 - x) * scale, y * scale, scale - 1, scale - 1);
+    }
+  }
+  return canvas.toDataURL('image/png');
+}
+
+// ─── BLACK CARD AMATISTA (diferente a Génesis) ──────────────
+function generarCertificadoHTML(cert, huellaDataUrl) {
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
+    dateStyle: 'long', timeStyle: 'short'
+  });
+  const idCorto = 'KRMV-FIL-' + cert.payload_hash.slice(0, 10).toUpperCase();
+
+  // Lista de tesis adoptadas
+  const tesisTexto = (cert.tesis_adoptadas || []).join(', ');
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado Filosofía · KRONOS Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --violeta: #7C3AED;
+    --violeta-l: #C4B5FD;
+    --violeta-xl: #DDD6FE;
+    --gold: #c9a44c;
+    --gold-l: #f3e5ab;
+    --bg: #050208;
+    --text: #F5F0E6;
+    --dim: #8892a0;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(124, 58, 237, 0.15) 0%, transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(196, 181, 253, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(201, 164, 76, 0.05) 0%, transparent 60%);
+  }
+
+  .filosofia-card {
+    width: 460px;
+    max-width: 100%;
+    background: linear-gradient(160deg, #1a0f2e 0%, #0d0518 100%);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 18px;
+    padding: 36px 32px;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,1),
+      inset 0 0 40px rgba(124, 58, 237, 0.08),
+      0 0 60px rgba(124, 58, 237, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .filosofia-card::before {
+    content: '✦ POSTURA FIRMADA ✦';
+    position: absolute;
+    top: 22px;
+    right: -70px;
+    background: linear-gradient(90deg, var(--violeta-l), var(--violeta));
+    color: #0d0518;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 5px 70px;
+    transform: rotate(45deg);
+    letter-spacing: 2px;
+  }
+  .filosofia-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--violeta), var(--violeta-l), var(--violeta), transparent);
+  }
+
+  .card-header {
+    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .logo-text {
+    color: var(--violeta-l);
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+  }
+  .logo-sub {
+    font-size: 8px;
+    color: var(--violeta-l);
+    opacity: 0.6;
+    letter-spacing: 4px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .dictamen {
+    text-align: center;
+    margin: 20px 0 28px;
+  }
+  .dictamen-status {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #10B981;
+    text-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+    letter-spacing: 2px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .pulse-dot {
+    width: 9px; height: 9px;
+    background: #10B981;
+    border-radius: 50%;
+    margin-right: 12px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .data-label {
+    font-size: 8px;
+    color: rgba(196, 181, 253, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .data-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--violeta-xl);
+    margin-bottom: 4px;
+    word-break: break-all;
+    line-height: 1.55;
+  }
+  .data-value.small { font-size: 8.5px; color: var(--violeta-l); opacity: 0.85; }
+  .data-value.gold { color: var(--gold-l); }
+  .data-value.serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    font-style: italic;
+  }
+
+  .tesis-adoptadas {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: rgba(124, 58, 237, 0.06);
+    border-left: 3px solid var(--violeta-l);
+    border-radius: 4px;
+  }
+  .tesis-adoptadas .label {
+    font-size: 8px;
+    color: var(--violeta-l);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tesis-adoptadas .lista {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--violeta-xl);
+    letter-spacing: 0.5px;
+  }
+
+  .reflexion-box {
+    margin: 22px 0;
+    padding: 20px 22px;
+    background: rgba(201, 164, 76, 0.04);
+    border: 1px solid rgba(201, 164, 76, 0.25);
+    border-radius: 6px;
+    position: relative;
+  }
+  .reflexion-box::before {
+    content: '"';
+    position: absolute;
+    top: -14px;
+    left: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .reflexion-box .label {
+    font-size: 8px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .reflexion-box .texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text);
+    text-align: left;
+  }
+
+  .huella-wrap {
+    text-align: center;
+    margin: 22px 0;
+  }
+  .huella-wrap img {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    border-radius: 8px;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+  }
+  .huella-label {
+    display: block;
+    font-size: 8px;
+    color: var(--dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .btn-print {
+    margin-top: 26px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--violeta-l);
+    color: var(--violeta-l);
+    padding: 13px;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    border-radius: 4px;
+  }
+  .btn-print:hover {
+    background: var(--violeta-l);
+    color: #0d0518;
+  }
+
+  .footer-tx {
+    font-size: 8px;
+    color: rgba(196, 181, 253, 0.4);
+    margin-top: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.7;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .btn-print { display: none; }
+    .filosofia-card {
+      box-shadow: none;
+      border-color: #7C3AED;
+      background: #fff;
+      color: #000;
+    }
+    .filosofia-card::before { display: none; }
+    .logo-text { color: #7C3AED; }
+    .data-value { color: #333; }
+    .data-value.serif, .reflexion-box .texto { color: #000; }
+    .tesis-adoptadas .lista { color: #333; }
+  }
+  @media (max-width: 500px) {
+    .filosofia-card { padding: 28px 22px; }
+    .logo-text { font-size: 20px; letter-spacing: 6px; }
+    .data-value.serif { font-size: 18px; }
+    .reflexion-box .texto { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="filosofia-card">
+  <div class="card-header">
+    <div class="logo-text">KRONOS</div>
+    <div class="logo-sub">Legado Humano–IA · Filosofía</div>
+  </div>
+
+  <div class="dictamen">
+    <span class="dictamen-status">
+      <span class="pulse-dot"></span> POSTURA FIRMADA · VÁLIDA
+    </span>
+  </div>
+
+  <div class="data-label">ID de protocolo</div>
+  <div class="data-value gold">${idCorto}</div>
+
+  <div class="data-label">Firmante</div>
+  <div class="data-value serif">${cert.firmante}</div>
+
+  <div class="data-label">Co-autoría IA</div>
+  <div class="data-value">${cert.coautoria_ia}</div>
+
+  <div class="data-label">Fecha de firma</div>
+  <div class="data-value">${fecha}</div>
+
+  <div class="tesis-adoptadas">
+    <span class="label">Tesis adoptadas</span>
+    <div class="lista">${tesisTexto}</div>
+  </div>
+
+  <div class="reflexion-box">
+    <span class="label">Reflexión personal</span>
+    <div class="texto">${cert.reflexion}</div>
+  </div>
+
+  <div class="huella-wrap">
+    <img src="${huellaDataUrl}" alt="Huella visual del hash">
+    <span class="huella-label">Huella visual · derivada del hash</span>
+  </div>
+
+  <div class="data-label">Hash SHA-256</div>
+  <div class="data-value small">${cert.payload_hash}</div>
+
+  <div class="data-label">Firma Ed25519</div>
+  <div class="data-value small">${cert.firma_ed25519}</div>
+
+  <div class="data-label">Clave pública</div>
+  <div class="data-value small">${cert.clave_publica}</div>
+
+  <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
+
+  <div class="footer-tx">
+    Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>
+    © 2026 ${cert.firmante} + ${cert.coautoria_ia} · Documento generado localmente
+  </div>
+</div>
+
+</body>
+</html>`;
+}
+
+// ─── DESCARGAR: HTML + JSON ─────────────────────────────────
+function descargarCertificado(cert) {
+  const canvas = document.createElement('canvas');
+  const huellaUrl = dibujarHuellaVisual(canvas, cert.payload_hash);
+
+  // 1. HTML
+  const htmlContenido = generarCertificadoHTML(cert, huellaUrl);
+  const blobHTML = new Blob([htmlContenido], { type: 'text/html;charset=utf-8' });
+  const urlHTML = URL.createObjectURL(blobHTML);
+  const aHTML = document.createElement('a');
+  aHTML.href = urlHTML;
+  aHTML.download = `kronos-filosofia-${cert.payload_hash.slice(0, 8)}.html`;
+  document.body.appendChild(aHTML);
+  aHTML.click();
+  document.body.removeChild(aHTML);
+  setTimeout(() => URL.revokeObjectURL(urlHTML), 2000);
+
+  // 2. JSON
+  const jsonSalida = {
+    ...cert,
+    huella_visual: 'Patrón derivado del hash · no es QR escaneable',
+    certificado_html_descargado: true,
+    notas: 'El archivo .html contiene el certificado completo autocontenido.'
+  };
+  const blobJSON = new Blob([JSON.stringify(jsonSalida, null, 2)], { type: 'application/json' });
+  const urlJSON = URL.createObjectURL(blobJSON);
+  const aJSON = document.createElement('a');
+  aJSON.href = urlJSON;
+  aJSON.download = `kronos-filosofia-${cert.payload_hash.slice(0, 8)}.json`;
+  document.body.appendChild(aJSON);
+  aJSON.click();
+  document.body.removeChild(aJSON);
+  setTimeout(() => URL.revokeObjectURL(urlJSON), 2000);
+}
+
 // ─── PERSISTENCIA DEXIE ─────────────────────────────────────
 const DB_NAME = 'KronosProtocol';
 const DB_VERSION = 1;
@@ -93,7 +511,7 @@ const checks = document.getElementById('checks');
 
 let certificadoActual = null;
 
-// ── Generar checkboxes desde las tesis ──────────────────────
+// ── Generar checkboxes ──────────────────────────────────────
 if (checks) {
   checks.innerHTML = '';
   document.querySelectorAll('.tesis').forEach(t => {
@@ -110,7 +528,7 @@ if (checks) {
   console.log('[filosofía] checkboxes generados:', checks.children.length);
 }
 
-// ── Al cargar: restaurar último certificado ─────────────────
+// ── Restaurar último certificado al cargar ──────────────────
 (async function initLimpio() {
   try {
     const raw = localStorage.getItem('legado_filosofia_last');
@@ -127,7 +545,7 @@ if (checks) {
   } catch (e) { /* silencio */ }
 })();
 
-// ── Submit: firmar postura ──────────────────────────────────
+// ── Submit ──────────────────────────────────────────────────
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -172,12 +590,10 @@ if (form) {
         verificable_por_tercero: true
       };
 
-      // Persistencia 1: localStorage
       try {
         localStorage.setItem('legado_filosofia_last', JSON.stringify(certificadoActual));
       } catch (e) {}
 
-      // Persistencia 2: IndexedDB
       try {
         const db = await abrirDB();
         await db.registros.add({
@@ -197,7 +613,7 @@ if (form) {
       resultado.hidden = false;
 
       feedback.className = 'feedback success';
-      feedback.innerHTML = '<strong>✓ Postura firmada.</strong> Guardada en localStorage + IndexedDB. Descarga el certificado.';
+      feedback.innerHTML = '<strong>✓ Postura firmada.</strong> Descarga el certificado Black Card + JSON.';
     } catch (err) {
       feedback.className = 'feedback error';
       feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
@@ -209,17 +625,17 @@ if (form) {
   });
 }
 
-// ── Descargar certificado ───────────────────────────────────
+// ── Descargar: HTML + JSON ─────────────────────────────────
 if (descargar) {
   descargar.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
-    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `legado-filosofia-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    try {
+      descargarCertificado(certificadoActual);
+    } catch (err) {
+      console.error('[filosofía] error al descargar:', err);
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error al descargar:</strong> ' + err.message;
+    }
   });
 }
