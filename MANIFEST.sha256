@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T02:26:48Z
+# Generado: 2026-09-20T02:27:41Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -40,6 +40,7 @@ c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GU
 cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GUARDIAN-TSA.md
 22eb4afcbab180fb92734b26bd2b57ea4098a6d89953730f1c433b7dfa5c6468  ./guardians/GUARDIAN-VAULT.md
 e8b8f5b8e5b87b7759e81567800f98e0ba8dfcfe99e5fd58c6d949e61a225671  ./index.html
+b0bc7123dec34680d754fb6bd3d66e61d9e8a01198efcf5b4ec1a9e87b4c3997  ./legado/genesis/README.md
 ea9a83d38bf25f65c9bb8ce5ee300aca214f1627daa69e5d36854f39f9025963  ./legado/genesis/genesis.js
 83e0bfa0003ed23bf081cfc383980f384b28f409e9e6147e7a646bdd63c594af  ./legado/genesis/index.html
 15b39edf03c00eaaf57c4eab14b04517def7617c0e1edbafa7240e0005bec8be  ./legado/genesis/manual.html
