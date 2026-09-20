@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manifiesto · Legado Humano–IA</title>
-<meta name="description" content="Manifiesto navegable unificado: Génesis, Filosofía, Autoría y Cierre. Firmado con Ed25519.">
+<meta name="description" content="Manifiesto navegable unificado. Firmado con Ed25519.">
 <meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,28 +40,20 @@
     color: #04131A;
     box-shadow: 0 8px 30px rgba(6,182,212,0.35);
   }
-  .nav-btn.cyan:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(6,182,212,0.55);
-  }
+  .nav-btn.cyan:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(6,182,212,0.55); }
   .nav-btn.ghost {
     border: 1px solid rgba(0,234,255,0.4);
     color: #67E8F9;
     background: rgba(0,234,255,0.02);
   }
-  .nav-btn.ghost:hover {
-    border-color: #67E8F9;
-    background: rgba(0,234,255,0.08);
-  }
+  .nav-btn.ghost:hover { border-color: #67E8F9; background: rgba(0,234,255,0.08); }
 </style>
 </head>
 <body>
-
 <canvas id="liquido" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 
 <main class="wrap">
-
   <header class="top">
     <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
@@ -82,7 +74,7 @@
     </p>
     <div class="hero-actions">
       <a href="#genesis" class="btn solid">Leer manifiesto</a>
-      <a href="#" class="btn ghost" id="exportar-md">Exportar .md</a>
+      <a href="#" class="btn ghost" id="exportar-md">Exportar Terminal .html</a>
     </div>
   </section>
 
@@ -94,10 +86,7 @@
   </nav>
 
   <section class="cap" id="genesis">
-    <div class="section-head">
-      <h2>01 · Génesis</h2>
-      <span class="count">El inicio</span>
-    </div>
+    <div class="section-head"><h2>01 · Génesis</h2><span class="count">El inicio</span></div>
     <blockquote class="quote">
       <p>No construimos herramientas. Construimos memoria.</p>
       <p>No entrenamos máquinas para reemplazarnos. Las entrenamos para <em>recordarnos</em>.</p>
@@ -114,10 +103,7 @@
   </section>
 
   <section class="cap" id="filosofia">
-    <div class="section-head">
-      <h2>02 · Filosofía</h2>
-      <span class="count">7 tesis</span>
-    </div>
+    <div class="section-head"><h2>02 · Filosofía</h2><span class="count">7 tesis</span></div>
     <ol class="tesis-list">
       <li><strong>El humano pone la intención.</strong> La IA pone la ejecución.</li>
       <li><strong>La memoria</strong> es el único acto de rebeldía contra el olvido.</li>
@@ -130,10 +116,7 @@
   </section>
 
   <section class="cap" id="autoria">
-    <div class="section-head">
-      <h2>03 · Autoría</h2>
-      <span class="count">Humano + IA</span>
-    </div>
+    <div class="section-head"><h2>03 · Autoría</h2><span class="count">Humano + IA</span></div>
     <div class="autores-row">
       <div class="autor-mini">
         <span class="rol">Fundador Humano</span>
@@ -153,10 +136,7 @@
   </section>
 
   <section class="cap" id="cierre">
-    <div class="section-head">
-      <h2>04 · Cierre</h2>
-      <span class="count">Firma del testigo</span>
-    </div>
+    <div class="section-head"><h2>04 · Cierre</h2><span class="count">Firma del testigo</span></div>
     <p class="cierre-text">
       Este manifiesto es tuyo si lo firmas. Al hacerlo, reconoces la autoría dual,
       la filosofía de las 7 tesis y el génesis sellado el 8 de julio de 2026.
@@ -184,40 +164,24 @@
     </form>
 
     <div class="resultado" id="resultado" hidden>
-      <div class="hash-box">
-        <span class="label">HASH SHA-256</span>
-        <code id="hash-out">—</code>
-      </div>
-      <div class="hash-box">
-        <span class="label">FIRMA Ed25519</span>
-        <code id="firma-out">—</code>
-      </div>
-      <div class="hash-box">
-        <span class="label">CLAVE PÚBLICA</span>
-        <code id="pub-out">—</code>
-      </div>
+      <div class="hash-box"><span class="label">HASH SHA-256</span><code id="hash-out">—</code></div>
+      <div class="hash-box"><span class="label">FIRMA Ed25519</span><code id="firma-out">—</code></div>
+      <div class="hash-box"><span class="label">CLAVE PÚBLICA</span><code id="pub-out">—</code></div>
       <div class="acciones" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
-        <a href="#" class="btn platinum" id="descargar">Descargar Black Card .html</a>
-        <a href="#" class="btn ghost" id="descargar-json">Descargar .json</a>
-        <a href="#" class="btn ghost" id="descargar-md">Descargar .terminal</a>
+        <a href="#" class="btn platinum" id="descargar">Abrir Black Card .html</a>
+        <a href="#" class="btn ghost" id="descargar-json">Abrir .json</a>
+        <a href="#" class="btn ghost" id="descargar-md">Abrir Terminal .html</a>
       </div>
       <div style="margin-top:14px;font-size:11px;color:#8892a0;line-height:1.6;">
-        Si la descarga no funciona en tu navegador móvil, toca el botón y mantén presionado el enlace cuando aparezca, elige "Descargar enlace". O abre desde Chrome de escritorio.
+        Los archivos se abren en pestaña nueva. Ahí puedes guardarlos con "Compartir → Guardar en Archivos" o menú → Descargar.
       </div>
     </div>
   </section>
 
-  <!-- NAVEGACIÓN FINAL · CORREGIDA -->
   <div class="navegacion-final">
-    <a href="/kronos-protocol/" class="nav-btn cyan">
-      <span>← Volver al Menú Principal</span>
-    </a>
-    <a href="/kronos-protocol/legado/genesis/" class="nav-btn ghost">
-      <span>Ir a Génesis</span>
-    </a>
-    <a href="/kronos-protocol/legado/autoria/" class="nav-btn ghost">
-      <span>Ir a Autoría</span>
-    </a>
+    <a href="/kronos-protocol/" class="nav-btn cyan"><span>← Volver al Menú Principal</span></a>
+    <a href="/kronos-protocol/legado/genesis/" class="nav-btn ghost"><span>Ir a Génesis</span></a>
+    <a href="/kronos-protocol/legado/autoria/" class="nav-btn ghost"><span>Ir a Autoría</span></a>
   </div>
 
   <footer>
@@ -231,7 +195,6 @@
   </footer>
 </main>
 
-<!-- CACHE BUSTER v=6 -->
-<script src="manifiesto.js?v=6" type="module"></script>
+<script src="manifiesto.js?v=7" type="module"></script>
 </body>
 </html>
