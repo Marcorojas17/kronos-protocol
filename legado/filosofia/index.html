@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -90,10 +91,10 @@
       <span class="count">Local-first · Ed25519</span>
     </div>
 
-    <form id="form-postura" novalidate>
+    <form id="form-postura" novalidate autocomplete="off">
       <div class="field">
         <label>Nombre del firmante <span class="req">*</span></label>
-        <input type="text" id="nombre" required placeholder="Cómo quieres firmar">
+        <input type="text" id="nombre" required placeholder="Cómo quieres firmar" autocomplete="off">
       </div>
 
       <div class="field">
@@ -123,9 +124,22 @@
         <span class="label">FIRMA Ed25519</span>
         <code id="firma-out">—</code>
       </div>
-      <a href="#" class="btn ghost" id="descargar">Descargar manifiesto .json</a>
+      <div class="hash-box">
+        <span class="label">CLAVE PÚBLICA</span>
+        <code id="pub-out">—</code>
+      </div>
+      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
     </div>
   </section>
+
+  <!-- BOTÓN SIGUIENTE PÁGINA · AUTORÍA -->
+  <div class="continuar-siguiente">
+    <span class="label">Siguiente · Capa 0</span>
+    <a href="../autoria/" class="btn platinum">
+      <span>Continuar a Autoría</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
 
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
@@ -138,6 +152,6 @@
   </footer>
 </main>
 
-<script src="filosofia.js" type="module"></script>
+<script src="filosofia.js?v=3" type="module"></script>
 </body>
 </html>
