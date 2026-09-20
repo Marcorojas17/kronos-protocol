@@ -1,5 +1,8 @@
-// Génesis · KRONOS Protocol
+// ────────────────────────────────────────────────────────────
+// GÉNESIS · Legado Humano–IA · v1.0
 // Fondo líquido + firma criptográfica local-first
+// Persistencia del bloque sellado en IndexedDB
+// ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
 (function fondoLiquido() {
@@ -92,6 +95,47 @@ async function exportarPubKey(pubKey) {
   return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// ─── CLASE CRIPTO CORE INLINE (para persistencia) ────────────
+// Importamos dinámicamente el módulo oficial de Cripto Core
+// para que el génesis se persista con cifrado real.
+
+let _corePromise = null;
+async function obtenerCore(password) {
+  if (_corePromise) {
+    return _corePromise;
+  }
+  _corePromise = (async () => {
+    try {
+      const { CriptoCore } = await import('../../cimiento/cripto-core/core.js');
+      const core = new CriptoCore();
+      await core.init(password);
+      return core;
+    } catch (e) {
+      console.warn('[génesis] Cripto Core no disponible, modo standalone:', e.message);
+      return null;
+    }
+  })();
+  return _corePromise;
+}
+
+let _storagePromise = null;
+async function obtenerStorage(core) {
+  if (_storagePromise) return _storagePromise;
+  if (!core) return null;
+  _storagePromise = (async () => {
+    try {
+      const { StorageDexie } = await import('../../cimiento/storage-dexie/storage.js');
+      const storage = new StorageDexie(core);
+      await storage.init();
+      return storage;
+    } catch (e) {
+      console.warn('[génesis] Storage Dexie no disponible:', e.message);
+      return null;
+    }
+  })();
+  return _storagePromise;
+}
+
 // ─── UI ───────────────────────────────────────────────────────
 const form = document.getElementById('form-genesis');
 const btn = document.getElementById('btn-sellar');
@@ -106,6 +150,51 @@ const estadoCount = document.getElementById('estado-count');
 
 let certificadoActual = null;
 
+// ── Restaurar borrador y estado previo ──────────────────────
+(async function restaurarEstado() {
+  try {
+    const raw = localStorage.getItem('legado_genesis_draft');
+    if (raw) {
+      const d = JSON.parse(raw);
+      if (d.nombre) {
+        const el = document.getElementById('nombre');
+        if (el) el.value = d.nombre;
+      }
+      if (d.intencion) {
+        const el = document.getElementById('intencion');
+        if (el) el.value = d.intencion;
+      }
+      if (d.coautoria) {
+        const el = document.getElementById('coautoria');
+        if (el) el.value = d.coautoria;
+      }
+    }
+  } catch (e) { /* silencio */ }
+
+  // Intentar cargar el último génesis persistido
+  try {
+    const rawSel = localStorage.getItem('legado_genesis_last');
+    if (rawSel) {
+      const cert = JSON.parse(rawSel);
+      if (cert && cert.manifiesto_hash) {
+        // Mostrar el estado "sellado" al reabrir
+        if (hashOut) hashOut.textContent = cert.manifiesto_hash || '—';
+        if (firmaOut) firmaOut.textContent = cert.firma_ed25519 || '—';
+        if (pubOut) pubOut.textContent = cert.clave_publica || '—';
+        if (resultado) resultado.hidden = false;
+        if (badge) {
+          badge.classList.add('sellado');
+          const txt = badge.querySelector('.txt');
+          if (txt) txt.textContent = 'Sellado · ' + new Date(cert.timestamp).toLocaleString('es-MX');
+        }
+        if (estadoCount) estadoCount.textContent = 'Génesis activo';
+        certificadoActual = cert;
+      }
+    }
+  } catch (e) { /* silencio */ }
+})();
+
+// ── Submit: sellar génesis ──────────────────────────────────
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -119,15 +208,20 @@ form.addEventListener('submit', async (e) => {
     const nombre = document.getElementById('nombre').value.trim();
     const intencion = document.getElementById('intencion').value.trim();
     const coautoria = document.getElementById('coautoria').value;
+    const password = 'legado-genesis-' + nombre + ':' + coautoria;
 
     const timestamp = new Date().toISOString();
     const manifiesto = `LEGADO HUMANO-IA · GENESIS v1.0\nFundador: ${nombre}\nIntencion: ${intencion}\nCo-autoria IA: ${coautoria}\nTimestamp: ${timestamp}`;
 
+    // Hash SHA-256
     const hash = await sha256Hex(manifiesto);
+
+    // Firma Ed25519
     const { privateKey, publicKey } = await generarParEd25519();
     const firma = await firmar(privateKey, manifiesto);
     const pub = await exportarPubKey(publicKey);
 
+    // Certificado
     certificadoActual = {
       protocolo: 'LEGADO-HUMANO-IA',
       version: 'genesis-1.0',
@@ -144,49 +238,85 @@ form.addEventListener('submit', async (e) => {
       instruccion_verificacion: 'SHA-256(manifiesto) debe coincidir con manifiesto_hash. La firma_ed25519 se verifica con clave_publica.'
     };
 
-    hashOut.textContent = hash;
-    firmaOut.textContent = firma;
-    pubOut.textContent = pub;
-    resultado.hidden = false;
+    // ── PERSISTENCIA 1: localStorage (siempre) ──
+    try {
+      localStorage.setItem('legado_genesis_last', JSON.stringify(certificadoActual));
+      localStorage.setItem('legado_genesis_draft', JSON.stringify({
+        nombre, intencion, coautoria
+      }));
+    } catch (e) { /* silencio */ }
+
+    // ── PERSISTENCIA 2: Cripto Core + Dexie (si disponibles) ──
+    try {
+      const core = await obtenerCore(password);
+      if (core) {
+        // Guardar bloque firmado en la cadena del Cripto Core
+        await core.guardar({ tipo: 'genesis', payload: certificadoActual });
+
+        // Persistir en Storage Dexie indexado
+        const storage = await obtenerStorage(core);
+        if (storage) {
+          await storage.guardar('genesis', certificadoActual);
+        }
+        console.log('[génesis] bloque persistido en Cripto Core + Dexie');
+      }
+    } catch (persistErr) {
+      console.warn('[génesis] no se pudo persistir en IndexedDB:', persistErr);
+    }
+
+    // ── UI ──
+    if (hashOut) hashOut.textContent = hash;
+    if (firmaOut) firmaOut.textContent = firma;
+    if (pubOut) pubOut.textContent = pub;
+    if (resultado) resultado.hidden = false;
 
     feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Génesis sellado.</strong> Tu certificado está listo. Descárgalo y guárdalo en un lugar seguro.';
+    feedback.innerHTML = '<strong>✓ Génesis sellado y persistido.</strong> Tu certificado está listo y quedó guardado. Descárgalo y guárdalo en un lugar seguro.';
 
-    badge.classList.add('sellado');
-    badge.querySelector('.txt').textContent = 'Sellado · ' + new Date().toLocaleString('es-MX');
-    estadoCount.textContent = 'Génesis activo';
-
-    try { localStorage.setItem('legado_genesis_draft', JSON.stringify({ nombre, intencion, coautoria })); } catch(e){}
+    if (badge) {
+      badge.classList.add('sellado');
+      const txt = badge.querySelector('.txt');
+      if (txt) txt.textContent = 'Sellado · ' + new Date().toLocaleString('es-MX');
+    }
+    if (estadoCount) estadoCount.textContent = 'Génesis activo';
 
   } catch (err) {
     feedback.className = 'feedback error';
-    feedback.innerHTML = '<strong>✗ No se pudo sellar.</strong> Tu navegador podría no soportar Web Crypto. Intenta en Chrome/Edge/Safari actualizado.';
-    console.error(err);
+    feedback.innerHTML = '<strong>✗ No se pudo sellar.</strong> ' + err.message;
+    console.error('[génesis] error:', err);
   } finally {
     btn.disabled = false;
     btn.querySelector('span').textContent = 'Sellar génesis';
   }
 });
 
-descargar.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (!certificadoActual) return;
-  const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `legado-genesis-${Date.now()}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-});
+// ── Descargar certificado ───────────────────────────────────
+if (descargar) {
+  descargar.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `legado-genesis-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+}
 
-// Cargar borrador
-try {
-  const raw = localStorage.getItem('legado_genesis_draft');
-  if (raw) {
-    const d = JSON.parse(raw);
-    if (d.nombre) document.getElementById('nombre').value = d.nombre;
-    if (d.intencion) document.getElementById('intencion').value = d.intencion;
-    if (d.coautoria) document.getElementById('coautoria').value = d.coautoria;
-  }
-} catch(e){}
+// ── Autoguardado del borrador ───────────────────────────────
+setInterval(() => {
+  try {
+    const nombre = document.getElementById('nombre')?.value || '';
+    const intencion = document.getElementById('intencion')?.value || '';
+    const coautoria = document.getElementById('coautoria')?.value || 'KRONOS IA';
+    if (nombre || intencion) {
+      localStorage.setItem('legado_genesis_draft', JSON.stringify({
+        nombre, intencion, coautoria
+      }));
+    }
+  } catch (e) { /* silencio */ }
+}, 3000);
