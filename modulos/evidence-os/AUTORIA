@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Formulario de sellado** → `index.html`.
+3. **Resultado + estadísticas** → `index.html`.
+4. **Verificación independiente** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 26KB gzip |
+| **Humano** | Paquete `.evidence` sellado + verificable en < 15 s |
+| **Económico** | $0/mes · sin backend · sin costos de notario |
+| **Simbiótico** | Humano aporta contenido · IA estructura y firma · paquete verificable por terceros |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 3.1 abre la Capa 3 con Evidence OS: primer producto real del ecosistema. Sella cualquier archivo o texto en un paquete `.evidence` con SHA-256, HMAC, Ed25519 y sello temporal NOM-151. Verificación independiente sin acceso al original.
+
+**3 lecciones:**
+1. La combinación hash + HMAC + firma + sello crea prueba de existencia robusta sin servidores.
+2. Verificar sin contenido original es posible: el paquete se auto-valida.
+3. Reutilizar identidades 2.1–2.3 convierte cada evidencia en un acto de gobernanza verificable.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Ejecutar 2.1 → 2.2 → 2.3 → 3.1 en orden.
+3. Sellar una evidencia de prueba y verificarla en un segundo navegador.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Clave HMAC secreta separada (derivada de contraseña) en lugar de la huella pública.
+2. Anclaje automático de cada paquete al módulo 1.3 (Ethereum).
+3. Exportación a PDF con sello visual + QR verificable.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** HMAC con huella pública es verificable por quien tenga la huella → **Mitigación:** derivar clave HMAC de la contraseña maestra con PBKDF2 independiente.
+2. **Riesgo:** sello temporal local sin validez legal plena → **Mitigación:** documentar honestamente y ofrecer anclaje blockchain.
+
+**1 idea audaz:**
+Convertir el paquete `.evidence` en un formato estándar abierto bajo licencia CC BY-NC-ND, publicable en GitHub como especificación, con casos de uso forenses para LATAM.
+
+**1 conexión con otro módulo:**
+`modulos/boveda-voz` (módulo 3.2) usará `EvidenceOS` para sellar grabaciones forenses de audio.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 3.1 · EVIDENCE OS · v1.0                        ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 3 (Módulos Operativos)                    ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
