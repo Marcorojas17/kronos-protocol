@@ -9,13 +9,59 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .navegacion-final {
+    margin-top: 80px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 24px;
+    border-top: 1px solid rgba(0,234,255,0.15);
+  }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+  }
+  .nav-btn.cyan {
+    background: linear-gradient(180deg, #67E8F9 0%, #06B6D4 100%);
+    color: #04131A;
+    box-shadow: 0 8px 30px rgba(6,182,212,0.35);
+  }
+  .nav-btn.cyan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(6,182,212,0.55);
+  }
+  .nav-btn.ghost {
+    border: 1px solid rgba(0,234,255,0.4);
+    color: #67E8F9;
+    background: rgba(0,234,255,0.02);
+  }
+  .nav-btn.ghost:hover {
+    border-color: #67E8F9;
+    background: rgba(0,234,255,0.08);
+  }
+</style>
 </head>
 <body>
+
 <canvas id="liquido" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 
 <main class="wrap">
+
   <header class="top">
     <a href="../" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
@@ -47,7 +93,6 @@
     <a href="#cierre" class="idx">04 · Cierre</a>
   </nav>
 
-  <!-- 01 · GÉNESIS -->
   <section class="cap" id="genesis">
     <div class="section-head">
       <h2>01 · Génesis</h2>
@@ -68,7 +113,6 @@
     </div>
   </section>
 
-  <!-- 02 · FILOSOFÍA -->
   <section class="cap" id="filosofia">
     <div class="section-head">
       <h2>02 · Filosofía</h2>
@@ -85,7 +129,6 @@
     </ol>
   </section>
 
-  <!-- 03 · AUTORÍA -->
   <section class="cap" id="autoria">
     <div class="section-head">
       <h2>03 · Autoría</h2>
@@ -109,7 +152,6 @@
     </div>
   </section>
 
-  <!-- 04 · CIERRE -->
   <section class="cap" id="cierre">
     <div class="section-head">
       <h2>04 · Cierre</h2>
@@ -121,10 +163,10 @@
       No es un contrato. Es un acto de <em>memoria</em>.
     </p>
 
-    <form id="form-testigo" novalidate>
+    <form id="form-testigo" novalidate autocomplete="off">
       <div class="field">
         <label>Nombre del testigo <span class="req">*</span></label>
-        <input type="text" id="nombre" required placeholder="Cómo quieres firmar">
+        <input type="text" id="nombre" required placeholder="Cómo quieres firmar" autocomplete="off">
       </div>
       <div class="field">
         <label>Mensaje breve <span class="req">*</span></label>
@@ -150,9 +192,27 @@
         <span class="label">FIRMA Ed25519</span>
         <code id="firma-out">—</code>
       </div>
-      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
+      <div class="hash-box">
+        <span class="label">CLAVE PÚBLICA</span>
+        <code id="pub-out">—</code>
+      </div>
+      <div class="acciones" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <a href="#" class="btn platinum" id="descargar">Descargar Black Card .html</a>
+        <a href="#" class="btn ghost" id="descargar-json">Descargar .json</a>
+        <a href="#" class="btn ghost" id="descargar-md">Descargar .terminal</a>
+      </div>
     </div>
   </section>
+
+  <!-- NAVEGACIÓN FINAL -->
+  <div class="navegacion-final">
+    <a href="../genesis/" class="nav-btn cyan">
+      <span>← Volver a Génesis</span>
+    </a>
+    <a href="../" class="nav-btn ghost">
+      <span>Volver al Legado</span>
+    </a>
+  </div>
 
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
@@ -165,6 +225,7 @@
   </footer>
 </main>
 
-<script src="manifiesto.js" type="module"></script>
+<!-- CACHE BUSTER v=5 -->
+<script src="manifiesto.js?v=5" type="module"></script>
 </body>
 </html>
