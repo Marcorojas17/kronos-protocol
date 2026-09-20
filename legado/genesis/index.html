@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Génesis · Legado Humano–IA</title>
+<meta name="description" content="Sella el génesis fundacional de tu legado humano–IA con firma criptográfica Ed25519 y hash SHA-256.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#manifiesto">Manifiesto</a>
+      <a href="#sellar">Sellar</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 0.1 · Génesis Fundacional</div>
+    <h1 class="title">El principio<br>de todo<br>lo que viene.</h1>
+    <p class="lede">
+      Este es el <strong>momento cero</strong> del legado humano–IA.
+      Escribe tu intención. La sellamos con <strong>SHA-256</strong> y
+      <strong>Ed25519</strong>. Queda escrito. Queda firmado. Queda para siempre.
+    </p>
+    <a href="#sellar" class="btn solid">Comenzar el génesis</a>
+  </section>
+
+  <section id="manifiesto" class="manifiesto">
+    <div class="section-head">
+      <h2>Manifiesto Fundacional</h2>
+      <span class="count">v1.0 · 2026</span>
+    </div>
+    <blockquote class="quote">
+      <p>No construimos herramientas. Construimos memoria.</p>
+      <p>No entrenamos máquinas para reemplazarnos. Las entrenamos para <em>recordarnos</em>.</p>
+      <p>Cada acto de creación humana merece una prueba que no se borre. Cada colaboración con IA merece un registro honesto.</p>
+      <p>Este es el principio. Lo que sigue, lo escribimos juntos: tú con intención, la IA con ejecución. Simbiosis real.</p>
+    </blockquote>
+  </section>
+
+  <section id="sellar" class="sellar">
+    <div class="section-head">
+      <h2>Sellar el Génesis</h2>
+      <span class="count">Local-first · Sin backend</span>
+    </div>
+
+    <form id="form-genesis" novalidate>
+      <div class="field">
+        <label for="nombre">Nombre del fundador <span class="req">*</span></label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Cómo quieres ser reconocido">
+      </div>
+
+      <div class="field">
+        <label for="intencion">Intención fundacional <span class="req">*</span></label>
+        <textarea id="intencion" name="intencion" required placeholder="En una frase: ¿qué quieres dejar al mundo con este legado?"></textarea>
+        <div class="hint">Mínimo 20 caracteres. Esta frase quedará sellada para siempre.</div>
+      </div>
+
+      <div class="field">
+        <label for="coautoria">Co-autoría IA</label>
+        <select id="coautoria" name="coautoria">
+          <option value="KRONOS IA">KRONOS IA</option>
+          <option value="Anthropic Claude">Anthropic Claude</option>
+          <option value="OpenAI GPT">OpenAI GPT</option>
+          <option value="Ninguna">Sin co-autoría IA</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn platinum" id="btn-sellar">
+        <span>Sellar génesis</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
+    </form>
+
+    <div class="resultado" id="resultado" hidden>
+      <div class="hash-box">
+        <span class="label">HASH SHA-256</span>
+        <code id="hash-out">—</code>
+      </div>
+      <div class="hash-box">
+        <span class="label">FIRMA Ed25519</span>
+        <code id="firma-out">—</code>
+      </div>
+      <div class="hash-box">
+        <span class="label">CLAVE PÚBLICA</span>
+        <code id="pub-out">—</code>
+      </div>
+      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
+    </div>
+  </section>
+
+  <section class="estado">
+    <div class="section-head">
+      <h2>Estado del Génesis</h2>
+      <span class="count" id="estado-count">Esperando</span>
+    </div>
+    <div class="badge" id="badge-estado">
+      <span class="dot"></span>
+      <span class="txt">Sin sellar</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 0.1 · Génesis</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../">Legado</a> ·
+      <a href="../../">KRONOS</a>
+    </span>
+  </footer>
+
+</main>
+
+<script src="genesis.js" type="module"></script>
+</body>
+</html>
