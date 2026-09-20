@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Salud · Legado Humano–IA</title>
+<meta name="description" content="Centro de mando del ecosistema. Estado de módulos, integridad de cadena y métricas en vivo. Local-first.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#panel">Panel</a>
+      <a href="#modulos">Módulos</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 5.1 · Capa 5 · Operación</div>
+    <h1 class="title">Centro de<br>mando del<br>legado.</h1>
+    <p class="lede">
+      Estado de <strong>14 módulos</strong>. Integridad de la
+      <strong>cadena criptográfica</strong>. Últimas <strong>firmas</strong>
+      y <strong>eventos</strong>. Todo en vivo, todo local,
+      <strong>sin servidores</strong>.
+    </p>
+  </section>
+
+  <section id="panel" class="panel">
+    <div class="section-head">
+      <h2>Panel de Control</h2>
+      <span class="count" id="estado-global">—</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+    </div>
+
+    <div class="acciones-top">
+      <button class="btn" id="btn-cargar">Cargar dashboard</button>
+      <button class="btn ghost" id="btn-refrescar">Refrescar</button>
+      <button class="btn ghost" id="btn-exportar">Exportar reporte</button>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="metricas" id="metricas" hidden>
+      <div class="metrica">
+        <span class="m-k">Módulos registrados</span>
+        <span class="m-v" id="m-modulos">—</span>
+        <span class="m-sub" id="m-modulos-sub">del ecosistema</span>
+      </div>
+      <div class="metrica">
+        <span class="m-k">Registros persistidos</span>
+        <span class="m-v" id="m-registros">—</span>
+        <span class="m-sub">cifrados en IndexedDB</span>
+      </div>
+      <div class="metrica">
+        <span class="m-k">Eventos emitidos</span>
+        <span class="m-v" id="m-eventos">—</span>
+        <span class="m-sub">vía Event Bus</span>
+      </div>
+      <div class="metrica">
+        <span class="m-k">Evidencias selladas</span>
+        <span class="m-v" id="m-evidencias">—</span>
+        <span class="m-sub">paquetes .evidence</span>
+      </div>
+      <div class="metrica">
+        <span class="m-k">Cadena íntegra</span>
+        <span class="m-v" id="m-cadena">—</span>
+        <span class="m-sub" id="m-cadena-sub">verificando…</span>
+      </div>
+      <div class="metrica">
+        <span class="m-k">Salud global</span>
+        <span class="m-v" id="m-salud">—</span>
+        <span class="m-sub">calculada del ecosistema</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="radar" class="radar" hidden>
+    <div class="section-head">
+      <h2>Radar de Salud</h2>
+      <span class="count">5 dimensiones</span>
+    </div>
+    <div class="radar-wrap">
+      <canvas id="radar-canvas" width="480" height="480"></canvas>
+      <div class="leyenda">
+        <div class="leyenda-item"><span class="dot" style="background:#93C5FD"></span>Infraestructura</div>
+        <div class="leyenda-item"><span class="dot" style="background:#6EE7B7"></span>Identidad</div>
+        <div class="leyenda-item"><span class="dot" style="background:#F9A8D4"></span>Evidencia</div>
+        <div class="leyenda-item"><span class="dot" style="background:#A78BFA"></span>Orquestación</div>
+        <div class="leyenda-item"><span class="dot" style="background:#FCD34D"></span>Gobernanza</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modulos" class="modulos" hidden>
+    <div class="section-head">
+      <h2>Estado por Módulo</h2>
+      <span class="count" id="count-modulos">14 módulos</span>
+    </div>
+    <div class="grid-modulos" id="grid-modulos"></div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 5.1 · Dashboard Salud</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../orquestacion/router-modulos/">Router</a> ·
+      <a href="../../orquestacion/event-bus/">Event Bus</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { DashboardSalud } from './dashboard.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { EventBus } from '../../orquestacion/event-bus/bus.js';
+  import { RouterModulos } from '../../orquestacion/router-modulos/router.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const bus = new EventBus(core, storage);
+  const router = new RouterModulos(core, storage, bus);
+  const dashboard = new DashboardSalud(core, storage, bus, router);
+
+  let reporteActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function cargar() {
+    const pass = $('password').value;
+    if (pass.length < 8) return setFb('error', '<strong>✗ Contraseña muy corta.</strong>');
+    try {
+      await core.init(pass);
+      await storage.init();
+      await bus.init();
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+
+      const rep = await dashboard.generar(humano);
+      reporteActual = rep;
+
+      // Rellenar métricas
+      $('m-modulos').textContent = rep.metricas.modulos_total;
+      $('m-modulos-sub').textContent = rep.metricas.modulos_activos + ' activos · ' + rep.metricas.modulos_inactivos + ' inactivos';
+      $('m-registros').textContent = rep.metricas.registros_total;
+      $('m-eventos').textContent = rep.metricas.eventos_total;
+      $('m-evidencias').textContent = rep.metricas.evidencias_total;
+      $('m-cadena').textContent = rep.integridad.ok ? '✓ VÁLIDA' : '✗ ALTERADA';
+      $('m-cadena').style.color = rep.integridad.ok ? '#6EE7B7' : '#fca5a5';
+      $('m-cadena-sub').textContent = rep.integridad.total + ' bloques verificados';
+      $('m-salud').textContent = rep.salud_global + '%';
+
+      // Estado global
+      $('estado-global').textContent = rep.salud_global >= 90 ? '🟢 ÓPTIMO' : rep.salud_global >= 70 ? '🟡 ESTABLE' : '🔴 ATENCIÓN';
+
+      // Mostrar secciones
+      $('metricas').hidden = false;
+      $('radar').hidden = false;
+      $('modulos').hidden = false;
+
+      // Dibujar radar
+      dibujarRadar(rep.dimensiones);
+
+      // Grid de módulos
+      renderModulos(rep.modulos);
+
+      setFb('success', '<strong>✓ Dashboard cargado.</strong> Salud global: ' + rep.salud_global + '%.');
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    }
+  }
+
+  function dibujarRadar(dimensiones) {
+    const canvas = $('radar-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = W / 2;
+    const cy = H / 2;
+    const R = Math.min(W, H) / 2 - 60;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const N = dimensiones.length;
+    const angulos = dimensiones.map((_, i) => (i / N) * Math.PI * 2 - Math.PI / 2);
+
+    // Anillos
+    ctx.strokeStyle = 'rgba(147,197,253,0.15)';
+    ctx.lineWidth = 1;
+    for (let k = 1; k <= 4; k++) {
+      ctx.beginPath();
+      for (let i = 0; i <= N; i++) {
+        const a = angulos[i % N];
+        const r = (R * k) / 4;
+        const x = cx + Math.cos(a) * r;
+        const y = cy + Math.sin(a) * r;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // Ejes
+    for (let i = 0; i < N; i++) {
+      const a = angulos[i];
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
+      ctx.stroke();
+    }
+
+    // Polígono de datos
+    const puntos = dimensiones.map((d, i) => {
+      const a = angulos[i];
+      const r = (d.valor / 100) * R;
+      return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, color: d.color, valor: d.valor };
+    });
+
+    ctx.beginPath();
+    puntos.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(147,197,253,0.15)';
+    ctx.fill();
+    ctx.strokeStyle = '#93C5FD';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Puntos
+    puntos.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.strokeStyle = '#05070b';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    // Etiquetas
+    ctx.fillStyle = '#F5F0E6';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    dimensiones.forEach((d, i) => {
+      const a = angulos[i];
+      const x = cx + Math.cos(a) * (R + 30);
+      const y = cy + Math.sin(a) * (R + 30);
+      ctx.fillText(d.nombre, x, y);
+      ctx.fillStyle = d.color;
+      ctx.font = 'bold 12px JetBrains Mono, monospace';
+      ctx.fillText(d.valor + '%', x, y + 14);
+      ctx.fillStyle = '#F5F0E6';
+      ctx.font = '11px Inter, sans-serif';
+    });
+
+    // Núcleo
+    ctx.beginPath();
+    ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#93C5FD';
+    ctx.fill();
+  }
+
+  function renderModulos(modulos) {
+    $('count-modulos').textContent = modulos.length + ' módulos';
+    $('grid-modulos').innerHTML = modulos.map(m => `
+      <div class="mod-card">
+        <div class="mod-head">
+          <span class="mod-nombre">${m.nombre}</span>
+          <span class="mod-dot" style="background:${m.color};box-shadow:0 0 8px ${m.color}"></span>
+        </div>
+        <div class="mod-canal">${m.canal}</div>
+        <div class="mod-stats">
+          <span><strong>${m.registros}</strong> registros</span>
+          <span><strong>${m.firmas}</strong> firmas</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  $('btn-cargar').addEventListener('click', cargar);
+  $('btn-refrescar').addEventListener('click', cargar);
+
+  $('btn-exportar').addEventListener('click', () => {
+    if (!reporteActual) return setFb('error', '<strong>✗ Carga el dashboard primero.</strong>');
+    const blob = new Blob([JSON.stringify(reporteActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `dashboard-salud-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setFb('success', '<strong>✓ Reporte exportado.</strong>');
+  });
+</script>
+</body>
+</html>
