@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storage Dexie · Legado Humano–IA</title>
+<meta name="description" content="Capa de persistencia estructurada sobre datos cifrados. Versionado, migraciones y consultas indexadas.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#demo">Demo</a>
+      <a href="#esquema">Esquema</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 1.2 · Storage Dexie</div>
+    <h1 class="title">Persistencia<br>estructurada<br>del legado.</h1>
+    <p class="lede">
+      <strong>Dexie.js</strong> para indexar. <strong>Cripto Core</strong> para cifrar.
+      <strong>Migraciones</strong> para evolucionar sin perder nada.
+      Todo local. Todo versionado. Cero backend.
+    </p>
+  </section>
+
+  <section id="demo" class="demo">
+    <div class="section-head">
+      <h2>Demo Interactiva</h2>
+      <span class="count">100% local</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="payload">Contenido del registro</label>
+        <textarea id="payload" placeholder="Escribe algo...">Primer registro estructurado del Legado Humano–IA.</textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="tipo">Tipo de registro</label>
+        <select id="tipo">
+          <option value="nota">Nota</option>
+          <option value="evidencia">Evidencia</option>
+          <option value="génesis">Génesis</option>
+          <option value="manifiesto">Manifiesto</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-guardar">Guardar registro</button>
+          <button class="btn ghost" id="btn-listar">Listar todo</button>
+          <button class="btn ghost" id="btn-filtrar">Filtrar por tipo</button>
+          <button class="btn ghost" id="btn-exportar">Exportar .json</button>
+          <button class="btn ghost" id="btn-contar">Contar registros</button>
+          <button class="btn ghost" id="btn-limpiar">Borrar todo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-resultado" id="panel-resultado" hidden>
+      <div class="kv"><span class="k">Total registros</span><span class="v" id="out-total">—</span></div>
+      <div class="kv"><span class="k">Versión DB</span><span class="v mono" id="out-version">—</span></div>
+      <div class="kv"><span class="k">Último hash</span><span class="v mono" id="out-hash">—</span></div>
+      <div class="kv"><span class="k">Estado</span><span class="v" id="out-estado">—</span></div>
+    </div>
+
+    <div class="lista-registros" id="lista-registros"></div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="esquema" class="esquema">
+    <div class="section-head">
+      <h2>Esquema Dexie</h2>
+      <span class="count">v2 · con migraciones</span>
+    </div>
+    <pre class="code"><span class="cm">// Definición del esquema versionado</span>
+db.<span class="fn">version</span>(<span class="st">1</span>).stores({
+  registros: <span class="st">'++id, tipo, timestamp, hash'</span>,
+  meta: <span class="st">'clave'</span>
+});
+
+db.<span class="fn">version</span>(<span class="st">2</span>).stores({
+  registros: <span class="st">'++id, tipo, timestamp, hash, estado'</span>,
+  meta: <span class="st">'clave'</span>,
+  migraciones: <span class="st">'++id, fecha, version'</span>
+}).<span class="fn">upgrade</span>(tx <span class="kw">=></span> {
+  <span class="kw">return</span> tx.table(<span class="st">'registros'</span>).toCollection()
+    .<span class="fn">modify</span>(r <span class="kw">=></span> { r.estado <span class="kw">=</span> r.estado <span class="kw">||</span> <span class="st">'activo'</span>; });
+});</pre>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 1.2 · Storage Dexie</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../cripto-core/">Cripto Core</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { StorageDexie } from './storage.js';
+  import { CriptoCore } from '../cripto-core/core.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const panel = $('panel-resultado');
+  const lista = $('lista-registros');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  function renderLista(registros) {
+    if (!registros || registros.length === 0) {
+      lista.innerHTML = '<div class="empty">Sin registros.</div>';
+      return;
+    }
+    lista.innerHTML = registros.map(r => `
+      <div class="reg">
+        <div class="reg-head">
+          <span class="reg-tipo">${r.tipo || 'sin tipo'}</span>
+          <span class="reg-fecha">${r.timestamp || '—'}</span>
+        </div>
+        <div class="reg-hash">${(r.hash || '').slice(0, 48)}…</div>
+        <div class="reg-payload">${r.payload ? JSON.stringify(r.payload).slice(0, 120) + '…' : '(cifrado o no descifrado)'}</div>
+      </div>
+    `).join('');
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    await core.init(pass);
+    await storage.init();
+    return true;
+  }
+
+  $('btn-guardar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    const payload = $('payload').value.trim();
+    const tipo = $('tipo').value;
+    if (!payload) return setFb('error', '<strong>✗ Contenido vacío.</strong>');
+    try {
+      const id = await storage.guardar(tipo, { texto: payload });
+      panel.hidden = false;
+      $('out-total').textContent = await storage.contar();
+      $('out-version').textContent = 'v' + storage.db.verno;
+      $('out-hash').textContent = (storage.ultimoHash || '—').slice(0, 32) + '…';
+      $('out-estado').textContent = 'Registro guardado · id ' + id;
+      setFb('success', '<strong>✓ Registro cifrado y persistido.</strong> Indexado por tipo y timestamp.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-listar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    const registros = await storage.listar();
+    renderLista(registros);
+    panel.hidden = false;
+    $('out-total').textContent = registros.length;
+    $('out-version').textContent = 'v' + storage.db.verno;
+    $('out-estado').textContent = 'Listado completo';
+    setFb('success', '<strong>✓ ' + registros.length + ' registros.</strong>');
+  });
+
+  $('btn-filtrar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    const tipo = $('tipo').value;
+    const registros = await storage.listarPorTipo(tipo);
+    renderLista(registros);
+    panel.hidden = false;
+    $('out-total').textContent = registros.length;
+    $('out-estado').textContent = 'Filtrado por tipo: ' + tipo;
+    setFb('success', '<strong>✓ ' + registros.length + ' registros de tipo ' + tipo + '.</strong>');
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    const blob = await storage.exportar();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `legado-storage-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setFb('success', '<strong>✓ DB exportada.</strong> El archivo contiene los bloques cifrados + metadatos.');
+  });
+
+  $('btn-contar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    const total = await storage.contar();
+    panel.hidden = false;
+    $('out-total').textContent = total;
+    $('out-estado').textContent = 'Conteo consultado';
+    setFb('success', '<strong>✓ ' + total + ' registros en la DB.</strong>');
+  });
+
+  $('btn-limpiar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    await storage.limpiar();
+    lista.innerHTML = '<div class="empty">DB limpia.</div>';
+    panel.hidden = false;
+    $('out-total').textContent = 0;
+    $('out-estado').textContent = 'DB limpiada';
+    setFb('success', '<strong>✓ Base de datos limpiada.</strong>');
+  });
+</script>
+</body>
+</html>
