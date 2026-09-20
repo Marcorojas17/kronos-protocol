@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Demo interactiva (3 pasos)** → `index.html`.
+3. **Panel de resultados** → `index.html`.
+4. **API pública** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 18KB gzip |
+| **Humano** | Cifrar, firmar, persistir y verificar en < 5 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define política · IA implementa Web Crypto · verificación conjunta |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 1.1 establece el núcleo criptográfico reutilizable del ecosistema: PBKDF2 600k, AES-GCM-256, Ed25519, SHA-256 y hash chain verificable. Todo local, todo verificable. Sin dependencias externas.
+
+**3 lecciones:**
+1. Web Crypto cubre todo lo necesario sin librerías externas (excepto Argon2id, pospuesto).
+2. IndexedDB nativo es suficiente para persistencia cifrada.
+3. El hash chain + firma Ed25519 detecta cualquier alteración bloque por bloque.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Verificar demo en móvil y escritorio.
+3. Cifrar, recargar y verificar cadena con éxito.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Añadir Argon2id vía `hash-wasm` (CDN) como opción superior a PBKDF2.
+2. Export/import cifrado de toda la cadena como archivo `.lhi` (Legado Humano–IA).
+3. Multi-perfil: varias claves maestras aisladas por namespace.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** pérdida de contraseña maestra → **Mitigación:** módulo futuro de "recuperación por frase semilla".
+2. **Riesgo:** XSS robando localStorage → **Mitigación:** CSP estricta en la Capa 5 (Operación).
+
+**1 idea audaz:**
+Convertir el Cripto Core en un pequeño SDK en `<script type="module">` con CDN jsDelivr para que cualquier módulo superior lo importe en una línea.
+
+**1 conexión con otro módulo:**
+Todos los módulos de Capa 2–6 importarán `CriptoCore` para cifrar sus datos. Es el cimiento real del ecosistema.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 1.1 · CRIPTO CORE · v1.0                        ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 1 (Cimiento)                              ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
