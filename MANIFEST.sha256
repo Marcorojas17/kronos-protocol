@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T04:16:23Z
+# Generado: 2026-09-20T04:17:03Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -30,6 +30,7 @@ da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/pa
 c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
+f4bf2ca021ce8fee882534bdac9f8a64a1dd607283d68f4ac0293094e159600a  ./cierre/export-cifrado/README.md
 c7cf5724b2514809c82a96da9dc2fe530f65def164c2c3429713d432fe9bf076  ./cierre/export-cifrado/export.js
 73cf95f9a147d184d4a098a226d983994cecd3172ae1834c5e1b765161f6dd05  ./cierre/export-cifrado/index.html
 62790599c250d3244fbbb1f538e34987bc3eb20773e3b1533b229a2a12428e24  ./cierre/export-cifrado/manual.html
