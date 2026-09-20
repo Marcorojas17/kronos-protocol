@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T02:49:51Z
+# Generado: 2026-09-20T02:50:32Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -30,6 +30,7 @@ da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/pa
 c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
+7a93dbe3efffa7638d907ef7b2ac32a2e7a7c1f937246df01d96124a87359603  ./cimiento/cripto-core/core.js
 8c5e908e08c26e9634e6a1e9ccff42d6ed507cf18d480e084873e6bc266b0aa2  ./cimiento/cripto-core/index.html
 ee009f9a5f37a53ecbecfecdcf599462dbe2cfb25969c495a11eaa34a6de4537  ./cimiento/cripto-core/styles.css
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
