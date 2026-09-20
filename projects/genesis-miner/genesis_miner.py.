@@ -1,0 +1,313 @@
+# -*- coding: utf-8 -*-
+"""
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                      ║
+║   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                      ║
+║   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                      ║
+║   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                      ║
+║   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                      ║
+║   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                      ║
+║                                                                              ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+║   GENESIS MINER · v1.0 · ED25519 + SHA-256 · HASH CHAIN VERIFICABLE        ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+"""
+
+import os
+import sys
+import json
+import time
+import hashlib
+import secrets
+from datetime import datetime, timezone
+from pathlib import Path
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DEPENDENCIAS CRIPTOGRÁFICAS (Ed25519)
+# ─────────────────────────────────────────────────────────────────────────────
+try:
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PrivateKey,
+        Ed25519PublicKey,
+    )
+    from cryptography.hazmat.primitives import serialization
+    ED25519_DISPONIBLE = True
+except ImportError:
+    ED25519_DISPONIBLE = False
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PALETA OBSIDIAN & GOLD (24-bit ANSI true color)
+# ─────────────────────────────────────────────────────────────────────────────
+class C:
+    RESET    = "\033[0m"
+    BOLD     = "\033[1m"
+    DIM      = "\033[2m"
+    ITALIC   = "\033[3m"
+
+    OBSIDIAN = "\033[38;2;10;10;11m"
+    CARBON   = "\033[38;2;17;17;20m"
+    SLATE    = "\033[38;2;26;26;31m"
+
+    GOLD     = "\033[38;2;201;162;39m"
+    GOLD_2   = "\033[38;2;229;199;107m"
+    CREAM    = "\033[38;2;245;240;230m"
+
+    GREEN    = "\033[38;2;88;166;109m"
+    AMBER    = "\033[38;2;214;158;46m"
+    RED      = "\033[38;2;176;74;74m"
+    CYAN     = "\033[38;2;106;176;196m"
+
+
+def limpiar_pantalla():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def banner():
+    print(f"""
+{C.GOLD}╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                      ║
+║   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                      ║
+║   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                      ║
+║   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                      ║
+║   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                      ║
+║   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                      ║
+║                                                                              ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+║   GENESIS MINER · v1.0 · ED25519 + SHA-256 · HASH CHAIN VERIFICABLE        ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝{C.RESET}
+""")
+
+
+def log(icono, mensaje, color=C.CREAM):
+    print(f"{color}{icono}{C.RESET}  {C.CREAM}{mensaje}{C.RESET}")
+
+
+def linea():
+    print(f"{C.GOLD_2}{'─' * 78}{C.RESET}")
+
+
+def bloque_ui(titulo, lineas):
+    print(f"{C.GOLD}┌─[ {titulo} ]{'─' * (60 - len(titulo))}┐{C.RESET}")
+    for l in lineas:
+        print(f"{C.GOLD}│{C.RESET} {C.CREAM}{l:<75}{C.RESET} {C.GOLD}│{C.RESET}")
+    print(f"{C.GOLD}└{'─' * 77}┘{C.RESET}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IDENTIDAD CRIPTOGRÁFICA (Ed25519)
+# ─────────────────────────────────────────────────────────────────────────────
+KEY_DIR = Path(".kronos_keys")
+KEY_DIR.mkdir(exist_ok=True)
+PRIV_PATH = KEY_DIR / "identity.key"
+PUB_PATH  = KEY_DIR / "identity.pub"
+
+
+def cargar_o_crear_identidad():
+    """Genera o carga la clave privada Ed25519 del fundador."""
+    if not ED25519_DISPONIBLE:
+        return None, None
+
+    if PRIV_PATH.exists() and PUB_PATH.exists():
+        priv_bytes = PRIV_PATH.read_bytes()
+        priv = Ed25519PrivateKey.from_private_bytes(priv_bytes)
+        pub = priv.public_key()
+        return priv, pub
+
+    priv = Ed25519PrivateKey.generate()
+    pub = priv.public_key()
+
+    priv_bytes = priv.private_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PrivateFormat.Raw,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
+    pub_bytes = pub.public_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PublicFormat.Raw,
+    )
+
+    PRIV_PATH.write_bytes(priv_bytes)
+    PUB_PATH.write_bytes(pub_bytes)
+    return priv, pub
+
+
+def firma_hex(priv, mensaje: bytes):
+    if priv is None:
+        return "SIN_FIRMA_ED25519"
+    return priv.sign(mensaje).hex()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# WALLET · PERSISTENCIA LOCAL
+# ─────────────────────────────────────────────────────────────────────────────
+WALLET_PATH = Path("wallet.json")
+
+
+def cargar_wallet():
+    if not WALLET_PATH.exists():
+        return {
+            "version": "kronos-1.0",
+            "creado": datetime.now(timezone.utc).isoformat(),
+            "balance": 0.0,
+            "bloques": [],
+            "ultimo_hash": "0" * 64,
+        }
+    with open(WALLET_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def guardar_wallet(wallet):
+    with open(WALLET_PATH, "w", encoding="utf-8") as f:
+        json.dump(wallet, f, indent=4, ensure_ascii=False)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# NÚCLEO · HASH CHAIN + PRUEBA DE TRABAJO + FIRMA
+# ─────────────────────────────────────────────────────────────────────────────
+DIFICULTAD = "0000"
+RECOMPENSA_BASE = 72
+
+
+def calcular_hash(indice, timestamp, nonce, hash_previo, datos):
+    payload = f"{indice}|{timestamp}|{nonce}|{hash_previo}|{datos}".encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def minar_bloque(indice, hash_previo, priv, wallet):
+    timestamp = datetime.now(timezone.utc).isoformat()
+    datos = f"recompensa={RECOMPENSA_BASE};fundador=KRONOS_PROTOCOL"
+
+    print(f"\n{C.GOLD_2}◆ Minando Bloque #{indice}...{C.RESET}")
+    nonce = 0
+    inicio = time.time()
+
+    while True:
+        h = calcular_hash(indice, timestamp, nonce, hash_previo, datos)
+
+        if nonce % 50_000 == 0 and nonce > 0:
+            print(
+                f"  {C.DIM}{C.CYAN}intentos {nonce:>9}  ·  hash {h[:24]}…{C.RESET}"
+            )
+
+        if h.startswith(DIFICULTAD):
+            duracion = time.time() - inicio
+            # Firma Ed25519 del bloque completo
+            firma = firma_hex(priv, bytes.fromhex(h))
+
+            print(f"{C.GOLD}>>> BLOQUE ENCONTRADO! <<<{C.RESET}")
+            print(f"  {C.CREAM}Bloque    :{C.RESET} {C.GOLD_2}{indice}{C.RESET}")
+            print(f"  {C.CREAM}Nonce     :{C.RESET} {C.GOLD_2}{nonce}{C.RESET}")
+            print(f"  {C.CREAM}Hash      :{C.RESET} {C.GOLD_2}{h}{C.RESET}")
+            print(f"  {C.CREAM}Prev Hash :{C.RESET} {C.DIM}{hash_previo[:32]}…{C.RESET}")
+            print(f"  {C.CREAM}Firma     :{C.RESET} {C.DIM}{firma[:48]}…{C.RESET}")
+            print(f"  {C.CREAM}Tiempo    :{C.RESET} {C.GOLD_2}{duracion:.2f}s{C.RESET}")
+
+            return {
+                "bloque": indice,
+                "timestamp": timestamp,
+                "nonce": nonce,
+                "hash_previo": hash_previo,
+                "hash": h,
+                "firma_ed25519": firma,
+                "datos": datos,
+                "recompensa": RECOMPENSA_BASE,
+                "duracion_seg": round(duracion, 3),
+            }
+
+        nonce += 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MAIN
+# ─────────────────────────────────────────────────────────────────────────────
+def main():
+    limpiar_pantalla()
+    banner()
+
+    priv, pub = cargar_o_crear_identidad()
+
+    if ED25519_DISPONIBLE:
+        pub_hex = pub.public_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PublicFormat.Raw,
+        ).hex()
+        bloque_ui(
+            "IDENTIDAD DEL FUNDADOR",
+            [
+                f"Algoritmo      : Ed25519",
+                f"Clave pública  : {pub_hex[:56]}…",
+                f"Firma          : ACTIVA",
+                f"Persistencia   : .kronos_keys/",
+            ],
+        )
+    else:
+        bloque_ui(
+            "IDENTIDAD DEL FUNDADOR",
+            [
+                "Ed25519       : NO DISPONIBLE",
+                "Modo          : degradado (solo SHA-256)",
+                "Instala       : pip install cryptography",
+            ],
+        )
+
+    wallet = cargar_wallet()
+
+    bloque_ui(
+        "ESTADO DEL WALLET",
+        [
+            f"Versión        : {wallet.get('version', 'kronos-1.0')}",
+            f"Balance        : {wallet['balance']} KRONOS",
+            f"Bloques        : {len(wallet['bloques'])}",
+            f"Último hash    : {wallet['ultimo_hash'][:40]}…",
+        ],
+    )
+
+    linea()
+    print(f"{C.GOLD_2}  Pulsa {C.BOLD}CTRL+C{C.RESET}{C.GOLD_2} para detener el motor.{C.RESET}")
+    linea()
+    time.sleep(1.5)
+
+    bloque_actual = len(wallet["bloques"]) + 1
+    hash_previo = wallet["ultimo_hash"]
+
+    try:
+        while True:
+            bloque = minar_bloque(bloque_actual, hash_previo, priv, wallet)
+            wallet["bloques"].append(bloque)
+            wallet["balance"] += bloque["recompensa"]
+            wallet["ultimo_hash"] = bloque["hash"]
+            guardar_wallet(wallet)
+
+            print(
+                f"  {C.GREEN}✓ Recompensa:{C.RESET} "
+                f"{C.GOLD_2}{bloque['recompensa']} KRONOS{C.RESET}"
+            )
+            print(
+                f"  {C.GREEN}✓ Guardado en wallet.json{C.RESET}  ·  "
+                f"{C.CREAM}Nuevo balance:{C.RESET} "
+                f"{C.GOLD_2}{wallet['balance']} KRONOS{C.RESET}"
+            )
+            linea()
+
+            bloque_actual += 1
+            hash_previo = bloque["hash"]
+            time.sleep(0.3)
+
+    except KeyboardInterrupt:
+        print(f"\n\n{C.AMBER}▸ Motor detenido por el fundador.{C.RESET}")
+        print(f"{C.CREAM}  Balance final: {C.GOLD_2}{wallet['balance']} KRONOS{C.RESET}")
+        print(f"{C.CREAM}  Bloques minados: {C.GOLD_2}{len(wallet['bloques'])}{C.RESET}")
+        print(f"{C.DIM}  Estado persistido en wallet.json{C.RESET}\n")
+
+
+if __name__ == "__main__":
+    main()
+pip install cryptography
+cd projects/genesis-miner/
+python genesis_miner.py
