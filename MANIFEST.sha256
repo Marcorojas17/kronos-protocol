@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T03:04:51Z
+# Generado: 2026-09-20T03:05:23Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -30,6 +30,7 @@ da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/pa
 c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
+cbdba609b775411e195d403b54b92a08e525d37b08e30720b2f7b6093df9f34d  ./cimiento/anclaje-ethereum/anchor.js
 8a59476318b4ac5aaa1b26c4960cd4aec6d45fb687cc4d8a6dc2c5369d41693f  ./cimiento/anclaje-ethereum/index.html
 bdb39ddfeed53fed4186f7aed507783e5e6d45ae1ed7fcd5fc599f8f994804e7  ./cimiento/anclaje-ethereum/styles.css
 e67c312f150d7439e5276ce31b5c5f6b6288d2833027dbd66f7b07c0460191ee  ./cimiento/cripto-core/AUTORIA
