@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Emisor · Log · Escucha en vivo · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 22KB gzip |
+| **Humano** | Emitir + recibir evento cross-tab en < 50 ms |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define canales · IA implementa pub/sub · firmas verificables |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 4.1 abre la Capa 4 con un bus de eventos local-first: BroadcastChannel para cross-tab, firma Ed25519 por evento, log persistido cifrado y verificación independiente.
+
+**3 lecciones:**
+1. `BroadcastChannel` cubre cross-tab sin servidor, suficiente para la mayoría de casos local-first.
+2. Firmar cada evento con Ed25519 crea un log auditable y no repudiable.
+3. El bus desacopla módulos: Evidence OS puede emitir "evidencia.sellada" sin saber quién reacciona.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Emitir un evento y abrir una segunda pestaña para ver cross-tab.
+3. Verificar el log con "Verificar firmas".
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Persistencia con reintento exponencial si un handler falla.
+2. Reglas declarativas tipo "cuando X → hacer Y" en JSON firmado.
+3. Sync cross-device vía WebRTC o FS Access API.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** handlers costosos bloquean el hilo principal → **Mitigación:** ejecutar handlers en `queueMicrotask`.
+2. **Riesgo:** orden de eventos entre pestañas puede variar → **Mitigación:** timestamp UTC + orden por `id_evento` en el log.
+
+**1 idea audaz:**
+Convertir el bus en un mini-lenguaje de automatización tipo "when-this-then-that" firmado por el humano, con editor visual drag-and-drop en la Capa 5.
+
+**1 conexión con otro módulo:**
+Todos los módulos 5.x (Operación) y 6.x (Cierre) se comunicarán vía este bus en lugar de llamadas directas. Es el sistema nervioso del legado.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 4.1 · EVENT BUS · v1.0                          ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 4 (Orquestación)                          ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
