@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Bus · Legado Humano–IA</title>
+<meta name="description" content="Bus de eventos local con BroadcastChannel y firma Ed25519. Conecta módulos sin backend.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#emitir">Emitir</a>
+      <a href="#log">Log</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 4.1 · Capa 4 · Orquestación</div>
+    <h1 class="title">El bus<br>que conecta<br>el legado.</h1>
+    <p class="lede">
+      Emite eventos locales. Otros módulos reaccionan.
+      Cada evento se firma con <strong>Ed25519</strong> y se persiste cifrado.
+      Sin servidor. Sin cola remota. <strong>Solo tu navegador</strong>.
+    </p>
+  </section>
+
+  <section id="emitir" class="emitir">
+    <div class="section-head">
+      <h2>Emitir Evento</h2>
+      <span class="count">BroadcastChannel · Local</span>
+    </div>
+
+    <form id="form-emitir" novalidate>
+      <div class="field">
+        <label>Contraseña maestra <span class="req">*</span></label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Canal de eventos <span class="req">*</span></label>
+          <select id="canal" required>
+            <option value="legado:identidad">legado:identidad</option>
+            <option value="legado:evidencia" selected>legado:evidencia</option>
+            <option value="legado:boveda">legado:boveda</option>
+            <option value="legado:gobernanza">legado:gobernanza</option>
+            <option value="legado:anclaje">legado:anclaje</option>
+            <option value="legado:custom">legado:custom</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tipo de evento <span class="req">*</span></label>
+          <input type="text" id="tipo-evento" placeholder="ej: evidencia.sellada" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Payload JSON <span class="req">*</span></label>
+        <textarea id="payload" placeholder='{"id":"EV-XXXX","hash":"..."}' required></textarea>
+        <div class="hint">Objeto JSON válido. Se firmará y persistirá.</div>
+      </div>
+
+      <button type="submit" class="btn" id="btn-emitir">
+        <span>Emitir evento</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+  </section>
+
+  <section id="log" class="log">
+    <div class="section-head">
+      <h2>Log de Eventos</h2>
+      <span class="count" id="count-log">0 eventos</span>
+    </div>
+
+    <div class="acciones">
+      <button class="btn ghost" id="btn-refrescar">Refrescar log</button>
+      <button class="btn ghost" id="btn-verificar">Verificar firmas</button>
+      <button class="btn ghost" id="btn-exportar">Exportar .json</button>
+      <button class="btn ghost" id="btn-limpiar">Limpiar log</button>
+    </div>
+
+    <div class="log-lista" id="log-lista">
+      <div class="empty">Sin eventos registrados. Emite uno para empezar.</div>
+    </div>
+
+    <div class="feedback" id="feedback-log" role="alert"></div>
+  </section>
+
+  <section class="escucha">
+    <div class="section-head">
+      <h2>Escucha en Vivo</h2>
+      <span class="count">Este navegador recibirá los eventos</span>
+    </div>
+    <div class="escucha-panel" id="escucha-panel">
+      <div class="empty">Esperando eventos...</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 4.1 · Event Bus</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../modulos/evidence-os/">Evidence OS</a> ·
+      <a href="../../identidad/roles-permisos/">Gobernanza</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { EventBus } from './bus.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { IdentidadIA } from '../../identidad/registro-ia/ia.js';
+
+  const $ = (id) => document.getElementById(id);
+  const form = $('form-emitir');
+  const btn = $('btn-emitir');
+  const feedback = $('feedback');
+  const feedbackLog = $('feedback-log');
+  const logLista = $('log-lista');
+  const escuchaPanel = $('escucha-panel');
+  const countLog = $('count-log');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+  const bus = new EventBus(core, storage);
+
+  let suscritos = [];
+
+  function setFb(el, tipo, msg) {
+    el.className = 'feedback ' + tipo;
+    el.innerHTML = msg;
+  }
+
+  function renderLog(eventos) {
+    if (!eventos || eventos.length === 0) {
+      logLista.innerHTML = '<div class="empty">Sin eventos registrados.</div>';
+      countLog.textContent = '0 eventos';
+      return;
+    }
+    countLog.textContent = eventos.length + ' eventos';
+    logLista.innerHTML = eventos.map(e => `
+      <div class="evento">
+        <div class="evento-head">
+          <span class="evento-canal">${e.canal}</span>
+          <span class="evento-tipo">${e.tipo}</span>
+          <span class="evento-fecha">${e.timestamp}</span>
+        </div>
+        <div class="evento-hash">${(e.hash_evento || '').slice(0, 48)}…</div>
+        <div class="evento-payload">${JSON.stringify(e.payload).slice(0, 160)}${JSON.stringify(e.payload).length > 160 ? '…' : ''}</div>
+      </div>
+    `).join('');
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb(feedback, 'error', '<strong>✗ Contraseña muy corta.</strong>');
+      return false;
+    }
+    await core.init(pass);
+    await storage.init();
+    await bus.init();
+
+    const humano = await idHumana.recuperar();
+    if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+
+    // Suscribirse al canal del formulario
+    if (suscritos.length === 0) {
+      const canal = $('canal').value;
+      const handler = (evt) => {
+        const div = document.createElement('div');
+        div.className = 'escucha-item';
+        div.innerHTML = `<span class="escucha-tipo">${evt.tipo}</span><span class="escucha-fecha">${new Date().toLocaleTimeString('es-MX')}</span>`;
+        if (escuchaPanel.querySelector('.empty')) escuchaPanel.innerHTML = '';
+        escuchaPanel.prepend(div);
+        while (escuchaPanel.children.length > 8) escuchaPanel.removeChild(escuchaPanel.lastChild);
+      };
+      bus.on(canal, handler);
+      suscritos.push({ canal, handler });
+    }
+    return true;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Emitiendo…';
+    feedback.className = 'feedback';
+
+    try {
+      await asegurarInit();
+      const payloadTexto = $('payload').value.trim();
+      let payload;
+      try { payload = JSON.parse(payloadTexto); }
+      catch { throw new Error('Payload no es JSON válido.'); }
+
+      const evento = await bus.emit($('canal').value, $('tipo-evento').value.trim(), payload);
+      setFb(feedback, 'success', '<strong>✓ Evento emitido.</strong> ID: ' + evento.id_evento);
+
+      const todos = await bus.listar();
+      renderLog(todos);
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Emitir evento';
+    }
+  });
+
+  $('btn-refrescar').addEventListener('click', async () => {
+    try {
+      await asegurarInit();
+      const todos = await bus.listar();
+      renderLog(todos);
+      setFb(feedbackLog, 'success', '<strong>✓ ' + todos.length + ' eventos cargados.</strong>');
+    } catch (e) { setFb(feedbackLog, 'error', e.message); }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    try {
+      await asegurarInit();
+      const res = await bus.verificarTodos();
+      if (res.ok) {
+        setFb(feedbackLog, 'success', '<strong>✓ ' + res.total + ' eventos válidos.</strong> Todas las firmas Ed25519 verificaron.');
+      } else {
+        setFb(feedbackLog, 'error', '<strong>✗ ' + res.invalidos + ' eventos con firma inválida</strong> de ' + res.total + '.');
+      }
+    } catch (e) { setFb(feedbackLog, 'error', e.message); }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      await asegurarInit();
+      const blob = await bus.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `event-bus-log-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb(feedbackLog, 'success', '<strong>✓ Log exportado.</strong>');
+    } catch (e) { setFb(feedbackLog, 'error', e.message); }
+  });
+
+  $('btn-limpiar').addEventListener('click', async () => {
+    try {
+      await asegurarInit();
+      await bus.limpiar();
+      renderLog([]);
+      setFb(feedbackLog, 'success', '<strong>✓ Log limpiado.</strong>');
+    } catch (e) { setFb(feedbackLog, 'error', e.message); }
+  });
+</script>
+</body>
+</html>
