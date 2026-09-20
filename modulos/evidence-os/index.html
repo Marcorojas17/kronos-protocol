@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence OS · Legado Humano–IA</title>
+<meta name="description" content="Empaqueta evidencias digitales verificables. SHA-256 + HMAC + Ed25519 + sello temporal NOM-151. Local-first.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#sellar">Sellar</a>
+      <a href="#verificar">Verificar</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.1 · Capa 3 · Evidencia Digital</div>
+    <h1 class="title">Paquetes<br>.evidence<br>verificables.</h1>
+    <p class="lede">
+      Sella cualquier archivo o texto con <strong>SHA-256</strong> +
+      <strong>HMAC</strong> + firma <strong>Ed25519</strong> + sello
+      temporal. Un solo archivo <code>.evidence</code> que prueba
+      existencia, autoría e integridad. Sin servidores. Sin rastreo.
+    </p>
+  </section>
+
+  <section id="sellar" class="sellar">
+    <div class="section-head">
+      <h2>Sellar Evidencia</h2>
+      <span class="count">NOM-151 · Local-first</span>
+    </div>
+
+    <form id="form-evidence" novalidate>
+      <div class="field">
+        <label>Contraseña maestra <span class="req">*</span></label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+        <div class="hint">Misma contraseña de los módulos 2.1, 2.2 y 2.3.</div>
+      </div>
+
+      <div class="field">
+        <label>Tipo de evidencia <span class="req">*</span></label>
+        <select id="tipo" required>
+          <option value="" disabled selected>Selecciona</option>
+          <option value="obra-artistica">Obra artística</option>
+          <option value="documento-legal">Documento legal</option>
+          <option value="codigo-fuente">Código fuente</option>
+          <option value="investigacion">Investigación</option>
+          <option value="testimonio">Testimonio</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Modo de evidencia <span class="req">*</span></label>
+        <div class="modos">
+          <label class="modo-btn activo" data-modo="texto">
+            <input type="radio" name="modo" value="texto" checked>
+            <span>Texto</span>
+          </label>
+          <label class="modo-btn" data-modo="archivo">
+            <input type="radio" name="modo" value="archivo">
+            <span>Archivo</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="campo-texto">
+        <label>Contenido a sellar <span class="req">*</span></label>
+        <textarea id="contenido-texto" placeholder="Pega o escribe el contenido que quieres proteger..."></textarea>
+      </div>
+
+      <div class="field" id="campo-archivo" hidden>
+        <label>Archivo a sellar <span class="req">*</span></label>
+        <input type="file" id="contenido-archivo" accept="*/*">
+        <div class="hint">Cualquier tipo de archivo · sin límite · se procesa localmente.</div>
+      </div>
+
+      <div class="field">
+        <label>Declaración de autoría <span class="req">*</span></label>
+        <textarea id="declaracion" placeholder="Declaro que este contenido es mío o tengo derecho a sellarlo." minlength="20" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Notas adicionales</label>
+        <input type="text" id="notas" placeholder="Opcional · contexto, fecha, referencias">
+      </div>
+
+      <button type="submit" class="btn" id="btn-sellar">
+        <span>Sellar paquete .evidence</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="resultado" id="resultado" hidden>
+      <div class="section-head">
+        <h2>Paquete Sellado</h2>
+        <span class="count">v3.1 · NOM-151</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="k">Archivo</span><span class="v" id="out-archivo">—</span></div>
+        <div class="stat"><span class="k">Tamaño</span><span class="v" id="out-tamano">—</span></div>
+        <div class="stat"><span class="k">Hash SHA-256</span><span class="v mono" id="out-hash">—</span></div>
+        <div class="stat"><span class="k">HMAC</span><span class="v mono" id="out-hmac">—</span></div>
+        <div class="stat"><span class="k">Firma Ed25519</span><span class="v mono" id="out-firma">—</span></div>
+        <div class="stat"><span class="k">Sello temporal</span><span class="v" id="out-timestamp">—</span></div>
+        <div class="stat"><span class="k">Firmante</span><span class="v" id="out-firmante">—</span></div>
+        <div class="stat"><span class="k">ID único</span><span class="v mono" id="out-id">—</span></div>
+      </div>
+
+      <div class="acciones">
+        <a href="#" class="btn ghost" id="descargar-evidence">Descargar .evidence</a>
+        <a href="#" class="btn ghost" id="descargar-json">Descargar certificado .json</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="verificar" class="verificar">
+    <div class="section-head">
+      <h2>Verificación Independiente</h2>
+      <span class="count">Sin acceso al original</span>
+    </div>
+
+    <div class="field">
+      <label>Archivo .evidence a verificar</label>
+      <input type="file" id="verify-file" accept=".evidence,.json">
+    </div>
+
+    <div class="field">
+      <label>Contenido original (opcional)</label>
+      <textarea id="verify-contenido" placeholder="Pega el texto original para verificar coincidencia exacta..."></textarea>
+    </div>
+
+    <button class="btn ghost" id="btn-verificar">Verificar integridad</button>
+
+    <div class="feedback" id="feedback-verify" role="alert"></div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.1 · Evidence OS</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../identidad/roles-permisos/">Gobernanza</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { EvidenceOS } from './evidence.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { IdentidadIA } from '../../identidad/registro-ia/ia.js';
+  import { RolesPermisos } from '../../identidad/roles-permisos/roles.js';
+
+  const $ = (id) => document.getElementById(id);
+  const form = $('form-evidence');
+  const btn = $('btn-sellar');
+  const feedback = $('feedback');
+  const resultado = $('resultado');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+  const roles = new RolesPermisos(core, storage);
+  const evidence = new EvidenceOS(core, storage);
+
+  let paqueteActual = null;
+
+  function setFb(el, tipo, msg) {
+    el.className = 'feedback ' + tipo;
+    el.innerHTML = msg;
+  }
+
+  // Cambio de modo texto/archivo
+  document.querySelectorAll('.modo-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.modo-btn').forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      const modo = btn.dataset.modo;
+      $('campo-texto').hidden = modo !== 'texto';
+      $('campo-archivo').hidden = modo !== 'archivo';
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Sellando…';
+    feedback.className = 'feedback';
+
+    try {
+      const password = $('password').value;
+      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+
+      await core.init(password);
+      await storage.init();
+
+      // Validar identidades y gobernanza
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+
+      const pactoIA = await idIA.recuperar();
+      if (!pactoIA) throw new Error('Falta pacto IA (módulo 2.2).');
+
+      const gobernanza = await roles.recuperar();
+      if (!gobernanza) throw new Error('Falta gobernanza (módulo 2.3).');
+
+      // Verificar permiso "crear_registro" para el rol Fundador
+      const puede = await roles.tienePermiso('fundador', 'crear_registro');
+      if (!puede) throw new Error('El Fundador no tiene permiso "crear_registro".');
+
+      // Determinar modo
+      const modo = document.querySelector('input[name="modo"]:checked').value;
+      let contenido, nombreArchivo, tipoMime;
+
+      if (modo === 'texto') {
+        contenido = $('contenido-texto').value;
+        if (!contenido || contenido.length < 10) throw new Error('El texto debe tener al menos 10 caracteres.');
+        nombreArchivo = 'texto-manual.txt';
+        tipoMime = 'text/plain';
+        var contenidoBytes = new TextEncoder().encode(contenido);
+      } else {
+        const fileInput = $('contenido-archivo');
+        if (!fileInput.files || fileInput.files.length === 0) throw new Error('Selecciona un archivo.');
+        const file = fileInput.files[0];
+        contenidoBytes = new Uint8Array(await file.arrayBuffer());
+        nombreArchivo = file.name;
+        tipoMime = file.type || 'application/octet-stream';
+      }
+
+      const paquete = await evidence.sellar({
+        contenidoBytes,
+        nombreArchivo,
+        tipoMime,
+        tipo: $('tipo').value,
+        declaracion: $('declaracion').value.trim(),
+        notas: $('notas').value.trim(),
+        humano,
+        pactoIA,
+        gobernanza
+      });
+
+      paqueteActual = paquete;
+
+      $('out-archivo').textContent = paquete.nombre_archivo;
+      $('out-tamano').textContent = paquete.tamano_bytes + ' bytes';
+      $('out-hash').textContent = paquete.hash_sha256.slice(0, 48) + '…';
+      $('out-hmac').textContent = paquete.hmac_sha256.slice(0, 48) + '…';
+      $('out-firma').textContent = paquete.firma_ed25519.slice(0, 48) + '…';
+      $('out-timestamp').textContent = paquete.timestamp;
+      $('out-firmante').textContent = humano.nombre + ' (' + humano.alias + ')';
+      $('out-id').textContent = paquete.id_evidencia;
+      resultado.hidden = false;
+
+      setFb(feedback, 'success', '<strong>✓ Paquete sellado.</strong> Descarga el archivo .evidence para compartirlo o guardarlo.');
+      resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Sellar paquete .evidence';
+    }
+  });
+
+  $('descargar-evidence').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!paqueteActual) return;
+    const blob = evidence.exportarEvidence(paqueteActual);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = paqueteActual.id_evidencia + '.evidence';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('descargar-json').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!paqueteActual) return;
+    const blob = new Blob([JSON.stringify(paqueteActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = paqueteActual.id_evidencia + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // Verificación
+  $('btn-verificar').addEventListener('click', async () => {
+    const fb = $('feedback-verify');
+    const fileInput = $('verify-file');
+    if (!fileInput.files || fileInput.files.length === 0) {
+      return setFb(fb, 'error', '<strong>✗ Selecciona un archivo .evidence.</strong>');
+    }
+    try {
+      const file = fileInput.files[0];
+      const texto = await file.text();
+      const paquete = JSON.parse(texto);
+
+      const ok = await evidence.verificar(paquete);
+      if (ok) {
+        setFb(fb, 'success', '<strong>✓ Paquete válido.</strong> Hash, HMAC y firma Ed25519 verificados correctamente. Autor: ' + paquete.firmante_nombre + '. Fecha: ' + paquete.timestamp);
+      } else {
+        setFb(fb, 'error', '<strong>✗ Paquete alterado o corrupto.</strong> La verificación falló.');
+      }
+    } catch (err) {
+      setFb(fb, 'error', '<strong>✗ Error al verificar:</strong> ' + err.message);
+    }
+  });
+</script>
+</body>
+</html>
