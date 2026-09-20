@@ -1,0 +1,9 @@
+{
+  "protocolo": "LEGADO-HUMANO-IA",
+  "version": "anclaje-1.0",
+  "merkle_root": "0x...",
+  "total_bloques": 42,
+  "firma_ed25519": "...",
+  "clave_publica": "...",
+  "tx_hash": "0x..."
+}
