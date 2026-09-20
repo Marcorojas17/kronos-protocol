@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Export Cifrado · Legado Humano–IA</title>
+<meta name="description" content="Empaqueta todo el ecosistema en un archivo .legado cifrado, firmado y restaurable. ISO 22301.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#exportar">Exportar</a>
+      <a href="#restaurar">Restaurar</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 6.1 · Capa 6 · Cierre</div>
+    <h1 class="title">El testamento<br>cifrado<br>del legado.</h1>
+    <p class="lede">
+      Todo el ecosistema en un solo archivo <code>.legado</code>.
+      Cifrado <strong>AES-GCM-256</strong>. Firmado <strong>Ed25519</strong>.
+      Restaurable en cualquier navegador. Alineado a
+      <strong>ISO 22301</strong> (continuidad).
+    </p>
+  </section>
+
+  <section id="exportar" class="exportar">
+    <div class="section-head">
+      <h2>Exportar Ecosistema</h2>
+      <span class="count">.legado · cifrado</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+    </div>
+
+    <div class="acciones-top">
+      <button class="btn" id="btn-inventario">Ver inventario</button>
+      <button class="btn platinum" id="btn-exportar">Exportar paquete .legado</button>
+      <button class="btn ghost" id="btn-exportar-json">Exportar solo manifiesto</button>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="inventario" id="inventario" hidden>
+      <div class="section-head" style="margin-top:32px">
+        <h2>Inventario del Ecosistema</h2>
+        <span class="count" id="count-registros">— registros</span>
+      </div>
+      <div class="grid-inventario" id="grid-inventario"></div>
+    </div>
+  </section>
+
+  <section id="restaurar" class="restaurar">
+    <div class="section-head">
+      <h2>Restaurar / Verificar</h2>
+      <span class="count">Importar .legado</span>
+    </div>
+
+    <div class="field">
+      <label>Archivo .legado <span class="req">*</span></label>
+      <input type="file" id="archivo-legado" accept=".legado,application/json">
+    </div>
+
+    <div class="field">
+      <label>Modo de restauración <span class="req">*</span></label>
+      <select id="modo-restaurar">
+        <option value="verificar">Verificar (solo leer, sin escribir)</option>
+        <option value="fusionar">Fusionar (añadir sin borrar actuales)</option>
+        <option value="reemplazar">Reemplazar (peligroso · borra actuales)</option>
+      </select>
+    </div>
+
+    <button class="btn" id="btn-restaurar">Restaurar paquete</button>
+
+    <div class="feedback" id="feedback-restaurar" role="alert"></div>
+
+    <div class="resultado-restaurar" id="resultado-restaurar" hidden></div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 6.1 · Export Cifrado</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../">Cierre</a> ·
+      <a href="../../operacion/dashboard-salud/">Dashboard</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { ExportCifrado } from './export.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const feedbackRest = $('feedback-restaurar');
+  const inventario = $('inventario');
+  const gridInv = $('grid-inventario');
+  const countRegistros = $('count-registros');
+  const resultadoRest = $('resultado-restaurar');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const exp = new ExportCifrado(core, storage);
+
+  let humanoActual = null;
+
+  function setFb(el, tipo, msg) {
+    el.className = 'feedback ' + tipo;
+    el.innerHTML = msg;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb(feedback, 'error', '<strong>✗ Contraseña muy corta.</strong>');
+      return false;
+    }
+    await core.init(pass);
+    await storage.init();
+    humanoActual = await idHumana.recuperar();
+    if (!humanoActual) throw new Error('Falta identidad humana (módulo 2.1).');
+    return true;
+  }
+
+  function renderInventario(inv) {
+    inventario.hidden = false;
+    const total = Object.values(inv).reduce((s, n) => s + n, 0);
+    countRegistros.textContent = total + ' registros';
+    gridInv.innerHTML = Object.entries(inv).map(([tipo, n]) => `
+      <div class="inv-card">
+        <span class="inv-tipo">${tipo}</span>
+        <span class="inv-num">${n}</span>
+      </div>
+    `).join('');
+  }
+
+  $('btn-inventario').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const inv = await exp.inventario();
+      renderInventario(inv);
+      setFb(feedback, 'success', '<strong>✓ Inventario calculado.</strong> ' + Object.keys(inv).length + ' tipos de datos detectados.');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const { blob, manifiesto } = await exp.exportar(humanoActual);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `legado-${Date.now()}.legado`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb(feedback, 'success', '<strong>✓ Paquete .legado exportado.</strong> Manifiesto: ' + manifiesto.total_registros + ' registros · ' + manifiesto.tipos.length + ' tipos.');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    }
+  });
+
+  $('btn-exportar-json').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const blob = await exp.exportarManifiesto(humanoActual);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `manifiesto-legado-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb(feedback, 'success', '<strong>✓ Manifiesto exportado.</strong>');
+    } catch (err) {
+      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+
+  $('btn-restaurar').addEventListener('click', async () => {
+    try {
+      const fileInput = $('archivo-legado');
+      if (!fileInput.files || fileInput.files.length === 0) {
+        return setFb(feedbackRest, 'error', '<strong>✗ Selecciona un archivo .legado.</strong>');
+      }
+      const pass = $('password').value;
+      if (pass.length < 8) {
+        return setFb(feedbackRest, 'error', '<strong>✗ Contraseña maestra requerida para descifrar.</strong>');
+      }
+      await core.init(pass);
+      await storage.init();
+
+      const file = fileInput.files[0];
+      const texto = await file.text();
+      const paquete = JSON.parse(texto);
+      const modo = $('modo-restaurar').value;
+
+      const res = await exp.restaurar(paquete, modo);
+
+      resultadoRest.hidden = false;
+      resultadoRest.innerHTML = `
+        <div class="kv"><span class="k">Modo</span><span class="v">${modo}</span></div>
+        <div class="kv"><span class="k">Manifiesto válido</span><span class="v" style="color:${res.manifiesto_ok?'#6EE7B7':'#fca5a5'}">${res.manifiesto_ok?'✓ sí':'✗ no'}</span></div>
+        <div class="kv"><span class="k">Firma válida</span><span class="v" style="color:${res.firma_ok?'#6EE7B7':'#fca5a5'}">${res.firma_ok?'✓ sí':'✗ no'}</span></div>
+        <div class="kv"><span class="k">Registros importados</span><span class="v">${res.importados}</span></div>
+        <div class="kv"><span class="k">Tipos procesados</span><span class="v">${res.tipos}</span></div>
+      `;
+
+      setFb(feedbackRest, 'success', '<strong>✓ Restauración procesada.</strong> Modo: ' + modo);
+    } catch (err) {
+      setFb(feedbackRest, 'error', '<strong>✗ Error al restaurar:</strong> ' + err.message);
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>
