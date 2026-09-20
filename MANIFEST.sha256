@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T04:02:54Z
+# Generado: 2026-09-20T04:08:09Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -134,6 +134,7 @@ bc69069b0c56344c680c150f7aa9f1c2748e4ae1f05dfee1515069921f007137  ./operacion/da
 eea4353ce342294b7389a15befb52d82aa08a74ec5fe7dcc543a15ef153476a9  ./operacion/dashboard-salud/index.html
 f83b0abd523abb5ef2e28b1324144346ad95a06e50d45a09e3f05f390b18ecde  ./operacion/dashboard-salud/manual.html
 fbd3cff44e345820b50bd1fd85ed6b523fb0e2549fd2c98624af85e3e98bc1a0  ./operacion/dashboard-salud/styles.css
+543a1959a376cc643a9783d8f1d726fb291bc5e8518e682476db39c0a795fc36  ./operacion/rituales/index.html
 0c89ee657962c09abc59fe5f799b22f8417669fba2283bd9ed75694a22c4d409  ./orquestacion/event-bus/AUTORIA
 d4c48d0e874c97edb7ac208475804589e910d18522f35519b39099c2f998d569  ./orquestacion/event-bus/README.md
 4ee495a8186d5fdb2a997a361d6e474fcb552f892bc0d4b3f07cde79e1a61303  ./orquestacion/event-bus/bus.js
