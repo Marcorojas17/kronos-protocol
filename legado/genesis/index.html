@@ -10,6 +10,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .continuar-siguiente {
+    margin-top: 40px;
+    padding: 24px 28px;
+    border: 1px solid rgba(124,58,237,0.35);
+    background: linear-gradient(155deg, rgba(124,58,237,0.06) 0%, rgba(10,14,21,0.7) 100%);
+    border-radius: 4px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .continuar-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #b794f6;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .continuar-siguiente .btn {
+    display: inline-flex;
+  }
+</style>
 </head>
 <body>
 
@@ -86,6 +110,14 @@
 
       <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
     </form>
+
+    <div class="continuar-siguiente" id="continuar-filosofia" hidden>
+      <span class="continuar-label">Siguiente paso · Capa 0</span>
+      <a href="../filosofia/" class="btn platinum">
+        <span>Continuar a Filosofía</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
 
     <div class="resultado" id="resultado" hidden>
       <div class="hash-box">
