@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fin Digno · Legado Humano–IA</title>
+<meta name="description" content="Cierre digno del legado: carta final, criterios de fin y cláusula de resurrección firmada.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#cierre">Cierre</a>
+      <a href="#certificado">Certificado</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 6.2 · Capa 6 · Cierre</div>
+    <h1 class="title">El último<br>aliento<br>del legado.</h1>
+    <p class="lede">
+      Todo legado tiene un fin. Aquí lo declaras con <strong>dignidad</strong>:
+      carta final al usuario, criterios de cierre y
+      <strong>cláusula de resurrección</strong> firmada con Ed25519.
+      Sin servidores. Sin olvido.
+    </p>
+  </section>
+
+  <section id="cierre" class="cierre">
+    <div class="section-head">
+      <h2>Declaración de Cierre</h2>
+      <span class="count">Ceremonial · Ed25519</span>
+    </div>
+
+    <div class="field">
+      <label>Contraseña maestra <span class="req">*</span></label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+    </div>
+
+    <div class="criterios">
+      <div class="section-head" style="margin-top:32px">
+        <h2>Criterios de Fin</h2>
+        <span class="count">Los declaras tú</span>
+      </div>
+      <div class="check-line">
+        <input type="checkbox" id="c1" checked disabled>
+        <label for="c1">He exportado el paquete <code>.legado</code> completo.</label>
+      </div>
+      <div class="check-line">
+        <input type="checkbox" id="c2" checked disabled>
+        <label for="c2">He ejecutado los rituales de las últimas 4 semanas.</label>
+      </div>
+      <div class="check-line">
+        <input type="checkbox" id="c3">
+        <label for="c3">He designado un sucesor o heredero del legado.</label>
+      </div>
+      <div class="check-line">
+        <input type="checkbox" id="c4">
+        <label for="c4">He dejado la carta final al usuario.</label>
+      </div>
+      <div class="check-line">
+        <input type="checkbox" id="c5" checked disabled>
+        <label for="c5">He aceptado que este legado puede ser resucitado con la misma contraseña.</label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:32px">
+      <label>Carta final al usuario <span class="req">*</span></label>
+      <textarea id="carta" placeholder="Escribe tu último mensaje. Puede ser a tu yo futuro, a un heredero, a quien encuentre este archivo en 2099." minlength="50" required></textarea>
+      <div class="hint">Mínimo 50 caracteres. Escríbela como si fuera la última.</div>
+    </div>
+
+    <div class="field">
+      <label>Motivo del cierre <span class="req">*</span></label>
+      <select id="motivo" required>
+        <option value="" disabled selected>Selecciona</option>
+        <option value="voluntario">Voluntario · decido cerrar</option>
+        <option value="transferencia">Transferencia · paso a heredero</option>
+        <option value="preservacion">Preservación · archivo sin actividad</option>
+        <option value="agotamiento">Agotamiento · el ecosistema cumplió</option>
+      </select>
+    </div>
+
+    <button class="btn" id="btn-cerrar">
+      <span>Sellar cierre del legado</span>
+      <span class="arrow">→</span>
+    </button>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="certificado" class="certificado" hidden>
+    <div class="cert-head">
+      <span class="tag">CERTIFICADO DE CIERRE · LEGADO HUMANO–IA</span>
+      <span class="version">v6.2</span>
+    </div>
+
+    <div class="cert-body">
+      <div class="cert-line">
+        <span class="k">Fundador</span>
+        <span class="v" id="out-fundador">—</span>
+      </div>
+      <div class="cert-line">
+        <span class="k">Motivo</span>
+        <span class="v" id="out-motivo">—</span>
+      </div>
+      <div class="cert-line">
+        <span class="k">Timestamp</span>
+        <span class="v" id="out-ts">—</span>
+      </div>
+      <div class="cert-line">
+        <span class="k">Hash cierre</span>
+        <span class="v mono" id="out-hash">—</span>
+      </div>
+      <div class="cert-line">
+        <span class="k">Firma Ed25519</span>
+        <span class="v mono" id="out-firma">—</span>
+      </div>
+      <div class="cert-line">
+        <span class="k">Cláusula resurrección</span>
+        <span class="v mono" id="out-clausula">—</span>
+      </div>
+    </div>
+
+    <div class="carta-final">
+      <span class="label">Carta final</span>
+      <blockquote id="out-carta">—</blockquote>
+    </div>
+
+    <div class="acciones">
+      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
+      <a href="#" class="btn ghost" id="copiar-clausula">Copiar cláusula</a>
+      <a href="#" class="btn ghost" id="exportar-legado-final">Exportar .legado final</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 6.2 · Fin Digno</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../export-cifrado/">Export Cifrado</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { FinDigno } from './fin.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
+  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
+  import { IdentidadIA } from '../../identidad/registro-ia/ia.js';
+  import { ExportCifrado } from '../export-cifrado/export.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const certificado = $('certificado');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const idHumana = new IdentidadHumana(core, storage);
+  const idIA = new IdentidadIA(core, storage);
+  const exp = new ExportCifrado(core, storage);
+  const fin = new FinDigno(core, storage);
+
+  let certificadoActual = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  $('btn-cerrar').addEventListener('click', async () => {
+    try {
+      const pass = $('password').value;
+      if (pass.length < 8) throw new Error('Contraseña muy corta (mínimo 8).');
+      const carta = $('carta').value.trim();
+      if (carta.length < 50) throw new Error('La carta final debe tener al menos 50 caracteres.');
+      const motivo = $('motivo').value;
+      if (!motivo) throw new Error('Selecciona un motivo de cierre.');
+
+      await core.init(pass);
+      await storage.init();
+
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+      const pactoIA = await idIA.recuperar();
+      if (!pactoIA) throw new Error('Falta pacto IA (módulo 2.2).');
+
+      const cert = await fin.sellar({
+        carta,
+        motivo,
+        sucesor: $('c3').checked,
+        cartaFirmada: $('c4').checked
+      }, humano, pactoIA);
+
+      certificadoActual = cert;
+
+      $('out-fundador').textContent = humano.nombre + ' (' + humano.alias + ')';
+      $('out-motivo').textContent = cert.motivo;
+      $('out-ts').textContent = cert.timestamp;
+      $('out-hash').textContent = cert.hash_cierre.slice(0, 48) + '…';
+      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
+      $('out-clausula').textContent = cert.clausula_resurreccion.slice(0, 48) + '…';
+      $('out-carta').textContent = cert.carta;
+      certificado.hidden = false;
+
+      setFb('success', '<strong>✓ Cierre sellado.</strong> Tu legado tiene un final digno y una cláusula de resurrección verificable.');
+      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+      console.error(err);
+    }
+  });
+
+  $('descargar').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `fin-digno-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  $('copiar-clausula').addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    try {
+      await navigator.clipboard.writeText(certificadoActual.clausula_resurreccion);
+      setFb('success', '<strong>✓ Cláusula copiada al portapapeles.</strong>');
+    } catch {
+      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
+    }
+  });
+
+  $('exportar-legado-final').addEventListener('click', async (e) => {
+    e.preventDefault();
+    try {
+      const humano = await idHumana.recuperar();
+      if (!humano) throw new Error('Falta identidad humana.');
+      const { blob } = await exp.exportar(humano);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `legado-final-${Date.now()}.legado`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setFb('success', '<strong>✓ Paquete .legado final exportado.</strong> Guárdalo junto con el certificado de cierre.');
+    } catch (err) {
+      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
+    }
+  });
+</script>
+</body>
+</html>
