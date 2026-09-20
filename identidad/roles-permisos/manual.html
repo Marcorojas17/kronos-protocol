@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Roles y Permisos · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--cobre-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(217,119,6,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(217,119,6,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--cobre-l);border-bottom-color:var(--cobre)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#05070b;border:1px solid rgba(217,119,6,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Matriz</a>
+      <a href="manual.html">Manual</a>
+      <a href="../registro-ia/">IA</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 2.3</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Roles y Permisos.</h1>
+    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Define la matriz de gobernanza: 5 roles × 20 permisos. Firmada con Ed25519, vinculada a tu identidad humana y al pacto IA.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Ejecuta primero los módulos 2.1 (Humano) y 2.2 (IA).</li>
+        <li>Abre <code>identidad/roles-permisos/index.html</code>.</li>
+        <li>Escribe la misma contraseña maestra.</li>
+        <li>Marca los permisos de cada rol en la tabla.</li>
+        <li>Elige política y caducidad.</li>
+        <li>Toca "Sellar gobernanza" y descarga el certificado.</li>
+      </ul>
+      <h3>Roles canónicos</h3>
+      <ul>
+        <li><strong>Fundador:</strong> todos los permisos. Autoridad máxima.</li>
+        <li><strong>Guardián:</strong> audita, verifica y puede proponer cambios.</li>
+        <li><strong>Creador:</strong> registra y firma obras.</li>
+        <li><strong>Colaborador:</strong> aporta sin privilegios de firma.</li>
+        <li><strong>IA Co-autora:</strong> asiste y estructura, sin propiedad.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { RolesPermisos } from './roles.js';
+
+const roles = new RolesPermisos(core, storage);
+const cert = await roles.sellar(
+  { politica, caducidad },
+  humano, pactoIA
+);
+
+const puede = await roles.tienePermiso('creador', 'firmar_registro');
+const ok = await roles.verificar(cert, humano, pactoIA);</pre>
+      <h3>Modificar la matriz por defecto</h3>
+      <p>Los arrays <code>ROLES</code>, <code>PERMISOS</code> y <code>matriz</code> viven en <code>roles.js</code>. Edita allí y vuelve a sellar para reflejar los cambios.</p>
+      <h3>Validaciones automáticas</h3>
+      <ul>
+        <li>El rol Fundador debe tener todos los permisos.</li>
+        <li>Deben existir las identidades 2.1 y 2.2 previas.</li>
+        <li>La firma dual requiere que humano e IA coincidan con los certificados previos.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Escalado de privilegios:</strong> la matriz firmada no puede editarse sin romper el hash.</li>
+        <li><strong>IA maliciosa:</strong> la firma dual requiere que la IA esté vinculada al humano.</li>
+        <li><strong>Suplantación de rol:</strong> cada certificado está firmado por el humano con Ed25519.</li>
+        <li><strong>Alteración de política:</strong> cualquier cambio en el payload rompe el hash.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>SHA-256</code> para hash de matriz y firma dual.</li>
+        <li><code>Ed25519</code> para firma del humano sobre la matriz.</li>
+        <li><code>AES-GCM-256</code> heredado para persistencia.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>La gobernanza es <strong>local</strong>: no hay servidor que valide la matriz por ti. Cada módulo consumidor debe verificar el certificado.</li>
+        <li>No hay revocación automática: si cambias la matriz, debes volver a sellar.</li>
+        <li>La política "delegada" permite a guardianes elevar roles, lo que relaja la seguridad. Elige "estricta" si prefieres control total.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 2.3</span>
+    <span><a href="./">Matriz</a> · <a href="../registro-ia/">IA</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[217,119,6],[124,58,237],[201,162,39],[14,165,183]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.28)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
