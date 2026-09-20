@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anclaje Ethereum · Legado Humano–IA</title>
+<meta name="description" content="Ancla la raíz Merkle de tu cadena local a Ethereum como prueba de existencia inmutable. Local-first, sin backend.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#anclar">Anclar</a>
+      <a href="#paquete">Paquete</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 1.3 · Anclaje Ethereum</div>
+    <h1 class="title">Prueba<br>de existencia<br>eterna.</h1>
+    <p class="lede">
+      Calcula la <strong>raíz Merkle</strong> de tu cadena local. Fírmala con
+      <strong>Ed25519</strong>. Anclala a <strong>Ethereum</strong> como prueba
+      de existencia inmutable. Sin backend. Tú controlas la wallet.
+    </p>
+  </section>
+
+  <section id="anclar" class="anclar">
+    <div class="section-head">
+      <h2>Anclar la Cadena</h2>
+      <span class="count">Local-first · MetaMask opcional</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra (Cripto Core)</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label>Estado de la cadena</label>
+        <div class="estado-cadena">
+          <div class="est"><span class="k">Bloques</span><span class="v" id="out-bloques">—</span></div>
+          <div class="est"><span class="k">Raíz Merkle</span><span class="v mono" id="out-merkle">—</span></div>
+          <div class="est"><span class="k">Clave pública</span><span class="v mono" id="out-pub">—</span></div>
+        </div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-calcular">Calcular raíz Merkle</button>
+          <button class="btn ghost" id="btn-exportar">Exportar paquete .json</button>
+          <button class="btn platinum" id="btn-anclar">Anclar con MetaMask</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-resultado" id="panel-resultado" hidden>
+      <div class="kv"><span class="k">Raíz Merkle</span><span class="v mono" id="out-merkle2">—</span></div>
+      <div class="kv"><span class="k">Firma Ed25519</span><span class="v mono" id="out-firma">—</span></div>
+      <div class="kv"><span class="k">Timestamp</span><span class="v" id="out-timestamp">—</span></div>
+      <div class="kv"><span class="k">Estado</span><span class="v" id="out-estado">—</span></div>
+      <div class="kv" id="kv-tx" hidden><span class="k">Tx Hash</span><span class="v mono" id="out-tx">—</span></div>
+      <div class="acciones" id="acciones-tx" hidden>
+        <a class="btn ghost" id="link-etherscan" target="_blank" rel="noopener">Ver en Etherscan →</a>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="paquete" class="paquete">
+    <div class="section-head">
+      <h2>Paquete de Anclaje</h2>
+      <span class="count">Estructura del .json</span>
+    </div>
+    <pre class="code">{
+  <span class="st">"protocolo"</span>: <span class="st">"LEGADO-HUMANO-IA"</span>,
+  <span class="st">"version"</span>: <span class="st">"anclaje-1.0"</span>,
+  <span class="st">"timestamp"</span>: <span class="st">"2026-09-19T..."</span>,
+  <span class="st">"fundador"</span>: <span class="st">"Marco A. Rojas V."</span>,
+  <span class="st">"coautora_ia"</span>: <span class="st">"KRONOS IA"</span>,
+  <span class="st">"merkle_root"</span>: <span class="st">"0x..."</span>,
+  <span class="st">"total_bloques"</span>: <span class="st">42</span>,
+  <span class="st">"firma_ed25519"</span>: <span class="st">"..."</span>,
+  <span class="st">"clave_publica"</span>: <span class="st">"..."</span>,
+  <span class="st">"instruccion_anclaje"</span>: <span class="st">"Enviar 0 ETH con merkle_root en data a tu propia wallet"</span>
+}</pre>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 1.3 · Anclaje Ethereum</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../storage-dexie/">Storage Dexie</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a>
+    </span>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js" integrity="sha512-bQq3TYG4pMhL4XGvVOcAqlRyvYq1RoZ5rR5pT1xY2pF3zW3rHkWXqYrBvXjTM8qX8c1S9gT8hH5w7lF4gVx8pL2cRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module">
+  import { AnchorEthereum } from './anchor.js';
+  import { CriptoCore } from '../cripto-core/core.js';
+  import { StorageDexie } from '../storage-dexie/storage.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const panel = $('panel-resultado');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const anchor = new AnchorEthereum(core, storage);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    await core.init(pass);
+    await storage.init();
+    return true;
+  }
+
+  $('btn-calcular').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    try {
+      const res = await anchor.calcular();
+      $('out-bloques').textContent = res.total_bloques;
+      $('out-merkle').textContent = res.merkle_root.slice(0, 40) + '…';
+      $('out-pub').textContent = core.clavePublicaHex.slice(0, 32) + '…';
+
+      $('out-merkle2').textContent = res.merkle_root;
+      $('out-firma').textContent = res.firma_ed25519.slice(0, 40) + '…';
+      $('out-timestamp').textContent = res.timestamp;
+      $('out-estado').textContent = 'Raíz calculada y firmada ✓';
+      panel.hidden = false;
+      setFb('success', '<strong>✓ Raíz Merkle calculada.</strong> Exporta el paquete o ancla con MetaMask.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    if (!anchor.paqueteActual) {
+      setFb('error', '<strong>✗ Calcula primero la raíz Merkle.</strong>');
+      return;
+    }
+    const blob = anchor.exportarPaquete();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `legado-anclaje-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setFb('success', '<strong>✓ Paquete exportado.</strong> Guárdalo o anclalo cuando quieras.');
+  });
+
+  $('btn-anclar').addEventListener('click', async () => {
+    if (!anchor.paqueteActual) {
+      setFb('error', '<strong>✗ Calcula primero la raíz Merkle.</strong>');
+      return;
+    }
+    if (typeof window.ethereum === 'undefined') {
+      setFb('error', '<strong>✗ MetaMask no detectado.</strong> Abre esta página en el navegador de MetaMask o instala la extensión. Puedes exportar el paquete y anclarlo después.');
+      return;
+    }
+    try {
+      setFb('success', '<strong>⏳ Conectando con MetaMask…</strong> Confirma en tu wallet.');
+      const res = await anchor.anclarConMetaMask();
+      $('out-tx').textContent = res.txHash;
+      $('kv-tx').hidden = false;
+      $('link-etherscan').href = `https://etherscan.io/tx/${res.txHash}`;
+      $('acciones-tx').hidden = false;
+      $('out-estado').textContent = 'Anclado en Ethereum ✓';
+      setFb('success', '<strong>✓ Transacción enviada.</strong> Tu raíz Merkle está anclada a Ethereum. El enlace a Etherscan aparecerá al confirmarse.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error de anclaje:</strong> ' + (e.message || e));
+    }
+  });
+</script>
+</body>
+</html>
