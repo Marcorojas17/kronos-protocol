@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// GÉNESIS · Legado Humano–IA · v1.0.5
-// Certificado HTML offline + JSON descargable + limpieza
+// GÉNESIS · Legado Humano–IA · v1.0.6
+// Certificado Black Card premium + offline + sin fantasía
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -79,9 +79,7 @@ async function exportarPubKey(pubKey) {
   return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// ─── HUELLA VISUAL DEL HASH (no es QR, es patrón identificador) ──
-// Se dibuja un patrón simétrico derivado del hash.
-// Se etiqueta HONESTAMENTE como "huella visual", no como QR.
+// ─── HUELLA VISUAL DEL HASH (no QR, patrón identificador) ───
 function dibujarHuellaVisual(canvas, hashHex) {
   const size = 21;
   const scale = 8;
@@ -92,22 +90,18 @@ function dibujarHuellaVisual(canvas, hashHex) {
   ctx.fillStyle = '#0A0A0B';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Generar bytes desde el hash
   const bytes = [];
   for (let i = 0; i < hashHex.length; i += 2) {
     bytes.push(parseInt(hashHex.slice(i, i + 2), 16));
   }
 
-  // Patrón simétrico (mitad izquierda + espejo)
   const mitad = Math.ceil(size / 2);
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < mitad; x++) {
       const idx = (y * mitad + x) % bytes.length;
       const activo = bytes[idx] > 127;
-      const color = activo ? '#c9a44c' : 'rgba(201,164,76,0.15)';
-      ctx.fillStyle = color;
+      ctx.fillStyle = activo ? '#c9a44c' : 'rgba(201,164,76,0.15)';
       ctx.fillRect(x * scale, y * scale, scale - 1, scale - 1);
-      // Espejo
       ctx.fillRect((size - 1 - x) * scale, y * scale, scale - 1, scale - 1);
     }
   }
@@ -115,11 +109,12 @@ function dibujarHuellaVisual(canvas, hashHex) {
   return canvas.toDataURL('image/png');
 }
 
-// ─── GENERAR CERTIFICADO HTML AUTOCONTENIDO ─────────────────
+// ─── GENERAR CERTIFICADO HTML (Black Card premium) ──────────
 function generarCertificadoHTML(cert, huellaDataUrl) {
   const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
     dateStyle: 'long', timeStyle: 'short'
   });
+  const idCorto = 'KRMV-' + cert.manifiesto_hash.slice(0, 12).toUpperCase();
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -127,244 +122,262 @@ function generarCertificadoHTML(cert, huellaDataUrl) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificado Génesis · KRONOS Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #00f2ff;
+    --gold: #c9a44c;
+    --gold-l: #f3e5ab;
+    --bg: #000;
+    --text: #F5F0E6;
+    --dim: #8892a0;
+  }
   body {
-    background: #0A0A0B;
-    color: #F5F0E6;
-    font-family: 'Georgia', serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 24px;
     background-image:
-      radial-gradient(circle at 20% 20%, rgba(124,58,237,0.1) 0%, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(201,164,76,0.08) 0%, transparent 40%);
+      radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 50%);
   }
-  .cert {
-    max-width: 720px;
-    width: 100%;
-    background: linear-gradient(155deg, rgba(20,24,32,0.9) 0%, rgba(10,14,21,0.95) 100%);
-    border: 2px solid #c9a44c;
-    border-radius: 8px;
-    padding: 48px 40px;
+
+  .black-card {
+    width: 420px;
+    max-width: 100%;
+    background: linear-gradient(145deg, #1a1a1a, #050505);
+    border: 1px solid rgba(201, 164, 76, 0.35);
+    border-radius: 15px;
+    padding: 32px 28px;
+    box-shadow: 0 30px 80px rgba(0,0,0,1), inset 0 0 20px rgba(201,164,76,0.05);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,164,76,0.1);
   }
-  .cert::before {
+  .black-card::before {
+    content: 'CERTIFICADO OFICIAL';
+    position: absolute;
+    top: 20px;
+    right: -55px;
+    background: var(--gold);
+    color: #000;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 5px 60px;
+    transform: rotate(45deg);
+    letter-spacing: 2px;
+  }
+  .black-card::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, #c9a44c, transparent);
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .cert::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, #c9a44c, transparent);
+
+  .card-header {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
   }
-  .header { text-align: center; margin-bottom: 32px; }
-  .kronos {
-    font-family: 'Palatino', serif;
-    font-size: 14px;
-    letter-spacing: 8px;
-    color: #c9a44c;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+  .logo-text {
+    color: var(--gold);
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 6px;
   }
-  h1 {
-    font-family: 'Palatino', serif;
-    font-size: 28px;
+  .logo-sub {
+    font-size: 8px;
+    color: var(--gold);
+    opacity: 0.6;
     letter-spacing: 3px;
-    background: linear-gradient(180deg, #fff8e0 0%, #f3e5ab 40%, #c9a44c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
-  }
-  .sub {
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #8892a0;
+    margin-top: 4px;
     text-transform: uppercase;
   }
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,164,76,0.5), transparent);
-    margin: 28px 0;
+
+  .dictamen-status {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #10B981;
+    text-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+    margin: 16px 0 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
   }
-  .huella-wrap {
-    text-align: center;
-    margin: 24px 0;
+  .pulse-dot {
+    width: 10px; height: 10px;
+    background: #10B981;
+    border-radius: 50%;
+    margin-right: 14px;
+    animation: pulse 2s infinite;
   }
-  .huella-wrap img {
-    border: 1px solid rgba(201,164,76,0.3);
-    border-radius: 4px;
-    width: 168px;
-    height: 168px;
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .data-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .data-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--primary);
+    margin-bottom: 4px;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .data-value.small { font-size: 9px; }
+  .data-value.gold { color: var(--gold-l); }
+  .data-value.serif {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+
+  .huella-placeholder {
+    width: 120px; height: 120px;
+    background: #0A0A0B;
+    margin: 18px auto;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(201,164,76,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .huella-placeholder img {
+    width: 100%;
+    height: 100%;
     image-rendering: pixelated;
+    border-radius: 3px;
   }
   .huella-label {
-    display: block;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: #8892a0;
-    margin-top: 8px;
-    text-transform: uppercase;
-  }
-  .campo {
-    margin-bottom: 18px;
-  }
-  .campo label {
-    display: block;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: #c9a44c;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .campo .valor {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    color: #F5F0E6;
-    word-break: break-all;
-    line-height: 1.6;
-    background: rgba(0,0,0,0.3);
-    padding: 10px 12px;
-    border-radius: 3px;
-    border-left: 2px solid #c9a44c;
-  }
-  .campo .valor.grande {
-    font-size: 13px;
-    color: #f3e5ab;
-    font-family: 'Palatino', serif;
-    letter-spacing: 1px;
-    border-left-color: #b794f6;
-  }
-  .verificar {
-    margin-top: 28px;
-    padding: 20px;
-    background: rgba(201,164,76,0.04);
-    border: 1px dashed rgba(201,164,76,0.3);
-    border-radius: 4px;
-  }
-  .verificar h2 {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #c9a44c;
+    text-align: center;
+    font-size: 8px;
+    color: var(--dim);
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 12px;
   }
-  .verificar p {
-    font-size: 12px;
-    line-height: 1.7;
-    color: #b0b8c4;
-    margin-bottom: 8px;
-  }
-  .verificar ol {
-    padding-left: 20px;
-    font-size: 12px;
-    line-height: 1.8;
-    color: #b0b8c4;
-  }
-  .footer {
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(201,164,76,0.2);
-    text-align: center;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #8892a0;
+
+  .btn-print {
+    margin-top: 24px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px;
     text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    border-radius: 3px;
   }
-  @media (max-width: 600px) {
-    .cert { padding: 32px 24px; }
-    h1 { font-size: 22px; }
-    .campo .valor { font-size: 10px; }
+  .btn-print:hover { background: var(--gold); color: #000; }
+
+  .footer-tx {
+    font-size: 8px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 16px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .btn-print { display: none; }
+    .black-card { box-shadow: none; border-color: #c9a44c; }
+  }
+  @media (max-width: 500px) {
+    .black-card { padding: 24px 20px; }
+    .logo-text { font-size: 18px; letter-spacing: 4px; }
+    .dictamen-status { font-size: 18px; }
   }
 </style>
 </head>
 <body>
-<div class="cert">
-  <div class="header">
-    <div class="kronos">KRONOS Protocol</div>
-    <h1>Certificado Génesis</h1>
-    <div class="sub">Módulo 0.1 · Capa 0 · Legado Humano–IA</div>
+
+<div class="black-card">
+  <div class="card-header">
+    <div class="logo-text">KRONOS</div>
+    <div class="logo-sub">Legado Humano–IA · Génesis</div>
   </div>
 
-  <div class="divider"></div>
+  <div class="data-label">Veredicto de integridad</div>
+  <div class="dictamen-status">
+    <span class="pulse-dot"></span> SELLADO · VÁLIDO
+  </div>
 
-  <div class="huella-wrap">
+  <div class="data-label">ID de protocolo</div>
+  <div class="data-value gold">${idCorto}</div>
+
+  <div class="data-label">Fundador</div>
+  <div class="data-value serif">${cert.fundador}</div>
+
+  <div class="data-label">Intención fundacional</div>
+  <div class="data-value serif" style="font-weight:400;font-size:13px;">${cert.intencion}</div>
+
+  <div class="data-label">Co-autoría IA</div>
+  <div class="data-value gold">${cert.coautoria_ia}</div>
+
+  <div class="data-label">Fecha de sellado</div>
+  <div class="data-value">${fecha}</div>
+
+  <div class="huella-placeholder">
     <img src="${huellaDataUrl}" alt="Huella visual del hash">
-    <span class="huella-label">Huella visual · derivada del hash SHA-256</span>
   </div>
+  <div class="huella-label">Huella visual · derivada del hash</div>
 
-  <div class="campo">
-    <label>Fundador</label>
-    <div class="valor grande">${cert.fundador}</div>
-  </div>
+  <div class="data-label">Hash SHA-256 del manifiesto</div>
+  <div class="data-value small">${cert.manifiesto_hash}</div>
 
-  <div class="campo">
-    <label>Intención fundacional</label>
-    <div class="valor">${cert.intencion}</div>
-  </div>
+  <div class="data-label">Firma Ed25519</div>
+  <div class="data-value small">${cert.firma_ed25519}</div>
 
-  <div class="campo">
-    <label>Co-autoría IA</label>
-    <div class="valor">${cert.coautoria_ia}</div>
-  </div>
+  <div class="data-label">Clave pública</div>
+  <div class="data-value small">${cert.clave_publica}</div>
 
-  <div class="campo">
-    <label>Hash SHA-256 del manifiesto</label>
-    <div class="valor">${cert.manifiesto_hash}</div>
-  </div>
+  <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
 
-  <div class="campo">
-    <label>Firma Ed25519</label>
-    <div class="valor">${cert.firma_ed25519}</div>
-  </div>
-
-  <div class="campo">
-    <label>Clave pública Ed25519</label>
-    <div class="valor">${cert.clave_publica}</div>
-  </div>
-
-  <div class="campo">
-    <label>Sellado el</label>
-    <div class="valor">${fecha}</div>
-  </div>
-
-  <div class="verificar">
-    <h2>Cómo verificar este certificado</h2>
-    <p>Este certificado prueba que el texto de la intención fue sellado el día indicado.</p>
-    <ol>
-      <li>Reconstruye el manifiesto exacto con los datos de fundador, intención, co-autoría y fecha.</li>
-      <li>Calcula su SHA-256 con cualquier herramienta (sha256sum, openssl, o navegador).</li>
-      <li>Compara el resultado con el hash del certificado. Si coincide, la integridad es válida.</li>
-      <li>Para verificar autoría, usa la clave pública Ed25519 y la firma contra el hash.</li>
-    </ol>
-    <p style="margin-top:12px; font-style: italic; color:#8892a0;">Sin internet. Sin servidores. Todo el proceso ocurre en tu navegador o en tu terminal.</p>
-  </div>
-
-  <div class="footer">
-    © 2026 Marco A. Rojas V. + KRONOS IA · Documento generado localmente
+  <div class="footer-tx">
+    Verificación: SHA-256(manifiesto) = hash declarado · Ed25519(clave_pública) = firma<br>
+    © 2026 ${cert.fundador} + ${cert.coautoria_ia} · Documento generado localmente
   </div>
 </div>
+
 </body>
 </html>`;
 }
 
 // ─── DESCARGAR CERTIFICADO HTML + JSON ─────────────────────
 function descargarCertificado(cert) {
-  // Generar huella visual
   const canvas = document.createElement('canvas');
   const huellaUrl = dibujarHuellaVisual(canvas, cert.manifiesto_hash);
 
-  // 1. Descargar HTML
+  // 1. Descargar HTML (Black Card)
   const htmlContenido = generarCertificadoHTML(cert, huellaUrl);
   const blobHTML = new Blob([htmlContenido], { type: 'text/html;charset=utf-8' });
   const urlHTML = URL.createObjectURL(blobHTML);
@@ -376,10 +389,9 @@ function descargarCertificado(cert) {
   document.body.removeChild(aHTML);
   setTimeout(() => URL.revokeObjectURL(urlHTML), 2000);
 
-  // 2. Descargar JSON con qr_data
+  // 2. Descargar JSON
   const jsonSalida = {
     ...cert,
-    qr_data: cert.manifiesto_hash,
     huella_visual: 'Patrón derivado del hash · no es QR escaneable',
     certificado_html_descargado: true,
     notas: 'El archivo .html contiene el certificado completo autocontenido. El .json es para verificación programática.'
@@ -522,12 +534,10 @@ form.addEventListener('submit', async (e) => {
       instruccion_verificacion: 'SHA-256(manifiesto) debe coincidir con manifiesto_hash. La firma_ed25519 se verifica con clave_publica.'
     };
 
-    // Persistencia localStorage
     try {
       localStorage.setItem('legado_genesis_last', JSON.stringify(certificadoActual));
-    } catch (e) { /* silencio */ }
+    } catch (e) {}
 
-    // Persistencia IndexedDB vía Dexie
     try {
       const db = await abrirDB();
       await db.registros.add({
@@ -536,19 +546,18 @@ form.addEventListener('submit', async (e) => {
         timestamp,
         payload: certificadoActual
       });
-      console.log('[génesis] ✅ Bloque guardado en IndexedDB (Dexie)');
+      console.log('[génesis] ✅ Bloque guardado en IndexedDB');
     } catch (persistErr) {
       console.warn('[génesis] ⚠️ IndexedDB no disponible:', persistErr.message);
     }
 
-    // UI
     if (hashOut) hashOut.textContent = hash;
     if (firmaOut) firmaOut.textContent = firma;
     if (pubOut) pubOut.textContent = pub;
     if (resultado) resultado.hidden = false;
 
     feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Génesis sellado.</strong> Campos limpiados. Descarga el certificado HTML + JSON.';
+    feedback.innerHTML = '<strong>✓ Génesis sellado.</strong> Campos limpiados. Descarga el certificado Black Card + JSON.';
 
     if (badge) {
       badge.classList.add('sellado');
@@ -569,7 +578,7 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
-// ── Botón descargar: HTML + JSON ────────────────────────────
+// ── Botón descargar ────────────────────────────────────────
 if (descargar) {
   descargar.addEventListener('click', (e) => {
     e.preventDefault();
