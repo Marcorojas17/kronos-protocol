@@ -1,112 +1,225 @@
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --gold:#c9a44c;--gold-l:#f3e5ab;--gold-d:#8a6f2c;
-  --ink:#0A0A0B;--ink-2:#111114;--ink-3:#1A1A1F;
-  --text:#F5F0E6;--dim:#8892a0;
-  --cian:#0EA5B7;--violeta:#7C3AED;--ambar:#F59E0B;
-}
-html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-#liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,10,11,.4) 60%,rgba(10,10,11,.95) 100%);z-index:1;pointer-events:none}
-.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
-header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase}
-header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Fraunces',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
-header.top .mark::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px var(--gold)}
-header.top nav a{color:var(--dim);text-decoration:none;margin-left:24px;transition:color .3s}
-header.top nav a:hover{color:var(--gold)}
-.hero{padding:60px 0 90px;max-width:820px}
-.eyebrow{font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:28px}
-h1.title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 40%,var(--gold) 70%,var(--gold-d) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:32px}
-.lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
-.lede strong{color:var(--text);font-weight:500}
-.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px}
-.section-head h2{font-family:'Fraunces',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
-.section-head .count{font-size:11px;letter-spacing:2px;color:var(--dim)}
+// ────────────────────────────────────────────────────────────
+// FILOSOFÍA · Legado Humano–IA · v1.0.2
+// Persistencia en localStorage + IndexedDB + descarga JSON
+// ────────────────────────────────────────────────────────────
 
-/* ── TESIS CENTRADAS ── */
-.tesis-lista{padding:40px 0 80px}
-.tesis{
-  padding:40px 0;
-  border-bottom:1px solid rgba(201,164,76,.1);
-  text-align:center;
-  cursor:pointer;
-  transition:all .4s;
+// ─── FONDO LÍQUIDO ───────────────────────────────────────────
+(function fondoLiquido() {
+  const canvas = document.getElementById('liquido');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.width = window.innerWidth * dpr;
+    h = canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORES = [[124,58,237],[14,165,183],[245,158,11],[201,162,39],[229,199,107]];
+  const blobs = [];
+  for (let i = 0; i < 7; i++) {
+    blobs.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 220 + Math.random()*340,
+      vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+      color: COLORES[i % COLORES.length]
+    });
+  }
+  function frame(t) {
+    ctx.clearRect(0,0,w,h);
+    ctx.globalCompositeOperation = 'lighter';
+    for (const b of blobs) {
+      b.x += b.vx*dpr; b.y += b.vy*dpr;
+      if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+      if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+      const wob = Math.sin(t*.0007 + b.x*.002)*.15 + 1;
+      const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+      g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.26)`);
+      g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ─── CRIPTOGRAFÍA ────────────────────────────────────────────
+async function sha256Hex(texto) {
+  const data = new TextEncoder().encode(texto);
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
 }
-.tesis:hover{
-  opacity:.95;
+async function firmar(privKey, mensaje) {
+  const data = new TextEncoder().encode(mensaje);
+  const firma = await crypto.subtle.sign('Ed25519', privKey, data);
+  return [...new Uint8Array(firma)].map(b => b.toString(16).padStart(2,'0')).join('');
 }
-.tesis .num{
-  display:block;
-  font-family:'JetBrains Mono',monospace;
-  font-size:13px;
-  color:var(--gold);
-  letter-spacing:3px;
-  margin-bottom:16px;
-  text-align:center;
+async function exportarPubKey(pubKey) {
+  const raw = await crypto.subtle.exportKey('raw', pubKey);
+  return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2,'0')).join('');
 }
-.tesis h3{
-  font-family:'Fraunces',serif;
-  font-size:clamp(22px,4vw,30px);
-  font-weight:600;
-  color:var(--text);
-  margin:0 auto 20px;
-  line-height:1.3;
-  max-width:720px;
-  text-align:center;
-}
-.tesis p{
-  font-size:15px;
-  line-height:1.85;
-  color:var(--dim);
-  font-weight:300;
-  max-width:640px;
-  margin:0 auto;
-  text-align:center;
-}
-.tesis p em{
-  color:var(--gold);
-  font-style:italic;
+async function generarParEd25519() {
+  return await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign','verify']);
 }
 
-.firmar{padding:80px 0;border-top:1px solid rgba(201,164,76,.1)}
-.field{margin-bottom:28px}
-.field label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;font-weight:500}
-.field label .req{color:var(--gold)}
-.field input,.field textarea{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:1px solid rgba(201,164,76,.25);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;transition:border-color .4s;outline:none}
-.field textarea{resize:vertical;min-height:100px;line-height:1.6}
-.field input:focus,.field textarea:focus{border-bottom-color:var(--gold)}
-.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.check-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid rgba(201,164,76,.2);border-radius:3px;cursor:pointer;transition:all .3s;background:rgba(17,17,20,.4)}
-.check-item:hover{border-color:rgba(201,164,76,.5)}
-.check-item input{margin-top:3px;accent-color:var(--gold)}
-.check-item span{font-size:12.5px;line-height:1.5;color:var(--dim);font-weight:300}
-.check-item.activo{border-color:var(--gold);background:rgba(201,164,76,.06)}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:2px;border:none;cursor:pointer;transition:all .4s;font-family:'Inter',sans-serif}
-.btn.platinum{background:linear-gradient(180deg,#d4b9ff 0%,#7C3AED 100%);color:#fff;box-shadow:0 8px 30px rgba(124,58,237,.35)}
-.btn.platinum:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.55)}
-.btn.ghost{border:1px solid rgba(201,164,76,.4);color:var(--gold);background:rgba(201,164,76,.02)}
-.btn.ghost:hover{border-color:var(--gold);background:rgba(201,164,76,.08)}
-.btn .arrow{transition:transform .3s}
-.btn:hover .arrow{transform:translateX(4px)}
-.btn:disabled{opacity:.5;cursor:wait}
-.resultado{margin-top:40px;padding:32px;border:1px solid rgba(124,58,237,.35);background:rgba(17,17,20,.6);border-radius:4px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.hash-box{margin-bottom:20px}
-.hash-box .label{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:8px}
-.hash-box code{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);word-break:break-all;line-height:1.6;display:block}
-.feedback{margin-top:24px;padding:16px 20px;border-radius:2px;font-size:13px;font-weight:300;display:none;line-height:1.6}
-.feedback.success{display:block;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);color:#a7f3d0}
-.feedback.error{display:block;background:rgba(176,74,74,.08);border:1px solid rgba(176,74,74,.3);color:#fca5a5}
-footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
-footer a{color:var(--dim);text-decoration:none;transition:color .3s}
-footer a:hover{color:var(--gold)}
-footer .sig{font-family:'Fraunces',serif;color:var(--gold);letter-spacing:3px}
-@media (max-width:700px){
-  .wrap{padding:24px 20px 60px}
-  header.top nav{display:none}
-  .tesis{grid-template-columns:1fr;gap:0}
-  footer{flex-direction:column}
+// ─── PERSISTENCIA DEXIE ─────────────────────────────────────
+const DB_NAME = 'KronosProtocol';
+const DB_VERSION = 1;
+async function abrirDB() {
+  if (typeof Dexie === 'undefined') throw new Error('Dexie no cargado');
+  const db = new Dexie(DB_NAME);
+  db.version(DB_VERSION).stores({ registros: '++id, tipo, hash, timestamp' });
+  await db.open();
+  return db;
 }
-@media (prefers-reduced-motion: reduce){
-  *{animation:none!important;transition:none!important}
-  #liquido{display:none}
+
+// ─── UI ──────────────────────────────────────────────────────
+const form = document.getElementById('form-postura');
+const btn = document.getElementById('btn-firmar');
+const feedback = document.getElementById('feedback');
+const resultado = document.getElementById('resultado');
+const hashOut = document.getElementById('hash-out');
+const firmaOut = document.getElementById('firma-out');
+const pubOut = document.getElementById('pub-out');
+const descargar = document.getElementById('descargar');
+const checks = document.getElementById('checks');
+
+let certificadoActual = null;
+
+// ── Generar checkboxes desde las tesis ──────────────────────
+if (checks) {
+  checks.innerHTML = '';
+  document.querySelectorAll('.tesis').forEach(t => {
+    const id = t.dataset.id;
+    const titulo = t.querySelector('h3')?.textContent || `Tesis ${id}`;
+    const item = document.createElement('label');
+    item.className = 'check-item';
+    item.innerHTML = `<input type="checkbox" value="${id}"><span>${id}. ${titulo}</span>`;
+    item.addEventListener('change', e => {
+      item.classList.toggle('activo', e.target.checked);
+    });
+    checks.appendChild(item);
+  });
+  console.log('[filosofía] checkboxes generados:', checks.children.length);
+}
+
+// ── Al cargar: restaurar último certificado ─────────────────
+(async function initLimpio() {
+  try {
+    const raw = localStorage.getItem('legado_filosofia_last');
+    if (raw) {
+      const cert = JSON.parse(raw);
+      if (cert && cert.payload_hash) {
+        if (hashOut) hashOut.textContent = cert.payload_hash;
+        if (firmaOut) firmaOut.textContent = cert.firma_ed25519;
+        if (pubOut) pubOut.textContent = cert.clave_publica;
+        if (resultado) resultado.hidden = false;
+        certificadoActual = cert;
+      }
+    }
+  } catch (e) { /* silencio */ }
+})();
+
+// ── Submit: firmar postura ──────────────────────────────────
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const nombre = document.getElementById('nombre').value.trim();
+    const reflexion = document.getElementById('reflexion').value.trim();
+    const seleccionadas = [...checks.querySelectorAll('input:checked')].map(i => i.value);
+
+    if (seleccionadas.length === 0) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Selecciona al menos una tesis.</strong>';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Firmando…';
+    feedback.className = 'feedback';
+
+    try {
+      const timestamp = new Date().toISOString();
+      const payload = `LEGADO-HUMANO-IA · FILOSOFIA v1.0\nFirmante: ${nombre}\nTesis adoptadas: ${seleccionadas.join(', ')}\nReflexion: ${reflexion}\nTimestamp: ${timestamp}`;
+
+      const hash = await sha256Hex(payload);
+      const { privateKey, publicKey } = await generarParEd25519();
+      const firma = await firmar(privateKey, payload);
+      const pub = await exportarPubKey(publicKey);
+
+      certificadoActual = {
+        protocolo: 'LEGADO-HUMANO-IA',
+        version: 'filosofia-1.0',
+        timestamp,
+        firmante: nombre,
+        tesis_adoptadas: seleccionadas,
+        reflexion,
+        payload_hash: hash,
+        firma_ed25519: firma,
+        clave_publica: pub,
+        algoritmo_firma: 'Ed25519',
+        algoritmo_hash: 'SHA-256',
+        coautoria_ia: 'KRONOS IA',
+        verificable_por_tercero: true
+      };
+
+      // Persistencia 1: localStorage
+      try {
+        localStorage.setItem('legado_filosofia_last', JSON.stringify(certificadoActual));
+      } catch (e) {}
+
+      // Persistencia 2: IndexedDB
+      try {
+        const db = await abrirDB();
+        await db.registros.add({
+          tipo: 'filosofia',
+          hash,
+          timestamp,
+          payload: certificadoActual
+        });
+        console.log('[filosofía] ✅ guardado en IndexedDB');
+      } catch (errPersist) {
+        console.warn('[filosofía] IndexedDB no disponible:', errPersist.message);
+      }
+
+      hashOut.textContent = hash;
+      firmaOut.textContent = firma;
+      pubOut.textContent = pub;
+      resultado.hidden = false;
+
+      feedback.className = 'feedback success';
+      feedback.innerHTML = '<strong>✓ Postura firmada.</strong> Guardada en localStorage + IndexedDB. Descarga el certificado.';
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Firmar postura';
+    }
+  });
+}
+
+// ── Descargar certificado ───────────────────────────────────
+if (descargar) {
+  descargar.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!certificadoActual) return;
+    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `legado-filosofia-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
 }
