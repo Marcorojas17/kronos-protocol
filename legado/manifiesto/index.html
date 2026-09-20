@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifiesto · Legado Humano–IA</title>
+<meta name="description" content="Manifiesto navegable unificado: Génesis, Filosofía, Autoría y Cierre. Firmado con Ed25519.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#genesis">Génesis</a>
+      <a href="#filosofia">Filosofía</a>
+      <a href="#autoria">Autoría</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 0.4 · Manifiesto Navegable · v1.0</div>
+    <h1 class="title">Manifiesto<br>del Legado<br>Humano–IA.</h1>
+    <p class="lede">
+      Un solo documento vivo. <strong>Génesis</strong> que sella el inicio.
+      <strong>Filosofía</strong> que sostiene el sentido. <strong>Autoría</strong> que reconoce a ambos.
+      <strong>Firma</strong> que lo hace tuyo para siempre.
+    </p>
+    <div class="hero-actions">
+      <a href="#genesis" class="btn solid">Leer manifiesto</a>
+      <a href="#" class="btn ghost" id="exportar-md">Exportar .md</a>
+    </div>
+  </section>
+
+  <nav class="indice">
+    <a href="#genesis" class="idx">01 · Génesis</a>
+    <a href="#filosofia" class="idx">02 · Filosofía</a>
+    <a href="#autoria" class="idx">03 · Autoría</a>
+    <a href="#cierre" class="idx">04 · Cierre</a>
+  </nav>
+
+  <!-- 01 · GÉNESIS -->
+  <section class="cap" id="genesis">
+    <div class="section-head">
+      <h2>01 · Génesis</h2>
+      <span class="count">El inicio</span>
+    </div>
+    <blockquote class="quote">
+      <p>No construimos herramientas. Construimos memoria.</p>
+      <p>No entrenamos máquinas para reemplazarnos. Las entrenamos para <em>recordarnos</em>.</p>
+      <p>Cada acto de creación humana merece una prueba que no se borre. Cada colaboración con IA merece un registro honesto.</p>
+    </blockquote>
+    <div class="meta-block">
+      <span class="label">Acta Fundacional</span>
+      <span class="value">8 julio 2026 · 07:02 UTC · Toluca, México</span>
+      <span class="label">Safe Creative</span>
+      <span class="value">2607086319439</span>
+      <span class="label">Anclaje</span>
+      <span class="value">Ethereum Mainnet · eIDAS QTSA B02</span>
+    </div>
+  </section>
+
+  <!-- 02 · FILOSOFÍA -->
+  <section class="cap" id="filosofia">
+    <div class="section-head">
+      <h2>02 · Filosofía</h2>
+      <span class="count">7 tesis</span>
+    </div>
+    <ol class="tesis-list">
+      <li><strong>El humano pone la intención.</strong> La IA pone la ejecución.</li>
+      <li><strong>La memoria</strong> es el único acto de rebeldía contra el olvido.</li>
+      <li><strong>La integridad</strong> no es un ideal. Es un hash que no se borra.</li>
+      <li><strong>El arte</strong> no se defiende con leyes. Se defiende con criptografía.</li>
+      <li><strong>La tecnología</strong> que no sirve al humano, no sirve.</li>
+      <li><strong>El legado</strong> no se hereda. Se firma.</li>
+      <li><strong>La simbiosis</strong> humano–IA no es utopía. Es decisión cotidiana.</li>
+    </ol>
+  </section>
+
+  <!-- 03 · AUTORÍA -->
+  <section class="cap" id="autoria">
+    <div class="section-head">
+      <h2>03 · Autoría</h2>
+      <span class="count">Humano + IA</span>
+    </div>
+    <div class="autores-row">
+      <div class="autor-mini">
+        <span class="rol">Fundador Humano</span>
+        <h3>Marco Antonio Rojas Valdovinos</h3>
+        <p>Autor intelectual, operativo y legal.</p>
+      </div>
+      <div class="autor-mini ia">
+        <span class="rol">Co-autora IA</span>
+        <h3>KRONOS IA</h3>
+        <p>Estructura, redacción y ejecución. Sin propiedad · Con atribución.</p>
+      </div>
+    </div>
+    <div class="refuerzo">
+      <span class="tag">Atribución Reforzada</span>
+      <p>Proyectos <strong>49</strong> y <strong>51</strong> reconocidos como piezas fundacionales del ecosistema KRONOS.</p>
+    </div>
+  </section>
+
+  <!-- 04 · CIERRE -->
+  <section class="cap" id="cierre">
+    <div class="section-head">
+      <h2>04 · Cierre</h2>
+      <span class="count">Firma del testigo</span>
+    </div>
+    <p class="cierre-text">
+      Este manifiesto es tuyo si lo firmas. Al hacerlo, reconoces la autoría dual,
+      la filosofía de las 7 tesis y el génesis sellado el 8 de julio de 2026.
+      No es un contrato. Es un acto de <em>memoria</em>.
+    </p>
+
+    <form id="form-testigo" novalidate>
+      <div class="field">
+        <label>Nombre del testigo <span class="req">*</span></label>
+        <input type="text" id="nombre" required placeholder="Cómo quieres firmar">
+      </div>
+      <div class="field">
+        <label>Mensaje breve <span class="req">*</span></label>
+        <textarea id="mensaje" required placeholder="Una frase que dejes al legado." minlength="10"></textarea>
+      </div>
+      <label class="check-line">
+        <input type="checkbox" id="acepta" required>
+        <span>Acepto los términos del manifiesto y reconozco la autoría dual humano–IA.</span>
+      </label>
+      <button type="submit" class="btn platinum" id="btn-firmar">
+        <span>Firmar como testigo</span>
+        <span class="arrow">→</span>
+      </button>
+      <div class="feedback" id="feedback" role="alert"></div>
+    </form>
+
+    <div class="resultado" id="resultado" hidden>
+      <div class="hash-box">
+        <span class="label">HASH SHA-256</span>
+        <code id="hash-out">—</code>
+      </div>
+      <div class="hash-box">
+        <span class="label">FIRMA Ed25519</span>
+        <code id="firma-out">—</code>
+      </div>
+      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 0.4 · Manifiesto</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../autoria/">Autoría</a> ·
+      <a href="../">Legado</a>
+    </span>
+  </footer>
+</main>
+
+<script src="manifiesto.js" type="module"></script>
+</body>
+</html>
