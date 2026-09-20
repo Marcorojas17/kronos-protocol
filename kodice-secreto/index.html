@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KODICE SECRETO · Certificado Verificable</title>
+<meta name="description" content="Visor holográfico de certificados KRONOS. Pega un JSON firmado y obtén un Kodice Secreto verificable.">
+<meta name="theme-color" content="#02030a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #02030a;
+    --ink-2: #0a0f1f;
+    --text: #e8f0ff;
+    --dim: #5a7ab0;
+    --cyan: #00eaff;
+    --magenta: #ff00d4;
+    --violeta: #7C3AED;
+    --gold: #f0d878;
+    --grid: rgba(0,234,255,0.06);
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Fondo: grid + scanlines + aurora */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,234,255,0.015) 3px,
+      transparent 4px
+    );
+    z-index: 1;
+    pointer-events: none;
+    animation: scan 8s linear infinite;
+  }
+  @keyframes scan {
+    from { background-position: 0 0; }
+    to { background-position: 0 100px; }
+  }
+  .aurora {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(124,58,237,0.18) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,0,212,0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(0,234,255,0.08) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite alternate;
+  }
+  @keyframes float {
+    from { transform: scale(1) translate(0,0); }
+    to { transform: scale(1.1) translate(-20px,20px); }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .lock {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    display: block;
+    filter: drop-shadow(0 0 12px var(--cyan)) drop-shadow(0 0 24px var(--magenta));
+  }
+  h1.kodice {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 7vw, 68px);
+    letter-spacing: 4px;
+    line-height: 1;
+    background: linear-gradient(180deg, #ffffff 0%, #c8f0ff 30%, #ff9cf0 60%, #00eaff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    text-shadow: 0 0 40px rgba(0,234,255,0.3);
+  }
+  h1.kodice::before,
+  h1.kodice::after {
+    content: attr(data-txt);
+    position: absolute;
+    left: 0; right: 0;
+    top: 0;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    pointer-events: none;
+  }
+  h1.kodice::before {
+    color: #ff00d4;
+    -webkit-text-fill-color: #ff00d4;
+    transform: translate(-3px, 0);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+  h1.kodice::after {
+    color: #00eaff;
+    -webkit-text-fill-color: #00eaff;
+    transform: translate(3px, 0);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+  .subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-top: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(0,234,255,0.6);
+  }
+  .subtitle small {
+    display: block;
+    color: var(--dim);
+    font-size: 9px;
+    letter-spacing: 4px;
+    margin-top: 6px;
+    text-shadow: none;
+  }
+
+  /* ── INPUT PANEL ── */
+  .panel-input {
+    margin: 32px 0;
+    padding: 24px;
+    border: 1px solid rgba(0,234,255,0.25);
+    background: rgba(10,15,31,0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  }
+  .panel-input::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+  }
+  .panel-input label {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .panel-input textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 14px;
+    background: rgba(2,3,10,0.7);
+    border: 1px solid rgba(0,234,255,0.2);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    border-radius: 3px;
+    transition: border-color 0.3s;
+  }
+  .panel-input textarea:focus { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,234,255,0.2); }
+  .panel-input textarea::placeholder { color: rgba(90,122,176,0.5); }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--magenta) 100%);
+    color: #02030a;
+    box-shadow: 0 0 24px rgba(0,234,255,0.35);
+    clip-path: polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(255,0,212,0.6); }
+  .btn.ghost {
+    background: rgba(0,234,255,0.05);
+    color: var(--cyan);
+    border: 1px solid rgba(0,234,255,0.4);
+    box-shadow: none;
+  }
+  .btn.ghost:hover { background: rgba(0,234,255,0.12); box-shadow: 0 0 24px rgba(0,234,255,0.3); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .feedback {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    display: none;
+  }
+  .feedback.ok { display: block; background: rgba(0,234,255,0.08); border: 1px solid rgba(0,234,255,0.4); color: var(--cyan); }
+  .feedback.err { display: block; background: rgba(255,0,100,0.08); border: 1px solid rgba(255,0,100,0.4); color: #ff5c7a; }
+
+  /* ── TARJETA KODICE ── */
+  .kodice-card {
+    margin-top: 40px;
+    padding: 32px 28px;
+    border: 2px solid transparent;
+    background:
+      linear-gradient(rgba(10,15,31,0.9), rgba(10,15,31,0.9)) padding-box,
+      linear-gradient(135deg, var(--cyan), var(--magenta), var(--violeta), var(--cyan)) border-box;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    box-shadow: 0 0 60px rgba(0,234,255,0.15), inset 0 0 60px rgba(255,0,212,0.05);
+    display: none;
+  }
+  .kodice-card.on { display: block; animation: fadeUp 0.8s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Esquinas decorativas */
+  .kodice-card .corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 2px solid var(--cyan);
+  }
+  .kodice-card .corner.tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .kodice-card .corner.tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-color: var(--magenta); }
+  .kodice-card .corner.bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-color: var(--magenta); }
+  .kodice-card .corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,234,255,0.2);
+    margin-bottom: 24px;
+  }
+  .card-lock {
+    width: 48px; height: 48px;
+    filter: drop-shadow(0 0 8px var(--cyan));
+    flex-shrink: 0;
+  }
+  .card-titles { flex: 1; }
+  .card-titles h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(180deg, #fff 0%, #c8f0ff 50%, #ff9cf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    text-shadow: 0 0 24px rgba(0,234,255,0.4);
+  }
+  .card-titles .badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-top: 8px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(0,234,255,0.6);
+  }
+  .card-titles .badge-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 4px;
+    letter-spacing: 2px;
+  }
+
+  .card-section {
+    padding: 18px 20px;
+    border: 1px solid rgba(0,234,255,0.2);
+    background: rgba(2,3,10,0.5);
+    margin-bottom: 16px;
+    border-radius: 3px;
+    position: relative;
+  }
+  .card-section .label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+  }
+  .card-section .label.mag { color: var(--magenta); }
+  .card-section .value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 12px rgba(0,234,255,0.4);
+    word-break: break-word;
+  }
+  .card-section .value.mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--cyan);
+    text-shadow: none;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card-grid .card-section { margin-bottom: 0; }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,234,255,0.2);
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .card-footer .stamp {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+  .card-footer .stamp.valid {
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0,255,136,0.6);
+  }
+
+  /* Sello circular holográfico */
+  .seal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--violeta), var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 8s linear infinite;
+    opacity: 0.85;
+  }
+  .seal::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: var(--ink-2);
+  }
+  .seal::after {
+    content: '✓';
+    position: absolute;
+    font-size: 32px;
+    color: var(--cyan);
+    text-shadow: 0 0 16px var(--cyan);
+    font-weight: 700;
+    z-index: 1;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .seal-txt {
+    position: absolute;
+    bottom: -2px;
+    right: 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .kodice-card { padding: 24px 18px; }
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .seal { width: 60px; height: 60px; }
+    .seal::after { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora"></div>
+
+<div class="wrap">
+
+  <div class="header">
+    <svg class="lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" stroke="url(#grad1)" stroke-width="1.2"/>
+      <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="url(#grad1)" stroke-width="1.4" stroke-linecap="round"/>
+      <rect x="6" y="11" width="12" height="9" rx="1.5" stroke="url(#grad1)" stroke-width="1.4"/>
+      <circle cx="12" cy="15.5" r="1.3" fill="url(#grad1)"/>
+      <line x1="12" y1="16.5" x2="12" y2="18" stroke="url(#grad1)" stroke-width="1.4" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="grad1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#00eaff"/>
+          <stop offset="0.5" stop-color="#ff00d4"/>
+          <stop offset="1" stop-color="#7C3AED"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <h1 class="kodice" data-txt="KODICE SECRETO">KODICE SECRETO</h1>
+    <div class="subtitle">
+      Certificado Infalsificable · Verificación Cuántica 2026
+      <small>KODICE·SEC·2026</small>
+    </div>
+  </div>
+
+  <!-- PANEL DE ENTRADA -->
+  <div class="panel-input">
+    <label for="input-json">Acceso restringido · Inicio de sesión segura</label>
+    <textarea id="input-json" placeholder='Pega aquí cualquier certificado .json generado por tus módulos (génesis, identidad, evidence, fin-digno, etc.)'></textarea>
+    <div class="btn-row">
+      <button class="btn" id="btn-render">Iniciar sesión →</button>
+      <button class="btn ghost" id="btn-ejemplo">Cargar ejemplo</button>
+      <button class="btn ghost" id="btn-limpiar">Limpiar</button>
+    </div>
+    <div class="feedback" id="fb"></div>
+  </div>
+
+  <!-- TARJETA -->
+  <div class="kodice-card" id="card">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="card-header">
+      <svg class="card-lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" stroke="url(#grad2)" stroke-width="1.2"/>
+        <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="url(#grad2)" stroke-width="1.4" stroke-linecap="round"/>
+        <rect x="6" y="11" width="12" height="9" rx="1.5" stroke="url(#grad2)" stroke-width="1.4"/>
+        <circle cx="12" cy="15.5" r="1.3" fill="url(#grad2)"/>
+        <defs>
+          <linearGradient id="grad2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00eaff"/>
+            <stop offset="0.5" stop-color="#ff00d4"/>
+            <stop offset="1" stop-color="#7C3AED"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="card-titles">
+        <h2 id="c-title">KODICE SECRETO</h2>
+        <div class="badge">Certificado Infalsificable · Verificación Cuántica 2026</div>
+        <div class="badge-id" id="c-id">ID: —</div>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <span class="label">Titular del certificado</span>
+      <div class="value" id="c-titular">—</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section">
+        <span class="label">Protocolo</span>
+        <div class="value mono" id="c-protocolo">—</div>
+      </div>
+      <div class="card-section">
+        <span class="label mag">Válido hasta</span>
+        <div class="value mono" id="c-valido">—</div>
+      </div>
+    </div>
+
+    <div class="card-section">
+      <span class="label">Huella SHA-256 / Firma Ed25519</span>
+      <div class="value mono" id="c-hash">—</div>
+    </div>
+
+    <div class="card-section">
+      <span class="label mag">Tipo de evidencia</span>
+      <div class="value" id="c-tipo">—</div>
+    </div>
+
+    <div class="card-footer">
+      <span class="stamp valid">✓ Verificado</span>
+      <span class="stamp">Sesión encriptada · TLS 1.3</span>
+      <span class="stamp">KODICE·SEC·2026</span>
+    </div>
+
+    <div class="seal"></div>
+    <div class="seal-txt">SEGURIDAD<br>CRIPTO<br>INFALSIFICABLE</div>
+  </div>
+
+  <div class="btn-row" id="acciones-export" style="display:none; justify-content:center; margin-top:24px;">
+    <button class="btn" id="btn-descargar-png">Descargar PNG</button>
+    <button class="btn ghost" id="btn-copiar-json">Copiar JSON</button>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const $ = (id) => document.getElementById(id);
+  const fb = $('fb');
+  const card = $('card');
+  let certActual = null;
+
+  // ── Ejemplo de certificado para probar ──
+  const EJEMPLO = {
+    protocolo: 'LEGADO-HUMANO-IA',
+    version: 'fin-digno-1.0',
+    tipo: 'cierre-legado',
+    timestamp: '2026-09-19T18:00:00.000Z',
+    fundador_nombre: 'Marco Antonio Rojas Valdovinos',
+    fundador_alias: 'Marco R.',
+    fundador_huella: 'a3f8b1c9e2d7f4a8b3c6e1d9f2a5b8c7e4d1f9a6c3b7e2d5f8a1c4b9e6d3f7a2',
+    motivo: 'voluntario',
+    hash_cierre: '0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e',
+    firma_ed25519: 'e4a8b3c6e1d9f2a5b8c7e4d1f9a6c3b7e2d5f8a1c4b9e6d3f7a2a3f8b1c9e2d7f4'
+  };
+
+  function setFb(tipo, msg) {
+    fb.className = 'feedback ' + tipo;
+    fb.innerHTML = msg;
+  }
+
+  function renderCert(cert) {
+    certActual = cert;
+
+    // Detectar campos por tipo de certificado
+    const titular = cert.fundador_nombre
+      || cert.firmante_nombre
+      || cert.nombre
+      || cert.firmante
+      || 'Sin titular';
+
+    const idCert = cert.id_evidencia
+      || cert.id_evento
+      || (cert.manifiesto && cert.manifiesto.total_registros && 'LEG-' + cert.manifiesto.total_registros)
+      || 'KOD·' + Date.now().toString(36).toUpperCase();
+
+    const protocolo = (cert.protocolo || 'KRONOS') + ' · ' + (cert.version || 'v1.0');
+
+    const valido = cert.valido_hasta
+      || (cert.timestamp && new Date(new Date(cert.timestamp).getTime() + 365*24*3600*1000).toISOString().slice(0,10))
+      || '31 DIC 2026';
+
+    const hash = cert.hash_cierre
+      || cert.hash_sha256
+      || cert.payload_hash
+      || cert.manifiesto_hash
+      || cert.hash_evento
+      || cert.hash
+      || '—';
+
+    const firma = cert.firma_ed25519 || '';
+    const hashCompleto = hash + (firma ? ' · ' + firma.slice(0, 16) + '…' : '');
+
+    const tipo = cert.tipo_evidencia
+      || cert.tipo
+      || (cert.motivo ? 'Cierre ' + cert.motivo : '')
+      || 'Certificado verificable';
+
+    $('c-title').textContent = 'KODICE SECRETO';
+    $('c-id').textContent = 'ID: ' + idCert;
+    $('c-titular').textContent = titular;
+    $('c-protocolo').textContent = protocolo;
+    $('c-valido').textContent = new Date(valido).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+    $('c-hash').textContent = hashCompleto;
+    $('c-tipo').textContent = tipo;
+
+    card.classList.add('on');
+    $('acciones-export').style.display = 'flex';
+    setFb('ok', '<strong>✓ Certificado renderizado.</strong> El Kodice Secreto está listo.');
+  }
+
+  $('btn-render').addEventListener('click', () => {
+    const raw = $('input-json').value.trim();
+    if (!raw) return setFb('err', '<strong>✗ Pega un certificado JSON primero.</strong>');
+    try {
+      const cert = JSON.parse(raw);
+      renderCert(cert);
+    } catch (e) {
+      setFb('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-ejemplo').addEventListener('click', () => {
+    $('input-json').value = JSON.stringify(EJEMPLO, null, 2);
+    renderCert(EJEMPLO);
+  });
+
+  $('btn-limpiar').addEventListener('click', () => {
+    $('input-json').value = '';
+    card.classList.remove('on');
+    $('acciones-export').style.display = 'none';
+    fb.className = 'feedback';
+    certActual = null;
+  });
+
+  $('btn-copiar-json').addEventListener('click', async () => {
+    if (!certActual) return;
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(certActual, null, 2));
+      setFb('ok', '<strong>✓ JSON copiado al portapapeles.</strong>');
+    } catch { setFb('err', '<strong>✗ No se pudo copiar.</strong>'); }
+  });
+
+  $('btn-descargar-png').addEventListener('click', async () => {
+    if (!card.classList.contains('on')) return;
+    try {
+      // Usamos html2canvas vía CDN inyectado
+      if (typeof html2canvas === 'undefined') {
+        await new Promise((res, rej) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+          s.onload = res;
+          s.onerror = rej;
+          document.head.appendChild(s);
+        });
+      }
+      const canvas = await html2canvas(card, {
+        backgroundColor: '#02030a',
+        scale: 2,
+        useCORS: true
+      });
+      const url = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'kodice-secreto-' + Date.now() + '.png';
+      a.click();
+      setFb('ok', '<strong>✓ PNG descargado.</strong>');
+    } catch (e) {
+      setFb('err', '<strong>✗ Error al exportar:</strong> ' + e.message);
+    }
+  });
+})();
+</script>
+</body>
+</html>
