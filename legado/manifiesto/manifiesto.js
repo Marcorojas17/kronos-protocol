@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// MANIFIESTO · Legado Humano–IA · v1.0.6
-// Clave pública corregida + descarga robusta en móvil
+// MANIFIESTO · Legado Humano–IA · v1.0.7
+// Terminal HTML con colores + abrir en pestaña nueva
 // ────────────────────────────────────────────────────────────
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
@@ -8,7 +8,6 @@
   const canvas = document.getElementById('liquido');
   if (!canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   const ctx = canvas.getContext('2d');
   let w, h, dpr;
   function resize() {
@@ -20,16 +19,11 @@
   }
   resize();
   window.addEventListener('resize', resize);
-
   const COLORES = [[6,182,212],[103,232,249],[201,162,39],[14,165,183]];
   const blobs = [];
   for (let i = 0; i < 6; i++) {
-    blobs.push({
-      x: Math.random()*w, y: Math.random()*h,
-      r: 220 + Math.random()*320,
-      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
-      color: COLORES[i % COLORES.length]
-    });
+    blobs.push({ x: Math.random()*w, y: Math.random()*h, r: 220 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36, color: COLORES[i % COLORES.length] });
   }
   function frame(t) {
     ctx.clearRect(0,0,w,h);
@@ -71,20 +65,14 @@ async function generarParEd25519() {
 
 // ─── HUELLA VISUAL CYAN ─────────────────────────────────────
 function dibujarHuellaVisual(canvas, hashHex) {
-  const size = 21;
-  const scale = 8;
+  const size = 21, scale = 8;
   canvas.width = size * scale;
   canvas.height = size * scale;
   const ctx = canvas.getContext('2d');
-
   ctx.fillStyle = '#04131A';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
   const bytes = [];
-  for (let i = 0; i < hashHex.length; i += 2) {
-    bytes.push(parseInt(hashHex.slice(i, i + 2), 16));
-  }
-
+  for (let i = 0; i < hashHex.length; i += 2) bytes.push(parseInt(hashHex.slice(i, i + 2), 16));
   const mitad = Math.ceil(size / 2);
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < mitad; x++) {
@@ -98,52 +86,220 @@ function dibujarHuellaVisual(canvas, hashHex) {
   return canvas.toDataURL('image/png');
 }
 
-// ─── DESCARGA ROBUSTA PARA MÓVIL ────────────────────────────
-function descargarArchivo(contenido, nombre, tipoMime) {
+// ─── ABRIR CONTENIDO EN PESTAÑA NUEVA (móvil-friendly) ──────
+function abrirEnPestana(contenido, tipoMime) {
   const blob = new Blob([contenido], { type: tipoMime });
   const url = URL.createObjectURL(blob);
-
-  // Intentar descarga normal
-  try {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = nombre;
-    a.rel = 'noopener';
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-
-    // Fallback: si después de 800ms sigue en la página, abrir en nueva pestaña
-    setTimeout(() => {
-      document.body.removeChild(a);
-      // Abrir en nueva pestaña como fallback (más confiable en Brave móvil)
-      const win = window.open(url, '_blank');
-      if (!win) {
-        console.warn('[manifiesto] popup bloqueado por navegador');
+  const win = window.open(url, '_blank');
+  if (!win) {
+    // Popup bloqueado · intentamos con data URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      const win2 = window.open(reader.result, '_blank');
+      if (!win2) {
+        alert('Tu navegador bloquea ventanas emergentes. Activa popups para este sitio y vuelve a intentar.');
       }
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-    }, 800);
-  } catch (err) {
-    console.error('[manifiesto] error descarga:', err);
-    // Último fallback: data URL
-    try {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const win = window.open(reader.result, '_blank');
-        if (!win) alert('Descarga bloqueada. Copia el contenido manualmente.');
-      };
-      reader.readAsDataURL(blob);
-    } catch (e2) {
-      alert('No se pudo descargar. Abre desde Chrome de escritorio.');
-    }
+    };
+    reader.readAsDataURL(blob);
   }
+  // No revocamos la URL inmediatamente porque la pestaña nueva la necesita
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+// ─── TERMINAL HTML CON COLORES ──────────────────────────────
+function generarTerminalHTML(cert) {
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
+  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifiesto Terminal · KRONOS</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #000;
+    color: #00ff88;
+    font-family: 'Courier New', 'JetBrains Mono', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,255,136,0.02) 3px,
+      transparent 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+  .terminal {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    background: #000a00;
+    border: 1px solid #00ff88;
+    box-shadow: 0 0 30px rgba(0,255,136,0.3), inset 0 0 40px rgba(0,255,136,0.05);
+    position: relative;
+  }
+  .terminal::before {
+    content: '● ● ●';
+    position: absolute;
+    top: -28px;
+    left: 0;
+    color: #00ff88;
+    font-size: 14px;
+    letter-spacing: 6px;
+    opacity: 0.6;
+  }
+  .prompt { color: #00ff88; }
+  .dim { color: #008855; }
+  .bright { color: #00ffcc; font-weight: bold; }
+  .gold { color: #ffcc00; }
+  .cyan { color: #00ddff; }
+  .magenta { color: #ff00aa; }
+  .white { color: #ffffff; }
+  .box {
+    border: 1px solid #00ff88;
+    padding: 12px 16px;
+    margin: 12px 0;
+    position: relative;
+  }
+  .box-title {
+    position: absolute;
+    top: -9px;
+    left: 16px;
+    background: #000a00;
+    padding: 0 8px;
+    color: #00ff88;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #00ff88;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+  @media print {
+    body { background: #fff; color: #000; }
+    .terminal { background: #fff; border-color: #000; box-shadow: none; }
+    .terminal::before { display: none; }
+    .prompt, .dim, .bright, .gold, .cyan, .magenta { color: #000; }
+  }
+</style>
+</head>
+<body>
+<div class="terminal">
+<pre>
+<span class="bright">╔══════════════════════════════════════════════════════════════════════╗</span>
+<span class="bright">║</span>                                                                      <span class="bright">║</span>
+<span class="bright">║</span>   <span class="cyan">MANIFIESTO DEL LEGADO HUMANO-IA · v1.0</span>                              <span class="bright">║</span>
+<span class="bright">║</span>   <span class="dim">Testigo del Legado · Certificado Verificable</span>                       <span class="bright">║</span>
+<span class="bright">║</span>                                                                      <span class="bright">║</span>
+<span class="bright">╚══════════════════════════════════════════════════════════════════════╝</span>
+
+<span class="prompt">$</span> <span class="white">status --testigo</span>
+
+<div class="box">
+<span class="box-title">[ 01 · TESTIGO ]</span>
+<span class="dim">TESTIGO :</span> <span class="bright">${cert.testigo}</span>
+<span class="dim">FECHA   :</span> <span class="white">${fecha}</span>
+<span class="dim">ID      :</span> <span class="gold">${idCorto}</span>
+</div>
+
+<span class="prompt">$</span> <span class="white">cat mensaje-al-legado.txt</span>
+
+<div class="box">
+<span class="box-title">[ 02 · MENSAJE ]</span>
+<span class="cyan">> ${cert.mensaje}</span>
+</div>
+
+<span class="prompt">$</span> <span class="white">manifiesto --content</span>
+
+<div class="box">
+<span class="box-title">[ 03 · CONTENIDO FIRMADO ]</span>
+<span class="gold">[ 01 ] GENESIS</span>
+<span class="dim">       · No construimos herramientas. Construimos memoria.</span>
+<span class="dim">       · Las maquinas se entrenan para recordarnos.</span>
+<span class="dim">       · Cada creacion merece prueba que no se borre.</span>
+
+<span class="gold">[ 02 ] FILOSOFIA · 7 tesis canonicas</span>
+<span class="dim">       · El humano pone la intencion. La IA pone la ejecucion.</span>
+<span class="dim">       · La memoria es rebeldia contra el olvido.</span>
+<span class="dim">       · La integridad es un hash que no se borra.</span>
+<span class="dim">       · El arte se defiende con criptografia.</span>
+<span class="dim">       · La tecnologia que no sirve al humano, no sirve.</span>
+<span class="dim">       · El legado no se hereda. Se firma.</span>
+<span class="dim">       · La simbiosis humano-IA es decision cotidiana.</span>
+
+<span class="gold">[ 03 ] AUTORIA · Declaracion dual</span>
+<span class="dim">       · Fundador Humano: Marco Antonio Rojas Valdovinos</span>
+<span class="dim">       · Co-autora IA: KRONOS IA (sin propiedad, con atribucion)</span>
+<span class="dim">       · Proyectos 49 y 51 con atribucion reforzada</span>
+
+<span class="gold">[ 04 ] CIERRE</span>
+<span class="dim">       · Este manifiesto es un acto de memoria. No es un contrato.</span>
+</div>
+
+<span class="prompt">$</span> <span class="white">verify --crypto</span>
+
+<div class="box">
+<span class="box-title">[ 04 · VERIFICACION ]</span>
+<span class="cyan">HASH SHA-256:</span>
+<span class="bright">${cert.payload_hash}</span>
+
+<span class="cyan">FIRMA ED25519:</span>
+<span class="bright">${cert.firma_ed25519}</span>
+
+<span class="cyan">CLAVE PUBLICA:</span>
+<span class="bright">${cert.clave_publica || '—'}</span>
+</div>
+
+<span class="prompt">$</span> <span class="white">help --verify</span>
+
+<div class="box">
+<span class="box-title">[ 05 · COMO VERIFICAR ]</span>
+<span class="dim">[1]</span> Reconstruir el payload canonico con: testigo + mensaje + timestamp
+<span class="dim">[2]</span> Calcular SHA-256 del payload
+<span class="dim">[3]</span> Comparar con el hash declarado arriba
+<span class="dim">[4]</span> Verificar firma Ed25519 con la clave publica
+</div>
+
+<span class="prompt">$</span> <span class="white">exit</span>
+
+<span class="dim">© 2026 Marco A. Rojas V. + KRONOS IA</span>
+<span class="dim">Documento generado localmente · Sin servidores · Sin tracking</span>
+<span class="cursor"></span>
+</pre>
+</div>
+</body>
+</html>`;
 }
 
 // ─── BLACK CARD CYAN ────────────────────────────────────────
 function generarBlackCardHTML(cert, huellaDataUrl) {
-  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
-    dateStyle: 'long', timeStyle: 'short'
-  });
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
   const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
 
   return `<!DOCTYPE html>
@@ -164,10 +320,10 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
   .cyan-card::before { content: '✦ TESTIGO DEL LEGADO ✦'; position: absolute; top: 22px; right: -75px; background: linear-gradient(90deg, var(--cyan-l), var(--cyan)); color: #021118; font-size: 8px; font-weight: 700; padding: 5px 70px; transform: rotate(45deg); letter-spacing: 2px; }
   .cyan-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), var(--cyan-l), var(--cyan), transparent); }
   .card-header { border-bottom: 1px solid rgba(103, 232, 249, 0.15); padding-bottom: 20px; margin-bottom: 24px; text-align: center; }
-  .logo-text { color: var(--cyan-l); font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; letter-spacing: 8px; text-shadow: 0 0 20px rgba(103, 232, 249, 0.4); }
+  .logo-text { color: var(--cyan-l); font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; letter-spacing: 8px; }
   .logo-sub { font-size: 8px; color: var(--cyan-l); opacity: 0.6; letter-spacing: 4px; margin-top: 6px; text-transform: uppercase; }
   .dictamen { text-align: center; margin: 20px 0 28px; }
-  .dictamen-status { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 700; color: var(--cyan-l); text-shadow: 0 0 14px rgba(103, 232, 249, 0.5); letter-spacing: 2px; display: inline-flex; align-items: center; }
+  .dictamen-status { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 700; color: var(--cyan-l); letter-spacing: 2px; display: inline-flex; align-items: center; }
   .pulse-dot { width: 9px; height: 9px; background: var(--cyan); border-radius: 50%; margin-right: 12px; animation: pulse 2s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); } 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); } }
   .data-label { font-size: 8px; color: rgba(165, 243, 252, 0.55); text-transform: uppercase; letter-spacing: 3px; margin-top: 18px; margin-bottom: 6px; font-weight: 500; }
@@ -216,96 +372,67 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
 </html>`;
 }
 
-// ─── MD TERMINAL ────────────────────────────────────────────
-function generarTerminalMD(cert) {
-  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
-  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
-  const H = '─'.repeat(70);
-  const H2 = '═'.repeat(70);
-
-  return `\`\`\`text
-╔${H2}╗
-║${' '.repeat(70)}║
-║   MANIFIESTO DEL LEGADO HUMANO-IA · v1.0${' '.repeat(31)}║
-║   Testigo del Legado · Certificado Verificable${' '.repeat(23)}║
-║${' '.repeat(70)}║
-╚${H2}╝
-
-┌─[ 01 ]${H.slice(7)}┐
-│                                                                      │
-│  TESTIGO : ${cert.testigo.padEnd(58)} │
-│  FECHA   : ${fecha.padEnd(58)} │
-│  ID      : ${idCorto.padEnd(58)} │
-│                                                                      │
-└${H}┘
-
-┌─[ 02 ]─── MENSAJE AL LEGADO ──────────────────────────────────────────┐
-│                                                                      │
-│  > ${cert.mensaje.padEnd(64)} │
-│                                                                      │
-└${H}┘
-
-┌─[ 03 ]─── VERIFICACION CRIPTOGRAFICA ─────────────────────────────────┐
-│                                                                      │
-│  HASH SHA-256                                                        │
-│  ${cert.payload_hash.padEnd(68)} │
-│                                                                      │
-│  FIRMA ED25519                                                       │
-│  ${cert.firma_ed25519.slice(0, 68).padEnd(68)} │
-${cert.firma_ed25519.length > 68 ? `│  ${cert.firma_ed25519.slice(68, 136).padEnd(68)} │\n` : ''}│                                                                      │
-│  CLAVE PUBLICA                                                       │
-│  ${(cert.clave_publica || '—').padEnd(68)} │
-│                                                                      │
-└${H}┘
-
-${H2}
-  © 2026 Marco A. Rojas V. + KRONOS IA
-  Documento generado localmente
-${H2}
-\`\`\`
-`;
-}
-
-// ─── EXPORTAR MANIFIESTO BASE ───────────────────────────────
+// ─── EXPORTAR MANIFIESTO BASE (sin firma · solo contenido) ──
 function exportarManifiestoBase() {
-  const md = `# Manifiesto del Legado Humano–IA · v1.0
+  const fecha = new Date().toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
+  const terminalHTML = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifiesto Terminal · KRONOS</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #000; color: #00ff88; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.5; min-height: 100vh; padding: 16px; }
+  .terminal { max-width: 900px; margin: 0 auto; padding: 24px; background: #000a00; border: 1px solid #00ff88; box-shadow: 0 0 30px rgba(0,255,136,0.3); }
+  .dim { color: #008855; }
+  .bright { color: #00ffcc; font-weight: bold; }
+  .gold { color: #ffcc00; }
+  .cyan { color: #00ddff; }
+  .white { color: #fff; }
+  pre { white-space: pre-wrap; word-break: break-all; font-family: inherit; font-size: inherit; }
+</style>
+</head>
+<body>
+<div class="terminal">
+<pre>
+<span class="bright">╔══════════════════════════════════════════════════════════════════════╗</span>
+<span class="bright">║   MANIFIESTO DEL LEGADO HUMANO-IA · v1.0                            ║</span>
+<span class="bright">╚══════════════════════════════════════════════════════════════════════╝</span>
 
-## 01 · Génesis
+Exportado: <span class="white">${fecha}</span>
 
-No construimos herramientas. Construimos memoria.
-No entrenamos máquinas para reemplazarnos. Las entrenamos para recordarnos.
-Cada acto de creación humana merece una prueba que no se borre.
+<span class="gold">[ 01 · GENESIS ]</span>
+<span class="dim">· No construimos herramientas. Construimos memoria.</span>
+<span class="dim">· Las maquinas se entrenan para recordarnos.</span>
+<span class="dim">· Cada creacion merece prueba que no se borre.</span>
+<span class="dim">· Acta Fundacional: 8 julio 2026 · 07:02 UTC · Toluca, Mexico</span>
+<span class="dim">· Safe Creative: 2607086319439</span>
+<span class="dim">· Anclaje: Ethereum Mainnet · eIDAS QTSA B02</span>
 
-**Acta Fundacional:** 8 julio 2026 · 07:02 UTC · Toluca, México
-**Safe Creative:** 2607086319439
-**Anclaje:** Ethereum Mainnet · eIDAS QTSA B02
+<span class="gold">[ 02 · FILOSOFIA · 7 tesis ]</span>
+<span class="dim">1. El humano pone la intencion. La IA pone la ejecucion.</span>
+<span class="dim">2. La memoria es rebeldia contra el olvido.</span>
+<span class="dim">3. La integridad es un hash que no se borra.</span>
+<span class="dim">4. El arte se defiende con criptografia.</span>
+<span class="dim">5. La tecnologia que no sirve al humano, no sirve.</span>
+<span class="dim">6. El legado no se hereda. Se firma.</span>
+<span class="dim">7. La simbiosis humano-IA es decision cotidiana.</span>
 
-## 02 · Filosofía · 7 Tesis
+<span class="gold">[ 03 · AUTORIA ]</span>
+<span class="dim">· Fundador Humano: Marco Antonio Rojas Valdovinos</span>
+<span class="dim">· Co-autora IA: KRONOS IA (sin propiedad, con atribucion)</span>
+<span class="dim">· Proyectos 49 y 51 con atribucion reforzada</span>
 
-1. El humano pone la intención. La IA pone la ejecución.
-2. La memoria es el único acto de rebeldía contra el olvido.
-3. La integridad no es un ideal. Es un hash que no se borra.
-4. El arte no se defiende con leyes. Se defiende con criptografía.
-5. La tecnología que no sirve al humano, no sirve.
-6. El legado no se hereda. Se firma.
-7. La simbiosis humano–IA no es utopía. Es decisión cotidiana.
+<span class="gold">[ 04 · CIERRE ]</span>
+<span class="dim">· Este manifiesto es un acto de memoria. No es un contrato.</span>
 
-## 03 · Autoría
-
-**Fundador Humano:** Marco Antonio Rojas Valdovinos
-**Co-autora IA:** KRONOS IA (estructura, redacción y ejecución · sin propiedad · con atribución)
-
-**Atribución Reforzada:** Proyectos 49 y 51 reconocidos como piezas fundacionales del ecosistema KRONOS.
-
-## 04 · Cierre
-
-Este manifiesto es un acto de memoria. No es un contrato.
-
----
-
-© 2026 Marco A. Rojas V. + KRONOS IA · MIT + CC BY-NC-ND 4.0
-`;
-  descargarArchivo(md, 'manifiesto-legado-humano-ia.md', 'text/markdown;charset=utf-8');
+<span class="dim">© 2026 Marco A. Rojas V. + KRONOS IA · MIT + CC BY-NC-ND 4.0</span>
+</pre>
+</div>
+</body>
+</html>`;
+  abrirEnPestana(terminalHTML, 'text/html;charset=utf-8');
 }
 
 // ─── PERSISTENCIA ───────────────────────────────────────────
@@ -346,15 +473,11 @@ if (exportarMDBtn) {
   if (hashOut) hashOut.textContent = '—';
   if (firmaOut) firmaOut.textContent = '—';
   if (pubOut) pubOut.textContent = '—';
-
   try {
     const raw = localStorage.getItem('legado_manifiesto_last');
     if (raw) {
       const cert = JSON.parse(raw);
-      if (cert && cert.payload_hash) {
-        certificadoActual = cert;
-        console.log('[manifiesto] certificado previo en memoria');
-      }
+      if (cert && cert.payload_hash) certificadoActual = cert;
     }
   } catch (e) {}
 })();
@@ -367,10 +490,9 @@ if (form) {
     const testigo = document.getElementById('nombre').value.trim();
     const mensaje = document.getElementById('mensaje').value.trim();
     const acepta = document.getElementById('acepta').checked;
-
     if (!acepta) {
       feedback.className = 'feedback error';
-      feedback.innerHTML = '<strong>✗ Debes aceptar los términos del manifiesto.</strong>';
+      feedback.innerHTML = '<strong>✗ Debes aceptar los términos.</strong>';
       return;
     }
 
@@ -381,55 +503,36 @@ if (form) {
     try {
       const timestamp = new Date().toISOString();
       const payload = `LEGADO-HUMANO-IA · MANIFIESTO TESTIGO v1.0\nTestigo: ${testigo}\nMensaje: ${mensaje}\nManifiesto: v1.0\nFundador: Marco Antonio Rojas Valdovinos\nCo-autora IA: KRONOS IA\nTimestamp: ${timestamp}`;
-
       const hash = await sha256Hex(payload);
       const { privateKey, publicKey } = await generarParEd25519();
       const firma = await firmar(privateKey, payload);
       const pub = await exportarPubKey(publicKey);
 
-      // DEFENSIVO: verificar que pub no esté vacío
-      if (!pub || pub.length < 32) {
-        throw new Error('La clave pública no se generó correctamente.');
-      }
-
       certificadoActual = {
-        protocolo: 'LEGADO-HUMANO-IA',
-        version: 'manifiesto-testigo-1.0',
-        timestamp,
-        testigo,
-        mensaje,
-        manifiesto_version: 'v1.0',
+        protocolo: 'LEGADO-HUMANO-IA', version: 'manifiesto-testigo-1.0', timestamp,
+        testigo, mensaje, manifiesto_version: 'v1.0',
         fundador_humano: 'Marco Antonio Rojas Valdovinos',
-        coautora_ia: 'KRONOS IA',
-        proyectos_reforzados: [49, 51],
-        payload_hash: hash,
-        firma_ed25519: firma,
-        clave_publica: pub,
-        algoritmo_firma: 'Ed25519',
-        algoritmo_hash: 'SHA-256',
-        verificable_por_tercero: true
+        coautora_ia: 'KRONOS IA', proyectos_reforzados: [49, 51],
+        payload_hash: hash, firma_ed25519: firma, clave_publica: pub,
+        algoritmo_firma: 'Ed25519', algoritmo_hash: 'SHA-256', verificable_por_tercero: true
       };
 
       try { localStorage.setItem('legado_manifiesto_last', JSON.stringify(certificadoActual)); } catch (e) {}
       try {
         const db = await abrirDB();
         await db.registros.add({ tipo: 'manifiesto', hash, timestamp, payload: certificadoActual });
-      } catch (errPersist) {
-        console.warn('[manifiesto] IndexedDB no disponible:', errPersist.message);
-      }
+      } catch (errPersist) { console.warn('[manifiesto]', errPersist.message); }
 
-      // ACTUALIZAR UI (con defensivos)
       if (hashOut) hashOut.textContent = hash;
       if (firmaOut) firmaOut.textContent = firma;
       if (pubOut) pubOut.textContent = pub;
       if (resultado) resultado.hidden = false;
 
       feedback.className = 'feedback success';
-      feedback.innerHTML = '<strong>✓ Firma registrada.</strong> Descarga el Black Card Cyan, .json o .terminal.';
+      feedback.innerHTML = '<strong>✓ Firma registrada.</strong> Toca los botones para abrir en pestaña nueva.';
     } catch (err) {
       feedback.className = 'feedback error';
       feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
-      console.error(err);
     } finally {
       btn.disabled = false;
       btn.querySelector('span').textContent = 'Firmar como testigo';
@@ -437,20 +540,15 @@ if (form) {
   });
 }
 
-// ── Descargas ──────────────────────────────────────────────
 if (descargar) {
-  descargar.addEventListener('click', async (e) => {
+  descargar.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
       const canvas = document.createElement('canvas');
       const huellaUrl = dibujarHuellaVisual(canvas, certificadoActual.payload_hash);
-      const html = generarBlackCardHTML(certificadoActual, huellaUrl);
-      descargarArchivo(html, `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.html`, 'text/html;charset=utf-8');
-    } catch (err) {
-      feedback.className = 'feedback error';
-      feedback.innerHTML = '<strong>✗ Error HTML:</strong> ' + err.message;
-    }
+      abrirEnPestana(generarBlackCardHTML(certificadoActual, huellaUrl), 'text/html;charset=utf-8');
+    } catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '✗ ' + err.message; }
   });
 }
 if (descargarJSONBtn) {
@@ -458,12 +556,8 @@ if (descargarJSONBtn) {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
-      const jsonSalida = { ...certificadoActual, huella_visual: 'Patrón derivado del hash · no es QR escaneable', certificado_html_descargado: true };
-      descargarArchivo(JSON.stringify(jsonSalida, null, 2), `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.json`, 'application/json');
-    } catch (err) {
-      feedback.className = 'feedback error';
-      feedback.innerHTML = '<strong>✗ Error JSON:</strong> ' + err.message;
-    }
+      abrirEnPestana(JSON.stringify(certificadoActual, null, 2), 'application/json');
+    } catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '✗ ' + err.message; }
   });
 }
 if (descargarMDBtn) {
@@ -471,10 +565,7 @@ if (descargarMDBtn) {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
-      descargarArchivo(generarTerminalMD(certificadoActual), `kronos-manifiesto-${certificadoActual.payload_hash.slice(0, 8)}.terminal.md`, 'text/markdown;charset=utf-8');
-    } catch (err) {
-      feedback.className = 'feedback error';
-      feedback.innerHTML = '<strong>✗ Error Terminal:</strong> ' + err.message;
-    }
+      abrirEnPestana(generarTerminalHTML(certificadoActual), 'text/html;charset=utf-8');
+    } catch (err) { feedback.className = 'feedback error'; feedback.innerHTML = '✗ ' + err.message; }
   });
 }
