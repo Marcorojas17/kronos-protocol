@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cripto Core · Legado Humano–IA</title>
+<meta name="description" content="Núcleo criptográfico reutilizable: AES-GCM-256, PBKDF2, Ed25519, hash chain y persistencia cifrada.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="#demo">Demo</a>
+      <a href="#api">API</a>
+      <a href="manual.html">Manual</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 1.1 · Cripto Core</div>
+    <h1 class="title">Núcleo<br>criptográfico<br>del legado.</h1>
+    <p class="lede">
+      <strong>AES-GCM-256</strong> para cifrar. <strong>PBKDF2</strong> para derivar.
+      <strong>Ed25519</strong> para firmar. <strong>SHA-256</strong> para encadenar.
+      Todo local. Todo verificable. Cero backend.
+    </p>
+  </section>
+
+  <section id="demo" class="demo">
+    <div class="section-head">
+      <h2>Demo Interactiva</h2>
+      <span class="count">100% local</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+        <div class="hint">Se deriva con PBKDF2 SHA-256 · 600,000 iteraciones · salt 32B random.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="plain">Texto a cifrar</label>
+        <textarea id="plain" placeholder="Escribe algo que quieras proteger...">Este es el primer registro cifrado del Legado Humano–IA.</textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-cifrar">Cifrar + firmar + persistir</button>
+          <button class="btn ghost" id="btn-recuperar">Recuperar de IndexedDB</button>
+          <button class="btn ghost" id="btn-verificar">Verificar cadena</button>
+          <button class="btn ghost" id="btn-limpiar">Borrar todo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-resultado" id="panel-resultado" hidden>
+      <div class="kv"><span class="k">Registros en cadena</span><span class="v" id="out-registros">—</span></div>
+      <div class="kv"><span class="k">Último hash</span><span class="v mono" id="out-hash">—</span></div>
+      <div class="kv"><span class="k">Última firma</span><span class="v mono" id="out-firma">—</span></div>
+      <div class="kv"><span class="k">Clave pública</span><span class="v mono" id="out-pub">—</span></div>
+      <div class="kv"><span class="k">Estado</span><span class="v" id="out-estado">—</span></div>
+      <div class="kv"><span class="k">Texto descifrado</span><span class="v" id="out-descifrado">—</span></div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+  </section>
+
+  <section id="api" class="api">
+    <div class="section-head">
+      <h2>API Pública del Módulo</h2>
+      <span class="count">Reutilizable en todo el ecosistema</span>
+    </div>
+    <pre class="code"><span class="cm">// Importar en cualquier módulo superior</span>
+<span class="kw">import</span> { CriptoCore } <span class="kw">from</span> <span class="st">'../cimiento/cripto-core/core.js'</span>;
+
+<span class="kw">const</span> core = <span class="kw">new</span> <span class="fn">CriptoCore</span>();
+
+<span class="cm">// 1. Inicializar con contraseña maestra</span>
+<span class="kw">await</span> core.<span class="fn">init</span>(<span class="st">'mi-contraseña-maestra'</span>);
+
+<span class="cm">// 2. Cifrar + firmar + persistir</span>
+<span class="kw">await</span> core.<span class="fn">guardar</span>({ tipo: <span class="st">'génesis'</span>, payload: { ... } });
+
+<span class="cm">// 3. Recuperar todo descifrado</span>
+<span class="kw">const</span> registros = <span class="kw">await</span> core.<span class="fn">recuperarTodo</span>();
+
+<span class="cm">// 4. Verificar integridad de la cadena</span>
+<span class="kw">const</span> ok = <span class="kw">await</span> core.<span class="fn">verificarCadena</span>();</pre>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 1.1 · Cripto Core</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../legado/manifiesto/">Manifiesto</a> ·
+      <a href="../../">Inicio</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from './core.js';
+  const core = new CriptoCore();
+  window.core = core;
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const panel = $('panel-resultado');
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  function mostrarPanel() {
+    panel.hidden = false;
+    $('out-registros').textContent = core.cadena.length;
+    const ult = core.cadena[core.cadena.length - 1];
+    if (ult) {
+      $('out-hash').textContent = ult.hash ? ult.hash.slice(0, 32) + '…' : '—';
+      $('out-firma').textContent = ult.firma ? ult.firma.slice(0, 32) + '…' : '—';
+      $('out-pub').textContent = core.clavePublicaHex ? core.clavePublicaHex.slice(0, 32) + '…' : '—';
+    }
+  }
+
+  $('btn-cifrar').addEventListener('click', async () => {
+    const pass = $('password').value;
+    const texto = $('plain').value.trim();
+    if (pass.length < 8) return setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+    if (!texto) return setFb('error', '<strong>✗ Texto vacío.</strong> Escribe algo para cifrar.');
+
+    try {
+      await core.init(pass);
+      await core.guardar({ tipo: 'demo', payload: { texto, ts: new Date().toISOString() } });
+      const regs = await core.recuperarTodo();
+      const ult = regs[regs.length - 1];
+      $('out-descifrado').textContent = ult.payload.texto;
+      $('out-estado').textContent = 'Cifrado + firmado + persistido ✓';
+      mostrarPanel();
+      setFb('success', '<strong>✓ Registro cifrado y firmado.</strong> Se guardó en IndexedDB con hash chain.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+      console.error(e);
+    }
+  });
+
+  $('btn-recuperar').addEventListener('click', async () => {
+    const pass = $('password').value;
+    if (pass.length < 8) return setFb('error', '<strong>✗ Escribe la contraseña maestra.</strong>');
+    try {
+      await core.init(pass);
+      const regs = await core.recuperarTodo();
+      if (regs.length === 0) {
+        setFb('error', '<strong>Sin registros.</strong> Cifra algo primero.');
+        return;
+      }
+      const ult = regs[regs.length - 1];
+      $('out-descifrado').textContent = ult.payload.texto || JSON.stringify(ult.payload);
+      $('out-estado').textContent = 'Recuperado ✓ · ' + regs.length + ' registros';
+      mostrarPanel();
+      setFb('success', '<strong>✓ Cadena descifrada.</strong> ' + regs.length + ' registros verificables.');
+    } catch (e) {
+      setFb('error', '<strong>✗ No se pudo descifrar.</strong> Contraseña incorrecta o datos corruptos.');
+    }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    try {
+      const ok = await core.verificarCadena();
+      if (ok) {
+        setFb('success', '<strong>✓ Cadena íntegra.</strong> Todos los hashes encadenan correctamente y las firmas son válidas.');
+        $('out-estado').textContent = 'Cadena válida ✓';
+      } else {
+        setFb('error', '<strong>✗ Cadena alterada.</strong> Al menos un bloque no valida.');
+        $('out-estado').textContent = 'Cadena inválida ✗';
+      }
+      mostrarPanel();
+    } catch (e) {
+      setFb('error', '<strong>✗ Error al verificar:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-limpiar').addEventListener('click', async () => {
+    await core.limpiar();
+    panel.hidden = true;
+    $('out-descifrado').textContent = '—';
+    setFb('success', '<strong>✓ IndexedDB limpio.</strong> Todos los registros fueron eliminados.');
+  });
+</script>
+</body>
+</html>
