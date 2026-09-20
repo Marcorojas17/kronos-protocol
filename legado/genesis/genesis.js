@@ -95,15 +95,10 @@ async function exportarPubKey(pubKey) {
   return [...new Uint8Array(raw)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// ─── CLASE CRIPTO CORE INLINE (para persistencia) ────────────
-// Importamos dinámicamente el módulo oficial de Cripto Core
-// para que el génesis se persista con cifrado real.
-
+// ─── PERSISTENCIA CON MÓDULOS DEL ECOSISTEMA ────────────────
 let _corePromise = null;
 async function obtenerCore(password) {
-  if (_corePromise) {
-    return _corePromise;
-  }
+  if (_corePromise) return _corePromise;
   _corePromise = (async () => {
     try {
       const { CriptoCore } = await import('../../cimiento/cripto-core/core.js');
@@ -111,7 +106,7 @@ async function obtenerCore(password) {
       await core.init(password);
       return core;
     } catch (e) {
-      console.warn('[génesis] Cripto Core no disponible, modo standalone:', e.message);
+      console.warn('[génesis] Cripto Core no disponible:', e.message);
       return null;
     }
   })();
@@ -171,13 +166,11 @@ let certificadoActual = null;
     }
   } catch (e) { /* silencio */ }
 
-  // Intentar cargar el último génesis persistido
   try {
     const rawSel = localStorage.getItem('legado_genesis_last');
     if (rawSel) {
       const cert = JSON.parse(rawSel);
       if (cert && cert.manifiesto_hash) {
-        // Mostrar el estado "sellado" al reabrir
         if (hashOut) hashOut.textContent = cert.manifiesto_hash || '—';
         if (firmaOut) firmaOut.textContent = cert.firma_ed25519 || '—';
         if (pubOut) pubOut.textContent = cert.clave_publica || '—';
@@ -213,15 +206,12 @@ form.addEventListener('submit', async (e) => {
     const timestamp = new Date().toISOString();
     const manifiesto = `LEGADO HUMANO-IA · GENESIS v1.0\nFundador: ${nombre}\nIntencion: ${intencion}\nCo-autoria IA: ${coautoria}\nTimestamp: ${timestamp}`;
 
-    // Hash SHA-256
     const hash = await sha256Hex(manifiesto);
 
-    // Firma Ed25519
     const { privateKey, publicKey } = await generarParEd25519();
     const firma = await firmar(privateKey, manifiesto);
     const pub = await exportarPubKey(publicKey);
 
-    // Certificado
     certificadoActual = {
       protocolo: 'LEGADO-HUMANO-IA',
       version: 'genesis-1.0',
@@ -238,7 +228,7 @@ form.addEventListener('submit', async (e) => {
       instruccion_verificacion: 'SHA-256(manifiesto) debe coincidir con manifiesto_hash. La firma_ed25519 se verifica con clave_publica.'
     };
 
-    // ── PERSISTENCIA 1: localStorage (siempre) ──
+    // Persistencia localStorage
     try {
       localStorage.setItem('legado_genesis_last', JSON.stringify(certificadoActual));
       localStorage.setItem('legado_genesis_draft', JSON.stringify({
@@ -246,14 +236,11 @@ form.addEventListener('submit', async (e) => {
       }));
     } catch (e) { /* silencio */ }
 
-    // ── PERSISTENCIA 2: Cripto Core + Dexie (si disponibles) ──
+    // Persistencia Cripto Core + Dexie
     try {
       const core = await obtenerCore(password);
       if (core) {
-        // Guardar bloque firmado en la cadena del Cripto Core
         await core.guardar({ tipo: 'genesis', payload: certificadoActual });
-
-        // Persistir en Storage Dexie indexado
         const storage = await obtenerStorage(core);
         if (storage) {
           await storage.guardar('genesis', certificadoActual);
@@ -261,17 +248,16 @@ form.addEventListener('submit', async (e) => {
         console.log('[génesis] bloque persistido en Cripto Core + Dexie');
       }
     } catch (persistErr) {
-      console.warn('[génesis] no se pudo persistir en IndexedDB:', persistErr);
+      console.warn('[génesis] no se pudo persistir:', persistErr);
     }
 
-    // ── UI ──
     if (hashOut) hashOut.textContent = hash;
     if (firmaOut) firmaOut.textContent = firma;
     if (pubOut) pubOut.textContent = pub;
     if (resultado) resultado.hidden = false;
 
     feedback.className = 'feedback success';
-    feedback.innerHTML = '<strong>✓ Génesis sellado y persistido.</strong> Tu certificado está listo y quedó guardado. Descárgalo y guárdalo en un lugar seguro.';
+    feedback.innerHTML = '<strong>✓ Génesis sellado y persistido.</strong> Tu certificado está listo. Descárgalo y guárdalo en un lugar seguro.';
 
     if (badge) {
       badge.classList.add('sellado');
