@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T04:22:45Z
+# Generado: 2026-09-20T04:23:10Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -39,6 +39,7 @@ c7cf5724b2514809c82a96da9dc2fe530f65def164c2c3429713d432fe9bf076  ./cierre/expor
 5e96935bee8ebcb8a4a42dcffd3c19c1ce8cffdea1c1a261e1492cb31a3e528a  ./cierre/export-cifrado/styles.css
 0a6ca7563a58517921005451dc88842348a6a3a1b401e1db400813d8e339a020  ./cierre/fin-digno/fin.js
 3622f7dd6fdc3d4e8f1711013ababd267185387b526a3bf591b7d52663e05e17  ./cierre/fin-digno/index.html
+8813b544dd6ebf147221db710aa07714ee35d48fffbaf3e0adbe1ca475af21c1  ./cierre/fin-digno/manual.html
 e654fcf5aa9d2ef0b76a9b01a650f955e114b9aa9528fcbb7a51148921d31f59  ./cierre/fin-digno/styles.css
 36432a13a7fa9dbf440408c44f10b81df1dba8c869ea46d00cb1a5faabf565d6  ./cimiento/AUTORIA
 36432a13a7fa9dbf440408c44f10b81df1dba8c869ea46d00cb1a5faabf565d6  ./cimiento/anclaje-ethereum/AUTORIA
