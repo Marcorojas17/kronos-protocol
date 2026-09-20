@@ -64,6 +64,7 @@
     --text: #e8e4d8;
     --text-dim: #8892a0;
     --cyan: #00eaff;
+    --platinum: #b794f6;
   }
   html, body {
     background: var(--ink);
@@ -360,6 +361,18 @@
     background: #10B981;
     box-shadow: 0 0 8px #10B981;
   }
+  a.card.miner { border-color: rgba(183, 148, 246, 0.22); }
+  a.card.miner::after { background: linear-gradient(90deg, var(--platinum), transparent); }
+  a.card.miner:hover {
+    border-color: rgba(183, 148, 246, 0.55);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(183, 148, 246, 0.12);
+  }
+  a.card.miner .label { color: var(--platinum); }
+  a.card.miner .foot .status { color: var(--platinum); }
+  a.card.miner .foot .status::before {
+    background: var(--platinum);
+    box-shadow: 0 0 8px var(--platinum);
+  }
   .card .label {
     font-size: 9px;
     letter-spacing: 3px;
@@ -582,7 +595,7 @@
   <section id="projects">
     <div class="section-head">
       <h2>Proyectos</h2>
-      <span class="count">08 · Activos</span>
+      <span class="count">09 · Activos</span>
     </div>
 
     <div class="projects">
@@ -664,6 +677,16 @@
         <div class="foot">
           <span class="status">Génesis</span>
           <span>v0.1.0</span>
+        </div>
+      </a>
+
+      <a class="card miner" href="projects/genesis-miner/">
+        <span class="label">Núcleo · Motor Criptográfico</span>
+        <h3>Genesis Miner</h3>
+        <p>Motor de minado local-first con firma Ed25519 y hash chain SHA-256. Interfaz Obsidian & Gold. Persistencia en wallet.json.</p>
+        <div class="foot">
+          <span class="status">Operativo</span>
+          <span>v1.0 · Ed25519</span>
         </div>
       </a>
 
