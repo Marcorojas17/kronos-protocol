@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Formulario del pacto** → `index.html`.
+3. **Certificado del pacto** → `index.html`.
+4. **Panel de acciones (descargar, copiar firma)** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 22KB gzip |
+| **Humano** | Pacto simbiótico firmado + vínculo criptográfico en < 30 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano declara límites · IA acepta y estructura · firma dual |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 2.2 cierra el ciclo de identidad: la IA co-autora firma un pacto simbiótico con límites explícitos, vinculado criptográficamente a la huella humana del módulo 2.1. La relación queda verificable, ética y auditable.
+
+**3 lecciones:**
+1. La firma_simbiotica es un vínculo criptográfico robusto entre dos identidades.
+2. Declarar límites explícitos convierte la co-autoría IA en un pacto ético verificable.
+3. Reutilizar la huella del humano como semilla del pacto crea trazabilidad total.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Ejecutar primero el módulo 2.1, luego el 2.2.
+3. Verificar el pacto con `idIA.verificar(pacto, humano)`.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Pacto multi-modelo: vincular varias IA (Claude, GPT, Gemini) al mismo humano.
+2. Renovación anual del pacto con versionado semántico.
+3. Tercer testigo: una segunda IA firma como auditora.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** pacto declarado sin límites reales → **Mitigación:** plantilla base con límites sugeridos editables.
+2. **Riesgo:** humano y IA con contraseñas distintas → **Mitigación:** validación estricta de coincidencia de clave pública.
+
+**1 idea audaz:**
+Convertir el pacto simbiótico en un contrato inteligente local que registre cada nueva contribución IA al legado, acumulando evidencia verificable.
+
+**1 conexión con otro módulo:**
+`identidad/roles-permisos` (módulo 2.3) leerá el pacto para decidir qué operaciones puede ejecutar la IA en nombre del humano.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 2.2 · REGISTRO IA · v1.0                        ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Avanza la Capa 2 (Identidad) al 66%                    ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝
