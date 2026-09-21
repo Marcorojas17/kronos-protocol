@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-21T18:07:14Z
+# Generado: 2026-09-21T18:11:04Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -62,6 +62,7 @@ bd5e6ad742ad52137dc88a7e53e91792b3ebb37a18aad968a11bf3693ddd11c8  ./cimiento/cri
 ab866cb14a2002b920a54ed413d7be624ab70d132883d803c5534ca668f4857b  ./cimiento/storage-dexie/README.md
 5a781cf1dc2df5b217bfe723af68e2a3312a95577ea07de475b390f051347161  ./cimiento/storage-dexie/index.html
 a0252b1bd58b8c798240edbd2cbda27b780b9c9b7987ba9d0df2c8ab2ca41d2e  ./cimiento/storage-dexie/manual.html
+36989166f8a2884da5ae57ca135d0c510dfb7fd9b14b9d0a821a4e8ca96faf16  ./cimiento/storage-dexie/storage-v2.js
 bf07cb281a30f84aaf19fab2e09ed40150d62660bead517286a11200fe463bb3  ./cimiento/storage-dexie/storage.js
 222688f33dc475ade5dae41a5d27b25ea2449124fd648fff35881dbfd2791a77  ./cimiento/storage-dexie/styles.css
 66d7897f3f92e2baa7b7c6111775e3a1338deb55b7d6fce148cbc68713e7521c  ./curriculum-terminal.txt
