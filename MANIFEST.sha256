@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-21T18:12:17Z
+# Generado: 2026-09-21T18:18:34Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -60,6 +60,7 @@ e408a3ee228dfde99295a595d153c37db6e78e36a002e139419ae7c894d13b40  ./cimiento/cri
 bd5e6ad742ad52137dc88a7e53e91792b3ebb37a18aad968a11bf3693ddd11c8  ./cimiento/cripto-core/styles.css
 6ffcbe9c18569e1779c382d11f1ff5d0e54617ee83204af528beb85c027ff98b  ./cimiento/storage-dexie/AUTORIA
 ab866cb14a2002b920a54ed413d7be624ab70d132883d803c5534ca668f4857b  ./cimiento/storage-dexie/README.md
+bd9e5b8458ac4a57abfb474358d597e17b73ec6dc15eff96181619048d33e808  ./cimiento/storage-dexie/cimiento/storage-dexie/certificado.html
 bde88ec75ac7c078e61389e7579df84f310bdf4d4d6250b12970637822bc2e9b  ./cimiento/storage-dexie/index.html
 a0252b1bd58b8c798240edbd2cbda27b780b9c9b7987ba9d0df2c8ab2ca41d2e  ./cimiento/storage-dexie/manual.html
 36989166f8a2884da5ae57ca135d0c510dfb7fd9b14b9d0a821a4e8ca96faf16  ./cimiento/storage-dexie/storage-v2.js
