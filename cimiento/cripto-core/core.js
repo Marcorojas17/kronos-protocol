@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────────────────────
-// CRIPTO CORE · Legado Humano–IA · v1.0
+// CRIPTO CORE · Legado Humano–IA · v1.1
 // Núcleo criptográfico reutilizable · 100% Web Crypto API
 // ────────────────────────────────────────────────────────────
 
@@ -76,7 +76,6 @@ export class CriptoCore {
       throw new Error('La contraseña debe tener al menos 8 caracteres.');
     }
 
-    // Salt persistente en localStorage (no secreto, solo único)
     const saltRaw = localStorage.getItem('legado_salt');
     if (saltRaw) {
       this.salt = CriptoCore._fromHex(saltRaw);
@@ -85,7 +84,6 @@ export class CriptoCore {
       localStorage.setItem('legado_salt', CriptoCore._toHex(this.salt));
     }
 
-    // Derivación con PBKDF2 SHA-256 · 600k iteraciones
     const baseKey = await crypto.subtle.importKey(
       'raw',
       new TextEncoder().encode(password),
@@ -102,7 +100,6 @@ export class CriptoCore {
       ['encrypt', 'decrypt']
     );
 
-    // Par Ed25519 persistente
     const privHex = localStorage.getItem('legado_priv_ed');
     if (privHex) {
       const privBytes = CriptoCore._fromHex(privHex);
@@ -141,7 +138,6 @@ export class CriptoCore {
     const hashPrevio = indice > 0 ? this.cadena[indice - 1].hash : '0'.repeat(64);
     const timestamp = new Date().toISOString();
 
-    // Cifrar payload
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const plaintext = new TextEncoder().encode(JSON.stringify(dato));
     const cipherBuf = await crypto.subtle.encrypt(
@@ -153,11 +149,9 @@ export class CriptoCore {
     const cipherHex = CriptoCore._toHex(cipherBuf);
     const ivHex = CriptoCore._toHex(iv);
 
-    // Hash chain
     const bloqueBase = `${indice}|${timestamp}|${hashPrevio}|${cipherHex}|${ivHex}`;
     const hash = await CriptoCore._sha256Hex(bloqueBase);
 
-    // Firma Ed25519
     const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
       this.clavePrivEd,
@@ -228,6 +222,52 @@ export class CriptoCore {
       if (!firmaOk) return false;
     }
     return true;
+  }
+
+  // ── NUEVO · Verificar bloque individual ───────────────────
+  async verificarBloque(bloque) {
+    const idx = bloque.indice;
+    const prev = this.cadena[idx - 1];
+    const hashPrevioEsperado = idx === 0 ? '0'.repeat(64) : (prev ? prev.hash : null);
+    if (hashPrevioEsperado === null) return { ok: false, razon: 'Bloque anterior no encontrado' };
+    if (bloque.hash_previo !== hashPrevioEsperado) return { ok: false, razon: 'Hash previo no coincide' };
+
+    const bloqueBase = `${bloque.indice}|${bloque.timestamp}|${bloque.hash_previo}|${bloque.cipher}|${bloque.iv}`;
+    const hashCalc = await CriptoCore._sha256Hex(bloqueBase);
+    if (hashCalc !== bloque.hash) return { ok: false, razon: 'Hash no coincide' };
+
+    const firmaOk = await crypto.subtle.verify(
+      'Ed25519',
+      this.clavePubEd,
+      CriptoCore._fromHex(bloque.firma_ed25519),
+      new TextEncoder().encode(bloque.hash)
+    );
+    if (!firmaOk) return { ok: false, razon: 'Firma inválida' };
+
+    return { ok: true, razon: 'Bloque válido' };
+  }
+
+  // ── NUEVO · Exportar cadena como JSON ─────────────────────
+  async exportarCadena() {
+    const bloques = await this._leerTodo();
+    return {
+      protocolo: 'LEGADO-HUMANO-IA',
+      version: 'cripto-core-1.1',
+      exportado: new Date().toISOString(),
+      total_bloques: bloques.length,
+      clave_publica: this.clavePublicaHex,
+      bloques: bloques.sort((a, b) => a.indice - b.indice)
+    };
+  }
+
+  // ── NUEVO · Obtener identidad criptográfica ───────────────
+  obtenerIdentidad() {
+    return {
+      clave_publica: this.clavePublicaHex,
+      algoritmo: 'Ed25519',
+      inicializado: this.inicializado,
+      bloques_en_cadena: this.cadena.length
+    };
   }
 
   // ── Limpiar todo ──────────────────────────────────────────
