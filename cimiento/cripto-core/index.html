@@ -4,12 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cripto Core · Legado Humano–IA</title>
-<meta name="description" content="Núcleo criptográfico reutilizable: AES-GCM-256, PBKDF2, Ed25519, hash chain y persistencia cifrada.">
+<meta name="description" content="Núcleo criptográfico: AES-GCM-256 + PBKDF2 + Ed25519 + SHA-256. Demo visual.">
 <meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .continuar-siguiente {
+    margin-top: 80px; padding: 20px 24px;
+    border: 1px solid rgba(59,130,246,0.35);
+    background: rgba(59,130,246,0.04);
+    border-radius: 4px; text-align: center;
+    max-width: 360px; margin-left: auto; margin-right: auto;
+  }
+  .continuar-siguiente .label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: #60A5FA; margin-bottom: 14px; font-weight: 500;
+  }
+  .continuar-siguiente .btn {
+    display: inline-flex;
+    background: linear-gradient(180deg, #60A5FA 0%, #3B82F6 100%);
+    color: #0A0A0B; box-shadow: 0 8px 30px rgba(59,130,246,0.35);
+    text-decoration: none;
+  }
+  .continuar-siguiente .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(59,130,246,0.55);
+  }
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -17,17 +42,17 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#demo">Demo</a>
-      <a href="#api">API</a>
+      <a href="./">Cripto Core</a>
       <a href="manual.html">Manual</a>
+      <a href="../storage-dexie/">Storage</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 1.1 · Cripto Core</div>
-    <h1 class="title">Núcleo<br>criptográfico<br>del legado.</h1>
+    <div class="eyebrow">Módulo 1.1 · Capa 1 · Núcleo Criptográfico</div>
+    <h1 class="title">El motor<br>que sostiene<br>todo.</h1>
     <p class="lede">
       <strong>AES-GCM-256</strong> para cifrar. <strong>PBKDF2</strong> para derivar.
       <strong>Ed25519</strong> para firmar. <strong>SHA-256</strong> para encadenar.
@@ -35,7 +60,7 @@
     </p>
   </section>
 
-  <section id="demo" class="demo">
+  <section class="demo">
     <div class="section-head">
       <h2>Demo Interactiva</h2>
       <span class="count">100% local</span>
@@ -45,14 +70,14 @@
       <div class="paso">
         <span class="num">01</span>
         <label for="password">Contraseña maestra</label>
-        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
-        <div class="hint">Se deriva con PBKDF2 SHA-256 · 600,000 iteraciones · salt 32B random.</div>
+        <input type="password" id="password" placeholder="Mínimo 12 caracteres" minlength="12">
+        <div class="hint">Deriva clave con PBKDF2 · 600,000 iteraciones · salt 32B.</div>
       </div>
 
       <div class="paso">
         <span class="num">02</span>
-        <label for="plain">Texto a cifrar</label>
-        <textarea id="plain" placeholder="Escribe algo que quieras proteger...">Este es el primer registro cifrado del Legado Humano–IA.</textarea>
+        <label for="plain">Texto a cifrar + firmar</label>
+        <textarea id="plain">Este es el primer registro cifrado del Legado Humano–IA.</textarea>
       </div>
 
       <div class="paso">
@@ -79,7 +104,7 @@
     <div class="feedback" id="feedback" role="alert"></div>
   </section>
 
-  <section id="api" class="api">
+  <section class="api">
     <div class="section-head">
       <h2>API Pública del Módulo</h2>
       <span class="count">Reutilizable en todo el ecosistema</span>
@@ -102,13 +127,21 @@
 <span class="kw">const</span> ok = <span class="kw">await</span> core.<span class="fn">verificarCadena</span>();</pre>
   </section>
 
+  <div class="continuar-siguiente">
+    <span class="label">Siguiente · Capa 1</span>
+    <a href="../storage-dexie/" class="btn">
+      <span>Continuar a Storage Dexie</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Módulo 1.1 · Cripto Core</span>
     <span>
       <a href="manual.html">Manual</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a> ·
-      <a href="../../">Inicio</a>
+      <a href="/kronos-protocol/">Inicio</a> ·
+      <a href="../storage-dexie/">Storage</a>
     </span>
   </footer>
 </main>
@@ -133,7 +166,7 @@
     const ult = core.cadena[core.cadena.length - 1];
     if (ult) {
       $('out-hash').textContent = ult.hash ? ult.hash.slice(0, 32) + '…' : '—';
-      $('out-firma').textContent = ult.firma ? ult.firma.slice(0, 32) + '…' : '—';
+      $('out-firma').textContent = ult.firma_ed25519 ? ult.firma_ed25519.slice(0, 32) + '…' : '—';
       $('out-pub').textContent = core.clavePublicaHex ? core.clavePublicaHex.slice(0, 32) + '…' : '—';
     }
   }
@@ -141,9 +174,8 @@
   $('btn-cifrar').addEventListener('click', async () => {
     const pass = $('password').value;
     const texto = $('plain').value.trim();
-    if (pass.length < 8) return setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
-    if (!texto) return setFb('error', '<strong>✗ Texto vacío.</strong> Escribe algo para cifrar.');
-
+    if (pass.length < 12) return setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 12 caracteres.');
+    if (!texto) return setFb('error', '<strong>✗ Texto vacío.</strong>');
     try {
       await core.init(pass);
       await core.guardar({ tipo: 'demo', payload: { texto, ts: new Date().toISOString() } });
@@ -152,7 +184,7 @@
       $('out-descifrado').textContent = ult.payload.texto;
       $('out-estado').textContent = 'Cifrado + firmado + persistido ✓';
       mostrarPanel();
-      setFb('success', '<strong>✓ Registro cifrado y firmado.</strong> Se guardó en IndexedDB con hash chain.');
+      setFb('success', '<strong>✓ Registro cifrado y firmado.</strong> Guardado en IndexedDB con hash chain.');
     } catch (e) {
       setFb('error', '<strong>✗ Error:</strong> ' + e.message);
       console.error(e);
@@ -161,7 +193,7 @@
 
   $('btn-recuperar').addEventListener('click', async () => {
     const pass = $('password').value;
-    if (pass.length < 8) return setFb('error', '<strong>✗ Escribe la contraseña maestra.</strong>');
+    if (pass.length < 12) return setFb('error', '<strong>✗ Escribe la contraseña maestra (mín 12).</strong>');
     try {
       await core.init(pass);
       const regs = await core.recuperarTodo();
@@ -183,7 +215,7 @@
     try {
       const ok = await core.verificarCadena();
       if (ok) {
-        setFb('success', '<strong>✓ Cadena íntegra.</strong> Todos los hashes encadenan correctamente y las firmas son válidas.');
+        setFb('success', '<strong>✓ Cadena íntegra.</strong> Todos los hashes encadenan y las firmas son válidas.');
         $('out-estado').textContent = 'Cadena válida ✓';
       } else {
         setFb('error', '<strong>✗ Cadena alterada.</strong> Al menos un bloque no valida.');
@@ -191,7 +223,7 @@
       }
       mostrarPanel();
     } catch (e) {
-      setFb('error', '<strong>✗ Error al verificar:</strong> ' + e.message);
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
@@ -199,7 +231,7 @@
     await core.limpiar();
     panel.hidden = true;
     $('out-descifrado').textContent = '—';
-    setFb('success', '<strong>✓ IndexedDB limpio.</strong> Todos los registros fueron eliminados.');
+    setFb('success', '<strong>✓ IndexedDB limpio.</strong>');
   });
 </script>
 </body>
