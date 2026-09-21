@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-21T18:46:43Z
+# Generado: 2026-09-21T18:58:55Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -50,7 +50,7 @@ e654fcf5aa9d2ef0b76a9b01a650f955e114b9aa9528fcbb7a51148921d31f59  ./cierre/fin-d
 11238a310e881aebc11f5817a504431fb63170fcde38861e76fee026644a4d77  ./cimiento/anclaje-ethereum/anchor-v1.js
 cbdba609b775411e195d403b54b92a08e525d37b08e30720b2f7b6093df9f34d  ./cimiento/anclaje-ethereum/anchor.js
 738551854158d383c10c5e4671540796524ba4082aabc90499c61fb07a2d3540  ./cimiento/anclaje-ethereum/certificado.html
-979dcbf3df7c7612ab6f52b1eb46feb9fdbd4c3b65c962d0075bb2f5b4c0b3c5  ./cimiento/anclaje-ethereum/index.html
+aa76fbc674f0f4ef9e5a25ed14e4122190e13ab3bc61ba5b1e353e4f0312c49c  ./cimiento/anclaje-ethereum/index.html
 bfa20462d3728c1b77f3a94676e57af1b81d658eaf2f8bc412f95d385b5f496a  ./cimiento/anclaje-ethereum/manual.html
 46493bdee0d0c3f6960d924a3573bd31d48e5994f760e397598287951f7fd19f  ./cimiento/anclaje-ethereum/paquete de anclaje
 3837dcf88afc57e67a65bbd669c7515aa70976ef73593ae142fe1c0f5bb96b26  ./cimiento/anclaje-ethereum/styles.css
