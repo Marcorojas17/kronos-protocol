@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-21T00:13:35Z
+# Generado: 2026-09-21T00:16:22Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -29,6 +29,7 @@ d4f01bb8e47a5136fff0c73b9d909b4719d03885981f738cfcdf025da2f0632e  ./assets/js/ce
 da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/particles.js
 c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
+8bc62cd82603b88153dbb0139127f31188a18afdfecf81014706704fbb148e76  ./carta-presentación.txt
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
 d1b73003b830cff9189236485730c54d5ae91f1374fd0193ff960834c5428149  ./cierre/export-cifrado/AUTORIA
 f4bf2ca021ce8fee882534bdac9f8a64a1dd607283d68f4ac0293094e159600a  ./cierre/export-cifrado/README.md
