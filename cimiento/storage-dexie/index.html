@@ -34,6 +34,29 @@
     transform: translateY(-2px);
     box-shadow: 0 14px 40px rgba(245,158,11,0.55);
   }
+  /* BOTÓN CERTIFICADO PRISMÁTICO */
+  .btn-certificado {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 3px; border: none; cursor: pointer;
+    transition: all .35s cubic-bezier(.2,.8,.2,1);
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(120deg, #7C3AED, #FF00D4, #00EAFF);
+    background-size: 200% 100%;
+    color: #fff;
+    box-shadow: 0 0 24px rgba(124,58,237,0.45);
+    animation: prismBtn 8s linear infinite;
+  }
+  .btn-certificado:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(255,0,212,0.7);
+  }
+  @keyframes prismBtn {
+    from { background-position: 0% 50%; }
+    to { background-position: 200% 50%; }
+  }
 </style>
 </head>
 <body>
@@ -45,6 +68,7 @@
     <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
       <a href="./">Storage</a>
+      <a href="certificado.html">Certificado</a>
       <a href="manual.html">Manual</a>
       <a href="../cripto-core/">Cripto Core</a>
     </nav>
@@ -104,6 +128,17 @@
           <button class="btn ghost" id="btn-limpiar">Borrar todo</button>
         </div>
       </div>
+
+      <!-- BOTÓN NUEVO · IR AL CERTIFICADO PRISMÁTICO -->
+      <div class="paso">
+        <span class="num">05</span>
+        <label>Certificado visual</label>
+        <a href="certificado.html" class="btn-certificado">
+          <span>✦ Abrir Visor de Certificado Prismático</span>
+          <span>→</span>
+        </a>
+        <div class="hint">Pega el JSON exportado y obtén una tarjeta prismática descargable.</div>
+      </div>
     </div>
 
     <div class="panel-resultado" id="panel-resultado" hidden>
@@ -151,6 +186,7 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Módulo 1.2 · Storage Dexie</span>
     <span>
+      <a href="certificado.html">Certificado</a> ·
       <a href="manual.html">Manual</a> ·
       <a href="../cripto-core/">Cripto Core</a> ·
       <a href="/kronos-protocol/">Inicio</a>
@@ -159,9 +195,7 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
 </main>
 
 <script type="module">
-  // ⚠️ Importa core.js con cache-buster v=2 (fuerza recarga del Cripto Core)
   import { CriptoCore } from '../cripto-core/core.js?v=2';
-  // ⚠️ Importa storage-v2.js (nombre nuevo, imposible caché viejo)
   import { StorageDexie } from './storage-v2.js';
 
   const $ = (id) => document.getElementById(id);
@@ -279,7 +313,7 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
       a.click();
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 2000);
-      setFb('success', '<strong>✓ DB exportada.</strong> Contiene bloques cifrados + metadatos.');
+      setFb('success', '<strong>✓ DB exportada.</strong> Ahora ve al Visor de Certificado Prismático y pega el JSON.');
     } catch (e) {
       setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
