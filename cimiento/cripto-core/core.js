@@ -1,6 +1,6 @@
 // ────────────────────────────────────────────────────────────
-// CRIPTO CORE · Legado Humano–IA · v1.1
-// Núcleo criptográfico reutilizable · 100% Web Crypto API
+// CRIPTO CORE · Legado Humano–IA · v1.1.1
+// Fix: Ed25519 en formato PKCS8 (privada) + SPKI (pública)
 // ────────────────────────────────────────────────────────────
 
 const DB_NAME = 'legado_cripto_core';
@@ -70,12 +70,23 @@ export class CriptoCore {
     });
   }
 
+  // ── Detectar si Web Crypto soporta Ed25519 ────────────────
+  static async _soportaEd25519() {
+    try {
+      await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   // ── Inicialización ────────────────────────────────────────
   async init(password) {
     if (!password || password.length < 8) {
       throw new Error('La contraseña debe tener al menos 8 caracteres.');
     }
 
+    // ── Salt persistente ──
     const saltRaw = localStorage.getItem('legado_salt');
     if (saltRaw) {
       this.salt = CriptoCore._fromHex(saltRaw);
@@ -84,6 +95,7 @@ export class CriptoCore {
       localStorage.setItem('legado_salt', CriptoCore._toHex(this.salt));
     }
 
+    // ── Derivar clave AES con PBKDF2 ──
     const baseKey = await crypto.subtle.importKey(
       'raw',
       new TextEncoder().encode(password),
@@ -100,30 +112,69 @@ export class CriptoCore {
       ['encrypt', 'decrypt']
     );
 
-    const privHex = localStorage.getItem('legado_priv_ed');
-    if (privHex) {
-      const privBytes = CriptoCore._fromHex(privHex);
-      this.clavePrivEd = await crypto.subtle.importKey(
-        'raw', privBytes, { name: 'Ed25519' }, true, ['sign']
-      );
-      this.clavePubEd = await crypto.subtle.importKey(
-        'raw',
-        CriptoCore._fromHex(localStorage.getItem('legado_pub_ed')),
-        { name: 'Ed25519' }, true, ['verify']
-      );
+    // ── Ed25519 · generar o cargar ──
+    const soporta = await CriptoCore._soportaEd25519();
+    if (!soporta) {
+      console.warn('[cripto-core] Este navegador no soporta Ed25519. Operando solo con AES-GCM.');
+      this.clavePrivEd = null;
+      this.clavePubEd = null;
+      this.clavePublicaHex = '';
     } else {
-      const par = await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
-      this.clavePrivEd = par.privateKey;
-      this.clavePubEd = par.publicKey;
-      const privRaw = await crypto.subtle.exportKey('raw', par.privateKey);
-      const pubRaw = await crypto.subtle.exportKey('raw', par.publicKey);
-      localStorage.setItem('legado_priv_ed', CriptoCore._toHex(privRaw));
-      localStorage.setItem('legado_pub_ed', CriptoCore._toHex(pubRaw));
+      const privPkcs8Hex = localStorage.getItem('legado_priv_ed_pkcs8');
+      const pubSpkiHex = localStorage.getItem('legado_pub_ed_spki');
+
+      if (privPkcs8Hex && pubSpkiHex) {
+        // Cargar claves existentes en formatos correctos
+        try {
+          this.clavePrivEd = await crypto.subtle.importKey(
+            'pkcs8',
+            CriptoCore._fromHex(privPkcs8Hex),
+            { name: 'Ed25519' },
+            true,
+            ['sign']
+          );
+          this.clavePubEd = await crypto.subtle.importKey(
+            'spki',
+            CriptoCore._fromHex(pubSpkiHex),
+            { name: 'Ed25519' },
+            true,
+            ['verify']
+          );
+        } catch (e) {
+          // Claves corruptas o formato viejo → regenerar
+          console.warn('[cripto-core] Claves previas inválidas, regenerando:', e.message);
+          localStorage.removeItem('legado_priv_ed_pkcs8');
+          localStorage.removeItem('legado_pub_ed_spki');
+          localStorage.removeItem('legado_priv_ed');
+          localStorage.removeItem('legado_pub_ed');
+          // Generar nuevas abajo
+        }
+      }
+
+      if (!this.clavePrivEd || !this.clavePubEd) {
+        // Generar par nuevo
+        const par = await crypto.subtle.generateKey(
+          { name: 'Ed25519' },
+          true,
+          ['sign', 'verify']
+        );
+        this.clavePrivEd = par.privateKey;
+        this.clavePubEd = par.publicKey;
+
+        // Exportar en formatos CORRECTOS
+        const privPkcs8 = await crypto.subtle.exportKey('pkcs8', par.privateKey);
+        const pubSpki = await crypto.subtle.exportKey('spki', par.publicKey);
+
+        localStorage.setItem('legado_priv_ed_pkcs8', CriptoCore._toHex(privPkcs8));
+        localStorage.setItem('legado_pub_ed_spki', CriptoCore._toHex(pubSpki));
+      }
+
+      // Clave pública en formato raw para mostrar por pantalla (32 bytes)
+      const pubRaw = await crypto.subtle.exportKey('raw', this.clavePubEd);
+      this.clavePublicaHex = CriptoCore._toHex(pubRaw);
     }
 
-    const pubRaw = await crypto.subtle.exportKey('raw', this.clavePubEd);
-    this.clavePublicaHex = CriptoCore._toHex(pubRaw);
-
+    // ── Cargar cadena existente ──
     this.cadena = await this._leerTodo();
     this.cadena.sort((a, b) => a.indice - b.indice);
     this.inicializado = true;
@@ -152,12 +203,15 @@ export class CriptoCore {
     const bloqueBase = `${indice}|${timestamp}|${hashPrevio}|${cipherHex}|${ivHex}`;
     const hash = await CriptoCore._sha256Hex(bloqueBase);
 
-    const firmaBuf = await crypto.subtle.sign(
-      'Ed25519',
-      this.clavePrivEd,
-      new TextEncoder().encode(hash)
-    );
-    const firma = CriptoCore._toHex(firmaBuf);
+    let firma = '';
+    if (this.clavePrivEd) {
+      const firmaBuf = await crypto.subtle.sign(
+        'Ed25519',
+        this.clavePrivEd,
+        new TextEncoder().encode(hash)
+      );
+      firma = CriptoCore._toHex(firmaBuf);
+    }
 
     const bloque = {
       indice,
@@ -193,7 +247,7 @@ export class CriptoCore {
         const payload = JSON.parse(new TextDecoder().decode(plainBuf));
         salida.push({ ...b, payload });
       } catch (e) {
-        salida.push({ ...b, payload: null, error: 'No descifrable' });
+        salida.push({ ...b, payload: null, error: 'No descifrable con esta contraseña' });
       }
     }
     return salida;
@@ -213,18 +267,20 @@ export class CriptoCore {
       const hashCalculado = await CriptoCore._sha256Hex(bloqueBase);
       if (hashCalculado !== b.hash) return false;
 
-      const firmaOk = await crypto.subtle.verify(
-        'Ed25519',
-        this.clavePubEd,
-        CriptoCore._fromHex(b.firma_ed25519),
-        new TextEncoder().encode(b.hash)
-      );
-      if (!firmaOk) return false;
+      if (b.firma_ed25519 && this.clavePubEd) {
+        const firmaOk = await crypto.subtle.verify(
+          'Ed25519',
+          this.clavePubEd,
+          CriptoCore._fromHex(b.firma_ed25519),
+          new TextEncoder().encode(b.hash)
+        );
+        if (!firmaOk) return false;
+      }
     }
     return true;
   }
 
-  // ── NUEVO · Verificar bloque individual ───────────────────
+  // ── Verificar bloque individual ───────────────────────────
   async verificarBloque(bloque) {
     const idx = bloque.indice;
     const prev = this.cadena[idx - 1];
@@ -236,23 +292,24 @@ export class CriptoCore {
     const hashCalc = await CriptoCore._sha256Hex(bloqueBase);
     if (hashCalc !== bloque.hash) return { ok: false, razon: 'Hash no coincide' };
 
-    const firmaOk = await crypto.subtle.verify(
-      'Ed25519',
-      this.clavePubEd,
-      CriptoCore._fromHex(bloque.firma_ed25519),
-      new TextEncoder().encode(bloque.hash)
-    );
-    if (!firmaOk) return { ok: false, razon: 'Firma inválida' };
-
+    if (bloque.firma_ed25519 && this.clavePubEd) {
+      const firmaOk = await crypto.subtle.verify(
+        'Ed25519',
+        this.clavePubEd,
+        CriptoCore._fromHex(bloque.firma_ed25519),
+        new TextEncoder().encode(bloque.hash)
+      );
+      if (!firmaOk) return { ok: false, razon: 'Firma inválida' };
+    }
     return { ok: true, razon: 'Bloque válido' };
   }
 
-  // ── NUEVO · Exportar cadena como JSON ─────────────────────
+  // ── Exportar cadena como JSON ─────────────────────────────
   async exportarCadena() {
     const bloques = await this._leerTodo();
     return {
       protocolo: 'LEGADO-HUMANO-IA',
-      version: 'cripto-core-1.1',
+      version: 'cripto-core-1.1.1',
       exportado: new Date().toISOString(),
       total_bloques: bloques.length,
       clave_publica: this.clavePublicaHex,
@@ -260,11 +317,12 @@ export class CriptoCore {
     };
   }
 
-  // ── NUEVO · Obtener identidad criptográfica ───────────────
+  // ── Obtener identidad criptográfica ───────────────────────
   obtenerIdentidad() {
     return {
       clave_publica: this.clavePublicaHex,
       algoritmo: 'Ed25519',
+      soporta_ed25519: !!this.clavePubEd,
       inicializado: this.inicializado,
       bloques_en_cadena: this.cadena.length
     };
@@ -280,6 +338,25 @@ export class CriptoCore {
       req.onerror = () => reject(req.error);
     });
     this.cadena = [];
+    return true;
+  }
+
+  // ── Reset total (incluye claves) ──────────────────────────
+  async resetTotal() {
+    await this.limpiar();
+    try {
+      localStorage.removeItem('legado_salt');
+      localStorage.removeItem('legado_priv_ed');
+      localStorage.removeItem('legado_pub_ed');
+      localStorage.removeItem('legado_priv_ed_pkcs8');
+      localStorage.removeItem('legado_pub_ed_spki');
+    } catch (e) { /* silencio */ }
+    this.claveAES = null;
+    this.clavePrivEd = null;
+    this.clavePubEd = null;
+    this.clavePublicaHex = '';
+    this.salt = null;
+    this.inicializado = false;
     return true;
   }
 }
