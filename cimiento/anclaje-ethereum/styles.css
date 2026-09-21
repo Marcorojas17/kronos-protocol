@@ -67,3 +67,11 @@ footer .sig{font-family:'Fraunces',serif;color:var(--eth-l);letter-spacing:3px}
   .acciones .btn{width:100%;justify-content:center}
 }
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}#liquido{display:none}}
+
+/* =========================================
+   FIX: Ocultar botones de TX si no hay hash
+   ========================================= */
+#kv-tx[hidden],
+#acciones-tx[hidden] {
+  display: none !important;
+}
