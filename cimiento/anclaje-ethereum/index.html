@@ -261,7 +261,7 @@
       $('link-etherscan').href = `https://etherscan.io/tx/${res.txHash}`;
       $('acciones-tx').hidden = false;
       $('out-estado').textContent = 'Anclado en Ethereum ✓';
-      setFb('success', '<strong>✓ Transacción enviada.</strong> Tu raíz Merkle está anclada a Ethereum. El enlace a Etherscan aparecerá al confirmarse.');
+      setFb('success', '<strong>✓ Transacción enviada.</strong> Tu raíz Merkle está anclada a Ethereum.');
     } catch (e) {
       setFb('error', '<strong>✗ Error de anclaje:</strong> ' + (e.message || e));
     }
