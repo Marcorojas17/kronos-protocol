@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado Merkle · Anclaje Ethereum</title>
+<meta name="theme-color" content="#02030a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#02030a;color:#F5F0E6;font-family:'Inter',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(98,126,234,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.05) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);}
+  .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(circle at 20% 30%,rgba(98,126,234,0.22) 0%,transparent 45%),
+      radial-gradient(circle at 80% 70%,rgba(124,58,237,0.18) 0%,transparent 45%),
+      radial-gradient(circle at 50% 50%,rgba(165,180,252,0.1) 0%,transparent 55%);
+    animation:auroraFloat 24s ease-in-out infinite alternate;}
+  @keyframes auroraFloat{from{transform:scale(1) translate(0,0)}to{transform:scale(1.15) translate(-24px,24px)}}
+  .wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:40px 20px 80px}
+  h1.header{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(22px,5vw,40px);letter-spacing:6px;line-height:1;
+    background:linear-gradient(120deg,#627EEA,#A5B4FC,#7C3AED,#627EEA);background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    text-align:center;margin-bottom:8px;animation:prismText 6s linear infinite;}
+  @keyframes prismText{from{background-position:0% 50%}to{background-position:300% 50%}}
+  .header-sub{text-align:center;font-size:10px;letter-spacing:4px;color:#8892a0;text-transform:uppercase;margin-bottom:36px}
+  .panel-input{margin:0 0 32px;padding:24px;border:1px solid rgba(98,126,234,0.4);background:rgba(10,15,31,0.65);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:6px;position:relative;overflow:hidden;}
+  .panel-input::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg,#627EEA,#A5B4FC,#7C3AED,#627EEA);background-size:300% 100%;
+    animation:prismText 4s linear infinite;}
+  .panel-input label{display:block;font-size:10px;letter-spacing:4px;color:#A5B4FC;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+  .panel-input textarea{width:100%;min-height:140px;padding:14px;background:rgba(2,3,10,0.85);border:1px solid rgba(98,126,234,0.3);
+    color:#F5F0E6;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;resize:vertical;outline:none;border-radius:3px;transition:border-color .3s;}
+  .panel-input textarea:focus{border-color:#A5B4FC;box-shadow:0 0 20px rgba(165,180,252,0.25)}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;border-radius:3px;
+    transition:all .35s cubic-bezier(.2,.8,.2,1);
+    background:linear-gradient(120deg,#627EEA,#7C3AED,#A5B4FC);background-size:200% 100%;
+    color:#02030a;box-shadow:0 0 24px rgba(98,126,234,0.45);animation:prismText 8s linear infinite;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(165,180,252,0.7)}
+  .btn.ghost{background:rgba(98,126,234,0.06);color:#A5B4FC;border:1px solid rgba(98,126,234,0.5);box-shadow:none;animation:none}
+  .btn.ghost:hover{background:rgba(98,126,234,0.14);box-shadow:0 0 20px rgba(98,126,234,0.35)}
+  .feedback{margin-top:16px;padding:12px 16px;border-radius:3px;font-size:13px;font-weight:400;display:none;line-height:1.6}
+  .feedback.ok{display:block;background:rgba(165,180,252,0.08);border:1px solid rgba(165,180,252,0.4);color:#C7D2FE}
+  .feedback.err{display:block;background:rgba(255,0,100,0.08);border:1px solid rgba(255,0,100,0.4);color:#FF5C7A}
+  .canvas-wrap{display:none;justify-content:center;margin-top:32px}
+  .canvas-wrap.on{display:flex}
+  #cert-canvas{max-width:100%;height:auto;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,0.9),0 0 80px rgba(98,126,234,0.3)}
+  .acciones-export{display:none;justify-content:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .acciones-export.on{display:flex}
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+
+<div class="wrap">
+  <h1 class="header">CERTIFICADO MERKLE</h1>
+  <div class="header-sub">Anclaje Ethereum · Legado Humano–IA</div>
+
+  <div class="panel-input">
+    <label for="input-json">Pega el paquete .json exportado desde Anclaje Ethereum</label>
+    <textarea id="input-json" placeholder='Pega aquí el contenido del archivo legado-anclaje-XXXX.json...'></textarea>
+    <div class="btn-row">
+      <button class="btn" id="btn-render">Renderizar certificado →</button>
+      <button class="btn ghost" id="btn-limpiar">Limpiar</button>
+    </div>
+    <div class="feedback" id="fb"></div>
+  </div>
+
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="cert-canvas" width="1000" height="1400"></canvas>
+  </div>
+
+  <div class="acciones-export" id="acciones">
+    <button class="btn" id="btn-descargar-png">Descargar PNG</button>
+    <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const fb = $('fb');
+  const canvasWrap = $('canvas-wrap');
+  const acciones = $('acciones');
+  const canvas = $('cert-canvas');
+
+  function setFb(tipo, msg){ fb.className = 'feedback ' + tipo; fb.innerHTML = msg; }
+
+  function roundRect(ctx, x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function dibujarCertificado(data){
+    const W = 1000, H = 1400;
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = '#02030a';
+    ctx.fillRect(0, 0, W, H);
+
+    let aurora = ctx.createRadialGradient(W*0.2, H*0.25, 0, W*0.2, H*0.25, W*0.6);
+    aurora.addColorStop(0, 'rgba(98,126,234,0.28)'); aurora.addColorStop(1, 'rgba(98,126,234,0)');
+    ctx.fillStyle = aurora; ctx.fillRect(0, 0, W, H);
+
+    aurora = ctx.createRadialGradient(W*0.85, H*0.75, 0, W*0.85, H*0.75, W*0.6);
+    aurora.addColorStop(0, 'rgba(124,58,237,0.22)'); aurora.addColorStop(1, 'rgba(124,58,237,0)');
+    ctx.fillStyle = aurora; ctx.fillRect(0, 0, W, H);
+
+    ctx.strokeStyle = 'rgba(98,126,234,0.06)'; ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 44){ ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y < H; y += 44){ ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+    const marcoPad = 30;
+    const gradMarco = ctx.createLinearGradient(0, 0, W, H);
+    gradMarco.addColorStop(0, '#627EEA');
+    gradMarco.addColorStop(0.5, '#A5B4FC');
+    gradMarco.addColorStop(1, '#7C3AED');
+    ctx.strokeStyle = gradMarco; ctx.lineWidth = 3;
+    roundRect(ctx, marcoPad, marcoPad, W - marcoPad*2, H - marcoPad*2, 14); ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(165,180,252,0.3)'; ctx.lineWidth = 1;
+    roundRect(ctx, marcoPad + 10, marcoPad + 10, W - marcoPad*2 - 20, H - marcoPad*2 - 20, 10); ctx.stroke();
+
+    const esquinaL = 40;
+    const corners = [
+      [marcoPad+20, marcoPad+20, 1, 1, '#627EEA'],
+      [W-marcoPad-20, marcoPad+20, -1, 1, '#7C3AED'],
+      [marcoPad+20, H-marcoPad-20, 1, -1, '#7C3AED'],
+      [W-marcoPad-20, H-marcoPad-20, -1, -1, '#627EEA']
+    ];
+    ctx.lineWidth = 3;
+    for (const [cx, cy, dx, dy, color] of corners){
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + dy * esquinaL); ctx.lineTo(cx, cy); ctx.lineTo(cx + dx * esquinaL, cy);
+      ctx.stroke();
+    }
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    ctx.font = '900 72px Cinzel, serif';
+    ctx.fillStyle = 'rgba(124,58,237,0.4)'; ctx.fillText('KRONOS', W/2 - 2, 110);
+    ctx.fillStyle = 'rgba(98,126,234,0.4)'; ctx.fillText('KRONOS', W/2 + 2, 110);
+
+    const gradKronos = ctx.createLinearGradient(0, 100, W, 200);
+    gradKronos.addColorStop(0, '#627EEA');
+    gradKronos.addColorStop(0.5, '#A5B4FC');
+    gradKronos.addColorStop(1, '#7C3AED');
+    ctx.fillStyle = gradKronos; ctx.fillText('KRONOS', W/2, 110);
+
+    ctx.font = '600 16px Inter, sans-serif';
+    ctx.fillStyle = '#A5B4FC';
+    ctx.fillText('ANCLAJE ETHEREUM · MERKLE ROOT', W/2, 210);
+
+    const badgeW = 380, badgeH = 46;
+    const badgeX = (W - badgeW) / 2, badgeY = 270;
+    ctx.strokeStyle = 'rgba(98,126,234,0.7)'; ctx.lineWidth = 1.5;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH/2); ctx.stroke();
+    ctx.fillStyle = 'rgba(98,126,234,0.1)';
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH/2); ctx.fill();
+
+    ctx.beginPath(); ctx.arc(badgeX + 40, badgeY + badgeH/2, 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#A5B4FC'; ctx.fill();
+    ctx.beginPath(); ctx.arc(badgeX + 40, badgeY + badgeH/2, 12, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(165,180,252,0.4)'; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.font = '700 13px Inter, sans-serif';
+    ctx.fillStyle = '#C7D2FE';
+    ctx.fillText('PRUEBA DE EXISTENCIA INMUTABLE', W/2 + 20, badgeY + 16);
+
+    const filas = [
+      ['PROTOCOLO', data.protocolo || '—', '#C7D2FE', 'mono'],
+      ['VERSIÓN ANCLAJE', data.version || '—', '#C7D2FE', 'mono'],
+      ['FUNDADOR', data.fundador || '—', '#F5F0E6', 'normal'],
+      ['TOTAL BLOQUES', (data.total_bloques || 0) + ' BLOQUES', '#A5B4FC', 'big'],
+      ['RAÍZ MERKLE SHA-256', data.merkle_root || '—', '#C7D2FE', 'mono'],
+      ['FIRMA ED25519', data.firma_ed25519 || '—', '#C7D2FE', 'mono'],
+      ['CLAVE PÚBLICA ED25519', data.clave_publica || '—', '#C7D2FE', 'mono'],
+      ['TIMESTAMP', data.timestamp || '—', '#FCD34D', 'mono'],
+      ['TX HASH ETHEREUM', data.tx_hash || 'Pendiente de anclaje', data.tx_hash ? '#A5B4FC' : '#5a7ab0', 'mono']
+    ];
+
+    let y = 380;
+    const filaH = 95;
+    const margenIzq = 90, margenDer = W - 90;
+
+    for (const [label, valor, color, tipo] of filas){
+      ctx.strokeStyle = 'rgba(98,126,234,0.15)'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(margenIzq, y + filaH - 10);
+      ctx.lineTo(margenDer, y + filaH - 10);
+      ctx.stroke();
+
+      ctx.font = '600 12px Inter, sans-serif';
+      ctx.fillStyle = '#A5B4FC';
+      ctx.textAlign = 'left';
+      ctx.fillText(label, margenIzq, y);
+
+      if (tipo === 'big'){
+        ctx.font = '700 30px Cinzel, serif';
+        ctx.fillStyle = '#A5B4FC';
+        ctx.fillText(valor, margenIzq, y + 24);
+      } else if (tipo === 'mono'){
+        ctx.font = '400 12px JetBrains Mono, monospace';
+        ctx.fillStyle = color;
+        if (valor.length > 68){
+          const mitad = Math.ceil(valor.length / 2);
+          ctx.fillText(valor.slice(0, mitad), margenIzq, y + 26);
+          ctx.fillText(valor.slice(mitad), margenIzq, y + 44);
+        } else {
+          ctx.fillText(valor, margenIzq, y + 26);
+        }
+      } else {
+        ctx.font = '400 15px Inter, sans-serif';
+        ctx.fillStyle = color;
+        ctx.fillText(valor, margenIzq, y + 26);
+      }
+      y += filaH;
+    }
+
+    const footerY = H - 210;
+    ctx.textAlign = 'center';
+    ctx.font = '700 16px Cinzel, serif';
+    ctx.fillStyle = '#A5B4FC';
+    ctx.fillText('CERTIFICADO DE ANCLAJE', W/2, footerY);
+    ctx.fillText('VERIFICABLE EN ETHEREUM', W/2, footerY + 24);
+
+    ctx.font = '400 12px JetBrains Mono, monospace';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.fillText('Merkle root firmada con Ed25519 · Anclable a mainnet', W/2, footerY + 70);
+    ctx.fillText('© 2026 Marco A. Rojas V. + KRONOS IA', W/2, footerY + 95);
+    ctx.fillText('Documento generado localmente', W/2, footerY + 115);
+
+    const selloX = W - 140, selloY = H - 130, selloR = 60;
+    for (let i = 0; i < 36; i++){
+      const ang0 = (i / 36) * Math.PI * 2;
+      const ang1 = ((i + 1) / 36) * Math.PI * 2;
+      const t = i / 36;
+      let color;
+      if (t < 0.5) color = '#627EEA';
+      else color = '#7C3AED';
+      ctx.strokeStyle = color; ctx.lineWidth = 8;
+      ctx.beginPath(); ctx.arc(selloX, selloY, selloR, ang0, ang1); ctx.stroke();
+    }
+
+    ctx.beginPath(); ctx.arc(selloX, selloY, selloR - 10, 0, Math.PI * 2);
+    ctx.fillStyle = '#02030a'; ctx.fill();
+    ctx.beginPath(); ctx.arc(selloX, selloY, selloR - 15, 0, Math.PI * 2);
+    ctx.strokeStyle = '#A5B4FC'; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.font = '900 44px Inter, sans-serif';
+    ctx.fillStyle = '#A5B4FC';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('✓', selloX, selloY);
+    ctx.textBaseline = 'top';
+  }
+
+  let dataActual = null;
+
+  $('btn-render').addEventListener('click', () => {
+    const raw = $('input-json').value.trim();
+    if (!raw) return setFb('err', '<strong>✗ Pega el JSON primero.</strong>');
+    try {
+      const data = JSON.parse(raw);
+      if (!data.merkle_root) throw new Error('Este JSON no parece ser un paquete de anclaje.');
+      dataActual = data;
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setFb('ok', '<strong>✓ Certificado Merkle renderizado.</strong> Descarga PNG o guarda como PDF.');
+    } catch (e) {
+      setFb('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-limpiar').addEventListener('click', () => {
+    $('input-json').value = '';
+    canvasWrap.classList.remove('on');
+    acciones.classList.remove('on');
+    fb.className = 'feedback';
+    dataActual = null;
+  });
+
+  $('btn-imprimir').addEventListener('click', () => window.print());
+
+  $('btn-descargar-png').addEventListener('click', () => {
+    if (!dataActual) return;
+    try {
+      canvas.toBlob((blob) => {
+        if (!blob){ setFb('err', '<strong>✗ No se pudo generar el blob.</strong>'); return; }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'certificado-merkle-' + Date.now() + '.png';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        setFb('ok', '<strong>✓ PNG descargado.</strong>');
+      }, 'image/png', 1.0);
+    } catch (e) { setFb('err', '<strong>✗ Error:</strong> ' + e.message); }
+  });
+})();
+</script>
+</body>
+</html>
