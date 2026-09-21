@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#02030a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{
@@ -61,7 +61,6 @@
     text-align:center;font-size:10px;letter-spacing:4px;
     color:#8892a0;text-transform:uppercase;margin-bottom:36px;
   }
-  /* INPUT PANEL */
   .panel-input{
     margin:0 0 32px;padding:24px;
     border:1px solid rgba(124,58,237,0.35);
@@ -115,189 +114,26 @@
     box-shadow:none;animation:none;
   }
   .btn.ghost:hover{background:rgba(124,58,237,0.12);box-shadow:0 0 20px rgba(124,58,237,0.3)}
+  .btn:disabled{opacity:.5;cursor:wait}
   .feedback{
     margin-top:16px;padding:12px 16px;border-radius:3px;
     font-size:13px;font-weight:400;display:none;line-height:1.6;
   }
   .feedback.ok{display:block;background:rgba(0,234,255,0.08);border:1px solid rgba(0,234,255,0.4);color:#67E8F9}
   .feedback.err{display:block;background:rgba(255,0,100,0.08);border:1px solid rgba(255,0,100,0.4);color:#FF5C7A}
-  /* CERTIFICADO PRISMÁTICO */
-  .cert-wrap{display:none;justify-content:center;margin-top:32px}
-  .cert-wrap.on{display:flex}
-  .cert{
-    width:100%;max-width:820px;
-    padding:4px;
-    border-radius:12px;
-    background:linear-gradient(120deg,#7C3AED,#00EAFF,#FF00D4,#C9A227,#7C3AED);
-    background-size:300% 100%;
-    animation:prismText 8s linear infinite;
+  .canvas-wrap{
+    display:none;justify-content:center;margin-top:32px;
+  }
+  .canvas-wrap.on{display:flex}
+  #cert-canvas{
+    max-width:100%;height:auto;border-radius:10px;
     box-shadow:0 30px 80px rgba(0,0,0,0.9),0 0 80px rgba(124,58,237,0.3);
-    position:relative;
   }
-  .cert-inner{
-    background:linear-gradient(155deg,#0a0f1f 0%,#02030a 100%);
-    border-radius:9px;
-    padding:44px 40px 36px;
-    position:relative;overflow:hidden;
-  }
-  .cert-inner::before{
-    content:'';position:absolute;
-    top:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(0,234,255,0.8),transparent);
-  }
-  .cert-inner::after{
-    content:'';position:absolute;
-    inset:0;pointer-events:none;
-    background:
-      radial-gradient(circle at 10% 10%,rgba(124,58,237,0.14) 0%,transparent 40%),
-      radial-gradient(circle at 90% 90%,rgba(255,0,212,0.14) 0%,transparent 40%);
-  }
-  .cert-esquinas{
-    position:absolute;
-    width:26px;height:26px;
-    border:2px solid #00EAFF;
-    z-index:3;
-  }
-  .cert-esquinas.tl{top:14px;left:14px;border-right:none;border-bottom:none}
-  .cert-esquinas.tr{top:14px;right:14px;border-left:none;border-bottom:none;border-color:#FF00D4}
-  .cert-esquinas.bl{bottom:14px;left:14px;border-right:none;border-top:none;border-color:#FF00D4}
-  .cert-esquinas.br{bottom:14px;right:14px;border-left:none;border-top:none}
-  .cert-header{
-    text-align:center;margin-bottom:32px;
-    padding-bottom:24px;
-    border-bottom:1px solid rgba(124,58,237,0.25);
-    position:relative;z-index:2;
-  }
-  .cert-logo{
-    font-family:'Cinzel',serif;font-weight:900;
-    font-size:28px;letter-spacing:10px;
-    background:linear-gradient(120deg,#7C3AED,#00EAFF,#FF00D4,#C9A227);
-    background-size:300% 100%;
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:prismText 6s linear infinite;
-    margin-bottom:8px;
-  }
-  .cert-legend{
-    font-size:9px;letter-spacing:4px;
-    color:#A78BFA;text-transform:uppercase;
-    margin-bottom:20px;
-  }
-  .cert-badge{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:10px 22px;
-    border:1px solid rgba(0,234,255,0.5);
-    border-radius:100px;
-    background:rgba(0,234,255,0.06);
-    font-size:11px;font-weight:700;letter-spacing:3px;
-    color:#67E8F9;text-transform:uppercase;
-  }
-  .cert-badge .dot{
-    width:8px;height:8px;border-radius:50%;
-    background:#00EAFF;
-    box-shadow:0 0 12px #00EAFF;
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%,100%{box-shadow:0 0 0 0 rgba(0,234,255,0.7)}
-    70%{box-shadow:0 0 0 12px rgba(0,234,255,0)}
-  }
-  .cert-body{position:relative;z-index:2}
-  .cert-row{
-    display:grid;
-    grid-template-columns:max-content 1fr;
-    gap:8px 20px;
-    padding:10px 0;
-    border-bottom:1px solid rgba(124,58,237,0.12);
-  }
-  .cert-row:last-child{border-bottom:none}
-  .cert-row .k{
-    font-size:9px;letter-spacing:3px;
-    color:#A78BFA;text-transform:uppercase;
-    padding-top:3px;font-weight:600;
-  }
-  .cert-row .v{
-    font-size:13px;color:#F5F0E6;
-    word-break:break-all;line-height:1.5;
-  }
-  .cert-row .v.mono{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;color:#C4B5FD;
-  }
-  .cert-row .v.gold{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;color:#FCD34D;
-  }
-  .cert-row .v.big{
-    font-family:'Cinzel',serif;
-    font-size:16px;font-weight:700;letter-spacing:1px;
-    background:linear-gradient(120deg,#7C3AED,#00EAFF,#FF00D4);
-    background-size:200% 100%;
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:prismText 8s linear infinite;
-  }
-  .cert-footer{
-    margin-top:28px;padding-top:20px;
-    border-top:1px solid rgba(124,58,237,0.25);
-    text-align:center;position:relative;z-index:2;
-  }
-  .cert-footer .stamp{
-    font-family:'Cinzel',serif;
-    font-size:11px;letter-spacing:4px;
-    color:#A78BFA;text-transform:uppercase;
-    margin-bottom:8px;
-  }
-  .cert-footer .sig{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px;color:#5a7ab0;
-    letter-spacing:1px;line-height:1.7;
-  }
-  .cert-seal{
-    position:absolute;bottom:30px;right:30px;
-    width:80px;height:80px;border-radius:50%;
-    background:conic-gradient(from 0deg,#7C3AED,#00EAFF,#FF00D4,#C9A227,#7C3AED);
-    animation:spin 10s linear infinite;
-    z-index:3;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 30px rgba(124,58,237,0.5);
-  }
-  .cert-seal::before{
-    content:'';position:absolute;inset:5px;border-radius:50%;
-    background:#02030a;
-  }
-  .cert-seal::after{
-    content:'✓';position:absolute;
-    font-size:32px;color:#00EAFF;
-    text-shadow:0 0 16px #00EAFF;font-weight:900;z-index:1;
-  }
-  @keyframes spin{to{transform:rotate(360deg)}}
   .acciones-export{
     display:none;justify-content:center;gap:12px;
     margin-top:24px;flex-wrap:wrap;
   }
   .acciones-export.on{display:flex}
-  @media print{
-    body{background:#fff}
-    body::before,.aurora{display:none}
-    .panel-input,.acciones-export{display:none !important}
-    .cert{box-shadow:none;background:#000;padding:2px}
-    .cert-inner{background:#fff;color:#000}
-    .cert-logo,.cert-row .v.big{-webkit-text-fill-color:#7C3AED;background:none}
-    .cert-row .k{color:#7C3AED}
-    .cert-row .v{color:#000}
-    .cert-row .v.mono{color:#333}
-    .cert-row .v.gold{color:#8a6f2c}
-    .cert-footer .stamp,.cert-footer .sig{color:#333}
-  }
-  @media (max-width:600px){
-    .cert-inner{padding:28px 20px}
-    .cert-logo{font-size:20px;letter-spacing:6px}
-    .cert-seal{width:60px;height:60px;bottom:20px;right:20px}
-    .cert-seal::after{font-size:24px}
-    .cert-row{grid-template-columns:1fr;gap:4px}
-    .cert-row .k{padding-top:0}
-  }
 </style>
 </head>
 <body>
@@ -317,73 +153,12 @@
     <div class="feedback" id="fb"></div>
   </div>
 
-  <div class="cert-wrap" id="cert-wrap">
-    <div class="cert" id="cert">
-      <div class="cert-inner">
-        <div class="cert-esquinas tl"></div>
-        <div class="cert-esquinas tr"></div>
-        <div class="cert-esquinas bl"></div>
-        <div class="cert-esquinas br"></div>
-
-        <div class="cert-header">
-          <div class="cert-logo">KRONOS</div>
-          <div class="cert-legend">Legado Humano–IA · Storage Dexie</div>
-          <div class="cert-badge">
-            <span class="dot"></span>
-            <span>Certificado Verificable</span>
-          </div>
-        </div>
-
-        <div class="cert-body">
-          <div class="cert-row">
-            <span class="k">Protocolo</span>
-            <span class="v mono" id="c-protocolo">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Versión Storage</span>
-            <span class="v mono" id="c-version">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Versión DB</span>
-            <span class="v mono" id="c-db">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Total registros</span>
-            <span class="v big" id="c-total">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Clave pública Ed25519</span>
-            <span class="v mono" id="c-pub">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Último hash SHA-256</span>
-            <span class="v mono" id="c-hash">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Última firma Ed25519</span>
-            <span class="v mono" id="c-firma">—</span>
-          </div>
-          <div class="cert-row">
-            <span class="k">Exportado</span>
-            <span class="v gold" id="c-fecha">—</span>
-          </div>
-        </div>
-
-        <div class="cert-footer">
-          <div class="stamp">Certificado Prismático Infalsificable</div>
-          <div class="sig">
-            Verificación: SHA-256(registro) = hash declarado · Ed25519(clave_pública) = firma<br>
-            Documento generado localmente · © 2026 Marco A. Rojas V. + KRONOS IA
-          </div>
-        </div>
-
-        <div class="cert-seal"></div>
-      </div>
-    </div>
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="cert-canvas" width="1000" height="1400"></canvas>
   </div>
 
   <div class="acciones-export" id="acciones">
-    <button class="btn" id="btn-descargar-png">Descargar PNG prismático</button>
+    <button class="btn" id="btn-descargar-png">Descargar PNG</button>
     <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
   </div>
 </div>
@@ -392,44 +167,320 @@
 (function(){
   const $ = (id) => document.getElementById(id);
   const fb = $('fb');
-  const certWrap = $('cert-wrap');
+  const canvasWrap = $('canvas-wrap');
   const acciones = $('acciones');
+  const canvas = $('cert-canvas');
 
   function setFb(tipo, msg){
     fb.className = 'feedback ' + tipo;
     fb.innerHTML = msg;
   }
 
-  function render(data){
-    // Validaciones defensivas
-    if (!data || typeof data !== 'object') throw new Error('JSON inválido.');
-    if (!data.protocolo && !data.total_registros && !data.registros) {
-      throw new Error('Este JSON no parece ser un export de Storage Dexie.');
+  // ─── HELPERS CANVAS ─────────────────────────────────────
+  function roundRect(ctx, x, y, w, h, r){
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight){
+    const words = text.split(' ');
+    let line = '';
+    let currentY = y;
+    for (let n = 0; n < words.length; n++){
+      const testLine = line + words[n] + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0){
+        ctx.fillText(line.trim(), x, currentY);
+        line = words[n] + ' ';
+        currentY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line.trim(), x, currentY);
+    return currentY + lineHeight;
+  }
+
+  // ─── RENDER DEL CERTIFICADO EN CANVAS ───────────────────
+  function dibujarCertificado(data){
+    const W = 1000, H = 1400;
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    // ─── Fondo negro profundo ───
+    ctx.fillStyle = '#02030a';
+    ctx.fillRect(0, 0, W, H);
+
+    // ─── Auroras de fondo ───
+    let aurora = ctx.createRadialGradient(W*0.2, H*0.25, 0, W*0.2, H*0.25, W*0.6);
+    aurora.addColorStop(0, 'rgba(124,58,237,0.25)');
+    aurora.addColorStop(1, 'rgba(124,58,237,0)');
+    ctx.fillStyle = aurora;
+    ctx.fillRect(0, 0, W, H);
+
+    aurora = ctx.createRadialGradient(W*0.85, H*0.75, 0, W*0.85, H*0.75, W*0.6);
+    aurora.addColorStop(0, 'rgba(255,0,212,0.18)');
+    aurora.addColorStop(1, 'rgba(255,0,212,0)');
+    ctx.fillStyle = aurora;
+    ctx.fillRect(0, 0, W, H);
+
+    aurora = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, W*0.7);
+    aurora.addColorStop(0, 'rgba(0,234,255,0.1)');
+    aurora.addColorStop(1, 'rgba(0,234,255,0)');
+    ctx.fillStyle = aurora;
+    ctx.fillRect(0, 0, W, H);
+
+    // ─── Grid ───
+    ctx.strokeStyle = 'rgba(124,58,237,0.06)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 44){
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 44){
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
 
+    // ─── Marco exterior prismático ───
+    const marcoPad = 30;
+    const gradMarco = ctx.createLinearGradient(0, 0, W, H);
+    gradMarco.addColorStop(0, '#7C3AED');
+    gradMarco.addColorStop(0.33, '#00EAFF');
+    gradMarco.addColorStop(0.66, '#FF00D4');
+    gradMarco.addColorStop(1, '#C9A227');
+    ctx.strokeStyle = gradMarco;
+    ctx.lineWidth = 3;
+    roundRect(ctx, marcoPad, marcoPad, W - marcoPad*2, H - marcoPad*2, 14);
+    ctx.stroke();
+
+    // ─── Marco interior ───
+    ctx.strokeStyle = 'rgba(0,234,255,0.3)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, marcoPad + 10, marcoPad + 10, W - marcoPad*2 - 20, H - marcoPad*2 - 20, 10);
+    ctx.stroke();
+
+    // ─── Esquinas de precisión ───
+    const esquinaL = 40;
+    ctx.strokeStyle = '#00EAFF';
+    ctx.lineWidth = 3;
+    const corners = [
+      [marcoPad+20, marcoPad+20, 1, 1, '#00EAFF'],
+      [W - marcoPad-20, marcoPad+20, -1, 1, '#FF00D4'],
+      [marcoPad+20, H - marcoPad-20, 1, -1, '#FF00D4'],
+      [W - marcoPad-20, H - marcoPad-20, -1, -1, '#00EAFF']
+    ];
+    for (const [cx, cy, dx, dy, color] of corners){
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + dy * esquinaL);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx + dx * esquinaL, cy);
+      ctx.stroke();
+    }
+
+    // ─── Header: KRONOS ───
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    // Sombra holográfica
+    ctx.font = '900 72px Cinzel, serif';
+    ctx.fillStyle = 'rgba(255,0,212,0.4)';
+    ctx.fillText('KRONOS', W/2 - 2, 110);
+    ctx.fillStyle = 'rgba(0,234,255,0.4)';
+    ctx.fillText('KRONOS', W/2 + 2, 110);
+
+    // Gradiente real del texto
+    const gradKronos = ctx.createLinearGradient(0, 100, W, 200);
+    gradKronos.addColorStop(0, '#7C3AED');
+    gradKronos.addColorStop(0.33, '#00EAFF');
+    gradKronos.addColorStop(0.66, '#FF00D4');
+    gradKronos.addColorStop(1, '#C9A227');
+    ctx.fillStyle = gradKronos;
+    ctx.fillText('KRONOS', W/2, 110);
+
+    // Subtítulo
+    ctx.font = '600 16px Inter, sans-serif';
+    ctx.fillStyle = '#A78BFA';
+    ctx.letterSpacing = '6px';
+    ctx.fillText('LEGADO HUMANO–IA · STORAGE DEXIE', W/2, 210);
+
+    // Badge "Certificado Verificable"
+    const badgeW = 340, badgeH = 46;
+    const badgeX = (W - badgeW) / 2;
+    const badgeY = 270;
+
+    ctx.strokeStyle = 'rgba(0,234,255,0.6)';
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH/2);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(0,234,255,0.08)';
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, badgeH/2);
+    ctx.fill();
+
+    // Punto pulsante
+    ctx.beginPath();
+    ctx.arc(badgeX + 40, badgeY + badgeH/2, 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#00EAFF';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(badgeX + 40, badgeY + badgeH/2, 12, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(0,234,255,0.4)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.font = '700 14px Inter, sans-serif';
+    ctx.fillStyle = '#67E8F9';
+    ctx.fillText('CERTIFICADO VERIFICABLE', W/2 + 20, badgeY + 15);
+
+    // ─── Cuerpo · Datos ───
     const registros = data.registros || [];
     const ultimo = registros.length > 0 ? registros[registros.length - 1] : null;
 
-    $('c-protocolo').textContent = data.protocolo || '—';
-    $('c-version').textContent = data.version || '—';
-    $('c-db').textContent = data.db_version ? 'v' + data.db_version : '—';
-    $('c-total').textContent = (data.total_registros || 0) + ' registro' + ((data.total_registros || 0) === 1 ? '' : 's');
-    $('c-pub').textContent = data.clave_publica || '—';
-    $('c-hash').textContent = ultimo && ultimo.hash ? ultimo.hash : '—';
-    $('c-firma').textContent = ultimo && ultimo.firma ? ultimo.firma : '—';
-    $('c-fecha').textContent = data.exportado || '—';
+    const filas = [
+      ['PROTOCOLO', data.protocolo || '—', '#C4B5FD', 'mono'],
+      ['VERSIÓN STORAGE', data.version || '—', '#C4B5FD', 'mono'],
+      ['VERSIÓN DB', data.db_version ? 'v' + data.db_version : '—', '#C4B5FD', 'mono'],
+      ['TOTAL REGISTROS', (data.total_registros || 0) + ' REGISTROS', '#00EAFF', 'big'],
+      ['CLAVE PÚBLICA ED25519', data.clave_publica || '—', '#C4B5FD', 'mono'],
+      ['ÚLTIMO HASH SHA-256', ultimo && ultimo.hash ? ultimo.hash : '—', '#C4B5FD', 'mono'],
+      ['ÚLTIMA FIRMA ED25519', ultimo && ultimo.firma ? ultimo.firma : '—', '#C4B5FD', 'mono'],
+      ['EXPORTADO', data.exportado || '—', '#FCD34D', 'mono']
+    ];
 
-    certWrap.classList.add('on');
-    acciones.classList.add('on');
+    let y = 380;
+    const filaH = 100;
+    const margenIzq = 90;
+    const margenDer = W - 90;
+    const anchoUtil = margenDer - margenIzq;
+
+    for (const [label, valor, color, tipo] of filas){
+      // Línea separadora
+      ctx.strokeStyle = 'rgba(124,58,237,0.15)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(margenIzq, y + filaH - 10);
+      ctx.lineTo(margenDer, y + filaH - 10);
+      ctx.stroke();
+
+      // Label
+      ctx.font = '600 12px Inter, sans-serif';
+      ctx.fillStyle = '#A78BFA';
+      ctx.textAlign = 'left';
+      ctx.fillText(label, margenIzq, y);
+
+      // Valor
+      if (tipo === 'big'){
+        ctx.font = '700 32px Cinzel, serif';
+        ctx.fillStyle = '#00EAFF';
+        ctx.fillText(valor, margenIzq, y + 24);
+      } else if (tipo === 'mono'){
+        ctx.font = '400 13px JetBrains Mono, monospace';
+        ctx.fillStyle = color;
+        // Partir strings largos
+        const textoLargo = valor.length > 70;
+        if (textoLargo){
+          const mitad = Math.ceil(valor.length / 2);
+          ctx.fillText(valor.slice(0, mitad), margenIzq, y + 26);
+          ctx.fillText(valor.slice(mitad), margenIzq, y + 44);
+        } else {
+          ctx.fillText(valor, margenIzq, y + 26);
+        }
+      } else {
+        ctx.font = '400 16px Inter, sans-serif';
+        ctx.fillStyle = color;
+        ctx.fillText(valor, margenIzq, y + 26);
+      }
+
+      y += filaH;
+    }
+
+    // ─── Footer ───
+    const footerY = H - 240;
+
+    ctx.textAlign = 'center';
+    ctx.font = '700 16px Cinzel, serif';
+    ctx.fillStyle = '#A78BFA';
+    ctx.fillText('CERTIFICADO PRISMÁTICO', W/2, footerY);
+    ctx.fillText('INFALSIFICABLE', W/2, footerY + 24);
+
+    ctx.font = '400 12px JetBrains Mono, monospace';
+    ctx.fillStyle = '#5a7ab0';
+    ctx.fillText('Verificación: SHA-256(registro) = hash declarado', W/2, footerY + 70);
+    ctx.fillText('Ed25519(clave_pública) = firma', W/2, footerY + 90);
+    ctx.fillText('Documento generado localmente · © 2026', W/2, footerY + 120);
+    ctx.fillText('Marco A. Rojas V. + KRONOS IA', W/2, footerY + 140);
+
+    // ─── Sello circular prismático ───
+    const selloX = W - 140;
+    const selloY = H - 140;
+    const selloR = 60;
+
+    // Anillo prismático (simulado con arcos concéntricos)
+    for (let i = 0; i < 36; i++){
+      const ang0 = (i / 36) * Math.PI * 2;
+      const ang1 = ((i + 1) / 36) * Math.PI * 2;
+      const t = i / 36;
+      let color;
+      if (t < 0.25) color = '#7C3AED';
+      else if (t < 0.5) color = '#00EAFF';
+      else if (t < 0.75) color = '#FF00D4';
+      else color = '#C9A227';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.arc(selloX, selloY, selloR, ang0, ang1);
+      ctx.stroke();
+    }
+
+    // Círculo interior negro
+    ctx.beginPath();
+    ctx.arc(selloX, selloY, selloR - 10, 0, Math.PI * 2);
+    ctx.fillStyle = '#02030a';
+    ctx.fill();
+
+    // Aro cyan interior
+    ctx.beginPath();
+    ctx.arc(selloX, selloY, selloR - 15, 0, Math.PI * 2);
+    ctx.strokeStyle = '#00EAFF';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Check central
+    ctx.font = '900 44px Inter, sans-serif';
+    ctx.fillStyle = '#00EAFF';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✓', selloX, selloY);
+
+    ctx.textBaseline = 'top';
   }
+
+  // ─── HANDLERS ───────────────────────────────────────────
+  let dataActual = null;
 
   $('btn-render').addEventListener('click', () => {
     const raw = $('input-json').value.trim();
     if (!raw) return setFb('err', '<strong>✗ Pega el JSON primero.</strong>');
     try {
       const data = JSON.parse(raw);
-      render(data);
-      setFb('ok', '<strong>✓ Certificado renderizado.</strong> Descárgalo como PNG o PDF.');
+      if (!data.protocolo && !data.total_registros && !data.registros) {
+        throw new Error('Este JSON no parece ser un export de Storage Dexie.');
+      }
+      dataActual = data;
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setFb('ok', '<strong>✓ Certificado renderizado.</strong> Descarga PNG o guarda como PDF.');
     } catch (e) {
       setFb('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
     }
@@ -437,39 +488,36 @@
 
   $('btn-limpiar').addEventListener('click', () => {
     $('input-json').value = '';
-    certWrap.classList.remove('on');
+    canvasWrap.classList.remove('on');
     acciones.classList.remove('on');
     fb.className = 'feedback';
+    dataActual = null;
   });
 
   $('btn-imprimir').addEventListener('click', () => {
     window.print();
   });
 
-  $('btn-descargar-png').addEventListener('click', async () => {
+  $('btn-descargar-png').addEventListener('click', () => {
+    if (!dataActual) return;
     try {
-      if (typeof html2canvas === 'undefined') {
-        await new Promise((res, rej) => {
-          const s = document.createElement('script');
-          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-          s.onload = res;
-          s.onerror = rej;
-          document.head.appendChild(s);
-        });
-      }
-      const canvas = await html2canvas($('cert'), {
-        backgroundColor: '#02030a',
-        scale: 2,
-        useCORS: true
-      });
-      const url = canvas.toDataURL('image/png');
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'certificado-prismatico-' + Date.now() + '.png';
-      a.click();
-      setFb('ok', '<strong>✓ PNG descargado.</strong>');
+      canvas.toBlob((blob) => {
+        if (!blob){
+          setFb('err', '<strong>✗ No se pudo generar el blob.</strong> Intenta de nuevo.');
+          return;
+        }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'certificado-prismatico-' + Date.now() + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        setFb('ok', '<strong>✓ PNG descargado.</strong> Revísalo en tu galería.');
+      }, 'image/png', 1.0);
     } catch (e) {
-      setFb('err', '<strong>✗ Error al exportar PNG:</strong> ' + e.message);
+      setFb('err', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 })();
