@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-20T23:28:52Z
+# Generado: 2026-09-21T00:13:35Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -63,6 +63,7 @@ ee009f9a5f37a53ecbecfecdcf599462dbe2cfb25969c495a11eaa34a6de4537  ./cimiento/cri
 6db546ddebed963bb17803ea3fe9592f44d9087f40f2b8d658d9fb2abfdd4d66  ./cimiento/storage-dexie/manual.html
 56e2f46461e848472195423310fcc479e75d200352b00140df62ae94a661a5a3  ./cimiento/storage-dexie/storage.js
 ee8ac0136d97ce65a178bea5d45767e59bcadfdb986efc63cfb473ca6250429c  ./cimiento/storage-dexie/styles.css
+66d7897f3f92e2baa7b7c6111775e3a1338deb55b7d6fce148cbc68713e7521c  ./curriculum-terminal.txt
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
 3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
 8277b1b78a161d16a1f07475f236ce68216f69d73eb944ad9bc781b15d7d726d  ./favicon.svg
