@@ -159,8 +159,10 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
 </main>
 
 <script type="module">
+  // ⚠️ Importa core.js con cache-buster v=2 (fuerza recarga del Cripto Core)
   import { CriptoCore } from '../cripto-core/core.js?v=2';
-  import { StorageDexie } from './storage.js?v=2';
+  // ⚠️ Importa storage-v2.js (nombre nuevo, imposible caché viejo)
+  import { StorageDexie } from './storage-v2.js';
 
   const $ = (id) => document.getElementById(id);
   const feedback = $('feedback');
