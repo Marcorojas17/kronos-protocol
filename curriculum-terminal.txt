@@ -1,0 +1,143 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║   MARCO ANTONIO ROJAS VALDOVINOS                                     ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+║   Fundador de KRONOS Protocol · Creador de sistemas verificables    ║
+║                                                                      ║
+║   27 años · 7225862335 · marco.a.rojas.v@hotmail.com                ║
+║   Toluca, Estado de México · México                                  ║
+║   github.com/Marcorojas17 · marcorojas17.github.io/kronos-protocol  ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+┌─[ 01 ]────────────────────────── PERFIL ─────────────────────────────┐
+│                                                                      │
+│  27 años · Toluca, México. Creador autodidacta con foco en           │
+│  integridad digital, criptografía aplicada y arquitectura            │
+│  local-first. Diseño y construyo sistemas verificables sin           │
+│  backend, con cumplimiento normativo (NOM-151, ISO/IEC 27001,        │
+│  eIDAS) y estética de producto premium.                              │
+│                                                                      │
+│  Formación universitaria en Administración de Empresas (6º           │
+│  cuatrimestre). Formación autodidacta continua en criptografía,      │
+│  desarrollo web y documentación técnica.                             │
+│                                                                      │
+│  Combino tres disciplinas que rara vez conviven en una misma         │
+│  persona: pensamiento estratégico de producto, ejecución técnica     │
+│  sin infraestructura, y documentación legal-técnica verificable.     │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 02 ]─────────────────── EXPERIENCIA ───────────────────────────────┐
+│                                                                      │
+│  FUNDADOR Y ARQUITECTO PRINCIPAL · KRONOS PROTOCOL                   │
+│  2026 – presente · Toluca, México                                    │
+│                                                                      │
+│  · Diseñé y construí un ecosistema de verificación criptográfica     │
+│    local-first de 7 capas y 19 módulos funcionales.                  │
+│  · Implementé firma digital Ed25519, hash chain SHA-256 y cifrado    │
+│    AES-GCM-256 en el navegador, sin servidores ni bases de datos.    │
+│  · Anclé el acta fundacional en la blockchain de Ethereum con        │
+│    sellado de tiempo cualificado eIDAS (QTSA Firmaprofesional B02).  │
+│  · Registré 8 obras originales en Safe Creative (México).            │
+│  · Diseñé una metodología de co-creatividad humano-IA con 6          │
+│    principios éticos y autoría dual declarada.                       │
+│  · Desarrollé manuales navegables de usuario, administrador y        │
+│    seguridad para cada módulo del ecosistema.                        │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 03 ]────────────────── PROYECTOS DESTACADOS ──────────────────────┐
+│                                                                      │
+│  KRONOS PROTOCOL · Sistema de integridad digital                     │
+│  · Protocolo de verificación con 7 capas operativas.                 │
+│  · Activos firmados, anclados en Ethereum, auditables por terceros.  │
+│                                                                      │
+│  EVIDENCE OS · Paquete .evidence verificable                         │
+│  · Empaquetado de evidencia digital con SHA-256 + HMAC + Ed25519.    │
+│  · Alineado a NOM-151-SCFI-2016.                                     │
+│                                                                      │
+│  BÓVEDA DE VOZ · Audio forense con huella cimática                   │
+│  · Grabación, sellado y certificación forense de audio.              │
+│  · Conforme a ISO/IEC 27037.                                         │
+│                                                                      │
+│  DMD-33 · Orbe interactivo PWA                                       │
+│  · Interfaz conversacional con voz es-MX, memoria persistente.       │
+│  · Instalable, funciona offline, anclaje verificable.                │
+│                                                                      │
+│  KODICE SECRETO · Visor cromático de certificados                    │
+│  · Renderizado de certificados firmados en tarjeta visual premium.   │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 04 ]────────────────── COMPETENCIAS TÉCNICAS ─────────────────────┐
+│                                                                      │
+│  CRIPTOGRAFÍA APLICADA                                               │
+│  · Ed25519 · SHA-256 · SHA-512 · AES-GCM-256 · PBKDF2 · HMAC         │
+│                                                                      │
+│  WEB LOCAL-FIRST                                                     │
+│  · HTML5 · CSS3 · JavaScript ES2022+ · Web Crypto API                │
+│  · IndexedDB · Dexie.js · localStorage · Canvas 2D · WebGL           │
+│                                                                      │
+│  ARQUITECTURA Y ESTÁNDARES                                           │
+│  · NOM-151-SCFI-2016 · ISO/IEC 27001 · ISO/IEC 27037                 │
+│  · eIDAS · Safe Creative · Blockchain Ethereum                       │
+│                                                                      │
+│  DOCUMENTACIÓN TÉCNICA                                                │
+│  · Markdown · Mermaid · ASCII art · Manuales de usuario/admin/seg.   │
+│                                                                      │
+│  ADMINISTRACIÓN                                                      │
+│  · Formación universitaria en Administración de Empresas             │
+│    (6 cuatrimestres cursados)                                        │
+│  · Visión de producto, planeación estratégica, gestión de proyectos  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 05 ]────────────────── FORMACIÓN ─────────────────────────────────┐
+│                                                                      │
+│  ADMINISTRACIÓN DE EMPRESAS                                          │
+│  [RELLENAR: nombre de la universidad]                                │
+│  6 cuatrimestres cursados · [RELLENAR: año de ingreso] – [año]       │
+│                                                                      │
+│  FORMACIÓN AUTODIDACTA CONTINUA                                      │
+│  · Criptografía aplicada en navegador                                │
+│  · Arquitectura local-first y sistemas sin backend                   │
+│  · Metodologías de co-creatividad humano-IA                          │
+│  · Documentación técnica y cumplimiento normativo                    │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 06 ]────────────────── IDIOMAS ───────────────────────────────────┐
+│                                                                      │
+│  Español · Nativo                                                    │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 07 ]────────────────── PUBLICACIONES Y REGISTROS ─────────────────┐
+│                                                                      │
+│  Safe Creative · 8 obras registradas                                 │
+│  · Acta Fundacional · 2607086319439                                  │
+│  · KRONOS Arquitectura · 2607146379465                               │
+│  · [otros registros]                                                 │
+│                                                                      │
+│  Anclaje Blockchain · Ethereum Mainnet                               │
+│  · Tx: 0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae299332...  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+┌─[ 08 ]────────────────── FILOSOFÍA DE TRABAJO ──────────────────────┐
+│                                                                      │
+│  · Construyo con cimientos: nada se entrega sin verificar.           │
+│  · Documento cada decisión: el código sin manual es deuda.           │
+│  · Priorizo lo verificable sobre lo llamativo.                       │
+│  · La integridad no es promesa, es prueba técnica.                   │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║   Referencias y portafolio disponibles a solicitud.                  ║
+║   Repositorio público: github.com/Marcorojas17                       ║
+║   Sitio: marcorojas17.github.io/kronos-protocol                      ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
