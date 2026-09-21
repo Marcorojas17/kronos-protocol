@@ -1,0 +1,74 @@
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│   CARTA DE PRESENTACIÓN                                              │
+│                                                                      │
+│   De:     Marco Antonio Rojas Valdovinos                             │
+│   Edad:   27 años                                                    │
+│   Contacto: 7225862335 · marco.a.rojas.v@hotmail.com                 │
+│   Ciudad: Toluca, Estado de México                                   │
+│   Asunto: Postulación · [RELLENAR: puesto al que aplicas]            │
+│   Fecha:  [RELLENAR: fecha de envío]                                 │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+Estimado/a [Nombre del reclutador o "equipo de selección"]:
+
+Me presento con honestidad y sin adjetivos inflados: soy un creador
+autodidacta que, al no encontrar en el mercado una herramienta que
+protegiera mis propias obras del plagio digital y de la apropiación
+por IA, decidió construir una desde cero.
+
+Así nació KRONOS Protocol, un ecosistema de verificación criptográfica
+local-first que hoy cuenta con siete capas operativas, diecinueve
+módulos funcionales, registros en Safe Creative, sellado de tiempo
+cualificado eIDAS y anclaje en la blockchain de Ethereum.
+
+Tengo 27 años y cursé seis cuatrimestres de Administración de Empresas
+antes de decidir que mi camino profesional estaría en la construcción
+de productos digitales. No tengo un currículum tradicional con quince
+años en una sola empresa. Tengo algo que considero más relevante: la
+capacidad demostrada de diseñar, construir y documentar un sistema
+complejo de principio a fin, sin infraestructura, sin equipo y sin
+presupuesto, bajo estándares internacionales verificables.
+
+Tres cosas que puedo aportar a su equipo:
+
+1 · Pensamiento de producto con ejecución técnica.
+   Diseño la arquitectura, escribo el código y documento el manual.
+   No delego la traducción de la idea al producto.
+
+2 · Criptografía aplicada sin depender de infraestructura.
+   Implemento firma digital Ed25519, hash chain SHA-256 y cifrado
+   AES-GCM-256 directamente en navegador, sin backend y sin servidores.
+
+3 · Cumplimiento normativo integrado al producto.
+   No pienso en la norma al final. La integro desde el diseño.
+   NOM-151, ISO/IEC 27001, ISO/IEC 27037, eIDAS.
+
+Sumado a esto, mi formación en Administración de Empresas me dio una
+base que muchos perfiles técnicos no tienen: visión de negocio,
+planeación estratégica y capacidad de documentar procesos.
+
+Busco un espacio donde pueda seguir construyendo con la misma
+seriedad con la que construí KRONOS, pero acompañado por un equipo
+con el que pueda crecer. Estoy abierto a roles relacionados con
+desarrollo frontend, arquitectura de producto, documentación técnica,
+criptografía aplicada o cualquier posición donde la honestidad y la
+capacidad de ejecución sean más valiosas que la antigüedad.
+
+Adjunto mi currículum y quedo atento a cualquier conversación que
+consideren oportuna. Puedo mostrar el repositorio completo, los
+registros legales y los manuales de operación de cada módulo.
+
+Gracias por su tiempo.
+
+Quedo a su disposición.
+
+                                Marco Antonio Rojas Valdovinos
+                                27 años · Toluca, México
+                                7225862335
+                                marco.a.rojas.v@hotmail.com
+                                github.com/Marcorojas17
+                                marcorojas17.github.io/kronos-protocol
+
+═══════════════════════════════════════════════════════════════════════
