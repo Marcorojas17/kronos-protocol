@@ -1,19 +1,18 @@
 # Storage Dexie · Legado Humano–IA
 
-Módulo 1.2 · persistencia estructurada versionada sobre Cripto Core.
+Módulo 1.2 · Persistencia estructurada versionada sobre Cripto Core v1.2.
 
 ## Propósito
 Proveer una capa de almacenamiento indexada, versionada y migrable sobre los bloques cifrados del Cripto Core.
 
 ## Estado
-✅ v1.0 · Operativo
+✅ v1.2 · Operativo
 
 ## Stack
 - HTML + CSS + JS vanilla (ES Modules)
-- Dexie.js 4.0.8 (CDN)
-- Cripto Core (módulo 1.1)
-- Canvas 2D (fondo líquido ámbar-violeta)
-- Local-first · sin backend
+- Dexie.js 4.0.11 (CDN)
+- Cripto Core v1.2 (módulo 1.1)
+- Canvas 2D (fondo líquido ámbar-oro)
 
 ## API pública
 ```js
@@ -30,5 +29,4 @@ const todos = await storage.listar();
 const notas = await storage.listarPorTipo('nota');
 const total = await storage.contar();
 const blob = await storage.exportar();
-await storage.importar(json);
 await storage.limpiar();
