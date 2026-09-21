@@ -87,7 +87,8 @@
           <button class="btn" id="btn-cifrar">Cifrar + firmar + persistir</button>
           <button class="btn ghost" id="btn-recuperar">Recuperar de IndexedDB</button>
           <button class="btn ghost" id="btn-verificar">Verificar cadena</button>
-          <button class="btn ghost" id="btn-limpiar">Borrar todo</button>
+          <button class="btn ghost" id="btn-limpiar">Borrar IndexedDB</button>
+          <button class="btn ghost" id="btn-reset-total" style="border-color:rgba(220,38,38,0.5);color:#FCA5A5;">Reset Total (limpia claves)</button>
         </div>
       </div>
     </div>
@@ -147,7 +148,8 @@
 </main>
 
 <script type="module">
-  import { CriptoCore } from './core.js';
+  // ⚠️ Cache buster v=2 fuerza al navegador a pedir el core.js nuevo
+  import { CriptoCore } from './core.js?v=2';
   const core = new CriptoCore();
   window.core = core;
 
@@ -228,10 +230,23 @@
   });
 
   $('btn-limpiar').addEventListener('click', async () => {
-    await core.limpiar();
+    try { await core.limpiar(); } catch (e) {}
     panel.hidden = true;
     $('out-descifrado').textContent = '—';
-    setFb('success', '<strong>✓ IndexedDB limpio.</strong>');
+    setFb('success', '<strong>✓ IndexedDB limpio.</strong> Las claves siguen guardadas.');
+  });
+
+  $('btn-reset-total').addEventListener('click', async () => {
+    await core.resetTotal();
+    panel.hidden = true;
+    $('password').value = '';
+    $('out-hash').textContent = '—';
+    $('out-firma').textContent = '—';
+    $('out-pub').textContent = '—';
+    $('out-registros').textContent = '0';
+    $('out-descifrado').textContent = '—';
+    $('out-estado').textContent = 'Reset completo ✓';
+    setFb('success', '<strong>✓ Reset total.</strong> Claves viejas borradas. Escribe una contraseña nueva (mín 12) y toca "Cifrar + firmar + persistir".');
   });
 </script>
 </body>
