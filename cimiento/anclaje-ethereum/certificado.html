@@ -302,18 +302,31 @@
 
   $('btn-imprimir').addEventListener('click', () => window.print());
 
+  // FIX PARA BRAVE MÓVIL: Abrir en pestaña nueva como fallback principal
   $('btn-descargar-png').addEventListener('click', () => {
     if (!dataActual) return;
     try {
       canvas.toBlob((blob) => {
         if (!blob){ setFb('err', '<strong>✗ No se pudo generar el blob.</strong>'); return; }
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'certificado-merkle-' + Date.now() + '.png';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(url), 5000);
-        setFb('ok', '<strong>✓ PNG descargado.</strong>');
+        
+        // Estrategia 1: Abrir en nueva pestaña (Funciona 99% en Brave móvil)
+        const ventana = window.open(url, '_blank');
+        
+        // Estrategia 2: Si la ventana es bloqueada, intentar descarga directa
+        if (!ventana) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'certificado-merkle-' + Date.now() + '.png';
+            document.body.appendChild(a); 
+            a.click(); 
+            document.body.removeChild(a);
+            setFb('ok', '<strong>✓ Intento de descarga directa.</strong> Si falla, permite las ventanas emergentes e inténtalo de nuevo.');
+        } else {
+            setFb('ok', '<strong>✓ Certificado abierto en nueva pestaña.</strong> Mantenlo presionado para guardarlo en tu galería.');
+        }
+        
+        setTimeout(() => URL.revokeObjectURL(url), 10000); // Más tiempo para guardar
       }, 'image/png', 1.0);
     } catch (e) { setFb('err', '<strong>✗ Error:</strong> ' + e.message); }
   });
