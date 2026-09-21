@@ -4,13 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Storage Dexie · Legado Humano–IA</title>
-<meta name="description" content="Capa de persistencia estructurada sobre datos cifrados. Versionado, migraciones y consultas indexadas.">
+<meta name="description" content="Persistencia estructurada versionada sobre datos cifrados. IndexedDB + Dexie.js.">
 <meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .continuar-siguiente {
+    margin-top: 80px; padding: 20px 24px;
+    border: 1px solid rgba(245,158,11,0.35);
+    background: rgba(245,158,11,0.04);
+    border-radius: 4px; text-align: center;
+    max-width: 360px; margin-left: auto; margin-right: auto;
+  }
+  .continuar-siguiente .label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: #FCD34D; margin-bottom: 14px; font-weight: 500;
+  }
+  .continuar-siguiente .btn {
+    display: inline-flex;
+    background: linear-gradient(180deg, #FCD34D 0%, #F59E0B 100%);
+    color: #0A0A0B; box-shadow: 0 8px 30px rgba(245,158,11,0.35);
+    text-decoration: none;
+  }
+  .continuar-siguiente .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(245,158,11,0.55);
+  }
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -18,25 +42,25 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#demo">Demo</a>
-      <a href="#esquema">Esquema</a>
+      <a href="./">Storage</a>
       <a href="manual.html">Manual</a>
+      <a href="../cripto-core/">Cripto Core</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 1.2 · Storage Dexie</div>
-    <h1 class="title">Persistencia<br>estructurada<br>del legado.</h1>
+    <div class="eyebrow">Módulo 1.2 · Capa 1 · Persistencia Estructurada</div>
+    <h1 class="title">Guardar<br>con orden,<br>no con caos.</h1>
     <p class="lede">
       <strong>Dexie.js</strong> para indexar. <strong>Cripto Core</strong> para cifrar.
-      <strong>Migraciones</strong> para evolucionar sin perder nada.
+      <strong>Migraciones</strong> para evolucionar sin perder datos.
       Todo local. Todo versionado. Cero backend.
     </p>
   </section>
 
-  <section id="demo" class="demo">
+  <section class="demo">
     <div class="section-head">
       <h2>Demo Interactiva</h2>
       <span class="count">100% local</span>
@@ -46,13 +70,14 @@
       <div class="paso">
         <span class="num">01</span>
         <label for="password">Contraseña maestra</label>
-        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+        <input type="password" id="password" placeholder="Mínimo 12 caracteres" minlength="12">
+        <div class="hint">Debe ser la misma que usaste en Cripto Core.</div>
       </div>
 
       <div class="paso">
         <span class="num">02</span>
         <label for="payload">Contenido del registro</label>
-        <textarea id="payload" placeholder="Escribe algo...">Primer registro estructurado del Legado Humano–IA.</textarea>
+        <textarea id="payload">Segundo cimiento del Legado Humano–IA: persistencia estructurada.</textarea>
       </div>
 
       <div class="paso">
@@ -61,8 +86,9 @@
         <select id="tipo">
           <option value="nota">Nota</option>
           <option value="evidencia">Evidencia</option>
-          <option value="génesis">Génesis</option>
+          <option value="genesis">Génesis</option>
           <option value="manifiesto">Manifiesto</option>
+          <option value="custom">Custom</option>
         </select>
       </div>
 
@@ -73,8 +99,8 @@
           <button class="btn" id="btn-guardar">Guardar registro</button>
           <button class="btn ghost" id="btn-listar">Listar todo</button>
           <button class="btn ghost" id="btn-filtrar">Filtrar por tipo</button>
+          <button class="btn ghost" id="btn-contar">Contar</button>
           <button class="btn ghost" id="btn-exportar">Exportar .json</button>
-          <button class="btn ghost" id="btn-contar">Contar registros</button>
           <button class="btn ghost" id="btn-limpiar">Borrar todo</button>
         </div>
       </div>
@@ -92,7 +118,7 @@
     <div class="feedback" id="feedback" role="alert"></div>
   </section>
 
-  <section id="esquema" class="esquema">
+  <section class="esquema">
     <div class="section-head">
       <h2>Esquema Dexie</h2>
       <span class="count">v2 · con migraciones</span>
@@ -113,20 +139,28 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
 });</pre>
   </section>
 
+  <div class="continuar-siguiente">
+    <span class="label">Siguiente · Capa 1</span>
+    <a href="../anclaje-ethereum/" class="btn">
+      <span>Continuar a Anclaje Ethereum</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Módulo 1.2 · Storage Dexie</span>
     <span>
       <a href="manual.html">Manual</a> ·
       <a href="../cripto-core/">Cripto Core</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a>
+      <a href="/kronos-protocol/">Inicio</a>
     </span>
   </footer>
 </main>
 
 <script type="module">
-  import { StorageDexie } from './storage.js';
-  import { CriptoCore } from '../cripto-core/core.js';
+  import { CriptoCore } from '../cripto-core/core.js?v=2';
+  import { StorageDexie } from './storage.js?v=2';
 
   const $ = (id) => document.getElementById(id);
   const feedback = $('feedback');
@@ -160,8 +194,8 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
 
   async function asegurarInit() {
     const pass = $('password').value;
-    if (pass.length < 8) {
-      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+    if (pass.length < 12) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 12 caracteres.');
       return false;
     }
     await core.init(pass);
@@ -170,11 +204,11 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
   }
 
   $('btn-guardar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    const payload = $('payload').value.trim();
-    const tipo = $('tipo').value;
-    if (!payload) return setFb('error', '<strong>✗ Contenido vacío.</strong>');
     try {
+      if (!(await asegurarInit())) return;
+      const payload = $('payload').value.trim();
+      const tipo = $('tipo').value;
+      if (!payload) return setFb('error', '<strong>✗ Contenido vacío.</strong>');
       const id = await storage.guardar(tipo, { texto: payload });
       panel.hidden = false;
       $('out-total').textContent = await storage.contar();
@@ -184,60 +218,83 @@ db.<span class="fn">version</span>(<span class="st">2</span>).stores({
       setFb('success', '<strong>✓ Registro cifrado y persistido.</strong> Indexado por tipo y timestamp.');
     } catch (e) {
       setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+      console.error(e);
     }
   });
 
   $('btn-listar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    const registros = await storage.listar();
-    renderLista(registros);
-    panel.hidden = false;
-    $('out-total').textContent = registros.length;
-    $('out-version').textContent = 'v' + storage.db.verno;
-    $('out-estado').textContent = 'Listado completo';
-    setFb('success', '<strong>✓ ' + registros.length + ' registros.</strong>');
+    try {
+      if (!(await asegurarInit())) return;
+      const registros = await storage.listar();
+      renderLista(registros);
+      panel.hidden = false;
+      $('out-total').textContent = registros.length;
+      $('out-version').textContent = 'v' + storage.db.verno;
+      $('out-estado').textContent = 'Listado completo';
+      setFb('success', '<strong>✓ ' + registros.length + ' registros.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
   });
 
   $('btn-filtrar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    const tipo = $('tipo').value;
-    const registros = await storage.listarPorTipo(tipo);
-    renderLista(registros);
-    panel.hidden = false;
-    $('out-total').textContent = registros.length;
-    $('out-estado').textContent = 'Filtrado por tipo: ' + tipo;
-    setFb('success', '<strong>✓ ' + registros.length + ' registros de tipo ' + tipo + '.</strong>');
-  });
-
-  $('btn-exportar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    const blob = await storage.exportar();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `legado-storage-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    setFb('success', '<strong>✓ DB exportada.</strong> El archivo contiene los bloques cifrados + metadatos.');
+    try {
+      if (!(await asegurarInit())) return;
+      const tipo = $('tipo').value;
+      const registros = await storage.listarPorTipo(tipo);
+      renderLista(registros);
+      panel.hidden = false;
+      $('out-total').textContent = registros.length;
+      $('out-estado').textContent = 'Filtrado por tipo: ' + tipo;
+      setFb('success', '<strong>✓ ' + registros.length + ' registros de tipo ' + tipo + '.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
   });
 
   $('btn-contar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    const total = await storage.contar();
-    panel.hidden = false;
-    $('out-total').textContent = total;
-    $('out-estado').textContent = 'Conteo consultado';
-    setFb('success', '<strong>✓ ' + total + ' registros en la DB.</strong>');
+    try {
+      if (!(await asegurarInit())) return;
+      const total = await storage.contar();
+      panel.hidden = false;
+      $('out-total').textContent = total;
+      $('out-estado').textContent = 'Conteo consultado';
+      setFb('success', '<strong>✓ ' + total + ' registros en la DB.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const blob = await storage.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `legado-storage-${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ DB exportada.</strong> Contiene bloques cifrados + metadatos.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
   });
 
   $('btn-limpiar').addEventListener('click', async () => {
-    if (!(await asegurarInit())) return;
-    await storage.limpiar();
-    lista.innerHTML = '<div class="empty">DB limpia.</div>';
-    panel.hidden = false;
-    $('out-total').textContent = 0;
-    $('out-estado').textContent = 'DB limpiada';
-    setFb('success', '<strong>✓ Base de datos limpiada.</strong>');
+    try {
+      if (!(await asegurarInit())) return;
+      await storage.limpiar();
+      lista.innerHTML = '<div class="empty">DB limpia.</div>';
+      panel.hidden = false;
+      $('out-total').textContent = 0;
+      $('out-estado').textContent = 'DB limpiada';
+      setFb('success', '<strong>✓ Base de datos limpiada.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
   });
 </script>
 </body>
