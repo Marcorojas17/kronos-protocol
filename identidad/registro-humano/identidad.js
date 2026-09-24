@@ -16,7 +16,6 @@ export class IdentidadHumana {
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── Sellar identidad ──────────────────────────────────────
   async sellar(datos) {
     if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
     if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
@@ -81,23 +80,22 @@ export class IdentidadHumana {
 
     // Persistir cifrado en Storage Dexie
     await this.storage.guardar('identidad-humana', certificado);
-
     this.perfilActual = certificado;
     return certificado;
   }
 
   // ── Recuperar perfil actual ───────────────────────────────
   async recuperar() {
+    if (this.perfilActual) return this.perfilActual;
     if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    const todos = await this.storage.listarPorTipo('identidad-humana');
-    if (todos.length === 0) return null;
-    // El más reciente
-    this.perfilActual = todos[0].payload;
+    const data = await this.storage.recuperar('identidad-humana');
+    this.perfilActual = data || null;
     return this.perfilActual;
   }
 
-  // ── Verificar integridad de un certificado ────────────────
+  // ── Verificar certificado ──────────────────────────────────
   async verificar(cert) {
+    if (!cert) return false;
     const payload = [
       'LEGADO-HUMANO-IA · IDENTIDAD HUMANA v1.0',
       `Alias: ${cert.alias}`,
@@ -111,21 +109,34 @@ export class IdentidadHumana {
       `Timestamp: ${cert.timestamp}`
     ].join('\n');
 
-    const hashCalc = await IdentidadHumana._sha256Hex(payload);
-    if (hashCalc !== cert.payload_hash) return false;
+    const hashRecalc = await IdentidadHumana._sha256Hex(payload);
+    if (hashRecalc !== cert.payload_hash) return false;
 
-    const firmaOk = await crypto.subtle.verify(
-      'Ed25519',
-      this.core.clavePubEd,
-      hexToBytes(cert.firma_ed25519),
-      new TextEncoder().encode(cert.payload_hash)
-    );
-    return firmaOk;
+    // Verificar firma Ed25519 del hash
+    try {
+      const pubBytes = hexToBytes(cert.clave_publica);
+      const pubKey = await crypto.subtle.importKey(
+        'raw',
+        pubBytes,
+        { name: 'Ed25519' },
+        false,
+        ['verify']
+      );
+      const firmaBytes = hexToBytes(cert.firma_ed25519);
+      return await crypto.subtle.verify(
+        'Ed25519',
+        pubKey,
+        firmaBytes,
+        new TextEncoder().encode(hashRecalc)
+      );
+    } catch (e) {
+      return false;
+    }
   }
 
-  // ── Exportar pasaporte como Blob descargable ──────────────
+  // ── Exportar certificado ──────────────────────────────────
   exportar() {
-    if (!this.perfilActual) throw new Error('No hay perfil sellado.');
+    if (!this.perfilActual) throw new Error('No hay pasaporte para exportar.');
     return new Blob([JSON.stringify(this.perfilActual, null, 2)], { type: 'application/json' });
   }
 }
