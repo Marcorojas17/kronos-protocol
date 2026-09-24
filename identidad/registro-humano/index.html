@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registro Humano · Legado Humano–IA</title>
-<meta name="description" content="Crea tu identidad firmada con Ed25519. Huella criptográfica única de 64 caracteres. Local-first.">
-<meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,11 +16,11 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#registro">Registro</a>
-      <a href="#pasaporte">Pasaporte</a>
+      <a href="./">Registro</a>
       <a href="manual.html">Manual</a>
+      <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
     </nav>
   </header>
 
@@ -30,113 +28,99 @@
     <div class="eyebrow">Módulo 2.1 · Capa 2 · Identidad Humana</div>
     <h1 class="title">Tu huella<br>en el legado.</h1>
     <p class="lede">
-      Una identidad <strong>firmada con Ed25519</strong>.
-      Una huella criptográfica única de <strong>64 caracteres</strong>.
-      Un pasaporte digital que prueba quién eres en todo el ecosistema.
-      Sin servidores. Sin rastreo. Sin intermediarios.
+      Una identidad firmada con <strong>Ed25519</strong>. Una huella criptográfica
+      única de 64 caracteres. Un pasaporte digital que prueba quién eres en todo
+      el ecosistema. Sin servidores. Sin rastreo. Sin intermediarios.
     </p>
   </section>
 
-  <section id="registro" class="registro">
+  <section class="demo">
     <div class="section-head">
       <h2>Formulario de Identidad</h2>
       <span class="count">Local-first · Cifrado</span>
     </div>
 
-    <form id="form-identidad" novalidate>
-      <div class="grid-2">
-        <div class="field">
-          <label>Contraseña maestra <span class="req">*</span></label>
-          <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
-        </div>
-        <div class="field">
-          <label>Alias o seudónimo <span class="req">*</span></label>
-          <input type="text" id="alias" placeholder="Cómo te reconocerán" required>
-        </div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
       </div>
-
-      <div class="field">
-        <label>Nombre completo <span class="req">*</span></label>
-        <input type="text" id="nombre" placeholder="Tu nombre legal" required>
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="alias">Alias o seudónimo *</label>
+        <input type="text" id="alias" placeholder="Cómo te reconocerán">
       </div>
-
-      <div class="grid-2">
-        <div class="field">
-          <label>País <span class="req">*</span></label>
-          <input type="text" id="pais" placeholder="México" required>
-        </div>
-        <div class="field">
-          <label>Rol declarado <span class="req">*</span></label>
-          <select id="rol" required>
-            <option value="" disabled selected>Selecciona</option>
-            <option value="Fundador">Fundador</option>
-            <option value="Creador">Creador</option>
-            <option value="Artista">Artista</option>
-            <option value="Investigador">Investigador</option>
-            <option value="Colaborador">Colaborador</option>
-            <option value="Guardian">Guardián</option>
-          </select>
-        </div>
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="nombre">Nombre completo *</label>
+        <input type="text" id="nombre" placeholder="Tu nombre legal">
       </div>
-
-      <div class="field">
-        <label>Propósito personal <span class="req">*</span></label>
-        <textarea id="proposito" placeholder="En una frase: ¿para qué estás aquí?" required minlength="20"></textarea>
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="pais">País *</label>
+        <input type="text" id="pais" placeholder="México">
       </div>
-
-      <div class="field">
-        <label>Correo de contacto (opcional)</label>
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="rol">Rol declarado *</label>
+        <select id="rol">
+          <option value="">Selecciona</option>
+          <option value="Fundador">Fundador</option>
+          <option value="Creador">Creador</option>
+          <option value="Artista">Artista</option>
+          <option value="Investigador">Investigador</option>
+          <option value="Colaborador">Colaborador</option>
+          <option value="Guardián">Guardián</option>
+        </select>
+      </div>
+      <div class="paso">
+        <span class="num">06</span>
+        <label for="proposito">Propósito personal *</label>
+        <textarea id="proposito" rows="3" placeholder="En una frase: ¿para qué estás aquí?"></textarea>
+      </div>
+      <div class="paso">
+        <span class="num">07</span>
+        <label for="correo">Correo de contacto <span class="opt">(opcional)</span></label>
         <input type="email" id="correo" placeholder="tu@correo.com">
       </div>
 
-      <button type="submit" class="btn" id="btn-sellar">
-        <span>Sellar identidad</span>
-        <span class="arrow">→</span>
-      </button>
-
-      <div class="feedback" id="feedback" role="alert"></div>
-    </form>
-
-    <div class="pasaporte" id="pasaporte" hidden>
-      <div class="pasaporte-head">
-        <span class="tag">PASAPORTE DIGITAL · LEGADO HUMANO–IA</span>
-        <span class="version">v2.1</span>
-      </div>
-
-      <div class="pasaporte-body">
-        <div class="pasaporte-line">
-          <span class="k">Alias</span>
-          <span class="v" id="out-alias">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">Nombre</span>
-          <span class="v" id="out-nombre">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">País</span>
-          <span class="v" id="out-pais">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">Rol</span>
-          <span class="v" id="out-rol">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">Huella</span>
-          <span class="v mono" id="out-huella">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">Firma</span>
-          <span class="v mono" id="out-firma">—</span>
-        </div>
-        <div class="pasaporte-line">
-          <span class="k">Emitido</span>
-          <span class="v" id="out-fecha">—</span>
+      <div class="paso">
+        <span class="num">08</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-sellar">Sellar identidad →</button>
         </div>
       </div>
+    </div>
 
-      <div class="pasaporte-foot">
-        <a href="#" class="btn ghost" id="descargar">Descargar pasaporte .json</a>
-        <a href="#" class="btn ghost" id="copiar-huella">Copiar huella</a>
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <!-- Pasaporte digital -->
+    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Pasaporte Digital · Legado Humano–IA v2.1</h2>
+        <span class="count">Ed25519 · SHA-256</span>
+      </div>
+      <div class="tarjeta" id="tarjeta">
+        <div class="tarjeta-header">
+          <div class="tarjeta-marca">KRONOS</div>
+          <div class="tarjeta-tipo">IDENTIDAD HUMANA · v1.0</div>
+        </div>
+        <div class="tarjeta-nombre" id="p-nombre">—</div>
+        <div class="tarjeta-alias" id="p-alias">—</div>
+        <div class="tarjeta-rol" id="p-rol">—</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">País</span><span class="v" id="p-pais">—</span></div>
+          <div class="tk"><span class="k">Huella</span><span class="v mono" id="p-huella">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="p-firma">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+        </div>
+        <div class="tarjeta-estado ok" id="p-estado">✓ Pasaporte emitido</div>
+      </div>
+      <div class="acciones" style="margin-top:24px;justify-content:center;">
+        <button class="btn ghost" id="btn-exportar">Descargar pasaporte .json</button>
+        <button class="btn ghost" id="btn-copiar">Copiar huella</button>
       </div>
     </div>
   </section>
@@ -146,48 +130,44 @@
     <span class="sig">Módulo 2.1 · Registro Humano</span>
     <span>
       <a href="manual.html">Manual</a> ·
-      <a href="../../cimiento/cripto-core/">Cripto Core</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a>
+      <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
     </span>
   </footer>
 </main>
 
 <script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
   import { IdentidadHumana } from './identidad.js';
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
 
   const $ = (id) => document.getElementById(id);
-  const form = $('form-identidad');
-  const btn = $('btn-sellar');
   const feedback = $('feedback');
-  const pasaporte = $('pasaporte');
 
   const core = new CriptoCore();
   const storage = new StorageDexie(core);
   const identidad = new IdentidadHumana(core, storage);
-
-  let certificadoActual = null;
 
   function setFb(tipo, msg) {
     feedback.className = 'feedback ' + tipo;
     feedback.innerHTML = msg;
   }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) {
+      await core.init(pass);
+    }
+    await storage.init();
+    return true;
+  }
 
-    btn.disabled = true;
-    btn.querySelector('span').textContent = 'Sellando…';
-    feedback.className = 'feedback';
-
+  $('btn-sellar').addEventListener('click', async () => {
     try {
-      const password = $('password').value;
-      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
-
-      await core.init(password);
-      await storage.init();
+      if (!(await asegurarInit())) return;
 
       const datos = {
         alias: $('alias').value.trim(),
@@ -198,51 +178,95 @@
         correo: $('correo').value.trim()
       };
 
+      if (!datos.alias || !datos.nombre || !datos.pais || !datos.rol || !datos.proposito) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong> Todos los campos con * son requeridos.');
+        return;
+      }
+      if (datos.proposito.length < 20) {
+        setFb('error', '<strong>✗ Propósito muy corto.</strong> Mínimo 20 caracteres.');
+        return;
+      }
+
+      setFb('success', '<strong>⏳ Firmando identidad con Ed25519…</strong>');
       const cert = await identidad.sellar(datos);
-      certificadoActual = cert;
 
-      $('out-alias').textContent = cert.alias;
-      $('out-nombre').textContent = cert.nombre;
-      $('out-pais').textContent = cert.pais;
-      $('out-rol').textContent = cert.rol;
-      $('out-huella').textContent = cert.huella;
-      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
-      $('out-fecha').textContent = cert.timestamp;
-      pasaporte.hidden = false;
+      // Poblar el pasaporte visual
+      $('p-nombre').textContent = cert.nombre;
+      $('p-alias').textContent = `"${cert.alias}"`;
+      $('p-rol').textContent = cert.rol;
+      $('p-pais').textContent = cert.pais;
+      $('p-huella').textContent = cert.huella;
+      $('p-firma').textContent = cert.firma_ed25519.slice(0, 80) + '…';
+      $('p-fecha').textContent = cert.timestamp;
+      $('tarjeta-wrap').hidden = false;
 
-      setFb('success', '<strong>✓ Identidad sellada.</strong> Tu huella criptográfica es única y ha quedado firmada con Ed25519.');
-      pasaporte.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
-      console.error(err);
-    } finally {
-      btn.disabled = false;
-      btn.querySelector('span').textContent = 'Sellar identidad';
+      setFb('success', '<strong>✓ Identidad sellada.</strong> Tu pasaporte digital ha sido emitido y guardado localmente.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('descargar').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+  $('btn-exportar').addEventListener('click', () => {
+    if (!identidad.perfilActual) return;
+    const blob = new Blob([JSON.stringify(identidad.perfilActual, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `pasaporte-${certificadoActual.alias}-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    a.download = `pasaporte-kronos-${Date.now()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setFb('success', '<strong>✓ Pasaporte exportado.</strong> Guárdalo como respaldo.');
   });
 
-  $('copiar-huella').addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
+  $('btn-copiar').addEventListener('click', async () => {
+    if (!identidad.perfilActual) return;
     try {
-      await navigator.clipboard.writeText(certificadoActual.huella);
+      await navigator.clipboard.writeText(identidad.perfilActual.huella);
       setFb('success', '<strong>✓ Huella copiada al portapapeles.</strong>');
     } catch {
-      setFb('error', '<strong>✗ No se pudo copiar.</strong> Cópiala manualmente.');
+      setFb('error', '<strong>✗ No se pudo copiar.</strong> Selecciónala manualmente.');
     }
   });
+
+  // Fondo líquido verde-identidad
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[0,229,160],[94,234,212],[16,185,129],[201,162,39]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
 </script>
 </body>
 </html>
