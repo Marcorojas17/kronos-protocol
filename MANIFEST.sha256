@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-24T21:44:32Z
+# Generado: 2026-09-24T21:45:14Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -83,7 +83,7 @@ cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GU
 7f431260a9f6e07973e39bf61624eee626962b8b228eb0675e63e986ca41617f  ./identidad/registro-humano/AUTORIA
 183d679725f72d83a0758c3b7a91ff320c90d0f0676954a88c14e00d5eaa4d22  ./identidad/registro-humano/README.md
   ./identidad/registro-humano/estructura del certificado
-ae35bc8b2a8a38a4309199bd1c146698654af1686385da31ab99432682e17e5e  ./identidad/registro-humano/identidad.js
+389c89721e6809d3cd547c2909dbea563387b8705926f4cc37a6d16087c48886  ./identidad/registro-humano/identidad.js
 a3dad225449c6bba4c4096275742e86f3db1077c2981e3848efc21ebdfe619bf  ./identidad/registro-humano/index.html
 fd2467b46e19e614e3fd84ecc7b9243beb0ec4a810ae4c947813ff3509093df2  ./identidad/registro-humano/manual.html
 c294e7f7b9edfd3cc071a79aedc8b07cf59f622404d0d7a04327c6b9a5c571fd  ./identidad/registro-humano/styles.css
