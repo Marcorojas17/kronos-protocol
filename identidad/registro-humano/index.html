@@ -9,6 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .btn-ghost-passport {
+    background: linear-gradient(120deg, #0A0A0B, #1a1a2e, #0A0A0B) !important;
+    border: 1px solid #00E5A0 !important;
+    color: #00E5A0 !important;
+    box-shadow: 0 0 15px rgba(0, 229, 160, 0.2) !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+  }
+  .btn-ghost-passport:hover {
+    box-shadow: 0 0 25px rgba(0, 229, 160, 0.5) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+  }
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -90,6 +104,10 @@
         <label>Acciones</label>
         <div class="acciones">
           <button class="btn" id="btn-sellar">Sellar identidad →</button>
+          <button class="btn btn-ghost-passport" id="btn-fantasma">🔒 Generar Pasaporte Fantasma</button>
+        </div>
+        <div class="hint" style="margin-top:10px; color:#00E5A0;">
+          El Pasaporte Fantasma es una identidad efímera, inexistente y de máxima seguridad. Cero datos personales, solo criptografía pura. Úsalo para pruebas o demostraciones.
         </div>
       </div>
     </div>
@@ -165,6 +183,7 @@
     return true;
   }
 
+  // ── BOTÓN 1: Sellar identidad real ──
   $('btn-sellar').addEventListener('click', async () => {
     try {
       if (!(await asegurarInit())) return;
@@ -190,7 +209,6 @@
       setFb('success', '<strong>⏳ Firmando identidad con Ed25519…</strong>');
       const cert = await identidad.sellar(datos);
 
-      // Poblar el pasaporte visual
       $('p-nombre').textContent = cert.nombre;
       $('p-alias').textContent = `"${cert.alias}"`;
       $('p-rol').textContent = cert.rol;
@@ -206,6 +224,56 @@
     }
   });
 
+  // ── BOTÓN 2: Generar Pasaporte Fantasma de Máxima Seguridad ──
+  $('btn-fantasma').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      
+      setFb('success', '<strong>⏳ Forjando Pasaporte Fantasma de Máxima Seguridad…</strong> Generando llaves efímeras.');
+
+      // 1. Generar par de llaves Ed25519 efímeras y aleatorias
+      const keyPair = await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
+      const pubKey = await crypto.subtle.exportKey('raw', keyPair.publicKey);
+      const pubHex = [...new Uint8Array(pubKey)].map(b => b.toString(16).padStart(2, '0')).join('');
+
+      // 2. Generar datos aleatorios de alta entropía (Zero Knowledge)
+      const randomData = crypto.getRandomValues(new Uint8Array(32));
+      const randomHex = [...randomData].map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      // 3. Firmar los datos aleatorios con la llave efímera
+      const firmaBuf = await crypto.subtle.sign('Ed25519', keyPair.privateKey, randomData);
+      const firmaHex = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+
+      // 4. Construir el payload fantasma
+      const ghostPayload = {
+        protocolo: 'LEGADO-HUMANO-IA · GHOST PASSPORT',
+        version: 'ghost-1.0',
+        clasificacion: 'MAXIMUM SECURITY · ZERO KNOWLEDGE',
+        identidad: 'NON-EXISTENT',
+        timestamp: new Date().toISOString(),
+        clave_publica_efimera: pubHex,
+        firma_prueba: firmaHex,
+        hash_prueba: randomHex,
+        instruccion: 'Este es un pasaporte criptográfico de prueba de alta seguridad. No contiene datos personales. Generado localmente en el navegador. No rastreable.',
+        advertencia: 'IDENTIDAD EFÍMERA. No usar para transacciones reales.'
+      };
+
+      // 5. Descargar el JSON
+      const blob = new Blob([JSON.stringify(ghostPayload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `PASAPORTE-FANTASMA-KRONOS-${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+      setFb('success', '<strong>✓ Pasaporte Fantasma generado y descargado.</strong> Se ha guardado un archivo JSON con una identidad efímera de máxima seguridad. Cero datos personales.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error al generar el pasaporte fantasma:</strong> ' + e.message);
+    }
+  });
+
+  // ── BOTONES DE EXPORTAR Y COPIAR (Pasaporte real) ──
   $('btn-exportar').addEventListener('click', () => {
     if (!identidad.perfilActual) return;
     const blob = new Blob([JSON.stringify(identidad.perfilActual, null, 2)], { type: 'application/json' });
