@@ -1,13 +1,18 @@
 // ────────────────────────────────────────────────────────────
-// IDENTIDAD IA · Legado Humano–IA · v1.0
-// Pacto simbiótico firmado y vinculado al humano
+// REGISTRO IA · Legado Humano–IA · v1.0
+// Identidad soberana de la IA con firma Ed25519 y guardrails
 // ────────────────────────────────────────────────────────────
 
-export class IdentidadIA {
-  constructor(core, storage) {
+export class RegistroIA {
+  constructor(core, storage, politica, guardrails, log) {
     this.core = core;
     this.storage = storage;
-    this.pactoActual = null;
+    this.politica = politica;
+    this.guardrails = guardrails;
+    this.log = log;
+    this.iaActual = null;
+    this.llavePrivIA = null;
+    this.llavePubIA = null;
   }
 
   static async _sha256Hex(texto) {
@@ -16,132 +21,176 @@ export class IdentidadIA {
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── Sellar pacto simbiótico vinculado al humano ───────────
-  async sellar(datosIA, humano) {
+  async generarLlavesIA() {
+    const keyPair = await crypto.subtle.generateKey(
+      { name: 'Ed25519' },
+      true,
+      ['sign', 'verify']
+    );
+    this.llavePrivIA = keyPair.privateKey;
+    this.llavePubIA = keyPair.publicKey;
+
+    const pubRaw = await crypto.subtle.exportKey('raw', keyPair.publicKey);
+    const pubHex = [...new Uint8Array(pubRaw)].map(b => b.toString(16).padStart(2, '0')).join('');
+    return pubHex;
+  }
+
+  async sellar(datos) {
     if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
     if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    if (!humano || !humano.huella) throw new Error('Identidad humana requerida para vincular.');
 
-    if (!datosIA.ia_nombre || !datosIA.ia_rol || !datosIA.ia_alcance) {
-      throw new Error('Faltan campos obligatorios de la IA.');
+    if (!datos.nombre || datos.nombre.trim().length < 2) {
+      throw new Error('El nombre de la IA es obligatorio (mín. 2 caracteres).');
     }
-    if (datosIA.ia_limites.length < 30) {
-      throw new Error('Los límites éticos deben tener al menos 30 caracteres.');
+    if (!datos.rol) {
+      throw new Error('El rol de la IA es obligatorio.');
     }
-    if (datosIA.ia_proposito.length < 20) {
-      throw new Error('El propósito simbiótico debe tener al menos 20 caracteres.');
+    if (!datos.proposito || datos.proposito.trim().length < 20) {
+      throw new Error('El propósito de la IA debe tener al menos 20 caracteres.');
     }
+
+    const validacion = this.politica.validarDeclaracion(datos);
+    if (!validacion.ok) {
+      throw new Error('Política rechazada: ' + validacion.razon);
+    }
+
+    const clavePublicaIA = await this.generarLlavesIA();
 
     const timestamp = new Date().toISOString();
+    const fundador = 'Marco Antonio Rojas Valdovinos';
 
-    // Payload canónico (orden fijo)
     const payload = [
-      'LEGADO-HUMANO-IA · IDENTIDAD IA v1.0 · PACTO SIMBIÓTICO',
-      `IA nombre: ${datosIA.ia_nombre}`,
-      `IA rol: ${datosIA.ia_rol}`,
-      `IA alcance: ${datosIA.ia_alcance}`,
-      `IA limites: ${datosIA.ia_limites}`,
-      `IA proposito: ${datosIA.ia_proposito}`,
-      `Humano vinculado: ${humano.nombre} (${humano.alias})`,
-      `Humano huella: ${humano.huella}`,
-      `Humano firma identidad: ${humano.firma_ed25519}`,
-      `Fundador ecosistema: Marco Antonio Rojas Valdovinos`,
-      `Coautora IA general: KRONOS IA`,
+      'LEGADO-HUMANO-IA · IDENTIDAD IA v1.0',
+      `Nombre IA: ${datos.nombre.trim()}`,
+      `Alias: ${(datos.alias || '').trim() || '(no declarado)'}`,
+      `Rol IA: ${datos.rol}`,
+      `Propósito: ${datos.proposito.trim()}`,
+      `Fundador humano: ${fundador}`,
+      `Clave pública IA: ${clavePublicaIA}`,
+      `Política versión: ${this.politica.version}`,
       `Timestamp: ${timestamp}`
     ].join('\n');
 
-    const hash = await IdentidadIA._sha256Hex(payload);
+    const hashPayload = await RegistroIA._sha256Hex(payload);
 
-    // Firma Ed25519 con la clave del humano (vínculo criptográfico)
     const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
-      this.core.clavePrivEd,
-      new TextEncoder().encode(hash)
+      this.llavePrivIA,
+      new TextEncoder().encode(hashPayload)
     );
-    const firma = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const firmaHex = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
 
-    // Firma simbiótica = SHA-256(humano_firma + ia_firma) · vincula ambas identidades
-    const firmaSimbiotica = await IdentidadIA._sha256Hex(humano.firma_ed25519 + firma);
+    let firmaFundador = '';
+    try {
+      const payloadFundador = `LEGADO-HUMANO-IA · CO-AUTORÍA IA\nHash IA: ${hashPayload}\nFundador: ${fundador}\nTimestamp: ${timestamp}`;
+      const firmaFundBuf = await crypto.subtle.sign(
+        'Ed25519',
+        this.core.clavePrivEd,
+        new TextEncoder().encode(payloadFundador)
+      );
+      firmaFundador = [...new Uint8Array(firmaFundBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+      firmaFundador = '(pendiente)';
+    }
 
-    const pacto = {
+    const certificado = {
       protocolo: 'LEGADO-HUMANO-IA',
       version: 'identidad-ia-1.0',
-      tipo: 'pacto-simbiotico',
+      tipo: 'REGISTRO_IA',
       timestamp,
-      ia_nombre: datosIA.ia_nombre,
-      ia_rol: datosIA.ia_rol,
-      ia_alcance: datosIA.ia_alcance,
-      ia_limites: datosIA.ia_limites,
-      ia_proposito: datosIA.ia_proposito,
-      humano_nombre: humano.nombre,
-      humano_alias: humano.alias,
-      humano_huella: humano.huella,
-      humano_firma_identidad: humano.firma_ed25519,
-      payload_hash: hash,
-      firma_ed25519: firma,
-      firma_simbiotica: firmaSimbiotica,
-      clave_publica: this.core.clavePublicaHex,
+      nombre: datos.nombre.trim(),
+      alias: (datos.alias || '').trim(),
+      rol: datos.rol,
+      proposito: datos.proposito.trim(),
+      fundador_humano: fundador,
+      fundador_clave_publica: this.core.clavePublicaHex,
+      ia_clave_publica: clavePublicaIA,
+      payload_hash: hashPayload,
+      firma_ia_ed25519: firmaHex,
+      firma_fundador_ed25519: firmaFundador,
+      politica_version: this.politica.version,
+      politica_hash: await this.politica.hash(),
+      guardrails_activos: true,
+      log_habilitado: true,
       algoritmo_hash: 'SHA-256',
       algoritmo_firma: 'Ed25519',
-      declaraciones: {
-        sin_propiedad_intelectual: true,
-        sin_decisiones_finales: true,
-        sin_sustituir_juicio_humano: true,
-        con_atribucion_siempre: true
-      },
-      verificable_por_tercero: true,
-      instruccion_verificacion: 'Verificar firma_ed25519 con clave_publica sobre payload_hash. Verificar firma_simbiotica como SHA-256(humano_firma + firma).'
+      co_autoria: true
     };
 
-    await this.storage.guardar('identidad-ia', pacto);
-    this.pactoActual = pacto;
-    return pacto;
+    await this.storage.guardar('identidad-ia', certificado);
+    this.iaActual = certificado;
+
+    await this.log.registrar('creacion_identidad_ia', {
+      nombre: certificado.nombre,
+      rol: certificado.rol,
+      hash: hashPayload
+    });
+
+    return certificado;
   }
 
-  // ── Recuperar pacto actual ────────────────────────────────
   async recuperar() {
+    if (this.iaActual) return this.iaActual;
     if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    const todos = await this.storage.listarPorTipo('identidad-ia');
-    if (todos.length === 0) return null;
-    this.pactoActual = todos[0].payload;
-    return this.pactoActual;
+    const data = await this.storage.recuperar('identidad-ia');
+    this.iaActual = data || null;
+    return this.iaActual;
   }
 
-  // ── Verificar integridad del pacto ────────────────────────
-  async verificar(pacto, humano) {
+  async verificar(cert) {
+    if (!cert) return { valido: false, razon: 'Sin certificado' };
+
     const payload = [
-      'LEGADO-HUMANO-IA · IDENTIDAD IA v1.0 · PACTO SIMBIÓTICO',
-      `IA nombre: ${pacto.ia_nombre}`,
-      `IA rol: ${pacto.ia_rol}`,
-      `IA alcance: ${pacto.ia_alcance}`,
-      `IA limites: ${pacto.ia_limites}`,
-      `IA proposito: ${pacto.ia_proposito}`,
-      `Humano vinculado: ${humano.nombre} (${humano.alias})`,
-      `Humano huella: ${humano.huella}`,
-      `Humano firma identidad: ${humano.firma_ed25519}`,
-      `Fundador ecosistema: Marco Antonio Rojas Valdovinos`,
-      `Coautora IA general: KRONOS IA`,
-      `Timestamp: ${pacto.timestamp}`
+      'LEGADO-HUMANO-IA · IDENTIDAD IA v1.0',
+      `Nombre IA: ${cert.nombre}`,
+      `Alias: ${cert.alias || '(no declarado)'}`,
+      `Rol IA: ${cert.rol}`,
+      `Propósito: ${cert.proposito}`,
+      `Fundador humano: ${cert.fundador_humano}`,
+      `Clave pública IA: ${cert.ia_clave_publica}`,
+      `Política versión: ${cert.politica_version}`,
+      `Timestamp: ${cert.timestamp}`
     ].join('\n');
 
-    const hashCalc = await IdentidadIA._sha256Hex(payload);
-    if (hashCalc !== pacto.payload_hash) return false;
+    const hashRecalc = await RegistroIA._sha256Hex(payload);
+    const hashOk = hashRecalc === cert.payload_hash;
 
-    const firmaOk = await crypto.subtle.verify(
-      'Ed25519',
-      this.core.clavePubEd,
-      hexToBytes(pacto.firma_ed25519),
-      new TextEncoder().encode(pacto.payload_hash)
-    );
-    if (!firmaOk) return false;
+    let firmaIAOk = false;
+    try {
+      const pubBytes = hexToBytes(cert.ia_clave_publica);
+      const pubKey = await crypto.subtle.importKey(
+        'raw', pubBytes, { name: 'Ed25519' }, false, ['verify']
+      );
+      const firmaBytes = hexToBytes(cert.firma_ia_ed25519);
+      firmaIAOk = await crypto.subtle.verify(
+        'Ed25519', pubKey, firmaBytes, new TextEncoder().encode(hashRecalc)
+      );
+    } catch (e) { firmaIAOk = false; }
 
-    const simbCalc = await IdentidadIA._sha256Hex(humano.firma_ed25519 + pacto.firma_ed25519);
-    return simbCalc === pacto.firma_simbiotica;
+    let firmaFundOk = false;
+    try {
+      const pubBytesF = hexToBytes(cert.fundador_clave_publica);
+      const pubKeyF = await crypto.subtle.importKey(
+        'raw', pubBytesF, { name: 'Ed25519' }, false, ['verify']
+      );
+      const payloadFundador = `LEGADO-HUMANO-IA · CO-AUTORÍA IA\nHash IA: ${cert.payload_hash}\nFundador: ${cert.fundador_humano}\nTimestamp: ${cert.timestamp}`;
+      const firmaBytesF = hexToBytes(cert.firma_fundador_ed25519);
+      firmaFundOk = await crypto.subtle.verify(
+        'Ed25519', pubKeyF, firmaBytesF, new TextEncoder().encode(payloadFundador)
+      );
+    } catch (e) { firmaFundOk = false; }
+
+    return {
+      hashOk,
+      firmaIAOk,
+      firmaFundOk,
+      valido: hashOk && firmaIAOk && firmaFundOk
+    };
   }
 
   exportar() {
-    if (!this.pactoActual) throw new Error('No hay pacto sellado.');
-    return new Blob([JSON.stringify(this.pactoActual, null, 2)], { type: 'application/json' });
+    if (!this.iaActual) throw new Error('No hay identidad IA para exportar.');
+    return new Blob([JSON.stringify(this.iaActual, null, 2)], { type: 'application/json' });
   }
 }
 
