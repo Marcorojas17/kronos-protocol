@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-26T20:24:09Z
+# Generado: 2026-09-26T20:26:33Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -84,7 +84,7 @@ cfb0ac2d92db4b4d0cfa234326a1cb6402dee98ae04aaf9e3ab11e008ea615ff  ./guardians/GU
 183d679725f72d83a0758c3b7a91ff320c90d0f0676954a88c14e00d5eaa4d22  ./identidad/registro-humano/README.md
   ./identidad/registro-humano/estructura del certificado
 389c89721e6809d3cd547c2909dbea563387b8705926f4cc37a6d16087c48886  ./identidad/registro-humano/identidad.js
-6f1f5d65b974293f914ad9c68d903cf9aa6e7bf7ce2ea22e8b5196e1cfab567e  ./identidad/registro-humano/index.html
+c9986e7e17c849e33ffb8a3b804588c996a3e2609145c008bb35a3b2ff366df2  ./identidad/registro-humano/index.html
 fd2467b46e19e614e3fd84ecc7b9243beb0ec4a810ae4c947813ff3509093df2  ./identidad/registro-humano/manual.html
 e4679b6449199c8d3bd1fdb1080217b8b60fda08787339fc53822b31693c11d5  ./identidad/registro-humano/pasaporte-visual.html
 ea567910c52f4fd6ba7e0ae5481240eb637f3d38f55632a3b4a47261dd5a1c8c  ./identidad/registro-humano/styles.css
