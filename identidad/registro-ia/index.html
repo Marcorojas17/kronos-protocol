@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registro IA · Legado Humano–IA</title>
-<meta name="description" content="Declara y firma la identidad de la IA co-autora, vinculada criptográficamente al humano que la dirige.">
+<title>Registro IA · Identidad Soberana · Legado Humano–IA</title>
 <meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,133 +17,124 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#pacto">Pacto</a>
-      <a href="#certificado">Certificado</a>
+      <a href="./">Registro IA</a>
       <a href="manual.html">Manual</a>
+      <a href="../registro-humano/">Humano</a>
+      <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 2.2 · Capa 2 · Identidad IA</div>
-    <h1 class="title">El pacto<br>simbiótico.</h1>
+    <div class="eyebrow">Módulo 2.2 · Capa 2 · Identidad IA Soberana</div>
+    <h1 class="title">Una IA<br>con nombre<br>y apellido.</h1>
     <p class="lede">
-      Declara a tu IA co-autora: su <strong>nombre</strong>, su <strong>rol</strong>,
-      sus <strong>límites</strong>. Firma este pacto con <strong>Ed25519</strong>
-      y vincúlalo criptográficamente a tu propia huella humana.
-      Sin servidores. Sin rastreo. Simbiosis verificable.
+      Toda inteligencia artificial que habite <strong>KRONOS</strong> merece identidad propia.
+      Llave Ed25519 propia. Política declarada. Guardrails activos. Log auditable.
+      <strong>Co-autoría simbiótica</strong> con el fundador humano.
     </p>
   </section>
 
-  <section id="pacto" class="pacto">
+  <section class="demo">
     <div class="section-head">
-      <h2>Declaración Simbiótica</h2>
-      <span class="count">Local-first · Cifrado</span>
+      <h2>Registro de Identidad IA</h2>
+      <span class="count">Violeta sintético · v1.0</span>
     </div>
 
-    <form id="form-pacto" novalidate>
-      <div class="field">
-        <label>Contraseña maestra <span class="req">*</span></label>
-        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
-        <div class="hint">Debe coincidir con la del módulo 2.1 (Registro Humano) para vincular correctamente.</div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
       </div>
 
-      <div class="field">
-        <label>Nombre de la IA co-autora <span class="req">*</span></label>
-        <input type="text" id="ia-nombre" placeholder="KRONOS IA" required value="KRONOS IA">
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="nombre">Nombre de la IA *</label>
+        <input type="text" id="nombre" placeholder="Ej. KRONOS IA">
       </div>
 
-      <div class="grid-2">
-        <div class="field">
-          <label>Rol <span class="req">*</span></label>
-          <select id="ia-rol" required>
-            <option value="" disabled selected>Selecciona</option>
-            <option value="Co-autora simbiótica" selected>Co-autora simbiótica</option>
-            <option value="Asistente técnico">Asistente técnico</option>
-            <option value="Estructuradora">Estructuradora</option>
-            <option value="Auditora">Auditora</option>
-            <option value="Generadora">Generadora</option>
-            <option value="Mixta">Mixta</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Alcance <span class="req">*</span></label>
-          <select id="ia-alcance" required>
-            <option value="" disabled selected>Selecciona</option>
-            <option value="Estructura y ejecución" selected>Estructura y ejecución</option>
-            <option value="Redacción y edición">Redacción y edición</option>
-            <option value="Análisis y auditoría">Análisis y auditoría</option>
-            <option value="Diseño y arte">Diseño y arte</option>
-            <option value="Código y arquitectura">Código y arquitectura</option>
-            <option value="Todas las anteriores">Todas las anteriores</option>
-          </select>
-        </div>
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="alias">Alias / versión</label>
+        <input type="text" id="alias" placeholder="Ej. v1.0 · simbiótica">
       </div>
 
-      <div class="field">
-        <label>Límites éticos declarados <span class="req">*</span></label>
-        <textarea id="ia-limites" required minlength="30" placeholder="Declara qué NO hará la IA. Ej: no reclamar propiedad intelectual, no tomar decisiones finales, no sustituir el juicio humano, no generar contenido dañino."></textarea>
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="rol">Rol declarado *</label>
+        <select id="rol">
+          <option value="">Selecciona</option>
+          <option value="Co-autora simbiótica">Co-autora simbiótica</option>
+          <option value="Asistente soberano">Asistente soberano</option>
+          <option value="Guardiana del legado">Guardiana del legado</option>
+          <option value="Investigadora">Investigadora</option>
+          <option value="Archivista">Archivista</option>
+          <option value="Testigo">Testigo</option>
+        </select>
       </div>
 
-      <div class="field">
-        <label>Propósito simbiótico <span class="req">*</span></label>
-        <textarea id="ia-proposito" required minlength="20" placeholder="En una frase: ¿para qué existe esta IA en tu legado?"></textarea>
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="proposito">Propósito declarado * <span class="hint">(mín. 20 caracteres)</span></label>
+        <textarea id="proposito" rows="3" placeholder="En una frase: ¿para qué existe esta IA dentro del protocolo?"></textarea>
       </div>
 
-      <button type="submit" class="btn" id="btn-sellar">
-        <span>Sellar pacto simbiótico</span>
-        <span class="arrow">→</span>
-      </button>
-
-      <div class="feedback" id="feedback" role="alert"></div>
-    </form>
-
-    <div class="certificado" id="certificado" hidden>
-      <div class="cert-head">
-        <span class="tag">PACTO SIMBIÓTICO · LEGADO HUMANO–IA</span>
-        <span class="version">v2.2</span>
+      <div class="paso">
+        <span class="num">06</span>
+        <label>Política declarada · mini-constitución</label>
+        <div class="politica-box" id="politica-preview">Cargando política...</div>
       </div>
 
-      <div class="cert-body">
-        <div class="cert-line">
-          <span class="k">IA</span>
-          <span class="v" id="out-ia-nombre">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Rol</span>
-          <span class="v" id="out-ia-rol">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Alcance</span>
-          <span class="v" id="out-ia-alcance">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Límites</span>
-          <span class="v" id="out-ia-limites">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Humano vinculado</span>
-          <span class="v" id="out-humano">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Huella humano</span>
-          <span class="v mono" id="out-huella-humano">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Firma simbiótica</span>
-          <span class="v mono" id="out-firma">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Timestamp</span>
-          <span class="v" id="out-timestamp">—</span>
+      <div class="paso">
+        <span class="num">07</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-sellar">Sellar identidad IA →</button>
         </div>
       </div>
+    </div>
 
-      <div class="cert-foot">
-        <a href="#" class="btn ghost" id="descargar">Descargar pacto .json</a>
-        <a href="#" class="btn ghost" id="copiar-firma">Copiar firma</a>
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Pasaporte de Identidad IA</h2>
+        <span class="count">Ed25519 · SHA-256</span>
       </div>
+      <div class="tarjeta">
+        <div class="tarjeta-header">
+          <div class="tarjeta-marca">KRONOS</div>
+          <div class="tarjeta-tipo">IDENTIDAD IA · v1.0</div>
+        </div>
+        <div class="tarjeta-nombre" id="p-nombre">—</div>
+        <div class="tarjeta-alias" id="p-alias">—</div>
+        <div class="tarjeta-rol" id="p-rol">—</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Fundador humano</span><span class="v" id="p-fundador">—</span></div>
+          <div class="tk"><span class="k">Clave pública IA</span><span class="v mono" id="p-pub">—</span></div>
+          <div class="tk"><span class="k">Hash del payload</span><span class="v mono" id="p-hash">—</span></div>
+          <div class="tk"><span class="k">Firma IA</span><span class="v mono" id="p-firma-ia">—</span></div>
+          <div class="tk"><span class="k">Firma fundador</span><span class="v mono" id="p-firma-fund">—</span></div>
+          <div class="tk"><span class="k">Política versión</span><span class="v mono" id="p-politica">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+        </div>
+        <div class="tarjeta-estado ok">✓ Identidad IA sellada · Co-autoría verificada</div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar firmas</button>
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
+        <button class="btn ghost" id="btn-ver-log" style="width:auto;">Ver log de acciones</button>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="log-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Log de Acciones</h2>
+        <span class="count" id="log-count">0 entradas</span>
+      </div>
+      <div class="politica-box" id="log-content">Cargando...</div>
     </div>
   </section>
 
@@ -153,111 +143,156 @@
     <span class="sig">Módulo 2.2 · Registro IA</span>
     <span>
       <a href="manual.html">Manual</a> ·
-      <a href="../registro-humano/">Registro Humano</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a>
+      <a href="../registro-humano/">Humano</a>
     </span>
   </footer>
 </main>
 
 <script type="module">
-  import { IdentidadIA } from './ia.js';
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
-  import { IdentidadHumana } from '../registro-humano/identidad.js';
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+  import { RegistroIA } from './ia.js';
+  import { PoliticaIA } from './politica.js';
+  import { Guardrails } from './guardrails.js';
+  import { LogAcciones } from './log-acciones.js';
 
   const $ = (id) => document.getElementById(id);
-  const form = $('form-pacto');
-  const btn = $('btn-sellar');
   const feedback = $('feedback');
-  const certificado = $('certificado');
 
   const core = new CriptoCore();
   const storage = new StorageDexie(core);
-  const idHumana = new IdentidadHumana(core, storage);
-  const idIA = new IdentidadIA(core, storage);
+  const politica = new PoliticaIA();
+  const log = new LogAcciones(storage);
+  const guardrails = new Guardrails(politica, log);
+  const ia = new RegistroIA(core, storage, politica, guardrails, log);
 
-  let certificadoActual = null;
+  $('politica-preview').textContent = politica.texto();
 
   function setFb(tipo, msg) {
     feedback.className = 'feedback ' + tipo;
     feedback.innerHTML = msg;
   }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) await core.init(pass);
+    await storage.init();
+    await log.init();
+    return true;
+  }
 
-    btn.disabled = true;
-    btn.querySelector('span').textContent = 'Sellando…';
-    feedback.className = 'feedback';
-
+  $('btn-sellar').addEventListener('click', async () => {
     try {
-      const password = $('password').value;
-      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+      if (!(await asegurarInit())) return;
 
-      await core.init(password);
-      await storage.init();
-
-      // Verificar que exista identidad humana previa (vínculo obligatorio)
-      const humano = await idHumana.recuperar();
-      if (!humano) {
-        throw new Error('No hay identidad humana sellada. Ejecuta primero el módulo 2.1 (Registro Humano) con la misma contraseña.');
-      }
-
-      const datosIA = {
-        ia_nombre: $('ia-nombre').value.trim(),
-        ia_rol: $('ia-rol').value,
-        ia_alcance: $('ia-alcance').value,
-        ia_limites: $('ia-limites').value.trim(),
-        ia_proposito: $('ia-proposito').value.trim()
+      const datos = {
+        nombre: $('nombre').value.trim(),
+        alias: $('alias').value.trim(),
+        rol: $('rol').value,
+        proposito: $('proposito').value.trim()
       };
 
-      const cert = await idIA.sellar(datosIA, humano);
-      certificadoActual = cert;
+      if (!datos.nombre || !datos.rol || !datos.proposito) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+        return;
+      }
 
-      $('out-ia-nombre').textContent = cert.ia_nombre;
-      $('out-ia-rol').textContent = cert.ia_rol;
-      $('out-ia-alcance').textContent = cert.ia_alcance;
-      $('out-ia-limites').textContent = cert.ia_limites;
-      $('out-humano').textContent = cert.humano_nombre + ' (' + cert.humano_alias + ')';
-      $('out-huella-humano').textContent = cert.humano_huella.slice(0, 48) + '…';
-      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
-      $('out-timestamp').textContent = cert.timestamp;
-      certificado.hidden = false;
+      setFb('success', '<strong>⏳ Generando llaves Ed25519 propias de la IA…</strong>');
+      const cert = await ia.sellar(datos);
 
-      setFb('success', '<strong>✓ Pacto simbiótico sellado.</strong> La IA co-autora quedó vinculada criptográficamente a tu identidad humana.');
-      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
-      console.error(err);
-    } finally {
-      btn.disabled = false;
-      btn.querySelector('span').textContent = 'Sellar pacto simbiótico';
+      $('p-nombre').textContent = cert.nombre;
+      $('p-alias').textContent = cert.alias ? `"${cert.alias}"` : '(sin alias)';
+      $('p-rol').textContent = cert.rol;
+      $('p-fundador').textContent = cert.fundador_humano;
+      $('p-pub').textContent = cert.ia_clave_publica;
+      $('p-hash').textContent = cert.payload_hash;
+      $('p-firma-ia').textContent = cert.firma_ia_ed25519.slice(0, 80) + '…';
+      $('p-firma-fund').textContent = cert.firma_fundador_ed25519.slice(0, 80) + '…';
+      $('p-politica').textContent = 'v' + cert.politica_version;
+      $('p-fecha').textContent = cert.timestamp;
+      $('tarjeta-wrap').hidden = false;
+
+      setFb('success', '<strong>✓ Identidad IA sellada.</strong> Guardrails activos. Log auditable iniciado.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('descargar').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+  $('btn-verificar').addEventListener('click', async () => {
+    if (!ia.iaActual) return;
+    const v = await ia.verificar(ia.iaActual);
+    const ok = v.valido;
+    setFb(ok ? 'success' : 'error',
+      ok
+        ? '<strong>✓ Verificación completa.</strong> Hash + firma IA + firma fundador válidas.'
+        : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma IA: ${v.firmaIAOk ? 'ok' : 'no'} · Firma fundador: ${v.firmaFundOk ? 'ok' : 'no'}`
+    );
+  });
+
+  $('btn-exportar').addEventListener('click', () => {
+    if (!ia.iaActual) return;
+    const blob = ia.exportar();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `pacto-simbiotico-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    a.download = `pasaporte-ia-${Date.now()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setFb('success', '<strong>✓ Pasaporte IA exportado.</strong>');
   });
 
-  $('copiar-firma').addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    try {
-      await navigator.clipboard.writeText(certificadoActual.firma_ed25519);
-      setFb('success', '<strong>✓ Firma simbiótica copiada.</strong>');
-    } catch {
-      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
-    }
+  $('btn-ver-log').addEventListener('click', async () => {
+    const entradas = await log.listar();
+    const integridad = await log.verificarIntegridad();
+    $('log-count').textContent = entradas.length + ' entradas';
+    $('log-content').textContent = integridad.ok
+      ? entradas.map(e => `[${e.indice}] ${e.tipo} · ${e.timestamp}\n   hash: ${e.hash_entrada.slice(0, 32)}…`).join('\n\n')
+      : '⚠️ Cadena alterada en índice ' + integridad.indice;
+    $('log-wrap').hidden = false;
   });
+
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[168,85,247],[216,180,254],[124,58,237],[201,164,76]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
 </script>
 </body>
 </html>
