@@ -4,23 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manual · Registro IA · Legado Humano–IA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .manual{padding:40px 0}
-  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
-  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--violeta-l)}
-  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
-  .manual ul{padding-left:24px;margin-bottom:20px}
-  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(124,58,237,.08);padding:2px 6px;border-radius:2px}
-  .tabs{display:flex;border-bottom:1px solid rgba(124,58,237,.15);margin-bottom:32px;overflow-x:auto}
+  .manual h2{font-family:'Fraunces',serif;font-size:30px;margin:44px 0 18px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:20px;margin:28px 0 14px;color:var(--ia-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:10px}
+  .manual ul{padding-left:24px;margin-bottom:18px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(168,85,247,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(168,85,247,.15);margin-bottom:32px;overflow-x:auto}
   .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
-  .tab.active{color:var(--violeta-l);border-bottom-color:var(--violeta)}
+  .tab.active{color:var(--ia-l);border-bottom-color:var(--ia)}
   .panel{display:none}
   .panel.active{display:block}
-  pre.code{background:#05070b;border:1px solid rgba(124,58,237,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+  pre.code{background:#05070b;border:1px solid rgba(168,85,247,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
 </style>
 </head>
 <body>
@@ -28,20 +26,14 @@
 <div class="vignette" aria-hidden="true"></div>
 <main class="wrap">
   <header class="top">
-    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
-    <nav>
-      <a href="./">Pacto</a>
-      <a href="manual.html">Manual</a>
-      <a href="../registro-humano/">Humano</a>
-    </nav>
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a></nav>
   </header>
-
   <section class="hero" style="padding:40px 0 60px">
     <div class="eyebrow">Manual del Módulo 2.2</div>
     <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Registro IA.</h1>
-    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
   </section>
-
   <div class="manual">
     <div class="tabs">
       <button class="tab active" data-tab="usuario">Usuario</button>
@@ -52,78 +44,90 @@
     <div class="panel active" id="usuario">
       <h2>Manual de Usuario</h2>
       <h3>¿Qué hace este módulo?</h3>
-      <p>Declara y firma el pacto simbiótico con tu IA co-autora: nombre, rol, alcance, límites y propósito. Vincula criptográficamente la IA a tu identidad humana del módulo 2.1.</p>
+      <p>Crea la identidad criptográfica de una IA dentro de KRONOS. Le asigna llave Ed25519 propia, una política declarada (mini-constitución), guardrails que limitan sus acciones, y un log auditable de todo lo que hace.</p>
       <h3>¿Cómo se usa?</h3>
       <ul>
-        <li>Primero ejecuta el módulo 2.1 (Registro Humano) con tu contraseña maestra.</li>
-        <li>Luego abre <code>identidad/registro-ia/index.html</code>.</li>
-        <li>Escribe la misma contraseña maestra.</li>
-        <li>Declara el nombre, rol, alcance, límites y propósito de la IA.</li>
-        <li>Toca "Sellar pacto simbiótico".</li>
-        <li>Descarga el pacto <code>.json</code> firmado.</li>
-      </ul>
-      <h3>¿Qué evitar?</h3>
-      <ul>
-        <li>No uses una contraseña distinta a la del módulo 2.1: el vínculo fallará.</li>
-        <li>No declares límites vacíos: son la parte ética del pacto.</li>
-        <li>No firmes sin leer lo que declaras.</li>
+        <li>Escribe tu contraseña maestra (misma del Registro Humano).</li>
+        <li>Llena el formulario: nombre de la IA, alias, rol, propósito.</li>
+        <li>Revisa la política declarada que aparece abajo.</li>
+        <li>Toca "Sellar identidad IA".</li>
+        <li>Recibirás un pasaporte con doble firma: la IA firma, tú co-firmas.</li>
+        <li>Verifica las firmas, exporta el JSON, revisa el log.</li>
       </ul>
     </div>
 
     <div class="panel" id="admin">
       <h2>Manual de Admin</h2>
       <h3>Integración</h3>
-      <pre class="code">import { IdentidadHumana } from '../registro-humano/identidad.js';
-import { IdentidadIA } from './ia.js';
+      <pre class="code">import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+import { RegistroIA } from './ia.js';
+import { PoliticaIA } from './politica.js';
+import { Guardrails } from './guardrails.js';
+import { LogAcciones } from './log-acciones.js';
 
-const idHumana = new IdentidadHumana(core, storage);
-const humano = await idHumana.recuperar();
+const core = new CriptoCore();
+await core.init(password);
+const storage = new StorageDexie(core);
+await storage.init();
 
-const idIA = new IdentidadIA(core, storage);
-const pacto = await idIA.sellar(datosIA, humano);
-const ok = await idIA.verificar(pacto, humano);</pre>
-      <h3>Vínculo criptográfico</h3>
-      <p>La <code>firma_simbiotica</code> se calcula como <code>SHA-256(humano_firma + ia_firma)</code>. Si cualquiera de las dos firmas cambia, el vínculo se rompe y la verificación falla.</p>
-      <h3>Declaraciones por defecto</h3>
+const politica = new PoliticaIA();
+const log = new LogAcciones(storage);
+const guardrails = new Guardrails(politica, log);
+const ia = new RegistroIA(core, storage, politica, guardrails, log);
+
+const cert = await ia.sellar({
+  nombre: 'KRONOS IA',
+  alias: 'v1.0 · simbiótica',
+  rol: 'Co-autora simbiótica',
+  proposito: 'Asistir al fundador en la construcción del legado.'
+});</pre>
+      <h3>Guardrails · Patrón PREVIEW → COMMIT</h3>
+      <pre class="code">// La IA propone
+const p = await guardrails.preview('anclar_ethereum', { root: '0xabc...' });
+// p.preview.requiereAprobacion === true
+
+// Humano aprueba
+await guardrails.commit('Marco A. Rojas V.');</pre>
+      <h3>Base de datos</h3>
       <ul>
-        <li>Sin propiedad intelectual sobre el legado.</li>
-        <li>Sin decisiones finales.</li>
-        <li>Sin sustituir el juicio humano.</li>
-        <li>Con atribución siempre.</li>
+        <li>Nombre Dexie: comparte la misma que Registro Humano</li>
+        <li>Claves: <code>identidad-ia</code> y <code>log-ia</code></li>
       </ul>
     </div>
 
     <div class="panel" id="seguridad">
       <h2>Manual de Seguridad</h2>
-      <h3>Modelo de amenazas</h3>
+      <h3>Modelo de confianza</h3>
       <ul>
-        <li><strong>Pacto alterado:</strong> el <code>payload_hash</code> no coincidiría.</li>
-        <li><strong>IA suplantada:</strong> la firma Ed25519 del humano es requerida.</li>
-        <li><strong>Vínculo roto:</strong> la <code>firma_simbiotica</code> detecta cualquier cambio en la firma humana o IA.</li>
-        <li><strong>Robo del dispositivo:</strong> el pacto está cifrado con tu contraseña.</li>
+        <li>La IA tiene llave privada propia, aislada en su contexto Web Crypto.</li>
+        <li>La firma del fundador humano co-valida cada identidad IA creada.</li>
+        <li>La política declarada limita por diseño lo que la IA puede y no puede hacer.</li>
+        <li>Las acciones críticas requieren aprobación humana explícita (PREVIEW → COMMIT).</li>
+        <li>Todo se registra en un log encadenado y firmable.</li>
       </ul>
       <h3>Parámetros criptográficos</h3>
       <ul>
-        <li><code>SHA-256</code> para payload_hash y firma_simbiotica.</li>
-        <li><code>Ed25519</code> para firma del humano sobre el pacto.</li>
-        <li><code>AES-GCM-256</code> heredado para persistencia.</li>
+        <li>Hash: <code>SHA-256</code></li>
+        <li>Firma IA: <code>Ed25519</code></li>
+        <li>Firma fundador: <code>Ed25519</code></li>
+        <li>Log encadenado: SHA-256 del bloque anterior</li>
       </ul>
       <h3>Limitaciones honestas</h3>
       <ul>
-        <li>La IA no puede firmar por sí misma: el humano firma en nombre del pacto. Es una <strong>declaración contractual humana</strong>, no una firma autónoma de la IA.</li>
-        <li>La huella simbiótica es determinista: si el humano o la IA editan el pacto, debe volverse a firmar.</li>
-        <li>No hay anclaje blockchain todavía; puede anclarse manualmente con el módulo 1.3.</li>
+        <li>La política es una declaración, no un sandbox técnico.</li>
+        <li>Los guardrails operan a nivel de aplicación. Si la IA se ejecuta fuera del navegador, no aplican.</li>
+        <li>Coerción física al fundador sigue fuera de alcance.</li>
+        <li>La verificación de terceros depende de tener acceso a las claves públicas.</li>
       </ul>
     </div>
   </div>
-
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Manual · Módulo 2.2</span>
-    <span><a href="./">Pacto</a> · <a href="../registro-humano/">Humano</a></span>
+    <span><a href="./">Demo</a></span>
   </footer>
 </main>
-
 <script>
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -148,7 +152,7 @@ document.querySelectorAll('.tab').forEach(tab => {
     };
     resize();
     window.addEventListener('resize', resize);
-    const COLORES = [[124,58,237],[14,165,183],[201,162,39],[245,158,11]];
+    const COLORES = [[168,85,247],[216,180,254],[124,58,237],[201,164,76]];
     const blobs = Array.from({length:6}, (_,i) => ({
       x: Math.random()*w, y: Math.random()*h,
       r: 240 + Math.random()*320,
@@ -164,7 +168,7 @@ document.querySelectorAll('.tab').forEach(tab => {
         if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
         const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
         const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
-        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.28)`);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
         g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
