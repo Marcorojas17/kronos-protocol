@@ -4,25 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registro Humano · Legado Humano–IA</title>
+<meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
-<style>
-  .btn-ghost-passport {
-    background: linear-gradient(120deg, #0A0A0B, #1a1a2e, #0A0A0B) !important;
-    border: 1px solid #00E5A0 !important;
-    color: #00E5A0 !important;
-    box-shadow: 0 0 15px rgba(0, 229, 160, 0.2) !important;
-    font-weight: 700 !important;
-    letter-spacing: 2px !important;
-  }
-  .btn-ghost-passport:hover {
-    box-shadow: 0 0 25px rgba(0, 229, 160, 0.5) !important;
-    transform: translateY(-2px) scale(1.02) !important;
-  }
-</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -34,6 +21,7 @@
     <nav>
       <a href="./">Registro</a>
       <a href="manual.html">Manual</a>
+      <a href="../registro-ia/">IA</a>
       <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
     </nav>
   </header>
@@ -104,10 +92,10 @@
         <label>Acciones</label>
         <div class="acciones">
           <button class="btn" id="btn-sellar">Sellar identidad →</button>
-          <button class="btn btn-ghost-passport" id="btn-fantasma">🔒 Generar Pasaporte Fantasma</button>
+          <button class="btn ghost" id="btn-fantasma">🔒 Generar Pasaporte Fantasma</button>
         </div>
         <div class="hint" style="margin-top:10px; color:#00E5A0;">
-          El Pasaporte Fantasma es una identidad efímera, inexistente y de máxima seguridad. Cero datos personales, solo criptografía pura. Úsalo para pruebas o demostraciones.
+          El Pasaporte Fantasma es una identidad efímera, inexistente y de máxima seguridad. Cero datos personales, solo criptografía pura.
         </div>
       </div>
     </div>
@@ -140,6 +128,11 @@
         <button class="btn ghost" id="btn-exportar">Descargar pasaporte .json</button>
         <button class="btn ghost" id="btn-copiar">Copiar huella</button>
       </div>
+
+      <!-- BOTÓN VISOR DE PASAPORTE VISUAL -->
+      <a href="pasaporte-visual.html" id="btn-abrir-pasaporte" class="btn" style="width:100%;margin-top:12px;text-decoration:none;background:linear-gradient(180deg,#7BFFD4 0%,#00E5A0 100%);color:#00241a;">
+        🛂 Descargar pasaporte visual →
+      </a>
     </div>
   </section>
 
@@ -176,12 +169,30 @@
       setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
       return false;
     }
-    if (!core.inicializado) {
-      await core.init(pass);
-    }
+    if (!core.inicializado) await core.init(pass);
     await storage.init();
     return true;
   }
+
+  // ── Recuperar identidad guardada al abrir la página ────────
+  (async function recuperarAlInicio() {
+    try {
+      if (!core.inicializado) return;
+      const guardado = await identidad.recuperar();
+      if (guardado) {
+        $('p-nombre').textContent = guardado.nombre;
+        $('p-alias').textContent = `"${guardado.alias}"`;
+        $('p-rol').textContent = guardado.rol;
+        $('p-pais').textContent = guardado.pais;
+        $('p-huella').textContent = guardado.huella;
+        $('p-firma').textContent = guardado.firma_ed25519.slice(0, 80) + '…';
+        $('p-fecha').textContent = guardado.timestamp;
+        $('tarjeta-wrap').hidden = false;
+      }
+    } catch (e) {
+      console.warn('No se pudo recuperar identidad:', e);
+    }
+  })();
 
   // ── BOTÓN 1: Sellar identidad real ──
   $('btn-sellar').addEventListener('click', async () => {
@@ -224,27 +235,23 @@
     }
   });
 
-  // ── BOTÓN 2: Generar Pasaporte Fantasma de Máxima Seguridad ──
+  // ── BOTÓN 2: Generar Pasaporte Fantasma ──
   $('btn-fantasma').addEventListener('click', async () => {
     try {
       if (!(await asegurarInit())) return;
-      
-      setFb('success', '<strong>⏳ Forjando Pasaporte Fantasma de Máxima Seguridad…</strong> Generando llaves efímeras.');
 
-      // 1. Generar par de llaves Ed25519 efímeras y aleatorias
+      setFb('success', '<strong>⏳ Forjando Pasaporte Fantasma de Máxima Seguridad…</strong>');
+
       const keyPair = await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
       const pubKey = await crypto.subtle.exportKey('raw', keyPair.publicKey);
       const pubHex = [...new Uint8Array(pubKey)].map(b => b.toString(16).padStart(2, '0')).join('');
 
-      // 2. Generar datos aleatorios de alta entropía (Zero Knowledge)
       const randomData = crypto.getRandomValues(new Uint8Array(32));
       const randomHex = [...randomData].map(b => b.toString(16).padStart(2, '0')).join('');
-      
-      // 3. Firmar los datos aleatorios con la llave efímera
+
       const firmaBuf = await crypto.subtle.sign('Ed25519', keyPair.privateKey, randomData);
       const firmaHex = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
 
-      // 4. Construir el payload fantasma
       const ghostPayload = {
         protocolo: 'LEGADO-HUMANO-IA · GHOST PASSPORT',
         version: 'ghost-1.0',
@@ -254,11 +261,10 @@
         clave_publica_efimera: pubHex,
         firma_prueba: firmaHex,
         hash_prueba: randomHex,
-        instruccion: 'Este es un pasaporte criptográfico de prueba de alta seguridad. No contiene datos personales. Generado localmente en el navegador. No rastreable.',
+        instruccion: 'Este es un pasaporte criptográfico de prueba de alta seguridad. No contiene datos personales.',
         advertencia: 'IDENTIDAD EFÍMERA. No usar para transacciones reales.'
       };
 
-      // 5. Descargar el JSON
       const blob = new Blob([JSON.stringify(ghostPayload, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -267,13 +273,13 @@
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 2000);
 
-      setFb('success', '<strong>✓ Pasaporte Fantasma generado y descargado.</strong> Se ha guardado un archivo JSON con una identidad efímera de máxima seguridad. Cero datos personales.');
+      setFb('success', '<strong>✓ Pasaporte Fantasma generado y descargado.</strong> Identidad efímera de máxima seguridad.');
     } catch (e) {
       setFb('error', '<strong>✗ Error al generar el pasaporte fantasma:</strong> ' + e.message);
     }
   });
 
-  // ── BOTONES DE EXPORTAR Y COPIAR (Pasaporte real) ──
+  // ── Exportar JSON del pasaporte real ──
   $('btn-exportar').addEventListener('click', () => {
     if (!identidad.perfilActual) return;
     const blob = new Blob([JSON.stringify(identidad.perfilActual, null, 2)], { type: 'application/json' });
@@ -286,6 +292,7 @@
     setFb('success', '<strong>✓ Pasaporte exportado.</strong> Guárdalo como respaldo.');
   });
 
+  // ── Copiar huella ──
   $('btn-copiar').addEventListener('click', async () => {
     if (!identidad.perfilActual) return;
     try {
@@ -293,6 +300,20 @@
       setFb('success', '<strong>✓ Huella copiada al portapapeles.</strong>');
     } catch {
       setFb('error', '<strong>✗ No se pudo copiar.</strong> Selecciónala manualmente.');
+    }
+  });
+
+  // ── Abrir visor de pasaporte visual ─────────────────────────
+  document.getElementById('btn-abrir-pasaporte').addEventListener('click', (e) => {
+    if (!identidad.perfilActual) {
+      e.preventDefault();
+      setFb('error', '<strong>✗ Sella tu identidad primero.</strong> Luego podrás descargar el pasaporte visual.');
+      return;
+    }
+    try {
+      sessionStorage.setItem('pasaporte-kronos-temp', JSON.stringify(identidad.perfilActual));
+    } catch (err) {
+      console.warn('sessionStorage lleno, el visor usará Dexie');
     }
   });
 
