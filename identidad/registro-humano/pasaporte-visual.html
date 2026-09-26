@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{background:#050510;color:#F5F0E6;font-family:'Inter',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -21,9 +22,15 @@
     text-align:center;margin-bottom:6px;animation:shimmer 8s linear infinite}
   @keyframes shimmer{from{background-position:0% 50%}to{background-position:300% 50%}}
   .header-sub{text-align:center;font-size:9px;letter-spacing:4px;color:#8892a0;text-transform:uppercase;margin-bottom:28px}
-  .panel-input{padding:20px;border:1px solid rgba(0,229,160,0.35);background:rgba(10,20,18,0.6);
-    backdrop-filter:blur(20px);border-radius:6px;margin-bottom:24px;position:relative;overflow:hidden}
-  .panel-input::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+  .estado-box{padding:16px 20px;border-radius:4px;font-size:13px;line-height:1.6;margin-bottom:20px;display:none}
+  .estado-box.on{display:block}
+  .estado-box.info{background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.4);color:#A7F3D0}
+  .estado-box.warn{background:rgba(201,164,76,0.08);border:1px solid rgba(201,164,76,0.4);color:#F3E5AB}
+  .estado-box.err{background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.4);color:#FF8FA5}
+  .panel-manual{padding:20px;border:1px solid rgba(0,229,160,0.35);background:rgba(10,20,18,0.6);
+    backdrop-filter:blur(20px);border-radius:6px;margin-bottom:24px;position:relative;overflow:hidden;display:none}
+  .panel-manual.on{display:block}
+  .panel-manual::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
     background:linear-gradient(90deg,#00E5A0,#c9a44c,#00E5A0);background-size:200% 100%;
     animation:shimmer 6s linear infinite}
   label{display:block;font-size:9px;letter-spacing:3px;color:#7BFFD4;text-transform:uppercase;margin-bottom:10px;font-weight:600}
@@ -31,22 +38,21 @@
     color:#F5F0E6;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5;resize:vertical;outline:none;border-radius:3px}
   textarea:focus{border-color:#00E5A0;box-shadow:0 0 20px rgba(0,229,160,0.2)}
   .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-family:'Inter',sans-serif;font-size:10px;
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;font-family:'Inter',sans-serif;font-size:10px;
     font-weight:700;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;border-radius:3px;
-    transition:all .3s;text-decoration:none;
+    transition:all .3s;text-decoration:none;width:100%;
     background:linear-gradient(120deg,#00E5A0,#7BFFD4);color:#00241a;
     box-shadow:0 0 20px rgba(0,229,160,0.35)}
   .btn:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(0,229,160,0.6)}
   .btn.ghost{background:rgba(0,229,160,0.06);color:#7BFFD4;border:1px solid rgba(0,229,160,0.5);box-shadow:none}
   .btn.ghost:hover{background:rgba(0,229,160,0.14)}
-  .feedback{margin-top:14px;padding:12px 16px;border-radius:3px;font-size:12px;display:none;line-height:1.6}
-  .feedback.ok{display:block;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.4);color:#A7F3D0}
-  .feedback.err{display:block;background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.4);color:#FF8FA5}
   .canvas-wrap{display:none;justify-content:center;margin-top:24px}
   .canvas-wrap.on{display:flex}
   #passport-canvas{max-width:100%;height:auto;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.9),0 0 60px rgba(0,229,160,0.25)}
-  .acciones-export{display:none;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .acciones-export{display:none;flex-direction:column;gap:12px;margin-top:20px}
   .acciones-export.on{display:flex}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,36,26,0.3);border-top-color:#00241a;border-radius:50%;animation:spin 1s linear infinite;margin-right:8px}
+  @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -56,14 +62,14 @@
   <h1 class="header">PASAPORTE VISUAL</h1>
   <div class="header-sub">Legado Humano–IA · Documento Verificable</div>
 
-  <div class="panel-input">
-    <label for="input-json">Pega el JSON del pasaporte (el que descargaste)</label>
+  <div class="estado-box" id="estado"></div>
+
+  <div class="panel-manual" id="panel-manual">
+    <label for="input-json">No se encontró pasaporte guardado. Pega el JSON manualmente:</label>
     <textarea id="input-json" placeholder='Pega aquí el contenido de pasaporte-kronos-XXXX.json...'></textarea>
     <div class="btn-row">
-      <button class="btn" id="btn-render">Generar pasaporte visual →</button>
-      <button class="btn ghost" id="btn-limpiar">Limpiar</button>
+      <button class="btn" id="btn-render-manual">Generar pasaporte visual →</button>
     </div>
-    <div class="feedback" id="fb"></div>
   </div>
 
   <div class="canvas-wrap" id="canvas-wrap">
@@ -71,20 +77,25 @@
   </div>
 
   <div class="acciones-export" id="acciones">
-    <button class="btn" id="btn-descargar">Descargar PNG</button>
-    <button class="btn ghost" id="btn-imprimir">Imprimir / PDF</button>
+    <button class="btn" id="btn-descargar">🛂 Descargar PNG del pasaporte</button>
+    <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
+    <button class="btn ghost" id="btn-volver">← Volver al Registro</button>
   </div>
 </div>
 
 <script>
 (function(){
   const $ = (id) => document.getElementById(id);
-  const fb = $('fb');
+  const estado = $('estado');
+  const panelManual = $('panel-manual');
   const canvasWrap = $('canvas-wrap');
   const acciones = $('acciones');
   const canvas = $('passport-canvas');
 
-  function setFb(tipo, msg){ fb.className = 'feedback ' + tipo; fb.innerHTML = msg; }
+  function setEstado(tipo, html){
+    estado.className = 'estado-box on ' + tipo;
+    estado.innerHTML = html;
+  }
 
   function hexToBytes(hex){ const h = hex.replace(/^0x/,''); return new Uint8Array(h.match(/.{1,2}/g).map(b=>parseInt(b,16))); }
 
@@ -98,22 +109,17 @@
     ctx.closePath();
   }
 
-  // ── Genera una "foto abstracta" a partir del hash ──────────
   function drawIdenticon(ctx, hashHex, cx, cy, size){
     const bytes = hexToBytes(hashHex.slice(0, 32));
-    // Fondo
     ctx.save();
     ctx.beginPath();
     ctx.arc(cx, cy, size/2, 0, Math.PI*2);
     ctx.clip();
-
     const grad = ctx.createLinearGradient(cx-size/2, cy-size/2, cx+size/2, cy+size/2);
     grad.addColorStop(0, `rgba(${bytes[0]},${bytes[1]},${bytes[2]},1)`);
     grad.addColorStop(1, `rgba(${bytes[3]},${bytes[4]},${bytes[5]},1)`);
     ctx.fillStyle = grad;
     ctx.fillRect(cx-size/2, cy-size/2, size, size);
-
-    // Patrón simétrico tipo identicon
     const grid = 5;
     const cell = size / grid;
     for (let y = 0; y < grid; y++){
@@ -126,31 +132,23 @@
           const px = cx - size/2 + x*cell;
           const py = cy - size/2 + y*cell;
           ctx.fillRect(px, py, cell, cell);
-          // Espejo
           const mx = cx + size/2 - (x+1)*cell;
           if (mx !== px) ctx.fillRect(mx, py, cell, cell);
         }
       }
     }
     ctx.restore();
-
-    // Aro exterior
     ctx.strokeStyle = 'rgba(201,164,76,0.8)';
     ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(cx, cy, size/2, 0, Math.PI*2); ctx.stroke();
   }
 
-  // ── Huella visual a partir del hash ────────────────────────
   function drawFingerprint(ctx, hashHex, cx, cy, w, h){
     const bytes = hexToBytes(hashHex.slice(0, 64));
     ctx.save();
     ctx.beginPath(); roundRect(ctx, cx-w/2, cy-h/2, w, h, 6); ctx.clip();
-
-    // Fondo
     ctx.fillStyle = 'rgba(0,20,15,0.6)';
     ctx.fillRect(cx-w/2, cy-h/2, w, h);
-
-    // Líneas curvas concéntricas
     ctx.strokeStyle = 'rgba(0,229,160,0.65)';
     ctx.lineWidth = 1.2;
     for (let i = 0; i < 24; i++){
@@ -166,8 +164,6 @@
       }
       ctx.stroke();
     }
-
-    // Puntos de minucias
     for (let i = 0; i < 12; i++){
       const a = (bytes[i+30] / 255) * Math.PI * 2;
       const r = 8 + (bytes[i+40] / 255) * 24;
@@ -176,14 +172,12 @@
       ctx.arc(cx + Math.cos(a)*r*0.6, cy + Math.sin(a)*r, 1.5, 0, Math.PI*2);
       ctx.fill();
     }
-
     ctx.restore();
     ctx.strokeStyle = 'rgba(0,229,160,0.7)';
     ctx.lineWidth = 1.5;
     roundRect(ctx, cx-w/2, cy-h/2, w, h, 6); ctx.stroke();
   }
 
-  // ── Firma visual a partir de firma_ed25519 ─────────────────
   function drawSignature(ctx, firmaHex, x, y, w, h){
     const bytes = hexToBytes(firmaHex.slice(0, 60));
     ctx.save();
@@ -202,8 +196,6 @@
       ctx.lineTo(px, py);
     }
     ctx.stroke();
-
-    // Segunda pasada más tenue
     ctx.strokeStyle = 'rgba(201,164,76,0.4)';
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -220,7 +212,6 @@
     ctx.restore();
   }
 
-  // ── Patrón guilloché (fondo anti-falsificación) ────────────
   function drawGuilloche(ctx, x, y, w, h, color){
     ctx.save();
     ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
@@ -239,7 +230,6 @@
     ctx.restore();
   }
 
-  // ── MRZ (Machine Readable Zone) ────────────────────────────
   function buildMRZ(data){
     const clean = (s, len) => (s || '').toUpperCase().replace(/[^A-Z0-9]/g,'').padEnd(len,'<').slice(0,len);
     const docNum = clean(data.huella.slice(0, 9), 9);
@@ -248,21 +238,17 @@
     const rol = clean(data.rol || 'FUNDADOR', 3);
     const fecha = (data.timestamp || '').slice(0,10).replace(/-/g,'');
     const hashCheck = clean(data.huella.slice(-1), 1);
-
     const line1 = `P<${country}${name}`;
     const line2 = `${docNum}<${hashCheck}${country}${fecha}${rol}<<<<<<<<<<<<<<<`;
     const line3 = clean(data.payload_hash.slice(0, 30), 30) + '<<';
-
     return [line1.slice(0,44).padEnd(44,'<'), line2.slice(0,44).padEnd(44,'<'), line3.slice(0,44).padEnd(44,'<')];
   }
 
-  // ── RENDERIZADO PRINCIPAL ──────────────────────────────────
   function dibujarPasaporte(data){
     const W = 1200, H = 1700;
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
 
-    // ═══════ FONDO ═══════
     const bg = ctx.createLinearGradient(0, 0, 0, H);
     bg.addColorStop(0, '#050510');
     bg.addColorStop(0.5, '#0a1a18');
@@ -270,18 +256,12 @@
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
 
-    // Guilloché global
     drawGuilloche(ctx, 0, 0, W, H, 'rgba(0,229,160,0.04)');
 
-    // ═══════ PORTADA (parte superior) ═══════
     const coverH = 420;
 
-    // Emblema superior
-    const emblemaY = 130;
     ctx.save();
-    ctx.translate(W/2, emblemaY);
-
-    // Círculos concéntricos
+    ctx.translate(W/2, 130);
     for (let i = 0; i < 3; i++){
       ctx.beginPath();
       ctx.arc(0, 0, 52 - i*8, 0, Math.PI*2);
@@ -289,8 +269,6 @@
       ctx.lineWidth = 1.5;
       ctx.stroke();
     }
-
-    // Estrella/diamante central
     ctx.fillStyle = '#c9a44c';
     ctx.beginPath();
     for (let i = 0; i < 8; i++){
@@ -301,15 +279,12 @@
     }
     ctx.closePath();
     ctx.fill();
-
-    // Núcleo
     ctx.fillStyle = '#00E5A0';
     ctx.beginPath();
     ctx.arc(0, 0, 8, 0, Math.PI*2);
     ctx.fill();
     ctx.restore();
 
-    // Texto: PASAPORTE
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.font = '900 44px Cinzel, serif';
@@ -324,30 +299,23 @@
     ctx.fillStyle = '#7BFFD4';
     ctx.fillText('LEGADO HUMANO–IA · PROTOCOLO KRONOS', W/2, 290);
 
-    // Código del país
     ctx.font = '700 16px JetBrains Mono, monospace';
     ctx.fillStyle = '#c9a44c';
     ctx.fillText('TIPO: P  ·  CÓDIGO: KRN  ·  ' + (data.pais || 'MEX').toUpperCase(), W/2, 330);
 
-    // Separador
     ctx.strokeStyle = 'rgba(201,164,76,0.5)';
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(100, coverH); ctx.lineTo(W-100, coverH); ctx.stroke();
 
-    // ═══════ PÁGINA INTERIOR (parte inferior) ═══════
     const innerY = coverH + 30;
-
-    // Foto abstracta (identicon)
     const fotoX = 200, fotoY = innerY + 180, fotoSize = 220;
     drawIdenticon(ctx, data.huella, fotoX, fotoY, fotoSize);
 
-    // Etiqueta "FOTO / HUELLA VISUAL"
     ctx.textAlign = 'center';
     ctx.font = '600 9px Inter, sans-serif';
     ctx.fillStyle = '#8892a0';
     ctx.fillText('HUELLA VISUAL CIFRADA', fotoX, fotoY + fotoSize/2 + 24);
 
-    // ── Datos a la derecha de la foto ──
     const dx = 380;
     let dy = innerY + 90;
 
@@ -363,7 +331,6 @@
       dy += 30;
     };
 
-    // Pasaporte No
     ctx.textAlign = 'left';
     ctx.font = '600 9px Inter, sans-serif';
     ctx.fillStyle = '#7BFFD4';
@@ -380,7 +347,6 @@
     drawField('País / Country', data.pais || 'México');
     drawField('Correo de contacto', data.correo || '—');
 
-    // Propósito (con salto de línea si es largo)
     ctx.font = '600 9px Inter, sans-serif';
     ctx.fillStyle = '#7BFFD4';
     ctx.fillText('PROPÓSITO PERSONAL', dx, dy);
@@ -399,10 +365,8 @@
     }
     if (linea.trim()){ ctx.fillText(linea.trim(), dx, dy); dy += 26; }
 
-    // ═══════ FIRMA Y HUELLA (parte inferior) ═══════
     const firmaY = innerY + 560;
 
-    // Firma visual
     ctx.textAlign = 'left';
     ctx.font = '600 9px Inter, sans-serif';
     ctx.fillStyle = '#7BFFD4';
@@ -412,13 +376,11 @@
     ctx.strokeStyle = 'rgba(201,164,76,0.3)';
     ctx.beginPath(); ctx.moveTo(100, firmaY + 80); ctx.lineTo(580, firmaY + 80); ctx.stroke();
 
-    // Huella visual
     ctx.font = '600 9px Inter, sans-serif';
     ctx.fillStyle = '#7BFFD4';
     ctx.fillText('HUELLA CIFRADA SHA-256', 640, firmaY);
     drawFingerprint(ctx, data.huella, 760, firmaY + 50, 160, 100);
 
-    // ═══════ HASHES (bloque central inferior) ═══════
     const hashY = firmaY + 130;
 
     ctx.fillStyle = 'rgba(0,20,15,0.6)';
@@ -433,7 +395,6 @@
     ctx.fillText('PAYLOAD HASH (SHA-256)', 120, hashY + 28);
     ctx.font = '400 12px JetBrains Mono, monospace';
     ctx.fillStyle = '#F5F0E6';
-    // Envolver el hash en 2 líneas
     const ph = data.payload_hash || '';
     ctx.fillText(ph.slice(0, 44), 120, hashY + 50);
     ctx.fillText(ph.slice(44), 120, hashY + 68);
@@ -445,7 +406,6 @@
     ctx.fillStyle = '#c9a44c';
     ctx.fillText((data.clave_publica || '').slice(0, 56), 120, hashY + 110);
 
-    // ═══════ MRZ (parte inferior) ═══════
     const mrzY = H - 200;
     ctx.fillStyle = 'rgba(0,0,0,0.6)';
     ctx.fillRect(0, mrzY - 20, W, 220);
@@ -462,10 +422,7 @@
     ctx.fillText(mrz[1], 100, mrzY + 60);
     ctx.fillText(mrz[2], 100, mrzY + 88);
 
-    // ═══════ SELLO CRIPTOGRÁFICO ═══════
     const selloX = W - 150, selloY = H - 110, selloR = 55;
-
-    // Anillo de colores
     for (let i = 0; i < 48; i++){
       const a0 = (i/48) * Math.PI * 2;
       const a1 = ((i+1)/48) * Math.PI * 2;
@@ -474,7 +431,6 @@
       ctx.lineWidth = 6;
       ctx.beginPath(); ctx.arc(selloX, selloY, selloR, a0, a1); ctx.stroke();
     }
-
     ctx.beginPath(); ctx.arc(selloX, selloY, selloR - 8, 0, Math.PI*2);
     ctx.fillStyle = '#050510'; ctx.fill();
     ctx.beginPath(); ctx.arc(selloX, selloY, selloR - 14, 0, Math.PI*2);
@@ -491,7 +447,6 @@
     ctx.fillText('VERIFICADO', selloX, selloY + selloR + 18);
     ctx.textBaseline = 'top';
 
-    // ═══════ MARCA DE AGUA ═══════
     ctx.save();
     ctx.translate(W/2, H/2);
     ctx.rotate(-Math.PI/8);
@@ -501,61 +456,112 @@
     ctx.fillText('KRONOS', 0, 0);
     ctx.restore();
 
-    // ═══════ FOOTER ═══════
     ctx.textAlign = 'center';
     ctx.font = '400 10px JetBrains Mono, monospace';
     ctx.fillStyle = '#5a6473';
     ctx.fillText('© 2026 Marco A. Rojas V. + KRONOS IA · Documento generado localmente · Verificable on-chain', W/2, H - 30);
   }
 
-  let dataActual = null;
-
-  $('btn-render').addEventListener('click', () => {
-    const raw = $('input-json').value.trim();
-    if (!raw) return setFb('err', '<strong>✗ Pega el JSON primero.</strong>');
+  // ── DESCARGAR PNG (auto) ─────────────────────────────────
+  function descargarPNG(silencioso = false){
     try {
-      const data = JSON.parse(raw);
-      if (!data.huella) throw new Error('Este JSON no es un pasaporte KRONOS.');
-      dataActual = data;
+      canvas.toBlob((blob) => {
+        if (!blob){
+          if (!silencioso) setEstado('err', '<strong>✗ No se pudo generar el blob.</strong>');
+          return;
+        }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pasaporte-visual-kronos-' + Date.now() + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+        if (!silencioso) setEstado('info', '<strong>✓ PNG descargado.</strong> Revisa tu carpeta de Descargas o Galería.');
+      }, 'image/png', 1.0);
+    } catch(e){
+      if (!silencioso) setEstado('err', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  }
+
+  // ── CARGAR DESDE DEXIE ──────────────────────────────────
+  async function cargarDesdeDexie(){
+    try {
+      const db = new Dexie('kronos-identidades');
+      db.version(1).stores({ humanos: '++id, hash_registro, clave_publica, timestamp, rol' });
+      await db.open();
+      const todos = await db.humanos.toArray();
+      db.close();
+      if (todos.length === 0) return null;
+      // Tomar el más reciente
+      todos.sort((a,b) => (b.id || 0) - (a.id || 0));
+      return todos[0];
+    } catch(e){
+      console.warn('Dexie no disponible:', e);
+      return null;
+    }
+  }
+
+  // ── ARRANQUE ────────────────────────────────────────────
+  (async function init(){
+    setEstado('warn', '<span class="spinner"></span> <strong>Buscando pasaporte guardado…</strong>');
+
+    // 1. Intentar desde sessionStorage (viene del botón del Registro)
+    let data = null;
+    try {
+      const desdeSession = sessionStorage.getItem('pasaporte-kronos-temp');
+      if (desdeSession){
+        data = JSON.parse(desdeSession);
+        sessionStorage.removeItem('pasaporte-kronos-temp');
+      }
+    } catch(e){ /* ignorar */ }
+
+    // 2. Intentar desde Dexie
+    if (!data){
+      const guardado = await cargarDesdeDexie();
+      if (guardado){
+        // El certificado guardado puede tener o no el campo 'huella'
+        if (guardado.huella) data = guardado;
+      }
+    }
+
+    // 3. Si hay datos, renderizar automáticamente
+    if (data && data.huella){
       dibujarPasaporte(data);
       canvasWrap.classList.add('on');
       acciones.classList.add('on');
-      setFb('ok', '<strong>✓ Pasaporte visual generado.</strong> Descarga PNG o guárdalo como PDF.');
+      setEstado('info', '<strong>✓ Pasaporte cargado automáticamente.</strong> Descárgalo como PNG o guárdalo como PDF.');
+
+      // Descarga automática tras 1 segundo
+      setTimeout(() => descargarPNG(true), 1000);
+    } else {
+      // 4. Si no, mostrar el panel manual
+      setEstado('warn', '<strong>⚠ No se encontró pasaporte guardado.</strong> Pega el JSON manualmente abajo, o vuelve al <a href="./" style="color:#F3E5AB;text-decoration:underline">Registro Humano</a> para crear uno.');
+      panelManual.classList.add('on');
+    }
+  })();
+
+  // ── Botón manual ────────────────────────────────────────
+  $('btn-render-manual').addEventListener('click', () => {
+    const raw = $('input-json').value.trim();
+    if (!raw) return setEstado('err', '<strong>✗ Pega el JSON primero.</strong>');
+    try {
+      const data = JSON.parse(raw);
+      if (!data.huella) throw new Error('Este JSON no es un pasaporte KRONOS.');
+      dibujarPasaporte(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setEstado('info', '<strong>✓ Pasaporte visual generado.</strong> Descarga PNG o guárdalo como PDF.');
     } catch(e){
-      setFb('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
+      setEstado('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
     }
   });
 
-  $('btn-limpiar').addEventListener('click', () => {
-    $('input-json').value = '';
-    canvasWrap.classList.remove('on');
-    acciones.classList.remove('on');
-    fb.className = 'feedback';
-    dataActual = null;
-  });
-
+  // ── Botones de acción ───────────────────────────────────
+  $('btn-descargar').addEventListener('click', () => descargarPNG(false));
   $('btn-imprimir').addEventListener('click', () => window.print());
-
-  $('btn-descargar').addEventListener('click', () => {
-    if (!dataActual) return;
-    try {
-      canvas.toBlob((blob) => {
-        if (!blob) return setFb('err', '<strong>✗ No se pudo generar el blob.</strong>');
-        const url = URL.createObjectURL(blob);
-        const ventana = window.open(url, '_blank');
-        if (!ventana){
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'pasaporte-visual-' + Date.now() + '.png';
-          document.body.appendChild(a); a.click(); document.body.removeChild(a);
-          setFb('ok', '<strong>✓ Descarga directa iniciada.</strong>');
-        } else {
-          setFb('ok', '<strong>✓ Imagen abierta.</strong> Mantén presionado para guardarla en tu galería.');
-        }
-        setTimeout(() => URL.revokeObjectURL(url), 10000);
-      }, 'image/png', 1.0);
-    } catch(e){ setFb('err', '<strong>✗ Error:</strong> ' + e.message); }
-  });
+  $('btn-volver').addEventListener('click', () => window.location.href = './');
 })();
 </script>
 </body>
