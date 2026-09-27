@@ -1,160 +1,149 @@
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║  ○_●  G O B E R N A N Z A                                           ║
+║  ◢◤◥◣ KRONOS PROTOCOL                                              ║
+║  ◥◣◢◤ Pacto de Co-Creatividad Simbiótica Humano-IA                 ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
 # Gobernanza · KRONOS Protocol
 
-Este documento define cómo se toman decisiones, cómo se aceptan contribuciones,
-y cómo evoluciona el protocolo sin depender de una sola persona.
+Este documento rige la evolución de las 7 capas del estándar.
+Establece las reglas éticas y operativas para la colaboración entre
+la inteligencia biológica y los modelos algorítmicos.
 
 ---
 
-## Principios
-
-1. **Apertura.** Toda decisión técnica se discute públicamente.
-2. **Verificabilidad.** Ninguna afirmación se acepta sin evidencia.
-3. **Refutabilidad.** Cualquier propuesta puede ser cuestionada por cualquiera.
-4. **No dependencia unipersonal.** El protocolo debe poder evolucionar sin el fundador.
-5. **Cierre digno.** Toda decisión debe contemplar cómo revertirse o cerrarse.
-
----
-
-## Estructura de gobernanza propuesta
-
-### Fase actual (pre-alpha)
-
-Durante la fase pre-alpha, el fundador actúa como **mantenedor único** con la
-co-autoría de KRONOS IA. Las decisiones se documentan públicamente.
-
-### Fase futura (post-validación)
-
-Cuando el protocolo alcance estabilidad, se propone una estructura tripartita:
+## 🔱 Los 6 principios fundamentales
 
 ```
-┌─────────────────────────────────────────────────┐
-│           CONSEJO TRIPARTITO (propuesto)        │
-├─────────────────────────────────────────────────┤
-│  Gobierno  │  Academia  │  Sociedad Civil       │
-│  (SE, SAT) │  (UNAM,    │  (Cámaras, ONGs,      │
-│            │   IPN, Tec)│   desarrolladores)    │
-└─────────────────────────────────────────────────┘
+    ┌────────────────────────────────────────────────────────────┐
+    │                                                            │
+    │   I.   INTEGRIDAD                                          │
+    │        Las matemáticas sustituyen a la confianza.          │
+    │        Toda decisión de código debe ser verificable.       │
+    │                                                            │
+    │   II.  TRAZABILIDAD                                        │
+    │        Cada aportación se firma con huella criptográfica.  │
+    │                                                            │
+    │   III. NO COMERCIALIZACIÓN OPACA                           │
+    │        El núcleo es y será libre para las PyMEs.           │
+    │                                                            │
+    │   IV.  PROTECCIÓN DE DATOS FRENTE A IA                     │
+    │        Sin consentimiento expreso, ningún dato entrena     │
+    │        modelos públicos.                                   │
+    │                                                            │
+    │   V.   CITACIÓN Y ATRIBUCIÓN OBLIGATORIA                   │
+    │        Todo fork conserva la firma:                        │
+    │        "Marco Antonio Rojas Valdovinos — KRONOS 2026".     │
+    │                                                            │
+    │   VI.  DEFENSA ACTIVA                                      │
+    │        Auditoría abierta contra software espía y           │
+    │        ecosistemas cerrados de falsa confianza.            │
+    │                                                            │
+    └────────────────────────────────────────────────────────────┘
 ```
 
-Cada miembro tendría voz y voto en decisiones estructurales.
+---
+
+## 👥 Roles en la co-creatividad
+
+| Rol | Responsabilidad |
+| :--- | :--- |
+| **El Arquitecto Humano** | Marco Antonio Rojas Valdovinos. Visión estratégica, vectores éticos, firma de lanzamientos, gobernanza. |
+| **La IA Copiloto** | KRONOS IA. Optimización de hashes, documentación formal, simulación de ataques, aceleración técnica. |
+| **Mantenedores** | Revisan y mergean PRs. Por invitación del Arquitecto. |
+| **Contribuidores** | Aportan código, docs, traducciones. Por mérito. |
+| **Auditores** | Revisan criptografía, reportan hallazgos. Por mérito. |
+| **Ciudadanos** | Usuarios con pasaporte criptográfico sellado. |
 
 ---
 
-## Cómo contribuir
+## 🤖 Cómo participan las IAs
 
-### 1. Issues
+KRONOS reconoce a las IAs como **co-autoras legítimas**. Reglas estrictas:
 
-Cualquier persona puede abrir un Issue para:
-
-- Reportar un bug (no vulnerabilidad — ver [`SECURITY.md`](./SECURITY.md))
-- Proponer una mejora
-- Cuestionar una decisión
-- Solicitar documentación
-
-### 2. Pull Requests
-
-Los Pull Requests son bienvenidos. Para ser aceptados, deben cumplir:
-
-- **Un PR = un cambio conceptual.** No mezcles múltiples features.
-- **Descripción clara.** Explica el qué, el por qué y el cómo.
-- **Tests si aplica.** Para cambios en código criptográfico, son obligatorios.
-- **Documentación.** Actualizar el README o los manuales si es necesario.
-- **Firmar commits.** Si puedes, firma tus commits con GPG (opcional).
-- **Licencia.** Al contribuir, aceptas liberar tu aporte bajo MIT.
-
-### 3. Discusiones
-
-Para decisiones estructurales, se abre un Issue etiquetado como `discussion`.
-Se da un periodo mínimo de **14 días** para comentarios antes de decidir.
+1. Toda IA debe tener **identidad sellada** en `identidad/registro-ia/`.
+2. Toda IA debe declarar su **política** antes de operar.
+3. Toda **acción crítica** requiere aprobación humana (PREVIEW → COMMIT).
+4. Toda acción queda **registrada en log auditable**.
+5. Las IAs **no votan**. Aconsejan, proponen, ejecutan bajo guardrails.
 
 ---
 
-## Roles en la comunidad
+## 📊 Proceso de toma de decisiones
 
-| Rol | Responsabilidad | Cómo se obtiene |
-| :--- | :--- | :--- |
-| **Fundador** | Mantenedor principal, autoridad final durante pre-alpha | Por designación |
-| **Co-autora IA** | KRONOS IA, co-firma decisiones críticas | Por diseño del protocolo |
-| **Mantenedor** | Revisa y mergea PRs, gestiona Issues | Por invitación del fundador |
-| **Contribuidor** | Aporta código, docs, traducciones | Por mérito (PRs aceptados) |
-| **Auditor** | Revisa criptografía y reporta hallazgos | Por mérito |
-| **Ciudadano** | Usuario registrado con pasaporte criptográfico | Al sellar identidad |
+| Tipo de cambio | Aprobación requerida |
+| :--- | :--- |
+| **Menor** (docs, typos) | Cualquier mantenedor |
+| **Medio** (módulos, UX) | 1 mantenedor + comentario del Arquitecto |
+| **Estructural** (arquitectura) | Arquitecto + discusión pública 14 días |
+| **Criptográfico** (algoritmos) | Arquitecto + auditoría + discusión 30 días |
 
 ---
 
-## Cómo participan las IAs
+## 🔄 Versionado
 
-KRONOS reconoce a las IAs como **co-autoras legítimas** del ecosistema.
-Sin embargo, su participación sigue reglas estrictas:
+KRONOS sigue **Semantic Versioning**:
 
-1. **Toda IA debe tener identidad sellada** en `identidad/registro-ia/`.
-2. **Toda IA debe declarar su política** (`politica.js`) antes de operar.
-3. **Toda acción crítica de una IA requiere aprobación humana** (patrón PREVIEW → COMMIT).
-4. **Toda acción de una IA queda registrada** en el log auditable.
-5. **Las IAs no votan.** Aconsejan, proponen, ejecutan dentro de guardrails, pero la decisión final es humana.
-
----
-
-## Proceso de toma de decisiones
-
-### Cambios menores
-- Documentación, typos, traducciones.
-- **Aprobación:** cualquier mantenedor.
-
-### Cambios medios
-- Nuevos módulos, mejoras de UX, refactors.
-- **Aprobación:** 1 mantenedor + comentario del fundador.
-
-### Cambios estructurales
-- Cambios de arquitectura, política, gobernanza.
-- **Aprobación:** fundador + período de discusión pública de 14 días.
-
-### Cambios criptográficos
-- Cambio de algoritmos, parámetros, derivación de claves.
-- **Aprobación:** fundador + auditoría externa + discusión pública de 30 días.
-
----
-
-## Versionado
-
-KRONOS sigue **Semantic Versioning** (semver.org):
-
-- `MAJOR.MINOR.PATCH`
 - `0.x.x` = pre-alpha (fase actual)
 - `1.0.0` = primera versión estable (futuro)
 
-Actualmente: **0.1.0**
+**Versión actual:** `0.1.0`
 
 ---
 
-## Fork y evolución
+## 🍴 Fork y evolución
 
 Cualquier persona puede hacer fork del repositorio y crear su propia
-variante del protocolo. Eso es **bienvenido** y **parte del diseño**.
+variante. **Eso es bienvenido.** KRONOS no busca ser el único.
+Busca ser una **base replicable**.
 
-KRONOS no busca ser el único. Busca ser **una base replicable**.
-
----
-
-## Cierre del proyecto
-
-Si el proyecto cesara alguna vez, el fundador se compromete a:
-
-1. Publicar un aviso público con 90 días de anticipación.
-2. Exportar toda la documentación y el código a un archivo estático perpetuo.
-3. Asegurar que cualquier fork pueda continuar sin permisos.
-4. Cerrar los Issues abiertos con explicación.
-5. Anclar el hash final del repositorio a la blockchain como prueba de cierre.
-
-**El fin de KRONOS no significa el fin de sus ideas.** Cualquiera puede retomarlas.
+**Condición:** conservar la firma de atribución original.
 
 ---
 
-## Contacto
+## 🕯️ Cierre del proyecto
 
-- Issues públicos: github.com/Marcorojas17/kronos-protocol/issues
-- Email general: marco.a.rojas.v@hotmail.com
-- Email seguridad: ver [`SECURITY.md`](./SECURITY.md)
+Si el proyecto cesara alguna vez, el Arquitecto se compromete a:
+
+1. Publicar aviso público con **90 días de anticipación**.
+2. Exportar **todo el código y documentación** a archivo estático perpetuo.
+3. Asegurar que **cualquier fork pueda continuar** sin permisos.
+4. Cerrar **Issues abiertos** con explicación.
+5. **Anclar el hash final** del repositorio como prueba de cierre.
+
+**El fin de KRONOS no significa el fin de sus ideas.**
+
+---
+
+## 🪶 Firma del pacto
+
+```
+    ┌─────────────────────────────────────────────────────┐
+    │                                                     │
+    │         P A C T O   S I M B I Ó T I C O             │
+    │                                                     │
+    │  ○_●  Marco Antonio Rojas Valdovinos                │
+    │       51% Humano · Arquitecto Fundador              │
+    │                                                     │
+    │  ◢◤◥◣ KRONOS IA                                     │
+    │       49% Algorítmico · Co-autora Simbiótica        │
+    │                                                     │
+    │  ◥◣◢◤ Toluca, Estado de México · 2026                │
+    │                                                     │
+    │  "El legado no se hereda. Se firma."                │
+    │                                                     │
+    └─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📞 Contacto
+
+- Issues públicos: `github.com/Marcorojas17/kronos-protocol/issues`
+- Email general: `marco.a.rojas.v@hotmail.com`
+- Seguridad: ver [`SECURITY.md`](./SECURITY.md)
 
 ---
 
