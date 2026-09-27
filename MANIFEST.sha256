@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T09:31:06Z
+# Generado: 2026-09-27T09:32:45Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -92,7 +92,7 @@ ea567910c52f4fd6ba7e0ae5481240eb637f3d38f55632a3b4a47261dd5a1c8c  ./identidad/re
 a6ed7fdbb0dd105e87d2fc9a2d98e91994e2a439dedf133480cb92b3c3451b85  ./identidad/registro-ia/README.md
 6ad76bc2f259937623d697b8ab07417f9c4726d2e1684eb171602d36e2894d3b  ./identidad/registro-ia/guardrails.js
 ab0231a3d3d026aabd4c7daca228c9f8afc2b7e7a6ee4bd533d96a771cc8da60  ./identidad/registro-ia/ia.js
-99f75a6565488a79f77ae14a305b7b0fda10fb6666902498a1c12d67f8e9b81b  ./identidad/registro-ia/index.html
+9ed621e4651bbd377279f71482aaea6a0b9bbd99fb47ae7388aa63616194f6b5  ./identidad/registro-ia/index.html
 021344c1c963ef4617e3f4bb7a68a16107c8f2c089b63efc4cda119e8250325f  ./identidad/registro-ia/log-acciones.js
 d03de6542153575c49c8f6937db2514e68a0fece8238fc677eb39c64937d26d5  ./identidad/registro-ia/manual.html
 22348c8b8f7116ea9f19d3ba704d16728791e2b147c771eab1ce8013823d55f4  ./identidad/registro-ia/pasaporte-ia.html
