@@ -1,118 +1,111 @@
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║  ○_●  P O L Í T I C A   D E   S E G U R I D A D                     ║
+║  ◢◤◥◣ KRONOS PROTOCOL · LOCAL-FIRST CRYPTOGRAPHY                    ║
+║  ◥◣◢◤ 51% HUMANO · 49% IA                                           ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
 # Política de Seguridad · KRONOS Protocol
 
-## Modelo de seguridad
+## 🔒 Filosofía de privacidad absoluta
 
-KRONOS es un framework **local-first**. Esto significa:
+KRONOS es un framework **local-first** diseñado por Marco Antonio
+Rojas Valdovinos + KRONOS IA. Esto significa:
 
 - **No hay servidores centrales** que puedan ser comprometidos.
 - **No hay bases de datos remotas** que puedan ser filtradas.
 - **No hay telemetría** que pueda exponer al usuario.
-- **Toda la criptografía ocurre en el navegador** del usuario, usando Web Crypto API.
+- **Toda la criptografía ocurre en el navegador**, usando Web Crypto API.
+- **El descifrado (AES-GCM-256) ocurre solo en memoria volátil.**
 
-Esto reduce drásticamente la superficie de ataque, pero **no la elimina**.
+Esto reduce drásticamente la superficie de ataque, **pero no la elimina**.
 
 ---
 
-## Alcance
+## 🎯 Alcance
 
-### En alcance
+### ✅ En alcance
 
 - Vulnerabilidades en código JavaScript del repositorio.
 - Fallos en el uso de Web Crypto API (SHA-256, Ed25519, AES-GCM).
-- Debilidades en el manejo de claves (almacenamiento, derivación, exposición).
+- Debilidades en el manejo de claves.
 - Ataques de prompt injection contra agentes IA del ecosistema.
 - Problemas de integridad en el log de acciones.
-- Exposición de datos sensibles a través de APIs del navegador.
-- Vulnerabilidades en dependencias externas (Dexie, ethers.js, fuentes, CDNs).
+- Exposición de datos sensibles vía APIs del navegador.
+- Vulnerabilidades en dependencias externas.
 
-### Fuera de alcance
+### ❌ Fuera de alcance
 
 - Coerción física al usuario o al fundador.
-- Ataques al dispositivo del usuario (malware, robo físico).
+- Ataques al dispositivo del usuario (malware, robo).
 - Vulnerabilidades del navegador (Chrome, Brave, Firefox, Safari).
-- Ataques a la red Ethereum (fuera de nuestro control).
+- Ataques a la red Ethereum.
 - Ingeniería social al usuario.
 - Cualquier ataque que requiera acceso físico no autorizado.
 
 ---
 
-## Cómo reportar una vulnerabilidad
+## 🐛 Reporte responsable de vulnerabilidades
 
-**Canal exclusivo y privado:**
+Al ser un desarrollo criptográfico experimental pre-alpha, agradecemos
+auditorías de la comunidad. Si encuentras un fallo en el **árbol de Merkle**,
+la **firma de llaves Ed25519** o la **persistencia en IndexedDB**:
 
-Por favor, abre un **GitHub Security Advisory** en:
+1. **No abras un Issue público.**
+2. Abre un **GitHub Security Advisory** privado:
+   ```
+   github.com/Marcorojas17/kronos-protocol/security/advisories/new
+   ```
+3. O envía un desglose técnico a: `marco.a.rojas.v@hotmail.com`
+   Asunto: `[KRONOS SECURITY] <descripción breve>`
 
-```
-github.com/Marcorojas17/kronos-protocol/security/advisories/new
-```
-
-**NO abras un Issue público** para reportar vulnerabilidades. Un Issue público
-expone el problema antes de que pueda ser corregido.
-
-**NO publiques en redes sociales** ni en foros públicos.
-
----
-
-## Qué incluir en el reporte
-
-Para que podamos evaluar y responder rápidamente, incluye:
-
-1. **Descripción detallada** del hallazgo.
-2. **Pasos para reproducir** (step-by-step).
-3. **Impacto potencial estimado** (qué se compromete, en qué condiciones).
-4. **Versión del navegador y sistema operativo** donde lo probaste.
-5. **Capturas o videos** si aplica.
-6. **Tu nombre o seudónimo** (si quieres ser acreditado).
+Las vulnerabilidades confirmadas se mitigarán en el repositorio bajo
+el principio de **transparencia de código**.
 
 ---
 
-## Tiempos de respuesta
+## 📋 Qué incluir en el reporte
+
+1. Descripción detallada del hallazgo.
+2. Pasos para reproducir (step-by-step).
+3. Impacto potencial estimado.
+4. Navegador y sistema operativo donde lo probaste.
+5. Capturas o videos si aplica.
+6. Nombre o seudónimo (si deseas crédito).
+
+---
+
+## ⏱️ Tiempos de respuesta
 
 | Tiempo | Acción |
 | :--- | :--- |
-| **72 horas** | Confirmación de recepción del reporte |
-| **7 días** | Evaluación inicial y clasificación (crítico, medio, bajo) |
+| **72 horas** | Confirmación de recepción |
+| **7 días** | Evaluación inicial y clasificación |
 | **30 días** | Remediación o fix objetivo |
-| **90 días** | Divulgación coordinada (coordinated disclosure) |
-
-Si el reporte es válido y significativo, te acreditaremos en el CHANGELOG
-del repositorio (si así lo deseas).
+| **90 días** | Divulgación coordinada |
 
 ---
 
-## Historial de vulnerabilidades conocidas
+## 🛡️ Buenas prácticas para usuarios
 
-**Al día de esta versión:** Ninguna vulnerabilidad activa conocida.
-
-Esta sección se actualizará a medida que se reporten y resuelvan hallazgos.
-
----
-
-## Buenas prácticas para usuarios
-
-- **Usa HTTPS siempre.** No abras la demo sobre HTTP.
-- **Verifica los hashes** de los archivos que descargues.
-- **No compartas tu contraseña maestra** con nadie, ni con KRONOS IA.
+- Usa **HTTPS siempre**. No abras la demo sobre HTTP.
+- **Verifica hashes** de archivos descargados.
+- **No compartas tu contraseña maestra** con nadie.
 - **Exporta tus certificados** como respaldo periódicamente.
-- **Mantén tu navegador actualizado** para tener Web Crypto API moderna.
+- **Mantén tu navegador actualizado**.
 
 ---
 
-## Contacto
+## 🪶 Firma del responsable de seguridad
 
-Para temas de seguridad **no críticos** o consultas generales:
-
-- Email: marco.a.rojas.v@hotmail.com
-- Asunto: `[KRONOS SECURITY] <descripción breve>`
-
----
-
-## Reconocimiento
-
-Agradecemos a toda persona que dedique tiempo a auditar este proyecto.
-La seguridad de un protocolo abierto es responsabilidad de la comunidad
-que lo construye y lo cuestiona.
-
----
+```
+    ┌─────────────────────────────────────────────────────┐
+    │  ○_●  Marco Antonio Rojas Valdovinos                │
+    │  ◢◤◥◣ Responsable de Seguridad · KRONOS Protocol    │
+    │  ◥◣◢◤ Toluca, Estado de México · 2026                │
+    │  "El legado no se hereda. Se firma."                │
+    └─────────────────────────────────────────────────────┘
+```
 
 *Última actualización: 2026*
