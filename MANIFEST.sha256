@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:29:24Z
+# Generado: 2026-09-27T12:31:02Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -98,6 +98,7 @@ e4e1e41268e6714fc18920adcfd9eb1a700979d2fff27512e421dfdb512cee01  ./gobernanza/p
 be3a394bc106beae6d1404556397aefdf93517e510000a0b84270bd3b5d41088  ./gobernanza/propuestas-votacion/styles.css
 60cdede71fc63928d285d3e167165886409da478735cd1f2466ee0eae57bd3e5  ./gobernanza/propuestas-votacion/votacion.js
 80d8d810ea28b87d8253f2d8d32f70374593fb9bf89abb226bcfce9dcd0c66e5  ./gobernanza/quorum-mayorias/index.html
+37e9e51d4acf2354ec81203936679d05cc8461f1c89f49860e2a7aa8e49e81dc  ./gobernanza/quorum-mayorias/manual.html
 913f37f58e98ffb449996b3b65d9f12bf480358abcaf4fa1dc3631dffedb2d77  ./gobernanza/quorum-mayorias/quorum.js
 dac2406e40a11b3c0e15b3712c8066a79a83e9168886ce47759204f68660fb5d  ./guardian.py
 c6465083f7492bc6a70bd3864dc7159e8dd14564dd2fc755b24306550d6ad9d5  ./guardians/GUARDIAN-ACTA.md
