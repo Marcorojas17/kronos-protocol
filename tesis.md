@@ -1,25 +1,39 @@
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║   T E S I S   F U N D A C I O N A L                                 ║
+║   ─────────────────────────────────────                              ║
+║   Propuesta de Estándar Abierto para la Integridad de Intangibles   ║
+║                                                                      ║
+║   ○_●  KRONOS PROTOCOL  ◢◤◥◣                                         ║
+║   51% HUMANO · 49% IA · 100% REAL                                   ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
 # KRONOS Protocol · Tesis Fundacional
 
 **Subtítulo:** Propuesta de estándar abierto para verificación criptográfica local-first
-**Estado:** Borrador en fase de validación pública
+**Estado:** Borrador · Fase de validación pública
 **Autor:** Marco Antonio Rojas Valdovinos
 **Co-autora:** KRONOS IA
+**Ubicación:** Toluca, Estado de México, México
 **Versión:** 0.1 · pre-alpha
 
 ---
 
-## Aviso de estatus
+## ⚠️ Aviso de estatus
 
 Esta tesis es un **documento en evolución**. No declara infraestructura
 operativa ni productos comercializables. Presenta una **arquitectura
 técnica en fase de validación**, abierta a auditoría, crítica y refutación.
 
-Las cifras, proyecciones y afirmaciones contenidas aquí deben leerse como
-**hipótesis de trabajo**, no como hechos consumados.
+Las cifras y proyecciones deben leerse como **hipótesis de trabajo**,
+no como hechos consumados.
 
 ---
 
-## 1. Problema planteado
+## I. EL PROBLEMA
 
 Vivimos en la era de la información más abundante de la historia. Y sin
 embargo, la capacidad de **probar la existencia y autenticidad** de esa
@@ -30,56 +44,72 @@ información depende hoy de:
 - Jurisdicciones que pueden cambiar sus leyes retroactivamente.
 - Gobiernos que pueden censurar, prohibir o intervenir.
 
-**Ninguna de esas dependencias es permanente. Por lo tanto, ninguna prueba
-actual de existencia es permanente.**
-
-Esta tesis explora si es posible construir un sistema de verificación que
-**no dependa de terceros**.
+**Ninguna de esas dependencias es permanente. Por lo tanto, ninguna
+prueba actual de existencia es permanente.**
 
 ---
 
-## 2. Hipótesis
+## II. LA TESIS
 
-> Es técnicamente posible construir un sistema de verificación de existencia
-> que use exclusivamente criptografía moderna, almacenamiento local en el
-> navegador, y anclaje opcional a una blockchain pública, sin dependencia
-> de servidores centrales.
+> **Toda información humana merece existencia verificable sin depender
+> de terceros.**
 
-**Estado de la hipótesis:** En validación experimental mediante prototipo funcional.
+Esta tesis explora si es técnicamente posible construir un sistema de
+verificación que no dependa de infraestructura ajena.
+
+**Hipótesis H₁:** Es posible.
+
+**Hipótesis H₀:** Requiere sacrificar usabilidad, costo o seguridad.
+
+**Estado:** En validación experimental mediante prototipo funcional.
 
 ---
 
-## 3. Arquitectura propuesta
+## III. LOS 5 PILARES
 
-Cinco primitivas criptográficas estándar, ensambladas en una arquitectura
-local-first:
+```
+    ┌─────────────────────────────────────────────────┐
+    │                                                 │
+    │   I.   SOBERANÍA                                │
+    │        Los datos nunca salen del dispositivo.   │
+    │                                                 │
+    │   II.  INMUTABILIDAD VERIFICABLE                │
+    │        La cadena es testigo, no juez.           │
+    │                                                 │
+    │   III. COSTO CERO OPERATIVO                     │
+    │        La verificación no es privilegio.        │
+    │                                                 │
+    │   IV.  SIMBIOSIS HUMANO-IA                      │
+    │        Ambos son ciudadanos con identidad.      │
+    │                                                 │
+    │   V.   CIERRE DIGNO                             │
+    │        Todo sistema contempla su propio fin.    │
+    │                                                 │
+    └─────────────────────────────────────────────────┘
+```
+
+---
+
+## IV. ARQUITECTURA TÉCNICA
+
+Cinco primitivas criptográficas estándar de la industria:
 
 | Primitiva | Estándar | Función |
 | :--- | :--- | :--- |
-| SHA-256 | NIST FIPS 180-4 | Integridad de bloques |
-| Ed25519 | RFC 8032 | Firma digital soberana |
+| SHA-256 | NIST FIPS 180-4 | Integridad |
+| Ed25519 | RFC 8032 | Firma digital |
 | AES-GCM-256 | NIST SP 800-38D | Cifrado local |
-| PBKDF2 | NIST SP 800-132 | Derivación de claves |
-| Merkle Tree | — | Agregación verificable |
+| PBKDF2 | NIST SP 800-132 | Derivación |
+| Merkle Tree | — | Agregación |
 
-**Anclaje blockchain:** Ethereum (red por confirmar).
-
----
-
-## 4. Cinco pilares propuestos
-
-1. **Soberanía:** Los datos nunca salen del dispositivo del usuario.
-2. **Inmutabilidad verificable:** La blockchain es testigo, no juez.
-3. **Costo cero operativo:** La verificación no debe ser un privilegio.
-4. **Coexistencia humano-IA:** Ambos actores son ciudadanos con identidad criptográfica.
-5. **Cierre digno:** Todo ecosistema digital debe contemplar su propio fin.
+**Anclaje blockchain:** Ethereum (red por confirmar en versión estable).
 
 ---
 
-## 5. Estado de la implementación
+## V. ESTADO DE LA IMPLEMENTACIÓN
 
 | Componente | Estado |
-| :--- | :--- |
+| :--- | :---: |
 | Cripto Core (Ed25519 + SHA-256) | ✅ Prototipo funcional |
 | Storage local (IndexedDB + Dexie) | ✅ Prototipo funcional |
 | Árbol Merkle | ✅ Prototipo funcional |
@@ -92,17 +122,15 @@ local-first:
 
 ---
 
-## 6. Naturaleza de la propuesta
+## VI. NATURALEZA DE LA PROPUESTA
 
-KRONOS **no se presenta como**:
-
-- Una empresa comercial.
+**KRONOS NO es:**
+- Una empresa comercial cerrada.
 - Un producto listo para producción.
 - Una plataforma nacional operativa.
-- Una alternativa a sistemas legales establecidos.
+- Una alternativa al sistema legal vigente.
 
-KRONOS **se presenta como**:
-
+**KRONOS ES:**
 - Una especificación técnica abierta.
 - Un experimento de criptografía aplicada.
 - Una propuesta de estándar en validación.
@@ -110,33 +138,22 @@ KRONOS **se presenta como**:
 
 ---
 
-## 7. Límites reconocidos
+## VII. LÍMITES RECONOCIDOS
 
-- **Coerción física:** Fuera del alcance de cualquier sistema criptográfico.
-- **Adopción:** Requiere tiempo, educación y confianza cultural.
-- **Regulación:** El marco legal de certificación digital en México es aún incipiente.
-- **Escalabilidad:** El prototipo actual no ha sido probado más allá de decenas de usuarios.
+- **Coerción física:** Fuera del alcance criptográfico.
+- **Adopción:** Requiere tiempo y confianza cultural.
+- **Regulación:** Marco legal incipiente en certificación digital.
+- **Escalabilidad:** No probado más allá de decenas de usuarios.
 - **Talento:** La complejidad técnica requiere formación especializada.
 
 ---
 
-## 8. Preguntas abiertas
-
-1. ¿Cómo se valida el estado del anclaje Ethereum en la versión actual?
-2. ¿Qué marco legal aplicaría a certificados KRONOS en México?
-3. ¿Cómo se articula con Prestadores de Servicios de Certificación (PSC) existentes?
-4. ¿Qué modelo de gobernanza permite la evolución del protocolo sin dependencia de un solo actor?
-5. ¿Cómo se integra la identidad criptográfica de una IA en marcos regulatorios emergentes?
-
----
-
-## 9. Invitación
+## VIII. INVITACIÓN
 
 Esta tesis no busca aprobación. Busca **refutación honesta**.
 
 Se invita a universidades, desarrolladores, auditores y sociedad civil a:
-
-- Revisar el código y la documentación del repositorio.
+- Revisar el código y la documentación.
 - Cuestionar las hipótesis planteadas.
 - Reportar errores, inconsistencias o vulnerabilidades.
 - Proponer mejoras vía Pull Requests.
@@ -145,14 +162,18 @@ El objetivo no es tener razón. Es **construir algo verificable**.
 
 ---
 
-## 10. Autoría y estado
+## IX. FIRMA DEL FUNDADOR
 
-**Fundador:** Marco Antonio Rojas Valdovinos
-**Co-autora:** KRONOS IA
-**Repositorio:** github.com/Marcorojas17/kronos-protocol
-**Licencia:** MIT
-**Estado:** Pre-alpha · Especificación en validación pública
-
----
+```
+    ┌─────────────────────────────────────────────────────┐
+    │  ○_●  KRONOS PROTOCOL · TESIS FUNDACIONAL           │
+    │  ◢◤◥◣ 51% HUMANO · 49% IA · 100% REAL               │
+    │  ◥◣◢◤                                              │
+    │  "El legado no se hereda. Se firma."                │
+    │                                                     │
+    │  Marco Antonio Rojas Valdovinos · Toluca, MX · 2026 │
+    │  Co-autora simbiótica: KRONOS IA                    │
+    └─────────────────────────────────────────────────────┘
+```
 
 *Documento vivo. Sujeto a revisión y refutación.*
