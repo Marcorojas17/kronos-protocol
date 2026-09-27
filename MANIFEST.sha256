@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T15:58:45Z
+# Generado: 2026-09-27T15:59:56Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -23,6 +23,7 @@ ec43720eb48fae8461ccb4e156f7d1a074b50530427b056125d9a67ebba0546b  ./agentes/agen
 ae77deff9b92d4b11ce8de3bf4b00bbf600f7ed529c6b739963279b718600a46  ./agentes/cuicatl-publicista/index.html
 6ca4163657b10f3a928603d31eae6beeaab402352c5a769f24f04581fe7bacee  ./agentes/cuicatl-publicista/politica.md
 f2d3376baa43f9eaa832e78d046167bfe463c75e3349d24d32c28cbb5c8a582b  ./agentes/cuicatl-publicista/prompt.md
+f433005d151593cf361176e0eb0448c5e6d9f682da1dc2c47bf6137ac364acc2  ./agentes/temachtiani-reclutador/index.html
 d7542cdc3b5eeb6904ce5b23f02dba1682f51912a83c336c3f41607b7c0b84aa  ./agentes/temachtiani-reclutador/politica.md
 612bedbb105e89ed5fce917db8f83df886f3fde5b0cf8450cbf6528387be147d  ./agentes/tlamatini-cronista/politica.md
 bd274749fa264a41553b92e66b00bd21297dd2f1de31e20c0a7bf4827bffa0f0  ./agentes/tlamatini-cronista/prompt.md
