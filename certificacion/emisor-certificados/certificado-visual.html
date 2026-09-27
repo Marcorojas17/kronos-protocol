@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado Visual · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#1a1200;color:#F5F0E6;font-family:'Inter',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(circle at 20% 30%,rgba(255,215,0,0.15) 0%,transparent 50%),
+      radial-gradient(circle at 80% 70%,rgba(255,180,60,0.1) 0%,transparent 50%);}
+  .wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:30px 18px 80px}
+  h1.header{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(20px,4.5vw,34px);letter-spacing:5px;
+    background:linear-gradient(120deg,#FFD700,#FFEDAB,#c9a44c,#FFD700);background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    text-align:center;margin-bottom:6px;animation:shimmer 8s linear infinite}
+  @keyframes shimmer{from{background-position:0% 50%}to{background-position:300% 50%}}
+  .header-sub{text-align:center;font-size:9px;letter-spacing:4px;color:#a89a7a;text-transform:uppercase;margin-bottom:28px}
+  .estado-box{padding:16px 20px;border-radius:4px;font-size:13px;line-height:1.6;margin-bottom:20px;display:none}
+  .estado-box.on{display:block}
+  .estado-box.info{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.4);color:#FFEDAB}
+  .estado-box.warn{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.4);color:#FFEDAB}
+  .estado-box.err{background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.4);color:#FF8FA5}
+  .panel-manual{padding:20px;border:1px solid rgba(255,215,0,0.35);background:rgba(35,25,0,0.6);
+    backdrop-filter:blur(20px);border-radius:6px;margin-bottom:24px;display:none}
+  .panel-manual.on{display:block}
+  label{display:block;font-size:9px;letter-spacing:3px;color:#FFEDAB;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+  textarea{width:100%;min-height:120px;padding:12px;background:rgba(26,18,0,0.9);border:1px solid rgba(255,215,0,0.3);
+    color:#F5F0E6;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5;resize:vertical;outline:none;border-radius:3px}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;font-family:'Inter',sans-serif;font-size:10px;
+    font-weight:700;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;border-radius:3px;
+    transition:all .3s;text-decoration:none;width:100%;
+    background:linear-gradient(120deg,#FFD700,#FFEDAB);color:#1a1200;
+    box-shadow:0 0 20px rgba(255,215,0,0.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(255,215,0,0.6)}
+  .btn.ghost{background:rgba(255,215,0,0.06);color:#FFEDAB;border:1px solid rgba(255,215,0,0.5);box-shadow:none}
+  .canvas-wrap{display:none;justify-content:center;margin-top:24px}
+  .canvas-wrap.on{display:flex}
+  #cert-canvas{max-width:100%;height:auto;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.9),0 0 60px rgba(255,215,0,0.25)}
+  .acciones-export{display:none;flex-direction:column;gap:12px;margin-top:20px}
+  .acciones-export.on{display:flex}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(26,18,0,0.3);border-top-color:#1a1200;border-radius:50%;animation:spin 1s linear infinite;margin-right:8px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .modal-img{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.96);
+    padding:20px;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto}
+  .modal-img.on{display:flex}
+  .modal-img-header{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;margin-bottom:10px}
+  .modal-img-title{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:#FFEDAB}
+  .modal-img-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;
+    border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .modal-img-instruccion{max-width:1000px;width:100%;padding:14px 18px;background:rgba(255,215,0,0.1);
+    border:1px solid rgba(255,215,0,0.4);border-radius:6px;color:#FFEDAB;font-size:13px;
+    line-height:1.6;margin-bottom:16px;text-align:center}
+  #imagen-full{max-width:100%;height:auto;border-radius:6px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.9);user-select:none;-webkit-user-select:none}
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+
+<div class="wrap">
+  <h1 class="header">CERTIFICADO OFICIAL</h1>
+  <div class="header-sub">Legado Humano–IA · Documento Verificable</div>
+
+  <div class="estado-box" id="estado"></div>
+
+  <div class="panel-manual" id="panel-manual">
+    <label for="input-json">No se encontró certificado. Pega el JSON manualmente:</label>
+    <textarea id="input-json" placeholder='Pega aquí el contenido de certificado-XXXX.json...'></textarea>
+    <div class="btn-row">
+      <button class="btn" id="btn-render-manual">Generar certificado visual →</button>
+    </div>
+  </div>
+
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="cert-canvas" width="1600" height="1100"></canvas>
+  </div>
+
+  <div class="acciones-export" id="acciones">
+    <button class="btn" id="btn-descargar">🛂 Ver PNG en pantalla completa</button>
+    <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
+    <button class="btn ghost" id="btn-volver">← Volver a Emisor</button>
+  </div>
+</div>
+
+<div class="modal-img" id="modal-img">
+  <div class="modal-img-header">
+    <div class="modal-img-title">CERTIFICADO OFICIAL · KRONOS</div>
+    <button class="modal-img-close" id="modal-close">✕</button>
+  </div>
+  <div class="modal-img-instruccion">
+    📱 <strong>Mantén presionada la imagen</strong> y selecciona <strong>"Guardar imagen"</strong> o <strong>"Descargar imagen"</strong>.
+  </div>
+  <img id="imagen-full" alt="Certificado Oficial KRONOS">
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const estado = $('estado');
+  const panelManual = $('panel-manual');
+  const canvasWrap = $('canvas-wrap');
+  const acciones = $('acciones');
+  const canvas = $('cert-canvas');
+  const modal = $('modal-img');
+  const imgFull = $('imagen-full');
+
+  function setEstado(tipo, html){
+    estado.className = 'estado-box on ' + tipo;
+    estado.innerHTML = html;
+  }
+
+  function hexToBytes(hex){ const h = hex.replace(/^0x/,''); return new Uint8Array(h.match(/.{1,2}/g).map(b=>parseInt(b,16))); }
+
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath();
+  }
+
+  function drawGuilloche(ctx, x, y, w, h, color){
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+    ctx.strokeStyle = color; ctx.lineWidth = 0.4;
+    for (let i = 0; i < 50; i++){
+      ctx.beginPath();
+      for (let t = 0; t < Math.PI*4; t += 0.05){
+        const r = 20 + i * 10;
+        const cx = x + w/2 + Math.cos(t*1.3) * r * 0.5;
+        const cy = y + h/2 + Math.sin(t*1.7) * r * 0.4;
+        if (t === 0) ctx.moveTo(cx, cy); else ctx.lineTo(cx, cy);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawSignature(ctx, firmaHex, x, y, w, h, color){
+    const bytes = hexToBytes(firmaHex.slice(0, 60));
+    ctx.save();
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    let px = x, py = y + h/2;
+    ctx.moveTo(px, py);
+    for (let i = 0; i < 40; i++){
+      const dx = (w / 40);
+      const dy = ((bytes[i] - 128) / 128) * (h/2) * 0.85;
+      px += dx;
+      py = y + h/2 + dy;
+      ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function dibujarCertificado(data){
+    const W = 1600, H = 1100;
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#1a1200');
+    bg.addColorStop(0.5, '#2e2000');
+    bg.addColorStop(1, '#1a1200');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    drawGuilloche(ctx, 0, 0, W, H, 'rgba(255,215,0,0.05)');
+
+    // Marco doble
+    ctx.strokeStyle = 'rgba(255,215,0,0.6)'; ctx.lineWidth = 3;
+    roundRect(ctx, 30, 30, W-60, H-60, 8); ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,215,0,0.2)'; ctx.lineWidth = 1;
+    roundRect(ctx, 45, 45, W-90, H-90, 6); ctx.stroke();
+
+    // Esquinas
+    const esq = 50;
+    const corners = [[60,60,1,1],[W-60,60,-1,1],[60,H-60,1,-1],[W-60,H-60,-1,-1]];
+    for (const [cx,cy,dx,dy] of corners){
+      ctx.strokeStyle = '#FFD700'; ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + dy*esq); ctx.lineTo(cx, cy); ctx.lineTo(cx + dx*esq, cy);
+      ctx.stroke();
+    }
+
+    // Emblema
+    ctx.save();
+    ctx.translate(W/2, 130);
+    for (let i = 0; i < 3; i++){
+      ctx.beginPath(); ctx.arc(0, 0, 42 - i*7, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(255,215,0,${0.3 + i*0.2})`; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++){
+      const a = (i/8)*Math.PI*2 - Math.PI/2;
+      const r = i%2===0 ? 24 : 11;
+      const px = Math.cos(a)*r, py = Math.sin(a)*r;
+      if (i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#1a1200'; ctx.beginPath(); ctx.arc(0, 0, 6, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+
+    // Título
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '900 38px Cinzel, serif';
+    const gt = ctx.createLinearGradient(W/2-300, 210, W/2+300, 260);
+    gt.addColorStop(0, '#FFD700'); gt.addColorStop(0.5, '#FFEDAB'); gt.addColorStop(1, '#FFD700');
+    ctx.fillStyle = gt; ctx.fillText('CERTIFICADO OFICIAL', W/2, 230);
+
+    ctx.font = '600 12px Inter, sans-serif';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('LEGADO HUMANO–IA · PROTOCOLO KRONOS', W/2, 265);
+
+    // Tipo y título destacados
+    ctx.font = '600 11px Inter, sans-serif';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.fillText(data.tipo_documento.toUpperCase(), W/2, 320);
+
+    ctx.font = '700 42px Cinzel, serif';
+    ctx.fillStyle = '#F5F0E6';
+    ctx.fillText(data.titulo, W/2, 365);
+
+    // Destinatario
+    ctx.font = '300 20px Inter, sans-serif';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('Otorgado a', W/2, 420);
+
+    ctx.font = '600 26px Inter, sans-serif';
+    ctx.fillStyle = '#FFD700';
+    ctx.fillText(data.destinatario, W/2, 458);
+
+    // Separador
+    ctx.strokeStyle = 'rgba(255,215,0,0.3)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(200, 500); ctx.lineTo(W-200, 500); ctx.stroke();
+
+    // Columnas
+    const colIzq = 120, colDer = 900;
+    let y = 550;
+
+    ctx.textAlign = 'left';
+    const drawField = (label, value, mono = false) => {
+      ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+      ctx.fillText(label.toUpperCase(), colIzq, y); y += 18;
+      ctx.font = mono ? '400 11px JetBrains Mono, monospace' : '400 14px Inter, sans-serif';
+      ctx.fillStyle = '#F5F0E6';
+      if (value.length > 50 && mono) {
+        ctx.fillText(value.slice(0, 50), colIzq, y); y += 14;
+        ctx.fillText(value.slice(50), colIzq, y); y += 20;
+      } else {
+        ctx.fillText(value, colIzq, y); y += 26;
+      }
+    };
+
+    if (data.descripcion) drawField('Descripción', data.descripcion);
+    drawField('Hash del contenido', data.hash_contenido, true);
+    drawField('Payload hash', data.payload_hash, true);
+
+    let yd = 550;
+    ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('FIRMANTE', colDer, yd); yd += 18;
+    ctx.font = '400 15px Inter, sans-serif'; ctx.fillStyle = '#F5F0E6';
+    ctx.fillText(data.firmante, colDer, yd); yd += 34;
+
+    ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('FIRMA ED25519', colDer, yd); yd += 14;
+    drawSignature(ctx, data.firma_ed25519, colDer, yd, 560, 60, 'rgba(255,215,0,0.9)');
+    yd += 70;
+    ctx.strokeStyle = 'rgba(255,215,0,0.3)';
+    ctx.beginPath(); ctx.moveTo(colDer, yd); ctx.lineTo(colDer+560, yd); ctx.stroke();
+    yd += 20;
+
+    ctx.font = '400 10px JetBrains Mono, monospace'; ctx.fillStyle = '#a89a7a';
+    ctx.fillText(data.firma_ed25519.slice(0, 60) + '…', colDer, yd); yd += 30;
+
+    ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('CLAVE PÚBLICA DEL FIRMANTE', colDer, yd); yd += 18;
+    ctx.font = '400 10px JetBrains Mono, monospace'; ctx.fillStyle = '#c9a44c';
+    ctx.fillText(data.firmante_clave_publica.slice(0, 60), colDer, yd); yd += 14;
+    ctx.fillText(data.firmante_clave_publica.slice(60), colDer, yd);
+
+    // Timestamp inferior
+    ctx.textAlign = 'center';
+    ctx.font = '600 11px JetBrains Mono, monospace';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('EMITIDO: ' + data.timestamp, W/2, H - 130);
+
+    // Sello
+    const sx = W - 130, sy = H - 130, sr = 50;
+    for (let i = 0; i < 48; i++){
+      const a0 = (i/48)*Math.PI*2, a1 = ((i+1)/48)*Math.PI*2;
+      const t = i / 48;
+      ctx.strokeStyle = t < 0.5 ? '#FFD700' : '#FFEDAB';
+      ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.arc(sx, sy, sr, a0, a1); ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(sx, sy, sr-7, 0, Math.PI*2);
+    ctx.fillStyle = '#1a1200'; ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy, sr-12, 0, Math.PI*2);
+    ctx.strokeStyle = '#FFEDAB'; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.font = '900 34px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('✓', sx, sy);
+
+    ctx.font = '600 8px JetBrains Mono, monospace'; ctx.fillStyle = '#FFD700';
+    ctx.fillText('VERIFICADO', sx, sy + sr + 14);
+    ctx.textBaseline = 'top';
+
+    // Marca de agua
+    ctx.save();
+    ctx.translate(W/2, H/2 + 50);
+    ctx.rotate(-Math.PI/10);
+    ctx.font = '700 100px Cinzel, serif';
+    ctx.fillStyle = 'rgba(255,215,0,0.04)';
+    ctx.textAlign = 'center';
+    ctx.fillText('KRONOS', 0, 0);
+    ctx.restore();
+
+    // Footer
+    ctx.textAlign = 'center';
+    ctx.font = '400 10px JetBrains Mono, monospace';
+    ctx.fillStyle = '#5a6473';
+    ctx.fillText('© 2026 Marco A. Rojas V. + KRONOS IA · Documento verificable on-chain · 51% Humano · 49% IA', W/2, H - 22);
+  }
+
+  function abrirModalImagen(){
+    try {
+      const dataURL = canvas.toDataURL('image/png', 1.0);
+      imgFull.src = dataURL;
+      modal.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado generado.</strong> Mantén presionada la imagen para guardarla.');
+    } catch(e){
+      setEstado('err', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  }
+
+  function cerrarModal(){ modal.classList.remove('on'); }
+
+  async function cargarDesdeDexie(){
+    try {
+      const db = new Dexie('kronos-certificados');
+      db.version(1).stores({ emitidos: '++id, tipo, hash_contenido, timestamp_emision' });
+      await db.open();
+      const todos = await db.emitidos.toArray();
+      db.close();
+      if (todos.length === 0) return null;
+      todos.sort((a,b) => (b.id || 0) - (a.id || 0));
+      return todos[0];
+    } catch(e){
+      console.warn('Dexie no disponible:', e);
+      return null;
+    }
+  }
+
+  (async function init(){
+    setEstado('warn', '<span class="spinner"></span> <strong>Buscando certificado…</strong>');
+
+    let data = null;
+    try {
+      const desdeSession = sessionStorage.getItem('certificado-temp');
+      if (desdeSession){
+        data = JSON.parse(desdeSession);
+        sessionStorage.removeItem('certificado-temp');
+      }
+    } catch(e){ /* ignorar */ }
+
+    if (!data){
+      const guardado = await cargarDesdeDexie();
+      if (guardado && guardado.payload_hash) data = guardado;
+    }
+
+    if (data && data.payload_hash){
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado cargado.</strong> Toca "Ver PNG" o "Imprimir / PDF".');
+    } else {
+      setEstado('warn', '<strong>⚠ No se encontró certificado.</strong> Pega el JSON manualmente abajo, o vuelve al <a href="./" style="color:#FFEDAB;text-decoration:underline">Emisor</a>.');
+      panelManual.classList.add('on');
+    }
+  })();
+
+  $('btn-render-manual').addEventListener('click', () => {
+    const raw = $('input-json').value.trim();
+    if (!raw) return setEstado('err', '<strong>✗ Pega el JSON primero.</strong>');
+    try {
+      const data = JSON.parse(raw);
+      if (!data.payload_hash) throw new Error('Este JSON no es un certificado KRONOS.');
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado generado.</strong>');
+    } catch(e){
+      setEstado('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-descargar').addEventListener('click', abrirModalImagen);
+  $('btn-imprimir').addEventListener('click', () => window.print());
+  $('btn-volver').addEventListener('click', () => window.location.href = './');
+  $('modal-close').addEventListener('click', cerrarModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarModal(); });
+})();
+</script>
+</body>
+</html>
