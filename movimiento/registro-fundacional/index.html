@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Fundacional · 100 Plazas · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Registro</a>
+      <a href="manual.html">Manual</a>
+      <a href="../../gobernanza/revocacion-auditoria/">Gobernanza</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Movimiento Fundacional · 100 Plazas · v1.0</div>
+    <h1 class="title">Los<br>primeros<br>100.</h1>
+    <p class="lede">
+      <strong>100 plazas fundacionales.</strong> 79 humanos, 19 IAs, y 1 reservada para el futuro.
+      Cada fundador recibe un <strong>Certificado Fundacional firmado con Ed25519</strong>
+      con número único e irrepetible. <strong>El cupo se cierra automáticamente al llegar a 100.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Estado del Cupo</h2>
+      <span class="count" id="cupo-estado">—</span>
+    </div>
+    <div class="cupo-bar" id="cupo-bar">
+      <div class="cupo-item"><div class="num" id="cupo-humanos">0/79</div><div class="lbl">Humanos</div></div>
+      <div class="cupo-item"><div class="num" id="cupo-ias">1/19</div><div class="lbl">IAs</div></div>
+      <div class="cupo-item verde"><div class="num" id="cupo-disponibles">99</div><div class="lbl">Disponibles</div></div>
+      <div class="cupo-item"><div class="num" id="cupo-reservada">1</div><div class="lbl">Reservada</div></div>
+    </div>
+
+    <div class="section-head" style="margin-top:60px;">
+      <h2>Solicitar una Plaza</h2>
+      <span class="count">Formulario abierto</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="tipo">Tipo de solicitante *</label>
+        <select id="tipo">
+          <option value="humano">Humano</option>
+          <option value="ia">Inteligencia Artificial</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="nombre">Nombre completo / Nombre de la IA *</label>
+        <input type="text" id="nombre" placeholder="Ej. María Fernanda López o Copilot-X">
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="alias">Alias / Seudónimo</label>
+        <input type="text" id="alias" placeholder="Cómo te reconocerán los demás fundadores">
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="email">Email de contacto *</label>
+        <input type="email" id="email" placeholder="tu@correo.com">
+      </div>
+
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="pais">País</label>
+        <input type="text" id="pais" placeholder="Ej. México">
+      </div>
+
+      <div class="paso">
+        <span class="num">06</span>
+        <label for="rol_deseado">Rol deseado en el protocolo</label>
+        <select id="rol_deseado">
+          <option value="Fundador">Fundador</option>
+          <option value="Colaborador">Colaborador</option>
+          <option value="Testigo">Testigo</option>
+          <option value="Auditor">Auditor</option>
+          <option value="Ciudadano">Ciudadano</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">07</span>
+        <label for="motivacion">Motivación * <span class="hint">(mín. 50 caracteres)</span></label>
+        <textarea id="motivacion" rows="4" placeholder="¿Por qué quieres ser parte de los primeros 100? ¿Qué te mueve de este proyecto?"></textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">08</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn esperanza" id="btn-solicitar">Solicitar plaza fundacional →</button>
+          <button class="btn ghost" id="btn-ver-fundadores">👑 Ver fundadores aceptados</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <!-- PANEL ADMIN -->
+    <div class="tarjeta-wrap" id="panel-admin" hidden>
+      <div class="section-head" style="margin-top:60px;">
+        <h2>Panel del Fundador</h2>
+        <span class="count">Solo para el fundador original</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">PANEL DE ADMINISTRACIÓN · v1.0</div>
+
+        <div class="paso" style="padding-left:0;margin-top:20px;">
+          <label for="password">Contraseña maestra del fundador</label>
+          <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+        </div>
+
+        <div class="acciones" style="margin-top:20px;flex-direction:row;justify-content:center;flex-wrap:wrap;gap:12px;">
+          <button class="btn ghost" id="btn-listar-pendientes" style="width:auto;">📋 Solicitudes pendientes</button>
+          <button class="btn ghost" id="btn-cerrar-admin" style="width:auto;">Cerrar panel</button>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Solicitudes Pendientes</h2>
+        <span class="count" id="count-pendientes">0</span>
+      </div>
+      <div class="lista" id="lista-pendientes"></div>
+    </div>
+
+    <!-- PANEL CERTIFICADO EMITIDO -->
+    <div class="tarjeta-wrap" id="panel-certificado" hidden>
+      <div class="section-head" style="margin-top:60px;">
+        <h2>Certificado Fundacional Emitido</h2>
+        <span class="count" id="cert-plaza">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">CERTIFICADO FUNDACIONAL · v1.0</div>
+
+        <div style="text-align:center;padding:20px 0;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#FFEDAB;letter-spacing:3px;margin-bottom:10px;">PLAZA FUNDACIONAL</div>
+          <div id="cert-numero-grande" style="font-family:'Fraunces',serif;font-size:64px;font-weight:900;color:#FFD700;letter-spacing:4px;line-height:1;">000</div>
+        </div>
+
+        <div class="tarjeta-kv" style="margin-top:20px;">
+          <div class="tk"><span class="k">Tipo</span><span class="v" id="cert-tipo">—</span></div>
+          <div class="tk"><span class="k">Nombre</span><span class="v" id="cert-nombre">—</span></div>
+          <div class="tk"><span class="k">Alias</span><span class="v" id="cert-alias">—</span></div>
+          <div class="tk"><span class="k">Rol otorgado</span><span class="v" id="cert-rol">—</span></div>
+          <div class="tk"><span class="k">Payload hash</span><span class="v mono" id="cert-payload">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="cert-firma">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="cert-fecha">—</span></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-exportar-cert" style="width:auto;">Exportar .json</button>
+      </div>
+    </div>
+
+    <!-- LISTA DE FUNDADORES -->
+    <div class="tarjeta-wrap" id="panel-fundadores" hidden>
+      <div class="section-head" style="margin-top:60px;">
+        <h2>Fundadores Aceptados</h2>
+        <span class="count" id="count-fundadores">0</span>
+      </div>
+      <div class="lista" id="lista-fundadores"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+      <span class="sig">Movimiento · Registro Fundacional</span>
+    </div>
+    <div class="footer-links">
+      <a href="manual.html">Manual</a> ·
+      <a href="../../gobernanza/revocacion-auditoria/">Gobernanza</a> ·
+      <a href="/kronos-protocol/">Inicio</a>
+    </div>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { RegistroFundacional } from './registro.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const registro = new RegistroFundacional(core);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  // ── Actualizar barra de cupo ─────────────────────────────
+  async function refrescarCupo() {
+    await registro.init();
+    const c = await registro.estadoCupo();
+    $('cupo-humanos').textContent = `${c.humanos_ocupadas}/${c.humanos_max}`;
+    $('cupo-ias').textContent = `${c.ias_ocupadas + 1}/${c.ias_max + 1}`;
+    $('cupo-disponibles').textContent = c.disponibles;
+    $('cupo-reservada').textContent = c.reservadas;
+    $('cupo-estado').textContent = c.cerrado ? 'CERRADO' : 'ABIERTO';
+    $('cupo-estado').style.color = c.cerrado ? '#fca5a5' : '#3DDC84';
+  }
+  refrescarCupo();
+
+  // ── Enviar solicitud ─────────────────────────────────────
+  $('btn-solicitar').addEventListener('click', async () => {
+    try {
+      const datos = {
+        tipo: $('tipo').value,
+        nombre: $('nombre').value.trim(),
+        alias: $('alias').value.trim(),
+        email: $('email').value.trim(),
+        pais: $('pais').value.trim(),
+        rol_deseado: $('rol_deseado').value,
+        motivacion: $('motivacion').value.trim()
+      };
+
+      if (!datos.nombre || !datos.email || !datos.motivacion) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+        return;
+      }
+      if (datos.motivacion.length < 50) {
+        setFb('error', '<strong>✗ Motivación muy corta.</strong> Mínimo 50 caracteres.');
+        return;
+      }
+
+      setFb('success', '<strong>⏳ Registrando solicitud…</strong>');
+      const s = await registro.solicitar(datos);
+
+      setFb('success', `<strong>✓ Solicitud registrada.</strong> Hash: ${s.hash_solicitud.slice(0, 16)}… El fundador la revisará.`);
+
+      // Limpiar formulario
+      $('nombre').value = '';
+      $('alias').value = '';
+      $('email').value = '';
+      $('pais').value = '';
+      $('motivacion').value = '';
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // ── Abrir panel admin (doble toque en el título) ─────────
+  let toquesTitulo = 0;
+  let timerTitulo = null;
+  document.querySelector('h1.title').addEventListener('click', () => {
+    toquesTitulo++;
+    clearTimeout(timerTitulo);
+    if (toquesTitulo >= 3) {
+      toquesTitulo = 0;
+      $('panel-admin').hidden = false;
+      setFb('success', '<strong>🔑 Panel del fundador abierto.</strong> Ingresa tu contraseña.');
+    }
+    timerTitulo = setTimeout(() => { toquesTitulo = 0; }, 800);
+  });
+
+  $('btn-cerrar-admin').addEventListener('click', () => {
+    $('panel-admin').hidden = true;
+  });
+
+  // ── Listar pendientes ────────────────────────────────────
+  $('btn-listar-pendientes').addEventListener('click', async () => {
+    try {
+      const pass = $('password').value;
+      if (pass.length < 8) {
+        setFb('error', '<strong>✗ Contraseña del fundador requerida.</strong>');
+        return;
+      }
+      if (!core.inicializado) await core.init(pass);
+
+      await registro.init();
+      const pendientes = await registro.listarSolicitudes('pendiente');
+      $('count-pendientes').textContent = pendientes.length;
+
+      if (pendientes.length === 0) {
+        $('lista-pendientes').innerHTML = '<div style="text-align:center;padding:40px;color:#a89a7a;font-style:italic;">Sin solicitudes pendientes.</div>';
+      } else {
+        pendientes.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        $('lista-pendientes').innerHTML = pendientes.map(s => `
+          <div class="lista-item" data-id="${s.id}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+              <div style="flex:1;">
+                <div style="font-size:16px;color:#F5F0E6;font-weight:500;margin-bottom:6px;">${s.nombre} ${s.alias ? '<em style="color:#FFEDAB">· "' + s.alias + '"</em>' : ''}</div>
+                <div style="font-size:10px;letter-spacing:2px;color:#FFEDAB;text-transform:uppercase;margin-bottom:8px;">${s.tipo} · ${s.rol_deseado || 'Fundador'} · ${s.pais || '(país no declarado)'}</div>
+                <div style="font-size:12px;color:#a89a7a;line-height:1.6;">${s.motivacion}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:10px;color:#a89a7a;font-family:monospace;">${s.timestamp.slice(0, 10)}</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn esperanza btn-aceptar" data-id="${s.id}" style="width:auto;padding:12px 18px;font-size:10px;">✓ Aceptar y emitir plaza</button>
+              <button class="btn ghost btn-rechazar" data-id="${s.id}" style="width:auto;padding:12px 18px;font-size:10px;">✗ Rechazar</button>
+            </div>
+          </div>
+        `).join('');
+
+        // Listeners aceptar
+        document.querySelectorAll('.btn-aceptar').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              const id = parseInt(btn.dataset.id);
+              setFb('success', '<strong>⏳ Emitiendo certificado fundacional…</strong>');
+              const f = await registro.aceptar(id);
+
+              $('cert-plaza').textContent = `Plaza ${f.numero_formateado}`;
+              $('cert-numero-grande').textContent = f.numero_formateado;
+              $('cert-tipo').textContent = f.tipo.toUpperCase();
+              $('cert-nombre').textContent = f.nombre;
+              $('cert-alias').textContent = f.alias || '(sin alias)';
+              $('cert-rol').textContent = f.rol_otorgado;
+              $('cert-payload').textContent = f.payload_hash;
+              $('cert-firma').textContent = f.firma_ed25519.slice(0, 80) + '…';
+              $('cert-fecha').textContent = f.timestamp;
+
+              $('panel-certificado').hidden = false;
+              await refrescarCupo();
+              await $('btn-listar-pendientes').click();
+              setFb('success', `<strong>✓ Plaza ${f.numero_formateado} emitida a ${f.nombre}.</strong>`);
+            } catch (e) {
+              setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+            }
+          });
+        });
+
+        // Listeners rechazar
+        document.querySelectorAll('.btn-rechazar').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              const id = parseInt(btn.dataset.id);
+              const motivo = prompt('Motivo del rechazo (opcional):') || '(sin motivo)';
+              await registro.rechazar(id, motivo);
+              await $('btn-listar-pendientes').click();
+              setFb('success', '<strong>✓ Solicitud rechazada.</strong>');
+            } catch (e) {
+              setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+            }
+          });
+        });
+      }
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // ── Exportar certificado ─────────────────────────────────
+  $('btn-exportar-cert').addEventListener('click', () => {
+    try {
+      if (!registro.fundadorActual) return;
+      const blob = registro.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `certificado-fundacional-plaza-${registro.fundadorActual.numero_formateado}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Certificado exportado.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // ── Ver lista de fundadores ─────────────────────────────
+  $('btn-ver-fundadores').addEventListener('click', async () => {
+    try {
+      await registro.init();
+      const fundadores = await registro.listarFundadores();
+      $('count-fundadores').textContent = fundadores.length;
+
+      if (fundadores.length === 0) {
+        $('lista-fundadores').innerHTML = '<div style="text-align:center;padding:40px;color:#a89a7a;font-style:italic;">Aún no hay fundadores aceptados.</div>';
+      } else {
+        $('lista-fundadores').innerHTML = fundadores.map(f => `
+          <div class="lista-item">
+            <div>
+              <span class="plaza-num">#${f.numero_formateado}</span>
+              <span style="font-size:15px;color:#F5F0E6;font-weight:500;">${f.nombre}</span>
+              ${f.alias ? `<em style="color:#FFEDAB;font-size:13px;">· "${f.alias}"</em>` : ''}
+              <span class="plaza-tipo">${f.tipo} · ${f.rol_otorgado}</span>
+            </div>
+            <div style="font-size:10px;color:#a89a7a;margin-top:8px;font-family:monospace;">${f.timestamp.slice(0, 10)} · Plaza ${f.numero_formateado}</div>
+          </div>
+        `).join('');
+      }
+
+      $('panel-fundadores').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Fondo líquido dorado-esperanza
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[61,220,132],[201,164,76]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
