@@ -1,209 +1,118 @@
+# Política de Seguridad · KRONOS Protocol
 
-```markdown
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
-<!-- KRONOS PROTOCOL · SECURITY.md · v1.0 · 18 sept 2026                   -->
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
+## Modelo de seguridad
 
-```text
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                      ║
-║   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                      ║
-║   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                      ║
-║   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                      ║
-║   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                      ║
-║   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                      ║
-║                                                                              ║
-║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
-║   S E C U R I T Y   ·   P O L Í T I C A                                     ║
-║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
+KRONOS es un framework **local-first**. Esto significa:
 
-KRONOS Protocol · Movimiento de Co-Creatividad Simbiótica y Respeto Digital
+- **No hay servidores centrales** que puedan ser comprometidos.
+- **No hay bases de datos remotas** que puedan ser filtradas.
+- **No hay telemetría** que pueda exponer al usuario.
+- **Toda la criptografía ocurre en el navegador** del usuario, usando Web Crypto API.
 
-Última actualización: 18 de septiembre de 2026
+Esto reduce drásticamente la superficie de ataque, pero **no la elimina**.
 
 ---
 
-```text
-┌─[ 00 ]──────────────────── VERSIONES SOPORTADAS ─┐
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
+## Alcance
 
-Versión Soporte
-v1.x (actual) ✅ Activo
-v0.x ❌ No soportado
+### En alcance
 
----
+- Vulnerabilidades en código JavaScript del repositorio.
+- Fallos en el uso de Web Crypto API (SHA-256, Ed25519, AES-GCM).
+- Debilidades en el manejo de claves (almacenamiento, derivación, exposición).
+- Ataques de prompt injection contra agentes IA del ecosistema.
+- Problemas de integridad en el log de acciones.
+- Exposición de datos sensibles a través de APIs del navegador.
+- Vulnerabilidades en dependencias externas (Dexie, ethers.js, fuentes, CDNs).
 
-```text
-┌─[ 01 ]─────────────────── REPORTAR VULNERABILIDAD ─┐
-│                                                     │
-└─────────────────────────────────────────────────────┘
-```
+### Fuera de alcance
 
-⚠️ NO abras un issue público si encuentras una vulnerabilidad.
-
-Cómo reportar
-
-📧 Envía un email a: marco.a.rojas.v@hotmail.com
-
-Asunto: [SECURITY] Descripción breve
-
-Incluye:
-
-1. Descripción del problema
-2. Pasos para reproducir
-3. Impacto potencial
-4. Versión afectada
-5. Entorno (navegador, SO, etc.)
-6. Propuesta de fix (opcional)
-7. Tu información de contacto
+- Coerción física al usuario o al fundador.
+- Ataques al dispositivo del usuario (malware, robo físico).
+- Vulnerabilidades del navegador (Chrome, Brave, Firefox, Safari).
+- Ataques a la red Ethereum (fuera de nuestro control).
+- Ingeniería social al usuario.
+- Cualquier ataque que requiera acceso físico no autorizado.
 
 ---
 
-```text
-┌─[ 02 ]─────────────────── TIEMPOS DE RESPUESTA ─┐
-│                                                   │
-└───────────────────────────────────────────────────┘
+## Cómo reportar una vulnerabilidad
+
+**Canal exclusivo y privado:**
+
+Por favor, abre un **GitHub Security Advisory** en:
+
+```
+github.com/Marcorojas17/kronos-protocol/security/advisories/new
 ```
 
-Etapa Tiempo objetivo
-Acuse de recibo 48 horas
-Evaluación inicial 7 días
-Fix o mitigación 30 días
-Divulgación pública 60-90 días
+**NO abras un Issue público** para reportar vulnerabilidades. Un Issue público
+expone el problema antes de que pueda ser corregido.
 
-Si el problema es crítico, se aceleran los tiempos.
+**NO publiques en redes sociales** ni en foros públicos.
 
 ---
 
-```text
-┌─[ 03 ]────────────────────── ALCANCE ─┐
-│                                         │
-└─────────────────────────────────────────┘
-```
+## Qué incluir en el reporte
 
-✅ En alcance
+Para que podamos evaluar y responder rápidamente, incluye:
 
-· Vulnerabilidades en JavaScript
-· Problemas en HTML/CSS
-· Exposición de datos sensibles
-· Bypass de controles
-· Vulnerabilidades en dependencias
-· XSS, CSRF, inyección
-· CORS mal configurado
-
-❌ Fuera de alcance
-
-· Ingeniería social
-· Ataques físicos
-· DoS masivos
-· Servicios de terceros (Safe Creative, Ethereum, GitHub)
-· Fuerza bruta a servicios externos
+1. **Descripción detallada** del hallazgo.
+2. **Pasos para reproducir** (step-by-step).
+3. **Impacto potencial estimado** (qué se compromete, en qué condiciones).
+4. **Versión del navegador y sistema operativo** donde lo probaste.
+5. **Capturas o videos** si aplica.
+6. **Tu nombre o seudónimo** (si quieres ser acreditado).
 
 ---
 
-```text
-┌─[ 04 ]───────────────── DIVULGACIÓN RESPONSABLE ─┐
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
+## Tiempos de respuesta
 
-1. Reportas la vulnerabilidad (privado)
-2. Confirmamos el reporte
-3. Trabajamos en el fix
-4. Publicamos el fix
-5. Publicamos la divulgación (con tu crédito si lo deseas)
+| Tiempo | Acción |
+| :--- | :--- |
+| **72 horas** | Confirmación de recepción del reporte |
+| **7 días** | Evaluación inicial y clasificación (crítico, medio, bajo) |
+| **30 días** | Remediación o fix objetivo |
+| **90 días** | Divulgación coordinada (coordinated disclosure) |
 
-No divulgues públicamente hasta que hayamos publicado el fix.
+Si el reporte es válido y significativo, te acreditaremos en el CHANGELOG
+del repositorio (si así lo deseas).
 
 ---
 
-```text
-┌─[ 05 ]────────────────────── RECONOCIMIENTO ─┐
-│                                                │
-└────────────────────────────────────────────────┘
-```
+## Historial de vulnerabilidades conocidas
 
-Si tu reporte resulta en un fix, te damos crédito en:
+**Al día de esta versión:** Ninguna vulnerabilidad activa conocida.
 
-· CHANGELOG del proyecto
-· Página de agradecimientos (si aceptas)
-· Commit del fix (si lo deseas)
-
-No ofrecemos bug bounty económico en esta fase.
+Esta sección se actualizará a medida que se reporten y resuelvan hallazgos.
 
 ---
 
-```text
-┌─[ 06 ]───────────────────── BUENAS PRÁCTICAS ─┐
-│                                                 │
-└─────────────────────────────────────────────────┘
-```
+## Buenas prácticas para usuarios
 
-Para navegar el sitio
-
-· Usa navegadores actualizados
-· Verifica que la URL sea marcorojas17.github.io/kronos-protocol/
-
-Para verificar certificados
-
-· Verifica los hashes SHA-256
-· Confirma el ID en safecreative.org
-· Verifica transacciones en etherscan.io
-
-Para tu clave privada
-
-· Nunca la compartas
-· Usa hardware wallet
-· Nunca firmes transacciones que no entiendas
+- **Usa HTTPS siempre.** No abras la demo sobre HTTP.
+- **Verifica los hashes** de los archivos que descargues.
+- **No compartas tu contraseña maestra** con nadie, ni con KRONOS IA.
+- **Exporta tus certificados** como respaldo periódicamente.
+- **Mantén tu navegador actualizado** para tener Web Crypto API moderna.
 
 ---
 
-```text
-┌─[ 07 ]────────────────── COMPROMISOS DE SEGURIDAD ─┐
-│                                                      │
-└──────────────────────────────────────────────────────┘
-```
+## Contacto
 
-· Cifrado: SHA-256 y SHA-512
-· Sellado: eIDAS cualificado
-· Anclaje: Ethereum Mainnet
-· Sin tracking: Sin analytics invasivos
-· Sin cookies: Sin rastreo
-· Minimización: Pocas dependencias externas
+Para temas de seguridad **no críticos** o consultas generales:
+
+- Email: marco.a.rojas.v@hotmail.com
+- Asunto: `[KRONOS SECURITY] <descripción breve>`
 
 ---
 
-```text
-┌─[ 08 ]───────────────────── CONTACTO SEGURIDAD ─┐
-│                                                   │
-└───────────────────────────────────────────────────┘
-```
+## Reconocimiento
 
-Marco Antonio Rojas Valdovinos
-📧 marco.a.rojas.v@hotmail.com
-Asunto: [SECURITY]
+Agradecemos a toda persona que dedique tiempo a auditar este proyecto.
+La seguridad de un protocolo abierto es responsabilidad de la comunidad
+que lo construye y lo cuestiona.
 
 ---
 
-```text
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                                                              ║
-║   KRONOS PROTOCOL · ○_● · MMXXVI                                             ║
-║                                                                              ║
-║   La integridad es el único legado que                                       ║
-║   la eternidad no puede corromper.                                           ║
-║                                                                              ║
-║   © 2026 Marco Antonio Rojas Valdovinos                                      ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
-
-<!-- FIN DE SECURITY · KRONOS PROTOCOL · v1.0 -->
-
-```
+*Última actualización: 2026*
