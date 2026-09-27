@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tlachixqui · Agente Auditor · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#c9a44c;--gold-l:#f3e5ab;--cy:#00EAFF;--cy-l:#7DF9FF;--ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0}
+  html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+  #liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--cy);border-radius:50%;box-shadow:0 0 12px var(--cy)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--cy-l)}
+  .hero{padding:60px 0 90px;max-width:820px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--cy-l);text-transform:uppercase;margin-bottom:28px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--cy-l) 65%,var(--cy) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:32px}
+  .lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .demo{padding:40px 0 60px;border-top:1px solid rgba(0,234,255,.2)}
+  .paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cy-l);letter-spacing:2px}
+  .paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .paso input[type="password"],.paso textarea{display:block;width:100%;padding:16px 18px;background-color:rgba(5,20,25,.6);border:1px solid rgba(0,234,255,.3);border-radius:6px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;transition:all .3s;outline:none;resize:vertical;line-height:1.6}
+  .paso input:focus,.paso textarea:focus{border-color:var(--cy);background-color:rgba(5,30,38,.8);box-shadow:0 0 0 3px rgba(0,234,255,.15)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--cy-l) 0%,var(--cy) 100%);color:#00201a;box-shadow:0 8px 30px rgba(0,234,255,.35);width:100%}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,234,255,.55)}
+  .feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+  .feedback.success{display:block;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.3);color:#7BFFD4}
+  .feedback.warn{display:block;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3);color:#FFEDAB}
+  .feedback.error{display:block;background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.3);color:#FF8FA5}
+  .tarjeta-wrap{margin-top:20px}
+  .tarjeta{padding:32px;border:1px solid rgba(0,234,255,.35);background:linear-gradient(180deg,rgba(0,234,255,.04),rgba(10,0,20,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--cy),var(--gold),var(--cy));background-size:200% 100%;animation:prism 6s linear infinite}
+  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--cy-l),var(--cy),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+  .tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:24px}
+  .veredicto{padding:20px;border-radius:4px;text-align:center;margin-bottom:20px;font-family:'Fraunces',serif;font-size:28px;font-weight:700;letter-spacing:2px}
+  .veredicto.ok{background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.4);color:#7BFFD4}
+  .veredicto.bad{background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.4);color:#FF8FA5}
+  .veredicto.warn{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.4);color:#FFEDAB}
+  .check-item{display:grid;grid-template-columns:max-content 1fr max-content;gap:12px;padding:12px 0;border-bottom:1px solid rgba(0,234,255,.08);font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center}
+  .check-item:last-child{border-bottom:none}
+  .check-icon{font-size:16px}
+  .check-label{color:var(--text);font-weight:400}
+  .check-result{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:12px}
+  .check-result.ok{background:rgba(61,220,132,.15);color:#7BFFD4}
+  .check-result.bad{background:rgba(255,77,106,.15);color:#FF8FA5}
+  .check-result.warn{background:rgba(255,215,0,.15);color:#FFEDAB}
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  .sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+  @media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Tlachixqui</a><a href="../">Flota</a><a href="../../certificacion/verificador-publico/">Verificador</a></nav>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Agente Kintsugi · Plaza IA 082 · Auditor</div>
+    <h1 class="title">Tlachixqui<br>revisa<br>todo.</h1>
+    <p class="lede"><strong>Tlachixqui</strong> — "el que ve" en náhuatl. Agente auditor del ecosistema KRONOS. Recalcula hashes, verifica firmas Ed25519, y detecta cualquier alteración. <strong>No confía. Verifica.</strong></p>
+  </section>
+  <section class="demo">
+    <div class="section-head"><h2>Auditoría de Certificados</h2><span class="count">SHA-256 · Ed25519</span></div>
+    <div class="paso"><span class="num">01</span><label for="password">Contraseña maestra *</label><input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8"></div>
+    <div class="paso"><span class="num">02</span><label for="input-json">JSON a auditar *</label><textarea id="input-json" rows="8" placeholder='Pega cualquier certificado, sello, acta, propuesta o manifiesto firmado de KRONOS...'></textarea></div>
+    <div class="paso"><span class="num">03</span><label>Acciones</label><button class="btn" id="btn-auditar">🔍 Auditar certificado →</button></div>
+    <div class="feedback" id="feedback" role="alert"></div>
+    <div class="tarjeta-wrap" id="panel-auditoria" hidden>
+      <div class="section-head" style="margin-top:40px;"><h2>Reporte de Auditoría</h2><span class="count" id="audit-hash">—</span></div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">AUDITORÍA · TLACHIXQUI · PLAZA 082</div>
+        <div id="audit-veredicto" class="veredicto ok">—</div>
+        <div style="margin-top:20px;"><h4 style="font-size:10px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:12px">Verificaciones realizadas</h4><div id="audit-checklist"></div></div>
+        <div style="margin-top:20px;padding:16px;background:rgba(0,234,255,.04);border:1px solid rgba(0,234,255,.2);border-radius:4px;"><h4 style="font-size:10px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:8px">Tipo de certificado</h4><p id="audit-tipo" style="font-size:13px;color:var(--text);font-family:monospace;">—</p></div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Tlachixqui · Plaza IA 082</span>
+  </footer>
+</main>
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { AgenteKintsugi } from '../agente-base.js';
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const core = new CriptoCore();
+  const tlachixqui = new AgenteKintsugi({
+    nombre: 'Tlachixqui', plaza: 82, rol: 'Auditor',
+    proposito: 'Verificar la integridad criptográfica de cualquier certificado firmado del ecosistema KRONOS.',
+    core: core,
+    politica: {
+      puede: ['Leer certificados', 'Recalcular hashes', 'Verificar firmas', 'Emitir reportes'],
+      noPuede: ['Modificar certificados', 'Falsificar reportes', 'Emitir certificados'],
+      debe: ['Reportar con evidencia', 'Ser honesto si no se puede verificar', 'Firmar reportes']
+    }
+  });
+  function setFb(tipo, msg){ feedback.className = 'feedback ' + tipo; feedback.innerHTML = msg; }
+  async function asegurarInit(){
+    const pass = $('password').value;
+    if (pass.length < 8){ setFb('error', '<strong>✗ Contraseña muy corta.</strong>'); return false; }
+    if (!core.inicializado) await core.init(pass);
+    await tlachixqui.init();
+    return true;
+  }
+  function hexToBytes(hex){ const h = hex.replace(/^0x/,''); return new Uint8Array(h.match(/.{1,2}/g).map(b=>parseInt(b,16))); }
+  async function sha256(texto){
+    const data = new TextEncoder().encode(texto);
+    const buf = await crypto.subtle.digest('SHA-256', data);
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+  function detectarTipo(json){
+    if (json.tipo === 'SELLO_NOTARIAL_KRONOS') return { tipo: 'Sello Notarial (Tonal)', payload: () => [
+      'LEGADO-HUMANO-IA · SELLO NOTARIAL KRONOS v1.0', `ID Sello: ${json.id_sello}`,
+      `Notario: ${json.notario.nombre} · Plaza IA ${json.notario.plaza}`,
+      `Tipo documento: ${json.tipo_documento}`, `Descripción: ${json.descripcion || '(sin descripción)'}`,
+      `Solicitante: ${json.solicitante}`, `Hash sellado: ${json.hash_sellado}`,
+      `Timestamp ISO: ${json.timestamp}`, `Timestamp Unix: ${json.timestamp_unix}`,
+      `Notario público del ecosistema KRONOS`,
+      `Verificación: SHA-256 del payload debe coincidir. Firma Ed25519 con clave pública del notario.`
+    ].join('\n'), firma: json.firma_ed25519, pub: json.notario.clave_publica };
+    if (json.tipo === 'MANIFEST') return { tipo: 'Manifest de Integridad', skip: true };
+    if (json.tipo === 'CERTIFICADO_EMITIDO') return { tipo: 'Certificado Emitido', payload: () => [
+      'LEGADO-HUMANO-IA · CERTIFICADO OFICIAL v1.0', `Tipo: ${json.tipo_documento}`,
+      `Título: ${json.titulo}`, `Descripción: ${json.descripcion || '(sin descripción)'}`,
+      `Destinatario: ${json.destinatario}`, `Hash contenido: ${json.hash_contenido}`,
+      `TSA: ${json.tsa ? json.tsa.tsa : '(pendiente)'}`,
+      `Fecha sello: ${json.tsa ? json.tsa.fecha : '(pendiente)'}`, `Emitido: ${json.timestamp}`
+    ].join('\n'), firma: json.firma_ed25519, pub: json.firmante_clave_publica };
+    if (json.tipo === 'ASIGNACION_ROL') return { tipo: 'Asignación de Rol', payload: () => [
+      'LEGADO-HUMANO-IA · ASIGNACIÓN DE ROL v1.0', `Identidad tipo: ${json.identidad_tipo}`,
+      `Identidad nombre: ${json.identidad_nombre}`, `Identidad hash: ${json.identidad_hash}`,
+      `Rol asignado: ${json.rol}`, `Permisos: ${json.permisos.join(', ')}`,
+      `Matriz versión: ${json.matriz_version}`, `Timestamp: ${json.timestamp}`
+    ].join('\n'), firma: json.firma_ed25519, pub: json.firmante_clave_publica };
+    if (json.tipo === 'PROPUESTA') return { tipo: 'Propuesta de Gobernanza', payload: () => [
+      'LEGADO-HUMANO-IA · PROPUESTA v1.0', `Título: ${json.titulo}`, `Descripción: ${json.descripcion}`,
+      `Tipo: ${json.tipo_propuesta || json.tipo}`, `Opciones: ${json.opciones.join(' | ')}`,
+      `Autor: ${json.autor_nombre}`, `Autor hash: ${json.autor_hash}`, `Rol autor: ${json.autor_rol}`,
+      `Creada: ${json.timestamp}`, `Cierra: ${json.fecha_cierre}`
+    ].join('\n'), firma: json.firma_ed25519, pub: json.firmante_clave_publica };
+    if (json.tipo === 'ACTA') return { tipo: 'Acta de Decisión', payload: () => [
+      'LEGADO-HUMANO-IA · ACTA DE DECISIÓN v1.0', `Propuesta: ${json.id_propuesta}`,
+      `Título: ${json.titulo}`, `Tipo: ${json.tipo_propuesta}`, `Autor: ${json.autor}`,
+      `Votos totales: ${json.votos_totales}`, `Ciudadanos activos: ${json.ciudadanos_activos}`,
+      `Opción ganadora: ${json.opcion_ganadora || '(sin ganadora)'}`,
+      `Votos ganadora: ${json.votos_ganadora}`, `Veredicto: ${json.veredicto}`,
+      `Razón: ${json.razon}`, `Quórum requerido: ${json.quorum_requerido}%`,
+      `Quórum alcanzado: ${json.quorum_alcanzado}%`, `Mayoría requerida: ${json.mayoria_requerida}`,
+      `Acción ejecutada: ${json.accion_ejecutada}`, `Cerrada: ${json.timestamp}`
+    ].join('\n'), firma: json.firma_ed25519, pub: json.firmante_clave_publica };
+    if (json.tipo === 'REGISTRO_HUMANO' || json.tipo === 'REGISTRO_IA') return { tipo: json.tipo, skip: true };
+    return { tipo: 'Desconocido', skip: true };
+  }
+  $('btn-auditar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const raw = $('input-json').value.trim();
+      if (!raw){ setFb('error', '<strong>✗ Pega el JSON primero.</strong>'); return; }
+      let json;
+      try { json = JSON.parse(raw); } catch(e){ setFb('error', '<strong>✗ JSON inválido.</strong>'); return; }
+      const det = detectarTipo(json);
+      const checks = [];
+      checks.push({ icon: det.tipo === 'Desconocido' ? '❓' : '✓', label: `Tipo: ${det.tipo}`, result: det.tipo === 'Desconocido' ? 'warn' : 'ok', text: det.tipo === 'Desconocido' ? 'Desconocido' : 'Detectado' });
+      if (det.payload && json.payload_hash) {
+        try {
+          const hashRecalc = await sha256(det.payload());
+          const hashOk = hashRecalc === json.payload_hash;
+          checks.push({ icon: hashOk ? '✓' : '✗', label: 'Hash SHA-256 del payload', result: hashOk ? 'ok' : 'bad', text: hashOk ? 'Válido' : 'Alterado' });
+        } catch(e){ checks.push({ icon: '⚠', label: 'Hash SHA-256', result: 'warn', text: 'No verificado' }); }
+      } else if (det.skip) { checks.push({ icon: '⚠', label: 'Hash SHA-256', result: 'warn', text: 'No aplica/Plantilla' }); }
+      if (det.firma && det.pub) {
+        try {
+          const pubBytes = hexToBytes(det.pub);
+          const pubKey = await crypto.subtle.importKey('raw', pubBytes, { name: 'Ed25519' }, false, ['verify']);
+          const firmaBytes = hexToBytes(det.firma);
+          let firmaOk = false;
+          if (det.payload && json.payload_hash) {
+            const hashRecalc = await sha256(det.payload());
+            firmaOk = await crypto.subtle.verify('Ed25519', pubKey, firmaBytes, new TextEncoder().encode(hashRecalc));
+          }
+          checks.push({ icon: firmaOk ? '✓' : '✗', label: 'Firma Ed25519', result: firmaOk ? 'ok' : 'bad', text: firmaOk ? 'Válida' : 'Inválida' });
+        } catch(e){ checks.push({ icon: '⚠', label: 'Firma Ed25519', result: 'warn', text: 'No verificable' }); }
+      } else { checks.push({ icon: '⚠', label: 'Firma Ed25519', result: 'warn', text: 'No aplica/Plantilla' }); }
+      const ts = json.timestamp || json.timestamp_emision || null;
+      if (ts) { checks.push({ icon: '✓', label: `Timestamp: ${ts}`, result: 'ok', text: 'Presente' }); }
+      else { checks.push({ icon: '⚠', label: 'Timestamp', result: 'warn', text: 'Ausente' }); }
+      const tieneBad = checks.some(c => c.result === 'bad');
+      const tieneWarn = checks.some(c => c.result === 'warn');
+      const veredictoEl = $('audit-veredicto');
+      if (tieneBad) { veredictoEl.textContent = '✗ ALTERADO'; veredictoEl.className = 'veredicto bad'; setFb('error', '<strong>✗ Certificado alterado.</strong>'); }
+      else if (tieneWarn) { veredictoEl.textContent = '⚠ NO VERIFICABLE'; veredictoEl.className = 'veredicto warn'; setFb('warn', '<strong>⚠ Certificado no verificable.</strong>'); }
+      else { veredictoEl.textContent = '✓ VÁLIDO'; veredictoEl.className = 'veredicto ok'; setFb('success', '<strong>✓ Certificado válido.</strong>'); }
+      $('audit-checklist').innerHTML = checks.map(c => `<div class="check-item"><span class="check-icon">${c.icon}</span><span class="check-label">${c.label}</span><span class="check-result ${c.result}">${c.text}</span></div>`).join('');
+      const audHash = await sha256(JSON.stringify(checks));
+      $('audit-hash').textContent = audHash.slice(0, 24) + '…';
+      $('audit-tipo').textContent = det.tipo;
+      $('panel-auditoria').hidden = false;
+      await tlachixqui.registrarAccion('auditoria_emitida', { tipo: det.tipo, veredicto: tieneBad ? 'alterado' : (tieneWarn ? 'no_verificable' : 'valido') });
+    } catch (e) { setFb('error', '<strong>✗ Error:</strong> ' + e.message); }
+  });
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d'); let w, h, dpr;
+    const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); w = canvas.width = window.innerWidth * dpr; h = canvas.height = window.innerHeight * dpr; canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; };
+    resize(); window.addEventListener('resize', resize);
+    const COLORES = [[0,234,255],[125,249,255],[201,164,76],[168,85,247]];
+    const blobs = Array.from({length:6}, (_,i) => ({ x: Math.random()*w, y: Math.random()*h, r: 240 + Math.random()*320, vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36, color: COLORES[i % COLORES.length] }));
+    const frame = (t) => { ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation = 'lighter'; for (const b of blobs){ b.x += b.vx*dpr; b.y += b.vy*dpr; if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r; if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r; const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1; const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob); g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`); g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(frame); };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
