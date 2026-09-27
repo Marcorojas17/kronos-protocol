@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:13:18Z
+# Generado: 2026-09-27T12:13:54Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -34,6 +34,7 @@ c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/re
 8fbc47fe4a6f5d65ab9980f15f506dd424695a3c03f0d25cdd7c4b2dc9455dcc  ./certificacion/emisor-certificados/certificado-visual.html
 bf255f06d5c6ec9d08b43641de189c22c6e2f6326790104bb5dcc7d719ffa88e  ./certificacion/emisor-certificados/certificados.js
 f2ae47ba16abae17ca188b8e11644c275a438a9cd58d6b4fc6613dd3cedd3c38  ./certificacion/emisor-certificados/index.html
+c450bd328d11e0ea34fe32d2f49cf9a5f88fd80928516133172431c7cae4045e  ./certificacion/emisor-certificados/manual.html
 1178312a5101fbf8921c2e278ffc831eafa04bfb45abfc28a2d7f744ec2040c4  ./certificacion/manifest-integridad/index.html
 906ed4eb5c1bd1cb8d7780922e9fa8703ba03db2808f80eb909cb57cc675a291  ./certificacion/manifest-integridad/manifest.js
 f04871226f9209796da1e34ab9761d0efd372be676e2d045916af4ccddc351c1  ./certificacion/manifest-integridad/styles.css
