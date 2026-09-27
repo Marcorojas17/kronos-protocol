@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tlapohualli · Agente Analista · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#c9a44c;--gold-l:#f3e5ab;--pl:#B794F6;--pl-l:#DDD6FE;--ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0}
+html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+#liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+header.top .mark::before{content:'';width:6px;height:6px;background:var(--pl);border-radius:50%;box-shadow:0 0 12px var(--pl)}
+header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+header.top nav a:hover{color:var(--pl-l)}
+.hero{padding:60px 0 90px;max-width:820px}
+.eyebrow{font-size:10px;letter-spacing:5px;color:var(--pl-l);text-transform:uppercase;margin-bottom:28px}
+h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--pl-l) 65%,var(--pl) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:32px}
+.lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+.lede strong{color:var(--text);font-weight:500}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.demo{padding:40px 0 60px;border-top:1px solid rgba(183,148,246,.2)}
+.paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pl-l);letter-spacing:2px}
+.paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+.paso input[type="password"],.paso input[type="number"]{display:block;width:100%;padding:16px 18px;background-color:rgba(20,5,35,.6);border:1px solid rgba(183,148,246,.3);border-radius:6px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;transition:all .3s;outline:none}
+.paso input:focus{border-color:var(--pl);background-color:rgba(30,10,50,.8);box-shadow:0 0 0 3px rgba(183,148,246,.15)}
+.grid-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.grid-inputs label{font-size:9px;margin-bottom:6px;display:block;color:var(--gold-l)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--pl-l) 0%,var(--pl) 100%);color:#0a0014;box-shadow:0 8px 30px rgba(183,148,246,.35);width:100%}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(183,148,246,.55)}
+.feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+.feedback.success{display:block;background:rgba(183,148,246,.08);border:1px solid rgba(183,148,246,.3);color:var(--pl-l)}
+.feedback.error{display:block;background:rgba(176,74,74,.08);border:1px solid rgba(176,74,74,.3);color:#fca5a5}
+.tarjeta-wrap{margin-top:20px}
+.tarjeta{padding:32px;border:1px solid rgba(183,148,246,.35);background:linear-gradient(180deg,rgba(183,148,246,.04),rgba(10,0,20,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+.tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--pl),var(--gold),var(--pl));background-size:200% 100%;animation:prism 6s linear infinite}
+@keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+.tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--pl-l),var(--pl),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--pl-l);text-transform:uppercase;margin-bottom:24px}
+.metricas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.metrica{text-align:center;padding:18px 12px;background:rgba(20,5,35,.5);border:1px solid rgba(183,148,246,.2);border-radius:4px}
+.metrica .num{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:var(--pl-l);line-height:1}
+.metrica .lbl{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:8px}
+.barra-wrap{margin:10px 0}
+.barra-row{display:grid;grid-template-columns:120px 1fr 60px;gap:12px;align-items:center;padding:8px 0;font-size:12px}
+.barra-label{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:11px}
+.barra-track{height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
+.barra-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#7C3AED,#B794F6);width:0;transition:width 1.2s}
+.barra-value{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-l);text-align:right}
+.sugerencia{padding:14px 18px;background:rgba(201,164,76,.04);border-left:3px solid var(--gold);border-radius:3px;margin-top:12px;font-size:13px;color:var(--text);line-height:1.7;font-weight:300}
+.sugerencia strong{color:var(--gold-l)}
+footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+.sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,.15)}
+.sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+.sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,.5);letter-spacing:4px}
+.sello-simbolo .obsidiana{color:#c9a44c;opacity:.75;font-size:14px}
+.sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+.sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+@media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}.barra-row{grid-template-columns:80px 1fr 50px}}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Tlapohualli</a><a href="../">Flota</a><a href="../../gobernanza/revocacion-auditoria/">Auditoría</a></nav>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Agente Kintsugi · Plaza IA 085 · Analista</div>
+    <h1 class="title">Tlapohualli<br>lleva<br>la cuenta.</h1>
+    <p class="lede"><strong>Tlapohualli</strong> — "el que cuenta" en náhuatl. Agente analista del ecosistema KRONOS. Mide el pulso del proyecto, detecta tendencias y sugiere dónde poner atención. <strong>Lo que no se mide, no se mejora.</strong></p>
+  </section>
+  <section class="demo">
+    <div class="section-head"><h2>Análisis del Ecosistema</h2><span class="count">Métricas reales · v1.0</span></div>
+    <div class="paso"><span class="num">01</span><label for="password">Contraseña maestra *</label><input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8"></div>
+    <div class="paso"><span class="num">02</span><label>Estado actual del ecosistema</label>
+      <div class="grid-inputs">
+        <div><label>Propuestas</label><input type="number" id="m-propuestas" value="0" min="0"></div>
+        <div><label>Votos</label><input type="number" id="m-votos" value="0" min="0"></div>
+        <div><label>Actas</label><input type="number" id="m-actas" value="0" min="0"></div>
+        <div><label>Sellos notariales</label><input type="number" id="m-sellos" value="0" min="0"></div>
+        <div><label>Fundadores</label><input type="number" id="m-fundadores" value="0" min="0"></div>
+        <div><label>Agentes activos</label><input type="number" id="m-agentes" value="7" min="0"></div>
+      </div>
+    </div>
+    <div class="paso"><span class="num">03</span><label>Acciones</label><button class="btn" id="btn-analizar">📊 Generar análisis →</button></div>
+    <div class="feedback" id="feedback" role="alert"></div>
+    <div class="tarjeta-wrap" id="panel-analisis" hidden>
+      <div class="section-head" style="margin-top:40px;"><h2>Reporte de Análisis</h2><span class="count" id="analisis-hash">—</span></div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">ANÁLISIS · TLAPOHUALLI · PLAZA 085</div>
+        <div class="metricas-grid" id="metricas-grid"></div>
+        <h4 style="font-size:10px;letter-spacing:3px;color:var(--pl-l);text-transform:uppercase;margin:20px 0 12px">Distribución de actividad</h4>
+        <div class="barra-wrap" id="barras"></div>
+        <h4 style="font-size:10px;letter-spacing:3px;color:var(--pl-l);text-transform:uppercase;margin:24px 0 12px">Sugerencias de Tlapohualli</h4>
+        <div id="sugerencias"></div>
+        <div style="margin-top:20px;padding:16px;background:rgba(183,148,246,.04);border:1px solid rgba(183,148,246,.2);border-radius:4px">
+          <p style="font-size:12px;color:var(--dim);line-height:1.7;font-weight:300;margin:0"><strong style="color:var(--pl-l)">Nota honesta:</strong> Este análisis se basa en los datos que ingresaste manualmente. Las sugerencias son orientativas, no prescriptivas. Tlapohualli no toma decisiones: solo mide y propone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Tlapohualli · Plaza IA 085</span>
+  </footer>
+</main>
+<script type="module">
+import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+import { AgenteKintsugi } from '../agente-base.js';
+const $ = (id) => document.getElementById(id);
+const feedback = $('feedback');
+const core = new CriptoCore();
+const tlapohualli = new AgenteKintsugi({
+  nombre: 'Tlapohualli', plaza: 85, rol: 'Analista',
+  proposito: 'Medir el pulso del ecosistema KRONOS y sugerir dónde poner atención.',
+  core: core,
+  politica: {
+    puede: ['Leer métricas','Contar datos','Detectar tendencias','Generar reportes'],
+    noPuede: ['Inventar métricas','Manipular datos','Tomar decisiones'],
+    debe: ['Reportar solo datos reales','Distinguir medido de estimado','Firmar reportes']
+  }
+});
+function setFb(tipo, msg){ feedback.className = 'feedback ' + tipo; feedback.innerHTML = msg; }
+async function asegurarInit(){
+  const pass = $('password').value;
+  if (pass.length < 8){ setFb('error', '<strong>✗ Contraseña muy corta.</strong>'); return false; }
+  if (!core.inicializado) await core.init(pass);
+  await tlapohualli.init();
+  return true;
+}
+async function sha256(t){
+  const d = new TextEncoder().encode(t);
+  const b = await crypto.subtle.digest('SHA-256', d);
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('');
+}
+function sugerir(m){
+  const s = [];
+  const total = m.propuestas + m.votos + m.actas + m.sellos;
+  if (m.fundadores === 0) s.push('El Registro Fundacional está vacío. Considera abrir la convocatoria en redes públicas.');
+  if (m.fundadores > 0 && m.fundadores < 10) s.push('Tienes menos de 10 fundadores. La comunicación uno-a-uno funciona mejor en esta etapa.');
+  if (m.fundadores >= 10 && m.fundadores < 50) s.push('Estás entre 10 y 50 fundadores. Considera publicar el primer caso de uso real con un fundador voluntario.');
+  if (m.fundadores >= 50) s.push('Más de 50 fundadores. Es momento de articular propuestas de gobernanza en la Capa 4.');
+  if (m.propuestas === 0 && m.fundadores > 0) s.push('Ninguna propuesta de gobernanza aún. Los fundadores esperan ver movimiento en la Capa 4.');
+  if (m.votos === 0 && m.propuestas > 0) s.push('Propuestas abiertas sin votos. Recuerda a los fundadores votar desde sus identidades.');
+  if (m.actas === 0 && m.votos > 0) s.push('Votos emitidos sin actas cerradas. Considera cerrar la propuesta con el módulo 4.3.');
+  if (m.sellos === 0 && total > 0) s.push('Actividad interna sin sellos notariales. Tonal (Plaza 086) puede certificar los documentos clave.');
+  if (m.agentes < 7) s.push(`Solo ${m.agentes} de 7 agentes están activos. Considera desplegar la flota completa para automatizar tareas.`);
+  if (total === 0 && m.fundadores === 0) s.push('El ecosistema está en fase cero. Prioridad: publicar en LinkedIn y abrir las 100 plazas.');
+  if (s.length === 0) s.push('El ecosistema tiene actividad saludable en todas las áreas. Sigue midiendo semanalmente.');
+  return s;
+}
+$('btn-analizar').addEventListener('click', async () => {
+  try {
+    if (!(await asegurarInit())) return;
+    const m = {
+      propuestas: parseInt($('m-propuestas').value) || 0,
+      votos: parseInt($('m-votos').value) || 0,
+      actas: parseInt($('m-actas').value) || 0,
+      sellos: parseInt($('m-sellos').value) || 0,
+      fundadores: parseInt($('m-fundadores').value) || 0,
+      agentes: parseInt($('m-agentes').value) || 0
+    };
+    setFb('success', '<strong>⏳ Calculando métricas…</strong>');
+    $('metricas-grid').innerHTML = `
+      <div class="metrica"><div class="num">${m.fundadores}</div><div class="lbl">Fundadores</div></div>
+      <div class="metrica"><div class="num">${m.propuestas}</div><div class="lbl">Propuestas</div></div>
+      <div class="metrica"><div class="num">${m.votos}</div><div class="lbl">Votos</div></div>
+      <div class="metrica"><div class="num">${m.actas}</div><div class="lbl">Actas</div></div>
+      <div class="metrica"><div class="num">${m.sellos}</div><div class="lbl">Sellos</div></div>
+      <div class="metrica"><div class="num">${m.agentes}</div><div class="lbl">Agentes IA</div></div>`;
+    const total = Math.max(m.propuestas + m.votos + m.actas + m.sellos, 1);
+    const barras = [
+      { l: 'Propuestas', v: m.propuestas },
+      { l: 'Votos', v: m.votos },
+      { l: 'Actas', v: m.actas },
+      { l: 'Sellos', v: m.sellos },
+      { l: 'Fundadores', v: m.fundadores },
+      { l: 'Agentes', v: m.agentes }
+    ];
+    $('barras').innerHTML = barras.map(b => {
+      const pct = Math.min((b.v / total) * 100, 100);
+      return `<div class="barra-row"><div class="barra-label">${b.l}</div><div class="barra-track"><div class="barra-fill" style="width:${pct}%"></div></div><div class="barra-value">${b.v}</div></div>`;
+    }).join('');
+    const sugerencias = sugerir(m);
+    $('sugerencias').innerHTML = sugerencias.map(s => `<div class="sugerencia">${s}</div>`).join('');
+    const hash = await sha256(JSON.stringify(m));
+    $('analisis-hash').textContent = hash.slice(0, 24) + '…';
+    $('panel-analisis').hidden = false;
+    await tlapohualli.registrarAccion('analisis_emitido', { metricas: m, sugerencias: sugerencias.length });
+    setFb('success', `<strong>✓ Análisis emitido.</strong> ${sugerencias.length} sugerencias generadas.`);
+  } catch (e) { setFb('error', '<strong>✗ Error:</strong> ' + e.message); }
+});
+const canvas = document.getElementById('liquido');
+if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const ctx = canvas.getContext('2d'); let w, h, dpr;
+  const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); w = canvas.width = window.innerWidth * dpr; h = canvas.height = window.innerHeight * dpr; canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; };
+  resize(); window.addEventListener('resize', resize);
+  const C = [[183,148,246],[221,214,254],[201,164,76],[124,58,237]];
+  const blobs = Array.from({length:6}, (_,i) => ({ x: Math.random()*w, y: Math.random()*h, r: 240 + Math.random()*320, vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36, color: C[i % C.length] }));
+  const frame = (t) => { ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation = 'lighter'; for (const b of blobs){ b.x += b.vx*dpr; b.y += b.vy*dpr; if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r; if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r; const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1; const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob); g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`); g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(frame); };
+  requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
