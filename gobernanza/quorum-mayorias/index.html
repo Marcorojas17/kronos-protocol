@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quórum y Mayorías · KRONOS</title>
+<meta name="theme-color" content="#1a0a05">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../propuestas-votacion/styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Quórum</a>
+      <a href="manual.html">Manual</a>
+      <a href="../propuestas-votacion/">Propuestas</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 4.2 · Capa 4 · Gobernanza</div>
+    <h1 class="title">Cuántos<br>son<br>suficientes.</h1>
+    <p class="lede">
+      Cada tipo de propuesta exige un <strong>quórum mínimo</strong> y un tipo de
+      <strong>mayoría específica</strong>. Los cambios criptográficos requieren más consenso
+      que los typos. <strong>Proporcionalidad criptográfica.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Reglas de Decisión</h2>
+      <span class="count">v1.0</span>
+    </div>
+
+    <div class="tarjeta-wrap">
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">MATRIZ DE QUÓRUM Y MAYORÍAS</div>
+        <div id="tabla-reglas" style="margin-top:16px;"></div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:60px;">
+      <h2>Simulador de Veredicto</h2>
+      <span class="count">Herramienta de análisis</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="tipo">Tipo de propuesta *</label>
+        <select id="tipo">
+          <option value="Cambio menor">Cambio menor</option>
+          <option value="Cambio estructural" selected>Cambio estructural</option>
+          <option value="Cambio criptográfico">Cambio criptográfico</option>
+          <option value="Adopción">Adopción</option>
+          <option value="Recurso">Recurso</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="ciudadanos">Ciudadanos activos *</label>
+        <input type="number" id="ciudadanos" min="1" value="100">
+        <div class="hint">Total de identidades registradas con rol activo.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="votos">Votos emitidos *</label>
+        <input type="number" id="votos" min="0" value="60">
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="ganadora">Votos de la opción ganadora *</label>
+        <input type="number" id="ganadora" min="0" value="40">
+      </div>
+
+      <div class="paso">
+        <span class="num">05</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-calcular">Calcular veredicto →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-veredicto" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Veredicto</h2>
+        <span class="count" id="v-tipo-mayoria">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo" id="v-veredicto-tipo">SIMULACIÓN · v1.0</div>
+
+        <div style="text-align:center;padding:20px 0;">
+          <div id="v-veredicto" style="font-family:'Fraunces',serif;font-size:32px;font-weight:700;letter-spacing:2px;">—</div>
+          <div id="v-razon" style="font-size:13px;color:#a89880;margin-top:10px;line-height:1.6;font-weight:300;">—</div>
+        </div>
+
+        <div class="tarjeta-kv" style="margin-top:20px;">
+          <div class="tk"><span class="k">Quórum requerido</span><span class="v mono" id="v-quorum-req">—</span></div>
+          <div class="tk"><span class="k">Participación actual</span><span class="v mono" id="v-participacion">—</span></div>
+          <div class="tk"><span class="k">Estado del quórum</span><span class="v" id="v-quorum-estado">—</span></div>
+          <div class="tk"><span class="k">Mayoría requerida</span><span class="v mono" id="v-mayoria-tipo">—</span></div>
+          <div class="tk"><span class="k">Umbral de mayoría</span><span class="v mono" id="v-mayoria-umbral">—</span></div>
+          <div class="tk"><span class="k">Estado de la mayoría</span><span class="v" id="v-mayoria-estado">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+      <span class="sig">Módulo 4.2 · Quórum y Mayorías</span>
+    </div>
+    <div class="footer-links">
+      <a href="manual.html">Manual</a> ·
+      <a href="../propuestas-votacion/">Propuestas</a> ·
+      <a href="/kronos-protocol/">Inicio</a>
+    </div>
+  </footer>
+</main>
+
+<script type="module">
+  import { QuorumMayorias } from './quorum.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const q = new QuorumMayorias();
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  // Renderizar tabla de reglas
+  (function renderTabla(){
+    const reglas = q.listarReglas();
+    $('tabla-reglas').innerHTML = reglas.map(r => `
+      <div style="padding:16px 0;border-bottom:1px solid rgba(255,107,53,.15);">
+        <div style="font-family:'Fraunces',serif;font-size:16px;color:#F5F0E6;font-weight:600;margin-bottom:6px;">${r.tipo}</div>
+        <div style="font-size:12px;color:#a89880;line-height:1.6;margin-bottom:10px;">${r.descripcion}</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;">
+          <span style="color:#FFA07A;">Quórum: <strong style="color:#FF6B35;">${r.quorum}%</strong></span>
+          <span style="color:#FFA07A;">Mayoría: <strong style="color:#FF6B35;">${r.mayoria}</strong></span>
+        </div>
+      </div>
+    `).join('');
+  })();
+
+  $('btn-calcular').addEventListener('click', () => {
+    try {
+      const tipo = $('tipo').value;
+      const ciudadanos = parseInt($('ciudadanos').value) || 0;
+      const votos = parseInt($('votos').value) || 0;
+      const ganadora = parseInt($('ganadora').value) || 0;
+
+      if (ciudadanos <= 0) {
+        setFb('error', '<strong>✗ Ciudadanos activos debe ser mayor que 0.</strong>');
+        return;
+      }
+      if (votos > ciudadanos) {
+        setFb('error', '<strong>✗ Los votos no pueden superar a los ciudadanos activos.</strong>');
+        return;
+      }
+      if (ganadora > votos) {
+        setFb('error', '<strong>✗ Los votos de la ganadora no pueden superar al total.</strong>');
+        return;
+      }
+
+      const resultados = {
+        total_votos: votos,
+        conteo: { 'Ganadora': ganadora },
+        ganadora: 'Ganadora'
+      };
+
+      const v = q.veredicto(resultados, ciudadanos, tipo, 'cerrada');
+
+      const colores = {
+        'aprobada': '#3ddc84',
+        'rechazada': '#fca5a5',
+        'sin_quorum': '#FF6B35',
+        'pendiente': '#a89880',
+        'en_curso': '#FFA07A',
+        'lista_para_cerrar': '#3ddc84'
+      };
+
+      $('v-veredicto').textContent = v.verdicto.replace('_', ' ').toUpperCase();
+      $('v-veredicto').style.color = colores[v.verdicto] || '#F5F0E6';
+      $('v-razon').textContent = v.razon;
+      $('v-tipo-mayoria').textContent = v.mayoria.tipo_mayoria;
+      $('v-quorum-req').textContent = v.quorum.quorum_requerido + '%';
+      $('v-participacion').textContent = v.quorum.participacion + '%';
+      $('v-quorum-estado').textContent = v.quorum.quorum_alcanzado ? '✓ Alcanzado' : `✗ Faltan ${v.quorum.faltan} votos`;
+      $('v-quorum-estado').style.color = v.quorum.quorum_alcanzado ? '#3ddc84' : '#fca5a5';
+      $('v-mayoria-tipo').textContent = v.mayoria.tipo_mayoria;
+      $('v-mayoria-umbral').textContent = v.mayoria.umbral_requerido + ' votos';
+      $('v-mayoria-estado').textContent = v.mayoria.mayoria_alcanzada ? '✓ Alcanzada' : `✗ Faltan ${v.mayoria.faltan} votos`;
+      $('v-mayoria-estado').style.color = v.mayoria.mayoria_alcanzada ? '#3ddc84' : '#fca5a5';
+
+      $('tarjeta-veredicto').hidden = false;
+
+      setFb(v.verdicto === 'aprobada' ? 'success' : 'error',
+        v.verdicto === 'aprobada'
+          ? '<strong>✓ La propuesta sería aprobada.</strong>'
+          : `<strong>Veredicto: ${v.verdicto.replace('_', ' ')}.</strong>`
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Fondo líquido naranja
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,107,53],[255,160,122],[196,61,10],[243,229,171]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
