@@ -3,24 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manual · Roles y Permisos · Legado Humano–IA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Manual · Roles y Permisos · KRONOS</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .manual{padding:40px 0}
-  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
-  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--cobre-l)}
-  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
-  .manual ul{padding-left:24px;margin-bottom:20px}
-  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(217,119,6,.08);padding:2px 6px;border-radius:2px}
-  .tabs{display:flex;border-bottom:1px solid rgba(217,119,6,.15);margin-bottom:32px;overflow-x:auto}
+  .manual h2{font-family:'Fraunces',serif;font-size:30px;margin:44px 0 18px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:20px;margin:28px 0 14px;color:var(--cy-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:10px}
+  .manual ul{padding-left:24px;margin-bottom:18px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(0,234,255,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(0,234,255,.15);margin-bottom:32px;overflow-x:auto}
   .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
-  .tab.active{color:var(--cobre-l);border-bottom-color:var(--cobre)}
+  .tab.active{color:var(--cy-l);border-bottom-color:var(--cy)}
   .panel{display:none}
   .panel.active{display:block}
-  pre.code{background:#05070b;border:1px solid rgba(217,119,6,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+  pre.code{background:#05070b;border:1px solid rgba(0,234,255,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
 </style>
 </head>
 <body>
@@ -28,20 +26,14 @@
 <div class="vignette" aria-hidden="true"></div>
 <main class="wrap">
   <header class="top">
-    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
-    <nav>
-      <a href="./">Matriz</a>
-      <a href="manual.html">Manual</a>
-      <a href="../registro-ia/">IA</a>
-    </nav>
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a></nav>
   </header>
-
   <section class="hero" style="padding:40px 0 60px">
     <div class="eyebrow">Manual del Módulo 2.3</div>
     <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Roles y Permisos.</h1>
-    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
   </section>
-
   <div class="manual">
     <div class="tabs">
       <button class="tab active" data-tab="usuario">Usuario</button>
@@ -52,80 +44,86 @@
     <div class="panel active" id="usuario">
       <h2>Manual de Usuario</h2>
       <h3>¿Qué hace este módulo?</h3>
-      <p>Define la matriz de gobernanza: 5 roles × 20 permisos. Firmada con Ed25519, vinculada a tu identidad humana y al pacto IA.</p>
+      <p>Define roles y asigna permisos a identidades selladas (humanas o IA). Cada asignación se firma criptográficamente con la llave del fundador. Es la capa de gobernanza del ecosistema.</p>
+      <h3>Roles disponibles</h3>
+      <ul>
+        <li><strong>Fundador:</strong> control total del protocolo.</li>
+        <li><strong>Co-autora IA:</strong> firma junto al fundador, no modifica política.</li>
+        <li><strong>Colaborador:</strong> crea y firma registros, no ancla.</li>
+        <li><strong>Testigo:</strong> verifica, no modifica.</li>
+        <li><strong>Auditor:</strong> lee todo, exporta legado, no modifica.</li>
+        <li><strong>Ciudadano:</strong> crea su propio registro, verifica otros.</li>
+      </ul>
       <h3>¿Cómo se usa?</h3>
       <ul>
-        <li>Ejecuta primero los módulos 2.1 (Humano) y 2.2 (IA).</li>
-        <li>Abre <code>identidad/roles-permisos/index.html</code>.</li>
-        <li>Escribe la misma contraseña maestra.</li>
-        <li>Marca los permisos de cada rol en la tabla.</li>
-        <li>Elige política y caducidad.</li>
-        <li>Toca "Sellar gobernanza" y descarga el certificado.</li>
-      </ul>
-      <h3>Roles canónicos</h3>
-      <ul>
-        <li><strong>Fundador:</strong> todos los permisos. Autoridad máxima.</li>
-        <li><strong>Guardián:</strong> audita, verifica y puede proponer cambios.</li>
-        <li><strong>Creador:</strong> registra y firma obras.</li>
-        <li><strong>Colaborador:</strong> aporta sin privilegios de firma.</li>
-        <li><strong>IA Co-autora:</strong> asiste y estructura, sin propiedad.</li>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Pega el hash de la identidad (del Registro Humano o IA).</li>
+        <li>Escribe el nombre y selecciona el tipo.</li>
+        <li>Elige el rol a asignar.</li>
+        <li>Toca "Asignar rol".</li>
+        <li>Recibirás un certificado firmado con la lista de permisos.</li>
       </ul>
     </div>
 
     <div class="panel" id="admin">
       <h2>Manual de Admin</h2>
       <h3>Integración</h3>
-      <pre class="code">import { RolesPermisos } from './roles.js';
+      <pre class="code">import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+import { Permisos } from './permisos.js';
+import { RolesPermisos } from './roles.js';
 
-const roles = new RolesPermisos(core, storage);
-const cert = await roles.sellar(
-  { politica, caducidad },
-  humano, pactoIA
-);
+const core = new CriptoCore();
+await core.init(password);
+const storage = new StorageDexie(core);
+await storage.init();
 
-const puede = await roles.tienePermiso('creador', 'firmar_registro');
-const ok = await roles.verificar(cert, humano, pactoIA);</pre>
-      <h3>Modificar la matriz por defecto</h3>
-      <p>Los arrays <code>ROLES</code>, <code>PERMISOS</code> y <code>matriz</code> viven en <code>roles.js</code>. Edita allí y vuelve a sellar para reflejar los cambios.</p>
-      <h3>Validaciones automáticas</h3>
+const permisos = new Permisos();
+const roles = new RolesPermisos(core, storage, permisos);
+await roles.init();
+
+// Asignar rol
+const asig = await roles.asignar({
+  identidad_hash: 'abc123...',
+  identidad_nombre: 'Marco A. Rojas V.',
+  identidad_tipo: 'humano',
+  rol: 'Fundador'
+});
+
+// Comprobar permiso
+const puede = await roles.puede('abc123...', 'anclar_ethereum');
+// → true</pre>
+      <h3>Base de datos</h3>
       <ul>
-        <li>El rol Fundador debe tener todos los permisos.</li>
-        <li>Deben existir las identidades 2.1 y 2.2 previas.</li>
-        <li>La firma dual requiere que humano e IA coincidan con los certificados previos.</li>
+        <li>Nombre Dexie: <code>kronos-roles</code></li>
+        <li>Tabla: <code>asignaciones</code></li>
+        <li>Índices: <code>++id, identidad_hash, identidad_tipo, rol, timestamp, activo</code></li>
       </ul>
     </div>
 
     <div class="panel" id="seguridad">
       <h2>Manual de Seguridad</h2>
-      <h3>Modelo de amenazas</h3>
+      <h3>Modelo de confianza</h3>
       <ul>
-        <li><strong>Escalado de privilegios:</strong> la matriz firmada no puede editarse sin romper el hash.</li>
-        <li><strong>IA maliciosa:</strong> la firma dual requiere que la IA esté vinculada al humano.</li>
-        <li><strong>Suplantación de rol:</strong> cada certificado está firmado por el humano con Ed25519.</li>
-        <li><strong>Alteración de política:</strong> cualquier cambio en el payload rompe el hash.</li>
-      </ul>
-      <h3>Parámetros criptográficos</h3>
-      <ul>
-        <li><code>SHA-256</code> para hash de matriz y firma dual.</li>
-        <li><code>Ed25519</code> para firma del humano sobre la matriz.</li>
-        <li><code>AES-GCM-256</code> heredado para persistencia.</li>
+        <li>Cada asignación se firma con la llave Ed25519 del fundador.</li>
+        <li>El hash del payload detecta cualquier alteración posterior.</li>
+        <li>La matriz de permisos es declarativa y auditable.</li>
+        <li>Las asignaciones pueden revocarse sin eliminar el historial.</li>
       </ul>
       <h3>Limitaciones honestas</h3>
       <ul>
-        <li>La gobernanza es <strong>local</strong>: no hay servidor que valide la matriz por ti. Cada módulo consumidor debe verificar el certificado.</li>
-        <li>No hay revocación automática: si cambias la matriz, debes volver a sellar.</li>
-        <li>La política "delegada" permite a guardianes elevar roles, lo que relaja la seguridad. Elige "estricta" si prefieres control total.</li>
+        <li>La matriz es una declaración, no un sandbox técnico.</li>
+        <li>Si alguien obtiene acceso a la llave del fundador, puede falsificar asignaciones.</li>
+        <li>La verificación de permisos opera a nivel de aplicación.</li>
       </ul>
     </div>
   </div>
-
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Manual · Módulo 2.3</span>
-    <span><a href="./">Matriz</a> · <a href="../registro-ia/">IA</a></span>
+    <span><a href="./">Demo</a></span>
   </footer>
 </main>
-
 <script>
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -150,7 +148,7 @@ document.querySelectorAll('.tab').forEach(tab => {
     };
     resize();
     window.addEventListener('resize', resize);
-    const COLORES = [[217,119,6],[124,58,237],[201,162,39],[14,165,183]];
+    const COLORES = [[0,234,255],[125,249,255],[0,139,155],[201,164,76]];
     const blobs = Array.from({length:6}, (_,i) => ({
       x: Math.random()*w, y: Math.random()*h,
       r: 240 + Math.random()*320,
@@ -162,11 +160,11 @@ document.querySelectorAll('.tab').forEach(tab => {
       ctx.globalCompositeOperation = 'lighter';
       for (const b of blobs) {
         b.x += b.vx*dpr; b.y += b.vy*dpr;
-        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
-        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>b.r+w) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>b.r+h) b.y=-b.r;
         const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
         const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
-        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.28)`);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
         g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
