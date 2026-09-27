@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest de Integridad · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Manifest</a>
+      <a href="manual.html">Manual</a>
+      <a href="../../identidad/roles-permisos/">Roles</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.1 · Capa 3 · Certificación</div>
+    <h1 class="title">Que nada<br>se altere<br>en silencio.</h1>
+    <p class="lede">
+      Genera el <strong>manifest SHA-256</strong> de todos los archivos clave del protocolo.
+      Cualquier auditor podrá verificar que nada fue modificado. <strong>Predicamos con el ejemplo.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Generador de Manifest</h2>
+      <span class="count">SHA-256 · v1.0</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="archivos">Archivos del protocolo *</label>
+        <input type="file" id="archivos" multiple accept="*/*">
+        <div class="hint">Selecciona los archivos clave (verify.html, manifest.json, etc.). Sus hashes se agregarán al manifest.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Archivos cargados</label>
+        <div class="lista-archivos" id="lista-archivos">
+          <div class="vacio">Sin archivos aún. Selecciona arriba.</div>
+        </div>
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-generar">Generar manifest →</button>
+          <button class="btn ghost" id="btn-limpiar">Limpiar lista</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Manifest Generado</h2>
+        <span class="count" id="count-archivos">0 archivos</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">MANIFEST DE INTEGRIDAD · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Hash raíz</span><span class="v mono" id="p-hash-raiz">—</span></div>
+          <div class="tk"><span class="k">Total archivos</span><span class="v" id="p-total">—</span></div>
+          <div class="tk"><span class="k">Algoritmo</span><span class="v mono" id="p-algoritmo">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+          <div class="tk"><span class="k">Firmante</span><span class="v" id="p-firmante">—</span></div>
+        </div>
+        <div class="tarjeta-permisos" id="tabla-archivos">
+          <h4>Archivos incluidos</h4>
+          <ul id="lista-hashes"></ul>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Descargar manifest.json</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.1 · Manifest de Integridad</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../identidad/roles-permisos/">Roles</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { ManifestIntegridad } from './manifest.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const manifest = new ManifestIntegridad();
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  $('archivos').addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    const contenedor = $('lista-archivos');
+    if (contenedor.querySelector('.vacio')) contenedor.innerHTML = '';
+
+    for (const file of files) {
+      try {
+        const entrada = await manifest.hashArchivo(file);
+        manifest.agregarEntrada(entrada);
+        const div = document.createElement('div');
+        div.className = 'item-archivo';
+        div.innerHTML = `
+          <span class="nombre">${entrada.archivo}</span>
+          <span class="hash mono">${entrada.hash.slice(0, 24)}…</span>
+        `;
+        contenedor.appendChild(div);
+      } catch (err) {
+        console.warn('Error procesando', file.name, err);
+      }
+    }
+    setFb('success', `<strong>✓ ${manifest.listar().length} archivos cargados.</strong>`);
+  });
+
+  $('btn-generar').addEventListener('click', async () => {
+    try {
+      const pass = $('password').value;
+      if (pass.length < 8) {
+        setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+        return;
+      }
+      if (manifest.listar().length === 0) {
+        setFb('error', '<strong>✗ No hay archivos cargados.</strong> Selecciona al menos uno.');
+        return;
+      }
+
+      setFb('success', '<strong>⏳ Calculando hash raíz…</strong>');
+      const m = await manifest.construir();
+
+      $('p-hash-raiz').textContent = m.hash_raiz;
+      $('p-total').textContent = m.total_archivos;
+      $('p-algoritmo').textContent = m.algoritmo_hash;
+      $('p-fecha').textContent = m.timestamp;
+      $('p-firmante').textContent = m.firmante;
+      $('count-archivos').textContent = m.total_archivos + ' archivos';
+
+      $('lista-hashes').innerHTML = m.archivos.map(a =>
+        `<li>${a.archivo} · <span style="color:#FFD700;font-family:monospace;font-size:10px;">${a.hash.slice(0, 32)}…</span></li>`
+      ).join('');
+
+      $('tarjeta-wrap').hidden = false;
+      setFb('success', '<strong>✓ Manifest generado.</strong> Exporta el JSON para publicarlo.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-limpiar').addEventListener('click', () => {
+    manifest.limpiar();
+    $('archivos').value = '';
+    $('lista-archivos').innerHTML = '<div class="vacio">Sin archivos aún. Selecciona arriba.</div>';
+    $('tarjeta-wrap').hidden = true;
+    feedback.className = 'feedback';
+  });
+
+  $('btn-exportar').addEventListener('click', () => {
+    if (!manifest.manifestActual) return;
+    const blob = manifest.exportar();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `manifest-kronos-${Date.now()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setFb('success', '<strong>✓ manifest.json descargado.</strong> Súbelo al repo en la raíz.');
+  });
+
+  // Fondo líquido dorado
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[201,164,76],[255,180,60]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.18)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
