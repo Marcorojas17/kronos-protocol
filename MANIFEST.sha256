@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T14:27:59Z
+# Generado: 2026-09-27T14:29:54Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -22,6 +22,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 ec43720eb48fae8461ccb4e156f7d1a074b50530427b056125d9a67ebba0546b  ./agentes/agente-base.js
 612bedbb105e89ed5fce917db8f83df886f3fde5b0cf8450cbf6528387be147d  ./agentes/tlamatini-cronista/politica.md
 bd274749fa264a41553b92e66b00bd21297dd2f1de31e20c0a7bf4827bffa0f0  ./agentes/tlamatini-cronista/prompt.md
+1f4c3e88b39769e38185b7ba833f6261fd392099c82576877d1d398726ee3894  ./agentes/tonal-notario/politica.md
 3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
 aa1032994432084fd09c558f2c2e17be4d5ccd0bc95b7edbbf385624667758f6  ./assets/css/animations.css
 157e2e9966f905b105d98cc04dde07739fa03b3541a9c2f974c236469bc50672  ./assets/css/components.css
@@ -46,6 +47,7 @@ c450bd328d11e0ea34fe32d2f49cf9a5f88fd80928516133172431c7cae4045e  ./certificacio
 1178312a5101fbf8921c2e278ffc831eafa04bfb45abfc28a2d7f744ec2040c4  ./certificacion/manifest-integridad/index.html
 906ed4eb5c1bd1cb8d7780922e9fa8703ba03db2808f80eb909cb57cc675a291  ./certificacion/manifest-integridad/manifest.js
 ae9e942679420f01f42180a518270ae93fd5e89fb153fa314f10b83137ec9aeb  ./certificacion/manifest-integridad/styles.css
+76f9c4c4367c566212454dca53b2aa33865e9151e55d20795a3444a03358ac6b  ./certificacion/notario-kronos/README.md
 2cc635e6cfc2228e6c986a3ec1d53eaaa682ef212b1362dfd3722f55f585c097  ./certificacion/notario-kronos/certificado-notarial.html
 9d6305adcbebc689e6058192cb70a0df4ee9db3e504ddb8c4faaa50f9ce78fed  ./certificacion/notario-kronos/index.html
 febc7524c92e11bb533124f41deee0cd644ae196cd7612baf9824b4b7d524d20  ./certificacion/notario-kronos/manual.html
