@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:00:38Z
+# Generado: 2026-09-27T12:01:36Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -31,6 +31,7 @@ da7c93fc26be0ee524da817bdae5f7e35097bc065d0f60ae3bafc03078f03b09  ./assets/js/pa
 c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/registrar.js
 4812d45a6167a53876ab6c8f3abbe4896e4db24df00a5f155e26cedac72d78e1  ./assets/js/verifier.js
 8bc62cd82603b88153dbb0139127f31188a18afdfecf81014706704fbb148e76  ./carta-presentación.txt
+1178312a5101fbf8921c2e278ffc831eafa04bfb45abfc28a2d7f744ec2040c4  ./certificacion/manifest-integridad/index.html
 906ed4eb5c1bd1cb8d7780922e9fa8703ba03db2808f80eb909cb57cc675a291  ./certificacion/manifest-integridad/manifest.js
 3337b5279701feee1e562e2f679e90a1e224e2d8df61e4f56729af499576499c  ./certificates/README.md
 d1b73003b830cff9189236485730c54d5ae91f1374fd0193ff960834c5428149  ./cierre/export-cifrado/AUTORIA
