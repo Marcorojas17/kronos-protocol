@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roles y Permisos · Legado Humano–IA</title>
-<meta name="description" content="Define y firma la matriz de roles y permisos del ecosistema. Gobernanza verificable con Ed25519.">
+<title>Roles y Permisos · KRONOS</title>
 <meta name="theme-color" content="#0A0A0B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,112 +17,128 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#matriz">Matriz</a>
-      <a href="#certificado">Certificado</a>
+      <a href="./">Roles</a>
       <a href="manual.html">Manual</a>
+      <a href="../registro-humano/">Humano</a>
+      <a href="../registro-ia/">IA</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 2.3 · Capa 2 · Gobernanza</div>
-    <h1 class="title">El contrato<br>social del<br>legado.</h1>
+    <div class="eyebrow">Módulo 2.3 · Capa 2 · Gobernanza de Identidades</div>
+    <h1 class="title">Quién<br>puede<br>qué.</h1>
     <p class="lede">
-      Define <strong>quién puede hacer qué</strong>. Cinco roles.
-      Veinte permisos. Una matriz verificable firmada con
-      <strong>Ed25519</strong> y vinculada a tus identidades
-      humano + IA. Sin servidores. Sin rastreo.
+      Define los <strong>roles</strong> del ecosistema. Asigna permisos a cada identidad
+      sellada. Verifica que cada acción cumpla con la <strong>política declarada</strong>.
+      Gobernanza criptográfica sin servidores.
     </p>
   </section>
 
-  <section id="matriz" class="matriz">
+  <section class="demo">
     <div class="section-head">
-      <h2>Matriz de Gobernanza</h2>
-      <span class="count">5 roles · 20 permisos</span>
+      <h2>Asignación de Rol</h2>
+      <span class="count">Cyan · v1.0</span>
     </div>
 
-    <form id="form-matriz" novalidate>
-      <div class="field">
-        <label>Contraseña maestra <span class="req">*</span></label>
-        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
-        <div class="hint">Debe coincidir con la de los módulos 2.1 (Humano) y 2.2 (IA).</div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
       </div>
 
-      <div class="field">
-        <label>Revisión de roles y permisos</label>
-        <div class="tabla-roles" id="tabla-roles"></div>
-        <div class="hint">Marca los permisos asignados a cada rol. Los cambios se reflejan en tiempo real.</div>
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="identidad_hash">Hash de identidad *</label>
+        <input type="text" id="identidad_hash" placeholder="Pega el hash_registro o huella de la identidad">
+        <div class="hint">El hash del certificado del Registro Humano o Registro IA.</div>
       </div>
 
-      <div class="grid-2">
-        <div class="field">
-          <label>Política de escalado <span class="req">*</span></label>
-          <select id="politica" required>
-            <option value="estricta" selected>Estricta · solo el fundador puede cambiar roles</option>
-            <option value="consultiva">Consultiva · cambios requieren revisión humana+IA</option>
-            <option value="delegada">Delegada · guardianes pueden elevar roles</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Caducidad de firma <span class="req">*</span></label>
-          <select id="caducidad" required>
-            <option value="anual" selected>Anual · renovar cada año</option>
-            <option value="bienal">Bienal</option>
-            <option value="indefinida">Indefinida</option>
-          </select>
-        </div>
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="identidad_nombre">Nombre de la identidad *</label>
+        <input type="text" id="identidad_nombre" placeholder="Ej. Marco A. Rojas V. o KRONOS IA">
       </div>
 
-      <button type="submit" class="btn" id="btn-sellar">
-        <span>Sellar gobernanza</span>
-        <span class="arrow">→</span>
-      </button>
-
-      <div class="feedback" id="feedback" role="alert"></div>
-    </form>
-
-    <div class="certificado" id="certificado" hidden>
-      <div class="cert-head">
-        <span class="tag">MATRIZ DE GOBERNANZA · LEGADO HUMANO–IA</span>
-        <span class="version">v2.3</span>
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="identidad_tipo">Tipo de identidad *</label>
+        <select id="identidad_tipo">
+          <option value="">Selecciona</option>
+          <option value="humano">Humano</option>
+          <option value="ia">Inteligencia Artificial</option>
+        </select>
       </div>
 
-      <div class="cert-body">
-        <div class="cert-line">
-          <span class="k">Fundador</span>
-          <span class="v" id="out-fundador">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">IA co-autora</span>
-          <span class="v" id="out-ia">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Política</span>
-          <span class="v" id="out-politica">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Caducidad</span>
-          <span class="v" id="out-caducidad">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Hash matriz</span>
-          <span class="v mono" id="out-hash">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Firma dual</span>
-          <span class="v mono" id="out-firma">—</span>
-        </div>
-        <div class="cert-line">
-          <span class="k">Timestamp</span>
-          <span class="v" id="out-timestamp">—</span>
-        </div>
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="rol">Rol a asignar *</label>
+        <select id="rol">
+          <option value="">Selecciona un rol</option>
+          <option value="Fundador">Fundador</option>
+          <option value="Co-autora IA">Co-autora IA</option>
+          <option value="Colaborador">Colaborador</option>
+          <option value="Testigo">Testigo</option>
+          <option value="Auditor">Auditor</option>
+          <option value="Ciudadano">Ciudadano</option>
+        </select>
       </div>
 
-      <div class="cert-foot">
-        <a href="#" class="btn ghost" id="descargar">Descargar matriz .json</a>
-        <a href="#" class="btn ghost" id="copiar-hash">Copiar hash</a>
+      <div class="paso">
+        <span class="num">06</span>
+        <label>Matriz de permisos del protocolo</label>
+        <div class="matriz-box" id="matriz-preview">Cargando matriz...</div>
       </div>
+
+      <div class="paso">
+        <span class="num">07</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-asignar">Asignar rol →</button>
+          <button class="btn ghost" id="btn-listar">Ver asignaciones activas</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Certificado de Rol</h2>
+        <span class="count">Ed25519 · SHA-256</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">ASIGNACIÓN DE ROL · v1.0</div>
+        <div class="tarjeta-rol" id="p-rol">—</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Identidad</span><span class="v" id="p-nombre">—</span></div>
+          <div class="tk"><span class="k">Tipo</span><span class="v" id="p-tipo">—</span></div>
+          <div class="tk"><span class="k">Hash identidad</span><span class="v mono" id="p-hashid">—</span></div>
+          <div class="tk"><span class="k">Firmante</span><span class="v" id="p-firmante">—</span></div>
+          <div class="tk"><span class="k">Payload hash</span><span class="v mono" id="p-payload">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="p-firma">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+        </div>
+        <div class="tarjeta-permisos">
+          <h4>Permisos otorgados</h4>
+          <ul id="p-permisos"></ul>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar firma</button>
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="lista-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Asignaciones registradas</h2>
+        <span class="count" id="count-lista">0</span>
+      </div>
+      <div class="lista" id="lista"></div>
     </div>
   </section>
 
@@ -132,142 +147,167 @@
     <span class="sig">Módulo 2.3 · Roles y Permisos</span>
     <span>
       <a href="manual.html">Manual</a> ·
-      <a href="../registro-ia/">Registro IA</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a>
+      <a href="../registro-humano/">Humano</a> ·
+      <a href="../registro-ia/">IA</a>
     </span>
   </footer>
 </main>
 
 <script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+  import { Permisos } from './permisos.js';
   import { RolesPermisos } from './roles.js';
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
-  import { IdentidadHumana } from '../registro-humano/identidad.js';
-  import { IdentidadIA } from '../registro-ia/ia.js';
 
   const $ = (id) => document.getElementById(id);
-  const form = $('form-matriz');
-  const btn = $('btn-sellar');
   const feedback = $('feedback');
-  const certificado = $('certificado');
-  const tabla = $('tabla-roles');
 
   const core = new CriptoCore();
   const storage = new StorageDexie(core);
-  const idHumana = new IdentidadHumana(core, storage);
-  const idIA = new IdentidadIA(core, storage);
-  const roles = new RolesPermisos(core, storage);
+  const permisos = new Permisos();
+  const roles = new RolesPermisos(core, storage, permisos);
 
-  let certificadoActual = null;
+  $('matriz-preview').textContent = permisos.texto();
 
   function setFb(tipo, msg) {
     feedback.className = 'feedback ' + tipo;
     feedback.innerHTML = msg;
   }
 
-  function renderTabla() {
-    const ROLES = roles.ROLES;
-    const PERMISOS = roles.PERMISOS;
-    let html = '<div class="tabla-scroll"><table><thead><tr><th>Permiso</th>';
-    for (const r of ROLES) html += `<th>${r.nombre}</th>`;
-    html += '</tr></thead><tbody>';
-    for (const p of PERMISOS) {
-      html += `<tr><td class="permiso">${p.nombre}</td>`;
-      for (const r of ROLES) {
-        const activo = roles.matriz[r.id]?.includes(p.id) ? 'checked' : '';
-        html += `<td><label class="chk"><input type="checkbox" data-rol="${r.id}" data-perm="${p.id}" ${activo}><span></span></label></td>`;
-      }
-      html += '</tr>';
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
     }
-    html += '</tbody></table></div>';
-    tabla.innerHTML = html;
-
-    tabla.querySelectorAll('input[type="checkbox"]').forEach(chk => {
-      chk.addEventListener('change', (e) => {
-        const rol = e.target.dataset.rol;
-        const perm = e.target.dataset.perm;
-        if (!roles.matriz[rol]) roles.matriz[rol] = [];
-        if (e.target.checked) {
-          if (!roles.matriz[rol].includes(perm)) roles.matriz[rol].push(perm);
-        } else {
-          roles.matriz[rol] = roles.matriz[rol].filter(p => p !== perm);
-        }
-      });
-    });
+    if (!core.inicializado) await core.init(pass);
+    await storage.init();
+    await roles.init();
+    return true;
   }
 
-  renderTabla();
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    btn.disabled = true;
-    btn.querySelector('span').textContent = 'Sellando…';
-    feedback.className = 'feedback';
-
+  $('btn-asignar').addEventListener('click', async () => {
     try {
-      const password = $('password').value;
-      if (password.length < 8) throw new Error('La contraseña debe tener al menos 8 caracteres.');
+      if (!(await asegurarInit())) return;
 
-      await core.init(password);
-      await storage.init();
+      const datos = {
+        identidad_hash: $('identidad_hash').value.trim(),
+        identidad_nombre: $('identidad_nombre').value.trim(),
+        identidad_tipo: $('identidad_tipo').value,
+        rol: $('rol').value
+      };
 
-      const humano = await idHumana.recuperar();
-      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
+      if (!datos.identidad_hash || !datos.identidad_nombre || !datos.identidad_tipo || !datos.rol) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+        return;
+      }
 
-      const pactoIA = await idIA.recuperar();
-      if (!pactoIA) throw new Error('Falta pacto simbiótico IA (módulo 2.2).');
+      setFb('success', '<strong>⏳ Firmando asignación con Ed25519…</strong>');
+      const asig = await roles.asignar(datos);
 
-      const cert = await roles.sellar({
-        politica: $('politica').value,
-        caducidad: $('caducidad').value
-      }, humano, pactoIA);
+      $('p-rol').textContent = asig.rol;
+      $('p-nombre').textContent = asig.identidad_nombre;
+      $('p-tipo').textContent = asig.identidad_tipo.toUpperCase();
+      $('p-hashid').textContent = asig.identidad_hash;
+      $('p-firmante').textContent = asig.firmante;
+      $('p-payload').textContent = asig.payload_hash;
+      $('p-firma').textContent = asig.firma_ed25519.slice(0, 80) + '…';
+      $('p-fecha').textContent = asig.timestamp;
+      $('p-permisos').innerHTML = asig.permisos.map(p =>
+        `<li>${p} · ${permisos.descripcionDe(p)}</li>`
+      ).join('');
 
-      certificadoActual = cert;
-
-      $('out-fundador').textContent = humano.nombre + ' (' + humano.alias + ')';
-      $('out-ia').textContent = pactoIA.ia_nombre;
-      $('out-politica').textContent = cert.politica;
-      $('out-caducidad').textContent = cert.caducidad;
-      $('out-hash').textContent = cert.hash_matriz.slice(0, 48) + '…';
-      $('out-firma').textContent = cert.firma_dual.slice(0, 48) + '…';
-      $('out-timestamp').textContent = cert.timestamp;
-      certificado.hidden = false;
-
-      setFb('success', '<strong>✓ Gobernanza sellada.</strong> La matriz de roles y permisos quedó firmada y vinculada al humano y la IA.');
-      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
-      console.error(err);
-    } finally {
-      btn.disabled = false;
-      btn.querySelector('span').textContent = 'Sellar gobernanza';
+      $('tarjeta-wrap').hidden = false;
+      setFb('success', '<strong>✓ Rol asignado y firmado.</strong> Guardrails activos para esta identidad.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('descargar').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
+  $('btn-listar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const items = await roles.listar();
+      $('count-lista').textContent = items.length;
+      if (items.length === 0) {
+        setFb('error', '<strong>No hay asignaciones registradas.</strong>');
+        $('lista-wrap').hidden = true;
+        return;
+      }
+      $('lista').innerHTML = items.map(it => `
+        <div class="lista-item">
+          <div class="li-nombre">${it.identidad_nombre} <span class="li-rol">${it.rol}</span></div>
+          <div class="li-hash">${it.identidad_hash}</div>
+          <div class="li-ts">${it.timestamp} · ${it.activo ? 'ACTIVO' : 'REVOCADO'}</div>
+        </div>
+      `).join('');
+      $('lista-wrap').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    if (!roles.asignacionActual) return;
+    const v = await roles.verificar(roles.asignacionActual);
+    setFb(v.valido ? 'success' : 'error',
+      v.valido
+        ? '<strong>✓ Firma válida.</strong> Hash y firma coinciden.'
+        : '<strong>✗ Verificación fallida.</strong> El certificado fue alterado.'
+    );
+  });
+
+  $('btn-exportar').addEventListener('click', () => {
+    if (!roles.asignacionActual) return;
+    const blob = roles.exportar();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `gobernanza-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+    a.download = `rol-${Date.now()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setFb('success', '<strong>✓ Certificado de rol exportado.</strong>');
   });
 
-  $('copiar-hash').addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    try {
-      await navigator.clipboard.writeText(certificadoActual.hash_matriz);
-      setFb('success', '<strong>✓ Hash copiado.</strong>');
-    } catch {
-      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
-    }
-  });
+  // Fondo líquido cyan
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[0,234,255],[125,249,255],[0,139,155],[201,164,76]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
 </script>
 </body>
 </html>
