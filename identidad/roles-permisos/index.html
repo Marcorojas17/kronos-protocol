@@ -10,6 +10,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .continuar-siguiente {
+    margin-top: 60px; padding: 20px 24px;
+    border: 1px solid rgba(0,234,255,0.35);
+    background: rgba(0,234,255,0.04);
+    border-radius: 4px; text-align: center;
+    max-width: 420px; margin-left: auto; margin-right: auto;
+  }
+  .continuar-siguiente .label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: #7DF9FF; margin-bottom: 14px; font-weight: 500;
+  }
+  .continuar-siguiente .btn {
+    display: inline-flex;
+    background: linear-gradient(180deg, #7DF9FF 0%, #00EAFF 100%);
+    color: #001a20;
+    box-shadow: 0 8px 30px rgba(0,234,255,0.35);
+    text-decoration: none;
+    width: auto;
+  }
+  .continuar-siguiente .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(0,234,255,0.55);
+  }
+  .continuar-siguiente .nota {
+    display: block;
+    font-size: 11px;
+    color: #8892a0;
+    margin-top: 14px;
+    font-style: italic;
+  }
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -146,6 +179,17 @@
     </div>
   </section>
 
+  <!-- CIERRE DE CAPA 2 · VOLVER AL INICIO -->
+  <div class="continuar-siguiente">
+    <span class="label">✓ Fin · Capa 2 · Identidad</span>
+    <a href="/kronos-protocol/" class="btn">
+      ← Volver al inicio de KRONOS
+    </a>
+    <span class="nota">
+      Capa 0 · Génesis ✓ &nbsp;·&nbsp; Capa 1 · Cimiento ✓ &nbsp;·&nbsp; Capa 2 · Identidad ✓
+    </span>
+  </div>
+
   <footer>
     <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
     <span class="sig">Módulo 2.3 · Roles y Permisos</span>
@@ -269,7 +313,6 @@
     }
   });
 
-  // Verificar firma (funciona aunque no haya asignación en memoria)
   $('btn-verificar').addEventListener('click', async () => {
     try {
       if (!roles.asignacionActual) {
@@ -293,7 +336,6 @@
     }
   });
 
-  // Exportar JSON (funciona aunque no haya asignación en memoria)
   $('btn-exportar').addEventListener('click', async () => {
     try {
       if (!roles.asignacionActual) {
@@ -319,7 +361,6 @@
     }
   });
 
-  // Transferir asignación al visor de certificado visual
   document.getElementById('btn-abrir-certificado').addEventListener('click', async (e) => {
     try {
       if (!roles.asignacionActual) {
