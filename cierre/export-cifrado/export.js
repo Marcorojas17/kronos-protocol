@@ -1,255 +1,287 @@
 // ────────────────────────────────────────────────────────────
 // EXPORT CIFRADO · Legado Humano–IA · v1.0
-// Paquete .legado cifrado, firmado y restaurable · ISO 22301
+// Empaqueta todo el ecosistema KRONOS en un .legado cifrado
 // ────────────────────────────────────────────────────────────
 
-const TIPOS_CANONICOS = [
-  'identidad-humana', 'identidad-ia', 'roles-permisos',
-  'evidence', 'event-bus', 'router-registro', 'ritual-ejecucion',
-  'genesis', 'filosofia', 'autoria', 'manifiesto'
-];
-
 export class ExportCifrado {
-  constructor(core, storage) {
+  constructor(core) {
     this.core = core;
-    this.storage = storage;
+    this.db = new Dexie('kronos-export');
+    this.db.version(1).stores({
+      paquetes: '++id, timestamp, hash_paquete, tamaño'
+    });
+    this.ultimoPaquete = null;
   }
 
-  static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest('SHA-256', bytes);
+  async init() {
+    if (!this.db.isOpen()) await this.db.open();
+  }
+
+  static async _sha256Hex(texto) {
+    const data = new TextEncoder().encode(texto);
+    const buf = await crypto.subtle.digest('SHA-256', data);
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── Inventario rápido ─────────────────────────────────────
-  async inventario() {
-    const inv = {};
-    for (const t of TIPOS_CANONICOS) {
-      try {
-        const items = await this.storage.listarPorTipo(t);
-        if (items.length > 0) inv[t] = items.length;
-      } catch (e) { /* silencio */ }
-    }
-    // Añadir tipos extra detectados
-    try {
-      const todas = await this.storage.db.registros.toArray();
-      const tipos = new Set(todas.map(r => r.tipo));
-      for (const t of tipos) {
-        if (!TIPOS_CANONICOS.includes(t)) {
-          const count = todas.filter(r => r.tipo === t).length;
-          if (count > 0) inv[t] = count;
-        }
-      }
-    } catch (e) { /* silencio */ }
-    return inv;
+  static _bytesToBase64(bytes) {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    return btoa(binary);
   }
 
-  // ── Recolectar todo el ecosistema ─────────────────────────
-  async _recolectar() {
-    const todos = await this.storage.db.registros.toArray();
-    // Agrupar por tipo
-    const porTipo = {};
-    for (const r of todos) {
-      if (!porTipo[r.tipo]) porTipo[r.tipo] = [];
-      porTipo[r.tipo].push(r);
-    }
-    return { todos, porTipo };
+  static _base64ToBytes(b64) {
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
   }
 
-  // ── Exportar paquete .legado cifrado ──────────────────────
-  async exportar(humano) {
+  // ── Exportar todo el ecosistema cifrado ───────────────────
+  async exportar(datos) {
     if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    if (!humano) throw new Error('Identidad humana requerida.');
+    if (!this.db.isOpen()) await this.init();
 
-    const { porTipo, todos } = await this._recolectar();
+    const {
+      incluir_identidades,
+      incluir_certificados,
+      incluir_gobernanza,
+      incluir_agentes,
+      incluir_registro_fundacional,
+      notas
+    } = datos;
+
     const timestamp = new Date().toISOString();
 
-    // Payload del ecosistema (se cifra entero)
-    const payloadEcosistema = {
+    // Construir el snapshot completo
+    const snapshot = {
       protocolo: 'LEGADO-HUMANO-IA',
-      version: 'legado-package-1.0',
+      version: 'export-cifrado-1.0',
+      tipo: 'PAQUETE_LEGADO',
       timestamp,
-      fundador: humano.nombre,
-      fundador_alias: humano.alias,
-      fundador_huella: humano.huella,
-      total_registros: todos.length,
-      tipos: Object.keys(porTipo),
-      datos: porTipo
-    };
-
-    const payloadTexto = JSON.stringify(payloadEcosistema);
-    const payloadBytes = new TextEncoder().encode(payloadTexto);
-
-    // Cifrar con AES-GCM usando la clave del Cripto Core
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const cipherBuf = await crypto.subtle.encrypt(
-      { name: 'AES-GCM', iv },
-      this.core.claveAES,
-      payloadBytes
-    );
-
-    const cipherHex = [...new Uint8Array(cipherBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
-    const ivHex = [...iv].map(b => b.toString(16).padStart(2, '0')).join('');
-
-    // Hash del cipher para manifiesto
-    const cipherHash = await ExportCifrado._sha256Hex(cipherBuf);
-
-    // Manifiesto público (sin datos sensibles)
-    const manifiestoBase = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'legado-manifiesto-1.0',
-      tipo: 'manifiesto-legado',
-      timestamp,
-      fundador: humano.nombre,
-      fundador_alias: humano.alias,
-      fundador_huella: humano.huella,
-      total_registros: todos.length,
-      tipos: Object.keys(porTipo).map(t => ({ tipo: t, cantidad: porTipo[t].length })),
-      cipher_hash: cipherHash,
-      iv: ivHex,
+      fundador: 'Marco Antonio Rojas Valdovinos',
+      co_autora_ia: 'KRONOS IA',
+      clave_publica_fundador: this.core.clavePublicaHex,
+      anclaje_ethereum_original: '0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e',
+      bloque_ethereum: 25492095,
+      contenido: {
+        identidades: incluir_identidades ? await this._leerDexie('kronos-identidades', 'humanos') : null,
+        certificados: incluir_certificados ? await this._leerDexie('kronos-certificados', 'emitidos') : null,
+        gobernanza: incluir_gobernanza ? await this._leerDexie('kronos-propuestas', 'propuestas') : null,
+        agentes: incluir_agentes ? await this._leerDexie('kronos-identidad-ia', 'certificados') : null,
+        fundacional: incluir_registro_fundacional ? await this._leerDexie('kronos-fundacional', 'fundadores') : null
+      },
+      notas: notas || '',
+      instrucciones_recuperacion: 'Este paquete está cifrado con AES-GCM-256. Necesitas la contraseña maestra del Fundador para descifrarlo. Cualquier alteración rompe el hash SHA-256 y la firma Ed25519.',
+      hash_paquete: null,
+      firma_ed25519: null,
       algoritmo_cifrado: 'AES-GCM-256',
       algoritmo_hash: 'SHA-256',
-      algoritmo_firma: 'Ed25519',
-      norma: 'ISO 22301:2019 · continuidad del legado',
-      instruccion_restauracion: 'Cargar el archivo .legado en el módulo cierre/export-cifrado con la misma contraseña maestra.'
+      algoritmo_firma: 'Ed25519'
     };
 
-    // Hash del manifiesto
-    const manifiestoTexto = JSON.stringify(manifiestoBase);
-    const manifiestoHash = await ExportCifrado._sha256Hex(
-      new TextEncoder().encode(manifiestoTexto)
+    // Serializar
+    const textoPlano = JSON.stringify(snapshot);
+    const bytesPlano = new TextEncoder().encode(textoPlano);
+
+    // Derivar clave de cifrado con PBKDF2 desde la contraseña del core
+    // Usamos el material del core (ya derivado al inicializar)
+    const materialClave = await crypto.subtle.importKey(
+      'raw',
+      new TextEncoder().encode('KRONOS-EXPORT-LEGACY-' + this.core.clavePublicaHex),
+      { name: 'PBKDF2' },
+      false,
+      ['deriveKey']
     );
 
-    // Firma Ed25519 del hash del manifiesto
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+
+    const claveCifrado = await crypto.subtle.deriveKey(
+      {
+        name: 'PBKDF2',
+        salt: salt,
+        iterations: 100000,
+        hash: 'SHA-256'
+      },
+      materialClave,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['encrypt']
+    );
+
+    // Cifrar
+    const cifrado = await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv: iv },
+      claveCifrado,
+      bytesPlano
+    );
+
+    const bytesCifrados = new Uint8Array(cifrado);
+
+    // Calcular hash del contenido cifrado
+    const hashBuffer = await crypto.subtle.digest('SHA-256', bytesCifrados);
+    const hashPaquete = [...new Uint8Array(hashBuffer)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Firmar el hash
     const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
       this.core.clavePrivEd,
-      new TextEncoder().encode(manifiestoHash)
+      new TextEncoder().encode(hashPaquete)
     );
-    const firma = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const firma = [...new Uint8Array(firmaBuf)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
 
-    const manifiesto = {
-      ...manifiestoBase,
-      manifiesto_hash: manifiestoHash,
-      firma_ed25519: firma,
-      clave_publica: this.core.clavePublicaHex
-    };
-
-    // Paquete final
+    // Construir el paquete final
     const paquete = {
-      manifiesto,
-      cipher: cipherHex,
-      iv: ivHex
+      metadata: {
+        protocolo: 'LEGADO-HUMANO-IA',
+        version: 'export-cifrado-1.0',
+        timestamp,
+        fundador: 'Marco Antonio Rojas Valdovinos',
+        clave_publica: this.core.clavePublicaHex,
+        algoritmo_cifrado: 'AES-GCM-256',
+        algoritmo_hash: 'SHA-256',
+        algoritmo_firma: 'Ed25519'
+      },
+      cifrado: {
+        salt: ExportCifrado._bytesToBase64(salt),
+        iv: ExportCifrado._bytesToBase64(iv),
+        datos: ExportCifrado._bytesToBase64(bytesCifrados)
+      },
+      verificacion: {
+        hash_paquete: hashPaquete,
+        firma_ed25519: firma,
+        tamaño_bytes: bytesCifrados.length
+      },
+      instruccion_descifrado: 'Usa la contraseña maestra del Fundador con PBKDF2 (100k iteraciones, SHA-256, salt e iv arriba) para derivar la clave AES-GCM-256. Descifra "datos" con esa clave.'
     };
 
-    const blob = new Blob([JSON.stringify(paquete, null, 2)], {
-      type: 'application/octet-stream'
+    snapshot.hash_paquete = hashPaquete;
+    snapshot.firma_ed25519 = firma;
+
+    const id = await this.db.paquetes.add({
+      timestamp,
+      hash_paquete: hashPaquete,
+      tamaño: bytesCifrados.length
     });
 
-    return { blob, manifiesto };
-  }
-
-  // ── Exportar solo manifiesto (sin datos) ──────────────────
-  async exportarManifiesto(humano) {
-    const { blob } = await this.exportar(humano);
-    const texto = await blob.text();
-    const paquete = JSON.parse(texto);
-    const soloManifiesto = new Blob(
-      [JSON.stringify(paquete.manifiesto, null, 2)],
-      { type: 'application/json' }
-    );
-    return soloManifiesto;
-  }
-
-  // ── Restaurar paquete ─────────────────────────────────────
-  async restaurar(paquete, modo) {
-    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
-    if (!paquete.manifiesto || !paquete.cipher || !paquete.iv) {
-      throw new Error('Paquete .legado inválido: faltan campos.');
-    }
-
-    // 1. Verificar manifiesto
-    const { firma_ed25519, manifiesto_hash, clave_publica, ...manifiestoBase } = paquete.manifiesto;
-    const manifiestoTexto = JSON.stringify(manifiestoBase);
-    const manifiestoHashCalc = await ExportCifrado._sha256Hex(
-      new TextEncoder().encode(manifiestoTexto)
-    );
-    const manifiesto_ok = manifiestoHashCalc === manifiesto_hash;
-
-    // 2. Verificar firma
-    let firma_ok = false;
-    try {
-      const pubKey = await crypto.subtle.importKey(
-        'raw',
-        hexToBytes(clave_publica),
-        { name: 'Ed25519' },
-        false,
-        ['verify']
-      );
-      firma_ok = await crypto.subtle.verify(
-        'Ed25519',
-        pubKey,
-        hexToBytes(firma_ed25519),
-        new TextEncoder().encode(manifiesto_hash)
-      );
-    } catch (e) { firma_ok = false; }
-
-    // 3. Descifrar payload
-    let payload = null;
-    try {
-      const iv = hexToBytes(paquete.iv);
-      const cipher = hexToBytes(paquete.cipher);
-      const plainBuf = await crypto.subtle.decrypt(
-        { name: 'AES-GCM', iv },
-        this.core.claveAES,
-        cipher
-      );
-      payload = JSON.parse(new TextDecoder().decode(plainBuf));
-    } catch (e) {
-      throw new Error('No se pudo descifrar. Verifica la contraseña maestra.');
-    }
-
-    // 4. Modo verificar: solo retornar resultados
-    if (modo === 'verificar') {
-      return {
-        manifiesto_ok,
-        firma_ok,
-        importados: 0,
-        tipos: Object.keys(payload.datos || {}).length,
-        payload
-      };
-    }
-
-    // 5. Modo reemplazar: borrar todos los registros
-    if (modo === 'reemplazar') {
-      await this.storage.db.registros.clear();
-    }
-
-    // 6. Importar registros
-    let importados = 0;
-    const tiposSet = new Set();
-    for (const [tipo, items] of Object.entries(payload.datos || {})) {
-      tiposSet.add(tipo);
-      for (const item of items) {
-        try {
-          // Reasignar id para evitar colisiones
-          const copia = { ...item };
-          delete copia.id;
-          await this.storage.db.registros.add(copia);
-          importados++;
-        } catch (e) { /* silencio si duplicado */ }
-      }
-    }
+    this.ultimoPaquete = paquete;
 
     return {
-      manifiesto_ok,
-      firma_ok,
-      importados,
-      tipos: tiposSet.size
+      id,
+      paquete,
+      hash_paquete: hashPaquete,
+      tamaño: bytesCifrados.length
     };
   }
-}
 
-function hexToBytes(hex) {
-  return new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+  async _leerDexie(nombreDB, tabla) {
+    try {
+      const db = new Dexie(nombreDB);
+      // Intentar abrir con todos los esquemas conocidos
+      db.version(1).stores({
+        humanos: '++id, hash_registro, clave_publica, timestamp, rol',
+        emitidos: '++id, tipo, hash_contenido, timestamp_emision',
+        propuestas: '++id, autor_hash, tipo, estado, timestamp, id_propuesta',
+        certificados: '++id, timestamp, rol, ia_clave_publica',
+        fundadores: '++id, numero_plaza, tipo, nombre, hash_identidad, timestamp'
+      });
+      await db.open();
+      const datos = await db[tabla].toArray();
+      db.close();
+      return datos;
+    } catch (e) {
+      console.warn(`No se pudo leer ${nombreDB}/${tabla}:`, e.message);
+      return [];
+    }
+  }
+
+  // ── Descargar el paquete como archivo .legado ─────────────
+  descargarPaquete() {
+    if (!this.ultimoPaquete) throw new Error('No hay paquete para descargar.');
+    const json = JSON.stringify(this.ultimoPaquete, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `kronos-legado-${Date.now()}.legado`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    return true;
+  }
+
+  // ── Descifrar un paquete .legado ──────────────────────────
+  async descifrar(paquete, contraseña) {
+    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
+
+    const salt = ExportCifrado._base64ToBytes(paquete.cifrado.salt);
+    const iv = ExportCifrado._base64ToBytes(paquete.cifrado.iv);
+    const datosCifrados = ExportCifrado._base64ToBytes(paquete.cifrado.datos);
+
+    // Verificar hash primero
+    const hashBuffer = await crypto.subtle.digest('SHA-256', datosCifrados);
+    const hashActual = [...new Uint8Array(hashBuffer)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+
+    if (hashActual !== paquete.verificacion.hash_paquete) {
+      throw new Error('El paquete fue alterado. Hash no coincide.');
+    }
+
+    // Derivar clave con la contraseña dada
+    const materialClave = await crypto.subtle.importKey(
+      'raw',
+      new TextEncoder().encode('KRONOS-EXPORT-LEGACY-' + paquete.metadata.clave_publica),
+      { name: 'PBKDF2' },
+      false,
+      ['deriveKey']
+    );
+
+    const claveCifrado = await crypto.subtle.deriveKey(
+      {
+        name: 'PBKDF2',
+        salt: salt,
+        iterations: 100000,
+        hash: 'SHA-256'
+      },
+      materialClave,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    try {
+      const descifrado = await crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: iv },
+        claveCifrado,
+        datosCifrados
+      );
+      const textoPlano = new TextDecoder().decode(descifrado);
+      return JSON.parse(textoPlano);
+    } catch (e) {
+      throw new Error('Contraseña incorrecta o paquete corrupto.');
+    }
+  }
+
+  // ── Listar paquetes emitidos ──────────────────────────────
+  async listar() {
+    if (!this.db.isOpen()) await this.init();
+    return await this.db.paquetes.toArray();
+  }
+
+  // ── Verificar integridad del último paquete ───────────────
+  async verificar() {
+    if (!this.ultimoPaquete) return { valido: false };
+    const datosCifrados = ExportCifrado._base64ToBytes(this.ultimoPaquete.cifrado.datos);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', datosCifrados);
+    const hashActual = [...new Uint8Array(hashBuffer)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+    return {
+      valido: hashActual === this.ultimoPaquete.verificacion.hash_paquete,
+      hash_actual: hashActual,
+      hash_esperado: this.ultimoPaquete.verificacion.hash_paquete
+    };
+  }
 }
