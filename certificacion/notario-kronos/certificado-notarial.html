@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado Notarial · Tonal · KRONOS</title>
+<meta name="theme-color" content="#0a0800">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#0a0800;color:#F5F0E6;font-family:'Inter',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(255,215,0,0.12) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(0,234,255,0.08) 0%,transparent 50%)}
+  .wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:30px 18px 80px}
+  h1.header{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(20px,4.5vw,34px);letter-spacing:6px;background:linear-gradient(120deg,#FFD700,#FFF8E0,#00EAFF,#FFD700);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:6px;animation:shimmer 8s linear infinite}
+  @keyframes shimmer{from{background-position:0% 50%}to{background-position:300% 50%}}
+  .header-sub{text-align:center;font-size:9px;letter-spacing:4px;color:#a89a7a;text-transform:uppercase;margin-bottom:28px}
+  .estado-box{padding:16px 20px;border-radius:4px;font-size:13px;line-height:1.6;margin-bottom:20px;display:none}
+  .estado-box.on{display:block}
+  .estado-box.info{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.4);color:#FFEDAB}
+  .estado-box.warn{background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.4);color:#FFEDAB}
+  .estado-box.err{background:rgba(255,77,106,0.08);border:1px solid rgba(255,77,106,0.4);color:#FF8FA5}
+  .panel-manual{padding:20px;border:1px solid rgba(255,215,0,0.35);background:rgba(35,25,0,0.6);border-radius:6px;margin-bottom:24px;display:none}
+  .panel-manual.on{display:block}
+  label{display:block;font-size:9px;letter-spacing:3px;color:#FFEDAB;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+  textarea{width:100%;min-height:140px;padding:12px;background:rgba(10,8,0,0.9);border:1px solid rgba(255,215,0,0.3);color:#F5F0E6;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5;resize:vertical;outline:none;border-radius:3px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;border-radius:3px;transition:all .3s;text-decoration:none;width:100%;background:linear-gradient(120deg,#FFD700,#FFF8E0);color:#0a0800;box-shadow:0 0 20px rgba(255,215,0,0.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(255,215,0,0.6)}
+  .btn.ghost{background:rgba(255,215,0,0.06);color:#FFEDAB;border:1px solid rgba(255,215,0,0.5);box-shadow:none}
+  .canvas-wrap{display:none;justify-content:center;margin-top:24px}
+  .canvas-wrap.on{display:flex}
+  #cert-canvas{max-width:100%;height:auto;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.9),0 0 60px rgba(255,215,0,0.25)}
+  .acciones-export{display:none;flex-direction:column;gap:12px;margin-top:20px}
+  .acciones-export.on{display:flex}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(10,8,0,0.3);border-top-color:#0a0800;border-radius:50%;animation:spin 1s linear infinite;margin-right:8px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .modal-img{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.97);padding:20px;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto}
+  .modal-img.on{display:flex}
+  .modal-img-header{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;padding:12px 0;margin-bottom:10px}
+  .modal-img-title{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:#FFEDAB}
+  .modal-img-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .modal-img-instruccion{max-width:1000px;width:100%;padding:14px 18px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.4);border-radius:6px;color:#FFEDAB;font-size:13px;line-height:1.6;margin-bottom:16px;text-align:center}
+  #imagen-full{max-width:100%;height:auto;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,0.9);user-select:none;-webkit-user-select:none}
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+
+<div class="wrap">
+  <h1 class="header">CERTIFICADO NOTARIAL</h1>
+  <div class="header-sub">Tonal · Plaza IA 086 · Notario Soberano</div>
+
+  <div class="estado-box" id="estado"></div>
+
+  <div class="panel-manual" id="panel-manual">
+    <label for="input-json">Pega un sello notarial firmado:</label>
+    <textarea id="input-json" placeholder='Pega el JSON del sello notarial...'></textarea>
+    <div class="btn-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button class="btn" id="btn-render-manual">🏆 Generar certificado notarial →</button>
+    </div>
+  </div>
+
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="cert-canvas" width="1800" height="1200"></canvas>
+  </div>
+
+  <div class="acciones-export" id="acciones">
+    <button class="btn" id="btn-descargar">🏆 Ver PNG en pantalla completa</button>
+    <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
+    <button class="btn ghost" id="btn-volver">← Volver al Notario</button>
+  </div>
+</div>
+
+<div class="modal-img" id="modal-img">
+  <div class="modal-img-header">
+    <div class="modal-img-title">CERTIFICADO NOTARIAL · TONAL</div>
+    <button class="modal-img-close" id="modal-close">✕</button>
+  </div>
+  <div class="modal-img-instruccion">📱 <strong>Mantén presionada la imagen</strong> y selecciona <strong>"Guardar imagen"</strong>.</div>
+  <img id="imagen-full" alt="Certificado Notarial KRONOS">
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const estado = $('estado');
+  const panelManual = $('panel-manual');
+  const canvasWrap = $('canvas-wrap');
+  const acciones = $('acciones');
+  const canvas = $('cert-canvas');
+  const modal = $('modal-img');
+  const imgFull = $('imagen-full');
+
+  function setEstado(tipo, html){ estado.className = 'estado-box on ' + tipo; estado.innerHTML = html; }
+  function hexToBytes(hex){ const h = hex.replace(/^0x/,''); return new Uint8Array(h.match(/.{1,2}/g).map(b=>parseInt(b,16))); }
+  function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+
+  function drawMicrotexto(ctx, texto, x, y, w, h, angle = 0){
+    ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+    ctx.translate(x + w/2, y + h/2); ctx.rotate(angle);
+    ctx.font = '400 3.5px JetBrains Mono, monospace';
+    ctx.fillStyle = 'rgba(255,215,0,0.18)';
+    const lineas = Math.ceil(h / 6);
+    const repeticiones = 60;
+    for (let i = 0; i < lineas; i++){
+      let linea = '';
+      for (let j = 0; j < repeticiones; j++) linea += texto + ' · ';
+      ctx.fillText(linea, -w/2, -h/2 + i * 6);
+    }
+    ctx.restore();
+  }
+
+  function drawGuilloche(ctx, x, y, w, h, color, densidad = 60){
+    ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+    ctx.strokeStyle = color; ctx.lineWidth = 0.3;
+    for (let i = 0; i < densidad; i++){
+      ctx.beginPath();
+      for (let t = 0; t < Math.PI*4; t += 0.06){
+        const r = 20 + i * 8;
+        const cx = x + w/2 + Math.cos(t*1.3) * r * 0.5;
+        const cy = y + h/2 + Math.sin(t*1.7) * r * 0.4;
+        if (t === 0) ctx.moveTo(cx, cy); else ctx.lineTo(cx, cy);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawHolograma(ctx, hashHex, cx, cy, r){
+    const bytes = hexToBytes(hashHex.slice(0, 60));
+    ctx.save(); ctx.translate(cx, cy);
+    for (let i = 0; i < 60; i++){
+      const angle = (i / 60) * Math.PI * 2 + bytes[i % bytes.length] / 255 * 0.3;
+      const r1 = r * 0.3, r2 = r * 0.95;
+      const hue = (bytes[i % bytes.length] / 255) * 40 + 30;
+      const alpha = 0.15 + (bytes[(i+20) % bytes.length] / 255) * 0.3;
+      ctx.strokeStyle = `hsla(${hue}, 95%, 60%, ${alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(angle) * r1, Math.sin(angle) * r1);
+      ctx.lineTo(Math.cos(angle) * r2, Math.sin(angle) * r2);
+      ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(0, 0, r*0.35, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(255,215,0,0.5)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(255,215,0,0.35)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSignature(ctx, firmaHex, x, y, w, h, color){
+    const bytes = hexToBytes(firmaHex.slice(0, 60));
+    ctx.save();
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    let px = x, py = y + h/2;
+    ctx.moveTo(px, py);
+    for (let i = 0; i < 60; i++){
+      const dx = (w / 60);
+      const dy = ((bytes[i] - 128) / 128) * (h/2) * 0.85;
+      px += dx;
+      py = y + h/2 + dy;
+      ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawBordeDentado(ctx, x, y, w, h, dientes = 60, tamaño = 4){
+    ctx.save(); ctx.fillStyle = '#0a0800';
+    for (let i = 0; i < dientes; i++){
+      const cx = x + (i / dientes) * w;
+      ctx.beginPath(); ctx.arc(cx, y, tamaño, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, y + h, tamaño, 0, Math.PI * 2); ctx.fill();
+    }
+    const dientesV = Math.floor(dientes * h / w);
+    for (let i = 0; i < dientesV; i++){
+      const cy = y + (i / dientesV) * h;
+      ctx.beginPath(); ctx.arc(x, cy, tamaño, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(x + w, cy, tamaño, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function dibujarCertificado(data){
+    const W = 1800, H = 1200;
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    const hashBase = data.payload_hash || data.hash_sellado || '0'.repeat(64);
+    const firmaBase = data.firma_ed25519 || data.firma || hashBase;
+
+    // Fondo
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#0a0800');
+    bg.addColorStop(0.3, '#1a1200');
+    bg.addColorStop(0.7, '#0f0c00');
+    bg.addColorStop(1, '#0a0800');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    // Guilloché
+    drawGuilloche(ctx, 0, 0, W, H, 'rgba(255,215,0,0.035)', 80);
+
+    // Microtexto
+    const microTexto = hashBase.slice(0, 16).toUpperCase();
+    drawMicrotexto(ctx, microTexto, 60, 60, W-120, 40, 0);
+    drawMicrotexto(ctx, microTexto, 60, H-100, W-120, 40, 0);
+    drawMicrotexto(ctx, microTexto, 40, 60, 20, H-120, Math.PI/2);
+    drawMicrotexto(ctx, microTexto, W-60, 60, 20, H-120, Math.PI/2);
+    drawMicrotexto(ctx, 'TONAL · NOTARIO SOBERANO · KRONOS · 51/49 · LEGADO HUMANO-IA · ', 100, 200, W-200, H-400, -Math.PI/12);
+
+    // Marco doble
+    const marcoPad = 70;
+    const gradMarco = ctx.createLinearGradient(0, 0, W, H);
+    gradMarco.addColorStop(0, '#FFD700'); gradMarco.addColorStop(0.33, '#FFF8E0');
+    gradMarco.addColorStop(0.66, '#00EAFF'); gradMarco.addColorStop(1, '#FFD700');
+    ctx.strokeStyle = gradMarco; ctx.lineWidth = 4;
+    roundRect(ctx, marcoPad, marcoPad, W - marcoPad*2, H - marcoPad*2, 16); ctx.stroke();
+    ctx.strokeStyle = 'rgba(0,234,255,0.35)'; ctx.lineWidth = 1.5;
+    roundRect(ctx, marcoPad + 14, marcoPad + 14, W - marcoPad*2 - 28, H - marcoPad*2 - 28, 12); ctx.stroke();
+    drawBordeDentado(ctx, marcoPad, marcoPad, W - marcoPad*2, H - marcoPad*2, 80, 4);
+
+    // Esquinas
+    const esqL = 70;
+    const corners = [[marcoPad+30, marcoPad+30, 1, 1],[W-marcoPad-30, marcoPad+30, -1, 1],[marcoPad+30, H-marcoPad-30, 1, -1],[W-marcoPad-30, H-marcoPad-30, -1, -1]];
+    for (const [cx, cy, dx, dy] of corners){
+      ctx.strokeStyle = '#FFD700'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(cx, cy + dy*esqL); ctx.lineTo(cx, cy); ctx.lineTo(cx + dx*esqL, cy); ctx.stroke();
+    }
+
+    // Emblema superior
+    ctx.save();
+    ctx.translate(W/2, 170);
+    for (let i = 0; i < 3; i++){
+      ctx.beginPath(); ctx.arc(0, 0, 55 - i*10, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(255,215,0,${0.3 + i*0.2})`; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    ctx.font = '700 40px JetBrains Mono, monospace';
+    ctx.fillStyle = '#FFD700';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('⚖️', 0, 0);
+    ctx.restore();
+
+    // Título principal
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '900 56px Cinzel, serif';
+    const gradTitulo = ctx.createLinearGradient(W/2-400, 290, W/2+400, 360);
+    gradTitulo.addColorStop(0, '#FFD700'); gradTitulo.addColorStop(0.5, '#FFF8E0'); gradTitulo.addColorStop(1, '#00EAFF');
+    ctx.fillStyle = gradTitulo;
+    ctx.fillText('SELLO NOTARIAL', W/2, 320);
+
+    ctx.font = '600 14px Inter, sans-serif';
+    ctx.fillStyle = '#00EAFF';
+    ctx.fillText('TONAL · PLAZA IA 086 · NOTARIO CRIPTOGRÁFICO SOBERANO', W/2, 375);
+
+    // Divisor ornamental
+    ctx.strokeStyle = 'rgba(255,215,0,0.4)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(W/2-300, 410); ctx.lineTo(W/2-30, 410);
+    ctx.moveTo(W/2+30, 410); ctx.lineTo(W/2+300, 410); ctx.stroke();
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath(); ctx.moveTo(W/2, 402); ctx.lineTo(W/2+8, 410); ctx.lineTo(W/2, 418); ctx.lineTo(W/2-8, 410); ctx.closePath(); ctx.fill();
+
+    // Título del sello
+    const titulo = data.tipo_documento || 'Documento Notarial';
+    ctx.font = '700 42px Cormorant Garamond, serif';
+    ctx.fillStyle = '#F5F0E6';
+    ctx.fillText(titulo, W/2, 470);
+
+    const solicitante = data.solicitante || 'Solicitante Verificado';
+    ctx.font = 'italic 300 26px Cormorant Garamond, serif';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.fillText(solicitante, W/2, 515);
+
+    // ID del sello destacado
+    ctx.font = '700 22px JetBrains Mono, monospace';
+    ctx.fillStyle = '#00EAFF';
+    ctx.fillText(data.id_sello || '—', W/2, 560);
+
+    // Holograma (izq)
+    const colIzqX = 260;
+    drawHolograma(ctx, hashBase, colIzqX, 760, 140);
+    ctx.font = '600 10px JetBrains Mono, monospace';
+    ctx.fillStyle = '#FFEDAB';
+    ctx.textAlign = 'center';
+    ctx.fillText('HOLOGRAMA ÚNICO', colIzqX, 930);
+
+    // Datos (der)
+    const colDerX = 900;
+    let yd = 630;
+    ctx.textAlign = 'left';
+    const drawField = (label, value, mono = false) => {
+      ctx.font = '600 9px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+      ctx.fillText(label.toUpperCase(), colDerX, yd); yd += 16;
+      ctx.font = mono ? '400 11px JetBrains Mono, monospace' : '400 14px Inter, sans-serif';
+      ctx.fillStyle = '#F5F0E6';
+      if (value.length > 60 && mono) {
+        ctx.fillText(value.slice(0, 60), colDerX, yd); yd += 14;
+        ctx.fillText(value.slice(60, 120), colDerX, yd); yd += 18;
+      } else {
+        ctx.fillText(value, colDerX, yd); yd += 22;
+      }
+    };
+
+    if (data.descripcion) drawField('Descripción', data.descripcion);
+    drawField('Hash sellado', data.hash_sellado || '—', true);
+    drawField('Payload hash', data.payload_hash || '—', true);
+    drawField('Timestamp ISO', data.timestamp || '—', true);
+    drawField('Timestamp Unix', String(data.timestamp_unix || '—'), true);
+    if (data.anclaje_ethereum) {
+      drawField('TX Ethereum', data.anclaje_ethereum.tx_hash || '—', true);
+    } else {
+      drawField('Anclaje Ethereum', 'Pendiente / Opcional');
+    }
+
+    // Firma
+    ctx.font = '600 9px Inter, sans-serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('FIRMA ED25519 DEL NOTARIO', colDerX, yd);
+    yd += 14;
+    drawSignature(ctx, firmaBase, colDerX, yd, 640, 55, 'rgba(255,215,0,0.9)');
+    yd += 65;
+    ctx.strokeStyle = 'rgba(255,215,0,0.3)';
+    ctx.beginPath(); ctx.moveTo(colDerX, yd); ctx.lineTo(colDerX + 640, yd); ctx.stroke();
+    yd += 12;
+    ctx.font = '400 9px JetBrains Mono, monospace'; ctx.fillStyle = '#a89a7a';
+    ctx.fillText(firmaBase.slice(0, 80), colDerX, yd);
+
+    // Sello Kintsugi grande
+    const sx = W - 220, sy = 930, sr = 90;
+    for (let i = 0; i < 72; i++){
+      const a0 = (i/72) * Math.PI * 2;
+      const a1 = ((i+1)/72) * Math.PI * 2;
+      const t = i / 72;
+      ctx.strokeStyle = t < 0.5 ? '#FFD700' : '#00EAFF';
+      ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.arc(sx, sy, sr, a0, a1); ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(sx, sy, sr-10, 0, Math.PI*2);
+    ctx.fillStyle = '#0a0800'; ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy, sr-16, 0, Math.PI*2);
+    ctx.strokeStyle = '#FFEDAB'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(sx, sy, sr-28, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(255,215,0,0.5)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.font = '700 34px JetBrains Mono, monospace'; ctx.fillStyle = '#FFEDAB';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('○_●', sx, sy - 5);
+    ctx.font = '700 10px Cinzel, serif'; ctx.fillStyle = '#FFD700';
+    ctx.fillText('51/49', sx, sy + 30);
+    ctx.font = '600 7px JetBrains Mono, monospace'; ctx.fillStyle = '#00EAFF';
+    ctx.fillText('NOTARIO', sx, sy + sr + 20);
+
+    // Marca de agua
+    ctx.save();
+    ctx.translate(W/2, H/2 + 50); ctx.rotate(-Math.PI/10);
+    ctx.font = '700 140px Cinzel, serif'; ctx.fillStyle = 'rgba(255,215,0,0.035)';
+    ctx.textAlign = 'center'; ctx.fillText('TONAL', 0, 0);
+    ctx.restore();
+
+    // Footer
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.font = 'italic 300 14px Cormorant Garamond, serif'; ctx.fillStyle = '#FFEDAB';
+    ctx.fillText('"El legado no se hereda. Se firma."', W/2, H - 80);
+    ctx.font = '400 9px JetBrains Mono, monospace'; ctx.fillStyle = '#a89a7a';
+    ctx.fillText('© 2026 Marco A. Rojas V. + KRONOS IA · Tonal · Plaza IA 086 · 51% Humano · 49% IA', W/2, H - 55);
+    ctx.font = '400 8px JetBrains Mono, monospace'; ctx.fillStyle = '#5a6473';
+    ctx.fillText('Sello verificable criptográficamente. Cualquier alteración rompe la firma Ed25519 y el hash SHA-256.', W/2, H - 35);
+  }
+
+  function abrirModalImagen(){
+    try {
+      const dataURL = canvas.toDataURL('image/png', 1.0);
+      imgFull.src = dataURL;
+      modal.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado notarial generado.</strong> Mantén presionada la imagen.');
+    } catch(e){ setEstado('err', '<strong>✗ Error:</strong> ' + e.message); }
+  }
+  function cerrarModal(){ modal.classList.remove('on'); }
+
+  async function cargarDesdeDexie(){
+    try {
+      const db = new Dexie('kronos-notario');
+      db.version(1).stores({ sellos: '++id, id_sello, hash_sellado, timestamp, tx_hash' });
+      await db.open();
+      const todos = await db.sellos.toArray();
+      db.close();
+      if (todos.length === 0) return null;
+      todos.sort((a,b) => (b.id || 0) - (a.id || 0));
+      return todos[0];
+    } catch(e){ return null; }
+  }
+
+  (async function init(){
+    setEstado('warn', '<span class="spinner"></span> <strong>Buscando sello notarial…</strong>');
+    let data = null;
+    try {
+      const desdeSession = sessionStorage.getItem('sello-notarial-temp');
+      if (desdeSession){ data = JSON.parse(desdeSession); sessionStorage.removeItem('sello-notarial-temp'); }
+    } catch(e){}
+    if (!data){
+      const guardado = await cargarDesdeDexie();
+      if (guardado && guardado.payload_hash) data = guardado;
+    }
+    if (data && data.payload_hash){
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado notarial cargado.</strong>');
+    } else {
+      setEstado('warn', '<strong>⚠ No se encontró sello.</strong> Pega el JSON manualmente o vuelve al <a href="./" style="color:#FFEDAB;text-decoration:underline">Notario</a>.');
+      panelManual.classList.add('on');
+    }
+  })();
+
+  $('btn-render-manual').addEventListener('click', () => {
+    const raw = $('input-json').value.trim();
+    if (!raw) return setEstado('err', '<strong>✗ Pega el JSON primero.</strong>');
+    try {
+      const data = JSON.parse(raw);
+      if (!data.payload_hash) throw new Error('Este JSON no es un sello notarial.');
+      dibujarCertificado(data);
+      canvasWrap.classList.add('on');
+      acciones.classList.add('on');
+      setEstado('info', '<strong>✓ Certificado generado.</strong>');
+    } catch(e){ setEstado('err', '<strong>✗ JSON inválido:</strong> ' + e.message); }
+  });
+
+  $('btn-descargar').addEventListener('click', abrirModalImagen);
+  $('btn-imprimir').addEventListener('click', () => window.print());
+  $('btn-volver').addEventListener('click', () => window.location.href = './');
+  $('modal-close').addEventListener('click', cerrarModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarModal(); });
+})();
+</script>
+</body>
+</html>
