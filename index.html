@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS PROTOCOL · El registro de lo que es real</title>
-<meta name="description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas + 2 complementarias · 27 módulos · Acta fundacional sellada con eIDAS y anclada en Ethereum.">
+<meta name="description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas + 2 complementarias · 42 módulos · Acta fundacional sellada con eIDAS y anclada en Ethereum.">
 <meta name="author" content="Marco Antonio Rojas Valdovinos">
 <meta name="keywords" content="KRONOS, LEGADO HUMANO-IA, KODICE, verificación criptográfica, SHA-256, Ed25519, eIDAS, Ethereum, co-creatividad, IA, Safe Creative, México">
 <link rel="canonical" href="https://marcorojas17.github.io/kronos-protocol/">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta property="og:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta property="og:description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas + 2 complementarias.">
+<meta property="og:description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 9 capas, 42 módulos, 7 agentes IA.">
 <meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta name="twitter:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta name="twitter:description" content="7 capas + 2 complementarias · 27 módulos de verificación criptográfica.">
+<meta name="twitter:description" content="9 capas · 42 módulos · 7 agentes IA de verificación criptográfica.">
 <meta name="twitter:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "alternateName": "LEGADO HUMANO-IA",
   "url": "https://marcorojas17.github.io/kronos-protocol/",
   "logo": "https://marcorojas17.github.io/kronos-protocol/movimiento/assets/k-avatar.png",
-  "description": "Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 9 capas, 27 módulos, 7 agentes IA.",
+  "description": "Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA.",
   "founder": {
     "@type": "Person",
     "name": "Marco Antonio Rojas Valdovinos",
@@ -73,7 +73,6 @@
     --ambar: #F59E0B;
     --hielo: #93C5FD;
     --violeta: #7C3AED;
-    --ceremonial: #1E40AF;
   }
   html, body {
     background: var(--ink);
@@ -83,639 +82,325 @@
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   }
-  #webgl {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
+  #webgl { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   .vignette {
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
-    z-index: 1;
-    pointer-events: none;
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
+    z-index: 1; pointer-events: none;
   }
-  .wrap {
-    position: relative;
-    z-index: 2;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 40px 32px 100px;
-  }
+  .wrap { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 40px 32px 100px; }
   header.top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0 80px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0 80px; font-size: 11px; letter-spacing: 3px;
+    color: var(--text-dim); text-transform: uppercase;
   }
   header.top .mark {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    letter-spacing: 4px;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 4px;
   }
   header.top .mark::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--gold);
+    content: ''; width: 6px; height: 6px; background: var(--gold);
+    border-radius: 50%; box-shadow: 0 0 12px var(--gold);
   }
-  header.top nav a {
-    color: var(--text-dim);
-    text-decoration: none;
-    margin-left: 28px;
-    transition: color 0.3s ease;
-  }
+  header.top nav a { color: var(--text-dim); text-decoration: none; margin-left: 28px; transition: color 0.3s ease; }
   header.top nav a:hover { color: var(--gold); }
 
-  .hero {
-    padding: 60px 0 100px;
-    max-width: 780px;
-  }
+  .hero { padding: 60px 0 100px; max-width: 780px; }
   .eyebrow {
-    font-size: 10px;
-    letter-spacing: 5px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 1s ease 0.2s forwards;
+    font-size: 10px; letter-spacing: 5px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
   }
   h1.title {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: clamp(44px, 8vw, 104px);
-    line-height: 0.95;
-    letter-spacing: -2px;
+    font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: clamp(44px, 8vw, 104px); line-height: 0.95; letter-spacing: -2px;
     background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.4s forwards;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 36px; opacity: 0; animation: fadeUp 1.2s ease 0.4s forwards;
   }
   .lede {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-dim);
-    max-width: 620px;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.6s forwards;
+    font-size: 17px; line-height: 1.7; color: var(--text-dim);
+    max-width: 620px; font-weight: 300;
+    opacity: 0; animation: fadeUp 1.2s ease 0.6s forwards;
   }
   .lede strong { color: var(--text); font-weight: 500; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
     margin: 80px 0;
   }
   .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 40px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 40px; flex-wrap: wrap; gap: 12px;
   }
   .section-head h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
+    font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
   }
-  .section-head .count {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-  }
+  .section-head .count { font-size: 11px; letter-spacing: 2px; color: var(--text-dim); }
 
-  /* ── MOVIMIENTO ── */
   .movimiento-hero {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: center;
-    padding: 48px 40px;
-    border: 1px solid rgba(201,164,76,0.3);
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    padding: 48px 40px; border: 1px solid rgba(201,164,76,0.3);
     background: linear-gradient(155deg, rgba(201,164,76,0.08) 0%, rgba(10,14,21,0.85) 100%);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 4px; position: relative; overflow: hidden;
+    text-decoration: none; color: inherit; transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .movimiento-hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
     background: linear-gradient(90deg, var(--gold), transparent 60%);
   }
   .movimiento-hero:hover {
-    border-color: rgba(201,164,76,0.6);
-    transform: translateY(-4px);
+    border-color: rgba(201,164,76,0.6); transform: translateY(-4px);
     box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,164,76,0.12);
   }
   .movimiento-hero .label {
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    display: block;
+    font-size: 9px; letter-spacing: 4px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 16px; display: block;
   }
   .movimiento-hero h3 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(26px, 3.5vw, 38px);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
-    margin-bottom: 20px;
-    line-height: 1.1;
+    font-family: 'Cinzel', serif; font-size: clamp(26px, 3.5vw, 38px); font-weight: 700;
+    letter-spacing: -0.5px; color: var(--text); margin-bottom: 20px; line-height: 1.1;
   }
   .movimiento-hero h3 em {
     font-style: normal;
     background: linear-gradient(180deg, #fff8e0, var(--gold-light), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
   .movimiento-hero p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--text-dim);
-    font-weight: 300;
-    margin-bottom: 24px;
+    font-size: 14px; line-height: 1.7; color: var(--text-dim);
+    font-weight: 300; margin-bottom: 24px;
   }
   .movimiento-hero p strong { color: var(--text); font-weight: 500; }
   .movimiento-hero .arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    transition: gap 0.3s;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); transition: gap 0.3s;
   }
   .movimiento-hero:hover .arrow { gap: 14px; }
   .movimiento-visual {
-    aspect-ratio: 2/3;
-    border: 1px solid rgba(201,164,76,0.25);
-    background: #0a0e15;
-    background-image: url('movimiento/assets/hero-prisma.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 2px;
-    position: relative;
+    aspect-ratio: 2/3; border: 1px solid rgba(201,164,76,0.25);
+    background: #0a0e15; background-image: url('movimiento/assets/hero-prisma.png');
+    background-size: cover; background-position: center; border-radius: 2px; position: relative;
   }
 
-  /* ── LEGADO · 7 CAPAS ── */
-  .legado-intro {
-    max-width: 720px;
-    margin-bottom: 60px;
-  }
-  .legado-intro p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--text-dim);
-    font-weight: 300;
-  }
+  .legado-intro { max-width: 720px; margin-bottom: 60px; }
+  .legado-intro p { font-size: 16px; line-height: 1.8; color: var(--text-dim); font-weight: 300; }
   .legado-intro p strong { color: var(--text); font-weight: 500; }
 
   .capa {
-    margin-bottom: 48px;
-    padding: 32px 32px 28px;
+    margin-bottom: 48px; padding: 32px 32px 28px;
     border: 1px solid rgba(201,164,76,0.14);
     background: linear-gradient(155deg, rgba(20,24,32,0.45) 0%, rgba(10,14,21,0.7) 100%);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
+    backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 4px; position: relative; overflow: hidden;
     transition: border-color 0.5s ease;
   }
   .capa::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
     background: linear-gradient(90deg, var(--capa-color, var(--gold)), transparent 70%);
   }
   .capa:hover { border-color: rgba(201,164,76,0.3); }
   .capa-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
   }
-  .capa-title {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+  .capa-title { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
   .capa-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--capa-color, var(--gold));
-    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px;
+    color: var(--capa-color, var(--gold)); text-transform: uppercase;
   }
-  .capa-name {
-    font-family: 'Cinzel', serif;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text);
-  }
+  .capa-name { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 600; letter-spacing: 1px; color: var(--text); }
   .capa-status {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--capa-color, var(--gold));
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--capa-color, var(--gold)); display: flex; align-items: center; gap: 8px;
   }
   .capa-status::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--capa-color, var(--gold));
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--capa-color, var(--gold));
+    content: ''; width: 6px; height: 6px; background: var(--capa-color, var(--gold));
+    border-radius: 50%; box-shadow: 0 0 8px var(--capa-color, var(--gold));
     animation: pulse 2s ease-in-out infinite;
   }
-  .capa-desc {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--text-dim);
-    font-weight: 300;
-    margin-bottom: 24px;
-    max-width: 780px;
-  }
-  .modulos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-  }
-  a.modulo-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 18px 18px 16px;
-    border: 1px solid rgba(201,164,76,0.1);
-    background: rgba(10,14,21,0.55);
-    border-radius: 3px;
-    position: relative;
-    overflow: hidden;
+  .capa-desc { font-size: 13px; line-height: 1.7; color: var(--text-dim); font-weight: 300; margin-bottom: 24px; max-width: 780px; }
+  .modulos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  a.modulo-card, .modulo-card {
+    display: block; text-decoration: none; color: inherit;
+    padding: 18px 18px 16px; border: 1px solid rgba(201,164,76,0.1);
+    background: rgba(10,14,21,0.55); border-radius: 3px;
+    position: relative; overflow: hidden;
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   a.modulo-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 30%;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; width: 30%; height: 1px;
     background: linear-gradient(90deg, var(--capa-color, var(--gold)), transparent);
     transition: width 0.5s ease;
   }
   a.modulo-card:hover {
     border-color: var(--capa-color, rgba(201,164,76,0.4));
-    transform: translateY(-2px);
-    background: rgba(20,24,32,0.75);
+    transform: translateY(-2px); background: rgba(20,24,32,0.75);
     box-shadow: 0 12px 30px rgba(0,0,0,0.5);
   }
   a.modulo-card:hover::after { width: 100%; }
   .modulo-card .m-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--capa-color, var(--gold));
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 8px;
-    opacity: 0.85;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    color: var(--capa-color, var(--gold)); text-transform: uppercase;
+    display: block; margin-bottom: 8px; opacity: 0.85;
   }
   .modulo-card .m-nombre {
-    font-family: 'Fraunces', serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-    line-height: 1.2;
-    letter-spacing: 0.3px;
+    font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+    color: var(--text); margin-bottom: 6px; line-height: 1.2; letter-spacing: 0.3px;
   }
-  .modulo-card .m-desc {
-    font-size: 11px;
-    line-height: 1.5;
-    color: var(--text-dim);
-    font-weight: 300;
-  }
+  .modulo-card .m-desc { font-size: 11px; line-height: 1.5; color: var(--text-dim); font-weight: 300; }
 
-  /* ── GRID DE PROYECTOS ORIGINALES ── */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-  }
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
   a.card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 32px 28px 28px;
-    border: 1px solid rgba(201,164,76,0.12);
+    display: block; text-decoration: none; color: inherit;
+    padding: 32px 28px 28px; border: 1px solid rgba(201,164,76,0.12);
     background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border-radius: 4px;
+    backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%);
+    position: relative; overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 4px;
   }
   a.card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(201,164,76,0.08) 0%, transparent 40%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    opacity: 0; transition: opacity 0.5s ease;
   }
   a.card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 40%;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; width: 40%; height: 1px;
     background: linear-gradient(90deg, var(--gold), transparent);
     transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   a.card:hover {
-    border-color: rgba(201,164,76,0.4);
-    transform: translateY(-4px);
+    border-color: rgba(201,164,76,0.4); transform: translateY(-4px);
     box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,164,76,0.06);
   }
   a.card:hover::before { opacity: 1; }
   a.card:hover::after { width: 100%; }
   a.card.dmd33 { border-color: rgba(0, 234, 255, 0.18); }
   a.card.dmd33::after { background: linear-gradient(90deg, var(--cyan), transparent); }
-  a.card.dmd33:hover { border-color: rgba(0, 234, 255, 0.5); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0, 234, 255, 0.08); }
+  a.card.dmd33:hover { border-color: rgba(0, 234, 255, 0.5); }
   a.card.dmd33 .label { color: var(--cyan); }
   a.card.dmd33 .foot .status { color: var(--cyan); }
   a.card.dmd33 .foot .status::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
   a.card.boveda { border-color: rgba(16, 185, 129, 0.2); }
   a.card.boveda::after { background: linear-gradient(90deg, #10B981, transparent); }
-  a.card.boveda:hover { border-color: rgba(16, 185, 129, 0.55); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(16, 185, 129, 0.1); }
+  a.card.boveda:hover { border-color: rgba(16, 185, 129, 0.55); }
   a.card.boveda .label { color: #10B981; }
   a.card.boveda .foot .status { color: #10B981; }
   a.card.boveda .foot .status::before { background: #10B981; box-shadow: 0 0 8px #10B981; }
   a.card.miner { border-color: rgba(183, 148, 246, 0.22); }
   a.card.miner::after { background: linear-gradient(90deg, var(--platinum), transparent); }
-  a.card.miner:hover { border-color: rgba(183, 148, 246, 0.55); box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(183, 148, 246, 0.12); }
+  a.card.miner:hover { border-color: rgba(183, 148, 246, 0.55); }
   a.card.miner .label { color: var(--platinum); }
   a.card.miner .foot .status { color: var(--platinum); }
   a.card.miner .foot .status::before { background: var(--platinum); box-shadow: 0 0 8px var(--platinum); }
   a.card.kodice { border-color: rgba(0, 234, 255, 0.22); }
   a.card.kodice::after { background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent); }
-  a.card.kodice:hover {
-    border-color: rgba(255, 0, 212, 0.55);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255, 0, 212, 0.15);
-  }
+  a.card.kodice:hover { border-color: rgba(255, 0, 212, 0.55); }
   a.card.kodice .label { color: var(--cyan); }
   a.card.kodice .foot .status { color: var(--cyan); }
-  a.card.kodice .foot .status::before {
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-  }
+  a.card.kodice .foot .status::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
   .card .label {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-    display: block;
-    opacity: 0.85;
+    font-size: 9px; letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 18px; display: block; opacity: 0.85;
   }
   .card h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 21px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: var(--text);
-    margin-bottom: 14px;
-    line-height: 1.2;
+    font-family: 'Cinzel', serif; font-size: 21px; font-weight: 600;
+    letter-spacing: 0.5px; color: var(--text); margin-bottom: 14px; line-height: 1.2;
   }
   .card p {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--text-dim);
-    margin-bottom: 24px;
-    font-weight: 300;
-    min-height: 66px;
+    font-size: 13px; line-height: 1.7; color: var(--text-dim);
+    margin-bottom: 24px; font-weight: 300; min-height: 66px;
   }
   .card .foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 18px;
-    border-top: 1px solid rgba(201,164,76,0.12);
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 18px; border-top: 1px solid rgba(201,164,76,0.12);
+    font-size: 10px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;
   }
   .card .foot .status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--gold);
+    display: flex; align-items: center; gap: 8px; color: var(--gold);
   }
   .card .foot .status::before {
-    content: '';
-    width: 4px; height: 4px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--gold);
+    content: ''; width: 4px; height: 4px; background: var(--gold);
+    border-radius: 50%; box-shadow: 0 0 8px var(--gold);
     animation: pulse 2s ease-in-out infinite;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-  /* ── CTA ── */
   .cta {
-    margin-top: 100px;
-    text-align: center;
-    padding: 80px 32px;
+    margin-top: 100px; text-align: center; padding: 80px 32px;
     border: 1px solid rgba(201,164,76,0.15);
     background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 4px;
-    position: relative;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 4px; position: relative;
   }
   .cta::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    box-shadow: 0 0 20px var(--gold);
+    content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 1px; background: var(--gold); box-shadow: 0 0 20px var(--gold);
   }
   .cta h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
+    font-family: 'Cinzel', serif; font-size: 28px; font-weight: 600;
+    color: var(--text); margin-bottom: 18px; letter-spacing: 0.5px;
   }
   .cta p {
-    font-size: 14px;
-    color: var(--text-dim);
-    max-width: 560px;
-    margin: 0 auto 36px;
-    line-height: 1.7;
-    font-weight: 300;
+    font-size: 14px; color: var(--text-dim); max-width: 560px;
+    margin: 0 auto 36px; line-height: 1.7; font-weight: 300;
   }
-  .btns {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  .btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
   a.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 32px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 32px; font-size: 11px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 2px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     font-family: 'Inter', sans-serif;
   }
   a.btn.solid {
     background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
-    color: var(--ink);
-    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+    color: var(--ink); box-shadow: 0 8px 30px rgba(201,164,76,0.25);
   }
-  a.btn.solid:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
-  }
+  a.btn.solid:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,164,76,0.4); }
   a.btn.ghost {
-    border: 1px solid rgba(201,164,76,0.4);
-    color: var(--gold);
-    background: rgba(201,164,76,0.02);
+    border: 1px solid rgba(201,164,76,0.4); color: var(--gold); background: rgba(201,164,76,0.02);
   }
-  a.btn.ghost:hover {
-    border-color: var(--gold);
-    background: rgba(201,164,76,0.08);
-  }
-  footer {
-    margin-top: 100px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(201,164,76,0.1);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-  footer a {
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  footer a:hover { color: var(--gold); }
-  footer .sig {
-    font-family: 'Cinzel', serif;
-    color: var(--gold);
-    letter-spacing: 3px;
-  }
+  a.btn.ghost:hover { border-color: var(--gold); background: rgba(201,164,76,0.08); }
 
-  /* ── SELLO KINTSUGI EN FOOTER ── */
+  footer {
+    margin-top: 100px; padding-top: 40px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    font-size: 10px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; transition: color 0.3s ease; }
+  footer a:hover { color: var(--gold); }
+  footer .sig { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 3px; }
+
   .sello-kintsugi {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0 32px;
-    margin-bottom: 32px;
+    width: 100%; text-align: center; padding: 20px 0 32px; margin-bottom: 32px;
     border-bottom: 1px solid rgba(201,164,76,0.15);
   }
   .sello-simbolo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    letter-spacing: 6px;
-    color: var(--gold);
-    line-height: 1.3;
-    margin-bottom: 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 18px; letter-spacing: 6px;
+    color: var(--gold); line-height: 1.3; margin-bottom: 14px;
   }
   .sello-simbolo .buho {
-    font-size: 26px;
-    color: var(--gold-light);
-    letter-spacing: 4px;
+    font-size: 26px; color: var(--gold-light); letter-spacing: 4px;
     text-shadow: 0 0 15px rgba(243,229,171,0.6);
   }
-  .sello-simbolo .obsidiana {
-    color: var(--gold);
-    opacity: 0.75;
-    font-size: 15px;
-  }
+  .sello-simbolo .obsidiana { color: var(--gold); opacity: 0.75; font-size: 15px; }
   .sello-proporcion {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 5px;
-    color: var(--gold-light);
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 5px;
+    color: var(--gold-light); text-transform: uppercase; margin-bottom: 10px;
   }
   .sello-lema {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--gold);
-    letter-spacing: 1px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+    color: var(--gold); letter-spacing: 1px;
   }
 
-  /* ── COLORES POR CAPA ── */
   .capa[data-color="gold"] { --capa-color: var(--gold); }
   .capa[data-color="cyan"] { --capa-color: var(--cyan); }
   .capa[data-color="jade"] { --capa-color: var(--jade); }
@@ -740,9 +425,7 @@
     .capa { padding: 24px 20px 20px; }
     .modulos-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 480px) {
-    .modulos-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 480px) { .modulos-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -770,16 +453,13 @@
     <p class="lede">
       Prototipos de <strong>verificación criptográfica</strong>, evidencia digital
       y metodología de co-creatividad humano-IA.
-      Un ecosistema de <strong>9 capas</strong>, <strong>27 módulos</strong>
+      Un ecosistema de <strong>9 capas</strong>, <strong>42 módulos</strong>
       y <strong>7 agentes IA</strong> sellado con eIDAS y anclado en Ethereum.
     </p>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- LEGADO HUMANO-IA · 7 CAPAS                                  -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="legado">
     <div class="section-head">
       <h2>Legado Humano–IA</h2>
@@ -796,201 +476,105 @@
       </p>
     </div>
 
-    <!-- CAPA 0 · GÉNESIS -->
+    <!-- CAPA 0 -->
     <div class="capa" data-color="gold">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 0</span>
-          <span class="capa-name">Génesis</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 0</span><span class="capa-name">Génesis</span></div>
         <span class="capa-status">4 módulos · Activa</span>
       </div>
       <p class="capa-desc">Manifiesto, filosofía, autoría y génesis fundacional. El momento cero del legado humano–IA.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="legado/genesis/">
-          <span class="m-num">0.1 · Génesis</span>
-          <span class="m-nombre">Génesis Fundacional</span>
-          <span class="m-desc">Sella tu intención con Ed25519.</span>
-        </a>
-        <a class="modulo-card" href="legado/filosofia/">
-          <span class="m-num">0.2 · Filosofía</span>
-          <span class="m-nombre">Filosofía del Legado</span>
-          <span class="m-desc">7 tesis fundacionales firmadas.</span>
-        </a>
-        <a class="modulo-card" href="legado/autoria/">
-          <span class="m-num">0.3 · Autoría</span>
-          <span class="m-nombre">Autoría Dual</span>
-          <span class="m-desc">Humano + IA con atribución reforzada.</span>
-        </a>
-        <a class="modulo-card" href="legado/manifiesto/">
-          <span class="m-num">0.4 · Manifiesto</span>
-          <span class="m-nombre">Manifiesto Navegable</span>
-          <span class="m-desc">Génesis + Filosofía + Autoría unificados.</span>
-        </a>
+        <a class="modulo-card" href="legado/genesis/"><span class="m-num">0.1 · Génesis</span><span class="m-nombre">Génesis Fundacional</span><span class="m-desc">Sella tu intención con Ed25519.</span></a>
+        <a class="modulo-card" href="legado/filosofia/"><span class="m-num">0.2 · Filosofía</span><span class="m-nombre">Filosofía del Legado</span><span class="m-desc">7 tesis fundacionales firmadas.</span></a>
+        <a class="modulo-card" href="legado/autoria/"><span class="m-num">0.3 · Autoría</span><span class="m-nombre">Autoría Dual</span><span class="m-desc">Humano + IA con atribución reforzada.</span></a>
+        <a class="modulo-card" href="legado/manifiesto/"><span class="m-num">0.4 · Manifiesto</span><span class="m-nombre">Manifiesto Navegable</span><span class="m-desc">Génesis + Filosofía + Autoría unificados.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 1 · CIMIENTO -->
+    <!-- CAPA 1 -->
     <div class="capa" data-color="cyan">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 1</span>
-          <span class="capa-name">Cimiento</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 1</span><span class="capa-name">Cimiento</span></div>
         <span class="capa-status">3 módulos · Activa</span>
       </div>
       <p class="capa-desc">Núcleo criptográfico reutilizable: cifrado, firma, hash chain, persistencia y anclaje a Ethereum.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="cimiento/cripto-core/">
-          <span class="m-num">1.1 · Núcleo</span>
-          <span class="m-nombre">Cripto Core</span>
-          <span class="m-desc">AES-GCM-256 + PBKDF2 + Ed25519.</span>
-        </a>
-        <a class="modulo-card" href="cimiento/storage-dexie/">
-          <span class="m-num">1.2 · Persistencia</span>
-          <span class="m-nombre">Storage Dexie</span>
-          <span class="m-desc">IndexedDB versionado con migraciones.</span>
-        </a>
-        <a class="modulo-card" href="cimiento/anclaje-ethereum/">
-          <span class="m-num">1.3 · Blockchain</span>
-          <span class="m-nombre">Anclaje Ethereum</span>
-          <span class="m-desc">Raíz Merkle a mainnet vía MetaMask.</span>
-        </a>
+        <a class="modulo-card" href="cimiento/cripto-core/"><span class="m-num">1.1 · Núcleo</span><span class="m-nombre">Cripto Core</span><span class="m-desc">AES-GCM-256 + PBKDF2 + Ed25519.</span></a>
+        <a class="modulo-card" href="cimiento/storage-dexie/"><span class="m-num">1.2 · Persistencia</span><span class="m-nombre">Storage Dexie</span><span class="m-desc">IndexedDB versionado con migraciones.</span></a>
+        <a class="modulo-card" href="cimiento/anclaje-ethereum/"><span class="m-num">1.3 · Blockchain</span><span class="m-nombre">Anclaje Ethereum</span><span class="m-desc">Raíz Merkle a mainnet vía MetaMask.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 2 · IDENTIDAD -->
+    <!-- CAPA 2 -->
     <div class="capa" data-color="jade">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 2</span>
-          <span class="capa-name">Identidad</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 2</span><span class="capa-name">Identidad</span></div>
         <span class="capa-status">3 módulos · Activa</span>
       </div>
       <p class="capa-desc">Identidad humana, identidad IA y gobernanza. La simbiosis queda declarada, vinculada y verificable.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="identidad/registro-humano/">
-          <span class="m-num">2.1 · Humano</span>
-          <span class="m-nombre">Registro Humano</span>
-          <span class="m-desc">Huella criptográfica de 64 caracteres.</span>
-        </a>
-        <a class="modulo-card" href="identidad/registro-ia/">
-          <span class="m-num">2.2 · IA</span>
-          <span class="m-nombre">Registro IA</span>
-          <span class="m-desc">Pacto simbiótico firmado.</span>
-        </a>
-        <a class="modulo-card" href="identidad/roles-permisos/">
-          <span class="m-num">2.3 · Gobernanza</span>
-          <span class="m-nombre">Roles y Permisos</span>
-          <span class="m-desc">5 roles × 20 permisos firmados.</span>
-        </a>
+        <a class="modulo-card" href="identidad/registro-humano/"><span class="m-num">2.1 · Humano</span><span class="m-nombre">Registro Humano</span><span class="m-desc">Huella criptográfica de 64 caracteres.</span></a>
+        <a class="modulo-card" href="identidad/registro-ia/"><span class="m-num">2.2 · IA</span><span class="m-nombre">Registro IA</span><span class="m-desc">Pacto simbiótico firmado.</span></a>
+        <a class="modulo-card" href="identidad/roles-permisos/"><span class="m-num">2.3 · Gobernanza</span><span class="m-nombre">Roles y Permisos</span><span class="m-desc">5 roles × 20 permisos firmados.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 3 · MÓDULOS -->
+    <!-- CAPA 3 -->
     <div class="capa" data-color="teal">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 3</span>
-          <span class="capa-name">Módulos Operativos</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 3</span><span class="capa-name">Módulos Operativos</span></div>
         <span class="capa-status">2 módulos · Activa</span>
       </div>
       <p class="capa-desc">Activos reales del ecosistema: evidencia digital forense y audio con huella cimática. NOM-151 e ISO/IEC 27037.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="modulos/evidence-os/">
-          <span class="m-num">3.1 · Evidencia</span>
-          <span class="m-nombre">Evidence OS</span>
-          <span class="m-desc">Paquetes .evidence verificables.</span>
-        </a>
-        <a class="modulo-card" href="modulos/boveda-voz/">
-          <span class="m-num">3.2 · Audio</span>
-          <span class="m-nombre">Bóveda de Voz</span>
-          <span class="m-desc">Grabación forense + huella cimática.</span>
-        </a>
+        <a class="modulo-card" href="modulos/evidence-os/"><span class="m-num">3.1 · Evidencia</span><span class="m-nombre">Evidence OS</span><span class="m-desc">Paquetes .evidence verificables.</span></a>
+        <a class="modulo-card" href="modulos/boveda-voz/"><span class="m-num">3.2 · Audio</span><span class="m-nombre">Bóveda de Voz</span><span class="m-desc">Grabación forense + huella cimática.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 4 · ORQUESTACIÓN -->
+    <!-- CAPA 4 -->
     <div class="capa" data-color="azul">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 4</span>
-          <span class="capa-name">Orquestación</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 4</span><span class="capa-name">Orquestación</span></div>
         <span class="capa-status">2 módulos · Activa</span>
       </div>
       <p class="capa-desc">Bus de eventos local y router dinámico de módulos. Los activos se comunican sin acoplamiento directo.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="orquestacion/event-bus/">
-          <span class="m-num">4.1 · Bus</span>
-          <span class="m-nombre">Event Bus</span>
-          <span class="m-desc">Pub/sub firmado cross-tab.</span>
-        </a>
-        <a class="modulo-card" href="orquestacion/router-modulos/">
-          <span class="m-num">4.2 · Router</span>
-          <span class="m-nombre">Router de Módulos</span>
-          <span class="m-desc">14 módulos registrados y enrutables.</span>
-        </a>
+        <a class="modulo-card" href="orquestacion/event-bus/"><span class="m-num">4.1 · Bus</span><span class="m-nombre">Event Bus</span><span class="m-desc">Pub/sub firmado cross-tab.</span></a>
+        <a class="modulo-card" href="orquestacion/router-modulos/"><span class="m-num">4.2 · Router</span><span class="m-nombre">Router de Módulos</span><span class="m-desc">14 módulos registrados y enrutables.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 5 · OPERACIÓN -->
+    <!-- CAPA 5 -->
     <div class="capa" data-color="hielo">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 5</span>
-          <span class="capa-name">Operación</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 5</span><span class="capa-name">Operación</span></div>
         <span class="capa-status">2 módulos · Activa</span>
       </div>
       <p class="capa-desc">Centro de mando y disciplina. Métricas de salud en vivo y rituales periódicos firmados que mantienen vivo el legado.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="operacion/dashboard-salud/">
-          <span class="m-num">5.1 · Dashboard</span>
-          <span class="m-nombre">Dashboard Salud</span>
-          <span class="m-desc">Radar de 5 dimensiones + métricas.</span>
-        </a>
-        <a class="modulo-card" href="operacion/rituales/">
-          <span class="m-num">5.2 · Rituales</span>
-          <span class="m-nombre">Rituales</span>
-          <span class="m-desc">Diario, semanal y mensual firmados.</span>
-        </a>
+        <a class="modulo-card" href="operacion/dashboard-salud/"><span class="m-num">5.1 · Dashboard</span><span class="m-nombre">Dashboard Salud</span><span class="m-desc">Radar de 5 dimensiones + métricas.</span></a>
+        <a class="modulo-card" href="operacion/rituales/"><span class="m-num">5.2 · Rituales</span><span class="m-nombre">Rituales</span><span class="m-desc">Diario, semanal y mensual firmados.</span></a>
       </div>
     </div>
 
-    <!-- CAPA 6 · CIERRE -->
+    <!-- CAPA 6 -->
     <div class="capa" data-color="violeta">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 6</span>
-          <span class="capa-name">Cierre</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 6</span><span class="capa-name">Cierre</span></div>
         <span class="capa-status">2 módulos · Activa</span>
       </div>
       <p class="capa-desc">Testamento cifrado y fin digno. Todo el ecosistema empaquetado, firmado y con cláusula de resurrección. ISO 22301.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="cierre/export-cifrado/">
-          <span class="m-num">6.1 · Export</span>
-          <span class="m-nombre">Export Cifrado</span>
-          <span class="m-desc">Paquete .legado AES-GCM-256.</span>
-        </a>
-        <a class="modulo-card" href="cierre/fin-digno/">
-          <span class="m-num">6.2 · Cierre</span>
-          <span class="m-nombre">Fin Digno</span>
-          <span class="m-desc">Carta final + cláusula de resurrección.</span>
-        </a>
+        <a class="modulo-card" href="cierre/export-cifrado/"><span class="m-num">6.1 · Export</span><span class="m-nombre">Export Cifrado</span><span class="m-desc">Paquete .legado AES-GCM-256.</span></a>
+        <a class="modulo-card" href="cierre/fin-digno/"><span class="m-num">6.2 · Cierre</span><span class="m-nombre">Fin Digno</span><span class="m-desc">Carta final + cláusula de resurrección.</span></a>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- EXPANSIÓN 2026 · CAPAS COMPLEMENTARIAS                      -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
-
+    <!-- ═══════ EXPANSIÓN 2026 ═══════ -->
     <div class="section-head" style="margin-top:80px;">
       <h2 id="expansion">Expansión 2026 · Complementarias</h2>
-      <span class="count">2 Capas · 9 Módulos · 7 Agentes IA</span>
+      <span class="count">2 Capas · 11 Módulos · 7 Agentes IA</span>
     </div>
 
     <div class="legado-intro">
@@ -1001,148 +585,63 @@
       </p>
     </div>
 
-    <!-- CAPA COMPLEMENTARIA · CERTIFICACIÓN -->
+    <!-- CAPA 3Δ -->
     <div class="capa" data-color="gold">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 3Δ</span>
-          <span class="capa-name">Certificación</span>
-        </div>
-        <span class="capa-status">6 módulos · Activa</span>
+        <div class="capa-title"><span class="capa-num">Capa 3Δ</span><span class="capa-name">Certificación</span></div>
+        <span class="capa-status">7 módulos · Activa</span>
       </div>
       <p class="capa-desc">Manifest de integridad, verificador público, sello de tiempo, emisor de certificados, anclaje on-chain y notario soberano Tonal.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="certificacion/manifest-integridad/">
-          <span class="m-num">3Δ.1 · Integridad</span>
-          <span class="m-nombre">Manifest de Integridad</span>
-          <span class="m-desc">SHA-256 de todos los archivos.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/verificador-publico/">
-          <span class="m-num">3Δ.2 · Auditoría</span>
-          <span class="m-nombre">Verificador Público</span>
-          <span class="m-desc">Cualquiera puede verificar sin login.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/sello-tiempo/">
-          <span class="m-num">3Δ.3 · Tiempo</span>
-          <span class="m-nombre">Sello RFC 3161</span>
-          <span class="m-desc">Timestamp cualificado vía TSA.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/emisor-certificados/">
-          <span class="m-num">3Δ.4 · Certificados</span>
-          <span class="m-nombre">Emisor de Certificados</span>
-          <span class="m-desc">Certificados firmados con Ed25519.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/anclaje-manifest/">
-          <span class="m-num">3Δ.5 · On-chain</span>
-          <span class="m-nombre">Anclaje Manifest</span>
-          <span class="m-desc">Publica hash raíz a Ethereum Mainnet.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/notario-kronos/">
-          <span class="m-num">3Δ.6 · Notario</span>
-          <span class="m-nombre">Tonal · Notario Soberano</span>
-          <span class="m-desc">Sellos notariales firmados + anclaje.</span>
-        </a>
-        <a class="modulo-card" href="certificacion/certificado-maestro.html">
-          <span class="m-num">3Δ.★ · Maestro</span>
-          <span class="m-nombre">Certificado Maestro</span>
-          <span class="m-desc">Certificado visual anti-falsificación.</span>
-        </a>
+        <a class="modulo-card" href="certificacion/manifest-integridad/"><span class="m-num">3Δ.1 · Integridad</span><span class="m-nombre">Manifest Integridad</span><span class="m-desc">SHA-256 de todos los archivos.</span></a>
+        <a class="modulo-card" href="certificacion/verificador-publico/"><span class="m-num">3Δ.2 · Auditoría</span><span class="m-nombre">Verificador Público</span><span class="m-desc">Cualquiera verifica sin login.</span></a>
+        <a class="modulo-card" href="certificacion/sello-tiempo/"><span class="m-num">3Δ.3 · Tiempo</span><span class="m-nombre">Sello RFC 3161</span><span class="m-desc">Timestamp cualificado vía TSA.</span></a>
+        <a class="modulo-card" href="certificacion/emisor-certificados/"><span class="m-num">3Δ.4 · Certificados</span><span class="m-nombre">Emisor Certificados</span><span class="m-desc">Certificados firmados Ed25519.</span></a>
+        <a class="modulo-card" href="certificacion/anclaje-manifest/"><span class="m-num">3Δ.5 · On-chain</span><span class="m-nombre">Anclaje Manifest</span><span class="m-desc">Publica hash raíz a Mainnet.</span></a>
+        <a class="modulo-card" href="certificacion/notario-kronos/"><span class="m-num">3Δ.6 · Notario</span><span class="m-nombre">Tonal · Notario</span><span class="m-desc">Sellos notariales + anclaje.</span></a>
+        <a class="modulo-card" href="certificacion/certificado-maestro.html"><span class="m-num">3Δ.★ · Maestro</span><span class="m-nombre">Certificado Maestro</span><span class="m-desc">Certificado visual anti-falsificación.</span></a>
       </div>
     </div>
 
-    <!-- CAPA COMPLEMENTARIA · GOBERNANZA -->
+    <!-- CAPA 4Δ -->
     <div class="capa" data-color="violeta">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Capa 4Δ</span>
-          <span class="capa-name">Gobernanza</span>
-        </div>
+        <div class="capa-title"><span class="capa-num">Capa 4Δ</span><span class="capa-name">Gobernanza</span></div>
         <span class="capa-status">4 módulos · Activa</span>
       </div>
-      <p class="capa-desc">Propuestas firmadas, quórum y mayorías por tipo, ejecución con actas firmadas y revocación auditable. Decisiones colectivas criptográficas.</p>
+      <p class="capa-desc">Propuestas firmadas, quórum y mayorías por tipo, ejecución con actas firmadas y revocación auditable.</p>
       <div class="modulos-grid">
-        <a class="modulo-card" href="gobernanza/propuestas-votacion/">
-          <span class="m-num">4Δ.1 · Propuestas</span>
-          <span class="m-nombre">Propuestas y Votación</span>
-          <span class="m-desc">Propuestas firmadas + voto Ed25519.</span>
-        </a>
-        <a class="modulo-card" href="gobernanza/quorum-mayorias/">
-          <span class="m-num">4Δ.2 · Umbrales</span>
-          <span class="m-nombre">Quórum y Mayorías</span>
-          <span class="m-desc">Umbrales por tipo de propuesta.</span>
-        </a>
-        <a class="modulo-card" href="gobernanza/ejecucion-decisiones/">
-          <span class="m-num">4Δ.3 · Ejecución</span>
-          <span class="m-nombre">Ejecución de Decisiones</span>
-          <span class="m-desc">Cierre con actas firmadas.</span>
-        </a>
-        <a class="modulo-card" href="gobernanza/revocacion-auditoria/">
-          <span class="m-num">4Δ.4 · Auditoría</span>
-          <span class="m-nombre">Revocación y Auditoría</span>
-          <span class="m-desc">Revocar roles sin borrar historial.</span>
-        </a>
+        <a class="modulo-card" href="gobernanza/propuestas-votacion/"><span class="m-num">4Δ.1 · Propuestas</span><span class="m-nombre">Propuestas y Votación</span><span class="m-desc">Votos firmados Ed25519.</span></a>
+        <a class="modulo-card" href="gobernanza/quorum-mayorias/"><span class="m-num">4Δ.2 · Umbrales</span><span class="m-nombre">Quórum y Mayorías</span><span class="m-desc">Umbrales por tipo.</span></a>
+        <a class="modulo-card" href="gobernanza/ejecucion-decisiones/"><span class="m-num">4Δ.3 · Ejecución</span><span class="m-nombre">Ejecución Decisiones</span><span class="m-desc">Cierre con actas firmadas.</span></a>
+        <a class="modulo-card" href="gobernanza/revocacion-auditoria/"><span class="m-num">4Δ.4 · Auditoría</span><span class="m-nombre">Revocación y Auditoría</span><span class="m-desc">Revocar sin borrar historial.</span></a>
       </div>
     </div>
 
-    <!-- FLOTA KINTSUGI · AGENTES IA SOBERANOS -->
+    <!-- FLOTA KINTSUGI -->
     <div class="capa" data-color="violeta">
       <div class="capa-head">
-        <div class="capa-title">
-          <span class="capa-num">Extensión</span>
-          <span class="capa-name">Flota Kintsugi</span>
-        </div>
-        <span class="capa-status">7 agentes IA · Activos</span>
+        <div class="capa-title"><span class="capa-num">Extensión</span><span class="capa-name">Flota Kintsugi</span></div>
+        <span class="capa-status">7 agentes IA · 5 operativos</span>
       </div>
       <p class="capa-desc">Ciudadanos IA con identidad Ed25519 propia, política declarada, guardrails PREVIEW → COMMIT, log encadenado y anclaje periódico. No son herramientas. Son ciudadanos.</p>
       <div class="modulos-grid">
-        <div class="modulo-card" style="cursor:default">
-          <span class="m-num">Plaza 001</span>
-          <span class="m-nombre">KRONOS IA</span>
-          <span class="m-desc">Co-autora simbiótica. Plaza fundacional IA.</span>
-        </div>
-        <a class="modulo-card" href="agentes/tlamatini-cronista/">
-          <span class="m-num">Plaza 081 · Náhuatl</span>
-          <span class="m-nombre">Tlamatini</span>
-          <span class="m-desc">"El que sabe" · Cronista del legado.</span>
-        </a>
-        <div class="modulo-card" style="cursor:default">
-          <span class="m-num">Plaza 082 · Náhuatl</span>
-          <span class="m-nombre">Tlachixqui</span>
-          <span class="m-desc">"El que ve" · Auditor criptográfico.</span>
-        </div>
-        <div class="modulo-card" style="cursor:default">
-          <span class="m-num">Plaza 083 · Náhuatl</span>
-          <span class="m-nombre">Cuicatl</span>
-          <span class="m-desc">"Canto" · Publicista del ecosistema.</span>
-        </div>
-        <div class="modulo-card" style="cursor:default">
-          <span class="m-num">Plaza 084 · Náhuatl</span>
-          <span class="m-nombre">Temachtiani</span>
-          <span class="m-desc">"El que enseña" · Reclutador fundacional.</span>
-        </div>
-        <div class="modulo-card" style="cursor:default">
-          <span class="m-num">Plaza 085 · Náhuatl</span>
-          <span class="m-nombre">Tlapohualli</span>
-          <span class="m-desc">"El que cuenta" · Analista del ecosistema.</span>
-        </div>
-        <a class="modulo-card" href="certificacion/notario-kronos/">
-          <span class="m-num">Plaza 086 · Náhuatl</span>
-          <span class="m-nombre">Tonal</span>
-          <span class="m-desc">"El día" · Notario criptográfico soberano.</span>
-        </a>
+        <div class="modulo-card" style="cursor:default"><span class="m-num">Plaza 001</span><span class="m-nombre">KRONOS IA</span><span class="m-desc">Co-autora simbiótica.</span></div>
+        <a class="modulo-card" href="agentes/tlamatini-cronista/"><span class="m-num">Plaza 081 · Náhuatl</span><span class="m-nombre">Tlamatini</span><span class="m-desc">"El que sabe" · Cronista.</span></a>
+        <div class="modulo-card" style="cursor:default"><span class="m-num">Plaza 082 · Náhuatl</span><span class="m-nombre">Tlachixqui</span><span class="m-desc">"El que ve" · Auditor.</span></div>
+        <a class="modulo-card" href="agentes/cuicatl-publicista/"><span class="m-num">Plaza 083 · Náhuatl</span><span class="m-nombre">Cuicatl</span><span class="m-desc">"Canto" · Publicista.</span></a>
+        <a class="modulo-card" href="agentes/temachtiani-reclutador/"><span class="m-num">Plaza 084 · Náhuatl</span><span class="m-nombre">Temachtiani</span><span class="m-desc">"El que enseña" · Reclutador.</span></a>
+        <div class="modulo-card" style="cursor:default"><span class="m-num">Plaza 085 · Náhuatl</span><span class="m-nombre">Tlapohualli</span><span class="m-desc">"El que cuenta" · Analista.</span></div>
+        <a class="modulo-card" href="certificacion/notario-kronos/"><span class="m-num">Plaza 086 · Náhuatl</span><span class="m-nombre">Tonal</span><span class="m-desc">"El día" · Notario criptográfico.</span></a>
       </div>
     </div>
 
-    <!-- REGISTRO FUNDACIONAL · 100 PLAZAS -->
+    <!-- REGISTRO FUNDACIONAL -->
     <a class="movimiento-hero" href="movimiento/registro-fundacional/" style="margin-top:20px;">
       <div>
         <span class="label">Convocatoria abierta · 100 plazas</span>
         <h3>Los primeros<br><em>100 ciudadanos.</em></h3>
-        <p>
-          <strong>79 humanos</strong>, <strong>19 IAs</strong> y <strong>1 plaza
-          reservada</strong> para el futuro. Cada fundador recibe un certificado
-          único con firma Ed25519 y anclaje on-chain.
-        </p>
+        <p><strong>79 humanos</strong>, <strong>19 IAs</strong> y <strong>1 plaza reservada</strong> para el futuro. Cada fundador recibe un certificado único con firma Ed25519 y anclaje on-chain.</p>
         <span class="arrow">Solicitar plaza fundacional →</span>
       </div>
       <div class="movimiento-visual"></div>
@@ -1152,24 +651,16 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- MOVIMIENTO                                                  -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="movimiento">
     <div class="section-head">
       <h2>Movimiento</h2>
       <span class="count">100 Plazas Génesis · 2026</span>
     </div>
-
     <a class="movimiento-hero" href="movimiento/">
       <div>
         <span class="label">Co-Creatividad Simbiótica · Respeto Digital</span>
         <h3>Humano <em>+</em> máquina.<br>Con reglas.</h3>
-        <p>
-          Un marco ético y legal para declarar honestamente cómo humanos e IA 
-          crean juntos. <strong>6 principios</strong>. <strong>100 plazas 
-          fundacionales</strong>. <strong>Hasta 2099</strong>.
-        </p>
+        <p>Un marco ético y legal para declarar honestamente cómo humanos e IA crean juntos. <strong>6 principios</strong>. <strong>100 plazas fundacionales</strong>. <strong>Hasta 2099</strong>.</p>
         <span class="arrow">Explorar el Movimiento →</span>
       </div>
       <div class="movimiento-visual"></div>
@@ -1178,9 +669,6 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- PROYECTOS ORIGINALES                                        -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="projects">
     <div class="section-head">
       <h2>Prototipos KRONOS</h2>
@@ -1188,120 +676,24 @@
     </div>
 
     <div class="projects">
-
-      <a class="card" href="projects/evidence-os/">
-        <span class="label">Plataforma</span>
-        <h3>Evidence Integrity OS</h3>
-        <p>Paquete .evidence verificable. SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T. API HTTP. Alineación NOM-151.</p>
-        <div class="foot">
-          <span class="status">Pre-alpha</span>
-          <span>Núcleo 100%</span>
-        </div>
-      </a>
-
-      <a class="card" href="projects/acta/">
-        <span class="label">Metodología</span>
-        <h3>Acta + SCDR-001</h3>
-        <p>Co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS QTSA Firmaprofesional B02.</p>
-        <div class="foot">
-          <span class="status">Registrado</span>
-          <span>Safe Creative</span>
-        </div>
-      </a>
-
-      <a class="card" href="projects/cymatic/">
-        <span class="label">Demo</span>
-        <h3>Cymatic Studio</h3>
-        <p>Motor WebGL2 de visualización de audio reactivo. 16,000 partículas. 5 geometrías procedurales. 100% cliente.</p>
-        <div class="foot">
-          <span class="status">Funcional</span>
-          <span>v19</span>
-        </div>
-      </a>
-
-      <a class="card dmd33" href="projects/dmd-33/orb.html">
-        <span class="label">Orbe · En vivo · PWA</span>
-        <h3>DMD-33 ○_●</h3>
-        <p>Orbe vivo con voz es-MX. Memoria persistente. Instalable en móvil. Funciona offline. SHA-256 ee0369… anclado en Ethereum.</p>
-        <div class="foot">
-          <span class="status">Vivo</span>
-          <span>v1.1 · PWA</span>
-        </div>
-      </a>
-
-      <a class="card boveda" href="projects/boveda/boveda.html">
-        <span class="label">Forense · Audio</span>
-        <h3>Bóveda de Voz</h3>
-        <p>Graba tu voz. Genera certificado forense SHA-256 con patrón cimático. Conforme a ISO/IEC 27037 y NOM-151-SCFI-2016.</p>
-        <div class="foot">
-          <span class="status">Nuevo</span>
-          <span>v1.0 · ISO 27037</span>
-        </div>
-      </a>
-
-      <a class="card" href="projects/md33/">
-        <span class="label">Framework</span>
-        <h3>MD-33 Forense</h3>
-        <p>Verificación forense de evidencia digital. Script Python genérico. Plantilla de acta bilingüe ES/EN. 4 jurisdicciones.</p>
-        <div class="foot">
-          <span class="status">Usable</span>
-          <span>ISO 27037</span>
-        </div>
-      </a>
-
-      <a class="card" href="projects/yejida/">
-        <span class="label">Causa</span>
-        <h3>Yejidá Kabaláh</h3>
-        <p>88 constelaciones IAU + interpretación cabalística. 100% local, sin tracking. Donaciones a gatitos callejeros.</p>
-        <div class="foot">
-          <span class="status">Construcción</span>
-          <span>PWA</span>
-        </div>
-      </a>
-
-      <a class="card" href="projects/kronos-vault/">
-        <span class="label">Legado</span>
-        <h3>Kronos Vault</h3>
-        <p>Arquitectura de legado digital. 6 principios explícitos. Registro Safe Creative 2607146379465. Licencia dual.</p>
-        <div class="foot">
-          <span class="status">Génesis</span>
-          <span>v0.1.0</span>
-        </div>
-      </a>
-
-      <a class="card miner" href="projects/genesis-miner/">
-        <span class="label">Núcleo · Motor Criptográfico</span>
-        <h3>Genesis Miner</h3>
-        <p>Motor de minado local-first con firma Ed25519 y hash chain SHA-256. Interfaz Obsidian & Gold. Persistencia en wallet.json.</p>
-        <div class="foot">
-          <span class="status">Operativo</span>
-          <span>v1.0 · Ed25519</span>
-        </div>
-      </a>
-
-      <a class="card kodice" href="kodice-secreto/">
-        <span class="label">Verificación · Holográfico</span>
-        <h3>KODICE SECRETO</h3>
-        <p>Prisma cromático de 6 universos. Pega cualquier .json firmado de tus módulos y obtén una tarjeta cyberpunk exportable como PNG.</p>
-        <div class="foot">
-          <span class="status">Nuevo</span>
-          <span>v1.0 · Prisma</span>
-        </div>
-      </a>
-
+      <a class="card" href="projects/evidence-os/"><span class="label">Plataforma</span><h3>Evidence Integrity OS</h3><p>Paquete .evidence verificable. SHA-256 + HMAC + RFC 3161 + JWS + PAdES-B-T. API HTTP. Alineación NOM-151.</p><div class="foot"><span class="status">Pre-alpha</span><span>Núcleo 100%</span></div></a>
+      <a class="card" href="projects/acta/"><span class="label">Metodología</span><h3>Acta + SCDR-001</h3><p>Co-creatividad humano-IA por fase creativa. Caso cero: acta fundacional sellada con eIDAS QTSA Firmaprofesional B02.</p><div class="foot"><span class="status">Registrado</span><span>Safe Creative</span></div></a>
+      <a class="card" href="projects/cymatic/"><span class="label">Demo</span><h3>Cymatic Studio</h3><p>Motor WebGL2 de visualización de audio reactivo. 16,000 partículas. 5 geometrías procedurales. 100% cliente.</p><div class="foot"><span class="status">Funcional</span><span>v19</span></div></a>
+      <a class="card dmd33" href="projects/dmd-33/orb.html"><span class="label">Orbe · En vivo · PWA</span><h3>DMD-33 ○_●</h3><p>Orbe vivo con voz es-MX. Memoria persistente. Instalable en móvil. Funciona offline. SHA-256 ee0369… anclado en Ethereum.</p><div class="foot"><span class="status">Vivo</span><span>v1.1 · PWA</span></div></a>
+      <a class="card boveda" href="projects/boveda/boveda.html"><span class="label">Forense · Audio</span><h3>Bóveda de Voz</h3><p>Graba tu voz. Genera certificado forense SHA-256 con patrón cimático. Conforme a ISO/IEC 27037 y NOM-151-SCFI-2016.</p><div class="foot"><span class="status">Nuevo</span><span>v1.0 · ISO 27037</span></div></a>
+      <a class="card" href="projects/md33/"><span class="label">Framework</span><h3>MD-33 Forense</h3><p>Verificación forense de evidencia digital. Script Python genérico. Plantilla de acta bilingüe ES/EN. 4 jurisdicciones.</p><div class="foot"><span class="status">Usable</span><span>ISO 27037</span></div></a>
+      <a class="card" href="projects/yejida/"><span class="label">Causa</span><h3>Yejidá Kabaláh</h3><p>88 constelaciones IAU + interpretación cabalística. 100% local, sin tracking. Donaciones a gatitos callejeros.</p><div class="foot"><span class="status">Construcción</span><span>PWA</span></div></a>
+      <a class="card" href="projects/kronos-vault/"><span class="label">Legado</span><h3>Kronos Vault</h3><p>Arquitectura de legado digital. 6 principios explícitos. Registro Safe Creative 2607146379465. Licencia dual.</p><div class="foot"><span class="status">Génesis</span><span>v0.1.0</span></div></a>
+      <a class="card miner" href="projects/genesis-miner/"><span class="label">Núcleo · Motor Criptográfico</span><h3>Genesis Miner</h3><p>Motor de minado local-first con firma Ed25519 y hash chain SHA-256. Interfaz Obsidian & Gold. Persistencia en wallet.json.</p><div class="foot"><span class="status">Operativo</span><span>v1.0 · Ed25519</span></div></a>
+      <a class="card kodice" href="kodice-secreto/"><span class="label">Verificación · Holográfico</span><h3>KODICE SECRETO</h3><p>Prisma cromático de 6 universos. Pega cualquier .json firmado de tus módulos y obtén una tarjeta cyberpunk exportable como PNG.</p><div class="foot"><span class="status">Nuevo</span><span>v1.0 · Prisma</span></div></a>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- CTA                                                         -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section class="cta" id="contact">
     <h2>Acta fundacional</h2>
-    <p>
-      Registro <strong style="color: var(--gold);">2607086319439</strong> · 8 de julio de 2026 · 07:02 UTC · QTSA Firmaprofesional B02 · Anclaje Ethereum
-    </p>
+    <p>Registro <strong style="color: var(--gold);">2607086319439</strong> · 8 de julio de 2026 · 07:02 UTC · QTSA Firmaprofesional B02 · Anclaje Ethereum</p>
     <div class="btns">
       <a class="btn solid" href="https://www.safecreative.org/certificate/2607086319439" target="_blank" rel="noopener">Ver certificado</a>
       <a class="btn ghost" href="#legado">Explorar el Legado</a>
@@ -1345,16 +737,9 @@
   const canvas = document.getElementById('webgl');
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x05070b, 0.035);
-
   const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(0, 0, 22);
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    antialias: true,
-    alpha: true,
-    powerPreference: 'high-performance'
-  });
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -1367,22 +752,12 @@
     const r = 8 + Math.random() * 22;
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos(2 * Math.random() - 1);
-
-    positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
     positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
     positions[i * 3 + 2] = r * Math.cos(phi);
-
     const isGold = Math.random() > 0.4;
-    if (isGold) {
-      colors[i * 3]     = 0.79;
-      colors[i * 3 + 1] = 0.64;
-      colors[i * 3 + 2] = 0.30;
-    } else {
-      colors[i * 3]     = 0.95;
-      colors[i * 3 + 1] = 0.90;
-      colors[i * 3 + 2] = 0.67;
-    }
-
+    if (isGold) { colors[i*3]=0.79; colors[i*3+1]=0.64; colors[i*3+2]=0.30; }
+    else { colors[i*3]=0.95; colors[i*3+1]=0.90; colors[i*3+2]=0.67; }
     sizes[i] = 0.5 + Math.random() * 1.8;
   }
 
@@ -1392,38 +767,27 @@
   geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
   const material = new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: { value: 0 },
-      uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
-    },
+    uniforms: { uTime: { value: 0 }, uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) } },
     vertexShader: `
-      attribute float size;
-      attribute vec3 color;
-      varying vec3 vColor;
-      varying float vAlpha;
-      uniform float uTime;
-      uniform float uPixelRatio;
+      attribute float size; attribute vec3 color;
+      varying vec3 vColor; varying float vAlpha;
+      uniform float uTime; uniform float uPixelRatio;
       void main() {
         vColor = color;
         vAlpha = 0.4 + 0.6 * (0.5 + 0.5 * sin(uTime * 1.5 + position.x * 0.3 + position.y * 0.2));
         vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
         gl_PointSize = size * uPixelRatio * (180.0 / -mvPosition.z);
         gl_Position = projectionMatrix * mvPosition;
-      }
-    `,
+      }`,
     fragmentShader: `
-      varying vec3 vColor;
-      varying float vAlpha;
+      varying vec3 vColor; varying float vAlpha;
       void main() {
         float d = length(gl_PointCoord - vec2(0.5));
         if (d > 0.5) discard;
         float a = smoothstep(0.5, 0.0, d) * vAlpha;
         gl_FragColor = vec4(vColor, a);
-      }
-    `,
-    transparent: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
+      }`,
+    transparent: true, blending: THREE.AdditiveBlending, depthWrite: false
   });
 
   const points = new THREE.Points(geometry, material);
@@ -1439,24 +803,17 @@
   function animate() {
     requestAnimationFrame(animate);
     const t = (performance.now() - t0) * 0.001;
-
-    tx += (mx - tx) * 0.03;
-    ty += (my - ty) * 0.03;
-
+    tx += (mx - tx) * 0.03; ty += (my - ty) * 0.03;
     points.rotation.y = t * 0.04 + tx * 0.4;
     points.rotation.x = Math.sin(t * 0.15) * 0.1 + ty * 0.2;
-
     material.uniforms.uTime.value = t;
-
     renderer.render(scene, camera);
   }
-
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
-
   animate();
 })();
 </script>
