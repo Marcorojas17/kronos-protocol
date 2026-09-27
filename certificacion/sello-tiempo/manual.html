@@ -69,7 +69,7 @@
         <li>Calcula el hash SHA-256.</li>
         <li>Genera el archivo <code>.tsq</code>.</li>
         <li>Descarga el <code>.tsq</code>.</li>
-        <li>Envía el <code>.tsq</code> a una TSA activa (por ejemplo, vía el cliente <a href="https://github.com/digicert/timestamp" target="_blank" style="color:#FFD700">DigiCert Timestamp Client</a> o el servicio online de Sectigo).</li>
+        <li>Envía el <code>.tsq</code> a una TSA activa.</li>
         <li>Descarga el <code>.tsr</code> resultante.</li>
         <li>Vuelve a KRONOS y sube el <code>.tsr</code> para procesarlo.</li>
       </ol>
@@ -93,10 +93,10 @@ const info = await sello.parsearTSR(archivoTSR);</pre>
 
       <h3>TSAs activas (septiembre 2026)</h3>
       <ul>
-        <li><strong>DigiCert</strong> — timestamp.digicert.com (gratuita, certificado válido)</li>
-        <li><strong>Sectigo</strong> — timestamp.sectigo.com (gratuita)</li>
-        <li><strong>Apple</strong> — timestamp.apple.com (gratuita)</li>
-        <li><strong>Safe Creative</strong> — tsa.safecreative.org (5 gratis/día)</li>
+        <li><strong>DigiCert</strong> — timestamp.digicert.com</li>
+        <li><strong>Sectigo</strong> — timestamp.sectigo.com</li>
+        <li><strong>Apple</strong> — timestamp.apple.com</li>
+        <li><strong>Safe Creative</strong> — tsa.safecreative.org</li>
       </ul>
     </div>
 
@@ -107,15 +107,13 @@ const info = await sello.parsearTSR(archivoTSR);</pre>
         <li>El sello es emitido por una TSA reconocida internacionalmente.</li>
         <li>La TSA firma el hash + timestamp con su propia clave.</li>
         <li>La prueba criptográfica es independiente de KRONOS.</li>
-        <li>KRONOS solo genera la solicitud y muestra la fecha extraída.</li>
       </ul>
       <h3>Limitaciones honestas</h3>
       <ul>
         <li><strong>Este cliente NO verifica criptográficamente</strong> el sello TSR. Solo extrae la fecha heurísticamente.</li>
         <li>La verificación completa requiere <code>openssl ts -verify</code> o equivalente.</li>
         <li>Las TSA gratuitas NO son cualificadas eIDAS.</li>
-        <li>Para validez legal plena en la UE se requiere TSA cualificada (Firmaprofesional, FNMT).</li>
-        <li><strong>Alternativa recomendada:</strong> usar el Notario Tonal propio + anclaje a Ethereum, que sí es verificable sin depender de TSA externa.</li>
+        <li><strong>Alternativa recomendada:</strong> usar el Notario Tonal propio + anclaje a Ethereum, verificable sin depender de TSA externa.</li>
       </ul>
     </div>
   </div>
