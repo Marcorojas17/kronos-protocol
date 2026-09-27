@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:33:34Z
+# Generado: 2026-09-27T12:34:39Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -93,6 +93,7 @@ bf07cb281a30f84aaf19fab2e09ed40150d62660bead517286a11200fe463bb3  ./cimiento/sto
 8277b1b78a161d16a1f07475f236ce68216f69d73eb944ad9bc781b15d7d726d  ./favicon.svg
 364f9eb3f9a15a29d6b76a003619049b123a5d14424dd7ba3f5ae12c3c00a623  ./gobernanza/ejecucion-decisiones/ejecucion.js
 74fa7de83a8859beeccc9a7345cc135b058fc606bb8891e9fb536a0a1a7804ef  ./gobernanza/ejecucion-decisiones/index.html
+9039a691ef4b9e7215675cd0d4e30e2e0515c3cb221c1e8c5c917b6365cc3f9d  ./gobernanza/ejecucion-decisiones/manual.html
 295ced3f2b8a9b29905c6498414ed62184c2a1fef9c2f5b663850b8219c7a5a8  ./gobernanza/propuestas-votacion/README.md
 dcc9dcffc23804e6dd6a4ba9b238bcc1b5db3ed130fe639322165456907f8d8c  ./gobernanza/propuestas-votacion/index.html
 8ad9bb963162222eb3286ab0a8d5feed8adb19b4ec060bc641df62566d0e911d  ./gobernanza/propuestas-votacion/manual.html
