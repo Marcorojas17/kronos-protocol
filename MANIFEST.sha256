@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T09:57:14Z
+# Generado: 2026-09-27T10:01:20Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -72,6 +72,7 @@ bf07cb281a30f84aaf19fab2e09ed40150d62660bead517286a11200fe463bb3  ./cimiento/sto
 222688f33dc475ade5dae41a5d27b25ea2449124fd648fff35881dbfd2791a77  ./cimiento/storage-dexie/styles.css
 66d7897f3f92e2baa7b7c6111775e3a1338deb55b7d6fce148cbc68713e7521c  ./curriculum-terminal.txt
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
+0bf826b84a0d3c8dffaec6890ea9bee2a099639121b068081947f29bc1e80da3  ./docs/kronos-para-ninos.html
 3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
 8277b1b78a161d16a1f07475f236ce68216f69d73eb944ad9bc781b15d7d726d  ./favicon.svg
 dac2406e40a11b3c0e15b3712c8066a79a83e9168886ce47759204f68660fb5d  ./guardian.py
