@@ -1,6 +1,7 @@
 // ────────────────────────────────────────────────────────────
-// REGISTRO IA · Legado Humano–IA · v1.0
+// REGISTRO IA · Legado Humano–IA · v1.1
 // Identidad soberana de la IA con firma Ed25519 y guardrails
+// Persistencia: Dexie directo (base propia)
 // ────────────────────────────────────────────────────────────
 
 export class RegistroIA {
@@ -10,9 +11,17 @@ export class RegistroIA {
     this.politica = politica;
     this.guardrails = guardrails;
     this.log = log;
+    this.db = new Dexie('kronos-identidad-ia');
+    this.db.version(1).stores({
+      certificados: '++id, timestamp, rol, ia_clave_publica'
+    });
     this.iaActual = null;
     this.llavePrivIA = null;
     this.llavePubIA = null;
+  }
+
+  async init() {
+    if (!this.db.isOpen()) await this.db.open();
   }
 
   static async _sha256Hex(texto) {
@@ -37,7 +46,7 @@ export class RegistroIA {
 
   async sellar(datos) {
     if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
+    if (!this.db.isOpen()) await this.init();
 
     if (!datos.nombre || datos.nombre.trim().length < 2) {
       throw new Error('El nombre de la IA es obligatorio (mín. 2 caracteres).');
@@ -117,8 +126,8 @@ export class RegistroIA {
       co_autoria: true
     };
 
-    await this.storage.guardar('identidad-ia', certificado);
-    this.iaActual = certificado;
+    const id = await this.db.certificados.add(certificado);
+    this.iaActual = { id, ...certificado };
 
     await this.log.registrar('creacion_identidad_ia', {
       nombre: certificado.nombre,
@@ -126,14 +135,16 @@ export class RegistroIA {
       hash: hashPayload
     });
 
-    return certificado;
+    return this.iaActual;
   }
 
   async recuperar() {
     if (this.iaActual) return this.iaActual;
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    const data = await this.storage.recuperar('identidad-ia');
-    this.iaActual = data || null;
+    if (!this.db.isOpen()) await this.init();
+    const todos = await this.db.certificados.toArray();
+    if (todos.length === 0) { this.iaActual = null; return null; }
+    todos.sort((a,b) => (b.id || 0) - (a.id || 0));
+    this.iaActual = todos[0];
     return this.iaActual;
   }
 
