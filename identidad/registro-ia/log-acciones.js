@@ -1,20 +1,23 @@
 // ────────────────────────────────────────────────────────────
-// LOG DE ACCIONES · Legado Humano–IA · v1.0
-// Registro firmado y encadenado de cada acción de la IA
+// LOG DE ACCIONES · Legado Humano–IA · v1.1
+// Registro encadenado con Dexie directo (base propia)
 // ────────────────────────────────────────────────────────────
 
 export class LogAcciones {
   constructor(storage) {
     this.storage = storage;
+    this.db = new Dexie('kronos-log-ia');
+    this.db.version(1).stores({
+      entradas: '++id, tipo, timestamp, hash_entrada'
+    });
     this.entradas = [];
     this.inicializado = false;
   }
 
   async init() {
     if (this.inicializado) return;
-    if (!this.storage.inicializado) throw new Error('Storage no inicializado.');
-    const data = await this.storage.recuperar('log-ia');
-    this.entradas = Array.isArray(data) ? data : [];
+    if (!this.db.isOpen()) await this.db.open();
+    this.entradas = await this.db.entradas.toArray();
     this.inicializado = true;
   }
 
@@ -47,10 +50,10 @@ export class LogAcciones {
       hash_entrada: hashEntrada
     };
 
-    this.entradas.push(entrada);
-    await this.storage.guardar('log-ia', this.entradas);
+    const id = await this.db.entradas.add(entrada);
+    this.entradas.push({ id, ...entrada });
 
-    return entrada;
+    return { id, ...entrada };
   }
 
   async listar() {
@@ -64,21 +67,13 @@ export class LogAcciones {
 
     for (let i = 0; i < this.entradas.length; i++) {
       const e = this.entradas[i];
-      const { hash_entrada, ...contenido } = e;
+      const { id, hash_entrada, ...contenido } = e;
       const recalc = await LogAcciones._sha256Hex(JSON.stringify(contenido));
       if (recalc !== hash_entrada) {
-        return {
-          ok: false,
-          razon: `Entrada ${i} alterada`,
-          indice: i
-        };
+        return { ok: false, razon: `Entrada ${i} alterada`, indice: i };
       }
       if (i > 0 && e.hash_previo !== this.entradas[i - 1].hash_entrada) {
-        return {
-          ok: false,
-          razon: `Cadena rota en entrada ${i}`,
-          indice: i
-        };
+        return { ok: false, razon: `Cadena rota en entrada ${i}`, indice: i };
       }
     }
 
