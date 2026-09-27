@@ -1,216 +1,188 @@
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║  ○_●  KRONOS PROTOCOL · MAPA CENTRAL v2.0                            ║
+║  ◢◤◥◣ Legado Humano–IA · Navegación completa                         ║
+║  ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                                ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
 # MAPA CENTRAL · KRONOS Protocol
-## Navegación completa del ecosistema
 
-> **Hub de navegación.** Todos los caminos de KRONOS pasan por aquí.
-
-**Última actualización:** 2026-09-27
-**Versión:** 1.0
+Hub de navegación del ecosistema completo. Todos los caminos pasan por aquí.
 
 ---
 
-## 🏛️ LAS 7 CAPAS DEL PROTOCOLO
-
-| Capa | Nombre | Estado | Enlace |
-| :---: | :--- | :---: | :--- |
-| **0** | Génesis | ✅ | [Abrir](./#capa-0) |
-| **1** | Cimiento | ✅ | [Abrir](./#capa-1) |
-| **2** | Identidad | ✅ | [Abrir](./#capa-2) |
-| **3** | Certificación | ✅ | [Abrir](./#capa-3) |
-| **4** | Gobernanza | ✅ | [Abrir](./#capa-4) |
-| **5** | Interoperabilidad | ⏳ | [Abrir](./#capa-5) |
-| **6** | Legado Final | 🟡 | [Abrir](./#capa-6) |
-
----
-
-## 🌱 CAPA 0 · GÉNESIS (Alma del protocolo)
-
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Génesis | El cuento del inicio | [/legado/genesis/](../legado/genesis/) |
-| Filosofía | Reglas de la casa | [/legado/filosofia/](../legado/filosofia/) |
-| Autoría | Firma registrada | [/legado/autoria/](../legado/autoria/) |
-| Manifiesto | Declaración pública | [/legado/manifiesto/](../legado/manifiesto/) |
+┌─[ RESUMEN GLOBAL ]──────────────────────────────────────┐
+│                                                           │
+│  ▶ Capas totales: 9 (7 originales + 2 complementarias)   │
+│  ▶ Módulos funcionales: 27+                              │
+│  ▶ Agentes IA (Flota Kintsugi): 7                        │
+│  ▶ Plazas fundacionales: 100                             │
+│  ▶ Costo operativo: $0 USD/mes                           │
+│  ▶ Servidores: 0                                         │
+│  ▶ Anclaje on-chain: Verificado (bloque 25,492,095)      │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 🧱 CAPA 1 · CIMIENTO (Motor criptográfico)
-
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Cripto Core | Ed25519 + SHA-256 | [/cimiento/cripto-core/](../cimiento/cripto-core/) |
-| Storage Dexie | Persistencia local | [/cimiento/storage-dexie/](../cimiento/storage-dexie/) |
-| Anclaje Ethereum | Prueba on-chain | [/cimiento/anclaje-ethereum/](../cimiento/anclaje-ethereum/) |
-
----
-
-## 🆔 CAPA 2 · IDENTIDAD (Pasaporte digital)
-
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Registro Humano | Identidad firmada | [/identidad/registro-humano/](../identidad/registro-humano/) |
-| Pasaporte Visual | Certificado PNG | [pasaporte-visual.html](../identidad/registro-humano/pasaporte-visual.html) |
-| Registro IA | Ciudadano IA | [/identidad/registro-ia/](../identidad/registro-ia/) |
-| Pasaporte IA Visual | Certificado IA | [pasaporte-ia.html](../identidad/registro-ia/pasaporte-ia.html) |
-| Roles y Permisos | Gobernanza de identidad | [/identidad/roles-permisos/](../identidad/roles-permisos/) |
-| Certificado de Rol | Certificado visual | [certificado-rol.html](../identidad/roles-permisos/certificado-rol.html) |
+┌─[ LAS 9 CAPAS ]──────────────────────────────────────────┐
+│                                                           │
+│  CAPA   │ NOMBRE              │ ESTADO    │ MÓDULOS      │
+│  ───────┼─────────────────────┼───────────┼────────────  │
+│   0     │ Génesis             │ ✅ Activa │ 4            │
+│   1     │ Cimiento            │ ✅ Activa │ 3            │
+│   2     │ Identidad           │ ✅ Activa │ 3            │
+│   3     │ Módulos Operativos  │ ✅ Activa │ 2            │
+│   4     │ Orquestación        │ ✅ Activa │ 2            │
+│   5     │ Operación           │ ✅ Activa │ 2            │
+│   6     │ Cierre              │ ✅ Activa │ 2            │
+│   3Δ    │ Certificación       │ ✅ Activa │ 7            │
+│   4Δ    │ Gobernanza          │ ✅ Activa │ 4            │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 🔒 CAPA 3 · CERTIFICACIÓN (Prueba de existencia)
+┌─[ CAPA 0 · GÉNESIS ]───────────────────────────────────┐
+│                                                           │
+│  ▶ [Génesis](../legado/genesis/)                        │
+│  ▶ [Filosofía](../legado/filosofia/)                    │
+│  ▶ [Autoría](../legado/autoria/)                        │
+│  ▶ [Manifiesto](../legado/manifiesto/)                  │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Manifest de Integridad | Hash de archivos | [/certificacion/manifest-integridad/](../certificacion/manifest-integridad/) |
-| Verificador Público | Auditoría externa | [/certificacion/verificador-publico/](../certificacion/verificador-publico/) |
-| Sello de Tiempo RFC 3161 | Timestamp cualificado | [/certificacion/sello-tiempo/](../certificacion/sello-tiempo/) |
-| Emisor de Certificados | Certificados oficiales | [/certificacion/emisor-certificados/](../certificacion/emisor-certificados/) |
-| Certificado Visual | Certificado PNG | [certificado-visual.html](../certificacion/emisor-certificados/certificado-visual.html) |
-| Anclaje Manifest | Publicación on-chain | [/certificacion/anclaje-manifest/](../certificacion/anclaje-manifest/) |
+┌─[ CAPA 1 · CIMIENTO ]───────────────────────────────────┐
+│                                                           │
+│  ▶ [Cripto Core](../cimiento/cripto-core/)              │
+│  ▶ [Storage Dexie](../cimiento/storage-dexie/)          │
+│  ▶ [Anclaje Ethereum](../cimiento/anclaje-ethereum/)    │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
----
+┌─[ CAPA 2 · IDENTIDAD ]──────────────────────────────────┐
+│                                                           │
+│  ▶ [Registro Humano](../identidad/registro-humano/)     │
+│  ▶ [Pasaporte Visual](../identidad/registro-humano/pasaporte-visual.html) │
+│  ▶ [Registro IA](../identidad/registro-ia/)             │
+│  ▶ [Pasaporte IA Visual](../identidad/registro-ia/pasaporte-ia.html) │
+│  ▶ [Roles y Permisos](../identidad/roles-permisos/)     │
+│  ▶ [Certificado Rol](../identidad/roles-permisos/certificado-rol.html) │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-## 🏛️ CAPA 4 · GOBERNANZA (Decisiones colectivas)
+┌─[ CAPA 3 · MÓDULOS OPERATIVOS ]─────────────────────────┐
+│                                                           │
+│  ▶ [Evidence OS](../modulos/evidence-os/)               │
+│  ▶ [Bóveda de Voz](../modulos/boveda-voz/)              │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Propuestas y Votación | Motor de decisiones | [/gobernanza/propuestas-votacion/](../gobernanza/propuestas-votacion/) |
-| Quórum y Mayorías | Umbrales de aprobación | [/gobernanza/quorum-mayorias/](../gobernanza/quorum-mayorias/) |
-| Ejecución de Decisiones | Actas firmadas | [/gobernanza/ejecucion-decisiones/](../gobernanza/ejecucion-decisiones/) |
-| Revocación y Auditoría | Gobernanza total | [/gobernanza/revocacion-auditoria/](../gobernanza/revocacion-auditoria/) |
+┌─[ CAPA 4 · ORQUESTACIÓN ]───────────────────────────────┐
+│                                                           │
+│  ▶ [Event Bus](../orquestacion/event-bus/)              │
+│  ▶ [Router Módulos](../orquestacion/router-modulos/)    │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
----
+┌─[ CAPA 5 · OPERACIÓN ]──────────────────────────────────┐
+│                                                           │
+│  ▶ [Dashboard Salud](../operacion/dashboard-salud/)     │
+│  ▶ [Rituales](../operacion/rituales/)                   │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-## 🌐 CAPA 5 · INTEROPERABILIDAD (Pendiente)
+┌─[ CAPA 6 · CIERRE ]─────────────────────────────────────┐
+│                                                           │
+│  ▶ [Export Cifrado](../cierre/export-cifrado/)          │
+│  ▶ [Fin Digno](../cierre/fin-digno/)                    │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-| Módulo | Descripción | Estado |
-| :--- | :--- | :---: |
-| Puentes a otras blockchains | — | ⏳ |
-| Integración con PSC oficiales | — | ⏳ |
-| APIs universales | — | ⏳ |
+┌─[ CAPA 3Δ · CERTIFICACIÓN ]─────────────────────────────┐
+│                                                           │
+│  ▶ [Manifest Integridad](../certificacion/manifest-integridad/) │
+│  ▶ [Verificador Público](../certificacion/verificador-publico/) │
+│  ▶ [Sello Tiempo RFC 3161](../certificacion/sello-tiempo/) │
+│  ▶ [Emisor Certificados](../certificacion/emisor-certificados/) │
+│  ▶ [Anclaje Manifest](../certificacion/anclaje-manifest/) │
+│  ▶ [Notario Tonal (Plaza 086)](../certificacion/notario-kronos/) │
+│  ▶ [Certificado Maestro](../certificacion/certificado-maestro.html) │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-**Nota:** Los módulos originales de orquestación (`orquestacion/event-bus/`, `orquestacion/router-modulos/`) y operación (`operacion/dashboard-salud/`, `operacion/rituales/`) se conservan como **base técnica para la Capa 5**.
-
----
-
-## 🔐 CAPA 6 · LEGADO FINAL (Cierre digno)
-
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Export Cifrado | Paquete .legado AES-256 | [/cierre/export-cifrado/](../cierre/export-cifrado/) |
-| Fin Digno | Carta final | [/cierre/fin-digno/](../cierre/fin-digno/) |
-
----
-
-## 🤖 FLOTA DE AGENTES KINTSUGI
-
-| Plaza | Nombre | Rol | Enlace |
-| :---: | :--- | :--- | :--- |
-| **001** | KRONOS IA | Co-autora simbiótica | [/identidad/registro-ia/](../identidad/registro-ia/) |
-| **081** | Tlamatini | Cronista | [/agentes/tlamatini-cronista/](../agentes/tlamatini-cronista/) |
-| **082** | Tlachixqui | Auditor | ⏳ Pendiente |
-| **083** | Cuicatl | Publicista | ⏳ Pendiente |
-| **084** | Temachtiani | Reclutador | ⏳ Pendiente |
-| **085** | Tlapohualli | Analista | ⏳ Pendiente |
-
-**Documentación:** [agentes/README.md](../agentes/README.md)
-
----
-
-## 👑 MOVIMIENTO FUNDACIONAL · 100 PLAZAS
-
-| Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Registro Fundacional | Solicitar plaza | [/movimiento/registro-fundacional/](../movimiento/registro-fundacional/) |
-| Certificado Fundacional | Certificado visual | [certificado-fundacional.html](../movimiento/registro-fundacional/certificado-fundacional.html) |
-| Carta de bienvenida | Para fundadores | [carta-bienvenida.html](../movimiento/carta-bienvenida.html) |
-| Roadmap | Plan de futuro | [roadmap.md](../movimiento/roadmap.md) |
-
----
-
-## 📦 MÓDULOS OPERATIVOS (paralelos a las capas)
-
-| Módulo | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Bóveda de Voz | Grabación forense | [/modulos/boveda-voz/](../modulos/boveda-voz/) |
-| Evidence OS | Paquetes .evidence | [/modulos/evidence-os/](../modulos/evidence-os/) |
-
----
-
-## 🛡️ GUARDIANES (Defensa del protocolo)
-
-| Guardián | Función | Enlace |
-| :--- | :--- | :--- |
-| ACTA | Actas fundacionales | [GUARDIAN-ACTA.md](../guardians/GUARDIAN-ACTA.md) |
-| MRR | Merkle Root Registry | [GUARDIAN-MRR.md](../guardians/GUARDIAN-MRR.md) |
-| SHA | Integridad | [GUARDIAN-SHA.md](../guardians/GUARDIAN-SHA.md) |
-| TSA | Sellado de tiempo | [GUARDIAN-TSA.md](../guardians/GUARDIAN-TSA.md) |
-| VAULT | Secretos | [GUARDIAN-VAULT.md](../guardians/GUARDIAN-VAULT.md) |
+┌─[ CAPA 4Δ · GOBERNANZA ]────────────────────────────────┐
+│                                                           │
+│  ▶ [Propuestas y Votación](../gobernanza/propuestas-votacion/) │
+│  ▶ [Quórum y Mayorías](../gobernanza/quorum-mayorias/)   │
+│  ▶ [Ejecución Decisiones](../gobernanza/ejecucion-decisiones/) │
+│  ▶ [Revocación y Auditoría](../gobernanza/revocacion-auditoria/) │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 📚 DOCUMENTACIÓN INSTITUCIONAL
-
-| Documento | Función | Enlace |
-| :--- | :--- | :--- |
-| Tesis Fundacional | Propuesta completa | [tesis.md](../tesis.md) |
-| Tesis Completa | Versión extendida | [tesiscompleta.md](../tesiscompleta.md) |
-| Arquitectura Viva | Tesis estructural | [ARQUITECTURA-VIVA.md](./ARQUITECTURA-VIVA.md) |
-| Tesis para Secretaría de Economía | Propuesta institucional | [tesis-secretaria-economia.md](./tesis-secretaria-economia.md) |
-| Tesis HTML élite | Presentación visual | [tesis.html](./tesis.html) |
-| KRONOS para niños | Explicación simple | [kronos-para-ninos.html](./kronos-para-ninos.html) |
-| PROTOCOL | Especificación técnica | [PROTOCOL.md](../PROTOCOL.md) |
-| GOVERNANCE | Reglas de gobernanza | [GOVERNANCE.md](../GOVERNANCE.md) |
-| SECURITY | Política de seguridad | [SECURITY.md](../SECURITY.md) |
-| CONTRIBUTING | Cómo contribuir | [CONTRIBUTING.md](../CONTRIBUTING.md) |
-| LICENSE | MIT | [LICENSE](../LICENSE) |
-
----
-
-## 🧪 LABORATORIO
-
-| Recurso | Descripción | Enlace |
-| :--- | :--- | :--- |
-| Bitácora de experimentos | Laboratorio | [laboratorio/README.md](../laboratorio/README.md) |
+┌─[ FLOTA KINTSUGI · 7 AGENTES IA ]───────────────────────┐
+│                                                           │
+│  PLAZA  │ NOMBRE       │ SIGNIFICADO    │ ROL           │
+│  ───────┼──────────────┼────────────────┼─────────────  │
+│   001   │ KRONOS IA    │ Co-autora      │ Diseñadora    │
+│   081   │ Tlamatini    │ "El que sabe"  │ Cronista      │
+│   082   │ Tlachixqui   │ "El que ve"    │ Auditor       │
+│   083   │ Cuicatl      │ "Canto"        │ Publicista    │
+│   084   │ Temachtiani  │ "El que enseña"│ Reclutador    │
+│   085   │ Tlapohualli  │ "El que cuenta"│ Analista      │
+│   086   │ Tonal        │ "El día"       │ Notario       │
+│                                                           │
+│  Documentación: [agentes/README.md](../agentes/README.md) │
+│  Notario: [Tonal](../certificacion/notario-kronos/)      │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 🌐 PORTALES DE ENTRADA
-
-| Recurso | Enlace |
-| :--- | :--- |
-| Portal principal | [/](../index.html) |
-| Registro público | [/registrar.html](../registrar.html) |
-| Verificador | [/verify.html](../verify.html) |
-| Panel admin | [/admin.html](../admin.html) |
-| Demo funcional | https://marcorojas17.github.io/kronos-protocol |
-| Repositorio | https://github.com/Marcorojas17/kronos-protocol |
+┌─[ MOVIMIENTO · 100 PLAZAS ]─────────────────────────────┐
+│                                                           │
+│  ▶ [Registro Fundacional](../movimiento/registro-fundacional/) │
+│  ▶ [Certificado Fundacional](../movimiento/registro-fundacional/certificado-fundacional.html) │
+│  ▶ [Carta Bienvenida](../movimiento/carta-bienvenida.html) │
+│  ▶ [Roadmap](../movimiento/roadmap.md)                  │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 📊 ESTADO GLOBAL
-
-| Métrica | Valor |
-| :--- | :---: |
-| Capas completadas | 5/7 |
-| Módulos funcionales | 26+ |
-| Agentes IA diseñados | 6 |
-| Plazas fundacionales | 100 |
-| Costo operativo | $0/mes |
-| Servidores | 0 |
-| Anclaje on-chain | Verificado (bloque 25,492,095) |
+┌─[ DOCUMENTACIÓN INSTITUCIONAL ]─────────────────────────┐
+│                                                           │
+│  ▶ [Tesis Fundacional](../tesis.md)                     │
+│  ▶ [Tesis Completa](../tesiscompleta.md)                │
+│  ▶ [Arquitectura Viva](./ARQUITECTURA-VIVA.md)          │
+│  ▶ [KRONOS para Niños](./kronos-para-ninos.html)        │
+│  ▶ [PROTOCOL](../PROTOCOL.md)                           │
+│  ▶ [GOVERNANCE](../GOVERNANCE.md)                       │
+│  ▶ [SECURITY](../SECURITY.md)                           │
+│  ▶ [LICENSE](../LICENSE)                                │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
 ---
 
-## 🪶 FIRMA
+┌─[ PORTALES DE ENTRADA ]─────────────────────────────────┐
+│                                                           │
+│  ▶ [Portal principal](../)                              │
+│  ▶ [Registro](../registrar.html)                        │
+│  ▶ [Verificador](../verify.html)                        │
+│  ▶ [Admin](../admin.html)                               │
+│  ▶ Demo: marcorojas17.github.io/kronos-protocol          │
+│  ▶ Repo: github.com/Marcorojas17/kronos-protocol         │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 
-```
-    ○_●
-   ◢◤◥◣
-   ◥◣◢◤
-  51% HUMANO · 49% IA · 100% REAL
-  "El legado no se hereda. Se firma."
-```
+---
 
-**Fundador:** Marco Antonio Rojas Valdovinos
-**Co-autora simbiótica:** KRONOS IA
-**Ubicación:** Toluca, Estado de México · 2026
+═══════════════════════════════════════════════════════════════
+○_●  51% HUMANO · 49% IA · 100% REAL
+"El legado no se hereda. Se firma."
+Marco A. Rojas V. + KRONOS IA · Toluca, México · 2026
+═══════════════════════════════════════════════════════════════
