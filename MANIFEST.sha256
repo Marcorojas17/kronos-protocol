@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T15:40:19Z
+# Generado: 2026-09-27T15:44:17Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -55,7 +55,7 @@ ba8421803f963b85f6ebf7d6369484f07e2c1106dc0e0794a87b3757626f1889  ./certificacio
 d27fbc7d1c3534c09fde48c63af93896be2bb590ef0ded9d4e7a5c0d6c72659c  ./certificacion/notario-kronos/politica.md
 b26ee742a8dc3c9284104695cdba73976fb0debdc787244df656e63a5a62f78b  ./certificacion/notario-kronos/prompt.md
 d4f8ad41e850e8e52ca4aeb814f4f27fc7d62683f0ccaf6bf1f958cacfae480a  ./certificacion/sello-tiempo/index.html
-8ba41be5a776935e27af5cad81e18b4a224400f4fbffa23d5c726363cb45fc12  ./certificacion/sello-tiempo/manual.html
+5118a1f5a85127ca413fa45501afb7aa56fab63ebf88229b583b11a329812d17  ./certificacion/sello-tiempo/manual.html
 231684a362818386a374924020785ff61e95dafe7c19c3809553822924b36196  ./certificacion/sello-tiempo/sello-tiempo.js
 72054210502514954caf1ca8c300906e37e6bfa128773b072386a1bd2c36b338  ./certificacion/verificador-publico/index.html
 7a98597b64daa5e7b47ca55fadca6e1d0eb3bbff581500df7f3105935afd7204  ./certificacion/verificador-publico/manual.html
@@ -101,7 +101,7 @@ bf07cb281a30f84aaf19fab2e09ed40150d62660bead517286a11200fe463bb3  ./cimiento/sto
 222688f33dc475ade5dae41a5d27b25ea2449124fd648fff35881dbfd2791a77  ./cimiento/storage-dexie/styles.css
 66d7897f3f92e2baa7b7c6111775e3a1338deb55b7d6fce148cbc68713e7521c  ./curriculum-terminal.txt
 c39c530905a5d17aeb4b23e3ea7e174840327c4a464408d36fe83d3e155ca795  ./docs/ARQUITECTURA-VIVA.md
-3b6c7c161ba6cbe9969aba2618050b3cfdd799bc65f7b85700e35f04d2755b46  ./docs/MAPA.md
+ac41748d9c5e7ce62a05185fe9973cabb9da086ff111773140132dfc7b2732fc  ./docs/MAPA.md
 766ef6dfdd31a34d0f724ad9ec6f40cc2ab536ba2751fa209a27df830f721427  ./docs/PLANTILLA-TERMINAL.md
 d2ea2979a804514d9ab2c603eff9811b18300a01d529bade9ead8df6eee7e34a  ./docs/README.md
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
