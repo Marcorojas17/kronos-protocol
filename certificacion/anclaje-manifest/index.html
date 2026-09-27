@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anclaje del Manifest · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<link rel="stylesheet" href="../manifest-integridad/styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Anclaje</a>
+      <a href="manual.html">Manual</a>
+      <a href="../emisor-certificados/">Emisor</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.5 · Capa 3 · Certificación</div>
+    <h1 class="title">Anclar<br>al futuro<br>eterno.</h1>
+    <p class="lede">
+      Publica el <strong>hash raíz del manifest</strong> en Ethereum Mainnet.
+      Prueba pública, permanente e inmutable de que tus archivos existían en esa fecha.
+      <strong>Cualquiera puede verificarlo en Etherscan.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Anclaje del Manifest</h2>
+      <span class="count">Ethereum · v1.0</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="manifest-json">Manifest oficial (pega el JSON) *</label>
+        <textarea id="manifest-json" rows="5" placeholder='Pega aquí el contenido del manifest.json de KRONOS...'></textarea>
+        <div class="hint">Obtenlo del Módulo 3.1 · Manifest de Integridad.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-cargar">Cargar manifest →</button>
+          <button class="btn ghost" id="btn-anclar">⛓️ Anclar a Ethereum Mainnet</button>
+          <button class="btn ghost" id="btn-limpiar">Limpiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-manifest" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Manifest Cargado</h2>
+        <span class="count" id="count-manifest">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">MANIFEST · LISTO PARA ANCLAR</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Hash raíz</span><span class="v mono" id="p-hash-raiz">—</span></div>
+          <div class="tk"><span class="k">Total archivos</span><span class="v" id="p-total">—</span></div>
+          <div class="tk"><span class="k">Firmante</span><span class="v" id="p-firmante">—</span></div>
+          <div class="tk"><span class="k">Fecha del manifest</span><span class="v mono" id="p-fecha">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="tarjeta-anclaje" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Anclaje Confirmado</h2>
+        <span class="count">Ethereum Mainnet</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">ANCLAJE ON-CHAIN · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">TX Hash</span><span class="v mono" id="p-tx">—</span></div>
+          <div class="tk"><span class="k">Wallet emisora</span><span class="v mono" id="p-wallet">—</span></div>
+          <div class="tk"><span class="k">Chain ID</span><span class="v mono" id="p-chain">—</span></div>
+          <div class="tk"><span class="k">Hash raíz anclado</span><span class="v mono" id="p-hash-anclado">—</span></div>
+          <div class="tk"><span class="k">Total archivos</span><span class="v" id="p-total-anclado">—</span></div>
+          <div class="tk"><span class="k">Timestamp local</span><span class="v mono" id="p-ts-local">—</span></div>
+        </div>
+        <div class="tarjeta-permisos" style="background:rgba(255,215,0,.06);border-color:rgba(255,215,0,.4);padding:16px;margin-top:16px">
+          <h4 style="color:#FFD700">✓ Verificación pública</h4>
+          <p style="font-size:13px;color:#F5F0E6;line-height:1.6;margin:8px 0 0 0">
+            Abre el enlace de Etherscan para ver la transacción. El campo <code style="color:#FFD700">data</code> contiene el hash raíz del manifest.
+          </p>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <a class="btn" id="link-etherscan" target="_blank" rel="noopener">Ver en Etherscan →</a>
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Descargar anclaje .json</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.5 · Anclaje del Manifest</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../emisor-certificados/">Emisor</a>
+    </span>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { AnclajeManifest } from './anclaje.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const anclaje = new AnclajeManifest(core);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  $('btn-cargar').addEventListener('click', () => {
+    try {
+      const raw = $('manifest-json').value.trim();
+      if (!raw) {
+        setFb('error', '<strong>✗ Pega el manifest primero.</strong>');
+        return;
+      }
+
+      const resultado = anclaje.cargarManifest(raw);
+      if (!resultado.ok) {
+        setFb('error', '<strong>✗ Manifest inválido:</strong> ' + resultado.razon);
+        return;
+      }
+
+      $('p-hash-raiz').textContent = resultado.hash_raiz;
+      $('p-total').textContent = resultado.total;
+      $('p-firmante').textContent = resultado.firmante;
+      $('p-fecha').textContent = anclaje.manifest.timestamp || '—';
+      $('count-manifest').textContent = resultado.total + ' archivos';
+      $('tarjeta-manifest').hidden = false;
+
+      setFb('success', '<strong>✓ Manifest cargado.</strong> Ahora puedes anclarlo a Ethereum.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-anclar').addEventListener('click', async () => {
+    try {
+      const pass = $('password').value;
+      if (pass.length < 8) {
+        setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+        return;
+      }
+
+      if (!anclaje.manifest) {
+        setFb('error', '<strong>✗ Carga el manifest primero.</strong>');
+        return;
+      }
+
+      if (typeof window.ethereum === 'undefined') {
+        setFb('error', '<strong>✗ MetaMask no detectado.</strong> Abre esta página en el navegador de MetaMask (móvil) o instala la extensión. Si no tienes wallet, exporta el manifest y ancla desde otro dispositivo.');
+        return;
+      }
+
+      if (!core.inicializado) await core.init(pass);
+
+      setFb('success', '<strong>⏳ Esperando confirmación en MetaMask…</strong>');
+      const resultado = await anclaje.anclarConMetaMask();
+
+      $('p-tx').textContent = resultado.tx_hash;
+      $('p-wallet').textContent = resultado.wallet;
+      $('p-chain').textContent = resultado.chain_id;
+      $('p-hash-anclado').textContent = resultado.hash_raiz;
+      $('p-total-anclado').textContent = resultado.total_archivos;
+      $('p-ts-local').textContent = resultado.timestamp;
+      $('link-etherscan').href = resultado.etherscan_url;
+
+      $('tarjeta-anclaje').hidden = false;
+      setFb('success', '<strong>✓ Manifest anclado a Ethereum.</strong> La prueba es pública y permanente.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error de anclaje:</strong> ' + (e.message || e));
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', () => {
+    try {
+      if (!anclaje.anclajeActual) return;
+      const blob = anclaje.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `anclaje-manifest-${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Anclaje exportado.</strong> Súbelo al repo como prueba.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-limpiar').addEventListener('click', () => {
+    anclaje.limpiar();
+    $('manifest-json').value = '';
+    $('password').value = '';
+    $('tarjeta-manifest').hidden = true;
+    $('tarjeta-anclaje').hidden = true;
+    feedback.className = 'feedback';
+  });
+
+  // Fondo líquido dorado
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[201,164,76],[255,180,60]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.18)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
