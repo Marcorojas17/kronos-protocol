@@ -7,7 +7,6 @@ export class Permisos {
   constructor() {
     this.version = '1.0';
 
-    // Catálogo de permisos disponibles en el ecosistema
     this.catalogo = {
       crear_registro: 'Crear un nuevo bloque en la cadena',
       firmar_registro: 'Firmar criptográficamente un registro',
@@ -23,7 +22,6 @@ export class Permisos {
       acceder_log_auditoria: 'Acceder al log de acciones'
     };
 
-    // Matriz de roles → permisos
     this.matriz = {
       'Fundador': [
         'crear_registro', 'firmar_registro', 'anclar_ethereum',
@@ -72,7 +70,6 @@ export class Permisos {
     return this.catalogo[permiso] || 'Permiso desconocido';
   }
 
-  // Exportar matriz legible
   texto() {
     const lineas = [`MATRIZ DE PERMISOS · v${this.version}`, ''];
     for (const rol of this.rolesValidos) {
