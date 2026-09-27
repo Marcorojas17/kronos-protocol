@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T05:11:06Z
+# Generado: 2026-09-27T05:11:58Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -103,7 +103,7 @@ c1d87df30d93ad5ee984a2f5cec97e3b82a39f3eb9338389c543fb148d5456b4  ./identidad/ro
 80d5225cb07ded2776d29fbc99aa5cfa80aed6913db89c69e834328aa9330856  ./identidad/roles-permisos/manual.html
 d22c5cab2a9f8ac44388f2a3d158e5efed2fc6d4afc2dce0a8c16b9fb074e0cc  ./identidad/roles-permisos/permisos.js
 c3f9055c85ce286f1a445336306c78857f24215f6cddb1207e3761ce94f1a6f2  ./identidad/roles-permisos/roles.js
-46254fc29b8f7515c5fda1b124b218c9eb2cf4fa334659ed5d6bc368db949971  ./identidad/roles-permisos/styles.css
+6e299fabcac271554b9870a3f2c9b26e84a3c9e59d6aea9e4cdc2e4513165ee7  ./identidad/roles-permisos/styles.css
 8095ddce0869ca79cdbde5ebbee7b8584bdd0f4fb76b5c291dfea77b4a0ef530  ./index.html
 9a6a9536a6deeece25d0f913eebddbd6ddf77f115b06631892e6f4fe339a86ca  ./kodice-secreto/index.html
 3064c66bdcb310a6a9977a73aa77dccfa0e974dad38854fdbdedf5222fa36f7b  ./laboratorio/README.md
