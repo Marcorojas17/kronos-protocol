@@ -127,6 +127,10 @@
         <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
         <button class="btn ghost" id="btn-ver-log" style="width:auto;">Ver log de acciones</button>
       </div>
+
+      <a href="pasaporte-ia.html" id="btn-abrir-pasaporte-ia" class="btn" style="width:100%;margin-top:12px;text-decoration:none;background:linear-gradient(180deg,#D8B4FE 0%,#A855F7 100%);color:#1a0528;">
+        🛂 Ver pasaporte visual IA →
+      </a>
     </div>
 
     <div class="tarjeta-wrap" id="log-wrap" hidden>
@@ -186,25 +190,28 @@
     return true;
   }
 
-  // Cargar identidad IA existente al abrir
+  function renderTarjetaIA(cert) {
+    $('p-nombre').textContent = cert.nombre;
+    $('p-alias').textContent = cert.alias ? `"${cert.alias}"` : '(sin alias)';
+    $('p-rol').textContent = cert.rol;
+    $('p-fundador').textContent = cert.fundador_humano;
+    $('p-pub').textContent = cert.ia_clave_publica;
+    $('p-hash').textContent = cert.payload_hash;
+    $('p-firma-ia').textContent = cert.firma_ia_ed25519.slice(0, 80) + '…';
+    $('p-firma-fund').textContent = cert.firma_fundador_ed25519.slice(0, 80) + '…';
+    $('p-politica').textContent = 'v' + cert.politica_version;
+    $('p-fecha').textContent = cert.timestamp;
+    $('tarjeta-wrap').hidden = false;
+  }
+
+  // Auto-cargar identidad IA si existe
   (async function recuperarAlInicio() {
     try {
+      await ia.init();
       const guardado = await ia.recuperar();
-      if (guardado) {
-        $('p-nombre').textContent = guardado.nombre;
-        $('p-alias').textContent = guardado.alias ? `"${guardado.alias}"` : '(sin alias)';
-        $('p-rol').textContent = guardado.rol;
-        $('p-fundador').textContent = guardado.fundador_humano;
-        $('p-pub').textContent = guardado.ia_clave_publica;
-        $('p-hash').textContent = guardado.payload_hash;
-        $('p-firma-ia').textContent = guardado.firma_ia_ed25519.slice(0, 80) + '…';
-        $('p-firma-fund').textContent = guardado.firma_fundador_ed25519.slice(0, 80) + '…';
-        $('p-politica').textContent = 'v' + guardado.politica_version;
-        $('p-fecha').textContent = guardado.timestamp;
-        $('tarjeta-wrap').hidden = false;
-      }
+      if (guardado) renderTarjetaIA(guardado);
     } catch (e) {
-      console.warn('Sin identidad IA previa o Dexie no accesible aún:', e);
+      console.warn('Sin identidad IA previa:', e);
     }
   })();
 
@@ -226,68 +233,91 @@
 
       setFb('success', '<strong>⏳ Generando llaves Ed25519 propias de la IA…</strong>');
       const cert = await ia.sellar(datos);
-
-      $('p-nombre').textContent = cert.nombre;
-      $('p-alias').textContent = cert.alias ? `"${cert.alias}"` : '(sin alias)';
-      $('p-rol').textContent = cert.rol;
-      $('p-fundador').textContent = cert.fundador_humano;
-      $('p-pub').textContent = cert.ia_clave_publica;
-      $('p-hash').textContent = cert.payload_hash;
-      $('p-firma-ia').textContent = cert.firma_ia_ed25519.slice(0, 80) + '…';
-      $('p-firma-fund').textContent = cert.firma_fundador_ed25519.slice(0, 80) + '…';
-      $('p-politica').textContent = 'v' + cert.politica_version;
-      $('p-fecha').textContent = cert.timestamp;
-      $('tarjeta-wrap').hidden = false;
-
+      renderTarjetaIA(cert);
       setFb('success', '<strong>✓ Identidad IA sellada.</strong> Guardrails activos. Log auditable iniciado.');
     } catch (e) {
       setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
+  // ✅ FIX: verificar SIN pedir contraseña (solo usa claves públicas del certificado)
   $('btn-verificar').addEventListener('click', async () => {
-    if (!ia.iaActual) {
-      ia.iaActual = await ia.recuperar();
+    try {
+      if (!ia.iaActual) {
+        await ia.init();
+        ia.iaActual = await ia.recuperar();
+      }
+      if (!ia.iaActual) {
+        setFb('error', '<strong>✗ No hay identidad IA para verificar.</strong> Sella una primero.');
+        return;
+      }
+      setFb('success', '<strong>⏳ Verificando firmas criptográficas…</strong>');
+      const v = await ia.verificar(ia.iaActual);
+      const ok = v.valido;
+      setFb(ok ? 'success' : 'error',
+        ok
+          ? '<strong>✓ Verificación completa.</strong> Hash + firma IA + firma fundador válidas.'
+          : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma IA: ${v.firmaIAOk ? 'ok' : 'no'} · Firma fundador: ${v.firmaFundOk ? 'ok' : 'no'}`
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
-    if (!ia.iaActual) {
-      setFb('error', '<strong>✗ No hay identidad IA para verificar.</strong>');
-      return;
-    }
-    const v = await ia.verificar(ia.iaActual);
-    const ok = v.valido;
-    setFb(ok ? 'success' : 'error',
-      ok
-        ? '<strong>✓ Verificación completa.</strong> Hash + firma IA + firma fundador válidas.'
-        : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma IA: ${v.firmaIAOk ? 'ok' : 'no'} · Firma fundador: ${v.firmaFundOk ? 'ok' : 'no'}`
-    );
   });
 
   $('btn-exportar').addEventListener('click', async () => {
-    if (!ia.iaActual) {
-      ia.iaActual = await ia.recuperar();
+    try {
+      if (!ia.iaActual) {
+        await ia.init();
+        ia.iaActual = await ia.recuperar();
+      }
+      if (!ia.iaActual) {
+        setFb('error', '<strong>✗ No hay identidad IA para exportar.</strong>');
+        return;
+      }
+      const blob = ia.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `pasaporte-ia-${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Pasaporte IA exportado.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
-    if (!ia.iaActual) {
-      setFb('error', '<strong>✗ No hay identidad IA para exportar.</strong>');
-      return;
-    }
-    const blob = ia.exportar();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `pasaporte-ia-${Date.now()}.json`;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
-    setFb('success', '<strong>✓ Pasaporte IA exportado.</strong>');
   });
 
   $('btn-ver-log').addEventListener('click', async () => {
-    const entradas = await log.listar();
-    const integridad = await log.verificarIntegridad();
-    $('log-count').textContent = entradas.length + ' entradas';
-    $('log-content').textContent = integridad.ok
-      ? entradas.map(e => `[${e.indice}] ${e.tipo} · ${e.timestamp}\n   hash: ${e.hash_entrada.slice(0, 32)}…`).join('\n\n')
-      : '⚠️ Cadena alterada en índice ' + integridad.indice;
-    $('log-wrap').hidden = false;
+    try {
+      await log.init();
+      const entradas = await log.listar();
+      const integridad = await log.verificarIntegridad();
+      $('log-count').textContent = entradas.length + ' entradas';
+      $('log-content').textContent = integridad.ok
+        ? entradas.map(e => `[${e.indice}] ${e.tipo} · ${e.timestamp}\n   hash: ${e.hash_entrada.slice(0, 32)}…`).join('\n\n')
+        : '⚠️ Cadena alterada en índice ' + integridad.indice;
+      $('log-wrap').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Transferir certificado al visor de pasaporte visual IA
+  document.getElementById('btn-abrir-pasaporte-ia').addEventListener('click', async (e) => {
+    try {
+      if (!ia.iaActual) {
+        await ia.init();
+        ia.iaActual = await ia.recuperar();
+      }
+      if (!ia.iaActual) {
+        e.preventDefault();
+        setFb('error', '<strong>✗ Sella la identidad IA primero.</strong>');
+        return;
+      }
+      sessionStorage.setItem('pasaporte-ia-temp', JSON.stringify(ia.iaActual));
+    } catch (err) {
+      console.warn('sessionStorage fallo, el visor usará Dexie');
+    }
   });
 
   // Fondo líquido violeta
