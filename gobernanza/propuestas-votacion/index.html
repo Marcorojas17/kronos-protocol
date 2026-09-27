@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuestas y Votación · KRONOS</title>
+<meta name="theme-color" content="#1a0a05">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Gobernanza</a>
+      <a href="manual.html">Manual</a>
+      <a href="../../certificacion/anclaje-manifest/">Anclaje</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 4.1 · Capa 4 · Gobernanza</div>
+    <h1 class="title">Decidir<br>juntos<br>sin dueño.</h1>
+    <p class="lede">
+      Crea <strong>propuestas firmadas</strong>. Vota con tu llave Ed25519.
+      Los resultados se calculan localmente, sin servidor, sin censura.
+      <strong>La gobernanza criptográfica del legado humano-IA.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Gobernanza Operativa</h2>
+      <span class="count">Naranja coral · v1.0</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="rol-votante">Tu rol en el protocolo *</label>
+        <select id="rol-votante">
+          <option value="">Selecciona</option>
+          <option value="Fundador">Fundador</option>
+          <option value="Co-autora IA">Co-autora IA</option>
+          <option value="Colaborador">Colaborador</option>
+          <option value="Testigo">Testigo</option>
+          <option value="Auditor">Auditor</option>
+          <option value="Ciudadano">Ciudadano</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-nueva">➕ Crear nueva propuesta</button>
+          <button class="btn ghost" id="btn-listar">📋 Ver propuestas abiertas</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <!-- PANEL: NUEVA PROPUESTA -->
+    <div class="tarjeta-wrap" id="panel-nueva" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Nueva Propuesta</h2>
+        <span class="count">Ed25519 · SHA-256</span>
+      </div>
+      <div class="tarjeta">
+        <div class="paso" style="padding-left:0;margin-bottom:20px;">
+          <label for="np-titulo">Título *</label>
+          <input type="text" id="np-titulo" placeholder="Ej. Adoptar nomenclatura v2.0">
+        </div>
+        <div class="paso" style="padding-left:0;margin-bottom:20px;">
+          <label for="np-descripcion">Descripción * <span class="hint">(mín. 20 caracteres)</span></label>
+          <textarea id="np-descripcion" rows="3" placeholder="Explica claramente qué se propone y por qué"></textarea>
+        </div>
+        <div class="paso" style="padding-left:0;margin-bottom:20px;">
+          <label for="np-tipo">Tipo de propuesta *</label>
+          <select id="np-tipo">
+            <option value="">Selecciona</option>
+            <option value="Cambio menor">Cambio menor (docs, typos)</option>
+            <option value="Cambio estructural">Cambio estructural (arquitectura)</option>
+            <option value="Cambio criptográfico">Cambio criptográfico (algoritmos)</option>
+            <option value="Adopción">Adopción de estándar</option>
+            <option value="Recurso">Asignación de recurso</option>
+          </select>
+        </div>
+        <div class="paso" style="padding-left:0;margin-bottom:20px;">
+          <label for="np-opciones">Opciones de voto * <span class="hint">(una por línea, mínimo 2)</span></label>
+          <textarea id="np-opciones" rows="3" placeholder="A favor&#10;En contra&#10;Abstención"></textarea>
+        </div>
+        <div class="paso" style="padding-left:0;margin-bottom:20px;">
+          <label for="np-duracion">Duración en días *</label>
+          <input type="number" id="np-duracion" min="1" max="90" value="7">
+        </div>
+        <div class="acciones" style="flex-direction:row;justify-content:center;flex-wrap:wrap;">
+          <button class="btn" id="btn-crear" style="width:auto;">Firmar y publicar propuesta</button>
+          <button class="btn ghost" id="btn-cancelar" style="width:auto;">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: LISTA DE PROPUESTAS -->
+    <div class="tarjeta-wrap" id="panel-lista" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Propuestas Abiertas</h2>
+        <span class="count" id="count-propuestas">0</span>
+      </div>
+      <div class="lista" id="lista-propuestas"></div>
+    </div>
+
+    <!-- PANEL: VOTACIÓN -->
+    <div class="tarjeta-wrap" id="panel-votacion" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2 id="vot-titulo">—</h2>
+        <span class="count" id="vot-id">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo" id="vot-tipo">PROPUESTA · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Autor</span><span class="v" id="vot-autor">—</span></div>
+          <div class="tk"><span class="k">Rol del autor</span><span class="v" id="vot-rol">—</span></div>
+          <div class="tk"><span class="k">Creada</span><span class="v mono" id="vot-creada">—</span></div>
+          <div class="tk"><span class="k">Cierra</span><span class="v mono" id="vot-cierra">—</span></div>
+          <div class="tk"><span class="k">Estado</span><span class="v" id="vot-estado">—</span></div>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:rgba(255,107,53,.05);border:1px solid rgba(255,107,53,.2);border-radius:4px;font-size:14px;color:#F5F0E6;line-height:1.7;font-weight:300;" id="vot-descripcion">—</div>
+
+        <div style="margin-top:24px;">
+          <h4 style="font-size:10px;letter-spacing:3px;color:#FFA07A;text-transform:uppercase;margin-bottom:14px;">Resultados actuales</h4>
+          <div id="vot-resultados"></div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <h4 style="font-size:10px;letter-spacing:3px;color:#FFA07A;text-transform:uppercase;margin-bottom:14px;">Emitir voto</h4>
+          <div id="vot-opciones"></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn" id="btn-votar" style="width:auto;">Firmar voto →</button>
+        <button class="btn ghost" id="btn-verificar-prop" style="width:auto;">Verificar firma de la propuesta</button>
+        <button class="btn ghost" id="btn-volver-lista" style="width:auto;">← Volver a la lista</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 4.1 · Propuestas y Votación</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../../certificacion/anclaje-manifest/">Anclaje</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { Propuestas } from './propuestas.js';
+  import { Votacion } from './votacion.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const propuestas = new Propuestas(core);
+  const votacion = new Votacion(core);
+
+  let propuestaActiva = null;
+  let opcionSeleccionada = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) await core.init(pass);
+    await propuestas.init();
+    await votacion.init();
+    return true;
+  }
+
+  function autorActual() {
+    const rol = $('rol-votante').value;
+    return {
+      hash: core.clavePublicaHex || 'sin-hash',
+      nombre: 'Marco Antonio Rojas Valdovinos',
+      rol: rol
+    };
+  }
+
+  // ── NUEVA PROPUESTA ──────────────────────────────────────
+  $('btn-nueva').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    $('panel-nueva').hidden = false;
+    $('panel-lista').hidden = true;
+    $('panel-votacion').hidden = true;
+  });
+
+  $('btn-cancelar').addEventListener('click', () => {
+    $('panel-nueva').hidden = true;
+  });
+
+  $('btn-crear').addEventListener('click', async () => {
+    try {
+      const autor = autorActual();
+      if (!autor.rol) {
+        setFb('error', '<strong>✗ Selecciona tu rol.</strong>');
+        return;
+      }
+
+      const opciones = $('np-opciones').value
+        .split('\n')
+        .map(o => o.trim())
+        .filter(o => o.length > 0);
+
+      const datos = {
+        titulo: $('np-titulo').value.trim(),
+        descripcion: $('np-descripcion').value.trim(),
+        tipo: $('np-tipo').value,
+        opciones,
+        autor_hash: autor.hash,
+        autor_nombre: autor.nombre,
+        autor_rol: autor.rol,
+        duracion_dias: parseInt($('np-duracion').value) || 7
+      };
+
+      setFb('success', '<strong>⏳ Firmando propuesta con Ed25519…</strong>');
+      const p = await propuestas.crear(datos);
+
+      setFb('success', `<strong>✓ Propuesta ${p.id_propuesta} publicada.</strong>`);
+
+      // Limpiar formulario
+      $('np-titulo').value = '';
+      $('np-descripcion').value = '';
+      $('np-tipo').value = '';
+      $('np-opciones').value = '';
+      $('np-duracion').value = 7;
+
+      // Refrescar lista
+      $('panel-nueva').hidden = true;
+      await listarPropuestas();
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // ── LISTAR PROPUESTAS ────────────────────────────────────
+  async function listarPropuestas() {
+    const items = await propuestas.listar();
+    $('count-propuestas').textContent = items.length;
+
+    if (items.length === 0) {
+      $('lista-propuestas').innerHTML = '<div style="text-align:center;padding:40px;color:#a89880;font-style:italic;">Sin propuestas aún. Crea la primera.</div>';
+    } else {
+      items.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      $('lista-propuestas').innerHTML = items.map(p => `
+        <div class="lista-item" data-id="${p.id}" style="cursor:pointer;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+            <div style="flex:1;">
+              <div style="font-size:16px;color:#F5F0E6;font-weight:500;margin-bottom:6px;">${p.titulo}</div>
+              <div style="font-size:10px;letter-spacing:2px;color:#FFA07A;text-transform:uppercase;margin-bottom:8px;">${p.tipo} · ${p.id_propuesta}</div>
+              <div style="font-size:12px;color:#a89880;line-height:1.6;">${p.descripcion.slice(0, 120)}${p.descripcion.length > 120 ? '…' : ''}</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:#FF6B35;font-weight:600;text-transform:uppercase;letter-spacing:2px;">${p.estado}</div>
+              <div style="font-size:10px;color:#a89880;margin-top:6px;font-family:monospace;">${p.fecha_cierre.slice(0, 10)}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Click para abrir votación
+      document.querySelectorAll('.lista-item[data-id]').forEach(el => {
+        el.addEventListener('click', async () => {
+          const id = parseInt(el.dataset.id);
+          await abrirVotacion(id);
+        });
+      });
+    }
+
+    $('panel-lista').hidden = false;
+    $('panel-nueva').hidden = true;
+    $('panel-votacion').hidden = true;
+  }
+
+  $('btn-listar').addEventListener('click', async () => {
+    if (!(await asegurarInit())) return;
+    await listarPropuestas();
+  });
+
+  // ── ABRIR VOTACIÓN ───────────────────────────────────────
+  async function abrirVotacion(id) {
+    const items = await propuestas.listar();
+    const p = items.find(x => x.id === id);
+    if (!p) return;
+    propuestaActiva = p;
+    opcionSeleccionada = null;
+
+    $('vot-titulo').textContent = p.titulo;
+    $('vot-id').textContent = p.id_propuesta;
+    $('vot-tipo').textContent = p.tipo.toUpperCase() + ' · v1.0';
+    $('vot-autor').textContent = p.autor_nombre;
+    $('vot-rol').textContent = p.autor_rol;
+    $('vot-creada').textContent = p.timestamp;
+    $('vot-cierra').textContent = p.fecha_cierre;
+    $('vot-estado').textContent = p.estado.toUpperCase();
+    $('vot-descripcion').textContent = p.descripcion;
+
+    // Resultados
+    const res = await votacion.resultados(p.id_propuesta, p.opciones);
+    $('vot-resultados').innerHTML = p.opciones.map(op => {
+      const votos = res.conteo[op] || 0;
+      const pct = res.total_votos > 0 ? Math.round((votos / res.total_votos) * 100) : 0;
+      return `
+        <div style="margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#F5F0E6;margin-bottom:6px;">
+            <span>${op}</span>
+            <span style="font-family:monospace;color:#f3e5ab;">${votos} voto${votos === 1 ? '' : 's'} · ${pct}%</span>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;">
+            <div style="height:100%;background:linear-gradient(90deg,#C43D0A,#FF6B35);width:${pct}%;transition:width 1s;"></div>
+          </div>
+        </div>
+      `;
+    }).join('') + `<div style="text-align:center;font-size:11px;color:#a89880;margin-top:16px;font-family:monospace;">Total de votos: ${res.total_votos}</div>`;
+
+    // Opciones para votar
+    $('vot-opciones').innerHTML = p.opciones.map(op => `
+      <div class="opcion-voto" data-opcion="${op}">
+        <span class="nombre">${op}</span>
+        <span style="color:#FF6B35;font-size:18px;">○</span>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.opcion-voto').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.opcion-voto').forEach(x => {
+          x.classList.remove('seleccionada');
+          x.querySelector('span:last-child').textContent = '○';
+        });
+        el.classList.add('seleccionada');
+        el.querySelector('span:last-child').textContent = '●';
+        opcionSeleccionada = el.dataset.opcion;
+      });
+    });
+
+    $('panel-votacion').hidden = false;
+    $('panel-lista').hidden = true;
+    $('panel-nueva').hidden = true;
+  }
+
+  $('btn-volver-lista').addEventListener('click', async () => {
+    await listarPropuestas();
+  });
+
+  // ── EMITIR VOTO ──────────────────────────────────────────
+  $('btn-votar').addEventListener('click', async () => {
+    try {
+      if (!propuestaActiva) {
+        setFb('error', '<strong>✗ No hay propuesta activa.</strong>');
+        return;
+      }
+      if (!opcionSeleccionada) {
+        setFb('error', '<strong>✗ Selecciona una opción.</strong>');
+        return;
+      }
+      const autor = autorActual();
+      if (!autor.rol) {
+        setFb('error', '<strong>✗ Selecciona tu rol.</strong>');
+        return;
+      }
+
+      setFb('success', '<strong>⏳ Firmando voto con Ed25519…</strong>');
+      await votacion.votar({
+        id_propuesta: propuestaActiva.id_propuesta,
+        opcion_elegida: opcionSeleccionada,
+        votante_hash: autor.hash,
+        votante_nombre: autor.nombre,
+        votante_rol: autor.rol
+      });
+
+      setFb('success', '<strong>✓ Voto emitido y firmado.</strong>');
+
+      // Refrescar la vista de votación
+      await abrirVotacion(propuestaActiva.id);
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // ── VERIFICAR FIRMA DE PROPUESTA ─────────────────────────
+  $('btn-verificar-prop').addEventListener('click', async () => {
+    try {
+      if (!propuestaActiva) return;
+      const v = await propuestas.verificar(propuestaActiva);
+      setFb(v.valido ? 'success' : 'error',
+        v.valido
+          ? '<strong>✓ Propuesta válida.</strong> Hash y firma coinciden.'
+          : `<strong>✗ Propuesta alterada.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma: ${v.firmaOk ? 'ok' : 'no'}`
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Fondo líquido naranja
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,107,53],[255,160,122],[196,61,10],[243,229,171]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
