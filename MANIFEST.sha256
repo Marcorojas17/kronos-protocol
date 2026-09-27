@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T14:27:05Z
+# Generado: 2026-09-27T14:27:59Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -48,6 +48,7 @@ c450bd328d11e0ea34fe32d2f49cf9a5f88fd80928516133172431c7cae4045e  ./certificacio
 ae9e942679420f01f42180a518270ae93fd5e89fb153fa314f10b83137ec9aeb  ./certificacion/manifest-integridad/styles.css
 2cc635e6cfc2228e6c986a3ec1d53eaaa682ef212b1362dfd3722f55f585c097  ./certificacion/notario-kronos/certificado-notarial.html
 9d6305adcbebc689e6058192cb70a0df4ee9db3e504ddb8c4faaa50f9ce78fed  ./certificacion/notario-kronos/index.html
+febc7524c92e11bb533124f41deee0cd644ae196cd7612baf9824b4b7d524d20  ./certificacion/notario-kronos/manual.html
 ba8421803f963b85f6ebf7d6369484f07e2c1106dc0e0794a87b3757626f1889  ./certificacion/notario-kronos/notario.js
 d27fbc7d1c3534c09fde48c63af93896be2bb590ef0ded9d4e7a5c0d6c72659c  ./certificacion/notario-kronos/politica.md
 b26ee742a8dc3c9284104695cdba73976fb0debdc787244df656e63a5a62f78b  ./certificacion/notario-kronos/prompt.md
