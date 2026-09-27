@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:52:35Z
+# Generado: 2026-09-27T12:53:41Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -20,6 +20,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 464e5b7c9ff23fabd128c02a0ac516e8c647c93872edca35042eb74cf9e0413a  ./admin.html
 ec43720eb48fae8461ccb4e156f7d1a074b50530427b056125d9a67ebba0546b  ./agentes/agente-base.js
 612bedbb105e89ed5fce917db8f83df886f3fde5b0cf8450cbf6528387be147d  ./agentes/tlamatini-cronista/politica.md
+bd274749fa264a41553b92e66b00bd21297dd2f1de31e20c0a7bf4827bffa0f0  ./agentes/tlamatini-cronista/prompt.md
 3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
 aa1032994432084fd09c558f2c2e17be4d5ccd0bc95b7edbbf385624667758f6  ./assets/css/animations.css
 157e2e9966f905b105d98cc04dde07739fa03b3541a9c2f974c236469bc50672  ./assets/css/components.css
