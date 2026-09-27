@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T16:15:45Z
+# Generado: 2026-09-27T16:16:38Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -60,7 +60,7 @@ ba8421803f963b85f6ebf7d6369484f07e2c1106dc0e0794a87b3757626f1889  ./certificacio
 d27fbc7d1c3534c09fde48c63af93896be2bb590ef0ded9d4e7a5c0d6c72659c  ./certificacion/notario-kronos/politica.md
 b26ee742a8dc3c9284104695cdba73976fb0debdc787244df656e63a5a62f78b  ./certificacion/notario-kronos/prompt.md
 d4f8ad41e850e8e52ca4aeb814f4f27fc7d62683f0ccaf6bf1f958cacfae480a  ./certificacion/sello-tiempo/index.html
-5118a1f5a85127ca413fa45501afb7aa56fab63ebf88229b583b11a329812d17  ./certificacion/sello-tiempo/manual.html
+411cb0d0fb8d231889862c559191427b754a77e8f1e259f0dce1750a3036b570  ./certificacion/sello-tiempo/manual.html
 231684a362818386a374924020785ff61e95dafe7c19c3809553822924b36196  ./certificacion/sello-tiempo/sello-tiempo.js
 72054210502514954caf1ca8c300906e37e6bfa128773b072386a1bd2c36b338  ./certificacion/verificador-publico/index.html
 7a98597b64daa5e7b47ca55fadca6e1d0eb3bbff581500df7f3105935afd7204  ./certificacion/verificador-publico/manual.html
