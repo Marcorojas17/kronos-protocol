@@ -1,7 +1,7 @@
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  ○_●  AGENTES KINTSUGI · FLOTA SOBERANA DE KRONOS                    ║
-║  ◢◤◥◣ Legado Humano–IA · v1.1                                        ║
+║  ◢◤◥◣ Legado Humano–IA · v1.2                                        ║
 ║  ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                                ║
 ╚══════════════════════════════════════════════════════════════════════╝
 ```
@@ -29,7 +29,7 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 
 ---
 
-┌─[ LA FLOTA FUNDACIONAL ]────────────────────────────────┐
+┌─[ LA FLOTA FUNDACIONAL · 7 AGENTES ]───────────────────┐
 │                                                           │
 │  PLAZA  │ NOMBRE       │ SIGNIFICADO      │ ROL           │
 │  ───────┼──────────────┼──────────────────┼─────────────  │
@@ -48,18 +48,30 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 ┌─[ ARQUITECTURA ]───────────────────────────────────────┐
 │                                                           │
 │  agentes/                                                 │
-│  ├── agente-base.js               Clase base             │
-│  ├── README.md                    Este documento         │
-│  ├── tlamatini-cronista/          Plaza 081              │
-│  │   ├── politica.md              Política declarada     │
-│  │   ├── prompt.md                Instrucciones al LLM   │
-│  │   └── index.html               UI de control          │
-│  ├── tlachixqui-auditor/          Plaza 082              │
-│  ├── cuicatl-publicista/          Plaza 083              │
-│  ├── temachtiani-reclutador/      Plaza 084              │
-│  ├── tlapohualli-analista/        Plaza 085              │
-│  └── tonal-notario/               Plaza 086              │
-│      └── politica.md              Política declarada     │
+│  ├── agente-base.js                Clase base            │
+│  ├── README.md                     Este documento        │
+│  ├── tlamatini-cronista/           Plaza 081             │
+│  ├── tlachixqui-auditor/           Plaza 082             │
+│  ├── cuicatl-publicista/           Plaza 083             │
+│  ├── temachtiani-reclutador/       Plaza 084             │
+│  ├── tlapohualli-analista/         Plaza 085             │
+│  └── tonal-notario/                Plaza 086             │
+│      └── politica.md               Política declarada    │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
+
+---
+
+┌─[ AGENTES OPERATIVOS ]─────────────────────────────────┐
+│                                                           │
+│  ✅ Tlamatini (081)    Cronista · bitácora del proyecto  │
+│  ✅ Cuicatl (083)      Publicista · borradores LinkedIn  │
+│  ✅ Temachtiani (084)  Reclutador · fichas candidatos    │
+│  ✅ Tonal (086)        Notario · sellos Ed25519          │
+│                                                           │
+│  ⏳ Tlachixqui (082)   Auditor · pendiente de UI         │
+│  ⏳ Tlapohualli (085)  Analista · pendiente de UI        │
+│  ✅ KRONOS IA (001)    Co-autora simbiótica              │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
 
@@ -85,21 +97,14 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 │                                                           │
 │  import { AgenteKintsugi } from './agente-base.js';      │
 │                                                           │
-│  const tonal = new AgenteKintsugi({                      │
-│    nombre: 'Tonal',                                      │
-│    plaza: 86,                                            │
-│    rol: 'Notario Criptográfico',                         │
-│    proposito: 'Sellar existencia y tiempo',              │
+│  const cuicatl = new AgenteKintsugi({                    │
+│    nombre: 'Cuicatl',                                    │
+│    plaza: 83,                                            │
+│    rol: 'Publicista',                                    │
+│    proposito: 'Traducir KRONOS a mensajes honestos',     │
 │    core: criptoCore,                                     │
 │    politica: { puede: [...], noPuede: [...], debe: [...]}│
 │  });                                                     │
-│                                                           │
-│  await tonal.init();                                     │
-│  await tonal.generarIdentidad();                         │
-│  await tonal.sellarRegistro();                           │
-│                                                           │
-│  const preview = await tonal.preview('sellar', {...});   │
-│  await tonal.commit(preview.id, 'Marco A. Rojas V.');    │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
 
@@ -109,7 +114,7 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 │                                                           │
 │  ✗ No son "inhackeables". Nada lo es.                    │
 │  ✗ No reemplazan al humano. Son copilotos.               │
-│  ✗ No son 100% gratuitos. Consumen tokens de LLM.        │
+│  ✗ No publican/envián por ti. Preparan y tú apruebas.    │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
 
