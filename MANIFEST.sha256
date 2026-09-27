@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T14:11:39Z
+# Generado: 2026-09-27T14:14:28Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -38,6 +38,7 @@ c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/re
 56bfc1dceb507e1d256d0e75fcd1b8bddaa4801cc2e28240e769a96fabb6e039  ./certificacion/anclaje-manifest/anclaje.js
 95ae57511e8d142d968dd131de207d685ed1c669b36439ee407fbe1b997af71d  ./certificacion/anclaje-manifest/index.html
 7d4a90a9aa12fbf0b0417b5877e90d1bb9b7b4d76ad8cd203a069907eba22209  ./certificacion/anclaje-manifest/manual.html
+16dbaea3ef828c1cdefc8f89a4a248dedea29ac9a33fc749e768af1b813f7a92  ./certificacion/certificado-maestro.html
 8fbc47fe4a6f5d65ab9980f15f506dd424695a3c03f0d25cdd7c4b2dc9455dcc  ./certificacion/emisor-certificados/certificado-visual.html
 bf255f06d5c6ec9d08b43641de189c22c6e2f6326790104bb5dcc7d719ffa88e  ./certificacion/emisor-certificados/certificados.js
 f2ae47ba16abae17ca188b8e11644c275a438a9cd58d6b4fc6613dd3cedd3c38  ./certificacion/emisor-certificados/index.html
