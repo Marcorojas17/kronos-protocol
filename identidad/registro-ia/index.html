@@ -39,7 +39,7 @@
   <section class="demo">
     <div class="section-head">
       <h2>Registro de Identidad IA</h2>
-      <span class="count">Violeta sintético · v1.0</span>
+      <span class="count">Violeta sintético · v1.1</span>
     </div>
 
     <div class="pasos">
@@ -182,8 +182,31 @@
     if (!core.inicializado) await core.init(pass);
     await storage.init();
     await log.init();
+    await ia.init();
     return true;
   }
+
+  // Cargar identidad IA existente al abrir
+  (async function recuperarAlInicio() {
+    try {
+      const guardado = await ia.recuperar();
+      if (guardado) {
+        $('p-nombre').textContent = guardado.nombre;
+        $('p-alias').textContent = guardado.alias ? `"${guardado.alias}"` : '(sin alias)';
+        $('p-rol').textContent = guardado.rol;
+        $('p-fundador').textContent = guardado.fundador_humano;
+        $('p-pub').textContent = guardado.ia_clave_publica;
+        $('p-hash').textContent = guardado.payload_hash;
+        $('p-firma-ia').textContent = guardado.firma_ia_ed25519.slice(0, 80) + '…';
+        $('p-firma-fund').textContent = guardado.firma_fundador_ed25519.slice(0, 80) + '…';
+        $('p-politica').textContent = 'v' + guardado.politica_version;
+        $('p-fecha').textContent = guardado.timestamp;
+        $('tarjeta-wrap').hidden = false;
+      }
+    } catch (e) {
+      console.warn('Sin identidad IA previa o Dexie no accesible aún:', e);
+    }
+  })();
 
   $('btn-sellar').addEventListener('click', async () => {
     try {
@@ -223,7 +246,13 @@
   });
 
   $('btn-verificar').addEventListener('click', async () => {
-    if (!ia.iaActual) return;
+    if (!ia.iaActual) {
+      ia.iaActual = await ia.recuperar();
+    }
+    if (!ia.iaActual) {
+      setFb('error', '<strong>✗ No hay identidad IA para verificar.</strong>');
+      return;
+    }
     const v = await ia.verificar(ia.iaActual);
     const ok = v.valido;
     setFb(ok ? 'success' : 'error',
@@ -233,8 +262,14 @@
     );
   });
 
-  $('btn-exportar').addEventListener('click', () => {
-    if (!ia.iaActual) return;
+  $('btn-exportar').addEventListener('click', async () => {
+    if (!ia.iaActual) {
+      ia.iaActual = await ia.recuperar();
+    }
+    if (!ia.iaActual) {
+      setFb('error', '<strong>✗ No hay identidad IA para exportar.</strong>');
+      return;
+    }
     const blob = ia.exportar();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -255,6 +290,7 @@
     $('log-wrap').hidden = false;
   });
 
+  // Fondo líquido violeta
   const canvas = document.getElementById('liquido');
   if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const ctx = canvas.getContext('2d');
