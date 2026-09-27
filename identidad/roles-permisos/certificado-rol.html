@@ -176,7 +176,6 @@
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
 
-    // Fondo
     const bg = ctx.createLinearGradient(0, 0, W, H);
     bg.addColorStop(0, '#031018');
     bg.addColorStop(0.5, '#072530');
@@ -184,10 +183,8 @@
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
 
-    // Guilloché
     drawGuilloche(ctx, 0, 0, W, H, 'rgba(0,234,255,0.04)');
 
-    // Marco doble
     ctx.strokeStyle = 'rgba(0,234,255,0.6)';
     ctx.lineWidth = 3;
     roundRect(ctx, 30, 30, W-60, H-60, 8); ctx.stroke();
@@ -195,7 +192,6 @@
     ctx.lineWidth = 1;
     roundRect(ctx, 45, 45, W-90, H-90, 6); ctx.stroke();
 
-    // Esquinas decorativas
     const esquinaL = 50;
     const corners = [
       [60, 60, 1, 1], [W-60, 60, -1, 1],
@@ -211,7 +207,6 @@
       ctx.stroke();
     }
 
-    // Emblema superior
     ctx.save();
     ctx.translate(W/2, 140);
     for (let i = 0; i < 3; i++){
@@ -237,7 +232,6 @@
     ctx.fill();
     ctx.restore();
 
-    // Título
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.font = '900 38px Cinzel, serif';
@@ -252,12 +246,10 @@
     ctx.fillStyle = '#7DF9FF';
     ctx.fillText('LEGADO HUMANO–IA · PROTOCOLO KRONOS · GOBERNANZA CRIPTOGRÁFICA', W/2, 265);
 
-    // Separador
     ctx.strokeStyle = 'rgba(0,234,255,0.4)';
     ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(200, 300); ctx.lineTo(W-200, 300); ctx.stroke();
 
-    // Rol asignado (destacado)
     ctx.font = '600 11px Inter, sans-serif';
     ctx.fillStyle = '#7DF9FF';
     ctx.fillText('ROL ASIGNADO', W/2, 340);
@@ -266,26 +258,21 @@
     ctx.fillStyle = '#00EAFF';
     ctx.fillText(data.rol.toUpperCase(), W/2, 390);
 
-    // Identidad
     ctx.font = '300 22px Inter, sans-serif';
     ctx.fillStyle = '#F5F0E6';
     ctx.fillText(data.identidad_nombre, W/2, 440);
 
-    // Tipo
     ctx.font = '600 11px JetBrains Mono, monospace';
     ctx.fillStyle = '#8892a0';
     ctx.fillText(`TIPO: ${data.identidad_tipo.toUpperCase()}`, W/2, 470);
 
-    // Separador
     ctx.strokeStyle = 'rgba(0,234,255,0.2)';
     ctx.beginPath(); ctx.moveTo(300, 500); ctx.lineTo(W-300, 500); ctx.stroke();
 
-    // Columnas: izquierda (identidad), derecha (firmas)
     const colIzqX = 120;
     const colDerX = 900;
     let y = 540;
 
-    // ─── COLUMNA IZQUIERDA ───
     ctx.textAlign = 'left';
     ctx.font = '600 10px Inter, sans-serif';
     ctx.fillStyle = '#7DF9FF';
@@ -326,7 +313,6 @@
     ctx.fillStyle = '#F5F0E6';
     ctx.fillText(data.timestamp, colIzqX, y);
 
-    // ─── COLUMNA DERECHA ───
     let yd = 540;
     ctx.font = '600 10px Inter, sans-serif';
     ctx.fillStyle = '#7DF9FF';
@@ -362,7 +348,6 @@
     yd += 14;
     ctx.fillText(data.firmante_clave_publica.slice(60), colDerX, yd);
 
-    // ─── PERMISOS (pie) ───
     const permisosY = H - 180;
     ctx.fillStyle = 'rgba(0,20,25,0.6)';
     roundRect(ctx, 80, permisosY - 20, W-160, 140, 4); ctx.fill();
@@ -375,7 +360,6 @@
     ctx.fillStyle = '#7DF9FF';
     ctx.fillText(`PERMISOS OTORGADOS (${data.permisos.length})`, 100, permisosY);
 
-    // Listar permisos en columnas
     const permisos = data.permisos || [];
     const col1X = 100, col2X = 800;
     const inicioY = permisosY + 26;
@@ -392,7 +376,6 @@
       ctx.fillText(permisos[i], col + 16, inicioY + fila * filaH);
     }
 
-    // Sello inferior derecho
     const selloX = W - 130, selloY = H - 110, selloR = 45;
     for (let i = 0; i < 48; i++){
       const a0 = (i/48) * Math.PI * 2;
@@ -418,7 +401,6 @@
     ctx.fillText('FIRMADO', selloX, selloY + selloR + 14);
     ctx.textBaseline = 'top';
 
-    // Marca de agua
     ctx.save();
     ctx.translate(W/2, H/2 + 100);
     ctx.rotate(-Math.PI/10);
@@ -428,7 +410,6 @@
     ctx.fillText('KRONOS', 0, 0);
     ctx.restore();
 
-    // Footer
     ctx.textAlign = 'center';
     ctx.font = '400 10px JetBrains Mono, monospace';
     ctx.fillStyle = '#5a6473';
@@ -485,8 +466,8 @@
       dibujarCertificado(data);
       canvasWrap.classList.add('on');
       acciones.classList.add('on');
-      setEstado('info', '<strong>✓ Certificado cargado.</strong> Toca el botón para verlo en pantalla completa.');
-      setTimeout(() => abrirModalImagen(), 800);
+      setEstado('info', '<strong>✓ Certificado cargado.</strong> Toca el botón para verlo en pantalla completa o imprimirlo como PDF.');
+      // Sin apertura automática del modal — el usuario decide
     } else {
       setEstado('warn', '<strong>⚠ No se encontró asignación de rol.</strong> Pega el JSON manualmente abajo, o vuelve al <a href="./" style="color:#7DF9FF;text-decoration:underline">Módulo de Roles</a>.');
       panelManual.classList.add('on');
