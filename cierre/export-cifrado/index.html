@@ -3,14 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Export Cifrado · Legado Humano–IA</title>
-<meta name="description" content="Empaqueta todo el ecosistema en un archivo .legado cifrado, firmado y restaurable. ISO 22301.">
-<meta name="theme-color" content="#0A0A0B">
+<title>Export Cifrado · Capa 6 · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#c9a44c;--gold-l:#f3e5ab;--violeta:#7C3AED;--violeta-l:#C4B5FD;--ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0}
+  html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+  #liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--violeta);border-radius:50%;box-shadow:0 0 12px var(--violeta)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--violeta-l)}
+  .hero{padding:60px 0 90px;max-width:820px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--violeta-l);text-transform:uppercase;margin-bottom:28px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--violeta-l) 65%,var(--violeta) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f3e5ab;margin-bottom:32px}
+  @supports not (-webkit-background-clip: text){h1.title{-webkit-text-fill-color:#f3e5ab}}
+  .lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .demo{padding:40px 0 60px;border-top:1px solid rgba(124,58,237,.2)}
+  .pasos{display:grid;gap:24px;margin-bottom:40px}
+  .paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px}
+  .paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violeta-l);letter-spacing:2px}
+  .paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .paso input[type="password"],.paso textarea{display:block;width:100%;padding:16px 18px;background-color:rgba(20,5,35,.6);border:1px solid rgba(124,58,237,.3);border-radius:6px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;transition:all .3s;outline:none;-webkit-appearance:none;resize:vertical}
+  .paso input:focus,.paso textarea:focus{border-color:var(--violeta);background-color:rgba(30,10,50,.8);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+  .check-group{display:grid;gap:10px}
+  .check-item{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid rgba(124,58,237,.2);background:rgba(20,5,35,.4);border-radius:4px;cursor:pointer;transition:all .3s}
+  .check-item:hover{border-color:rgba(124,58,237,.5);background:rgba(30,10,50,.6)}
+  .check-item input[type="checkbox"]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
+  .check-item .lbl{font-size:13px;color:var(--text);flex:1}
+  .check-item .sub{font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--violeta-l) 0%,var(--violeta) 100%);color:#0a0014;box-shadow:0 8px 30px rgba(124,58,237,.35);width:100%}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.55)}
+  .btn.ghost{border:1px solid rgba(124,58,237,.4);color:var(--violeta-l);background:rgba(124,58,237,.02);box-shadow:none}
+  .btn.ghost:hover{border-color:var(--violeta-l);background:rgba(124,58,237,.08)}
+  .btn.gold{background:linear-gradient(180deg,var(--gold-l) 0%,var(--gold) 100%);color:#0a0014;box-shadow:0 8px 30px rgba(201,164,76,.35)}
+  .btn.gold:hover{box-shadow:0 14px 40px rgba(201,164,76,.55)}
+  .feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+  .feedback.success{display:block;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);color:var(--violeta-l)}
+  .feedback.error{display:block;background:rgba(176,74,74,.08);border:1px solid rgba(176,74,74,.3);color:#fca5a5}
+  .tarjeta-wrap{margin-top:20px}
+  .tarjeta{padding:32px;border:1px solid rgba(124,58,237,.35);background:linear-gradient(180deg,rgba(124,58,237,.04),rgba(10,0,20,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--violeta),var(--gold),var(--violeta));background-size:200% 100%;animation:prism 6s linear infinite}
+  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--violeta-l),var(--violeta),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+  .tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--violeta-l);text-transform:uppercase;margin-bottom:24px}
+  .tarjeta-kv{display:grid;gap:14px}
+  .tarjeta-kv .tk{display:grid;grid-template-columns:max-content 1fr;gap:8px 20px;font-size:12.5px;border-bottom:1px solid rgba(124,58,237,.1);padding-bottom:10px}
+  .tarjeta-kv .tk:last-child{border-bottom:none}
+  .tarjeta-kv .k{font-size:9px;letter-spacing:3px;color:var(--violeta-l);text-transform:uppercase;padding-top:3px}
+  .tarjeta-kv .v{color:var(--text);word-break:break-all;line-height:1.5}
+  .tarjeta-kv .v.mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-l)}
+  .acciones{display:flex;flex-direction:column;gap:12px;width:100%;margin-top:8px}
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  footer a{color:var(--dim);text-decoration:none;transition:color .3s}
+  footer a:hover{color:var(--violeta-l)}
+  .sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+  @media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}.tarjeta{padding:24px}.tarjeta-kv .tk{grid-template-columns:1fr;gap:4px}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}#liquido{display:none}}
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -18,221 +83,223 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#exportar">Exportar</a>
-      <a href="#restaurar">Restaurar</a>
+      <a href="./">Export</a>
       <a href="manual.html">Manual</a>
+      <a href="../fin-digno/">Fin Digno</a>
+      <a href="/kronos-protocol/">Inicio</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 6.1 · Capa 6 · Cierre</div>
-    <h1 class="title">El testamento<br>cifrado<br>del legado.</h1>
+    <div class="eyebrow">Capa 6 · Módulo 6.1 · Legado Final</div>
+    <h1 class="title">Todo<br>cifrado.<br>Todo guardado.</h1>
     <p class="lede">
-      Todo el ecosistema en un solo archivo <code>.legado</code>.
-      Cifrado <strong>AES-GCM-256</strong>. Firmado <strong>Ed25519</strong>.
-      Restaurable en cualquier navegador. Alineado a
-      <strong>ISO 22301</strong> (continuidad).
+      Empaqueta <strong>todo el ecosistema KRONOS</strong> en un archivo <code>.legado</code>
+      cifrado con <strong>AES-GCM-256</strong>. Firmado con Ed25519. Preparado para durar décadas.
+      <strong>El legado no se pierde, se cifra.</strong>
     </p>
   </section>
 
-  <section id="exportar" class="exportar">
+  <section class="demo">
     <div class="section-head">
-      <h2>Exportar Ecosistema</h2>
-      <span class="count">.legado · cifrado</span>
+      <h2>Export Cifrado</h2>
+      <span class="count">AES-GCM-256 · v1.0</span>
     </div>
 
-    <div class="field">
-      <label>Contraseña maestra <span class="req">*</span></label>
-      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
-    </div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
 
-    <div class="acciones-top">
-      <button class="btn" id="btn-inventario">Ver inventario</button>
-      <button class="btn platinum" id="btn-exportar">Exportar paquete .legado</button>
-      <button class="btn ghost" id="btn-exportar-json">Exportar solo manifiesto</button>
+      <div class="paso">
+        <span class="num">02</span>
+        <label>¿Qué incluir en el paquete?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" id="inc-id" checked><span class="lbl">Identidades humanas</span><span class="sub">kronos-identidades</span></label>
+          <label class="check-item"><input type="checkbox" id="inc-cert" checked><span class="lbl">Certificados emitidos</span><span class="sub">kronos-certificados</span></label>
+          <label class="check-item"><input type="checkbox" id="inc-gob" checked><span class="lbl">Gobernanza (propuestas)</span><span class="sub">kronos-propuestas</span></label>
+          <label class="check-item"><input type="checkbox" id="inc-ia" checked><span class="lbl">Identidades IA</span><span class="sub">kronos-identidad-ia</span></label>
+          <label class="check-item"><input type="checkbox" id="inc-fund" checked><span class="lbl">Registro Fundacional</span><span class="sub">kronos-fundacional</span></label>
+        </div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="notas">Notas personales <span style="color:var(--dim);font-style:italic;letter-spacing:1px;text-transform:none;font-size:11px">(opcional)</span></label>
+        <textarea id="notas" rows="3" placeholder="Mensaje para quien descifre este paquete en el futuro..."></textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-exportar">🔐 Cifrar y empaquetar →</button>
+          <button class="btn ghost" id="btn-listar">📋 Ver paquetes emitidos</button>
+        </div>
+      </div>
     </div>
 
     <div class="feedback" id="feedback" role="alert"></div>
 
-    <div class="inventario" id="inventario" hidden>
-      <div class="section-head" style="margin-top:32px">
-        <h2>Inventario del Ecosistema</h2>
-        <span class="count" id="count-registros">— registros</span>
+    <div class="tarjeta-wrap" id="panel-paquete" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Paquete Generado</h2>
+        <span class="count" id="pkg-tamaño">—</span>
       </div>
-      <div class="grid-inventario" id="grid-inventario"></div>
-    </div>
-  </section>
-
-  <section id="restaurar" class="restaurar">
-    <div class="section-head">
-      <h2>Restaurar / Verificar</h2>
-      <span class="count">Importar .legado</span>
-    </div>
-
-    <div class="field">
-      <label>Archivo .legado <span class="req">*</span></label>
-      <input type="file" id="archivo-legado" accept=".legado,application/json">
-    </div>
-
-    <div class="field">
-      <label>Modo de restauración <span class="req">*</span></label>
-      <select id="modo-restaurar">
-        <option value="verificar">Verificar (solo leer, sin escribir)</option>
-        <option value="fusionar">Fusionar (añadir sin borrar actuales)</option>
-        <option value="reemplazar">Reemplazar (peligroso · borra actuales)</option>
-      </select>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">PAQUETE .LEGADO · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Hash del paquete</span><span class="v mono" id="p-hash">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="p-firma">—</span></div>
+          <div class="tk"><span class="k">Algoritmo cifrado</span><span class="v mono">AES-GCM-256</span></div>
+          <div class="tk"><span class="k">Algoritmo hash</span><span class="v mono">SHA-256</span></div>
+          <div class="tk"><span class="k">Tamaño cifrado</span><span class="v mono" id="p-tam">—</span></div>
+          <div class="tk"><span class="k">Timestamp</span><span class="v mono" id="p-ts">—</span></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn gold" id="btn-descargar" style="width:auto;">💾 Descargar .legado</button>
+        <button class="btn ghost" id="btn-verificar" style="width:auto;">✓ Verificar integridad</button>
+      </div>
     </div>
 
-    <button class="btn" id="btn-restaurar">Restaurar paquete</button>
-
-    <div class="feedback" id="feedback-restaurar" role="alert"></div>
-
-    <div class="resultado-restaurar" id="resultado-restaurar" hidden></div>
+    <div class="tarjeta-wrap" id="panel-lista" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Paquetes Emitidos</h2>
+        <span class="count" id="count-pkgs">0</span>
+      </div>
+      <div class="lista" id="lista-pkgs" style="display:grid;gap:12px;"></div>
+    </div>
   </section>
 
   <footer>
-    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
-    <span class="sig">Módulo 6.1 · Export Cifrado</span>
-    <span>
-      <a href="manual.html">Manual</a> ·
-      <a href="../">Cierre</a> ·
-      <a href="../../operacion/dashboard-salud/">Dashboard</a>
-    </span>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Capa 6 · Export Cifrado</span>
   </footer>
 </main>
 
 <script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
   import { ExportCifrado } from './export.js';
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
-  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
 
   const $ = (id) => document.getElementById(id);
   const feedback = $('feedback');
-  const feedbackRest = $('feedback-restaurar');
-  const inventario = $('inventario');
-  const gridInv = $('grid-inventario');
-  const countRegistros = $('count-registros');
-  const resultadoRest = $('resultado-restaurar');
-
   const core = new CriptoCore();
-  const storage = new StorageDexie(core);
-  const idHumana = new IdentidadHumana(core, storage);
-  const exp = new ExportCifrado(core, storage);
+  const exportador = new ExportCifrado(core);
 
-  let humanoActual = null;
+  function setFb(tipo, msg){ feedback.className = 'feedback ' + tipo; feedback.innerHTML = msg; }
 
-  function setFb(el, tipo, msg) {
-    el.className = 'feedback ' + tipo;
-    el.innerHTML = msg;
-  }
-
-  async function asegurarInit() {
+  async function asegurarInit(){
     const pass = $('password').value;
-    if (pass.length < 8) {
-      setFb(feedback, 'error', '<strong>✗ Contraseña muy corta.</strong>');
-      return false;
-    }
-    await core.init(pass);
-    await storage.init();
-    humanoActual = await idHumana.recuperar();
-    if (!humanoActual) throw new Error('Falta identidad humana (módulo 2.1).');
+    if (pass.length < 8){ setFb('error', '<strong>✗ Contraseña muy corta.</strong>'); return false; }
+    if (!core.inicializado) await core.init(pass);
+    await exportador.init();
     return true;
   }
-
-  function renderInventario(inv) {
-    inventario.hidden = false;
-    const total = Object.values(inv).reduce((s, n) => s + n, 0);
-    countRegistros.textContent = total + ' registros';
-    gridInv.innerHTML = Object.entries(inv).map(([tipo, n]) => `
-      <div class="inv-card">
-        <span class="inv-tipo">${tipo}</span>
-        <span class="inv-num">${n}</span>
-      </div>
-    `).join('');
-  }
-
-  $('btn-inventario').addEventListener('click', async () => {
-    try {
-      if (!(await asegurarInit())) return;
-      const inv = await exp.inventario();
-      renderInventario(inv);
-      setFb(feedback, 'success', '<strong>✓ Inventario calculado.</strong> ' + Object.keys(inv).length + ' tipos de datos detectados.');
-    } catch (err) {
-      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
-    }
-  });
 
   $('btn-exportar').addEventListener('click', async () => {
     try {
       if (!(await asegurarInit())) return;
-      const { blob, manifiesto } = await exp.exportar(humanoActual);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `legado-${Date.now()}.legado`;
-      a.click();
-      URL.revokeObjectURL(url);
-      setFb(feedback, 'success', '<strong>✓ Paquete .legado exportado.</strong> Manifiesto: ' + manifiesto.total_registros + ' registros · ' + manifiesto.tipos.length + ' tipos.');
-    } catch (err) {
-      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
-      console.error(err);
+      setFb('success', '<strong>⏳ Cifrando el ecosistema completo…</strong>');
+      const res = await exportador.exportar({
+        incluir_identidades: $('inc-id').checked,
+        incluir_certificados: $('inc-cert').checked,
+        incluir_gobernanza: $('inc-gob').checked,
+        incluir_agentes: $('inc-ia').checked,
+        incluir_registro_fundacional: $('inc-fund').checked,
+        notas: $('notas').value.trim()
+      });
+
+      $('p-hash').textContent = res.hash_paquete;
+      $('p-firma').textContent = res.paquete.verificacion.firma_ed25519.slice(0, 80) + '…';
+      $('p-tam').textContent = (res.tamaño / 1024).toFixed(2) + ' KB';
+      $('p-ts').textContent = res.paquete.metadata.timestamp;
+      $('pkg-tamaño').textContent = (res.tamaño / 1024).toFixed(2) + ' KB';
+
+      $('panel-paquete').hidden = false;
+      setFb('success', `<strong>✓ Paquete cifrado.</strong> ${(res.tamaño/1024).toFixed(2)} KB listos para descargar.`);
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('btn-exportar-json').addEventListener('click', async () => {
+  $('btn-descargar').addEventListener('click', () => {
+    try {
+      exportador.descargarPaquete();
+      setFb('success', '<strong>✓ Paquete descargado.</strong> Guárdalo en un lugar seguro. Sin la contraseña maestra no se puede descifrar.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    const v = await exportador.verificar();
+    setFb(v.valido ? 'success' : 'error',
+      v.valido
+        ? '<strong>✓ Paquete íntegro.</strong> Hash coincide.'
+        : '<strong>✗ Paquete alterado.</strong> El hash no coincide.'
+    );
+  });
+
+  $('btn-listar').addEventListener('click', async () => {
     try {
       if (!(await asegurarInit())) return;
-      const blob = await exp.exportarManifiesto(humanoActual);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `manifiesto-legado-${Date.now()}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-      setFb(feedback, 'success', '<strong>✓ Manifiesto exportado.</strong>');
-    } catch (err) {
-      setFb(feedback, 'error', '<strong>✗ Error:</strong> ' + err.message);
+      const items = await exportador.listar();
+      $('count-pkgs').textContent = items.length;
+      if (items.length === 0) {
+        $('lista-pkgs').innerHTML = '<div style="text-align:center;padding:40px;color:var(--dim);font-style:italic;">Sin paquetes emitidos.</div>';
+      } else {
+        $('lista-pkgs').innerHTML = items.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)).map(p => `
+          <div style="padding:18px;border:1px solid rgba(124,58,237,.2);background:rgba(20,5,35,.4);border-radius:4px;">
+            <div style="font-family:monospace;font-size:11px;color:var(--gold-l);word-break:break-all;">${p.hash_paquete.slice(0, 40)}…</div>
+            <div style="font-size:10px;color:var(--dim);margin-top:6px;">${p.timestamp} · ${(p.tamaño/1024).toFixed(2)} KB</div>
+          </div>
+        `).join('');
+      }
+      $('panel-lista').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('btn-restaurar').addEventListener('click', async () => {
-    try {
-      const fileInput = $('archivo-legado');
-      if (!fileInput.files || fileInput.files.length === 0) {
-        return setFb(feedbackRest, 'error', '<strong>✗ Selecciona un archivo .legado.</strong>');
+  // Fondo
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); w = canvas.width = window.innerWidth * dpr; h = canvas.height = window.innerHeight * dpr; canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; };
+    resize(); window.addEventListener('resize', resize);
+    const COLORES = [[124,58,237],[196,181,253],[201,164,76],[168,85,247]];
+    const blobs = Array.from({length:6}, (_,i) => ({ x: Math.random()*w, y: Math.random()*h, r: 240 + Math.random()*320, vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36, color: COLORES[i % COLORES.length] }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs){
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
       }
-      const pass = $('password').value;
-      if (pass.length < 8) {
-        return setFb(feedbackRest, 'error', '<strong>✗ Contraseña maestra requerida para descifrar.</strong>');
-      }
-      await core.init(pass);
-      await storage.init();
-
-      const file = fileInput.files[0];
-      const texto = await file.text();
-      const paquete = JSON.parse(texto);
-      const modo = $('modo-restaurar').value;
-
-      const res = await exp.restaurar(paquete, modo);
-
-      resultadoRest.hidden = false;
-      resultadoRest.innerHTML = `
-        <div class="kv"><span class="k">Modo</span><span class="v">${modo}</span></div>
-        <div class="kv"><span class="k">Manifiesto válido</span><span class="v" style="color:${res.manifiesto_ok?'#6EE7B7':'#fca5a5'}">${res.manifiesto_ok?'✓ sí':'✗ no'}</span></div>
-        <div class="kv"><span class="k">Firma válida</span><span class="v" style="color:${res.firma_ok?'#6EE7B7':'#fca5a5'}">${res.firma_ok?'✓ sí':'✗ no'}</span></div>
-        <div class="kv"><span class="k">Registros importados</span><span class="v">${res.importados}</span></div>
-        <div class="kv"><span class="k">Tipos procesados</span><span class="v">${res.tipos}</span></div>
-      `;
-
-      setFb(feedbackRest, 'success', '<strong>✓ Restauración procesada.</strong> Modo: ' + modo);
-    } catch (err) {
-      setFb(feedbackRest, 'error', '<strong>✗ Error al restaurar:</strong> ' + err.message);
-      console.error(err);
-    }
-  });
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
 </script>
 </body>
 </html>
