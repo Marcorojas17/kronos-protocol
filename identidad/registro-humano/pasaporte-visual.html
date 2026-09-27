@@ -53,6 +53,21 @@
   .acciones-export.on{display:flex}
   .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,36,26,0.3);border-top-color:#00241a;border-radius:50%;animation:spin 1s linear infinite;margin-right:8px}
   @keyframes spin{to{transform:rotate(360deg)}}
+  /* ─── MODAL DE IMAGEN EN PANTALLA COMPLETA ─── */
+  .modal-img{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.96);
+    padding:20px;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto}
+  .modal-img.on{display:flex}
+  .modal-img-header{width:100%;max-width:900px;display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;margin-bottom:10px}
+  .modal-img-title{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;color:#F3E5AB}
+  .modal-img-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;
+    border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .modal-img-instruccion{max-width:900px;width:100%;padding:14px 18px;background:rgba(0,229,160,0.1);
+    border:1px solid rgba(0,229,160,0.4);border-radius:6px;color:#A7F3D0;font-size:13px;
+    line-height:1.6;margin-bottom:16px;text-align:center}
+  .modal-img-instruccion strong{color:#7BFFD4}
+  #imagen-full{max-width:100%;height:auto;border-radius:6px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.9);user-select:none;-webkit-user-select:none}
 </style>
 </head>
 <body>
@@ -77,10 +92,22 @@
   </div>
 
   <div class="acciones-export" id="acciones">
-    <button class="btn" id="btn-descargar">🛂 Descargar PNG del pasaporte</button>
+    <button class="btn" id="btn-descargar">🛂 Ver PNG en pantalla completa</button>
     <button class="btn ghost" id="btn-imprimir">Imprimir / Guardar PDF</button>
     <button class="btn ghost" id="btn-volver">← Volver al Registro</button>
   </div>
+</div>
+
+<!-- MODAL DE IMAGEN EN PANTALLA COMPLETA -->
+<div class="modal-img" id="modal-img">
+  <div class="modal-img-header">
+    <div class="modal-img-title">PASAPORTE · KRONOS</div>
+    <button class="modal-img-close" id="modal-close">✕</button>
+  </div>
+  <div class="modal-img-instruccion">
+    📱 <strong>Mantén presionada la imagen</strong> y selecciona <strong>"Guardar imagen"</strong> o <strong>"Descargar imagen"</strong> para guardarla en tu galería.
+  </div>
+  <img id="imagen-full" alt="Pasaporte Visual KRONOS">
 </div>
 
 <script>
@@ -91,6 +118,8 @@
   const canvasWrap = $('canvas-wrap');
   const acciones = $('acciones');
   const canvas = $('passport-canvas');
+  const modal = $('modal-img');
+  const imgFull = $('imagen-full');
 
   function setEstado(tipo, html){
     estado.className = 'estado-box on ' + tipo;
@@ -112,9 +141,7 @@
   function drawIdenticon(ctx, hashHex, cx, cy, size){
     const bytes = hexToBytes(hashHex.slice(0, 32));
     ctx.save();
-    ctx.beginPath();
-    ctx.arc(cx, cy, size/2, 0, Math.PI*2);
-    ctx.clip();
+    ctx.beginPath(); ctx.arc(cx, cy, size/2, 0, Math.PI*2); ctx.clip();
     const grad = ctx.createLinearGradient(cx-size/2, cy-size/2, cx+size/2, cy+size/2);
     grad.addColorStop(0, `rgba(${bytes[0]},${bytes[1]},${bytes[2]},1)`);
     grad.addColorStop(1, `rgba(${bytes[3]},${bytes[4]},${bytes[5]},1)`);
@@ -462,27 +489,20 @@
     ctx.fillText('© 2026 Marco A. Rojas V. + KRONOS IA · Documento generado localmente · Verificable on-chain', W/2, H - 30);
   }
 
-  // ── DESCARGAR PNG (auto) ─────────────────────────────────
-  function descargarPNG(silencioso = false){
+  // ── ABRIR MODAL CON IMAGEN EN PANTALLA COMPLETA ────────────
+  function abrirModalImagen(){
     try {
-      canvas.toBlob((blob) => {
-        if (!blob){
-          if (!silencioso) setEstado('err', '<strong>✗ No se pudo generar el blob.</strong>');
-          return;
-        }
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'pasaporte-visual-kronos-' + Date.now() + '.png';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(url), 10000);
-        if (!silencioso) setEstado('info', '<strong>✓ PNG descargado.</strong> Revisa tu carpeta de Descargas o Galería.');
-      }, 'image/png', 1.0);
+      const dataURL = canvas.toDataURL('image/png', 1.0);
+      imgFull.src = dataURL;
+      modal.classList.add('on');
+      setEstado('info', '<strong>✓ Pasaporte generado.</strong> Mantén presionada la imagen para guardarla en tu galería.');
     } catch(e){
-      if (!silencioso) setEstado('err', '<strong>✗ Error:</strong> ' + e.message);
+      setEstado('err', '<strong>✗ Error:</strong> ' + e.message);
     }
+  }
+
+  function cerrarModal(){
+    modal.classList.remove('on');
   }
 
   // ── CARGAR DESDE DEXIE ──────────────────────────────────
@@ -494,7 +514,6 @@
       const todos = await db.humanos.toArray();
       db.close();
       if (todos.length === 0) return null;
-      // Tomar el más reciente
       todos.sort((a,b) => (b.id || 0) - (a.id || 0));
       return todos[0];
     } catch(e){
@@ -507,7 +526,6 @@
   (async function init(){
     setEstado('warn', '<span class="spinner"></span> <strong>Buscando pasaporte guardado…</strong>');
 
-    // 1. Intentar desde sessionStorage (viene del botón del Registro)
     let data = null;
     try {
       const desdeSession = sessionStorage.getItem('pasaporte-kronos-temp');
@@ -517,26 +535,21 @@
       }
     } catch(e){ /* ignorar */ }
 
-    // 2. Intentar desde Dexie
     if (!data){
       const guardado = await cargarDesdeDexie();
-      if (guardado){
-        // El certificado guardado puede tener o no el campo 'huella'
-        if (guardado.huella) data = guardado;
-      }
+      if (guardado && guardado.huella) data = guardado;
     }
 
-    // 3. Si hay datos, renderizar automáticamente
     if (data && data.huella){
       dibujarPasaporte(data);
       canvasWrap.classList.add('on');
       acciones.classList.add('on');
-      setEstado('info', '<strong>✓ Pasaporte cargado automáticamente.</strong> Descárgalo como PNG o guárdalo como PDF.');
-
-      // Descarga automática tras 1 segundo
-      setTimeout(() => descargarPNG(true), 1000);
+      setEstado('info', '<strong>✓ Pasaporte cargado.</strong> Toca el botón para verlo en pantalla completa.');
+      // Auto-abrir modal a los 800ms
+      setTimeout(() => {
+        abrirModalImagen();
+      }, 800);
     } else {
-      // 4. Si no, mostrar el panel manual
       setEstado('warn', '<strong>⚠ No se encontró pasaporte guardado.</strong> Pega el JSON manualmente abajo, o vuelve al <a href="./" style="color:#F3E5AB;text-decoration:underline">Registro Humano</a> para crear uno.');
       panelManual.classList.add('on');
     }
@@ -552,16 +565,22 @@
       dibujarPasaporte(data);
       canvasWrap.classList.add('on');
       acciones.classList.add('on');
-      setEstado('info', '<strong>✓ Pasaporte visual generado.</strong> Descarga PNG o guárdalo como PDF.');
+      setEstado('info', '<strong>✓ Pasaporte generado.</strong> Toca el botón para verlo en pantalla completa.');
     } catch(e){
       setEstado('err', '<strong>✗ JSON inválido:</strong> ' + e.message);
     }
   });
 
   // ── Botones de acción ───────────────────────────────────
-  $('btn-descargar').addEventListener('click', () => descargarPNG(false));
+  $('btn-descargar').addEventListener('click', abrirModalImagen);
   $('btn-imprimir').addEventListener('click', () => window.print());
   $('btn-volver').addEventListener('click', () => window.location.href = './');
+  $('modal-close').addEventListener('click', cerrarModal);
+
+  // Cerrar modal con tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrarModal();
+  });
 })();
 </script>
 </body>
