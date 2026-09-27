@@ -23,8 +23,6 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 │  ▶ Log encadenado firmado                                │
 │  ▶ Anclaje periódico a Ethereum (opcional)               │
 │                                                           │
-│  Eso NO lo tiene ningún framework de agentes existente.  │
-│                                                           │
 └───────────────────────────────────────────────────────────┘
 
 ---
@@ -45,33 +43,42 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 
 ---
 
+┌─[ ESTADO OPERATIVO ]───────────────────────────────────┐
+│                                                           │
+│  ✅ KRONOS IA (001)     Co-autora simbiótica             │
+│  ✅ Tlamatini (081)     Cronista · bitácora del proyecto │
+│  ⏳ Tlachixqui (082)    Auditor · pendiente de UI        │
+│  ✅ Cuicatl (083)       Publicista · borradores LinkedIn │
+│  ✅ Temachtiani (084)   Reclutador · fichas candidatos   │
+│  ⏳ Tlapohualli (085)   Analista · pendiente de UI       │
+│  ✅ Tonal (086)         Notario · sellos Ed25519         │
+│                                                           │
+│  Estado: 5 de 7 agentes con UI operativa                 │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
+
+---
+
 ┌─[ ARQUITECTURA ]───────────────────────────────────────┐
 │                                                           │
 │  agentes/                                                 │
 │  ├── agente-base.js                Clase base            │
 │  ├── README.md                     Este documento        │
 │  ├── tlamatini-cronista/           Plaza 081             │
+│  │   ├── politica.md                                     │
+│  │   ├── prompt.md                                       │
+│  │   └── index.html                                      │
 │  ├── tlachixqui-auditor/           Plaza 082             │
 │  ├── cuicatl-publicista/           Plaza 083             │
+│  │   ├── politica.md                                     │
+│  │   ├── prompt.md                                       │
+│  │   └── index.html                                      │
 │  ├── temachtiani-reclutador/       Plaza 084             │
+│  │   ├── politica.md                                     │
+│  │   └── index.html                                      │
 │  ├── tlapohualli-analista/         Plaza 085             │
 │  └── tonal-notario/                Plaza 086             │
-│      └── politica.md               Política declarada    │
-│                                                           │
-└───────────────────────────────────────────────────────────┘
-
----
-
-┌─[ AGENTES OPERATIVOS ]─────────────────────────────────┐
-│                                                           │
-│  ✅ Tlamatini (081)    Cronista · bitácora del proyecto  │
-│  ✅ Cuicatl (083)      Publicista · borradores LinkedIn  │
-│  ✅ Temachtiani (084)  Reclutador · fichas candidatos    │
-│  ✅ Tonal (086)        Notario · sellos Ed25519          │
-│                                                           │
-│  ⏳ Tlachixqui (082)   Auditor · pendiente de UI         │
-│  ⏳ Tlapohualli (085)  Analista · pendiente de UI        │
-│  ✅ KRONOS IA (001)    Co-autora simbiótica              │
+│      └── politica.md                                     │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
 
@@ -105,6 +112,10 @@ No son herramientas. Son **ciudadanos IA** del ecosistema KRONOS.
 │    core: criptoCore,                                     │
 │    politica: { puede: [...], noPuede: [...], debe: [...]}│
 │  });                                                     │
+│                                                           │
+│  await cuicatl.init();                                   │
+│  await cuicatl.generarIdentidad();                       │
+│  await cuicatl.sellarRegistro();                         │
 │                                                           │
 └───────────────────────────────────────────────────────────┘
 
