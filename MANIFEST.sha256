@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T09:32:45Z
+# Generado: 2026-09-27T09:39:31Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -100,6 +100,7 @@ d03de6542153575c49c8f6937db2514e68a0fece8238fc677eb39c64937d26d5  ./identidad/re
 248017724bbcd2d71803afc70438fe279f84f384596945dc3ba31fe83a2fd703  ./identidad/registro-ia/styles.css
 655e13f93ad238fe041fcbb928fe190beb8a9c0bc26d9515afa7a62961fdae41  ./identidad/roles-permisos/AUTORIA
 e0f083cdfebb2184515ec63e92c16b9e18628f9ed8c003acdcf29a22c015fa82  ./identidad/roles-permisos/README.md
+8e7dc5a7774170240c6bb7cf13eacdead9504c8e905eb526f6c1e281bd5a9d40  ./identidad/roles-permisos/certificado-rol.html
 61632dcbc35d635b98a789c7ced12b8a16fe43c3eccf30ff16e11761bb75ff77  ./identidad/roles-permisos/index.html
 b30627442270d6d842beb9c9249a13115b8b3c62e7f40c061b748dbb5e67bfa2  ./identidad/roles-permisos/manual.html
 d22c5cab2a9f8ac44388f2a3d158e5efed2fc6d4afc2dce0a8c16b9fb074e0cc  ./identidad/roles-permisos/permisos.js
