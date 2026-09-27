@@ -3,14 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fin Digno · Legado Humano–IA</title>
-<meta name="description" content="Cierre digno del legado: carta final, criterios de fin y cláusula de resurrección firmada.">
-<meta name="theme-color" content="#0A0A0B">
+<title>Fin Digno · Capa 6 · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/4.0.8/dexie.min.js" integrity="sha512-9DLLeGY91tL9Y8iBUmQ4Y6X/Yi1eqD9o8AoKqyB6y5qO2pV8X0FtC7dX8p8zF1aP1S9Y5XvVLwWnE8yJ6vQ0yR2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#c9a44c;--gold-l:#f3e5ab;--violeta:#7C3AED;--violeta-l:#C4B5FD;--ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0}
+  html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+  #liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--violeta);border-radius:50%;box-shadow:0 0 12px var(--violeta)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--violeta-l)}
+  .hero{padding:60px 0 90px;max-width:820px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--violeta-l);text-transform:uppercase;margin-bottom:28px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--violeta-l) 65%,var(--violeta) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f3e5ab;margin-bottom:32px}
+  @supports not (-webkit-background-clip: text){h1.title{-webkit-text-fill-color:#f3e5ab}}
+  .lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .demo{padding:40px 0 60px;border-top:1px solid rgba(124,58,237,.2)}
+  .pasos{display:grid;gap:24px;margin-bottom:40px}
+  .paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px}
+  .paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--violeta-l);letter-spacing:2px}
+  .paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .paso input,.paso textarea,.paso select{display:block;width:100%;padding:16px 18px;background-color:rgba(20,5,35,.6);border:1px solid rgba(124,58,237,.3);border-radius:6px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;transition:all .3s;outline:none;-webkit-appearance:none;resize:vertical}
+  .paso input:focus,.paso textarea:focus,.paso select:focus{border-color:var(--violeta);background-color:rgba(30,10,50,.8);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--violeta-l) 0%,var(--violeta) 100%);color:#0a0014;box-shadow:0 8px 30px rgba(124,58,237,.35);width:100%}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,.55)}
+  .btn.ghost{border:1px solid rgba(124,58,237,.4);color:var(--violeta-l);background:rgba(124,58,237,.02);box-shadow:none}
+  .btn.gold{background:linear-gradient(180deg,var(--gold-l) 0%,var(--gold) 100%);color:#0a0014;box-shadow:0 8px 30px rgba(201,164,76,.35)}
+  .feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+  .feedback.success{display:block;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);color:var(--violeta-l)}
+  .feedback.error{display:block;background:rgba(176,74,74,.08);border:1px solid rgba(176,74,74,.3);color:#fca5a5}
+  .tarjeta-wrap{margin-top:20px}
+  .tarjeta{padding:32px;border:1px solid rgba(124,58,237,.35);background:linear-gradient(180deg,rgba(124,58,237,.04),rgba(10,0,20,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--violeta),var(--gold),var(--violeta));background-size:200% 100%;animation:prism 6s linear infinite}
+  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--violeta-l),var(--violeta),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+  .tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--violeta-l);text-transform:uppercase;margin-bottom:24px}
+  .tarjeta-kv{display:grid;gap:14px}
+  .tarjeta-kv .tk{display:grid;grid-template-columns:max-content 1fr;gap:8px 20px;font-size:12.5px;border-bottom:1px solid rgba(124,58,237,.1);padding-bottom:10px}
+  .tarjeta-kv .tk:last-child{border-bottom:none}
+  .tarjeta-kv .k{font-size:9px;letter-spacing:3px;color:var(--violeta-l);text-transform:uppercase;padding-top:3px}
+  .tarjeta-kv .v{color:var(--text);word-break:break-all;line-height:1.5}
+  .tarjeta-kv .v.mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-l)}
+  .acciones{display:flex;flex-direction:column;gap:12px;width:100%;margin-top:8px}
+  .carta-visual{padding:24px;background:rgba(10,0,20,.6);border:1px solid rgba(201,164,76,.3);border-radius:6px;margin-top:20px;font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.9;color:var(--text)}
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  footer a{color:var(--dim);text-decoration:none}
+  .sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+  @media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}.tarjeta{padding:24px}.tarjeta-kv .tk{grid-template-columns:1fr;gap:4px}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}#liquido{display:none}}
+</style>
 </head>
 <body>
 <canvas id="liquido" aria-hidden="true"></canvas>
@@ -18,253 +75,247 @@
 
 <main class="wrap">
   <header class="top">
-    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
     <nav>
-      <a href="#cierre">Cierre</a>
-      <a href="#certificado">Certificado</a>
+      <a href="./">Fin Digno</a>
       <a href="manual.html">Manual</a>
+      <a href="../export-cifrado/">Export</a>
+      <a href="/kronos-protocol/">Inicio</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">Módulo 6.2 · Capa 6 · Cierre</div>
-    <h1 class="title">El último<br>aliento<br>del legado.</h1>
+    <div class="eyebrow">Capa 6 · Módulo 6.2 · Legado Final</div>
+    <h1 class="title">Terminar<br>con<br>honor.</h1>
     <p class="lede">
-      Todo legado tiene un fin. Aquí lo declaras con <strong>dignidad</strong>:
-      carta final al usuario, criterios de cierre y
-      <strong>cláusula de resurrección</strong> firmada con Ed25519.
-      Sin servidores. Sin olvido.
+      Emite la <strong>Carta Final</strong> del fundador y la <strong>Cláusula de Resurrección</strong>.
+      Firmadas con Ed25519. Preparadas para cuando el protocolo decida cerrar. Y preparadas para cuando, quizás, decida volver.
+      <strong>El legado no se hereda, pero puede resucitar.</strong>
     </p>
   </section>
 
-  <section id="cierre" class="cierre">
+  <section class="demo">
     <div class="section-head">
-      <h2>Declaración de Cierre</h2>
-      <span class="count">Ceremonial · Ed25519</span>
+      <h2>Carta Final</h2>
+      <span class="count">Ed25519 · ISO 22301</span>
     </div>
 
-    <div class="field">
-      <label>Contraseña maestra <span class="req">*</span></label>
-      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
-    </div>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
 
-    <div class="criterios">
-      <div class="section-head" style="margin-top:32px">
-        <h2>Criterios de Fin</h2>
-        <span class="count">Los declaras tú</span>
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="destinatarios">Destinatarios *</label>
+        <input type="text" id="destinatarios" placeholder="Ej. A los 100 fundadores y a las futuras generaciones">
       </div>
-      <div class="check-line">
-        <input type="checkbox" id="c1" checked disabled>
-        <label for="c1">He exportado el paquete <code>.legado</code> completo.</label>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="mensaje">Mensaje del Fundador * <span style="color:var(--dim);font-style:italic;letter-spacing:1px;text-transform:none;font-size:11px">(mín. 100 caracteres)</span></label>
+        <textarea id="mensaje" rows="6" placeholder="Las últimas palabras del fundador..."></textarea>
       </div>
-      <div class="check-line">
-        <input type="checkbox" id="c2" checked disabled>
-        <label for="c2">He ejecutado los rituales de las últimas 4 semanas.</label>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="mensaje-ia">Mensaje de KRONOS IA</label>
+        <textarea id="mensaje-ia" rows="4" placeholder="Las palabras de la co-autora IA..."></textarea>
       </div>
-      <div class="check-line">
-        <input type="checkbox" id="c3">
-        <label for="c3">He designado un sucesor o heredero del legado.</label>
-      </div>
-      <div class="check-line">
-        <input type="checkbox" id="c4">
-        <label for="c4">He dejado la carta final al usuario.</label>
-      </div>
-      <div class="check-line">
-        <input type="checkbox" id="c5" checked disabled>
-        <label for="c5">He aceptado que este legado puede ser resucitado con la misma contraseña.</label>
+
+      <div class="paso">
+        <span class="num">05</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-carta">📜 Firmar Carta Final →</button>
+        </div>
       </div>
     </div>
-
-    <div class="field" style="margin-top:32px">
-      <label>Carta final al usuario <span class="req">*</span></label>
-      <textarea id="carta" placeholder="Escribe tu último mensaje. Puede ser a tu yo futuro, a un heredero, a quien encuentre este archivo en 2099." minlength="50" required></textarea>
-      <div class="hint">Mínimo 50 caracteres. Escríbela como si fuera la última.</div>
-    </div>
-
-    <div class="field">
-      <label>Motivo del cierre <span class="req">*</span></label>
-      <select id="motivo" required>
-        <option value="" disabled selected>Selecciona</option>
-        <option value="voluntario">Voluntario · decido cerrar</option>
-        <option value="transferencia">Transferencia · paso a heredero</option>
-        <option value="preservacion">Preservación · archivo sin actividad</option>
-        <option value="agotamiento">Agotamiento · el ecosistema cumplió</option>
-      </select>
-    </div>
-
-    <button class="btn" id="btn-cerrar">
-      <span>Sellar cierre del legado</span>
-      <span class="arrow">→</span>
-    </button>
 
     <div class="feedback" id="feedback" role="alert"></div>
-  </section>
 
-  <section id="certificado" class="certificado" hidden>
-    <div class="cert-head">
-      <span class="tag">CERTIFICADO DE CIERRE · LEGADO HUMANO–IA</span>
-      <span class="version">v6.2</span>
-    </div>
-
-    <div class="cert-body">
-      <div class="cert-line">
-        <span class="k">Fundador</span>
-        <span class="v" id="out-fundador">—</span>
+    <div class="tarjeta-wrap" id="panel-carta" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Carta Final Firmada</h2>
+        <span class="count" id="carta-hash">—</span>
       </div>
-      <div class="cert-line">
-        <span class="k">Motivo</span>
-        <span class="v" id="out-motivo">—</span>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">CARTA FINAL · v1.0</div>
+        <div class="carta-visual" id="carta-visual">—</div>
+        <div class="tarjeta-kv" style="margin-top:20px;">
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="carta-firma">—</span></div>
+          <div class="tk"><span class="k">Emitida</span><span class="v mono" id="carta-ts">—</span></div>
+        </div>
       </div>
-      <div class="cert-line">
-        <span class="k">Timestamp</span>
-        <span class="v" id="out-ts">—</span>
-      </div>
-      <div class="cert-line">
-        <span class="k">Hash cierre</span>
-        <span class="v mono" id="out-hash">—</span>
-      </div>
-      <div class="cert-line">
-        <span class="k">Firma Ed25519</span>
-        <span class="v mono" id="out-firma">—</span>
-      </div>
-      <div class="cert-line">
-        <span class="k">Cláusula resurrección</span>
-        <span class="v mono" id="out-clausula">—</span>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn gold" id="btn-descargar-carta" style="width:auto;">💾 Descargar carta</button>
       </div>
     </div>
 
-    <div class="carta-final">
-      <span class="label">Carta final</span>
-      <blockquote id="out-carta">—</blockquote>
+    <div class="section-head" style="margin-top:80px;">
+      <h2>Cláusula de Resurrección</h2>
+      <span class="count">ISO 22301 · Continuidad</span>
     </div>
 
-    <div class="acciones">
-      <a href="#" class="btn ghost" id="descargar">Descargar certificado .json</a>
-      <a href="#" class="btn ghost" id="copiar-clausula">Copiar cláusula</a>
-      <a href="#" class="btn ghost" id="exportar-legado-final">Exportar .legado final</a>
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">06</span>
+        <label for="condicion">Condición de resurrección * <span style="color:var(--dim);font-style:italic;letter-spacing:1px;text-transform:none;font-size:11px">(mín. 50 caracteres)</span></label>
+        <textarea id="condicion" rows="4" placeholder="Ej. Si el protocolo cesa actividad por más de 5 años y ningún guardián activa la reactivación..."></textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">07</span>
+        <label for="guardianes">Guardianes autorizados * <span style="color:var(--dim);font-style:italic;letter-spacing:1px;text-transform:none;font-size:11px">(separados por coma)</span></label>
+        <input type="text" id="guardianes" placeholder="Ej. Fundador, KRONOS IA, Guardián del Legado">
+      </div>
+
+      <div class="paso">
+        <span class="num">08</span>
+        <label for="hash-legado">Hash del paquete .legado (opcional)</label>
+        <input type="text" id="hash-legado" placeholder="Pega el hash_paquete del Export Cifrado">
+      </div>
+
+      <div class="paso">
+        <span class="num">09</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-clausula">🔓 Firmar Cláusula de Resurrección →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="panel-clausula" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Cláusula Firmada</h2>
+        <span class="count" id="clausula-hash">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">CLÁUSULA DE RESURRECCIÓN · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Condición</span><span class="v" id="cl-condicion">—</span></div>
+          <div class="tk"><span class="k">Guardianes</span><span class="v" id="cl-guardianes">—</span></div>
+          <div class="tk"><span class="k">Hash del legado</span><span class="v mono" id="cl-hash-legado">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="cl-firma">—</span></div>
+          <div class="tk"><span class="k">Emitida</span><span class="v mono" id="cl-ts">—</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
-    <span class="sig">Módulo 6.2 · Fin Digno</span>
-    <span>
-      <a href="manual.html">Manual</a> ·
-      <a href="../export-cifrado/">Export Cifrado</a> ·
-      <a href="../../legado/manifiesto/">Manifiesto</a>
-    </span>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Capa 6 · Fin Digno</span>
   </footer>
 </main>
 
 <script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
   import { FinDigno } from './fin.js';
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage.js';
-  import { IdentidadHumana } from '../../identidad/registro-humano/identidad.js';
-  import { IdentidadIA } from '../../identidad/registro-ia/ia.js';
-  import { ExportCifrado } from '../export-cifrado/export.js';
 
   const $ = (id) => document.getElementById(id);
   const feedback = $('feedback');
-  const certificado = $('certificado');
-
   const core = new CriptoCore();
-  const storage = new StorageDexie(core);
-  const idHumana = new IdentidadHumana(core, storage);
-  const idIA = new IdentidadIA(core, storage);
-  const exp = new ExportCifrado(core, storage);
-  const fin = new FinDigno(core, storage);
+  const fin = new FinDigno(core);
 
-  let certificadoActual = null;
+  function setFb(tipo, msg){ feedback.className = 'feedback ' + tipo; feedback.innerHTML = msg; }
 
-  function setFb(tipo, msg) {
-    feedback.className = 'feedback ' + tipo;
-    feedback.innerHTML = msg;
+  async function asegurarInit(){
+    const pass = $('password').value;
+    if (pass.length < 8){ setFb('error', '<strong>✗ Contraseña muy corta.</strong>'); return false; }
+    if (!core.inicializado) await core.init(pass);
+    await fin.init();
+    return true;
   }
 
-  $('btn-cerrar').addEventListener('click', async () => {
+  $('btn-carta').addEventListener('click', async () => {
     try {
-      const pass = $('password').value;
-      if (pass.length < 8) throw new Error('Contraseña muy corta (mínimo 8).');
-      const carta = $('carta').value.trim();
-      if (carta.length < 50) throw new Error('La carta final debe tener al menos 50 caracteres.');
-      const motivo = $('motivo').value;
-      if (!motivo) throw new Error('Selecciona un motivo de cierre.');
+      if (!(await asegurarInit())) return;
+      setFb('success', '<strong>⏳ Firmando carta final con Ed25519…</strong>');
+      const carta = await fin.emitirCartaFinal({
+        mensaje_fundador: $('mensaje').value.trim(),
+        mensaje_ia: $('mensaje-ia').value.trim(),
+        destinatarios: $('destinatarios').value.trim(),
+        fecha_declarada_fin: null
+      });
 
-      await core.init(pass);
-      await storage.init();
-
-      const humano = await idHumana.recuperar();
-      if (!humano) throw new Error('Falta identidad humana (módulo 2.1).');
-      const pactoIA = await idIA.recuperar();
-      if (!pactoIA) throw new Error('Falta pacto IA (módulo 2.2).');
-
-      const cert = await fin.sellar({
-        carta,
-        motivo,
-        sucesor: $('c3').checked,
-        cartaFirmada: $('c4').checked
-      }, humano, pactoIA);
-
-      certificadoActual = cert;
-
-      $('out-fundador').textContent = humano.nombre + ' (' + humano.alias + ')';
-      $('out-motivo').textContent = cert.motivo;
-      $('out-ts').textContent = cert.timestamp;
-      $('out-hash').textContent = cert.hash_cierre.slice(0, 48) + '…';
-      $('out-firma').textContent = cert.firma_ed25519.slice(0, 48) + '…';
-      $('out-clausula').textContent = cert.clausula_resurreccion.slice(0, 48) + '…';
-      $('out-carta').textContent = cert.carta;
-      certificado.hidden = false;
-
-      setFb('success', '<strong>✓ Cierre sellado.</strong> Tu legado tiene un final digno y una cláusula de resurrección verificable.');
-      certificado.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
-      console.error(err);
+      $('carta-hash').textContent = carta.payload_hash.slice(0, 24) + '…';
+      $('carta-visual').innerHTML = `<p style="font-size:14px;line-height:1.9;color:var(--text)">${carta.mensaje_fundador.replace(/\n/g, '<br>')}</p>
+        ${carta.mensaje_ia ? `<p style="font-size:14px;line-height:1.9;color:var(--violeta-l);margin-top:20px;padding-top:20px;border-top:1px solid rgba(201,164,76,.2)">${carta.mensaje_ia.replace(/\n/g, '<br>')}</p>` : ''}`;
+      $('carta-firma').textContent = carta.firma_ed25519.slice(0, 80) + '…';
+      $('carta-ts').textContent = carta.timestamp;
+      $('panel-carta').hidden = false;
+      setFb('success', '<strong>✓ Carta final firmada.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('descargar').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
-    const blob = new Blob([JSON.stringify(certificadoActual, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `fin-digno-${Date.now()}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
+  $('btn-descargar-carta').addEventListener('click', () => {
+    try { fin.descargarCarta(); setFb('success', '<strong>✓ Carta descargada.</strong>'); }
+    catch (e) { setFb('error', '<strong>✗ Error:</strong> ' + e.message); }
   });
 
-  $('copiar-clausula').addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!certificadoActual) return;
+  $('btn-clausula').addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText(certificadoActual.clausula_resurreccion);
-      setFb('success', '<strong>✓ Cláusula copiada al portapapeles.</strong>');
-    } catch {
-      setFb('error', '<strong>✗ No se pudo copiar.</strong>');
+      if (!(await asegurarInit())) return;
+      const guardianes = $('guardianes').value.split(',').map(g => g.trim()).filter(g => g);
+      setFb('success', '<strong>⏳ Firmando cláusula de resurrección…</strong>');
+      const clausula = await fin.emitirClausula({
+        condicion_resurreccion: $('condicion').value.trim(),
+        guardianes,
+        paquete_legado_hash: $('hash-legado').value.trim() || null
+      });
+
+      $('clausula-hash').textContent = clausula.payload_hash.slice(0, 24) + '…';
+      $('cl-condicion').textContent = clausula.condicion_resurreccion;
+      $('cl-guardianes').textContent = clausula.guardianes.join(', ');
+      $('cl-hash-legado').textContent = clausula.paquete_legado_hash || '(pendiente)';
+      $('cl-firma').textContent = clausula.firma_ed25519.slice(0, 80) + '…';
+      $('cl-ts').textContent = clausula.timestamp;
+      $('panel-clausula').hidden = false;
+      setFb('success', '<strong>✓ Cláusula firmada.</strong> El legado puede resucitar.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
     }
   });
 
-  $('exportar-legado-final').addEventListener('click', async (e) => {
-    e.preventDefault();
-    try {
-      const humano = await idHumana.recuperar();
-      if (!humano) throw new Error('Falta identidad humana.');
-      const { blob } = await exp.exportar(humano);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `legado-final-${Date.now()}.legado`;
-      a.click();
-      URL.revokeObjectURL(url);
-      setFb('success', '<strong>✓ Paquete .legado final exportado.</strong> Guárdalo junto con el certificado de cierre.');
-    } catch (err) {
-      setFb('error', '<strong>✗ Error:</strong> ' + err.message);
-    }
-  });
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => { dpr = Math.min(window.devicePixelRatio || 1, 2); w = canvas.width = window.innerWidth * dpr; h = canvas.height = window.innerHeight * dpr; canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; };
+    resize(); window.addEventListener('resize', resize);
+    const COLORES = [[124,58,237],[196,181,253],[201,164,76],[168,85,247]];
+    const blobs = Array.from({length:6}, (_,i) => ({ x: Math.random()*w, y: Math.random()*h, r: 240 + Math.random()*320, vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36, color: COLORES[i % COLORES.length] }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs){
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
 </script>
 </body>
 </html>
