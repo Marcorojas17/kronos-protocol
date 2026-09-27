@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notario KRONOS · Tonal · Plaza IA 086</title>
+<meta name="theme-color" content="#0a0800">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#c9a44c;--gold-l:#f3e5ab;--gold-bright:#FFD700;--gold-d:#8a6f2c;
+    --cy:#00EAFF;--cy-l:#7DF9FF;
+    --ink:#0a0800;--text:#F5F0E6;--dim:#a89a7a;
+  }
+  html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  #liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,8,0,.5) 60%,rgba(10,8,0,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--gold-bright);border-radius:50%;box-shadow:0 0 12px var(--gold-bright)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--gold-l)}
+  .hero{padding:60px 0 90px;max-width:820px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--cy-l);text-transform:uppercase;margin-bottom:28px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(44px,8vw,104px);line-height:.95;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-bright) 50%,var(--cy) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#f3e5ab;margin-bottom:32px}
+  @supports not (-webkit-background-clip: text){h1.title{-webkit-text-fill-color:#f3e5ab}}
+  .lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .section-head .count{font-size:11px;letter-spacing:2px;color:var(--dim)}
+  .demo{padding:40px 0 60px;border-top:1px solid rgba(255,215,0,.15)}
+  .pasos{display:grid;gap:28px;margin-bottom:40px}
+  .paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px}
+  .paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-l);letter-spacing:2px;margin-bottom:2px}
+  .paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .paso input,.paso select,.paso textarea{display:block;width:100%;padding:16px 18px;background-color:rgba(35,25,0,.6);border:1px solid rgba(255,215,0,.3);border-radius:6px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;transition:all .3s;outline:none;-webkit-appearance:none;appearance:none;resize:vertical}
+  .paso input:focus,.paso select:focus,.paso textarea:focus{border-color:var(--gold-bright);background-color:rgba(50,35,0,.8);box-shadow:0 0 0 3px rgba(255,215,0,.15)}
+  .paso select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;padding-right:48px}
+  .paso select option{background:#0a0800;color:#F5F0E6}
+  .paso .hint{font-size:11px;color:var(--dim);margin-top:4px;font-weight:300;line-height:1.5}
+  .acciones{display:flex;flex-direction:column;gap:12px;width:100%;margin-top:8px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--gold-bright) 0%,var(--gold) 100%);color:#0a0800;box-shadow:0 8px 30px rgba(255,215,0,.35);width:100%}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,215,0,.55)}
+  .btn.ghost{border:1px solid rgba(255,215,0,.4);color:var(--gold-l);background:rgba(255,215,0,.02);box-shadow:none}
+  .btn.ghost:hover{border-color:var(--gold-bright);background:rgba(255,215,0,.08)}
+  .btn.cyan{background:linear-gradient(180deg,var(--cy-l) 0%,var(--cy) 100%);color:#00201a;box-shadow:0 8px 30px rgba(0,234,255,.35)}
+  .btn.cyan:hover{box-shadow:0 14px 40px rgba(0,234,255,.55)}
+  .feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+  .feedback.success{display:block;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3);color:#fff8e0}
+  .feedback.error{display:block;background:rgba(176,74,74,.08);border:1px solid rgba(176,74,74,.3);color:#fca5a5}
+  .tarjeta-wrap{margin-top:20px}
+  .tarjeta{padding:32px;border:1px solid rgba(255,215,0,.35);background:linear-gradient(180deg,rgba(255,215,0,.04),rgba(10,8,0,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold-bright),var(--cy),var(--gold-bright));background-size:200% 100%;animation:prism 6s linear infinite}
+  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--gold-l),var(--gold-bright),var(--cy));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+  .tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--gold-l);text-transform:uppercase;margin-bottom:24px}
+  .tarjeta-kv{display:grid;gap:14px}
+  .tarjeta-kv .tk{display:grid;grid-template-columns:max-content 1fr;gap:8px 20px;font-size:12.5px;border-bottom:1px solid rgba(255,215,0,.1);padding-bottom:10px}
+  .tarjeta-kv .tk:last-child{border-bottom:none}
+  .tarjeta-kv .k{font-size:9px;letter-spacing:3px;color:var(--gold-l);text-transform:uppercase;padding-top:3px}
+  .tarjeta-kv .v{color:var(--text);word-break:break-all;line-height:1.5}
+  .tarjeta-kv .v.mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-bright)}
+  .lista-wrap{margin-top:40px}
+  .lista{display:grid;gap:12px}
+  .lista-item{padding:18px 20px;border:1px solid rgba(255,215,0,.15);background:rgba(35,25,0,.4);border-radius:4px;transition:border-color .3s}
+  .lista-item:hover{border-color:rgba(255,215,0,.4)}
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(255,215,0,.1);font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  footer a{color:var(--dim);text-decoration:none;transition:color .3s}
+  footer a:hover{color:var(--gold-l)}
+  .sello-kintsugi{text-align:center;padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+  .footer-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+  .footer-meta .sig{font-family:'Fraunces',serif;color:var(--gold-l);letter-spacing:3px}
+  .footer-links{text-align:center}
+  @media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}.footer-meta{flex-direction:column;align-items:center;text-align:center}.tarjeta{padding:24px}.tarjeta-kv .tk{grid-template-columns:1fr;gap:4px}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}#liquido{display:none}}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Notario</a>
+      <a href="manual.html">Manual</a>
+      <a href="../certificado-maestro.html">Certificado Maestro</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Agente Kintsugi · Plaza IA 086 · Notario Soberano</div>
+    <h1 class="title">Tonal<br>sella<br>el tiempo.</h1>
+    <p class="lede">
+      <strong>Tonal</strong> — "el día" en náhuatl. Notario criptográfico soberano del ecosistema KRONOS.
+      Emite <strong>sellos notariales</strong> con firma Ed25519 y opcional anclaje a Ethereum Mainnet.
+      <strong>Sin servidores, sin intermediarios, sin costo.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Sellar Documento</h2>
+      <span class="count">Ed25519 · SHA-256 · Ethereum</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="contenido">Contenido a sellar *</label>
+        <textarea id="contenido" rows="4" placeholder="Pega el texto o el hash que quieres sellar temporalmente"></textarea>
+        <div class="hint">Si pegas un hash SHA-256 (64 caracteres hex), se usará directamente. Si pegas texto, se calculará su hash.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="tipo">Tipo de documento *</label>
+        <select id="tipo">
+          <option value="">Selecciona</option>
+          <option value="Contrato">Contrato</option>
+          <option value="Acta">Acta</option>
+          <option value="Certificado">Certificado</option>
+          <option value="Evidencia">Evidencia</option>
+          <option value="Obra">Obra</option>
+          <option value="Declaración">Declaración</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="solicitante">Solicitante *</label>
+        <input type="text" id="solicitante" placeholder="Ej. Marco Antonio Rojas Valdovinos">
+      </div>
+
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="descripcion">Descripción <span style="color:#a89a7a;font-style:italic;letter-spacing:1px;text-transform:none;font-size:11px">(opcional)</span></label>
+        <textarea id="descripcion" rows="2" placeholder="Breve descripción del contenido"></textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">06</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-sellar">⚖️ Emitir sello notarial →</button>
+          <button class="btn ghost" id="btn-listar">📋 Ver sellos emitidos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="panel-sello" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Sello Notarial Emitido</h2>
+        <span class="count" id="sello-id">—</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">SELLO NOTARIAL · TONAL · PLAZA 086</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Notario</span><span class="v" id="p-notario">—</span></div>
+          <div class="tk"><span class="k">Tipo documento</span><span class="v" id="p-tipo">—</span></div>
+          <div class="tk"><span class="k">Solicitante</span><span class="v" id="p-solicitante">—</span></div>
+          <div class="tk"><span class="k">Hash sellado</span><span class="v mono" id="p-hash">—</span></div>
+          <div class="tk"><span class="k">Payload hash</span><span class="v mono" id="p-payload">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="p-firma">—</span></div>
+          <div class="tk"><span class="k">Timestamp ISO</span><span class="v mono" id="p-timestamp">—</span></div>
+          <div class="tk"><span class="k">Timestamp Unix</span><span class="v mono" id="p-unix">—</span></div>
+          <div class="tk"><span class="k">Clave pública notario</span><span class="v mono" id="p-pub">—</span></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar sello</button>
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
+        <button class="btn cyan" id="btn-anclar" style="width:auto;">⛓️ Anclar a Ethereum</button>
+      </div>
+      <a href="certificado-notarial.html" id="btn-abrir-cert" class="btn" style="width:100%;margin-top:12px;text-decoration:none;">
+        🏆 Ver certificado notarial visual →
+      </a>
+    </div>
+
+    <div class="tarjeta-wrap" id="panel-lista" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Sellos Emitidos</h2>
+        <span class="count" id="count-sellos">0</span>
+      </div>
+      <div class="lista" id="lista-sellos"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+      <span class="sig">Tonal · Plaza IA 086 · Notario Soberano</span>
+    </div>
+    <div class="footer-links">
+      <a href="manual.html">Manual</a> ·
+      <a href="../certificado-maestro.html">Certificado Maestro</a> ·
+      <a href="/kronos-protocol/">Inicio</a>
+    </div>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { NotarioKronos } from './notario.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const notario = new NotarioKronos(core);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) await core.init(pass);
+    await notario.init();
+    return true;
+  }
+
+  function renderSello(s) {
+    $('sello-id').textContent = s.id_sello;
+    $('p-notario').textContent = s.notario.nombre + ' · Plaza IA ' + s.notario.plaza;
+    $('p-tipo').textContent = s.tipo_documento;
+    $('p-solicitante').textContent = s.solicitante;
+    $('p-hash').textContent = s.hash_sellado;
+    $('p-payload').textContent = s.payload_hash;
+    $('p-firma').textContent = s.firma_ed25519.slice(0, 80) + '…';
+    $('p-timestamp').textContent = s.timestamp;
+    $('p-unix').textContent = s.timestamp_unix;
+    $('p-pub').textContent = s.notario.clave_publica;
+    $('panel-sello').hidden = false;
+    $('panel-lista').hidden = true;
+  }
+
+  $('btn-sellar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+
+      const contenido = $('contenido').value.trim();
+      const tipo = $('tipo').value;
+      const solicitante = $('solicitante').value.trim();
+      const descripcion = $('descripcion').value.trim();
+
+      if (!contenido || !tipo || !solicitante) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+        return;
+      }
+
+      // Si parece hash, usar directo. Si no, calcular.
+      let hashSellado;
+      if (/^[a-f0-9]{64}$/i.test(contenido)) {
+        hashSellado = contenido.toLowerCase();
+      } else {
+        setFb('success', '<strong>⏳ Calculando hash SHA-256…</strong>');
+        hashSellado = await notario.hashContenido(contenido);
+      }
+
+      setFb('success', '<strong>⏳ Emitiendo sello notarial con Ed25519…</strong>');
+      const sello = await notario.sellar({
+        hash_sellado: hashSellado,
+        tipo_documento: tipo,
+        descripcion,
+        solicitante,
+        incluir_anclaje_ethereum: false
+      });
+
+      renderSello(sello);
+      setFb('success', `<strong>✓ Sello ${sello.id_sello} emitido.</strong>`);
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-listar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const sellos = await notario.listarSellos();
+      $('count-sellos').textContent = sellos.length;
+
+      if (sellos.length === 0) {
+        $('lista-sellos').innerHTML = '<div style="text-align:center;padding:40px;color:#a89a7a;font-style:italic;">Sin sellos emitidos.</div>';
+      } else {
+        $('lista-sellos').innerHTML = sellos.map(s => `
+          <div class="lista-item">
+            <div style="font-size:15px;color:#F5F0E6;margin-bottom:6px;">${s.tipo_documento} · ${s.solicitante}</div>
+            <div style="font-size:10px;letter-spacing:2px;color:#FFEDAB;text-transform:uppercase;margin-bottom:6px;">${s.id_sello}${s.anclaje_ethereum ? ' · ⛓️ ON-CHAIN' : ''}</div>
+            <div style="font-size:10.5px;color:#FFD700;word-break:break-all;font-family:monospace;">${s.hash_sellado}</div>
+            <div style="font-size:10px;color:#a89a7a;margin-top:6px;">${s.timestamp}</div>
+          </div>
+        `).join('');
+      }
+
+      $('panel-lista').hidden = false;
+      $('panel-sello').hidden = true;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    if (!notario.ultimoSello) return;
+    const v = await notario.verificar(notario.ultimoSello);
+    setFb(v.valido ? 'success' : 'error',
+      v.valido
+        ? `<strong>✓ Sello válido.</strong> Firma Ed25519 correcta.${v.anclado ? ' Anclado on-chain.' : ''}`
+        : `<strong>✗ Sello alterado.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma: ${v.firmaOk ? 'ok' : 'no'}`
+    );
+  });
+
+  $('btn-exportar').addEventListener('click', () => {
+    if (!notario.ultimoSello) return;
+    const blob = notario.exportarSello();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sello-${notario.ultimoSello.id_sello}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    setFb('success', '<strong>✓ Sello exportado.</strong>');
+  });
+
+  $('btn-anclar').addEventListener('click', async () => {
+    try {
+      if (!notario.ultimoSello) return;
+      if (typeof window.ethereum === 'undefined') {
+        setFb('error', '<strong>✗ MetaMask no detectado.</strong> Abre esta página en el navegador de MetaMask.');
+        return;
+      }
+      setFb('success', '<strong>⏳ Esperando confirmación en MetaMask…</strong>');
+      const res = await notario.anclarSello(notario.ultimoSello.id_sello, notario.ultimoSello.payload_hash);
+      setFb('success', `<strong>✓ Sello anclado on-chain.</strong> TX: ${res.txHash.slice(0,20)}…`);
+      renderSello(notario.ultimoSello);
+    } catch (e) {
+      setFb('error', '<strong>✗ Error de anclaje:</strong> ' + (e.message || e));
+    }
+  });
+
+  document.getElementById('btn-abrir-cert').addEventListener('click', () => {
+    if (!notario.ultimoSello) return;
+    try {
+      sessionStorage.setItem('sello-notarial-temp', JSON.stringify(notario.ultimoSello));
+    } catch(e) { console.warn('sessionStorage lleno'); }
+  });
+
+  // Fondo líquido
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[0,234,255],[201,164,76]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
