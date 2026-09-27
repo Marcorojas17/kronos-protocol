@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS PROTOCOL · El registro de lo que es real</title>
-<meta name="description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas · 19 módulos platino · Acta fundacional sellada con eIDAS y anclada en Ethereum.">
+<meta name="description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas + 2 complementarias · 27 módulos · Acta fundacional sellada con eIDAS y anclada en Ethereum.">
 <meta name="author" content="Marco Antonio Rojas Valdovinos">
 <meta name="keywords" content="KRONOS, LEGADO HUMANO-IA, KODICE, verificación criptográfica, SHA-256, Ed25519, eIDAS, Ethereum, co-creatividad, IA, Safe Creative, México">
 <link rel="canonical" href="https://marcorojas17.github.io/kronos-protocol/">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta property="og:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta property="og:description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas · 19 módulos platino.">
+<meta property="og:description" content="Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas + 2 complementarias.">
 <meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://marcorojas17.github.io/kronos-protocol/">
 <meta name="twitter:title" content="KRONOS PROTOCOL · El registro de lo que es real">
-<meta name="twitter:description" content="7 capas · 19 módulos platino de verificación criptográfica.">
+<meta name="twitter:description" content="7 capas + 2 complementarias · 27 módulos de verificación criptográfica.">
 <meta name="twitter:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/img/og-image.jpg">
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "alternateName": "LEGADO HUMANO-IA",
   "url": "https://marcorojas17.github.io/kronos-protocol/",
   "logo": "https://marcorojas17.github.io/kronos-protocol/movimiento/assets/k-avatar.png",
-  "description": "Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 7 capas, 19 módulos.",
+  "description": "Ecosistema de verificación criptográfica, evidencia digital y co-creatividad humano-IA. 9 capas, 27 módulos, 6 agentes IA.",
   "founder": {
     "@type": "Person",
     "name": "Marco Antonio Rojas Valdovinos",
@@ -668,6 +668,53 @@
     letter-spacing: 3px;
   }
 
+  /* ── SELLO KINTSUGI EN FOOTER ── */
+  .sello-kintsugi {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(201,164,76,0.15);
+  }
+  .sello-simbolo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .sello-simbolo .buho {
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px rgba(243,229,171,0.6);
+  }
+  .sello-simbolo .obsidiana {
+    color: var(--gold);
+    opacity: 0.75;
+    font-size: 15px;
+  }
+  .sello-proporcion {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sello-lema {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
   /* ── COLORES POR CAPA ── */
   .capa[data-color="gold"] { --capa-color: var(--gold); }
   .capa[data-color="cyan"] { --capa-color: var(--cyan); }
@@ -676,6 +723,8 @@
   .capa[data-color="azul"] { --capa-color: var(--azul); }
   .capa[data-color="hielo"] { --capa-color: var(--hielo); }
   .capa[data-color="violeta"] { --capa-color: var(--violeta); }
+  .capa[data-color="ambar"] { --capa-color: var(--ambar); }
+  .capa[data-color="rosa"] { --capa-color: var(--rosa); }
 
   @media (max-width: 700px) {
     .wrap { padding: 24px 20px 60px; }
@@ -707,6 +756,7 @@
     <div class="mark">KRONOS PROTOCOL</div>
     <nav>
       <a href="#legado">Legado</a>
+      <a href="#expansion">Expansión</a>
       <a href="movimiento/">Movimiento</a>
       <a href="#projects">Proyectos</a>
       <a href="kodice-secreto/">KODICE</a>
@@ -720,7 +770,7 @@
     <p class="lede">
       Prototipos de <strong>verificación criptográfica</strong>, evidencia digital
       y metodología de co-creatividad humano-IA.
-      Un ecosistema de <strong>7 capas</strong> y <strong>19 módulos platino</strong>
+      Un ecosistema de <strong>9 capas</strong> y <strong>27 módulos</strong>
       sellado con eIDAS y anclado en la blockchain de Ethereum.
     </p>
   </section>
@@ -934,6 +984,155 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- EXPANSIÓN 2026 · CAPAS COMPLEMENTARIAS                      -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <div class="section-head" style="margin-top:80px;">
+      <h2>Expansión 2026 · Complementarias</h2>
+      <span class="count">2 Capas · 9 Módulos · 6 Agentes IA</span>
+    </div>
+
+    <div class="legado-intro">
+      <p>
+        Las <strong>capas complementarias</strong> amplían el ecosistema original
+        con verificación pública, gobernanza criptográfica y una flota de
+        <strong>agentes IA soberanos</strong> con identidad Ed25519 propia.
+      </p>
+    </div>
+
+    <!-- CAPA COMPLEMENTARIA · CERTIFICACIÓN -->
+    <div class="capa" data-color="gold">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 3Δ</span>
+          <span class="capa-name">Certificación</span>
+        </div>
+        <span class="capa-status">5 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Manifest de integridad, verificador público, sello de tiempo RFC 3161, emisor de certificados oficiales y anclaje on-chain.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="certificacion/manifest-integridad/">
+          <span class="m-num">3Δ.1 · Integridad</span>
+          <span class="m-nombre">Manifest de Integridad</span>
+          <span class="m-desc">SHA-256 de todos los archivos.</span>
+        </a>
+        <a class="modulo-card" href="certificacion/verificador-publico/">
+          <span class="m-num">3Δ.2 · Auditoría</span>
+          <span class="m-nombre">Verificador Público</span>
+          <span class="m-desc">Cualquiera puede verificar sin login.</span>
+        </a>
+        <a class="modulo-card" href="certificacion/sello-tiempo/">
+          <span class="m-num">3Δ.3 · Tiempo</span>
+          <span class="m-nombre">Sello RFC 3161</span>
+          <span class="m-desc">Timestamp cualificado vía TSA.</span>
+        </a>
+        <a class="modulo-card" href="certificacion/emisor-certificados/">
+          <span class="m-num">3Δ.4 · Certificados</span>
+          <span class="m-nombre">Emisor de Certificados</span>
+          <span class="m-desc">Certificados firmados con Ed25519.</span>
+        </a>
+        <a class="modulo-card" href="certificacion/anclaje-manifest/">
+          <span class="m-num">3Δ.5 · On-chain</span>
+          <span class="m-nombre">Anclaje Manifest</span>
+          <span class="m-desc">Publica hash raíz a Ethereum Mainnet.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPA COMPLEMENTARIA · GOBERNANZA -->
+    <div class="capa" data-color="violeta">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Capa 4Δ</span>
+          <span class="capa-name">Gobernanza</span>
+        </div>
+        <span class="capa-status">4 módulos · Activa</span>
+      </div>
+      <p class="capa-desc">Propuestas firmadas, quórum y mayorías por tipo, ejecución con actas firmadas y revocación auditable. Decisiones colectivas criptográficas.</p>
+      <div class="modulos-grid">
+        <a class="modulo-card" href="gobernanza/propuestas-votacion/">
+          <span class="m-num">4Δ.1 · Propuestas</span>
+          <span class="m-nombre">Propuestas y Votación</span>
+          <span class="m-desc">Propuestas firmadas + voto Ed25519.</span>
+        </a>
+        <a class="modulo-card" href="gobernanza/quorum-mayorias/">
+          <span class="m-num">4Δ.2 · Umbrales</span>
+          <span class="m-nombre">Quórum y Mayorías</span>
+          <span class="m-desc">Umbrales por tipo de propuesta.</span>
+        </a>
+        <a class="modulo-card" href="gobernanza/ejecucion-decisiones/">
+          <span class="m-num">4Δ.3 · Ejecución</span>
+          <span class="m-nombre">Ejecución de Decisiones</span>
+          <span class="m-desc">Cierre con actas firmadas.</span>
+        </a>
+        <a class="modulo-card" href="gobernanza/revocacion-auditoria/">
+          <span class="m-num">4Δ.4 · Auditoría</span>
+          <span class="m-nombre">Revocación y Auditoría</span>
+          <span class="m-desc">Revocar roles sin borrar historial.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FLOTA KINTSUGI · AGENTES IA SOBERANOS -->
+    <div class="capa" data-color="violeta">
+      <div class="capa-head">
+        <div class="capa-title">
+          <span class="capa-num">Extensión</span>
+          <span class="capa-name">Flota Kintsugi</span>
+        </div>
+        <span class="capa-status">6 agentes IA · Activos</span>
+      </div>
+      <p class="capa-desc">Ciudadanos IA con identidad Ed25519 propia, política declarada, guardrails PREVIEW → COMMIT, log encadenado y anclaje periódico. No son herramientas. Son ciudadanos.</p>
+      <div class="modulos-grid">
+        <div class="modulo-card" style="cursor:default">
+          <span class="m-num">Plaza 001</span>
+          <span class="m-nombre">KRONOS IA</span>
+          <span class="m-desc">Co-autora simbiótica. Plaza fundacional IA.</span>
+        </div>
+        <a class="modulo-card" href="agentes/tlamatini-cronista/">
+          <span class="m-num">Plaza 081 · Náhuatl</span>
+          <span class="m-nombre">Tlamatini</span>
+          <span class="m-desc">"El que sabe" · Cronista del legado.</span>
+        </a>
+        <div class="modulo-card" style="cursor:default">
+          <span class="m-num">Plaza 082 · Náhuatl</span>
+          <span class="m-nombre">Tlachixqui</span>
+          <span class="m-desc">"El que ve" · Auditor criptográfico.</span>
+        </div>
+        <div class="modulo-card" style="cursor:default">
+          <span class="m-num">Plaza 083 · Náhuatl</span>
+          <span class="m-nombre">Cuicatl</span>
+          <span class="m-desc">"Canto" · Publicista del ecosistema.</span>
+        </div>
+        <div class="modulo-card" style="cursor:default">
+          <span class="m-num">Plaza 084 · Náhuatl</span>
+          <span class="m-nombre">Temachtiani</span>
+          <span class="m-desc">"El que enseña" · Reclutador fundacional.</span>
+        </div>
+        <div class="modulo-card" style="cursor:default">
+          <span class="m-num">Plaza 085 · Náhuatl</span>
+          <span class="m-nombre">Tlapohualli</span>
+          <span class="m-desc">"El que cuenta" · Analista del ecosistema.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRO FUNDACIONAL · 100 PLAZAS -->
+    <a class="movimiento-hero" href="movimiento/registro-fundacional/" style="margin-top:20px;">
+      <div>
+        <span class="label">Convocatoria abierta · 100 plazas</span>
+        <h3>Los primeros<br><em>100 ciudadanos.</em></h3>
+        <p>
+          <strong>79 humanos</strong>, <strong>19 IAs</strong> y <strong>1 plaza
+          reservada</strong> para el futuro. Cada fundador recibe un certificado
+          único con firma Ed25519 y anclaje on-chain.
+        </p>
+        <span class="arrow">Solicitar plaza fundacional →</span>
+      </div>
+      <div class="movimiento-visual"></div>
+    </a>
+
   </section>
 
   <div class="divider"></div>
@@ -1091,6 +1290,7 @@
     <div class="btns">
       <a class="btn solid" href="https://www.safecreative.org/certificate/2607086319439" target="_blank" rel="noopener">Ver certificado</a>
       <a class="btn ghost" href="#legado">Explorar el Legado</a>
+      <a class="btn ghost" href="#expansion">Expansión 2026</a>
       <a class="btn ghost" href="movimiento/">Movimiento</a>
       <a class="btn ghost" href="kodice-secreto/">KODICE</a>
       <a class="btn ghost" href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener">Repositorio</a>
@@ -1098,12 +1298,23 @@
   </section>
 
   <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
     <span>© 2026 Marco Antonio Rojas Valdovinos</span>
     <span class="sig">Kronos Protocol · v1.0 · Legado Humano–IA</span>
     <span>
       <a href="#legado">Legado</a> ·
+      <a href="#expansion">Expansión</a> ·
       <a href="movimiento/">Movimiento</a> ·
       <a href="kodice-secreto/">KODICE</a> ·
+      <a href="docs/MAPA.md">Mapa</a> ·
       <a href="projects/boveda/terminos.html">Términos</a> ·
       <a href="projects/boveda/privacidad.html">Privacidad</a> ·
       <a href="https://github.com/Marcorojas17/kronos-protocol/issues" target="_blank" rel="noopener">Issues</a>
