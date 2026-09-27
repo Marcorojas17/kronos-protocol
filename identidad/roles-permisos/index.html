@@ -131,6 +131,10 @@
         <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar firma</button>
         <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
       </div>
+
+      <a href="certificado-rol.html" id="btn-abrir-certificado" class="btn" style="width:100%;margin-top:12px;text-decoration:none;background:linear-gradient(180deg,#7DF9FF 0%,#00EAFF 100%);color:#001a20;">
+        🛂 Ver certificado visual de rol →
+      </a>
     </div>
 
     <div class="tarjeta-wrap" id="lista-wrap" hidden>
@@ -186,6 +190,21 @@
     return true;
   }
 
+  function renderTarjeta(asig) {
+    $('p-rol').textContent = asig.rol;
+    $('p-nombre').textContent = asig.identidad_nombre;
+    $('p-tipo').textContent = asig.identidad_tipo.toUpperCase();
+    $('p-hashid').textContent = asig.identidad_hash;
+    $('p-firmante').textContent = asig.firmante;
+    $('p-payload').textContent = asig.payload_hash;
+    $('p-firma').textContent = asig.firma_ed25519.slice(0, 80) + '…';
+    $('p-fecha').textContent = asig.timestamp;
+    $('p-permisos').innerHTML = asig.permisos.map(p =>
+      `<li>${p} · ${permisos.descripcionDe(p)}</li>`
+    ).join('');
+    $('tarjeta-wrap').hidden = false;
+  }
+
   $('btn-asignar').addEventListener('click', async () => {
     try {
       if (!(await asegurarInit())) return;
@@ -204,20 +223,7 @@
 
       setFb('success', '<strong>⏳ Firmando asignación con Ed25519…</strong>');
       const asig = await roles.asignar(datos);
-
-      $('p-rol').textContent = asig.rol;
-      $('p-nombre').textContent = asig.identidad_nombre;
-      $('p-tipo').textContent = asig.identidad_tipo.toUpperCase();
-      $('p-hashid').textContent = asig.identidad_hash;
-      $('p-firmante').textContent = asig.firmante;
-      $('p-payload').textContent = asig.payload_hash;
-      $('p-firma').textContent = asig.firma_ed25519.slice(0, 80) + '…';
-      $('p-fecha').textContent = asig.timestamp;
-      $('p-permisos').innerHTML = asig.permisos.map(p =>
-        `<li>${p} · ${permisos.descripcionDe(p)}</li>`
-      ).join('');
-
-      $('tarjeta-wrap').hidden = false;
+      renderTarjeta(asig);
       setFb('success', '<strong>✓ Rol asignado y firmado.</strong> Guardrails activos para esta identidad.');
     } catch (e) {
       setFb('error', '<strong>✗ Error:</strong> ' + e.message);
@@ -267,6 +273,20 @@
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 2000);
     setFb('success', '<strong>✓ Certificado de rol exportado.</strong>');
+  });
+
+  // Transferir asignación al visor de certificado
+  document.getElementById('btn-abrir-certificado').addEventListener('click', (e) => {
+    if (!roles.asignacionActual) {
+      e.preventDefault();
+      setFb('error', '<strong>✗ Asigna un rol primero.</strong>');
+      return;
+    }
+    try {
+      sessionStorage.setItem('certificado-rol-temp', JSON.stringify(roles.asignacionActual));
+    } catch (err) {
+      console.warn('sessionStorage fallo, el visor usará Dexie');
+    }
   });
 
   // Fondo líquido cyan
