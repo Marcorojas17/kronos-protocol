@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Anclaje del Manifest · KRONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../manifest-integridad/styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:30px;margin:44px 0 18px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:20px;margin:28px 0 14px;color:var(--gold-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:10px}
+  .manual ul,.manual ol{padding-left:24px;margin-bottom:18px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-bright);background:rgba(255,215,0,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(255,215,0,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--gold-l);border-bottom-color:var(--gold-bright)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#0a0800;border:1px solid rgba(255,215,0,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a><a href="../emisor-certificados/">Emisor</a></nav>
+  </header>
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 3.5</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Anclaje Manifest.</h1>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
+  </section>
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Publica el hash raíz del manifest en Ethereum Mainnet. Eso crea una prueba pública y permanente de que tus archivos existían en esa fecha exacta.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ol>
+        <li>Pega el manifest generado en el Módulo 3.1.</li>
+        <li>Toca "Cargar manifest".</li>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Conecta MetaMask en Ethereum Mainnet.</li>
+        <li>Toca "Anclar a Ethereum Mainnet".</li>
+        <li>Confirma la transacción en MetaMask (cuesta centavos de gas).</li>
+        <li>Recibirás el TX Hash. Guárdalo como prueba.</li>
+      </ol>
+      <h3>¿Qué obtengo?</h3>
+      <p>Una transacción en Ethereum Mainnet que contiene el hash raíz del manifest. Cualquiera puede consultarla en Etherscan y verificar que ese hash existía en esa fecha.</p>
+      <h3>Nota honesta</h3>
+      <p>MetaMask no está disponible en todos los navegadores móviles. Si estás en Chrome/Brave, necesitas abrir la página dentro del navegador interno de la app MetaMask.</p>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { AnclajeManifest } from './anclaje.js';
+
+const anclaje = new AnclajeManifest(core);
+const r = anclaje.cargarManifest(jsonString);
+// r.hash_raiz → 0x...
+
+const resultado = await anclaje.anclarConMetaMask();
+// resultado.tx_hash → 0x...
+// resultado.etherscan_url → https://etherscan.io/tx/0x...</pre>
+      <h3>Cuándo usarlo</h3>
+      <ul>
+        <li>Cada vez que hagas un release importante del protocolo.</li>
+        <li>Cuando quieras probar la integridad pública de tu repo.</li>
+        <li>Como parte del cierre anual del proyecto.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de confianza</h3>
+      <ul>
+        <li>El hash raíz del manifest se envía en el campo <code>data</code> de la TX.</li>
+        <li>La TX se firma con tu wallet y se publica en Ethereum Mainnet.</li>
+        <li>Cualquiera puede verificar la TX en Etherscan.</li>
+        <li>El valor es 0 ETH: solo se publica la prueba, no se mueve dinero.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>Anclar cuesta gas real (~0.0001-0.001 ETH según congestión).</li>
+        <li>No hay forma de borrar la TX una vez publicada.</li>
+        <li>El anclaje prueba existencia, no autoría. Para autoría, la firma Ed25519 del manifest ya lo hace.</li>
+        <li>MetaMask no está disponible en Brave/Chrome móvil sin la app.</li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 3.5</span>
+    <span><a href="./">Demo</a></span>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
