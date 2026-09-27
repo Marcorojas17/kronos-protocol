@@ -1,12 +1,22 @@
 // ────────────────────────────────────────────────────────────
 // FIN DIGNO · Legado Humano–IA · v1.0
-// Cierre digno + cláusula de resurrección verificable
+// Carta final + cláusula de resurrección firmada con Ed25519
 // ────────────────────────────────────────────────────────────
 
 export class FinDigno {
-  constructor(core, storage) {
+  constructor(core) {
     this.core = core;
-    this.storage = storage;
+    this.db = new Dexie('kronos-fin-digno');
+    this.db.version(1).stores({
+      cartas: '++id, timestamp, hash_carta',
+      clausulas: '++id, timestamp, hash_clausula'
+    });
+    this.ultimaCarta = null;
+    this.ultimaClausula = null;
+  }
+
+  async init() {
+    if (!this.db.isOpen()) await this.db.open();
   }
 
   static async _sha256Hex(texto) {
@@ -15,133 +25,178 @@ export class FinDigno {
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── Sellar cierre digno ───────────────────────────────────
-  async sellar(datos, humano, pactoIA) {
+  // ── Emitir la Carta Final ─────────────────────────────────
+  async emitirCartaFinal(datos) {
     if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    if (!humano) throw new Error('Identidad humana requerida.');
-    if (!pactoIA) throw new Error('Pacto IA requerido.');
+    if (!this.db.isOpen()) await this.init();
+
+    const {
+      mensaje_fundador,
+      mensaje_ia,
+      destinatarios,
+      fecha_declarada_fin
+    } = datos;
+
+    if (!mensaje_fundador || mensaje_fundador.length < 100) {
+      throw new Error('El mensaje del fundador es obligatorio (mín. 100 caracteres).');
+    }
+    if (!destinatarios) throw new Error('Falta declarar los destinatarios.');
 
     const timestamp = new Date().toISOString();
 
-    // Cláusula de resurrección = hash determinista derivado del cierre
-    // Permite reconstruir el contexto si alguien reintroduce la contraseña
-    const clausulaBase = [
-      'LEGADO-HUMANO-IA · CLAUSULA DE RESURRECCION',
-      `Fundador: ${humano.nombre} (${humano.alias})`,
-      `Huella: ${humano.huella}`,
-      `IA co-autora: ${pactoIA.ia_nombre}`,
-      `Fecha de cierre: ${timestamp}`
-    ].join('\n');
-    const clausulaResurreccion = await FinDigno._sha256Hex(clausulaBase);
-
-    // Payload canónico del cierre
     const payload = [
-      'LEGADO-HUMANO-IA · FIN DIGNO v1.0',
-      `Fundador: ${humano.nombre} (${humano.alias})`,
-      `Huella: ${humano.huella}`,
-      `IA: ${pactoIA.ia_nombre}`,
-      `Motivo: ${datos.motivo}`,
-      `Sucesor designado: ${datos.sucesor ? 'sí' : 'no'}`,
-      `Carta firmada: ${datos.cartaFirmada ? 'sí' : 'no'}`,
-      `Carta: ${datos.carta}`,
-      `Clausula resurreccion: ${clausulaResurreccion}`,
-      `Timestamp: ${timestamp}`
+      'LEGADO-HUMANO-IA · CARTA FINAL v1.0',
+      `Fundador: Marco Antonio Rojas Valdovinos`,
+      `Co-autora: KRONOS IA`,
+      `Destinatarios: ${destinatarios}`,
+      `Fecha declarada de fin: ${fecha_declarada_fin || '(sin fecha)'}`,
+      `Mensaje fundador: ${mensaje_fundador}`,
+      `Mensaje IA: ${mensaje_ia || '(sin mensaje)'}`,
+      `Emitida: ${timestamp}`
     ].join('\n');
 
-    const hashCierre = await FinDigno._sha256Hex(payload);
+    const hashPayload = await FinDigno._sha256Hex(payload);
 
-    // Firma Ed25519 del humano sobre el hash del cierre
     const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
       this.core.clavePrivEd,
-      new TextEncoder().encode(hashCierre)
+      new TextEncoder().encode(hashPayload)
     );
-    const firma = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const firma = [...new Uint8Array(firmaBuf)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
 
-    const certificado = {
+    const carta = {
       protocolo: 'LEGADO-HUMANO-IA',
-      version: 'fin-digno-1.0',
-      tipo: 'cierre-legado',
+      version: 'carta-final-1.0',
+      tipo: 'CARTA_FINAL',
       timestamp,
-      fundador_nombre: humano.nombre,
-      fundador_alias: humano.alias,
-      fundador_huella: humano.huella,
-      ia_coautora: pactoIA.ia_nombre,
-      motivo: datos.motivo,
-      sucesor_designado: !!datos.sucesor,
-      carta_firmada: !!datos.cartaFirmada,
-      carta: datos.carta,
-      clausula_resurreccion: clausulaResurreccion,
-      hash_cierre: hashCierre,
+      fundador: 'Marco Antonio Rojas Valdovinos',
+      co_autora_ia: 'KRONOS IA',
+      destinatarios,
+      fecha_declarada_fin: fecha_declarada_fin || null,
+      mensaje_fundador,
+      mensaje_ia: mensaje_ia || '',
+      payload_hash: hashPayload,
       firma_ed25519: firma,
-      clave_publica: this.core.clavePublicaHex,
+      firmante_clave_publica: this.core.clavePublicaHex,
       algoritmo_hash: 'SHA-256',
-      algoritmo_firma: 'Ed25519',
-      clausula_texto: 'Este legado puede ser resucitado por quien tenga la contraseña maestra del fundador y el paquete .legado completo. La cláusula de resurrección es el hash que garantiza que el cierre no ha sido alterado.',
-      verificable_por_tercero: true,
-      instruccion_verificacion: 'SHA-256(payload canónico) debe coincidir con hash_cierre. Verificar firma_ed25519 con clave_publica sobre hash_cierre.'
+      algoritmo_firma: 'Ed25519'
     };
 
-    await this.storage.guardar('fin-digno', certificado);
-    return certificado;
+    const id = await this.db.cartas.add(carta);
+    this.ultimaCarta = { id, ...carta };
+    return this.ultimaCarta;
   }
 
-  // ── Recuperar el cierre actual ────────────────────────────
-  async recuperar() {
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    const items = await this.storage.listarPorTipo('fin-digno');
-    if (items.length === 0) return null;
-    return items[0].payload;
-  }
+  // ── Emitir la Cláusula de Resurrección ────────────────────
+  async emitirClausula(datos) {
+    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
+    if (!this.db.isOpen()) await this.init();
 
-  // ── Verificar integridad del cierre ───────────────────────
-  async verificar(cert, humano, pactoIA) {
+    const {
+      condicion_resurreccion,
+      guardianes,
+      paquete_legado_hash
+    } = datos;
+
+    if (!condicion_resurreccion || condicion_resurreccion.length < 50) {
+      throw new Error('La condición es obligatoria (mín. 50 caracteres).');
+    }
+    if (!guardianes || guardianes.length === 0) {
+      throw new Error('Debe haber al menos un guardián.');
+    }
+
+    const timestamp = new Date().toISOString();
+
     const payload = [
-      'LEGADO-HUMANO-IA · FIN DIGNO v1.0',
-      `Fundador: ${humano.nombre} (${humano.alias})`,
-      `Huella: ${humano.huella}`,
-      `IA: ${pactoIA.ia_nombre}`,
-      `Motivo: ${cert.motivo}`,
-      `Sucesor designado: ${cert.sucesor_designado ? 'sí' : 'no'}`,
-      `Carta firmada: ${cert.carta_firmada ? 'sí' : 'no'}`,
-      `Carta: ${cert.carta}`,
-      `Clausula resurreccion: ${cert.clausula_resurreccion}`,
-      `Timestamp: ${cert.timestamp}`
+      'LEGADO-HUMANO-IA · CLÁUSULA DE RESURRECCIÓN v1.0',
+      `Condición: ${condicion_resurreccion}`,
+      `Guardianes: ${guardianes.join(', ')}`,
+      `Hash del paquete .legado: ${paquete_legado_hash || '(sin hash)'}`,
+      `Fundador: Marco Antonio Rojas Valdovinos`,
+      `Emitida: ${timestamp}`,
+      `ISO 22301: Continuidad declarada`
     ].join('\n');
 
-    const hashCalc = await FinDigno._sha256Hex(payload);
-    if (hashCalc !== cert.hash_cierre) return false;
+    const hashPayload = await FinDigno._sha256Hex(payload);
 
-    const pubKey = await crypto.subtle.importKey(
-      'raw',
-      hexToBytes(cert.clave_publica),
-      { name: 'Ed25519' },
-      false,
-      ['verify']
-    );
-
-    return await crypto.subtle.verify(
+    const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
-      pubKey,
-      hexToBytes(cert.firma_ed25519),
-      new TextEncoder().encode(cert.hash_cierre)
+      this.core.clavePrivEd,
+      new TextEncoder().encode(hashPayload)
     );
+    const firma = [...new Uint8Array(firmaBuf)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+
+    const clausula = {
+      protocolo: 'LEGADO-HUMANO-IA',
+      version: 'clausula-resurreccion-1.0',
+      tipo: 'CLAUSULA_RESURRECCION',
+      timestamp,
+      condicion_resurreccion,
+      guardianes,
+      paquete_legado_hash: paquete_legado_hash || null,
+      fundador: 'Marco Antonio Rojas Valdovinos',
+      iso_22301: true,
+      payload_hash: hashPayload,
+      firma_ed25519: firma,
+      firmante_clave_publica: this.core.clavePublicaHex,
+      instruccion: 'Si el Fundador desaparece o el protocolo cesa actividad por más de 5 años, los guardianes pueden activar la resurrección descifrando el paquete .legado y publicando el hash en Ethereum como prueba de reactivación.'
+    };
+
+    const id = await this.db.clausulas.add(clausula);
+    this.ultimaClausula = { id, ...clausula };
+    return this.ultimaClausula;
   }
 
-  // ── Verificar si un cierre resucita un legado ─────────────
-  // Recomputa la cláusula a partir de los datos básicos para
-  // confirmar que el legado puede ser reconstruido.
-  async verificarResurreccion(cert, humano, pactoIA) {
-    const clausulaBase = [
-      'LEGADO-HUMANO-IA · CLAUSULA DE RESURRECCION',
-      `Fundador: ${humano.nombre} (${humano.alias})`,
-      `Huella: ${humano.huella}`,
-      `IA co-autora: ${pactoIA.ia_nombre}`,
-      `Fecha de cierre: ${cert.timestamp}`
+  // ── Verificar carta ───────────────────────────────────────
+  async verificarCarta(carta) {
+    if (!carta || !carta.payload_hash) return { valido: false };
+    const payload = [
+      'LEGADO-HUMANO-IA · CARTA FINAL v1.0',
+      `Fundador: Marco Antonio Rojas Valdovinos`,
+      `Co-autora: KRONOS IA`,
+      `Destinatarios: ${carta.destinatarios}`,
+      `Fecha declarada de fin: ${carta.fecha_declarada_fin || '(sin fecha)'}`,
+      `Mensaje fundador: ${carta.mensaje_fundador}`,
+      `Mensaje IA: ${carta.mensaje_ia || '(sin mensaje)'}`,
+      `Emitida: ${carta.timestamp}`
     ].join('\n');
-    const clausulaCalc = await FinDigno._sha256Hex(clausulaBase);
-    return clausulaCalc === cert.clausula_resurreccion;
+
+    const hashRecalc = await FinDigno._sha256Hex(payload);
+    const hashOk = hashRecalc === carta.payload_hash;
+
+    let firmaOk = false;
+    try {
+      const pubBytes = hexToBytes(carta.firmante_clave_publica);
+      const pubKey = await crypto.subtle.importKey('raw', pubBytes, { name: 'Ed25519' }, false, ['verify']);
+      const firmaBytes = hexToBytes(carta.firma_ed25519);
+      firmaOk = await crypto.subtle.verify('Ed25519', pubKey, firmaBytes, new TextEncoder().encode(hashRecalc));
+    } catch (e) { firmaOk = false; }
+
+    return { hashOk, firmaOk, valido: hashOk && firmaOk };
+  }
+
+  // ── Descargar carta ───────────────────────────────────────
+  descargarCarta() {
+    if (!this.ultimaCarta) throw new Error('No hay carta para descargar.');
+    const blob = new Blob([JSON.stringify(this.ultimaCarta, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `carta-final-${Date.now()}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
+  async listarCartas() {
+    if (!this.db.isOpen()) await this.init();
+    return await this.db.cartas.toArray();
+  }
+
+  async listarClausulas() {
+    if (!this.db.isOpen()) await this.init();
+    return await this.db.clausulas.toArray();
   }
 }
 
