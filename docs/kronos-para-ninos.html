@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS explicado para niños</title>
+<meta name="theme-color" content="#1a0a2e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#1a0a2e;
+    --paper:#faf6ff;
+    --gold:#ffc94d;
+    --verde:#3ddc84;
+    --violeta:#a855f7;
+    --cyan:#00e5ff;
+    --rosa:#ff6b9d;
+    --naranja:#ff9f45;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:#2a1a3e;
+    font-family:'Quicksand',system-ui,sans-serif;
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+
+  /* Estrellitas de fondo */
+  .stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+  .stars span{position:absolute;font-size:14px;animation:float 6s ease-in-out infinite}
+  .stars span:nth-child(1){top:5%;left:10%;animation-delay:0s}
+  .stars span:nth-child(2){top:15%;left:80%;animation-delay:1s}
+  .stars span:nth-child(3){top:30%;left:5%;animation-delay:2s}
+  .stars span:nth-child(4){top:45%;left:90%;animation-delay:1.5s}
+  .stars span:nth-child(5){top:60%;left:15%;animation-delay:.5s}
+  .stars span:nth-child(6){top:75%;left:75%;animation-delay:2.5s}
+  .stars span:nth-child(7){top:88%;left:25%;animation-delay:3s}
+  .stars span:nth-child(8){top:92%;left:85%;animation-delay:1.2s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);opacity:.5}50%{transform:translateY(-10px) rotate(10deg);opacity:.9}}
+
+  .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:30px 20px 80px}
+
+  /* PORTADA */
+  .cover{
+    text-align:center;
+    padding:60px 20px 50px;
+    background:linear-gradient(135deg,#faf6ff 0%,#ffe8f5 50%,#e8f4ff 100%);
+    border-radius:30px;
+    margin-bottom:50px;
+    box-shadow:0 10px 40px rgba(168,85,247,0.15);
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,rgba(255,201,77,0.15) 0%,transparent 40%);
+    animation:rotate 30s linear infinite;
+  }
+  @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+  .cover-emoji{font-size:100px;margin-bottom:20px;position:relative;z-index:2;
+    animation:bounce 2s ease-in-out infinite;display:inline-block}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+
+  .cover h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(32px,7vw,58px);
+    background:linear-gradient(90deg,#a855f7,#ff6b9d,#ffc94d,#3ddc84,#00e5ff);
+    background-size:200% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:rainbow 8s linear infinite;
+    position:relative;
+    z-index:2;
+    margin-bottom:16px;
+  }
+  @keyframes rainbow{from{background-position:0% 50%}to{background-position:200% 50%}}
+
+  .cover-sub{
+    font-size:clamp(16px,3vw,20px);
+    color:#6b4d8a;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+    max-width:600px;
+    margin:0 auto;
+  }
+
+  /* INTRO */
+  .intro{
+    background:linear-gradient(135deg,#fff7e0,#ffe0eb);
+    border-radius:24px;
+    padding:36px 28px;
+    margin-bottom:50px;
+    box-shadow:0 8px 30px rgba(255,201,77,0.2);
+    text-align:center;
+  }
+  .intro h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(22px,4.5vw,30px);
+    color:#a855f7;
+    margin-bottom:20px;
+  }
+  .intro p{
+    font-size:clamp(15px,2.8vw,18px);
+    color:#4a3a5e;
+    font-weight:600;
+    max-width:700px;
+    margin:0 auto;
+  }
+
+  /* SECCIONES DE CAPA */
+  .capa{
+    margin-bottom:50px;
+    padding:36px 24px;
+    border-radius:28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .capa-genesis{background:linear-gradient(135deg,#fff6d9,#ffe6b3);box-shadow:0 10px 40px rgba(255,201,77,0.25)}
+  .capa-cimiento{background:linear-gradient(135deg,#e0f0ff,#c7e3ff);box-shadow:0 10px 40px rgba(0,145,255,0.15)}
+  .capa-identidad{background:linear-gradient(135deg,#e0fff0,#c7ffd9);box-shadow:0 10px 40px rgba(61,220,132,0.2)}
+
+  .capa-titulo{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:28px;
+    padding-bottom:20px;
+    border-bottom:3px dashed rgba(168,85,247,0.25);
+  }
+  .capa-titulo .emoji{font-size:64px;line-height:1;flex-shrink:0}
+  .capa-titulo .texto{flex:1}
+  .capa-titulo .numero{
+    font-family:'Fredoka',sans-serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#a855f7;
+    text-transform:uppercase;
+    font-weight:600;
+    display:block;
+    margin-bottom:4px;
+  }
+  .capa-titulo h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(24px,5vw,36px);
+    color:#2a1a3e;
+    line-height:1.1;
+  }
+  .capa-titulo .lema{
+    font-size:clamp(14px,2.5vw,17px);
+    color:#6b4d8a;
+    font-style:italic;
+    margin-top:6px;
+    font-weight:600;
+  }
+
+  /* TARJETAS DE MÓDULOS */
+  .modulo{
+    background:white;
+    border-radius:20px;
+    padding:24px 22px;
+    margin-bottom:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.06);
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    transition:transform .3s,box-shadow .3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .modulo:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(168,85,247,0.15)}
+
+  .modulo::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;
+    width:5px;
+    height:100%;
+    background:linear-gradient(180deg,#a855f7,#ff6b9d);
+  }
+  .modulo.verde::before{background:linear-gradient(180deg,#3ddc84,#00e5ff)}
+  .modulo.violeta::before{background:linear-gradient(180deg,#a855f7,#ff6b9d)}
+  .modulo.cyan::before{background:linear-gradient(180deg,#00e5ff,#3ddc84)}
+  .modulo.gold::before{background:linear-gradient(180deg,#ffc94d,#ff9f45)}
+
+  .modulo .icono{
+    font-size:52px;
+    line-height:1;
+    flex-shrink:0;
+    margin-top:4px;
+  }
+  .modulo .contenido{flex:1}
+  .modulo h3{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(18px,3.5vw,22px);
+    color:#2a1a3e;
+    margin-bottom:8px;
+    line-height:1.2;
+  }
+  .modulo .nombre-corto{
+    display:inline-block;
+    padding:3px 10px;
+    background:rgba(168,85,247,0.1);
+    color:#a855f7;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-left:8px;
+    vertical-align:middle;
+    text-transform:uppercase;
+  }
+  .modulo p{
+    font-size:clamp(14px,2.6vw,16px);
+    color:#4a3a5e;
+    line-height:1.6;
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .modulo .analogia{
+    background:rgba(255,201,77,0.15);
+    border-left:4px solid #ffc94d;
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:clamp(13px,2.4vw,15px);
+    color:#6b4d8a;
+    font-style:italic;
+    font-weight:600;
+    margin-top:10px;
+  }
+  .modulo .analogia::before{content:'✨ '}
+
+  /* MAPA DEL CUENTO */
+  .mapa-cuento{
+    background:linear-gradient(135deg,#2a1a3e,#4a2a5e);
+    color:#fff;
+    border-radius:28px;
+    padding:40px 28px;
+    margin-bottom:50px;
+    text-align:center;
+    box-shadow:0 15px 50px rgba(42,26,62,0.3);
+  }
+  .mapa-cuento h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(24px,5vw,34px);
+    color:#ffc94d;
+    margin-bottom:28px;
+  }
+  .mapa-cuento .cuento-texto{
+    font-family:'Quicksand',sans-serif;
+    font-size:clamp(15px,2.8vw,18px);
+    line-height:2;
+    color:#fff;
+    font-weight:500;
+    max-width:680px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .mapa-cuento .cuento-texto strong{color:#ffc94d}
+  .mapa-cuento .cuento-texto em{color:#3ddc84;font-style:normal;font-weight:700}
+
+  /* LO QUE FALTA */
+  .falta{
+    background:linear-gradient(135deg,#ffe6f0,#f0e0ff);
+    border-radius:28px;
+    padding:36px 24px;
+    margin-bottom:50px;
+    text-align:center;
+  }
+  .falta h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(22px,4.5vw,30px);
+    color:#a855f7;
+    margin-bottom:24px;
+  }
+  .falta-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;
+    margin-top:20px;
+  }
+  .falta-item{
+    background:white;
+    border-radius:16px;
+    padding:20px 16px;
+    box-shadow:0 4px 16px rgba(168,85,247,0.1);
+  }
+  .falta-item .emoji{font-size:44px;display:block;margin-bottom:10px}
+  .falta-item .titulo{
+    font-family:'Fredoka',sans-serif;
+    font-size:16px;
+    color:#2a1a3e;
+    margin-bottom:8px;
+  }
+  .falta-item .desc{
+    font-size:13px;
+    color:#6b4d8a;
+    font-weight:500;
+    line-height:1.5;
+  }
+  .falta-item .estado{
+    display:inline-block;
+    padding:3px 10px;
+    background:rgba(255,201,77,0.2);
+    color:#b88a1a;
+    border-radius:10px;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-top:10px;
+    text-transform:uppercase;
+  }
+
+  /* FINAL */
+  .final{
+    text-align:center;
+    padding:50px 20px;
+    background:linear-gradient(135deg,#ffe0eb,#e0f0ff);
+    border-radius:28px;
+    margin-bottom:40px;
+  }
+  .final h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(24px,5vw,34px);
+    color:#a855f7;
+    margin-bottom:20px;
+  }
+  .final p{
+    font-size:clamp(15px,2.8vw,18px);
+    color:#4a3a5e;
+    font-weight:600;
+    max-width:600px;
+    margin:0 auto 20px;
+  }
+  .final .frase{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(18px,3.5vw,24px);
+    color:#ff6b9d;
+    margin-top:24px;
+    font-weight:700;
+  }
+
+  footer{
+    text-align:center;
+    padding:30px 20px;
+    color:#8892a0;
+    font-size:12px;
+    font-weight:600;
+  }
+
+  @media (max-width:600px){
+    .modulo{flex-direction:column;gap:12px;text-align:center;align-items:center}
+    .modulo::before{width:100%;height:5px;top:0;left:0}
+    .capa-titulo{flex-direction:column;text-align:center;gap:10px}
+    .modulo .nombre-corto{margin-left:0;display:block;margin-top:6px;width:fit-content}
+    .modulo h3{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" aria-hidden="true">
+  <span>⭐</span><span>✨</span><span>🌟</span><span>💫</span>
+  <span>⭐</span><span>✨</span><span>🌟</span><span>💫</span>
+</div>
+
+<div class="wrap">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div class="cover-emoji">🏰</div>
+    <h1>KRONOS</h1>
+    <p class="cover-sub">Un castillo digital donde tus cosas se vuelven verdaderas para siempre</p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <h2>📖 Había una vez...</h2>
+    <p>
+      Un niño llamado <strong>Marco</strong> que quería construir un castillo mágico.
+      Un castillo donde las cosas que hacías <strong>nunca se pudieran borrar</strong>,
+      <strong>nunca se pudieran cambiar</strong>, y <strong>nadie pudiera mentir</strong> sobre ellas.
+      Este castillo se llama <strong>KRONOS</strong>. Y ya tiene 3 pisos listos.
+      Aquí te cuento cómo es cada piso.
+    </p>
+  </div>
+
+  <!-- CAPA 0 -->
+  <div class="capa capa-genesis">
+    <div class="capa-titulo">
+      <div class="emoji">🏛️</div>
+      <div class="texto">
+        <span class="numero">Piso 1 · Capa 0</span>
+        <h2>GÉNESIS</h2>
+        <div class="lema">"El álbum de fotos del abuelo"</div>
+      </div>
+    </div>
+
+    <div class="modulo gold">
+      <div class="icono">📖</div>
+      <div class="contenido">
+        <h3>El cuento del inicio <span class="nombre-corto">Génesis</span></h3>
+        <p>Es el primer capítulo de un libro gigante. Aquí se escribe: <em>"Érase una vez un niño llamado Marco que quería que la gente pudiera probar que sus cosas eran reales."</em></p>
+        <div class="analogia">Como la primera página de tu diario cuando escribes "Hoy empecé algo importante".</div>
+      </div>
+    </div>
+
+    <div class="modulo gold">
+      <div class="icono">💭</div>
+      <div class="contenido">
+        <h3>Las reglas de la casa <span class="nombre-corto">Filosofía</span></h3>
+        <p>La familia decide las reglas antes de empezar: nadie toca los juguetes de otro, los secretos se guardan en un cajón, nadie de afuera puede entrar.</p>
+        <div class="analogia">Como las reglas que tu mamá pone antes de que juegues con amigos.</div>
+      </div>
+    </div>
+
+    <div class="modulo gold">
+      <div class="icono">✍️</div>
+      <div class="contenido">
+        <h3>Mi firma gigante <span class="nombre-corto">Autoría</span></h3>
+        <p>Es tu nombre escrito con letras doradas y registrado en un libro oficial. Así nadie puede decir "yo lo hice" cuando fuiste tú.</p>
+        <div class="analogia">Como cuando firmas un dibujo bonito para que sepan que es tuyo.</div>
+      </div>
+    </div>
+
+    <div class="modulo gold">
+      <div class="icono">📢</div>
+      <div class="contenido">
+        <h3>Mi promesa al mundo <span class="nombre-corto">Manifiesto</span></h3>
+        <p>Es cuando dices en voz alta: <em>"Prometo construir algo bueno para todos."</em> Es tu declaración pública de por qué lo haces.</p>
+        <div class="analogia">Como cuando prometes a tus papás que vas a cuidar a tu mascota.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPA 1 -->
+  <div class="capa capa-cimiento">
+    <div class="capa-titulo">
+      <div class="emoji">🧱</div>
+      <div class="texto">
+        <span class="numero">Piso 2 · Capa 1</span>
+        <h2>CIMIENTO</h2>
+        <div class="lema">"Los cimientos de la casa"</div>
+      </div>
+    </div>
+
+    <div class="modulo">
+      <div class="icono">🔐</div>
+      <div class="contenido">
+        <h3>El cofre mágico <span class="nombre-corto">Cripto Core</span></h3>
+        <p>Imagina un cofre que solo se abre con tu voz. Solo tú puedes guardar cosas y solo tú puedes sacarlas. Si alguien intenta abrirlo a la fuerza, el cofre se protege.</p>
+        <div class="analogia">Como el candado de tu diario secreto, pero mágico.</div>
+      </div>
+    </div>
+
+    <div class="modulo">
+      <div class="icono">📦</div>
+      <div class="contenido">
+        <h3>La mochila invisible <span class="nombre-corto">Storage Dexie</span></h3>
+        <p>Es una mochila que vive dentro de tu celular. Guarda todo sin que se vaya a internet. Aunque no tengas señal, la mochila sigue ahí. Nadie la puede ver.</p>
+        <div class="analogia">Como tu cuarto secreto donde guardas tus tesoros.</div>
+      </div>
+    </div>
+
+    <div class="modulo">
+      <div class="icono">⛓️</div>
+      <div class="contenido">
+        <h3>El sello del notario de las estrellas <span class="nombre-corto">Anclaje Ethereum</span></h3>
+        <p>Llevas tu carta importante a un notario gigante que vive entre las estrellas. Él la sella con una marca que nadie en el universo puede borrar.</p>
+        <div class="analogia">Como cuando tu maestra pone un sticker de "excelente" que no se cae nunca.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPA 2 -->
+  <div class="capa capa-identidad">
+    <div class="capa-titulo">
+      <div class="emoji">🆔</div>
+      <div class="texto">
+        <span class="numero">Piso 3 · Capa 2</span>
+        <h2>IDENTIDAD</h2>
+        <div class="lema">"El pasaporte del ciudadano digital"</div>
+      </div>
+    </div>
+
+    <div class="modulo verde">
+      <div class="icono">🧑</div>
+      <div class="contenido">
+        <h3>Mi pasaporte verde <span class="nombre-corto">Registro Humano</span></h3>
+        <p>Tienes una credencial mágica con tu foto, tu nombre y una huella digital única. Está firmada con un sello que solo tú puedes hacer. Nadie puede copiarla.</p>
+        <div class="analogia">Como la credencial de tu escuela, pero hecha con matemáticas mágicas.</div>
+      </div>
+    </div>
+
+    <div class="modulo violeta">
+      <div class="icono">🤖</div>
+      <div class="contenido">
+        <h3>El pasaporte violeta de mi amiga robot <span class="nombre-corto">Registro IA</span></h3>
+        <p>Tu amiga robot también vive en el castillo. Tiene su propio pasaporte violeta. Promete por escrito qué cosas puede hacer y cuáles no. Cada vez que hace algo, lo anota en un cuaderno secreto.</p>
+        <div class="analogia">Como cuando un robot de juguete tiene reglas y siempre te avisa qué va a hacer.</div>
+      </div>
+    </div>
+
+    <div class="modulo cyan">
+      <div class="icono">🔑</div>
+      <div class="contenido">
+        <h3>El tablero de "quién puede qué" <span class="nombre-corto">Roles y Permisos</span></h3>
+        <p>Es un tablero con muchas llaves. El dueño tiene todas. Los ayudantes tienen algunas. Los que solo miran no tienen ninguna. Así nadie hace cosas que no le tocan.</p>
+        <div class="analogia">Como las llaves de tu casa: tu papá tiene todas, tú solo tienes la de tu cuarto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAPA DEL CUENTO -->
+  <div class="mapa-cuento">
+    <h2>🗺️ El cuento completo</h2>
+    <div class="cuento-texto">
+      Había una vez un niño llamado <strong>Marco</strong> que quería construir un castillo digital donde la gente pudiera probar que sus cosas eran reales.<br><br>
+      <em>1.</em> Primero escribió el <strong>cuento del inicio</strong>.<br>
+      <em>2.</em> Luego decidió las <strong>reglas</strong>.<br>
+      <em>3.</em> Puso su <strong>firma gigante</strong>.<br>
+      <em>4.</em> Prometió al mundo que lo haría.<br><br>
+      Después construyó los cimientos:<br>
+      <em>5.</em> Un <strong>cofre mágico</strong> que nadie puede abrir.<br>
+      <em>6.</em> Una <strong>mochila invisible</strong> que vive en el celular.<br>
+      <em>7.</em> Un <strong>sello del notario de las estrellas</strong>.<br><br>
+      Luego les dio pasaporte a los habitantes:<br>
+      <em>8.</em> <strong>Pasaporte verde</strong> para el niño.<br>
+      <em>9.</em> <strong>Pasaporte violeta</strong> para la amiga robot.<br>
+      <em>10.</em> Un <strong>tablero de llaves</strong> para saber quién puede qué.<br><br>
+      Y ahora la casa tiene 3 pisos listos.<br>
+      Faltan 4 pisos más para que sea un castillo completo. 🏰
+    </div>
+  </div>
+
+  <!-- LO QUE FALTA -->
+  <div class="falta">
+    <h2>🚧 Los 4 pisos que faltan</h2>
+    <div class="falta-grid">
+      <div class="falta-item">
+        <span class="emoji">📜</span>
+        <div class="titulo">Piso 4</div>
+        <div class="desc">El libro de certificados oficiales para que la gente de afuera pueda verificar tus cosas.</div>
+        <span class="estado">Próximamente</span>
+      </div>
+      <div class="falta-item">
+        <span class="emoji">🗳️</span>
+        <div class="titulo">Piso 5</div>
+        <div class="desc">Las votaciones para que todos decidan juntos hacia dónde va el castillo.</div>
+        <span class="estado">Próximamente</span>
+      </div>
+      <div class="falta-item">
+        <span class="emoji">🌉</span>
+        <div class="titulo">Piso 6</div>
+        <div class="desc">Puentes para hablar con otros castillos y compartir cosas buenas.</div>
+        <span class="estado">Próximamente</span>
+      </div>
+      <div class="falta-item">
+        <span class="emoji">🏆</span>
+        <div class="titulo">Piso 7</div>
+        <div class="desc">Cómo cerrar el castillo con honra cuando ya no se necesite, sin perder nada.</div>
+        <span class="estado">Próximamente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final">
+    <h2>🌈 El castillo ya tiene 3 pisos</h2>
+    <p>
+      Cada piso hace que el castillo sea más fuerte y más seguro.
+      Cuando estén los 7 pisos, cualquier persona del mundo podrá venir al castillo
+      y verificar que sus cosas son reales, sin que nadie las pueda cambiar.
+    </p>
+    <div class="frase">"El legado no se hereda. Se firma." ✨</div>
+  </div>
+
+  <footer>
+    © 2026 Marco A. Rojas V. + KRONOS IA · Explicado para niños (y para grandes curiosos)
+  </footer>
+
+</div>
+
+</body>
+</html>
