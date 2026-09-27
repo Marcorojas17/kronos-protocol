@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-27T12:08:34Z
+# Generado: 2026-09-27T12:09:58Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -35,6 +35,7 @@ c5eae1f541cefc9894c5d0848f15b0f67d068ff2723bd6af62b272629055c52c  ./assets/js/re
 906ed4eb5c1bd1cb8d7780922e9fa8703ba03db2808f80eb909cb57cc675a291  ./certificacion/manifest-integridad/manifest.js
 f04871226f9209796da1e34ab9761d0efd372be676e2d045916af4ccddc351c1  ./certificacion/manifest-integridad/styles.css
 d4f8ad41e850e8e52ca4aeb814f4f27fc7d62683f0ccaf6bf1f958cacfae480a  ./certificacion/sello-tiempo/index.html
+8ba41be5a776935e27af5cad81e18b4a224400f4fbffa23d5c726363cb45fc12  ./certificacion/sello-tiempo/manual.html
 231684a362818386a374924020785ff61e95dafe7c19c3809553822924b36196  ./certificacion/sello-tiempo/sello-tiempo.js
 72054210502514954caf1ca8c300906e37e6bfa128773b072386a1bd2c36b338  ./certificacion/verificador-publico/index.html
 7a98597b64daa5e7b47ca55fadca6e1d0eb3bbff581500df7f3105935afd7204  ./certificacion/verificador-publico/manual.html
