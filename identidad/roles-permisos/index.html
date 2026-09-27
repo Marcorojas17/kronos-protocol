@@ -178,18 +178,6 @@
     feedback.innerHTML = msg;
   }
 
-  async function asegurarInit() {
-    const pass = $('password').value;
-    if (pass.length < 8) {
-      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
-      return false;
-    }
-    if (!core.inicializado) await core.init(pass);
-    await storage.init();
-    await roles.init();
-    return true;
-  }
-
   function renderTarjeta(asig) {
     $('p-rol').textContent = asig.rol;
     $('p-nombre').textContent = asig.identidad_nombre;
@@ -204,6 +192,34 @@
     ).join('');
     $('tarjeta-wrap').hidden = false;
   }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) await core.init(pass);
+    await storage.init();
+    await roles.init();
+    return true;
+  }
+
+  // ── Auto-recuperar la última asignación al abrir ──────────
+  (async function recuperarAlInicio() {
+    try {
+      await roles.init();
+      const items = await roles.listar();
+      if (items.length > 0) {
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        const ultima = items[0];
+        roles.asignacionActual = ultima;
+        renderTarjeta(ultima);
+      }
+    } catch (e) {
+      console.warn('Sin asignaciones previas:', e);
+    }
+  })();
 
   $('btn-asignar').addEventListener('click', async () => {
     try {
@@ -253,36 +269,70 @@
     }
   });
 
+  // Verificar firma (funciona aunque no haya asignación en memoria)
   $('btn-verificar').addEventListener('click', async () => {
-    if (!roles.asignacionActual) return;
-    const v = await roles.verificar(roles.asignacionActual);
-    setFb(v.valido ? 'success' : 'error',
-      v.valido
-        ? '<strong>✓ Firma válida.</strong> Hash y firma coinciden.'
-        : '<strong>✗ Verificación fallida.</strong> El certificado fue alterado.'
-    );
-  });
-
-  $('btn-exportar').addEventListener('click', () => {
-    if (!roles.asignacionActual) return;
-    const blob = roles.exportar();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `rol-${Date.now()}.json`;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
-    setFb('success', '<strong>✓ Certificado de rol exportado.</strong>');
-  });
-
-  // Transferir asignación al visor de certificado
-  document.getElementById('btn-abrir-certificado').addEventListener('click', (e) => {
-    if (!roles.asignacionActual) {
-      e.preventDefault();
-      setFb('error', '<strong>✗ Asigna un rol primero.</strong>');
-      return;
-    }
     try {
+      if (!roles.asignacionActual) {
+        await roles.init();
+        const items = await roles.listar();
+        if (items.length === 0) {
+          setFb('error', '<strong>✗ No hay asignaciones para verificar.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        roles.asignacionActual = items[0];
+      }
+      const v = await roles.verificar(roles.asignacionActual);
+      setFb(v.valido ? 'success' : 'error',
+        v.valido
+          ? '<strong>✓ Firma válida.</strong> Hash y firma coinciden.'
+          : '<strong>✗ Verificación fallida.</strong> El certificado fue alterado.'
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Exportar JSON (funciona aunque no haya asignación en memoria)
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      if (!roles.asignacionActual) {
+        await roles.init();
+        const items = await roles.listar();
+        if (items.length === 0) {
+          setFb('error', '<strong>✗ No hay asignaciones para exportar.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        roles.asignacionActual = items[0];
+      }
+      const blob = roles.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rol-${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Certificado de rol exportado.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  // Transferir asignación al visor de certificado visual
+  document.getElementById('btn-abrir-certificado').addEventListener('click', async (e) => {
+    try {
+      if (!roles.asignacionActual) {
+        await roles.init();
+        const items = await roles.listar();
+        if (items.length === 0) {
+          e.preventDefault();
+          setFb('error', '<strong>✗ Asigna un rol primero.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        roles.asignacionActual = items[0];
+      }
       sessionStorage.setItem('certificado-rol-temp', JSON.stringify(roles.asignacionActual));
     } catch (err) {
       console.warn('sessionStorage fallo, el visor usará Dexie');
