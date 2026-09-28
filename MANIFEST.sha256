@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-28T00:50:36Z
+# Generado: 2026-09-28T01:29:38Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -27,6 +27,7 @@ f433005d151593cf361176e0eb0448c5e6d9f682da1dc2c47bf6137ac364acc2  ./agentes/tema
 d7542cdc3b5eeb6904ce5b23f02dba1682f51912a83c336c3f41607b7c0b84aa  ./agentes/temachtiani-reclutador/politica.md
 bfa58c5b828ba95d8aff2424d5a27e9e3895d51891933da970ebd2db92bc2711  ./agentes/tlachixqui-auditor/index.html
 c08aad879f97417bd4e5621ad86e46bb86d775a8fa833e695be5a1d8a76def5b  ./agentes/tlachixqui-auditor/politica.md
+307ccd656bcb2845ab03eebce31da1dc3098c2ff33eae51d617b20ea328d6d22  ./agentes/tlamatini-cronista/index.html
 612bedbb105e89ed5fce917db8f83df886f3fde5b0cf8450cbf6528387be147d  ./agentes/tlamatini-cronista/politica.md
 bd274749fa264a41553b92e66b00bd21297dd2f1de31e20c0a7bf4827bffa0f0  ./agentes/tlamatini-cronista/prompt.md
 9c193811a0b4ac39e23ca485c4af153ad7d387dd0edb16efe1f2c3487c071d18  ./agentes/tlapohualli-analista/index.html
