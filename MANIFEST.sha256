@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-28T01:29:38Z
+# Generado: 2026-09-28T01:31:11Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -32,6 +32,7 @@ c08aad879f97417bd4e5621ad86e46bb86d775a8fa833e695be5a1d8a76def5b  ./agentes/tlac
 bd274749fa264a41553b92e66b00bd21297dd2f1de31e20c0a7bf4827bffa0f0  ./agentes/tlamatini-cronista/prompt.md
 9c193811a0b4ac39e23ca485c4af153ad7d387dd0edb16efe1f2c3487c071d18  ./agentes/tlapohualli-analista/index.html
 73f63e7c8368458d89e577db9f397be4537c72a573df2bb70f13e06d78076b78  ./agentes/tlapohualli-analista/politica.md
+8ec3cda86e67c65e0f46e8bd9c3352bc7767e53b7c160e747f2c15dac57780ad  ./agentes/tonal-notario/index.html
 1f4c3e88b39769e38185b7ba833f6261fd392099c82576877d1d398726ee3894  ./agentes/tonal-notario/politica.md
 3fb99e81afd5dd668d56620e5f997605dadcde296bb5659c9475825e485c4011  ./archive/README.md
 aa1032994432084fd09c558f2c2e17be4d5ccd0bc95b7edbbf385624667758f6  ./assets/css/animations.css
