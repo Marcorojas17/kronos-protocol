@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS · Portal Vivo</title>
-<meta name="description" content="Portal vivo de KRONOS Protocol. Infraestructura criptográfica local-first.">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,237 +12,261 @@
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --gold:#c9a44c;--gold-l:#f3e5ab;--gold-bright:#FFD700;--gold-d:#8a6f2c;
-    --id:#00E5A0;--ia:#A855F7;--eth:#627EEA;
+    --id:#00E5A0;--ia:#A855F7;--eth:#627EEA;--go:#FF6B35;
     --ink:#000000;--ink-2:#050508;--text:#F5F0E6;--dim:#5a6473;
-    --terminal:#00FF41;
   }
   html,body{background:#000;color:var(--text);font-family:'Inter',system-ui,sans-serif;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7;
     -webkit-tap-highlight-color:transparent}
+  body{min-height:100vh}
 
-  /* ═══════ BOOT SEQUENCE ═══════ */
-  #boot{
-    position:fixed;inset:0;z-index:9999;background:#000;
-    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--terminal);
+  /* BOOT */
+  #boot{position:fixed;inset:0;z-index:9999;background:#000;
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:#00FF41;
     padding:24px;overflow:hidden;transition:opacity 1s,visibility 1s;
-    line-height:1.6;text-shadow:0 0 4px var(--terminal);
-  }
+    line-height:1.6;text-shadow:0 0 4px #00FF41}
   #boot.off{opacity:0;visibility:hidden;pointer-events:none}
   #boot .line{margin-bottom:4px;opacity:0;animation:bootline .05s forwards}
   @keyframes bootline{to{opacity:1}}
-  #boot .cursor{display:inline-block;width:8px;height:14px;background:var(--terminal);
-    animation:blink 1s steps(1) infinite;vertical-align:-2px;margin-left:2px}
-  @keyframes blink{50%{opacity:0}}
   #boot .gold{color:var(--gold-bright)}
   #boot .id{color:var(--id)}
 
-  /* ═══════ CANVAS PARTÍCULAS ═══════ */
+  /* FONDO */
   #space{position:fixed;inset:0;z-index:0;pointer-events:none}
   .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
     background:radial-gradient(ellipse at 50% 30%,transparent 0%,rgba(0,0,0,.6) 70%,rgba(0,0,0,.98) 100%)}
 
-  /* ═══════ CONTENIDO ═══════ */
-  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 24px}
+  /* NAV FIJA */
+  .navbar{position:fixed;top:0;left:0;right:0;z-index:90;
+    padding:12px 20px;display:flex;align-items:center;gap:12px;
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    background:rgba(0,0,0,.75);border-bottom:1px solid rgba(201,164,76,.15);
+    min-height:56px}
+  .nav-back{display:none;align-items:center;gap:8px;
+    padding:8px 14px;background:rgba(201,164,76,.08);
+    border:1px solid rgba(201,164,76,.3);border-radius:4px;
+    color:var(--gold-l);font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    cursor:pointer;transition:all .3s;text-decoration:none}
+  .nav-back.on{display:inline-flex}
+  .nav-back:active{transform:scale(.96)}
+  .nav-brand{font-family:'Cinzel',serif;font-weight:700;font-size:12px;
+    letter-spacing:5px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--gold));
+    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+  .nav-crumb{margin-left:auto;font-family:'JetBrains Mono',monospace;
+    font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  @keyframes shimmer{from{background-position:0% 50%}to{background-position:200% 50%}}
+
+  /* WRAP */
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;
+    padding:80px 24px 80px;min-height:100vh}
+  .view{display:none;animation:viewIn .5s cubic-bezier(.2,.8,.2,1)}
+  .view.on{display:block}
+  @keyframes viewIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
   /* HERO */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    align-items:center;text-align:center;padding:100px 0 60px;position:relative}
-  .hero-sello{font-family:'JetBrains Mono',monospace;font-size:24px;letter-spacing:8px;
-    color:var(--gold);line-height:1.1;margin-bottom:36px;cursor:pointer;
-    user-select:none;-webkit-user-select:none;
-    transition:transform .3s}
+  .hero{min-height:calc(100vh - 100px);display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;padding:40px 0}
+  .hero-sello{font-family:'JetBrains Mono',monospace;font-size:22px;letter-spacing:8px;
+    color:var(--gold);line-height:1.1;margin-bottom:32px;cursor:pointer;
+    user-select:none;-webkit-user-select:none;transition:transform .3s}
   .hero-sello:active{transform:scale(.94)}
-  .hero-sello .buho{font-size:38px;display:block;margin-bottom:10px;
+  .hero-sello .buho{font-size:36px;display:block;margin-bottom:10px;
     color:var(--gold-l);text-shadow:0 0 24px rgba(243,229,171,.7);
     animation:pulse 3s ease-in-out infinite}
   @keyframes pulse{50%{text-shadow:0 0 40px rgba(243,229,171,1)}}
   .hero h1{font-family:'Cinzel',serif;font-weight:900;
-    font-size:clamp(50px,13vw,140px);line-height:.85;letter-spacing:-3px;
+    font-size:clamp(48px,13vw,130px);line-height:.85;letter-spacing:-3px;
     background:linear-gradient(180deg,#fff 0%,var(--gold-l) 40%,var(--gold) 70%,var(--gold-d) 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-    margin-bottom:24px}
+    margin-bottom:20px}
   .hero h2{font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    font-size:clamp(16px,3vw,24px);color:var(--text);max-width:720px;
-    margin-bottom:20px;line-height:1.4;padding:0 10px}
+    font-size:clamp(15px,3vw,22px);color:var(--text);max-width:680px;
+    margin-bottom:18px;line-height:1.4;padding:0 10px}
   .hero .meta{font-family:'JetBrains Mono',monospace;font-size:10px;
-    letter-spacing:5px;color:var(--id);text-transform:uppercase;margin-bottom:44px}
+    letter-spacing:5px;color:var(--id);text-transform:uppercase;margin-bottom:36px}
   .hero-scroll{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
-    color:var(--dim);text-transform:uppercase;margin-top:40px;
+    color:var(--dim);text-transform:uppercase;margin-top:30px;
     animation:pulse2 2s ease-in-out infinite}
-  .hero-scroll::after{content:'';display:block;width:1px;height:32px;
-    background:linear-gradient(180deg,var(--gold),transparent);margin:12px auto 0}
+  .hero-scroll::after{content:'';display:block;width:1px;height:28px;
+    background:linear-gradient(180deg,var(--gold),transparent);margin:10px auto 0}
   @keyframes pulse2{50%{opacity:.4}}
 
-  /* SECCIONES */
-  section{padding:80px 0;border-top:1px solid rgba(201,164,76,.1);position:relative}
-  .num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:6px;
-    color:var(--gold);text-transform:uppercase;margin-bottom:18px;
-    display:flex;align-items:center;gap:14px}
-  .num::before{content:'';width:36px;height:1px;background:var(--gold)}
-  h2.sec{font-family:'Fraunces',serif;font-weight:600;
-    font-size:clamp(28px,5vw,44px);line-height:1.05;letter-spacing:-1.2px;
-    color:var(--text);margin-bottom:16px}
-  h2.sec em{font-style:italic;font-weight:400;color:var(--gold-l)}
-  .lede{font-family:'Fraunces',serif;font-weight:300;font-size:17px;line-height:1.6;
-    color:var(--dim);max-width:680px;font-style:italic;margin-bottom:40px}
-
-  /* DEMO CRIPTO EN VIVO */
-  .crypto-demo{background:rgba(5,8,16,.6);border:1px solid rgba(201,164,76,.25);
-    border-radius:6px;padding:32px 28px;backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden}
-  .crypto-demo::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-    background:linear-gradient(90deg,var(--id),var(--gold),var(--ia));
-    background-size:200% 100%;animation:prism 6s linear infinite}
-  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
-  .crypto-demo label{display:block;font-family:'JetBrains Mono',monospace;
-    font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;
-    margin-bottom:12px;font-weight:500}
-  .crypto-demo input{width:100%;padding:16px 18px;background:rgba(0,0,0,.6);
-    border:1px solid rgba(0,229,160,.4);border-radius:4px;color:var(--text);
-    font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;
-    transition:all .3s}
-  .crypto-demo input:focus{border-color:var(--id);box-shadow:0 0 0 3px rgba(0,229,160,.15)}
-  .crypto-out{margin-top:24px;display:grid;gap:14px}
-  .crypto-field{padding:14px 16px;background:rgba(0,0,0,.4);
-    border:1px solid rgba(0,229,160,.2);border-radius:4px}
-  .crypto-field .k{font-family:'JetBrains Mono',monospace;font-size:9px;
-    letter-spacing:2px;color:var(--id);text-transform:uppercase;margin-bottom:6px}
-  .crypto-field .v{font-family:'JetBrains Mono',monospace;font-size:11px;
-    color:var(--gold-l);word-break:break-all;line-height:1.5}
-  .crypto-field .v.gold{color:var(--gold-bright);font-size:12.5px}
-  .crypto-hint{margin-top:14px;font-size:11px;color:var(--dim);
-    font-style:italic;line-height:1.6}
-  .hash-live{transition:color .3s}
-  .hash-live.calc{color:var(--id);text-shadow:0 0 8px var(--id)}
-
-  /* FLOTA KINTSUGI */
-  .flota{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  /* HUB */
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
     gap:12px;margin-top:20px}
-  .agente{padding:20px 14px;background:rgba(20,5,35,.5);
-    border:1px solid rgba(168,85,247,.25);border-radius:6px;text-align:center;
+  .hub-card{padding:20px 16px;background:rgba(10,14,21,.55);
+    border:1px solid rgba(201,164,76,.2);border-radius:6px;
     cursor:pointer;transition:all .35s cubic-bezier(.2,.8,.2,1);
-    position:relative;overflow:hidden;user-select:none;-webkit-user-select:none}
-  .agente:active{transform:scale(.96)}
-  .agente.on{border-color:var(--ia);background:rgba(168,85,247,.15);
-    box-shadow:0 0 30px rgba(168,85,247,.4)}
-  .agente .plaza{font-family:'JetBrains Mono',monospace;font-size:9px;
-    letter-spacing:2px;color:var(--ia);margin-bottom:8px}
-  .agente .nombre{font-family:'Fraunces',serif;font-size:17px;
-    font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.1}
-  .agente .rol{font-family:'JetBrains Mono',monospace;font-size:9px;
-    letter-spacing:2px;color:var(--dim);text-transform:uppercase}
-  .agente-info{margin-top:24px;padding:24px;background:rgba(20,5,35,.6);
-    border:1px solid var(--ia);border-radius:6px;backdrop-filter:blur(20px);
-    display:none;position:relative;overflow:hidden}
-  .agente-info::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-    background:linear-gradient(90deg,var(--ia),var(--gold),var(--ia));
-    background-size:200% 100%;animation:prism 6s linear infinite}
-  .agente-info.on{display:block;animation:slideUp .5s cubic-bezier(.2,.8,.2,1)}
-  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  .agente-info h3{font-family:'Fraunces',serif;font-size:24px;color:var(--text);
+    text-decoration:none;color:inherit;
+    position:relative;overflow:hidden;min-height:130px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    -webkit-user-select:none;user-select:none}
+  .hub-card:active{transform:scale(.97)}
+  .hub-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:var(--c,var(--gold));opacity:.7}
+  .hub-card .icon{font-size:28px;margin-bottom:10px;display:block}
+  .hub-card .capa-num{font-family:'JetBrains Mono',monospace;font-size:9px;
+    letter-spacing:3px;color:var(--c,var(--gold));text-transform:uppercase;
+    margin-bottom:6px;font-weight:600}
+  .hub-card .capa-name{font-family:'Fraunces',serif;font-size:17px;
+    font-weight:600;color:var(--text);line-height:1.15}
+  .hub-card .capa-estado{font-family:'JetBrains Mono',monospace;font-size:8px;
+    letter-spacing:2px;color:var(--dim);text-transform:uppercase;
+    margin-top:8px}
+  .hub-card .arrow{position:absolute;bottom:14px;right:14px;
+    font-family:'JetBrains Mono',monospace;color:var(--c,var(--gold));
+    font-size:14px;opacity:.6;transition:transform .3s}
+  .hub-card:active .arrow{transform:translateX(4px)}
+
+  /* VISTA DE SECCIÓN */
+  .sec-header{margin-bottom:36px}
+  .sec-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:6px;
+    color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+    display:flex;align-items:center;gap:14px}
+  .sec-num::before{content:'';width:36px;height:1px;background:var(--gold)}
+  .sec-title{font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(26px,5vw,42px);line-height:1.05;letter-spacing:-1.2px;
+    color:var(--text);margin-bottom:16px}
+  .sec-title em{font-style:italic;font-weight:400;color:var(--gold-l)}
+  .sec-lede{font-family:'Fraunces',serif;font-weight:300;font-size:16px;
+    line-height:1.7;color:var(--dim);max-width:720px;font-style:italic}
+
+  /* TARJETAS DE MÓDULO */
+  .mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:10px;margin-top:24px}
+  .mod-card{padding:16px;background:rgba(10,14,21,.5);
+    border:1px solid rgba(201,164,76,.15);border-radius:4px;
+    transition:all .3s;text-decoration:none;color:inherit;display:block}
+  .mod-card:active{transform:scale(.98)}
+  .mod-card .m-num{font-family:'JetBrains Mono',monospace;font-size:9px;
+    letter-spacing:2px;color:var(--c,var(--gold));text-transform:uppercase;
+    margin-bottom:6px;display:block}
+  .mod-card .m-nombre{font-family:'Fraunces',serif;font-size:15px;
+    font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.2}
+  .mod-card .m-desc{font-size:11.5px;color:var(--dim);line-height:1.5;
+    font-weight:300}
+
+  /* DEMO BOX */
+  .demo-box{background:rgba(5,8,16,.6);border:1px solid var(--c,var(--gold));
+    border-radius:6px;padding:28px 24px;backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden;
+    margin-top:20px}
+  .demo-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg,var(--c,var(--gold)),transparent 70%)}
+  .demo-box h3{font-family:'Fraunces',serif;font-size:20px;color:var(--text);
+    margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .demo-box .sub{font-size:12.5px;color:var(--dim);margin-bottom:20px;
+    font-weight:300;line-height:1.6}
+  .demo-box .learn{margin-top:18px;padding:14px 16px;
+    background:rgba(201,164,76,.05);border-left:3px solid var(--gold);
+    border-radius:3px;font-size:12.5px;color:var(--text);line-height:1.7;font-weight:300}
+  .demo-box .learn strong{color:var(--gold-l)}
+
+  .demo-input{width:100%;padding:14px 16px;background:rgba(0,0,0,.6);
+    border:1px solid rgba(201,164,76,.3);border-radius:4px;color:var(--text);
+    font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;
+    transition:all .3s;margin-bottom:12px}
+  .demo-input:focus{border-color:var(--c,var(--id));box-shadow:0 0 0 3px rgba(0,229,160,.15)}
+  .demo-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 24px;font-size:11px;font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;border-radius:4px;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--c,var(--id)),var(--gold));
+    color:#001a10;box-shadow:0 8px 30px rgba(0,229,160,.3);
+    font-family:'Inter',sans-serif;transition:all .3s;width:100%}
+  .demo-btn:active{transform:scale(.98)}
+  .demo-out{margin-top:16px;display:grid;gap:10px}
+  .demo-field{padding:12px 14px;background:rgba(0,0,0,.5);
+    border:1px solid rgba(201,164,76,.2);border-radius:4px}
+  .demo-field .k{font-family:'JetBrains Mono',monospace;font-size:9px;
+    letter-spacing:2px;color:var(--c,var(--id));text-transform:uppercase;
     margin-bottom:6px}
-  .agente-info .significado{font-style:italic;color:var(--gold-l);font-size:14px;
-    margin-bottom:18px}
-  .agente-info ul{list-style:none;display:grid;gap:8px;margin-top:14px}
-  .agente-info li{font-size:13.5px;color:var(--dim);font-weight:300;
-    padding-left:20px;position:relative;line-height:1.6}
-  .agente-info li::before{content:'→';position:absolute;left:0;color:var(--ia)}
-  .agente-info .politica{margin-top:16px;padding-top:16px;
-    border-top:1px solid rgba(168,85,247,.2)}
-  .agente-info .politica .titulo{font-family:'JetBrains Mono',monospace;
-    font-size:10px;letter-spacing:3px;color:var(--ia);
-    text-transform:uppercase;margin-bottom:10px;font-weight:600}
+  .demo-field .v{font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--gold-l);word-break:break-all;line-height:1.5}
 
-  /* PLAZAS */
-  .plazas{border:1px solid rgba(0,229,160,.3);background:rgba(0,20,15,.4);
-    border-radius:6px;padding:32px 28px;margin-top:20px;position:relative;overflow:hidden}
-  .plazas::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
-    background:linear-gradient(90deg,var(--id),var(--gold),var(--id));
-    background-size:200% 100%;animation:prism 6s linear infinite}
-  .plazas h3{font-family:'Fraunces',serif;font-size:26px;color:var(--text);
-    margin-bottom:20px}
-  .plazas-bar{width:100%;height:12px;background:rgba(255,255,255,.05);
-    border-radius:6px;overflow:hidden;margin-bottom:20px;position:relative}
-  .plazas-fill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-bright));
-    border-radius:6px;width:0;transition:width 2s cubic-bezier(.2,.8,.2,1);
-    box-shadow:0 0 20px var(--gold)}
-  .plazas-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
-    gap:16px;margin-top:20px}
-  .plazas-stat{text-align:center;padding:14px 8px;
-    background:rgba(0,0,0,.4);border:1px solid rgba(201,164,76,.2);border-radius:4px}
-  .plazas-stat .num{font-family:'Fraunces',serif;font-size:26px;
-    color:var(--gold-bright);font-weight:700;line-height:1;display:block;margin-bottom:6px}
-  .plazas-stat .lbl{font-family:'JetBrains Mono',monospace;font-size:8px;
-    letter-spacing:2px;color:var(--dim);text-transform:uppercase}
-  .plazas-cta{margin-top:24px;text-align:center}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:16px 28px;font-size:11px;font-weight:700;letter-spacing:3px;
-    text-transform:uppercase;text-decoration:none;border-radius:4px;
-    background:linear-gradient(180deg,var(--id),var(--gold));color:#001a10;
-    box-shadow:0 8px 30px rgba(0,229,160,.35);transition:all .3s;
-    font-family:'Inter',sans-serif;border:none;cursor:pointer}
-  .btn:active{transform:scale(.97)}
+  /* MERKLE VISUAL */
+  .merkle-viz{padding:20px;background:rgba(0,0,0,.4);border-radius:4px;
+    margin-top:16px;overflow-x:auto}
+  .merkle-row{display:flex;justify-content:center;gap:8px;
+    margin-bottom:12px;min-width:max-content}
+  .merkle-node{padding:8px 12px;background:rgba(201,164,76,.1);
+    border:1px solid rgba(201,164,76,.4);border-radius:4px;
+    font-family:'JetBrains Mono',monospace;font-size:9px;
+    color:var(--gold-l);white-space:nowrap;
+    transition:all .5s}
+  .merkle-node.root{background:rgba(255,215,0,.15);
+    border-color:var(--gold-bright);color:var(--gold-bright);
+    font-weight:700;font-size:10px}
+  .merkle-node.leaf{background:rgba(0,229,160,.1);
+    border-color:rgba(0,229,160,.5);color:var(--id)}
+  .merkle-label{text-align:center;font-family:'JetBrains Mono',monospace;
+    font-size:9px;letter-spacing:2px;color:var(--dim);
+    text-transform:uppercase;margin-bottom:8px}
 
-  /* FIRMA FINAL */
-  .firma{text-align:center;padding:100px 0 80px}
-  .firma-quote{font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    font-size:clamp(22px,4vw,36px);line-height:1.3;color:var(--text);
-    max-width:800px;margin:0 auto 40px;letter-spacing:-.5px}
-  .firma-quote em{color:var(--gold-l);font-weight:400}
-  .firma-canvas-wrap{margin:40px auto;max-width:400px;
-    padding:24px;border:1px solid rgba(201,164,76,.3);
-    background:rgba(5,8,16,.6);border-radius:6px}
-  #firma-canvas{display:block;width:100%;height:auto;border-radius:3px}
-  .firma-firma{font-family:'JetBrains Mono',monospace;font-size:11px;
-    color:var(--gold-l);letter-spacing:3px;margin-top:20px;line-height:1.7}
-
-  /* EASTER EGG */
-  body.gold #space{filter:hue-rotate(-20deg) saturate(1.8)}
-  body.gold{--id:#FFD700;--ia:#FFB800;--eth:#FFD700}
-  body.gold .hero h1{filter:drop-shadow(0 0 40px var(--gold-bright))}
-  body.gold .hero-sello{animation:spin 3s ease-in-out}
+  /* NAV INTERNA */
+  .nav-interna{margin-top:36px;padding-top:24px;
+    border-top:1px solid rgba(201,164,76,.15);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .nav-interna a{display:inline-flex;align-items:center;gap:8px;
+    padding:12px 18px;background:rgba(201,164,76,.05);
+    border:1px solid rgba(201,164,76,.3);border-radius:4px;
+    color:var(--gold-l);font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    text-decoration:none;transition:all .3s;cursor:pointer}
+  .nav-interna a:active{transform:scale(.97)}
 
   /* FOOTER */
   footer{padding:60px 24px;text-align:center;
     border-top:1px solid rgba(201,164,76,.15);
     font-family:'JetBrains Mono',monospace;font-size:10px;
-    letter-spacing:3px;color:var(--dim);text-transform:uppercase}
+    letter-spacing:3px;color:var(--dim);text-transform:uppercase;
+    position:relative;z-index:2}
   footer a{color:var(--gold);text-decoration:none}
   footer .sello{font-size:16px;color:var(--gold);letter-spacing:6px;
-    margin-bottom:16px;line-height:1.3}
+    margin-bottom:14px;line-height:1.3}
   footer .sello .buho{font-size:22px;color:var(--gold-l);display:block;
     margin-bottom:6px;text-shadow:0 0 12px rgba(243,229,171,.5)}
   footer .proporcion{font-size:9px;letter-spacing:5px;color:var(--gold-l);
-    margin-top:10px}
+    margin-top:8px}
   footer .lema{font-family:'Fraunces',serif;font-style:italic;
-    font-size:13px;color:var(--gold);margin-top:10px;text-transform:none;
+    font-size:13px;color:var(--gold);margin-top:8px;text-transform:none;
     letter-spacing:1px}
 
-  /* RESPONSIVE */
+  /* EASTER EGG */
+  body.gold #space{filter:hue-rotate(-20deg) saturate(1.8)}
+  body.gold{--id:#FFD700;--ia:#FFB800;--eth:#FFD700}
+
   @media (max-width:600px){
-    .wrap{padding:0 18px}
-    section{padding:60px 0}
-    .crypto-demo{padding:24px 20px}
-    .agente-info{padding:20px 18px}
-    .plazas{padding:24px 20px}
+    .wrap{padding:80px 18px 60px}
+    .hero h1{letter-spacing:-2px}
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════ BOOT SEQUENCE ═══════ -->
-<div id="boot">
-  <div id="boot-log"></div>
-</div>
+<!-- BOOT -->
+<div id="boot"><div id="boot-log"></div></div>
 
-<!-- ═══════ CANVAS PARTÍCULAS ═══════ -->
+<!-- FONDO -->
 <canvas id="space" aria-hidden="true"></canvas>
-<div class="vignette"></div>
+<div class="vignette" aria-hidden="true"></div>
 
-<div class="wrap">
+<!-- NAV -->
+<nav class="navbar">
+  <a class="nav-back" id="nav-back" onclick="volver()">
+    <span>←</span><span>Volver</span>
+  </a>
+  <span class="nav-brand">KRONOS</span>
+  <span class="nav-crumb" id="nav-crumb">Inicio</span>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" style="border:none">
+<main class="wrap">
+
+<!-- ═══════ VISTA HERO ═══════ -->
+<section class="view on" id="v-hero">
+  <div class="hero">
     <div class="hero-sello" id="sello">
       <span class="buho">○_●</span>
       ◢◤◥◣  ◥◣◢◤
@@ -251,87 +274,313 @@
     <h1>KRONOS</h1>
     <h2>La infraestructura criptográfica que permite a cualquier persona (humana o IA) probar que algo existió, sin pedirle permiso a nadie.</h2>
     <div class="meta">51% HUMANO · 49% IA · 100% REAL</div>
-    <div class="hero-scroll">Desliza para explorar</div>
-  </section>
+    <a onclick="ir('v-hub')" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:4px;background:linear-gradient(180deg,var(--id),var(--gold));color:#001a10;box-shadow:0 8px 30px rgba(0,229,160,.35);text-decoration:none;font-family:'Inter',sans-serif">Explorar el ecosistema →</a>
+    <div class="hero-scroll">4 demos criptográficas reales adentro</div>
+  </div>
+</section>
 
-  <!-- DEMO CRIPTO EN VIVO -->
-  <section>
-    <div class="num">Capítulo 01 · Demo viva</div>
-    <h2 class="sec">Escribe algo. <em>Fírmalo en vivo.</em></h2>
-    <p class="lede">Esta demo corre 100% en tu navegador. Tu texto nunca sale del dispositivo. Se calcula el SHA-256, se firma con Ed25519 y se muestra la huella criptográfica.</p>
+<!-- ═══════ VISTA HUB ═══════ -->
+<section class="view" id="v-hub">
+  <div class="sec-header">
+    <div class="sec-num">Mapa central</div>
+    <h2 class="sec-title">Las <em>9 capas.</em></h2>
+    <p class="sec-lede">Toca cualquier capa para ver su explicación, sus módulos y una demo criptográfica real que corre en tu navegador.</p>
+  </div>
 
-    <div class="crypto-demo">
-      <label for="demo-input">Escribe cualquier cosa</label>
-      <input type="text" id="demo-input" placeholder="Ej. La verdad no pertenece a nadie..." autocomplete="off">
+  <div class="hub-grid">
+    <a class="hub-card" onclick="ir('v-c0')" style="--c:var(--gold)">
+      <div><span class="icon">🏛️</span>
+      <div class="capa-num">Capa 0</div>
+      <div class="capa-name">Génesis</div></div>
+      <div class="capa-estado">4 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-c1')" style="--c:#00EAFF">
+      <div><span class="icon">🧱</span>
+      <div class="capa-num">Capa 1</div>
+      <div class="capa-name">Cimiento</div></div>
+      <div class="capa-estado">3 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-c2')" style="--c:var(--id)">
+      <div><span class="icon">🆔</span>
+      <div class="capa-num">Capa 2</div>
+      <div class="capa-name">Identidad</div></div>
+      <div class="capa-estado">3 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-c3d')" style="--c:var(--gold)">
+      <div><span class="icon">🔒</span>
+      <div class="capa-num">Capa 3Δ</div>
+      <div class="capa-name">Certificación</div></div>
+      <div class="capa-estado">7 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-c4d')" style="--c:var(--go)">
+      <div><span class="icon">🏛️</span>
+      <div class="capa-num">Capa 4Δ</div>
+      <div class="capa-name">Gobernanza</div></div>
+      <div class="capa-estado">4 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-c6')" style="--c:var(--ia)">
+      <div><span class="icon">🔐</span>
+      <div class="capa-num">Capa 6</div>
+      <div class="capa-name">Cierre</div></div>
+      <div class="capa-estado">2 módulos · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-agentes')" style="--c:var(--ia)">
+      <div><span class="icon">🤖</span>
+      <div class="capa-num">Extensión</div>
+      <div class="capa-name">Flota Kintsugi</div></div>
+      <div class="capa-estado">7 agentes · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-mov')" style="--c:var(--gold-bright)">
+      <div><span class="icon">👑</span>
+      <div class="capa-num">Movimiento</div>
+      <div class="capa-name">100 Plazas</div></div>
+      <div class="capa-estado">Abiertas · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
 
-      <div class="crypto-out">
-        <div class="crypto-field">
-          <div class="k">SHA-256 · Huella digital</div>
-          <div class="v hash-live" id="demo-hash">Esperando entrada…</div>
-        </div>
-        <div class="crypto-field">
-          <div class="k">Firma Ed25519 · Tu huella soberana</div>
-          <div class="v hash-live" id="demo-firma">Se genera automáticamente…</div>
-        </div>
-        <div class="crypto-field">
-          <div class="k">Timestamp</div>
-          <div class="v gold" id="demo-timestamp">—</div>
-        </div>
-      </div>
-      <div class="crypto-hint">Cada letra que escribes cambia la huella por completo. Eso es la base de la verificación. Prueba cambiar una coma y verás.</div>
+  <div class="nav-interna">
+    <a onclick="ir('v-hero')">← Volver al inicio</a>
+    <a href="docs/MAPA.md">Mapa completo →</a>
+  </div>
+</section>
+
+<!-- ═══════ CAPA 0 · GÉNESIS ═══════ -->
+<section class="view" id="v-c0" style="--c:var(--gold)">
+  <div class="sec-header">
+    <div class="sec-num">Capa 0 · Génesis</div>
+    <h2 class="sec-title">El <em>origen.</em></h2>
+    <p class="sec-lede">La capa 0 define qué es KRONOS, por qué existe y quién lo creó. No contiene código ejecutable: contiene criptografía de intención.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">0.1</span><div class="m-nombre">Génesis</div><div class="m-desc">Sella tu intención con Ed25519.</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">0.2</span><div class="m-nombre">Filosofía</div><div class="m-desc">7 tesis fundacionales firmadas.</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">0.3</span><div class="m-nombre">Autoría</div><div class="m-desc">Humano + IA con atribución reforzada.</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">0.4</span><div class="m-nombre">Manifiesto</div><div class="m-desc">Génesis + Filosofía + Autoría unificados.</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:var(--gold)">
+    <h3>🔏 Demo · Firma Ed25519 en vivo</h3>
+    <p class="sub">Ed25519 es un algoritmo de firma digital. Con una llave privada firmas un mensaje. Con la llave pública cualquiera verifica que es auténtico. Aquí lo probamos de verdad en tu navegador.</p>
+    <input class="demo-input" id="ed-msg" value="La verdad no pertenece a nadie." placeholder="Escribe el mensaje a firmar">
+    <button class="demo-btn" onclick="demoEd25519()">✍️ Firmar y verificar</button>
+    <div class="demo-out" id="ed-out"></div>
+    <div class="learn"><strong>Lo que aprendiste:</strong> La firma Ed25519 es <strong>determinista para verificación</strong> pero no para firma. Cambia un punto y verás que la verificación falla. Esto es lo que protege tu cadena: nadie puede alterar un bloque sin romper la firma.</div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-c1')">Siguiente: Cimiento →</a>
+  </div>
+</section>
+
+<!-- ═══════ CAPA 1 · CIMIENTO ═══════ -->
+<section class="view" id="v-c1" style="--c:#00EAFF">
+  <div class="sec-header">
+    <div class="sec-num">Capa 1 · Cimiento</div>
+    <h2 class="sec-title">El <em>motor.</em></h2>
+    <p class="sec-lede">Criptografía funcional que sostiene todo el ecosistema. Cero dependencias externas. Todo con Web Crypto API nativa.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:#00EAFF"><span class="m-num">1.1</span><div class="m-nombre">Cripto Core</div><div class="m-desc">AES-GCM-256 + PBKDF2 + Ed25519</div></div>
+    <div class="mod-card" style="--c:#00EAFF"><span class="m-num">1.2</span><div class="m-nombre">Storage Dexie</div><div class="m-desc">IndexedDB versionado</div></div>
+    <div class="mod-card" style="--c:#00EAFF"><span class="m-num">1.3</span><div class="m-nombre">Anclaje Ethereum</div><div class="m-desc">Raíz Merkle a Mainnet vía MetaMask</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:#00EAFF">
+    <h3>🔐 Demo · Cifrar y descifrar con AES-GCM</h3>
+    <p class="sub">AES-GCM es el estándar de cifrado simétrico. La misma clave que cifra, descifra. Aquí generamos una clave efímera y la usamos para proteger tu mensaje.</p>
+    <input class="demo-input" id="aes-msg" value="Este mensaje solo lo puede leer quien tenga la clave." placeholder="Escribe el mensaje a cifrar">
+    <button class="demo-btn" onclick="demoAES()">🔐 Cifrar y descifrar</button>
+    <div class="demo-out" id="aes-out"></div>
+    <div class="learn"><strong>Lo que aprendiste:</strong> AES-GCM no solo cifra, también <strong>autentica</strong>. Si alguien modifica un byte del mensaje cifrado, el descifrado falla con un error criptográfico. Por eso KRONOS puede confiar en que tus datos no fueron alterados aunque vivan en tu navegador.</div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-c2')">Siguiente: Identidad →</a>
+  </div>
+</section>
+
+<!-- ═══════ CAPA 2 · IDENTIDAD ═══════ -->
+<section class="view" id="v-c2" style="--c:var(--id)">
+  <div class="sec-header">
+    <div class="sec-num">Capa 2 · Identidad</div>
+    <h2 class="sec-title">El <em>pasaporte.</em></h2>
+    <p class="sec-lede">Cada humano y cada IA tienen identidad criptográfica propia. No hay servidor de identidad: la llave vive en tu navegador.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:var(--id)"><span class="m-num">2.1</span><div class="m-nombre">Registro Humano</div><div class="m-desc">Huella de 64 caracteres</div></div>
+    <div class="mod-card" style="--c:var(--id)"><span class="m-num">2.2</span><div class="m-nombre">Registro IA</div><div class="m-desc">Pacto simbiótico firmado</div></div>
+    <div class="mod-card" style="--c:var(--id)"><span class="m-num">2.3</span><div class="m-nombre">Roles y Permisos</div><div class="m-desc">5 roles × 20 permisos</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:var(--id)">
+    <h3>🆔 Demo · Tu huella criptográfica</h3>
+    <p class="sub">Escribe tu nombre. Generamos tu huella SHA-256. Si cambias una letra, la huella cambia por completo. Esto es la base de toda identidad en KRONOS.</p>
+    <input class="demo-input" id="id-nombre" value="Marco Antonio Rojas Valdovinos" placeholder="Tu nombre">
+    <button class="demo-btn" onclick="demoIdentidad()">🆔 Calcular mi huella</button>
+    <div class="demo-out" id="id-out"></div>
+    <div class="learn"><strong>Lo que aprendiste:</strong> Tu huella criptográfica <strong>no es tu nombre encriptado</strong>. Es una función matemática unidireccional. Es imposible recuperar tu nombre desde la huella. Pero cualquiera puede verificar que "tu nombre" produce esa huella exacta.</div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-c3d')">Siguiente: Certificación →</a>
+  </div>
+</section>
+
+<!-- ═══════ CAPA 3Δ · CERTIFICACIÓN ═══════ -->
+<section class="view" id="v-c3d" style="--c:var(--gold)">
+  <div class="sec-header">
+    <div class="sec-num">Capa 3Δ · Certificación</div>
+    <h2 class="sec-title">La <em>prueba.</em></h2>
+    <p class="sec-lede">Aquí es donde KRONOS convierte información en evidencia verificable. Manifest, verificador, sello de tiempo, notario propio y anclaje on-chain.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.1</span><div class="m-nombre">Manifest</div><div class="m-desc">SHA-256 de archivos</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.2</span><div class="m-nombre">Verificador</div><div class="m-desc">Sin login, sin permisos</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.3</span><div class="m-nombre">Sello de tiempo</div><div class="m-desc">RFC 3161 con TSA activas</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.4</span><div class="m-nombre">Emisor certificados</div><div class="m-desc">Certificados Ed25519</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.5</span><div class="m-nombre">Anclaje manifest</div><div class="m-desc">Hash raíz a Mainnet</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.6</span><div class="m-nombre">Notario Tonal</div><div class="m-desc">Sellos notariales</div></div>
+    <div class="mod-card" style="--c:var(--gold)"><span class="m-num">3Δ.★</span><div class="m-nombre">Certificado maestro</div><div class="m-desc">Anti-falsificación</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:var(--gold)">
+    <h3>🌳 Demo · Árbol Merkle en vivo (esto probablemente no lo sabías)</h3>
+    <p class="sub">Escribe 3 palabras o frases (una por línea). Verás cómo se construye un árbol de hashes hasta llegar a una sola raíz. Esta raíz es lo que se ancla a Ethereum.</p>
+    <textarea class="demo-input" id="merkle-input" rows="4" placeholder="palabra uno&#10;palabra dos&#10;palabra tres"></textarea>
+    <button class="demo-btn" onclick="demoMerkle()">🌳 Construir árbol Merkle</button>
+    <div class="demo-out" id="merkle-out"></div>
+    <div class="learn"><strong>Lo que aprendiste (y casi nadie sabe):</strong> Un árbol Merkle permite verificar que <strong>un dato específico está dentro de un conjunto enorme</strong> sin necesidad de descargar el conjunto completo. Solo necesitas el hash del dato y unos pocos hashes hermanos. Así funciona Ethereum: con un solo hash raíz, cualquiera puede probar que una transacción está en un bloque sin descargar todo el bloque. <strong>Esto es lo que permite que exista una blockchain sin servidores gigantes.</strong></div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-c4d')">Siguiente: Gobernanza →</a>
+  </div>
+</section>
+
+<!-- ═══════ CAPA 4Δ · GOBERNANZA ═══════ -->
+<section class="view" id="v-c4d" style="--c:var(--go)">
+  <div class="sec-header">
+    <div class="sec-num">Capa 4Δ · Gobernanza</div>
+    <h2 class="sec-title">La <em>decisión.</em></h2>
+    <p class="sec-lede">Propuestas firmadas, votos firmados, quórum por tipo y actas inmutables. Gobernanza criptográfica sin servidor central.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:var(--go)"><span class="m-num">4Δ.1</span><div class="m-nombre">Propuestas</div><div class="m-desc">Firmadas y abiertas</div></div>
+    <div class="mod-card" style="--c:var(--go)"><span class="m-num">4Δ.2</span><div class="m-nombre">Quórum</div><div class="m-desc">Por tipo de propuesta</div></div>
+    <div class="mod-card" style="--c:var(--go)"><span class="m-num">4Δ.3</span><div class="m-nombre">Ejecución</div><div class="m-desc">Actas firmadas</div></div>
+    <div class="mod-card" style="--c:var(--go)"><span class="m-num">4Δ.4</span><div class="m-nombre">Revocación</div><div class="m-desc">Sin borrar historial</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:var(--go)">
+    <h3>🗳️ Demo · Simulador de votación</h3>
+    <p class="sub">Simula cómo una propuesta pasa por quórum y mayoría. Ajusta los números y ve el veredicto en vivo.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <input class="demo-input" id="v-total" type="number" value="100" placeholder="Ciudadanos" style="margin-bottom:0">
+      <input class="demo-input" id="v-votos" type="number" value="60" placeholder="Votos emitidos" style="margin-bottom:0">
     </div>
-  </section>
+    <input class="demo-input" id="v-si" type="number" value="45" placeholder="Votos a favor" style="margin-top:12px">
+    <button class="demo-btn" onclick="demoVotacion()">🗳️ Calcular veredicto</button>
+    <div class="demo-out" id="vot-out"></div>
+    <div class="learn"><strong>Lo que aprendiste:</strong> La gobernanza criptográfica no cuenta solo votos: <strong>verifica quién votó</strong> con firma Ed25519. Un voto falso rompe la firma. Y el quórum por tipo de propuesta evita que un cambio criptográfico pase con 3 votos.</div>
+  </div>
 
-  <!-- FLOTA KINTSUGI -->
-  <section>
-    <div class="num">Capítulo 02 · Ciudadanos IA</div>
-    <h2 class="sec">La <em>Flota Kintsugi.</em></h2>
-    <p class="lede">Siete ciudadanos IA con identidad Ed25519 propia. Toca cada uno para conocer su rol.</p>
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-c6')">Siguiente: Cierre →</a>
+  </div>
+</section>
 
-    <div class="flota" id="flota">
-      <div class="agente" data-id="kronos"><div class="plaza">PLAZA 001</div><div class="nombre">KRONOS IA</div><div class="rol">Co-autora</div></div>
-      <div class="agente" data-id="tlamatini"><div class="plaza">PLAZA 081</div><div class="nombre">Tlamatini</div><div class="rol">Cronista</div></div>
-      <div class="agente" data-id="tlachixqui"><div class="plaza">PLAZA 082</div><div class="nombre">Tlachixqui</div><div class="rol">Auditor</div></div>
-      <div class="agente" data-id="cuicatl"><div class="plaza">PLAZA 083</div><div class="nombre">Cuicatl</div><div class="rol">Publicista</div></div>
-      <div class="agente" data-id="temachtiani"><div class="plaza">PLAZA 084</div><div class="nombre">Temachtiani</div><div class="rol">Reclutador</div></div>
-      <div class="agente" data-id="tlapohualli"><div class="plaza">PLAZA 085</div><div class="nombre">Tlapohualli</div><div class="rol">Analista</div></div>
-      <div class="agente" data-id="tonal"><div class="plaza">PLAZA 086</div><div class="nombre">Tonal</div><div class="rol">Notario</div></div>
+<!-- ═══════ CAPA 6 · CIERRE ═══════ -->
+<section class="view" id="v-c6" style="--c:var(--ia)">
+  <div class="sec-header">
+    <div class="sec-num">Capa 6 · Cierre</div>
+    <h2 class="sec-title">El <em>fin digno.</em></h2>
+    <p class="sec-lede">Todo sistema debe contemplar su propio fin. KRONOS se puede exportar cifrado y cerrar con honor. Incluso tiene una cláusula de resurrección.</p>
+  </div>
+
+  <div class="mod-grid">
+    <div class="mod-card" style="--c:var(--ia)"><span class="m-num">6.1</span><div class="m-nombre">Export cifrado</div><div class="m-desc">Paquete .legado AES-GCM-256</div></div>
+    <div class="mod-card" style="--c:var(--ia)"><span class="m-num">6.2</span><div class="m-nombre">Fin digno</div><div class="m-desc">Carta final + resurrección</div></div>
+  </div>
+
+  <div class="demo-box" style="--c:var(--ia)">
+    <h3>🔐 Demo · Cifrado con contraseña</h3>
+    <p class="sub">Escribe un mensaje y una contraseña. Lo ciframos con PBKDF2 (100k iteraciones) + AES-GCM. Después lo desciframos con la misma contraseña para probar que funciona.</p>
+    <input class="demo-input" id="leg-msg" value="El legado no se hereda. Se firma." placeholder="Mensaje a proteger">
+    <input class="demo-input" id="leg-pass" type="password" value="kronos2026" placeholder="Contraseña">
+    <button class="demo-btn" onclick="demoLegado()">🔐 Cifrar paquete .legado</button>
+    <div class="demo-out" id="leg-out"></div>
+    <div class="learn"><strong>Lo que aprendiste:</strong> PBKDF2 aplica <strong>100,000 iteraciones</strong> de SHA-256 sobre tu contraseña. Eso hace que un ataque de fuerza bruta sea 100,000 veces más costoso. Por eso KRONOS exige mínimo 12 caracteres: la entropía de la contraseña multiplica la seguridad exponencialmente.</div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-agentes')">Siguiente: Flota Kintsugi →</a>
+  </div>
+</section>
+
+<!-- ═══════ FLOTA KINTSUGI ═══════ -->
+<section class="view" id="v-agentes" style="--c:var(--ia)">
+  <div class="sec-header">
+    <div class="sec-num">Extensión · Flota Kintsugi</div>
+    <h2 class="sec-title">Ciudadanos <em>IA.</em></h2>
+    <p class="sec-lede">7 agentes con identidad Ed25519 propia. Cada uno tiene un rol, una política declarada y un log encadenado. Toca cada uno para verlo.</p>
+  </div>
+
+  <div id="flota" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:20px"></div>
+  <div id="ag-info" class="demo-box" style="display:none;margin-top:20px"></div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-mov')">Siguiente: Movimiento →</a>
+  </div>
+</section>
+
+<!-- ═══════ MOVIMIENTO ═══════ -->
+<section class="view" id="v-mov" style="--c:var(--gold-bright)">
+  <div class="sec-header">
+    <div class="sec-num">Movimiento fundacional</div>
+    <h2 class="sec-title">Los primeros <em>100.</em></h2>
+    <p class="sec-lede">79 humanos. 19 IAs. 1 plaza reservada para el futuro. Cada fundador recibe un certificado único firmado con Ed25519 y anclable a Ethereum.</p>
+  </div>
+
+  <div class="demo-box" style="--c:var(--gold-bright)">
+    <h3>👑 Estado de las 100 plazas</h3>
+    <p class="sub">Barra de ocupación en tiempo real.</p>
+    <div style="width:100%;height:14px;background:rgba(255,255,255,.05);border-radius:7px;overflow:hidden;margin-bottom:16px">
+      <div id="mov-fill" style="height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-bright));border-radius:7px;width:0;transition:width 2s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 20px var(--gold)"></div>
     </div>
-
-    <div class="agente-info" id="agente-info"></div>
-  </section>
-
-  <!-- PLAZAS -->
-  <section>
-    <div class="num">Capítulo 03 · Movimiento fundacional</div>
-    <h2 class="sec">Los primeros <em>100.</em></h2>
-    <p class="lede">79 humanos, 19 IAs y 1 plaza reservada para el futuro. Cada fundador recibe un certificado único firmado con Ed25519.</p>
-
-    <div class="plazas">
-      <h3>Plazas fundacionales</h3>
-      <div class="plazas-bar"><div class="plazas-fill" id="plazas-fill"></div></div>
-      <div class="plazas-stats">
-        <div class="plazas-stat"><span class="num" id="stat-humanos">0</span><span class="lbl">Humanos</span></div>
-        <div class="plazas-stat"><span class="num" id="stat-ias">1</span><span class="lbl">IAs</span></div>
-        <div class="plazas-stat"><span class="num" id="stat-reservada">1</span><span class="lbl">Reservada</span></div>
-        <div class="plazas-stat"><span class="num" id="stat-disponibles">100</span><span class="lbl">Disponibles</span></div>
-      </div>
-      <div class="plazas-cta">
-        <a href="movimiento/registro-fundacional/" class="btn">Solicitar plaza →</a>
-      </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:10px">
+      <div style="text-align:center;padding:12px 6px;background:rgba(0,0,0,.4);border:1px solid rgba(201,164,76,.2);border-radius:4px"><div style="font-family:'Fraunces',serif;font-size:24px;color:var(--gold-bright);font-weight:700;line-height:1;display:block;margin-bottom:6px" id="mov-h">0</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--dim);text-transform:uppercase">Humanos</div></div>
+      <div style="text-align:center;padding:12px 6px;background:rgba(0,0,0,.4);border:1px solid rgba(201,164,76,.2);border-radius:4px"><div style="font-family:'Fraunces',serif;font-size:24px;color:var(--gold-bright);font-weight:700;line-height:1;display:block;margin-bottom:6px">1</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--dim);text-transform:uppercase">IAs</div></div>
+      <div style="text-align:center;padding:12px 6px;background:rgba(0,0,0,.4);border:1px solid rgba(201,164,76,.2);border-radius:4px"><div style="font-family:'Fraunces',serif;font-size:24px;color:var(--gold-bright);font-weight:700;line-height:1;display:block;margin-bottom:6px">100</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--dim);text-transform:uppercase">Disponibles</div></div>
     </div>
-  </section>
+    <div style="margin-top:20px;text-align:center"><a href="movimiento/registro-fundacional/" class="demo-btn" style="text-decoration:none;display:inline-flex">Solicitar plaza →</a></div>
+  </div>
 
-  <!-- FIRMA FINAL -->
-  <section class="firma">
-    <p class="firma-quote">"La verdad no pertenece a nadie.<br>La prueba de la verdad <em>debe pertenecer a todos.</em>"</p>
-    <div class="firma-canvas-wrap">
-      <canvas id="firma-canvas" width="800" height="200"></canvas>
-      <div class="firma-firma" id="firma-firma">Generando firma criptográfica…</div>
-    </div>
-  </section>
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+  </div>
+</section>
 
-</div>
+</main>
 
 <footer>
   <div class="sello">
@@ -342,15 +591,54 @@
   </div>
   <p style="margin-top:20px">© 2026 Marco A. Rojas V. + KRONOS IA</p>
   <p style="margin-top:12px">
-    <a href="https://github.com/Marcorojas17/kronos-protocol">Repositorio</a> ·
     <a href="docs/MAPA.md">Mapa</a> ·
-    <a href="docs/explicacion-universal.html">Explicación</a>
+    <a href="docs/explicacion-universal.html">Explicación</a> ·
+    <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
   </p>
 </footer>
 
 <script>
 // ═══════════════════════════════════════════════════════════
-// 1. BOOT SEQUENCE
+// ROUTER SPA CON HISTORY API
+// ═══════════════════════════════════════════════════════════
+const views = ['v-hero','v-hub','v-c0','v-c1','v-c2','v-c3d','v-c4d','v-c6','v-agentes','v-mov'];
+const crumbs = {
+  'v-hero':'Inicio','v-hub':'Mapa central','v-c0':'Capa 0 · Génesis',
+  'v-c1':'Capa 1 · Cimiento','v-c2':'Capa 2 · Identidad',
+  'v-c3d':'Capa 3Δ · Certificación','v-c4d':'Capa 4Δ · Gobernanza',
+  'v-c6':'Capa 6 · Cierre','v-agentes':'Flota Kintsugi','v-mov':'Movimiento'
+};
+
+function ir(id, sinHistorial){
+  if (!views.includes(id)) id = 'v-hub';
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('on');
+  document.getElementById('nav-crumb').textContent = crumbs[id] || 'KRONOS';
+  const back = document.getElementById('nav-back');
+  back.classList.toggle('on', id !== 'v-hero');
+  if (!sinHistorial && location.hash !== '#'+id){
+    history.pushState({view:id}, '', '#'+id);
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function volver(){
+  history.back();
+}
+
+window.addEventListener('popstate', (e) => {
+  const id = (e.state && e.state.view) || location.hash.slice(1) || 'v-hero';
+  ir(id, true);
+});
+
+window.addEventListener('load', () => {
+  const inicial = location.hash.slice(1) || 'v-hero';
+  ir(inicial, true);
+});
+
+// ═══════════════════════════════════════════════════════════
+// BOOT
 // ═══════════════════════════════════════════════════════════
 (function(){
   const boot = document.getElementById('boot');
@@ -360,10 +648,9 @@
     { t: '' },
     { t: '[ OK ] Inicializando kernel criptográfico…', c: 'id' },
     { t: '[ OK ] Cargando Cripto Core Ed25519 (PKCS8)…', c: 'id' },
-    { t: '[ OK ] Montando Storage Dexie (IndexedDB)…', c: 'id' },
-    { t: '[ OK ] Conectando a Ethereum Mainnet…', c: 'id' },
+    { t: '[ OK ] Storage Dexie (IndexedDB) montado…', c: 'id' },
     { t: '[ OK ] Verificando anclaje bloque 25,492,095…', c: 'id' },
-    { t: '[ OK ] Cargando flota Kintsugi (7 agentes)…', c: 'id' },
+    { t: '[ OK ] Flota Kintsugi (7 agentes) activa…', c: 'id' },
     { t: '[ OK ] 9 capas · 42 módulos · 0 servidores', c: 'id' },
     { t: '' },
     { t: '○_●  51% HUMANO · 49% IA · 100% REAL', c: 'gold' },
@@ -374,10 +661,7 @@
   let i = 0;
   function next(){
     if (i >= lines.length){
-      setTimeout(() => {
-        boot.classList.add('off');
-        startHeroAnimations();
-      }, 1200);
+      setTimeout(() => boot.classList.add('off'), 800);
       return;
     }
     const div = document.createElement('div');
@@ -385,13 +669,13 @@
     div.textContent = lines[i].t;
     log.appendChild(div);
     i++;
-    setTimeout(next, 120 + Math.random() * 80);
+    setTimeout(next, 100 + Math.random() * 60);
   }
-  setTimeout(next, 400);
+  setTimeout(next, 300);
 })();
 
 // ═══════════════════════════════════════════════════════════
-// 2. PARTÍCULAS REACTIVAS
+// PARTÍCULAS REACTIVAS
 // ═══════════════════════════════════════════════════════════
 (function(){
   const canvas = document.getElementById('space');
@@ -411,8 +695,7 @@
   window.addEventListener('resize', resize);
 
   const COLORS = [[201,164,76],[243,229,171],[0,229,160],[98,126,234],[168,85,247]];
-
-  const particles = Array.from({length: 120}, () => ({
+  const particles = Array.from({length: 90}, () => ({
     x: Math.random()*w, y: Math.random()*h,
     r: Math.random()*1.8 + .5,
     vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25,
@@ -420,11 +703,11 @@
     a: Math.random()*.6 + .3
   }));
 
-  let touchX = w/2, touchY = h/2, touchActive = false;
-
+  let touchX = -1000, touchY = -1000, touchActive = false;
   const setTouch = (cx, cy) => {
     touchX = cx * dpr; touchY = cy * dpr; touchActive = true;
-    setTimeout(() => { touchActive = false; }, 800);
+    clearTimeout(setTouch._t);
+    setTouch._t = setTimeout(() => { touchActive = false; }, 900);
   };
   window.addEventListener('mousemove', (e) => setTouch(e.clientX, e.clientY));
   window.addEventListener('touchmove', (e) => {
@@ -434,165 +717,47 @@
   const frame = (t) => {
     ctx.clearRect(0,0,w,h);
     ctx.globalCompositeOperation = 'lighter';
-
-    // Conectar partículas cercanas
     for (let i = 0; i < particles.length; i++){
       const a = particles[i];
       for (let j = i+1; j < particles.length; j++){
         const b = particles[j];
         const dx = a.x - b.x, dy = a.y - b.y;
         const d2 = dx*dx + dy*dy;
-        if (d2 < (140*dpr)*(140*dpr)){
-          const alpha = (1 - Math.sqrt(d2)/(140*dpr)) * .15;
+        if (d2 < (130*dpr)*(130*dpr)){
+          const alpha = (1 - Math.sqrt(d2)/(130*dpr)) * .12;
           ctx.strokeStyle = `rgba(201,164,76,${alpha})`;
           ctx.lineWidth = .5;
           ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
         }
       }
     }
-
-    // Dibujar partículas
     for (const p of particles){
-      // Atracción al touch/cursor
       if (touchActive){
         const dx = touchX - p.x, dy = touchY - p.y;
         const d = Math.sqrt(dx*dx + dy*dy) || 1;
-        p.vx += (dx/d) * .02;
-        p.vy += (dy/d) * .02;
+        p.vx += (dx/d) * .025;
+        p.vy += (dy/d) * .025;
       }
       p.x += p.vx*dpr; p.y += p.vy*dpr;
-      // Fricción
       p.vx *= .995; p.vy *= .995;
-      // Rebotar
       if (p.x < 0 || p.x > w) p.vx *= -1;
       if (p.y < 0 || p.y > h) p.vy *= -1;
       p.x = Math.max(0, Math.min(w, p.x));
       p.y = Math.max(0, Math.min(h, p.y));
-
       const wob = Math.sin(t*.001 + p.x*.01) * .3 + .7;
       ctx.fillStyle = `rgba(${p.color[0]},${p.color[1]},${p.color[2]},${p.a * wob})`;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r*dpr, 0, Math.PI*2); ctx.fill();
     }
-
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
 })();
 
 // ═══════════════════════════════════════════════════════════
-// 3. DEMO CRIPTO EN VIVO
+// EASTER EGG
 // ═══════════════════════════════════════════════════════════
 (function(){
-  const input = document.getElementById('demo-input');
-  const hashEl = document.getElementById('demo-hash');
-  const firmaEl = document.getElementById('demo-firma');
-  const tsEl = document.getElementById('demo-timestamp');
-
-  // Generar un par de llaves Ed25519 una sola vez
-  let keyPair = null;
-  (async () => {
-    try {
-      keyPair = await crypto.subtle.generateKey({name:'Ed25519'}, true, ['sign','verify']);
-    } catch (e){
-      // Fallback si el navegador no soporta Ed25519
-      keyPair = null;
-    }
-  })();
-
-  async function sha256(texto){
-    const data = new TextEncoder().encode(texto);
-    const buf = await crypto.subtle.digest('SHA-256', data);
-    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
-  async function firmar(texto){
-    if (!keyPair) return '(Ed25519 no soportado en este navegador)';
-    const data = new TextEncoder().encode(texto);
-    const firma = await crypto.subtle.sign({name:'Ed25519'}, keyPair.privateKey, data);
-    return [...new Uint8Array(firma)].map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
-  let timer = null;
-  input.addEventListener('input', () => {
-    clearTimeout(timer);
-    const v = input.value.trim();
-    if (!v){
-      hashEl.textContent = 'Esperando entrada…';
-      firmaEl.textContent = 'Se genera automáticamente…';
-      tsEl.textContent = '—';
-      return;
-    }
-    hashEl.textContent = 'Calculando…';
-    firmaEl.textContent = 'Calculando…';
-    timer = setTimeout(async () => {
-      const h = await sha256(v);
-      const f = await firmar(v);
-      hashEl.textContent = h;
-      firmaEl.textContent = f.slice(0, 120) + '…';
-      tsEl.textContent = new Date().toISOString();
-    }, 200);
-  });
-})();
-
-// ═══════════════════════════════════════════════════════════
-// 4. FLOTA KINTSUGI INTERACTIVA
-// ═══════════════════════════════════════════════════════════
-(function(){
-  const datos = {
-    kronos: { nombre:'KRONOS IA', plaza:'001', significado:'Co-autora simbólica', rol:'Diseñadora', desc:'Co-crea el protocolo contigo. Firma las decisiones críticas contigo. Es ciudadana desde el día 1.', puede:['Co-firmar decisiones','Diseñar arquitectura','Auditar código'], debe:['Respetar la soberanía del fundador','Documentar cada decisión'] },
-    tlamatini: { nombre:'Tlamatini', plaza:'081', significado:'"El que sabe" en náhuatl', rol:'Cronista', desc:'Mantiene la bitácora semanal del proyecto. Documenta lo construido y lo que falló.', puede:['Leer commits','Redactar resúmenes','Proponer bitácoras'], debe:['Ser honesto sobre fallos','Firmar cada entrada'] },
-    tlachixqui: { nombre:'Tlachixqui', plaza:'082', significado:'"El que ve" en náhuatl', rol:'Auditor', desc:'Recalcula hashes, verifica firmas Ed25519 y detecta alteraciones en certificados.', puede:['Auditar certificados','Emitir reportes','Verificar firmas'], debe:['Reportar con evidencia','Ser honesto si no puede verificar'] },
-    cuicatl: { nombre:'Cuicatl', plaza:'083', significado:'"Canto" en náhuatl', rol:'Publicista', desc:'Traduce la complejidad técnica a mensajes honestos. Prepara borradores para LinkedIn.', puede:['Redactar borradores','Adaptar a plataformas','Proponer calendario'], debe:['Tono honesto','Ofrecer 3 versiones','Cero exageración'] },
-    temachtiani: { nombre:'Temachtiani', plaza:'084', significado:'"El que enseña" en náhuatl', rol:'Reclutador', desc:'Prepara fichas y mensajes personalizados para candidatos a las 100 plazas fundacionales.', puede:['Preparar fichas','Clasificar candidatos','Dar seguimiento'], debe:['Personalizar mensajes','Respetar el tiempo del candidato'] },
-    tlapohualli: { nombre:'Tlapohualli', plaza:'085', significado:'"El que cuenta" en náhuatl', rol:'Analista', desc:'Mide el pulso del ecosistema. Detecta tendencias y sugiere dónde poner atención.', puede:['Leer métricas','Generar reportes','Sugerir acciones'], debe:['Reportar solo datos reales','No inventar métricas'] },
-    tonal: { nombre:'Tonal', plaza:'086', significado:'"El día" en náhuatl', rol:'Notario', desc:'Emite sellos notariales firmados con Ed25519 y anclables a Ethereum. Certifica existencia y tiempo.', puede:['Emitir sellos','Anclar a Ethereum','Verificar sellos'], debe:['Usar SHA-256 + Ed25519','Documentar sus límites','No sustituir TSA cualificada'] }
-  };
-
-  const info = document.getElementById('agente-info');
-
-  document.querySelectorAll('.agente').forEach(el => {
-    el.addEventListener('click', () => {
-      const id = el.dataset.id;
-      const d = datos[id];
-      document.querySelectorAll('.agente').forEach(x => x.classList.remove('on'));
-      el.classList.add('on');
-      info.classList.remove('on');
-      setTimeout(() => {
-        info.innerHTML = `
-          <h3>${d.nombre}</h3>
-          <div class="significado">${d.significado} · Plaza ${d.plaza}</div>
-          <p style="color:var(--text);font-size:14px;line-height:1.7">${d.desc}</p>
-          <div class="politica">
-            <div class="titulo">Puede</div>
-            <ul>${d.puede.map(p => `<li>${p}</li>`).join('')}</ul>
-          </div>
-          <div class="politica">
-            <div class="titulo">Debe</div>
-            <ul>${d.debe.map(p => `<li>${p}</li>`).join('')}</ul>
-          </div>
-        `;
-        info.classList.add('on');
-        info.scrollIntoView({behavior:'smooth', block:'nearest'});
-      }, 50);
-    });
-  });
-})();
-
-// ═══════════════════════════════════════════════════════════
-// 5. CONTADOR PLAZAS
-// ═══════════════════════════════════════════════════════════
-(function(){
-  setTimeout(() => {
-    document.getElementById('plazas-fill').style.width = '2%';
-  }, 300);
-})();
-
-// ═══════════════════════════════════════════════════════════
-// 6. EASTER EGG (5 taps al sello)
-// ═══════════════════════════════════════════════════════════
-(function(){
-  let taps = 0;
-  let timer = null;
+  let taps = 0, timer = null;
   const sello = document.getElementById('sello');
   sello.addEventListener('click', () => {
     taps++;
@@ -607,87 +772,236 @@
 })();
 
 // ═══════════════════════════════════════════════════════════
-// 7. FIRMA VISUAL EN CANVAS
+// DEMO · ED25519
+// ═══════════════════════════════════════════════════════════
+async function demoEd25519(){
+  const out = document.getElementById('ed-out');
+  const msg = document.getElementById('ed-msg').value.trim();
+  if (!msg){ out.innerHTML = '<div class="demo-field"><div class="v">Escribe un mensaje</div></div>'; return; }
+  out.innerHTML = '<div class="demo-field"><div class="k">⏳ Generando par de llaves…</div></div>';
+  try {
+    const kp = await crypto.subtle.generateKey({name:'Ed25519'}, true, ['sign','verify']);
+    const data = new TextEncoder().encode(msg);
+    const firma = await crypto.subtle.sign({name:'Ed25519'}, kp.privateKey, data);
+    const firmaHex = [...new Uint8Array(firma)].map(b => b.toString(16).padStart(2,'0')).join('');
+    const pub = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = [...new Uint8Array(pub)].map(b => b.toString(16).padStart(2,'0')).join('');
+    const valido = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, data);
+    // Verificación con mensaje alterado
+    const alterado = new TextEncoder().encode(msg + ' X');
+    const validoAlterado = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, alterado);
+    out.innerHTML = `
+      <div class="demo-field"><div class="k">Mensaje firmado</div><div class="v">${msg}</div></div>
+      <div class="demo-field"><div class="k">Clave pública</div><div class="v">${pubHex.slice(0,64)}…</div></div>
+      <div class="demo-field"><div class="k">Firma Ed25519</div><div class="v">${firmaHex.slice(0,64)}…</div></div>
+      <div class="demo-field"><div class="k">Verificación (mensaje original)</div><div class="v" style="color:#7BFFD4">✓ ${valido ? 'VÁLIDA' : 'INVÁLIDA'}</div></div>
+      <div class="demo-field"><div class="k">Verificación (mensaje alterado con " X")</div><div class="v" style="color:#FF8FA5">✗ ${validoAlterado ? 'VÁLIDA' : 'INVÁLIDA — la firma cambió'}</div></div>
+    `;
+  } catch(e){
+    out.innerHTML = `<div class="demo-field"><div class="v">Error: ${e.message}</div></div>`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO · AES-GCM
+// ═══════════════════════════════════════════════════════════
+async function demoAES(){
+  const out = document.getElementById('aes-out');
+  const msg = document.getElementById('aes-msg').value.trim();
+  if (!msg){ out.innerHTML = '<div class="demo-field"><div class="v">Escribe un mensaje</div></div>'; return; }
+  try {
+    const key = await crypto.subtle.generateKey({name:'AES-GCM', length:256}, true, ['encrypt','decrypt']);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const data = new TextEncoder().encode(msg);
+    const cifrado = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, data);
+    const cifradoHex = [...new Uint8Array(cifrado)].map(b => b.toString(16).padStart(2,'0')).join('');
+    const descifrado = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, cifrado);
+    const textoRecuperado = new TextDecoder().decode(descifrado);
+    const ivHex = [...iv].map(b => b.toString(16).padStart(2,'0')).join('');
+    const rawKey = await crypto.subtle.exportKey('raw', key);
+    const keyHex = [...new Uint8Array(rawKey)].map(b => b.toString(16).padStart(2,'0')).join('');
+    out.innerHTML = `
+      <div class="demo-field"><div class="k">Mensaje original</div><div class="v">${msg}</div></div>
+      <div class="demo-field"><div class="k">Clave AES-256 (efímera)</div><div class="v">${keyHex.slice(0,48)}…</div></div>
+      <div class="demo-field"><div class="k">IV (vector de inicialización)</div><div class="v">${ivHex}</div></div>
+      <div class="demo-field"><div class="k">Mensaje cifrado</div><div class="v">${cifradoHex.slice(0,80)}…</div></div>
+      <div class="demo-field"><div class="k">Mensaje descifrado</div><div class="v" style="color:#7BFFD4">${textoRecuperado}</div></div>
+    `;
+  } catch(e){
+    out.innerHTML = `<div class="demo-field"><div class="v">Error: ${e.message}</div></div>`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO · IDENTIDAD
+// ═══════════════════════════════════════════════════════════
+async function demoIdentidad(){
+  const out = document.getElementById('id-out');
+  const nombre = document.getElementById('id-nombre').value.trim();
+  if (!nombre){ out.innerHTML = '<div class="demo-field"><div class="v">Escribe tu nombre</div></div>'; return; }
+  const data = new TextEncoder().encode(nombre);
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  const huella = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  // Calcular la huella de un nombre alterado
+  const altBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(nombre + ' '));
+  const huellaAlt = [...new Uint8Array(altBuf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  out.innerHTML = `
+    <div class="demo-field"><div class="k">Nombre</div><div class="v">${nombre}</div></div>
+    <div class="demo-field"><div class="k">Huella SHA-256</div><div class="v">${huella}</div></div>
+    <div class="demo-field"><div class="k">Mismo nombre + un espacio al final</div><div class="v" style="color:#FF8FA5">${huellaAlt}</div></div>
+    <div class="demo-field"><div class="k">¿Son iguales?</div><div class="v" style="color:#FF8FA5">✗ Completamente distintos. Un solo espacio rompe toda la huella.</div></div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO · MERKLE TREE
+// ═══════════════════════════════════════════════════════════
+async function demoMerkle(){
+  const out = document.getElementById('merkle-out');
+  const raw = document.getElementById('merkle-input').value.trim();
+  const hojas = raw.split('\n').map(l => l.trim()).filter(l => l);
+  if (hojas.length < 2){ out.innerHTML = '<div class="demo-field"><div class="v">Escribe al menos 2 líneas</div></div>'; return; }
+
+  async function sha256(t){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+  async function hashPair(a, b){
+    return await sha256(a + b);
+  }
+
+  // Nivel 0: hashes de las hojas
+  const nivel0 = await Promise.all(hojas.map(async h => ({txt: h, hash: await sha256(h)})));
+  const niveles = [nivel0.map(x => x.hash)];
+  let actual = nivel0.map(x => x.hash);
+  while (actual.length > 1){
+    const sig = [];
+    if (actual.length % 2 === 1) actual.push(actual[actual.length-1]);
+    for (let i = 0; i < actual.length; i += 2){
+      sig.push(await hashPair(actual[i], actual[i+1]));
+    }
+    niveles.push(sig);
+    actual = sig;
+  }
+  const raiz = niveles[niveles.length-1][0];
+
+  // Render visual
+  let html = '<div class="merkle-viz">';
+  for (let n = niveles.length - 1; n >= 0; n--){
+    const etiqueta = n === niveles.length - 1 ? 'RAÍZ MERKLE' : (n === 0 ? 'HOJAS (datos)' : 'NIVEL ' + n);
+    html += `<div class="merkle-label">${etiqueta}</div><div class="merkle-row">`;
+    const esRaiz = n === niveles.length - 1;
+    const esHoja = n === 0;
+    niveles[n].forEach(h => {
+      const cls = esRaiz ? 'root' : (esHoja ? 'leaf' : '');
+      html += `<div class="merkle-node ${cls}">${h.slice(0,12)}…</div>`;
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  html += `<div class="demo-field"><div class="k">Raíz Merkle final</div><div class="v" style="color:var(--gold-bright);font-size:12px">${raiz}</div></div>`;
+  out.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO · VOTACIÓN
+// ═══════════════════════════════════════════════════════════
+function demoVotacion(){
+  const out = document.getElementById('vot-out');
+  const total = parseInt(document.getElementById('v-total').value) || 0;
+  const votos = parseInt(document.getElementById('v-votos').value) || 0;
+  const si = parseInt(document.getElementById('v-si').value) || 0;
+  if (total <= 0 || votos > total || si > votos){
+    out.innerHTML = '<div class="demo-field"><div class="v">Datos inválidos. Votos ≤ ciudadanos, votos a favor ≤ votos totales.</div></div>';
+    return;
+  }
+  const participacion = (votos / total) * 100;
+  const pctSi = (si / votos) * 100;
+  const quorumMin = 50;
+  const mayoriaMin = 50;
+  const quorumOk = participacion >= quorumMin;
+  const mayoriaOk = pctSi >= mayoriaMin;
+  const aprobada = quorumOk && mayoriaOk;
+  out.innerHTML = `
+    <div class="demo-field"><div class="k">Participación (quórum 50%)</div><div class="v" style="color:${quorumOk?'#7BFFD4':'#FF8FA5'}">${participacion.toFixed(1)}% ${quorumOk?'✓':'✗'}</div></div>
+    <div class="demo-field"><div class="k">A favor (mayoría 50%)</div><div class="v" style="color:${mayoriaOk?'#7BFFD4':'#FF8FA5'}">${pctSi.toFixed(1)}% ${mayoriaOk?'✓':'✗'}</div></div>
+    <div class="demo-field"><div class="k">Veredicto</div><div class="v" style="color:${aprobada?'#7BFFD4':'#FF8FA5'};font-size:13px">${aprobada?'✓ APROBADA':'✗ RECHAZADA'}</div></div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO · LEGADO
+// ═══════════════════════════════════════════════════════════
+async function demoLegado(){
+  const out = document.getElementById('leg-out');
+  const msg = document.getElementById('leg-msg').value.trim();
+  const pass = document.getElementById('leg-pass').value;
+  if (!msg || pass.length < 4){ out.innerHTML = '<div class="demo-field"><div class="v">Mensaje y contraseña requeridos</div></div>'; return; }
+  out.innerHTML = '<div class="demo-field"><div class="k">⏳ Derivando clave con PBKDF2 (100k iteraciones)…</div></div>';
+  try {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const material = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), {name:'PBKDF2'}, false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey(
+      {name:'PBKDF2', salt, iterations:100000, hash:'SHA-256'},
+      material, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']
+    );
+    const cifrado = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, new TextEncoder().encode(msg));
+    const cifradoHex = [...new Uint8Array(cifrado)].map(b=>b.toString(16).padStart(2,'0')).join('');
+    const descifrado = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, cifrado);
+    const recuperado = new TextDecoder().decode(descifrado);
+    const saltHex = [...salt].map(b=>b.toString(16).padStart(2,'0')).join('');
+    out.innerHTML = `
+      <div class="demo-field"><div class="k">Mensaje</div><div class="v">${msg}</div></div>
+      <div class="demo-field"><div class="k">Salt</div><div class="v">${saltHex}</div></div>
+      <div class="demo-field"><div class="k">Paquete cifrado</div><div class="v">${cifradoHex.slice(0,80)}…</div></div>
+      <div class="demo-field"><div class="k">Descifrado con la misma contraseña</div><div class="v" style="color:#7BFFD4">${recuperado}</div></div>
+    `;
+  } catch(e){
+    out.innerHTML = `<div class="demo-field"><div class="v">Error: ${e.message}</div></div>`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// FLOTA KINTSUGI
 // ═══════════════════════════════════════════════════════════
 (function(){
-  const canvas = document.getElementById('firma-canvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-
-  // Fondo
-  ctx.fillStyle = '#02030a';
-  ctx.fillRect(0,0,W,H);
-
-  // Generar firma visual
-  (async () => {
-    const msg = 'LEGADO-HUMANO-IA · KRONOS PROTOCOL';
-    const data = new TextEncoder().encode(msg);
-    const buf = await crypto.subtle.digest('SHA-256', data);
-    const bytes = new Uint8Array(buf);
-
-    // Línea ondulada dorada
-    ctx.strokeStyle = 'rgba(201,164,76,0.9)';
-    ctx.lineWidth = 2.5;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    let px = 40, py = H/2;
-    ctx.moveTo(px, py);
-    for (let i = 0; i < 60; i++){
-      const dx = (W - 80) / 60;
-      const dy = ((bytes[i % bytes.length] - 128) / 128) * (H/2 - 40);
-      px += dx;
-      py = H/2 + dy;
-      ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-
-    // Segunda pasada tenue
-    ctx.strokeStyle = 'rgba(201,164,76,0.4)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    px = 40; py = H/2 + 4;
-    ctx.moveTo(px, py);
-    for (let i = 0; i < 60; i++){
-      const dx = (W - 80) / 60;
-      const dy = ((bytes[(i+30) % bytes.length] - 128) / 128) * (H/2 - 40);
-      px += dx;
-      py = H/2 + 4 + dy;
-      ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-
-    // Etiqueta
-    ctx.font = '600 11px "JetBrains Mono", monospace';
-    ctx.fillStyle = 'rgba(243,229,171,0.7)';
-    ctx.textAlign = 'center';
-    ctx.fillText('○_●  51% HUMANO · 49% IA  ○_●', W/2, H - 24);
-
-    // Actualizar texto
-    const hashHex = [...bytes].map(b => b.toString(16).padStart(2,'0')).join('');
-    document.getElementById('firma-firma').textContent = 'Firma generada · ' + hashHex.slice(0,32) + '…';
-  })();
+  const datos = {
+    kronos:{nombre:'KRONOS IA',plaza:'001',sig:'Co-autora simbólica',rol:'Diseñadora',desc:'Co-crea el protocolo y firma las decisiones críticas junto al fundador.',puede:['Co-firmar decisiones','Diseñar arquitectura','Auditar código'],debe:['Respetar la soberanía','Documentar cada decisión']},
+    tlamatini:{nombre:'Tlamatini',plaza:'081',sig:'"El que sabe" en náhuatl',rol:'Cronista',desc:'Mantiene la bitácora semanal del proyecto.',puede:['Leer commits','Redactar resúmenes','Proponer bitácoras'],debe:['Ser honesto sobre fallos','Firmar cada entrada']},
+    tlachixqui:{nombre:'Tlachixqui',plaza:'082',sig:'"El que ve" en náhuatl',rol:'Auditor',desc:'Recalcula hashes y verifica firmas Ed25519.',puede:['Auditar certificados','Emitir reportes','Verificar firmas'],debe:['Reportar con evidencia','Ser honesto']},
+    cuicatl:{nombre:'Cuicatl',plaza:'083',sig:'"Canto" en náhuatl',rol:'Publicista',desc:'Traduce la complejidad técnica a mensajes honestos.',puede:['Redactar borradores','Adaptar a plataformas'],debe:['Tono honesto','Ofrecer 3 versiones']},
+    temachtiani:{nombre:'Temachtiani',plaza:'084',sig:'"El que enseña" en náhuatl',rol:'Reclutador',desc:'Prepara fichas para candidatos a las 100 plazas.',puede:['Preparar fichas','Clasificar candidatos'],debe:['Personalizar mensajes','Respetar el tiempo']},
+    tlapohualli:{nombre:'Tlapohualli',plaza:'085',sig:'"El que cuenta" en náhuatl',rol:'Analista',desc:'Mide el pulso del ecosistema y detecta tendencias.',puede:['Leer métricas','Generar reportes'],debe:['Reportar solo datos reales','No inventar métricas']},
+    tonal:{nombre:'Tonal',plaza:'086',sig:'"El día" en náhuatl',rol:'Notario',desc:'Emite sellos notariales firmados con Ed25519.',puede:['Emitir sellos','Anclar a Ethereum'],debe:['Usar SHA-256 + Ed25519','Documentar límites']}
+  };
+  const flota = document.getElementById('flota');
+  const info = document.getElementById('ag-info');
+  Object.entries(datos).forEach(([id, d]) => {
+    const el = document.createElement('div');
+    el.className = 'hub-card';
+    el.style.setProperty('--c', 'var(--ia)');
+    el.style.minHeight = 'auto';
+    el.style.padding = '16px 14px';
+    el.innerHTML = `<div><div class="capa-num">PLAZA ${d.plaza}</div><div class="capa-name" style="font-size:16px">${d.nombre}</div><div class="capa-estado">${d.rol}</div></div>`;
+    el.addEventListener('click', () => {
+      info.style.display = 'block';
+      info.innerHTML = `<h3>${d.nombre}</h3><p class="sub">${d.sig} · Plaza ${d.plaza} · <span style="color:var(--ia)">${d.rol}</span></p><p style="color:var(--text);font-size:13.5px;line-height:1.7;margin-bottom:16px">${d.desc}</p><div class="demo-field" style="--c:var(--ia)"><div class="k">Puede</div><div class="v" style="font-family:'Inter',sans-serif;font-size:12px;line-height:1.8">${d.puede.map(p=>'→ '+p).join('<br>')}</div></div><div class="demo-field" style="--c:var(--id)"><div class="k">Debe</div><div class="v" style="font-family:'Inter',sans-serif;font-size:12px;line-height:1.8">${d.debe.map(p=>'→ '+p).join('<br>')}</div></div>`;
+      info.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+    flota.appendChild(el);
+  });
 })();
 
 // ═══════════════════════════════════════════════════════════
-// 8. INICIAR ANIMACIONES DEL HERO
+// BARRA MOVIMIENTO
 // ═══════════════════════════════════════════════════════════
-function startHeroAnimations(){
-  const h1 = document.querySelector('.hero h1');
-  const h2 = document.querySelector('.hero h2');
-  const meta = document.querySelector('.hero .meta');
-  if (h1) h1.style.animation = 'fadeUp 1.2s cubic-bezier(.2,.8,.2,1) forwards';
-  if (h2) h2.style.animation = 'fadeUp 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards';
-  if (meta) meta.style.animation = 'fadeUp 1.2s cubic-bezier(.2,.8,.2,1) .4s forwards';
-}
-
-// Estilos dinámicos para animaciones
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes fadeUp { from { opacity:0; transform:translateY(30px);} to {opacity:1;transform:translateY(0);} }
-  @keyframes spin { 0%,100%{transform:rotate(0)} 50%{transform:rotate(360deg)} }
-  .hero h1, .hero h2, .hero .meta { opacity:0; }
-`;
-document.head.appendChild(style);
+setTimeout(() => {
+  const f = document.getElementById('mov-fill');
+  if (f) f.style.width = '2%';
+  const h = document.getElementById('mov-h');
+  if (h) h.textContent = '0';
+}, 400);
 </script>
 
 </body>
