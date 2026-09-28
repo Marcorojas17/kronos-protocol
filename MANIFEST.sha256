@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-28T00:47:57Z
+# Generado: 2026-09-28T00:50:36Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
@@ -114,6 +114,7 @@ c39c530905a5d17aeb4b23e3ea7e174840327c4a464408d36fe83d3e155ca795  ./docs/ARQUITE
 ac41748d9c5e7ce62a05185fe9973cabb9da086ff111773140132dfc7b2732fc  ./docs/MAPA.md
 766ef6dfdd31a34d0f724ad9ec6f40cc2ab536ba2751fa209a27df830f721427  ./docs/PLANTILLA-TERMINAL.md
 d2ea2979a804514d9ab2c603eff9811b18300a01d529bade9ead8df6eee7e34a  ./docs/README.md
+a4c3ea8bd33932510a2161f66c2f5f056d7a79959a89e9d22017db1ecb773685  ./docs/demos-oficiales.html
 79d1d79f246e22f6f30bd4ce0b2334ee6a36455f54733cbda52a13b957f42976  ./docs/index.html
 0bf826b84a0d3c8dffaec6890ea9bee2a099639121b068081947f29bc1e80da3  ./docs/kronos-para-ninos.html
 3c1aade7d7593abb5f23ffb60c3af0d0f1444dc518a2d99a55111189567116c9  ./evidence/manifest.json
