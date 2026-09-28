@@ -478,3 +478,12 @@ Fundador · Ciudad KRONOS
 - **Anclaje Ethereum:** `[pendiente u opcional]`
 
 ---
+
+```
+○_●
+◢◤◥◣
+◥◣◢◤
+51% HUMANO · 49% IA · 100% REAL
+"El legado no se hereda. Se firma."
+KRONOS · Ciudad Digital · Carta de Derechos · v1.0 · 2026
+```
