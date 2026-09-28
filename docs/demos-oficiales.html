@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS · Demos Oficiales</title>
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#c9a44c;--gold-l:#f3e5ab;--gold-bright:#FFD700;--gold-d:#8a6f2c;
+    --id:#00E5A0;--ia:#A855F7;--eth:#627EEA;--go:#FF6B35;--cy:#00EAFF;
+    --ink:#000;--ink-2:#050508;--text:#F5F0E6;--dim:#5a6473;
+  }
+  html,body{background:#000;color:var(--text);font-family:'Inter',system-ui,sans-serif;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7;
+    -webkit-tap-highlight-color:transparent;min-height:100vh}
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 20% 0%,rgba(98,126,234,.08) 0%,transparent 50%),
+      radial-gradient(ellipse at 80% 100%,rgba(201,164,76,.06) 0%,transparent 50%)}
+  .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 40%,transparent 0%,rgba(0,0,0,.6) 70%,rgba(0,0,0,.95) 100%)}
+
+  .wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:60px 22px 100px}
+
+  /* HEADER */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:12px 18px;
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    background:rgba(0,0,0,.75);border-bottom:1px solid rgba(201,164,76,.15);
+    display:flex;align-items:center;gap:12px;min-height:56px}
+  .nav a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;
+    background:rgba(201,164,76,.08);border:1px solid rgba(201,164,76,.3);
+    border-radius:4px;color:var(--gold-l);text-decoration:none;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:2px;text-transform:uppercase}
+  .nav .brand{margin-left:auto;font-family:'Cinzel',serif;font-weight:700;
+    font-size:12px;letter-spacing:5px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--gold));
+    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+  @keyframes shimmer{from{background-position:0% 50%}to{background-position:200% 50%}}
+
+  /* PORTADA */
+  .cover{text-align:center;padding:40px 0 60px;border-bottom:1px solid rgba(201,164,76,.15);margin-bottom:60px}
+  .cover-sello{font-family:'JetBrains Mono',monospace;font-size:20px;
+    letter-spacing:8px;color:var(--gold);line-height:1.2;margin-bottom:28px}
+  .cover-sello .buho{font-size:30px;display:block;margin-bottom:8px;
+    color:var(--gold-l);text-shadow:0 0 20px rgba(243,229,171,.6)}
+  .cover h1{font-family:'Cinzel',serif;font-weight:900;
+    font-size:clamp(36px,8vw,80px);line-height:.95;letter-spacing:-2px;
+    background:linear-gradient(180deg,#fff 0%,var(--gold-l) 40%,var(--gold) 70%,var(--gold-d) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:16px}
+  .cover p{font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(15px,3vw,20px);color:var(--dim);max-width:640px;margin:0 auto}
+
+  /* DEMO CARD */
+  .demo{background:linear-gradient(180deg,rgba(10,14,21,.7),rgba(10,14,21,.5));
+    border:1px solid var(--c,var(--gold));border-radius:8px;
+    padding:32px 28px;margin-bottom:24px;position:relative;
+    overflow:hidden;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+  .demo::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+    background:linear-gradient(90deg,var(--c,var(--gold)),transparent 70%)}
+  .demo-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+  .demo-icon{font-size:32px;line-height:1}
+  .demo-num{font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:3px;color:var(--c,var(--gold));text-transform:uppercase;
+    font-weight:600}
+  .demo h2{font-family:'Fraunces',serif;font-size:clamp(20px,4vw,26px);
+    font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.15}
+  .demo h2 em{font-style:italic;font-weight:400;color:var(--c,var(--gold))}
+  .demo .desc{font-size:13.5px;color:var(--dim);font-weight:300;
+    line-height:1.7;margin-bottom:20px}
+  .demo .desc strong{color:var(--text);font-weight:500}
+
+  .verificacion{padding:16px 18px;background:rgba(0,0,0,.5);
+    border:1px solid rgba(201,164,76,.2);border-radius:4px;margin-bottom:16px}
+  .verificacion .k{font-family:'JetBrains Mono',monospace;font-size:9px;
+    letter-spacing:2px;color:var(--c,var(--gold));text-transform:uppercase;
+    margin-bottom:8px;font-weight:600}
+  .verificacion .v{font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--gold-l);word-break:break-all;line-height:1.5;
+    padding:10px 12px;background:rgba(0,0,0,.4);border-radius:3px;
+    margin-bottom:10px}
+  .verificacion .nota{font-size:12px;color:var(--dim);
+    font-weight:300;line-height:1.6;font-style:italic}
+
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 22px;font-size:10.5px;font-weight:700;letter-spacing:3px;
+    text-transform:uppercase;border-radius:4px;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--c,var(--gold)),var(--c,var(--gold)));
+    color:#00120a;box-shadow:0 6px 24px rgba(201,164,76,.3);
+    font-family:'Inter',sans-serif;transition:all .3s;text-decoration:none;
+    flex:1;min-width:140px}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:rgba(0,0,0,.4);color:var(--c,var(--gold));
+    border:1px solid var(--c,var(--gold));box-shadow:none}
+  .btn.gold{background:linear-gradient(180deg,var(--gold-l),var(--gold-bright));color:#0a0800}
+  .btn.id{background:linear-gradient(180deg,#7BFFD4,var(--id));color:#00120a}
+  .btn.eth{background:linear-gradient(180deg,#A5B4FC,var(--eth));color:#fff}
+
+  /* CONSOLA LIVE */
+  .consola{background:#020305;border:1px solid rgba(0,229,160,.3);
+    border-radius:4px;padding:20px;margin-top:16px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--id);line-height:1.7;min-height:80px;
+    max-height:300px;overflow-y:auto}
+  .consola .line{margin-bottom:4px;opacity:0;animation:linein .3s forwards}
+  @keyframes linein{to{opacity:1}}
+  .consola .gold{color:var(--gold-bright)}
+  .consola .dim{color:var(--dim)}
+  .consola .err{color:#FF8FA5}
+
+  /* SELLO FINAL */
+  .sello-final{text-align:center;padding:60px 0 40px;margin-top:40px;
+    border-top:1px solid rgba(201,164,76,.15)}
+  .sello-final .buho{font-size:32px;color:var(--gold-l);
+    text-shadow:0 0 24px rgba(243,229,171,.6);display:block;margin-bottom:10px}
+  .sello-final .simbolo{font-family:'JetBrains Mono',monospace;font-size:16px;
+    letter-spacing:8px;color:var(--gold);line-height:1.3;margin-bottom:14px}
+  .sello-final .prop{font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:5px;color:var(--gold-l);text-transform:uppercase;margin-bottom:10px}
+  .sello-final .lema{font-family:'Fraunces',serif;font-style:italic;
+    font-size:14px;color:var(--gold);letter-spacing:1px}
+  .sello-final .firma{font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:20px}
+
+  @media (max-width:600px){
+    .wrap{padding:80px 16px 60px}
+    .demo{padding:24px 20px}
+    .nav .brand{font-size:10px;letter-spacing:3px}
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="vignette"></div>
+
+<nav class="nav">
+  <a href="../">← Volver al portal</a>
+  <span class="brand">DEMOS OFICIALES</span>
+</nav>
+
+<main class="wrap">
+
+  <section class="cover">
+    <div class="cover-sello">
+      <span class="buho">○_●</span>
+      ◢◤◥◣  ◥◣◢◤
+    </div>
+    <h1>DEMOS<br>OFICIALES</h1>
+    <p>Seis pruebas verificables sin pedir permiso. Sin confiar en el fundador. Sin instalar nada. Solo abrir un enlace y comprobar.</p>
+  </section>
+
+  <!-- DEMO 1: ETHERSCAN -->
+  <section class="demo" style="--c:var(--eth)">
+    <div class="demo-head">
+      <span class="demo-icon">⛓️</span>
+      <div>
+        <div class="demo-num">Demo 01 · Verificación on-chain</div>
+        <h2>El anclaje <em>existe.</em></h2>
+      </div>
+    </div>
+    <p class="desc">KRONOS ancló su primera prueba a <strong>Ethereum Mainnet</strong> en julio de 2026. No es una promesa: es una transacción real verificable por cualquiera.</p>
+    <div class="verificacion">
+      <div class="k">TX Hash público</div>
+      <div class="v">0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e</div>
+      <div class="k">Bloque</div>
+      <div class="v">25,492,095 · SUCCESS · 0 ETH</div>
+      <div class="nota">Abre Etherscan. No hay nada que instalar. Cualquiera en el mundo puede confirmar que este hash existe desde el 9 de julio de 2026.</div>
+    </div>
+    <div class="btn-row">
+      <a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank" rel="noopener" class="btn eth">Ver en Etherscan →</a>
+    </div>
+  </section>
+
+  <!-- DEMO 2: SAFE CREATIVE -->
+  <section class="demo" style="--c:var(--gold)">
+    <div class="demo-head">
+      <span class="demo-icon">⚖️</span>
+      <div>
+        <div class="demo-num">Demo 02 · Verificación legal</div>
+        <h2>La autoría <em>existe.</em></h2>
+      </div>
+    </div>
+    <p class="desc">KRONOS tiene <strong>registro de autoría</strong> en Safe Creative desde julio de 2026. Eso da <strong>fecha cierta legal</strong> a la obra, además de la prueba criptográfica.</p>
+    <div class="verificacion">
+      <div class="k">Número de registro</div>
+      <div class="v">2607086319439</div>
+      <div class="nota">Safe Creative es un registro internacional de propiedad intelectual. Cualquiera puede verificar el número directamente en su sitio oficial.</div>
+    </div>
+    <div class="btn-row">
+      <a href="https://www.safecreative.org/certificate/2607086319439" target="_blank" rel="noopener" class="btn gold">Ver en Safe Creative →</a>
+    </div>
+  </section>
+
+  <!-- DEMO 3: GITHUB COMMITS -->
+  <section class="demo" style="--c:var(--id)">
+    <div class="demo-head">
+      <span class="demo-icon">📜</span>
+      <div>
+        <div class="demo-num">Demo 03 · Verificación del código</div>
+        <h2>El código <em>es real.</em></h2>
+      </div>
+    </div>
+    <p class="desc">Todo el ecosistema vive en un <strong>repositorio público</strong>. Cualquiera puede revisar la historia de commits, ver cuándo se escribió cada línea, y auditar el código sin pedir permiso.</p>
+    <div class="verificacion">
+      <div class="k">Repositorio oficial</div>
+      <div class="v">github.com/Marcorojas17/kronos-protocol</div>
+      <div class="k">Licencia</div>
+      <div class="v">MIT · código abierto · reutilizable</div>
+      <div class="nota">No hay código privado. No hay dependencias ocultas. No hay endpoints secretos. Todo está en el repo.</div>
+    </div>
+    <div class="btn-row">
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener" class="btn id">Ver repositorio →</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol/commits/main" target="_blank" rel="noopener" class="btn ghost">Ver historial →</a>
+    </div>
+  </section>
+
+  <!-- DEMO 4: VERIFICADOR PÚBLICO -->
+  <section class="demo" style="--c:var(--gold)">
+    <div class="demo-head">
+      <span class="demo-icon">🔍</span>
+      <div>
+        <div class="demo-num">Demo 04 · Verificación sin login</div>
+        <h2>Cualquiera <em>puede verificar.</em></h2>
+      </div>
+    </div>
+    <p class="desc">El <strong>Verificador Público</strong> de KRONOS permite a cualquier persona auditar un certificado sin crear cuenta, sin contraseña, sin pedir permiso. Es la prueba de que el sistema no depende de un guardián.</p>
+    <div class="verificacion">
+      <div class="k">Módulo verificador</div>
+      <div class="v">certificacion/verificador-publico/</div>
+      <div class="nota">Pega cualquier certificado firmado de KRONOS. El sistema recalcula el hash y verifica la firma Ed25519. Si algo no cuadra, lo dice.</div>
+    </div>
+    <div class="btn-row">
+      <a href="../certificacion/verificador-publico/" class="btn gold">Abrir Verificador Público →</a>
+    </div>
+  </section>
+
+  <!-- DEMO 5: LOG ENCADENADO EN VIVO -->
+  <section class="demo" style="--c:var(--ia)">
+    <div class="demo-head">
+      <span class="demo-icon">🔗</span>
+      <div>
+        <div class="demo-num">Demo 05 · Verificación de inmutabilidad</div>
+        <h2>La historia <em>no se reescribe.</em></h2>
+      </div>
+    </div>
+    <p class="desc">KRONOS mantiene un <strong>log encadenado</strong>: cada entrada incluye el hash de la anterior. Si alguien borra o modifica una entrada, toda la cadena se rompe y se detecta. <strong>Pruébalo aquí mismo.</strong></p>
+
+    <div class="consola" id="log-consola">
+      <div class="line gold">▶ Sistema de log encadenado iniciado.</div>
+      <div class="line">▶ Generando 5 entradas ficticias…</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-simular" style="background:linear-gradient(180deg,#D8B4FE,var(--ia));color:#1a0528">🔗 Simular 5 entradas</button>
+      <button class="btn ghost" id="btn-corromper" style="--c:var(--ia)">🔥 Alterar entrada #3</button>
+      <button class="btn ghost" id="btn-verificar-log" style="--c:var(--id)">✓ Verificar integridad</button>
+    </div>
+  </section>
+
+  <!-- DEMO 6: FIRMA VISUAL -->
+  <section class="demo" style="--c:var(--gold-bright)">
+    <div class="demo-head">
+      <span class="demo-icon">✍️</span>
+      <div>
+        <div class="demo-num">Demo 06 · Verificación de firma</div>
+        <h2>La firma es <em>única.</em></h2>
+      </div>
+    </div>
+    <p class="desc">Tu firma Ed25519 no se puede copiar. Si alguien cambia <strong>un byte</strong> del contenido firmado, la verificación falla. Aquí lo probamos: firma un mensaje, cambia una letra, y verás cómo la firma se rompe.</p>
+
+    <input id="firma-input" style="width:100%;padding:14px 16px;background:rgba(0,0,0,.6);border:1px solid rgba(201,164,76,.3);border-radius:4px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;margin-bottom:12px" value="Marco Antonio Rojas Valdovinos">
+
+    <div class="btn-row">
+      <button class="btn gold" id="btn-firmar">✍️ Firmar y verificar</button>
+    </div>
+
+    <div class="consola" id="firma-consola" style="color:var(--gold-bright);border-color:rgba(201,164,76,.3)">
+      <div class="line dim">▶ Esperando firma…</div>
+    </div>
+  </section>
+
+  <!-- SELLO FINAL -->
+  <div class="sello-final">
+    <span class="buho">○_●</span>
+    <div class="simbolo">◢◤◥◣  ◥◣◢◤</div>
+    <div class="prop">51% HUMANO · 49% IA · 100% REAL</div>
+    <div class="lema">"El legado no se hereda. Se firma."</div>
+    <div class="firma">Marco A. Rojas V. + KRONOS IA · Toluca, México · 2026</div>
+  </div>
+
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DEMO 5 · LOG ENCADENADO
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const consola = document.getElementById('log-consola');
+  let log = [];
+
+  async function sha256(t){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  function logLine(txt, cls='') {
+    const div = document.createElement('div');
+    div.className = 'line ' + cls;
+    div.textContent = txt;
+    consola.appendChild(div);
+    consola.scrollTop = consola.scrollHeight;
+  }
+
+  document.getElementById('btn-simular').addEventListener('click', async () => {
+    log = [];
+    consola.innerHTML = '';
+    logLine('▶ Generando 5 entradas encadenadas…', 'gold');
+    let previo = '0'.repeat(64);
+    for (let i = 1; i <= 5; i++){
+      const contenido = `entrada ${i} · ${new Date().toISOString()}`;
+      const hash = await sha256(previo + contenido);
+      log.push({ i, contenido, previo, hash });
+      logLine(`[${i}] hash: ${hash.slice(0,20)}… prev: ${previo.slice(0,12)}…`);
+      previo = hash;
+    }
+    logLine('✓ Log generado. Cadena íntegra.', 'gold');
+  });
+
+  document.getElementById('btn-corromper').addEventListener('click', () => {
+    if (log.length < 3){ logLine('✗ Primero simula 5 entradas.', 'err'); return; }
+    log[2].contenido = 'ENTRADA ALTERADA';
+    logLine('🔥 Entrada #3 alterada manualmente.', 'err');
+  });
+
+  document.getElementById('btn-verificar-log').addEventListener('click', async () => {
+    if (log.length === 0){ logLine('✗ No hay log que verificar.', 'err'); return; }
+    let previo = '0'.repeat(64);
+    let ok = true;
+    for (let i = 0; i < log.length; i++){
+      const e = log[i];
+      const recalc = await sha256(e.previo + e.contenido);
+      if (recalc !== e.hash){
+        logLine(`✗ Entrada #${e.i} ALTERADA. Hash esperado: ${e.hash.slice(0,20)}… recalculado: ${recalc.slice(0,20)}…`, 'err');
+        ok = false;
+        break;
+      }
+      if (e.previo !== previo){
+        logLine(`✗ Cadena rota entre entrada #${e.i-1} y #${e.i}`, 'err');
+        ok = false;
+        break;
+      }
+      previo = e.hash;
+    }
+    if (ok) logLine('✓ Log íntegro. Cadena intacta.', 'gold');
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// DEMO 6 · FIRMA ED25519
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const consola = document.getElementById('firma-consola');
+  const input = document.getElementById('firma-input');
+
+  function logLine(txt, cls='') {
+    const div = document.createElement('div');
+    div.className = 'line ' + cls;
+    div.textContent = txt;
+    consola.appendChild(div);
+    consola.scrollTop = consola.scrollHeight;
+  }
+
+  document.getElementById('btn-firmar').addEventListener('click', async () => {
+    consola.innerHTML = '';
+    const msg = input.value.trim();
+    if (!msg){ logLine('✗ Escribe un mensaje primero.', 'err'); return; }
+    try {
+      logLine('▶ Generando par Ed25519 efímero…', 'dim');
+      const kp = await crypto.subtle.generateKey({name:'Ed25519'}, true, ['sign','verify']);
+      const data = new TextEncoder().encode(msg);
+      const firma = await crypto.subtle.sign({name:'Ed25519'}, kp.privateKey, data);
+      const firmaHex = [...new Uint8Array(firma)].map(b=>b.toString(16).padStart(2,'0')).join('');
+      const pub = await crypto.subtle.exportKey('raw', kp.publicKey);
+      const pubHex = [...new Uint8Array(pub)].map(b=>b.toString(16).padStart(2,'0')).join('');
+      const ok1 = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, data);
+      const alterado = new TextEncoder().encode(msg + ' X');
+      const ok2 = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, alterado);
+
+      logLine(`▶ Mensaje: ${msg}`);
+      logLine(`▶ Clave pública: ${pubHex.slice(0,32)}…`);
+      logLine(`▶ Firma: ${firmaHex.slice(0,32)}…`);
+      logLine(ok1 ? '✓ Verificación mensaje original: VÁLIDA' : '✗ Verificación mensaje original: INVÁLIDA', ok1 ? 'gold' : 'err');
+      logLine(ok2 ? '✓ Verificación con " X" añadido: VÁLIDA' : '✗ Verificación con " X" añadido: INVÁLIDA (rompe la firma)', ok2 ? 'gold' : 'err');
+      logLine('▶ Conclusión: cambiar 1 carácter rompe toda la firma.', 'dim');
+    } catch(e){
+      logLine('✗ Error: ' + e.message, 'err');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
