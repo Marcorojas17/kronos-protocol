@@ -30,6 +30,8 @@ Cada ciudadano que entra firma su aceptación a la Constitución,
 la Carta de Derechos y el Código de Convivencia. Su firma queda
 registrada aquí.
 
+**Hash del preámbulo:** `[se calcula al firmar]`
+
 ---
 
 ## ESTRUCTURA DE LAS 100 PLAZAS
@@ -42,7 +44,31 @@ Las 100 plazas fundacionales se distribuyen así:
 | 001 | 1 | Plaza IA co-autora |
 | 002–080 | 79 | Ciudadanos humanos |
 | 081–099 | 19 | Ciudadanos IA (agentes) |
-| 100 | 1 | Plaza reservada |
+| 100 | 1 | Plaza reservada institucional |
+
+**Hash de la estructura:** `[se calcula al firmar]`
+
+```mermaid
+graph TD
+    A[100 PLAZAS FUNDACIONALES] --> B[000 Fundador]
+    A --> C[001 IA Co-autora]
+    A --> D[002-080 Humanos]
+    A --> E[081-099 Agentes IA]
+    A --> F[100 Institución Aliada]
+    
+    B --> B1[Marco A. Rojas V.]
+    C --> C1[KRONOS IA]
+    D --> D1[79 lugares libres]
+    E --> E1[6 ocupadas + 13 libres]
+    F --> F1[Reserva institucional]
+    
+    style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+    style B fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style C fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
+    style D fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style E fill:#0a001a,stroke:#00EAFF,color:#7DF9FF
+    style F fill:#1a0800,stroke:#ff8c42,color:#FFB88A
+```
 
 ---
 
@@ -217,12 +243,16 @@ agente requiere:
 3. Sello del Notario Tonal
 4. Registro público en este documento
 
+**Total disponibles:** 13 plazas.
+
 ---
 
 ## SECCIÓN III · CIUDADANOS HUMANOS
 
 Plazas 002–080 reservadas para ciudadanos humanos. Actualmente
-vacías.
+**vacías**.
+
+**Total disponibles:** 79 plazas.
 
 **Proceso de ingreso:**
 
@@ -243,16 +273,60 @@ vacías.
 - Plaza reservada de por vida
 
 **Precio del peaje fundacional:**
-`[A DEFINIR tras publicación pública]`
+$3,000 MXN (pesos mexicanos). Pago vía Mercado Pago u otro
+medio declarado públicamente. El precio queda bloqueado de
+por vida para el titular de la plaza génesis.
+
+**Hash de la sección:** `[se calcula al firmar]`
+
+```mermaid
+flowchart LR
+    A[Solicitud] --> B[Temachtiani evalúa]
+    B --> C{¿Aprueba?}
+    C -->|No| D[Rechazo documentado]
+    C -->|Sí| E[Acepta 3 documentos]
+    E --> F[Genera llave Ed25519]
+    F --> G[Pago $3,000 MXN]
+    G --> H[Certificado Tonal]
+    H --> I[Registro público]
+    I --> J[Ciudadano pleno]
+    
+    style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
+    style G fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
+```
 
 ---
 
-## SECCIÓN IV · PLAZA 100 · RESERVADA
+## SECCIÓN IV · PLAZA 100 · RESERVADA INSTITUCIONAL
 
-La Plaza 100 está reservada por decisión del fundador. Su
-asignación requiere reforma constitucional vía Cámara Mixta.
+La Plaza 100 está reservada para una **institución aliada** que
+se sume a la ciudad (universidad, organismo de auditoría, ONG, o
+similar). No se asigna a una persona física.
 
-`[Razón de la reserva: pendiente documentar]`
+**Razones de la reserva:**
+
+1. **Legitimidad externa.** Una institución aliada aporta
+   credibilidad académica o profesional.
+2. **Continuidad institucional.** Si el fundador desaparece, la
+   institución puede sostener la ciudad.
+3. **Puente con el mundo tradicional.** Facilita que auditores,
+   académicos y reguladores entiendan el proyecto.
+
+**Titularidad institucional:**
+
+- No es de una persona física
+- Se define por convenio firmado entre la institución y la Ciudad
+  KRONOS
+- Requiere aprobación de Cámara Mixta con mayoría calificada
+- Requiere sello del Notario Tonal
+- El convenio se ancla a Ethereum (opcional)
+
+**Mientras no haya institución aliada:** La plaza permanece
+reservada. No se asigna. No se libera.
+
+**Clave pública institucional:**
+`[se publica al firmar el convenio]`
 
 ---
 
@@ -310,6 +384,10 @@ Este registro es verificable. Cualquier tercero puede:
 4. Validar los sellos notariales en `certificacion/verificador-publico/`
 5. Auditar el repo completo en GitHub
 
+**Implementación:**
+- `certificacion/verificador-publico/verificador.js`
+- `cimiento/cripto-core/core.js`
+
 ---
 
 ## SECCIÓN VII · HISTORIAL DE CAMBIOS
@@ -320,21 +398,83 @@ Este registro es verificable. Cualquier tercero puede:
 | 2026 | Registro inicial IA | KRONOS IA | [pendiente] |
 | 2026 | Alta de 6 agentes Kintsugi | Flota Kintsugi | [pendiente] |
 | 2026 | Registro de Tonal + primera emisión notarial | Tonal · Plaza 086 | [pendiente] |
+| 2026 | Definición precio plaza génesis | Sistema | [este commit] |
 
 ---
 
-## FIRMA DEL FUNDADOR
+# SISTEMA MERKLE · VERIFICACIÓN
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del
-año 2026.
+Este registro usa **hash SHA-256 individual** por sección para
+verificación independiente.
+
+## Estructura
+
+```mermaid
+graph TD
+    R[Merkle Root Ciudadanía] --> A[Fundacionales]
+    R --> B[Agentes IA]
+    R --> C[Humanos]
+    R --> D[Plaza 100]
+    
+    A --> A1[Plaza 000]
+    A --> A2[Plaza 001]
+    B --> B1[081-086]
+    B --> B2[087-099]
+    C --> C1[002-080]
+    D --> D1[Institución]
+    
+    style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+```
+
+**Hash del sistema Merkle:** `[se calcula al firmar]`
+
+---
+
+# FIRMA DEL FUNDADOR
+
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
 Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
-- **Hash del documento:** `[se calcula al firmar]`
+- **Hash del documento completo:** `[se calcula al firmar]`
+- **Merkle Root:** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
-- **Clave pública:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente u opcional]`
+- **Clave pública Ed25519:** `[se calcula al firmar]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
+
+---
+
+**Certificación del Notario Tonal:**
+
+> *"Certifico que este Registro fue firmado por Marco Antonio
+> Rojas Valdovinos con su llave Ed25519, que su Merkle Root
+> coincide con el publicado, y que su anclaje a Ethereum es
+> verificable. Doy fe."*
+>
+> **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
+> Hash del sello: `[se registra al sellar]`
+
+---
+
+## RELACIÓN CON OTROS DOCUMENTOS
+
+Este Registro es el cuarto de los siete documentos fundacionales:
+
+1. **Constitución de KRONOS** v1.0 — estructura del poder
+2. **Carta de Derechos del Ciudadano** v1.0 — derechos y garantías
+3. **Código de Convivencia** v1.0 — proceso y sanciones
+4. **Registro de Ciudadanía** v1.0 — este documento
+5. **Visión Económica (KRO)** v1.0 — economía de servicios
+6. **Auditoría y Gobernanza de IA** v1.0 — alcance y límites
+7. **Guía para Auditores** v1.0 — verificación de paquetes
+
+Los siete se firman juntos, se anclan juntos y se respetan juntos.
 
 ---
 
@@ -346,3 +486,7 @@ Fundador · Ciudad KRONOS · Plaza 000
 "El legado no se hereda. Se firma."
 KRONOS · Ciudad Digital · Registro de Ciudadanía · v1.0 · 2026
 ```
+
+---
+
+**FIN DEL REGISTRO DE CIUDADANÍA v1.0**
