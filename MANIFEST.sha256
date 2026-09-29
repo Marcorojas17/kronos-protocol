@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-29T16:29:37Z
+# Generado: 2026-09-29T16:43:55Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 6e0ca9c6fc32eb529323781a6a10ee38e8579a14d167a8db432d0d4e7c8b370c  ./403
@@ -23,7 +23,7 @@ a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/naviga
 316bebf565493d372c0f2cdb416b7c03a97402ce30eb09b1eeae9c22de676e03  ./aditoria
 464e5b7c9ff23fabd128c02a0ac516e8c647c93872edca35042eb74cf9e0413a  ./admin.html
 bea8375489051cd75ca66c74f36ea4db3761ba59151f11ebe0e307a692788d2b  ./agentes/README.md
-ec43720eb48fae8461ccb4e156f7d1a074b50530427b056125d9a67ebba0546b  ./agentes/agente-base.js
+98e2e69109d547819bf8aad7ba89a181999989846a95d7a89aeb0a7669fda291  ./agentes/agente-base.js
 ae77deff9b92d4b11ce8de3bf4b00bbf600f7ed529c6b739963279b718600a46  ./agentes/cuicatl-publicista/index.html
 6ca4163657b10f3a928603d31eae6beeaab402352c5a769f24f04581fe7bacee  ./agentes/cuicatl-publicista/politica.md
 f2d3376baa43f9eaa832e78d046167bfe463c75e3349d24d32c28cbb5c8a582b  ./agentes/cuicatl-publicista/prompt.md
