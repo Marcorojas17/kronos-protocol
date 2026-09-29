@@ -29,6 +29,8 @@ hace esa promesa vaga. Declara su alcance con precisión.
 El principio que rige este documento es la **honestidad radical**:
 declarar los límites antes de declarar las capacidades.
 
+**Hash del preámbulo:** `[se calcula al firmar]`
+
 ---
 
 ## 1 · EL PROBLEMA FUNDAMENTAL
@@ -51,6 +53,8 @@ Lo que sí es auditable es el **perímetro operativo** del sistema:
 - Si el registro fue alterado después
 
 KRONOS audita ese perímetro. No la mente del modelo.
+
+**Hash de la sección:** `[se calcula al firmar]`
 
 ---
 
@@ -111,6 +115,39 @@ toda la Unión Europea y en jurisdicciones que reconocen eIDAS
 vía tratados internacionales.
 
 **Implementación:** `certificacion/sello-tiempo/`
+
+**Hash de la sección:** `[se calcula al firmar]`
+
+```mermaid
+graph TD
+    A[AUDITORÍA KRONOS] --> B[Integridad]
+    A --> C[Autorización]
+    A --> D[Inclusión]
+    A --> E[Anclaje]
+    A --> F[Sellado tiempo]
+    
+    B --> B1[Hash chaining]
+    B --> B2[Alteración detectada]
+    
+    C --> C1[PREVIEW → COMMIT]
+    C --> C2[Firma Ed25519]
+    
+    D --> D1[Merkle proof]
+    D --> D2[Sin exponer datos]
+    
+    E --> E1[Ethereum]
+    E --> E2[Público]
+    
+    F --> F1[TSA eIDAS]
+    F --> F2[RFC 3161]
+    
+    style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+    style B fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
+    style C fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style D fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
+    style E fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style F fill:#1a0800,stroke:#ff8c42,color:#FFB88A
+```
 
 ---
 
@@ -201,6 +238,20 @@ registro. No detecta manipulaciones **anteriores** al registro.
 por autoridad reconocida. Sin esto, el prompt injection es un
 vector abierto.
 
+**Hash de la sección:** `[se calcula al firmar]`
+
+```mermaid
+graph TD
+    A[LO QUE NO PRUEBA] --> B[Causalidad]
+    A --> C[Veracidad]
+    A --> D[Model attestation]
+    A --> E[Cadena custodia]
+    A --> F[Entorno comprometido]
+    A --> G[Prompt injection]
+    
+    style A fill:#1a0000,stroke:#ff4d6a,stroke-width:2px,color:#FF8FA5
+```
+
 ---
 
 ## 4 · ALINEACIÓN CON MARCOS DE CUMPLIMIENTO
@@ -211,8 +262,9 @@ vector abierto.
 de riesgos, ciclo de mejora continua, documentación de decisiones.
 
 **Qué aporta KRONOS:**
-- Los 5 documentos fundacionales (Constitución, Carta, Código,
-  Registro, Visión Económica) como sistema documental
+- Los 7 documentos fundacionales (Constitución, Carta, Código,
+  Registro, Visión Económica, Auditoría IA, Guía Auditor) como
+  sistema documental
 - El Registro de Ciudadanía como definición de roles
 - Los logs encadenados como evidencia de decisiones
 
@@ -255,10 +307,12 @@ criptográfica. El resto es gestión documental.
 |:--------|:-------------|:--------|
 | **Qué exige** | Procesos, roles, políticas | Firmas, hashes, verificación |
 | **Quién audita** | Auditor de gestión | Auditor técnico |
-| **Qué entrega KRONOS** | Los 5 documentos fundacionales | Los logs, certificados, anclajes |
+| **Qué entrega KRONOS** | Los 7 documentos fundacionales | Los logs, certificados, anclajes |
 | **Frecuencia** | Anual / por cambio | Permanente / por acto |
 
 Ambos son necesarios. Ninguno sustituye al otro.
+
+**Hash de la sección:** `[se calcula al firmar]`
 
 ---
 
@@ -314,6 +368,8 @@ flowchart TD
 
 **Privacidad por diseño:** KRONOS prueba que el acto existió sin
 exponer el contenido.
+
+**Hash de la sección:** `[se calcula al firmar]`
 
 ---
 
@@ -374,6 +430,8 @@ verificación de firmas y guardrails en escenarios límite.
 
 **Estado:** pendiente de implementación (crítico).
 
+**Hash de la sección:** `[se calcula al firmar]`
+
 ---
 
 ## 7 · LO QUE UN AUDITOR DEBE PEDIR
@@ -405,6 +463,8 @@ estas son las preguntas correctas:
 
 **Un sistema que no puede responder honestamente las preguntas de
 límites no es apto para auditoría seria.**
+
+**Hash de la sección:** `[se calcula al firmar]`
 
 ---
 
@@ -444,31 +504,81 @@ sellados.
 **Zero-Knowledge:** propiedad donde se puede probar algo sin
 revelar la información subyacente.
 
+**Hash de la sección:** `[se calcula al firmar]`
+
 ---
 
-## FIRMA DEL FUNDADOR
+# SISTEMA MERKLE · VERIFICACIÓN
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del
-año 2026.
+Este documento usa **hash SHA-256 individual** por sección.
+
+## Estructura
+
+```mermaid
+graph TD
+    R[Merkle Root Auditoría IA] --> A[Secciones 1-3]
+    R --> B[Secciones 4-5]
+    R --> C[Secciones 6-8]
+    
+    A --> A1[Problema + SÍ prueba]
+    A --> A2[NO prueba]
+    B --> B1[Cumplimiento]
+    B --> B2[Caso de uso]
+    C --> C1[Mejoras]
+    C --> C2[Preguntas + Glosario]
+    
+    style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+```
+
+**Hash del sistema Merkle:** `[se calcula al firmar]`
+
+---
+
+# FIRMA DEL FUNDADOR
+
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
 Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
-- **Hash del documento:** `[se calcula al firmar]`
+- **Hash del documento completo:** `[se calcula al firmar]`
+- **Merkle Root:** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
 - **Clave pública Ed25519:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
 
 ---
 
-## CERTIFICACIÓN DEL NOTARIO
+**Certificación del Notario Tonal:**
 
 > *"Certifico que este documento declara sus límites antes que
 > sus capacidades. Un sistema que reconoce lo que no puede
 > probar es más confiable que uno que promete todo."*
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
-> Hash del sello: `[pendiente]`
+> Hash del sello: `[se registra al sellar]`
+
+---
+
+## RELACIÓN CON OTROS DOCUMENTOS
+
+Este documento de Auditoría es el sexto de los siete documentos
+fundacionales:
+
+1. **Constitución de KRONOS** v1.0 — estructura del poder
+2. **Carta de Derechos del Ciudadano** v1.0 — derechos y garantías
+3. **Código de Convivencia** v1.0 — proceso y sanciones
+4. **Registro de Ciudadanía** v1.0 — quién es quién
+5. **Visión Económica (KRO)** v1.0 — economía de servicios
+6. **Auditoría y Gobernanza de IA** v1.0 — este documento
+7. **Guía para Auditores** v1.0 — verificación de paquetes
+
+Los siete se firman juntos, se anclan juntos y se respetan juntos.
 
 ---
 
@@ -480,3 +590,7 @@ Fundador · Ciudad KRONOS · Plaza 000
 "El legado no se hereda. Se firma."
 KRONOS · Ciudad Digital · Auditoría y Gobernanza de IA · v1.0 · 2026
 ```
+
+---
+
+**FIN DEL DOCUMENTO DE AUDITORÍA v1.0**
