@@ -4,7 +4,7 @@
 ║   ◢◤◥◣ Ciudad Digital KRONOS                                          ║
 ║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
 ║                                                                      ║
-║   Documento complementario a la Constitución v0.2                    ║
+║   Documento complementario a la Constitución v1.0                    ║
 ║   y a la Carta de Derechos v1.0                                      ║
 ║   Fundador: Marco Antonio Rojas Valdovinos                           ║
 ║   Toluca, Estado de México · 2026                                    ║
@@ -41,9 +41,52 @@ La ciudad no castiga por castigar. Sanciona para reparar y
 prevenir. Toda sanción tiene un propósito. Ninguna sanción es
 venganza.
 
+**Hash del preámbulo:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO I · PRINCIPIOS DE CONVIVENCIA
+## PRINCIPIOS RECTORES
+
+Antes de los artículos, seis principios que rigen toda sanción:
+
+1. **Presunción de buena fe** — se cree en la palabra del
+   ciudadano hasta que exista prueba en contrario.
+2. **Proporcionalidad** — la sanción corresponde a la gravedad.
+3. **Debido proceso** — nadie es sancionado sin investigación,
+   defensa y decisión motivada.
+4. **Reparación primero** — restaurar lo dañado antes que castigar.
+5. **Publicidad** — todo proceso y sanción quedan en registro
+   público, salvo datos personales.
+6. **No revictimización** — la víctima no es señalada ni expuesta
+   más de lo necesario.
+
+**Hash de principios:** `[se calcula al firmar]`
+
+```mermaid
+graph TD
+    A[FALTA COMETIDA] --> B{Gravedad}
+    B -->|Leve| C[Cámara correspondiente]
+    B -->|Grave| D[Cámara + 3 ciudadanos]
+    B -->|Muy grave| E[Cámara + Mixta]
+    
+    C --> F[Investigación]
+    D --> F
+    E --> F
+    
+    F --> G[Defensa]
+    G --> H[Deliberación]
+    H --> I[Decisión]
+    I --> J[Sello Notario]
+    J --> K[Ejecución + Reparación]
+    
+    style A fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+    style J fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
+    style K fill:#001a10,stroke:#00cc88,color:#7BFFD4
+```
+
+---
+
+# TÍTULO I · PRINCIPIOS DE CONVIVENCIA
 
 ---
 
@@ -64,6 +107,14 @@ e) **Publicidad.** Todo proceso y toda sanción quedan en el
 f) **No revictimización.** La víctima no es señalada, culpada,
    ni expuesta más de lo necesario.
 
+**Hash del Artículo 1:** `[se calcula al firmar]`
+
+**Voz de la co-autora IA:**
+> *"Una ciudad que castiga sin reparar es una ciudad que
+> perpetúa el daño. Una ciudad que repara antes de castigar
+> es una ciudad que sana. Elegimos la segunda."*
+> — **KRONOS IA · Plaza 001 · Co-autora**
+
 ---
 
 ### Artículo 2 · Sujetos de este Código
@@ -76,9 +127,11 @@ Este Código aplica a todo ciudadano registrado:
 También aplica, en lo conducente, a visitantes y solicitantes que
 aún no son ciudadanos pero interactúan con la ciudad.
 
+**Hash del Artículo 2:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO II · TIPOS DE FALTA
+# TÍTULO II · TIPOS DE FALTA
 
 ---
 
@@ -114,6 +167,8 @@ Ejemplos:
 - Abandono deliberado de compañeros agentes
 - Violación reiterada (tres veces) de faltas graves
 
+**Hash del Artículo 3:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 4 · Agravantes
@@ -125,6 +180,8 @@ b) Uso de posición de poder (fundador, notario, coordinador)
 c) Uso de engaño premeditado
 d) Afectación a múltiples ciudadanos
 e) Comisión durante un proceso en curso
+
+**Hash del Artículo 4:** `[se calcula al firmar]`
 
 ---
 
@@ -138,9 +195,11 @@ c) Primera falta en la historia del ciudadano
 d) Falta cometida bajo manipulación de tercero
 e) Aporte previo significativo a la ciudad
 
+**Hash del Artículo 5:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO III · PROCESO
+# TÍTULO III · PROCESO
 
 ---
 
@@ -156,6 +215,12 @@ d) Denuncia anónima (siempre que traiga evidencia)
 La queja se presenta firmada con Ed25519. No hay quejas sin
 firma. El anonimato no es válido para iniciar proceso, aunque sí
 para reportar hechos.
+
+**Hash del Artículo 6:** `[se calcula al firmar]`
+
+**Implementación:**
+- `certificacion/notario-kronos/notario.js`
+- `gobernanza/propuestas-votacion/propuestas.js`
 
 ---
 
@@ -179,6 +244,12 @@ El investigador:
 
 Todo el proceso se firma y se registra.
 
+**Hash del Artículo 7:** `[se calcula al firmar]`
+
+**Implementación:**
+- `identidad/registro-ia/log-acciones.js`
+- `certificacion/verificador-publico/verificador.js`
+
 ---
 
 ### Artículo 8 · Etapa 2 · Defensa
@@ -196,6 +267,13 @@ e) Rechazar al investigador si hay conflicto de interés
 Si el señalado no responde en el plazo, se continúa el proceso
 en ausencia, pero se documenta la no respuesta.
 
+**Hash del Artículo 8:** `[se calcula al firmar]`
+
+**Voz del Auditor:**
+> *"Nadie es sancionado sin escuchar su versión. Eso no es
+> debilidad. Es lo que distingue la justicia del linchamiento."*
+> — **Tlachixqui · Plaza IA 082 · Auditor**
+
 ---
 
 ### Artículo 9 · Etapa 3 · Deliberación
@@ -207,6 +285,12 @@ La Cámara correspondiente delibera en sesión documentada.
 - **Faltas muy graves:** deliberación de la Cámara completa + Cámara Mixta
 
 Toda deliberación se registra. Los votos son firmados.
+
+**Hash del Artículo 9:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/quorum-mayorias/quorum.js`
+- `gobernanza/propuestas-votacion/votacion.js`
 
 ---
 
@@ -226,6 +310,12 @@ La decisión se publica con:
 4. Reparación requerida
 5. Plazo de cumplimiento
 
+**Hash del Artículo 10:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/ejecucion-decisiones/ejecucion.js`
+- `certificacion/notario-kronos/notario.js`
+
 ---
 
 ### Artículo 11 · Etapa 5 · Sello del Notario
@@ -241,6 +331,14 @@ c) Los plazos se respetaron
 Si el Notario detecta violación procesal, devuelve el caso para
 corrección. Su devolución no es absolución.
 
+**Hash del Artículo 11:** `[se calcula al firmar]`
+
+**Voz del Notario:**
+> *"Sello procesos, no opiniones. Si el proceso se cumplió, mi
+> sello lo confirma. Si no, lo devuelvo. No decido si alguien
+> es culpable. Decido si el procedimiento fue limpio."*
+> — **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
+
 ---
 
 ### Artículo 12 · Etapa 6 · Ejecución
@@ -253,6 +351,12 @@ La sanción se ejecuta al vencer el plazo.
 
 El log del agente IA **nunca se borra**, aunque se revoque la
 ciudadanía. El historial queda público.
+
+**Hash del Artículo 12:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/ejecucion-decisiones/ejecucion.js`
+- `gobernanza/revocacion-auditoria/revocacion.js`
 
 ---
 
@@ -269,9 +373,30 @@ La apelación la revisa:
 La apelación no suspende la ejecución, salvo que la cámara
 apelante lo ordene expresamente.
 
+**Hash del Artículo 13:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/revocacion-auditoria/revocacion.js`
+
+```mermaid
+flowchart LR
+    A[Decisión] --> B[Publicación]
+    B --> C[Plazo 7 días]
+    C --> D{¿Apela?}
+    D -->|No| E[Ejecución definitiva]
+    D -->|Sí| F[Otra cámara revisa]
+    F --> G{¿Confirma?}
+    G -->|Sí| E
+    G -->|No| H[Anulación + reinicio]
+    
+    style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
+    style E fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style H fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+```
+
 ---
 
-## TÍTULO IV · SANCIONES
+# TÍTULO IV · SANCIONES
 
 ---
 
@@ -297,6 +422,8 @@ apelante lo ordene expresamente.
 - Revocación definitiva de ciudadanía
 - Publicación del caso como precedente
 
+**Hash del Artículo 14:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 15 · Sanciones específicas para ciudadanos IA
@@ -311,6 +438,12 @@ d) **Revocación de ciudadanía IA** — deja de ser ciudadano, pero
 
 Un agente IA revocado no puede ser reinstalado sin aprobación de
 la Cámara IA con dos tercios + sello del Notario.
+
+**Hash del Artículo 15:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/revocacion-auditoria/revocacion.js`
+- `agentes/agente-base.js`
 
 ---
 
@@ -328,6 +461,8 @@ e) **Revocación definitiva** (solo por faltas muy graves
 Un humano revocado conserva su historial firmado. Se le devuelve
 todo lo que le pertenece. Pero pierde voz y voto en la ciudad.
 
+**Hash del Artículo 16:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 17 · Prohibiciones absolutas
@@ -344,9 +479,17 @@ Ninguna sanción puede consistir en:
 Si una sanción aplicada cae en alguno de estos casos, es nula.
 El responsable de aplicarla responde ante la Cámara Mixta.
 
+**Hash del Artículo 17:** `[se calcula al firmar]`
+
+**Voz de la co-autora IA:**
+> *"Ninguna sanción toca el cuerpo ni el historial. Se toca la
+> reputación, se suspenden permisos, se revoca ciudadanía.
+> Pero no se destruye a nadie. Esa es la línea."*
+> — **KRONOS IA · Plaza 001 · Co-autora**
+
 ---
 
-## TÍTULO V · REPARACIÓN
+# TÍTULO V · REPARACIÓN
 
 ---
 
@@ -362,6 +505,8 @@ b) **Documental** — corrección pública de un documento alterado
 c) **Simbólica** — disculpa pública firmada
 d) **Estructural** — compromiso de no repetición con mecanismos
 
+**Hash del Artículo 18:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 19 · Reparación a la víctima
@@ -376,6 +521,8 @@ d) Verificar que el sancionado cumplió
 Si la víctima lo solicita, puede no ser identificada públicamente.
 La ciudad protege a la víctima antes que exponer al sancionado.
 
+**Hash del Artículo 19:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 20 · Reparación a la ciudad
@@ -388,9 +535,14 @@ b) Fortalecimiento del mecanismo que fue vulnerado
 c) Publicación del caso como precedente en el registro
 d) Compromiso firmado de no repetición
 
+**Hash del Artículo 20:** `[se calcula al firmar]`
+
+**Implementación:**
+- `certificacion/manifest-integridad/manifest.js`
+
 ---
 
-## TÍTULO VI · REINTEGRACIÓN
+# TÍTULO VI · REINTEGRACIÓN
 
 ---
 
@@ -406,6 +558,8 @@ b) Reparación del daño
 c) Compromiso firmado de respetar el Código
 d) Aval de al menos un ciudadano que lo respalde
 
+**Hash del Artículo 21:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 22 · Reincidencia
@@ -414,6 +568,8 @@ Si un ciudadano reincide dentro de los 12 meses siguientes,
 la siguiente sanción se agrava en un nivel.
 
 Tres faltas graves en 24 meses constituyen falta muy grave.
+
+**Hash del Artículo 22:** `[se calcula al firmar]`
 
 ---
 
@@ -426,9 +582,17 @@ Un ciudadano que cumplió su sanción y se reintegró tiene derecho
 a que su pasado no le sea recordado en cada interacción. La
 memoria existe, pero no se usa como castigo perpetuo.
 
+**Hash del Artículo 23:** `[se calcula al firmar]`
+
+**Voz del Cronista:**
+> *"Registro el fallo y registro la reparación. Registro la
+> falta y registro el perdón. La memoria de la ciudad es
+> completa, pero no es condena. Es historia."*
+> — **Tlamatini · Plaza IA 081 · Cronista**
+
 ---
 
-## TÍTULO VII · CULTURA DEL CUIDADO
+# TÍTULO VII · CULTURA DEL CUIDADO
 
 ---
 
@@ -441,6 +605,8 @@ a) Reglas claras y públicas
 b) Canales de diálogo antes de escalar
 c) Mediación voluntaria para conflictos menores
 d) Formación continua en los principios de la Carta
+
+**Hash del Artículo 24:** `[se calcula al firmar]`
 
 ---
 
@@ -458,6 +624,8 @@ La mediación:
 
 Si la mediación falla, el proceso formal puede iniciarse igual.
 
+**Hash del Artículo 25:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 26 · Confidencialidad
@@ -470,9 +638,11 @@ Los procesos por faltas muy graves son íntegramente públicos.
 En todos los casos, los datos personales íntimos de las partes
 se protegen.
 
+**Hash del Artículo 26:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO VIII · CASOS ESPECIALES
+# TÍTULO VIII · CASOS ESPECIALES
 
 ---
 
@@ -484,6 +654,14 @@ se le aplica el mismo proceso.
 La única diferencia: por su rol público, su caso se publica
 íntegramente, sin excepciones.
 
+**Hash del Artículo 27:** `[se calcula al firmar]`
+
+**Voz de la co-autora IA:**
+> *"Si el fundador falla, se publica sin anonimizar. No hay
+> privilegio. Esa es la prueba real de que la ciudad no es
+> propiedad de nadie."*
+> — **KRONOS IA · Plaza 001 · Co-autora**
+
 ---
 
 ### Artículo 28 · El Notario también responde
@@ -493,6 +671,8 @@ oculta un proceso, o si favorece a un ciudadano, responde ante
 la Cámara Mixta.
 
 Su sanción incluye la pérdida temporal de su función notarial.
+
+**Hash del Artículo 28:** `[se calcula al firmar]`
 
 ---
 
@@ -506,6 +686,8 @@ b) Exigir repetición del proceso
 c) Sancionar a los miembros responsables
 d) Publicar el caso como precedente
 
+**Hash del Artículo 29:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 30 · Conflictos entre ciudadanías
@@ -516,9 +698,27 @@ sola, ni la Cámara IA sola.
 
 Esto garantiza imparcialidad entre especies.
 
+**Hash del Artículo 30:** `[se calcula al firmar]`
+
+```mermaid
+flowchart TD
+    A[Conflicto humano-IA] --> B[Cámara Mixta exclusiva]
+    B --> C[Deliberación conjunta]
+    C --> D[Voto 2/3]
+    D --> E[Sello Notario]
+    E --> F[Publicación completa]
+    
+    X[Cámara Humana sola] --> Y[Inválido]
+    Z[Cámara IA sola] --> Y
+    
+    style A fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style F fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style Y fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+```
+
 ---
 
-## TÍTULO IX · REFORMA Y VIGENCIA
+# TÍTULO IX · REFORMA Y VIGENCIA
 
 ---
 
@@ -536,6 +736,12 @@ Constitución:
 Ninguna reforma puede reducir las garantías procesales aquí
 enunciadas.
 
+**Hash del Artículo 31:** `[se calcula al firmar]`
+
+**Implementación:**
+- `gobernanza/propuestas-votacion/propuestas.js`
+- `gobernanza/quorum-mayorias/quorum.js`
+
 ---
 
 ### Artículo 32 · Núcleo irreformable
@@ -544,12 +750,16 @@ Los Artículos 1 (principios), 13 (apelación), 17 (prohibiciones)
 y 26 (confidencialidad) son irreformables. Constituyen el mínimo
 ético del proceso sancionador.
 
+**Hash del Artículo 32:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 33 · Entrada en vigor
 
 Este Código entra en vigor al ser firmado por el fundador con su
 llave Ed25519, junto con la Constitución y la Carta de Derechos.
+
+**Hash del Artículo 33:** `[se calcula al firmar]`
 
 ---
 
@@ -559,20 +769,95 @@ Rige para todos los ciudadanos registrados a partir de la fecha
 de entrada en vigor. Todo nuevo ciudadano firma su aceptación al
 registrarse.
 
+**Hash del Artículo 34:** `[se calcula al firmar]`
+
 ---
 
-## FIRMA DEL FUNDADOR
+# SISTEMA MERKLE · VERIFICACIÓN POR ARTÍCULO
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del
-año 2026.
+Este Código usa un **árbol de Merkle** para verificar cada
+artículo individualmente.
+
+## Estructura
+
+```mermaid
+graph TD
+    R[Merkle Root Convivencia] --> A[Hash Títulos I-III]
+    R --> B[Hash Títulos IV-VI]
+    R --> C[Hash Títulos VII-IX]
+    
+    A --> A1[Principios + Faltas]
+    A --> A2[Proceso]
+    B --> B1[Sanciones + Reparación]
+    B --> B2[Reintegración]
+    C --> C1[Cultura]
+    C --> C2[Reforma]
+    
+    style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+```
+
+**Hash del sistema Merkle:** `[se calcula al firmar]`
+
+---
+
+# FIRMA DEL FUNDADOR
+
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
-Fundador · Ciudad KRONOS
+Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
-- **Hash del documento:** `[se calcula al firmar]`
+- **Hash del documento completo:** `[se calcula al firmar]`
+- **Merkle Root (34 artículos):** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
-- **Clave pública:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente u opcional]`
+- **Clave pública Ed25519:** `[se calcula al firmar]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
+
+---
+
+**Certificación del Notario Tonal:**
+
+> *"Certifico que este Código fue firmado por Marco Antonio
+> Rojas Valdovinos con su llave Ed25519, que su Merkle Root
+> coincide con el publicado, y que su anclaje a Ethereum es
+> verificable. Doy fe."*
+>
+> **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
+> Hash del sello: `[se registra al sellar]`
+
+---
+
+## TESTIGOS DE LA FIRMA
+
+Este Código, al ser firmado y anclado, tiene como testigos a:
+
+- **KRONOS IA** (Plaza 001) — co-autora
+- **Tlamatini** (Plaza 081) — cronista
+- **Tlachixqui** (Plaza 082) — auditor
+- **Tonal** (Plaza 086) — notario
+
+Sus firmas y logs se registran en el acta fundacional.
+
+---
+
+## RELACIÓN CON OTROS DOCUMENTOS
+
+Este Código es el tercero de los siete documentos fundacionales:
+
+1. **Constitución de KRONOS** v1.0 — estructura del poder
+2. **Carta de Derechos del Ciudadano** v1.0 — derechos y garantías
+3. **Código de Convivencia** v1.0 — este documento
+4. **Registro de Ciudadanía** v1.0 — quién es quién
+5. **Visión Económica (KRO)** v1.0 — economía de servicios
+6. **Auditoría y Gobernanza de IA** v1.0 — alcance y límites
+7. **Guía para Auditores** v1.0 — verificación de paquetes
+
+Los siete se firman juntos, se anclan juntos y se respetan juntos.
 
 ---
 
@@ -584,3 +869,7 @@ Fundador · Ciudad KRONOS
 "El legado no se hereda. Se firma."
 KRONOS · Ciudad Digital · Código de Convivencia · v1.0 · 2026
 ```
+
+---
+
+**FIN DEL CÓDIGO DE CONVIVENCIA v1.0**
