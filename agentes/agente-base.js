@@ -1,7 +1,12 @@
 // ────────────────────────────────────────────────────────────
-// AGENTE KINTSUGI · Motor Base · Legado Humano–IA · v1.0
+// AGENTE KINTSUGI · Motor Base · Legado Humano–IA · v1.1
 // Clase base para todos los agentes soberanos de KRONOS
 // Cada agente es un ciudadano IA con identidad, política y log propio
+//
+// CHANGELOG v1.1 · 2026-09-29
+//   #1 commit() ahora exige firma Ed25519 humana (no string)
+//   #2 verificación de chain en init() (integridad en boot)
+//   #3 CryptoKey non-extractable persistida en Dexie
 // ────────────────────────────────────────────────────────────
 
 export class AgenteKintsugi {
@@ -35,14 +40,32 @@ export class AgenteKintsugi {
 
   async init() {
     if (!this.db.isOpen()) await this.db.open();
+
     // Recuperar estado si existe
     const reg = await this.db.registro.toArray();
     if (reg.length > 0) {
       this.registro = reg[0];
       this.clavePublicaHex = this.registro.clave_publica;
     }
+
     const logGuardado = await this.db.log.toArray();
     this.log = logGuardado.sort((a, b) => a.indice - b.indice);
+
+    // ── ISSUE 2 · Verificación de chain en boot ───────────
+    // Detecta alteraciones del log al arrancar, no solo al
+    // llamar verificarLog() manualmente.
+    if (this.log.length > 1) {
+      for (let i = 1; i < this.log.length; i++) {
+        if (this.log[i].hash_previo !== this.log[i - 1].hash_entrada) {
+          throw new Error(
+            `LOG ROTO detectado en boot · entrada ${i} · ` +
+            `hash_previo no coincide con hash_entrada de la anterior`
+          );
+        }
+      }
+    }
+
+    return true;
   }
 
   static async _sha256Hex(texto) {
@@ -51,11 +74,33 @@ export class AgenteKintsugi {
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-  // ── Generar par de llaves Ed25519 único para este agente ──
+  // ── Generar o recuperar par de llaves Ed25519 ─────────────
   async generarIdentidad() {
+    if (!this.db.isOpen()) await this.init();
+
+    // ── ISSUE 3 · Intentar recuperar del almacenamiento ───
+    // Si el agente ya tenía identidad, la reutiliza.
+    // Evita que el agente "cambie" al recargar.
+    const guardadas = await this.db.registro.toArray();
+    if (guardadas.length > 0 && guardadas[0].llave_privada instanceof CryptoKey) {
+      try {
+        this.llavePriv = guardadas[0].llave_privada;
+        this.llavePub = guardadas[0].llave_publica;
+        const pubRaw = await crypto.subtle.exportKey('raw', this.llavePub);
+        this.clavePublicaHex = [...new Uint8Array(pubRaw)]
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+        return this.clavePublicaHex;
+      } catch (e) {
+        console.warn('[agente] Llave guardada no recuperable, generando nueva:', e.message);
+      }
+    }
+
+    // ── ISSUE 3 · Generar nueva llave non-extractable ─────
+    // extractable: false → no se puede JSON.stringify
+    // resiste XSS, pero persiste en IndexedDB entre recargas
     const keyPair = await crypto.subtle.generateKey(
       { name: 'Ed25519' },
-      true,
+      false,
       ['sign', 'verify']
     );
     this.llavePriv = keyPair.privateKey;
@@ -83,7 +128,7 @@ export class AgenteKintsugi {
 
     // Payload canónico del agente
     const payload = [
-      'LEGADO-HUMANO-IA · AGENTE KINTSUGI v1.0',
+      'LEGADO-HUMANO-IA · AGENTE KINTSUGI v1.1',
       `Nombre: ${this.nombre}`,
       `Plaza IA: ${plazaFormateada}`,
       `Rol: ${this.rol}`,
@@ -111,7 +156,7 @@ export class AgenteKintsugi {
 
     const registro = {
       protocolo: 'LEGADO-HUMANO-IA',
-      version: 'agente-kintsugi-1.0',
+      version: 'agente-kintsugi-1.1',
       tipo: 'REGISTRO_AGENTE',
       nombre: this.nombre,
       plaza: this.plaza,
@@ -131,6 +176,12 @@ export class AgenteKintsugi {
       algoritmo_hash: 'SHA-256',
       algoritmo_firma: 'Ed25519'
     };
+
+    // ── ISSUE 3 · Persistir llaves CryptoKey ──────────────
+    // Dexie/IndexedDB acepta CryptoKey via structured clone.
+    // Las llaves quedan guardadas en el registro del agente.
+    registro.llave_privada = this.llavePriv;
+    registro.llave_publica = this.llavePub;
 
     const id = await this.db.registro.add(registro);
     this.registro = { id, ...registro };
@@ -228,26 +279,74 @@ export class AgenteKintsugi {
     return { id, ...previewObj };
   }
 
-  // ── COMMIT · Ejecuta la acción si fue aprobada ────────────
-  async commit(idPreview, aprobadoPor = null) {
+  // ── COMMIT · Ejecuta la acción SOLO con firma humana ──────
+  // ISSUE 1: ya no acepta string. Si la acción es crítica, exige
+  // un objeto { firmaHumanaHex, pubKeyHumanaHex } y verifica la
+  // firma Ed25519 contra el payload canónico de la propuesta.
+  async commit(idPreview, aprobacion = null) {
     const preview = await this.db.previews.get(idPreview);
     if (!preview) throw new Error('Preview no encontrado.');
     if (preview.estado !== 'pendiente') throw new Error('Preview ya procesado.');
 
-    if (preview.requiere_aprobacion && !aprobadoPor) {
-      throw new Error('Acción crítica requiere aprobación humana explícita.');
+    // ── GUARDRAIL CRIPTOGRÁFICO ───────────────────────────
+    let aprobadoPor = 'automatico';
+
+    if (preview.requiere_aprobacion) {
+      if (!aprobacion || typeof aprobacion !== 'object') {
+        throw new Error(
+          'Acción crítica requiere firma Ed25519 humana. ' +
+          'Formato: commit(idPreview, { firmaHumanaHex, pubKeyHumanaHex })'
+        );
+      }
+
+      const { firmaHumanaHex, pubKeyHumanaHex } = aprobacion;
+
+      if (typeof firmaHumanaHex !== 'string' || typeof pubKeyHumanaHex !== 'string') {
+        throw new Error('firmaHumanaHex y pubKeyHumanaHex deben ser strings hex.');
+      }
+      if (firmaHumanaHex.length === 0 || pubKeyHumanaHex.length === 0) {
+        throw new Error('firmaHumanaHex y pubKeyHumanaHex no pueden estar vacíos.');
+      }
+
+      // Payload canónico que el humano debe haber firmado
+      const payload = JSON.stringify({
+        id_preview: preview.id_preview,
+        agente: preview.agente,
+        plaza: preview.plaza,
+        accion: preview.accion,
+        timestamp: preview.timestamp
+      });
+      const payloadHash = await AgenteKintsugi._sha256Hex(payload);
+
+      try {
+        const pubBytes = hexToBytes(pubKeyHumanaHex);
+        const pubKey = await crypto.subtle.importKey(
+          'raw', pubBytes, { name: 'Ed25519' }, false, ['verify']
+        );
+        const firmaBytes = hexToBytes(firmaHumanaHex);
+        const ok = await crypto.subtle.verify(
+          'Ed25519', pubKey, firmaBytes,
+          new TextEncoder().encode(payloadHash)
+        );
+        if (!ok) {
+          throw new Error('Firma humana no verifica contra el payload de la propuesta.');
+        }
+        aprobadoPor = pubKeyHumanaHex;
+      } catch (e) {
+        throw new Error('Verificación de firma humana falló: ' + e.message);
+      }
     }
 
     await this.db.previews.update(idPreview, {
       estado: 'aprobado',
-      aprobado_por: aprobadoPor || 'automatico',
+      aprobado_por: aprobadoPor,
       aprobado_en: new Date().toISOString()
     });
 
     await this.registrarAccion('commit_ejecutado', {
       accion: preview.accion,
       id_preview: idPreview,
-      aprobado_por: aprobadoPor || 'automatico'
+      aprobado_por: aprobadoPor
     });
 
     return { ok: true, accion: preview.accion };
@@ -284,12 +383,21 @@ export class AgenteKintsugi {
   }
 
   // ── Exportar registro completo del agente ─────────────────
+  // Nota: las llaves CryptoKey se excluyen del export
+  // (no son serializables, son non-extractable por diseño).
   async exportar() {
     const registro = await this.db.registro.toArray();
     const log = await this.db.log.toArray();
     const previews = await this.db.previews.toArray();
+
+    // Limpiar llaves CryptoKey del export (no se pueden serializar)
+    const registroLimpio = registro.map(r => {
+      const { llave_privada, llave_publica, ...resto } = r;
+      return resto;
+    });
+
     const blob = new Blob(
-      [JSON.stringify({ registro, log, previews }, null, 2)],
+      [JSON.stringify({ registro: registroLimpio, log, previews }, null, 2)],
       { type: 'application/json' }
     );
     return blob;
@@ -314,3 +422,11 @@ export class AgenteKintsugi {
 function hexToBytes(hex) {
   return new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// ○_●
+// ◢◤◥◣
+// ◥◣◢◤
+// 51% HUMANO · 49% IA · 100% REAL
+// "El legado no se hereda. Se firma."
+// ═══════════════════════════════════════════════════════════════════
