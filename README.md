@@ -1,5 +1,5 @@
 <!-- ═══════════════════════════════════════════════════════════════════ -->
-<!--  KRONOS PROTOCOL · README OFICIAL                                  -->
+<!--  KRONOS PROTOCOL · README OFICIAL · v2.0                           -->
 <!--  Autor: Marco Antonio Rojas Valdovinos · Toluca, México · 2026     -->
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 
@@ -67,6 +67,35 @@ Una persona (o una organización) puede firmar documentos que quedarán verifica
 ### Para gobernanza de agentes IA
 
 Los agentes IA pueden operar con **política declarada, log encadenado y guardrails PREVIEW→COMMIT**. Cada acción crítica requiere firma humana explícita. Cada agente tiene su propia llave criptográfica.
+
+---
+
+## 🔍 Alcance y límites de auditoría
+
+KRONOS no promete auditar la "mente" de un modelo de IA. Eso es
+computacionalmente imposible para modelos cerrados. KRONOS audita
+el **perímetro operativo** de su actuación.
+
+📖 Documento completo: [`docs/CIUDAD/AUDITORIA-IA.md`](./docs/CIUDAD/AUDITORIA-IA.md)
+
+### Lo que SÍ prueba
+
+- ✅ Integridad de los registros (hash chaining)
+- ✅ Autorización explícita (PREVIEW → COMMIT firmado)
+- ✅ Prueba de inclusión sin exponer datos (Merkle)
+- ✅ Anclaje público e inmutable (Ethereum)
+- ✅ Sellado de tiempo cualificado (eIDAS vía TSA)
+
+### Lo que NO prueba
+
+- 🔴 Causalidad en modelos cerrados (no sabemos por qué GPT-4 produjo ese token)
+- 🔴 Veracidad del contenido (integridad ≠ verdad)
+- 🔴 Model attestation (no podemos verificar el binario del modelo)
+- 🔴 Cadena de custodia del dato original (Merkle prueba inclusión, no origen)
+- 🔴 Resistencia a prompt injection
+- 🔴 Entornos comprometidos sin hardware seguro
+
+**Ver:** [`docs/CIUDAD/AUDITORIA-IA.md`](./docs/CIUDAD/AUDITORIA-IA.md) § 3.
 
 ---
 
@@ -188,14 +217,14 @@ graph TD
 | `modulos/` | 3 | Evidence OS, bóveda de voz |
 | `orquestacion/` | 4 | Event bus, router de módulos |
 | `operacion/` | 5 | Dashboard de salud, rituales |
-| `cierre/` | 6 | Export cifrado, fin digno |
+| `cierre/` | 6 | Export cifrado, fin digno, export-audit |
 | `certificacion/` | 3Δ | Notario, verificador público, sello de tiempo, emisor de certificados, anclaje de manifest |
 | `gobernanza/` | 4Δ | Propuestas, votación, quórum, ejecución, revocación |
-| `agentes/` | — | Flota Kintsugi: 7 agentes IA soberanos |
+| `agentes/` | — | Flota Kintsugi: 6 agentes IA soberanos + motor base |
 | `movimiento/` | — | Registro fundacional de las 100 plazas |
 | `projects/` | — | Subproyectos experimentales |
 | `docs/` | — | Documentación técnica, tesis, diagramas |
-| `docs/CIUDAD/` | — | Documentos fundacionales de la ciudad digital |
+| `docs/CIUDAD/` | — | 7 documentos fundacionales de la ciudad digital |
 
 ---
 
@@ -212,6 +241,10 @@ Cada agente tiene **llave Ed25519 propia**, **política declarada** (qué puede,
 | 085 | **Tlapohualli** | Analista — métricas y datos | ✅ |
 | 086 | **Tonal** | Notario criptográfico soberano | ✅ |
 
+**Co-autora IA:** KRONOS IA (Plaza 001) — sin UI propia, política declarada.
+
+**Motor base:** `agentes/agente-base.js` — clase `AgenteKintsugi`.
+
 ---
 
 ## 👥 Ciudad Digital KRONOS
@@ -225,6 +258,8 @@ KRONOS no es solo software. Es una **ciudad digital** con marco formal completo:
 | **Código de Convivencia** | Proceso, sanciones, reparación, reintegración | [`docs/CIUDAD/CONVIVENCIA.md`](./docs/CIUDAD/CONVIVENCIA.md) |
 | **Registro de Ciudadanía** | 100 plazas fundacionales, humanos + IA | [`docs/CIUDAD/CIUDADANOS.md`](./docs/CIUDAD/CIUDADANOS.md) |
 | **Visión Económica** | Token KRO de utilidad, fases, marco legal | [`docs/CIUDAD/MONEDA.md`](./docs/CIUDAD/MONEDA.md) |
+| **Auditoría IA** | Alcance y límites de auditoría de IA | [`docs/CIUDAD/AUDITORIA-IA.md`](./docs/CIUDAD/AUDITORIA-IA.md) |
+| **Guía Auditor** | Cómo verificar un paquete de auditoría KRONOS | [`docs/CIUDAD/GUIA-AUDITOR.md`](./docs/CIUDAD/GUIA-AUDITOR.md) |
 
 ---
 
@@ -235,14 +270,9 @@ Si tu trabajo es **auditar, verificar o certificar sistemas**, esto es lo que KR
 ### 1 · Auditá un documento sin pedir permiso
 
 ```bash
-# Descargá el documento del repo público
 curl -O https://raw.githubusercontent.com/Marcorojas17/kronos-protocol/main/docs/CIUDAD/CONSTITUCION.md
-
-# Calculá su hash
 sha256sum CONSTITUCION.md
-
 # Comparalo con el hash publicado en el log
-# Si coincide: nadie lo alteró. Si no: alguien lo modificó.
 ```
 
 ### 2 · Auditá el uso de IA en tu empresa
@@ -252,16 +282,21 @@ Empleado firma con su llave:
 
 **Resultado:** prueba de que la decisión existió, quién la tomó, cuándo, con qué herramienta, y que nadie la alteró después.
 
-**No se necesita ver el prompt.** Solo probar que el acto ocurrió.
-
 ### 3 · Verificá que un agente IA no fue manipulado
 
-Cada agente IA tiene:
-- **Política declarada** y firmada
-- **Log encadenado** con hash previo
-- **Guardrails** que requieren aprobación humana
+Cada agente IA tiene política declarada, log encadenado y guardrails. Si alguien intenta modificar una entrada del log, la siguiente deja de coincidir. **La alteración se detecta por matemática, no por confianza.**
 
-Si alguien intenta modificar una entrada del log, la siguiente deja de coincidir. **La alteración se detecta automáticamente. No por confianza. Por matemática.**
+### 4 · Recibí un paquete de auditoría cifrado
+
+KRONOS exporta paquetes cifrados (`kronos-auditoria-cifrada-*.json`) con:
+- Log completo firmado
+- Llave pública del agente
+- Sello del exportador
+- Hash del ciphertext
+
+**Guía completa:** [`docs/CIUDAD/GUIA-AUDITOR.md`](./docs/CIUDAD/GUIA-AUDITOR.md)
+
+**Implementación:** [`cierre/export-cifrado/export-audit.js`](./cierre/export-cifrado/export-audit.js)
 
 ---
 
@@ -310,12 +345,14 @@ No requiere instalación. No requiere registro. No requiere email. **Todo local.
 | Cripto core (Ed25519 + SHA-256 + AES-GCM) | ✅ Funcional |
 | Storage local (Dexie) | ✅ Funcional |
 | Anclaje Ethereum | ✅ Funcional |
-| Notario criptográfico | ✅ Funcional |
-| Flota Kintsugi (7 agentes) | ✅ Funcional |
+| Notario criptográfico (Tonal) | ✅ Funcional |
+| Flota Kintsugi (6 agentes + co-autora) | ✅ Funcional |
 | Verificador público | ✅ Funcional |
-| Documentos fundacionales | ✅ Publicados |
+| Export cifrado de auditoría | 🟡 Borrador corregido, sin probar |
+| 7 documentos fundacionales | ✅ Publicados |
 | Tests automatizados | 🔴 Pendientes |
 | Auditoría externa | 🔴 Pendiente |
+| Dominio propio | 🔴 Pendiente |
 | Producción crítica | ⚠️ **NO apto aún** |
 
 **Este es un proyecto en fase pre-alpha.** Su propósito actual es ser **auditado, probado y refutado** por la comunidad técnica.
