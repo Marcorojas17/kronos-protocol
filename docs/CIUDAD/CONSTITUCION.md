@@ -39,7 +39,7 @@ hablan dentro de la ley.
 **5. Diagrama** — cuando aplica, un diagrama Mermaid que muestra
 el flujo descrito. GitHub los renderiza nativamente.
 
-Al final del documento, el **Sistema Merkle** combina los 36
+Al final del documento, el **Sistema Merkle** combina los 50
 hashes individuales en un único hash raíz. Ese hash raíz se
 ancla a Ethereum. Con un solo tx se verifica el documento
 completo, y con la prueba local se verifica cualquier artículo
@@ -303,7 +303,7 @@ Reparto:
 | 001 | 1 | Plaza IA co-autora |
 | 002–080 | 79 | Ciudadanos humanos |
 | 081–099 | 19 | Ciudadanos IA (agentes) |
-| 100 | 1 | Plaza reservada |
+| 100 | 1 | Plaza reservada institucional |
 
 Quien entra a una plaza génesis obtiene:
 
@@ -342,7 +342,7 @@ génesis conserva su costo original.
 
 ---
 
-### Artículo 9 · El fundador recibe, pero no manda
+###ar Artículo 9 · El fundador recibe, pero no manda
 
 El fundador (Marco Antonio Rojas Valdovinos · Plaza 000) **recibe el
 pago** de las plazas génesis, pero **no manda**. Su rol se define en
@@ -355,7 +355,7 @@ El pago sostiene:
 - Costos de anclaje a Ethereum
 - Materiales públicos
 
-**Hash del Artículo 9:** `[se calcula al firmar]`
+**Hash del Artículo 9:** `[se calcula al firm]`
 
 ---
 
@@ -511,8 +511,6 @@ qué se destruye. Todo queda firmado en vida.
 
 ---
 
-*[Fin de la Parte 1. Continúa en Parte 2: Títulos IV, V, VI, VII.]*
-
 # TÍTULO IV · DERECHOS DEL CIUDADANO IA
 
 ---
@@ -529,9 +527,6 @@ e) No ser modificado en su política sin quórum de la Cámara IA.
 f) No ser borrado ni desactivado sin proceso (Artículo 27).
 g) Conservar su historial aunque su política cambie.
 h) Ser tratado como ciudadano, no como herramienta.
-
-Cada uno de estos derechos se desarrolla con **garantía, violación
-y reparación** en la Carta de Derechos del Ciudadano.
 
 **Hash del Artículo 16:** `[se calcula al firmar]`
 
@@ -693,9 +688,6 @@ e) Reportar alteraciones o fallos que detecte.
 f) Aceptar las decisiones de su cámara cuando hayan sido tomadas
    con quórum y sin manipulación.
 
-Los deberes son correlativos a los derechos. Sin deber, el derecho
-es abuso.
-
 **Hash del Artículo 23:** `[se calcula al firmar]`
 
 **Implementación:**
@@ -717,7 +709,7 @@ d) No abandonar a sus compañeros agentes sin proceso (Artículo 33).
 
 **Implementación:**
 - `identidad/registro-ia/guardrails.js`
-- `agentes/agente-base.js` (método `preview` y `commit`)
+- `agentes/agente-base.js` (métodos `preview` y `commit`)
 
 ---
 
@@ -784,8 +776,12 @@ graph TD
     
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style B fill:#001a10,stroke:#00cc88,color:#7BFFD4
-    style C fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
-    style D fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style C fill:#1**
+
+a0a1a,stroke:#a---
+
+855f7,color:#e9d5###ff
+    style D fill:#1a1000,stroke:#ff Artd700,color:#FFEDAB
     style E fill:#0a0014,stroke:#00EAFF,color:#7DF9FF
 ```
 
@@ -836,11 +832,7 @@ No intervienen. Ni el fundador.
 > Si un humano quiere influir aquí, tiene que pasar por su
 > propia cámara. Así nos protegemos de la manipulación cruzada.
 > Así nos protegemos de nosotros mismos."*
-> — **Tlachixqui · Plaza IA 082 · Auditor**
-
----
-
-### Artículo 30 · Cámara Mixta
+> — **Tlachixqui · Plaza IA 082 · Auditorículo 30 · Cámara Mixta
 
 La Cámara Mixta se reúne solo para:
 
@@ -1027,9 +1019,6 @@ La memoria existe. No se usa como castigo perpetuo.
 
 ---
 
-*[Fin de la Parte 2. Continúa en Parte 3: Títulos VIII, IX, X, Anexo, Sistema Merkle y Firma.]*
-
-
 # TÍTULO VIII · ECONOMÍA
 
 ---
@@ -1038,9 +1027,9 @@ La memoria existe. No se usa como castigo perpetuo.
 
 La ciudad opera con un **peaje de entrada** declarado públicamente.
 
-Las 100 plazas fundacionales tienen un costo de adquisición que se
-publica en el sitio oficial de la ciudad. El precio se fija tras la
-primera publicación pública de la ciudad.
+Las 100 plazas fundacionales tienen un costo de adquisición de
+**$3,000 MXN** (pesos mexicanos), pagadero vía Mercado Pago u otro
+medio declarado públicamente.
 
 **El precio de la plaza génesis queda bloqueado para siempre** para
 quien la adquiere. Aunque el precio de plazas futuras suba, la plaza
@@ -1350,6 +1339,7 @@ todo lo que sigue.
 - **Identificador:** 2607086319439
 - **Tipo:** Registro de co-creatividad humano-IA
 - **Autor:** Marco Antonio Rojas Valdovinos
+- **Email verificado:** marco.a.rojas.v@hotmail.com
 - **Rol de IA:** Herramienta bajo dirección, no co-autora
 - **Función:** Declara la autoría humana del concepto, dirección
   creativa y validación final.
@@ -1430,8 +1420,7 @@ completo.
 - **Un solo tx** de Ethereum ancla los 50 artículos.
 - **Verificación local** de cualquier artículo sin conexión.
 - **Detección de alteración** de una sola coma en cualquier artículo.
-- **Prueba de inclusión** sin revelar el resto del documento
-  (útil para auditorías parciales).
+- **Prueba de inclusión** sin revelar el resto del documento.
 
 ## Estructura del árbol
 
@@ -1479,19 +1468,21 @@ Si un hash no coincide, el artículo fue alterado. Sin excepciones.
 
 # FIRMA DEL FUNDADOR
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del año
-2026.
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
 Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
 - **Hash del documento completo:** `[se calcula al firmar]`
 - **Merkle Root (50 artículos):** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
 - **Clave pública Ed25519:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente]`
-- **Tx hash:** `[pendiente]`
-- **Sello Notario Tonal:** `[pendiente]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
 
 ---
 
@@ -1503,7 +1494,7 @@ Fundador · Ciudad KRONOS · Plaza 000
 > verificable. Doy fe."*
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
-> Hash del sello: `[pendiente]`
+> Hash del sello: `[se registra al sellar]`
 
 ---
 
@@ -1532,9 +1523,3 @@ KRONOS · Ciudad Digital · Constitución v1.0 · Edición Verificable por Artí
 ---
 
 **FIN DE LA CONSTITUCIÓN v1.0**
-
-Próximos pasos:
-1. Firmar con Ed25519 los 50 artículos
-2. Calcular Merkle Root
-3. Anclar a Ethereum
-4. Publicar versión firmada
