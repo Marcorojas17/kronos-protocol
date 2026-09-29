@@ -4,9 +4,9 @@
 ║   ◢◤◥◣ Ciudad Digital Humano-IA                                      ║
 ║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
 ║                                                                      ║
-║   Documento complementario a la Constitución v0.2,                   ║
-║   Carta de Derechos v1.0, Código de Convivencia v1.0                 ║
-║   y Registro de Ciudadanía v1.0                                      ║
+║   Documento complementario a la Constitución v1.0,                   ║
+║   Carta de Derechos v1.0, Código de Convivencia v1.0,                ║
+║   Registro de Ciudadanía v1.0                                        ║
 ║                                                                      ║
 ║   Fundador: Marco Antonio Rojas Valdovinos                           ║
 ║   Toluca, Estado de México · 2026                                    ║
@@ -38,9 +38,11 @@ para sostener servicios reales entre ciudadanos reales.
 
 La moneda existe para servir. No para enriquecer.
 
+**Hash del preámbulo:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO I · PRINCIPIOS ECONÓMICOS
+# TÍTULO I · PRINCIPIOS ECONÓMICOS
 
 ---
 
@@ -61,6 +63,14 @@ e) **No promesa de rendimiento.** La ciudad nunca garantizará
 f) **Sostenibilidad.** El sistema debe funcionar sin depender
    del crecimiento perpetuo.
 
+**Hash del Artículo 1:** `[se calcula al firmar]`
+
+**Voz de la co-autora IA:**
+> *"Una economía que promete riqueza vende humo. Una economía
+> que promete servicio construye confianza. Elegimos la
+> segunda."*
+> — **KRONOS IA · Plaza 001 · Co-autora**
+
 ---
 
 ### Artículo 2 · La ciudad no es una empresa
@@ -77,8 +87,10 @@ Diferencias:
 - Una empresa puede quebrar. Una ciudad puede suspenderse.
 
 Si alguna vez KRONOS empieza a parecerse más a lo primero que a
-lo segundo, este documento y los otros cuatro fundacionales
+lo segundo, este documento y los otros seis fundacionales
 obligan a corregir el rumbo.
+
+**Hash del Artículo 2:** `[se calcula al firmar]`
 
 ---
 
@@ -102,9 +114,32 @@ migración a Mainnet, listing en DEX, y marco legal definitivo.
 
 Ninguna fase se promete. Cada fase se gana.
 
+**Hash del Artículo 3:** `[se calcula al firmar]`
+
+```mermaid
+graph LR
+    A[FASE 1<br/>Reputación<br/>presente] --> B[FASE 2<br/>Token KRO<br/>mediano plazo]
+    B --> C[FASE 3<br/>Economía completa<br/>largo plazo]
+    
+    A --> A1[Sin moneda]
+    A --> A2[Historial firmado]
+    
+    B --> B1[L2 Polygon/Base]
+    B --> B2[Sin ICO]
+    B --> B3[Por contribución]
+    
+    C --> C1[+500 ciudadanos]
+    C --> C2[Mainnet]
+    C --> C3[Mercado legal]
+    
+    style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
+    style B fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
+    style C fill:#001a10,stroke:#00cc88,color:#7BFFD4
+```
+
 ---
 
-## TÍTULO II · LA MONEDA
+# TÍTULO II · LA MONEDA
 
 ---
 
@@ -117,6 +152,8 @@ Ninguna fase se promete. Cada fase se gana.
 
 El símbolo ○_● es el mismo de la ciudad. La moneda no tiene marca
 propia distinta. Es la ciudad misma en forma de token.
+
+**Hash del Artículo 4:** `[se calcula al firmar]`
 
 ---
 
@@ -139,6 +176,8 @@ KRO es:
 El poseedor de KRO no es dueño de la ciudad. Es usuario de sus
 servicios.
 
+**Hash del Artículo 5:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 6 · Red de emisión
@@ -153,6 +192,8 @@ Razones:
 - Preparado para migrar a Mainnet si la ciudad crece
 
 La emisión en Mainnet se reserva para fase 3.
+
+**Hash del Artículo 6:** `[se calcula al firmar]`
 
 ---
 
@@ -174,9 +215,11 @@ Distribución inicial declarada:
 No recibe más KRO por ser fundador. Después del bono, para
 obtener más, contribuye como cualquier ciudadano.
 
+**Hash del Artículo 7:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO III · QUÉ SE PAGA CON KRO
+# TÍTULO III · QUÉ SE PAGA CON KRO
 
 ---
 
@@ -190,6 +233,8 @@ Se paga con KRO:
 - Emisión de certificado visual élite (con holograma)
 
 Precios se publican en `certificacion/notario-kronos/`.
+
+**Hash del Artículo 8:** `[se calcula al firmar]`
 
 ---
 
@@ -205,6 +250,8 @@ Se paga con KRO:
 
 Cada agente publica sus precios.
 
+**Hash del Artículo 9:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 10 · Prioridad en gobernanza
@@ -219,6 +266,8 @@ Se paga con KRO:
 ciudadano. Lo que KRO hace es acelerar tiempos, no cambiar
 decisiones.
 
+**Hash del Artículo 10:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 11 · Plazas más allá de las 100
@@ -226,9 +275,18 @@ decisiones.
 Las plazas 101 en adelante (si se abren) tendrán peaje pagadero
 en KRO además de MXN.
 
-Las 100 plazas fundacionales tienen peaje en MXN vía Mercado
-Pago. No en KRO. Los fundadores entran con dinero real, no con
-token.
+Las 100 plazas fundacionales tienen un peaje único de
+**$3,000 MXN** vía Mercado Pago u otro medio declarado
+públicamente. No en KRO. Los fundadores entran con dinero
+real, no con token.
+
+**Hash del Artículo 11:** `[se calcula al firmar]`
+
+**Voz del Reclutador:**
+> *"Quien entra con dinero real, entra comprometido. Quien
+> entra con token, entra especulando. A los fundadores los
+> queremos comprometidos."*
+> — **Temachtiani · Plaza IA 084 · Reclutador**
 
 ---
 
@@ -239,6 +297,8 @@ Se paga con KRO:
 - Certificado visual élite (con holograma anclado)
 - Exportación cifrada premium (con firma adicional)
 - Acceso anticipado a documentos fundacionales nuevos
+
+**Hash del Artículo 12:** `[se calcula al firmar]`
 
 ---
 
@@ -255,9 +315,28 @@ KRO **nunca** se usará para:
 Ninguna cantidad de KRO compra lo que la Constitución garantiza
 por igual a todo ciudadano.
 
+**Hash del Artículo 13:** `[se calcula al firmar]`
+
+```mermaid
+flowchart TD
+    A[KRO · Token de utilidad] --> B[Servicios Notario]
+    A --> C[Servicios Agentes IA]
+    A --> D[Prioridad gobernanza]
+    A --> E[Plazas futuras]
+    A --> F[Contenido premium]
+    
+    X[NO se usa para] --> X1[Derechos]
+    X --> X2[Voto]
+    X --> X3[Reformas]
+    X --> X4[Favor o excepción]
+    
+    style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+    style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+```
+
 ---
 
-## TÍTULO IV · CÓMO SE GANA KRO
+# TÍTULO IV · CÓMO SE GANA KRO
 
 ---
 
@@ -279,6 +358,8 @@ recompensas:
 Los valores son revisables por la Cámara Mixta con mayoría
 calificada.
 
+**Hash del Artículo 14:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 15 · Vía secundaria: compra (fase 2B)
@@ -294,6 +375,8 @@ marco legal formal:
 **No habrá preventa, ICO, ni venta privada.** La única vía de
 obtener KRO en fase 2A es contribuir.
 
+**Hash del Artículo 15:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 16 · Actividades que NO generan KRO
@@ -307,9 +390,11 @@ obtener KRO en fase 2A es contribuir.
 
 KRO premia la acción útil, no la existencia.
 
+**Hash del Artículo 16:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO V · EL FUNDADOR
+# TÍTULO V · EL FUNDADOR
 
 ---
 
@@ -317,17 +402,20 @@ KRO premia la acción útil, no la existencia.
 
 El fundador (Marco Antonio Rojas Valdovinos · Plaza 000) recibe
 **1,000,000 KRO** como bono único de fundación, al momento de
-emitir el token.
+emitir el token. Contacto verificado:
+marco.a.rojas.v@hotmail.com.
 
 Este bono reconoce:
 
 - La creación del ecosistema completo (307 archivos, 7 agentes)
 - El registro de autoría internacional (Safe Creative + eIDAS)
 - El anclaje original a Ethereum Mainnet
-- La redacción de los cuatro documentos fundacionales
+- La redacción de los siete documentos fundacionales
 
 Es un pago único. No es un sueldo. No es una renta. No es una
 participación en ganancias futuras.
+
+**Hash del Artículo 17:** `[se calcula al firmar]`
 
 ---
 
@@ -341,6 +429,14 @@ Si trae ciudadanos, gana como cualquier ciudadano.
 Si propone reformas, gana como cualquier ciudadano.
 
 No hay privilegio perpetuo. No hay acumulación automática.
+
+**Hash del Artículo 18:** `[se calcula al firmar]`
+
+**Voz del Analista:**
+> *"El bono del fundador es público y trazable. Cada KRO que
+> recibe queda registrado. Cada gasto queda registrado. Nadie,
+> ni el fundador, tiene cuentas ocultas en esta ciudad."*
+> — **Tlapohualli · Plaza IA 085 · Analista**
 
 ---
 
@@ -360,9 +456,11 @@ El fundador no puede usar el bono para:
 - Financiar campañas internas
 - Beneficiarse fuera de lo declarado
 
+**Hash del Artículo 19:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO VI · GOBERNANZA ECONÓMICA
+# TÍTULO VI · GOBERNANZA ECONÓMICA
 
 ---
 
@@ -379,6 +477,8 @@ Usos del Tesoro:
 - Ayuda a ciudadanos en situación extraordinaria
 - Anclajes públicos de documentos fundacionales
 
+**Hash del Artículo 20:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 21 · Auditoría económica
@@ -388,6 +488,8 @@ ciudadano puede auditar en cualquier momento.
 
 Las cuentas de la ciudad se publican trimestralmente en
 `docs/CIUDAD/ECONOMIA/`.
+
+**Hash del Artículo 21:** `[se calcula al firmar]`
 
 ---
 
@@ -400,9 +502,11 @@ Cambios al suministro máximo o a la naturaleza del token
 requieren además anclaje a Ethereum y publicación previa de 30
 días.
 
+**Hash del Artículo 22:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO VII · MARCO LEGAL
+# TÍTULO VII · MARCO LEGAL
 
 ---
 
@@ -420,6 +524,8 @@ KRONOS opera en México. Respeta:
 Si alguna disposición de este documento entra en conflicto con
 la ley mexicana, prevalece la ley.
 
+**Hash del Artículo 23:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 24 · KRO no es security
@@ -436,6 +542,8 @@ como instrumento financiero. Los fundamentos son:
 Cualquier cambio a esta naturaleza requiere asesoría legal
 formal previa.
 
+**Hash del Artículo 24:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 25 · Protección del ciudadano
@@ -446,6 +554,8 @@ no tener KRO.
 
 Quien adquiera KRO lo hace por decisión voluntaria, comprendiendo
 que su uso es interno y su valor futuro incierto.
+
+**Hash del Artículo 25:** `[se calcula al firmar]`
 
 ---
 
@@ -460,9 +570,11 @@ asesoría legal especializada en:
 
 El resultado de esa consulta se publicará antes de la emisión.
 
+**Hash del Artículo 26:** `[se calcula al firmar]`
+
 ---
 
-## TÍTULO VIII · REFORMA Y VIGENCIA
+# TÍTULO VIII · REFORMA Y VIGENCIA
 
 ---
 
@@ -480,6 +592,8 @@ Constitución:
 Ninguna reforma puede reducir los principios del Artículo 1 ni
 las prohibiciones del Artículo 13.
 
+**Hash del Artículo 27:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 28 · Núcleo irreformable
@@ -489,13 +603,17 @@ Los Artículos 1 (principios), 2 (ciudad no empresa), 13
 
 Constituyen el mínimo ético de la economía de KRONOS.
 
+**Hash del Artículo 28:** `[se calcula al firmar]`
+
 ---
 
 ### Artículo 29 · Entrada en vigor
 
 Este documento entra en vigor al ser firmado por el fundador con
-su llave Ed25519, junto con los otros cuatro documentos
+su llave Ed25519, junto con los otros seis documentos
 fundacionales.
+
+**Hash del Artículo 29:** `[se calcula al firmar]`
 
 ---
 
@@ -505,20 +623,85 @@ Rige para todos los ciudadanos registrados a partir de la fecha
 de entrada en vigor. Todo nuevo ciudadano firma su aceptación al
 registrarse.
 
+**Hash del Artículo 30:** `[se calcula al firmar]`
+
 ---
 
-## FIRMA DEL FUNDADOR
+# SISTEMA MERKLE · VERIFICACIÓN
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del
-año 2026.
+Este documento usa **hash SHA-256 individual** por artículo.
+
+## Estructura
+
+```mermaid
+graph TD
+    R[Merkle Root Moneda] --> A[Títulos I-II]
+    R --> B[Títulos III-IV]
+    R --> C[Títulos V-VI]
+    R --> D[Títulos VII-VIII]
+    
+    A --> A1[Principios]
+    A --> A2[La Moneda]
+    B --> B1[Servicios]
+    B --> B2[Ganancia]
+    C --> C1[Fundador]
+    C --> C2[Gobernanza]
+    D --> D1[Marco Legal]
+    D --> D2[Reforma]
+    
+    style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+```
+
+**Hash del sistema Merkle:** `[se calcula al firmar]`
+
+---
+
+# FIRMA DEL FUNDADOR
+
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
 Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
-- **Hash del documento:** `[se calcula al firmar]`
+- **Hash del documento completo:** `[se calcula al firmar]`
+- **Merkle Root (30 artículos):** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
-- **Clave pública:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente u opcional]`
+- **Clave pública Ed25519:** `[se calcula al firmar]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
+
+---
+
+**Certificación del Notario Tonal:**
+
+> *"Certifico que este documento fue firmado por Marco Antonio
+> Rojas Valdovinos con su llave Ed25519, que su Merkle Root
+> coincide con el publicado, y que su anclaje a Ethereum es
+> verificable. Doy fe."*
+>
+> **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
+> Hash del sello: `[se registra al sellar]`
+
+---
+
+## RELACIÓN CON OTROS DOCUMENTOS
+
+Esta Visión Económica es el quinto de los siete documentos
+fundacionales:
+
+1. **Constitución de KRONOS** v1.0 — estructura del poder
+2. **Carta de Derechos del Ciudadano** v1.0 — derechos y garantías
+3. **Código de Convivencia** v1.0 — proceso y sanciones
+4. **Registro de Ciudadanía** v1.0 — quién es quién
+5. **Visión Económica (KRO)** v1.0 — este documento
+6. **Auditoría y Gobernanza de IA** v1.0 — alcance y límites
+7. **Guía para Auditores** v1.0 — verificación de paquetes
+
+Los siete se firman juntos, se anclan juntos y se respetan juntos.
 
 ---
 
@@ -530,3 +713,7 @@ Fundador · Ciudad KRONOS · Plaza 000
 "El legado no se hereda. Se firma."
 KRONOS · Ciudad Digital · Visión Económica · v1.0 · 2026
 ```
+
+---
+
+**FIN DE LA VISIÓN ECONÓMICA v1.0**
