@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificador Público · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#c9a44c;--gold-l:#f3e5ab;
+    --cy:#00EAFF;--cy-l:#7DF9FF;
+    --ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0;
+    --ok:#3ddc84;--ok-l:#7BFFD4;
+    --bad:#ff4d6a;--bad-l:#FF8FA5;
+    --warn:#ffd700;--warn-l:#FFEDAB;
+  }
+  html,body{
+    background:var(--ink);color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.7;overflow-x:hidden;
+  }
+  #liquido{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:40px 24px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 60px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--cy);border-radius:50%;box-shadow:0 0 12px var(--cy)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--cy-l)}
+
+  .hero{padding:40px 0 70px;max-width:800px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--cy-l);text-transform:uppercase;margin-bottom:24px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(34px,7vw,72px);line-height:1;letter-spacing:-1px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--cy-l) 65%,var(--cy) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:28px}
+  .lede{font-size:16px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+
+  .section{border-top:1px solid rgba(0,234,255,.2);padding:50px 0 60px}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .section-head .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cy-l);letter-spacing:2px}
+
+  /* ── Zona de carga ─────────────────────── */
+  .drop-zone{
+    border:2px dashed rgba(0,234,255,.35);
+    border-radius:8px;
+    padding:50px 24px;
+    text-align:center;
+    background:rgba(0,234,255,.02);
+    transition:all .3s;
+    cursor:pointer;
+    margin-bottom:24px;
+  }
+  .drop-zone:hover{
+    border-color:var(--cy);
+    background:rgba(0,234,255,.05);
+  }
+  .drop-zone.dragging{
+    border-color:var(--gold);
+    background:rgba(201,164,76,.08);
+  }
+  .drop-zone .icon{
+    font-size:48px;
+    color:var(--gold-l);
+    margin-bottom:14px;
+    letter-spacing:8px;
+  }
+  .drop-zone .label{
+    font-size:12px;
+    letter-spacing:2px;
+    color:var(--text);
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .drop-zone .hint{
+    font-size:11px;
+    color:var(--dim);
+  }
+
+  /* Alternativa: pegar JSON */
+  .paste-toggle{
+    display:block;
+    width:100%;
+    padding:12px 18px;
+    margin-bottom:14px;
+    background:rgba(0,234,255,.04);
+    border:1px solid rgba(0,234,255,.2);
+    border-radius:4px;
+    color:var(--cy-l);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    text-align:center;
+    cursor:pointer;
+    transition:all .3s;
+  }
+  .paste-toggle:hover{background:rgba(0,234,255,.08);border-color:var(--cy)}
+
+  #paste-area{
+    display:none;
+    width:100%;
+    min-height:200px;
+    padding:16px;
+    margin-bottom:14px;
+    background:rgba(5,20,25,.6);
+    border:1px solid rgba(0,234,255,.3);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    line-height:1.6;
+    resize:vertical;
+    outline:none;
+  }
+  #paste-area:focus{border-color:var(--cy);box-shadow:0 0 0 3px rgba(0,234,255,.15)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px 28px;
+    font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+    border-radius:4px;border:none;cursor:pointer;transition:all .3s;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(180deg,var(--cy-l) 0%,var(--cy) 100%);
+    color:#00201a;
+    box-shadow:0 8px 30px rgba(0,234,255,.35);
+    width:100%;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,234,255,.55)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .btn.gold{background:linear-gradient(180deg,var(--gold-l) 0%,var(--gold) 100%);color:#1a1000;box-shadow:0 8px 30px rgba(201,164,76,.35)}
+  .btn.gold:hover{box-shadow:0 14px 40px rgba(201,164,76,.55)}
+
+  #file-input{display:none}
+
+  /* ── Feedback ─────────────────────────── */
+  .feedback{margin-top:24px;padding:18px 22px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.7}
+  .feedback.success{display:block;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.35);color:var(--ok-l)}
+  .feedback.error{display:block;background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.35);color:var(--bad-l)}
+  .feedback.warn{display:block;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.35);color:var(--warn-l)}
+  .feedback.info{display:block;background:rgba(0,234,255,.08);border:1px solid rgba(0,234,255,.35);color:var(--cy-l)}
+  .feedback strong{font-weight:500}
+
+  /* ── Panel de resultado ───────────────── */
+  .panel{margin-top:30px;display:none}
+  .panel.on{display:block}
+  .veredicto{
+    padding:32px 24px;
+    border-radius:6px;
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-size:clamp(22px,4vw,34px);
+    font-weight:700;
+    letter-spacing:2px;
+    margin-bottom:24px;
+  }
+  .veredicto.ok{background:rgba(61,220,132,.08);border:2px solid rgba(61,220,132,.4);color:var(--ok-l)}
+  .veredicto.bad{background:rgba(255,77,106,.08);border:2px solid rgba(255,77,106,.4);color:var(--bad-l)}
+  .veredicto.warn{background:rgba(255,215,0,.08);border:2px solid rgba(255,215,0,.4);color:var(--warn-l)}
+
+  .checklist{margin-bottom:24px}
+  .check-item{
+    display:grid;
+    grid-template-columns:max-content 1fr max-content;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(0,234,255,.08);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    align-items:center;
+  }
+  .check-item:last-child{border-bottom:none}
+  .check-icon{font-size:16px}
+  .check-label{color:var(--text);font-weight:400;word-break:break-word}
+  .check-result{
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    padding:3px 10px;border-radius:12px;
+    white-space:nowrap;
+  }
+  .check-result.ok{background:rgba(61,220,132,.15);color:var(--ok-l)}
+  .check-result.bad{background:rgba(255,77,106,.15);color:var(--bad-l)}
+  .check-result.warn{background:rgba(255,215,0,.15);color:var(--warn-l)}
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .info-box{
+    padding:16px 18px;
+    background:rgba(0,234,255,.04);
+    border:1px solid rgba(0,234,255,.2);
+    border-radius:4px;
+  }
+  .info-box h4{
+    font-size:10px;letter-spacing:3px;color:var(--cy-l);
+    text-transform:uppercase;margin-bottom:8px;font-weight:500;
+  }
+  .info-box p{
+    font-size:11px;color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    word-break:break-all;line-height:1.6;
+  }
+  .info-box p.muted{color:var(--dim)}
+
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  .sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+
+  @media (max-width:700px){
+    .wrap{padding:24px 18px 60px}
+    header.top nav{display:none}
+    .info-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Verificador</a>
+      <a href="./firmar.html">Firmar</a>
+      <a href="./certificado.html">Certificado</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Verificador Público · Ed25519 · Merkle · SHA-256</div>
+    <h1 class="title">Verificalo<br>vos mismo.</h1>
+    <p class="lede">
+      Subí un <strong>acta fundacional de KRONOS</strong>. El verificador recalcula el Merkle Root desde los hashes declarados y comprueba la firma Ed25519 contra la clave pública del fundador. <strong>Todo ocurre en tu navegador.</strong> El acta nunca se envía a ningún servidor.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Cargar Acta Fundacional</h2>
+      <span class="count">JSON · KRONOS_ACTA_FUNDACIONAL</span>
+    </div>
+
+    <div class="drop-zone" id="drop-zone">
+      <div class="icon">◈ ◈ ◈</div>
+      <div class="label">Arrastrá el archivo .json acá</div>
+      <div class="hint">o tocá para elegirlo desde tu dispositivo</div>
+    </div>
+    <input type="file" id="file-input" accept="application/json,.json">
+
+    <button class="paste-toggle" id="paste-toggle">⌨️ Pegar el JSON manualmente</button>
+    <textarea id="paste-area" placeholder='Pegá acá el contenido del acta (empieza con {"meta":"KRONOS_ACTA_FUNDACIONAL"...})'></textarea>
+    <button class="btn gold" id="btn-verificar-paste" style="display:none;margin-bottom:14px;">🔍 Verificar JSON pegado</button>
+
+    <button class="btn" id="btn-verificar" disabled>🔍 Verificar acta →</button>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="panel" id="panel">
+      <div class="veredicto" id="veredicto">—</div>
+
+      <div class="checklist" id="checklist"></div>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>Firmante</h4>
+          <p id="info-firmante">—</p>
+        </div>
+        <div class="info-box">
+          <h4>Fecha de firma</h4>
+          <p id="info-fecha">—</p>
+        </div>
+        <div class="info-box">
+          <h4>Documentos</h4>
+          <p id="info-documentos">—</p>
+        </div>
+        <div class="info-box">
+          <h4>Artículos</h4>
+          <p id="info-articulos">—</p>
+        </div>
+        <div class="info-box" style="grid-column:1/-1;">
+          <h4>Clave pública declarada (Ed25519)</h4>
+          <p id="info-clave">—</p>
+        </div>
+        <div class="info-box" style="grid-column:1/-1;">
+          <h4>Merkle Root de Artículos (declarado)</h4>
+          <p id="info-merkle">—</p>
+        </div>
+        <div class="info-box" style="grid-column:1/-1;">
+          <h4>Firma Ed25519 (declarada)</h4>
+          <p id="info-firma">—</p>
+        </div>
+      </div>
+
+      <button class="btn gold" onclick="location.reload()">↺ Verificar otra acta</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Verificador Público v1.0</span>
+  </footer>
+
+</main>
+
+<script type="module">
+  // ══════════════════════════════════════════════════════════
+  //  UTILIDADES · mismas que firmar.js para compatibilidad
+  // ══════════════════════════════════════════════════════════
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const btnVerificar = $('btn-verificar');
+  const btnVerificarPaste = $('btn-verificar-paste');
+  const dropZone = $('drop-zone');
+  const fileInput = $('file-input');
+  const pasteToggle = $('paste-toggle');
+  const pasteArea = $('paste-area');
+
+  let actaActual = null;
+
+  function setFb(tipo, msg){
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function sha256Hex(bytes){
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
+    return [...new Uint8Array(buf)]
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function textoABytes(texto){
+    return new TextEncoder().encode(texto);
+  }
+
+  function hexToBytes(hex){
+    const h = String(hex || '').replace(/^0x/, '');
+    if (h.length === 0) return new Uint8Array(0);
+    if (h.length % 2 !== 0) throw new Error('Hex inválido: longitud impar.');
+    return new Uint8Array(h.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+  }
+
+  // ══════════════════════════════════════════════════════════
+  //  MERKLE ROOT · mismo algoritmo que firmar.js
+  //  concatenación_hex + SHA-256 + duplicación de impar
+  // ══════════════════════════════════════════════════════════
+
+  async function calcularMerkleRoot(hashes){
+    if (!Array.isArray(hashes) || hashes.length === 0){
+      throw new Error('Se necesita al menos un hash para construir el árbol.');
+    }
+
+    let nivel = [...hashes];
+
+    while (nivel.length > 1){
+      if (nivel.length % 2 === 1){
+        nivel = [...nivel, nivel[nivel.length - 1]];
+      }
+      const siguiente = [];
+      for (let i = 0; i < nivel.length; i += 2){
+        const par = nivel[i] + nivel[i + 1];
+        const hashPar = await sha256Hex(textoABytes(par));
+        siguiente.push(hashPar);
+      }
+      nivel = siguiente;
+    }
+
+    return nivel[0];
+  }
+
+  // ══════════════════════════════════════════════════════════
+  //  VERIFICACIÓN
+  // ══════════════════════════════════════════════════════════
+
+  async function verificarActa(acta){
+    const checks = [];
+
+    // ── 1 · Validar estructura ────────────────────────────
+    if (!acta || acta.meta !== 'KRONOS_ACTA_FUNDACIONAL'){
+      throw new Error('El archivo no es un acta fundacional de KRONOS.');
+    }
+    checks.push({
+      icon: '✓',
+      label: 'Tipo de documento: Acta Fundacional',
+      result: 'ok',
+      text: 'Detectado'
+    });
+
+    // ── 2 · Extraer todos los hashes declarados ───────────
+    const hashesDeclarados = [];
+    let totalArticulos = 0;
+
+    if (!Array.isArray(acta.documentos) || acta.documentos.length === 0){
+      throw new Error('El acta no contiene documentos.');
+    }
+
+    for (const doc of acta.documentos){
+      if (!Array.isArray(doc.articulos)) continue;
+      for (const art of doc.articulos){
+        if (typeof art.hash !== 'string'){
+          throw new Error(`Artículo sin hash en documento "${doc.nombre}".`);
+        }
+        hashesDeclarados.push(art.hash);
+        totalArticulos++;
+      }
+    }
+
+    checks.push({
+      icon: totalArticulos > 0 ? '✓' : '✗',
+      label: `Hashes de artículos extraídos`,
+      result: totalArticulos > 0 ? 'ok' : 'bad',
+      text: totalArticulos > 0 ? `${totalArticulos}` : 'Ninguno'
+    });
+
+    // ── 3 · Recalcular Merkle Root ────────────────────────
+    const merkleRecalculado = await calcularMerkleRoot(hashesDeclarados);
+
+    const merkleDeclarado = acta.merkle && acta.merkle.merkle_root_articulos;
+    const merkleCoincide = merkleRecalculado === merkleDeclarado;
+
+    checks.push({
+      icon: merkleCoincide ? '✓' : '✗',
+      label: 'Merkle Root recalculado vs declarado',
+      result: merkleCoincide ? 'ok' : 'bad',
+      text: merkleCoincide ? 'Coincide' : 'No coincide'
+    });
+
+    // ── 4 · Verificar firma Ed25519 ───────────────────────
+    let firmaValida = false;
+    let razonFirma = '';
+
+    try {
+      const firmaHex = acta.firma && acta.firma.firma_ed25519;
+      const claveHex = acta.firma && acta.firma.firmante_clave_publica;
+
+      if (!firmaHex || !claveHex){
+        razonFirma = 'Firma o clave ausente en el acta';
+      } else {
+        const pubBytes = hexToBytes(claveHex);
+        const pubKey = await crypto.subtle.importKey(
+          'raw',
+          pubBytes,
+          { name: 'Ed25519' },
+          false,
+          ['verify']
+        );
+
+        const firmaBytes = hexToBytes(firmaHex);
+        firmaValida = await crypto.subtle.verify(
+          'Ed25519',
+          pubKey,
+          firmaBytes,
+          textoABytes(merkleDeclarado)
+        );
+
+        if (!firmaValida){
+          razonFirma = 'La firma no corresponde al Merkle Root declarado';
+        }
+      }
+    } catch (e){
+      razonFirma = e.message;
+    }
+
+    checks.push({
+      icon: firmaValida ? '✓' : '✗',
+      label: 'Firma Ed25519 contra clave pública',
+      result: firmaValida ? 'ok' : 'bad',
+      text: firmaValida ? 'Válida' : (razonFirma || 'Inválida')
+    });
+
+    // ── 5 · Verificar clave pública declarada ─────────────
+    const tieneClave = !!(acta.fundador && acta.fundador.clave_publica_hex);
+    checks.push({
+      icon: tieneClave ? '✓' : '⚠',
+      label: 'Clave pública del fundador declarada',
+      result: tieneClave ? 'ok' : 'warn',
+      text: tieneClave ? 'Presente' : 'Ausente'
+    });
+
+    // ── 6 · Verificar timestamp ───────────────────────────
+    const tieneTimestamp = !!acta.timestamp;
+    checks.push({
+      icon: tieneTimestamp ? '✓' : '⚠',
+      label: 'Timestamp de firma',
+      result: tieneTimestamp ? 'ok' : 'warn',
+      text: tieneTimestamp ? 'Presente' : 'Ausente'
+    });
+
+    // ── Resultado final ────────────────────────────────────
+    const todoOk = merkleCoincide && firmaValida;
+    const hayProblemas = checks.some(c => c.result === 'bad');
+
+    let veredicto, veredictoClase;
+    if (todoOk){
+      veredicto = '✓ ACTA VÁLIDA';
+      veredictoClase = 'ok';
+    } else if (hayProblemas){
+      veredicto = '✗ ACTA INVÁLIDA';
+      veredictoClase = 'bad';
+    } else {
+      veredicto = '⚠ NO VERIFICABLE';
+      veredictoClase = 'warn';
+    }
+
+    return {
+      veredicto,
+      veredictoClase,
+      checks,
+      firmaValida,
+      merkleCoincide,
+      totalArticulos,
+      merkleRecalculado
+    };
+  }
+
+  // ══════════════════════════════════════════════════════════
+  //  PRESENTACIÓN DEL RESULTADO
+  // ══════════════════════════════════════════════════════════
+
+  function mostrarResultado(resultado, acta){
+    const v = $('veredicto');
+    v.textContent = resultado.veredicto;
+    v.className = 'veredicto ' + resultado.veredictoClase;
+
+    $('checklist').innerHTML = resultado.checks.map(c => `
+      <div class="check-item">
+        <span class="check-icon">${c.icon}</span>
+        <span class="check-label">${c.label}</span>
+        <span class="check-result ${c.result}">${c.text}</span>
+      </div>
+    `).join('');
+
+    $('info-firmante').textContent = acta.fundador?.nombre || '—';
+    $('info-fecha').textContent = acta.timestamp || '—';
+    $('info-documentos').textContent = (acta.documentos?.length || 0) + ' documentos';
+    $('info-articulos').textContent = resultado.totalArticulos + ' artículos';
+    $('info-clave').textContent = acta.fundador?.clave_publica_hex || '—';
+    $('info-merkle').textContent = acta.merkle?.merkle_root_articulos || '—';
+    $('info-firma').textContent = acta.firma?.firma_ed25519 || '—';
+
+    $('panel').classList.add('on');
+
+    if (resultado.veredictoClase === 'ok'){
+      setFb('success', '<strong>✓ Acta válida.</strong> Firma y Merkle Root coinciden. El documento es auténtico y no fue alterado.');
+    } else if (resultado.veredictoClase === 'bad'){
+      setFb('error', '<strong>✗ Acta inválida.</strong> El acta fue alterada o firmada por una clave distinta a la declarada.');
+    } else {
+      setFb('warn', '<strong>⚠ No verificable.</strong> Faltan datos para verificar completamente.');
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  //  CARGA DE ARCHIVO
+  // ══════════════════════════════════════════════════════════
+
+  async function procesarTexto(texto){
+    try {
+      setFb('info', '<strong>⏳ Verificando...</strong> Recalculando Merkle Root y validando firma.');
+      $('panel').classList.remove('on');
+
+      const acta = JSON.parse(texto);
+      actaActual = acta;
+
+      const resultado = await verificarActa(acta);
+      mostrarResultado(resultado, acta);
+
+      // Scroll al panel
+      setTimeout(() => {
+        $('panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+
+    } catch (e){
+      console.error(e);
+      setFb('error', '<strong>✗ Error al verificar:</strong> ' + e.message);
+    }
+  }
+
+  fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const texto = await file.text();
+    await procesarTexto(texto);
+  });
+
+  dropZone.addEventListener('click', () => fileInput.click());
+
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragging');
+  });
+
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('dragging');
+  });
+
+  dropZone.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragging');
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    const texto = await file.text();
+    await procesarTexto(texto);
+  });
+
+  // Alternativa: pegar JSON
+  pasteToggle.addEventListener('click', () => {
+    const area = $('paste-area');
+    const visible = area.style.display === 'block';
+    area.style.display = visible ? 'none' : 'block';
+    btnVerificarPaste.style.display = visible ? 'none' : 'block';
+    if (!visible) area.focus();
+  });
+
+  btnVerificarPaste.addEventListener('click', async () => {
+    const texto = pasteArea.value.trim();
+    if (!texto){
+      setFb('error', '<strong>✗ Nada que verificar.</strong> Pegá el JSON primero.');
+      return;
+    }
+    await procesarTexto(texto);
+  });
+
+  // Canvas animado · burbujas de fondo
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COLORES = [[0,234,255],[125,249,255],[201,164,76],[168,85,247]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36,
+      vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs){
+        b.x += b.vx*dpr;
+        b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r;
+        if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r;
+        if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.2)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2);
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
