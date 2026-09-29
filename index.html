@@ -275,7 +275,7 @@
     <h2>La infraestructura criptográfica que permite a cualquier persona (humana o IA) probar que algo existió, sin pedirle permiso a nadie.</h2>
     <div class="meta">51% HUMANO · 49% IA · 100% REAL</div>
     <a onclick="ir('v-hub')" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:4px;background:linear-gradient(180deg,var(--id),var(--gold));color:#001a10;box-shadow:0 8px 30px rgba(0,229,160,.35);text-decoration:none;font-family:'Inter',sans-serif">Explorar el ecosistema →</a>
-    <div class="hero-scroll">4 demos criptográficas reales adentro</div>
+    <div class="hero-scroll">6 demos criptográficas · Acta Fundacional firmada · Guardián verificable</div>
   </div>
 </section>
 
@@ -342,6 +342,34 @@
       <div class="capa-num">Movimiento</div>
       <div class="capa-name">100 Plazas</div></div>
       <div class="capa-estado">Abiertas · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-acta')" style="--c:var(--gold-bright)">
+      <div><span class="icon">📜</span>
+      <div class="capa-num">Acta Fundacional</div>
+      <div class="capa-name">158 artículos firmados</div></div>
+      <div class="capa-estado">Ed25519 · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" href="docs/CIUDAD/" style="--c:var(--gold)">
+      <div><span class="icon">🏛️</span>
+      <div class="capa-num">Ciudad Digital</div>
+      <div class="capa-name">7 documentos</div></div>
+      <div class="capa-estado">Constitución · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" href="docs/guardian.html" style="--c:var(--eth)">
+      <div><span class="icon">🛡️</span>
+      <div class="capa-num">Guardián</div>
+      <div class="capa-name">6 principios vivos</div></div>
+      <div class="capa-estado">Log público · ✅</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="hub-card" onclick="ir('v-tools')" style="--c:#00EAFF">
+      <div><span class="icon">🔧</span>
+      <div class="capa-num">Herramientas</div>
+      <div class="capa-name">Firmar · Verificar</div></div>
+      <div class="capa-estado">3 tools · ✅</div>
       <div class="arrow">→</div>
     </a>
   </div>
@@ -580,6 +608,88 @@
   </div>
 </section>
 
+<!-- ═══════ ACTA FUNDACIONAL ═══════ -->
+<section class="view" id="v-acta" style="--c:var(--gold-bright)">
+  <div class="sec-header">
+    <div class="sec-num">Acta Fundacional · 2026-09-29</div>
+    <h2 class="sec-title">158 artículos <em>firmados.</em></h2>
+    <p class="sec-lede">Los 7 documentos fundacionales fueron hasheados con SHA-256, combinados en un Merkle Root y firmados con Ed25519. La firma es verificable por cualquier persona.</p>
+  </div>
+
+  <div class="demo-box" style="--c:var(--gold-bright)">
+    <h3>📜 Acta Fundacional de la Ciudad KRONOS</h3>
+    <p class="sub">Todos los valores son reales. Cualquier tercero puede verificar el acta completa.</p>
+
+    <div class="demo-out">
+      <div class="demo-field" style="--c:var(--gold-bright)">
+        <div class="k">Merkle Root · 158 artículos</div>
+        <div class="v">e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93</div>
+      </div>
+      <div class="demo-field" style="--c:var(--gold-bright)">
+        <div class="k">Merkle Root · 7 documentos</div>
+        <div class="v">67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813</div>
+      </div>
+      <div class="demo-field" style="--c:var(--id)">
+        <div class="k">Clave pública del fundador (Ed25519)</div>
+        <div class="v">fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977</div>
+      </div>
+      <div class="demo-field" style="--c:var(--gold)">
+        <div class="k">Firma Ed25519</div>
+        <div class="v">5110d7481ae3d62e90fa4944b293a6d3cbd004697ae48bbcfb7f00d794ee3d6dc76c750aff70b78205c0ad851ab3eb83ae5eadbfd1a431d00a9591fe4b158404</div>
+      </div>
+      <div class="demo-field" style="--c:var(--id)">
+        <div class="k">Verificación</div>
+        <div class="v" style="color:#7BFFD4;font-size:12px">✓ Firma válida · Merkle Root coincide · 158 artículos · 7 documentos</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">
+      <a href="docs/CIUDAD/verificar.html" class="demo-btn" style="text-decoration:none">🔍 Verificar acta</a>
+      <a href="docs/CIUDAD/certificado.html" class="demo-btn" style="text-decoration:none;background:linear-gradient(180deg,var(--gold-l),var(--gold));color:#1a1000">📜 Certificado PDF</a>
+      <a href="docs/CIUDAD/firmar.html" class="demo-btn" style="text-decoration:none;background:linear-gradient(180deg,var(--id),#00c785);color:#002a1c">✍️ Firmar de nuevo</a>
+    </div>
+
+    <div class="learn"><strong>Lo que significa:</strong> Cualquier persona con la URL del verificador puede subir el acta JSON y confirmar que la firma es auténtica. No depende del fundador, del servidor ni de nadie. <strong>Es matemática, no confianza.</strong></div>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a href="docs/CIUDAD/">Ciudad Digital completa →</a>
+  </div>
+</section>
+
+<!-- ═══════ HERRAMIENTAS ═══════ -->
+<section class="view" id="v-tools" style="--c:#00EAFF">
+  <div class="sec-header">
+    <div class="sec-num">Herramientas verificables</div>
+    <h2 class="sec-title">Tres <em>herramientas.</em></h2>
+    <p class="sec-lede">Firmar, certificar y verificar. Todo en el navegador, sin servidor, sin tracking.</p>
+  </div>
+
+  <div class="mod-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+    <a class="mod-card" href="docs/CIUDAD/firmar.html" style="--c:#00EAFF;padding:24px">
+      <span class="m-num">Herramienta 1</span>
+      <div class="m-nombre" style="font-size:19px;margin-bottom:8px">✍️ Firmador Fundacional</div>
+      <div class="m-desc" style="font-size:12.5px;line-height:1.7">Carga los 7 documentos, calcula SHA-256 de cada artículo, construye el Merkle Root y firma con Ed25519. Genera el acta JSON descargable.</div>
+    </a>
+    <a class="mod-card" href="docs/CIUDAD/certificado.html" style="--c:var(--gold);padding:24px">
+      <span class="m-num">Herramienta 2</span>
+      <div class="m-nombre" style="font-size:19px;margin-bottom:8px">📜 Certificado Estilo Billete</div>
+      <div class="m-desc" style="font-size:12.5px;line-height:1.7">Sube el acta JSON. Genera un certificado imprimible en PDF con diseño tipo papel moneda: serie, sello, guilloche, holograma.</div>
+    </a>
+    <a class="mod-card" href="docs/CIUDAD/verificar.html" style="--c:var(--id);padding:24px">
+      <span class="m-num">Herramienta 3</span>
+      <div class="m-nombre" style="font-size:19px;margin-bottom:8px">🔍 Verificador Público</div>
+      <div class="m-desc" style="font-size:12.5px;line-height:1.7">Cualquier tercero sube un acta. Recalcula Merkle Root. Valida firma Ed25519 contra la clave pública. Resultado en 2 segundos.</div>
+    </a>
+  </div>
+
+  <div class="nav-interna">
+    <a onclick="ir('v-hub')">← Volver al mapa</a>
+    <a onclick="ir('v-acta')">Ver el acta firmada →</a>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -592,7 +702,8 @@
   <p style="margin-top:20px">© 2026 Marco A. Rojas V. + KRONOS IA</p>
   <p style="margin-top:12px">
     <a href="docs/MAPA.md">Mapa</a> ·
-    <a href="docs/explicacion-universal.html">Explicación</a> ·
+    <a href="docs/CIUDAD/">Ciudad</a> ·
+    <a href="docs/guardian.html">Guardián</a> ·
     <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
   </p>
 </footer>
@@ -601,12 +712,13 @@
 // ═══════════════════════════════════════════════════════════
 // ROUTER SPA CON HISTORY API
 // ═══════════════════════════════════════════════════════════
-const views = ['v-hero','v-hub','v-c0','v-c1','v-c2','v-c3d','v-c4d','v-c6','v-agentes','v-mov'];
+const views = ['v-hero','v-hub','v-c0','v-c1','v-c2','v-c3d','v-c4d','v-c6','v-agentes','v-mov','v-acta','v-tools'];
 const crumbs = {
   'v-hero':'Inicio','v-hub':'Mapa central','v-c0':'Capa 0 · Génesis',
   'v-c1':'Capa 1 · Cimiento','v-c2':'Capa 2 · Identidad',
   'v-c3d':'Capa 3Δ · Certificación','v-c4d':'Capa 4Δ · Gobernanza',
-  'v-c6':'Capa 6 · Cierre','v-agentes':'Flota Kintsugi','v-mov':'Movimiento'
+  'v-c6':'Capa 6 · Cierre','v-agentes':'Flota Kintsugi','v-mov':'Movimiento',
+  'v-acta':'Acta Fundacional','v-tools':'Herramientas'
 };
 
 function ir(id, sinHistorial){
@@ -652,6 +764,7 @@ window.addEventListener('load', () => {
     { t: '[ OK ] Verificando anclaje bloque 25,492,095…', c: 'id' },
     { t: '[ OK ] Flota Kintsugi (7 agentes) activa…', c: 'id' },
     { t: '[ OK ] 9 capas · 42 módulos · 0 servidores', c: 'id' },
+    { t: '[ OK ] 158 artículos firmados · Merkle Root verificado', c: 'id' },
     { t: '' },
     { t: '○_●  51% HUMANO · 49% IA · 100% REAL', c: 'gold' },
     { t: '"El legado no se hereda. Se firma."', c: 'gold' },
@@ -787,7 +900,6 @@ async function demoEd25519(){
     const pub = await crypto.subtle.exportKey('raw', kp.publicKey);
     const pubHex = [...new Uint8Array(pub)].map(b => b.toString(16).padStart(2,'0')).join('');
     const valido = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, data);
-    // Verificación con mensaje alterado
     const alterado = new TextEncoder().encode(msg + ' X');
     const validoAlterado = await crypto.subtle.verify({name:'Ed25519'}, kp.publicKey, firma, alterado);
     out.innerHTML = `
@@ -842,7 +954,6 @@ async function demoIdentidad(){
   const data = new TextEncoder().encode(nombre);
   const buf = await crypto.subtle.digest('SHA-256', data);
   const huella = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
-  // Calcular la huella de un nombre alterado
   const altBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(nombre + ' '));
   const huellaAlt = [...new Uint8Array(altBuf)].map(b => b.toString(16).padStart(2,'0')).join('');
   out.innerHTML = `
@@ -866,11 +977,8 @@ async function demoMerkle(){
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
   }
-  async function hashPair(a, b){
-    return await sha256(a + b);
-  }
+  async function hashPair(a, b){ return await sha256(a + b); }
 
-  // Nivel 0: hashes de las hojas
   const nivel0 = await Promise.all(hojas.map(async h => ({txt: h, hash: await sha256(h)})));
   const niveles = [nivel0.map(x => x.hash)];
   let actual = nivel0.map(x => x.hash);
@@ -885,7 +993,6 @@ async function demoMerkle(){
   }
   const raiz = niveles[niveles.length-1][0];
 
-  // Render visual
   let html = '<div class="merkle-viz">';
   for (let n = niveles.length - 1; n >= 0; n--){
     const etiqueta = n === niveles.length - 1 ? 'RAÍZ MERKLE' : (n === 0 ? 'HOJAS (datos)' : 'NIVEL ' + n);
@@ -917,10 +1024,8 @@ function demoVotacion(){
   }
   const participacion = (votos / total) * 100;
   const pctSi = (si / votos) * 100;
-  const quorumMin = 50;
-  const mayoriaMin = 50;
-  const quorumOk = participacion >= quorumMin;
-  const mayoriaOk = pctSi >= mayoriaMin;
+  const quorumOk = participacion >= 50;
+  const mayoriaOk = pctSi >= 50;
   const aprobada = quorumOk && mayoriaOk;
   out.innerHTML = `
     <div class="demo-field"><div class="k">Participación (quórum 50%)</div><div class="v" style="color:${quorumOk?'#7BFFD4':'#FF8FA5'}">${participacion.toFixed(1)}% ${quorumOk?'✓':'✗'}</div></div>
