@@ -1,0 +1,117 @@
+name: Verificar Acta Fundacional
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    name: Verificar integridad de documentos fundacionales
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Listar documentos fundacionales
+        run: |
+          echo "📂 Documentos fundacionales encontrados:"
+          ls -la docs/CIUDAD/*.md
+
+      - name: Verificar integridad básica
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const crypto = require('crypto');
+
+          const docs = [
+            'CONSTITUCION.md',
+            'DERECHOS.md',
+            'CONVIVENCIA.md',
+            'CIUDADANOS.md',
+            'MONEDA.md',
+            'AUDITORIA-IA.md',
+            'GUIA-AUDITOR.md'
+          ];
+
+          const dir = 'docs/CIUDAD';
+          let totalArticulos = 0;
+          let archivosOk = 0;
+
+          for (const doc of docs) {
+            const filepath = path.join(dir, doc);
+            if (!fs.existsSync(filepath)) {
+              console.log(`⚠️  Falta: ${doc}`);
+              continue;
+            }
+
+            const content = fs.readFileSync(filepath, 'utf8');
+            const hash = crypto.createHash('sha256').update(content).digest('hex');
+
+            // Contar artículos con regex (mismo que firmar.js)
+            const matches = content.match(/^#{2,4}\s+(?:Artículo\s+)?\d+/gm) || [];
+            totalArticulos += matches.length;
+            archivosOk++;
+
+            console.log(`✓ ${doc}`);
+            console.log(`  SHA-256: ${hash.slice(0, 32)}...`);
+            console.log(`  Artículos detectados: ${matches.length}`);
+          }
+
+          console.log('');
+          console.log(`📊 Resumen:`);
+          console.log(`   Archivos OK: ${archivosOk}/${docs.length}`);
+          console.log(`   Artículos totales: ${totalArticulos}`);
+          console.log('');
+          console.log('○_● 51% HUMANO · 49% IA · 100% REAL');
+          console.log('"El legado no se hereda. Se firma."');
+
+          if (archivosOk < docs.length) {
+            console.log('');
+            console.log('⚠️  Advertencia: algunos documentos no se encontraron.');
+            console.log('Esto no rompe el build, solo avisa.');
+          }
+          EOF
+
+      - name: Verificar links internos
+        run: |
+          echo "🔍 Verificando links internos..."
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          const file = 'docs/CIUDAD/index.html';
+          if (!fs.existsSync(file)) {
+            console.log('⚠️  index.html no encontrado. Skip.');
+            process.exit(0);
+          }
+
+          const html = fs.readFileSync(file, 'utf8');
+          const links = [...html.matchAll(/href="\.\/([^"]+)"/g)].map(m => m[1]);
+          let ok = 0, missing = 0;
+
+          for (const link of new Set(links)) {
+            const filepath = path.join('docs/CIUDAD', link.split('?')[0]);
+            if (fs.existsSync(filepath)) {
+              ok++;
+            } else {
+              console.log(`  ❌ Falta: ${link}`);
+              missing++;
+            }
+          }
+
+          console.log(`Links OK: ${ok}`);
+          console.log(`Links rotos: ${missing}`);
+
+          if (missing > 0) {
+            console.log('⚠️  Hay links rotos, pero no rompe el build.');
+          }
+          EOF
