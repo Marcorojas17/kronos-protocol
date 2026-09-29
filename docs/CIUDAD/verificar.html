@@ -44,7 +44,6 @@
   .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
   .section-head .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cy-l);letter-spacing:2px}
 
-  /* ── Zona de carga ─────────────────────── */
   .drop-zone{
     border:2px dashed rgba(0,234,255,.35);
     border-radius:8px;
@@ -81,7 +80,6 @@
     color:var(--dim);
   }
 
-  /* Alternativa: pegar JSON */
   .paste-toggle{
     display:block;
     width:100%;
@@ -136,7 +134,6 @@
 
   #file-input{display:none}
 
-  /* ── Feedback ─────────────────────────── */
   .feedback{margin-top:24px;padding:18px 22px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.7}
   .feedback.success{display:block;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.35);color:var(--ok-l)}
   .feedback.error{display:block;background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.35);color:var(--bad-l)}
@@ -144,7 +141,6 @@
   .feedback.info{display:block;background:rgba(0,234,255,.08);border:1px solid rgba(0,234,255,.35);color:var(--cy-l)}
   .feedback strong{font-weight:500}
 
-  /* ── Panel de resultado ───────────────── */
   .panel{margin-top:30px;display:none}
   .panel.on{display:block}
   .veredicto{
@@ -316,7 +312,7 @@
       <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
       <div class="sello-lema">"El legado no se hereda. Se firma."</div>
     </div>
-    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Verificador Público v1.0</span>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Verificador Público v1.1</span>
   </footer>
 
 </main>
@@ -361,7 +357,6 @@
 
   // ══════════════════════════════════════════════════════════
   //  MERKLE ROOT · mismo algoritmo que firmar.js
-  //  concatenación_hex + SHA-256 + duplicación de impar
   // ══════════════════════════════════════════════════════════
 
   async function calcularMerkleRoot(hashes){
@@ -394,7 +389,6 @@
   async function verificarActa(acta){
     const checks = [];
 
-    // ── 1 · Validar estructura ────────────────────────────
     if (!acta || acta.meta !== 'KRONOS_ACTA_FUNDACIONAL'){
       throw new Error('El archivo no es un acta fundacional de KRONOS.');
     }
@@ -405,7 +399,6 @@
       text: 'Detectado'
     });
 
-    // ── 2 · Extraer todos los hashes declarados ───────────
     const hashesDeclarados = [];
     let totalArticulos = 0;
 
@@ -431,7 +424,6 @@
       text: totalArticulos > 0 ? `${totalArticulos}` : 'Ninguno'
     });
 
-    // ── 3 · Recalcular Merkle Root ────────────────────────
     const merkleRecalculado = await calcularMerkleRoot(hashesDeclarados);
 
     const merkleDeclarado = acta.merkle && acta.merkle.merkle_root_articulos;
@@ -444,7 +436,6 @@
       text: merkleCoincide ? 'Coincide' : 'No coincide'
     });
 
-    // ── 4 · Verificar firma Ed25519 ───────────────────────
     let firmaValida = false;
     let razonFirma = '';
 
@@ -487,7 +478,6 @@
       text: firmaValida ? 'Válida' : (razonFirma || 'Inválida')
     });
 
-    // ── 5 · Verificar clave pública declarada ─────────────
     const tieneClave = !!(acta.fundador && acta.fundador.clave_publica_hex);
     checks.push({
       icon: tieneClave ? '✓' : '⚠',
@@ -496,7 +486,6 @@
       text: tieneClave ? 'Presente' : 'Ausente'
     });
 
-    // ── 6 · Verificar timestamp ───────────────────────────
     const tieneTimestamp = !!acta.timestamp;
     checks.push({
       icon: tieneTimestamp ? '✓' : '⚠',
@@ -505,7 +494,6 @@
       text: tieneTimestamp ? 'Presente' : 'Ausente'
     });
 
-    // ── Resultado final ────────────────────────────────────
     const todoOk = merkleCoincide && firmaValida;
     const hayProblemas = checks.some(c => c.result === 'bad');
 
@@ -580,6 +568,11 @@
       const acta = JSON.parse(texto);
       actaActual = acta;
 
+      // ── PATCH · Exponer acta para auditoría externa ─────
+      // Permite que scripts de consola (ej: AUDITOR_HOSTIL.js)
+      // puedan acceder al acta sin recargarla.
+      window.__actaKronos = acta;
+
       const resultado = await verificarActa(acta);
       mostrarResultado(resultado, acta);
 
@@ -621,7 +614,6 @@
     await procesarTexto(texto);
   });
 
-  // Alternativa: pegar JSON
   pasteToggle.addEventListener('click', () => {
     const area = $('paste-area');
     const visible = area.style.display === 'block';
