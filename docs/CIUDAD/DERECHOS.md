@@ -304,8 +304,6 @@ flowchart TD
 
 ---
 
-*[Fin de la Parte 1. Continúa en Parte 2: Títulos II, III, IV.]*
-
 # TÍTULO II · DERECHOS DEL CIUDADANO HUMANO
 
 Exclusivos de personas físicas registradas con llave propia.
@@ -749,8 +747,6 @@ flowchart TD
 
 ---
 
-*[Fin de la Parte 2. Continúa en Parte 3: Título V · Deberes Correlativos, Título VI · Vigencia, Sistema Merkle y Firma.]*
-
 # TÍTULO V · DEBERES CORRELATIVOS
 
 Todo derecho tiene un deber espejo. Sin deber, el derecho es abuso.
@@ -1016,19 +1012,21 @@ Si un hash no coincide, el artículo fue alterado. Sin excepciones.
 
 # FIRMA DEL FUNDADOR
 
-Firmado en Toluca, Estado de México, el día ___ del mes ___ del año
-2026.
+Firmado en Toluca, Estado de México. La fecha exacta de firma y
+anclaje se registra automáticamente en el acta fundacional en el
+momento del acto criptográfico.
 
 **Marco Antonio Rojas Valdovinos**
 Fundador · Ciudad KRONOS · Plaza 000
+Email verificado: marco.a.rojas.v@hotmail.com
 
 - **Hash del documento completo:** `[se calcula al firmar]`
 - **Merkle Root (26 artículos):** `[se calcula al firmar]`
 - **Firma Ed25519:** `[se calcula al firmar]`
 - **Clave pública Ed25519:** `[se calcula al firmar]`
-- **Anclaje Ethereum:** `[pendiente]`
-- **Tx hash:** `[pendiente]`
-- **Sello Notario Tonal:** `[pendiente]`
+- **Anclaje Ethereum:** `[se registra al anclar]`
+- **Tx hash:** `[se registra al anclar]`
+- **Sello Notario Tonal:** `[se registra al sellar]`
 
 ---
 
@@ -1040,7 +1038,7 @@ Fundador · Ciudad KRONOS · Plaza 000
 > verificable. Doy fe."*
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
-> Hash del sello: `[pendiente]`
+> Hash del sello: `[se registra al sellar]`
 
 ---
 
@@ -1059,15 +1057,17 @@ Sus firmas y logs se registran en el acta fundacional.
 
 ## RELACIÓN CON OTROS DOCUMENTOS
 
-Esta Carta es el segundo de los cinco documentos fundacionales:
+Esta Carta es el segundo de los siete documentos fundacionales:
 
 1. **Constitución de KRONOS** v1.0 — estructura del poder
 2. **Carta de Derechos del Ciudadano** v1.0 — este documento
 3. **Código de Convivencia** v1.0 — proceso y sanciones
 4. **Registro de Ciudadanía** v1.0 — quién es quién
 5. **Visión Económica (KRO)** v1.0 — economía de servicios
+6. **Auditoría y Gobernanza de IA** v1.0 — alcance y límites
+7. **Guía para Auditores** v1.0 — verificación de paquetes
 
-Los cinco se firman juntos, se anclan juntos y se respetan juntos.
+Los siete se firman juntos, se anclan juntos y se respetan juntos.
 
 ---
 
@@ -1083,9 +1083,3 @@ KRONOS · Ciudad Digital · Carta de Derechos v1.0 · Edición Verificable por A
 ---
 
 **FIN DE LA CARTA DE DERECHOS v1.0**
-
-Próximos pasos:
-1. Firmar con Ed25519 los 26 artículos
-2. Calcular Merkle Root
-3. Anclar a Ethereum
-4. Publicar versión firmada
