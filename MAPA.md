@@ -478,5 +478,3 @@ kronos-protocol/
 ```
 
 _Generado automáticamente. Profundidad máxima: 3._
-
-_SHA-256 del mapa: pendiente de calcular al publicar._
