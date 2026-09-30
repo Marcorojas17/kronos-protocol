@@ -1,24 +1,12 @@
 """090-arquitecto: valida que las carpetas esperadas existan.
 
 ESTADO: 🟡 MVP
-SUPUESTOS:
-  - El repo tiene raíz accesible
-  - Las carpetas esperadas son las de v12 CIMIENTOS
-RIESGOS:
-  - Si renombrás carpetas, hay que actualizar ESTRUCTURA_ESPERADA
-  - No detecta carpetas que existen pero están vacías
-CIMIENTOS:
-  - (ninguno obligatorio: corre incluso sin carpetas, y las reporta faltantes)
-NO GARANTIZA:
-  - Que la estructura sea la correcta para tu proyecto
-  - Que las carpetas presentes tengan contenido útil
 """
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-# ⚠️ SUPUESTO: _base está en el nivel superior de agentes/
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
 from agente_base import AgenteBase, Resultado, main  # noqa: E402
 
@@ -46,6 +34,9 @@ class Arquitecto(AgenteBase):
     nombre = "090-arquitecto"
     descripcion = "Valida estructura del repo contra estructura esperada"
     estado = "🟡 MVP"
+    rol_pipeline = "🚪 ENTRADA"
+    util_hoy = True
+    bloqueado_por = []
     supuestos = [
         "El repo tiene raíz accesible",
         "Las carpetas esperadas son las de v12 CIMIENTOS",
@@ -65,7 +56,6 @@ class Arquitecto(AgenteBase):
         presentes = []
 
         for ruta in ESTRUCTURA_ESPERADA:
-            # ⚠️ SUPUESTO: rutas relativas desde self.raiz
             if (self.raiz / ruta).exists():
                 presentes.append(ruta)
             else:
@@ -82,14 +72,13 @@ class Arquitecto(AgenteBase):
                 "rutas": faltantes,
             })
 
-        # Carpetas en raíz que no están en la lista esperada
         try:
             hijas = [
                 p.name for p in self.raiz.iterdir()
                 if p.is_dir() and not p.name.startswith(".")
             ]
-        except PermissionError:
-            self._log_error("no se pudo leer la raíz", PermissionError("lectura"))
+        except PermissionError as e:
+            self._log_error("no se pudo leer la raíz", e)
             hijas = []
 
         huerfanas = [
@@ -106,6 +95,9 @@ class Arquitecto(AgenteBase):
         return Resultado(
             agente=self.nombre,
             estado=self.estado,
+            rol_pipeline=self.rol_pipeline,
+            util_hoy=self.util_hoy,
+            bloqueado_por=self.bloqueado_por,
             timestamp=self._ahora(),
             ok=len(faltantes) == 0,
             hallazgos=hallazgos,
