@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificador KRONOS · KODICE</title>
+<style>
+  :root {
+    --obsidian: #0a0a0f;
+    --panel: #14141c;
+    --gold: #d4af37;
+    --gold-dim: #8a7020;
+    --text: #e8e8e8;
+    --muted: #888;
+    --ok: #4ade80;
+    --bad: #ef4444;
+    --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--obsidian);
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.5;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  label {
+    display: block;
+    font-size: 11px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 140px;
+    background: var(--obsidian);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-family: inherit;
+    font-size: 12px;
+    resize: vertical;
+  }
+  input[type="text"] {
+    width: 100%;
+    background: var(--obsidian);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  button {
+    background: var(--gold);
+    color: var(--obsidian);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  button:hover { background: #e0c04a; }
+  button:disabled { background: #444; cursor: not-allowed; }
+  button.sec {
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+  }
+  .resultado {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .resultado.show { display: block; }
+  .ok { background: rgba(74, 222, 128, 0.1); border: 1px solid var(--ok); color: var(--ok); }
+  .bad { background: rgba(239, 68, 68, 0.1); border: 1px solid var(--bad); color: var(--bad); }
+  .warn { background: rgba(245, 158, 11, 0.1); border: 1px solid var(--warn); color: var(--warn); }
+  .sello {
+    text-align: center;
+    color: var(--gold-dim);
+    font-size: 11px;
+    margin-top: 32px;
+    letter-spacing: 1px;
+  }
+  .sello div { margin: 2px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>◢◤ Verificador KRONOS · KODICE</h1>
+  <div class="sub">v0.1 · offline · sin servidor · Ed25519 + SHA-256</div>
+
+  <div class="panel">
+    <label>Registro JSON a verificar</label>
+    <textarea id="inputRegistro" placeholder="Pega un registro.json completo, o presiona AUTOTEST para generar uno de prueba."></textarea>
+
+    <label style="margin-top:12px;">Clave publica del firmante (hex, 64 caracteres)</label>
+    <input type="text" id="inputPubKey" placeholder="0000...0000">
+
+    <button onclick="verificar()">Verificar registro</button>
+    <button class="sec" onclick="autotest(event)">Autotest (genera y verifica)</button>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+    <div>"El legado no se hereda. Se firma."</div>
+  </div>
+</div>
+
+<script>
+function bytesToHex(bytes) {
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function hexToBytes(hex) {
+  if (hex.length % 2 !== 0) throw new Error('hex impar');
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    out[i] = parseInt(hex.substr(i * 2, 2), 16);
+  }
+  return out;
+}
+
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return bytesToHex(new Uint8Array(digest));
+}
+
+async function verificarFirmaEd25519(publicKeyHex, firmaHex, mensaje) {
+  try {
+    const pubBytes = hexToBytes(publicKeyHex);
+    if (pubBytes.length !== 32) throw new Error('clave publica debe ser 32 bytes (64 hex)');
+    const key = await crypto.subtle.importKey(
+      'raw',
+      pubBytes,
+      { name: 'Ed25519' },
+      false,
+      ['verify']
+    );
+    return await crypto.subtle.verify(
+      'Ed25519',
+      key,
+      hexToBytes(firmaHex),
+      new TextEncoder().encode(mensaje)
+    );
+  } catch (e) {
+    console.error('verificarFirmaEd25519:', e);
+    return false;
+  }
+}
+
+function mostrar(tipo, titulo, detalle) {
+  const el = document.getElementById('resultado');
+  el.className = 'resultado show ' + tipo;
+  el.textContent = titulo + '\n\n' + detalle;
+}
+
+async function verificar() {
+  const registroRaw = document.getElementById('inputRegistro').value.trim();
+  const pubKeyHex = document.getElementById('inputPubKey').value.trim();
+
+  if (!registroRaw) {
+    mostrar('warn', 'FALTA REGISTRO', 'Pega un registro.json.');
+    return;
+  }
+  if (!pubKeyHex) {
+    mostrar('warn', 'FALTA CLAVE PUBLICA', 'Pega la clave publica del firmante (hex).');
+    return;
+  }
+
+  let registro;
+  try {
+    registro = JSON.parse(registroRaw);
+  } catch (e) {
+    mostrar('bad', 'JSON INVALIDO', e.message);
+    return;
+  }
+
+  const errores = [];
+  const requeridos = ['schema_version','tipo','interaction_id','timestamp','responsable','payload_hash','prev_hash','hash_registro','firma'];
+  for (const campo of requeridos) {
+    if (!(campo in registro)) errores.push('Falta campo: ' + campo);
+  }
+  if (errores.length) {
+    mostrar('bad', 'SCHEMA INCOMPLETO', errores.join('\n'));
+    return;
+  }
+
+  const copia = JSON.parse(JSON.stringify(registro));
+  const hashEsperado = copia.hash_registro;
+  delete copia.hash_registro;
+  delete copia.firma;
+  const canon = canonicalize(copia);
+  const hashCalculado = await sha256Hex(canon);
+  const hashValido = (hashCalculado === hashEsperado);
+
+  const firmaValida = await verificarFirmaEd25519(
+    pubKeyHex,
+    registro.firma.firma_hex,
+    hashEsperado
+  );
+
+  const lineas = [];
+  lineas.push('interaction_id: ' + registro.interaction_id);
+  lineas.push('tipo:           ' + registro.tipo);
+  lineas.push('timestamp:      ' + registro.timestamp);
+  lineas.push('responsable:    ' + registro.responsable.tipo);
+  lineas.push('');
+  lineas.push('hash almacenado: ' + hashEsperado);
+  lineas.push('hash calculado:  ' + hashCalculado);
+  lineas.push('hash valido:     ' + (hashValido ? 'SI' : 'NO'));
+  lineas.push('firma valida:    ' + (firmaValida ? 'SI' : 'NO'));
+
+  if (hashValido && firmaValida) {
+    mostrar('ok', 'REGISTRO VERIFICADO', lineas.join('\n') + '\n\nIntegridad y autoria confirmadas.');
+  } else if (!hashValido && !firmaValida) {
+    mostrar('bad', 'REGISTRO ALTERADO', lineas.join('\n') + '\n\nEl contenido cambio Y la firma no coincide.');
+  } else if (!hashValido) {
+    mostrar('bad', 'HASH NO COINCIDE', lineas.join('\n') + '\n\nEl contenido fue modificado despues de firmarse.');
+  } else {
+    mostrar('bad', 'FIRMA INVALIDA', lineas.join('\n') + '\n\nEl hash es correcto pero la firma no corresponde a esta clave publica.');
+  }
+}
+
+async function autotest(ev) {
+  const boton = ev.target;
+  boton.disabled = true;
+  boton.textContent = 'Generando...';
+
+  try {
+    const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
+    const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = bytesToHex(new Uint8Array(pubRaw));
+
+    const payloadHash = await sha256Hex('lectura KODICE de prueba');
+    const prevHash = '0'.repeat(64);
+    const interactionId = await sha256Hex(pubHex + Date.now());
+
+    const registro = {
+      schema_version: '1.0.0',
+      tipo: 'certificado-kodice',
+      interaction_id: interactionId,
+      timestamp: new Date().toISOString().replace(/\.\d{3}Z$/, 'Z'),
+      responsable: {
+        id: 'AUTOTEST_LOCAL',
+        tipo: 'operador-kodice'
+      },
+      payload_hash: payloadHash,
+      prev_hash: prevHash,
+      hash_registro: '',
+      firma: {
+        algoritmo: 'Ed25519',
+        firma_hex: '',
+        firmante: pubHex
+      },
+      metadata: {
+        obra_ref: '2607086319439',
+        sector: 'autotest',
+        nota: 'generado offline por verificador.html v0.1'
+      }
+    };
+
+    const copia = JSON.parse(JSON.stringify(registro));
+    delete copia.hash_registro;
+    delete copia.firma;
+    const canon = canonicalize(copia);
+    const hashRegistro = await sha256Hex(canon);
+    registro.hash_registro = hashRegistro;
+
+    const firmaBuf = await crypto.subtle.sign(
+      'Ed25519',
+      kp.privateKey,
+      new TextEncoder().encode(hashRegistro)
+    );
+    registro.firma.firma_hex = bytesToHex(new Uint8Array(firmaBuf));
+
+    document.getElementById('inputRegistro').value = JSON.stringify(registro, null, 2);
+    document.getElementById('inputPubKey').value = pubHex;
+
+    await verificar();
+  } catch (e) {
+    mostrar('bad', 'ERROR EN AUTOTEST', e.message + '\n\nTu navegador soporta Ed25519 en WebCrypto?');
+  } finally {
+    boton.disabled = false;
+    boton.textContent = 'Autotest (genera y verifica)';
+  }
+}
+</script>
+</body>
+</html>
