@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: commits-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -13,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -48,6 +54,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sin cambios"
           else
-            git commit -m "chore: formateo automatico"
+            git commit -m "chore: formateo automatico [skip ci]"
+            git pull --rebase origin main
             git push
           fi
