@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-30T05:38:05Z
+# Generado: 2026-09-30T05:39:01Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 9086209386e8a7fc23c6206d5ff6830c67ed6317ea2ccdadf8561636002b65f4  ./00-SCHEMA/ejemplo.registro.json
@@ -333,6 +333,7 @@ e16121fa34a66cab722610df9b5696e5f8e96c79fc1968c5bff16e63decf2214  ./src/kronos36
 23419df1bfb9245f53c551482ccd4606c7a859cf4a88b9b9204b1be034bfd0aa  ./tesis.md
 08b8437d8c9a7e1fec2429672aeed77fa0132373d9be86698317d9e2e4ec6cfc  ./tesiscompleta.md
 91d3fd21d53413377893ae9aa258a32e50a23af1f19a02ab1738822a450232db  ./tests/README.md
+fde0b9064edc04452c1abf7991d4e73e5c0bd870df44a8c562ffad53c424d0de  ./tests/test_evidence.py
 8fa237da581c6f6fb916095ff27b80ba576decd83b4ae6f2260a297c63ae6151  ./verificar-certificado.html
 a9805d2c9455c6f05260701679374cf3e9c7215b150083808e471d830ccad390  ./verifier.py
 0e5f8876acccb8003e4d36dcd77429e0859ec495908ef9305293670a2eed3ffe  ./verify.html
