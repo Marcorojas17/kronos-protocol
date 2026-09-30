@@ -1,17 +1,6 @@
 """094-bibliotecario: detecta duplicados y archivos basura.
 
 ESTADO: 🟡 MVP
-SUPUESTOS:
-  - Archivos < 100 KB son candidatos a hashing (los mayores se excluyen)
-  - Nombres basura conocidos: .DS_Store, Thumbs.db, i, Pnp, 403, ._*
-RIESGOS:
-  - Falsos positivos: "i" puede ser un archivo legítimo
-  - Falsos negativos: duplicados > 100 KB no se detectan por hash
-CIMIENTOS:
-  - (ninguno obligatorio: recorre lo que haya)
-NO GARANTIZA:
-  - Detectar todos los duplicados (solo < 100 KB)
-  - Distinguir basura real de archivos legítimos con nombres raros
 """
 from __future__ import annotations
 
@@ -28,8 +17,6 @@ EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 
 BASURA_NOMBRES = {".DS_Store", "Thumbs.db"}
 BASURA_PREFIJOS = ("._",)
-# ⚠️ SUPUESTO: "i", "Pnp", "403" aparecen en este repo como basura
-# pero pueden ser legítimos en otro. Solo se reportan, no se borran.
 BASURA_CONTEXTUAL = {"i", "Pnp", "403"}
 
 MAX_TAMANO_HASH = 100_000
@@ -39,6 +26,9 @@ class Bibliotecario(AgenteBase):
     nombre = "094-bibliotecario"
     descripcion = "Detecta duplicados por nombre y archivos basura"
     estado = "🟡 MVP"
+    rol_pipeline = "🚪 ENTRADA"
+    util_hoy = True
+    bloqueado_por = []
     supuestos = [
         "Archivos < 100 KB son candidatos a hashing",
         "Nombres basura: .DS_Store, Thumbs.db, ._*",
@@ -117,6 +107,9 @@ class Bibliotecario(AgenteBase):
         return Resultado(
             agente=self.nombre,
             estado=self.estado,
+            rol_pipeline=self.rol_pipeline,
+            util_hoy=self.util_hoy,
+            bloqueado_por=self.bloqueado_por,
             timestamp=self._ahora(),
             ok=len(basura) == 0,
             hallazgos=hallazgos,
