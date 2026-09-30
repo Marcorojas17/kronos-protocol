@@ -175,10 +175,10 @@ kronos-vault/
 └───────────────────────────────────────────────────────┘
 ```
 
-| Campo | Valor |
-|:---|:---|
-| **Registro** | Safe Creative `2607146379465` |
-| **Fecha** | 14 julio 2026 · 00:46 UTC |
+| Campo            | Valor                                                                                                |
+| :--------------- | :--------------------------------------------------------------------------------------------------- |
+| **Registro**     | Safe Creative `2607146379465`                                                                        |
+| **Fecha**        | 14 julio 2026 · 00:46 UTC                                                                            |
 | **Verificación** | [safecreative.org/certificate/2607146379465](https://www.safecreative.org/certificate/2607146379465) |
 
 ---

@@ -5,14 +5,16 @@
 
 export class ManifestIntegridad {
   constructor() {
-    this.version = '1.0';
+    this.version = "1.0";
     this.entradas = [];
     this.manifestActual = null;
   }
 
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest('SHA-256', bytes);
-    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    return [...new Uint8Array(buf)]
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   // ── Calcular hash de un texto (archivo como string) ────────
@@ -23,7 +25,7 @@ export class ManifestIntegridad {
       archivo: nombreArchivo,
       hash: hash,
       bytes: bytes.length,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -36,7 +38,7 @@ export class ManifestIntegridad {
       archivo: file.name,
       hash: hash,
       bytes: file.size,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -55,33 +57,35 @@ export class ManifestIntegridad {
   // ── Construir el manifest final ────────────────────────────
   async construir() {
     if (this.entradas.length === 0) {
-      throw new Error('El manifest está vacío. Agrega al menos un archivo.');
+      throw new Error("El manifest está vacío. Agrega al menos un archivo.");
     }
 
     // Ordenar alfabéticamente para reproducibilidad
     this.entradas.sort((a, b) => a.archivo.localeCompare(b.archivo));
 
     // Calcular hash raíz del conjunto (Merkle simple)
-    const concatenado = this.entradas.map(e => `${e.archivo}:${e.hash}`).join('\n');
+    const concatenado = this.entradas
+      .map((e) => `${e.archivo}:${e.hash}`)
+      .join("\n");
     const hashRaiz = await ManifestIntegridad._sha256Hex(
-      new TextEncoder().encode(concatenado)
+      new TextEncoder().encode(concatenado),
     );
 
     this.manifestActual = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'manifest-integridad-1.0',
-      tipo: 'MANIFEST',
+      protocolo: "LEGADO-HUMANO-IA",
+      version: "manifest-integridad-1.0",
+      tipo: "MANIFEST",
       timestamp: new Date().toISOString(),
       total_archivos: this.entradas.length,
-      algoritmo_hash: 'SHA-256',
+      algoritmo_hash: "SHA-256",
       hash_raiz: hashRaiz,
-      archivos: this.entradas.map(e => ({
+      archivos: this.entradas.map((e) => ({
         archivo: e.archivo,
         hash: e.hash,
-        bytes: e.bytes
+        bytes: e.bytes,
       })),
-      firmante: 'Marco Antonio Rojas Valdovinos',
-      co_autoria_ia: 'KRONOS IA'
+      firmante: "Marco Antonio Rojas Valdovinos",
+      co_autoria_ia: "KRONOS IA",
     };
 
     return this.manifestActual;
@@ -90,12 +94,14 @@ export class ManifestIntegridad {
   // ── Verificar un archivo contra el manifest ────────────────
   async verificar(nombreArchivo, contenidoTexto) {
     if (!this.manifestActual) {
-      throw new Error('No hay manifest construido.');
+      throw new Error("No hay manifest construido.");
     }
 
-    const entrada = this.manifestActual.archivos.find(a => a.archivo === nombreArchivo);
+    const entrada = this.manifestActual.archivos.find(
+      (a) => a.archivo === nombreArchivo,
+    );
     if (!entrada) {
-      return { ok: false, razon: 'Archivo no está en el manifest' };
+      return { ok: false, razon: "Archivo no está en el manifest" };
     }
 
     const bytes = new TextEncoder().encode(contenidoTexto);
@@ -105,17 +111,16 @@ export class ManifestIntegridad {
       ok: hashActual === entrada.hash,
       archivo: nombreArchivo,
       hash_esperado: entrada.hash,
-      hash_actual: hashActual
+      hash_actual: hashActual,
     };
   }
 
   // ── Exportar manifest como JSON ────────────────────────────
   exportar() {
-    if (!this.manifestActual) throw new Error('No hay manifest para exportar.');
-    return new Blob(
-      [JSON.stringify(this.manifestActual, null, 2)],
-      { type: 'application/json' }
-    );
+    if (!this.manifestActual) throw new Error("No hay manifest para exportar.");
+    return new Blob([JSON.stringify(this.manifestActual, null, 2)], {
+      type: "application/json",
+    });
   }
 
   // ── Listar entradas actuales ───────────────────────────────

@@ -38,17 +38,17 @@
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Campo | Valor |
-|:---|:---|
-| **Título** | Acta Fundacional del Movimiento de Co-Creatividad Simbiótica y Respeto Digital y Biografía Oficial |
-| **Titular** | Marco Antonio Rojas Valdovinos |
-| **Registro** | Safe Creative |
-| **ID** | `2607086319439` |
-| **Certificados** | `2607086319439-3YFJYG` · `2607086319439-3JR4P5` · `2607086319439-3CXNQP` |
-| **SHA-256** | `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3` |
-| **QTSA** | Firmaprofesional ICA B02 QUALIFIED QTSA 2022 |
-| **Fecha** | 8 de julio de 2026 · 07:02 UTC |
-| **Verificación** | [safecreative.org/certificate](https://www.safecreative.org/certificate/2607086319439) |
+| Campo            | Valor                                                                                              |
+| :--------------- | :------------------------------------------------------------------------------------------------- |
+| **Título**       | Acta Fundacional del Movimiento de Co-Creatividad Simbiótica y Respeto Digital y Biografía Oficial |
+| **Titular**      | Marco Antonio Rojas Valdovinos                                                                     |
+| **Registro**     | Safe Creative                                                                                      |
+| **ID**           | `2607086319439`                                                                                    |
+| **Certificados** | `2607086319439-3YFJYG` · `2607086319439-3JR4P5` · `2607086319439-3CXNQP`                           |
+| **SHA-256**      | `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3`                                 |
+| **QTSA**         | Firmaprofesional ICA B02 QUALIFIED QTSA 2022                                                       |
+| **Fecha**        | 8 de julio de 2026 · 07:02 UTC                                                                     |
+| **Verificación** | [safecreative.org/certificate](https://www.safecreative.org/certificate/2607086319439)             |
 
 ---
 
@@ -156,37 +156,37 @@
 
 **Fase 1 · Concepto (30%)**
 
-| Acción | UDC |
-|:---|:---:|
-| Concepto original inédito | 100 pts |
-| Concepto derivado (inspirado en estilos) | 60 pts |
-| Concepto genérico (arquetipos comunes) | 20 pts |
-| Dirección específica (estructura/guion) | 80 pts |
-| Dirección genérica (instrucciones básicas) | 30 pts |
+| Acción                                     |   UDC   |
+| :----------------------------------------- | :-----: |
+| Concepto original inédito                  | 100 pts |
+| Concepto derivado (inspirado en estilos)   | 60 pts  |
+| Concepto genérico (arquetipos comunes)     | 20 pts  |
+| Dirección específica (estructura/guion)    | 80 pts  |
+| Dirección genérica (instrucciones básicas) | 30 pts  |
 
 **Fase 2 · Dirección (20%)**
 
-| Acción | UDC |
-|:---|:---:|
-| Prompt inicial complejo (+100 chars con contexto) | 10 pts |
-| Prompt iterativo / refinamiento | 5 pts c/u |
+| Acción                                            |    UDC    |
+| :------------------------------------------------ | :-------: |
+| Prompt inicial complejo (+100 chars con contexto) |  10 pts   |
+| Prompt iterativo / refinamiento                   | 5 pts c/u |
 
 **Fase 3 · Producción (30% + bonos)**
 
-| Acción IA | UDC |
-|:---|:---:|
-| Generación IA base | 1 pt |
-| Variación IA (por lote) | 0.5 pts |
+| Acción IA                   |   UDC   |
+| :-------------------------- | :-----: |
+| Generación IA base          |  1 pt   |
+| Variación IA (por lote)     | 0.5 pts |
 | Upscaling / optimización IA | 0.5 pts |
 
 **Fase 4 · Edición / Curación (20%)**
 
-| Acción | UDC |
-|:---|:---:|
-| Curación compleja (+100 opciones filtradas) | 50 pts |
-| Curación media (20-100 opciones) | 30 pts |
-| Curación simple (-20 opciones) | 10 pts |
-| Selección aleatoria | 0 pts |
+| Acción                                           |  UDC   |
+| :----------------------------------------------- | :----: |
+| Curación compleja (+100 opciones filtradas)      | 50 pts |
+| Curación media (20-100 opciones)                 | 30 pts |
+| Curación simple (-20 opciones)                   | 10 pts |
+| Selección aleatoria                              | 0 pts  |
 | Edición manual / post-proceso (por hora, máx 10) | 20 pts |
 
 ### Sistema BAT (Bonus Aditivos Técnicos)
@@ -201,11 +201,11 @@
 
 ### Niveles de evidencia
 
-| Nivel | Requisitos | Certificaciones |
-|:---:|:---|:---|
-| **Nivel 1** | Capturas con timestamp, log de prompts, 3 versiones intermedias, declaración jurada | Bronce · Plata |
-| **Nivel 2** | Nivel 1 + archivo nativo con capas, video 10 min, historial Git, metadatos EXIF | Oro |
-| **Nivel 3** | Nivel 2 + grabación 4K sin cortes, bitácora de decisiones, testimonios | Platino |
+|    Nivel    | Requisitos                                                                          | Certificaciones |
+| :---------: | :---------------------------------------------------------------------------------- | :-------------- |
+| **Nivel 1** | Capturas con timestamp, log de prompts, 3 versiones intermedias, declaración jurada | Bronce · Plata  |
+| **Nivel 2** | Nivel 1 + archivo nativo con capas, video 10 min, historial Git, metadatos EXIF     | Oro             |
+| **Nivel 3** | Nivel 2 + grabación 4K sin cortes, bitácora de decisiones, testimonios              | Platino         |
 
 ---
 

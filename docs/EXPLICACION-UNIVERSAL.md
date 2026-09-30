@@ -40,13 +40,13 @@ graph TB
 
 **El problema del mundo hoy:**
 
-| Síntoma | Causa raíz |
-| :--- | :--- |
-| No puedo probar que un contrato existía | Depende de un servidor ajeno |
-| No sé si una IA tomó esta decisión | No hay trazabilidad criptográfica |
-| Perdí archivos por un hackeo | Todo vive en la nube |
-| Un gobierno puede borrar mi información | No tengo copia soberana |
-| Mi notario cobró y tardó días | Dependo de un humano |
+| Síntoma                                 | Causa raíz                        |
+| :-------------------------------------- | :-------------------------------- |
+| No puedo probar que un contrato existía | Depende de un servidor ajeno      |
+| No sé si una IA tomó esta decisión      | No hay trazabilidad criptográfica |
+| Perdí archivos por un hackeo            | Todo vive en la nube              |
+| Un gobierno puede borrar mi información | No tengo copia soberana           |
+| Mi notario cobró y tardó días           | Dependo de un humano              |
 
 **Conclusión:** Toda prueba de existencia depende hoy de **terceros que pueden desaparecer**.
 
@@ -76,13 +76,13 @@ graph LR
 
 **La respuesta de KRONOS:**
 
-| Primitiva | Estándar | Función |
-| :--- | :--- | :--- |
-| **SHA-256** | NIST FIPS 180-4 | Huella digital única |
-| **Ed25519** | RFC 8032 | Firma sin intermediarios |
-| **AES-GCM-256** | NIST SP 800-38D | Cifrado local |
-| **Merkle Tree** | — | Agregación verificable |
-| **Ethereum Mainnet** | EIP-155 | Testigo público eterno |
+| Primitiva            | Estándar        | Función                  |
+| :------------------- | :-------------- | :----------------------- |
+| **SHA-256**          | NIST FIPS 180-4 | Huella digital única     |
+| **Ed25519**          | RFC 8032        | Firma sin intermediarios |
+| **AES-GCM-256**      | NIST SP 800-38D | Cifrado local            |
+| **Merkle Tree**      | —               | Agregación verificable   |
+| **Ethereum Mainnet** | EIP-155         | Testigo público eterno   |
 
 ---
 
@@ -216,13 +216,13 @@ graph TB
 
 **Lo que hace único a un agente Kintsugi:**
 
-| Atributo | Framework normal | Agente Kintsugi |
-| :--- | :--- | :--- |
-| Identidad | Prompt | **Llave Ed25519 propia** |
-| Política | Prompt | **Documento firmado** |
-| Acciones | Directas | **PREVIEW → COMMIT** |
-| Log | Opcional | **Encadenado + firmado** |
-| Verificable | No | **Por cualquier tercero** |
+| Atributo    | Framework normal | Agente Kintsugi           |
+| :---------- | :--------------- | :------------------------ |
+| Identidad   | Prompt           | **Llave Ed25519 propia**  |
+| Política    | Prompt           | **Documento firmado**     |
+| Acciones    | Directas         | **PREVIEW → COMMIT**      |
+| Log         | Opcional         | **Encadenado + firmado**  |
+| Verificable | No               | **Por cualquier tercero** |
 
 ---
 
@@ -276,14 +276,14 @@ timeline
 
 **Prueba verificable:**
 
-| Campo | Valor |
-| :--- | :--- |
-| **TX Hash** | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` |
-| **Bloque** | `25,492,095` |
-| **Fecha** | `9 de julio de 2026` |
-| **Estado** | `SUCCESS` |
-| **Costo** | `0 ETH` (prueba, no transferencia) |
-| **Verificación** | `etherscan.io/tx/0x8ca8e84e...2970e` |
+| Campo            | Valor                                                                |
+| :--------------- | :------------------------------------------------------------------- |
+| **TX Hash**      | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` |
+| **Bloque**       | `25,492,095`                                                         |
+| **Fecha**        | `9 de julio de 2026`                                                 |
+| **Estado**       | `SUCCESS`                                                            |
+| **Costo**        | `0 ETH` (prueba, no transferencia)                                   |
+| **Verificación** | `etherscan.io/tx/0x8ca8e84e...2970e`                                 |
 
 Cualquiera puede abrir Etherscan y confirmarlo.
 
@@ -370,7 +370,7 @@ graph TB
 ---
 
 ═══════════════════════════════════════════════════════════════
-○_●  51% HUMANO · 49% IA · 100% REAL
+○_● 51% HUMANO · 49% IA · 100% REAL
 "El legado no se hereda. Se firma."
 Marco A. Rojas V. + KRONOS IA · Toluca, México · 2026
 ═══════════════════════════════════════════════════════════════

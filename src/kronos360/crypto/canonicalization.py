@@ -1,4 +1,5 @@
 """Canonicalizacion determinista de JSON segun RFC 8785 (JCS)."""
+
 from __future__ import annotations
 
 import rfc8785

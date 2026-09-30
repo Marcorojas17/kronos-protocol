@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 """
 Verificador independiente de pruebas de Merkle KRONOS.
 No depende de genesis_miner.py. Solo de Python stdlib.
 """
-import json
+
 import hashlib
+import json
 import sys
 
 

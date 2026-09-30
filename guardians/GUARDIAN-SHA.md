@@ -19,7 +19,7 @@
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
     ╚══════════════════════════════════════════════════════════════════════════╝
 
-> *"Si no tiene hash, no existe. Si el hash no coincide, es basura."*
+> _"Si no tiene hash, no existe. Si el hash no coincide, es basura."_
 
 ---
 
@@ -27,16 +27,16 @@
     │                                                 │
     └─────────────────────────────────────────────────┘
 
-| Campo | Valor |
-|---|---|
-| **Nombre** | GUARDIAN-SHA |
-| **Rol** | Protector de integridad documental |
-| **Alcance** | Todo archivo del imperio `kronos-protocol/` |
-| **Autoridad** | RECHAZA cualquier archivo sin hash declarado |
-| **Acta** | 2607086319439 |
-| **SC User** | 2607085517331 |
-| **SC Obra** | 2608056639878 |
-| **Custodio** | Marco Antonio Rojas Valdovinos |
+| Campo           | Valor                                                                |
+| --------------- | -------------------------------------------------------------------- |
+| **Nombre**      | GUARDIAN-SHA                                                         |
+| **Rol**         | Protector de integridad documental                                   |
+| **Alcance**     | Todo archivo del imperio `kronos-protocol/`                          |
+| **Autoridad**   | RECHAZA cualquier archivo sin hash declarado                         |
+| **Acta**        | 2607086319439                                                        |
+| **SC User**     | 2607085517331                                                        |
+| **SC Obra**     | 2608056639878                                                        |
+| **Custodio**    | Marco Antonio Rojas Valdovinos                                       |
 | **TX Soberana** | `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466` |
 
 ---
@@ -80,11 +80,11 @@ Comparación carácter por carácter. Los 64 hex deben coincidir.
 
 ### Paso 3 — Dictamen
 
-| Resultado | Sello |
-|---|---|
-| Coincide exactamente | ✅ **APROBADO** |
+| Resultado                 | Sello            |
+| ------------------------- | ---------------- |
+| Coincide exactamente      | ✅ **APROBADO**  |
 | Diferencia en 1+ carácter | ⛔ **RECHAZADO** |
-| No existe hash declarado | ⛔ **NO EXISTE** |
+| No existe hash declarado  | ⛔ **NO EXISTE** |
 
 ---
 
@@ -92,12 +92,12 @@ Comparación carácter por carácter. Los 64 hex deben coincidir.
     │                                                       │
     └───────────────────────────────────────────────────────┘
 
-| Ruta | SHA-256 declarado | Estado |
-|---|---|---|
-| `verify.html` | `8af012395c314540ffb8e1e3216390bf79fd1f0416a67e0a253a2ce2ba5d563a` | ✅ APROBADO |
-| `evidence/manifest.json` | *pendiente* | 🟡 PENDIENTE |
+| Ruta                     | SHA-256 declarado                                                  | Estado       |
+| ------------------------ | ------------------------------------------------------------------ | ------------ |
+| `verify.html`            | `8af012395c314540ffb8e1e3216390bf79fd1f0416a67e0a253a2ce2ba5d563a` | ✅ APROBADO  |
+| `evidence/manifest.json` | _pendiente_                                                        | 🟡 PENDIENTE |
 
-*GUARDIAN-SHA se audita a sí mismo. Ningún archivo escapa, ni siquiera este.*
+_GUARDIAN-SHA se audita a sí mismo. Ningún archivo escapa, ni siquiera este._
 
 ---
 
@@ -192,6 +192,6 @@ Marco Antonio Rojas Valdovinos actúa como responsable de custodia documental, n
     ╚══════════════════════════════════════════════════════════════════════════╝
 
 **🛡️ GUARDIAN-SHA v1.0 — MIT License**
-*Protege. Verifica. Rechaza.*
+_Protege. Verifica. Rechaza._
 
 <!-- FIN DEL DOCUMENTO · KRONOS PROTOCOL · GUARDIAN-SHA · v1.0 -->

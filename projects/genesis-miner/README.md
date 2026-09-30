@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # Genesis Miner · KRONOS Protocol
 
 ```text
@@ -18,6 +17,7 @@
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 Descripción
 
@@ -194,3 +194,4 @@ MIT © 2026 Marco Antonio Rojas Valdovinos
 ```
 
 ---
+```

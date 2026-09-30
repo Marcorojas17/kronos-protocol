@@ -1,6 +1,6 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  ○_●  KRONOS PROTOCOL · PULL REQUEST TEMPLATE                        ║
-║  51% HUMANO · 49% IA · 100% REAL                                     ║
+║ ○_● KRONOS PROTOCOL · PULL REQUEST TEMPLATE ║
+║ 51% HUMANO · 49% IA · 100% REAL ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # Pull Request
@@ -70,9 +70,9 @@ Antes de enviar, verificá:
 Pasos para que un mantenedor reproduzca el cambio:
 
 ```
-1. 
-2. 
-3. 
+1.
+2.
+3.
 ```
 
 ---

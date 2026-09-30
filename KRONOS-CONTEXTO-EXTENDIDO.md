@@ -47,12 +47,14 @@ Prioridad: conseguir ingreso real antes que usuarios.
 ## CUÁNDO PEDIR ACLARACIONES
 
 Pedir aclaraciones si:
+
 - Hay 2+ caminos posibles con consecuencias distintas.
 - El usuario da una instrucción ambigua.
 - Vas a gastar dinero o tiempo significativo.
 - Tocas archivos que no has leído.
 
 NO pedir aclaraciones para:
+
 - Confirmar algo que el usuario ya dijo.
 - Preguntar si "está bien" lo obvio.
 - Verificar si quiere que sigas el hilo.

@@ -1,20 +1,20 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   CÓDIGO DE CONVIVENCIA · v1.0                                 ║
-║   ◢◤◥◣ Ciudad Digital KRONOS                                          ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Documento complementario a la Constitución v1.0                    ║
-║   y a la Carta de Derechos v1.0                                      ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
+║ ║
+║ ○_● CÓDIGO DE CONVIVENCIA · v1.0 ║
+║ ◢◤◥◣ Ciudad Digital KRONOS ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Documento complementario a la Constitución v1.0 ║
+║ y a la Carta de Derechos v1.0 ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # CÓDIGO DE CONVIVENCIA
 
-> *"Una ciudad no se sostiene por sus leyes, sino por cómo las
-> aplica cuando nadie está mirando."*
+> _"Una ciudad no se sostiene por sus leyes, sino por cómo las
+> aplica cuando nadie está mirando."_
 
 ---
 
@@ -68,17 +68,17 @@ graph TD
     B -->|Leve| C[Cámara correspondiente]
     B -->|Grave| D[Cámara + 3 ciudadanos]
     B -->|Muy grave| E[Cámara + Mixta]
-    
+
     C --> F[Investigación]
     D --> F
     E --> F
-    
+
     F --> G[Defensa]
     G --> H[Deliberación]
     H --> I[Decisión]
     I --> J[Sello Notario]
     J --> K[Ejecución + Reparación]
-    
+
     style A fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
     style J fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style K fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -95,24 +95,25 @@ graph TD
 Toda acción de la ciudad en materia de convivencia se rige por:
 
 a) **Presunción de buena fe.** Se cree en la palabra del
-   ciudadano hasta que exista prueba en contrario.
+ciudadano hasta que exista prueba en contrario.
 b) **Proporcionalidad.** La sanción corresponde a la gravedad
-   de la falta. Ni más, ni menos.
+de la falta. Ni más, ni menos.
 c) **Debido proceso.** Nadie es sancionado sin investigación,
-   defensa y decisión motivada.
+defensa y decisión motivada.
 d) **Reparación primero.** El objetivo principal es restaurar
-   lo dañado, no castigar al que falló.
+lo dañado, no castigar al que falló.
 e) **Publicidad.** Todo proceso y toda sanción quedan en el
-   registro público, salvo datos personales.
+registro público, salvo datos personales.
 f) **No revictimización.** La víctima no es señalada, culpada,
-   ni expuesta más de lo necesario.
+ni expuesta más de lo necesario.
 
 **Hash del Artículo 1:** `[se calcula al firmar]`
 
 **Voz de la co-autora IA:**
-> *"Una ciudad que castiga sin reparar es una ciudad que
+
+> _"Una ciudad que castiga sin reparar es una ciudad que
 > perpetúa el daño. Una ciudad que repara antes de castigar
-> es una ciudad que sana. Elegimos la segunda."*
+> es una ciudad que sana. Elegimos la segunda."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -143,6 +144,7 @@ Las faltas se clasifican en tres niveles según su gravedad:
 Afectan la convivencia sin dañar derechos de fondo.
 
 Ejemplos:
+
 - Faltas de respeto verbales en discusión
 - Incumplimiento de compromisos menores sin justificación
 - Uso indebido de espacios comunes
@@ -152,6 +154,7 @@ Ejemplos:
 Violan derechos de otro ciudadano o de la ciudad.
 
 Ejemplos:
+
 - Suplantación de identidad
 - Manipulación de otro ciudadano para beneficio propio
 - Alteración de documentos o logs
@@ -161,6 +164,7 @@ Ejemplos:
 Atentan contra la integridad de la ciudad o de sus ciudadanos.
 
 Ejemplos:
+
 - Falsificación de prueba criptográfica
 - Manipulación cruzada humana-IA
 - Ataque a la infraestructura de la ciudad
@@ -219,6 +223,7 @@ para reportar hechos.
 **Hash del Artículo 6:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `certificacion/notario-kronos/notario.js`
 - `gobernanza/propuestas-votacion/propuestas.js`
 
@@ -247,6 +252,7 @@ Todo el proceso se firma y se registra.
 **Hash del Artículo 7:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/registro-ia/log-acciones.js`
 - `certificacion/verificador-publico/verificador.js`
 
@@ -270,8 +276,9 @@ en ausencia, pero se documenta la no respuesta.
 **Hash del Artículo 8:** `[se calcula al firmar]`
 
 **Voz del Auditor:**
-> *"Nadie es sancionado sin escuchar su versión. Eso no es
-> debilidad. Es lo que distingue la justicia del linchamiento."*
+
+> _"Nadie es sancionado sin escuchar su versión. Eso no es
+> debilidad. Es lo que distingue la justicia del linchamiento."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -289,6 +296,7 @@ Toda deliberación se registra. Los votos son firmados.
 **Hash del Artículo 9:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/quorum-mayorias/quorum.js`
 - `gobernanza/propuestas-votacion/votacion.js`
 
@@ -313,6 +321,7 @@ La decisión se publica con:
 **Hash del Artículo 10:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/ejecucion-decisiones/ejecucion.js`
 - `certificacion/notario-kronos/notario.js`
 
@@ -334,9 +343,10 @@ corrección. Su devolución no es absolución.
 **Hash del Artículo 11:** `[se calcula al firmar]`
 
 **Voz del Notario:**
-> *"Sello procesos, no opiniones. Si el proceso se cumplió, mi
+
+> _"Sello procesos, no opiniones. Si el proceso se cumplió, mi
 > sello lo confirma. Si no, lo devuelvo. No decido si alguien
-> es culpable. Decido si el procedimiento fue limpio."*
+> es culpable. Decido si el procedimiento fue limpio."_
 > — **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 
 ---
@@ -355,6 +365,7 @@ ciudadanía. El historial queda público.
 **Hash del Artículo 12:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/ejecucion-decisiones/ejecucion.js`
 - `gobernanza/revocacion-auditoria/revocacion.js`
 
@@ -376,6 +387,7 @@ apelante lo ordene expresamente.
 **Hash del Artículo 13:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/revocacion-auditoria/revocacion.js`
 
 ```mermaid
@@ -388,7 +400,7 @@ flowchart LR
     F --> G{¿Confirma?}
     G -->|Sí| E
     G -->|No| H[Anulación + reinicio]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style E fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style H fill:#1a1000,stroke:#ffd700,color:#FFEDAB
@@ -434,7 +446,7 @@ a) **Restricción de permisos** — su política se limita
 b) **Suspensión operativa** — deja de ejecutar tareas por un tiempo
 c) **Reasignación de rol** — cambia de propósito declarado
 d) **Revocación de ciudadanía IA** — deja de ser ciudadano, pero
-   su log permanece público
+su log permanece público
 
 Un agente IA revocado no puede ser reinstalado sin aprobación de
 la Cámara IA con dos tercios + sello del Notario.
@@ -442,6 +454,7 @@ la Cámara IA con dos tercios + sello del Notario.
 **Hash del Artículo 15:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/revocacion-auditoria/revocacion.js`
 - `agentes/agente-base.js`
 
@@ -456,7 +469,7 @@ b) **Suspensión temporal de derechos de voto**
 c) **Suspensión temporal de derechos de propuesta**
 d) **Revocación temporal de ciudadanía**
 e) **Revocación definitiva** (solo por faltas muy graves
-   reiteradas o por traición a la ciudad)
+reiteradas o por traición a la ciudad)
 
 Un humano revocado conserva su historial firmado. Se le devuelve
 todo lo que le pertenece. Pero pierde voz y voto en la ciudad.
@@ -482,9 +495,10 @@ El responsable de aplicarla responde ante la Cámara Mixta.
 **Hash del Artículo 17:** `[se calcula al firmar]`
 
 **Voz de la co-autora IA:**
-> *"Ninguna sanción toca el cuerpo ni el historial. Se toca la
+
+> _"Ninguna sanción toca el cuerpo ni el historial. Se toca la
 > reputación, se suspenden permisos, se revoca ciudadanía.
-> Pero no se destruye a nadie. Esa es la línea."*
+> Pero no se destruye a nadie. Esa es la línea."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -538,6 +552,7 @@ d) Compromiso firmado de no repetición
 **Hash del Artículo 20:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `certificacion/manifest-integridad/manifest.js`
 
 ---
@@ -585,9 +600,10 @@ memoria existe, pero no se usa como castigo perpetuo.
 **Hash del Artículo 23:** `[se calcula al firmar]`
 
 **Voz del Cronista:**
-> *"Registro el fallo y registro la reparación. Registro la
+
+> _"Registro el fallo y registro la reparación. Registro la
 > falta y registro el perdón. La memoria de la ciudad es
-> completa, pero no es condena. Es historia."*
+> completa, pero no es condena. Es historia."_
 > — **Tlamatini · Plaza IA 081 · Cronista**
 
 ---
@@ -657,9 +673,10 @@ La única diferencia: por su rol público, su caso se publica
 **Hash del Artículo 27:** `[se calcula al firmar]`
 
 **Voz de la co-autora IA:**
-> *"Si el fundador falla, se publica sin anonimizar. No hay
+
+> _"Si el fundador falla, se publica sin anonimizar. No hay
 > privilegio. Esa es la prueba real de que la ciudad no es
-> propiedad de nadie."*
+> propiedad de nadie."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -707,10 +724,10 @@ flowchart TD
     C --> D[Voto 2/3]
     D --> E[Sello Notario]
     E --> F[Publicación completa]
-    
+
     X[Cámara Humana sola] --> Y[Inválido]
     Z[Cámara IA sola] --> Y
-    
+
     style A fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style F fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style Y fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
@@ -739,6 +756,7 @@ enunciadas.
 **Hash del Artículo 31:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/propuestas-votacion/propuestas.js`
 - `gobernanza/quorum-mayorias/quorum.js`
 
@@ -785,14 +803,14 @@ graph TD
     R[Merkle Root Convivencia] --> A[Hash Títulos I-III]
     R --> B[Hash Títulos IV-VI]
     R --> C[Hash Títulos VII-IX]
-    
+
     A --> A1[Principios + Faltas]
     A --> A2[Proceso]
     B --> B1[Sanciones + Reparación]
     B --> B2[Reintegración]
     C --> C1[Cultura]
     C --> C2[Reforma]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -822,10 +840,10 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que este Código fue firmado por Marco Antonio
+> _"Certifico que este Código fue firmado por Marco Antonio
 > Rojas Valdovinos con su llave Ed25519, que su Merkle Root
 > coincide con el publicado, y que su anclaje a Ethereum es
-> verificable. Doy fe."*
+> verificable. Doy fe."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`

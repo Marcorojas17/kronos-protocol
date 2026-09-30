@@ -17,7 +17,7 @@
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
     ╚══════════════════════════════════════════════════════════════════════════╝
 
-> *"Sin sello de tiempo, no es evidencia. Es solo un hash con buena memoria."*
+> _"Sin sello de tiempo, no es evidencia. Es solo un hash con buena memoria."_
 
 ---
 
@@ -25,14 +25,14 @@
     │                                                 │
     └─────────────────────────────────────────────────┘
 
-| Campo | Valor |
-|---|---|
-| **Nombre** | GUARDIAN-TSA |
-| **Rol** | Protector del tiempo documental (RFC 3161) |
-| **Alcance** | Todo artefacto en `evidence/manifest.json` |
-| **Autoridad** | RECHAZA cualquier archivo sin `.tsr` válido |
-| **Estándar** | ETSI EN 319 422 + RFC 3161 + NIST SP 800-53 AU-8 |
-| **Acta** | 2607086319439 |
+| Campo           | Valor                                                                |
+| --------------- | -------------------------------------------------------------------- |
+| **Nombre**      | GUARDIAN-TSA                                                         |
+| **Rol**         | Protector del tiempo documental (RFC 3161)                           |
+| **Alcance**     | Todo artefacto en `evidence/manifest.json`                           |
+| **Autoridad**   | RECHAZA cualquier archivo sin `.tsr` válido                          |
+| **Estándar**    | ETSI EN 319 422 + RFC 3161 + NIST SP 800-53 AU-8                     |
+| **Acta**        | 2607086319439                                                        |
 | **TX Soberana** | `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466` |
 
 ---
@@ -60,11 +60,11 @@ Un hash con TSA es evidencia admisible.
     │                                              │
     └──────────────────────────────────────────────┘
 
-| TSA | URL | Costo |
-|---|---|---|
-| **FreeTSA** | `https://freetsa.org/tsr` | $0 |
-| **DigiCert** | `http://timestamp.digicert.com` | $0 |
-| **Sectigo** | `http://timestamp.sectigo.com` | $0 |
+| TSA          | URL                             | Costo |
+| ------------ | ------------------------------- | ----- |
+| **FreeTSA**  | `https://freetsa.org/tsr`       | $0    |
+| **DigiCert** | `http://timestamp.digicert.com` | $0    |
+| **Sectigo**  | `http://timestamp.sectigo.com`  | $0    |
 
 Recomendado: **FreeTSA** — verificable por tercero sin registro.
 
@@ -111,6 +111,6 @@ TX: `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466`
     ╚══════════════════════════════════════════════════════════════════════════╝
 
 **⚖️ GUARDIAN-TSA v1.0 — MIT License**
-*Sella el tiempo. Sin reloj, no hay evidencia.*
+_Sella el tiempo. Sin reloj, no hay evidencia._
 
 <!-- FIN DEL DOCUMENTO -->

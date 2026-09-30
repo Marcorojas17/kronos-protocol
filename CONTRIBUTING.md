@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- KRONOS PROTOCOL · CONTRIBUTING.md · v1.0 · 18 sept 2026               -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -19,6 +19,7 @@
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 KRONOS Protocol · Movimiento de Co-Creatividad Simbiótica y Respeto Digital
 
@@ -223,5 +224,7 @@ Gracias por contribuir al Movimiento.
 ```
 
 <!-- FIN DE CONTRIBUTING · KRONOS PROTOCOL · v1.0 -->
+
+```
 
 ```

@@ -44,7 +44,14 @@
         "id": { "type": "string" },
         "tipo": {
           "type": "string",
-          "enum": ["fundador", "agente-kintsugi", "operador-kodice", "ciudadano", "institucion", "operador-kronos360"]
+          "enum": [
+            "fundador",
+            "agente-kintsugi",
+            "operador-kodice",
+            "ciudadano",
+            "institucion",
+            "operador-kronos360"
+          ]
         }
       }
     },
@@ -87,7 +94,10 @@
             "required": ["algoritmo", "firma_hex", "firmante"],
             "additionalProperties": false,
             "properties": {
-              "algoritmo": { "type": "string", "enum": ["Ed25519", "ML-DSA-65"] },
+              "algoritmo": {
+                "type": "string",
+                "enum": ["Ed25519", "ML-DSA-65"]
+              },
               "firma_hex": { "type": "string" },
               "firmante": { "type": "string" }
             }
@@ -99,7 +109,16 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "tipo": { "type": "string", "enum": ["gratuito", "pago-unico", "suscripcion", "licencia", "seguro"] },
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "gratuito",
+            "pago-unico",
+            "suscripcion",
+            "licencia",
+            "seguro"
+          ]
+        },
         "emisor_id": { "type": "string" },
         "receptor_id": { "type": "string" },
         "licencia_operador": { "type": "string" },

@@ -1,19 +1,19 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · v1.0                ║
-║   ◢◤◥◣ Ciudad Digital KRONOS                                          ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Documento complementario a la Constitución v1.0                    ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
+║ ║
+║ ○_● AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · v1.0 ║
+║ ◢◤◥◣ Ciudad Digital KRONOS ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Documento complementario a la Constitución v1.0 ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # AUDITORÍA Y GOBERNANZA DE IA EN KRONOS
 
-> *"No podemos auditar la mente de un modelo.
-> Podemos auditar el perímetro de su actuación."*
+> _"No podemos auditar la mente de un modelo.
+> Podemos auditar el perímetro de su actuación."_
 
 ---
 
@@ -90,6 +90,7 @@ Mediante **Árboles de Merkle**, se puede certificar que un
 conjunto de datos fue considerado sin exponer su contenido.
 
 El auditor recibe:
+
 - La Merkle Root (raíz del árbol)
 - Una prueba de inclusión para el documento específico
 
@@ -125,22 +126,22 @@ graph TD
     A --> D[Inclusión]
     A --> E[Anclaje]
     A --> F[Sellado tiempo]
-    
+
     B --> B1[Hash chaining]
     B --> B2[Alteración detectada]
-    
+
     C --> C1[PREVIEW → COMMIT]
     C --> C2[Firma Ed25519]
-    
+
     D --> D1[Merkle proof]
     D --> D2[Sin exponer datos]
-    
+
     E --> E1[Ethereum]
     E --> E2[Público]
-    
+
     F --> F1[TSA eIDAS]
     F --> F2[RFC 3161]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style B fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
     style C fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -175,6 +176,7 @@ asegura que el contenido original estuviera libre de sesgos,
 errores fácticos o alucinaciones.
 
 **Distinción clave:**
+
 - **Integridad** = "nadie lo cambió después"
 - **Veracidad** = "lo que dice es cierto"
 
@@ -205,6 +207,7 @@ Si alguien inserta un dato falso ANTES de construir el árbol, el
 dato falso.
 
 **Distinción clave:**
+
 - **Dato declarado** = aquel que entra al sistema sin verificación externa
 - **Dato verificado** = aquel que viene firmado por una fuente autorizada reconocida
 
@@ -248,7 +251,7 @@ graph TD
     A --> E[Cadena custodia]
     A --> F[Entorno comprometido]
     A --> G[Prompt injection]
-    
+
     style A fill:#1a0000,stroke:#ff4d6a,stroke-width:2px,color:#FF8FA5
 ```
 
@@ -262,6 +265,7 @@ graph TD
 de riesgos, ciclo de mejora continua, documentación de decisiones.
 
 **Qué aporta KRONOS:**
+
 - Los 7 documentos fundacionales (Constitución, Carta, Código,
   Registro, Visión Económica, Auditoría IA, Guía Auditor) como
   sistema documental
@@ -279,6 +283,7 @@ sustitutivas.
 transparencia, supervisión humana, registro de logs.
 
 **Qué aporta KRONOS:**
+
 - Clasificación de riesgo por política declarada de cada agente
 - Registro de logs firmados con cadena de hashes
 - Supervisión humana demostrable (PREVIEW → COMMIT)
@@ -293,6 +298,7 @@ análisis estadístico que excede el alcance de KRONOS.
 autenticación de usuarios, integridad de registros.
 
 **Qué aporta KRONOS:**
+
 - Autenticación con llave Ed25519 única por usuario
 - Cadena de hashes para integridad
 - Anclaje opcional para prueba pública
@@ -303,12 +309,12 @@ criptográfica. El resto es gestión documental.
 
 ### 4.4 · Distinción cumplimiento vs. técnica
 
-| Aspecto | Cumplimiento | Técnica |
-|:--------|:-------------|:--------|
-| **Qué exige** | Procesos, roles, políticas | Firmas, hashes, verificación |
-| **Quién audita** | Auditor de gestión | Auditor técnico |
+| Aspecto                | Cumplimiento                   | Técnica                          |
+| :--------------------- | :----------------------------- | :------------------------------- |
+| **Qué exige**          | Procesos, roles, políticas     | Firmas, hashes, verificación     |
+| **Quién audita**       | Auditor de gestión             | Auditor técnico                  |
 | **Qué entrega KRONOS** | Los 7 documentos fundacionales | Los logs, certificados, anclajes |
-| **Frecuencia** | Anual / por cambio | Permanente / por acto |
+| **Frecuencia**         | Anual / por cambio             | Permanente / por acto            |
 
 Ambos son necesarios. Ninguno sustituye al otro.
 
@@ -342,23 +348,23 @@ flowchart TD
     D -->|4| E[KRONOS encadena al log]
     E -->|5| F[Opcional: ancla a Ethereum]
     F -->|6| G[Auditor verifica cualquier día]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style G fill:#001a10,stroke:#00cc88,color:#7BFFD4
 ```
 
 **Lo que el auditor obtiene:**
 
-| Verificación | Resultado |
-|:-------------|:----------|
-| ¿Existió la decisión D-42? | ✅ Sí, con fecha y hash |
-| ¿Quién la autorizó? | ✅ Empleado X, con llave pública verificable |
-| ¿Cuándo? | ✅ Timestamp ISO 8601 + Unix |
-| ¿Con qué herramienta? | ✅ Declarado por el empleado |
-| ¿Alguien lo alteró? | ✅ No (cadena intacta) |
-| ¿Qué preguntó a la IA? | 🔴 NO — privacidad preservada |
-| ¿Qué respondió la IA? | 🔴 NO — privacidad preservada |
-| ¿Fue correcta la respuesta? | 🔴 NO — fuera del alcance |
+| Verificación                | Resultado                                    |
+| :-------------------------- | :------------------------------------------- |
+| ¿Existió la decisión D-42?  | ✅ Sí, con fecha y hash                      |
+| ¿Quién la autorizó?         | ✅ Empleado X, con llave pública verificable |
+| ¿Cuándo?                    | ✅ Timestamp ISO 8601 + Unix                 |
+| ¿Con qué herramienta?       | ✅ Declarado por el empleado                 |
+| ¿Alguien lo alteró?         | ✅ No (cadena intacta)                       |
+| ¿Qué preguntó a la IA?      | 🔴 NO — privacidad preservada                |
+| ¿Qué respondió la IA?       | 🔴 NO — privacidad preservada                |
+| ¿Fue correcta la respuesta? | 🔴 NO — fuera del alcance                    |
 
 **Lo que el auditor NO obtiene (por diseño):**
 
@@ -519,14 +525,14 @@ graph TD
     R[Merkle Root Auditoría IA] --> A[Secciones 1-3]
     R --> B[Secciones 4-5]
     R --> C[Secciones 6-8]
-    
+
     A --> A1[Problema + SÍ prueba]
     A --> A2[NO prueba]
     B --> B1[Cumplimiento]
     B --> B2[Caso de uso]
     C --> C1[Mejoras]
     C --> C2[Preguntas + Glosario]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -556,9 +562,9 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que este documento declara sus límites antes que
+> _"Certifico que este documento declara sus límites antes que
 > sus capacidades. Un sistema que reconoce lo que no puede
-> probar es más confiable que uno que promete todo."*
+> probar es más confiable que uno que promete todo."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`

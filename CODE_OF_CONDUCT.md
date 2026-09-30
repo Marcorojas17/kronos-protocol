@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- KRONOS PROTOCOL · CODE_OF_CONDUCT.md · v1.0 · 18 sept 2026            -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -19,6 +19,7 @@
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 KRONOS Protocol · Movimiento de Co-Creatividad Simbiótica y Respeto Digital
 
@@ -176,5 +177,7 @@ Este Código es una adaptación del Contributor Covenant, versión 2.1.
 ```
 
 <!-- FIN DE CODE_OF_CONDUCT · KRONOS PROTOCOL · v1.0 -->
+
+```
 
 ```

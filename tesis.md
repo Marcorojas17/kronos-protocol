@@ -94,13 +94,13 @@ verificación que no dependa de infraestructura ajena.
 
 Cinco primitivas criptográficas estándar de la industria:
 
-| Primitiva | Estándar | Función |
-| :--- | :--- | :--- |
-| SHA-256 | NIST FIPS 180-4 | Integridad |
-| Ed25519 | RFC 8032 | Firma digital |
+| Primitiva   | Estándar        | Función       |
+| :---------- | :-------------- | :------------ |
+| SHA-256     | NIST FIPS 180-4 | Integridad    |
+| Ed25519     | RFC 8032        | Firma digital |
 | AES-GCM-256 | NIST SP 800-38D | Cifrado local |
-| PBKDF2 | NIST SP 800-132 | Derivación |
-| Merkle Tree | — | Agregación |
+| PBKDF2      | NIST SP 800-132 | Derivación    |
+| Merkle Tree | —               | Agregación    |
 
 **Anclaje blockchain:** Ethereum (red por confirmar en versión estable).
 
@@ -108,29 +108,31 @@ Cinco primitivas criptográficas estándar de la industria:
 
 ## V. ESTADO DE LA IMPLEMENTACIÓN
 
-| Componente | Estado |
-| :--- | :---: |
-| Cripto Core (Ed25519 + SHA-256) | ✅ Prototipo funcional |
+| Componente                        |         Estado         |
+| :-------------------------------- | :--------------------: |
+| Cripto Core (Ed25519 + SHA-256)   | ✅ Prototipo funcional |
 | Storage local (IndexedDB + Dexie) | ✅ Prototipo funcional |
-| Árbol Merkle | ✅ Prototipo funcional |
-| Anclaje Ethereum | 🟡 Por validar |
-| Registro Humano firmado | ✅ Prototipo funcional |
-| Registro IA con guardrails | 🟡 En desarrollo |
-| Roles y permisos | ⏳ Pendiente |
-| Certificación legal | ⏳ Pendiente |
-| Gobernanza comunitaria | ⏳ Pendiente |
+| Árbol Merkle                      | ✅ Prototipo funcional |
+| Anclaje Ethereum                  |     🟡 Por validar     |
+| Registro Humano firmado           | ✅ Prototipo funcional |
+| Registro IA con guardrails        |    🟡 En desarrollo    |
+| Roles y permisos                  |      ⏳ Pendiente      |
+| Certificación legal               |      ⏳ Pendiente      |
+| Gobernanza comunitaria            |      ⏳ Pendiente      |
 
 ---
 
 ## VI. NATURALEZA DE LA PROPUESTA
 
 **KRONOS NO es:**
+
 - Una empresa comercial cerrada.
 - Un producto listo para producción.
 - Una plataforma nacional operativa.
 - Una alternativa al sistema legal vigente.
 
 **KRONOS ES:**
+
 - Una especificación técnica abierta.
 - Un experimento de criptografía aplicada.
 - Una propuesta de estándar en validación.
@@ -153,6 +155,7 @@ Cinco primitivas criptográficas estándar de la industria:
 Esta tesis no busca aprobación. Busca **refutación honesta**.
 
 Se invita a universidades, desarrolladores, auditores y sociedad civil a:
+
 - Revisar el código y la documentación.
 - Cuestionar las hipótesis planteadas.
 - Reportar errores, inconsistencias o vulnerabilidades.
@@ -176,4 +179,4 @@ El objetivo no es tener razón. Es **construir algo verificable**.
     └─────────────────────────────────────────────────────┘
 ```
 
-*Documento vivo. Sujeto a revisión y refutación.*
+_Documento vivo. Sujeto a revisión y refutación._

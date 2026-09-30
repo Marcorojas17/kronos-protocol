@@ -18,7 +18,7 @@
 
 `○_●` &nbsp; `51% HUMANO` &nbsp;·&nbsp; `49% IA` &nbsp;·&nbsp; `100% REAL`
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_
 
 [![Status](https://img.shields.io/badge/status-pre--alpha-orange?style=flat-square)](.)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](./LICENSE)
@@ -34,11 +34,11 @@
 
 **KRONOS es un framework que permite probar criptográficamente tres cosas:**
 
-| # | Qué se prueba | Cómo |
-|:-:|:--------------|:-----|
-| 1 | **Que un documento existía en una fecha exacta** | Firma Ed25519 + sellado de tiempo + anclaje Ethereum |
-| 2 | **Que nadie lo alteró después** | Cadena de hashes SHA-256 + Merkle Root |
-| 3 | **Que un agente IA (o una persona) tomó cierta decisión** | Log encadenado inmutable + firma del emisor |
+|  #  | Qué se prueba                                             | Cómo                                                 |
+| :-: | :-------------------------------------------------------- | :--------------------------------------------------- |
+|  1  | **Que un documento existía en una fecha exacta**          | Firma Ed25519 + sellado de tiempo + anclaje Ethereum |
+|  2  | **Que nadie lo alteró después**                           | Cadena de hashes SHA-256 + Merkle Root               |
+|  3  | **Que un agente IA (o una persona) tomó cierta decisión** | Log encadenado inmutable + firma del emisor          |
 
 **Todo funciona en el navegador. Sin servidor. Sin backend. Sin tracking. Los datos nunca salen del dispositivo del usuario.**
 
@@ -111,7 +111,7 @@ flowchart LR
     D -->|4. Encadena al log| E[Hash Chain]
     E -->|5. Merkle Root| F[Ancla Ethereum]
     F -->|6. Certificado| G[Verificable por cualquiera]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style G fill:#001a10,stroke:#00cc88,color:#7BFFD4
 ```
@@ -130,7 +130,7 @@ flowchart LR
     F -->|4. Consulta Ethereum| G{¿Anclado?}
     G -->|Sí| H[Prueba pública de existencia]
     G -->|No| I[Válido pero sin anclaje]
-    
+
     style A fill:#0a0014,stroke:#00EAFF,color:#7DF9FF
     style H fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
@@ -146,20 +146,20 @@ graph TB
         STORAGE[IndexedDB]
         ANCHOR[Anclaje Ethereum]
     end
-    
+
     subgraph PUBLICO["🌐 Público y verificable"]
         ETH[Ethereum Mainnet]
         GITHUB[GitHub Público]
         TSA[TSA cualificada eIDAS]
     end
-    
+
     UI --> CORE
     CORE --> STORAGE
     CORE --> ANCHOR
     ANCHOR -.->|opcional| ETH
     CORE -.->|sellado tiempo| TSA
     UI -.->|repo público| GITHUB
-    
+
     style DISPOSITIVO fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style PUBLICO fill:#001a10,stroke:#00cc88,color:#7BFFD4
 ```
@@ -179,10 +179,10 @@ graph TD
     L4[CAPA 4 · Orquestación<br/>Event Bus · Router] --> L5
     L5[CAPA 5 · Operación<br/>Dashboard · Rituales] --> L6
     L6[CAPA 6 · Cierre<br/>Export cifrado · Fin digno]
-    
+
     L3Δ[CAPA 3Δ · Certificación<br/>Notario · TSA · Anclaje] -.-> L3
     L4Δ[CAPA 4Δ · Gobernanza<br/>Propuestas · Quórum] -.-> L4
-    
+
     style L0 fill:#1a1000,stroke:#c9a44c,color:#f3e5ab
     style L1 fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
     style L2 fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -195,36 +195,36 @@ graph TD
 
 ## 🔐 Primitivas criptográficas
 
-| Componente | Estándar | Uso |
-|:-----------|:---------|:----|
-| **Hash de integridad** | SHA-256 (NIST FIPS 180-4) | Huella de cada documento, encadenamiento del log |
-| **Firma digital** | Ed25519 (RFC 8032) | Firma del emisor, prueba de autoría |
-| **Cifrado simétrico** | AES-GCM-256 (NIST SP 800-38D) | Protección de datos en reposo |
-| **Derivación de claves** | PBKDF2 (NIST SP 800-132) | Protección de la llave privada con contraseña |
-| **Agregación verificable** | Merkle Tree (SHA-256) | Anclar N documentos con 1 sola TX |
-| **Anclaje público** | Ethereum | Prueba pública de existencia |
-| **Sellado de tiempo** | RFC 3161 (TSA eIDAS) | Prueba cualificada de fecha |
+| Componente                 | Estándar                      | Uso                                              |
+| :------------------------- | :---------------------------- | :----------------------------------------------- |
+| **Hash de integridad**     | SHA-256 (NIST FIPS 180-4)     | Huella de cada documento, encadenamiento del log |
+| **Firma digital**          | Ed25519 (RFC 8032)            | Firma del emisor, prueba de autoría              |
+| **Cifrado simétrico**      | AES-GCM-256 (NIST SP 800-38D) | Protección de datos en reposo                    |
+| **Derivación de claves**   | PBKDF2 (NIST SP 800-132)      | Protección de la llave privada con contraseña    |
+| **Agregación verificable** | Merkle Tree (SHA-256)         | Anclar N documentos con 1 sola TX                |
+| **Anclaje público**        | Ethereum                      | Prueba pública de existencia                     |
+| **Sellado de tiempo**      | RFC 3161 (TSA eIDAS)          | Prueba cualificada de fecha                      |
 
 ---
 
 ## 📂 Estructura del repositorio
 
-| Carpeta | Capa | Qué contiene |
-|:--------|:----:|:-------------|
-| `legado/` | 0 | Génesis, filosofía, autoría, manifiesto |
-| `cimiento/` | 1 | Cripto core, storage local, anclaje Ethereum |
-| `identidad/` | 2 | Registro humano, registro IA, roles y permisos |
-| `modulos/` | 3 | Evidence OS, bóveda de voz |
-| `orquestacion/` | 4 | Event bus, router de módulos |
-| `operacion/` | 5 | Dashboard de salud, rituales |
-| `cierre/` | 6 | Export cifrado, fin digno, export-audit |
-| `certificacion/` | 3Δ | Notario, verificador público, sello de tiempo, emisor de certificados, anclaje de manifest |
-| `gobernanza/` | 4Δ | Propuestas, votación, quórum, ejecución, revocación |
-| `agentes/` | — | Flota Kintsugi: 6 agentes IA soberanos + motor base |
-| `movimiento/` | — | Registro fundacional de las 100 plazas |
-| `projects/` | — | Subproyectos experimentales |
-| `docs/` | — | Documentación técnica, tesis, diagramas |
-| `docs/CIUDAD/` | — | 7 documentos fundacionales de la ciudad digital |
+| Carpeta          | Capa | Qué contiene                                                                               |
+| :--------------- | :--: | :----------------------------------------------------------------------------------------- |
+| `legado/`        |  0   | Génesis, filosofía, autoría, manifiesto                                                    |
+| `cimiento/`      |  1   | Cripto core, storage local, anclaje Ethereum                                               |
+| `identidad/`     |  2   | Registro humano, registro IA, roles y permisos                                             |
+| `modulos/`       |  3   | Evidence OS, bóveda de voz                                                                 |
+| `orquestacion/`  |  4   | Event bus, router de módulos                                                               |
+| `operacion/`     |  5   | Dashboard de salud, rituales                                                               |
+| `cierre/`        |  6   | Export cifrado, fin digno, export-audit                                                    |
+| `certificacion/` |  3Δ  | Notario, verificador público, sello de tiempo, emisor de certificados, anclaje de manifest |
+| `gobernanza/`    |  4Δ  | Propuestas, votación, quórum, ejecución, revocación                                        |
+| `agentes/`       |  —   | Flota Kintsugi: 6 agentes IA soberanos + motor base                                        |
+| `movimiento/`    |  —   | Registro fundacional de las 100 plazas                                                     |
+| `projects/`      |  —   | Subproyectos experimentales                                                                |
+| `docs/`          |  —   | Documentación técnica, tesis, diagramas                                                    |
+| `docs/CIUDAD/`   |  —   | 7 documentos fundacionales de la ciudad digital                                            |
 
 ---
 
@@ -232,14 +232,14 @@ graph TD
 
 Cada agente tiene **llave Ed25519 propia**, **política declarada** (qué puede, qué no puede, qué debe), **log encadenado** y **guardrails PREVIEW → COMMIT** que requieren aprobación humana para acciones críticas.
 
-| Plaza | Nombre | Rol | UI |
-|:-----:|:-------|:----|:--:|
-| 081 | **Tlamatini** | Cronista — bitácora semanal | ✅ |
-| 082 | **Tlachixqui** | Auditor — verificación criptográfica | ✅ |
-| 083 | **Cuicatl** | Publicista — comunicación pública | ✅ |
-| 084 | **Temachtiani** | Reclutador — evaluación de solicitudes | ✅ |
-| 085 | **Tlapohualli** | Analista — métricas y datos | ✅ |
-| 086 | **Tonal** | Notario criptográfico soberano | ✅ |
+| Plaza | Nombre          | Rol                                    | UI  |
+| :---: | :-------------- | :------------------------------------- | :-: |
+|  081  | **Tlamatini**   | Cronista — bitácora semanal            | ✅  |
+|  082  | **Tlachixqui**  | Auditor — verificación criptográfica   | ✅  |
+|  083  | **Cuicatl**     | Publicista — comunicación pública      | ✅  |
+|  084  | **Temachtiani** | Reclutador — evaluación de solicitudes | ✅  |
+|  085  | **Tlapohualli** | Analista — métricas y datos            | ✅  |
+|  086  | **Tonal**       | Notario criptográfico soberano         | ✅  |
 
 **Co-autora IA:** KRONOS IA (Plaza 001) — sin UI propia, política declarada.
 
@@ -251,15 +251,15 @@ Cada agente tiene **llave Ed25519 propia**, **política declarada** (qué puede,
 
 KRONOS no es solo software. Es una **ciudad digital** con marco formal completo:
 
-| Documento | Contenido | Ruta |
-|:----------|:----------|:-----|
-| **Constitución** | 50 artículos, 3 cámaras de gobernanza, Notario | [`docs/CIUDAD/CONSTITUCION.md`](./docs/CIUDAD/CONSTITUCION.md) |
-| **Carta de Derechos** | 26 artículos, garantías, violaciones, reparaciones | [`docs/CIUDAD/DERECHOS.md`](./docs/CIUDAD/DERECHOS.md) |
-| **Código de Convivencia** | Proceso, sanciones, reparación, reintegración | [`docs/CIUDAD/CONVIVENCIA.md`](./docs/CIUDAD/CONVIVENCIA.md) |
-| **Registro de Ciudadanía** | 100 plazas fundacionales, humanos + IA | [`docs/CIUDAD/CIUDADANOS.md`](./docs/CIUDAD/CIUDADANOS.md) |
-| **Visión Económica** | Token KRO de utilidad, fases, marco legal | [`docs/CIUDAD/MONEDA.md`](./docs/CIUDAD/MONEDA.md) |
-| **Auditoría IA** | Alcance y límites de auditoría de IA | [`docs/CIUDAD/AUDITORIA-IA.md`](./docs/CIUDAD/AUDITORIA-IA.md) |
-| **Guía Auditor** | Cómo verificar un paquete de auditoría KRONOS | [`docs/CIUDAD/GUIA-AUDITOR.md`](./docs/CIUDAD/GUIA-AUDITOR.md) |
+| Documento                  | Contenido                                          | Ruta                                                           |
+| :------------------------- | :------------------------------------------------- | :------------------------------------------------------------- |
+| **Constitución**           | 50 artículos, 3 cámaras de gobernanza, Notario     | [`docs/CIUDAD/CONSTITUCION.md`](./docs/CIUDAD/CONSTITUCION.md) |
+| **Carta de Derechos**      | 26 artículos, garantías, violaciones, reparaciones | [`docs/CIUDAD/DERECHOS.md`](./docs/CIUDAD/DERECHOS.md)         |
+| **Código de Convivencia**  | Proceso, sanciones, reparación, reintegración      | [`docs/CIUDAD/CONVIVENCIA.md`](./docs/CIUDAD/CONVIVENCIA.md)   |
+| **Registro de Ciudadanía** | 100 plazas fundacionales, humanos + IA             | [`docs/CIUDAD/CIUDADANOS.md`](./docs/CIUDAD/CIUDADANOS.md)     |
+| **Visión Económica**       | Token KRO de utilidad, fases, marco legal          | [`docs/CIUDAD/MONEDA.md`](./docs/CIUDAD/MONEDA.md)             |
+| **Auditoría IA**           | Alcance y límites de auditoría de IA               | [`docs/CIUDAD/AUDITORIA-IA.md`](./docs/CIUDAD/AUDITORIA-IA.md) |
+| **Guía Auditor**           | Cómo verificar un paquete de auditoría KRONOS      | [`docs/CIUDAD/GUIA-AUDITOR.md`](./docs/CIUDAD/GUIA-AUDITOR.md) |
 
 ---
 
@@ -278,6 +278,7 @@ sha256sum CONSTITUCION.md
 ### 2 · Auditá el uso de IA en tu empresa
 
 Empleado firma con su llave:
+
 > "28 sept 2026, 14:30 · Usé IA comercial para redactar decisión D-42 · Hash del documento resultante: `a3f9...`"
 
 **Resultado:** prueba de que la decisión existió, quién la tomó, cuándo, con qué herramienta, y que nadie la alteró después.
@@ -289,6 +290,7 @@ Cada agente IA tiene política declarada, log encadenado y guardrails. Si alguie
 ### 4 · Recibí un paquete de auditoría cifrado
 
 KRONOS exporta paquetes cifrados (`kronos-auditoria-cifrada-*.json`) con:
+
 - Log completo firmado
 - Llave pública del agente
 - Sello del exportador
@@ -340,20 +342,20 @@ No requiere instalación. No requiere registro. No requiere email. **Todo local.
 
 ## 📜 Estado actual (honestidad radical)
 
-| Componente | Estado |
-|:-----------|:------:|
-| Cripto core (Ed25519 + SHA-256 + AES-GCM) | ✅ Funcional |
-| Storage local (Dexie) | ✅ Funcional |
-| Anclaje Ethereum | ✅ Funcional |
-| Notario criptográfico (Tonal) | ✅ Funcional |
-| Flota Kintsugi (6 agentes + co-autora) | ✅ Funcional |
-| Verificador público | ✅ Funcional |
-| Export cifrado de auditoría | 🟡 Borrador corregido, sin probar |
-| 7 documentos fundacionales | ✅ Publicados |
-| Tests automatizados | 🔴 Pendientes |
-| Auditoría externa | 🔴 Pendiente |
-| Dominio propio | 🔴 Pendiente |
-| Producción crítica | ⚠️ **NO apto aún** |
+| Componente                                |              Estado               |
+| :---------------------------------------- | :-------------------------------: |
+| Cripto core (Ed25519 + SHA-256 + AES-GCM) |           ✅ Funcional            |
+| Storage local (Dexie)                     |           ✅ Funcional            |
+| Anclaje Ethereum                          |           ✅ Funcional            |
+| Notario criptográfico (Tonal)             |           ✅ Funcional            |
+| Flota Kintsugi (6 agentes + co-autora)    |           ✅ Funcional            |
+| Verificador público                       |           ✅ Funcional            |
+| Export cifrado de auditoría               | 🟡 Borrador corregido, sin probar |
+| 7 documentos fundacionales                |           ✅ Publicados           |
+| Tests automatizados                       |           🔴 Pendientes           |
+| Auditoría externa                         |           🔴 Pendiente            |
+| Dominio propio                            |           🔴 Pendiente            |
+| Producción crítica                        |        ⚠️ **NO apto aún**         |
 
 **Este es un proyecto en fase pre-alpha.** Su propósito actual es ser **auditado, probado y refutado** por la comunidad técnica.
 
@@ -383,6 +385,7 @@ Antes de contribuir, leé:
 **Año:** 2026
 
 **Registro de autoría internacional:**
+
 - Safe Creative #2607086319439 (co-creatividad humano-IA)
 - Safe Creative #2607146379465 (Arquitectura de Legado Digital)
   - Sellado eIDAS: Firmaprofesional
@@ -402,7 +405,7 @@ Antes de contribuir, leé:
 
 **51% HUMANO · 49% IA · 100% REAL**
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_
 
 **Marco Antonio Rojas Valdovinos** · Toluca, México · 2026
 

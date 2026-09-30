@@ -26,7 +26,7 @@
     ║  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ║
     ╚══════════════════════════════════════════════════════════╝
 
-> *"Lo que dices, se construye."*
+> _"Lo que dices, se construye."_
 
 ---
 
@@ -42,13 +42,13 @@ Sin servidor. Sin dependencias. Sin instalación.
 
 ## ⚙️ Cómo funciona
 
-| Capa | Tecnología | Dependencia |
-|---|---|---|
-| Voz entrada | `SpeechRecognition` es-MX | navegador |
-| Voz salida | `SpeechSynthesis` es-MX | navegador |
-| Render | Canvas 2D · Chladni | cero |
-| Memoria | `localStorage` | cero |
-| Identidad | SHA-256 + TX Ethereum | embebidos |
+| Capa        | Tecnología                | Dependencia |
+| ----------- | ------------------------- | ----------- |
+| Voz entrada | `SpeechRecognition` es-MX | navegador   |
+| Voz salida  | `SpeechSynthesis` es-MX   | navegador   |
+| Render      | Canvas 2D · Chladni       | cero        |
+| Memoria     | `localStorage`            | cero        |
+| Identidad   | SHA-256 + TX Ethereum     | embebidos   |
 
 ## 📜 Registro verificable
 
@@ -62,30 +62,30 @@ Sin servidor. Sin dependencias. Sin instalación.
 2. Pulsa **Activar micrófono**.
 3. Concede permiso.
 4. Habla. Ejemplos:
-   - *"¿Quién eres?"*
-   - *"¿Qué es SHA?"*
-   - *"Me llamo Marco"*
-   - *"Recuerda que mi color es dorado"*
-   - *"Dame una afirmación"*
-   - *"¿Quién soy?"*
+   - _"¿Quién eres?"_
+   - _"¿Qué es SHA?"_
+   - _"Me llamo Marco"_
+   - _"Recuerda que mi color es dorado"_
+   - _"Dame una afirmación"_
+   - _"¿Quién soy?"_
 
 ## 🔐 Comandos disponibles
 
-| Dices | Hace |
-|---|---|
-| hola | saluda por nombre si lo conoce |
-| quién eres | se presenta |
-| quién te creó | dice autor + SC + TX |
-| qué es kronos | explica el ecosistema |
-| qué es dmd | explica el orbe |
-| qué es sha | explica huella criptográfica |
-| qué es ethereum | explica la cadena |
-| me llamo X | guarda tu nombre |
-| recuerda que X es Y | guarda un hecho |
-| qué recuerdas de X | recupera |
-| dame una afirmación | frase de poder |
-| quién soy | construye identidad |
-| alerta | modo vigilancia |
+| Dices               | Hace                           |
+| ------------------- | ------------------------------ |
+| hola                | saluda por nombre si lo conoce |
+| quién eres          | se presenta                    |
+| quién te creó       | dice autor + SC + TX           |
+| qué es kronos       | explica el ecosistema          |
+| qué es dmd          | explica el orbe                |
+| qué es sha          | explica huella criptográfica   |
+| qué es ethereum     | explica la cadena              |
+| me llamo X          | guarda tu nombre               |
+| recuerda que X es Y | guarda un hecho                |
+| qué recuerdas de X  | recupera                       |
+| dame una afirmación | frase de poder                 |
+| quién soy           | construye identidad            |
+| alerta              | modo vigilancia                |
 
 ## 📄 Licencia
 

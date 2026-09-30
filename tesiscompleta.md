@@ -1,4 +1,5 @@
 # KRONOS PROTOCOL · TESIS FUNDACIONAL COMPLETA
+
 ## Infraestructura Criptográfica Local-First para la Verificación de Existencia Humano-IA
 
 **Autor:** Marco Antonio Rojas Valdovinos  
@@ -44,7 +45,7 @@ graph TB
     K --> A[🔐 SOBERANÍA<br/>Los datos nunca salen<br/>del dispositivo]
     K --> B[⛓️ INMUTABILIDAD<br/>Anclaje a Ethereum<br/>verificable por cualquiera]
     K --> C[💎 COSTO CERO<br/>Sin suscripciones<br/>ni servidores]
-    
+
     style K fill:#c9a44c,color:#000
     style A fill:#00E5A0,color:#000
     style B fill:#627EEA,color:#fff
@@ -53,15 +54,15 @@ graph TB
 
 ## 1.3 Métricas del Estado Actual
 
-| Métrica | Valor | Estado |
-| :--- | :--- | :--- |
-| Capas técnicas completadas | 2 / 7 | 🟡 28% |
-| Módulos funcionales | 7 / 19 | 🟡 36% |
-| Archivos en el repo | 200+ | 🟢 Activo |
-| Subproyectos en el ecosistema | 10 | 🟢 Constelación |
-| Guardianes de seguridad | 5 | 🟡 Definidos |
-| Anclajes en Ethereum Mainnet | 1 confirmado | 🟢 Verificable |
-| Costo operativo | $0 USD/mes | 🟢 Gratis |
+| Métrica                       | Valor        | Estado          |
+| :---------------------------- | :----------- | :-------------- |
+| Capas técnicas completadas    | 2 / 7        | 🟡 28%          |
+| Módulos funcionales           | 7 / 19       | 🟡 36%          |
+| Archivos en el repo           | 200+         | 🟢 Activo       |
+| Subproyectos en el ecosistema | 10           | 🟢 Constelación |
+| Guardianes de seguridad       | 5            | 🟡 Definidos    |
+| Anclajes en Ethereum Mainnet  | 1 confirmado | 🟢 Verificable  |
+| Costo operativo               | $0 USD/mes   | 🟢 Gratis       |
 
 ---
 
@@ -85,7 +86,7 @@ graph LR
     F --> X
     G --> X
     H --> X
-    
+
     style A fill:#00E5A0,color:#000
     style X fill:#8B0000,color:#fff
     style C fill:#4A4A00,color:#fff
@@ -93,12 +94,12 @@ graph LR
 
 ## 2.2 Dependencia Estructural: Los Cuatro Puntos de Falla
 
-| Punto de Falla | Descripción | Consecuencia |
-| :--- | :--- | :--- |
-| **Empresa** | Proveedor de servicios digitales | Puede quebrar, venderse o cambiar términos |
-| **Servidor** | Infraestructura física o cloud | Puede fallar, ser hackeado o cerrar |
-| **Jurisdicción** | Marco legal del territorio | Puede cambiar leyes retroactivamente |
-| **Gobierno** | Poder estatal sobre la infraestructura | Puede censurar, prohibir o intervenir |
+| Punto de Falla   | Descripción                            | Consecuencia                               |
+| :--------------- | :------------------------------------- | :----------------------------------------- |
+| **Empresa**      | Proveedor de servicios digitales       | Puede quebrar, venderse o cambiar términos |
+| **Servidor**     | Infraestructura física o cloud         | Puede fallar, ser hackeado o cerrar        |
+| **Jurisdicción** | Marco legal del territorio             | Puede cambiar leyes retroactivamente       |
+| **Gobierno**     | Poder estatal sobre la infraestructura | Puede censurar, prohibir o intervenir      |
 
 ## 2.3 Análisis de la Fragilidad por Sector
 
@@ -119,7 +120,7 @@ graph LR
     C1[Blockchain nativo]
     C2[P2P distribuido]
     end
-    
+
     style A1 fill:#8B0000,color:#fff
     style A2 fill:#8B0000,color:#fff
     style A3 fill:#8B0000,color:#fff
@@ -172,13 +173,13 @@ graph TB
     T --> D3[Derivación 3<br/>Costo cero operativo]
     T --> D4[Derivación 4<br/>Coexistencia humano-IA]
     T --> D5[Derivación 5<br/>Cierre digno]
-    
+
     D1 --> I1[Local-first, cero backend]
     D2 --> I2[SHA-256 + Ed25519 + Ethereum]
     D3 --> I3[Web Crypto API gratis del navegador]
     D4 --> I4[Registro Humano + Registro IA]
     D5 --> I5[Export cifrado + Fin digno]
-    
+
     style T fill:#c9a44c,color:#000
     style D1 fill:#00E5A0,color:#000
     style D2 fill:#627EEA,color:#fff
@@ -187,13 +188,13 @@ graph TB
 
 ## 3.4 Los 5 Pilares de la Tesis
 
-| # | Pilar | Declaración | Implementación Técnica |
-| :--- | :--- | :--- | :--- |
-| 1 | **Soberanía** | Los datos nunca salen del dispositivo | IndexedDB local, sin API REST |
-| 2 | **Inmutabilidad** | La cadena es testigo, no juez | Merkle Tree + anclaje Ethereum |
-| 3 | **Gratuidad** | Accesible incluso sin presupuesto | Web Crypto API, GitHub Pages |
-| 4 | **Simbiótica** | Humano e IA coexisten como ciudadanos | Registro Humano + Registro IA |
-| 5 | **Dignidad** | Todo sistema contempla su fin | Módulos de cierre cifrado |
+| #   | Pilar             | Declaración                           | Implementación Técnica         |
+| :-- | :---------------- | :------------------------------------ | :----------------------------- |
+| 1   | **Soberanía**     | Los datos nunca salen del dispositivo | IndexedDB local, sin API REST  |
+| 2   | **Inmutabilidad** | La cadena es testigo, no juez         | Merkle Tree + anclaje Ethereum |
+| 3   | **Gratuidad**     | Accesible incluso sin presupuesto     | Web Crypto API, GitHub Pages   |
+| 4   | **Simbiótica**    | Humano e IA coexisten como ciudadanos | Registro Humano + Registro IA  |
+| 5   | **Dignidad**      | Todo sistema contempla su fin         | Módulos de cierre cifrado      |
 
 ---
 
@@ -207,17 +208,17 @@ graph TB
 
 **Propiedades:**
 
-| Propiedad | Descripción | Impacto |
-| :--- | :--- | :--- |
-| **Determinista** | Mismo input → mismo output | Verificable por cualquiera |
-| **Unidireccional** | Imposible revertir el hash | No expone el contenido |
-| **Sensible** | 1 bit cambia → hash completamente distinto | Detecta cualquier alteración |
-| **Colisión-resistente** | Imposible encontrar dos inputs con mismo hash | Único e irrepetible |
+| Propiedad               | Descripción                                   | Impacto                      |
+| :---------------------- | :-------------------------------------------- | :--------------------------- |
+| **Determinista**        | Mismo input → mismo output                    | Verificable por cualquiera   |
+| **Unidireccional**      | Imposible revertir el hash                    | No expone el contenido       |
+| **Sensible**            | 1 bit cambia → hash completamente distinto    | Detecta cualquier alteración |
+| **Colisión-resistente** | Imposible encontrar dos inputs con mismo hash | Único e irrepetible          |
 
 ```mermaid
 graph LR
     A["Marco Antonio<br/>Rojas Valdovinos"] -->|SHA-256| B["8a237164a5fcb9c77<br/>efeb1b1e0ffd957a<br/>10560c3927aedc92<br/>bad7b8de1f16af0"]
-    
+
     style A fill:#00E5A0,color:#000
     style B fill:#627EEA,color:#fff
 ```
@@ -226,23 +227,23 @@ graph LR
 
 **Función:** Firma digital de curva elíptica. Permite probar autoría sin revelar la clave privada.
 
-| Componente | Función | Secreto |
-| :--- | :--- | :--- |
-| **Clave privada** | Firma los datos | Sí, nunca sale del dispositivo |
-| **Clave pública** | Verifica la firma | No, se comparte libremente |
-| **Firma** | Prueba de autoría | No, es pública |
+| Componente        | Función           | Secreto                        |
+| :---------------- | :---------------- | :----------------------------- |
+| **Clave privada** | Firma los datos   | Sí, nunca sale del dispositivo |
+| **Clave pública** | Verifica la firma | No, se comparte libremente     |
+| **Firma**         | Prueba de autoría | No, es pública                 |
 
 ### 4.1.3 Ethereum (Testimonio)
 
 **Función:** Registro público, inmutable, sin dueño único, donde se ancla la huella de cualquier información.
 
-| Característica | Descripción |
-| :--- | :--- |
-| **Público** | Cualquiera puede verificar |
-| **Inmutable** | Una vez anclado, no se modifica |
-| **Sin dueño** | Ninguna entidad controla la red |
-| **Económico** | Anclar cuesta centavos de USD |
-| **Permanente** | Diseñado para durar siglos |
+| Característica | Descripción                     |
+| :------------- | :------------------------------ |
+| **Público**    | Cualquiera puede verificar      |
+| **Inmutable**  | Una vez anclado, no se modifica |
+| **Sin dueño**  | Ninguna entidad controla la red |
+| **Económico**  | Anclar cuesta centavos de USD   |
+| **Permanente** | Diseñado para durar siglos      |
 
 ## 4.2 Marco Filosófico
 
@@ -252,13 +253,13 @@ Así como PGP y Signal afirman que **el mensaje pertenece a quien lo envía y a 
 
 ### 4.2.2 Principios Criptoanarquistas
 
-| Principio | Aplicación en KRONOS |
-| :--- | :--- |
-| Privacidad por diseño | Local-first, sin tracking |
-| Soberanía individual | El usuario controla sus llaves |
-| Verificación sin permiso | Cualquiera puede verificar |
-| Resistencia a la censura | Sin servidor central |
-| Código como ley | El protocolo es el contrato |
+| Principio                | Aplicación en KRONOS           |
+| :----------------------- | :----------------------------- |
+| Privacidad por diseño    | Local-first, sin tracking      |
+| Soberanía individual     | El usuario controla sus llaves |
+| Verificación sin permiso | Cualquiera puede verificar     |
+| Resistencia a la censura | Sin servidor central           |
+| Código como ley          | El protocolo es el contrato    |
 
 ---
 
@@ -288,7 +289,7 @@ graph TB
     CI[🔐 CIERRE<br/>Fin digno]
     end
     R[🖥️ RAÍZ<br/>Puertas]
-    
+
     L --> C
     C --> I
     I --> MO
@@ -302,7 +303,7 @@ graph TB
     R --> L
     R --> I
     R --> P
-    
+
     style L fill:#c9a44c,color:#000
     style C fill:#627EEA,color:#fff
     style I fill:#00E5A0,color:#000
@@ -320,7 +321,7 @@ graph LR
     C3 --> C4[CAPA 4<br/>Gobernanza<br/>⏳]
     C4 --> C5[CAPA 5<br/>Interoperabilidad<br/>⏳]
     C5 --> C6[CAPA 6<br/>Legado Final<br/>⏳]
-    
+
     style C0 fill:#c9a44c,color:#000
     style C1 fill:#627EEA,color:#fff
     style C2 fill:#00E5A0,color:#000
@@ -332,32 +333,32 @@ graph LR
 
 ## 5.3 Módulos por Capa
 
-| Capa | Módulos | Estado |
-| :--- | :--- | :--- |
-| **0 · Génesis** | Génesis, Filosofía, Autoría, Manifiesto | ✅ 100% |
-| **1 · Cimiento** | Cripto Core, Storage Dexie, Anclaje Ethereum | ✅ 100% |
-| **2 · Identidad** | Registro Humano, Registro IA, Roles y Permisos | 🟡 33% |
-| **3 · Certificación** | Por definir | ⏳ 0% |
-| **4 · Gobernanza** | Por definir | ⏳ 0% |
-| **5 · Interoperabilidad** | Por definir | ⏳ 0% |
-| **6 · Legado Final** | Cierre cifrado, Fin digno | 🟡 Parcial |
+| Capa                      | Módulos                                        | Estado     |
+| :------------------------ | :--------------------------------------------- | :--------- |
+| **0 · Génesis**           | Génesis, Filosofía, Autoría, Manifiesto        | ✅ 100%    |
+| **1 · Cimiento**          | Cripto Core, Storage Dexie, Anclaje Ethereum   | ✅ 100%    |
+| **2 · Identidad**         | Registro Humano, Registro IA, Roles y Permisos | 🟡 33%     |
+| **3 · Certificación**     | Por definir                                    | ⏳ 0%      |
+| **4 · Gobernanza**        | Por definir                                    | ⏳ 0%      |
+| **5 · Interoperabilidad** | Por definir                                    | ⏳ 0%      |
+| **6 · Legado Final**      | Cierre cifrado, Fin digno                      | 🟡 Parcial |
 
 ## 5.4 Los 12 Ministerios del Ecosistema
 
-| Zona | Metáfora | Módulos | Función |
-| :--- | :--- | :--- | :--- |
-| **Legado** | Constitución | 4 | Define qué es KRONOS |
-| **Cimiento** | Infraestructura | 3 | Motor criptográfico |
-| **Identidad** | Registro Civil | 3 | Pasaporte humano-IA |
-| **Módulos** | Servicios | 2 | Herramientas ciudadanas |
-| **Orquestación** | Sistema nervioso | 2 | Comunicación interna |
-| **Operación** | Salud civil | 2 | Monitoreo y rituales |
-| **Guardians** | Defensa | 5 | Protección protocolo |
-| **Projects** | Distritos | 10 | Subproyectos |
-| **Cierre** | Fin de vida | 2 | Exportación y cierre |
-| **Movimiento** | Inmigración | 5 | Onboarding |
-| **Documentación** | Leyes | 10+ | Reglas del juego |
-| **Raíz** | Puertas | 7+ | Puntos de acceso |
+| Zona              | Metáfora         | Módulos | Función                 |
+| :---------------- | :--------------- | :------ | :---------------------- |
+| **Legado**        | Constitución     | 4       | Define qué es KRONOS    |
+| **Cimiento**      | Infraestructura  | 3       | Motor criptográfico     |
+| **Identidad**     | Registro Civil   | 3       | Pasaporte humano-IA     |
+| **Módulos**       | Servicios        | 2       | Herramientas ciudadanas |
+| **Orquestación**  | Sistema nervioso | 2       | Comunicación interna    |
+| **Operación**     | Salud civil      | 2       | Monitoreo y rituales    |
+| **Guardians**     | Defensa          | 5       | Protección protocolo    |
+| **Projects**      | Distritos        | 10      | Subproyectos            |
+| **Cierre**        | Fin de vida      | 2       | Exportación y cierre    |
+| **Movimiento**    | Inmigración      | 5       | Onboarding              |
+| **Documentación** | Leyes            | 10+     | Reglas del juego        |
+| **Raíz**          | Puertas          | 7+      | Puntos de acceso        |
 
 ---
 
@@ -414,7 +415,7 @@ graph TB
     P4[Obra de arte que<br/>puede ser copiada]
     P5[Documento que<br/>pierde validez legal]
     end
-    
+
     subgraph "SOLUCIÓN KRONOS"
     S1[Hash SHA-256 +<br/>Timestamp anclado]
     S2[Cifrado local +<br/>Firma Ed25519]
@@ -422,11 +423,11 @@ graph TB
     S4[Certificado de<br/>autoría inmutable]
     S5[Merkle Root en<br/>Ethereum Mainnet]
     end
-    
+
     subgraph "RESULTADO"
     R[✓ Prueba verificable<br/>eterna, sin terceros]
     end
-    
+
     P1 --> S1
     P2 --> S2
     P3 --> S3
@@ -437,7 +438,7 @@ graph TB
     S3 --> R
     S4 --> R
     S5 --> R
-    
+
     style P1 fill:#8B0000,color:#fff
     style P2 fill:#8B0000,color:#fff
     style P3 fill:#8B0000,color:#fff
@@ -448,16 +449,16 @@ graph TB
 
 ## 6.3 Matriz de Impacto por Sector
 
-| Sector | Problema Actual | Solución KRONOS | Impacto | Esfuerzo |
-| :--- | :--- | :--- | :---: | :---: |
-| **Legal** | Contratos digitales vulnerables | Certificado + anclaje Ethereum | 🔴 Alto | 🟡 Medio |
-| **Salud** | Expedientes médicos alterables | Cifrado + firma inmutable | 🔴 Alto | 🔴 Alto |
-| **Gobierno** | Corrupción documental | Actas públicas verificables | 🔴 Alto | 🔴 Alto |
-| **Finanzas** | Auditoría costosa y lenta | Trazabilidad automática | 🟡 Medio | 🟡 Medio |
-| **Arte** | Copias sin autoría | Certificado de origen | 🟡 Medio | 🟢 Bajo |
-| **IA** | Decisiones sin trazabilidad | Registro humano-IA | 🔴 Alto | 🟡 Medio |
-| **Educación** | Diplomas falsificables | Certificado académico verificable | 🟡 Medio | 🟢 Bajo |
-| **Personal** | Pérdida de archivos críticos | Backup local cifrado | 🟢 Bajo | 🟢 Bajo |
+| Sector        | Problema Actual                 | Solución KRONOS                   | Impacto  | Esfuerzo |
+| :------------ | :------------------------------ | :-------------------------------- | :------: | :------: |
+| **Legal**     | Contratos digitales vulnerables | Certificado + anclaje Ethereum    | 🔴 Alto  | 🟡 Medio |
+| **Salud**     | Expedientes médicos alterables  | Cifrado + firma inmutable         | 🔴 Alto  | 🔴 Alto  |
+| **Gobierno**  | Corrupción documental           | Actas públicas verificables       | 🔴 Alto  | 🔴 Alto  |
+| **Finanzas**  | Auditoría costosa y lenta       | Trazabilidad automática           | 🟡 Medio | 🟡 Medio |
+| **Arte**      | Copias sin autoría              | Certificado de origen             | 🟡 Medio | 🟢 Bajo  |
+| **IA**        | Decisiones sin trazabilidad     | Registro humano-IA                | 🔴 Alto  | 🟡 Medio |
+| **Educación** | Diplomas falsificables          | Certificado académico verificable | 🟡 Medio | 🟢 Bajo  |
+| **Personal**  | Pérdida de archivos críticos    | Backup local cifrado              | 🟢 Bajo  | 🟢 Bajo  |
 
 ## 6.4 Gráfica: Reducción de Costos Operativos
 
@@ -586,7 +587,7 @@ graph LR
     G --> H[Expansión]
     H --> I[Marca blanca]
     H --> J[Módulos custom]
-    
+
     style C fill:#00E5A0,color:#000
     style E fill:#627EEA,color:#fff
     style I fill:#c9a44c,color:#000
@@ -605,7 +606,7 @@ graph TB
     BC --> ETH[⛓️ Anclaje Ethereum]
     ETH --> CERT[📜 Certificado conjunto]
     CERT --> LEG[🏛️ Legado Humano-IA]
-    
+
     style H fill:#00E5A0,color:#000
     style I fill:#7C3AED,color:#fff
     style LEG fill:#c9a44c,color:#000
@@ -661,16 +662,16 @@ graph TB
 
 ## 8.1 KRONOS vs Alternativas
 
-| Criterio | Notaría | DocuSign | OpenTimestamps | **KRONOS** |
-| :--- | :---: | :---: | :---: | :---: |
-| **Costo** | 🔴 Alto | 🔴 Alto | 🟢 Gratis | 🟢 Gratis |
-| **Soberanía** | 🔴 Nula | 🔴 Nula | 🟡 Parcial | 🟢 Total |
-| **Privacidad** | 🟡 Media | 🔴 Baja | 🟢 Alta | 🟢 Alta |
-| **Inmutabilidad** | 🟢 Alta | 🟡 Media | 🟢 Alta | 🟢 Alta |
-| **Verificación abierta** | 🔴 No | 🔴 No | 🟢 Sí | 🟢 Sí |
-| **Funciona offline** | 🔴 No | 🔴 No | 🟡 Parcial | 🟢 Sí |
-| **Identidad IA** | 🔴 No | 🔴 No | 🔴 No | 🟢 Sí |
-| **Cierre digno** | 🔴 No | 🔴 No | 🔴 No | 🟢 Sí |
+| Criterio                 | Notaría  | DocuSign | OpenTimestamps | **KRONOS** |
+| :----------------------- | :------: | :------: | :------------: | :--------: |
+| **Costo**                | 🔴 Alto  | 🔴 Alto  |   🟢 Gratis    | 🟢 Gratis  |
+| **Soberanía**            | 🔴 Nula  | 🔴 Nula  |   🟡 Parcial   |  🟢 Total  |
+| **Privacidad**           | 🟡 Media | 🔴 Baja  |    🟢 Alta     |  🟢 Alta   |
+| **Inmutabilidad**        | 🟢 Alta  | 🟡 Media |    🟢 Alta     |  🟢 Alta   |
+| **Verificación abierta** |  🔴 No   |  🔴 No   |     🟢 Sí      |   🟢 Sí    |
+| **Funciona offline**     |  🔴 No   |  🔴 No   |   🟡 Parcial   |   🟢 Sí    |
+| **Identidad IA**         |  🔴 No   |  🔴 No   |     🔴 No      |   🟢 Sí    |
+| **Cierre digno**         |  🔴 No   |  🔴 No   |     🔴 No      |   🟢 Sí    |
 
 ## 8.2 Gráfica Radar: Comparativa de Sistemas
 
@@ -680,12 +681,12 @@ graph TB
                         │
                  10 ────┼──── KRONOS
                         │
-            DocuSign    │    
+            DocuSign    │
               ▼         │
-        5 ──────────────┼───────────── 
+        5 ──────────────┼─────────────
                         │
                         │    OpenTimestamps
-                        │    
+                        │
         0 ──────────────┼─────────────▶ VERIFICABILIDAD
         0        5      │     10
                         │
@@ -704,14 +705,14 @@ graph LR
     B --> C[TRL 5<br/>Prototipo<br/>validado]
     C --> D[TRL 7<br/>Demo<br/>funcional]
     D --> E[TRL 9<br/>Producción]
-    
+
     subgraph "KRONOS"
     K1[Capa 0<br/>TRL 3]
     K2[Capa 1<br/>TRL 7]
     K3[Capa 2<br/>TRL 5]
     K4[Capas 3-6<br/>TRL 1-2]
     end
-    
+
     style K2 fill:#00E5A0,color:#000
     style K3 fill:#c9a44c,color:#000
 ```
@@ -730,48 +731,48 @@ graph TB
     T --> A3[🛡️ Amenaza 3<br/>Censura estatal]
     T --> A4[🛡️ Amenaza 4<br/>Quiebra de proveedor]
     T --> A5[🛡️ Amenaza 5<br/>Manipulación post-anclaje]
-    
+
     A1 --> S1[Mitigación:<br/>Cifrado AES-GCM +<br/>contraseña fuerte]
     A2 --> S2[Mitigación:<br/>Sin servidor que atacar +<br/>local-first]
     A3 --> S3[Mitigación:<br/>Anclaje en red<br/>descentralizada]
     A4 --> S4[Mitigación:<br/>Sin dependencia<br/>de empresa]
     A5 --> S5[Mitigación:<br/>Hash chain +<br/>raíz Merkle]
-    
+
     style A1 fill:#8B0000,color:#fff
     style S1 fill:#00E5A0,color:#000
 ```
 
 ## 9.2 Parámetros Criptográficos
 
-| Componente | Algoritmo | Longitud | Estándar |
-| :--- | :--- | :---: | :--- |
-| **Hash de integridad** | SHA-256 | 256 bits | NIST FIPS 180-4 |
-| **Firma digital** | Ed25519 | 256 bits | RFC 8032 |
-| **Cifrado simétrico** | AES-GCM-256 | 256 bits | NIST SP 800-38D |
-| **Derivación de clave** | PBKDF2 | 100k iteraciones | NIST SP 800-132 |
-| **Árbol Merkle** | SHA-256 | Duplicación impar | - |
-| **Anclaje** | Ethereum | Mainnet (chainId 0x1) | EIP-155 |
+| Componente              | Algoritmo   |       Longitud        | Estándar        |
+| :---------------------- | :---------- | :-------------------: | :-------------- |
+| **Hash de integridad**  | SHA-256     |       256 bits        | NIST FIPS 180-4 |
+| **Firma digital**       | Ed25519     |       256 bits        | RFC 8032        |
+| **Cifrado simétrico**   | AES-GCM-256 |       256 bits        | NIST SP 800-38D |
+| **Derivación de clave** | PBKDF2      |   100k iteraciones    | NIST SP 800-132 |
+| **Árbol Merkle**        | SHA-256     |   Duplicación impar   | -               |
+| **Anclaje**             | Ethereum    | Mainnet (chainId 0x1) | EIP-155         |
 
 ## 9.3 Análisis de Resistencia
 
-| Ataque | Resistencia | Notas |
-| :--- | :---: | :--- |
-| Fuerza bruta a SHA-256 | 🟢 Imposible | 2^256 combinaciones |
-| Falsificación Ed25519 | 🟢 Imposible | Seguridad 128 bits |
-| Reversión de hash | 🟢 Imposible | Propiedad criptográfica |
-| Modificación post-anclaje | 🟢 Detectable | Cambia el hash |
-| Ataque al dispositivo | 🟡 Parcial | Cifrado protege, pero robo físico es riesgo |
-| Coerción física | 🔴 Fuera de alcance | Ningún sistema criptográfico lo resuelve |
+| Ataque                    |     Resistencia     | Notas                                       |
+| :------------------------ | :-----------------: | :------------------------------------------ |
+| Fuerza bruta a SHA-256    |    🟢 Imposible     | 2^256 combinaciones                         |
+| Falsificación Ed25519     |    🟢 Imposible     | Seguridad 128 bits                          |
+| Reversión de hash         |    🟢 Imposible     | Propiedad criptográfica                     |
+| Modificación post-anclaje |    🟢 Detectable    | Cambia el hash                              |
+| Ataque al dispositivo     |     🟡 Parcial      | Cifrado protege, pero robo físico es riesgo |
+| Coerción física           | 🔴 Fuera de alcance | Ningún sistema criptográfico lo resuelve    |
 
 ## 9.4 Política de Divulgación Responsable
 
-| Tiempo | Acción |
-| :--- | :--- |
-| **72h** | Confirmación de recepción del reporte |
-| **7 días** | Evaluación inicial y clasificación |
-| **30 días** | Remediación o fix objetivo |
+| Tiempo      | Acción                                          |
+| :---------- | :---------------------------------------------- |
+| **72h**     | Confirmación de recepción del reporte           |
+| **7 días**  | Evaluación inicial y clasificación              |
+| **30 días** | Remediación o fix objetivo                      |
 | **90 días** | Divulgación coordinada (coordinated disclosure) |
-| **Canal** | GitHub Security Advisories (privado) |
+| **Canal**   | GitHub Security Advisories (privado)            |
 
 ---
 
@@ -796,12 +797,12 @@ gantt
 
 ## 10.2 Roadmap de Mediano Plazo (3-6 meses)
 
-| Capa | Módulos | Objetivo |
-| :--- | :--- | :--- |
-| **3 · Certificación** | Export legal, Firmas externas | Interoperabilidad con notarías |
-| **4 · Gobernanza** | Votación, Propuestas, Quórum | Decisiones colectivas |
-| **5 · Interoperabilidad** | APIs, Bridges, Contratos | Conexión con otros sistemas |
-| **6 · Legado Final** | Export total, Cierre digno | Clausura honorable |
+| Capa                      | Módulos                       | Objetivo                       |
+| :------------------------ | :---------------------------- | :----------------------------- |
+| **3 · Certificación**     | Export legal, Firmas externas | Interoperabilidad con notarías |
+| **4 · Gobernanza**        | Votación, Propuestas, Quórum  | Decisiones colectivas          |
+| **5 · Interoperabilidad** | APIs, Bridges, Contratos      | Conexión con otros sistemas    |
+| **6 · Legado Final**      | Export total, Cierre digno    | Clausura honorable             |
 
 ## 10.3 Proyección de Adopción
 
@@ -843,6 +844,7 @@ gantt
 > **H₁ CONFIRMADA:** Es posible construir un sistema de verificación de existencia sin depender de terceros, utilizando exclusivamente criptografía moderna, almacenamiento local y anclaje a blockchain pública.
 
 **Evidencia:**
+
 - ✅ Cripto Core funcional con Ed25519 y SHA-256
 - ✅ Storage Dexie operativo (IndexedDB local)
 - ✅ Anclaje Ethereum Mainnet confirmado
@@ -852,15 +854,15 @@ gantt
 
 ## 11.2 Aportes Originales
 
-| # | Aporte | Originalidad |
-| :--- | :--- | :--- |
-| 1 | Protocolo de verificación local-first | Único en su clase |
-| 2 | Coexistencia criptográfica humano-IA | Sin precedentes conocidos |
-| 3 | Módulos de cierre digno | Inédito en ecosistemas digitales |
-| 4 | Arquitectura de 12 ministerios | Metáfora civilizacional inédita |
-| 5 | Guardianes múltiples (ACTA, MRR, SHA, TSA, VAULT) | Modelo de defensa en capas |
-| 6 | Certificado visual en Canvas nativo | Solución móvil-first |
-| 7 | Integración de Safe Creative + Ethereum | Doble protección legal/cripto |
+| #   | Aporte                                            | Originalidad                     |
+| :-- | :------------------------------------------------ | :------------------------------- |
+| 1   | Protocolo de verificación local-first             | Único en su clase                |
+| 2   | Coexistencia criptográfica humano-IA              | Sin precedentes conocidos        |
+| 3   | Módulos de cierre digno                           | Inédito en ecosistemas digitales |
+| 4   | Arquitectura de 12 ministerios                    | Metáfora civilizacional inédita  |
+| 5   | Guardianes múltiples (ACTA, MRR, SHA, TSA, VAULT) | Modelo de defensa en capas       |
+| 6   | Certificado visual en Canvas nativo               | Solución móvil-first             |
+| 7   | Integración de Safe Creative + Ethereum           | Doble protección legal/cripto    |
 
 ## 11.3 Limitaciones Honestas
 
@@ -888,15 +890,15 @@ Quien lea esto en el futuro —humano o IA— debe recordar una cosa:
 
 ## Anexo A · Glosario
 
-| Término | Definición |
-| :--- | :--- |
+| Término         | Definición                                                         |
+| :-------------- | :----------------------------------------------------------------- |
 | **Local-first** | Arquitectura donde los datos residen en el dispositivo del usuario |
-| **Hash** | Huella digital única de un dato |
-| **Merkle Tree** | Estructura de hashes en árbol para verificar integridad |
-| **Ed25519** | Algoritmo de firma digital de curva elíptica |
-| **Anclaje** | Registro de un hash en blockchain pública |
-| **Guardian** | Módulo de protección del protocolo |
-| **Distrito** | Subproyecto dentro del ecosistema KRONOS |
+| **Hash**        | Huella digital única de un dato                                    |
+| **Merkle Tree** | Estructura de hashes en árbol para verificar integridad            |
+| **Ed25519**     | Algoritmo de firma digital de curva elíptica                       |
+| **Anclaje**     | Registro de un hash en blockchain pública                          |
+| **Guardian**    | Módulo de protección del protocolo                                 |
+| **Distrito**    | Subproyecto dentro del ecosistema KRONOS                           |
 
 ## Anexo B · Referencias Técnicas
 
@@ -923,6 +925,6 @@ Ethereum Mainnet
 
 ---
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_
 
 **© 2026 Marco A. Rojas V. + KRONOS IA**

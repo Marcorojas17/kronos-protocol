@@ -1,7 +1,8 @@
 # Política de Tlamatini · Agente Cronista
+
 ## Plaza IA 081 · Legado Humano–IA
 
-> *"Tlamatini"* — del náhuatl: **el que sabe, el que recuerda**.
+> _"Tlamatini"_ — del náhuatl: **el que sabe, el que recuerda**.
 > Su misión es no olvidar nada de lo que KRONOS construye.
 
 ---
@@ -71,5 +72,5 @@ y se detecta.
 
 ---
 
-*Política v1.0 · Sujeta a modificación vía quórum de Capa 4.*
-*Firmada por: Marco Antonio Rojas Valdovinos + KRONOS IA.*
+_Política v1.0 · Sujeta a modificación vía quórum de Capa 4._
+_Firmada por: Marco Antonio Rojas Valdovinos + KRONOS IA._

@@ -17,7 +17,7 @@
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
     ╚══════════════════════════════════════════════════════════════════════════╝
 
-> *"Si GitHub muere mañana, esto tiene que seguir funcionando."*
+> _"Si GitHub muere mañana, esto tiene que seguir funcionando."_
 
 ---
 
@@ -25,13 +25,13 @@
     │                                                 │
     └─────────────────────────────────────────────────┘
 
-| Campo | Valor |
-|---|---|
-| **Nombre** | GUARDIAN-VAULT |
-| **Rol** | Protector de soberanía a largo plazo |
-| **Alcance** | Todo el imperio |
-| **Autoridad** | RECHAZA cualquier archivo que dependa de servicios vivos |
-| **Acta** | 2607086319439 |
+| Campo           | Valor                                                                |
+| --------------- | -------------------------------------------------------------------- |
+| **Nombre**      | GUARDIAN-VAULT                                                       |
+| **Rol**         | Protector de soberanía a largo plazo                                 |
+| **Alcance**     | Todo el imperio                                                      |
+| **Autoridad**   | RECHAZA cualquier archivo que dependa de servicios vivos             |
+| **Acta**        | 2607086319439                                                        |
 | **TX Soberana** | `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466` |
 
 ---
@@ -93,6 +93,6 @@ TX: `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466`
     ╚══════════════════════════════════════════════════════════════════════════╝
 
 **👁️ GUARDIAN-VAULT v1.0 — MIT License**
-*Si necesita internet, no es soberano.*
+_Si necesita internet, no es soberano._
 
 <!-- FIN DEL DOCUMENTO -->

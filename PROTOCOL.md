@@ -32,6 +32,7 @@ registrada con fecha, origen y propósito.
 
 **Ejecución:**
 Cada entrada del log lleva 3 campos obligatorios:
+
 - `cuando` — timestamp ISO 8601 con milisegundos
 - `origen` — quién o qué generó la decisión
 - `proposito` — para qué se registró
@@ -120,14 +121,14 @@ política ejecutada.
 
 ## Estado actual
 
-| Principio | Acción | Estado |
-|---|---|---|
-| 1 Integridad              | verificar_integridad        | ✅ implementado |
-| 2 Trazabilidad            | registrar_trazabilidad      | ✅ implementado |
-| 3 No Comercialización     | bloquear_comercial          | ✅ implementado |
-| 4 No Entrenamiento IA     | bloquear_entrenamiento_ia   | ✅ implementado |
-| 5 Citación Obligatoria    | marcar_citacion             | ✅ implementado |
-| 6 Defensa Activa          | alertar_violacion           | ✅ implementado |
+| Principio              | Acción                    | Estado          |
+| ---------------------- | ------------------------- | --------------- |
+| 1 Integridad           | verificar_integridad      | ✅ implementado |
+| 2 Trazabilidad         | registrar_trazabilidad    | ✅ implementado |
+| 3 No Comercialización  | bloquear_comercial        | ✅ implementado |
+| 4 No Entrenamiento IA  | bloquear_entrenamiento_ia | ✅ implementado |
+| 5 Citación Obligatoria | marcar_citacion           | ✅ implementado |
+| 6 Defensa Activa       | alertar_violacion         | ✅ implementado |
 
 ---
 

@@ -1,6 +1,6 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  ○_●  KRONOS PROTOCOL · TESTS                                        ║
-║  51% HUMANO · 49% IA · 100% REAL                                     ║
+║ ○_● KRONOS PROTOCOL · TESTS ║
+║ 51% HUMANO · 49% IA · 100% REAL ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # Suite de tests
@@ -28,6 +28,7 @@ https://marcorojas17.github.io/kronos-protocol/tests/
 ## Qué se testea (roadmap)
 
 ### Fase 1 · Criptografía básica (pendiente)
+
 - [ ] SHA-256 de texto conocido
 - [ ] Ed25519 firma/verificación
 - [ ] Ed25519 detección de firma alterada
@@ -35,18 +36,21 @@ https://marcorojas17.github.io/kronos-protocol/tests/
 - [ ] PBKDF2 derivación determinística
 
 ### Fase 2 · Merkle Tree (pendiente)
+
 - [ ] Merkle Root de 2 hojas
 - [ ] Merkle Root de 3 hojas (impar)
 - [ ] Merkle Root determinístico (mismo input → mismo output)
 - [ ] Detección de alteración en una hoja
 
 ### Fase 3 · Acta fundacional (pendiente)
+
 - [ ] Extracción de artículos por regex
 - [ ] Hash de artículo individual
 - [ ] Firma de Merkle Root
 - [ ] Verificación end-to-end
 
 ### Fase 4 · Agentes Kintsugi (pendiente)
+
 - [ ] Generación de llave por agente
 - [ ] Sellar registro
 - [ ] Encadenamiento de log

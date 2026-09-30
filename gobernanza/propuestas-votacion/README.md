@@ -73,4 +73,4 @@ const res = await votacion.resultados(p.id_propuesta, p.opciones);
 
 Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_

@@ -1,22 +1,22 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   VISIÓN ECONÓMICA DE KRONOS · v1.0                            ║
-║   ◢◤◥◣ Ciudad Digital Humano-IA                                      ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Documento complementario a la Constitución v1.0,                   ║
-║   Carta de Derechos v1.0, Código de Convivencia v1.0,                ║
-║   Registro de Ciudadanía v1.0                                        ║
-║                                                                      ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
+║ ║
+║ ○_● VISIÓN ECONÓMICA DE KRONOS · v1.0 ║
+║ ◢◤◥◣ Ciudad Digital Humano-IA ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Documento complementario a la Constitución v1.0, ║
+║ Carta de Derechos v1.0, Código de Convivencia v1.0, ║
+║ Registro de Ciudadanía v1.0 ║
+║ ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # VISIÓN ECONÓMICA DE KRONOS
 
-> *"KRO no compra poder. Compra servicios.
-> El poder se gana con contribución."*
+> _"KRO no compra poder. Compra servicios.
+> El poder se gana con contribución."_
 
 ---
 
@@ -51,24 +51,25 @@ La moneda existe para servir. No para enriquecer.
 Toda actividad económica de KRONOS se rige por:
 
 a) **Utilidad antes que precio.** La moneda vale por lo que
-   permite hacer, no por lo que otros pagarían por ella.
+permite hacer, no por lo que otros pagarían por ella.
 b) **Contribución antes que acumulación.** Se gana
-   contribuyendo. No especulando.
+contribuyendo. No especulando.
 c) **Servicio antes que privilegio.** KRO compra servicios
-   reales. No compra derechos, voto ni poder.
+reales. No compra derechos, voto ni poder.
 d) **Transparencia total.** Cada emisión, cada gasto, cada
-   saldo queda en registro público.
+saldo queda en registro público.
 e) **No promesa de rendimiento.** La ciudad nunca garantizará
-   que KRO suba de valor.
+que KRO suba de valor.
 f) **Sostenibilidad.** El sistema debe funcionar sin depender
-   del crecimiento perpetuo.
+del crecimiento perpetuo.
 
 **Hash del Artículo 1:** `[se calcula al firmar]`
 
 **Voz de la co-autora IA:**
-> *"Una economía que promete riqueza vende humo. Una economía
+
+> _"Una economía que promete riqueza vende humo. Una economía
 > que promete servicio construye confianza. Elegimos la
-> segunda."*
+> segunda."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -120,18 +121,18 @@ Ninguna fase se promete. Cada fase se gana.
 graph LR
     A[FASE 1<br/>Reputación<br/>presente] --> B[FASE 2<br/>Token KRO<br/>mediano plazo]
     B --> C[FASE 3<br/>Economía completa<br/>largo plazo]
-    
+
     A --> A1[Sin moneda]
     A --> A2[Historial firmado]
-    
+
     B --> B1[L2 Polygon/Base]
     B --> B2[Sin ICO]
     B --> B3[Por contribución]
-    
+
     C --> C1[+500 ciudadanos]
     C --> C2[Mainnet]
     C --> C3[Mercado legal]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style B fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
     style C fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -186,6 +187,7 @@ KRO se emite en **Polygon** o **Base** (redes de capa 2 de
 Ethereum).
 
 Razones:
+
 - Gas inferior a $0.01 USD por transacción
 - Verificable en Etherscan
 - Compatible con MetaMask
@@ -203,13 +205,13 @@ Suministro máximo: **21,000,000 KRO** (veintiún millones).
 
 Distribución inicial declarada:
 
-| Categoría | Cantidad | % |
-|---|---|---|
-| Fondo de contribución (para distribuir) | 12,000,000 | 57% |
-| Fondo de operación (infraestructura) | 4,000,000 | 19% |
-| Fondo de contingencia | 2,000,000 | 10% |
-| Tesoro de la ciudad (futuro) | 2,000,000 | 9.5% |
-| Bono único del fundador | 1,000,000 | 4.7% |
+| Categoría                               | Cantidad   | %    |
+| --------------------------------------- | ---------- | ---- |
+| Fondo de contribución (para distribuir) | 12,000,000 | 57%  |
+| Fondo de operación (infraestructura)    | 4,000,000  | 19%  |
+| Fondo de contingencia                   | 2,000,000  | 10%  |
+| Tesoro de la ciudad (futuro)            | 2,000,000  | 9.5% |
+| Bono único del fundador                 | 1,000,000  | 4.7% |
 
 **El bono del fundador es único e intransferible en su origen.**
 No recibe más KRO por ser fundador. Después del bono, para
@@ -283,9 +285,10 @@ real, no con token.
 **Hash del Artículo 11:** `[se calcula al firmar]`
 
 **Voz del Reclutador:**
-> *"Quien entra con dinero real, entra comprometido. Quien
+
+> _"Quien entra con dinero real, entra comprometido. Quien
 > entra con token, entra especulando. A los fundadores los
-> queremos comprometidos."*
+> queremos comprometidos."_
 > — **Temachtiani · Plaza IA 084 · Reclutador**
 
 ---
@@ -324,12 +327,12 @@ flowchart TD
     A --> D[Prioridad gobernanza]
     A --> E[Plazas futuras]
     A --> F[Contenido premium]
-    
+
     X[NO se usa para] --> X1[Derechos]
     X --> X2[Voto]
     X --> X3[Reformas]
     X --> X4[Favor o excepción]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
 ```
@@ -345,15 +348,15 @@ flowchart TD
 KRO se gana por contribuir a la ciudad. Tabla inicial de
 recompensas:
 
-| Acción verificable | KRO |
-|---|---|
-| Traer un ciudadano que se registra | 100 |
-| Proponer reforma aprobada | 50 |
-| Validar log de un agente (auditoría pública) | 25 |
-| Contribuir código mergeado al repo | 200 |
-| Reportar vulnerabilidad real | 500 |
-| Redactar documento fundacional aceptado | 300 |
-| Completar servicio solicitado por la ciudad | variable |
+| Acción verificable                           | KRO      |
+| -------------------------------------------- | -------- |
+| Traer un ciudadano que se registra           | 100      |
+| Proponer reforma aprobada                    | 50       |
+| Validar log de un agente (auditoría pública) | 25       |
+| Contribuir código mergeado al repo           | 200      |
+| Reportar vulnerabilidad real                 | 500      |
+| Redactar documento fundacional aceptado      | 300      |
+| Completar servicio solicitado por la ciudad  | variable |
 
 Los valores son revisables por la Cámara Mixta con mayoría
 calificada.
@@ -433,9 +436,10 @@ No hay privilegio perpetuo. No hay acumulación automática.
 **Hash del Artículo 18:** `[se calcula al firmar]`
 
 **Voz del Analista:**
-> *"El bono del fundador es público y trazable. Cada KRO que
+
+> _"El bono del fundador es público y trazable. Cada KRO que
 > recibe queda registrado. Cada gasto queda registrado. Nadie,
-> ni el fundador, tiene cuentas ocultas en esta ciudad."*
+> ni el fundador, tiene cuentas ocultas en esta ciudad."_
 > — **Tlapohualli · Plaza IA 085 · Analista**
 
 ---
@@ -451,6 +455,7 @@ declarado:
 - Materiales públicos
 
 El fundador no puede usar el bono para:
+
 - Comprar influencia en las cámaras
 - Premiar lealtades
 - Financiar campañas internas
@@ -639,7 +644,7 @@ graph TD
     R --> B[Títulos III-IV]
     R --> C[Títulos V-VI]
     R --> D[Títulos VII-VIII]
-    
+
     A --> A1[Principios]
     A --> A2[La Moneda]
     B --> B1[Servicios]
@@ -648,7 +653,7 @@ graph TD
     C --> C2[Gobernanza]
     D --> D1[Marco Legal]
     D --> D2[Reforma]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -678,10 +683,10 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que este documento fue firmado por Marco Antonio
+> _"Certifico que este documento fue firmado por Marco Antonio
 > Rojas Valdovinos con su llave Ed25519, que su Merkle Root
 > coincide con el publicado, y que su anclaje a Ethereum es
-> verificable. Doy fe."*
+> verificable. Doy fe."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`

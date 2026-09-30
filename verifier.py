@@ -43,17 +43,19 @@ def verificar_cadena(log):
             resultado["razon"] = "hash_previo no coincide"
             break
 
-        contenido = "|".join([
-            str(e["n"]),
-            e["cuando"],
-            e["accion"],
-            str(e["principio"]),
-            e["entrada"],
-            e["proposito"],
-            e["autor"],
-            e["anio"],
-            e["hash_previo"] or "GENESIS",
-        ])
+        contenido = "|".join(
+            [
+                str(e["n"]),
+                e["cuando"],
+                e["accion"],
+                str(e["principio"]),
+                e["entrada"],
+                e["proposito"],
+                e["autor"],
+                e["anio"],
+                e["hash_previo"] or "GENESIS",
+            ]
+        )
 
         if hash_sha256(contenido) != e["hash"]:
             resultado["integra"] = False

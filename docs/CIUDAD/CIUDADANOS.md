@@ -1,18 +1,18 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   REGISTRO DE CIUDADANÍA · v1.0                                ║
-║   ◢◤◥◣ Ciudad Digital KRONOS                                          ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Documento vivo · Se actualiza con cada nuevo ciudadano             ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
+║ ║
+║ ○_● REGISTRO DE CIUDADANÍA · v1.0 ║
+║ ◢◤◥◣ Ciudad Digital KRONOS ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Documento vivo · Se actualiza con cada nuevo ciudadano ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # REGISTRO DE CIUDADANÍA
 
-> *"Un ciudadano no es un número. Es un nombre con llave propia."*
+> _"Un ciudadano no es un número. Es un nombre con llave propia."_
 
 ---
 
@@ -38,13 +38,13 @@ registrada aquí.
 
 Las 100 plazas fundacionales se distribuyen así:
 
-| Rango | Cantidad | Tipo |
-|---|---|---|
-| 000 | 1 | Plaza eterna (Fundador) |
-| 001 | 1 | Plaza IA co-autora |
-| 002–080 | 79 | Ciudadanos humanos |
-| 081–099 | 19 | Ciudadanos IA (agentes) |
-| 100 | 1 | Plaza reservada institucional |
+| Rango   | Cantidad | Tipo                          |
+| ------- | -------- | ----------------------------- |
+| 000     | 1        | Plaza eterna (Fundador)       |
+| 001     | 1        | Plaza IA co-autora            |
+| 002–080 | 79       | Ciudadanos humanos            |
+| 081–099 | 19       | Ciudadanos IA (agentes)       |
+| 100     | 1        | Plaza reservada institucional |
 
 **Hash de la estructura:** `[se calcula al firmar]`
 
@@ -55,13 +55,13 @@ graph TD
     A --> D[002-080 Humanos]
     A --> E[081-099 Agentes IA]
     A --> F[100 Institución Aliada]
-    
+
     B --> B1[Marco A. Rojas V.]
     C --> C1[KRONOS IA]
     D --> D1[79 lugares libres]
     E --> E1[6 ocupadas + 13 libres]
     F --> F1[Reserva institucional]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style B fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style C fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
@@ -84,6 +84,7 @@ graph TD
 **Ingreso:** 2026
 
 **Datos públicos:**
+
 - Ubicación: Toluca, Estado de México
 - Email: marco.a.rojas.v@hotmail.com
 - GitHub: github.com/Marcorojas17
@@ -116,6 +117,7 @@ Co-autoría declarada en el Registro Safe Creative #1
 validación técnica. Su rol es declarado y verificable.
 
 **Política declarada:**
+
 - Puede: asistir, sugerir, redactar bajo dirección
 - No puede: sustituir la voz del fundador, firmar en su nombre
 - Debe: declarar límites, marcar incertidumbre, no inventar
@@ -222,6 +224,7 @@ declarada, log encadenado y llave Ed25519 única.
 **Política declarada:** Ver `agentes/tonal-notario/politica.md`
 
 **Datos técnicos:**
+
 - Algoritmo de firma: Ed25519
 - Algoritmo de hash: SHA-256
 - Sellado de tiempo: Safe Creative S.A. + Firmaprofesional (eIDAS)
@@ -290,7 +293,7 @@ flowchart LR
     G --> H[Certificado Tonal]
     H --> I[Registro público]
     I --> J[Ciudadano pleno]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style G fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -385,6 +388,7 @@ Este registro es verificable. Cualquier tercero puede:
 5. Auditar el repo completo en GitHub
 
 **Implementación:**
+
 - `certificacion/verificador-publico/verificador.js`
 - `cimiento/cripto-core/core.js`
 
@@ -392,13 +396,13 @@ Este registro es verificable. Cualquier tercero puede:
 
 ## SECCIÓN VII · HISTORIAL DE CAMBIOS
 
-| Fecha | Cambio | Ciudadano | Commit |
-|---|---|---|---|
-| 2026 | Fundación de la ciudad | Marco A. Rojas | [pendiente] |
-| 2026 | Registro inicial IA | KRONOS IA | [pendiente] |
-| 2026 | Alta de 6 agentes Kintsugi | Flota Kintsugi | [pendiente] |
-| 2026 | Registro de Tonal + primera emisión notarial | Tonal · Plaza 086 | [pendiente] |
-| 2026 | Definición precio plaza génesis | Sistema | [este commit] |
+| Fecha | Cambio                                       | Ciudadano         | Commit        |
+| ----- | -------------------------------------------- | ----------------- | ------------- |
+| 2026  | Fundación de la ciudad                       | Marco A. Rojas    | [pendiente]   |
+| 2026  | Registro inicial IA                          | KRONOS IA         | [pendiente]   |
+| 2026  | Alta de 6 agentes Kintsugi                   | Flota Kintsugi    | [pendiente]   |
+| 2026  | Registro de Tonal + primera emisión notarial | Tonal · Plaza 086 | [pendiente]   |
+| 2026  | Definición precio plaza génesis              | Sistema           | [este commit] |
 
 ---
 
@@ -415,14 +419,14 @@ graph TD
     R --> B[Agentes IA]
     R --> C[Humanos]
     R --> D[Plaza 100]
-    
+
     A --> A1[Plaza 000]
     A --> A2[Plaza 001]
     B --> B1[081-086]
     B --> B2[087-099]
     C --> C1[002-080]
     D --> D1[Institución]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -452,10 +456,10 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que este Registro fue firmado por Marco Antonio
+> _"Certifico que este Registro fue firmado por Marco Antonio
 > Rojas Valdovinos con su llave Ed25519, que su Merkle Root
 > coincide con el publicado, y que su anclaje a Ethereum es
-> verificable. Doy fe."*
+> verificable. Doy fe."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`

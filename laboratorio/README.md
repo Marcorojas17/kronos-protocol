@@ -14,6 +14,7 @@ Cada herramienta o idea se anota con este formato:
 ## 🔬 HERRAMIENTAS POR EXPLORAR
 
 ### Google AI Studio
+
 - **Qué es:** Interfaz web gratuita para probar Gemini.
 - **Por qué me interesa:** Puedo pedirle que genere código JS y compararlo con el que ya tenemos.
 - **Costo:** $0 (con límites de uso).
@@ -21,6 +22,7 @@ Cada herramienta o idea se anota con este formato:
 - **Notas:** —
 
 ### Groq Cloud
+
 - **Qué es:** API ultrarrápida de Llama/Mixtral con capa gratuita.
 - **Por qué me interesa:** Alternativa gratis a Meta Model API para un futuro bot de KRONOS.
 - **Costo:** $0 (con límites generosos).
@@ -28,6 +30,7 @@ Cada herramienta o idea se anota con este formato:
 - **Notas:** —
 
 ### a-Shell (iPhone)
+
 - **Qué es:** Terminal Unix nativa para iOS, offline.
 - **Por qué me interesa:** Ejecutar snippets de Python/JS sin servidor, desde el celular.
 - **Costo:** $0.
@@ -35,6 +38,7 @@ Cada herramienta o idea se anota con este formato:
 - **Notas:** —
 
 ### Hugging Face Spaces
+
 - **Qué es:** Plataforma de demos de IA alojadas gratis.
 - **Por qué me interesa:** Ver cómo otros construyen cosas similares, aprender patrones.
 - **Costo:** $0.
@@ -42,6 +46,7 @@ Cada herramienta o idea se anota con este formato:
 - **Notas:** —
 
 ### Obsidian
+
 - **Qué es:** App de notas locales con markdown.
 - **Por qué me interesa:** Documentar hallazgos del laboratorio sin depender de la nube.
 - **Costo:** $0 (versión personal).
@@ -52,7 +57,7 @@ Cada herramienta o idea se anota con este formato:
 
 ## 🟢 INTEGRADOS A KRONOS
 
-*(Aquí se anotan las herramientas que pasaron la prueba y se usan en producción.)*
+_(Aquí se anotan las herramientas que pasaron la prueba y se usan en producción.)_
 
 - **Dexie.js** — base de datos local en IndexedDB. Usada en Storage Dexie.
 - **ethers.js** — interacción con Ethereum. Usada en Anclaje.
@@ -63,7 +68,7 @@ Cada herramienta o idea se anota con este formato:
 
 ## 🔴 DESCARTADOS (con razón)
 
-*(Aquí se anotan las herramientas que probamos y decidimos no usar, con el motivo.)*
+_(Aquí se anotan las herramientas que probamos y decidimos no usar, con el motivo.)_
 
 - **html2canvas** — falla en Brave móvil. Sustituida por Canvas nativo.
 - **Meta Model API (Muse Spark)** — de pago. No compatible con presupuesto $0.
@@ -73,7 +78,7 @@ Cada herramienta o idea se anota con este formato:
 
 ## 🧪 EXPERIMENTOS ACTIVOS
 
-*(Cosas que quiero probar esta semana o este mes.)*
+_(Cosas que quiero probar esta semana o este mes.)_
 
 - [ ] Probar Gemini Free con un snippet de criptografía JS.
 - [ ] Evaluar si Groq puede reemplazar al asistente actual en el futuro.
@@ -92,4 +97,4 @@ Cada herramienta o idea se anota con este formato:
 ---
 
 **© 2026 Marco A. Rojas V. + KRONOS IA**
-*Bitácora viva. Se actualiza cuando se aprende algo nuevo.*
+_Bitácora viva. Se actualiza cuando se aprende algo nuevo._
