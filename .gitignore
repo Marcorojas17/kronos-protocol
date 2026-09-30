@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+
+# Sistema
+.DS_Store
+._*
+Th.
+
+umbs.db
+
+# Local
+.env**
+.env.local
+
+# Reportes generados (Silos vuelve a crear el workflow `)
+reportes/
