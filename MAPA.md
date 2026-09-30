@@ -41,9 +41,11 @@ kronos-protocol/
 │   │   ├── auditor.py
 │   │   └── ultimo.json
 │   ├── 093-relator/
-│   │   └── relator.py
+│   │   ├── relator.py
+│   │   └── ultimo.json
 │   ├── 094-bibliotecario/
-│   │   └── bibliotecario.py
+│   │   ├── bibliotecario.py
+│   │   └── ultimo.json
 │   ├── 095-cartografo/
 │   │   └── cartografo.py
 │   ├── _base/
@@ -478,4 +480,6 @@ kronos-protocol/
 └── verify.html
 ```
 
-_Generado automaticamente. Profundidad maxima: 3._
+_Generado automáticamente. Profundidad máxima: 3._
+
+_SHA-256 del mapa: pendiente de calcular al publicar._
