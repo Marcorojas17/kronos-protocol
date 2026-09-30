@@ -18,6 +18,7 @@ kronos-protocol/
 │   │   ├── limpiar.yml
 │   │   ├── salud-repo.yml
 │   │   ├── test-kronos360.yml
+│   │   ├── todo.yml
 │   │   ├── verificar-acta.yml
 │   │   ├── verificar.yml
 │   │   └── verify.yml
@@ -238,7 +239,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
@@ -441,6 +442,7 @@ kronos-protocol/
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10
+├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7
 ├── CONTRIBUTING.md
