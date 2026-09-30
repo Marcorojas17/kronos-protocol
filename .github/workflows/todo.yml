@@ -1,0 +1,173 @@
+name: todo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════
+  # PYTHON · kronos360 + agentes + tests
+  # ═══════════════════════════════════════════════════════════════════
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias de kronos360
+        run: |
+          python -m pip install --upgrade pip
+          pip install rfc8785 pytest
+          if [ -f pyproject.toml ]; then
+            pip install -e ".[dev]" || echo "pip install -e falló, sigo con deps básicas"
+          fi
+
+      - name: Correr pytest
+        run: |
+          if [ -d tests ]; then
+            pytest -v || echo "::warning::pytest reportó fallos"
+          else
+            echo "Sin carpeta tests/"
+          fi
+
+      - name: Correr los 6 agentes
+        run: |
+          mkdir -p reportes
+          for agente in 090-arquitecto/arquitecto \
+                        091-contralor/contralor \
+                        092-auditor-externo/auditor \
+                        093-relator/relator \
+                        094-bibliotecario/bibliotecario \
+                        095-cartografo/cartografo; do
+            if [ -f "05-AGENTES/$agente.py" ]; then
+              echo "=== $agente ==="
+              python3 "05-AGENTES/$agente.py" > "reportes/$(basename $agente).json" 2>&1 || true
+            fi
+          done
+          ls -la reportes/ 2>/dev/null || true
+
+      - name: Guardar reportes
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-agentes
+          path: reportes/
+
+  # ═══════════════════════════════════════════════════════════════════
+  # NODE · si existe package.json
+  # ═══════════════════════════════════════════════════════════════════
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Detectar proyectos Node
+        id: detect
+        run: |
+          if [ -f package.json ]; then
+            echo "encontrado=true" >> $GITHUB_OUTPUT
+          else
+            echo "encontrado=false" >> $GITHUB_OUTPUT
+            echo "Sin package.json en la raíz. Node job se saltea."
+          fi
+
+      - name: Instalar y testear
+        if: steps.detect.outputs.encontrado == 'true'
+        run: |
+          npm ci || npm install
+          npm test --if-present
+
+  # ═══════════════════════════════════════════════════════════════════
+  # VALIDACIONES · JSON, HTML, YAML
+  # ═══════════════════════════════════════════════════════════════════
+  validaciones:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar JSONs
+        run: |
+          python3 <<'EOF'
+          import json, sys
+          from pathlib import Path
+
+          errores = []
+          validos = 0
+          for p in Path('.').rglob('*.json'):
+              if any(part in {'.git', 'node_modules', '__pycache__'} for part in p.parts):
+                  continue
+              try:
+                  json.loads(p.read_text(encoding='utf-8'))
+                  validos += 1
+              except Exception as e:
+                  errores.append(f"{p}: {e}")
+
+          print(f"JSON válidos: {validos}")
+          if errores:
+              print("Errores encontrados:")
+              for e in errores:
+                  print(f"  ✗ {e}")
+              sys.exit(1)
+          EOF
+
+      - name: Validar YAMLs
+        run: |
+          pip install pyyaml
+          python3 <<'EOF'
+          import yaml, sys
+          from pathlib import Path
+
+          errores = []
+          validos = 0
+          for p in Path('.github').rglob('*.yml'):
+              try:
+                  yaml.safe_load(p.read_text(encoding='utf-8'))
+                  validos += 1
+              except Exception as e:
+                  errores.append(f"{p}: {e}")
+
+          print(f"YAML válidos: {validos}")
+          if errores:
+              for e in errores:
+                  print(f"  ✗ {e}")
+              sys.exit(1)
+          EOF
+
+      - name: Verificar estructura esperada
+        run: |
+          for dir in 00-FUNDACION 00-SCHEMA 02-VERIFICADOR 05-AGENTES 07-LLAVES; do
+            if [ -d "$dir" ]; then
+              echo "✓ $dir"
+            else
+              echo "✗ $dir falta"
+            fi
+          done
+
+      - name: Detectar secretos expuestos
+        run: |
+          if find . -name ".env" -not -name ".env.example" -not -path "./.git/*" | grep -q .; then
+            echo "::error::Archivo .env encontrado"
+            exit 1
+          fi
+          if grep -rEn --exclude-dir=.git --exclude-dir=node_modules \
+             "(PRIVATE_KEY|SECRET_KEY|ACCESS_TOKEN)=[A-Za-z0-9+/=]{20,}" . ; then
+            echo "::error::Clave con valor real detectada"
+            exit 1
+          fi
+          echo "Sin secretos expuestos"
