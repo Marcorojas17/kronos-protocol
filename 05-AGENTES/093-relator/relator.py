@@ -1,17 +1,6 @@
 """093-relator: cuenta archivos y genera reporte de estado.
 
-ESTADO: 🟡 MVP
-SUPUESTOS:
-  - El repo tiene raíz accesible
-  - Los archivos son relevantes (excluye .git, node_modules, etc.)
-RIESGOS:
-  - Carpetas con muchos archivos pueden tardar
-  - No distingue archivos de código de archivos de datos
-CIMIENTOS:
-  - (ninguno obligatorio)
-NO GARANTIZA:
-  - Que el conteo sea representativo del estado del proyecto
-  - Que los bytes totales sean útiles para decisiones
+ESTADO: 🔴 MAQUETA (falta comparación con snapshot anterior)
 """
 from __future__ import annotations
 
@@ -29,7 +18,13 @@ EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 class Relator(AgenteBase):
     nombre = "093-relator"
     descripcion = "Cuenta archivos y genera reporte de estado"
-    estado = "🟡 MVP"
+    estado = "🔴 MAQUETA"
+    rol_pipeline = "⚙️ PROCESO"
+    util_hoy = False
+    bloqueado_por = [
+        "Sin comparación contra snapshot anterior",
+        "Sin generación de CHANGELOG.md",
+    ]
     supuestos = [
         "El repo tiene raíz accesible",
         "Los archivos relevantes excluyen .git y similares",
@@ -60,15 +55,18 @@ class Relator(AgenteBase):
                 self._log_error(f"stat falló en {archivo}", e)
                 continue
             total += 1
-            e = archivo.suffix or "(sin ext)"
-            ext[e] += 1
-            tamanos[e] += tam
+            e_ext = archivo.suffix or "(sin ext)"
+            ext[e_ext] += 1
+            tamanos[e_ext] += tam
 
         top = ext.most_common(15)
 
         return Resultado(
             agente=self.nombre,
             estado=self.estado,
+            rol_pipeline=self.rol_pipeline,
+            util_hoy=self.util_hoy,
+            bloqueado_por=self.bloqueado_por,
             timestamp=self._ahora(),
             ok=True,
             hallazgos=[],
