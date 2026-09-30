@@ -2,14 +2,14 @@
 
 No mueve nada. Solo reporta drift entre estructura ideal y real.
 """
+
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 ESTRUCTURA_ESPERADA = [
     "00-FUNDACION",
@@ -49,24 +49,25 @@ class Arquitecto(AgenteBase):
 
         hallazgos = []
         if faltantes:
-            hallazgos.append({
-                "tipo": "carpetas-faltantes",
-                "cantidad": len(faltantes),
-                "rutas": faltantes,
-            })
+            hallazgos.append(
+                {
+                    "tipo": "carpetas-faltantes",
+                    "cantidad": len(faltantes),
+                    "rutas": faltantes,
+                }
+            )
 
         # Carpetas en raiz que no estan en la lista (candidatas a mover)
-        hijas = [
-            p.name for p in self.raiz.iterdir()
-            if p.is_dir() and not p.name.startswith(".")
-        ]
+        hijas = [p.name for p in self.raiz.iterdir() if p.is_dir() and not p.name.startswith(".")]
         huerfanas = [h for h in hijas if h not in ESTRUCTURA_ESPERADA and h not in {"tests", "src"}]
         if huerfanas:
-            hallazgos.append({
-                "tipo": "carpetas-huerfanas",
-                "cantidad": len(huerfanas),
-                "rutas": huerfanas,
-            })
+            hallazgos.append(
+                {
+                    "tipo": "carpetas-huerfanas",
+                    "cantidad": len(huerfanas),
+                    "rutas": huerfanas,
+                }
+            )
 
         return Resultado(
             agente=self.nombre,
