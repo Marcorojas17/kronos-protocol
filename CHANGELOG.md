@@ -14,6 +14,42 @@
 
 **Estado:** activo · versionado SemVer · última actualización 2026-09-18
 
+
+┌─[ v0.10.0 ]────────────────────────────────────── 2026-09-30 ─┐
+│                                                                │
+│  ▸ AÑADIDO                                                     │
+│      ✓  Verificador v0.3 con hash de autenticación visible     │
+│      ✓  Schema v2.0.1 unificado KRONOS-KÓDICE-kronos360        │
+│      ✓  6 agentes Kintsugi deterministas (090-095)             │
+│      ✓  Clase base agente_base.py v2.0                         │
+│      ✓  Doctrina v12 CIMIENTOS en agentes                      │
+│      ✓  7 workflows en .github/workflows/                      │
+│      ✓  Acta del verificador oficial con hash real             │
+│                                                                │
+│  ▸ CAMBIADO                                                    │
+│      ·  firma.firmas[] enforcea política AND                   │
+│         (contains + minContains: 1)                            │
+│      ·  unevaluatedProperties: false en schema                 │
+│      ·  Descripciones explícitas en campos críticos            │
+│      ·  Hash oficial del verificador calculado:                │
+│         b01baf1ccc19ac0d5a47bec4ab8e2bdc0b0e0e7ce1d6ffff829a06│
+│         1622e0fa33                                             │
+│                                                                │
+│  ▸ ESTADO DE AGENTES                                           │
+│      🟢 090-arquitecto · 092-auditor · 094-bibliotecario       │
+│         095-cartografo · MVP → PRODUCTO                        │
+│      🔴 091-contralor · 093-relator · MAQUETA                  │
+│         (esperan Mesa Directiva + comparación snapshot)        │
+│                                                                │
+│  ▸ PENDIENTE                                                   │
+│      ▸  Firma Ed25519 del hash del verificador                 │
+│         (requiere cryptography · pendiente Colab)              │
+│      ▸  Prueba en GitHub Actions                               │
+│      ▸  Emisión de primer certificado KÓDICE real              │
+│      ▸  Desbloqueo de agentes 091 y 093                        │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
 ---
 
 ```text
