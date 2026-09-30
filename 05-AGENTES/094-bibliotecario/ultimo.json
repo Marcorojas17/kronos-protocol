@@ -1,18 +1,25 @@
 {
   "agente": "094-bibliotecario",
   "estado": "🟡 MVP",
-  "timestamp": "2026-09-30T15:48:56.185861+00:00",
+  "rol_pipeline": "🚪 ENTRADA",
+  "util_hoy": true,
+  "bloqueado_por": [],
+  "timestamp": "2026-09-30T20:24:54.805157+00:00",
   "ok": true,
   "hallazgos": [
     {
       "tipo": "sospechosos-contextuales",
       "cantidad": 3,
-      "rutas": ["i", "Pnp", "403"],
+      "rutas": [
+        "i",
+        "Pnp",
+        "403"
+      ],
       "nota": "revisar manualmente antes de borrar"
     },
     {
       "tipo": "duplicados-nombre",
-      "cantidad": 12,
+      "cantidad": 13,
       "ejemplos": [
         [
           "manifest.json",
@@ -77,7 +84,13 @@
             "projects/md33/index.html"
           ]
         ],
-        ["MAPA.md", ["MAPA.md", "docs/MAPA.md"]],
+        [
+          "MAPA.md",
+          [
+            "MAPA.md",
+            "docs/MAPA.md"
+          ]
+        ],
         [
           "README.md",
           [
@@ -226,28 +239,42 @@
           ]
         ],
         [
-          "evidence.py",
+          "ultimo.json",
           [
-            "src/kronos360/services/evidence.py",
-            "src/kronos360/models/evidence.py"
+            "05-AGENTES/095-cartografo/ultimo.json",
+            "05-AGENTES/094-bibliotecario/ultimo.json"
           ]
         ]
       ]
     },
     {
       "tipo": "duplicados-contenido",
-      "cantidad": 2,
+      "cantidad": 3,
       "ejemplos": [
-        ["cimiento/AUTORIA", "cimiento/anclaje-ethereum/AUTORIA"],
-        ["projects/boveda/index.html", "projects/bobeda/index.html"]
+        [
+          "cimiento/AUTORIA",
+          "cimiento/anclaje-ethereum/AUTORIA"
+        ],
+        [
+          "reportes/bibliotecario.json",
+          "reportes/contralor.json",
+          "reportes/cartografo.json",
+          "reportes/relator.json",
+          "reportes/arquitecto.json",
+          "reportes/auditor.json"
+        ],
+        [
+          "projects/boveda/index.html",
+          "projects/bobeda/index.html"
+        ]
       ]
     }
   ],
   "metricas": {
     "basura": 0,
     "sospechosos": 3,
-    "duplicados_nombre": 12,
-    "duplicados_contenido": 2
+    "duplicados_nombre": 13,
+    "duplicados_contenido": 3
   },
   "supuestos": [
     "Archivos < 100 KB son candidatos a hashing",
