@@ -1,0 +1,24 @@
+{
+  "agente": "095-cartografo",
+  "estado": "🟡 MVP",
+  "timestamp": "2026-09-30T15:49:16.268999+00:00",
+  "ok": true,
+  "hallazgos": [],
+  "metricas": {
+    "mapa_escrito_en": "/home/runner/work/kronos-protocol/kronos-protocol/MAPA.md",
+    "lineas": 481
+  },
+  "supuestos": [
+    "El repo tiene raíz accesible",
+    "Profundidad 3 es suficiente"
+  ],
+  "riesgos": [
+    "Repos anchos generan MAPA.md grandes",
+    "Nombres raros pueden verse mal"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Que el mapa se vea bien en todos los terminales",
+    "Que profundidad 3 capture toda la estructura relevante"
+  ]
+}
