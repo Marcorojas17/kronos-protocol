@@ -4,14 +4,17 @@
   "rol_pipeline": "📤 SALIDA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-09-30T20:53:35.062543+00:00",
+  "timestamp": "2026-09-30T20:58:02.966988+00:00",
   "ok": true,
   "hallazgos": [],
   "metricas": {
     "mapa_escrito_en": "/home/runner/work/kronos-protocol/kronos-protocol/MAPA.md",
     "lineas": 483
   },
-  "supuestos": ["El repo tiene raíz accesible", "Profundidad 3 es suficiente"],
+  "supuestos": [
+    "El repo tiene raíz accesible",
+    "Profundidad 3 es suficiente"
+  ],
   "riesgos": [
     "Repos anchos generan MAPA.md grandes",
     "Nombres raros pueden verse mal"
