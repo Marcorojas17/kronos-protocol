@@ -1,0 +1,59 @@
+name: indices
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  indexar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generar indices
+        run: |
+          python3 <<'EOF'
+          import os
+          from pathlib import Path
+
+          EXCLUIR = {'.git', 'node_modules', '__pycache__', '.pytest_cache', '.github'}
+          EXCLUIR_NOMBRES = lambda n: n.startswith('._') or n in {'.DS_Store', 'Thumbs.db'}
+          RAICES = ['00-ACTA', '01-SCHEMA', '02-VERIFICADOR', '03-KRONOS-PROTOCOL',
+                    '04-KRONOS360', '05-KODICE', '06-LLAVES', '07-DOCS']
+
+          for raiz in RAICES:
+              ruta = Path(raiz)
+              if not ruta.exists():
+                  continue
+              lineas = [f"# Indice: {raiz}", "", f"_Generado automaticamente._", ""]
+              for item in sorted(ruta.rglob('*')):
+                  if any(part in EXCLUIR for part in item.parts):
+                      continue
+                  if EXCLUIR_NOMBRES(item.name):
+                      continue
+                  rel = item.relative_to(ruta)
+                  if item.is_dir():
+                      lineas.append(f"- `{rel}/`")
+                  else:
+                      tam = item.stat().st_size
+                      lineas.append(f"- [{rel}]({rel}) — {tam} bytes")
+              lineas.append("")
+              (ruta / 'INDICE.md').write_text('\n'.join(lineas), encoding='utf-8')
+              print(f"Generado: {raiz}/INDICE.md")
+          EOF
+
+      - name: Commit
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: regenerar indices"
+            git push
+          fi
