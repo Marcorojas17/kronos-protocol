@@ -2,14 +2,14 @@
 
 Util para ver la estructura de un golpe. Escribe MAPA.md.
 """
+
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 MAX_PROFUNDIDAD = 3
@@ -43,7 +43,7 @@ class Cartografo(AgenteBase):
         return lineas
 
     def correr(self) -> Resultado:
-        lineas = [f"# Mapa del repo", "", "```", self.raiz.name + "/"]
+        lineas = ["# Mapa del repo", "", "```", self.raiz.name + "/"]
         lineas.extend(self._arbol(self.raiz))
         lineas.append("```")
         lineas.append("")
