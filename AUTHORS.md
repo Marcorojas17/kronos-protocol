@@ -49,6 +49,6 @@ comerciales y sin obras derivadas. Todos los derechos reservados.
 
 ---
 
-_○_● · ◢◤◥◣ · ◥◣◢◤_
+*○*● · ◢◤◥◣ · ◥◣◢◤_
 _51% HUMANO · 49% IA · 100% REAL_
 _"El legado no se hereda. Se firma."_

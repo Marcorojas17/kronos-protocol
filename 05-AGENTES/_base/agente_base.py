@@ -5,15 +5,15 @@ Aplica doctrina v12 CIMIENTOS en la parte tecnica.
 
 Compatible con Python 3.9+ (iSH, GitHub Actions, etc).
 """
+
 from __future__ import annotations
 
 import json
 import sys
 import traceback
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 EXIT_OK = 0
 EXIT_FALLA = 1
@@ -56,7 +56,7 @@ class AgenteBase:
         self.raiz = raiz or Path.cwd()
 
     def _ahora(self):
-        return datetime.now(timezone.utc).isoformat()
+        return datetime.now(UTC).isoformat()
 
     def _log_error(self, contexto, e):
         print("[ERROR " + self.nombre + "] " + contexto + ": " + str(e), file=sys.stderr)
