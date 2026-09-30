@@ -1,7 +1,7 @@
 {
   "agente": "094-bibliotecario",
   "estado": "🟡 MVP",
-  "timestamp": "2026-09-30T15:06:07.171121+00:00",
+  "timestamp": "2026-09-30T15:33:43.738483+00:00",
   "ok": true,
   "hallazgos": [
     {
@@ -249,15 +249,11 @@
     },
     {
       "tipo": "duplicados-contenido",
-      "cantidad": 3,
+      "cantidad": 2,
       "ejemplos": [
         [
           "cimiento/AUTORIA",
           "cimiento/anclaje-ethereum/AUTORIA"
-        ],
-        [
-          "reportes/bibliotecario.json",
-          "reportes/cartografo.json"
         ],
         [
           "projects/boveda/index.html",
@@ -270,7 +266,7 @@
     "basura": 0,
     "sospechosos": 3,
     "duplicados_nombre": 13,
-    "duplicados_contenido": 3
+    "duplicados_contenido": 2
   },
   "supuestos": [
     "Archivos < 100 KB son candidatos a hashing",
