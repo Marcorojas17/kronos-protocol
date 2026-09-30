@@ -20,14 +20,14 @@ moderno. No requiere instalación. No requiere conexión a internet.
 
 ## Identificación
 
-| Campo | Valor |
-|---|---|
-| Archivo | `02-VERIFICADOR/verificador.html` |
-| Versión | v0.3 |
-| SHA-256 del archivo | `PENDIENTE_DE_CALCULAR` |
-| Firma Ed25519 del Fundador | `PENDIENTE_DE_FIRMAR` |
-| Fecha de publicación | `PENDIENTE` |
-| Clave pública Fundador | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` |
+| Campo                      | Valor                                                              |
+| -------------------------- | ------------------------------------------------------------------ |
+| Archivo                    | `02-VERIFICADOR/verificador.html`                                  |
+| Versión                    | v0.3                                                               |
+| SHA-256 del archivo        | `PENDIENTE_DE_CALCULAR`                                            |
+| Firma Ed25519 del Fundador | `PENDIENTE_DE_FIRMAR`                                              |
+| Fecha de publicación       | `PENDIENTE`                                                        |
+| Clave pública Fundador     | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` |
 
 ---
 
@@ -49,3 +49,4 @@ Desde cualquier terminal (Linux, macOS, iSH):
 
 ```sh
 sha256sum 02-VERIFICADOR/verificador.html
+```
