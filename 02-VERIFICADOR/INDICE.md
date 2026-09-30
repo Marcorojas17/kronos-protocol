@@ -3,4 +3,4 @@
 _Generado automaticamente._
 
 - [INDICE.md](INDICE.md) — 149 bytes
-- [verificador.html](verificador.html) — 12351 bytes
+- [verificador.html](verificador.html) — 11797 bytes
