@@ -1,15 +1,26 @@
 """095-cartografo: genera mapa ASCII del repo por niveles.
 
-Util para ver la estructura de un golpe. Escribe MAPA.md.
+ESTADO: 🟡 MVP
+SUPUESTOS:
+  - El repo tiene raíz accesible
+  - Profundidad máxima 3 es suficiente para el mapa
+RIESGOS:
+  - Repos muy anchos generan MAPA.md grandes
+  - Nombres con caracteres raros pueden verse mal en ASCII
+CIMIENTOS:
+  - (ninguno obligatorio)
+NO GARANTIZA:
+  - Que el mapa se vea bien en todos los terminales
+  - Que profundidad 3 capture toda la estructura relevante
 """
-
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
+from agente_base import AgenteBase, Resultado, main  # noqa: E402
+
 
 EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 MAX_PROFUNDIDAD = 3
@@ -18,6 +29,20 @@ MAX_PROFUNDIDAD = 3
 class Cartografo(AgenteBase):
     nombre = "095-cartografo"
     descripcion = "Genera mapa ASCII del repo"
+    estado = "🟡 MVP"
+    supuestos = [
+        "El repo tiene raíz accesible",
+        "Profundidad 3 es suficiente",
+    ]
+    riesgos = [
+        "Repos anchos generan MAPA.md grandes",
+        "Nombres raros pueden verse mal",
+    ]
+    cimientos = []
+    no_garantiza = [
+        "Que el mapa se vea bien en todos los terminales",
+        "Que profundidad 3 capture toda la estructura relevante",
+    ]
 
     def _arbol(self, ruta: Path, prefijo: str = "", nivel: int = 0) -> list[str]:
         if nivel >= MAX_PROFUNDIDAD:
@@ -28,8 +53,9 @@ class Cartografo(AgenteBase):
                 [p for p in ruta.iterdir() if not p.name.startswith(".") or p.name == ".github"],
                 key=lambda p: (not p.is_dir(), p.name),
             )
-        except PermissionError:
-            return []
+        except PermissionError as e:
+            self._log_error(f"sin permiso en {ruta}", e)
+            return [f"{prefijo}└── [sin permiso]"]
 
         hijos = [h for h in hijos if h.name not in EXCLUIR_DIRS]
 
@@ -47,21 +73,35 @@ class Cartografo(AgenteBase):
         lineas.extend(self._arbol(self.raiz))
         lineas.append("```")
         lineas.append("")
-        lineas.append(f"_Generado automaticamente. Profundidad maxima: {MAX_PROFUNDIDAD}._")
+        lineas.append(f"_Generado automáticamente. Profundidad máxima: {MAX_PROFUNDIDAD}._")
+        lineas.append("")
+        lineas.append(f"_SHA-256 del mapa: pendiente de calcular al publicar._")
 
         texto = "\n".join(lineas)
         salida = self.raiz / "MAPA.md"
-        salida.write_text(texto, encoding="utf-8")
+        try:
+            salida.write_text(texto, encoding="utf-8")
+            escrito = True
+            error_msg = None
+        except (PermissionError, OSError) as e:
+            self._log_error(f"no se pudo escribir {salida}", e)
+            escrito = False
+            error_msg = str(e)
 
         return Resultado(
             agente=self.nombre,
+            estado=self.estado,
             timestamp=self._ahora(),
-            ok=True,
-            hallazgos=[],
+            ok=escrito,
+            hallazgos=[] if escrito else [{"tipo": "error-escritura", "detalle": error_msg}],
             metricas={
-                "mapa_escrito_en": "MAPA.md",
+                "mapa_escrito_en": str(salida) if escrito else None,
                 "lineas": len(lineas),
             },
+            supuestos=self.supuestos,
+            riesgos=self.riesgos,
+            cimientos=self.cimientos,
+            no_garantiza=self.no_garantiza,
         )
 
 
