@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "tipo": "certificado-kodice",
   "interaction_id": "9f8e7d6c5b4a39281706f5e4d3c2b1a09f8e7d6c5b4a39281706f5e4d3c2b1a0",
   "timestamp": "2026-09-29T05:02:22Z",
@@ -14,6 +14,14 @@
     "algoritmo": "Ed25519",
     "firma_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
     "firmante": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "economia": {
+    "tipo": "pago-unico",
+    "emisor_id": "MARCO_ANTONIO_ROJAS_VALDOVINOS",
+    "receptor_id": "CLIENTE_EJEMPLO_001",
+    "licencia_operador": "KODICE-MX-001",
+    "monto": 500,
+    "moneda": "MXN"
   },
   "metadata": {
     "obra_ref": "2607086319439",
