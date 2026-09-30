@@ -29,7 +29,17 @@
     },
     "rol": {
       "type": "string",
-      "enum": ["cronista", "auditor", "publicista", "reclutador", "analista", "notario", "arquitecto", "contralor", "relator"]
+      "enum": [
+        "cronista",
+        "auditor",
+        "publicista",
+        "reclutador",
+        "analista",
+        "notario",
+        "arquitecto",
+        "contralor",
+        "relator"
+      ]
     },
     "valido_desde": {
       "type": "string",

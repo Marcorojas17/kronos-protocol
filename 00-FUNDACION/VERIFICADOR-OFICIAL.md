@@ -10,13 +10,13 @@ con el hash de este documento, **es falso**.
 
 ## Identificación
 
-| Campo | Valor |
-|---|---|
-| Archivo | `03-VERIFICADOR/verificador.html` |
-| Versión | v0.3 |
-| SHA-256 del archivo | `PENDIENTE_DE_CALCULAR` |
-| Firma Ed25519 del Fundador | `PENDIENTE_DE_FIRMAR` |
-| Fecha de publicación | `PENDIENTE` |
+| Campo                      | Valor                             |
+| -------------------------- | --------------------------------- |
+| Archivo                    | `03-VERIFICADOR/verificador.html` |
+| Versión                    | v0.3                              |
+| SHA-256 del archivo        | `PENDIENTE_DE_CALCULAR`           |
+| Firma Ed25519 del Fundador | `PENDIENTE_DE_FIRMAR`             |
+| Fecha de publicación       | `PENDIENTE`                       |
 
 ## Regla de uso
 
@@ -32,3 +32,4 @@ con el hash de este documento, **es falso**.
 
 ```bash
 sha256sum 02-VERIFICADOR/verificador.html
+```
