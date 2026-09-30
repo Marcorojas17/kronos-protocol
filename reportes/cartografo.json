@@ -1,12 +1,12 @@
 {
   "agente": "095-cartografo",
   "estado": "🟡 MVP",
-  "timestamp": "2026-09-30T15:33:43.795436+00:00",
+  "timestamp": "2026-09-30T15:50:18.430834+00:00",
   "ok": true,
   "hallazgos": [],
   "metricas": {
     "mapa_escrito_en": "/home/runner/work/kronos-protocol/kronos-protocol/MAPA.md",
-    "lineas": 485
+    "lineas": 482
   },
   "supuestos": [
     "El repo tiene raíz accesible",
