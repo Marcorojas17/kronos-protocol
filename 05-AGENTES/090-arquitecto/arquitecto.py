@@ -1,15 +1,27 @@
 """090-arquitecto: valida que las carpetas esperadas existan.
 
-No mueve nada. Solo reporta drift entre estructura ideal y real.
+ESTADO: 🟡 MVP
+SUPUESTOS:
+  - El repo tiene raíz accesible
+  - Las carpetas esperadas son las de v12 CIMIENTOS
+RIESGOS:
+  - Si renombrás carpetas, hay que actualizar ESTRUCTURA_ESPERADA
+  - No detecta carpetas que existen pero están vacías
+CIMIENTOS:
+  - (ninguno obligatorio: corre incluso sin carpetas, y las reporta faltantes)
+NO GARANTIZA:
+  - Que la estructura sea la correcta para tu proyecto
+  - Que las carpetas presentes tengan contenido útil
 """
-
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main
+# ⚠️ SUPUESTO: _base está en el nivel superior de agentes/
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
+from agente_base import AgenteBase, Resultado, main  # noqa: E402
+
 
 ESTRUCTURA_ESPERADA = [
     "00-FUNDACION",
@@ -33,12 +45,27 @@ ESTRUCTURA_ESPERADA = [
 class Arquitecto(AgenteBase):
     nombre = "090-arquitecto"
     descripcion = "Valida estructura del repo contra estructura esperada"
+    estado = "🟡 MVP"
+    supuestos = [
+        "El repo tiene raíz accesible",
+        "Las carpetas esperadas son las de v12 CIMIENTOS",
+    ]
+    riesgos = [
+        "Renombrar carpetas sin actualizar ESTRUCTURA_ESPERADA rompe el reporte",
+        "Carpetas vacías cuentan como presentes",
+    ]
+    cimientos = []
+    no_garantiza = [
+        "Que la estructura esperada sea la correcta para tu caso",
+        "Que las carpetas presentes tengan contenido útil",
+    ]
 
     def correr(self) -> Resultado:
         faltantes = []
         presentes = []
 
         for ruta in ESTRUCTURA_ESPERADA:
+            # ⚠️ SUPUESTO: rutas relativas desde self.raiz
             if (self.raiz / ruta).exists():
                 presentes.append(ruta)
             else:
@@ -49,28 +76,36 @@ class Arquitecto(AgenteBase):
 
         hallazgos = []
         if faltantes:
-            hallazgos.append(
-                {
-                    "tipo": "carpetas-faltantes",
-                    "cantidad": len(faltantes),
-                    "rutas": faltantes,
-                }
-            )
+            hallazgos.append({
+                "tipo": "carpetas-faltantes",
+                "cantidad": len(faltantes),
+                "rutas": faltantes,
+            })
 
-        # Carpetas en raiz que no estan en la lista (candidatas a mover)
-        hijas = [p.name for p in self.raiz.iterdir() if p.is_dir() and not p.name.startswith(".")]
-        huerfanas = [h for h in hijas if h not in ESTRUCTURA_ESPERADA and h not in {"tests", "src"}]
+        # Carpetas en raíz que no están en la lista esperada
+        try:
+            hijas = [
+                p.name for p in self.raiz.iterdir()
+                if p.is_dir() and not p.name.startswith(".")
+            ]
+        except PermissionError:
+            self._log_error("no se pudo leer la raíz", PermissionError("lectura"))
+            hijas = []
+
+        huerfanas = [
+            h for h in hijas
+            if h not in ESTRUCTURA_ESPERADA and h not in {"tests", "src", "__pycache__"}
+        ]
         if huerfanas:
-            hallazgos.append(
-                {
-                    "tipo": "carpetas-huerfanas",
-                    "cantidad": len(huerfanas),
-                    "rutas": huerfanas,
-                }
-            )
+            hallazgos.append({
+                "tipo": "carpetas-huerfanas",
+                "cantidad": len(huerfanas),
+                "rutas": huerfanas,
+            })
 
         return Resultado(
             agente=self.nombre,
+            estado=self.estado,
             timestamp=self._ahora(),
             ok=len(faltantes) == 0,
             hallazgos=hallazgos,
@@ -81,6 +116,10 @@ class Arquitecto(AgenteBase):
                 "cobertura_pct": cobertura,
                 "huerfanas": len(huerfanas),
             },
+            supuestos=self.supuestos,
+            riesgos=self.riesgos,
+            cimientos=self.cimientos,
+            no_garantiza=self.no_garantiza,
         )
 
 
