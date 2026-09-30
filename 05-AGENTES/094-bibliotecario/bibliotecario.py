@@ -2,6 +2,7 @@
 
 ESTADO: 🟡 MVP
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -10,8 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 
@@ -77,32 +77,36 @@ class Bibliotecario(AgenteBase):
         duplicados_nombre = {
             nombre: rutas for nombre, rutas in por_nombre.items() if len(rutas) > 1
         }
-        duplicados_contenido = {
-            h: rutas for h, rutas in duplicados_hash.items() if len(rutas) > 1
-        }
+        duplicados_contenido = {h: rutas for h, rutas in duplicados_hash.items() if len(rutas) > 1}
 
         hallazgos = []
         if basura:
             hallazgos.append({"tipo": "basura", "cantidad": len(basura), "rutas": basura[:30]})
         if sospechosos:
-            hallazgos.append({
-                "tipo": "sospechosos-contextuales",
-                "cantidad": len(sospechosos),
-                "rutas": sospechosos,
-                "nota": "revisar manualmente antes de borrar",
-            })
+            hallazgos.append(
+                {
+                    "tipo": "sospechosos-contextuales",
+                    "cantidad": len(sospechosos),
+                    "rutas": sospechosos,
+                    "nota": "revisar manualmente antes de borrar",
+                }
+            )
         if duplicados_nombre:
-            hallazgos.append({
-                "tipo": "duplicados-nombre",
-                "cantidad": len(duplicados_nombre),
-                "ejemplos": list(duplicados_nombre.items())[:10],
-            })
+            hallazgos.append(
+                {
+                    "tipo": "duplicados-nombre",
+                    "cantidad": len(duplicados_nombre),
+                    "ejemplos": list(duplicados_nombre.items())[:10],
+                }
+            )
         if duplicados_contenido:
-            hallazgos.append({
-                "tipo": "duplicados-contenido",
-                "cantidad": len(duplicados_contenido),
-                "ejemplos": [rutas for rutas in list(duplicados_contenido.values())[:5]],
-            })
+            hallazgos.append(
+                {
+                    "tipo": "duplicados-contenido",
+                    "cantidad": len(duplicados_contenido),
+                    "ejemplos": [rutas for rutas in list(duplicados_contenido.values())[:5]],
+                }
+            )
 
         return Resultado(
             agente=self.nombre,

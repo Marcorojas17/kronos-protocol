@@ -2,6 +2,7 @@
 
 ESTADO: 🔴 MAQUETA (falta Mesa Directiva)
 """
+
 from __future__ import annotations
 
 import re
@@ -9,8 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 RE_QUORUM = re.compile(r"quorum\s*:\s*(\d+)\s*/\s*(\d+)", re.IGNORECASE)
 RE_FIRMA = re.compile(r"^firma\s*:\s*([a-f0-9]{128})$", re.MULTILINE)
@@ -45,9 +45,7 @@ class Contralor(AgenteBase):
         actas_dir = self.raiz / "06-GOBERNANZA" / "ACTAS"
 
         if not actas_dir.exists():
-            return self._resultado_maqueta(
-                "06-GOBERNANZA/ACTAS no existe todavía"
-            )
+            return self._resultado_maqueta("06-GOBERNANZA/ACTAS no existe todavía")
 
         hallazgos = []
         actas = []
@@ -62,8 +60,7 @@ class Contralor(AgenteBase):
             firmas = RE_FIRMA.findall(texto)
             quorum_match = RE_QUORUM.search(texto)
             quorum = (
-                (int(quorum_match.group(1)), int(quorum_match.group(2)))
-                if quorum_match else None
+                (int(quorum_match.group(1)), int(quorum_match.group(2))) if quorum_match else None
             )
 
             estado_acta = "ok"
@@ -74,12 +71,14 @@ class Contralor(AgenteBase):
             elif not firmas:
                 estado_acta = "sin-firmas"
 
-            actas.append({
-                "archivo": acta.name,
-                "firmas": len(firmas),
-                "quorum": quorum,
-                "estado": estado_acta,
-            })
+            actas.append(
+                {
+                    "archivo": acta.name,
+                    "firmas": len(firmas),
+                    "quorum": quorum,
+                    "estado": estado_acta,
+                }
+            )
             if estado_acta != "ok":
                 hallazgos.append({"tipo": estado_acta, "acta": acta.name})
 

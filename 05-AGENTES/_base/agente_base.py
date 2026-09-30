@@ -14,16 +14,15 @@ NO garantiza:
   - Que los archivos sean legibles (maneja PermissionError)
   - Que el resultado sea el esperado en todos los entornos
 """
+
 from __future__ import annotations
 
 import json
 import sys
 import traceback
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
-
 
 # Códigos de salida honestos
 EXIT_OK = 0
@@ -63,7 +62,7 @@ class AgenteBase:
         self.raiz = raiz or Path.cwd()
 
     def _ahora(self) -> str:
-        return datetime.now(timezone.utc).isoformat()
+        return datetime.now(UTC).isoformat()
 
     def _log_error(self, contexto: str, e: BaseException) -> None:
         """Error handling visible. Juramento 7: errores se ven en consola."""

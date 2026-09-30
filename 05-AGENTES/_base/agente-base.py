@@ -20,15 +20,15 @@ Honestidad obligatoria:
   - Si un agente está bloqueado, lo declara con `bloqueado_por`.
   - Si un agente no aporta hoy, lo declara con `util_hoy = False`.
 """
+
 from __future__ import annotations
 
 import json
 import sys
 import traceback
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 EXIT_OK = 0
 EXIT_FALLA = 1
@@ -71,7 +71,7 @@ class AgenteBase:
         self.raiz = raiz or Path.cwd()
 
     def _ahora(self) -> str:
-        return datetime.now(timezone.utc).isoformat()
+        return datetime.now(UTC).isoformat()
 
     def _log_error(self, contexto: str, e: BaseException) -> None:
         print(f"[ERROR {self.nombre}] {contexto}: {e}", file=sys.stderr)
