@@ -1,9 +1,9 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-30T04:56:33Z
+# Generado: 2026-09-30T05:03:25Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 21b639e4cd31503fdfe6bdb466664d99861ee3cdcb6d5dc49921dc90f766434f  ./00-SCHEMA/ejemplo.registro.json
-f34e61a03295e00e990458620dd1dbd289b940276cb59841a24ba7414ae11097  ./00-SCHEMA/registro.schema.json
+7637c6f61c5067a5a9ce977f6a0bddcdf0c89885e18b7d6092dc8485b22437ae  ./00-SCHEMA/registro.schema.json
 0b798c8bc4c962dd9a3a362be9f705d1c3d9a0bd0d400c2d4003fa2aadaa1562  ./02-VERIFICADOR/verificador.html
 6e0ca9c6fc32eb529323781a6a10ee38e8579a14d167a8db432d0d4e7c8b370c  ./403
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
