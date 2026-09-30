@@ -3,6 +3,7 @@
 No valida firmas (eso requiere cryptography).
 Busca placeholders, secretos expuestos y basura.
 """
+
 from __future__ import annotations
 
 import re
@@ -10,8 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 PATRONES_PELIGROSOS = [
     ("secretos", re.compile(r"(PRIVATE_KEY|SECRET_KEY|ACCESS_TOKEN)\s*=\s*[A-Za-z0-9+/=]{20,}")),
@@ -21,7 +21,19 @@ PATRONES_PELIGROSOS = [
 ]
 
 EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
-EXCLUIR_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico", ".pdf", ".zip", ".woff", ".woff2", ".ttf"}
+EXCLUIR_EXTS = {
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".ico",
+    ".pdf",
+    ".zip",
+    ".woff",
+    ".woff2",
+    ".ttf",
+}
 
 
 class AuditorExterno(AgenteBase):
@@ -50,11 +62,13 @@ class AuditorExterno(AgenteBase):
 
             for nombre, patron in PATRONES_PELIGROSOS:
                 for m in patron.finditer(texto):
-                    hallazgos.append({
-                        "tipo": nombre,
-                        "archivo": str(archivo.relative_to(self.raiz)),
-                        "linea": texto[:m.start()].count("\n") + 1,
-                    })
+                    hallazgos.append(
+                        {
+                            "tipo": nombre,
+                            "archivo": str(archivo.relative_to(self.raiz)),
+                            "linea": texto[: m.start()].count("\n") + 1,
+                        }
+                    )
 
         return Resultado(
             agente=self.nombre,
