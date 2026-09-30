@@ -1,0 +1,103 @@
+name: salud-repo
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reporte:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Analizar repo
+        run: |
+          python3 <<'EOF'
+          import os
+          from pathlib import Path
+          from collections import Counter
+
+          EXCLUIR = {'.git', 'node_modules', '__pycache__', '.pytest_cache'}
+          EXT = Counter()
+          TAMANOS = Counter()
+          TOTAL = 0
+          BASURA = []
+          PLACEHOLDERS = []
+          GRANDES = []
+
+          for p in Path('.').rglob('*'):
+              if any(part in EXCLUIR for part in p.parts):
+                  continue
+              if p.is_dir():
+                  continue
+              TOTAL += 1
+              tam = p.stat().st_size
+              if tam > 5 * 1024 * 1024:
+                  GRANDES.append((str(p), tam))
+              if p.name.startswith('._') or p.name in {'.DS_Store', 'Thumbs.db'}:
+                  BASURA.append(str(p))
+                  continue
+              ext = p.suffix or '(sin ext)'
+              EXT[ext] += 1
+              TAMANOS[ext] += tam
+              if p.suffix in {'.py', '.js', '.ts', '.md', '.json'}:
+                  try:
+                      txt = p.read_text(encoding='utf-8', errors='ignore')
+                      for marca in ['TODO', 'FIXME', 'DemoSigner', 'DEMO-NOT-FOR-PRODUCTION', 'XXX']:
+                          if marca in txt:
+                              PLACEHOLDERS.append((str(p), marca))
+                  except Exception:
+                      pass
+
+          lineas = [
+              "# Reporte de salud del repo",
+              "",
+              f"**Archivos totales:** {TOTAL}",
+              f"**Basura detectada:** {len(BASURA)}",
+              f"**Placeholders pendientes:** {len(PLACEHOLDERS)}",
+              f"**Archivos >5MB:** {len(GRANDES)}",
+              "",
+              "## Por extension",
+              "",
+              "| Extension | Cantidad | Tamano total |",
+              "|---|---|---|",
+          ]
+          for ext, n in EXT.most_common():
+              lineas.append(f"| `{ext}` | {n} | {TAMANOS[ext]//1024} KB |")
+
+          if BASURA:
+              lineas += ["", "## Basura (borrar)", ""]
+              for b in BASURA[:50]:
+                  lineas.append(f"- `{b}`")
+              if len(BASURA) > 50:
+                  lineas.append(f"- _...y {len(BASURA)-50} mas_")
+
+          if PLACEHOLDERS:
+              lineas += ["", "## Placeholders pendientes", ""]
+              for p, m in PLACEHOLDERS[:30]:
+                  lineas.append(f"- `{p}` contiene `{m}`")
+
+          if GRANDES:
+              lineas += ["", "## Archivos grandes", ""]
+              for p, t in GRANDES:
+                  lineas.append(f"- `{p}` — {t//1024//1024} MB")
+
+          Path('REPORTE-SALUD.md').write_text('\n'.join(lineas), encoding='utf-8')
+          print('\n'.join(lineas[:20]))
+          EOF
+
+      - name: Commit
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add REPORTE-SALUD.md
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: reporte semanal de salud"
+            git push
+          fi
