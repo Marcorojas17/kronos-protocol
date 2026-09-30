@@ -1,0 +1,38 @@
+name: limpiar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  limpiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Borrar basura
+        run: |
+          find . -name "._*" -type f -delete
+          find . -name ".DS_Store" -type f -delete
+          find . -name "Thumbs.db" -type f -delete
+          find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name ".pytest_cache" -exec rm -rf {} + 2>/dev/null || true
+          find . -name "*.pyc" -type f -delete
+
+      - name: Commit si hubo cambios
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: limpieza automatica"
+            git push
+          fi
