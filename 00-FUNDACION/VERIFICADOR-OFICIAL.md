@@ -9,14 +9,14 @@
 
 ## Identificación
 
-| Campo | Valor |
-|---|---|
-| Archivo | `02-VERIFICADOR/verificador.html` |
-| Versión | v0.3 |
-| SHA-256 del archivo | `b01baf1ccc19ac0d5a47bec4ab8e2bdc0b0e0e7ce1d6ffff829a061622e0fa33` |
-| Fecha de cálculo | 2026-09-30 |
+| Campo                  | Valor                                                              |
+| ---------------------- | ------------------------------------------------------------------ |
+| Archivo                | `02-VERIFICADOR/verificador.html`                                  |
+| Versión                | v0.3                                                               |
+| SHA-256 del archivo    | `b01baf1ccc19ac0d5a47bec4ab8e2bdc0b0e0e7ce1d6ffff829a061622e0fa33` |
+| Fecha de cálculo       | 2026-09-30                                                         |
 | Clave pública Fundador | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` |
-| Firma Ed25519 del hash | `PENDIENTE_DE_FIRMAR` |
+| Firma Ed25519 del hash | `PENDIENTE_DE_FIRMAR`                                              |
 
 ---
 
@@ -38,3 +38,4 @@ Desde cualquier terminal:
 
 ```sh
 sha256sum 02-VERIFICADOR/verificador.html
+```
