@@ -1,17 +1,6 @@
 """095-cartografo: genera mapa ASCII del repo por niveles.
 
 ESTADO: 🟡 MVP
-SUPUESTOS:
-  - El repo tiene raíz accesible
-  - Profundidad máxima 3 es suficiente para el mapa
-RIESGOS:
-  - Repos muy anchos generan MAPA.md grandes
-  - Nombres con caracteres raros pueden verse mal en ASCII
-CIMIENTOS:
-  - (ninguno obligatorio)
-NO GARANTIZA:
-  - Que el mapa se vea bien en todos los terminales
-  - Que profundidad 3 capture toda la estructura relevante
 """
 from __future__ import annotations
 
@@ -30,6 +19,9 @@ class Cartografo(AgenteBase):
     nombre = "095-cartografo"
     descripcion = "Genera mapa ASCII del repo"
     estado = "🟡 MVP"
+    rol_pipeline = "📤 SALIDA"
+    util_hoy = True
+    bloqueado_por = []
     supuestos = [
         "El repo tiene raíz accesible",
         "Profundidad 3 es suficiente",
@@ -74,8 +66,6 @@ class Cartografo(AgenteBase):
         lineas.append("```")
         lineas.append("")
         lineas.append(f"_Generado automáticamente. Profundidad máxima: {MAX_PROFUNDIDAD}._")
-        lineas.append("")
-        lineas.append(f"_SHA-256 del mapa: pendiente de calcular al publicar._")
 
         texto = "\n".join(lineas)
         salida = self.raiz / "MAPA.md"
@@ -91,6 +81,9 @@ class Cartografo(AgenteBase):
         return Resultado(
             agente=self.nombre,
             estado=self.estado,
+            rol_pipeline=self.rol_pipeline,
+            util_hoy=self.util_hoy,
+            bloqueado_por=self.bloqueado_por,
             timestamp=self._ahora(),
             ok=escrito,
             hallazgos=[] if escrito else [{"tipo": "error-escritura", "detalle": error_msg}],
