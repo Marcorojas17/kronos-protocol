@@ -32,7 +32,8 @@ kronos-protocol/
 │   └── verificador.html
 ├── 05-AGENTES/
 │   ├── 090-arquitecto/
-│   │   └── arquitecto.py
+│   │   ├── arquitecto.py
+│   │   └── ultimo.json
 │   ├── 091-contralor/
 │   │   └── contralor.py
 │   ├── 092-auditor-externo/
@@ -447,6 +448,7 @@ kronos-protocol/
 ├── LICENSE
 ├── LICENSE-CC-BY-NC-ND
 ├── MANIFEST.sha256
+├── MAPA.md
 ├── PROTOCOL.md
 ├── Pnp
 ├── README.md
