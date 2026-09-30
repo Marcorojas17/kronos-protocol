@@ -12,16 +12,16 @@
 
 ## Obras registradas
 
-| Obra | Registro | Fecha |
-|---|---|---|
-| Acta Fundacional | Safe Creative `2607086319439` | 2026-09-29 |
-| Arquitectura | Safe Creative `2607146379465` (código `9VKUS8`) | 2026-09-29 |
+| Obra             | Registro                                        | Fecha      |
+| ---------------- | ----------------------------------------------- | ---------- |
+| Acta Fundacional | Safe Creative `2607086319439`                   | 2026-09-29 |
+| Arquitectura     | Safe Creative `2607146379465` (código `9VKUS8`) | 2026-09-29 |
 
 ## Anclajes Ethereum
 
-| Anclaje | Transacción |
-|---|---|
-| Acta Fundacional #1 | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` |
+| Anclaje             | Transacción                                                           |
+| ------------------- | --------------------------------------------------------------------- |
+| Acta Fundacional #1 | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e`  |
 | Acta Fundacional #2 | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` |
 
 ## Proyectos con autoría reforzada
@@ -49,6 +49,6 @@ comerciales y sin obras derivadas. Todos los derechos reservados.
 
 ---
 
-*○_● · ◢◤◥◣ · ◥◣◢◤*
-*51% HUMANO · 49% IA · 100% REAL*
-*"El legado no se hereda. Se firma."*
+_○_● · ◢◤◥◣ · ◥◣◢◤_
+_51% HUMANO · 49% IA · 100% REAL_
+_"El legado no se hereda. Se firma."_
