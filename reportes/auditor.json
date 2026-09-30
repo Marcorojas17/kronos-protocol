@@ -1,0 +1,67 @@
+{
+  "agente": "092-auditor-externo",
+  "estado": "🟡 MVP",
+  "timestamp": "2026-09-30T15:04:14.181018+00:00",
+  "ok": false,
+  "hallazgos": [
+    {
+      "tipo": "pendientes",
+      "archivo": "02-VERIFICADOR/verificador.html",
+      "linea": 151
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "02-VERIFICADOR/verificador.html",
+      "linea": 152
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 27
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 28
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": ".github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": ".github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "05-AGENTES/092-auditor-externo/auditor.py",
+      "linea": 34
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "05-AGENTES/092-auditor-externo/auditor.py",
+      "linea": 34
+    }
+  ],
+  "metricas": {
+    "archivos_escaneados": 376,
+    "hallazgos": 8,
+    "truncado": false
+  },
+  "supuestos": [
+    "Archivos de texto UTF-8 (o UTF-8 con errores ignorables)",
+    "Archivos < 500 KB son los relevantes"
+  ],
+  "riesgos": [
+    "Falsos positivos en binarios con extensión .txt",
+    "Falsos negativos en archivos > 500 KB"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Detectar TODOS los secretos (solo patrones conocidos)",
+    "Detectar secretos cifrados o codificados",
+    "Reemplazar auditoría humana"
+  ]
+}

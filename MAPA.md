@@ -38,7 +38,8 @@ kronos-protocol/
 │   │   ├── contralor.py
 │   │   └── ultimo.json
 │   ├── 092-auditor-externo/
-│   │   └── auditor.py
+│   │   ├── auditor.py
+│   │   └── ultimo.json
 │   ├── 093-relator/
 │   │   └── relator.py
 │   ├── 094-bibliotecario/
