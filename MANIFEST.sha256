@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-30T09:02:31Z
+# Generado: 2026-09-30T09:07:19Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 b39cfdf96d213d663f6a56819c2e3e5391007b70336c4f7de45ce4b0539997ba  ./00-FUNDACION/VERIFICADOR-OFICIAL.md
@@ -12,7 +12,8 @@ b01baf1ccc19ac0d5a47bec4ab8e2bdc0b0e0e7ce1d6ffff829a061622e0fa33  ./02-VERIFICAD
 022d49923590f4833045b8fb98897d86cd361dc283d3419abe73f71a5d653769  ./05-AGENTES/092-auditor-externo/auditor.py
 3a1277daddf2f57b1973c9888dc078dccb6c3281628d90746ee39bdd15495828  ./05-AGENTES/093-relator/relator.py
 d919b8ca0bb6d9efa1b3dfdd82b161e45ba2ac91b91c8971b10ef55df3ac2004  ./05-AGENTES/094-bibliotecario/bibliotecario.py
-525b64bbec23d131c5b9b522c53f6aefce4cbdae49ff49e7a3f30dfccef8c20d  ./05-AGENTES/095-cartografo/cartografo.py
+43a3d7baf1520be11030e2d2d164150281fcabdd9dd08d5ab767755eab714994  ./05-AGENTES/095-cartografo/cartografo.py
+7d955910174b5c2459943a400c7f0d235edef5bdbaa6d287decd9383f864e0e5  ./05-AGENTES/README.md
 43dbefe3dbc9b8a2ef6d50ee5c57968ee1c5a27b8bcccc4a4516eaa996cacb27  ./05-AGENTES/_base/agente-base.py
 63e1273ccb2d3e173c299926a27d2b2133e6ab27f1bd0b4ef5aacab2f934993a  ./07-LLAVES/ATESTACIONES/082-tlachixqui.json
 3c0c37deb72b4ec65ad738ff23713a16ca1edbbf9171e6516ca278db0a40a069  ./07-LLAVES/ATESTACIONES/esquema.json
