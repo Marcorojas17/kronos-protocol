@@ -1,8 +1,9 @@
 """Emision, verificacion y migracion con doble capa y domain separation."""
+
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from typing import Iterable
+from collections.abc import Iterable
+from datetime import UTC, datetime
 from uuid import uuid4
 
 from ..crypto.canonicalization import canonicalize
@@ -20,7 +21,7 @@ GENESIS_HASH = "0" * 128
 
 
 def _now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def _hash_hex(payload: bytes, algo: str) -> str:
@@ -67,9 +68,7 @@ def _build_record(
             signer_id=signer.signer_id,
             algorithm=signer.algorithm,
             public_key_hex=signer.public_key_hex(),
-            signature_hex=signer.sign(
-                build_signed_message(hash_registro, signer.algorithm)
-            ).hex(),
+            signature_hex=signer.sign(build_signed_message(hash_registro, signer.algorithm)).hex(),
         )
         for signer in signers
     )
@@ -148,12 +147,14 @@ def verify_record(
             valido_hasta = atestaciones[sig.signer_id]
             vigente = record.created_at <= valido_hasta
 
-        sig_results.append({
-            "signer_id": sig.signer_id,
-            "algorithm": sig.algorithm,
-            "valid": valida,
-            "vigente": vigente,
-        })
+        sig_results.append(
+            {
+                "signer_id": sig.signer_id,
+                "algorithm": sig.algorithm,
+                "valid": valida,
+                "vigente": vigente,
+            }
+        )
 
     firmas_ok = (
         len(sig_results) > 0
