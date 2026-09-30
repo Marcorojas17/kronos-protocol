@@ -24,8 +24,10 @@ kronos-protocol/
 │   │   └── verify.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── 00-FUNDACION/
+│   ├── INDICE.md
 │   └── VERIFICADOR-OFICIAL.md
 ├── 00-SCHEMA/
+│   ├── INDICE.md
 │   ├── ejemplo.registro.json
 │   └── registro.schema.json
 ├── 02-VERIFICADOR/
@@ -49,11 +51,13 @@ kronos-protocol/
 │   ├── _base/
 │   │   ├── agente-base.py
 │   │   └── agente_base.py
+│   ├── INDICE.md
 │   └── README.md
 ├── 07-LLAVES/
-│   └── ATESTACIONES/
-│       ├── 082-tlachixqui.json
-│       └── esquema.json
+│   ├── ATESTACIONES/
+│   │   ├── 082-tlachixqui.json
+│   │   └── esquema.json
+│   └── INDICE.md
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -196,6 +200,7 @@ kronos-protocol/
 │   │   └── README.md
 │   ├── ARQUITECTURA-VIVA.md
 │   ├── EXPLICACION-UNIVERSAL.md
+│   ├── INDICE.md
 │   ├── MAPA.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
