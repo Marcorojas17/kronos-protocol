@@ -1,0 +1,287 @@
+{
+  "agente": "094-bibliotecario",
+  "estado": "🟡 MVP",
+  "timestamp": "2026-09-30T15:05:27.459074+00:00",
+  "ok": true,
+  "hallazgos": [
+    {
+      "tipo": "sospechosos-contextuales",
+      "cantidad": 3,
+      "rutas": [
+        "i",
+        "Pnp",
+        "403"
+      ],
+      "nota": "revisar manualmente antes de borrar"
+    },
+    {
+      "tipo": "duplicados-nombre",
+      "cantidad": 12,
+      "ejemplos": [
+        [
+          "manifest.json",
+          [
+            "manifest.json",
+            "evidence/manifest.json",
+            "projects/dmd-33/manifest.json"
+          ]
+        ],
+        [
+          "index.html",
+          [
+            "index.html",
+            "agentes/temachtiani-reclutador/index.html",
+            "agentes/cuicatl-publicista/index.html",
+            "agentes/tlamatini-cronista/index.html",
+            "agentes/tlachixqui-auditor/index.html",
+            "agentes/tlapohualli-analista/index.html",
+            "agentes/tonal-notario/index.html",
+            "movimiento/index.html",
+            "movimiento/registro-fundacional/index.html",
+            "operacion/rituales/index.html",
+            "operacion/dashboard-salud/index.html",
+            "orquestacion/event-bus/index.html",
+            "orquestacion/router-modulos/index.html",
+            "certificacion/notario-kronos/index.html",
+            "certificacion/anclaje-manifest/index.html",
+            "certificacion/verificador-publico/index.html",
+            "certificacion/sello-tiempo/index.html",
+            "certificacion/manifest-integridad/index.html",
+            "certificacion/emisor-certificados/index.html",
+            "identidad/roles-permisos/index.html",
+            "identidad/registro-humano/index.html",
+            "identidad/registro-ia/index.html",
+            "cierre/export-cifrado/index.html",
+            "cierre/fin-digno/index.html",
+            "modulos/evidence-os/index.html",
+            "modulos/boveda-voz/index.html",
+            "cimiento/anclaje-ethereum/index.html",
+            "cimiento/storage-dexie/index.html",
+            "cimiento/cripto-core/index.html",
+            "gobernanza/propuestas-votacion/index.html",
+            "gobernanza/quorum-mayorias/index.html",
+            "gobernanza/revocacion-auditoria/index.html",
+            "gobernanza/ejecucion-decisiones/index.html",
+            "legado/autoria/index.html",
+            "legado/genesis/index.html",
+            "legado/manifiesto/index.html",
+            "legado/filosofia/index.html",
+            "docs/index.html",
+            "docs/CIUDAD/index.html",
+            "kodice-secreto/index.html",
+            "projects/evidence-os/index.html",
+            "projects/kronos-vault/index.html",
+            "projects/genesis-miner/index.html",
+            "projects/yejida/index.html",
+            "projects/dmd-33/index.html",
+            "projects/boveda/index.html",
+            "projects/cymatic/index.html",
+            "projects/bobeda/index.html",
+            "projects/acta/index.html",
+            "projects/md33/index.html"
+          ]
+        ],
+        [
+          "MAPA.md",
+          [
+            "MAPA.md",
+            "docs/MAPA.md"
+          ]
+        ],
+        [
+          "README.md",
+          [
+            "README.md",
+            "agentes/README.md",
+            "laboratorio/README.md",
+            "movimiento/assets/art/README.md",
+            "movimiento/registro-fundacional/README.md",
+            "operacion/rituales/README.md",
+            "operacion/dashboard-salud/README.md",
+            "orquestacion/event-bus/README.md",
+            "orquestacion/router-modulos/README.md",
+            "certificacion/notario-kronos/README.md",
+            "identidad/roles-permisos/README.md",
+            "identidad/registro-humano/README.md",
+            "identidad/registro-ia/README.md",
+            "cierre/export-cifrado/README.md",
+            "cierre/fin-digno/README.md",
+            "tests/README.md",
+            "modulos/evidence-os/README.md",
+            "modulos/boveda-voz/README.md",
+            "05-AGENTES/README.md",
+            "cimiento/anclaje-ethereum/README.md",
+            "cimiento/storage-dexie/README.md",
+            "cimiento/cripto-core/README.md",
+            "gobernanza/propuestas-votacion/README.md",
+            "gobernanza/quorum-mayorias/README.md",
+            "gobernanza/revocacion-auditoria/README.md",
+            "gobernanza/ejecucion-decisiones/README.md",
+            "legado/autoria/README.md",
+            "legado/genesis/README.md",
+            "legado/manifiesto/README.md",
+            "legado/filosofia/README.md",
+            "docs/README.md",
+            "docs/IP/README.md",
+            "certificates/README.md",
+            "archive/README.md",
+            "projects/k4-framework/README.md",
+            "projects/evidence-os/README.md",
+            "projects/kronos-vault/README.md",
+            "projects/genesis-miner/README.md",
+            "projects/yejida/README.md",
+            "projects/dmd-33/README.md",
+            "projects/cymatic/README.md",
+            "projects/acta/README.md",
+            "projects/md33/README.md"
+          ]
+        ],
+        [
+          "politica.md",
+          [
+            "agentes/temachtiani-reclutador/politica.md",
+            "agentes/cuicatl-publicista/politica.md",
+            "agentes/tlamatini-cronista/politica.md",
+            "agentes/tlachixqui-auditor/politica.md",
+            "agentes/tlapohualli-analista/politica.md",
+            "agentes/tonal-notario/politica.md",
+            "certificacion/notario-kronos/politica.md"
+          ]
+        ],
+        [
+          "prompt.md",
+          [
+            "agentes/cuicatl-publicista/prompt.md",
+            "agentes/tlamatini-cronista/prompt.md",
+            "certificacion/notario-kronos/prompt.md"
+          ]
+        ],
+        [
+          "styles.css",
+          [
+            "movimiento/registro-fundacional/styles.css",
+            "operacion/rituales/styles.css",
+            "operacion/dashboard-salud/styles.css",
+            "orquestacion/event-bus/styles.css",
+            "orquestacion/router-modulos/styles.css",
+            "certificacion/manifest-integridad/styles.css",
+            "identidad/roles-permisos/styles.css",
+            "identidad/registro-humano/styles.css",
+            "identidad/registro-ia/styles.css",
+            "cierre/export-cifrado/styles.css",
+            "cierre/fin-digno/styles.css",
+            "modulos/evidence-os/styles.css",
+            "modulos/boveda-voz/styles.css",
+            "cimiento/anclaje-ethereum/styles.css",
+            "cimiento/storage-dexie/styles.css",
+            "cimiento/cripto-core/styles.css",
+            "gobernanza/propuestas-votacion/styles.css",
+            "legado/autoria/styles.css",
+            "legado/genesis/styles.css",
+            "legado/manifiesto/styles.css",
+            "legado/filosofia/styles.css"
+          ]
+        ],
+        [
+          "manual.html",
+          [
+            "movimiento/registro-fundacional/manual.html",
+            "operacion/rituales/manual.html",
+            "operacion/dashboard-salud/manual.html",
+            "orquestacion/event-bus/manual.html",
+            "orquestacion/router-modulos/manual.html",
+            "certificacion/notario-kronos/manual.html",
+            "certificacion/anclaje-manifest/manual.html",
+            "certificacion/verificador-publico/manual.html",
+            "certificacion/sello-tiempo/manual.html",
+            "certificacion/emisor-certificados/manual.html",
+            "identidad/roles-permisos/manual.html",
+            "identidad/registro-humano/manual.html",
+            "identidad/registro-ia/manual.html",
+            "cierre/export-cifrado/manual.html",
+            "cierre/fin-digno/manual.html",
+            "modulos/evidence-os/manual.html",
+            "modulos/boveda-voz/manual.html",
+            "cimiento/anclaje-ethereum/manual.html",
+            "cimiento/storage-dexie/manual.html",
+            "cimiento/cripto-core/manual.html",
+            "gobernanza/propuestas-votacion/manual.html",
+            "gobernanza/quorum-mayorias/manual.html",
+            "gobernanza/revocacion-auditoria/manual.html",
+            "gobernanza/ejecucion-decisiones/manual.html",
+            "legado/autoria/manual.html",
+            "legado/genesis/manual.html",
+            "legado/manifiesto/manual.html",
+            "legado/filosofia/manual.html"
+          ]
+        ],
+        [
+          "AUTORIA",
+          [
+            "operacion/rituales/AUTORIA",
+            "operacion/dashboard-salud/AUTORIA",
+            "orquestacion/event-bus/AUTORIA",
+            "orquestacion/router-modulos/AUTORIA",
+            "identidad/roles-permisos/AUTORIA",
+            "identidad/registro-humano/AUTORIA",
+            "identidad/registro-ia/AUTORIA",
+            "cierre/export-cifrado/AUTORIA",
+            "cierre/fin-digno/AUTORIA",
+            "modulos/evidence-os/AUTORIA",
+            "modulos/boveda-voz/AUTORIA",
+            "cimiento/AUTORIA",
+            "cimiento/anclaje-ethereum/AUTORIA",
+            "cimiento/storage-dexie/AUTORIA",
+            "cimiento/cripto-core/AUTORIA"
+          ]
+        ],
+        [
+          "evidence.py",
+          [
+            "src/kronos360/services/evidence.py",
+            "src/kronos360/models/evidence.py"
+          ]
+        ]
+      ]
+    },
+    {
+      "tipo": "duplicados-contenido",
+      "cantidad": 3,
+      "ejemplos": [
+        [
+          "cimiento/AUTORIA",
+          "cimiento/anclaje-ethereum/AUTORIA"
+        ],
+        [
+          "reportes/bibliotecario.json",
+          "reportes/cartografo.json",
+          "reportes/relator.json"
+        ],
+        [
+          "projects/boveda/index.html",
+          "projects/bobeda/index.html"
+        ]
+      ]
+    }
+  ],
+  "metricas": {
+    "basura": 0,
+    "sospechosos": 3,
+    "duplicados_nombre": 12,
+    "duplicados_contenido": 3
+  },
+  "supuestos": [
+    "Archivos < 100 KB son candidatos a hashing",
+    "Nombres basura: .DS_Store, Thumbs.db, ._*",
+    "Nombres sospechosos contextuales: i, Pnp, 403"
+  ],
+  "riesgos": [
+    "Falsos positivos: 'i' puede ser legítimo",
+    "Falsos negativos: duplicados > 100 KB no se detectan"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Detectar todos los duplicados (solo < 100 KB)",
+    "Distinguir basura real de archivos legítimos con nombres raros"
+  ]
+}
