@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: commits-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -13,23 +17,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Generar indices
         run: |
-          python3 <<'EOF'
+          python3 <<'PYEOF'
           import os
           from pathlib import Path
 
-          EXCLUIR = {'.git', 'node_modules', '__pycache__', '.pytest_cache', '.github'}
+          EXCLUIR = {'.git', 'node_modules', '__pycache__', '.pytest_cache', '.github', '.venv'}
           EXCLUIR_NOMBRES = lambda n: n.startswith('._') or n in {'.DS_Store', 'Thumbs.db'}
-          RAICES = ['00-ACTA', '01-SCHEMA', '02-VERIFICADOR', '03-KRONOS-PROTOCOL',
-                    '04-KRONOS360', '05-KODICE', '06-LLAVES', '07-DOCS']
+          RAICES = ['00-FUNDACION', '00-SCHEMA', '02-VERIFICADOR', '05-AGENTES',
+                    '07-LLAVES', 'docs']
 
           for raiz in RAICES:
               ruta = Path(raiz)
               if not ruta.exists():
                   continue
-              lineas = [f"# Indice: {raiz}", "", f"_Generado automaticamente._", ""]
+              lineas = [f"# Indice: {raiz}", "", "_Generado automaticamente._", ""]
               for item in sorted(ruta.rglob('*')):
                   if any(part in EXCLUIR for part in item.parts):
                       continue
@@ -40,11 +46,11 @@ jobs:
                       lineas.append(f"- `{rel}/`")
                   else:
                       tam = item.stat().st_size
-                      lineas.append(f"- [{rel}]({rel}) — {tam} bytes")
+                      lineas.append(f"- [{rel}]({rel}) - {tam} bytes")
               lineas.append("")
               (ruta / 'INDICE.md').write_text('\n'.join(lineas), encoding='utf-8')
               print(f"Generado: {raiz}/INDICE.md")
-          EOF
+          PYEOF
 
       - name: Commit
         run: |
@@ -54,6 +60,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sin cambios"
           else
-            git commit -m "chore: regenerar indices"
+            git commit -m "chore: regenerar indices [skip ci]"
+            git pull --rebase origin main
             git push
           fi
