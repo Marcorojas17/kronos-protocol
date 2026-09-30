@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Marcorojas17/kronos-protocol/00-SCHEMA/registro.schema.json",
+  "title": "Registro KRONOS-KODICE",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "tipo",
+    "interaction_id",
+    "timestamp",
+    "responsable",
+    "payload_hash",
+    "prev_hash",
+    "hash_registro",
+    "firma"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "articulo-constitucional",
+        "documento-fundacional",
+        "certificado-kodice",
+        "acto-agente",
+        "aprobacion-humana",
+        "anclaje-externo"
+      ]
+    },
+    "interaction_id": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "responsable": {
+      "type": "object",
+      "required": ["id", "tipo"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "tipo": {
+          "type": "string",
+          "enum": ["fundador", "agente-kintsugi", "operador-kodice", "ciudadano", "institucion"]
+        }
+      }
+    },
+    "payload_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "prev_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "hash_registro": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "firma": {
+      "type": "object",
+      "required": ["algoritmo", "firma_hex", "firmante"],
+      "additionalProperties": false,
+      "properties": {
+        "algoritmo": { "type": "string", "const": "Ed25519" },
+        "firma_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+        "firmante": { "type": "string" },
+        "atestacion": {
+          "type": "object",
+          "required": ["firma_hex", "firmante"],
+          "additionalProperties": false,
+          "properties": {
+            "firma_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+            "firmante": { "type": "string" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "obra_ref": { "type": "string" },
+        "sector": { "type": "string" },
+        "session_id": { "type": "string" },
+        "nota": { "type": "string" }
+      }
+    }
+  }
+}
