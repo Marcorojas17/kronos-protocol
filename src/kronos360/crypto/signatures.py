@@ -1,4 +1,9 @@
-"""Firmas digitales reales. Sin placeholders."""
+"""Firmas digitales con domain separation.
+
+Cada firma incluye un prefijo de dominio que liga el mensaje al protocolo,
+version y algoritmo. Esto evita que una firma valida para un contexto
+se reutilice en otro (ataque de sustitucion/stripping).
+"""
 from __future__ import annotations
 
 from typing import Protocol
@@ -10,6 +15,23 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 from dilithium_py.ml_dsa import ML_DSA_65
+
+# Prefijo de dominio. NUNCA cambiar sin migrar todos los registros.
+DOMAIN_SEPARATOR = b"KRONOS-v1:sign:hybrid"
+
+
+def build_signed_message(hash_registro: str, alg_id: str) -> bytes:
+    """Construye el mensaje canonico que se firma.
+
+    Formato: DOMAIN_SEPARATOR || '|' || alg_id || '|' || hash_registro
+    """
+    return (
+        DOMAIN_SEPARATOR
+        + b"|"
+        + alg_id.encode("ascii")
+        + b"|"
+        + hash_registro.encode("ascii")
+    )
 
 
 class Signer(Protocol):
