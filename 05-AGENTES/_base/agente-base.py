@@ -3,14 +3,14 @@
 Determinista. Sin LLM. Sin dependencias externas.
 Cada agente hereda y define su `correr()`.
 """
+
 from __future__ import annotations
 
 import json
 import sys
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
 
 
 @dataclass
@@ -43,7 +43,7 @@ class AgenteBase:
         self.raiz = raiz or Path.cwd()
 
     def _ahora(self) -> str:
-        return datetime.now(timezone.utc).isoformat()
+        return datetime.now(UTC).isoformat()
 
     def correr(self) -> Resultado:
         raise NotImplementedError
