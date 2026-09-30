@@ -1,0 +1,53 @@
+name: formatear
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  formatear:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar herramientas
+        run: |
+          pip install ruff
+          npm install -g prettier
+
+      - name: Formatear Python
+        run: |
+          find . -name "*.py" -not -path "./.git/*" -not -path "*/node_modules/*" \
+            -exec ruff format {} + 2>/dev/null || true
+          find . -name "*.py" -not -path "./.git/*" -not -path "*/node_modules/*" \
+            -exec ruff check --fix {} + 2>/dev/null || true
+
+      - name: Formatear JS/TS/JSON/MD
+        run: |
+          find . \( -name "*.js" -o -name "*.ts" -o -name "*.json" -o -name "*.md" \) \
+            -not -path "./.git/*" -not -path "*/node_modules/*" \
+            -exec prettier --write --no-error-on-unmatched-pattern {} + 2>/dev/null || true
+
+      - name: Commit
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: formateo automatico"
+            git push
+          fi
