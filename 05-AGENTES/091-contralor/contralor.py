@@ -3,6 +3,7 @@
 Revisa 06-GOBERNANZA/ACTAS/*.md buscando bloque de firmas.
 No verifica criptografia (eso requiere cryptography). Solo estructura.
 """
+
 from __future__ import annotations
 
 import re
@@ -10,8 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 RE_QUORUM = re.compile(r"quorum\s*:\s*(\d+)\s*/\s*(\d+)", re.IGNORECASE)
 RE_FIRMA = re.compile(r"^firma\s*:\s*([a-f0-9]{128})$", re.MULTILINE)
@@ -31,10 +31,12 @@ class Contralor(AgenteBase):
                 agente=self.nombre,
                 timestamp=self._ahora(),
                 ok=True,
-                hallazgos=[{
-                    "tipo": "sin-mesa",
-                    "detalle": "06-GOBERNANZA/ACTAS no existe todavia",
-                }],
+                hallazgos=[
+                    {
+                        "tipo": "sin-mesa",
+                        "detalle": "06-GOBERNANZA/ACTAS no existe todavia",
+                    }
+                ],
                 metricas={"actas": 0},
             )
 
@@ -43,8 +45,7 @@ class Contralor(AgenteBase):
             firmas = RE_FIRMA.findall(texto)
             quorum_match = RE_QUORUM.search(texto)
             quorum = (
-                (int(quorum_match.group(1)), int(quorum_match.group(2)))
-                if quorum_match else None
+                (int(quorum_match.group(1)), int(quorum_match.group(2))) if quorum_match else None
             )
 
             estado = "ok"
@@ -55,12 +56,14 @@ class Contralor(AgenteBase):
             elif not firmas:
                 estado = "sin-firmas"
 
-            actas.append({
-                "archivo": acta.name,
-                "firmas": len(firmas),
-                "quorum": quorum,
-                "estado": estado,
-            })
+            actas.append(
+                {
+                    "archivo": acta.name,
+                    "firmas": len(firmas),
+                    "quorum": quorum,
+                    "estado": estado,
+                }
+            )
             if estado != "ok":
                 hallazgos.append({"tipo": estado, "acta": acta.name})
 
