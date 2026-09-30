@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Marcorojas17/kronos-protocol/00-SCHEMA/registro.schema.json",
-  "title": "Registro KRONOS-KODICE",
-  "schema_version": "1.1.0",
+  "title": "Registro KRONOS-KODICE-kronos360",
+  "schema_version": "2.0.0",
   "type": "object",
   "required": [
     "schema_version",
@@ -11,6 +11,7 @@
     "timestamp",
     "responsable",
     "payload_hash",
+    "hash_algoritmo",
     "prev_hash",
     "hash_registro",
     "firma"
@@ -19,8 +20,7 @@
   "properties": {
     "schema_version": {
       "type": "string",
-      "enum": ["1.0.0", "1.1.0"],
-      "description": "Version del schema. 1.0.0 = sin economia. 1.1.0 = con economia."
+      "enum": ["1.0.0", "1.1.0", "2.0.0"]
     },
     "tipo": {
       "type": "string",
@@ -30,7 +30,8 @@
         "certificado-kodice",
         "acto-agente",
         "aprobacion-humana",
-        "anclaje-externo"
+        "anclaje-externo",
+        "evidencia-kronos360"
       ]
     },
     "interaction_id": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
@@ -43,72 +44,72 @@
         "id": { "type": "string" },
         "tipo": {
           "type": "string",
-          "enum": ["fundador", "agente-kintsugi", "operador-kodice", "ciudadano", "institucion"]
+          "enum": ["fundador", "agente-kintsugi", "operador-kodice", "ciudadano", "institucion", "operador-kronos360"]
         }
       }
     },
-    "payload_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "hash_algoritmo": {
+      "type": "string",
+      "enum": ["SHA-256", "SHA3-512"],
+      "description": "Algoritmo del payload_hash. KRONOS usa SHA-256. kronos360 usa SHA3-512."
+    },
+    "payload_hash": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
     "prev_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "hash_registro": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "hash_registro": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
     "firma": {
       "type": "object",
       "required": ["algoritmo", "firma_hex", "firmante"],
       "additionalProperties": false,
       "properties": {
-        "algoritmo": { "type": "string", "const": "Ed25519" },
-        "firma_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+        "algoritmo": {
+          "type": "string",
+          "enum": ["Ed25519", "ML-DSA-65", "hibrido"]
+        },
+        "firma_hex": {
+          "type": "string",
+          "description": "Firma en hex. Ed25519: 128 chars. ML-DSA-65: variable. Hibrido: objeto."
+        },
         "firmante": { "type": "string" },
         "atestacion": {
           "type": "object",
           "required": ["firma_hex", "firmante"],
           "additionalProperties": false,
           "properties": {
-            "firma_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+            "firma_hex": { "type": "string" },
             "firmante": { "type": "string" }
+          }
+        },
+        "firmas": {
+          "type": "array",
+          "description": "Usado cuando algoritmo = hibrido. Array de firmas individuales.",
+          "items": {
+            "type": "object",
+            "required": ["algoritmo", "firma_hex", "firmante"],
+            "additionalProperties": false,
+            "properties": {
+              "algoritmo": { "type": "string", "enum": ["Ed25519", "ML-DSA-65"] },
+              "firma_hex": { "type": "string" },
+              "firmante": { "type": "string" }
+            }
           }
         }
       }
     },
     "economia": {
       "type": "object",
-      "description": "Opcional desde v1.1.0. Modelo economico del registro. Ausente = gratuito.",
       "additionalProperties": false,
       "properties": {
-        "tipo": {
-          "type": "string",
-          "enum": ["gratuito", "pago-unico", "suscripcion", "licencia", "seguro"]
-        },
-        "emisor_id": {
-          "type": "string",
-          "description": "Quien cobra. Identificador del operador o institucion."
-        },
-        "receptor_id": {
-          "type": "string",
-          "description": "Quien paga. Identificador del cliente o institucion."
-        },
-        "licencia_operador": {
-          "type": "string",
-          "description": "Bajo que licencia se emite. Ej: KODICE-MX-001."
-        },
-        "monto": {
-          "type": "number",
-          "minimum": 0
-        },
-        "moneda": {
-          "type": "string",
-          "enum": ["MXN", "USD", "USDC", "EUR"]
-        }
+        "tipo": { "type": "string", "enum": ["gratuito", "pago-unico", "suscripcion", "licencia", "seguro"] },
+        "emisor_id": { "type": "string" },
+        "receptor_id": { "type": "string" },
+        "licencia_operador": { "type": "string" },
+        "monto": { "type": "number", "minimum": 0 },
+        "moneda": { "type": "string", "enum": ["MXN", "USD", "USDC", "EUR"] }
       }
     },
     "metadata": {
       "type": "object",
-      "additionalProperties": true,
-      "properties": {
-        "obra_ref": { "type": "string" },
-        "sector": { "type": "string" },
-        "session_id": { "type": "string" },
-        "nota": { "type": "string" }
-      }
+      "additionalProperties": true
     }
   }
 }
