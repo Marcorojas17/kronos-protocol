@@ -1,0 +1,29 @@
+{
+  "agente": "091-contralor",
+  "estado": "🟡 MVP",
+  "timestamp": "2026-09-30T15:03:29.715440+00:00",
+  "ok": true,
+  "hallazgos": [
+    {
+      "tipo": "sin-mesa",
+      "detalle": "06-GOBERNANZA/ACTAS no existe todavía"
+    }
+  ],
+  "metricas": {
+    "actas": 0
+  },
+  "supuestos": [
+    "Actas en 06-GOBERNANZA/ACTAS/",
+    "Cada acta declara 'quorum: N/M'",
+    "Cada acta declara firmas como 'firma: <128hex>'"
+  ],
+  "riesgos": [
+    "Cambio de formato de acta rompe el regex",
+    "No verifica criptografía (requiere cryptography)"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Que las firmas sean válidas criptográficamente",
+    "Que el quórum declarado sea suficiente"
+  ]
+}
