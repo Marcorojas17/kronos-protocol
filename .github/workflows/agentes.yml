@@ -1,0 +1,44 @@
+name: agentes
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  correr-agentes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Correr los 6 agentes
+        run: |
+          mkdir -p reportes
+          for agente in 090-arquitecto/arquitecto 091-contralor/contralor \
+                        092-auditor-externo/auditor 093-relator/relator \
+                        094-bibliotecario/bibliotecario 095-cartografo/cartografo; do
+            echo "=== $agente ==="
+            python3 "05-AGENTES/$agente.py" > "reportes/$(basename $agente).json" || true
+          done
+          echo "Reportes generados:"
+          ls -la reportes/
+
+      - name: Commit reportes
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add reportes/ MAPA.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: reportes de agentes [skip ci]"
+            git push
+          fi
