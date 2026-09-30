@@ -2,6 +2,7 @@
 
 Cuenta archivos, tamanos y tipos. Base para el CHANGELOG automatico.
 """
+
 from __future__ import annotations
 
 import sys
@@ -9,8 +10,7 @@ from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 EXCLUIR_DIRS = {".git", "node_modules", "__pycache__", ".venv", ".pytest_cache"}
 
@@ -43,10 +43,7 @@ class Relator(AgenteBase):
             hallazgos=[],
             metricas={
                 "total_archivos": total,
-                "por_extension": [
-                    {"ext": e, "cantidad": n, "bytes": tamanos[e]}
-                    for e, n in top
-                ],
+                "por_extension": [{"ext": e, "cantidad": n, "bytes": tamanos[e]} for e, n in top],
             },
         )
 
