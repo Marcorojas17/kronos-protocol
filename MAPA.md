@@ -32,17 +32,13 @@ kronos-protocol/
 │   └── verificador.html
 ├── 05-AGENTES/
 │   ├── 090-arquitecto/
-│   │   ├── arquitecto.py
-│   │   └── ultimo.json
+│   │   └── arquitecto.py
 │   ├── 091-contralor/
-│   │   ├── contralor.py
-│   │   └── ultimo.json
+│   │   └── contralor.py
 │   ├── 092-auditor-externo/
-│   │   ├── auditor.py
-│   │   └── ultimo.json
+│   │   └── auditor.py
 │   ├── 093-relator/
-│   │   ├── relator.py
-│   │   └── ultimo.json
+│   │   └── relator.py
 │   ├── 094-bibliotecario/
 │   │   ├── bibliotecario.py
 │   │   └── ultimo.json
