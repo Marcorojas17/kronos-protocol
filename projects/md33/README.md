@@ -62,13 +62,13 @@ MD-33 es **dos cosas separadas en el mismo repo**:
 └────────────────────────────────────────────────────────┘
 ```
 
-| Componente | Detalle |
-|------------|---------|
-| 🐍 **Script verificador** | `src/verifica_estandar.py` — genérico, acepta cualquier documento |
-| 📄 **Plantilla de acta** | `plantillas/acta_perito_vacia.md` — bilingüe ES/EN |
-| 📘 **Manual** | `MANUAL_PERITO_INTERNACIONAL_MD33.md` — protocolo forense v1.0 |
-| 🔗 **Modelo de cadena de custodia** | hash + firma + timestamp + anclaje |
-| ⚖️ **Tabla de cumplimiento** | México · USA · UE · Israel |
+| Componente                          | Detalle                                                           |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| 🐍 **Script verificador**           | `src/verifica_estandar.py` — genérico, acepta cualquier documento |
+| 📄 **Plantilla de acta**            | `plantillas/acta_perito_vacia.md` — bilingüe ES/EN                |
+| 📘 **Manual**                       | `MANUAL_PERITO_INTERNACIONAL_MD33.md` — protocolo forense v1.0    |
+| 🔗 **Modelo de cadena de custodia** | hash + firma + timestamp + anclaje                                |
+| ⚖️ **Tabla de cumplimiento**        | México · USA · UE · Israel                                        |
 
 ---
 
@@ -109,15 +109,15 @@ MD-33 es **dos cosas separadas en el mismo repo**:
 └─────────────────────────────────────────────────────┘
 ```
 
-| Capa | Tecnología |
-|------|-----------|
-| **Script** | Python 3 (verifica_estandar.py) |
-| **Hashing** | SHA-256 vía `hashlib` o `sha256sum` |
-| **Firma** | OpenSSL / ECDSA |
-| **Timestamp** | OpenTimestamps (`.ots`) o RFC 3161 |
+| Capa                   | Tecnología                                |
+| ---------------------- | ----------------------------------------- |
+| **Script**             | Python 3 (verifica_estandar.py)           |
+| **Hashing**            | SHA-256 vía `hashlib` o `sha256sum`       |
+| **Firma**              | OpenSSL / ECDSA                           |
+| **Timestamp**          | OpenTimestamps (`.ots`) o RFC 3161        |
 | **Anclaje blockchain** | Ethereum vía `cast` (Foundry) o ethers.js |
-| **Documentación** | Markdown bilingüe |
-| **Sitio** | Jekyll (GitHub Pages) |
+| **Documentación**      | Markdown bilingüe                         |
+| **Sitio**              | Jekyll (GitHub Pages)                     |
 
 ---
 
@@ -165,12 +165,12 @@ Copiá `plantillas/acta_perito_vacia.md`, llená los campos, aplicá el protocol
 └────────────────────────────────────────────────┘
 ```
 
-| Capa | Estándar | Verificable por |
-|------|----------|-----------------|
-| Documental | ISO 27037 | Cualquier perito |
-| Criptográfica | ISO 17025 | Cualquiera con clave pública |
-| Temporal | RFC 3161 | TSA autorizada |
-| Blockchain | EIP-191 | Cualquier nodo Ethereum |
+| Capa                | Estándar          | Verificable por                   |
+| ------------------- | ----------------- | --------------------------------- |
+| Documental          | ISO 27037         | Cualquier perito                  |
+| Criptográfica       | ISO 17025         | Cualquiera con clave pública      |
+| Temporal            | RFC 3161          | TSA autorizada                    |
+| Blockchain          | EIP-191           | Cualquier nodo Ethereum           |
 | Cultural (opcional) | Gematría + Atbash | Perito con conocimiento de cábala |
 
 ---
@@ -181,12 +181,12 @@ Copiá `plantillas/acta_perito_vacia.md`, llená los campos, aplicá el protocol
 └──────────────────────────────────────────────────────┘
 ```
 
-| País | Ley aplicable | Autoridad | Registro |
-|:---:|:---|:---|:---|
-| 🇲🇽 México | LFDA · CNPP Art. 227 | INDAUTOR · Fiscalía | Oficio + sello digital |
-| 🇺🇸 USA | FRE 902(13)-(14) | NIST · FBI | Hash + cadena de custodia |
-| 🇪🇺 UE | eIDAS 910/2014 | ENISA | Firma cualificada |
-| 🇮🇱 Israel | Evidence Ordinance | Ministry of Justice | Certificado digital |
+|   País    | Ley aplicable        | Autoridad           | Registro                  |
+| :-------: | :------------------- | :------------------ | :------------------------ |
+| 🇲🇽 México | LFDA · CNPP Art. 227 | INDAUTOR · Fiscalía | Oficio + sello digital    |
+|  🇺🇸 USA   | FRE 902(13)-(14)     | NIST · FBI          | Hash + cadena de custodia |
+|   🇪🇺 UE   | eIDAS 910/2014       | ENISA               | Firma cualificada         |
+| 🇮🇱 Israel | Evidence Ordinance   | Ministry of Justice | Certificado digital       |
 
 ---
 

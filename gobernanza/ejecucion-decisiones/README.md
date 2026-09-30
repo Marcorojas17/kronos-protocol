@@ -28,7 +28,7 @@ Acento Capa 4: **Naranja coral** `#FF6B35`
 ## API pública
 
 ```js
-import { EjecucionDecisiones } from './ejecucion.js';
+import { EjecucionDecisiones } from "./ejecucion.js";
 
 const ejecucion = new EjecucionDecisiones(core, propuestas, votacion, quorum);
 await ejecucion.init();
@@ -36,7 +36,7 @@ await ejecucion.init();
 const acta = await ejecucion.cerrar({
   propuesta: propuestaObj,
   ciudadanos_activos: 100,
-  accion_ejecutada: 'Actualizar versión'
+  accion_ejecutada: "Actualizar versión",
 });
 
 const v = await ejecucion.verificar(acta);
@@ -64,4 +64,4 @@ const v = await ejecucion.verificar(acta);
 
 Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_

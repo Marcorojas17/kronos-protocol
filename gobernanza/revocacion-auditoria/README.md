@@ -27,17 +27,17 @@ Acento Capa 4: **Naranja coral** `#FF6B35`
 ## API pública
 
 ```js
-import { RevocacionAuditoria } from './revocacion.js';
+import { RevocacionAuditoria } from "./revocacion.js";
 
 const rev = new RevocacionAuditoria(core, propuestas, votacion, ejecucion);
 await rev.init();
 
 const r = await rev.revocarRol({
-  identidad_hash: 'abc123...',
-  identidad_nombre: 'Colaborador XYZ',
-  identidad_tipo: 'humano',
-  rol_revocado: 'Colaborador',
-  motivo: 'Incumplimiento de política'
+  identidad_hash: "abc123...",
+  identidad_nombre: "Colaborador XYZ",
+  identidad_tipo: "humano",
+  rol_revocado: "Colaborador",
+  motivo: "Incumplimiento de política",
 });
 
 const auditoria = await rev.auditar();
@@ -70,4 +70,4 @@ El histórico queda intacto para auditoría.
 
 Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_

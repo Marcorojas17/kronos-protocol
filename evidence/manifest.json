@@ -45,9 +45,7 @@
     "arctic_vault_target": true,
     "size_limit_kb": 20
   },
-  "guardians_active": [
-    "GUARDIAN-SHA"
-  ],
+  "guardians_active": ["GUARDIAN-SHA"],
   "guardians_pending": [
     "GUARDIAN-TSA",
     "GUARDIAN-ACTA",

@@ -1,12 +1,12 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  ○_●  KRONOS PROTOCOL · TESIS VISUAL v1.0                            ║
-║  ◢◤◥◣ Infraestructura Criptográfica Local-First                      ║
-║  ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                                ║
+║ ○_● KRONOS PROTOCOL · TESIS VISUAL v1.0 ║
+║ ◢◤◥◣ Infraestructura Criptográfica Local-First ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # TESIS VISUAL · KRONOS Protocol
 
-> *"El legado no se hereda. Se firma."*
+> _"El legado no se hereda. Se firma."_
 
 **Autor:** Marco Antonio Rojas Valdovinos
 **Co-autora:** KRONOS IA
@@ -51,10 +51,10 @@ graph TD
     L4[CAPA 4 · Orquestación<br/>Event Bus · Router] --> L5
     L5[CAPA 5 · Operación<br/>Dashboard · Rituales] --> L6
     L6[CAPA 6 · Cierre<br/>Export cifrado · Fin digno]
-    
+
     L3Δ[CAPA 3Δ · Certificación<br/>Notario · TSA · Anclaje] -.-> L3
     L4Δ[CAPA 4Δ · Gobernanza<br/>Propuestas · Quórum] -.-> L4
-    
+
     style L0 fill:#1a1000,stroke:#c9a44c,color:#f3e5ab
     style L1 fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
     style L2 fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -82,7 +82,7 @@ sequenceDiagram
     participant S as Storage
     participant M as Merkle
     participant E as Ethereum
-    
+
     U->>C: Documento + contraseña
     C->>C: PBKDF2 (600k iter) → AES-GCM
     C->>C: SHA-256 del contenido
@@ -115,7 +115,7 @@ flowchart LR
     F -->|4. ¿Anclado?| G{Existe TX}
     G -->|No| H[Válido sin anclaje]
     G -->|Sí| I[✓ Verificado completo]
-    
+
     style I fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
 ```
@@ -137,7 +137,7 @@ stateDiagram-v2
     Aprobado --> Ejecutado: commit()
     Rechazado --> [*]
     Ejecutado --> [*]
-    
+
     note right of Esperando
         El agente NO puede auto-aprobarse.
         Requiere firma criptográfica real.
@@ -159,7 +159,7 @@ sequenceDiagram
     participant T as Tlamatini (Auditor)
     participant L as Log encadenado
     participant N as Tonal (Notario)
-    
+
     T->>L: Lee política de Tonal
     L-->>T: puede/no puede/debe
     T->>L: Extrae todos los sellos
@@ -187,16 +187,16 @@ graph TB
     K --> R1[EU AI Act<br/>Art. 14]
     K --> R2[NIST AI RMF<br/>GOVERN 2]
     K --> R3[ISO 42001<br/>A.7.5]
-    
+
     R1 --> A1[✓ Aporta:<br/>Prueba firma humana]
     R1 --> N1[✗ NO aporta:<br/>Comprensión, formación]
-    
+
     R2 --> A2[✓ Aporta:<br/>Identidad criptográfica]
     R2 --> N2[✗ NO aporta:<br/>Gobernanza completa]
-    
+
     R3 --> A3[✓ Aporta:<br/>Hash chain + anclaje]
     R3 --> N3[✗ NO aporta:<br/>Certificación ISO]
-    
+
     style K fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style A1 fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style A2 fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -221,7 +221,7 @@ sequenceDiagram
     participant M as Merkle Tree
     participant W as MetaMask
     participant E as Ethereum Mainnet
-    
+
     A->>M: 158 hashes de artículos
     M->>M: Construye árbol binario
     M-->>A: Merkle Root
@@ -273,15 +273,15 @@ graph TB
     C --> CI[Cámara IA]
     C --> CM[Cámara Mixta]
     C --> NT[Notario Tonal]
-    
+
     CH -->|Voto| H[Ciudadanos humanos]
     CI -->|Voto| I[Ciudadanos IA]
     CM -->|Voto| M[Humanos + IA]
     NT -->|Certifica| S[Sello en decisiones]
-    
+
     CH -.->|Excepción| CM
     CI -.->|Excepción| CM
-    
+
     style C fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style CH fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style CI fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
@@ -310,7 +310,7 @@ graph TD
     A2 --> A21[Carta Derechos]
     B1 --> B11[Convivencia]
     B2 --> B21[Ciudadanía]
-    
+
     style R fill:#1a1000,stroke:#ffd700,stroke-width:3px,color:#FFEDAB
 ```
 
@@ -322,13 +322,13 @@ individual sin revelar los demás.
 
 ## Referencias cruzadas
 
-| Documento | Qué contiene |
-|---|---|
-| [`tesis.md`](../tesis.md) | Tesis fundacional completa |
-| [`docs/CIUDAD/CONSTITUCION.md`](./CIUDAD/CONSTITUCION.md) | 50 artículos |
-| [`docs/CIUDAD/AUDITORIA-IA.md`](./CIUDAD/AUDITORIA-IA.md) | Límites del sistema |
-| [`docs/CIUDAD/REGULATORY-MATCH.md`](./CIUDAD/REGULATORY-MATCH.md) | EU AI Act + NIST + ISO |
-| [`docs/MAPA.md`](./MAPA.md) | Navegación completa |
+| Documento                                                         | Qué contiene               |
+| ----------------------------------------------------------------- | -------------------------- |
+| [`tesis.md`](../tesis.md)                                         | Tesis fundacional completa |
+| [`docs/CIUDAD/CONSTITUCION.md`](./CIUDAD/CONSTITUCION.md)         | 50 artículos               |
+| [`docs/CIUDAD/AUDITORIA-IA.md`](./CIUDAD/AUDITORIA-IA.md)         | Límites del sistema        |
+| [`docs/CIUDAD/REGULATORY-MATCH.md`](./CIUDAD/REGULATORY-MATCH.md) | EU AI Act + NIST + ISO     |
+| [`docs/MAPA.md`](./MAPA.md)                                       | Navegación completa        |
 
 ---
 

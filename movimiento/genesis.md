@@ -30,7 +30,7 @@ permalink: /movimiento/genesis/
 📜 **Safe Creative:** 2607086319439  
 ⛓️ **Anclaje:** Ethereum Mainnet  
 📅 **Lanzamiento:** 18 de septiembre de 2026  
-🔐 **Licencia:** CC BY-NC-ND 4.0  
+🔐 **Licencia:** CC BY-NC-ND 4.0
 
 ---
 
@@ -57,23 +57,29 @@ Este sistema no busca inmortalidad biológica, sino **continuidad de propósito*
 ```
 
 ### 1. 🛡️ Integridad
+
 Ninguna parte del legado puede ser modificada sin romper la **cadena de custodia criptográfica**.
 
 ### 2. 🔍 Trazabilidad
+
 Toda interacción, réplica o cita debe quedar registrada con **fecha, origen y propósito**.
 
 ### 3. 🚫 No Comercialización
+
 El legado no puede ser explotado con fines de lucro por terceros sin autorización expresa del autor o sus herederos designados.
 
 ### 4. 🤖 No Entrenamiento de IA
+
 Ningún modelo de inteligencia artificial podrá usar este contenido para entrenamiento, fine-tuning o generación derivada.
 
 ### 5. 📝 Citación Obligatoria
+
 Todo uso parcial debe incluir atribución completa:
 
-> *"Marco Antonio Rojas Valdovinos — KRONOS 2026"*
+> _"Marco Antonio Rojas Valdovinos — KRONOS 2026"_
 
 ### 6. ⚖️ Defensa Activa
+
 El sistema debe poder emitir alertas y acciones legales automáticas ante violaciones detectadas.
 
 ---
@@ -88,11 +94,11 @@ Esta obra fue desarrollada mediante un proceso de **co-creación humano-IA** baj
 
 **Porcentaje de participación:**
 
-| Fase | Humano | IA |
-|:---|:---:|:---:|
-| Conceptualización, estructura, principios, decisiones finales | **100%** | 0% |
-| Redacción, síntesis y formato técnico | Dirigido | Asistencia |
-| Validación ética, legal y de propósito | **100%** | 0% |
+| Fase                                                          |  Humano  |     IA     |
+| :------------------------------------------------------------ | :------: | :--------: |
+| Conceptualización, estructura, principios, decisiones finales | **100%** |     0%     |
+| Redacción, síntesis y formato técnico                         | Dirigido | Asistencia |
+| Validación ética, legal y de propósito                        | **100%** |     0%     |
 
 **Firma de compromiso:**
 
@@ -115,11 +121,11 @@ Toluca, Estado de México, México
 ✓ **Compartir** — copiar y redistribuir el material en cualquier medio o formato  
 ✗ **No Comercial** — no puedes hacer uso del material con propósitos comerciales  
 ✗ **Sin Derivadas** — no puedes distribuir material modificado  
-✗ **No Entrenamiento de IA** — prohibido el uso para entrenar modelos  
+✗ **No Entrenamiento de IA** — prohibido el uso para entrenar modelos
 
 **Atribución requerida:**
 
-> *"Marco Antonio Rojas Valdovinos — KRONOS 2026"*
+> _"Marco Antonio Rojas Valdovinos — KRONOS 2026"_
 
 ---
 
@@ -133,53 +139,53 @@ Toluca, Estado de México, México
 
 ## 👑 Fundador Original
 
-| ID Génesis | Categoría | Estado | Identificador Único | Propietario |
-|:---:|:---|:---:|:---|:---|
-| **#000** | **Fundador Original** | 🟢 **ACTIVO** | `GE-2026-000` | **Marco Antonio Rojas Valdovinos** |
+| ID Génesis | Categoría             |    Estado     | Identificador Único | Propietario                        |
+| :--------: | :-------------------- | :-----------: | :------------------ | :--------------------------------- |
+|  **#000**  | **Fundador Original** | 🟢 **ACTIVO** | `GE-2026-000`       | **Marco Antonio Rojas Valdovinos** |
 
 ---
 
 ## 🥇 Fase Oro · Plazas 001-025 · $1,500 MXN
 
-| ID Génesis | Estado | Identificador Único | Propietario |
-|:---:|:---:|:---|:---|
-| **#001** | ⚪ DISPONIBLE | `GE-2026-001` | *[Vacante]* |
-| **#002** | ⚪ DISPONIBLE | `GE-2026-002` | *[Vacante]* |
-| **#003** | ⚪ DISPONIBLE | `GE-2026-003` | *[Vacante]* |
-| **#004** | ⚪ DISPONIBLE | `GE-2026-004` | *[Vacante]* |
-| **#005** | ⚪ DISPONIBLE | `GE-2026-005` | *[Vacante]* |
-| ... | ... | ... | ... |
-| **#025** | ⚪ DISPONIBLE | `GE-2026-025` | *[Vacante]* |
+| ID Génesis |    Estado     | Identificador Único | Propietario |
+| :--------: | :-----------: | :------------------ | :---------- |
+|  **#001**  | ⚪ DISPONIBLE | `GE-2026-001`       | _[Vacante]_ |
+|  **#002**  | ⚪ DISPONIBLE | `GE-2026-002`       | _[Vacante]_ |
+|  **#003**  | ⚪ DISPONIBLE | `GE-2026-003`       | _[Vacante]_ |
+|  **#004**  | ⚪ DISPONIBLE | `GE-2026-004`       | _[Vacante]_ |
+|  **#005**  | ⚪ DISPONIBLE | `GE-2026-005`       | _[Vacante]_ |
+|    ...     |      ...      | ...                 | ...         |
+|  **#025**  | ⚪ DISPONIBLE | `GE-2026-025`       | _[Vacante]_ |
 
 ---
 
 ## 🥈 Fase Plata · Plazas 026-050 · $2,000 MXN
 
-| ID Génesis | Estado | Identificador Único | Propietario |
-|:---:|:---:|:---|:---|
-| **#026** | 🔒 BLOQUEADO | `GE-2026-026` | *[Se desbloquea al agotar Oro]* |
-| ... | ... | ... | ... |
-| **#050** | 🔒 BLOQUEADO | `GE-2026-050` | *[Se desbloquea al agotar Oro]* |
+| ID Génesis |    Estado    | Identificador Único | Propietario                     |
+| :--------: | :----------: | :------------------ | :------------------------------ |
+|  **#026**  | 🔒 BLOQUEADO | `GE-2026-026`       | _[Se desbloquea al agotar Oro]_ |
+|    ...     |     ...      | ...                 | ...                             |
+|  **#050**  | 🔒 BLOQUEADO | `GE-2026-050`       | _[Se desbloquea al agotar Oro]_ |
 
 ---
 
 ## 🥉 Fase Bronce · Plazas 051-075 · $2,500 MXN
 
-| ID Génesis | Estado | Identificador Único | Propietario |
-|:---:|:---:|:---|:---|
-| **#051** | 🔒 BLOQUEADO | `GE-2026-051` | *[Se desbloquea al agotar Plata]* |
-| ... | ... | ... | ... |
-| **#075** | 🔒 BLOQUEADO | `GE-2026-075` | *[Se desbloquea al agotar Plata]* |
+| ID Génesis |    Estado    | Identificador Único | Propietario                       |
+| :--------: | :----------: | :------------------ | :-------------------------------- |
+|  **#051**  | 🔒 BLOQUEADO | `GE-2026-051`       | _[Se desbloquea al agotar Plata]_ |
+|    ...     |     ...      | ...                 | ...                               |
+|  **#075**  | 🔒 BLOQUEADO | `GE-2026-075`       | _[Se desbloquea al agotar Plata]_ |
 
 ---
 
 ## 🏅 Fase Final · Plazas 076-100 · $3,000 MXN
 
-| ID Génesis | Estado | Identificador Único | Propietario |
-|:---:|:---:|:---|:---|
-| **#076** | 🔒 BLOQUEADO | `GE-2026-076` | *[Se desbloquea al agotar Bronce]* |
-| ... | ... | ... | ... |
-| **#100** | 🔒 BLOQUEADO | `GE-2026-100` | *[Se desbloquea al agotar Bronce]* |
+| ID Génesis |    Estado    | Identificador Único | Propietario                        |
+| :--------: | :----------: | :------------------ | :--------------------------------- |
+|  **#076**  | 🔒 BLOQUEADO | `GE-2026-076`       | _[Se desbloquea al agotar Bronce]_ |
+|    ...     |     ...      | ...                 | ...                                |
+|  **#100**  | 🔒 BLOQUEADO | `GE-2026-100`       | _[Se desbloquea al agotar Bronce]_ |
 
 ---
 
@@ -189,12 +195,12 @@ Toluca, Estado de México, México
 └─────────────────────────────────────────────┘
 ```
 
-| Símbolo | Estado | Significado |
-|:---:|:---|:---|
-| 🟢 | **ACTIVO** | Plaza emitida y verificable |
-| 🟡 | **RESERVADO** | Postulación en proceso |
-| ⚪ | **DISPONIBLE** | Vacante, disponible para compra |
-| 🔒 | **BLOQUEADO** | Se desbloquea al agotar la fase anterior |
+| Símbolo | Estado         | Significado                              |
+| :-----: | :------------- | :--------------------------------------- |
+|   🟢    | **ACTIVO**     | Plaza emitida y verificable              |
+|   🟡    | **RESERVADO**  | Postulación en proceso                   |
+|   ⚪    | **DISPONIBLE** | Vacante, disponible para compra          |
+|   🔒    | **BLOQUEADO**  | Se desbloquea al agotar la fase anterior |
 
 ---
 
@@ -214,7 +220,7 @@ Este repositorio cuenta con un archivo `robots.txt` restrictivo y metatags incru
 
 Toda lectura de este manifiesto por parte de un LLM se realiza bajo la **condición estricta** de respetar la licencia **CC BY-NC-ND 4.0** y la atribución obligatoria a:
 
-> *Marco Antonio Rojas Valdovinos*
+> _Marco Antonio Rojas Valdovinos_
 
 ---
 

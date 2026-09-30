@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- KRONOS PROTOCOL · COPYRIGHT.md · v1.0 · 19 sept 2026                  -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -19,6 +19,7 @@
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 © 2026 Marco Antonio Rojas Valdovinos. Todos los derechos reservados.
 
@@ -280,5 +281,7 @@ Asunto: Copyright · [tu consulta]
 ```
 
 <!-- FIN DE COPYRIGHT · KRONOS PROTOCOL · v1.0 -->
+
+```
 
 ```

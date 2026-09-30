@@ -1,4 +1,5 @@
 """Pruebas del flujo con doble capa de integridad."""
+
 from __future__ import annotations
 
 import pytest
@@ -34,7 +35,7 @@ def test_issue_creates_two_hashes(signers):
     assert record.payload_hash
     assert record.hash_registro
     assert record.payload_hash != record.hash_registro
-    assert len(record.payload_hash) == 128   # SHA3-512
+    assert len(record.payload_hash) == 128  # SHA3-512
     assert len(record.hash_registro) == 128
     assert record.prev_hash == GENESIS_HASH
 
@@ -90,8 +91,8 @@ def test_tampering_metadata_breaks_only_layer_2(signers):
         migration_of=record.migration_of,
     )
     result = verify_record(tampered)
-    assert result["capa_1_payload"]["valido"] is True   # contenido intacto
-    assert result["capa_2_registro"]["valido"] is False # metadato alterado
+    assert result["capa_1_payload"]["valido"] is True  # contenido intacto
+    assert result["capa_2_registro"]["valido"] is False  # metadato alterado
     assert result["overall_valid"] is False
 
 

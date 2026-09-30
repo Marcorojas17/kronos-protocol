@@ -68,16 +68,16 @@ PNG · WEBM · FULLSCREEN
 └──────────────────────────────────────────────────────────────┘
 ```
 
-| Componente | Detalle |
-|------------|---------|
-| 🎛️ **5 modos** | Chladni · Toroide · Metatrón · Flor de Vida · Merkaba |
-| 🎨 **5 paletas** | Cyan · Aurum · Neon · Esmeralda · Nebula |
-| 🎙️ **Entrada de audio** | Micrófono en vivo · Sintetizador · Drag & drop MP3/WAV |
-| 📊 **Análisis FFT** | 32 barras reactivas en tiempo real |
-| 💥 **Efectos** | Bloom · Onda de choque (tecla C) · Cristales interactivos (Espacio) |
-| ⏺️ **Exportación** | Grabación WebM (60fps) · 30 fotogramas PNG |
-| 💾 **Presets** | Guardado local de configuraciones |
-| ⌨️ **Teclado** | 1-5 modos · C onda · Espacio cristal |
+| Componente              | Detalle                                                             |
+| ----------------------- | ------------------------------------------------------------------- |
+| 🎛️ **5 modos**          | Chladni · Toroide · Metatrón · Flor de Vida · Merkaba               |
+| 🎨 **5 paletas**        | Cyan · Aurum · Neon · Esmeralda · Nebula                            |
+| 🎙️ **Entrada de audio** | Micrófono en vivo · Sintetizador · Drag & drop MP3/WAV              |
+| 📊 **Análisis FFT**     | 32 barras reactivas en tiempo real                                  |
+| 💥 **Efectos**          | Bloom · Onda de choque (tecla C) · Cristales interactivos (Espacio) |
+| ⏺️ **Exportación**      | Grabación WebM (60fps) · 30 fotogramas PNG                          |
+| 💾 **Presets**          | Guardado local de configuraciones                                   |
+| ⌨️ **Teclado**          | 1-5 modos · C onda · Espacio cristal                                |
 
 ---
 
@@ -121,17 +121,17 @@ PNG · WEBM · FULLSCREEN
 └────────────────────────────────────────────────────────────┘
 ```
 
-| Capa | Tecnología |
-|------|-----------|
-| **Render 3D** | Three.js r128 (WebGL2) |
-| **Shaders** | GLSL ES 3.00 · vertex + fragment personalizados |
-| **Post-procesado** | EffectComposer + UnrealBloomPass |
-| **Audio** | Web Audio API nativa · AnalyserNode · BiquadFilter |
-| **Geometría** | 16,000 partículas · atributos multi-target |
-| **Exportación** | `canvas.captureStream()` + `MediaRecorder` (VP9) |
-| **Persistencia** | localStorage para presets |
-| **Build** | HTML único · sin build step |
-| **Dependencias** | Three.js + OrbitControls + EffectComposer (CDN) |
+| Capa               | Tecnología                                         |
+| ------------------ | -------------------------------------------------- |
+| **Render 3D**      | Three.js r128 (WebGL2)                             |
+| **Shaders**        | GLSL ES 3.00 · vertex + fragment personalizados    |
+| **Post-procesado** | EffectComposer + UnrealBloomPass                   |
+| **Audio**          | Web Audio API nativa · AnalyserNode · BiquadFilter |
+| **Geometría**      | 16,000 partículas · atributos multi-target         |
+| **Exportación**    | `canvas.captureStream()` + `MediaRecorder` (VP9)   |
+| **Persistencia**   | localStorage para presets                          |
+| **Build**          | HTML único · sin build step                        |
+| **Dependencias**   | Three.js + OrbitControls + EffectComposer (CDN)    |
 
 ---
 
@@ -170,19 +170,19 @@ python3 -m http.server 8000
 └───────────────────────────────────────────────────────┘
 ```
 
-| Acción | Resultado |
-|--------|-----------|
-| Click **🎤 Micrófono** | Activa entrada de audio en vivo |
-| Click **♪ Sintetizador** | Activa sintetizador aditivo interno |
-| Arrastrar MP3/WAV | Carga archivo de audio local |
-| Tecla **1-5** | Cambia modo geométrico |
-| Tecla **C** | Dispara onda de choque |
-| Tecla **Espacio** | Genera cristal interactivo |
-| **Sliders** | Ajustan frecuencia cimática · densidad · bloom |
-| **🎬 Grabar Video** | Inicia/detiene grabación WebM |
-| **📸 Frames** | Exporta 30 fotogramas PNG |
-| **⛶ Pantalla** | Modo pantalla completa |
-| **💾 Preset** | Guarda configuración actual |
+| Acción                   | Resultado                                      |
+| ------------------------ | ---------------------------------------------- |
+| Click **🎤 Micrófono**   | Activa entrada de audio en vivo                |
+| Click **♪ Sintetizador** | Activa sintetizador aditivo interno            |
+| Arrastrar MP3/WAV        | Carga archivo de audio local                   |
+| Tecla **1-5**            | Cambia modo geométrico                         |
+| Tecla **C**              | Dispara onda de choque                         |
+| Tecla **Espacio**        | Genera cristal interactivo                     |
+| **Sliders**              | Ajustan frecuencia cimática · densidad · bloom |
+| **🎬 Grabar Video**      | Inicia/detiene grabación WebM                  |
+| **📸 Frames**            | Exporta 30 fotogramas PNG                      |
+| **⛶ Pantalla**           | Modo pantalla completa                         |
+| **💾 Preset**            | Guarda configuración actual                    |
 
 ---
 

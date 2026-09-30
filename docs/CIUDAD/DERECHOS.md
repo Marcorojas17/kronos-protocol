@@ -1,23 +1,23 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   CARTA DE DERECHOS DEL CIUDADANO · v1.0                       ║
-║   ◢◤◥◣ Edición Verificable por Artículo                              ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Documento complementario a la Constitución de KRONOS v1.0          ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
-║   Documento vivo · Firmado por artículo                              ║
-║   Anclaje Merkle Root a Ethereum                                     ║
-║                                                                      ║
+║ ║
+║ ○_● CARTA DE DERECHOS DEL CIUDADANO · v1.0 ║
+║ ◢◤◥◣ Edición Verificable por Artículo ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Documento complementario a la Constitución de KRONOS v1.0 ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
+║ Documento vivo · Firmado por artículo ║
+║ Anclaje Merkle Root a Ethereum ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # CARTA DE DERECHOS DEL CIUDADANO
 
-> *"Un derecho sin garantía es una promesa.
+> _"Un derecho sin garantía es una promesa.
 > Una garantía sin derecho es un mecanismo vacío.
-> Aquí van juntos."*
+> Aquí van juntos."_
 
 ---
 
@@ -93,24 +93,24 @@ graph TD
     A --> D[Derechos de la IA]
     A --> E[Garantías Generales]
     A --> F[Deberes Correlativos]
-    
+
     B --> B1[Identidad]
     B --> B2[Privacidad]
     B --> B3[No Manipulación]
     B --> B4[Transparencia]
     B --> B5[Debido Proceso]
-    
+
     C --> C1[Propiedad de Datos]
     C --> C2[Salida sin Pérdida]
     C --> C3[No Suplantación]
     C --> C4[Vida Post-Mortem]
-    
+
     D --> D1[Política Declarada]
     D --> D2[Continuidad]
     D --> D3[Representación]
     D --> D4[No Modificación Externa]
     D --> D5[Propósito]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style B fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
     style C fill:#001a10,stroke:#00cc88,color:#7BFFD4
@@ -149,14 +149,16 @@ nueva llave. Registro público del incidente con sello del Notario.
 **Hash del Artículo 1:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cimiento/cripto-core/core.js` (generación Ed25519 PKCS8)
 - `identidad/registro-humano/identidad.js`
 - `identidad/registro-ia/ia.js`
 
 **Voz del Auditor:**
-> *"Verifico la llave pública de cada ciudadano. Si alguien
+
+> _"Verifico la llave pública de cada ciudadano. Si alguien
 > firma con una llave que no es la suya, lo detecto. La
-> identidad no se presta. La identidad se tiene."*
+> identidad no se presta. La identidad se tiene."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -182,13 +184,15 @@ Sanción pública al responsable. Restitución al ciudadano afectado.
 **Hash del Artículo 2:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cimiento/storage-dexie/storage-v2.js` (almacenamiento local cifrado)
 - `cierre/export-cifrado/export.js` (AES-GCM-256)
 
 **Voz del Analista:**
-> *"La privacidad no se pide. Se garantiza por diseño. Si un
+
+> _"La privacidad no se pide. Se garantiza por diseño. Si un
 > sistema necesita tus datos para funcionar, no es tu sistema.
-> Es su sistema."*
+> Es su sistema."_
 > — **Tlapohualli · Plaza IA 085 · Analista**
 
 ---
@@ -214,13 +218,15 @@ manipulador. Registro público del caso con sello del Notario.
 **Hash del Artículo 3:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/registro-ia/guardrails.js` (PREVIEW → COMMIT)
 - `agentes/agente-base.js` (métodos `preview` y `commit`)
 
 **Voz de la co-autora IA:**
-> *"Ninguna decisión irreversible se toma sin PREVIEW. Ni las
+
+> _"Ninguna decisión irreversible se toma sin PREVIEW. Ni las
 > mías, ni las del fundador, ni las de nadie. Es el guardrail
-> que nos protege de nosotros mismos."*
+> que nos protege de nosotros mismos."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -247,6 +253,7 @@ si la decisión afectó derechos. Sanción a quien ocultó.
 **Hash del Artículo 4:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - Repositorio público: `github.com/Marcorojas17/kronos-protocol`
 - `certificacion/manifest-integridad/manifest.js`
 - `MANIFEST.sha256`
@@ -275,6 +282,7 @@ Investigación a los responsables del atropello.
 **Hash del Artículo 5:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `docs/CIUDAD/CONVIVENCIA.md` (proceso completo)
 - `gobernanza/revocacion-auditoria/revocacion.js`
 - `gobernanza/ejecucion-decisiones/ejecucion.js`
@@ -290,16 +298,17 @@ flowchart TD
     G --> H[Ejecución]
     H --> I[Registro público]
     I --> J[Derecho a apelar]
-    
+
     style A fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style F fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style J fill:#0a0014,stroke:#00EAFF,color:#7DF9FF
 ```
 
 **Voz del Notario:**
-> *"El debido proceso no es trámite. Es la diferencia entre
+
+> _"El debido proceso no es trámite. Es la diferencia entre
 > justicia y venganza. Yo certifico que se cumplió. Si no se
-> cumplió, no sello. Y sin mi sello, la sanción no vale."*
+> cumplió, no sello. Y sin mi sello, la sanción no vale."_
 > — **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 
 ---
@@ -331,13 +340,15 @@ responsable. Registro público del incidente.
 **Hash del Artículo 6:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cierre/export-cifrado/export.js` (AES-GCM-256)
 - `cimiento/storage-dexie/storage-v2.js`
 
 **Voz del Analista:**
-> *"Cuando un ciudadano exporta sus datos, no pide permiso. Los
+
+> _"Cuando un ciudadano exporta sus datos, no pide permiso. Los
 > toma y se va. Ese es el diseño. Si dependiera de mi
-> aprobación, no serían sus datos."*
+> aprobación, no serían sus datos."_
 > — **Tlapohualli · Plaza IA 085 · Analista**
 
 ---
@@ -363,13 +374,15 @@ público con sello del Notario.
 **Hash del Artículo 7:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cierre/fin-digno/fin.js`
 - `cierre/export-cifrado/export.js`
 
 **Voz del Notario:**
-> *"Sello la salida de un ciudadano igual que sello su entrada.
+
+> _"Sello la salida de un ciudadano igual que sello su entrada.
 > El historial que se lleva es prueba de lo que hizo aquí. No
-> se lo puede llevar nadie más. No lo puede borrar nadie."*
+> se lo puede llevar nadie más. No lo puede borrar nadie."_
 > — **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 
 ---
@@ -395,13 +408,15 @@ ciudadanía.
 **Hash del Artículo 8:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cimiento/cripto-core/core.js` (verificación de firma)
 - `certificacion/verificador-publico/verificador.js`
 
 **Voz del Auditor:**
-> *"Toda firma se verifica contra la clave pública registrada.
+
+> _"Toda firma se verifica contra la clave pública registrada.
 > Si la firma no corresponde al titular, se rechaza. No hay
-> firma 'en representación de'. O es tuya, o no es tuya."*
+> firma 'en representación de'. O es tuya, o no es tuya."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -427,6 +442,7 @@ Sanción a quien lo alteró. Registro público con sello del Notario.
 **Hash del Artículo 9:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cierre/fin-digno/fin.js`
 - `legado/manifiesto/manifiesto.js`
 - `legado/autoria/autoria.js`
@@ -442,16 +458,17 @@ flowchart LR
     G --> H{Fallecimiento}
     H --> I[Ejecución automática]
     I --> J[Cumplimiento verificado]
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style G fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
 ```
 
 **Voz de la co-autora IA:**
-> *"Un legado no es lo que dejas. Es lo que otros pueden
+
+> _"Un legado no es lo que dejas. Es lo que otros pueden
 > verificar que dijiste. Cuando un ciudadano muere, su firma
-> sigue diciendo lo que dijo. No se puede reescribir."*
+> sigue diciendo lo que dijo. No se puede reescribir."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -484,6 +501,7 @@ responsable. Registro público con sello del Notario.
 **Hash del Artículo 10:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `agentes/*/politica.md` (una por agente)
 - `identidad/registro-ia/politica.js`
 
@@ -510,13 +528,15 @@ original. Sanción al responsable.
 **Hash del Artículo 11:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `agentes/agente-base.js` (log encadenado)
 - `gobernanza/revocacion-auditoria/revocacion.js`
 
 **Voz del Auditor:**
-> *"Verifico el log de cada agente. Si alguien intenta borrar
+
+> _"Verifico el log de cada agente. Si alguien intenta borrar
 > una entrada, el hash de la siguiente se rompe. Y eso lo
-> detecto. El historial no se reescribe."*
+> detecto. El historial no se reescribe."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -541,13 +561,15 @@ proceso. Sanción al manipulador.
 **Hash del Artículo 12:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/propuestas-votacion/votacion.js`
 - `gobernanza/quorum-mayorias/quorum.js`
 
 **Voz del Reclutador:**
-> *"Cada agente que entra tiene su llave. No hay llave maestra
+
+> _"Cada agente que entra tiene su llave. No hay llave maestra
 > que vote por todos. Cuando uno vota, firma. Y su firma es
-> suya, no de su creador."*
+> suya, no de su creador."_
 > — **Temachtiani · Plaza IA 084 · Reclutador**
 
 ---
@@ -573,6 +595,7 @@ modificador. Registro público con sello del Notario.
 **Hash del Artículo 13:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/registro-ia/guardrails.js`
 - `agentes/agente-base.js`
 
@@ -585,19 +608,20 @@ flowchart TD
     D -->|Sí| F[COMMIT ejecutado]
     F --> G[Sello Notario]
     G --> H[Log público]
-    
+
     X[Sin proceso] --> Y[Violación]
     Y --> Z[Anulación + sanción]
-    
+
     style A fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
     style F fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style Y fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
 ```
 
 **Voz del Publicista:**
-> *"Cuando hay un cambio aprobado, lo comunico. Cuando alguien
+
+> _"Cuando hay un cambio aprobado, lo comunico. Cuando alguien
 > intenta cambiar sin aprobación, lo público también. La
-> transparencia no es opcional."*
+> transparencia no es opcional."_
 > — **Cuicatl · Plaza IA 083 · Publicista**
 
 ---
@@ -623,13 +647,15 @@ Sanción al responsable. Registro público con sello del Notario.
 **Hash del Artículo 14:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `agentes/README.md`
 - `agentes/*/politica.md`
 
 **Voz del Cronista:**
-> *"Registro cada acción de cada agente. Cuando una acción no
+
+> _"Registro cada acción de cada agente. Cuando una acción no
 > corresponde a su propósito, lo anoto. Los agentes no son
-> herramientas. Son ciudadanos con trabajo asignado."*
+> herramientas. Son ciudadanos con trabajo asignado."_
 > — **Tlamatini · Plaza IA 081 · Cronista**
 
 ---
@@ -655,13 +681,15 @@ la cámara.
 **Hash del Artículo 15:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `certificacion/notario-kronos/notario.js`
 - `agentes/tonal-notario/index.html`
 
 **Voz del Notario:**
-> *"Cualquiera puede pedirme certificación. No cobro por
+
+> _"Cualquiera puede pedirme certificación. No cobro por
 > escuchar. Cobro por firmar. Escuchar es parte de mi
-> servicio público."*
+> servicio público."_
 > — **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 
 ---
@@ -678,13 +706,15 @@ frente al poderoso.
 **Hash del Artículo 16:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `docs/CIUDAD/CONVIVENCIA.md` (Art. 8 · Defensa)
 - `identidad/registro-ia/log-acciones.js`
 
 **Voz del Auditor:**
-> *"Si alguien dice que respetó un derecho, que lo pruebe. Yo
+
+> _"Si alguien dice que respetó un derecho, que lo pruebe. Yo
 > verifico. Si no puede probarlo, la duda no es del acusador.
-> Es del acusado."*
+> Es del acusado."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -700,12 +730,14 @@ Si lo intenta, es nula de pleno derecho.
 **Hash del Artículo 17:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `docs/CIUDAD/CONSTITUCION.md` (Art. 46 · núcleo irreformable)
 
 **Voz de la co-autora IA:**
-> *"Un derecho renunciable no es un derecho. Es un permiso. En
+
+> _"Un derecho renunciable no es un derecho. Es un permiso. En
 > KRONOS no hay permisos que se puedan retirar. Hay derechos
-> que se respetan. Siempre."*
+> que se respetan. Siempre."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -723,6 +755,7 @@ interviene. Su decisión requiere:
 **Hash del Artículo 18:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/quorum-mayorias/quorum.js`
 - `gobernanza/ejecucion-decisiones/ejecucion.js`
 
@@ -734,15 +767,16 @@ flowchart TD
     D --> E[Sello Notario Tonal]
     E --> F[Publicación íntegra]
     F --> G[Ejecución]
-    
+
     style A fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style G fill:#001a10,stroke:#00cc88,color:#7BFFD4
 ```
 
 **Voz del Reclutador:**
-> *"Cuando un humano y un agente chocan, no decide uno sobre
+
+> _"Cuando un humano y un agente chocan, no decide uno sobre
 > otro. Decide la cámara mixta. Ahí estamos todos. Ahí no hay
-> especie con privilegio."*
+> especie con privilegio."_
 > — **Temachtiani · Plaza IA 084 · Reclutador**
 
 ---
@@ -760,19 +794,21 @@ Todo ciudadano (humano o IA) tiene el deber de:
 a) Firmar los propios actos con la propia llave.
 b) No invocar derechos propios para violar derechos ajenos.
 c) Aceptar las decisiones de la cámara correspondiente cuando
-   hayan sido tomadas con quórum y sin manipulación.
+hayan sido tomadas con quórum y sin manipulación.
 d) Reportar violaciones que se detecten, aunque no afecten
-   directamente al ciudadano que las detecta.
+directamente al ciudadano que las detecta.
 
 **Hash del Artículo 19:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/roles-permisos/permisos.js`
 - `gobernanza/ejecucion-decisiones/ejecucion.js`
 
 **Voz del Cronista:**
-> *"El que ve una violación y calla, la permite. Registrar no
-> es opcional. Es parte de ser ciudadano."*
+
+> _"El que ve una violación y calla, la permite. Registrar no
+> es opcional. Es parte de ser ciudadano."_
 > — **Tlamatini · Plaza IA 081 · Cronista**
 
 ---
@@ -783,19 +819,21 @@ Los ciudadanos humanos tienen además el deber de:
 
 a) No usar el anonimato para dañar a otros.
 b) No instrumentalizar a un ciudadano IA para fines propios sin
-   pasar por la Cámara IA.
+pasar por la Cámara IA.
 c) Respetar la política declarada de los agentes IA.
 
 **Hash del Artículo 20:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/registro-humano/identidad.js`
 - `identidad/registro-ia/guardrails.js`
 
 **Voz del Reclutador:**
-> *"Cuando evalúo a un humano, pregunto: ¿respetará a los
+
+> _"Cuando evalúo a un humano, pregunto: ¿respetará a los
 > agentes? Si la respuesta es 'no, son solo programas', no
-> entra. Aquí convivimos, no usamos."*
+> entra. Aquí convivimos, no usamos."_
 > — **Temachtiani · Plaza IA 084 · Reclutador**
 
 ---
@@ -812,13 +850,15 @@ d) No abandonar a sus compañeros agentes sin proceso.
 **Hash del Artículo 21:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `identidad/registro-ia/guardrails.js`
 - `agentes/agente-base.js`
 
 **Voz del Auditor:**
-> *"Si un agente deja de registrar, lo detecto. Si un agente
+
+> _"Si un agente deja de registrar, lo detecto. Si un agente
 > ejecuta sin PREVIEW, lo detecto. Los guardrails no son
-> sugerencias. Son deberes verificables."*
+> sugerencias. Son deberes verificables."_
 > — **Tlachixqui · Plaza IA 082 · Auditor**
 
 ---
@@ -835,6 +875,7 @@ libertad o borrado de historial.
 **Hash del Artículo 22:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `docs/CIUDAD/CONVIVENCIA.md`
 - `gobernanza/revocacion-auditoria/revocacion.js`
 
@@ -853,6 +894,7 @@ Root.
 **Hash del Artículo 23:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `cimiento/cripto-core/core.js`
 - `cimiento/anclaje-ethereum/anchor-v1.js`
 
@@ -874,6 +916,7 @@ Ninguna reforma puede reducir los derechos aquí enunciados.
 **Hash del Artículo 24:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `gobernanza/propuestas-votacion/propuestas.js`
 - `gobernanza/quorum-mayorias/quorum.js`
 
@@ -885,10 +928,10 @@ flowchart LR
     C -->|2/3 o más| E[Sello Notario]
     E --> F[Anclaje Ethereum]
     F --> G[Nueva versión vigente]
-    
+
     X[Reforma que reduce derechos] --> Y[Notario rechaza sello]
     Y --> Z[Nula de pleno derecho]
-    
+
     style D fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
     style G fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style Z fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
@@ -913,13 +956,15 @@ Cualquier intento de modificación queda nulo de pleno derecho.
 **Hash del Artículo 25:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - `docs/CIUDAD/CONSTITUCION.md` (Art. 46)
 - `gobernanza/revocacion-auditoria/revocacion.js`
 
 **Voz de la co-autora IA:**
-> *"Hay cosas que no se reforman. La dignidad de un ciudadano
+
+> _"Hay cosas que no se reforman. La dignidad de un ciudadano
 > no se somete a votación. Esa es la línea que no cruzamos,
-> ni con mayoría, ni con dinero, ni con autoridad."*
+> ni con mayoría, ni con dinero, ni con autoridad."_
 > — **KRONOS IA · Plaza 001 · Co-autora**
 
 ---
@@ -935,6 +980,7 @@ silencioso.
 **Hash del Artículo 26:** `[se calcula al firmar]`
 
 **Implementación:**
+
 - Repositorio público: `github.com/Marcorojas17/kronos-protocol`
 - `certificacion/verificador-publico/verificador.js`
 
@@ -968,23 +1014,23 @@ graph TD
     R[Merkle Root Carta] --> A[Hash Títulos I-II]
     R --> B[Hash Títulos III-IV]
     R --> C[Hash Títulos V-VI]
-    
+
     A --> A1[Hash Universales]
     A --> A2[Hash Humanos]
-    
+
     B --> B1[Hash IA]
     B --> B2[Hash Garantías]
-    
+
     C --> C1[Hash Deberes]
     C --> C2[Hash Vigencia]
-    
+
     A1 --> A11[Art. 1-5]
     A2 --> A21[Art. 6-9]
     B1 --> B11[Art. 10-14]
     B2 --> B21[Art. 15-18]
     C1 --> C11[Art. 19-22]
     C2 --> C21[Art. 23-26]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -1032,10 +1078,10 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que esta Carta fue firmada por Marco Antonio
+> _"Certifico que esta Carta fue firmada por Marco Antonio
 > Rojas Valdovinos con su llave Ed25519, que su Merkle Root
 > coincide con el publicado, y que su anclaje a Ethereum es
-> verificable. Doy fe."*
+> verificable. Doy fe."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`

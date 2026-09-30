@@ -20,10 +20,14 @@ export class BovedaVoz {
 
   // ── Iniciar grabación ─────────────────────────────────────
   async iniciar() {
-    if (this.recorder) throw new Error('Ya hay una grabación en curso.');
+    if (this.recorder) throw new Error("Ya hay una grabación en curso.");
 
     this.stream = await navigator.mediaDevices.getUserMedia({
-      audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }
+      audio: {
+        echoCancellation: false,
+        noiseSuppression: false,
+        autoGainControl: false,
+      },
     });
 
     this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -36,9 +40,9 @@ export class BovedaVoz {
     this.frecuencias = [];
     this.inicio = performance.now();
 
-    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
-      ? 'audio/webm;codecs=opus'
-      : 'audio/webm';
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+      ? "audio/webm;codecs=opus"
+      : "audio/webm";
     this.recorder = new MediaRecorder(this.stream, { mimeType });
 
     this.recorder.ondataavailable = (e) => {
@@ -69,7 +73,7 @@ export class BovedaVoz {
 
   // ── Detener grabación ─────────────────────────────────────
   async detener() {
-    if (!this.recorder) throw new Error('No hay grabación en curso.');
+    if (!this.recorder) throw new Error("No hay grabación en curso.");
 
     cancelAnimationFrame(this._rafId);
 
@@ -87,7 +91,7 @@ export class BovedaVoz {
             blob,
             buffer,
             duracionSeg,
-            frecuenciaPromedio
+            frecuenciaPromedio,
           });
         } catch (e) {
           reject(e);
@@ -114,9 +118,11 @@ export class BovedaVoz {
 
   _limpiar() {
     try {
-      this.stream.getTracks().forEach(t => t.stop());
+      this.stream.getTracks().forEach((t) => t.stop());
       this.audioCtx.close();
-    } catch (e) { /* silencio */ }
+    } catch (e) {
+      /* silencio */
+    }
     this.recorder = null;
     this.stream = null;
     this.audioCtx = null;
@@ -128,20 +134,27 @@ export class BovedaVoz {
   // Genera un patrón radial estilo mandala/cimático a partir
   // del espectro de frecuencias promedio.
   dibujarCimatico(canvas, frecuencias) {
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const W = canvas.width;
     const H = canvas.height;
     const cx = W / 2;
     const cy = H / 2;
 
     // Fondo oscuro
-    ctx.fillStyle = '#05070b';
+    ctx.fillStyle = "#05070b";
     ctx.fillRect(0, 0, W, H);
 
     // Degradado radial
-    const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) / 1.6);
-    bg.addColorStop(0, 'rgba(236,72,153,0.12)');
-    bg.addColorStop(1, 'rgba(5,7,11,0)');
+    const bg = ctx.createRadialGradient(
+      cx,
+      cy,
+      0,
+      cx,
+      cy,
+      Math.max(W, H) / 1.6,
+    );
+    bg.addColorStop(0, "rgba(236,72,153,0.12)");
+    bg.addColorStop(1, "rgba(5,7,11,0)");
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
 
@@ -183,16 +196,16 @@ export class BovedaVoz {
 
     // Núcleo central
     const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 40);
-    coreGrad.addColorStop(0, 'rgba(249,168,212,0.9)');
-    coreGrad.addColorStop(0.5, 'rgba(236,72,153,0.4)');
-    coreGrad.addColorStop(1, 'rgba(236,72,153,0)');
+    coreGrad.addColorStop(0, "rgba(249,168,212,0.9)");
+    coreGrad.addColorStop(0.5, "rgba(236,72,153,0.4)");
+    coreGrad.addColorStop(1, "rgba(236,72,153,0)");
     ctx.fillStyle = coreGrad;
     ctx.beginPath();
     ctx.arc(cx, cy, 40, 0, Math.PI * 2);
     ctx.fill();
 
     // Puntos cardinales (marcadores de referencia)
-    ctx.fillStyle = 'rgba(201,162,39,0.8)';
+    ctx.fillStyle = "rgba(201,162,39,0.8)";
     for (let k = 0; k < 8; k++) {
       const ang = (k / 8) * Math.PI * 2 - Math.PI / 2;
       const x = cx + Math.cos(ang) * (maxR + 14);
@@ -203,10 +216,10 @@ export class BovedaVoz {
     }
 
     // Firma de autoría en la esquina
-    ctx.fillStyle = 'rgba(201,162,39,0.55)';
-    ctx.font = '10px monospace';
-    ctx.fillText('BÓVEDA · LEGADO HUMANO–IA · v1.0', 12, H - 12);
+    ctx.fillStyle = "rgba(201,162,39,0.55)";
+    ctx.font = "10px monospace";
+    ctx.fillText("BÓVEDA · LEGADO HUMANO–IA · v1.0", 12, H - 12);
 
-    return canvas.toDataURL('image/png');
+    return canvas.toDataURL("image/png");
   }
 }

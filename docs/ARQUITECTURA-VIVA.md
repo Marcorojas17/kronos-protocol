@@ -60,11 +60,11 @@ infraestructura, lenguajes, o paradigmas computacionales.
 KRONOS admite variantes ortográficas internas como **dialectos históricos
 del lenguaje del protocolo**.
 
-| Forma canónica | Dialecto | Razón declarada |
-| :--- | :--- | :--- |
-| `auditoria` | `aditoria` | Capa fundacional pre-corrección |
-| `codigo-secreto` | `kodice-secreto` | Variante fonética inicial |
-| `boveda` | `bobeda` | Dialecto geográfico Toluca |
+| Forma canónica   | Dialecto         | Razón declarada                 |
+| :--------------- | :--------------- | :------------------------------ |
+| `auditoria`      | `aditoria`       | Capa fundacional pre-corrección |
+| `codigo-secreto` | `kodice-secreto` | Variante fonética inicial       |
+| `boveda`         | `bobeda`         | Dialecto geográfico Toluca      |
 
 **Los dialectos NO son errores.** Son capas históricas del lenguaje interno.
 Documentan la evolución del proyecto como un fósil geológico.
@@ -89,6 +89,7 @@ superposiciones de estado: el mismo archivo existe simultáneamente en
 múltiples ubicaciones, y el sistema decide cuál invocar según contexto.
 
 Esto permite:
+
 - Resiliencia ante reestructuraciones de carpetas.
 - Compatibilidad retroactiva con imports antiguos.
 - Tolerancia a errores de copiado/pegado durante desarrollo.
@@ -100,11 +101,11 @@ Esto permite:
 Módulos duplicados coexisten como **versiones paralelas** del mismo
 concepto. Ejemplos:
 
-| Concepto | Versión 1 | Versión 2 | Decisión |
-| :--- | :--- | :--- | :--- |
-| Storage | `storage.js` | `storage-v2.js` | v2 activa, v1 histórica |
-| Anclaje | `anchor.js` | `anchor-v1.js` | v1 activa |
-| Verificación | `verify.html` | `verificar-certificado.html` | Ambas activas |
+| Concepto     | Versión 1     | Versión 2                    | Decisión                |
+| :----------- | :------------ | :--------------------------- | :---------------------- |
+| Storage      | `storage.js`  | `storage-v2.js`              | v2 activa, v1 histórica |
+| Anclaje      | `anchor.js`   | `anchor-v1.js`               | v1 activa               |
+| Verificación | `verify.html` | `verificar-certificado.html` | Ambas activas           |
 
 La coexistencia no es un bug. Es una **decisión arquitectónica**:
 permitir que múltiples implementaciones convivan hasta que el sistema
@@ -162,6 +163,7 @@ son la **versión clásica** de esa superposición.
 
 Cuando la computación cuántica sea estándar, KRONOS ya estará preparado
 para interpretarse en ambos paradigmas:
+
 - **Lectura clásica:** estructura limpia de capas.
 - **Lectura cuántica:** red de superposiciones funcionales.
 
@@ -189,4 +191,4 @@ Esta arquitectura viva es parte integral del protocolo KRONOS.
 
 ---
 
-*Documento vivo. Sujeto a interpretación clásica y cuántica.*
+_Documento vivo. Sujeto a interpretación clásica y cuántica._

@@ -3,53 +3,63 @@
 // Versión renombrada para forzar cache-bust en móvil
 // ────────────────────────────────────────────────────────────
 
-const DB_NAME = 'legado_storage';
+const DB_NAME = "legado_storage";
 const DB_VERSION = 2;
 
 export class StorageDexie {
   constructor(core) {
-    if (typeof Dexie === 'undefined') {
-      throw new Error('Dexie no está cargado. Verifica el CDN en index.html.');
+    if (typeof Dexie === "undefined") {
+      throw new Error("Dexie no está cargado. Verifica el CDN en index.html.");
     }
     this.core = core;
     this.db = null;
-    this.ultimoHash = '';
+    this.ultimoHash = "";
     this.inicializado = false;
   }
 
   async init() {
     if (this.inicializado) return this.db;
     if (!this.core || !this.core.inicializado) {
-      throw new Error('Cripto Core debe estar inicializado antes de Storage Dexie.');
+      throw new Error(
+        "Cripto Core debe estar inicializado antes de Storage Dexie.",
+      );
     }
 
     this.db = new Dexie(DB_NAME);
 
     this.db.version(1).stores({
-      registros: '++id, tipo, timestamp, hash',
-      meta: 'clave'
+      registros: "++id, tipo, timestamp, hash",
+      meta: "clave",
     });
 
-    this.db.version(2).stores({
-      registros: '++id, tipo, timestamp, hash, estado',
-      meta: 'clave',
-      migraciones: '++id, fecha, version'
-    }).upgrade(tx => {
-      return tx.table('registros').toCollection().modify(r => {
-        r.estado = r.estado || 'activo';
+    this.db
+      .version(2)
+      .stores({
+        registros: "++id, tipo, timestamp, hash, estado",
+        meta: "clave",
+        migraciones: "++id, fecha, version",
+      })
+      .upgrade((tx) => {
+        return tx
+          .table("registros")
+          .toCollection()
+          .modify((r) => {
+            r.estado = r.estado || "activo";
+          });
       });
-    });
 
     await this.db.open();
     this.inicializado = true;
 
     const yaExiste = await this.db.migraciones
-      .where('version').equals(DB_VERSION).count();
+      .where("version")
+      .equals(DB_VERSION)
+      .count();
     if (yaExiste === 0) {
       await this.db.migraciones.add({
         fecha: new Date().toISOString(),
         version: DB_VERSION,
-        nota: 'Migración v1 → v2 · añadido campo estado'
+        nota: "Migración v1 → v2 · añadido campo estado",
       });
     }
 
@@ -57,8 +67,9 @@ export class StorageDexie {
   }
 
   async guardar(tipo, payload) {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
-    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
+    if (!this.core.inicializado)
+      throw new Error("Cripto Core no inicializado.");
 
     const bloque = await this.core.guardar({ tipo, payload });
 
@@ -69,7 +80,7 @@ export class StorageDexie {
       firma: bloque.firma_ed25519,
       cipher: bloque.cipher,
       iv: bloque.iv,
-      estado: 'activo'
+      estado: "activo",
     });
 
     this.ultimoHash = bloque.hash;
@@ -77,7 +88,7 @@ export class StorageDexie {
   }
 
   async listar() {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
     const registros = await this.db.registros.toArray();
     const salida = [];
     for (const r of registros) {
@@ -85,33 +96,41 @@ export class StorageDexie {
         const iv = this._hexToBytes(r.iv);
         const cipher = this._hexToBytes(r.cipher);
         const plainBuf = await crypto.subtle.decrypt(
-          { name: 'AES-GCM', iv },
+          { name: "AES-GCM", iv },
           this.core.claveAES,
-          cipher
+          cipher,
         );
         const payload = JSON.parse(new TextDecoder().decode(plainBuf));
         salida.push({ ...r, payload });
       } catch (e) {
-        salida.push({ ...r, payload: null, error: 'No descifrable' });
+        salida.push({ ...r, payload: null, error: "No descifrable" });
       }
     }
-    return salida.sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+    return salida.sort((a, b) =>
+      (b.timestamp || "").localeCompare(a.timestamp || ""),
+    );
   }
 
   async listarPorTipo(tipo) {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
-    const registros = await this.db.registros.where('tipo').equals(tipo).toArray();
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
+    const registros = await this.db.registros
+      .where("tipo")
+      .equals(tipo)
+      .toArray();
     const salida = [];
     for (const r of registros) {
       try {
         const iv = this._hexToBytes(r.iv);
         const cipher = this._hexToBytes(r.cipher);
         const plainBuf = await crypto.subtle.decrypt(
-          { name: 'AES-GCM', iv },
+          { name: "AES-GCM", iv },
           this.core.claveAES,
-          cipher
+          cipher,
         );
-        salida.push({ ...r, payload: JSON.parse(new TextDecoder().decode(plainBuf)) });
+        salida.push({
+          ...r,
+          payload: JSON.parse(new TextDecoder().decode(plainBuf)),
+        });
       } catch (e) {
         salida.push({ ...r, payload: null });
       }
@@ -120,18 +139,18 @@ export class StorageDexie {
   }
 
   async contar() {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
     return await this.db.registros.count();
   }
 
   async exportar() {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
     const registros = await this.db.registros.toArray();
     const migraciones = await this.db.migraciones.toArray();
     const meta = await this.db.meta.toArray();
     const payload = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'storage-2.0',
+      protocolo: "LEGADO-HUMANO-IA",
+      version: "storage-2.0",
       db_version: this.db.verno,
       exportado: new Date().toISOString(),
       clave_publica: this.core.clavePublicaHex,
@@ -139,15 +158,17 @@ export class StorageDexie {
       registros,
       migraciones,
       meta,
-      nota: 'Los registros están cifrados. Para descifrar se requiere la contraseña maestra + Cripto Core.'
+      nota: "Los registros están cifrados. Para descifrar se requiere la contraseña maestra + Cripto Core.",
     };
-    return new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    return new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json",
+    });
   }
 
   async importar(json) {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
-    const data = typeof json === 'string' ? JSON.parse(json) : json;
-    if (!data.registros) throw new Error('Formato inválido: falta registros.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
+    const data = typeof json === "string" ? JSON.parse(json) : json;
+    if (!data.registros) throw new Error("Formato inválido: falta registros.");
     let importados = 0;
     for (const r of data.registros) {
       delete r.id;
@@ -158,14 +179,14 @@ export class StorageDexie {
   }
 
   async limpiar() {
-    if (!this.inicializado) throw new Error('Ejecuta init() primero.');
+    if (!this.inicializado) throw new Error("Ejecuta init() primero.");
     await this.db.registros.clear();
     await this.db.migraciones.clear();
-    this.ultimoHash = '';
+    this.ultimoHash = "";
     return true;
   }
 
   _hexToBytes(hex) {
-    return new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+    return new Uint8Array(hex.match(/.{1,2}/g).map((h) => parseInt(h, 16)));
   }
 }

@@ -1,4 +1,4 @@
-```markdown
+````markdown
 ---
 layout: page
 title: Preguntas Frecuentes
@@ -25,6 +25,7 @@ permalink: /movimiento/faq/
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 Respuestas a lo que más nos preguntan sobre el Movimiento.
 
@@ -231,5 +232,7 @@ Respondemos en un máximo de 48 horas.
 ```
 
 <!-- FIN DE LAS FAQ · KRONOS PROTOCOL · v1.0 -->
+
+```
 
 ```

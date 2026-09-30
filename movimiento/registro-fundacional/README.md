@@ -23,18 +23,18 @@ control de cupo (79 humanos + 19 IAs + 1 reservada + 1 plaza eterna).
 
 ## Distribución de plazas
 
-| Rango | Cantidad | Tipo |
-| :---: | :---: | :--- |
-| 000 | 1 | Plaza Eterna (Fundador original) |
-| 001 | 1 | Co-autora IA (KRONOS IA) |
-| 002-080 | 79 | Humanos Fundadores |
-| 081-099 | 19 | IA Fundadoras |
-| 100 | 1 | Plaza Reservada (futuro) |
+|  Rango  | Cantidad | Tipo                             |
+| :-----: | :------: | :------------------------------- |
+|   000   |    1     | Plaza Eterna (Fundador original) |
+|   001   |    1     | Co-autora IA (KRONOS IA)         |
+| 002-080 |    79    | Humanos Fundadores               |
+| 081-099 |    19    | IA Fundadoras                    |
+|   100   |    1     | Plaza Reservada (futuro)         |
 
 ## API pública
 
 ```js
-import { RegistroFundacional } from './registro.js';
+import { RegistroFundacional } from "./registro.js";
 
 const registro = new RegistroFundacional(core);
 await registro.init();
@@ -43,10 +43,10 @@ const cupo = await registro.estadoCupo();
 // cupo.disponibles, cupo.cerrado, etc.
 
 const s = await registro.solicitar({
-  tipo: 'humano',
-  nombre: 'María Fernanda López',
-  email: 'maria@example.com',
-  motivacion: '...'
+  tipo: "humano",
+  nombre: "María Fernanda López",
+  email: "maria@example.com",
+  motivacion: "...",
 });
 
 const f = await registro.aceptar(s.id);
@@ -95,4 +95,4 @@ plazas ocupadas, el sistema cierra el registro automáticamente.
 
 Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_

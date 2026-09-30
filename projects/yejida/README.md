@@ -58,17 +58,17 @@ Este proyecto existe por dos razones, en este orden:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-| Componente | Detalle |
-|------------|---------|
-| ⭐ **Astronomía real** | 88 constelaciones IAU · Catálogo Hipparcos |
-| 🔭 **Objetos profundos** | Messier · NGC · IC · Exoplanetas NASA |
-| ✡️ **Cábala** | Sefirot · Letras hebreas · Mundos · Gematría |
-| 🎨 **Visualizaciones** | SVG + Canvas · geometría sagrada animada |
-| 🛠️ **Herramientas** | Calculadoras interactivas |
-| 📚 **Prácticas** | Meditaciones guiadas |
-| 🎓 **Cursos** | De principiante a avanzado |
-| 🎮 **Juegos** | Interactivos |
-| 🐱 **Causa** | Página dedicada a los gatitos |
+| Componente               | Detalle                                      |
+| ------------------------ | -------------------------------------------- |
+| ⭐ **Astronomía real**   | 88 constelaciones IAU · Catálogo Hipparcos   |
+| 🔭 **Objetos profundos** | Messier · NGC · IC · Exoplanetas NASA        |
+| ✡️ **Cábala**            | Sefirot · Letras hebreas · Mundos · Gematría |
+| 🎨 **Visualizaciones**   | SVG + Canvas · geometría sagrada animada     |
+| 🛠️ **Herramientas**      | Calculadoras interactivas                    |
+| 📚 **Prácticas**         | Meditaciones guiadas                         |
+| 🎓 **Cursos**            | De principiante a avanzado                   |
+| 🎮 **Juegos**            | Interactivos                                 |
+| 🐱 **Causa**             | Página dedicada a los gatitos                |
 
 ---
 
@@ -110,15 +110,15 @@ Este proyecto existe por dos razones, en este orden:
 └─────────────────────────────────────────────────────┘
 ```
 
-| Capa | Tecnología |
-|------|-----------|
-| **Frontend** | HTML + CSS + JavaScript (vanilla) |
-| **Gráficos** | SVG + Canvas |
-| **Persistencia** | localStorage (cifrado, opcional) |
-| **Modo offline** | PWA instalable |
-| **Sin backend** | 100% client-side · sin servidores |
-| **Sin tracking** | Sin cookies · sin telemetría · sin fingerprinting |
-| **Datos** | JSON con catálogos astronómicos (IAU, Hipparcos, Messier, NASA) |
+| Capa             | Tecnología                                                      |
+| ---------------- | --------------------------------------------------------------- |
+| **Frontend**     | HTML + CSS + JavaScript (vanilla)                               |
+| **Gráficos**     | SVG + Canvas                                                    |
+| **Persistencia** | localStorage (cifrado, opcional)                                |
+| **Modo offline** | PWA instalable                                                  |
+| **Sin backend**  | 100% client-side · sin servidores                               |
+| **Sin tracking** | Sin cookies · sin telemetría · sin fingerprinting               |
+| **Datos**        | JSON con catálogos astronómicos (IAU, Hipparcos, Messier, NASA) |
 
 ---
 
@@ -271,7 +271,7 @@ python3 -m http.server 8000
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
-> *"Cuando tú agarras un poco de la esencia, tú la tienes en su totalidad."*
+> _"Cuando tú agarras un poco de la esencia, tú la tienes en su totalidad."_
 > — Baal Shem Tov
 
 **✦ Yejidá · Unidad · Amor · Gatitos 🐱 ✦**

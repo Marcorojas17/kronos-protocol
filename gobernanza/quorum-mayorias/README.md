@@ -13,18 +13,18 @@ criptográficos requieren más consenso que las mejoras menores.
 
 ## Reglas declaradas
 
-| Tipo | Quórum | Mayoría |
-| :--- | :---: | :--- |
-| Cambio menor | 20% | Simple |
-| Cambio estructural | 50% | Absoluta |
-| Cambio criptográfico | 66% | Calificada |
-| Adopción | 50% | Absoluta |
-| Recurso | 33% | Simple |
+| Tipo                 | Quórum | Mayoría    |
+| :------------------- | :----: | :--------- |
+| Cambio menor         |  20%   | Simple     |
+| Cambio estructural   |  50%   | Absoluta   |
+| Cambio criptográfico |  66%   | Calificada |
+| Adopción             |  50%   | Absoluta   |
+| Recurso              |  33%   | Simple     |
 
 ## API pública
 
 ```js
-import { QuorumMayorias } from './quorum.js';
+import { QuorumMayorias } from "./quorum.js";
 
 const q = new QuorumMayorias();
 
@@ -49,4 +49,4 @@ const v = q.veredicto(resultados, ciudadanosActivos, tipo, estado);
 
 Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)
 
-*"El legado no se hereda. Se firma."*
+_"El legado no se hereda. Se firma."_

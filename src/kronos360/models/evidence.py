@@ -4,10 +4,10 @@ Capa 1: payload_hash   -> huella del contenido unicamente.
 Capa 2: hash_registro  -> huella del registro completo (incluye payload_hash
                           + metadatos). Es la que se firma.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -27,12 +27,12 @@ class EvidenceRecord:
     record_id: str
     tipo: str
     content: dict
-    payload_hash: str          # Capa 1
-    payload_hash_algo: str     # "SHA3-512" | "SHA-256"
+    payload_hash: str  # Capa 1
+    payload_hash_algo: str  # "SHA3-512" | "SHA-256"
     created_at: str
     responsable: dict
     prev_hash: str
-    hash_registro: str         # Capa 2
-    hash_algo: str             # algoritmo de hash_registro
+    hash_registro: str  # Capa 2
+    hash_algo: str  # algoritmo de hash_registro
     signatures: tuple[SignatureRecord, ...] = field(default_factory=tuple)
-    migration_of: Optional[str] = None
+    migration_of: str | None = None

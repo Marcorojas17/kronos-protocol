@@ -128,15 +128,15 @@ Sanborn ha declarado públicamente que **las palabras reveladas no son suficient
 
 Este framework sirve para demostrar:
 
-| # | Concepto |
-|:---:|:---|
-| 01 | Cómo funciona la transposición matricial |
-| 02 | Cómo funciona Vigenère (Mod 26) |
-| 03 | Por qué los cribs conocidos no bastan |
-| 04 | Cómo calcular entropía de Shannon |
-| 05 | Cómo construir un Merkle Tree desde cero |
-| 06 | Cómo firmar un hash con RSA-2048 en el navegador |
-| 07 | Por qué K4 sigue abierto después de 35 años |
+|  #  | Concepto                                         |
+| :-: | :----------------------------------------------- |
+| 01  | Cómo funciona la transposición matricial         |
+| 02  | Cómo funciona Vigenère (Mod 26)                  |
+| 03  | Por qué los cribs conocidos no bastan            |
+| 04  | Cómo calcular entropía de Shannon                |
+| 05  | Cómo construir un Merkle Tree desde cero         |
+| 06  | Cómo firmar un hash con RSA-2048 en el navegador |
+| 07  | Por qué K4 sigue abierto después de 35 años      |
 
 ---
 
@@ -146,15 +146,15 @@ Este framework sirve para demostrar:
 └────────────────────────────────────────────────────┘
 ```
 
-| Capa | Tecnología |
-|------|-----------|
-| Criptografía | Web Crypto API (SubtleCrypto) |
-| Hash | SHA-256 |
-| Firma | RSA-2048 (RSASSA-PKCS1-v1_5) |
-| Cifrado simétrico | AES-256-CBC |
-| Árbol | Merkle Tree con SHA-256 iterativo |
-| Frontend | HTML5 + CSS3 + JavaScript ES6+ |
-| Dependencias | Cero |
+| Capa              | Tecnología                        |
+| ----------------- | --------------------------------- |
+| Criptografía      | Web Crypto API (SubtleCrypto)     |
+| Hash              | SHA-256                           |
+| Firma             | RSA-2048 (RSASSA-PKCS1-v1_5)      |
+| Cifrado simétrico | AES-256-CBC                       |
+| Árbol             | Merkle Tree con SHA-256 iterativo |
+| Frontend          | HTML5 + CSS3 + JavaScript ES6+    |
+| Dependencias      | Cero                              |
 
 ---
 

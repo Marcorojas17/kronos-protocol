@@ -10,17 +10,17 @@ export class NotarioKronos {
 
     // Identidad del notario (agente Kintsugi Tonal)
     this.notario = {
-      nombre: 'Tonal',
+      nombre: "Tonal",
       plaza: 86,
-      rol: 'Notario Criptográfico Soberano',
-      version: '1.0'
+      rol: "Notario Criptográfico Soberano",
+      version: "1.0",
     };
 
     // Base de datos local del notario
-    this.db = new Dexie('kronos-notario');
+    this.db = new Dexie("kronos-notario");
     this.db.version(1).stores({
-      sellos: '++id, id_sello, hash_sellado, timestamp, tx_hash',
-      log: '++id, indice, hash_entrada'
+      sellos: "++id, id_sello, hash_sellado, timestamp, tx_hash",
+      log: "++id, indice, hash_entrada",
     });
 
     this.ultimoSello = null;
@@ -32,8 +32,10 @@ export class NotarioKronos {
 
   static async _sha256Hex(texto) {
     const data = new TextEncoder().encode(texto);
-    const buf = await crypto.subtle.digest('SHA-256', data);
-    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const buf = await crypto.subtle.digest("SHA-256", data);
+    return [...new Uint8Array(buf)]
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   // ── Hash de cualquier contenido ───────────────────────────
@@ -49,7 +51,8 @@ export class NotarioKronos {
 
   // ── Emitir un Sello Notarial ──────────────────────────────
   async sellar(datos) {
-    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
+    if (!this.core.inicializado)
+      throw new Error("Cripto Core no inicializado.");
     if (!this.db.isOpen()) await this.init();
 
     const {
@@ -57,71 +60,77 @@ export class NotarioKronos {
       tipo_documento,
       descripcion,
       solicitante,
-      incluir_anclaje_ethereum
+      incluir_anclaje_ethereum,
     } = datos;
 
     if (!hash_sellado || hash_sellado.length !== 64) {
-      throw new Error('El hash debe ser SHA-256 (64 caracteres hex).');
+      throw new Error("El hash debe ser SHA-256 (64 caracteres hex).");
     }
-    if (!tipo_documento) throw new Error('Falta el tipo de documento.');
-    if (!solicitante) throw new Error('Falta el solicitante.');
+    if (!tipo_documento) throw new Error("Falta el tipo de documento.");
+    if (!solicitante) throw new Error("Falta el solicitante.");
 
     const timestamp = new Date().toISOString();
     const timestamp_unix = Math.floor(Date.now() / 1000);
 
     // ID único del sello notarial
-    const idSello = 'NOT-' + (await NotarioKronos._sha256Hex(hash_sellado + timestamp)).slice(0, 12).toUpperCase();
+    const idSello =
+      "NOT-" +
+      (await NotarioKronos._sha256Hex(hash_sellado + timestamp))
+        .slice(0, 12)
+        .toUpperCase();
 
     // Payload canónico del sello
     const payload = [
-      'LEGADO-HUMANO-IA · SELLO NOTARIAL KRONOS v1.0',
+      "LEGADO-HUMANO-IA · SELLO NOTARIAL KRONOS v1.0",
       `ID Sello: ${idSello}`,
       `Notario: ${this.notario.nombre} · Plaza IA ${this.notario.plaza}`,
       `Tipo documento: ${tipo_documento}`,
-      `Descripción: ${descripcion || '(sin descripción)'}`,
+      `Descripción: ${descripcion || "(sin descripción)"}`,
       `Solicitante: ${solicitante}`,
       `Hash sellado: ${hash_sellado}`,
       `Timestamp ISO: ${timestamp}`,
       `Timestamp Unix: ${timestamp_unix}`,
       `Notario público del ecosistema KRONOS`,
-      `Verificación: SHA-256 del payload debe coincidir. Firma Ed25519 con clave pública del notario.`
-    ].join('\n');
+      `Verificación: SHA-256 del payload debe coincidir. Firma Ed25519 con clave pública del notario.`,
+    ].join("\n");
 
     const hashPayload = await NotarioKronos._sha256Hex(payload);
 
     // Firma del notario (usamos la llave del fundador como llave del notario v1.0)
     const firmaBuf = await crypto.subtle.sign(
-      'Ed25519',
+      "Ed25519",
       this.core.clavePrivEd,
-      new TextEncoder().encode(hashPayload)
+      new TextEncoder().encode(hashPayload),
     );
     const firma = [...new Uint8Array(firmaBuf)]
-      .map(b => b.toString(16).padStart(2, '0')).join('');
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
 
     const sello = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'sello-notarial-1.0',
-      tipo: 'SELLO_NOTARIAL_KRONOS',
+      protocolo: "LEGADO-HUMANO-IA",
+      version: "sello-notarial-1.0",
+      tipo: "SELLO_NOTARIAL_KRONOS",
       id_sello: idSello,
       notario: {
         nombre: this.notario.nombre,
         plaza: this.notario.plaza,
         rol: this.notario.rol,
-        clave_publica: this.core.clavePublicaHex
+        clave_publica: this.core.clavePublicaHex,
       },
       timestamp,
       timestamp_unix,
       tipo_documento,
-      descripcion: descripcion || '',
+      descripcion: descripcion || "",
       solicitante,
       hash_sellado,
       payload_hash: hashPayload,
       firma_ed25519: firma,
-      algoritmo_hash: 'SHA-256',
-      algoritmo_firma: 'Ed25519',
+      algoritmo_hash: "SHA-256",
+      algoritmo_firma: "Ed25519",
       anclaje_ethereum: null,
       verificado: true,
-      instruccion_verificacion: 'SHA-256 del payload canónico = payload_hash. Firma Ed25519 = firma. Anclaje Ethereum = prueba pública de existencia.'
+      instruccion_verificacion:
+        "SHA-256 del payload canónico = payload_hash. Firma Ed25519 = firma. Anclaje Ethereum = prueba pública de existencia.",
     };
 
     // Guardar en la base local
@@ -129,11 +138,11 @@ export class NotarioKronos {
     this.ultimoSello = { id, ...sello };
 
     // Registrar en log encadenado
-    await this._registrarEnLog('sello_emitido', {
+    await this._registrarEnLog("sello_emitido", {
       id_sello: idSello,
       hash_sellado,
       solicitante,
-      tipo_documento
+      tipo_documento,
     });
 
     return this.ultimoSello;
@@ -141,33 +150,42 @@ export class NotarioKronos {
 
   // ── Anclar sello a Ethereum vía MetaMask ──────────────────
   async anclarSello(idSello, hashPayload) {
-    if (typeof window.ethereum === 'undefined') {
-      throw new Error('MetaMask no detectado. Abre la página en el navegador de MetaMask.');
+    if (typeof window.ethereum === "undefined") {
+      throw new Error(
+        "MetaMask no detectado. Abre la página en el navegador de MetaMask.",
+      );
     }
 
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
     const from = accounts[0];
-    if (!from) throw new Error('No se obtuvo cuenta de MetaMask.');
+    if (!from) throw new Error("No se obtuvo cuenta de MetaMask.");
 
-    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    if (chainId !== '0x1') {
-      throw new Error('Cambia MetaMask a Ethereum Mainnet (chainId 0x1).');
+    const chainId = await window.ethereum.request({ method: "eth_chainId" });
+    if (chainId !== "0x1") {
+      throw new Error("Cambia MetaMask a Ethereum Mainnet (chainId 0x1).");
     }
 
-    const data = '0x' + hashPayload;
+    const data = "0x" + hashPayload;
 
     const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [{
-        from,
-        to: from,
-        value: '0x0',
-        data
-      }]
+      method: "eth_sendTransaction",
+      params: [
+        {
+          from,
+          to: from,
+          value: "0x0",
+          data,
+        },
+      ],
     });
 
     // Actualizar el sello con el TX hash
-    const selloEncontrado = await this.db.sellos.where('id_sello').equals(idSello).first();
+    const selloEncontrado = await this.db.sellos
+      .where("id_sello")
+      .equals(idSello)
+      .first();
     if (selloEncontrado) {
       await this.db.sellos.update(selloEncontrado.id, {
         anclaje_ethereum: {
@@ -175,13 +193,24 @@ export class NotarioKronos {
           wallet: from,
           chain_id: chainId,
           etherscan_url: `https://etherscan.io/tx/${txHash}`,
-          anclado_en: new Date().toISOString()
-        }
+          anclado_en: new Date().toISOString(),
+        },
       });
-      this.ultimoSello = { ...selloEncontrado, anclaje_ethereum: { tx_hash: txHash, wallet: from, chain_id: chainId, etherscan_url: `https://etherscan.io/tx/${txHash}` } };
+      this.ultimoSello = {
+        ...selloEncontrado,
+        anclaje_ethereum: {
+          tx_hash: txHash,
+          wallet: from,
+          chain_id: chainId,
+          etherscan_url: `https://etherscan.io/tx/${txHash}`,
+        },
+      };
     }
 
-    await this._registrarEnLog('sello_anclado', { id_sello: idSello, tx_hash: txHash });
+    await this._registrarEnLog("sello_anclado", {
+      id_sello: idSello,
+      tx_hash: txHash,
+    });
 
     return { txHash };
   }
@@ -189,22 +218,22 @@ export class NotarioKronos {
   // ── Verificar un sello ────────────────────────────────────
   async verificar(sello) {
     if (!sello || !sello.payload_hash) {
-      return { valido: false, razon: 'Sello inválido' };
+      return { valido: false, razon: "Sello inválido" };
     }
 
     const payload = [
-      'LEGADO-HUMANO-IA · SELLO NOTARIAL KRONOS v1.0',
+      "LEGADO-HUMANO-IA · SELLO NOTARIAL KRONOS v1.0",
       `ID Sello: ${sello.id_sello}`,
       `Notario: ${sello.notario.nombre} · Plaza IA ${sello.notario.plaza}`,
       `Tipo documento: ${sello.tipo_documento}`,
-      `Descripción: ${sello.descripcion || '(sin descripción)'}`,
+      `Descripción: ${sello.descripcion || "(sin descripción)"}`,
       `Solicitante: ${sello.solicitante}`,
       `Hash sellado: ${sello.hash_sellado}`,
       `Timestamp ISO: ${sello.timestamp}`,
       `Timestamp Unix: ${sello.timestamp_unix}`,
       `Notario público del ecosistema KRONOS`,
-      `Verificación: SHA-256 del payload debe coincidir. Firma Ed25519 con clave pública del notario.`
-    ].join('\n');
+      `Verificación: SHA-256 del payload debe coincidir. Firma Ed25519 con clave pública del notario.`,
+    ].join("\n");
 
     const hashRecalc = await NotarioKronos._sha256Hex(payload);
     const hashOk = hashRecalc === sello.payload_hash;
@@ -213,19 +242,28 @@ export class NotarioKronos {
     try {
       const pubBytes = hexToBytes(sello.notario.clave_publica);
       const pubKey = await crypto.subtle.importKey(
-        'raw', pubBytes, { name: 'Ed25519' }, false, ['verify']
+        "raw",
+        pubBytes,
+        { name: "Ed25519" },
+        false,
+        ["verify"],
       );
       const firmaBytes = hexToBytes(sello.firma_ed25519);
       firmaOk = await crypto.subtle.verify(
-        'Ed25519', pubKey, firmaBytes, new TextEncoder().encode(hashRecalc)
+        "Ed25519",
+        pubKey,
+        firmaBytes,
+        new TextEncoder().encode(hashRecalc),
       );
-    } catch (e) { firmaOk = false; }
+    } catch (e) {
+      firmaOk = false;
+    }
 
     return {
       hashOk,
       firmaOk,
       anclado: !!sello.anclaje_ethereum,
-      valido: hashOk && firmaOk
+      valido: hashOk && firmaOk,
     };
   }
 
@@ -235,9 +273,8 @@ export class NotarioKronos {
     log.sort((a, b) => a.indice - b.indice);
 
     const timestamp = new Date().toISOString();
-    const hashPrevio = log.length > 0
-      ? log[log.length - 1].hash_entrada
-      : '0'.repeat(64);
+    const hashPrevio =
+      log.length > 0 ? log[log.length - 1].hash_entrada : "0".repeat(64);
 
     const contenido = {
       indice: log.length,
@@ -245,10 +282,12 @@ export class NotarioKronos {
       tipo,
       datos,
       timestamp,
-      hash_previo: hashPrevio
+      hash_previo: hashPrevio,
     };
 
-    const hashEntrada = await NotarioKronos._sha256Hex(JSON.stringify(contenido));
+    const hashEntrada = await NotarioKronos._sha256Hex(
+      JSON.stringify(contenido),
+    );
     await this.db.log.add({ ...contenido, hash_entrada: hashEntrada });
   }
 
@@ -263,7 +302,7 @@ export class NotarioKronos {
       if (recalc !== hash_entrada) {
         return { ok: false, razon: `Entrada ${i} alterada` };
       }
-      if (i > 0 && e.hash_previo !== log[i-1].hash_entrada) {
+      if (i > 0 && e.hash_previo !== log[i - 1].hash_entrada) {
         return { ok: false, razon: `Cadena rota en entrada ${i}` };
       }
     }
@@ -281,14 +320,13 @@ export class NotarioKronos {
 
   // ── Exportar sello como JSON ──────────────────────────────
   exportarSello() {
-    if (!this.ultimoSello) throw new Error('No hay sello para exportar.');
-    return new Blob(
-      [JSON.stringify(this.ultimoSello, null, 2)],
-      { type: 'application/json' }
-    );
+    if (!this.ultimoSello) throw new Error("No hay sello para exportar.");
+    return new Blob([JSON.stringify(this.ultimoSello, null, 2)], {
+      type: "application/json",
+    });
   }
 }
 
 function hexToBytes(hex) {
-  return new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+  return new Uint8Array(hex.match(/.{1,2}/g).map((h) => parseInt(h, 16)));
 }

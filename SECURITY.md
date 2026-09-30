@@ -78,12 +78,12 @@ el principio de **transparencia de código**.
 
 ## ⏱️ Tiempos de respuesta
 
-| Tiempo | Acción |
-| :--- | :--- |
-| **72 horas** | Confirmación de recepción |
-| **7 días** | Evaluación inicial y clasificación |
-| **30 días** | Remediación o fix objetivo |
-| **90 días** | Divulgación coordinada |
+| Tiempo       | Acción                             |
+| :----------- | :--------------------------------- |
+| **72 horas** | Confirmación de recepción          |
+| **7 días**   | Evaluación inicial y clasificación |
+| **30 días**  | Remediación o fix objetivo         |
+| **90 días**  | Divulgación coordinada             |
 
 ---
 
@@ -108,4 +108,4 @@ el principio de **transparencia de código**.
     └─────────────────────────────────────────────────────┘
 ```
 
-*Última actualización: 2026*
+_Última actualización: 2026_

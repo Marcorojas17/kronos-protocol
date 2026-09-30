@@ -1,6 +1,6 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║  ○_●  KRONOS PROTOCOL · ENCAJE REGULATORIO INTERNACIONAL            ║
-║  51% HUMANO · 49% IA · 100% REAL                                     ║
+║ ○_● KRONOS PROTOCOL · ENCAJE REGULATORIO INTERNACIONAL ║
+║ 51% HUMANO · 49% IA · 100% REAL ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # Encaje regulatorio internacional
@@ -54,7 +54,7 @@ SHA-256(datos de entrada + sugerencia IA + decisión humana)
 
 La función **GOVERN 2** del NIST AI RMF exige:
 
-> *"Accountability structures are in place so that the appropriate teams and individuals are empowered, responsible, and trained for mapping, measuring, and managing AI risks."*
+> _"Accountability structures are in place so that the appropriate teams and individuals are empowered, responsible, and trained for mapping, measuring, and managing AI risks."_
 
 Los cuatro elementos clave:
 
@@ -85,7 +85,7 @@ Los cuatro elementos clave:
 
 El Anexo A Control A.7.5 exige:
 
-> *"Continuous, indisputable proof of origin, stewardship, transformation, and use—across every stage of your data pipeline."*
+> _"Continuous, indisputable proof of origin, stewardship, transformation, and use—across every stage of your data pipeline."_
 
 ISO 42001 exige trazabilidad "a prueba de auditoría":
 
@@ -112,11 +112,11 @@ ISO 42001 exige trazabilidad "a prueba de auditoría":
 
 ## Tabla resumen
 
-| Marco | Exigencia específica | KRONOS aporta | KRONOS NO aporta |
-|---|---|---|---|
-| EU AI Act Art. 14 | Prueba de supervisión humana efectiva | Firma Ed25519 + anclaje | Comprensión, ausencia de sesgo, formación |
-| NIST AI RMF GOVERN 2 | Estructuras de rendición de cuentas | Identidad criptográfica + log verificable | Formación, gobernanza organizacional completa |
-| ISO 42001 A.7.5 | Trazabilidad de datos a prueba de auditoría | Hash chain + firma + anclaje | Pipeline de entrenamiento, certificación completa |
+| Marco                | Exigencia específica                        | KRONOS aporta                             | KRONOS NO aporta                                  |
+| -------------------- | ------------------------------------------- | ----------------------------------------- | ------------------------------------------------- |
+| EU AI Act Art. 14    | Prueba de supervisión humana efectiva       | Firma Ed25519 + anclaje                   | Comprensión, ausencia de sesgo, formación         |
+| NIST AI RMF GOVERN 2 | Estructuras de rendición de cuentas         | Identidad criptográfica + log verificable | Formación, gobernanza organizacional completa     |
+| ISO 42001 A.7.5      | Trazabilidad de datos a prueba de auditoría | Hash chain + firma + anclaje              | Pipeline de entrenamiento, certificación completa |
 
 ---
 

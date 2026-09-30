@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                                                                              ║
@@ -16,28 +15,29 @@
 ╚══════════════════════════════════════════════════════════════════════════════╝
 """
 
+import hashlib
+import json
 import os
 import sys
-import json
-import hashlib
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # PALETA OBSIDIAN & GOLD + PLATINUM
 # ─────────────────────────────────────────────────────────────────────────────
 class C:
-    RESET    = "\033[0m"
-    BOLD     = "\033[1m"
-    DIM      = "\033[2m"
-    GOLD     = "\033[38;2;201;162;39m"
-    GOLD_2   = "\033[38;2;229;199;107m"
-    PLAT     = "\033[38;2;183;148;246m"
-    CREAM    = "\033[38;2;245;240;230m"
-    GREEN    = "\033[38;2;88;166;109m"
-    AMBER    = "\033[38;2;214;158;46m"
-    RED      = "\033[38;2;176;74;74m"
-    CYAN     = "\033[38;2;106;176;196m"
+    RESET = "\033[0m"
+    BOLD = "\033[1m"
+    DIM = "\033[2m"
+    GOLD = "\033[38;2;201;162;39m"
+    GOLD_2 = "\033[38;2;229;199;107m"
+    PLAT = "\033[38;2;183;148;246m"
+    CREAM = "\033[38;2;245;240;230m"
+    GREEN = "\033[38;2;88;166;109m"
+    AMBER = "\033[38;2;214;158;46m"
+    RED = "\033[38;2;176;74;74m"
+    CYAN = "\033[38;2;106;176;196m"
 
 
 def limpiar():
@@ -211,7 +211,7 @@ def exportar():
         sys.exit(2)
 
     # ── Exportar JSON verificable ──
-    timestamp = datetime.now(timezone.utc).isoformat()
+    timestamp = datetime.now(UTC).isoformat()
     export = {
         "protocolo": "KRONOS",
         "version": "merkle-1.0",

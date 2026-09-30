@@ -3,7 +3,7 @@
 // Paquetes .evidence verificables · NOM-151-SCFI-2016
 // ────────────────────────────────────────────────────────────
 
-const DOMINIO_HMAC = 'LEGADO-HUMANO-IA-EVIDENCE-v1.0';
+const DOMINIO_HMAC = "LEGADO-HUMANO-IA-EVIDENCE-v1.0";
 
 export class EvidenceOS {
   constructor(core, storage) {
@@ -13,28 +13,36 @@ export class EvidenceOS {
   }
 
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest('SHA-256', bytes);
-    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    return [...new Uint8Array(buf)]
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   static async _hmacSha256(keyBytes, dataBytes) {
     const key = await crypto.subtle.importKey(
-      'raw', keyBytes,
-      { name: 'HMAC', hash: 'SHA-256' },
-      false, ['sign']
+      "raw",
+      keyBytes,
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"],
     );
-    const sig = await crypto.subtle.sign('HMAC', key, dataBytes);
-    return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const sig = await crypto.subtle.sign("HMAC", key, dataBytes);
+    return [...new Uint8Array(sig)]
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   // ── Sellar paquete .evidence ──────────────────────────────
   async sellar(datos) {
-    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    if (!datos.humano) throw new Error('Identidad humana requerida.');
-    if (!datos.pactoIA) throw new Error('Pacto IA requerido.');
+    if (!this.core.inicializado)
+      throw new Error("Cripto Core no inicializado.");
+    if (!this.storage.inicializado)
+      throw new Error("Storage Dexie no inicializado.");
+    if (!datos.humano) throw new Error("Identidad humana requerida.");
+    if (!datos.pactoIA) throw new Error("Pacto IA requerido.");
     if (!datos.contenidoBytes || datos.contenidoBytes.length === 0) {
-      throw new Error('Contenido vacío.');
+      throw new Error("Contenido vacío.");
     }
 
     const timestamp = new Date().toISOString();
@@ -44,19 +52,19 @@ export class EvidenceOS {
 
     // 2. ID único de evidencia
     const idRaw = await EvidenceOS._sha256Hex(
-      new TextEncoder().encode(hashSha256 + timestamp + datos.humano.huella)
+      new TextEncoder().encode(hashSha256 + timestamp + datos.humano.huella),
     );
-    const idEvidencia = 'EV-' + idRaw.slice(0, 16).toUpperCase();
+    const idEvidencia = "EV-" + idRaw.slice(0, 16).toUpperCase();
 
     // 3. HMAC-SHA256 del hash usando la clave pública del humano como clave
     const hmacSha256 = await EvidenceOS._hmacSha256(
       hexToBytes(datos.humano.huella).slice(0, 32),
-      hexToBytes(hashSha256)
+      hexToBytes(hashSha256),
     );
 
     // 4. Payload canónico para firma Ed25519
     const payloadCanonico = [
-      'LEGADO-HUMANO-IA · EVIDENCE v1.0',
+      "LEGADO-HUMANO-IA · EVIDENCE v1.0",
       `ID: ${idEvidencia}`,
       `Timestamp: ${timestamp}`,
       `Archivo: ${datos.nombreArchivo}`,
@@ -66,39 +74,41 @@ export class EvidenceOS {
       `Hash SHA-256: ${hashSha256}`,
       `HMAC: ${hmacSha256}`,
       `Declaración: ${datos.declaracion}`,
-      `Notas: ${datos.notas || '(sin notas)'}`,
+      `Notas: ${datos.notas || "(sin notas)"}`,
       `Firmante: ${datos.humano.nombre} (${datos.humano.alias})`,
       `Firmante huella: ${datos.humano.huella}`,
-      `IA co-autora: ${datos.pactoIA.ia_nombre}`
-    ].join('\n');
+      `IA co-autora: ${datos.pactoIA.ia_nombre}`,
+    ].join("\n");
 
     const payloadHash = await EvidenceOS._sha256Hex(
-      new TextEncoder().encode(payloadCanonico)
+      new TextEncoder().encode(payloadCanonico),
     );
 
     // 5. Firma Ed25519 con la clave del humano
     const firmaBuf = await crypto.subtle.sign(
-      'Ed25519',
+      "Ed25519",
       this.core.clavePrivEd,
-      new TextEncoder().encode(payloadHash)
+      new TextEncoder().encode(payloadHash),
     );
-    const firma = [...new Uint8Array(firmaBuf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    const firma = [...new Uint8Array(firmaBuf)]
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
 
     // 6. Sello temporal NOM-151 (simulado localmente; puede anclarse on-chain)
     const selloTemporal = {
-      tipo: 'NOM-151-SCFI-2016',
+      tipo: "NOM-151-SCFI-2016",
       fecha: timestamp,
-      emisor: 'LEGADO-HUMANO-IA',
-      qtsa: 'Firmaprofesional B02',
+      emisor: "LEGADO-HUMANO-IA",
+      qtsa: "Firmaprofesional B02",
       hash_sellado: payloadHash,
-      metodo: 'local-first · verificable por anclaje posterior'
+      metodo: "local-first · verificable por anclaje posterior",
     };
 
     // 7. Paquete completo
     const paquete = {
-      protocolo: 'LEGADO-HUMANO-IA',
-      version: 'evidence-1.0',
-      tipo: 'paquete-evidence',
+      protocolo: "LEGADO-HUMANO-IA",
+      version: "evidence-1.0",
+      tipo: "paquete-evidence",
       id_evidencia: idEvidencia,
       timestamp,
       nombre_archivo: datos.nombreArchivo,
@@ -117,18 +127,19 @@ export class EvidenceOS {
       declaracion: datos.declaracion,
       notas: datos.notas || null,
       clave_publica: this.core.clavePublicaHex,
-      algoritmo_hash: 'SHA-256',
-      algoritmo_hmac: 'HMAC-SHA256',
-      algoritmo_firma: 'Ed25519',
-      norma: 'NOM-151-SCFI-2016',
+      algoritmo_hash: "SHA-256",
+      algoritmo_hmac: "HMAC-SHA256",
+      algoritmo_firma: "Ed25519",
+      norma: "NOM-151-SCFI-2016",
       verificable_por_tercero: true,
-      instruccion_verificacion: 'SHA-256(content) → hash_sha256. HMAC-SHA256(huella[0:32], hash_sha256) → hmac_sha256. SHA-256(payload canónico) → payload_hash. Verificar firma_ed25519 con clave_publica sobre payload_hash.'
+      instruccion_verificacion:
+        "SHA-256(content) → hash_sha256. HMAC-SHA256(huella[0:32], hash_sha256) → hmac_sha256. SHA-256(payload canónico) → payload_hash. Verificar firma_ed25519 con clave_publica sobre payload_hash.",
     };
 
     // 8. Persistir cifrado
-    await this.storage.guardar('evidence', {
+    await this.storage.guardar("evidence", {
       id_evidencia: idEvidencia,
-      ...paquete
+      ...paquete,
     });
 
     this.paqueteActual = paquete;
@@ -137,13 +148,13 @@ export class EvidenceOS {
 
   // ── Verificar paquete ─────────────────────────────────────
   async verificar(paquete) {
-    if (!paquete || paquete.tipo !== 'paquete-evidence') {
-      throw new Error('No es un paquete .evidence válido.');
+    if (!paquete || paquete.tipo !== "paquete-evidence") {
+      throw new Error("No es un paquete .evidence válido.");
     }
 
     // 1. Reconstruir payload canónico
     const payloadCanonico = [
-      'LEGADO-HUMANO-IA · EVIDENCE v1.0',
+      "LEGADO-HUMANO-IA · EVIDENCE v1.0",
       `ID: ${paquete.id_evidencia}`,
       `Timestamp: ${paquete.timestamp}`,
       `Archivo: ${paquete.nombre_archivo}`,
@@ -153,32 +164,32 @@ export class EvidenceOS {
       `Hash SHA-256: ${paquete.hash_sha256}`,
       `HMAC: ${paquete.hmac_sha256}`,
       `Declaración: ${paquete.declaracion}`,
-      `Notas: ${paquete.notas || '(sin notas)'}`,
+      `Notas: ${paquete.notas || "(sin notas)"}`,
       `Firmante: ${paquete.firmante_nombre} (${paquete.firmante_alias})`,
       `Firmante huella: ${paquete.firmante_huella}`,
-      `IA co-autora: ${paquete.ia_coautora}`
-    ].join('\n');
+      `IA co-autora: ${paquete.ia_coautora}`,
+    ].join("\n");
 
     const payloadHashCalc = await EvidenceOS._sha256Hex(
-      new TextEncoder().encode(payloadCanonico)
+      new TextEncoder().encode(payloadCanonico),
     );
 
     if (payloadHashCalc !== paquete.payload_hash) return false;
 
     // 2. Verificar firma Ed25519
     const pubKey = await crypto.subtle.importKey(
-      'raw',
+      "raw",
       hexToBytes(paquete.clave_publica),
-      { name: 'Ed25519' },
+      { name: "Ed25519" },
       false,
-      ['verify']
+      ["verify"],
     );
 
     const firmaOk = await crypto.subtle.verify(
-      'Ed25519',
+      "Ed25519",
       pubKey,
       hexToBytes(paquete.firma_ed25519),
-      new TextEncoder().encode(paquete.payload_hash)
+      new TextEncoder().encode(paquete.payload_hash),
     );
 
     return firmaOk;
@@ -193,24 +204,26 @@ export class EvidenceOS {
   // ── Exportar como Blob .evidence ──────────────────────────
   exportarEvidence(paquete) {
     return new Blob([JSON.stringify(paquete, null, 2)], {
-      type: 'application/octet-stream'
+      type: "application/octet-stream",
     });
   }
 
   // ── Recuperar paquete por ID ──────────────────────────────
   async recuperar(idEvidencia) {
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    const todos = await this.storage.listarPorTipo('evidence');
-    return todos.find(p => p.payload?.id_evidencia === idEvidencia) || null;
+    if (!this.storage.inicializado)
+      throw new Error("Storage Dexie no inicializado.");
+    const todos = await this.storage.listarPorTipo("evidence");
+    return todos.find((p) => p.payload?.id_evidencia === idEvidencia) || null;
   }
 
   // ── Listar todos los paquetes ─────────────────────────────
   async listar() {
-    if (!this.storage.inicializado) throw new Error('Storage Dexie no inicializado.');
-    return await this.storage.listarPorTipo('evidence');
+    if (!this.storage.inicializado)
+      throw new Error("Storage Dexie no inicializado.");
+    return await this.storage.listarPorTipo("evidence");
   }
 }
 
 function hexToBytes(hex) {
-  return new Uint8Array(hex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+  return new Uint8Array(hex.match(/.{1,2}/g).map((h) => parseInt(h, 16)));
 }

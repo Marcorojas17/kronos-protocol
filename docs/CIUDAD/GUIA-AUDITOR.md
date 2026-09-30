@@ -1,19 +1,19 @@
 ╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║   ○_●   GUÍA PARA AUDITORES · v1.0                                   ║
-║   ◢◤◥◣ Ciudad Digital KRONOS                                          ║
-║   ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                              ║
-║                                                                      ║
-║   Cómo verificar un paquete de auditoría KRONOS                      ║
-║   Fundador: Marco Antonio Rojas Valdovinos                           ║
-║   Toluca, Estado de México · 2026                                    ║
-║                                                                      ║
+║ ║
+║ ○_● GUÍA PARA AUDITORES · v1.0 ║
+║ ◢◤◥◣ Ciudad Digital KRONOS ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+║ ║
+║ Cómo verificar un paquete de auditoría KRONOS ║
+║ Fundador: Marco Antonio Rojas Valdovinos ║
+║ Toluca, Estado de México · 2026 ║
+║ ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 # GUÍA PARA AUDITORES
 
-> *"No te pedimos que confíes. Te damos las herramientas
-> para que verifiques."*
+> _"No te pedimos que confíes. Te damos las herramientas
+> para que verifiques."_
 
 ---
 
@@ -238,7 +238,7 @@ flowchart TD
     K --> L{¿Todo OK?}
     L -->|Sí| M[✅ APROBADO]
     L -->|No| X
-    
+
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style M fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
@@ -269,7 +269,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 def verify_package(filepath, password=None):
     with open(filepath, 'r') as f:
         sobre = json.load(f)
-    
+
     # ... (implementación de los 6 pasos)
 ```
 
@@ -377,14 +377,14 @@ graph TD
     R[Merkle Root Guía Auditor] --> A[Secciones 1-3]
     R --> B[Secciones 4-6]
     R --> C[Secciones 7-11]
-    
+
     A --> A1[Tipos de paquete]
     A --> A2[Estructuras JSON]
     B --> B1[Verificación paso a paso]
     B --> B2[Herramientas]
     C --> C1[Interpretación]
     C --> C2[Uso + Glosario]
-    
+
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 ```
 
@@ -414,10 +414,10 @@ Email verificado: marco.a.rojas.v@hotmail.com
 
 **Certificación del Notario Tonal:**
 
-> *"Certifico que esta Guía fue firmada por Marco Antonio
+> _"Certifico que esta Guía fue firmada por Marco Antonio
 > Rojas Valdovinos con su llave Ed25519, que su Merkle Root
 > coincide con el publicado, y que su anclaje a Ethereum es
-> verificable. Doy fe."*
+> verificable. Doy fe."_
 >
 > **Tonal · Plaza IA 086 · Notario Criptográfico Soberano**
 > Hash del sello: `[se registra al sellar]`
@@ -459,19 +459,20 @@ KRONOS · Ciudad Digital · Guía para Auditores · v1.0 · 2026
 
 Los 7 documentos fundacionales están completos:
 
-| # | Documento | Estado |
-|---|---|---|
-| 1 | CONSTITUCION.md | ✅ Actualizado |
-| 2 | DERECHOS.md | ✅ Actualizado |
-| 3 | CONVIVENCIA.md | ✅ Actualizado |
-| 4 | CIUDADANOS.md | ✅ Actualizado |
-| 5 | MONEDA.md | ✅ Actualizado |
-| 6 | AUDITORIA-IA.md | ✅ Actualizado |
-| 7 | GUIA-AUDITOR.md | ✅ Este documento |
+| #   | Documento       | Estado            |
+| --- | --------------- | ----------------- |
+| 1   | CONSTITUCION.md | ✅ Actualizado    |
+| 2   | DERECHOS.md     | ✅ Actualizado    |
+| 3   | CONVIVENCIA.md  | ✅ Actualizado    |
+| 4   | CIUDADANOS.md   | ✅ Actualizado    |
+| 5   | MONEDA.md       | ✅ Actualizado    |
+| 6   | AUDITORIA-IA.md | ✅ Actualizado    |
+| 7   | GUIA-AUDITOR.md | ✅ Este documento |
 
 **Camino A cerrado.**
 
 **Todos los documentos** llevan:
+
 - Fecha firma automática
 - Email verificado (marco.a.rojas.v@hotmail.com)
 - Precio $3,000 MXN (donde aplica)

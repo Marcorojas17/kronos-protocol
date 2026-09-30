@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # ═══════════════════════════════════════════════════════════════════════
 # KRONOS PROTOCOL · MD-33 · verifica_estandar.py · v1.0 · 17 Sep 2026
 # ═══════════════════════════════════════════════════════════════════════
@@ -21,7 +20,7 @@ import argparse
 import hashlib
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 ACTA = "2607086319439"
@@ -47,7 +46,7 @@ def sha256_file(path: Path, chunk_size: int = 65536) -> str:
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def build_entry(path: Path, digest: str, size: int) -> dict:
@@ -65,8 +64,8 @@ def build_entry(path: Path, digest: str, size: int) -> dict:
             "tsr_path": f"evidence/{path.name}.tsr",
             "tsa_url": "https://freetsa.org/tsr",
             "tsa_ca": "evidence/tsa.crt",
-            "assigned_to": "GUARDIAN-TSA"
-        }
+            "assigned_to": "GUARDIAN-TSA",
+        },
     }
 
 
@@ -176,7 +175,7 @@ def cmd_manifest(args):
 def main():
     parser = argparse.ArgumentParser(
         prog="verifica_estandar",
-        description="MD-33 · SHA-256 · trazabilidad documental verificable"
+        description="MD-33 · SHA-256 · trazabilidad documental verificable",
     )
     sub = parser.add_subparsers(dest="cmd", required=True)
 

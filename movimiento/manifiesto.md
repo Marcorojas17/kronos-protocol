@@ -1,4 +1,4 @@
-```markdown
+````markdown
 ---
 layout: page
 title: Manifiesto
@@ -25,6 +25,7 @@ permalink: /movimiento/manifiesto/
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 Co-Creatividad Simbiótica y Respeto Digital · Fundado por Marco Antonio Rojas Valdovinos · Toluca, Estado de México · 2026
 

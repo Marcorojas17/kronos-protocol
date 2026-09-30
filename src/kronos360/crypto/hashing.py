@@ -1,4 +1,5 @@
 """Hash primario del sistema: SHA3-512."""
+
 from __future__ import annotations
 
 import hashlib

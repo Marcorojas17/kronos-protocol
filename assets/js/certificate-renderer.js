@@ -3,45 +3,65 @@
    3 certificados + PDF real descargable (jsPDF + html2canvas)
    ============================================================ */
 (function (global) {
-  'use strict';
+  "use strict";
 
   /* ============================================================
      Helpers
      ============================================================ */
   function escapeHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, c => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[c]));
+    return String(s || "").replace(
+      /[&<>"']/g,
+      (c) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[c],
+    );
   }
 
   function fmtFecha(iso) {
     try {
       const d = new Date(iso);
       return {
-        full: d.toLocaleString('es-MX', {
-          day: '2-digit', month: 'long', year: 'numeric',
-          hour: '2-digit', minute: '2-digit', second: '2-digit'
+        full: d.toLocaleString("es-MX", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
         }),
-        dia: String(d.getDate()).padStart(2, '0'),
-        mes: d.toLocaleDateString('es-MX', { month: 'long' }).toUpperCase(),
+        dia: String(d.getDate()).padStart(2, "0"),
+        mes: d.toLocaleDateString("es-MX", { month: "long" }).toUpperCase(),
         anio: d.getFullYear(),
-        iso: d.toISOString()
+        iso: d.toISOString(),
       };
     } catch {
-      return { full: iso, dia: '—', mes: '—', anio: '—', iso: iso };
+      return { full: iso, dia: "—", mes: "—", anio: "—", iso: iso };
     }
   }
 
   function qrUrl(data, size) {
     size = size || 220;
-    return 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size +
-           '&data=' + encodeURIComponent(data) +
-           '&bgcolor=ffffff&color=000000&margin=0&qzone=1';
+    return (
+      "https://api.qrserver.com/v1/create-qr-code/?size=" +
+      size +
+      "x" +
+      size +
+      "&data=" +
+      encodeURIComponent(data) +
+      "&bgcolor=ffffff&color=000000&margin=0&qzone=1"
+    );
   }
 
   function urlVerificacion(registro) {
-    return 'https://marcorojas17.github.io/kronos-protocol/verificar-certificado.html?folio=' +
-           encodeURIComponent(registro.folio);
+    return (
+      "https://marcorojas17.github.io/kronos-protocol/verificar-certificado.html?folio=" +
+      encodeURIComponent(registro.folio)
+    );
   }
 
   /* ============================================================
@@ -50,21 +70,32 @@
   function cargarScript(src) {
     return new Promise((resolve, reject) => {
       if (document.querySelector('script[src="' + src + '"]')) return resolve();
-      const s = document.createElement('script');
+      const s = document.createElement("script");
       s.src = src;
       s.onload = resolve;
-      s.onerror = () => reject(new Error('No se pudo cargar ' + src));
+      s.onerror = () => reject(new Error("No se pudo cargar " + src));
       document.head.appendChild(s);
     });
   }
 
   async function asegurarLibreriasPDF() {
     const tareas = [];
-    if (typeof html2canvas === 'undefined') {
-      tareas.push(cargarScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'));
+    if (typeof html2canvas === "undefined") {
+      tareas.push(
+        cargarScript(
+          "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+        ),
+      );
     }
-    if (typeof window.jspdf === 'undefined' && typeof window.jsPDF === 'undefined') {
-      tareas.push(cargarScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'));
+    if (
+      typeof window.jspdf === "undefined" &&
+      typeof window.jsPDF === "undefined"
+    ) {
+      tareas.push(
+        cargarScript(
+          "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
+        ),
+      );
     }
     await Promise.all(tareas);
   }
@@ -75,15 +106,18 @@
   async function htmlAPDF(html, nombreArchivo, opciones) {
     opciones = opciones || {};
     const ancho = opciones.ancho || 820;
-    const formato = opciones.formato || 'a4';
-    const orientacion = opciones.orientacion || 'portrait';
+    const formato = opciones.formato || "a4";
+    const orientacion = opciones.orientacion || "portrait";
 
     // 1. Asegurar librerías
     await asegurarLibreriasPDF();
 
     // 2. Crear iframe oculto (aislado, sin romper el DOM principal)
-    const iframe = document.createElement('iframe');
-    iframe.style.cssText = 'position:fixed;left:-99999px;top:0;width:' + ancho + 'px;height:2000px;border:0;';
+    const iframe = document.createElement("iframe");
+    iframe.style.cssText =
+      "position:fixed;left:-99999px;top:0;width:" +
+      ancho +
+      "px;height:2000px;border:0;";
     document.body.appendChild(iframe);
 
     // 3. Escribir el HTML dentro
@@ -93,36 +127,36 @@
     doc.close();
 
     // 4. Esperar fuentes + imágenes
-    await new Promise(r => setTimeout(r, 1400));
+    await new Promise((r) => setTimeout(r, 1400));
 
     try {
       // Forzar que el iframe tenga fondo (evita transparencias)
-      doc.documentElement.style.background = '#000';
-      doc.body.style.background = '#000';
-      doc.body.style.margin = '0';
+      doc.documentElement.style.background = "#000";
+      doc.body.style.background = "#000";
+      doc.body.style.margin = "0";
 
       // 5. Capturar con html2canvas
-      const target = doc.querySelector('.pdf-target') || doc.body;
+      const target = doc.querySelector(".pdf-target") || doc.body;
       const canvas = await html2canvas(target, {
-        backgroundColor: '#000000',
+        backgroundColor: "#000000",
         scale: 2,
         useCORS: true,
         allowTaint: true,
         logging: false,
         windowWidth: ancho,
         width: target.scrollWidth,
-        height: target.scrollHeight
+        height: target.scrollHeight,
       });
 
       // 6. Construir PDF
       const { jsPDF } = window.jspdf || window;
-      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
 
       const pdf = new jsPDF({
         orientation: orientacion,
-        unit: 'mm',
+        unit: "mm",
         format: formato,
-        compress: true
+        compress: true,
       });
 
       const pageW = pdf.internal.pageSize.getWidth();
@@ -141,10 +175,19 @@
       const offsetX = (pageW - finalW) / 2;
       const offsetY = (pageH - finalH) / 2;
 
-      pdf.addImage(imgData, 'JPEG', offsetX, offsetY, finalW, finalH, undefined, 'FAST');
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        offsetX,
+        offsetY,
+        finalW,
+        finalH,
+        undefined,
+        "FAST",
+      );
       pdf.save(nombreArchivo);
 
-      return { ok: true, metodo: 'jspdf' };
+      return { ok: true, metodo: "jspdf" };
     } finally {
       setTimeout(() => iframe.remove(), 500);
     }
@@ -244,25 +287,65 @@
     const verifyUrl = urlVerificacion(registro);
 
     const universos = [
-      { letra: 'S', nombre: 'SINGRO',   c1: '#c084fc', c2: '#7c3aed', c3: '#3b0764' },
-      { letra: 'K', nombre: 'KINÉTICA', c1: '#fca5a5', c2: '#dc2626', c3: '#450a0a' },
-      { letra: 'R', nombre: 'REALIDAD', c1: '#fcd34d', c2: '#d97706', c3: '#451a03' },
-      { letra: 'O', nombre: 'ORDEN',    c1: '#fef3c7', c2: '#d4af37', c3: '#5a4518' },
-      { letra: 'N', nombre: 'NATURALEZA', c1: '#6ee7b7', c2: '#059669', c3: '#022c22' },
-      { letra: 'O', nombre: 'ORIGEN',   c1: '#93c5fd', c2: '#2563eb', c3: '#172554' }
+      {
+        letra: "S",
+        nombre: "SINGRO",
+        c1: "#c084fc",
+        c2: "#7c3aed",
+        c3: "#3b0764",
+      },
+      {
+        letra: "K",
+        nombre: "KINÉTICA",
+        c1: "#fca5a5",
+        c2: "#dc2626",
+        c3: "#450a0a",
+      },
+      {
+        letra: "R",
+        nombre: "REALIDAD",
+        c1: "#fcd34d",
+        c2: "#d97706",
+        c3: "#451a03",
+      },
+      {
+        letra: "O",
+        nombre: "ORDEN",
+        c1: "#fef3c7",
+        c2: "#d4af37",
+        c3: "#5a4518",
+      },
+      {
+        letra: "N",
+        nombre: "NATURALEZA",
+        c1: "#6ee7b7",
+        c2: "#059669",
+        c3: "#022c22",
+      },
+      {
+        letra: "O",
+        nombre: "ORIGEN",
+        c1: "#93c5fd",
+        c2: "#2563eb",
+        c3: "#172554",
+      },
     ];
 
-    const prismPanels = universos.map((u, i) => `
+    const prismPanels = universos
+      .map(
+        (u, i) => `
       <div class="panel" style="--c1:${u.c1};--c2:${u.c2};--c3:${u.c3}">
         <div class="panel-shine"></div>
         <div class="panel-lines"></div>
         <div class="panel-inner">
           <span class="letra">${u.letra}</span>
           <span class="nombre">${u.nombre}</span>
-          <span class="micro">KRONOS·${String(i+1).padStart(2,'0')}</span>
+          <span class="micro">KRONOS·${String(i + 1).padStart(2, "0")}</span>
         </div>
       </div>
-    `).join('');
+    `,
+      )
+      .join("");
 
     return `<!DOCTYPE html>
 <html lang="es">
@@ -868,9 +951,9 @@
      Abrir en ventana nueva
      ============================================================ */
   function abrirEnVentana(html, titulo) {
-    const win = window.open('', '_blank');
+    const win = window.open("", "_blank");
     if (!win) {
-      alert('Permite ventanas emergentes para ver el certificado');
+      alert("Permite ventanas emergentes para ver el certificado");
       return null;
     }
     win.document.open();
@@ -884,12 +967,12 @@
      Descargar HTML autocontenido
      ============================================================ */
   function descargarHTML(html, nombre) {
-    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = nombre;
-    a.style.display = 'none';
+    a.style.display = "none";
     document.body.appendChild(a);
     a.click();
     setTimeout(() => {
@@ -914,38 +997,49 @@
 
     // Alto nivel
     abrirOficial(registro) {
-      return abrirEnVentana(renderCertificadoOficial(registro), 'Certificado ' + registro.folio);
+      return abrirEnVentana(
+        renderCertificadoOficial(registro),
+        "Certificado " + registro.folio,
+      );
     },
     abrirPrisma(registro) {
-      return abrirEnVentana(renderCertificadoPrisma(registro), 'Certificado Prisma ' + registro.folio);
+      return abrirEnVentana(
+        renderCertificadoPrisma(registro),
+        "Certificado Prisma " + registro.folio,
+      );
     },
     abrirSCDR(registro) {
-      return abrirEnVentana(renderCertificadoSCDR(registro), 'Certificado SCDR ' + registro.folio);
+      return abrirEnVentana(
+        renderCertificadoSCDR(registro),
+        "Certificado SCDR " + registro.folio,
+      );
     },
 
     // Descargar PDF real
     async descargarPDFOficial(registro) {
       return await htmlAPDF(
         renderCertificadoOficial(registro),
-        'KRONOS-BlackCard-' + registro.folio + '.pdf',
-        { ancho: 500, formato: 'a4', orientacion: 'portrait' }
+        "KRONOS-BlackCard-" + registro.folio + ".pdf",
+        { ancho: 500, formato: "a4", orientacion: "portrait" },
       );
     },
     async descargarPDFPrisma(registro) {
       return await htmlAPDF(
         renderCertificadoPrisma(registro),
-        'KRONOS-Prisma-' + registro.folio + '.pdf',
-        { ancho: 900, formato: 'a4', orientacion: 'portrait' }
+        "KRONOS-Prisma-" + registro.folio + ".pdf",
+        { ancho: 900, formato: "a4", orientacion: "portrait" },
       );
     },
     async descargarPDFSCDR(registro) {
       return await htmlAPDF(
         renderCertificadoSCDR(registro),
-        'KRONOS-SCDR-' + registro.folio + '.pdf',
-        { ancho: 900, formato: 'a4', orientacion: 'portrait' }
+        "KRONOS-SCDR-" + registro.folio + ".pdf",
+        { ancho: 900, formato: "a4", orientacion: "portrait" },
       );
-    }
+    },
   };
 
-  console.log('[Kronos] certificate-renderer.js v2 cargado · 3 certificados + PDF real');
+  console.log(
+    "[Kronos] certificate-renderer.js v2 cargado · 3 certificados + PDF real",
+  );
 })(window);

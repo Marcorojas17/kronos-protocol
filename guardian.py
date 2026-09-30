@@ -18,7 +18,7 @@ Uso:
 import hashlib
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # ─── Configuración ────────────────────────────────────────────────
@@ -65,8 +65,10 @@ ACCIONES = {
 # ─── Utilidades ───────────────────────────────────────────────────
 def ahora_iso():
     """Timestamp ISO 8601 con milisegundos, UTC."""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.") + \
-           f"{datetime.now(timezone.utc).microsecond // 1000:03d}Z"
+    return (
+        datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S.")
+        + f"{datetime.now(UTC).microsecond // 1000:03d}Z"
+    )
 
 
 def hash_sha256(texto):
@@ -87,10 +89,7 @@ def cargar_log():
 def guardar_log(entradas):
     """Guarda el log con formato legible."""
     LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    LOG_PATH.write_text(
-        json.dumps(entradas, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
+    LOG_PATH.write_text(json.dumps(entradas, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
 # ─── Núcleo: registrar una decisión ───────────────────────────────
@@ -117,17 +116,19 @@ def registrar(accion, entrada, proposito, forzar_autor=None):
     autor = forzar_autor or AUTOR
 
     # Contenido a hashear: incluye TODO lo verificable
-    contenido = "|".join([
-        str(numero),
-        cuando,
-        accion,
-        str(regla["principio"]),
-        entrada,
-        proposito,
-        autor,
-        ANIO,
-        hash_previo or "GENESIS",
-    ])
+    contenido = "|".join(
+        [
+            str(numero),
+            cuando,
+            accion,
+            str(regla["principio"]),
+            entrada,
+            proposito,
+            autor,
+            ANIO,
+            hash_previo or "GENESIS",
+        ]
+    )
 
     hash_actual = hash_sha256(contenido)
 
@@ -158,12 +159,12 @@ def modo_auto():
     print("─" * 60)
 
     ciclo = [
-        ("verificar_integridad",      "documento-acta-2026",       "confirmar autoría"),
-        ("registrar_trazabilidad",    "interacción-usuario-001",   "dejar constancia"),
-        ("bloquear_comercial",        "operación-lucro-tercero",   "proteger principio 3"),
-        ("bloquear_entrenamiento_ia", "scraping-ia-externo",       "proteger principio 4"),
-        ("marcar_citacion",           "cita-incompleta-detectada", "exigir atribución"),
-        ("alertar_violacion",         "cadena-inconsistente",      "defensa activa"),
+        ("verificar_integridad", "documento-acta-2026", "confirmar autoría"),
+        ("registrar_trazabilidad", "interacción-usuario-001", "dejar constancia"),
+        ("bloquear_comercial", "operación-lucro-tercero", "proteger principio 3"),
+        ("bloquear_entrenamiento_ia", "scraping-ia-externo", "proteger principio 4"),
+        ("marcar_citacion", "cita-incompleta-detectada", "exigir atribución"),
+        ("alertar_violacion", "cadena-inconsistente", "defensa activa"),
     ]
 
     for accion, entrada, proposito in ciclo:
@@ -196,17 +197,19 @@ def verificar():
             integro = False
 
         # Recalcular hash
-        contenido = "|".join([
-            str(e["n"]),
-            e["cuando"],
-            e["accion"],
-            str(e["principio"]),
-            e["entrada"],
-            e["proposito"],
-            e["autor"],
-            e["anio"],
-            e["hash_previo"] or "GENESIS",
-        ])
+        contenido = "|".join(
+            [
+                str(e["n"]),
+                e["cuando"],
+                e["accion"],
+                str(e["principio"]),
+                e["entrada"],
+                e["proposito"],
+                e["autor"],
+                e["anio"],
+                e["hash_previo"] or "GENESIS",
+            ]
+        )
         hash_recalculado = hash_sha256(contenido)
 
         if hash_recalculado != e["hash"]:

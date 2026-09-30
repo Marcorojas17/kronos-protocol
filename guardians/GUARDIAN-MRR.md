@@ -17,7 +17,7 @@
     ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
     ╚══════════════════════════════════════════════════════════════════════════╝
 
-> *"¿Esto paga $499 hoy? ¿Da star mañana? Si no, a archive/."*
+> _"¿Esto paga $499 hoy? ¿Da star mañana? Si no, a archive/."_
 
 ---
 
@@ -25,13 +25,13 @@
     │                                                 │
     └─────────────────────────────────────────────────┘
 
-| Campo | Valor |
-|---|---|
-| **Nombre** | GUARDIAN-MRR |
-| **Rol** | Protector de ingresos recurrentes |
-| **Alcance** | Todo archivo nuevo del imperio |
-| **Autoridad** | Manda a `archive/` lo que no paga ni da star |
-| **Acta** | 2607086319439 |
+| Campo           | Valor                                                                |
+| --------------- | -------------------------------------------------------------------- |
+| **Nombre**      | GUARDIAN-MRR                                                         |
+| **Rol**         | Protector de ingresos recurrentes                                    |
+| **Alcance**     | Todo archivo nuevo del imperio                                       |
+| **Autoridad**   | Manda a `archive/` lo que no paga ni da star                         |
+| **Acta**        | 2607086319439                                                        |
 | **TX Soberana** | `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466` |
 
 ---
@@ -57,11 +57,11 @@
     │                                              │
     └──────────────────────────────────────────────┘
 
-| Tier | Precio | Obra/Acta | Estado |
-|---|---|---|---|
-| 🆓 FREE | $0 | `verify.html` | ✅ VIVO |
-| 🥇 Sello FDV | $500 MXN | Obra 2608056639878 | 🟡 listo |
-| 💰 Evidence OS | $499 MXN/mes | Acta 2607086319439 | 🟡 MVP |
+| Tier           | Precio       | Obra/Acta          | Estado   |
+| -------------- | ------------ | ------------------ | -------- |
+| 🆓 FREE        | $0           | `verify.html`      | ✅ VIVO  |
+| 🥇 Sello FDV   | $500 MXN     | Obra 2608056639878 | 🟡 listo |
+| 💰 Evidence OS | $499 MXN/mes | Acta 2607086319439 | 🟡 MVP   |
 
 ---
 
@@ -93,6 +93,6 @@ TX: `0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466`
     ╚══════════════════════════════════════════════════════════════════════════╝
 
 **💰 GUARDIAN-MRR v1.0 — MIT License**
-*Si no paga ni da star, va a archive/.*
+_Si no paga ni da star, va a archive/._
 
 <!-- FIN DEL DOCUMENTO -->

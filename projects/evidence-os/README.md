@@ -73,19 +73,19 @@ PAQUETE .evidence VERIFICABLE
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-| Módulo | Función |
-|--------|---------|
-| 📦 **Paquete `.evidence`** | Convierte archivos en paquetes verificables e independientes. |
-| 🔒 **Integridad** | Calcula `content_hash` (SHA-256) y `private_commitment` (HMAC). |
-| 🕐 **Tiempo** | Integra sellos RFC 3161 emitidos por una TSA externa. |
-| 📄 **Reporte** | Genera `evidence-report.pdf` con firma PAdES-B-T. |
-| ⛓️ **Auditoría** | Registra eventos en hash chain con firma por evento. |
-| 🌐 **Verificación** | Consulta pública mínima, con consentimiento explícito. |
-| 💳 **Pagos** | Gestiona órdenes, webhooks e idempotencia. |
-| 🔌 **API HTTP** | Expone órdenes, evidencia, webhook, verificación pública. |
-| 🖥️ **UI** | Interfaz server-side con verificación, checkout y detalle. |
-| 🔑 **KMS** | LocalKMS para dev/tests, AWSKMS real para producción. |
-| ⚓ **Anclaje** | LocalFilesystemAnchor para dev, S3ObjectLockAnchor en prod. |
+| Módulo                     | Función                                                         |
+| -------------------------- | --------------------------------------------------------------- |
+| 📦 **Paquete `.evidence`** | Convierte archivos en paquetes verificables e independientes.   |
+| 🔒 **Integridad**          | Calcula `content_hash` (SHA-256) y `private_commitment` (HMAC). |
+| 🕐 **Tiempo**              | Integra sellos RFC 3161 emitidos por una TSA externa.           |
+| 📄 **Reporte**             | Genera `evidence-report.pdf` con firma PAdES-B-T.               |
+| ⛓️ **Auditoría**           | Registra eventos en hash chain con firma por evento.            |
+| 🌐 **Verificación**        | Consulta pública mínima, con consentimiento explícito.          |
+| 💳 **Pagos**               | Gestiona órdenes, webhooks e idempotencia.                      |
+| 🔌 **API HTTP**            | Expone órdenes, evidencia, webhook, verificación pública.       |
+| 🖥️ **UI**                  | Interfaz server-side con verificación, checkout y detalle.      |
+| 🔑 **KMS**                 | LocalKMS para dev/tests, AWSKMS real para producción.           |
+| ⚓ **Anclaje**             | LocalFilesystemAnchor para dev, S3ObjectLockAnchor en prod.     |
 
 ---
 
@@ -201,15 +201,15 @@ ARCHIVO ──┬──▶ content_hash ──┬──▶ manifest.payload.json
 
 ### Naturaleza de las pruebas
 
-| Elemento | Naturaleza | Verificable por |
-|----------|-----------|-----------------|
-| `content_hash` (SHA-256) | Prueba pública e interoperable | Cualquiera con el archivo original |
-| `private_commitment` (HMAC) | Prueba privada controlada por el sistema | Solo el sistema/titular autorizado |
-| `token.rfc3161` | Vinculación temporal emitida por TSA externa | Cualquiera con el token |
-| `manifest.jws.json` | Firma de integridad del manifiesto | Cualquiera con la clave pública |
-| `evidence-report.pdf` | Reporte técnico con firma PAdES-B-T | Cualquiera con Adobe Reader |
-| `audit.log.jsonl` | Log encadenado con firma por evento | Cualquiera con la clave pública |
-| `close_*.bin` | Cierre firmado y anclado externamente | Cualquiera con acceso al anclaje |
+| Elemento                    | Naturaleza                                   | Verificable por                    |
+| --------------------------- | -------------------------------------------- | ---------------------------------- |
+| `content_hash` (SHA-256)    | Prueba pública e interoperable               | Cualquiera con el archivo original |
+| `private_commitment` (HMAC) | Prueba privada controlada por el sistema     | Solo el sistema/titular autorizado |
+| `token.rfc3161`             | Vinculación temporal emitida por TSA externa | Cualquiera con el token            |
+| `manifest.jws.json`         | Firma de integridad del manifiesto           | Cualquiera con la clave pública    |
+| `evidence-report.pdf`       | Reporte técnico con firma PAdES-B-T          | Cualquiera con Adobe Reader        |
+| `audit.log.jsonl`           | Log encadenado con firma por evento          | Cualquiera con la clave pública    |
+| `close_*.bin`               | Cierre firmado y anclado externamente        | Cualquiera con acceso al anclaje   |
 
 ```text
 > SOBRE EL HMAC: private_commitment es una prueba privada que aporta
@@ -233,12 +233,12 @@ ARCHIVO ──┬──▶ content_hash ──┬──▶ manifest.payload.json
 > automática, ni respaldo oficial.
 ```
 
-| Norma | Materia |
-|-------|---------|
-| **NOM-151-SCFI-2016** | Conservación de mensajes de datos. Constancia emitida por PSC acreditado. |
-| **Código de Comercio, Art. 97** | Uso de firma electrónica en mensajes de datos. |
-| **CNPP, Art. 265** | Valoración de datos y pruebas. |
-| **LFPDPPP** | Protección de datos personales en posesión de particulares. |
+| Norma                           | Materia                                                                   |
+| ------------------------------- | ------------------------------------------------------------------------- |
+| **NOM-151-SCFI-2016**           | Conservación de mensajes de datos. Constancia emitida por PSC acreditado. |
+| **Código de Comercio, Art. 97** | Uso de firma electrónica en mensajes de datos.                            |
+| **CNPP, Art. 265**              | Valoración de datos y pruebas.                                            |
+| **LFPDPPP**                     | Protección de datos personales en posesión de particulares.               |
 
 ### Estándares internacionales
 
@@ -265,19 +265,19 @@ ARCHIVO ──┬──▶ content_hash ──┬──▶ manifest.payload.json
 └────────────────────────────────────────────────────────────────┘
 ```
 
-| Componente | Estado |
-|------------|--------|
-| Núcleo criptográfico | ✅ hashing, KMS, JCS, manifest, JWS, timestamp, hash_chain |
-| Log de auditoría | ✅ logger encadenado + anclaje + verificación |
-| Empaquetado `.evidence` | ✅ builder + verifier + CLI |
-| Procesador de pagos | ✅ webhook, validación, fulfillment, worker, recovery |
-| API HTTP | ✅ FastAPI: orders, evidence, webhook, public, admin |
-| UI de aplicación | ✅ Templates Jinja2 con tema claro/oscuro |
-| Tests de seguridad | ✅ algorithm confusion, dictionary attack, corruption |
-| Tests de AWS | ✅ botocore stubber para AWSKMS y S3ObjectLockAnchor |
-| Migraciones SQL | ✅ 5/5 aprobadas |
-| Landing pública | ✅ HTML estático con tema claro/oscuro |
-| Revisión legal México | ⚠️ Bloqueante externo |
+| Componente              | Estado                                                     |
+| ----------------------- | ---------------------------------------------------------- |
+| Núcleo criptográfico    | ✅ hashing, KMS, JCS, manifest, JWS, timestamp, hash_chain |
+| Log de auditoría        | ✅ logger encadenado + anclaje + verificación              |
+| Empaquetado `.evidence` | ✅ builder + verifier + CLI                                |
+| Procesador de pagos     | ✅ webhook, validación, fulfillment, worker, recovery      |
+| API HTTP                | ✅ FastAPI: orders, evidence, webhook, public, admin       |
+| UI de aplicación        | ✅ Templates Jinja2 con tema claro/oscuro                  |
+| Tests de seguridad      | ✅ algorithm confusion, dictionary attack, corruption      |
+| Tests de AWS            | ✅ botocore stubber para AWSKMS y S3ObjectLockAnchor       |
+| Migraciones SQL         | ✅ 5/5 aprobadas                                           |
+| Landing pública         | ✅ HTML estático con tema claro/oscuro                     |
+| Revisión legal México   | ⚠️ Bloqueante externo                                      |
 
 ### Barra de progreso
 

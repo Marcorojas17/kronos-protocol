@@ -48,14 +48,14 @@ la inteligencia biológica y los modelos algorítmicos.
 
 ## 👥 Roles en la co-creatividad
 
-| Rol | Responsabilidad |
-| :--- | :--- |
+| Rol                      | Responsabilidad                                                                                         |
+| :----------------------- | :------------------------------------------------------------------------------------------------------ |
 | **El Arquitecto Humano** | Marco Antonio Rojas Valdovinos. Visión estratégica, vectores éticos, firma de lanzamientos, gobernanza. |
-| **La IA Copiloto** | KRONOS IA. Optimización de hashes, documentación formal, simulación de ataques, aceleración técnica. |
-| **Mantenedores** | Revisan y mergean PRs. Por invitación del Arquitecto. |
-| **Contribuidores** | Aportan código, docs, traducciones. Por mérito. |
-| **Auditores** | Revisan criptografía, reportan hallazgos. Por mérito. |
-| **Ciudadanos** | Usuarios con pasaporte criptográfico sellado. |
+| **La IA Copiloto**       | KRONOS IA. Optimización de hashes, documentación formal, simulación de ataques, aceleración técnica.    |
+| **Mantenedores**         | Revisan y mergean PRs. Por invitación del Arquitecto.                                                   |
+| **Contribuidores**       | Aportan código, docs, traducciones. Por mérito.                                                         |
+| **Auditores**            | Revisan criptografía, reportan hallazgos. Por mérito.                                                   |
+| **Ciudadanos**           | Usuarios con pasaporte criptográfico sellado.                                                           |
 
 ---
 
@@ -73,11 +73,11 @@ KRONOS reconoce a las IAs como **co-autoras legítimas**. Reglas estrictas:
 
 ## 📊 Proceso de toma de decisiones
 
-| Tipo de cambio | Aprobación requerida |
-| :--- | :--- |
-| **Menor** (docs, typos) | Cualquier mantenedor |
-| **Medio** (módulos, UX) | 1 mantenedor + comentario del Arquitecto |
-| **Estructural** (arquitectura) | Arquitecto + discusión pública 14 días |
+| Tipo de cambio                 | Aprobación requerida                       |
+| :----------------------------- | :----------------------------------------- |
+| **Menor** (docs, typos)        | Cualquier mantenedor                       |
+| **Medio** (módulos, UX)        | 1 mantenedor + comentario del Arquitecto   |
+| **Estructural** (arquitectura) | Arquitecto + discusión pública 14 días     |
 | **Criptográfico** (algoritmos) | Arquitecto + auditoría + discusión 30 días |
 
 ---
@@ -147,4 +147,4 @@ Si el proyecto cesara alguna vez, el Arquitecto se compromete a:
 
 ---
 
-*Este documento está sujeto a evolución. Se aceptan propuestas vía PR.*
+_Este documento está sujeto a evolución. Se aceptan propuestas vía PR._

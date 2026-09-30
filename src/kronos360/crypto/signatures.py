@@ -4,6 +4,7 @@ Cada firma incluye un prefijo de dominio que liga el mensaje al protocolo,
 version y algoritmo. Esto evita que una firma valida para un contexto
 se reutilice en otro (ataque de sustitucion/stripping).
 """
+
 from __future__ import annotations
 
 from typing import Protocol
@@ -25,13 +26,7 @@ def build_signed_message(hash_registro: str, alg_id: str) -> bytes:
 
     Formato: DOMAIN_SEPARATOR || '|' || alg_id || '|' || hash_registro
     """
-    return (
-        DOMAIN_SEPARATOR
-        + b"|"
-        + alg_id.encode("ascii")
-        + b"|"
-        + hash_registro.encode("ascii")
-    )
+    return DOMAIN_SEPARATOR + b"|" + alg_id.encode("ascii") + b"|" + hash_registro.encode("ascii")
 
 
 class Signer(Protocol):
@@ -51,7 +46,7 @@ class Ed25519Signer:
         self._public = self._private.public_key()
 
     @classmethod
-    def from_private_bytes(cls, signer_id: str, private_bytes: bytes) -> "Ed25519Signer":
+    def from_private_bytes(cls, signer_id: str, private_bytes: bytes) -> Ed25519Signer:
         return cls(signer_id, Ed25519PrivateKey.from_private_bytes(private_bytes))
 
     def private_bytes(self) -> bytes:
