@@ -2,14 +2,14 @@
 
 ESTADO: 🟡 MVP
 """
+
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_base"))
-from agente_base import AgenteBase, Resultado, main  # noqa: E402
-
+from agente_base import AgenteBase, Resultado, main
 
 ESTRUCTURA_ESPERADA = [
     "00-FUNDACION",
@@ -66,31 +66,35 @@ class Arquitecto(AgenteBase):
 
         hallazgos = []
         if faltantes:
-            hallazgos.append({
-                "tipo": "carpetas-faltantes",
-                "cantidad": len(faltantes),
-                "rutas": faltantes,
-            })
+            hallazgos.append(
+                {
+                    "tipo": "carpetas-faltantes",
+                    "cantidad": len(faltantes),
+                    "rutas": faltantes,
+                }
+            )
 
         try:
             hijas = [
-                p.name for p in self.raiz.iterdir()
-                if p.is_dir() and not p.name.startswith(".")
+                p.name for p in self.raiz.iterdir() if p.is_dir() and not p.name.startswith(".")
             ]
         except PermissionError as e:
             self._log_error("no se pudo leer la raíz", e)
             hijas = []
 
         huerfanas = [
-            h for h in hijas
+            h
+            for h in hijas
             if h not in ESTRUCTURA_ESPERADA and h not in {"tests", "src", "__pycache__"}
         ]
         if huerfanas:
-            hallazgos.append({
-                "tipo": "carpetas-huerfanas",
-                "cantidad": len(huerfanas),
-                "rutas": huerfanas,
-            })
+            hallazgos.append(
+                {
+                    "tipo": "carpetas-huerfanas",
+                    "cantidad": len(huerfanas),
+                    "rutas": huerfanas,
+                }
+            )
 
         return Resultado(
             agente=self.nombre,
