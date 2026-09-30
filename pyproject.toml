@@ -1,0 +1,30 @@
+[project]
+name = "kronos360"
+version = "0.2.0"
+description = "Crypto-agile evidence records with a post-quantum migration path"
+requires-python = ">=3.11"
+dependencies = [
+    "cryptography>=48.0.0",
+    "dilithium-py>=1.0.0",
+    "rfc8785>=0.1.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+kronos360 = "kronos360.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
