@@ -43,7 +43,8 @@ kronos-protocol/
 │   │   ├── bibliotecario.py
 │   │   └── ultimo.json
 │   ├── 095-cartografo/
-│   │   └── cartografo.py
+│   │   ├── cartografo.py
+│   │   └── ultimo.json
 │   ├── _base/
 │   │   ├── agente-base.py
 │   │   └── agente_base.py
