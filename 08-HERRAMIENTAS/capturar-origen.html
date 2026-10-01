@@ -85,6 +85,16 @@
     border: 1px solid var(--gold);
     color: var(--gold);
   }
+  .link-toggle {
+    display: block;
+    text-align: center;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .link-toggle:hover { color: var(--gold); }
   .valor {
     background: var(--bg);
     border: 1px solid #333;
@@ -131,7 +141,7 @@
 
   <div id="msg" class="mensaje"></div>
 
-  <!-- PASO 1: GENERAR LLAVE (solo primera vez) -->
+  <!-- PASO 1: GENERAR LLAVE (primera vez) -->
   <div id="paso-1" class="panel oculto">
     <h2>Paso 1 · Crear tu llave de agente</h2>
     <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
@@ -149,9 +159,11 @@
     <input type="text" id="in-nombre-agente" placeholder="Ej: Carlos Ramírez">
 
     <button id="btn-generar" onclick="generarLlave()">⚡ Generar mi llave</button>
+
+    <a class="link-toggle" onclick="mostrarPaso('paso-1c')">¿Ya tenés llave? Cargar desde backup →</a>
   </div>
 
-  <!-- PASO 1b: GUARDAR BACKUP (una sola vez, obligatorio) -->
+  <!-- PASO 1b: GUARDAR BACKUP (obligatorio) -->
   <div id="paso-1b" class="panel oculto">
     <h2>Paso 1b · Guardar backup obligatorio</h2>
     <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">
@@ -189,6 +201,8 @@
     <input type="password" id="in-password-carga" placeholder="············">
 
     <button onclick="cargarBackup()">🔓 Cargar llave</button>
+
+    <a class="link-toggle" onclick="mostrarPaso('paso-1')">← Volver a crear llave nueva</a>
   </div>
 
   <!-- PASO 2: CAPTURAR ORIGEN -->
@@ -235,8 +249,8 @@
 const STORAGE_KEY = 'kronos-agente-v1';
 const PBKDF2_ITER = 600000;
 
-let llaveEnMemoria = null;   // { privateKey, publicKey, pubHex, nombre }
-let boletoActual = null;      // { json, hash, firma, ... }
+let llaveEnMemoria = null;
+let boletoActual = null;
 
 function mostrar(tipo, texto) {
   const el = document.getElementById('msg');
@@ -269,11 +283,6 @@ async function sha256Hex(text) {
   return bytesToHex(new Uint8Array(digest));
 }
 
-async function hashHexSha256FromBytes(bytes) {
-  const digest = await crypto.subtle.digest('SHA-256', bytes);
-  return bytesToHex(new Uint8Array(digest));
-}
-
 function descargarBlob(blob, nombre) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -286,13 +295,12 @@ function descargarBlob(blob, nombre) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// ESTADO INICIAL
+// ESTADO INICIAL · FIX APLICADO
 // ═══════════════════════════════════════════════════════════════════
 
 window.addEventListener('load', async () => {
   const guardada = localStorage.getItem(STORAGE_KEY);
   if (guardada) {
-    // Ya hay llave guardada → intentar cargarla de memoria
     try {
       const data = JSON.parse(guardada);
       const privBytes = hexToBytes(data.privHex);
@@ -313,14 +321,11 @@ window.addEventListener('load', async () => {
       mostrar('ok', '✓ Llave cargada para ' + llaveEnMemoria.nombre);
     } catch (e) {
       console.error(e);
-      // Falló el import → mostrar opciones
-      mostrarPaso('paso-1');
       mostrarPaso('paso-1c');
+      mostrar('warn', 'Tu llave guardada no se pudo cargar. Restaurala desde el backup.');
     }
   } else {
-    // No hay llave → mostrar paso 1 y opción de cargar backup
     mostrarPaso('paso-1');
-    mostrarPaso('paso-1c');
   }
 });
 
@@ -362,7 +367,6 @@ async function generarLlave() {
     const privRaw = await crypto.subtle.exportKey('pkcs8', kp.privateKey);
     const privHex = bytesToHex(new Uint8Array(privRaw));
 
-    // Guardar en localStorage (sin cifrar en localStorage, con cifrado solo en backup)
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       pubHex, privHex, nombre,
       creada: new Date().toISOString()
@@ -373,7 +377,7 @@ async function generarLlave() {
       publicKey: kp.publicKey,
       pubHex,
       nombre,
-      passwordTemporal: pass  // solo para backup inmediato
+      passwordTemporal: pass
     };
 
     document.getElementById('out-pubkey').textContent = pubHex;
@@ -404,7 +408,6 @@ async function descargarBackup() {
   }
 
   try {
-    // 1. Derivar clave desde password con PBKDF2
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const passBytes = new TextEncoder().encode(pass);
     const baseKey = await crypto.subtle.importKey(
@@ -418,8 +421,8 @@ async function descargarBackup() {
       ['encrypt']
     );
 
-    // 2. Exportar llave privada
-    const privBytes = hexToBytes(localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)).privHex : '');
+    const guardada = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const privBytes = hexToBytes(guardada.privHex);
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const ciphertext = await crypto.subtle.encrypt(
       { name: 'AES-GCM', iv },
@@ -427,7 +430,6 @@ async function descargarBackup() {
       privBytes
     );
 
-    // 3. Armar archivo de backup
     const backup = {
       tipo: 'kronos-llave-agente',
       version: '1.0.0',
@@ -489,7 +491,6 @@ async function cargarBackup() {
     const iv = hexToBytes(backup.cifrado.iv_hex);
     const ciphertext = hexToBytes(backup.cifrado.ciphertext_hex);
 
-    // Derivar AES key
     const passBytes = new TextEncoder().encode(pass);
     const baseKey = await crypto.subtle.importKey(
       'raw', passBytes, { name: 'PBKDF2' }, false, ['deriveKey']
@@ -502,14 +503,12 @@ async function cargarBackup() {
       ['decrypt']
     );
 
-    // Descifrar
     const privBytes = await crypto.subtle.decrypt(
       { name: 'AES-GCM', iv },
       aesKey,
       ciphertext
     );
 
-    // Importar llave privada
     const privKey = await crypto.subtle.importKey(
       'pkcs8', privBytes, { name: 'Ed25519' }, true, ['sign']
     );
@@ -525,7 +524,6 @@ async function cargarBackup() {
       nombre: backup.nombre
     };
 
-    // Guardar en localStorage
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       pubHex: backup.pubkey_hex,
       privHex: bytesToHex(new Uint8Array(privBytes)),
@@ -562,7 +560,6 @@ async function firmarOrigen() {
   try {
     const timestamp = new Date().toISOString();
 
-    // 1. Armar registro
     const registro = {
       version: '1.0.0',
       tipo: 'origen',
@@ -573,11 +570,9 @@ async function firmarOrigen() {
       timestamp
     };
 
-    // 2. Hash del registro
     const canon = canonicalize(registro);
     const hashRegistro = await sha256Hex(canon);
 
-    // 3. Firma Ed25519 sobre el hash
     const firmaBuf = await crypto.subtle.sign(
       'Ed25519',
       llaveEnMemoria.privateKey,
@@ -585,10 +580,8 @@ async function firmarOrigen() {
     );
     const firmaHex = bytesToHex(new Uint8Array(firmaBuf));
 
-    // 4. interaction_id = primeros 32 chars del hash (16 bytes)
     const interactionId = hashRegistro.slice(0, 32);
 
-    // 5. Armar boleto completo
     boletoActual = {
       ...registro,
       hash_registro: hashRegistro,
@@ -623,18 +616,15 @@ async function descargarBoletoPNG() {
   canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // Fondo
   ctx.fillStyle = '#0a0a0b';
   ctx.fillRect(0, 0, W, H);
 
-  // Borde dorado
   ctx.strokeStyle = '#c9a227';
   ctx.lineWidth = 4;
   ctx.strokeRect(20, 20, W - 40, H - 40);
   ctx.lineWidth = 1;
   ctx.strokeRect(30, 30, W - 60, H - 60);
 
-  // Header
   ctx.textAlign = 'center';
   ctx.fillStyle = '#e5c76b';
   ctx.font = '600 22px Georgia, serif';
@@ -644,7 +634,6 @@ async function descargarBoletoPNG() {
   ctx.font = '500 11px monospace';
   ctx.fillText('INTERACTION_ID: ' + boletoActual.interaction_id, W/2, 110);
 
-  // Línea separadora
   ctx.strokeStyle = 'rgba(201,162,39,0.4)';
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -652,7 +641,6 @@ async function descargarBoletoPNG() {
   ctx.lineTo(W-80, 130);
   ctx.stroke();
 
-  // Contenido
   ctx.textAlign = 'left';
   const items = [
     ['Cliente:', boletoActual.cliente],
@@ -672,7 +660,6 @@ async function descargarBoletoPNG() {
     y += 34;
   }
 
-  // Hash
   ctx.fillStyle = '#c9a227';
   ctx.font = '600 10px monospace';
   ctx.fillText('Hash:', 80, y + 10);
@@ -687,7 +674,6 @@ async function descargarBoletoPNG() {
   ctx.font = '400 9px monospace';
   ctx.fillText(boletoActual.firma_hex.slice(0, 64) + '...', 220, y + 34);
 
-  // Pie
   ctx.textAlign = 'center';
   ctx.fillStyle = 'rgba(201,162,39,0.6)';
   ctx.font = '500 10px monospace';
