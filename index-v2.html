@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navegador · KRONOS</title>
+<style>
+  :root{--bg:#0a0a0b;--panel:#14141c;--gold:#c9a227;--gold-light:#e5c76b;--text:#e8e8e8;--muted:#888;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'SF Mono',Menlo,Consolas,monospace;}
+  #barra-top{
+    position:fixed;top:0;left:0;right:0;height:44px;
+    background:var(--panel);border-bottom:1px solid var(--gold);
+    display:flex;align-items:center;padding:0 12px;z-index:10;
+    font-size:11px;gap:8px;
+  }
+  #barra-top .seccion{color:var(--gold);font-weight:bold;letter-spacing:1px;}
+  #barra-top .pagina{color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  #barra-top button{
+    background:transparent;border:1px solid var(--gold);color:var(--gold);
+    padding:5px 10px;border-radius:3px;font-family:inherit;font-size:10px;
+    cursor:pointer;letter-spacing:1px;
+  }
+  #barra-top button:hover{background:var(--gold);color:var(--bg);}
+  #marco{
+    position:fixed;top:44px;left:0;right:0;bottom:60px;
+    border:0;width:100%;background:#fff;
+  }
+  #barra-bottom{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--panel);border-top:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    z-index:10;padding:0 8px;
+  }
+  #barra-bottom button{
+    background:transparent;border:1px solid var(--gold);color:var(--gold);
+    padding:10px 14px;border-radius:4px;font-family:inherit;font-size:11px;
+    cursor:pointer;letter-spacing:1px;text-transform:uppercase;min-width:52px;
+  }
+  #barra-bottom button:hover{background:var(--gold);color:var(--bg);}
+  #barra-bottom button:disabled{opacity:0.3;cursor:not-allowed;}
+  #barra-bottom .contador{
+    color:var(--gold-light);font-size:11px;padding:0 10px;min-width:80px;text-align:center;
+    letter-spacing:1px;
+  }
+  #menu-overlay{
+    position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,11,0.96);
+    z-index:20;display:none;overflow-y:auto;padding:20px;
+  }
+  #menu-overlay.abierto{display:block;}
+  #menu-overlay h2{color:var(--gold);font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+  #menu-overlay .grupo{margin-bottom:18px;}
+  #menu-overlay .grupo h3{color:var(--gold-light);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:4px;}
+  #menu-overlay .item{
+    display:block;color:var(--text);font-size:11px;padding:8px 10px;border-radius:3px;
+    text-decoration:none;border:1px solid transparent;margin-bottom:2px;cursor:pointer;
+  }
+  #menu-overlay .item:hover{background:var(--panel);border-color:var(--gold);}
+  #menu-overlay .item.actual{background:var(--panel);border-color:var(--gold-light);color:var(--gold-light);font-weight:bold;}
+  #menu-overlay .cerrar{
+    position:fixed;top:14px;right:14px;background:transparent;border:1px solid var(--gold);
+    color:var(--gold);padding:8px 14px;border-radius:4px;font-family:inherit;font-size:11px;cursor:pointer;
+    letter-spacing:1px;
+  }
+</style>
+</head>
+<body>
+
+<div id="barra-top">
+  <span class="seccion" id="top-seccion">KRONOS</span>
+  <span class="pagina" id="top-pagina">cargando...</span>
+  <button onclick="abrirMenu()">☰</button>
+</div>
+
+<iframe id="marco" src="about:blank"></iframe>
+
+<div id="barra-bottom">
+  <button onclick="irAnterior()" id="btn-prev">◀</button>
+  <span class="contador" id="contador">0 / 0</span>
+  <button onclick="irSiguiente()" id="btn-next">▶</button>
+  <button onclick="irInicio()">🏠</button>
+  <button onclick="abrirMenu()">☰ MENÚ</button>
+</div>
+
+<div id="menu-overlay">
+  <button class="cerrar" onclick="cerrarMenu()">✕ CERRAR</button>
+  <h2>◢◤ Navegador KRONOS</h2>
+  <div id="menu-grupos"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// LISTA COMPLETA DE PÁGINAS · agrupadas por sección
+// ═══════════════════════════════════════════════════════════════════
+
+const GRUPOS = [
+  { titulo: 'INICIO', items: [
+    { label: 'index.html', url: 'index.html' },
+    { label: 'luxury.html', url: 'luxury.html' },
+    { label: 'servicios.html', url: 'servicios.html' },
+    { label: 'admin.html', url: 'admin.html' },
+    { label: 'registrar.html', url: 'registrar.html' },
+    { label: 'verify.html', url: 'verify.html' },
+    { label: 'verificar-certificado.html', url: 'verificar-certificado.html' }
+  ]},
+  { titulo: 'HERRAMIENTAS', items: [
+    { label: 'capturar-origen', url: '08-HERRAMIENTAS/capturar-origen.html' },
+    { label: 'verificador-empresa', url: '08-HERRAMIENTAS/verificador-empresa.html' },
+    { label: 'notario-digital', url: '08-HERRAMIENTAS/notario-digital.html' },
+    { label: 'verificador (v0.3)', url: '02-VERIFICADOR/verificador.html' }
+  ]},
+  { titulo: 'CIUDAD', items: [
+    { label: 'índice ciudad', url: 'docs/CIUDAD/index.html' },
+    { label: 'lector', url: 'docs/CIUDAD/lector.html' },
+    { label: 'firmar', url: 'docs/CIUDAD/firmar.html' },
+    { label: 'verificar', url: 'docs/CIUDAD/verificar.html' },
+    { label: 'certificado', url: 'docs/CIUDAD/certificado.html' }
+  ]},
+  { titulo: 'DOCS', items: [
+    { label: 'docs/index', url: 'docs/index.html' },
+    { label: 'demos-oficiales', url: 'docs/demos-oficiales.html' },
+    { label: 'kronos-para-niños', url: 'docs/kronos-para-ninos.html' },
+    { label: 'tesis-visual', url: 'docs/tesis-visual.html' }
+  ]},
+  { titulo: 'MOVIMIENTO', items: [
+    { label: 'movimiento/index', url: 'movimiento/index.html' },
+    { label: 'carta de bienvenida', url: 'movimiento/carta-bienvenida.html' },
+    { label: 'fundador', url: 'movimiento/fundador.html' },
+    { label: 'iniciación', url: 'movimiento/iniciacion.html' },
+    { label: 'solicitar plaza', url: 'movimiento/solicitar_plaza.html' },
+    { label: 'gracias', url: 'movimiento/gracias.html' },
+    { label: 'registro fundacional', url: 'movimiento/registro-fundacional/index.html' },
+    { label: 'certificado fundacional', url: 'movimiento/registro-fundacional/certificado-fundacional.html' }
+  ]},
+  { titulo: 'CERTIFICACIÓN', items: [
+    { label: 'certificado maestro', url: 'certificacion/certificado-maestro.html' },
+    { label: 'anclaje manifest', url: 'certificacion/anclaje-manifest/index.html' },
+    { label: 'emisor certificados', url: 'certificacion/emisor-certificados/index.html' },
+    { label: 'manifest integridad', url: 'certificacion/manifest-integridad/index.html' },
+    { label: 'notario kronos', url: 'certificacion/notario-kronos/index.html' },
+    { label: 'sello tiempo', url: 'certificacion/sello-tiempo/index.html' },
+    { label: 'verificador público', url: 'certificacion/verificador-publico/index.html' }
+  ]},
+  { titulo: 'CIMIENTO', items: [
+    { label: 'anclaje ethereum', url: 'cimiento/anclaje-ethereum/index.html' },
+    { label: 'cripto core', url: 'cimiento/cripto-core/index.html' },
+    { label: 'storage dexie', url: 'cimiento/storage-dexie/index.html' }
+  ]},
+  { titulo: 'CIERRE', items: [
+    { label: 'export cifrado', url: 'cierre/export-cifrado/index.html' },
+    { label: 'fin digno', url: 'cierre/fin-digno/index.html' }
+  ]},
+  { titulo: 'GOBERNANZA', items: [
+    { label: 'ejecución decisiones', url: 'gobernanza/ejecucion-decisiones/index.html' },
+    { label: 'propuestas votación', url: 'gobernanza/propuestas-votacion/index.html' },
+    { label: 'quorum mayorías', url: 'gobernanza/quorum-mayorias/index.html' },
+    { label: 'revocación auditoría', url: 'gobernanza/revocacion-auditoria/index.html' }
+  ]},
+  { titulo: 'IDENTIDAD', items: [
+    { label: 'registro humano', url: 'identidad/registro-humano/index.html' },
+    { label: 'pasaporte humano', url: 'identidad/registro-humano/pasaporte-visual.html' },
+    { label: 'registro IA', url: 'identidad/registro-ia/index.html' },
+    { label: 'pasaporte IA', url: 'identidad/registro-ia/pasaporte-ia.html' },
+    { label: 'roles y permisos', url: 'identidad/roles-permisos/index.html' },
+    { label: 'certificado rol', url: 'identidad/roles-permisos/certificado-rol.html' }
+  ]},
+  { titulo: 'LEGADO', items: [
+    { label: 'autoría', url: 'legado/autoria/index.html' },
+    { label: 'filosofía', url: 'legado/filosofia/index.html' },
+    { label: 'génesis', url: 'legado/genesis/index.html' },
+    { label: 'manifiesto', url: 'legado/manifiesto/index.html' }
+  ]},
+  { titulo: 'MÓDULOS', items: [
+    { label: 'bóveda voz', url: 'modulos/boveda-voz/index.html' },
+    { label: 'evidence OS', url: 'modulos/evidence-os/index.html' }
+  ]},
+  { titulo: 'OPERACIÓN', items: [
+    { label: 'dashboard salud', url: 'operacion/dashboard-salud/index.html' },
+    { label: 'rituales', url: 'operacion/rituales/index.html' }
+  ]},
+  { titulo: 'ORQUESTACIÓN', items: [
+    { label: 'event bus', url: 'orquestacion/event-bus/index.html' },
+    { label: 'router módulos', url: 'orquestacion/router-modulos/index.html' }
+  ]},
+  { titulo: 'PROYECTOS', items: [
+    { label: 'acta', url: 'projects/acta/index.html' },
+    { label: 'bóveda', url: 'projects/boveda/index.html' },
+    { label: 'cymatic', url: 'projects/cymatic/index.html' },
+    { label: 'cymatic live pro', url: 'projects/cymatic/live-pro.html' },
+    { label: 'cymatic studio', url: 'projects/cymatic/studio.html' },
+    { label: 'dmd-33', url: 'projects/dmd-33/index.html' },
+    { label: 'dmd-33 orb', url: 'projects/dmd-33/orb.html' },
+    { label: 'dmd-33 espejo', url: 'projects/dmd-33/espejo.html' },
+    { label: 'dmd-33 genesis', url: 'projects/dmd-33/genesis.html' },
+    { label: 'dmd-33 flow', url: 'projects/dmd-33/flow.html' },
+    { label: 'dmd-33 kronos', url: 'projects/dmd-33/kronos.html' },
+    { label: 'evidence OS', url: 'projects/evidence-os/index.html' },
+    { label: 'evidence OS dashboard', url: 'projects/evidence-os/dashboard.html' },
+    { label: 'genesis miner', url: 'projects/genesis-miner/index.html' },
+    { label: 'kronos vault', url: 'projects/kronos-vault/index.html' },
+    { label: 'md33', url: 'projects/md33/index.html' },
+    { label: 'yejida', url: 'projects/yejida/index.html' }
+  ]}
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// LISTA PLANA para navegación secuencial
+// ═══════════════════════════════════════════════════════════════════
+
+const LISTA = [];
+GRUPOS.forEach(g => g.items.forEach(it => LISTA.push({ seccion: g.titulo, ...it })));
+
+// ═══════════════════════════════════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════════════════════════════════
+
+let idx = parseInt(localStorage.getItem('kronos-nav-idx') || '0');
+if (isNaN(idx) || idx < 0 || idx >= LISTA.length) idx = 0;
+
+const marco = document.getElementById('marco');
+const contador = document.getElementById('contador');
+const topSeccion = document.getElementById('top-seccion');
+const topPagina = document.getElementById('top-pagina');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+
+function render() {
+  const item = LISTA[idx];
+  marco.src = item.url;
+  contador.textContent = (idx + 1) + ' / ' + LISTA.length;
+  topSeccion.textContent = item.seccion;
+  topPagina.textContent = item.label;
+  btnPrev.disabled = idx === 0;
+  btnNext.disabled = idx === LISTA.length - 1;
+  localStorage.setItem('kronos-nav-idx', idx.toString());
+  marcarMenuActual();
+}
+
+function irAnterior() {
+  if (idx > 0) { idx--; render(); }
+}
+
+function irSiguiente() {
+  if (idx < LISTA.length - 1) { idx++; render(); }
+}
+
+function irInicio() {
+  idx = 0; render();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MENÚ
+// ═══════════════════════════════════════════════════════════════════
+
+function abrirMenu() {
+  document.getElementById('menu-overlay').classList.add('abierto');
+  marcarMenuActual();
+}
+
+function cerrarMenu() {
+  document.getElementById('menu-overlay').classList.remove('abierto');
+}
+
+function marcarMenuActual() {
+  document.querySelectorAll('#menu-overlay .item').forEach(el => el.classList.remove('actual'));
+  const activo = document.querySelector('#menu-overlay .item[data-idx="' + idx + '"]');
+  if (activo) activo.classList.add('actual');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSTRUIR MENÚ
+// ═══════════════════════════════════════════════════════════════════
+
+function construirMenu() {
+  const cont = document.getElementById('menu-grupos');
+  cont.innerHTML = '';
+  GRUPOS.forEach(g => {
+    const grupo = document.createElement('div');
+    grupo.className = 'grupo';
+    const h3 = document.createElement('h3');
+    h3.textContent = g.titulo;
+    grupo.appendChild(h3);
+    g.items.forEach(it => {
+      const idxGlobal = LISTA.findIndex(x => x.url === it.url);
+      const a = document.createElement('a');
+      a.className = 'item';
+      a.dataset.idx = idxGlobal;
+      a.textContent = it.label;
+      a.onclick = () => {
+        idx = idxGlobal;
+        cerrarMenu();
+        render();
+      };
+      grupo.appendChild(a);
+    });
+    cont.appendChild(grupo);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ARRANQUE
+// ═══════════════════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  construirMenu();
+  render();
+});
+
+// Atajos de teclado
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') irAnterior();
+  else if (e.key === 'ArrowRight') irSiguiente();
+  else if (e.key === 'Escape') cerrarMenu();
+});
+</script>
+
+</body>
+</html>
