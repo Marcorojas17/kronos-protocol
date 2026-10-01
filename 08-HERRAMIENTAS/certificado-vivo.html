@@ -27,11 +27,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 20px 100px;
+    padding: 20px 20px 120px;
     position: relative;
   }
 
-  /* Ruido animado anti-foto */
   body::before {
     content: '';
     position: fixed;
@@ -51,7 +50,6 @@
     100% { transform: translate(2%, -1%); }
   }
 
-  /* Patrón moiré anti-foto */
   body::after {
     content: '';
     position: fixed;
@@ -69,7 +67,6 @@
     background-size: 3px 3px;
   }
 
-  /* Certificado */
   .certificado {
     position: relative;
     z-index: 2;
@@ -94,7 +91,6 @@
     box-shadow:
       0 0 40px rgba(201, 162, 39, 0.15),
       0 20px 60px rgba(0, 0, 0, 0.6);
-    transition: filter 0.15s linear;
   }
 
   .contenido {
@@ -105,7 +101,7 @@
       radial-gradient(ellipse at top left, rgba(201, 162, 39, 0.08), transparent 60%),
       radial-gradient(ellipse at bottom right, rgba(139, 105, 20, 0.08), transparent 60%),
       var(--panel);
-    padding: 32px 28px;
+    padding: 32px 28px 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -156,9 +152,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     text-align: center;
-    padding: 16px 0;
+    padding: 12px 0;
   }
   .etiqueta {
     font-size: 9px;
@@ -172,6 +168,13 @@
     color: var(--cream);
     font-style: italic;
     line-height: 1.2;
+  }
+  .firmado-por {
+    font-size: 10px;
+    color: rgba(245, 240, 230, 0.5);
+    letter-spacing: 1px;
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-top: -4px;
   }
   .declaracion {
     font-size: 11px;
@@ -188,7 +191,7 @@
   }
 
   .meta {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(201, 162, 39, 0.2);
     border-radius: 6px;
     padding: 10px;
@@ -197,7 +200,7 @@
     color: rgba(245, 240, 230, 0.6);
     text-align: left;
     word-break: break-all;
-    line-height: 1.5;
+    line-height: 1.55;
   }
   .meta strong {
     color: var(--gold);
@@ -205,11 +208,14 @@
     display: inline-block;
     min-width: 70px;
   }
+  .meta .valor {
+    color: rgba(245, 240, 230, 0.85);
+  }
 
   .pie {
     text-align: center;
     border-top: 1px solid rgba(201, 162, 39, 0.3);
-    padding-top: 12px;
+    padding-top: 10px;
     font-size: 9px;
     color: rgba(201, 162, 39, 0.7);
     letter-spacing: 2px;
@@ -217,7 +223,23 @@
     line-height: 1.7;
   }
 
-  /* Botón de descarga */
+  /* Sello dorado tipo badge */
+  .sello {
+    position: absolute;
+    bottom: 24px;
+    right: 22px;
+    width: 88px;
+    height: 88px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .sello svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.5));
+  }
+
+  /* Botones */
   .acciones {
     position: fixed;
     bottom: 20px;
@@ -236,23 +258,22 @@
     background: transparent;
     border: 1px solid var(--gold);
     color: var(--gold);
-    padding: 10px 18px;
+    padding: 10px 14px;
     border-radius: 6px;
     font-family: 'SF Mono', Menlo, monospace;
     font-size: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
     flex: 1;
-    min-width: 140px;
+    min-width: 130px;
   }
   .btn:hover, .btn:active {
     background: var(--gold);
     color: var(--obsidian);
   }
 
-  /* Modo exportación (limpio para imprimir) */
   body.exportando .acciones { display: none; }
   body.exportando::before,
   body.exportando::after { opacity: 0; }
@@ -272,6 +293,7 @@
 
       <div class="etiqueta">Otorgado a</div>
       <div class="nombre" id="nombre">Marco Antonio Rojas Valdovinos</div>
+      <div class="firmado-por" id="firmado-por">Firmado con llave Ed25519 · Fundador</div>
 
       <div class="declaracion">
         Es autor fundador del protocolo KRONOS.<br>
@@ -282,12 +304,13 @@
       <div class="fecha" id="fecha">Toluca, México · 2026-09-30</div>
 
       <div class="meta">
-        <div><strong>Obra base:</strong> 2607086319439</div>
-        <div><strong>Acta v1:</strong> 2026-09-29T05:02:22Z</div>
-        <div><strong>Merkle art:</strong> e69b2c24...390d93</div>
-        <div><strong>Merkle doc:</strong> 67180206...ae813</div>
-        <div><strong>Hash cert:</strong> <span id="hash_registro">PENDIENTE_DE_FIRMAR</span></div>
-        <div><strong>Firma Ed25519:</strong> <span id="firma">PENDIENTE_DE_FIRMAR</span></div>
+        <div><strong>Obra base:</strong> <span class="valor">2607086319439</span></div>
+        <div><strong>Acta v1:</strong> <span class="valor">2026-09-29T05:02:22Z</span></div>
+        <div><strong>Merkle art:</strong> <span class="valor">e69b2c24...390d93</span></div>
+        <div><strong>Merkle doc:</strong> <span class="valor">67180206...ae813</span></div>
+        <div><strong>Hash cert:</strong> <span class="valor" id="hash_registro">calculando...</span></div>
+        <div><strong>Firma Ed25519:</strong> <span class="valor" id="firma">calculando...</span></div>
+        <div><strong>Pubkey:</strong> <span class="valor" id="pubkey">calculando...</span></div>
       </div>
 
     </div>
@@ -298,21 +321,160 @@
       <div>"El legado no se hereda. Se firma."</div>
     </div>
 
+    <!-- Sello dorado -->
+    <div class="sello">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e5c76b"/>
+            <stop offset="40%" stop-color="#c9a227"/>
+            <stop offset="70%" stop-color="#f5f0e6"/>
+            <stop offset="100%" stop-color="#8b6914"/>
+          </linearGradient>
+          <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+            <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0.3)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Estrella/estrella dentada exterior -->
+        <path d="M50 2 L58 12 L70 8 L74 20 L87 22 L87 34 L97 42 L92 52 L97 62 L87 70 L87 82 L74 84 L70 96 L58 92 L50 98 L42 92 L30 96 L26 84 L13 82 L13 70 L3 62 L8 52 L3 42 L13 34 L13 22 L26 20 L30 8 L42 12 Z"
+              fill="url(#gold-grad)" stroke="#8b6914" stroke-width="0.5"/>
+
+        <!-- Círculo interior -->
+        <circle cx="50" cy="50" r="33" fill="#0a0a0b" stroke="url(#gold-grad)" stroke-width="1.5"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(201,162,39,0.4)" stroke-width="0.5"/>
+
+        <!-- Escudo central -->
+        <path d="M50 26 L66 32 L66 46 C66 56 58 62 50 66 C42 62 34 56 34 46 L34 32 Z"
+              fill="none" stroke="url(#gold-grad)" stroke-width="1.8"/>
+        <path d="M50 30 L62 35 L62 46 C62 54 56 59 50 62 C44 59 38 54 38 46 L38 35 Z"
+              fill="url(#gold-grad)" opacity="0.15"/>
+
+        <!-- Engranaje central -->
+        <circle cx="50" cy="46" r="6" fill="none" stroke="url(#gold-grad)" stroke-width="1.5"/>
+        <circle cx="50" cy="46" r="2.2" fill="url(#gold-grad)"/>
+        <g stroke="url(#gold-grad)" stroke-width="1.2" stroke-linecap="round">
+          <line x1="50" y1="36" x2="50" y2="39"/>
+          <line x1="50" y1="53" x2="50" y2="56"/>
+          <line x1="40" y1="46" x2="43" y2="46"/>
+          <line x1="57" y1="46" x2="60" y2="46"/>
+          <line x1="43" y1="39" x2="45" y2="41"/>
+          <line x1="55" y1="51" x2="57" y2="53"/>
+          <line x1="57" y1="39" x2="55" y2="41"/>
+          <line x1="45" y1="51" x2="43" y2="53"/>
+        </g>
+
+        <!-- Cinta inferior VERIFIED -->
+        <rect x="20" y="74" width="60" height="9" rx="2" fill="url(#gold-grad)" stroke="#8b6914" stroke-width="0.4"/>
+        <text x="50" y="80.5" text-anchor="middle" font-family="monospace" font-size="5.5" font-weight="bold" fill="#0a0a0b" letter-spacing="1">VERIFIED · 2026</text>
+
+        <!-- Destello -->
+        <ellipse cx="30" cy="30" rx="15" ry="10" fill="url(#shine)" transform="rotate(-30 30 30)"/>
+      </svg>
+    </div>
+
   </div>
 </div>
 
 <div class="acciones">
-  <button class="btn" onclick="descargarOffline()">⬇ Descargar offline</button>
-  <button class="btn" onclick="exportarImagen()">◆ Exportar imagen</button>
+  <button class="btn" onclick="descargarPNG()">⬇ Descargar PNG</button>
+  <button class="btn" onclick="descargarHTML()">⬇ Descargar HTML</button>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// EFECTO HOLOGRÁFICO
+// FIRMA REAL · Genera par Ed25519 en navegador y firma el certificado
 // ═══════════════════════════════════════════════════════════════════
 
 const cert = document.getElementById('certificado');
 const root = document.documentElement;
+
+// Datos del certificado (los que se firman)
+const DATOS_CERTIFICADO = {
+  schema_version: '1.0.0',
+  tipo: 'certificado-kodice',
+  nombre: 'Marco Antonio Rojas Valdovinos',
+  rol: 'autor-fundador',
+  protocolo: 'KRONOS',
+  obra_base: '2607086319439',
+  acta_v1: '2026-09-29T05:02:22Z',
+  merkle_articulos: 'e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93',
+  merkle_documentos: '67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813',
+  fecha: '2026-09-30',
+  lugar: 'Toluca, México'
+};
+
+// Canonicalización determinista (orden alfabético, sin espacios)
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function generarFirma() {
+  try {
+    // Generar par de llaves Ed25519
+    const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
+
+    // Exportar pública
+    const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = Array.from(new Uint8Array(pubRaw)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Calcular hash del certificado
+    const canon = canonicalize(DATOS_CERTIFICADO);
+    const hashRegistro = await sha256Hex(canon);
+
+    // Firmar el hash
+    const firmaBuf = await crypto.subtle.sign(
+      'Ed25519',
+      kp.privateKey,
+      new TextEncoder().encode(hashRegistro)
+    );
+    const firmaHex = Array.from(new Uint8Array(firmaBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Mostrar en el certificado
+    document.getElementById('hash_registro').textContent = hashRegistro.slice(0, 32) + '...';
+    document.getElementById('firma').textContent = firmaHex.slice(0, 32) + '...';
+    document.getElementById('pubkey').textContent = pubHex.slice(0, 32) + '...';
+
+    // Guardar para descargas
+    window.__certFirmado = {
+      datos: DATOS_CERTIFICADO,
+      hash_registro: hashRegistro,
+      firma: firmaHex,
+      pubkey: pubHex,
+      algoritmo: 'Ed25519'
+    };
+
+    console.log('[KRONOS] Certificado firmado:');
+    console.log('  Hash:', hashRegistro);
+    console.log('  Firma:', firmaHex);
+    console.log('  Pubkey:', pubHex);
+    console.log('  JSON:', window.__certFirmado);
+
+  } catch (e) {
+    console.error('[KRONOS] Error al firmar:', e);
+    document.getElementById('hash_registro').textContent = 'WebCrypto no soporta Ed25519';
+    document.getElementById('firma').textContent = '---';
+    document.getElementById('pubkey').textContent = '---';
+  }
+}
+
+// Firmar al cargar
+generarFirma();
+
+// ═══════════════════════════════════════════════════════════════════
+// EFECTO HOLOGRÁFICO
+// ═══════════════════════════════════════════════════════════════════
 
 function actualizarHolograma(x, y) {
   const cx = (x - 0.5) * 2;
@@ -323,36 +485,120 @@ function actualizarHolograma(x, y) {
 
 cert.addEventListener('pointermove', (e) => {
   const rect = cert.getBoundingClientRect();
-  const x = (e.clientX - rect.left) / rect.width;
-  const y = (e.clientY - rect.top) / rect.height;
-  actualizarHolograma(x, y);
+  actualizarHolograma((e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height);
 });
 
 cert.addEventListener('touchmove', (e) => {
   if (e.touches.length > 0) {
     const rect = cert.getBoundingClientRect();
     const t = e.touches[0];
-    const x = (t.clientX - rect.left) / rect.width;
-    const y = (t.clientY - rect.top) / rect.height;
-    actualizarHolograma(x, y);
+    actualizarHolograma((t.clientX - rect.left) / rect.width, (t.clientY - rect.top) / rect.height);
   }
 }, { passive: true });
 
 window.addEventListener('deviceorientation', (e) => {
   if (e.gamma !== null && e.beta !== null) {
-    const x = Math.max(0, Math.min(1, (e.gamma + 90) / 180));
-    const y = Math.max(0, Math.min(1, (e.beta + 90) / 180));
-    actualizarHolograma(x, y);
+    actualizarHolograma(
+      Math.max(0, Math.min(1, (e.gamma + 90) / 180)),
+      Math.max(0, Math.min(1, (e.beta + 90) / 180))
+    );
   }
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// DESCARGA OFFLINE · Guarda el HTML completo con datos embebidos
+// DESCARGA PNG · Renderiza el certificado como imagen
 // ═══════════════════════════════════════════════════════════════════
 
-function descargarOffline() {
-  // Recolectar el HTML actual con el estado presente
-  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+async function descargarPNG() {
+  try {
+    // Usar foreignObject SVG → canvas
+    const rect = cert.getBoundingClientRect();
+    const w = Math.round(rect.width);
+    const h = Math.round(rect.height);
+
+    // Clonar el certificado
+    const clon = cert.cloneNode(true);
+
+    // Serializar estilos (necesitamos inline los estilos críticos)
+    const estiloCert = `
+      position: fixed; top: 0; left: 0;
+      width: ${w}px; height: ${h}px;
+    `;
+    clon.setAttribute('style', estiloCert);
+
+    // Obtener el CSS actual
+    let css = '';
+    for (const sheet of document.styleSheets) {
+      try {
+        for (const rule of sheet.cssRules) {
+          css += rule.cssText + '\n';
+        }
+      } catch (e) { /* skip CORS */ }
+    }
+
+    const htmlString = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+        <foreignObject width="100%" height="100%">
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>${css}</style>
+            ${clon.outerHTML}
+          </div>
+        </foreignObject>
+      </svg>
+    `;
+
+    const blob = new Blob([htmlString], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    const img = new Image();
+    img.onload = async () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = w * 2;  // doble resolución
+      canvas.height = h * 2;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2, 2);
+      ctx.drawImage(img, 0, 0, w, h);
+
+      URL.revokeObjectURL(url);
+
+      canvas.toBlob((pngBlob) => {
+        const pngUrl = URL.createObjectURL(pngBlob);
+        const a = document.createElement('a');
+        a.href = pngUrl;
+        a.download = `certificado-kronos-001-${Date.now()}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(pngUrl);
+      }, 'image/png');
+    };
+    img.onerror = () => {
+      console.error('Error al cargar SVG');
+      alert('Tu navegador no permite exportar directo. Usá "Descargar HTML" y abrilo para imprimir.');
+    };
+    img.src = url;
+
+  } catch (e) {
+    console.error('Error:', e);
+    alert('No se pudo generar la imagen. Usá "Descargar HTML".');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA HTML · Guarda el HTML con firma embebida
+// ═══════════════════════════════════════════════════════════════════
+
+function descargarHTML() {
+  // Inyectar la firma en el HTML antes de descargar
+  const firma = window.__certFirmado;
+
+  let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  if (firma) {
+    // Agregar la firma como comentario al final del HTML
+    html += '\n<!--\nFIRMA ED25519 DEL CERTIFICADO KRONOS\n' +
+            JSON.stringify(firma, null, 2) + '\n-->';
+  }
 
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
@@ -364,26 +610,6 @@ function descargarOffline() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
-
-// ═══════════════════════════════════════════════════════════════════
-// EXPORTAR IMAGEN · Modo impresión limpio
-// ═══════════════════════════════════════════════════════════════════
-
-function exportarImagen() {
-  document.body.classList.add('exportando');
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => document.body.classList.remove('exportando'), 500);
-  }, 200);
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// DATOS REALES · reemplazar cuando esté firmado
-// ═══════════════════════════════════════════════════════════════════
-//
-// document.getElementById('hash_registro').textContent = 'a1b2c3...';
-// document.getElementById('firma').textContent = 'd4e5f6...';
-//
 </script>
 
 </body>
