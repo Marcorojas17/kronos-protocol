@@ -4,13 +4,17 @@
   "rol_pipeline": "🚪 ENTRADA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-10-01T05:50:59.343295+00:00",
+  "timestamp": "2026-10-01T07:35:59.422235+00:00",
   "ok": true,
   "hallazgos": [
     {
       "tipo": "sospechosos-contextuales",
       "cantidad": 3,
-      "rutas": ["i", "Pnp", "403"],
+      "rutas": [
+        "i",
+        "Pnp",
+        "403"
+      ],
       "nota": "revisar manualmente antes de borrar"
     },
     {
@@ -80,7 +84,13 @@
             "projects/md33/index.html"
           ]
         ],
-        ["MAPA.md", ["MAPA.md", "docs/MAPA.md"]],
+        [
+          "MAPA.md",
+          [
+            "MAPA.md",
+            "docs/MAPA.md"
+          ]
+        ],
         [
           "README.md",
           [
@@ -245,7 +255,10 @@
       "tipo": "duplicados-contenido",
       "cantidad": 3,
       "ejemplos": [
-        ["cimiento/AUTORIA", "cimiento/anclaje-ethereum/AUTORIA"],
+        [
+          "cimiento/AUTORIA",
+          "cimiento/anclaje-ethereum/AUTORIA"
+        ],
         [
           "reportes/bibliotecario.json",
           "reportes/contralor.json",
@@ -254,7 +267,10 @@
           "reportes/arquitecto.json",
           "reportes/auditor.json"
         ],
-        ["projects/boveda/index.html", "projects/bobeda/index.html"]
+        [
+          "projects/boveda/index.html",
+          "projects/bobeda/index.html"
+        ]
       ]
     }
   ],
