@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · Universal</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #050506;
+    color: #e8e8e8;
+    font-family: Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 100px;
+  }
+  .wrapper {
+    perspective: 1400px;
+    width: 100%;
+    max-width: 660px;
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+  }
+  svg { width: 100%; height: auto; display: block; border-radius: 10px;
+    box-shadow: 0 0 90px rgba(255,107,163,0.15),
+                0 0 140px rgba(136,102,255,0.12),
+                0 20px 60px rgba(0,0,0,0.85); }
+  .acciones {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; gap: 10px; justify-content: center;
+    width: 100%; padding: 0 16px; max-width: 660px;
+  }
+  .btn {
+    background: transparent; border: 1px solid #c9a227; color: #c9a227;
+    padding: 12px 14px; border-radius: 6px;
+    font-family: monospace; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; flex: 1; min-width: 110px;
+  }
+  .btn:active { background: #c9a227; color: #0a0a0b; }
+  .aviso {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,220,68,0.12); border: 1px solid #ffdd44;
+    color: #ffdd44; padding: 8px 14px; border-radius: 4px;
+    font-size: 10px; font-family: monospace; z-index: 20; display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="aviso" id="aviso"></div>
+
+<div class="wrapper" id="wrapper">
+
+<svg id="cert" viewBox="0 0 900 1100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="facetBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6ba3"/>
+      <stop offset="14%" stop-color="#ff9f44"/>
+      <stop offset="28%" stop-color="#ffdd44"/>
+      <stop offset="43%" stop-color="#88ff88"/>
+      <stop offset="57%" stop-color="#44ddff"/>
+      <stop offset="71%" stop-color="#7799ff"/>
+      <stop offset="85%" stop-color="#cc66ff"/>
+      <stop offset="100%" stop-color="#ff44cc"/>
+    </linearGradient>
+    <linearGradient id="holoSeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6ba3"/>
+      <stop offset="25%" stop-color="#ffdd44"/>
+      <stop offset="50%" stop-color="#88ff88"/>
+      <stop offset="75%" stop-color="#44ddff"/>
+      <stop offset="100%" stop-color="#cc66ff"/>
+    </linearGradient>
+    <radialGradient id="galaxyCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#ffdd77"/>
+      <stop offset="50%" stop-color="#cc88ff"/>
+      <stop offset="80%" stop-color="#3a0a5c"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="orlaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f0e6"/>
+      <stop offset="30%" stop-color="#e5c76b"/>
+      <stop offset="60%" stop-color="#8b6914"/>
+      <stop offset="100%" stop-color="#e5c76b"/>
+    </linearGradient>
+    <pattern id="moiré" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="none"/>
+      <rect width="1" height="1" fill="rgba(201,162,39,0.25)"/>
+      <rect x="2" y="2" width="1" height="1" fill="rgba(201,162,39,0.25)"/>
+    </pattern>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="900" height="1100" fill="#0a0a0b"/>
+  <rect width="900" height="1100" fill="url(#moiré)" opacity="0.3"/>
+
+  <!-- Resplandor de fondo -->
+  <circle cx="450" cy="550" r="500" fill="url(#galaxyCenter)" opacity="0.08"/>
+
+  <!-- Borde facetado arcoíris (4 capas para dar efecto de facetas) -->
+  <rect x="18" y="18" width="864" height="1064" fill="none" stroke="url(#facetBorder)" stroke-width="10" rx="8"/>
+  <rect x="32" y="32" width="836" height="1036" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" rx="5"/>
+  <rect x="42" y="42" width="816" height="1016" fill="none" stroke="rgba(201,162,39,0.7)" stroke-width="1.5" rx="5"/>
+  <rect x="50" y="50" width="800" height="1000" fill="none" stroke="rgba(201,162,39,0.3)" stroke-width="0.5" rx="5"/>
+
+  <!-- Guilloche generado por JS se inserta aquí -->
+  <g id="guillocheLayer"></g>
+
+  <!-- Orlas esquinas -->
+  <g stroke="url(#orlaGold)" stroke-width="1.8" fill="none" stroke-linecap="round">
+    <path d="M70 70 L70 145 M70 70 L145 70"/>
+    <path d="M80 80 Q80 120 110 120 Q140 120 140 150" opacity="0.85"/>
+    <path d="M90 90 Q90 105 105 105 Q120 105 120 120" opacity="0.6"/>
+    <circle cx="70" cy="70" r="5" fill="url(#orlaGold)"/>
+    <circle cx="135" cy="80" r="2.5" fill="url(#orlaGold)"/>
+    <circle cx="80" cy="135" r="2.5" fill="url(#orlaGold)"/>
+
+    <path d="M830 70 L830 145 M830 70 L755 70"/>
+    <path d="M820 80 Q820 120 790 120 Q760 120 760 150" opacity="0.85"/>
+    <path d="M810 90 Q810 105 795 105 Q780 105 780 120" opacity="0.6"/>
+    <circle cx="830" cy="70" r="5" fill="url(#orlaGold)"/>
+    <circle cx="765" cy="80" r="2.5" fill="url(#orlaGold)"/>
+    <circle cx="820" cy="135" r="2.5" fill="url(#orlaGold)"/>
+
+    <path d="M70 1030 L70 955 M70 1030 L145 1030"/>
+    <path d="M80 1020 Q80 980 110 980 Q140 980 140 950" opacity="0.85"/>
+    <circle cx="70" cy="1030" r="5" fill="url(#orlaGold)"/>
+    <circle cx="135" cy="1020" r="2.5" fill="url(#orlaGold)"/>
+    <circle cx="80" cy="965" r="2.5" fill="url(#orlaGold)"/>
+
+    <path d="M830 1030 L830 955 M830 1030 L755 1030"/>
+    <path d="M820 1020 Q820 980 790 980 Q760 980 760 950" opacity="0.85"/>
+    <circle cx="830" cy="1030" r="5" fill="url(#orlaGold)"/>
+    <circle cx="765" cy="1020" r="2.5" fill="url(#orlaGold)"/>
+    <circle cx="820" cy="965" r="2.5" fill="url(#orlaGold)"/>
+  </g>
+
+  <!-- Microtexto superior -->
+  <text x="450" y="95" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(201,162,39,0.6)" letter-spacing="3">KRONOS·PROTOCOL·VERIFICABLE·OFFLINE·SIN·SERVIDOR·SIN·AUTORIDAD·W3C·VC·2.0·ED25519·SHA256·KRONOS·PROTOCOL</text>
+
+  <!-- Header -->
+  <text x="450" y="175" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="#e5c76b" font-weight="400" letter-spacing="6">CERTIFICADO</text>
+  <text x="450" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="#e5c76b" letter-spacing="6">KRONOS</text>
+
+  <!-- Registro -->
+  <g transform="translate(450, 275)">
+    <polygon points="-115,0 -105,-7 -95,0 -105,7" fill="#c9a227"/>
+    <polygon points="115,0 105,-7 95,0 105,7" fill="#c9a227"/>
+    <text x="0" y="5" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(245,240,230,0.7)" letter-spacing="5">REGISTRO UNIVERSAL · 001</text>
+  </g>
+
+  <line x1="200" y1="305" x2="700" y2="305" stroke="rgba(201,162,39,0.5)" stroke-width="0.8"/>
+  <line x1="250" y1="310" x2="650" y2="310" stroke="rgba(201,162,39,0.3)" stroke-width="0.5"/>
+
+  <!-- Otorgado a -->
+  <text x="450" y="355" text-anchor="middle" font-family="monospace" font-size="12" fill="rgba(245,240,230,0.5)" letter-spacing="5">OTORGADO A</text>
+
+  <!-- Nombre -->
+  <text x="450" y="420" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="42" fill="#f5f0e6">Marco Antonio Rojas Valdovinos</text>
+  <text x="450" y="452" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(245,240,230,0.55)" letter-spacing="2">FUNDADOR ORIGINAL · TOLUCA, MÉXICO · 2026-09-30</text>
+
+  <!-- Declaración -->
+  <text x="450" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="rgba(245,240,230,0.75)">Este certificado acredita la autoría y existencia del Protocolo KRONOS</text>
+  <text x="450" y="522" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="rgba(245,240,230,0.75)">de forma matemáticamente verificable, conforme a W3C Verifiable Credentials 2.0</text>
+  <text x="450" y="544" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="rgba(245,240,230,0.75)">y estándares internacionales de firma digital (Ed25519 / RFC 8032).</text>
+
+  <!-- 6 PRINCIPIOS · banda horizontal -->
+  <g transform="translate(450, 640)">
+    <text x="0" y="-20" text-anchor="middle" font-family="monospace" font-size="10" fill="#e5c76b" letter-spacing="6">6 PILLARS · 6 UNIVERSOS</text>
+
+    <!-- Panel S · SINCRONÍA · Púrpura -->
+    <g transform="translate(-240, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(196,77,255,0.12)" stroke="#c44dff" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-18" r="14" fill="none" stroke="#e0aaff" stroke-width="1.5"/>
+      <circle cx="0" cy="-18" r="7" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.7"/>
+      <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">S</text>
+      <text x="0" y="25" text-anchor="middle" font-family="monospace" font-size="6" fill="#e0aaff">SINCRO</text>
+      <text x="0" y="36" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+
+    <!-- Panel K · KINÉTICA · Rojo -->
+    <g transform="translate(-144, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(255,51,68,0.12)" stroke="#ff3344" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-18" r="14" fill="none" stroke="#ff8888" stroke-width="1.5"/>
+      <path d="M-10 -18 L10 -18 M0 -28 L0 -8" stroke="#ffffff" stroke-width="0.8" opacity="0.7"/>
+      <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">K</text>
+      <text x="0" y="25" text-anchor="middle" font-family="monospace" font-size="6" fill="#ff8888">KINÉTICA</text>
+      <text x="0" y="36" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+
+    <!-- Panel R · REALIDAD · Naranja -->
+    <g transform="translate(-48, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(255,187,68,0.12)" stroke="#ffbb44" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-18" r="16" fill="none" stroke="#ffdd88" stroke-width="1.5"/>
+      <ellipse cx="0" cy="-18" rx="22" ry="8" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.6"/>
+      <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">R</text>
+      <text x="0" y="25" text-anchor="middle" font-family="monospace" font-size="6" fill="#ffdd88">REALIDAD</text>
+      <text x="0" y="36" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+
+    <!-- Panel O · ORDEN · Dorado -->
+    <g transform="translate(48, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(255,221,102,0.12)" stroke="#ffdd66" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-30" r="8" fill="none" stroke="#ffeeaa" stroke-width="1.2"/>
+      <circle cx="0" cy="-18" r="8" fill="none" stroke="#ffeeaa" stroke-width="1.2"/>
+      <circle cx="0" cy="-6" r="8" fill="none" stroke="#ffeeaa" stroke-width="1.2"/>
+      <text x="0" y="15" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">O</text>
+      <text x="0" y="28" text-anchor="middle" font-family="monospace" font-size="6" fill="#ffeeaa">ORDEN</text>
+      <text x="0" y="39" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+
+    <!-- Panel N · NATURALEZA · Verde -->
+    <g transform="translate(144, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(68,221,119,0.12)" stroke="#44dd77" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-18" r="15" fill="none" stroke="#aaffcc" stroke-width="1.5"/>
+      <path d="M0 -30 L0 -6 M-12 -18 L12 -18" stroke="#ffffff" stroke-width="0.9" opacity="0.7"/>
+      <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">N</text>
+      <text x="0" y="25" text-anchor="middle" font-family="monospace" font-size="6" fill="#aaffcc">NATURALEZA</text>
+      <text x="0" y="36" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+
+    <!-- Panel O · ORIGEN · Azul -->
+    <g transform="translate(240, 0)">
+      <rect x="-38" y="-52" width="76" height="105" fill="rgba(51,170,255,0.12)" stroke="#33aaff" stroke-width="1.2" rx="3"/>
+      <circle cx="0" cy="-18" r="14" fill="none" stroke="#88ddff" stroke-width="1.5"/>
+      <circle cx="0" cy="-18" r="7" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.6"/>
+      <circle cx="0" cy="-18" r="2.5" fill="#ffffff" opacity="0.9"/>
+      <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">O</text>
+      <text x="0" y="25" text-anchor="middle" font-family="monospace" font-size="6" fill="#88ddff">ORIGEN</text>
+      <text x="0" y="36" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(255,255,255,0.6)">PRINCIPIO</text>
+    </g>
+  </g>
+
+  <!-- Bloque de metadatos -->
+  <g transform="translate(120, 745)">
+    <rect x="0" y="0" width="660" height="150" fill="rgba(0,0,0,0.5)" stroke="rgba(201,162,39,0.4)" stroke-width="1" rx="4"/>
+
+    <text x="20" y="26" font-family="monospace" font-size="11" fill="#c9a227">Obra base:</text>
+    <text x="200" y="26" font-family="monospace" font-size="10" fill="rgba(245,240,230,0.85)">2607086319439</text>
+
+    <text x="20" y="46" font-family="monospace" font-size="11" fill="#c9a227">Acta v1:</text>
+    <text x="200" y="46" font-family="monospace" font-size="10" fill="rgba(245,240,230,0.85)">2026-09-29T05:02:22Z</text>
+
+    <text x="20" y="66" font-family="monospace" font-size="11" fill="#c9a227">Merkle art:</text>
+    <text x="200" y="66" font-family="monospace" font-size="10" fill="rgba(245,240,230,0.85)">e69b2c24...390d93</text>
+
+    <text x="20" y="86" font-family="monospace" font-size="11" fill="#c9a227">Merkle doc:</text>
+    <text x="200" y="86" font-family="monospace" font-size="10" fill="rgba(245,240,230,0.85)">67180206...ae813</text>
+
+    <text x="20" y="106" font-family="monospace" font-size="11" fill="#c9a227">Hash:</text>
+    <text x="200" y="106" font-family="monospace" font-size="9" fill="rgba(245,240,230,0.85)">d646c5d8bad7b229a6e4c38dfd99a122040c4ea1b028e22f</text>
+
+    <text x="20" y="126" font-family="monospace" font-size="11" fill="#c9a227">Firma:</text>
+    <text x="200" y="126" font-family="monospace" font-size="9" fill="rgba(245,240,230,0.85)">d685545c6a4236427a9822cbb814227a4726ac05...</text>
+
+    <text x="20" y="146" font-family="monospace" font-size="11" fill="#c9a227">Pubkey:</text>
+    <text x="200" y="146" font-family="monospace" font-size="9" fill="rgba(245,240,230,0.85)">c54d2855292daaef881991c28119f9f7e2b9974c...</text>
+  </g>
+
+  <!-- Rúbrica -->
+  <g transform="translate(450, 950)">
+    <path d="M-220 0 Q-205 -35 -190 -5 Q-175 25 -160 -10 Q-145 -35 -130 0 Q-115 25 -100 -5 Q-85 -30 -70 0 Q-55 25 -40 -5 Q-25 -35 -10 0 Q5 20 20 -10 Q35 -35 50 0 Q65 25 80 -5 Q95 -30 110 0 Q125 20 140 -10 Q155 -30 170 0 Q185 20 200 -5" stroke="#e5c76b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <line x1="-260" y1="18" x2="260" y2="18" stroke="rgba(201,162,39,0.5)" stroke-width="1"/>
+    <text x="0" y="42" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="17" fill="#f5f0e6">Marco Antonio Rojas Valdovinos</text>
+    <text x="0" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#c9a227" letter-spacing="2">AUTOR FUNDADOR · PROTOCOLO KRONOS · TOLUCA DE LERDO, MÉXICO</text>
+  </g>
+
+  <!-- Sello roseta -->
+  <g transform="translate(760, 950)">
+    <circle cx="0" cy="0" r="118" fill="none" stroke="url(#holoSeal)" stroke-width="5"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="rgba(201,162,39,0.6)" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle cx="0" cy="0" r="105" fill="#08080a"/>
+    <g id="roseta"></g>
+    <g transform="translate(0, 0)">
+      <polygon points="0,-38 -26,-13 0,38 26,-13" fill="url(#holoSeal)" opacity="0.9"/>
+      <polygon points="0,-38 26,-13 0,38" fill="#f5f0e6" opacity="0.7"/>
+      <polygon points="0,-38 26,-13 0,38 26,-13" fill="none" stroke="#f5f0e6" stroke-width="1.2"/>
+      <polygon points="-26,-13 0,0 26,-13" fill="none" stroke="#f5f0e6" stroke-width="0.8"/>
+      <line x1="0" y1="0" x2="0" y2="38" stroke="#f5f0e6" stroke-width="0.8"/>
+      <path d="M-8 -24 L6 -12 L-2 -4" fill="rgba(255,255,255,0.9)" stroke="none"/>
+    </g>
+    <text x="0" y="140" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#e5c76b" letter-spacing="2">VERIFIED · 2026</text>
+  </g>
+
+  <!-- Microtexto inferior -->
+  <text x="450" y="1065" text-anchor="middle" font-family="monospace" font-size="5" fill="rgba(201,162,39,0.6)" letter-spacing="3">W3C·VC·DATA·MODEL·2.0·DID:KEY·ED25519SIGNATURE2020·RFC·8785·JCS·FIPS·180-4·SHA-256·RFC·8032·ED25519·FIPS·204·ML-DSA-65·KRONOS·PROTOCOL·2026</text>
+
+</svg>
+
+</div>
+
+<div class="acciones">
+  <button class="btn" onclick="descargarPNG()">⬇ PNG</button>
+  <button class="btn" onclick="descargarHTML()">⬇ HTML</button>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "urn:kronos:cert:001",
+  "type": ["VerifiableCredential", "KronosAuthorshipCertificate"],
+  "issuer": {
+    "id": "did:key:z6Mkfd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977",
+    "name": "Marco Antonio Rojas Valdovinos",
+    "location": "Toluca, México"
+  },
+  "issuanceDate": "2026-09-30T00:00:00Z",
+  "credentialSubject": {
+    "id": "did:key:z6Mkfd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977",
+    "name": "Marco Antonio Rojas Valdovinos",
+    "role": "Autor Fundador",
+    "protocol": "KRONOS",
+    "obra_base": "2607086319439",
+    "acta_v1": "2026-09-29T05:02:22Z",
+    "merkle_articulos": "e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93",
+    "merkle_documentos": "67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813"
+  },
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-09-30T00:00:00Z",
+    "verificationMethod": "did:key:z6Mkfd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977#z6Mkfd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z5d685545c6a4236427a9822cbb814227a4726ac05d1241d41..."
+  }
+}
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// GUILLOCHE PROCEDURAL · se inserta en el SVG
+// ═══════════════════════════════════════════════════════════════════
+
+function generarGuilloche() {
+  const layer = document.getElementById('guillocheLayer');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // Banda superior
+  for (let k = 0; k < 14; k++) {
+    const path = document.createElementNS(NS, 'path');
+    let d = '';
+    const phase = k * 0.18;
+    for (let i = 0; i <= 300; i++) {
+      const t = i / 300;
+      const x = 60 + t * 780;
+      const y = 130 + Math.sin(t * Math.PI * 2 * 12 + phase) * 15
+                    + Math.sin(t * Math.PI * 2 * 24 + phase * 2) * 4;
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+    }
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#c9a227');
+    path.setAttribute('stroke-width', '0.5');
+    path.setAttribute('opacity', '0.4');
+    layer.appendChild(path);
+  }
+
+  // Banda inferior
+  for (let k = 0; k < 14; k++) {
+    const path = document.createElementNS(NS, 'path');
+    let d = '';
+    const phase = k * 0.18;
+    for (let i = 0; i <= 300; i++) {
+      const t = i / 300;
+      const x = 60 + t * 780;
+      const y = 970 + Math.sin(t * Math.PI * 2 * 12 + phase) * 15
+                    + Math.sin(t * Math.PI * 2 * 24 + phase * 2) * 4;
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+    }
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#c9a227');
+    path.setAttribute('stroke-width', '0.5');
+    path.setAttribute('opacity', '0.4');
+    layer.appendChild(path);
+  }
+
+  // Bandas laterales
+  for (const side of ['left', 'right']) {
+    for (let k = 0; k < 14; k++) {
+      const path = document.createElementNS(NS, 'path');
+      let d = '';
+      const phase = k * 0.18;
+      const baseX = side === 'left' ? 100 : 800;
+      for (let i = 0; i <= 300; i++) {
+        const t = i / 300;
+        const y = 170 + t * 780;
+        const x = baseX + Math.sin(t * Math.PI * 2 * 14 + phase) * 12;
+        d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+      }
+      path.setAttribute('d', d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', '#c9a227');
+      path.setAttribute('stroke-width', '0.5');
+      path.setAttribute('opacity', '0.4');
+      layer.appendChild(path);
+    }
+  }
+
+  // Roseta del sello
+  const roseta = document.getElementById('roseta');
+  for (let i = 0; i < 48; i++) {
+    const angle = (i / 48) * Math.PI;
+    const ellipse = document.createElementNS(NS, 'ellipse');
+    ellipse.setAttribute('cx', '0');
+    ellipse.setAttribute('cy', '0');
+    ellipse.setAttribute('rx', '90');
+    ellipse.setAttribute('ry', '28');
+    ellipse.setAttribute('fill', 'none');
+    ellipse.setAttribute('stroke', '#e5c76b');
+    ellipse.setAttribute('stroke-width', '0.6');
+    ellipse.setAttribute('opacity', '0.65');
+    ellipse.setAttribute('transform', 'rotate(' + (angle * 180 / Math.PI) + ')');
+    roseta.appendChild(ellipse);
+  }
+
+  // Círculos concéntricos en roseta
+  for (let r = 90; r > 65; r -= 3) {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', '0');
+    c.setAttribute('cy', '0');
+    c.setAttribute('r', r);
+    c.setAttribute('fill', 'none');
+    c.setAttribute('stroke', '#e5c76b');
+    c.setAttribute('stroke-width', '0.5');
+    c.setAttribute('opacity', '0.5');
+    roseta.appendChild(c);
+  }
+
+  // Rayos radiales
+  for (let i = 0; i < 96; i++) {
+    const a = (i / 96) * Math.PI * 2;
+    const line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', (Math.cos(a) * 65).toFixed(2));
+    line.setAttribute('y1', (Math.sin(a) * 65).toFixed(2));
+    line.setAttribute('x2', (Math.cos(a) * 92).toFixed(2));
+    line.setAttribute('y2', (Math.sin(a) * 92).toFixed(2));
+    line.setAttribute('stroke', '#e5c76b');
+    line.setAttribute('stroke-width', '0.4');
+    line.setAttribute('opacity', '0.5');
+    roseta.appendChild(line);
+  }
+}
+
+generarGuilloche();
+
+// ═══════════════════════════════════════════════════════════════════
+// TILT
+// ═══════════════════════════════════════════════════════════════════
+
+const wrapper = document.getElementById('wrapper');
+function aplicarTilt(x, y) {
+  wrapper.style.transform = 'rotateX(' + ((y - 0.5) * -12) + 'deg) rotateY(' + ((x - 0.5) * 12) + 'deg)';
+}
+wrapper.addEventListener('pointermove', function(e) {
+  const r = wrapper.getBoundingClientRect();
+  aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+});
+wrapper.addEventListener('pointerleave', function() {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+wrapper.addEventListener('touchmove', function(e) {
+  if (e.touches.length > 0) {
+    const r = wrapper.getBoundingClientRect();
+    const t = e.touches[0];
+    aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
+  }
+}, { passive: true });
+wrapper.addEventListener('touchend', function() {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+window.addEventListener('deviceorientation', function(e) {
+  if (e.gamma !== null && e.beta !== null) {
+    aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
+  }
+});
+if (typeof DeviceOrientationEvent !== 'undefined' &&
+    typeof DeviceOrientationEvent.requestPermission === 'function') {
+  document.body.addEventListener('click', function pedir() {
+    DeviceOrientationEvent.requestPermission().catch(function() {});
+    document.body.removeEventListener('click', pedir);
+  }, { once: true });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// AVISOS
+// ═══════════════════════════════════════════════════════════════════
+
+const aviso = document.getElementById('aviso');
+function mostrarAviso(msg) {
+  aviso.textContent = msg;
+  aviso.style.display = 'block';
+  setTimeout(function() { aviso.style.display = 'none'; }, 2500);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA PNG · SVG → blob → img → canvas → PNG
+// ═══════════════════════════════════════════════════════════════════
+
+function descargarPNG() {
+  wrapper.style.transform = 'none';
+  try {
+    const svg = document.getElementById('cert');
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svg);
+
+    // Blob SVG
+    const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.onload = function() {
+      const W = 1800;
+      const H = 2200;
+      const c = document.createElement('canvas');
+      c.width = W;
+      c.height = H;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, W, H);
+      ctx.drawImage(img, 0, 0, W, H);
+      URL.revokeObjectURL(url);
+
+      c.toBlob(function(blob) {
+        if (!blob) { mostrarAviso('Error: blob vacío'); return; }
+        const purl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = purl;
+        a.download = 'certificado-kronos-universal-' + Date.now() + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(purl); }, 1000);
+        mostrarAviso('✓ PNG descargado');
+      }, 'image/png', 1.0);
+    };
+    img.onerror = function(e) {
+      console.error(e);
+      mostrarAviso('Error al convertir SVG a imagen');
+    };
+    img.src = url;
+  } catch (e) {
+    console.error(e);
+    mostrarAviso('Error: ' + e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA HTML · SVG embebido inline, funciona offline
+// ═══════════════════════════════════════════════════════════════════
+
+function descargarHTML() {
+  try {
+    mostrarAviso('Preparando HTML...');
+
+    const svg = document.getElementById('cert');
+    const svgHTML = svg.outerHTML;
+
+    const jsonld = document.querySelector('script[type="application/ld+json"]').textContent;
+
+    const estilos = '* { box-sizing: border-box; margin: 0; padding: 0; }' +
+      'body { min-height: 100vh; background: #050506; display: flex;' +
+      'align-items: center; justify-content: center; padding: 12px;' +
+      'font-family: Georgia, serif; }' +
+      '.wrapper { perspective: 1400px; width: 100%; max-width: 660px;' +
+      'transition: transform 0.15s ease-out; transform-style: preserve-3d; }' +
+      'svg { width: 100%; height: auto; display: block; border-radius: 10px;' +
+      'box-shadow: 0 0 90px rgba(255,107,163,0.15), 0 0 140px rgba(136,102,255,0.12),' +
+      '0 20px 60px rgba(0,0,0,0.85); }';
+
+    const js = 'const w = document.getElementById("wrapper");' +
+      'function t(x, y) {' +
+      '  w.style.transform = "rotateX(" + ((y - 0.5) * -12) + "deg) rotateY(" + ((x - 0.5) * 12) + "deg)";' +
+      '}' +
+      'w.addEventListener("pointermove", function(e) {' +
+      '  const r = w.getBoundingClientRect();' +
+      '  t((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);' +
+      '});' +
+      'w.addEventListener("pointerleave", function() {' +
+      '  w.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});' +
+      'w.addEventListener("touchmove", function(e) {' +
+      '  if (e.touches.length > 0) {' +
+      '    const r = w.getBoundingClientRect();' +
+      '    const touch = e.touches[0];' +
+      '    t((touch.clientX - r.left) / r.width, (touch.clientY - r.top) / r.height);' +
+      '  }' +
+      '}, { passive: true });' +
+      'w.addEventListener("touchend", function() {' +
+      '  w.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});' +
+      'window.addEventListener("deviceorientation", function(e) {' +
+      '  if (e.gamma !== null && e.beta !== null) {' +
+      '    t((e.gamma + 45) / 90, (e.beta + 45) / 90);' +
+      '  }' +
+      '});';
+
+    // El bug está aquí: hay que escapar </script> dentro del string
+    const html = '<!DOCTYPE html>' +
+      '<html lang="es"><head>' +
+      '<meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+      '<title>Certificado KRONOS Universal</title>' +
+      '<style>' + estilos + '</style>' +
+      '<scr' + 'ipt type="application/ld+json">' + jsonld + '</scr' + 'ipt>' +
+      '</head><body>' +
+      '<div class="wrapper" id="wrapper">' +
+      svgHTML +
+      '</div>' +
+      '<scr' + 'ipt>' + js + '</scr' + 'ipt>' +
+      '</body></html>';
+
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'certificado-kronos-universal-' + Date.now() + '.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    mostrarAviso('✓ HTML descargado');
+  } catch (e) {
+    console.error(e);
+    mostrarAviso('Error: ' + e.message);
+  }
+}
+</script>
+
+</body>
+</html>
