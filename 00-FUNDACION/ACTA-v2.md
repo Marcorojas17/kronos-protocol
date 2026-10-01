@@ -53,6 +53,6 @@ Firmado con Fundador v2 el 2026-09-30.
 
 ---
 
-*○_● · ◢◤◥◣ · ◥◣◢◤*
-*51% HUMANO · 49% IA · 100% REAL*
-*"El legado no se hereda. Se firma."*
+_○_● · ◢◤◥◣ · ◥◣◢◤_
+_51% HUMANO · 49% IA · 100% REAL_
+_"El legado no se hereda. Se firma."_
