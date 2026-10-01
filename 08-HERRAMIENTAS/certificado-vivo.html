@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS</title>
+<style>
+  :root {
+    --obsidian: #0a0a0b;
+    --panel: #111114;
+    --gold: #c9a227;
+    --gold-light: #e5c76b;
+    --cream: #f5f0e6;
+    --angle: 0deg;
+    --hue-shift: 0deg;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    min-height: 100vh;
+    background: var(--obsidian);
+    color: var(--cream);
+    font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Ruido animado anti-foto */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+    animation: grain 0.15s steps(4) infinite;
+    mix-blend-mode: overlay;
+  }
+  @keyframes grain {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-2%, 1%); }
+    50%  { transform: translate(1%, -2%); }
+    75%  { transform: translate(-1%, 2%); }
+    100% { transform: translate(2%, -1%); }
+  }
+
+  /* Patrón moiré anti-foto (aparece en capturas) */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(201, 162, 39, 0.4) 1px,
+      rgba(201, 162, 39, 0.4) 2px
+    );
+    background-size: 3px 3px;
+  }
+
+  /* Contenedor principal */
+  .certificado {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 1 / 1.414;
+    border-radius: 12px;
+    padding: 3px;
+    /* Efecto holográfico */
+    background: conic-gradient(
+      from var(--angle),
+      var(--gold) 0deg,
+      var(--gold-light) 45deg,
+      var(--cream) 90deg,
+      var(--gold) 135deg,
+      #8b6914 180deg,
+      var(--gold-light) 225deg,
+      var(--cream) 270deg,
+      var(--gold) 315deg,
+      var(--gold) 360deg
+    );
+    filter: contrast(1.15) saturate(1.4) hue-rotate(var(--hue-shift));
+    box-shadow:
+      0 0 40px rgba(201, 162, 39, 0.15),
+      0 20px 60px rgba(0, 0, 0, 0.6);
+    transition: filter 0.1s linear;
+  }
+
+  .contenido {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background:
+      radial-gradient(ellipse at top left, rgba(201, 162, 39, 0.08), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(139, 105, 20, 0.08), transparent 60%),
+      var(--panel);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Sello holográfico circular */
+  .contenido::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from calc(var(--angle) * -1),
+      rgba(201, 162, 39, 0.3),
+      rgba(245, 240, 230, 0.1),
+      rgba(201, 162, 39, 0.3)
+    );
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  /* Encabezado */
+  .header {
+    text-align: center;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+    padding-bottom: 16px;
+  }
+  .titulo {
+    font-size: 24px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .subtitulo {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(245, 240, 230, 0.5);
+    margin-top: 6px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  /* Cuerpo */
+  .cuerpo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    padding: 24px 0;
+  }
+  .etiqueta {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(245, 240, 230, 0.4);
+    text-transform: uppercase;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .nombre {
+    font-size: 32px;
+    color: var(--cream);
+    font-style: italic;
+    line-height: 1.2;
+  }
+  .declaracion {
+    font-size: 13px;
+    color: rgba(245, 240, 230, 0.7);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .fecha {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  /* Bloque de metadatos */
+  .meta {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    border-radius: 6px;
+    padding: 12px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 9px;
+    color: rgba(245, 240, 230, 0.6);
+    text-align: left;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .meta strong {
+    color: var(--gold);
+    font-weight: normal;
+    display: inline-block;
+    min-width: 90px;
+  }
+
+  /* Pie */
+  .pie {
+    text-align: center;
+    border-top: 1px solid rgba(201, 162, 39, 0.3);
+    padding-top: 14px;
+    font-size: 10px;
+    color: rgba(201, 162, 39, 0.7);
+    letter-spacing: 2px;
+    font-family: 'SF Mono', Menlo, monospace;
+    line-height: 1.8;
+  }
+
+  /* Instrucción */
+  .instruccion {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 10px;
+    color: rgba(245, 240, 230, 0.4);
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  /* Modo exportación (limpio para imprimir) */
+  body.exportando .instruccion { display: none; }
+  body.exportando::before,
+  body.exportando::after { opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="certificado" id="certificado">
+  <div class="contenido">
+
+    <div class="header">
+      <div class="titulo">Certificado KRONOS</div>
+      <div class="subtitulo">◆ REGISTRO OFICIAL · 001 ◆</div>
+    </div>
+
+    <div class="cuerpo">
+
+      <div class="etiqueta">Otorgado a</div>
+      <div class="nombre" id="nombre">Marco Antonio Rojas Valdovinos</div>
+
+      <div class="declaracion">
+        Es autor fundador del protocolo KRONOS.<br>
+        Este certificado acredita su autoría de forma matemáticamente
+        verificable, sin dependencia de servidor, autoridad o tercero.
+      </div>
+
+      <div class="fecha" id="fecha">Toluca, México · 2026-09-30</div>
+
+      <div class="meta">
+        <div><strong>Obra base:</strong> 2607086319439</div>
+        <div><strong>Acta v1:</strong> 2026-09-29T05:02:22Z</div>
+        <div><strong>Merkle art:</strong> e69b2c24...390d93</div>
+        <div><strong>Merkle doc:</strong> 67180206...ae813</div>
+        <div><strong>Hash cert:</strong> <span id="hash_registro">PENDIENTE_DE_FIRMAR</span></div>
+        <div><strong>Firma:</strong> <span id="firma">PENDIENTE_DE_FIRMAR</span></div>
+      </div>
+
+    </div>
+
+    <div class="pie">
+      <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+      <div>51% HUMANO · 49% IA · 100% REAL</div>
+      <div>"El legado no se hereda. Se firma."</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="instruccion">
+  Mueve el dedo sobre el certificado · Toca para exportar
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// EFECTO HOLOGRÁFICO · Sigue el puntero y el giroscopio
+// ═══════════════════════════════════════════════════════════════════
+
+const cert = document.getElementById('certificado');
+const root = document.documentElement;
+
+function actualizarHolograma(x, y) {
+  // x, y entre 0 y 1 (relativo al centro)
+  const cx = (x - 0.5) * 2; // -1 a 1
+  const cy = (y - 0.5) * 2;
+
+  // Ángulo del gradiente cónico
+  const angulo = Math.atan2(cy, cx) * 180 / Math.PI;
+  root.style.setProperty('--angle', (angulo + 180) + 'deg');
+
+  // Cambio de hue según posición (efecto iridiscente)
+  const hue = (cx * 30 + cy * 30);
+  root.style.setProperty('--hue-shift', hue + 'deg');
+}
+
+cert.addEventListener('pointermove', (e) => {
+  const rect = cert.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width;
+  const y = (e.clientY - rect.top) / rect.height;
+  actualizarHolograma(x, y);
+});
+
+cert.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    const rect = cert.getBoundingClientRect();
+    const t = e.touches[0];
+    const x = (t.clientX - rect.left) / rect.width;
+    const y = (t.clientY - rect.top) / rect.height;
+    actualizarHolograma(x, y);
+  }
+}, { passive: true });
+
+// Giroscopio (si el dispositivo lo soporta)
+window.addEventListener('deviceorientation', (e) => {
+  if (e.gamma !== null && e.beta !== null) {
+    const x = Math.max(0, Math.min(1, (e.gamma + 90) / 180));
+    const y = Math.max(0, Math.min(1, (e.beta + 90) / 180));
+    actualizarHolograma(x, y);
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// MODO EXPORTACIÓN · Toca para limpiar y guardar
+// ═══════════════════════════════════════════════════════════════════
+
+cert.addEventListener('dblclick', () => {
+  document.body.classList.add('exportando');
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => document.body.classList.remove('exportando'), 500);
+  }, 200);
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// CARGA DE DATOS REALES · cuando estén disponibles
+// ═══════════════════════════════════════════════════════════════════
+
+// Cuando firmes el registro, reemplazá estos valores:
+// document.getElementById('hash_registro').textContent = 'a1b2c3...';
+// document.getElementById('firma').textContent = 'd4e5f6...';
+</script>
+
+</body>
+</html>
