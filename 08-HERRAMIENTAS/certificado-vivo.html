@@ -33,7 +33,6 @@
     position: relative;
   }
 
-  /* Ruido animado */
   body::before {
     content: '';
     position: fixed;
@@ -53,7 +52,6 @@
     100% { transform: translate(2%, -1%); }
   }
 
-  /* Patrón moiré anti-foto */
   body::after {
     content: '';
     position: fixed;
@@ -71,92 +69,74 @@
     background-size: 3px 3px;
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     CERTIFICADO CON BORDE IRIDISCENTE TIPO DIAMANTE
-     ══════════════════════════════════════════════════════════════ */
   .certificado {
     position: relative;
     z-index: 2;
     width: 100%;
     max-width: 560px;
     aspect-ratio: 1 / 1.414;
-    border-radius: 6px;
-    padding: 4px;
-    /* Gradiente cónico multicolor que gira con el puntero */
+    border-radius: 8px;
+    padding: 8px;
     background: conic-gradient(
       from var(--angle),
-      #ff5588 0deg,
-      #ffcc44 50deg,
-      #44ff88 100deg,
-      #44ddff 150deg,
-      #8866ff 200deg,
-      #ff44cc 250deg,
-      #ff8855 300deg,
-      #ffdd44 340deg,
-      #ff5588 360deg
+      #ff6ba3 0deg,
+      #ff9f44 40deg,
+      #ffdd44 80deg,
+      #88ff88 130deg,
+      #44ddff 180deg,
+      #7799ff 220deg,
+      #cc66ff 260deg,
+      #ff66cc 300deg,
+      #ff6ba3 360deg
     );
-    /* Máscara dorada encima para mezclar */
     box-shadow:
-      0 0 70px rgba(201, 162, 39, 0.35),
-      0 0 140px rgba(136, 102, 255, 0.12),
+      0 0 30px rgba(255, 107, 163, 0.35),
+      0 0 60px rgba(68, 221, 255, 0.25),
+      0 0 100px rgba(204, 102, 255, 0.2),
       0 24px 80px rgba(0, 0, 0, 0.7);
-    transition: box-shadow 0.3s ease;
   }
 
-  /* Contorno dorado sobre el borde iridiscente */
   .certificado::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 4px;
     border-radius: 6px;
-    padding: 4px;
     background: linear-gradient(
-      135deg,
-      var(--gold-light) 0%,
-      var(--gold) 25%,
-      var(--gold-dark) 50%,
-      var(--gold) 75%,
-      var(--gold-light) 100%
+      calc(var(--angle) + 45deg),
+      rgba(255,255,255,0.6) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(255,255,255,0.4) 100%
     );
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
     pointer-events: none;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 
   .contenido {
     width: 100%;
     height: 100%;
-    border-radius: 3px;
+    border-radius: 4px;
     background:
       radial-gradient(circle at calc(var(--cx) * 100%) calc(var(--cy) * 100%),
-        rgba(201, 162, 39, 0.14), transparent 55%),
-      radial-gradient(ellipse at top left, rgba(136, 102, 255, 0.05), transparent 60%),
-      radial-gradient(ellipse at bottom right, rgba(68, 221, 255, 0.05), transparent 60%),
+        rgba(255, 220, 130, 0.12), transparent 55%),
+      radial-gradient(ellipse at top left, rgba(255, 107, 163, 0.04), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(68, 221, 255, 0.04), transparent 60%),
       var(--panel);
-    padding: 60px 44px 40px;
+    padding: 40px 40px 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
     overflow: hidden;
-    transition: background 0.15s linear;
   }
 
-  /* Línea interna decorativa */
   .contenido::before {
     content: '';
     position: absolute;
     inset: 14px;
     border: 1px solid rgba(201, 162, 39, 0.3);
     pointer-events: none;
-    transition: border-color 0.2s;
   }
 
-  /* Destello radial que sigue al puntero */
   .contenido::after {
     content: '';
     position: absolute;
@@ -164,41 +144,36 @@
     pointer-events: none;
     background: radial-gradient(
       circle 200px at calc(var(--cx) * 100%) calc(var(--cy) * 100%),
-      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.07),
       transparent 70%
     );
-    transition: background 0.1s linear;
   }
 
-  /* Esquinas ornamentales */
+  /* Esquinas */
   .esquina {
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     pointer-events: none;
     z-index: 4;
     filter: drop-shadow(0 0 8px rgba(229, 199, 107, 0.5));
   }
-  .esquina-tl { top: 8px; left: 8px; }
-  .esquina-tr { top: 8px; right: 8px; transform: scaleX(-1); }
-  .esquina-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
-  .esquina-br { bottom: 8px; right: 8px; transform: scale(-1, -1); }
+  .esquina-tl { top: 14px; left: 14px; }
+  .esquina-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+  .esquina-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+  .esquina-br { bottom: 14px; right: 14px; transform: scale(-1, -1); }
 
-  .esquina path, .esquina circle, .esquina line {
-    transition: stroke 0.15s, fill 0.15s;
-  }
-
-  /* Encabezado */
   .header {
     text-align: center;
     border-bottom: 1px solid rgba(201, 162, 39, 0.3);
-    padding-bottom: 14px;
+    padding-bottom: 12px;
     position: relative;
     z-index: 3;
+    flex-shrink: 0;
   }
   .titulo {
-    font-size: 24px;
-    letter-spacing: 6px;
+    font-size: 22px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     font-weight: 300;
     background: linear-gradient(
@@ -214,13 +189,12 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    transition: background-position 0.15s linear;
   }
   .subtitulo {
     font-size: 10px;
     letter-spacing: 3px;
     color: rgba(245, 240, 230, 0.5);
-    margin-top: 6px;
+    margin-top: 5px;
     font-family: 'SF Mono', Menlo, monospace;
   }
 
@@ -229,9 +203,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 14px;
+    gap: 10px;
     text-align: center;
-    padding: 20px 0;
+    padding: 14px 0;
     position: relative;
     z-index: 3;
   }
@@ -243,7 +217,7 @@
     font-family: 'SF Mono', Menlo, monospace;
   }
   .nombre {
-    font-size: 28px;
+    font-size: 24px;
     font-style: italic;
     line-height: 1.2;
     background: linear-gradient(
@@ -258,41 +232,32 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    transition: background-position 0.15s linear;
-  }
-  .firmado-por {
-    font-size: 10px;
-    color: rgba(245, 240, 230, 0.5);
-    letter-spacing: 1px;
-    font-family: 'SF Mono', Menlo, monospace;
-    margin-top: -4px;
   }
   .declaracion {
-    font-size: 11px;
+    font-size: 10.5px;
     color: rgba(245, 240, 230, 0.7);
-    line-height: 1.55;
+    line-height: 1.5;
     max-width: 340px;
     margin: 0 auto;
   }
   .fecha {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--gold-light);
     letter-spacing: 2px;
     font-family: 'SF Mono', Menlo, monospace;
-    transition: color 0.15s;
   }
 
   .meta {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(201, 162, 39, 0.25);
     border-radius: 4px;
-    padding: 10px;
+    padding: 8px;
     font-family: 'SF Mono', Menlo, monospace;
-    font-size: 8px;
+    font-size: 7.5px;
     color: rgba(245, 240, 230, 0.6);
     text-align: left;
     word-break: break-all;
-    line-height: 1.55;
+    line-height: 1.45;
     position: relative;
     z-index: 3;
   }
@@ -300,36 +265,94 @@
     color: var(--gold);
     font-weight: normal;
     display: inline-block;
-    min-width: 70px;
+    min-width: 65px;
   }
   .meta .valor { color: rgba(245, 240, 230, 0.85); }
 
-  .pie {
-    text-align: center;
-    border-top: 1px solid rgba(201, 162, 39, 0.3);
+  /* ══════════════════════════════════════════════════════════════
+     FIRMA DEL FUNDADOR · rúbrica + nombre + cargo
+     ══════════════════════════════════════════════════════════════ */
+  .firma-bloque {
+    margin-top: 14px;
     padding-top: 12px;
-    font-size: 9px;
-    color: rgba(201, 162, 39, 0.75);
-    letter-spacing: 2px;
-    font-family: 'SF Mono', Menlo, monospace;
-    line-height: 1.7;
+    border-top: 1px solid rgba(201, 162, 39, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     position: relative;
     z-index: 3;
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     SELLO DE DIAMANTE IRIDISCENTE
-     ══════════════════════════════════════════════════════════════ */
+  .rubrica {
+    width: 180px;
+    height: 45px;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 0 4px rgba(229, 199, 107, 0.4));
+  }
+
+  .linea-firma {
+    width: 220px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold) 20%,
+      var(--gold) 80%,
+      transparent
+    );
+    margin: 2px 0 4px;
+  }
+
+  .firma-nombre {
+    font-size: 13px;
+    color: var(--cream);
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  .firma-cargo {
+    font-size: 8px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-top: 1px;
+  }
+
+  .firma-ciudad {
+    font-size: 7.5px;
+    color: rgba(245, 240, 230, 0.4);
+    letter-spacing: 1.5px;
+    font-family: 'SF Mono', Menlo, monospace;
+    margin-top: 2px;
+  }
+
+  .pie {
+    text-align: center;
+    padding-top: 8px;
+    font-size: 8px;
+    color: rgba(201, 162, 39, 0.7);
+    letter-spacing: 2px;
+    font-family: 'SF Mono', Menlo, monospace;
+    line-height: 1.6;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* Sello */
   .sello {
     position: absolute;
-    bottom: 22px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
+    bottom: 30px;
+    right: 6px;
+    width: 120px;
+    height: 120px;
     z-index: 5;
     pointer-events: none;
-    filter: drop-shadow(0 0 20px rgba(229, 199, 107, 0.5));
-    transition: filter 0.2s;
+    filter: drop-shadow(0 0 24px rgba(255, 107, 163, 0.5))
+            drop-shadow(0 0 40px rgba(68, 221, 255, 0.35));
   }
 
   /* Botones */
@@ -377,9 +400,8 @@
 <div class="certificado" id="certificado">
   <div class="contenido" id="contenido">
 
-    <!-- Esquinas ornamentales -->
     <svg class="esquina esquina-tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g class="orla" fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
         <path d="M2 2 L2 55 M2 2 L55 2"/>
         <path d="M6 6 L6 50 M6 6 L50 6"/>
         <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
@@ -393,7 +415,7 @@
       </g>
     </svg>
     <svg class="esquina esquina-tr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g class="orla" fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
         <path d="M2 2 L2 55 M2 2 L55 2"/>
         <path d="M6 6 L6 50 M6 6 L50 6"/>
         <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
@@ -407,7 +429,7 @@
       </g>
     </svg>
     <svg class="esquina esquina-bl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g class="orla" fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
         <path d="M2 2 L2 55 M2 2 L55 2"/>
         <path d="M6 6 L6 50 M6 6 L50 6"/>
         <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
@@ -421,7 +443,7 @@
       </g>
     </svg>
     <svg class="esquina esquina-br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <g class="orla" fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
         <path d="M2 2 L2 55 M2 2 L55 2"/>
         <path d="M6 6 L6 50 M6 6 L50 6"/>
         <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
@@ -436,14 +458,13 @@
     </svg>
 
     <div class="header">
-      <div class="titulo" id="titulo">Certificado Kronos</div>
+      <div class="titulo">Certificado Kronos</div>
       <div class="subtitulo">◆ REGISTRO OFICIAL · 001 ◆</div>
     </div>
 
     <div class="cuerpo">
       <div class="etiqueta">Otorgado a</div>
-      <div class="nombre" id="nombre">Marco Antonio Rojas Valdovinos</div>
-      <div class="firmado-por">Firmado con llave Ed25519 · Fundador</div>
+      <div class="nombre">Marco Antonio Rojas Valdovinos</div>
 
       <div class="declaracion">
         Es autor fundador del protocolo KRONOS.<br>
@@ -451,7 +472,7 @@
         verificable, sin dependencia de servidor, autoridad o tercero.
       </div>
 
-      <div class="fecha" id="fecha">Toluca, México · 2026-09-30</div>
+      <div class="fecha">Toluca, México · 2026-09-30</div>
 
       <div class="meta">
         <div><strong>Obra base:</strong> <span class="valor">2607086319439</span></div>
@@ -459,9 +480,50 @@
         <div><strong>Merkle art:</strong> <span class="valor">e69b2c24...390d93</span></div>
         <div><strong>Merkle doc:</strong> <span class="valor">67180206...ae813</span></div>
         <div><strong>Hash cert:</strong> <span class="valor" id="hash_registro">calculando...</span></div>
-        <div><strong>Firma:</strong> <span class="valor" id="firma">calculando...</span></div>
+        <div><strong>Firma Ed25519:</strong> <span class="valor" id="firma">calculando...</span></div>
         <div><strong>Pubkey:</strong> <span class="valor" id="pubkey">calculando...</span></div>
       </div>
+
+      <!-- ══════════ FIRMA DEL FUNDADOR ══════════ -->
+      <div class="firma-bloque">
+        <svg class="rubrica" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="rubrica-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#e5c76b"/>
+              <stop offset="50%" stop-color="#f5f0e6"/>
+              <stop offset="100%" stop-color="#c9a227"/>
+            </linearGradient>
+          </defs>
+          <!-- Rúbrica manuscrita estilizada: M - A - R - V entrelazadas -->
+          <g fill="none" stroke="url(#rubrica-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- M inicial grande -->
+            <path d="M 15 50 L 25 15 L 40 45 L 55 15 L 65 50"/>
+            <!-- Trazo conector -->
+            <path d="M 65 45 Q 75 25 85 40" opacity="0.9"/>
+            <!-- A -->
+            <path d="M 90 50 L 105 15 L 120 50 M 96 38 L 114 38"/>
+            <!-- Trazo conector ondulado -->
+            <path d="M 120 40 Q 130 30 138 42 Q 146 52 155 42" opacity="0.85"/>
+            <!-- R -->
+            <path d="M 158 50 L 158 15 M 158 15 Q 175 15 175 28 Q 175 38 158 38 L 175 50"/>
+            <!-- Trazo conector -->
+            <path d="M 175 42 Q 185 30 195 42" opacity="0.85"/>
+            <!-- V -->
+            <path d="M 200 15 L 215 50 L 230 15"/>
+            <!-- Rúbrica final: rizo decorativo -->
+            <path d="M 230 40 Q 240 20 250 35 Q 258 48 268 35 Q 275 25 282 35" opacity="0.9"/>
+            <!-- Punto final -->
+            <circle cx="288" cy="42" r="1.8" fill="url(#rubrica-grad)" stroke="none"/>
+          </g>
+        </svg>
+
+        <div class="linea-firma"></div>
+
+        <div class="firma-nombre">Marco Antonio Rojas Valdovinos</div>
+        <div class="firma-cargo">Autor Fundador · Protocolo KRONOS</div>
+        <div class="firma-ciudad">Toluca de Lerdo, Estado de México</div>
+      </div>
+
     </div>
 
     <div class="pie">
@@ -470,70 +532,84 @@
       <div>"El legado no se hereda. Se firma."</div>
     </div>
 
-    <!-- Sello de diamante iridiscente -->
+    <!-- Sello -->
     <div class="sello">
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" id="sello-svg">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id="sello-svg">
         <defs>
-          <!-- Gradiente multicolor animado por posición -->
-          <linearGradient id="irid" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(var(--grad-angle, 0))">
-            <stop offset="0%"   stop-color="#ff5588"/>
-            <stop offset="20%"  stop-color="#ffcc44"/>
-            <stop offset="40%"  stop-color="#44ff88"/>
-            <stop offset="60%"  stop-color="#44ddff"/>
-            <stop offset="80%"  stop-color="#8866ff"/>
-            <stop offset="100%" stop-color="#ff44cc"/>
+          <linearGradient id="irid1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#ff6ba3"/>
+            <stop offset="20%"  stop-color="#ff9f44"/>
+            <stop offset="40%"  stop-color="#ffdd44"/>
+            <stop offset="60%"  stop-color="#88ff88"/>
+            <stop offset="80%"  stop-color="#44ddff"/>
+            <stop offset="100%" stop-color="#cc66ff"/>
           </linearGradient>
           <linearGradient id="irid2" x1="100%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%"   stop-color="#f5f0e6"/>
-            <stop offset="30%"  stop-color="#ffdd77"/>
-            <stop offset="60%"  stop-color="#ff88cc"/>
-            <stop offset="100%" stop-color="#88ddff"/>
+            <stop offset="25%"  stop-color="#ffdd77"/>
+            <stop offset="50%"  stop-color="#ff88cc"/>
+            <stop offset="75%"  stop-color="#88ddff"/>
+            <stop offset="100%" stop-color="#cc99ff"/>
+          </linearGradient>
+          <linearGradient id="irid3" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#ff5577"/>
+            <stop offset="50%"  stop-color="#ffcc44"/>
+            <stop offset="100%" stop-color="#44ff88"/>
           </linearGradient>
           <radialGradient id="glowR" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="rgba(229,199,107,0.55)"/>
-            <stop offset="50%"  stop-color="rgba(255,120,200,0.15)"/>
-            <stop offset="100%" stop-color="rgba(136,102,255,0)"/>
+            <stop offset="0%"   stop-color="rgba(255,220,130,0.7)"/>
+            <stop offset="40%"  stop-color="rgba(255,120,200,0.3)"/>
+            <stop offset="70%"  stop-color="rgba(136,102,255,0.15)"/>
+            <stop offset="100%" stop-color="rgba(68,221,255,0)"/>
           </radialGradient>
+          <linearGradient id="pedestal" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#e5c76b"/>
+            <stop offset="50%"  stop-color="#8b6914"/>
+            <stop offset="100%" stop-color="#3a2a08"/>
+          </linearGradient>
         </defs>
 
-        <!-- Resplandor exterior -->
-        <circle cx="70" cy="70" r="68" fill="url(#glowR)"/>
+        <circle cx="100" cy="90" r="95" fill="url(#glowR)"/>
 
-        <!-- Rayos cónicos arcoíris (giran) -->
         <g id="rayos" opacity="0.9">
-          <polygon points="70,70 100,15 78,10" fill="#ff5588" opacity="0.55"/>
-          <polygon points="70,70 125,55 125,80" fill="#ffcc44" opacity="0.55"/>
-          <polygon points="70,70 105,125 80,128" fill="#44ff88" opacity="0.55"/>
-          <polygon points="70,70 45,128 20,120" fill="#44ddff" opacity="0.55"/>
-          <polygon points="70,70 15,90 12,65" fill="#8866ff" opacity="0.55"/>
-          <polygon points="70,70 25,35 45,15" fill="#ff44cc" opacity="0.55"/>
+          <polygon points="100,90 200,10 175,35" fill="#ff6ba3" opacity="0.7"/>
+          <polygon points="100,90 200,170 175,145" fill="#ffdd44" opacity="0.7"/>
+          <polygon points="100,90 0,170 25,145" fill="#44ddff" opacity="0.7"/>
+          <polygon points="100,90 0,10 25,35" fill="#88ff88" opacity="0.7"/>
+          <polygon points="100,90 200,90 180,105" fill="#cc66ff" opacity="0.55"/>
+          <polygon points="100,90 0,90 20,105" fill="#ff9f44" opacity="0.55"/>
+          <polygon points="100,90 100,0 115,15" fill="#ff88cc" opacity="0.55"/>
+          <polygon points="100,90 100,180 115,165" fill="#7799ff" opacity="0.55"/>
         </g>
 
-        <!-- Anillo punteado exterior -->
-        <circle cx="70" cy="70" r="58" fill="none" stroke="url(#irid)" stroke-width="1.4" stroke-dasharray="3 4"/>
-        <circle cx="70" cy="70" r="62" fill="none" stroke="rgba(201,162,39,0.4)" stroke-width="0.6"/>
+        <circle cx="100" cy="90" r="78" fill="none" stroke="url(#irid1)" stroke-width="1.8" stroke-dasharray="4 5" opacity="0.75"/>
 
-        <!-- Diamante central multicolor -->
-        <g transform="translate(70,70)">
-          <!-- Facetas superiores -->
-          <path d="M0 -34 L-30 -10 L-15 20 Z" fill="url(#irid)" opacity="0.95"/>
-          <path d="M0 -34 L30 -10 L15 20 Z" fill="url(#irid2)" opacity="0.85"/>
-          <!-- Facetas inferiores -->
-          <path d="M-30 -10 L-15 20 L0 34 Z" fill="url(#irid2)" opacity="0.75"/>
-          <path d="M30 -10 L15 20 L0 34 Z" fill="url(#irid)" opacity="0.6"/>
-          <!-- Faceta central brillante -->
-          <path d="M0 -34 L30 -10 L0 34 L-30 -10 Z" fill="url(#irid)" opacity="0.35"/>
-          <!-- Destello -->
-          <path d="M-10 -24 L8 -10 L-4 0 Z" fill="#ffffff" opacity="0.7"/>
-          <!-- Bordes -->
-          <path d="M0 -34 L30 -10 L0 34 L-30 -10 Z" fill="none" stroke="#f5f0e6" stroke-width="1.2" opacity="0.9"/>
-          <path d="M-30 -10 L0 0 L30 -10" fill="none" stroke="#f5f0e6" stroke-width="0.7" opacity="0.8"/>
-          <path d="M0 0 L0 34" fill="none" stroke="#f5f0e6" stroke-width="0.7" opacity="0.8"/>
+        <g transform="translate(100, 90)">
+          <path d="M0 -50 L-45 -15 L-22 30 Z" fill="url(#irid1)" opacity="0.95"/>
+          <path d="M0 -50 L45 -15 L22 30 Z" fill="url(#irid2)" opacity="0.88"/>
+          <path d="M-45 -15 L-22 30 L0 50 Z" fill="url(#irid3)" opacity="0.85"/>
+          <path d="M45 -15 L22 30 L0 50 Z" fill="url(#irid1)" opacity="0.7"/>
+          <path d="M0 -50 L45 -15 L0 50 L-45 -15 Z" fill="url(#irid2)" opacity="0.45"/>
+          <path d="M-15 -35 L12 -15 L-6 5 Z" fill="#ffffff" opacity="0.65"/>
+          <path d="M18 -18 L32 -8 L18 5 Z" fill="#ffffff" opacity="0.4"/>
+          <path d="M0 -50 L45 -15 L0 50 L-45 -15 Z" fill="none" stroke="#f5f0e6" stroke-width="1.5" opacity="0.95"/>
+          <path d="M-45 -15 L0 0 L45 -15" fill="none" stroke="#f5f0e6" stroke-width="0.9" opacity="0.85"/>
+          <path d="M0 0 L0 50" fill="none" stroke="#f5f0e6" stroke-width="0.9" opacity="0.85"/>
         </g>
 
-        <!-- Sello VERIFIED -->
-        <rect x="24" y="108" width="92" height="14" rx="3" fill="rgba(10,10,11,0.9)" stroke="url(#irid)" stroke-width="1"/>
-        <text x="70" y="118" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="bold" fill="url(#irid2)" letter-spacing="1.8">VERIFIED · 2026</text>
+        <g transform="translate(100, 155)">
+          <ellipse cx="0" cy="0" rx="60" ry="8" fill="url(#pedestal)" opacity="0.85"/>
+          <ellipse cx="0" cy="0" rx="55" ry="6" fill="#0a0a0b" opacity="0.4"/>
+          <path d="M-55 0 L-48 20 L48 20 L55 0 Z" fill="url(#pedestal)" opacity="0.9"/>
+          <ellipse cx="0" cy="20" rx="48" ry="6" fill="url(#pedestal)" opacity="0.7"/>
+          <ellipse cx="0" cy="20" rx="44" ry="4" fill="#0a0a0b" opacity="0.5"/>
+          <line x1="-30" y1="2" x2="-28" y2="18" stroke="#e5c76b" stroke-width="0.6" opacity="0.7"/>
+          <line x1="0" y1="2" x2="0" y2="18" stroke="#e5c76b" stroke-width="0.6" opacity="0.7"/>
+          <line x1="30" y1="2" x2="28" y2="18" stroke="#e5c76b" stroke-width="0.6" opacity="0.7"/>
+        </g>
+
+        <rect x="52" y="182" width="96" height="14" rx="3" fill="rgba(10,10,11,0.92)" stroke="url(#irid1)" stroke-width="1.2"/>
+        <text x="100" y="192" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="url(#irid2)" letter-spacing="2">VERIFIED · 2026</text>
       </svg>
     </div>
 
@@ -546,74 +622,44 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-// INTERACCIÓN IRIDISCENTE · Todo reacciona al puntero y giroscopio
-// ═══════════════════════════════════════════════════════════════════
-
 const cert = document.getElementById('certificado');
-const contenido = document.getElementById('contenido');
 const root = document.documentElement;
 
 function actualizarIrdiscente(x, y) {
   const cx = Math.max(0, Math.min(1, x));
   const cy = Math.max(0, Math.min(1, y));
-
-  // Variables globales
   root.style.setProperty('--cx', cx);
   root.style.setProperty('--cy', cy);
-
-  // Ángulo para el gradiente cónico del borde
   const dx = cx - 0.5;
   const dy = cy - 0.5;
   const angulo = (Math.atan2(dy, dx) * 180 / Math.PI) + 180;
   root.style.setProperty('--angle', angulo + 'deg');
-
-  // Ángulo para el gradiente del sello
-  const gradAngle = angulo;
-  document.getElementById('sello-svg').style.setProperty('--grad-angle', gradAngle);
-
-  // Rotación de los rayos del sello
   const rayos = document.getElementById('rayos');
-  if (rayos) {
-    rayos.setAttribute('transform', `rotate(${angulo * 0.3} 70 70)`);
-  }
+  if (rayos) rayos.setAttribute('transform', `rotate(${angulo * 0.2} 100 90)`);
 }
 
 cert.addEventListener('pointermove', (e) => {
   const rect = cert.getBoundingClientRect();
-  actualizarIrdiscente(
-    (e.clientX - rect.left) / rect.width,
-    (e.clientY - rect.top) / rect.height
-  );
+  actualizarIrdiscente((e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height);
 });
 
 cert.addEventListener('touchmove', (e) => {
   if (e.touches.length > 0) {
     const rect = cert.getBoundingClientRect();
     const t = e.touches[0];
-    actualizarIrdiscente(
-      (t.clientX - rect.left) / rect.width,
-      (t.clientY - rect.top) / rect.height
-    );
+    actualizarIrdiscente((t.clientX - rect.left) / rect.width, (t.clientY - rect.top) / rect.height);
   }
 }, { passive: true });
 
 window.addEventListener('deviceorientation', (e) => {
   if (e.gamma !== null && e.beta !== null) {
-    actualizarIrdiscente(
-      (e.gamma + 90) / 180,
-      (e.beta + 90) / 180
-    );
+    actualizarIrdiscente((e.gamma + 90) / 180, (e.beta + 90) / 180);
   }
 });
 
-// Estado inicial
 actualizarIrdiscente(0.5, 0.5);
 
-// ═══════════════════════════════════════════════════════════════════
-// FIRMA REAL Ed25519
-// ═══════════════════════════════════════════════════════════════════
-
+// Firma Ed25519
 const DATOS_CERTIFICADO = {
   schema_version: '1.0.0',
   tipo: 'certificado-kodice',
@@ -646,28 +692,14 @@ async function generarFirma() {
     const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
     const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
     const pubHex = Array.from(new Uint8Array(pubRaw)).map(b => b.toString(16).padStart(2, '0')).join('');
-
     const canon = canonicalize(DATOS_CERTIFICADO);
     const hashRegistro = await sha256Hex(canon);
-
-    const firmaBuf = await crypto.subtle.sign(
-      'Ed25519', kp.privateKey, new TextEncoder().encode(hashRegistro)
-    );
+    const firmaBuf = await crypto.subtle.sign('Ed25519', kp.privateKey, new TextEncoder().encode(hashRegistro));
     const firmaHex = Array.from(new Uint8Array(firmaBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
-
     document.getElementById('hash_registro').textContent = hashRegistro.slice(0, 32) + '...';
     document.getElementById('firma').textContent = firmaHex.slice(0, 32) + '...';
     document.getElementById('pubkey').textContent = pubHex.slice(0, 32) + '...';
-
-    window.__certFirmado = {
-      datos: DATOS_CERTIFICADO,
-      hash_registro: hashRegistro,
-      firma: firmaHex,
-      pubkey: pubHex,
-      algoritmo: 'Ed25519'
-    };
-
-    console.log('[KRONOS] Firmado:', window.__certFirmado);
+    window.__certFirmado = { datos: DATOS_CERTIFICADO, hash_registro: hashRegistro, firma: firmaHex, pubkey: pubHex, algoritmo: 'Ed25519' };
   } catch (e) {
     console.error('[KRONOS] Error:', e);
     document.getElementById('hash_registro').textContent = 'WebCrypto sin Ed25519';
@@ -678,44 +710,23 @@ async function generarFirma() {
 
 generarFirma();
 
-// ═══════════════════════════════════════════════════════════════════
-// DESCARGA PNG
-// ═══════════════════════════════════════════════════════════════════
-
 async function descargarPNG() {
   try {
     const rect = cert.getBoundingClientRect();
     const w = Math.round(rect.width);
     const h = Math.round(rect.height);
-
     const clon = cert.cloneNode(true);
     clon.setAttribute('style', `position: fixed; top: 0; left: 0; width: ${w}px; height: ${h}px;`);
-
-    // Copiar los estilos inline calculados a variables CSS
     clon.style.setProperty('--angle', getComputedStyle(root).getPropertyValue('--angle'));
     clon.style.setProperty('--cx', getComputedStyle(root).getPropertyValue('--cx'));
     clon.style.setProperty('--cy', getComputedStyle(root).getPropertyValue('--cy'));
-
     let css = '';
     for (const sheet of document.styleSheets) {
-      try { for (const rule of sheet.cssRules) css += rule.cssText + '\n'; }
-      catch (e) {}
+      try { for (const rule of sheet.cssRules) css += rule.cssText + '\n'; } catch (e) {}
     }
-
-    const htmlString = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
-        <foreignObject width="100%" height="100%">
-          <div xmlns="http://www.w3.org/1999/xhtml">
-            <style>${css}</style>
-            ${clon.outerHTML}
-          </div>
-        </foreignObject>
-      </svg>
-    `;
-
+    const htmlString = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>${css}</style>${clon.outerHTML}</div></foreignObject></svg>`;
     const blob = new Blob([htmlString], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement('canvas');
@@ -727,7 +738,6 @@ async function descargarPNG() {
       ctx.scale(2, 2);
       ctx.drawImage(img, 0, 0, w, h);
       URL.revokeObjectURL(url);
-
       canvas.toBlob((pngBlob) => {
         const pngUrl = URL.createObjectURL(pngBlob);
         const a = document.createElement('a');
@@ -747,16 +757,11 @@ async function descargarPNG() {
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// DESCARGA HTML
-// ═══════════════════════════════════════════════════════════════════
-
 function descargarHTML() {
   const firma = window.__certFirmado;
   let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
   if (firma) {
-    html += '\n<!--\nFIRMA ED25519 DEL CERTIFICADO KRONOS\n' +
-            JSON.stringify(firma, null, 2) + '\n-->';
+    html += '\n<!--\nFIRMA ED25519 DEL CERTIFICADO KRONOS\n' + JSON.stringify(firma, null, 2) + '\n-->';
   }
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
