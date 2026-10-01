@@ -126,8 +126,8 @@ const DATOS = {
 
 const canvas = document.getElementById('cert');
 const ctx = canvas.getContext('2d');
-const W = canvas.width;   // 1400
-const H = canvas.height;  // 1400
+const W = canvas.width;
+const H = canvas.height;
 
 const ORO = '#c9a227';
 const ORO_CLARO = '#e5c76b';
@@ -135,20 +135,12 @@ const ORO_OSCURO = '#6b4e0f';
 const CREMA = '#f5f0e6';
 const FONDO = '#0a0a0b';
 
-// Colores tipo facetas de diamante
 const DIAMANTE = ['#ff6ba3', '#ff9f44', '#ffdd44', '#88ff88', '#44ddff', '#7799ff', '#cc66ff', '#ff44cc'];
 
 // ═══════════════════════════════════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════════════════════════════════
 
-// Devuelve el color de la faceta según posición (0-1)
-function facetColor(pos) {
-  const idx = Math.floor(pos * DIAMANTE.length) % DIAMANTE.length;
-  return DIAMANTE[idx];
-}
-
-// Gradiente multicolor tipo diamante
 function gradienteDiamante(x1, y1, x2, y2) {
   const g = ctx.createLinearGradient(x1, y1, x2, y2);
   for (let i = 0; i < DIAMANTE.length; i++) {
@@ -167,21 +159,17 @@ function bordeFacetado(inset) {
   const w = W - inset * 2;
   const h = H - inset * 2;
 
-  // Trazo exterior grueso con gradiente
   ctx.save();
   ctx.lineJoin = 'round';
 
-  // Capa 1: borde grueso multicolor (13px)
   ctx.strokeStyle = gradienteDiamante(x, y, x + w, y + h);
   ctx.lineWidth = 14;
   ctx.strokeRect(x, y, w, h);
 
-  // Capa 2: borde interior blanco translúcido (efecto luz)
   ctx.strokeStyle = 'rgba(255,255,255,0.35)';
   ctx.lineWidth = 3;
   ctx.strokeRect(x + 9, y + 9, w - 18, h - 18);
 
-  // Capa 3: borde oscuro exterior
   ctx.strokeStyle = 'rgba(0,0,0,0.7)';
   ctx.lineWidth = 1.5;
   ctx.strokeRect(x - 8, y - 8, w + 16, h + 16);
@@ -189,7 +177,6 @@ function bordeFacetado(inset) {
   ctx.restore();
 }
 
-// Marco facetado interior
 function marcoInterior(inset) {
   const x = inset;
   const y = inset;
@@ -272,7 +259,7 @@ function bandaGuillocheV(x, y, ancho, alto, color, iteraciones) {
 function microtextoCircular(cx, cy, radio, texto, tamano, color) {
   ctx.save();
   ctx.fillStyle = color;
-  ctx.font = `${tamano}px monospace`;
+  ctx.font = tamano + 'px monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   const chars = texto.split('');
@@ -298,7 +285,6 @@ function roseta(cx, cy, radio, opciones) {
   ctx.save();
   ctx.translate(cx, cy);
 
-  // Elipses rotadas
   ctx.strokeStyle = colorBase;
   ctx.lineWidth = 0.8;
   ctx.globalAlpha = 0.7;
@@ -312,7 +298,6 @@ function roseta(cx, cy, radio, opciones) {
     ctx.restore();
   }
 
-  // Elipses más pequeñas
   ctx.globalAlpha = 0.45;
   for (let i = 0; i < capas; i++) {
     const angle = (i / capas) * Math.PI + Math.PI / capas;
@@ -324,7 +309,6 @@ function roseta(cx, cy, radio, opciones) {
     ctx.restore();
   }
 
-  // Círculos concéntricos
   ctx.globalAlpha = 0.55;
   for (let r = radio; r > radio * 0.7; r -= 3) {
     ctx.beginPath();
@@ -332,7 +316,6 @@ function roseta(cx, cy, radio, opciones) {
     ctx.stroke();
   }
 
-  // Rayos
   ctx.globalAlpha = 0.5;
   const numRayos = 72;
   for (let i = 0; i < numRayos; i++) {
@@ -343,7 +326,6 @@ function roseta(cx, cy, radio, opciones) {
     ctx.stroke();
   }
 
-  // Puntos
   ctx.globalAlpha = 0.9;
   ctx.fillStyle = colorBase;
   for (let i = 0; i < 96; i++) {
@@ -362,40 +344,31 @@ function roseta(cx, cy, radio, opciones) {
 // ═══════════════════════════════════════════════════════════════════
 
 function dibujarCertificado() {
-  // Fondo negro
   ctx.fillStyle = FONDO;
   ctx.fillRect(0, 0, W, H);
 
-  // Resplandor sutil de fondo
   const bgGrad = ctx.createRadialGradient(W/2, H/2, 100, W/2, H/2, W);
   bgGrad.addColorStop(0, 'rgba(201,162,39,0.05)');
   bgGrad.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, W, H);
 
-  // ═══════ BORDES FACETADOS DIAMANTE ═══════
   bordeFacetado(40);
 
-  // Guilloche superior e inferior (más anchas para formato cuadrado)
   bandaGuilloche(70, 70, W - 140, 50, ORO_CLARO, 10);
   bandaGuilloche(70, H - 120, W - 140, 50, ORO_CLARO, 10);
-
-  // Guilloche lateral
   bandaGuillocheV(70, 130, 50, H - 260, ORO_CLARO, 14);
   bandaGuillocheV(W - 120, 130, 50, H - 260, ORO_CLARO, 14);
 
-  // Marco interior dorado
   marcoInterior(145);
   marcoInterior(155);
 
-  // Microtexto circular
   microtextoCircular(
     W/2, H/2, W/2 - 95,
     '· KRONOS PROTOCOL · VERIFICABLE OFFLINE · SIN SERVIDOR · SIN AUTORIDAD · REGISTRO ' + DATOS.obra_base + ' · ',
     6, 'rgba(201,162,39,0.5)'
   );
 
-  // Esquinas con espirales
   const esquinas = [
     { x: 175, y: 175, dx: 1, dy: 1 },
     { x: W - 175, y: 175, dx: -1, dy: 1 },
@@ -409,7 +382,6 @@ function dibujarCertificado() {
     ctx.strokeStyle = ORO_CLARO;
     ctx.lineWidth = 1.6;
 
-    // Espiral
     ctx.beginPath();
     for (let t = 0; t < 220; t++) {
       const a = (t / 220) * Math.PI * 4.5;
@@ -420,7 +392,6 @@ function dibujarCertificado() {
     }
     ctx.stroke();
 
-    // Puntos
     ctx.beginPath();
     ctx.arc(75, 0, 3.5, 0, Math.PI * 2);
     ctx.stroke();
@@ -428,7 +399,6 @@ function dibujarCertificado() {
     ctx.arc(0, 75, 3.5, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Líneas
     ctx.beginPath();
     ctx.moveTo(85, 0); ctx.lineTo(120, 0);
     ctx.moveTo(0, 85); ctx.lineTo(0, 120);
@@ -437,10 +407,8 @@ function dibujarCertificado() {
     ctx.restore();
   }
 
-  // ═══════ HEADER ═══════
   ctx.textAlign = 'center';
 
-  // Título
   ctx.font = '400 78px Georgia, "Times New Roman", serif';
   ctx.fillStyle = ORO_CLARO;
   ctx.shadowColor = 'rgba(0,0,0,0.9)';
@@ -451,12 +419,10 @@ function dibujarCertificado() {
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
 
-  // Registro
   ctx.font = '500 24px monospace';
   ctx.fillStyle = 'rgba(245,240,230,0.55)';
   ctx.fillText('◆  ' + DATOS.registro + '  ◆', W/2, 445);
 
-  // Línea separadora
   ctx.strokeStyle = ORO;
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -464,7 +430,6 @@ function dibujarCertificado() {
   ctx.lineTo(W/2 + 320, 480);
   ctx.stroke();
 
-  // ═══════ NOMBRE ═══════
   ctx.font = '500 22px monospace';
   ctx.fillStyle = 'rgba(245,240,230,0.5)';
   ctx.fillText('OTORGADO A', W/2, 535);
@@ -480,7 +445,6 @@ function dibujarCertificado() {
   ctx.fillStyle = 'rgba(245,240,230,0.5)';
   ctx.fillText('Firmado con llave Ed25519 · Fundador', W/2, 665);
 
-  // ═══════ DECLARACIÓN ═══════
   ctx.font = '400 23px Georgia, serif';
   ctx.fillStyle = 'rgba(245,240,230,0.75)';
 
@@ -505,12 +469,10 @@ function dibujarCertificado() {
     yL += 34;
   }
 
-  // Fecha
   ctx.font = '600 23px monospace';
   ctx.fillStyle = ORO_CLARO;
   ctx.fillText(DATOS.fecha, W/2, yL + 45);
 
-  // ═══════ BLOQUE META ═══════
   const metaY = yL + 90;
   const metaX = 220;
   const metaW = W - 440;
@@ -547,11 +509,9 @@ function dibujarCertificado() {
     yItem += 42;
   }
 
-  // ═══════ RÚBRICA + FIRMA ═══════
   const firmaY = metaY + metaH + 90;
   ctx.textAlign = 'center';
 
-  // Rúbrica
   ctx.strokeStyle = ORO_CLARO;
   ctx.lineWidth = 2.6;
   ctx.lineCap = 'round';
@@ -560,50 +520,41 @@ function dibujarCertificado() {
   const sx = W/2 - 240;
   const by = firmaY - 15;
 
-  // M
   ctx.moveTo(sx, by);
   ctx.lineTo(sx + 20, by - 60);
   ctx.lineTo(sx + 40, by - 10);
   ctx.lineTo(sx + 60, by - 60);
   ctx.lineTo(sx + 80, by);
 
-  // onda
   ctx.moveTo(sx + 80, by - 5);
   ctx.bezierCurveTo(sx + 98, by - 55, sx + 120, by - 55, sx + 138, by - 5);
 
-  // A
   ctx.moveTo(sx + 154, by);
   ctx.lineTo(sx + 174, by - 60);
   ctx.lineTo(sx + 194, by);
   ctx.moveTo(sx + 162, by - 28);
   ctx.lineTo(sx + 187, by - 28);
 
-  // onda
   ctx.moveTo(sx + 194, by - 5);
   ctx.bezierCurveTo(sx + 212, by - 50, sx + 232, by - 50, sx + 250, by - 5);
 
-  // R
   ctx.moveTo(sx + 265, by);
   ctx.lineTo(sx + 265, by - 60);
   ctx.bezierCurveTo(sx + 292, by - 60, sx + 292, by - 28, sx + 265, by - 28);
   ctx.lineTo(sx + 298, by);
 
-  // onda
   ctx.moveTo(sx + 298, by - 5);
   ctx.bezierCurveTo(sx + 316, by - 50, sx + 336, by - 50, sx + 354, by - 5);
 
-  // V
   ctx.moveTo(sx + 370, by - 60);
   ctx.lineTo(sx + 390, by);
   ctx.lineTo(sx + 410, by - 60);
 
-  // rizo final
   ctx.moveTo(sx + 410, by - 10);
   ctx.bezierCurveTo(sx + 434, by - 60, sx + 456, by - 10, sx + 478, by - 38);
 
   ctx.stroke();
 
-  // Línea firma
   ctx.strokeStyle = 'rgba(201,162,39,0.5)';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
@@ -611,7 +562,6 @@ function dibujarCertificado() {
   ctx.lineTo(W/2 + 300, firmaY);
   ctx.stroke();
 
-  // Nombre firmante
   ctx.font = 'italic 400 32px Georgia, serif';
   ctx.fillStyle = CREMA;
   ctx.fillText(DATOS.nombre, W/2, firmaY + 60);
@@ -624,7 +574,6 @@ function dibujarCertificado() {
   ctx.fillStyle = 'rgba(245,240,230,0.45)';
   ctx.fillText(DATOS.ciudad, W/2, firmaY + 124);
 
-  // ═══════ PIE ═══════
   ctx.font = '500 18px monospace';
   ctx.fillStyle = 'rgba(201,162,39,0.75)';
   ctx.fillText('REGISTRO VERIFICABLE · ED25519 · SHA-256', W/2, H - 250);
@@ -632,12 +581,10 @@ function dibujarCertificado() {
   ctx.fillStyle = 'rgba(201,162,39,0.5)';
   ctx.fillText('KRONOS PROTOCOL · ' + DATOS.obra_base, W/2, H - 218);
 
-  // ═══════ SELLO ROSETA · ESQUINA INFERIOR DERECHA ═══════
   const selloX = W - 240;
   const selloY = H - 240;
   const selloR = 140;
 
-  // Halo
   const halo = ctx.createRadialGradient(selloX, selloY, 10, selloX, selloY, selloR + 50);
   halo.addColorStop(0, 'rgba(229,199,107,0.4)');
   halo.addColorStop(0.5, 'rgba(201,162,39,0.15)');
@@ -647,14 +594,12 @@ function dibujarCertificado() {
   ctx.arc(selloX, selloY, selloR + 50, 0, Math.PI * 2);
   ctx.fill();
 
-  // Anillo holográfico grueso
   ctx.strokeStyle = gradienteDiamante(selloX - selloR, selloY - selloR, selloX + selloR, selloY + selloR);
   ctx.lineWidth = 5;
   ctx.beginPath();
   ctx.arc(selloX, selloY, selloR + 15, 0, Math.PI * 2);
   ctx.stroke();
 
-  // Anillo punteado
   ctx.strokeStyle = ORO;
   ctx.lineWidth = 1.5;
   ctx.setLineDash([4, 6]);
@@ -663,27 +608,22 @@ function dibujarCertificado() {
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Fondo del sello
   ctx.fillStyle = '#08080a';
   ctx.beginPath();
   ctx.arc(selloX, selloY, selloR + 10, 0, Math.PI * 2);
   ctx.fill();
 
-  // Roseta
   roseta(selloX, selloY, selloR, { capas: 44, color: ORO_CLARO });
 
-  // Microtexto sello
   microtextoCircular(
     selloX, selloY, selloR * 0.5,
     '·KRONOS·VERIFIED·ED25519·KRONOS·VERIFIED·2026·',
     7, ORO_CLARO
   );
 
-  // Diamante central (facetas multicolor)
   ctx.save();
   ctx.translate(selloX, selloY);
 
-  // Faceta superior izquierda
   ctx.beginPath();
   ctx.moveTo(0, -58);
   ctx.lineTo(-42, -20);
@@ -693,7 +633,6 @@ function dibujarCertificado() {
   ctx.globalAlpha = 0.95;
   ctx.fill();
 
-  // Faceta superior derecha
   ctx.beginPath();
   ctx.moveTo(0, -58);
   ctx.lineTo(42, -20);
@@ -703,7 +642,6 @@ function dibujarCertificado() {
   ctx.globalAlpha = 0.9;
   ctx.fill();
 
-  // Faceta inferior izquierda
   ctx.beginPath();
   ctx.moveTo(-42, -20);
   ctx.lineTo(-20, 28);
@@ -713,7 +651,6 @@ function dibujarCertificado() {
   ctx.globalAlpha = 0.85;
   ctx.fill();
 
-  // Faceta inferior derecha
   ctx.beginPath();
   ctx.moveTo(42, -20);
   ctx.lineTo(20, 28);
@@ -723,7 +660,6 @@ function dibujarCertificado() {
   ctx.globalAlpha = 0.75;
   ctx.fill();
 
-  // Faceta frontal brillante
   ctx.globalAlpha = 0.4;
   ctx.beginPath();
   ctx.moveTo(0, -58);
@@ -735,7 +671,6 @@ function dibujarCertificado() {
   ctx.fill();
   ctx.globalAlpha = 1;
 
-  // Bordes
   ctx.strokeStyle = CREMA;
   ctx.lineWidth = 2;
   ctx.beginPath();
@@ -756,7 +691,6 @@ function dibujarCertificado() {
   ctx.lineTo(0, 58);
   ctx.stroke();
 
-  // Destello
   ctx.beginPath();
   ctx.moveTo(-14, -38);
   ctx.lineTo(12, -16);
@@ -767,14 +701,12 @@ function dibujarCertificado() {
 
   ctx.restore();
 
-  // Texto VERIFIED
   ctx.textAlign = 'center';
   ctx.font = '700 15px monospace';
   ctx.fillStyle = ORO_CLARO;
   ctx.fillText('VERIFIED · 2026', selloX, selloY + selloR + 55);
 }
 
-// Dibujar al cargar
 dibujarCertificado();
 
 // ═══════════════════════════════════════════════════════════════════
@@ -785,26 +717,26 @@ const wrapper = document.getElementById('wrapper');
 function aplicarTilt(x, y) {
   const rx = (y - 0.5) * -14;
   const ry = (x - 0.5) * 14;
-  wrapper.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  wrapper.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
 }
-wrapper.addEventListener('pointermove', (e) => {
+wrapper.addEventListener('pointermove', function(e) {
   const r = wrapper.getBoundingClientRect();
   aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
 });
-wrapper.addEventListener('pointerleave', () => {
+wrapper.addEventListener('pointerleave', function() {
   wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
 });
-wrapper.addEventListener('touchmove', (e) => {
+wrapper.addEventListener('touchmove', function(e) {
   if (e.touches.length > 0) {
     const r = wrapper.getBoundingClientRect();
     const t = e.touches[0];
     aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
   }
 }, { passive: true });
-wrapper.addEventListener('touchend', () => {
+wrapper.addEventListener('touchend', function() {
   wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
 });
-window.addEventListener('deviceorientation', (e) => {
+window.addEventListener('deviceorientation', function(e) {
   if (e.gamma !== null && e.beta !== null) {
     aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
   }
@@ -812,7 +744,7 @@ window.addEventListener('deviceorientation', (e) => {
 if (typeof DeviceOrientationEvent !== 'undefined' &&
     typeof DeviceOrientationEvent.requestPermission === 'function') {
   document.body.addEventListener('click', function pedir() {
-    DeviceOrientationEvent.requestPermission().catch(() => {});
+    DeviceOrientationEvent.requestPermission().catch(function() {});
     document.body.removeEventListener('click', pedir);
   }, { once: true });
 }
@@ -825,22 +757,22 @@ const aviso = document.getElementById('aviso');
 function mostrarAviso(msg) {
   aviso.textContent = msg;
   aviso.style.display = 'block';
-  setTimeout(() => aviso.style.display = 'none', 3000);
+  setTimeout(function() { aviso.style.display = 'none'; }, 3000);
 }
 
 function descargarPNG() {
   try {
     wrapper.style.transform = 'none';
-    canvas.toBlob((blob) => {
+    canvas.toBlob(function(blob) {
       if (!blob) { mostrarAviso('Error: blob vacío'); return; }
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `certificado-kronos-001-${Date.now()}.png`;
+      a.download = 'certificado-kronos-001-' + Date.now() + '.png';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
       mostrarAviso('✓ PNG descargado');
     }, 'image/png', 1.0);
   } catch (e) {
@@ -853,109 +785,80 @@ function descargarHTML() {
   try {
     mostrarAviso('Preparando HTML...');
 
-    // Convertir el canvas actual a imagen base64
     const imagenB64 = canvas.toDataURL('image/png');
 
-    // Estilos para el HTML descargado
-    const estilos = `
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body {
-        min-height: 100vh;
-        background: #050506;
-        color: #e8e8e8;
-        font-family: Georgia, serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px;
-        overflow-x: hidden;
-      }
-      .wrapper {
-        perspective: 1400px;
-        width: 100%;
-        max-width: 720px;
-        transition: transform 0.15s ease-out;
-        will-change: transform;
-        transform-style: preserve-3d;
-      }
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 10px;
-        box-shadow:
-          0 0 80px rgba(255,107,163,0.15),
-          0 0 120px rgba(136,102,255,0.12),
-          0 20px 60px rgba(0,0,0,0.8);
-      }
-    `;
+    const estilos = '* { box-sizing: border-box; margin: 0; padding: 0; }' +
+      'html, body { min-height: 100vh; background: #050506; color: #e8e8e8;' +
+      'font-family: Georgia, serif; display: flex; align-items: center;' +
+      'justify-content: center; padding: 12px; overflow-x: hidden; }' +
+      '.wrapper { perspective: 1400px; width: 100%; max-width: 720px;' +
+      'transition: transform 0.15s ease-out; will-change: transform;' +
+      'transform-style: preserve-3d; }' +
+      'img { width: 100%; height: auto; display: block; border-radius: 10px;' +
+      'box-shadow: 0 0 80px rgba(255,107,163,0.15), 0 0 120px rgba(136,102,255,0.12),' +
+      '0 20px 60px rgba(0,0,0,0.8); }';
 
-    // JS para el tilt en el HTML descargado
-    const js = `
-      const wrapper = document.getElementById('wrapper');
-      function aplicarTilt(x, y) {
-        const rx = (y - 0.5) * -14;
-        const ry = (x - 0.5) * 14;
-        wrapper.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
-      }
-      wrapper.addEventListener('pointermove', function(e) {
-        const r = wrapper.getBoundingClientRect();
-        aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
-      });
-      wrapper.addEventListener('pointerleave', function() {
-        wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-      wrapper.addEventListener('touchmove', function(e) {
-        if (e.touches.length > 0) {
-          const r = wrapper.getBoundingClientRect();
-          const t = e.touches[0];
-          aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
-        }
-      }, { passive: true });
-      wrapper.addEventListener('touchend', function() {
-        wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-      window.addEventListener('deviceorientation', function(e) {
-        if (e.gamma !== null && e.beta !== null) {
-          aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
-        }
-      });
-    `;
+    const js = 'const wrapper = document.getElementById("wrapper");' +
+      'function aplicarTilt(x, y) {' +
+      '  const rx = (y - 0.5) * -14;' +
+      '  const ry = (x - 0.5) * 14;' +
+      '  wrapper.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";' +
+      '}' +
+      'wrapper.addEventListener("pointermove", function(e) {' +
+      '  const r = wrapper.getBoundingClientRect();' +
+      '  aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);' +
+      '});' +
+      'wrapper.addEventListener("pointerleave", function() {' +
+      '  wrapper.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});' +
+      'wrapper.addEventListener("touchmove", function(e) {' +
+      '  if (e.touches.length > 0) {' +
+      '    const r = wrapper.getBoundingClientRect();' +
+      '    const t = e.touches[0];' +
+      '    aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);' +
+      '  }' +
+      '}, { passive: true });' +
+      'wrapper.addEventListener("touchend", function() {' +
+      '  wrapper.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});' +
+      'window.addEventListener("deviceorientation", function(e) {' +
+      '  if (e.gamma !== null && e.beta !== null) {' +
+      '    aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);' +
+      '  }' +
+      '});';
 
-    const html = `<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificado KRONOS · Registro 001</title>
-<style>${estilos}</style>
-</head>
-<body>
-<div class="wrapper" id="wrapper">
-  <img src="${imagenB64}" alt="Certificado KRONOS · Registro 001">
-</div>
+    const comentario = '\n<!--\nKRONOS · CERTIFICADO REGISTRO-001\n' +
+      '════════════════════════════════════\n' +
+      JSON.stringify(DATOS, null, 2) +
+      '\n════════════════════════════════════\n' +
+      'Guardá este archivo. Es tu certificado offline.\n-->\n';
 
-<!--
-KRONOS · CERTIFICADO REGISTRO-001
-════════════════════════════════════
-${JSON.stringify(DATOS, null, 2)}
-════════════════════════════════════
-Guardá este archivo. Es tu certificado offline.
--->
-
-<script>${js}</script>
-</body>
-</html>`;
+    const html = '<!DOCTYPE html>\n' +
+      '<html lang="es">\n' +
+      '<head>\n' +
+      '<meta charset="UTF-8">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+      '<title>Certificado KRONOS · Registro 001</title>\n' +
+      '<style>' + estilos + '</style>\n' +
+      '</head>\n' +
+      '<body>\n' +
+      '<div class="wrapper" id="wrapper">\n' +
+      '<img src="' + imagenB64 + '" alt="Certificado KRONOS Registro 001">\n' +
+      '</div>\n' +
+      comentario +
+      '<scr' + 'ipt>' + js + '</scr' + 'ipt>\n' +
+      '</body>\n' +
+      '</html>';
 
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `certificado-kronos-001-${Date.now()}.html`;
+    a.download = 'certificado-kronos-001-' + Date.now() + '.html';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
     mostrarAviso('✓ HTML descargado');
   } catch (e) {
     mostrarAviso('Error: ' + e.message);
