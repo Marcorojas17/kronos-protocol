@@ -73,7 +73,7 @@
     width: 100%;
     max-width: 560px;
     aspect-ratio: 1 / 1.414;
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 3px;
     background: conic-gradient(
       from var(--angle),
@@ -89,61 +89,75 @@
     );
     filter: contrast(1.15) saturate(1.4);
     box-shadow:
-      0 0 40px rgba(201, 162, 39, 0.15),
+      0 0 60px rgba(201, 162, 39, 0.2),
       0 20px 60px rgba(0, 0, 0, 0.6);
   }
 
   .contenido {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 2px;
     background:
       radial-gradient(ellipse at top left, rgba(201, 162, 39, 0.08), transparent 60%),
       radial-gradient(ellipse at bottom right, rgba(139, 105, 20, 0.08), transparent 60%),
       var(--panel);
-    padding: 32px 28px 100px;
+    padding: 60px 44px 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(201, 162, 39, 0.35);
+    margin: 6px;
   }
 
+  /* Doble línea ornamental interna */
   .contenido::before {
     content: '';
     position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: conic-gradient(
-      from calc(var(--angle) * -1),
-      rgba(201, 162, 39, 0.3),
-      rgba(245, 240, 230, 0.1),
-      rgba(201, 162, 39, 0.3)
-    );
-    filter: blur(20px);
+    inset: 14px;
+    border: 1px solid rgba(201, 162, 39, 0.25);
     pointer-events: none;
   }
 
+  /* Esquinas ornamentales */
+  .esquina {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    pointer-events: none;
+    z-index: 4;
+    filter: drop-shadow(0 0 6px rgba(201, 162, 39, 0.35));
+  }
+  .esquina-tl { top: 6px; left: 6px; }
+  .esquina-tr { top: 6px; right: 6px; transform: scaleX(-1); }
+  .esquina-bl { bottom: 6px; left: 6px; transform: scaleY(-1); }
+  .esquina-br { bottom: 6px; right: 6px; transform: scale(-1, -1); }
+
+  /* Encabezado */
   .header {
     text-align: center;
     border-bottom: 1px solid rgba(201, 162, 39, 0.3);
-    padding-bottom: 12px;
+    padding-bottom: 14px;
+    position: relative;
+    z-index: 3;
   }
   .titulo {
-    font-size: 22px;
-    letter-spacing: 5px;
+    font-size: 24px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--gold);
     font-weight: 300;
+    background: linear-gradient(135deg, #e5c76b 0%, #c9a227 50%, #e5c76b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .subtitulo {
     font-size: 10px;
     letter-spacing: 3px;
     color: rgba(245, 240, 230, 0.5);
-    margin-top: 5px;
+    margin-top: 6px;
     font-family: 'SF Mono', Menlo, monospace;
   }
 
@@ -152,9 +166,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     text-align: center;
-    padding: 12px 0;
+    padding: 20px 0;
+    position: relative;
+    z-index: 3;
   }
   .etiqueta {
     font-size: 9px;
@@ -164,7 +180,7 @@
     font-family: 'SF Mono', Menlo, monospace;
   }
   .nombre {
-    font-size: 26px;
+    font-size: 28px;
     color: var(--cream);
     font-style: italic;
     line-height: 1.2;
@@ -179,7 +195,7 @@
   .declaracion {
     font-size: 11px;
     color: rgba(245, 240, 230, 0.7);
-    line-height: 1.5;
+    line-height: 1.55;
     max-width: 340px;
     margin: 0 auto;
   }
@@ -193,7 +209,7 @@
   .meta {
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(201, 162, 39, 0.2);
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 10px;
     font-family: 'SF Mono', Menlo, monospace;
     font-size: 8px;
@@ -201,6 +217,8 @@
     text-align: left;
     word-break: break-all;
     line-height: 1.55;
+    position: relative;
+    z-index: 3;
   }
   .meta strong {
     color: var(--gold);
@@ -208,35 +226,19 @@
     display: inline-block;
     min-width: 70px;
   }
-  .meta .valor {
-    color: rgba(245, 240, 230, 0.85);
-  }
+  .meta .valor { color: rgba(245, 240, 230, 0.85); }
 
   .pie {
     text-align: center;
     border-top: 1px solid rgba(201, 162, 39, 0.3);
-    padding-top: 10px;
+    padding-top: 12px;
     font-size: 9px;
     color: rgba(201, 162, 39, 0.7);
     letter-spacing: 2px;
     font-family: 'SF Mono', Menlo, monospace;
     line-height: 1.7;
-  }
-
-  /* Sello dorado tipo badge */
-  .sello {
-    position: absolute;
-    bottom: 24px;
-    right: 22px;
-    width: 88px;
-    height: 88px;
+    position: relative;
     z-index: 3;
-    pointer-events: none;
-  }
-  .sello svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.5));
   }
 
   /* Botones */
@@ -284,6 +286,80 @@
 <div class="certificado" id="certificado">
   <div class="contenido">
 
+    <!-- Esquinas ornamentales -->
+    <svg class="esquina esquina-tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="goldCorner" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e5c76b"/>
+          <stop offset="50%" stop-color="#c9a227"/>
+          <stop offset="100%" stop-color="#8b6914"/>
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#goldCorner)" stroke-width="1.2" stroke-linecap="round">
+        <!-- Marco externo -->
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <!-- Volutas -->
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M22 14 Q22 22 30 22 Q38 22 38 30" opacity="0.7"/>
+        <!-- Rizo exterior -->
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <!-- Hojas / florecitas -->
+        <circle cx="42" cy="42" r="2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="30" cy="22" r="1.5" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="22" cy="30" r="1.2" fill="url(#goldCorner)" stroke="none"/>
+        <!-- Detalles de puntos -->
+        <circle cx="10" cy="10" r="1.8" fill="url(#goldCorner)" stroke="none"/>
+        <!-- Rayo diagonal -->
+        <path d="M6 50 Q20 40 32 28 Q44 16 50 6" opacity="0.5" stroke-dasharray="2 3"/>
+      </g>
+    </svg>
+
+    <svg class="esquina esquina-tr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="url(#goldCorner)" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M22 14 Q22 22 30 22 Q38 22 38 30" opacity="0.7"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="30" cy="22" r="1.5" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="22" cy="30" r="1.2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="url(#goldCorner)" stroke="none"/>
+        <path d="M6 50 Q20 40 32 28 Q44 16 50 6" opacity="0.5" stroke-dasharray="2 3"/>
+      </g>
+    </svg>
+
+    <svg class="esquina esquina-bl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="url(#goldCorner)" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M22 14 Q22 22 30 22 Q38 22 38 30" opacity="0.7"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="30" cy="22" r="1.5" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="22" cy="30" r="1.2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="url(#goldCorner)" stroke="none"/>
+        <path d="M6 50 Q20 40 32 28 Q44 16 50 6" opacity="0.5" stroke-dasharray="2 3"/>
+      </g>
+    </svg>
+
+    <svg class="esquina esquina-br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="url(#goldCorner)" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M22 14 Q22 22 30 22 Q38 22 38 30" opacity="0.7"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="30" cy="22" r="1.5" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="22" cy="30" r="1.2" fill="url(#goldCorner)" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="url(#goldCorner)" stroke="none"/>
+        <path d="M6 50 Q20 40 32 28 Q44 16 50 6" opacity="0.5" stroke-dasharray="2 3"/>
+      </g>
+    </svg>
+
     <div class="header">
       <div class="titulo">Certificado Kronos</div>
       <div class="subtitulo">◆ REGISTRO OFICIAL · 001 ◆</div>
@@ -309,7 +385,7 @@
         <div><strong>Merkle art:</strong> <span class="valor">e69b2c24...390d93</span></div>
         <div><strong>Merkle doc:</strong> <span class="valor">67180206...ae813</span></div>
         <div><strong>Hash cert:</strong> <span class="valor" id="hash_registro">calculando...</span></div>
-        <div><strong>Firma Ed25519:</strong> <span class="valor" id="firma">calculando...</span></div>
+        <div><strong>Firma:</strong> <span class="valor" id="firma">calculando...</span></div>
         <div><strong>Pubkey:</strong> <span class="valor" id="pubkey">calculando...</span></div>
       </div>
 
@@ -321,57 +397,77 @@
       <div>"El legado no se hereda. Se firma."</div>
     </div>
 
-    <!-- Sello dorado -->
+    <!-- Sello de diamante con rayos, esquina inferior derecha -->
     <div class="sello">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#e5c76b"/>
-            <stop offset="40%" stop-color="#c9a227"/>
-            <stop offset="70%" stop-color="#f5f0e6"/>
+          <linearGradient id="selloGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f5f0e6"/>
+            <stop offset="25%" stop-color="#e5c76b"/>
+            <stop offset="50%" stop-color="#c9a227"/>
+            <stop offset="75%" stop-color="#e5c76b"/>
             <stop offset="100%" stop-color="#8b6914"/>
           </linearGradient>
-          <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
-            <stop offset="50%" stop-color="rgba(255,255,255,0)"/>
-            <stop offset="100%" stop-color="rgba(255,255,255,0.3)"/>
+          <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff5577"/>
+            <stop offset="25%" stop-color="#ffcc44"/>
+            <stop offset="50%" stop-color="#44ff88"/>
+            <stop offset="75%" stop-color="#44aaff"/>
+            <stop offset="100%" stop-color="#cc44ff"/>
           </linearGradient>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(229,199,107,0.6)"/>
+            <stop offset="60%" stop-color="rgba(201,162,39,0.15)"/>
+            <stop offset="100%" stop-color="rgba(201,162,39,0)"/>
+          </radialGradient>
         </defs>
 
-        <!-- Estrella/estrella dentada exterior -->
-        <path d="M50 2 L58 12 L70 8 L74 20 L87 22 L87 34 L97 42 L92 52 L97 62 L87 70 L87 82 L74 84 L70 96 L58 92 L50 98 L42 92 L30 96 L26 84 L13 82 L13 70 L3 62 L8 52 L3 42 L13 34 L13 22 L26 20 L30 8 L42 12 Z"
-              fill="url(#gold-grad)" stroke="#8b6914" stroke-width="0.5"/>
+        <!-- Resplandor de fondo -->
+        <circle cx="70" cy="70" r="68" fill="url(#glow)"/>
 
-        <!-- Círculo interior -->
-        <circle cx="50" cy="50" r="33" fill="#0a0a0b" stroke="url(#gold-grad)" stroke-width="1.5"/>
-        <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(201,162,39,0.4)" stroke-width="0.5"/>
-
-        <!-- Escudo central -->
-        <path d="M50 26 L66 32 L66 46 C66 56 58 62 50 66 C42 62 34 56 34 46 L34 32 Z"
-              fill="none" stroke="url(#gold-grad)" stroke-width="1.8"/>
-        <path d="M50 30 L62 35 L62 46 C62 54 56 59 50 62 C44 59 38 54 38 46 L38 35 Z"
-              fill="url(#gold-grad)" opacity="0.15"/>
-
-        <!-- Engranaje central -->
-        <circle cx="50" cy="46" r="6" fill="none" stroke="url(#gold-grad)" stroke-width="1.5"/>
-        <circle cx="50" cy="46" r="2.2" fill="url(#gold-grad)"/>
-        <g stroke="url(#gold-grad)" stroke-width="1.2" stroke-linecap="round">
-          <line x1="50" y1="36" x2="50" y2="39"/>
-          <line x1="50" y1="53" x2="50" y2="56"/>
-          <line x1="40" y1="46" x2="43" y2="46"/>
-          <line x1="57" y1="46" x2="60" y2="46"/>
-          <line x1="43" y1="39" x2="45" y2="41"/>
-          <line x1="55" y1="51" x2="57" y2="53"/>
-          <line x1="57" y1="39" x2="55" y2="41"/>
-          <line x1="45" y1="51" x2="43" y2="53"/>
+        <!-- Rayos de luz que salen del diamante -->
+        <g stroke-linecap="round" opacity="0.85">
+          <line x1="70" y1="70" x2="10" y2="20" stroke="url(#rainbow)" stroke-width="2"/>
+          <line x1="70" y1="70" x2="130" y2="20" stroke="url(#rainbow)" stroke-width="2"/>
+          <line x1="70" y1="70" x2="10" y2="120" stroke="url(#rainbow)" stroke-width="2"/>
+          <line x1="70" y1="70" x2="130" y2="120" stroke="url(#rainbow)" stroke-width="2"/>
+          <line x1="70" y1="70" x2="70" y2="6" stroke="url(#rainbow)" stroke-width="1.5"/>
+          <line x1="70" y1="70" x2="70" y2="134" stroke="url(#rainbow)" stroke-width="1.5"/>
+          <line x1="70" y1="70" x2="6" y2="70" stroke="url(#rainbow)" stroke-width="1.5"/>
+          <line x1="70" y1="70" x2="134" y2="70" stroke="url(#rainbow)" stroke-width="1.5"/>
         </g>
 
-        <!-- Cinta inferior VERIFIED -->
-        <rect x="20" y="74" width="60" height="9" rx="2" fill="url(#gold-grad)" stroke="#8b6914" stroke-width="0.4"/>
-        <text x="50" y="80.5" text-anchor="middle" font-family="monospace" font-size="5.5" font-weight="bold" fill="#0a0a0b" letter-spacing="1">VERIFIED · 2026</text>
+        <!-- Estrella de rayos cortos -->
+        <g stroke="url(#selloGold)" stroke-width="1" opacity="0.9">
+          <line x1="70" y1="70" x2="30" y2="40"/>
+          <line x1="70" y1="70" x2="110" y2="40"/>
+          <line x1="70" y1="70" x2="30" y2="100"/>
+          <line x1="70" y1="70" x2="110" y2="100"/>
+        </g>
 
-        <!-- Destello -->
-        <ellipse cx="30" cy="30" rx="15" ry="10" fill="url(#shine)" transform="rotate(-30 30 30)"/>
+        <!-- Diamante central -->
+        <g transform="translate(70, 70)">
+          <!-- Faceta superior izquierda -->
+          <path d="M0 -30 L-28 -8 L-14 22 Z" fill="url(#selloGold)" opacity="0.95"/>
+          <!-- Faceta superior derecha -->
+          <path d="M0 -30 L28 -8 L14 22 Z" fill="url(#selloGold)" opacity="0.7"/>
+          <!-- Faceta inferior izquierda -->
+          <path d="M-28 -8 L-14 22 L0 30 Z" fill="url(#selloGold)" opacity="0.8"/>
+          <!-- Faceta inferior derecha -->
+          <path d="M28 -8 L14 22 L0 30 Z" fill="url(#selloGold)" opacity="0.55"/>
+          <!-- Faceta central -->
+          <path d="M0 -30 L28 -8 L0 30 L-28 -8 Z" fill="url(#rainbow)" opacity="0.35"/>
+          <!-- Brillo diagonal -->
+          <path d="M-10 -20 L8 -8 L-4 0 Z" fill="#ffffff" opacity="0.6"/>
+          <!-- Borde del diamante -->
+          <path d="M0 -30 L28 -8 L0 30 L-28 -8 Z" fill="none" stroke="url(#selloGold)" stroke-width="1.5"/>
+          <!-- Facetas internas -->
+          <path d="M-28 -8 L0 0 L28 -8" fill="none" stroke="url(#selloGold)" stroke-width="0.8" opacity="0.8"/>
+          <path d="M0 0 L0 30" fill="none" stroke="url(#selloGold)" stroke-width="0.8" opacity="0.8"/>
+        </g>
+
+        <!-- Círculo exterior punteado -->
+        <circle cx="70" cy="70" r="60" fill="none" stroke="url(#selloGold)" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
       </svg>
     </div>
 
@@ -385,13 +481,12 @@
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// FIRMA REAL · Genera par Ed25519 en navegador y firma el certificado
+// FIRMA REAL · Ed25519 en navegador
 // ═══════════════════════════════════════════════════════════════════
 
 const cert = document.getElementById('certificado');
 const root = document.documentElement;
 
-// Datos del certificado (los que se firman)
 const DATOS_CERTIFICADO = {
   schema_version: '1.0.0',
   tipo: 'certificado-kodice',
@@ -406,7 +501,6 @@ const DATOS_CERTIFICADO = {
   lugar: 'Toluca, México'
 };
 
-// Canonicalización determinista (orden alfabético, sin espacios)
 function canonicalize(obj) {
   if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
   if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
@@ -422,31 +516,22 @@ async function sha256Hex(text) {
 
 async function generarFirma() {
   try {
-    // Generar par de llaves Ed25519
     const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
-
-    // Exportar pública
     const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
     const pubHex = Array.from(new Uint8Array(pubRaw)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-    // Calcular hash del certificado
     const canon = canonicalize(DATOS_CERTIFICADO);
     const hashRegistro = await sha256Hex(canon);
 
-    // Firmar el hash
     const firmaBuf = await crypto.subtle.sign(
-      'Ed25519',
-      kp.privateKey,
-      new TextEncoder().encode(hashRegistro)
+      'Ed25519', kp.privateKey, new TextEncoder().encode(hashRegistro)
     );
     const firmaHex = Array.from(new Uint8Array(firmaBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-    // Mostrar en el certificado
     document.getElementById('hash_registro').textContent = hashRegistro.slice(0, 32) + '...';
     document.getElementById('firma').textContent = firmaHex.slice(0, 32) + '...';
     document.getElementById('pubkey').textContent = pubHex.slice(0, 32) + '...';
 
-    // Guardar para descargas
     window.__certFirmado = {
       datos: DATOS_CERTIFICADO,
       hash_registro: hashRegistro,
@@ -455,25 +540,20 @@ async function generarFirma() {
       algoritmo: 'Ed25519'
     };
 
-    console.log('[KRONOS] Certificado firmado:');
-    console.log('  Hash:', hashRegistro);
-    console.log('  Firma:', firmaHex);
-    console.log('  Pubkey:', pubHex);
-    console.log('  JSON:', window.__certFirmado);
+    console.log('[KRONOS] Firmado:', window.__certFirmado);
 
   } catch (e) {
-    console.error('[KRONOS] Error al firmar:', e);
-    document.getElementById('hash_registro').textContent = 'WebCrypto no soporta Ed25519';
+    console.error('[KRONOS] Error:', e);
+    document.getElementById('hash_registro').textContent = 'WebCrypto sin Ed25519';
     document.getElementById('firma').textContent = '---';
     document.getElementById('pubkey').textContent = '---';
   }
 }
 
-// Firmar al cargar
 generarFirma();
 
 // ═══════════════════════════════════════════════════════════════════
-// EFECTO HOLOGRÁFICO
+// HOLOGRAMA
 // ═══════════════════════════════════════════════════════════════════
 
 function actualizarHolograma(x, y) {
@@ -506,34 +586,23 @@ window.addEventListener('deviceorientation', (e) => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// DESCARGA PNG · Renderiza el certificado como imagen
+// DESCARGA PNG
 // ═══════════════════════════════════════════════════════════════════
 
 async function descargarPNG() {
   try {
-    // Usar foreignObject SVG → canvas
     const rect = cert.getBoundingClientRect();
     const w = Math.round(rect.width);
     const h = Math.round(rect.height);
 
-    // Clonar el certificado
     const clon = cert.cloneNode(true);
+    clon.setAttribute('style', `position: fixed; top: 0; left: 0; width: ${w}px; height: ${h}px;`);
 
-    // Serializar estilos (necesitamos inline los estilos críticos)
-    const estiloCert = `
-      position: fixed; top: 0; left: 0;
-      width: ${w}px; height: ${h}px;
-    `;
-    clon.setAttribute('style', estiloCert);
-
-    // Obtener el CSS actual
     let css = '';
     for (const sheet of document.styleSheets) {
       try {
-        for (const rule of sheet.cssRules) {
-          css += rule.cssText + '\n';
-        }
-      } catch (e) { /* skip CORS */ }
+        for (const rule of sheet.cssRules) css += rule.cssText + '\n';
+      } catch (e) {}
     }
 
     const htmlString = `
@@ -551,14 +620,13 @@ async function descargarPNG() {
     const url = URL.createObjectURL(blob);
 
     const img = new Image();
-    img.onload = async () => {
+    img.onload = () => {
       const canvas = document.createElement('canvas');
-      canvas.width = w * 2;  // doble resolución
+      canvas.width = w * 2;
       canvas.height = h * 2;
       const ctx = canvas.getContext('2d');
       ctx.scale(2, 2);
       ctx.drawImage(img, 0, 0, w, h);
-
       URL.revokeObjectURL(url);
 
       canvas.toBlob((pngBlob) => {
@@ -572,34 +640,26 @@ async function descargarPNG() {
         URL.revokeObjectURL(pngUrl);
       }, 'image/png');
     };
-    img.onerror = () => {
-      console.error('Error al cargar SVG');
-      alert('Tu navegador no permite exportar directo. Usá "Descargar HTML" y abrilo para imprimir.');
-    };
+    img.onerror = () => alert('Tu navegador no permite exportar PNG. Usá "Descargar HTML".');
     img.src = url;
 
   } catch (e) {
-    console.error('Error:', e);
+    console.error(e);
     alert('No se pudo generar la imagen. Usá "Descargar HTML".');
   }
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// DESCARGA HTML · Guarda el HTML con firma embebida
+// DESCARGA HTML
 // ═══════════════════════════════════════════════════════════════════
 
 function descargarHTML() {
-  // Inyectar la firma en el HTML antes de descargar
   const firma = window.__certFirmado;
-
   let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-
   if (firma) {
-    // Agregar la firma como comentario al final del HTML
     html += '\n<!--\nFIRMA ED25519 DEL CERTIFICADO KRONOS\n' +
             JSON.stringify(firma, null, 2) + '\n-->';
   }
-
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
