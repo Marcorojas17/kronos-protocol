@@ -9,42 +9,49 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'SF Mono',Menlo,Consolas,monospace;}
   #barra-top{
-    position:fixed;top:0;left:0;right:0;height:44px;
+    position:fixed;top:0;left:0;right:0;height:48px;
     background:var(--panel);border-bottom:1px solid var(--gold);
-    display:flex;align-items:center;padding:0 12px;z-index:10;
-    font-size:11px;gap:8px;
+    display:flex;align-items:center;padding:0 10px;z-index:10;
+    font-size:11px;gap:6px;
   }
-  #barra-top .seccion{color:var(--gold);font-weight:bold;letter-spacing:1px;}
-  #barra-top .pagina{color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  #barra-top .seccion{color:var(--gold);font-weight:bold;letter-spacing:1px;font-size:10px;}
+  #barra-top .pagina{color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;}
   #barra-top button{
     background:transparent;border:1px solid var(--gold);color:var(--gold);
-    padding:5px 10px;border-radius:3px;font-family:inherit;font-size:10px;
+    padding:6px 10px;border-radius:3px;font-family:inherit;font-size:10px;
     cursor:pointer;letter-spacing:1px;
   }
   #barra-top button:hover{background:var(--gold);color:var(--bg);}
   #marco{
-    position:fixed;top:44px;left:0;right:0;bottom:60px;
-    border:0;width:100%;background:#fff;
+    position:fixed;top:48px;left:0;right:0;bottom:68px;
+    border:0;width:100%;background:#0a0a0b;
   }
+  #aviso-cors{
+    position:fixed;top:48px;left:0;right:0;
+    background:rgba(245,158,11,0.15);border-bottom:1px solid #f59e0b;
+    color:#f59e0b;padding:8px 12px;font-size:10px;z-index:9;display:none;
+    text-align:center;
+  }
+  #aviso-cors.visible{display:block;}
   #barra-bottom{
-    position:fixed;bottom:0;left:0;right:0;height:60px;
+    position:fixed;bottom:0;left:0;right:0;height:68px;
     background:var(--panel);border-top:1px solid var(--gold);
     display:flex;align-items:center;justify-content:center;gap:6px;
     z-index:10;padding:0 8px;
   }
   #barra-bottom button{
     background:transparent;border:1px solid var(--gold);color:var(--gold);
-    padding:10px 14px;border-radius:4px;font-family:inherit;font-size:11px;
-    cursor:pointer;letter-spacing:1px;text-transform:uppercase;min-width:52px;
+    padding:10px 12px;border-radius:4px;font-family:inherit;font-size:11px;
+    cursor:pointer;letter-spacing:1px;text-transform:uppercase;min-width:46px;
   }
   #barra-bottom button:hover{background:var(--gold);color:var(--bg);}
   #barra-bottom button:disabled{opacity:0.3;cursor:not-allowed;}
   #barra-bottom .contador{
-    color:var(--gold-light);font-size:11px;padding:0 10px;min-width:80px;text-align:center;
+    color:var(--gold-light);font-size:11px;padding:0 8px;min-width:70px;text-align:center;
     letter-spacing:1px;
   }
   #menu-overlay{
-    position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,11,0.96);
+    position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,11,0.97);
     z-index:20;display:none;overflow-y:auto;padding:20px;
   }
   #menu-overlay.abierto{display:block;}
@@ -69,7 +76,12 @@
 <div id="barra-top">
   <span class="seccion" id="top-seccion">KRONOS</span>
   <span class="pagina" id="top-pagina">cargando...</span>
+  <button onclick="abrirCompleta()" title="Abrir en pestaña completa">🔗</button>
   <button onclick="abrirMenu()">☰</button>
+</div>
+
+<div id="aviso-cors">
+  ⚠ Si ves la página en negro o rota, tocá 🔗 arriba para abrirla completa.
 </div>
 
 <iframe id="marco" src="about:blank"></iframe>
@@ -79,7 +91,7 @@
   <span class="contador" id="contador">0 / 0</span>
   <button onclick="irSiguiente()" id="btn-next">▶</button>
   <button onclick="irInicio()">🏠</button>
-  <button onclick="abrirMenu()">☰ MENÚ</button>
+  <button onclick="abrirMenu()">☰</button>
 </div>
 
 <div id="menu-overlay">
@@ -90,7 +102,7 @@
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// LISTA COMPLETA DE PÁGINAS · agrupadas por sección
+// LISTA COMPLETA DE PÁGINAS
 // ═══════════════════════════════════════════════════════════════════
 
 const GRUPOS = [
@@ -107,7 +119,8 @@ const GRUPOS = [
     { label: 'capturar-origen', url: '08-HERRAMIENTAS/capturar-origen.html' },
     { label: 'verificador-empresa', url: '08-HERRAMIENTAS/verificador-empresa.html' },
     { label: 'notario-digital', url: '08-HERRAMIENTAS/notario-digital.html' },
-    { label: 'verificador (v0.3)', url: '02-VERIFICADOR/verificador.html' }
+    { label: 'verificador v0.3', url: '02-VERIFICADOR/verificador.html' },
+    { label: 'generar-fundador-v2', url: '08-HERRAMIENTAS/generar-fundador-v2.html' }
   ]},
   { titulo: 'CIUDAD', items: [
     { label: 'índice ciudad', url: 'docs/CIUDAD/index.html' },
@@ -129,8 +142,7 @@ const GRUPOS = [
     { label: 'iniciación', url: 'movimiento/iniciacion.html' },
     { label: 'solicitar plaza', url: 'movimiento/solicitar_plaza.html' },
     { label: 'gracias', url: 'movimiento/gracias.html' },
-    { label: 'registro fundacional', url: 'movimiento/registro-fundacional/index.html' },
-    { label: 'certificado fundacional', url: 'movimiento/registro-fundacional/certificado-fundacional.html' }
+    { label: 'registro fundacional', url: 'movimiento/registro-fundacional/index.html' }
   ]},
   { titulo: 'CERTIFICACIÓN', items: [
     { label: 'certificado maestro', url: 'certificacion/certificado-maestro.html' },
@@ -186,26 +198,17 @@ const GRUPOS = [
     { label: 'acta', url: 'projects/acta/index.html' },
     { label: 'bóveda', url: 'projects/boveda/index.html' },
     { label: 'cymatic', url: 'projects/cymatic/index.html' },
-    { label: 'cymatic live pro', url: 'projects/cymatic/live-pro.html' },
-    { label: 'cymatic studio', url: 'projects/cymatic/studio.html' },
     { label: 'dmd-33', url: 'projects/dmd-33/index.html' },
     { label: 'dmd-33 orb', url: 'projects/dmd-33/orb.html' },
     { label: 'dmd-33 espejo', url: 'projects/dmd-33/espejo.html' },
     { label: 'dmd-33 genesis', url: 'projects/dmd-33/genesis.html' },
-    { label: 'dmd-33 flow', url: 'projects/dmd-33/flow.html' },
-    { label: 'dmd-33 kronos', url: 'projects/dmd-33/kronos.html' },
     { label: 'evidence OS', url: 'projects/evidence-os/index.html' },
-    { label: 'evidence OS dashboard', url: 'projects/evidence-os/dashboard.html' },
     { label: 'genesis miner', url: 'projects/genesis-miner/index.html' },
     { label: 'kronos vault', url: 'projects/kronos-vault/index.html' },
     { label: 'md33', url: 'projects/md33/index.html' },
     { label: 'yejida', url: 'projects/yejida/index.html' }
   ]}
 ];
-
-// ═══════════════════════════════════════════════════════════════════
-// LISTA PLANA para navegación secuencial
-// ═══════════════════════════════════════════════════════════════════
 
 const LISTA = [];
 GRUPOS.forEach(g => g.items.forEach(it => LISTA.push({ seccion: g.titulo, ...it })));
@@ -223,6 +226,7 @@ const topSeccion = document.getElementById('top-seccion');
 const topPagina = document.getElementById('top-pagina');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
+const avisoCors = document.getElementById('aviso-cors');
 
 function render() {
   const item = LISTA[idx];
@@ -234,18 +238,22 @@ function render() {
   btnNext.disabled = idx === LISTA.length - 1;
   localStorage.setItem('kronos-nav-idx', idx.toString());
   marcarMenuActual();
+  // Mostrar aviso después de 2 seg (por si la página tarda en cargar)
+  setTimeout(() => {
+    avisoCors.classList.add('visible');
+    setTimeout(() => avisoCors.classList.remove('visible'), 4000);
+  }, 1500);
 }
 
-function irAnterior() {
-  if (idx > 0) { idx--; render(); }
-}
+function irAnterior() { if (idx > 0) { idx--; render(); } }
+function irSiguiente() { if (idx < LISTA.length - 1) { idx++; render(); } }
+function irInicio() { idx = 0; render(); }
 
-function irSiguiente() {
-  if (idx < LISTA.length - 1) { idx++; render(); }
-}
-
-function irInicio() {
-  idx = 0; render();
+// Abrir la página actual en pestaña completa
+function abrirCompleta() {
+  const item = LISTA[idx];
+  const base = window.location.href.replace(/index-v2\.html.*$/, '');
+  window.open(base + item.url, '_blank');
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -256,20 +264,14 @@ function abrirMenu() {
   document.getElementById('menu-overlay').classList.add('abierto');
   marcarMenuActual();
 }
-
 function cerrarMenu() {
   document.getElementById('menu-overlay').classList.remove('abierto');
 }
-
 function marcarMenuActual() {
   document.querySelectorAll('#menu-overlay .item').forEach(el => el.classList.remove('actual'));
   const activo = document.querySelector('#menu-overlay .item[data-idx="' + idx + '"]');
   if (activo) activo.classList.add('actual');
 }
-
-// ═══════════════════════════════════════════════════════════════════
-// CONSTRUIR MENÚ
-// ═══════════════════════════════════════════════════════════════════
 
 function construirMenu() {
   const cont = document.getElementById('menu-grupos');
@@ -297,16 +299,11 @@ function construirMenu() {
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// ARRANQUE
-// ═══════════════════════════════════════════════════════════════════
-
 window.addEventListener('load', () => {
   construirMenu();
   render();
 });
 
-// Atajos de teclado
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') irAnterior();
   else if (e.key === 'ArrowRight') irSiguiente();
