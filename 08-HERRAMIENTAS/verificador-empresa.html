@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificador Empresa · KRONOS</title>
+<style>
+  :root {
+    --bg: #0a0a0b; --panel: #14141c; --gold: #c9a227; --gold-light: #e5c76b;
+    --text: #e8e8e8; --muted: #888; --ok: #4ade80; --bad: #ef4444; --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'SF Mono', Menlo, monospace;
+    min-height: 100vh; padding: 20px; line-height: 1.6; }
+  .container { max-width: 640px; margin: 0 auto; padding-bottom: 40px; }
+  h1 { color: var(--gold); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 11px; margin-bottom: 20px; }
+  .panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 8px;
+    padding: 16px; margin-bottom: 14px; }
+  .panel h2 { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 12px; border-bottom: 1px solid rgba(201,162,39,0.3); padding-bottom: 8px; }
+  label { display: block; font-size: 10px; color: var(--gold); text-transform: uppercase;
+    letter-spacing: 1px; margin: 12px 0 6px; }
+  input[type="text"], input[type="file"] {
+    width: 100%; background: var(--bg); border: 1px solid #333; border-radius: 4px;
+    color: var(--text); padding: 10px; font-family: inherit; font-size: 12px;
+  }
+  button { background: var(--gold); color: var(--bg); border: none; padding: 12px 20px;
+    border-radius: 4px; font-family: inherit; font-size: 12px; font-weight: bold;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%; margin-top: 8px; }
+  button:hover { background: var(--gold-light); }
+  button.sec { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+  .mensaje { padding: 12px; border-radius: 4px; font-size: 11px; margin-bottom: 12px;
+    display: none; white-space: pre-wrap; word-break: break-word; }
+  .mensaje.ok { background: rgba(74,222,128,0.1); border: 1px solid var(--ok); color: var(--ok); display: block; }
+  .mensaje.bad { background: rgba(239,68,68,0.1); border: 1px solid var(--bad); color: var(--bad); display: block; }
+  .mensaje.warn { background: rgba(245,158,11,0.1); border: 1px solid var(--warn); color: var(--warn); display: block; }
+  .oculto { display: none !important; }
+  .agente { background: var(--bg); border: 1px solid #333; border-radius: 4px; padding: 10px;
+    font-size: 10px; margin-bottom: 8px; word-break: break-all; }
+  .agente .nombre { color: var(--gold); font-weight: bold; font-size: 11px; }
+  .agente .estado { color: var(--ok); }
+  .agente.inactivo .estado { color: var(--muted); }
+  .veredicto { padding: 20px; border-radius: 6px; text-align: center; margin-top: 14px; display: none; }
+  .veredicto.show { display: block; }
+  .veredicto h3 { font-size: 16px; letter-spacing: 3px; margin-bottom: 8px; }
+  .veredicto .detalle { font-size: 11px; opacity: 0.85; }
+  .veredicto.ok { background: rgba(74,222,128,0.12); border: 2px solid var(--ok); color: var(--ok); }
+  .veredicto.bad { background: rgba(239,68,68,0.12); border: 2px solid var(--bad); color: var(--bad); }
+  .veredicto.warn { background: rgba(245,158,11,0.12); border: 2px solid var(--warn); color: var(--warn); }
+  .sello { text-align: center; color: var(--gold); font-size: 10px; margin-top: 32px; opacity: 0.5; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>◢◤ Verificador Empresa · KRONOS</h1>
+  <div class="sub">v0.4 · offline · empresa.json + boleto.json · 4 estados</div>
+
+  <div id="msg" class="mensaje"></div>
+
+  <!-- ══════ PANEL 1 · EMPRESA ══════ -->
+  <div class="panel">
+    <h2>1 · Empresa</h2>
+
+    <div id="empresa-vacia">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+        Todavía no hay empresa.json. Creá el registro de tu empresa:
+      </p>
+      <label>Nombre de la empresa</label>
+      <input type="text" id="in-empresa-nombre" placeholder="Ej: Inmobiliaria Toluca SA">
+      <button onclick="crearEmpresa()">Crear empresa.json</button>
+      <button class="sec" onclick="document.getElementById('in-empresa-file').click()">O cargar empresa.json existente</button>
+      <input type="file" id="in-empresa-file" accept=".json,application/json" style="display:none" onchange="cargarEmpresa(event)">
+    </div>
+
+    <div id="empresa-llena" class="oculto">
+      <div style="font-size:11px;color:var(--gold);margin-bottom:8px;">
+        Empresa: <span id="out-empresa-nombre"></span>
+      </div>
+      <div id="out-agentes"></div>
+
+      <label>Agregar agente</label>
+      <input type="text" id="in-agente-nombre" placeholder="Nombre del agente">
+      <input type="text" id="in-agente-pubkey" placeholder="Pubkey (64 hex)" style="margin-top:6px;">
+      <button onclick="agregarAgente()">+ Agregar agente</button>
+
+      <button class="sec" onclick="descargarEmpresa()" style="margin-top:10px;">⬇ Descargar empresa.json actualizado</button>
+      <button class="sec" onclick="resetEmpresa()" style="margin-top:6px;">Cambiar de empresa</button>
+    </div>
+  </div>
+
+  <!-- ══════ PANEL 2 · VERIFICAR ══════ -->
+  <div class="panel" id="panel-verificar">
+    <h2>2 · Verificar boleto</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Cargá el boleto.json que te mandó el agente por WhatsApp.
+    </p>
+    <input type="file" id="in-boleto-file" accept=".json,application/json" onchange="verificarBoleto(event)">
+    <div id="veredicto" class="veredicto"></div>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+  </div>
+
+</div>
+
+<script>
+const EMPRESA_KEY = 'kronos-empresa-v1';
+let empresaActual = null;
+
+function mostrar(tipo, texto) {
+  const el = document.getElementById('msg');
+  el.className = 'mensaje ' + tipo;
+  el.textContent = texto;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function bytesToHex(bytes) {
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function hexToBytes(hex) {
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i*2, 2), 16);
+  return out;
+}
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return bytesToHex(new Uint8Array(digest));
+}
+function descargarBlob(blob, nombre) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nombre;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// EMPRESA
+// ═══════════════════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  const guardada = localStorage.getItem(EMPRESA_KEY);
+  if (guardada) {
+    try {
+      empresaActual = JSON.parse(guardada);
+      renderizarEmpresa();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+});
+
+function crearEmpresa() {
+  const nombre = document.getElementById('in-empresa-nombre').value.trim();
+  if (!nombre) { mostrar('bad', 'Ingresá el nombre de la empresa.'); return; }
+
+  empresaActual = {
+    version: '1.0.0',
+    empresa: nombre,
+    creada: new Date().toISOString(),
+    agentes: []
+  };
+
+  localStorage.setItem(EMPRESA_KEY, JSON.stringify(empresaActual));
+  renderizarEmpresa();
+  mostrar('ok', '✓ Empresa creada. Ahora agregá agentes.');
+}
+
+function cargarEmpresa(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.empresa || !Array.isArray(data.agentes)) {
+        mostrar('bad', 'empresa.json inválido.');
+        return;
+      }
+      empresaActual = data;
+      localStorage.setItem(EMPRESA_KEY, JSON.stringify(empresaActual));
+      renderizarEmpresa();
+      mostrar('ok', '✓ Empresa cargada: ' + data.empresa);
+    } catch (err) {
+      mostrar('bad', 'Error: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function agregarAgente() {
+  const nombre = document.getElementById('in-agente-nombre').value.trim();
+  const pubkey = document.getElementById('in-agente-pubkey').value.trim().toLowerCase();
+
+  if (!nombre) { mostrar('bad', 'Ingresá el nombre del agente.'); return; }
+  if (!/^[a-f0-9]{64}$/.test(pubkey)) {
+    mostrar('bad', 'La pubkey debe ser 64 caracteres hex.');
+    return;
+  }
+  if (empresaActual.agentes.some(a => a.pubkey === pubkey)) {
+    mostrar('bad', 'Esa pubkey ya está registrada.');
+    return;
+  }
+
+  empresaActual.agentes.push({
+    nombre,
+    pubkey,
+    activo: true,
+    alta: new Date().toISOString(),
+    baja: null
+  });
+
+  localStorage.setItem(EMPRESA_KEY, JSON.stringify(empresaActual));
+  document.getElementById('in-agente-nombre').value = '';
+  document.getElementById('in-agente-pubkey').value = '';
+  renderizarEmpresa();
+  mostrar('ok', '✓ Agente agregado: ' + nombre);
+}
+
+function renderizarEmpresa() {
+  if (!empresaActual) return;
+  document.getElementById('empresa-vacia').classList.add('oculto');
+  document.getElementById('empresa-llena').classList.remove('oculto');
+  document.getElementById('out-empresa-nombre').textContent = empresaActual.empresa;
+
+  const container = document.getElementById('out-agentes');
+  container.innerHTML = '';
+  if (empresaActual.agentes.length === 0) {
+    container.innerHTML = '<div style="font-size:11px;color:var(--muted);">Sin agentes registrados todavía.</div>';
+  } else {
+    empresaActual.agentes.forEach((a, i) => {
+      const div = document.createElement('div');
+      div.className = 'agente' + (a.activo ? '' : ' inactivo');
+      div.innerHTML = '<div class="nombre">' + a.nombre + '</div>' +
+        '<div>' + a.pubkey.slice(0, 32) + '...</div>' +
+        '<div class="estado">' + (a.activo ? '● ACTIVO' : '○ INACTIVO') +
+        ' · alta ' + a.alta.slice(0, 10) + '</div>';
+      container.appendChild(div);
+    });
+  }
+}
+
+function descargarEmpresa() {
+  if (!empresaActual) return;
+  const blob = new Blob([JSON.stringify(empresaActual, null, 2)], { type: 'application/json' });
+  descargarBlob(blob, 'empresa.json');
+  mostrar('ok', '✓ empresa.json descargado. Guardalo en el celular.');
+}
+
+function resetEmpresa() {
+  if (!confirm('¿Cambiar de empresa? Se perderá el registro actual (salvo que hayas descargado empresa.json).')) return;
+  empresaActual = null;
+  localStorage.removeItem(EMPRESA_KEY);
+  document.getElementById('empresa-vacia').classList.remove('oculto');
+  document.getElementById('empresa-llena').classList.add('oculto');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// VERIFICAR BOLETO
+// ═══════════════════════════════════════════════════════════════════
+
+function veredicto(clase, titulo, detalle) {
+  const el = document.getElementById('veredicto');
+  el.className = 'veredicto show ' + clase;
+  el.innerHTML = '<h3>' + titulo + '</h3><div class="detalle">' + detalle + '</div>';
+}
+
+async function verificarBoleto(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!empresaActual) {
+    veredicto('warn', '⚠ SIN EMPRESA', 'Primero cargá o creá empresa.json arriba.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const boleto = JSON.parse(e.target.result);
+      await ejecutarVerificacion(boleto);
+    } catch (err) {
+      veredicto('bad', '✗ JSON INVÁLIDO', err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function ejecutarVerificacion(boleto) {
+  // 1. Campos mínimos
+  const requeridos = ['version','tipo','cliente','nota','agente_nombre','agente_pubkey',
+                     'timestamp','hash_registro','firma_hex','interaction_id','algoritmo'];
+  for (const campo of requeridos) {
+    if (!(campo in boleto)) {
+      veredicto('bad', '✗ BOLETO INCOMPLETO', 'Falta campo: ' + campo);
+      return;
+    }
+  }
+
+  // 2. Recalcular hash
+  const registro = {
+    version: boleto.version,
+    tipo: boleto.tipo,
+    cliente: boleto.cliente,
+    nota: boleto.nota,
+    agente_nombre: boleto.agente_nombre,
+    agente_pubkey: boleto.agente_pubkey,
+    timestamp: boleto.timestamp
+  };
+  const canon = canonicalize(registro);
+  const hashCalculado = await sha256Hex(canon);
+  const hashValido = hashCalculado === boleto.hash_registro;
+
+  // 3. Verificar firma Ed25519
+  let firmaValida = false;
+  try {
+    const pubBytes = hexToBytes(boleto.agente_pubkey);
+    const pubKey = await crypto.subtle.importKey(
+      'raw', pubBytes, { name: 'Ed25519' }, false, ['verify']
+    );
+    firmaValida = await crypto.subtle.verify(
+      'Ed25519',
+      pubKey,
+      hexToBytes(boleto.firma_hex),
+      new TextEncoder().encode(boleto.hash_registro)
+    );
+  } catch (err) {
+    console.error(err);
+    firmaValida = false;
+  }
+
+  // 4. Buscar agente en empresa
+  const agente = empresaActual.agentes.find(a => a.pubkey === boleto.agente_pubkey);
+  const agenteRegistrado = !!agente;
+  const agenteActivo = agente ? agente.activo : false;
+
+  // 5. Timestamp en rango
+  let enPeriodo = false;
+  if (agente) {
+    const t = new Date(boleto.timestamp).getTime();
+    const alta = new Date(agente.alta).getTime();
+    const baja = agente.baja ? new Date(agente.baja).getTime() : Infinity;
+    enPeriodo = t >= alta && t <= baja;
+  }
+
+  // 6. Veredicto
+  const info = 'Agente: ' + boleto.agente_nombre +
+    '\nCliente: ' + boleto.cliente +
+    '\nTimestamp: ' + boleto.timestamp +
+    '\nInteraction ID: ' + boleto.interaction_id;
+
+  if (!hashValido) {
+    veredicto('bad', '✗ ALTERADO', 'El hash no coincide. El boleto fue modificado.\n\n' + info);
+    return;
+  }
+  if (!firmaValida) {
+    veredicto('bad', '✗ ALTERADO', 'La firma no valida con la pubkey.\n\n' + info);
+    return;
+  }
+  if (!agenteRegistrado) {
+    veredicto('warn', '⚠ NO AUTORIZADO', 'La pubkey no está en empresa.json.\n\n' + info);
+    return;
+  }
+  if (!agenteActivo) {
+    veredicto('warn', '⚠ AGENTE INACTIVO', 'El agente fue dado de baja.\n\n' + info);
+    return;
+  }
+  if (!enPeriodo) {
+    veredicto('warn', '⚠ FUERA DE PERIODO', 'El timestamp no cae dentro del periodo activo del agente.\n\n' + info);
+    return;
+  }
+
+  veredicto('ok', '✓ VERIFICADO', 'Firma válida · Agente autorizado · En periodo.\n\n' + info);
+}
+</script>
+
+</body>
+</html>
