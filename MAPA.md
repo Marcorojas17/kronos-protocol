@@ -11,6 +11,7 @@ kronos-protocol/
 │   │   ├── 094-bibliotecario.yml
 │   │   ├── 095-cartografo.yml
 │   │   ├── agentes.yml
+│   │   ├── arbol.yml
 │   │   ├── detectar-secretos.yml
 │   │   ├── formatear.yml
 │   │   ├── guardian.yml
@@ -60,14 +61,18 @@ kronos-protocol/
 │   │   └── esquema.json
 │   └── INDICE.md
 ├── 08-HERRAMIENTAS/
+│   ├── capturar-origen.html
 │   ├── certificado-genesis.html
 │   ├── certificado-png.html
 │   ├── certificado-svg.html
+│   ├── certificado-universal.html
 │   ├── certificado-v10.html
 │   ├── certificado-v11.html
 │   ├── certificado-v8.html
 │   ├── certificado-vivo.html
-│   └── generar-fundador-v2.html
+│   ├── generar-fundador-v2.html
+│   ├── notario-digital.html
+│   └── verificador-empresa.html
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -254,7 +259,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
@@ -459,6 +464,7 @@ kronos-protocol/
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.13
+├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.14
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7
 ├── CONTRIBUTING.md
