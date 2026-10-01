@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificado KRONOS</title>
+<title>Certificado KRONOS · Registro 001</title>
 <style>
   :root {
     --obsidian: #0a0a0b;
     --panel: #111114;
     --gold: #c9a227;
     --gold-light: #e5c76b;
+    --gold-dark: #8b6914;
     --cream: #f5f0e6;
     --angle: 0deg;
-    --hue-shift: 0deg;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -24,9 +24,10 @@
   }
   body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 20px 100px;
     position: relative;
   }
 
@@ -50,7 +51,7 @@
     100% { transform: translate(2%, -1%); }
   }
 
-  /* Patrón moiré anti-foto (aparece en capturas) */
+  /* Patrón moiré anti-foto */
   body::after {
     content: '';
     position: fixed;
@@ -68,33 +69,32 @@
     background-size: 3px 3px;
   }
 
-  /* Contenedor principal */
+  /* Certificado */
   .certificado {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 640px;
+    max-width: 560px;
     aspect-ratio: 1 / 1.414;
     border-radius: 12px;
     padding: 3px;
-    /* Efecto holográfico */
     background: conic-gradient(
       from var(--angle),
       var(--gold) 0deg,
       var(--gold-light) 45deg,
       var(--cream) 90deg,
       var(--gold) 135deg,
-      #8b6914 180deg,
+      var(--gold-dark) 180deg,
       var(--gold-light) 225deg,
       var(--cream) 270deg,
       var(--gold) 315deg,
       var(--gold) 360deg
     );
-    filter: contrast(1.15) saturate(1.4) hue-rotate(var(--hue-shift));
+    filter: contrast(1.15) saturate(1.4);
     box-shadow:
       0 0 40px rgba(201, 162, 39, 0.15),
       0 20px 60px rgba(0, 0, 0, 0.6);
-    transition: filter 0.1s linear;
+    transition: filter 0.15s linear;
   }
 
   .contenido {
@@ -105,7 +105,7 @@
       radial-gradient(ellipse at top left, rgba(201, 162, 39, 0.08), transparent 60%),
       radial-gradient(ellipse at bottom right, rgba(139, 105, 20, 0.08), transparent 60%),
       var(--panel);
-    padding: 40px 36px;
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -113,7 +113,6 @@
     overflow: hidden;
   }
 
-  /* Sello holográfico circular */
   .contenido::before {
     content: '';
     position: absolute;
@@ -132,72 +131,69 @@
     pointer-events: none;
   }
 
-  /* Encabezado */
   .header {
     text-align: center;
     border-bottom: 1px solid rgba(201, 162, 39, 0.3);
-    padding-bottom: 16px;
+    padding-bottom: 12px;
   }
   .titulo {
-    font-size: 24px;
-    letter-spacing: 6px;
+    font-size: 22px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--gold);
     font-weight: 300;
   }
   .subtitulo {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 3px;
     color: rgba(245, 240, 230, 0.5);
-    margin-top: 6px;
+    margin-top: 5px;
     font-family: 'SF Mono', Menlo, monospace;
   }
 
-  /* Cuerpo */
   .cuerpo {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 14px;
     text-align: center;
-    padding: 24px 0;
+    padding: 16px 0;
   }
   .etiqueta {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 3px;
     color: rgba(245, 240, 230, 0.4);
     text-transform: uppercase;
     font-family: 'SF Mono', Menlo, monospace;
   }
   .nombre {
-    font-size: 32px;
+    font-size: 26px;
     color: var(--cream);
     font-style: italic;
     line-height: 1.2;
   }
   .declaracion {
-    font-size: 13px;
+    font-size: 11px;
     color: rgba(245, 240, 230, 0.7);
-    line-height: 1.6;
-    max-width: 400px;
+    line-height: 1.5;
+    max-width: 340px;
     margin: 0 auto;
   }
   .fecha {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--gold);
     letter-spacing: 2px;
     font-family: 'SF Mono', Menlo, monospace;
   }
 
-  /* Bloque de metadatos */
   .meta {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(201, 162, 39, 0.2);
     border-radius: 6px;
-    padding: 12px;
+    padding: 10px;
     font-family: 'SF Mono', Menlo, monospace;
-    font-size: 9px;
+    font-size: 8px;
     color: rgba(245, 240, 230, 0.6);
     text-align: left;
     word-break: break-all;
@@ -207,37 +203,57 @@
     color: var(--gold);
     font-weight: normal;
     display: inline-block;
-    min-width: 90px;
+    min-width: 70px;
   }
 
-  /* Pie */
   .pie {
     text-align: center;
     border-top: 1px solid rgba(201, 162, 39, 0.3);
-    padding-top: 14px;
-    font-size: 10px;
+    padding-top: 12px;
+    font-size: 9px;
     color: rgba(201, 162, 39, 0.7);
     letter-spacing: 2px;
     font-family: 'SF Mono', Menlo, monospace;
-    line-height: 1.8;
+    line-height: 1.7;
   }
 
-  /* Instrucción */
-  .instruccion {
+  /* Botón de descarga */
+  .acciones {
     position: fixed;
-    bottom: 16px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    font-size: 10px;
-    color: rgba(245, 240, 230, 0.4);
-    letter-spacing: 2px;
-    text-align: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 560px;
+  }
+  .btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 18px;
+    border-radius: 6px;
     font-family: 'SF Mono', Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 140px;
+  }
+  .btn:hover, .btn:active {
+    background: var(--gold);
+    color: var(--obsidian);
   }
 
   /* Modo exportación (limpio para imprimir) */
-  body.exportando .instruccion { display: none; }
+  body.exportando .acciones { display: none; }
   body.exportando::before,
   body.exportando::after { opacity: 0; }
 </style>
@@ -248,7 +264,7 @@
   <div class="contenido">
 
     <div class="header">
-      <div class="titulo">Certificado KRONOS</div>
+      <div class="titulo">Certificado Kronos</div>
       <div class="subtitulo">◆ REGISTRO OFICIAL · 001 ◆</div>
     </div>
 
@@ -271,7 +287,7 @@
         <div><strong>Merkle art:</strong> e69b2c24...390d93</div>
         <div><strong>Merkle doc:</strong> 67180206...ae813</div>
         <div><strong>Hash cert:</strong> <span id="hash_registro">PENDIENTE_DE_FIRMAR</span></div>
-        <div><strong>Firma:</strong> <span id="firma">PENDIENTE_DE_FIRMAR</span></div>
+        <div><strong>Firma Ed25519:</strong> <span id="firma">PENDIENTE_DE_FIRMAR</span></div>
       </div>
 
     </div>
@@ -285,30 +301,24 @@
   </div>
 </div>
 
-<div class="instruccion">
-  Mueve el dedo sobre el certificado · Toca para exportar
+<div class="acciones">
+  <button class="btn" onclick="descargarOffline()">⬇ Descargar offline</button>
+  <button class="btn" onclick="exportarImagen()">◆ Exportar imagen</button>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// EFECTO HOLOGRÁFICO · Sigue el puntero y el giroscopio
+// EFECTO HOLOGRÁFICO
 // ═══════════════════════════════════════════════════════════════════
 
 const cert = document.getElementById('certificado');
 const root = document.documentElement;
 
 function actualizarHolograma(x, y) {
-  // x, y entre 0 y 1 (relativo al centro)
-  const cx = (x - 0.5) * 2; // -1 a 1
+  const cx = (x - 0.5) * 2;
   const cy = (y - 0.5) * 2;
-
-  // Ángulo del gradiente cónico
   const angulo = Math.atan2(cy, cx) * 180 / Math.PI;
   root.style.setProperty('--angle', (angulo + 180) + 'deg');
-
-  // Cambio de hue según posición (efecto iridiscente)
-  const hue = (cx * 30 + cy * 30);
-  root.style.setProperty('--hue-shift', hue + 'deg');
 }
 
 cert.addEventListener('pointermove', (e) => {
@@ -328,7 +338,6 @@ cert.addEventListener('touchmove', (e) => {
   }
 }, { passive: true });
 
-// Giroscopio (si el dispositivo lo soporta)
 window.addEventListener('deviceorientation', (e) => {
   if (e.gamma !== null && e.beta !== null) {
     const x = Math.max(0, Math.min(1, (e.gamma + 90) / 180));
@@ -338,24 +347,43 @@ window.addEventListener('deviceorientation', (e) => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// MODO EXPORTACIÓN · Toca para limpiar y guardar
+// DESCARGA OFFLINE · Guarda el HTML completo con datos embebidos
 // ═══════════════════════════════════════════════════════════════════
 
-cert.addEventListener('dblclick', () => {
+function descargarOffline() {
+  // Recolectar el HTML actual con el estado presente
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'certificado-kronos-001.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// EXPORTAR IMAGEN · Modo impresión limpio
+// ═══════════════════════════════════════════════════════════════════
+
+function exportarImagen() {
   document.body.classList.add('exportando');
   setTimeout(() => {
     window.print();
     setTimeout(() => document.body.classList.remove('exportando'), 500);
   }, 200);
-});
+}
 
 // ═══════════════════════════════════════════════════════════════════
-// CARGA DE DATOS REALES · cuando estén disponibles
+// DATOS REALES · reemplazar cuando esté firmado
 // ═══════════════════════════════════════════════════════════════════
-
-// Cuando firmes el registro, reemplazá estos valores:
+//
 // document.getElementById('hash_registro').textContent = 'a1b2c3...';
 // document.getElementById('firma').textContent = 'd4e5f6...';
+//
 </script>
 
 </body>
