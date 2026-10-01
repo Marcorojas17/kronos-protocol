@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capturar Origen · KRONOS</title>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --panel: #14141c;
+    --gold: #c9a227;
+    --gold-light: #e5c76b;
+    --text: #e8e8e8;
+    --muted: #888;
+    --ok: #4ade80;
+    --bad: #ef4444;
+    --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 640px; margin: 0 auto; padding-bottom: 40px; }
+  h1 { color: var(--gold); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 11px; margin-bottom: 20px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .panel h2 {
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(201,162,39,0.3);
+    padding-bottom: 8px;
+  }
+  label {
+    display: block;
+    font-size: 10px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 6px;
+  }
+  input, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  textarea { min-height: 70px; resize: vertical; }
+  button {
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+  }
+  button:hover { background: var(--gold-light); }
+  button:disabled { background: #444; cursor: not-allowed; }
+  button.sec {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+  .valor {
+    background: var(--bg);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-size: 10px;
+    word-break: break-all;
+    font-family: inherit;
+    display: block;
+    user-select: all;
+    margin-top: 4px;
+  }
+  .mensaje {
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    display: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .mensaje.ok { background: rgba(74,222,128,0.1); border: 1px solid var(--ok); color: var(--ok); display: block; }
+  .mensaje.bad { background: rgba(239,68,68,0.1); border: 1px solid var(--bad); color: var(--bad); display: block; }
+  .mensaje.warn { background: rgba(245,158,11,0.1); border: 1px solid var(--warn); color: var(--warn); display: block; }
+  .oculto { display: none !important; }
+  .fila { display: flex; gap: 8px; margin-top: 8px; }
+  .fila button { flex: 1; }
+  .sello {
+    text-align: center;
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 32px;
+    opacity: 0.5;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>◢◤ Capturar Origen · KRONOS</h1>
+  <div class="sub">v1 · llave por agente · sin servidor · offline</div>
+
+  <div id="msg" class="mensaje"></div>
+
+  <!-- PASO 1: GENERAR LLAVE (solo primera vez) -->
+  <div id="paso-1" class="panel oculto">
+    <h2>Paso 1 · Crear tu llave de agente</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Esta llave es tu identidad. Firma cada origen que captures.
+      Nadie más la tiene. Nadie más puede firmar como vos.
+    </p>
+
+    <label>Contraseña para proteger tu llave (mínimo 12 caracteres)</label>
+    <input type="password" id="in-password" placeholder="············" autocomplete="new-password">
+
+    <label>Repetir contraseña</label>
+    <input type="password" id="in-password2" placeholder="············" autocomplete="new-password">
+
+    <label>Tu nombre (como agente)</label>
+    <input type="text" id="in-nombre-agente" placeholder="Ej: Carlos Ramírez">
+
+    <button id="btn-generar" onclick="generarLlave()">⚡ Generar mi llave</button>
+  </div>
+
+  <!-- PASO 1b: GUARDAR BACKUP (una sola vez, obligatorio) -->
+  <div id="paso-1b" class="panel oculto">
+    <h2>Paso 1b · Guardar backup obligatorio</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">
+      Tu llave está en este navegador. Si borrás datos o cambiás de celular,
+      se pierde. Descargá el backup AHORA. Es tu única copia de seguridad.
+    </p>
+
+    <label>Tu pubkey (mandala a la empresa por WhatsApp)</label>
+    <span class="valor" id="out-pubkey">---</span>
+    <div class="fila">
+      <button class="sec" onclick="copiarPubkey()">📋 Copiar pubkey</button>
+    </div>
+
+    <button onclick="descargarBackup()" style="margin-top:14px;">⬇ Descargar backup cifrado</button>
+
+    <p style="font-size:10px;color:var(--warn);margin-top:10px;">
+      ⚠ El backup está cifrado con tu contraseña. Sin la contraseña no se puede abrir.
+      Guardá el archivo en Drive, correo o nota privada. NO en el mismo celular.
+    </p>
+
+    <button class="sec" onclick="irACapturar()" style="margin-top:14px;">Ya guardé el backup · Continuar</button>
+  </div>
+
+  <!-- PASO 1c: CARGAR LLAVE EXISTENTE -->
+  <div id="paso-1c" class="panel oculto">
+    <h2>Cargar mi llave existente</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Elegí tu archivo de backup (llave-agente.json) e ingresá tu contraseña.
+    </p>
+
+    <label>Archivo de backup</label>
+    <input type="file" id="in-backup" accept=".json,application/json">
+
+    <label>Contraseña</label>
+    <input type="password" id="in-password-carga" placeholder="············">
+
+    <button onclick="cargarBackup()">🔓 Cargar llave</button>
+  </div>
+
+  <!-- PASO 2: CAPTURAR ORIGEN -->
+  <div id="paso-2" class="panel oculto">
+    <h2>Paso 2 · Capturar origen</h2>
+
+    <label>Nombre del cliente</label>
+    <input type="text" id="in-cliente" placeholder="Ej: Sra. Ríos">
+
+    <label>Notas del primer contacto</label>
+    <textarea id="in-nota" placeholder="Ej: Mostró interés en depa Colón. Pidió verlo de nuevo la semana próxima."></textarea>
+
+    <button onclick="firmarOrigen()">✍ Firmar origen</button>
+  </div>
+
+  <!-- PASO 3: DESCARGAR BOLETO -->
+  <div id="paso-3" class="panel oculto">
+    <h2>Paso 3 · Boleto generado</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Mandá los 2 archivos a la empresa por WhatsApp.
+    </p>
+
+    <label>Tu interaction_id (visible en el boleto)</label>
+    <span class="valor" id="out-interaction">---</span>
+
+    <button onclick="descargarBoletoJSON()" style="margin-top:10px;">⬇ Boleto JSON</button>
+    <button class="sec" onclick="descargarBoletoPNG()">⬇ Boleto PNG</button>
+
+    <button class="sec" onclick="resetearFormulario()" style="margin-top:14px;">Capturar otro origen</button>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════════════════════
+
+const STORAGE_KEY = 'kronos-agente-v1';
+const PBKDF2_ITER = 600000;
+
+let llaveEnMemoria = null;   // { privateKey, publicKey, pubHex, nombre }
+let boletoActual = null;      // { json, hash, firma, ... }
+
+function mostrar(tipo, texto) {
+  const el = document.getElementById('msg');
+  el.className = 'mensaje ' + tipo;
+  el.textContent = texto;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function bytesToHex(bytes) {
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function hexToBytes(hex) {
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i*2, 2), 16);
+  return out;
+}
+
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return bytesToHex(new Uint8Array(digest));
+}
+
+async function hashHexSha256FromBytes(bytes) {
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return bytesToHex(new Uint8Array(digest));
+}
+
+function descargarBlob(blob, nombre) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nombre;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ESTADO INICIAL
+// ═══════════════════════════════════════════════════════════════════
+
+window.addEventListener('load', async () => {
+  const guardada = localStorage.getItem(STORAGE_KEY);
+  if (guardada) {
+    // Ya hay llave guardada → intentar cargarla de memoria
+    try {
+      const data = JSON.parse(guardada);
+      const privBytes = hexToBytes(data.privHex);
+      const privKey = await crypto.subtle.importKey(
+        'pkcs8', privBytes, { name: 'Ed25519' }, true, ['sign']
+      );
+      const pubBytes = hexToBytes(data.pubHex);
+      const pubKey = await crypto.subtle.importKey(
+        'raw', pubBytes, { name: 'Ed25519' }, true, ['verify']
+      );
+      llaveEnMemoria = {
+        privateKey: privKey,
+        publicKey: pubKey,
+        pubHex: data.pubHex,
+        nombre: data.nombre || 'Agente'
+      };
+      mostrarPaso('paso-2');
+      mostrar('ok', '✓ Llave cargada para ' + llaveEnMemoria.nombre);
+    } catch (e) {
+      console.error(e);
+      // Falló el import → mostrar opciones
+      mostrarPaso('paso-1');
+      mostrarPaso('paso-1c');
+    }
+  } else {
+    // No hay llave → mostrar paso 1 y opción de cargar backup
+    mostrarPaso('paso-1');
+    mostrarPaso('paso-1c');
+  }
+});
+
+function mostrarPaso(id) {
+  document.getElementById('paso-1').classList.add('oculto');
+  document.getElementById('paso-1b').classList.add('oculto');
+  document.getElementById('paso-1c').classList.add('oculto');
+  document.getElementById('paso-2').classList.add('oculto');
+  document.getElementById('paso-3').classList.add('oculto');
+  document.getElementById(id).classList.remove('oculto');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// GENERAR LLAVE
+// ═══════════════════════════════════════════════════════════════════
+
+async function generarLlave() {
+  const pass = document.getElementById('in-password').value;
+  const pass2 = document.getElementById('in-password2').value;
+  const nombre = document.getElementById('in-nombre-agente').value.trim();
+
+  if (pass.length < 12) {
+    mostrar('bad', 'La contraseña debe tener al menos 12 caracteres.');
+    return;
+  }
+  if (pass !== pass2) {
+    mostrar('bad', 'Las contraseñas no coinciden.');
+    return;
+  }
+  if (!nombre) {
+    mostrar('bad', 'Ingresá tu nombre de agente.');
+    return;
+  }
+
+  try {
+    const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
+    const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = bytesToHex(new Uint8Array(pubRaw));
+    const privRaw = await crypto.subtle.exportKey('pkcs8', kp.privateKey);
+    const privHex = bytesToHex(new Uint8Array(privRaw));
+
+    // Guardar en localStorage (sin cifrar en localStorage, con cifrado solo en backup)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      pubHex, privHex, nombre,
+      creada: new Date().toISOString()
+    }));
+
+    llaveEnMemoria = {
+      privateKey: kp.privateKey,
+      publicKey: kp.publicKey,
+      pubHex,
+      nombre,
+      passwordTemporal: pass  // solo para backup inmediato
+    };
+
+    document.getElementById('out-pubkey').textContent = pubHex;
+    mostrarPaso('paso-1b');
+    mostrar('ok', '✓ Llave generada. Guardá el backup AHORA.');
+  } catch (e) {
+    console.error(e);
+    mostrar('bad', 'Error generando llave: ' + e.message);
+  }
+}
+
+function copiarPubkey() {
+  if (!llaveEnMemoria) return;
+  navigator.clipboard.writeText(llaveEnMemoria.pubHex).then(() => {
+    mostrar('ok', '✓ Pubkey copiada al portapapeles.');
+  }).catch(() => {
+    mostrar('warn', 'Copiá manualmente. Presioná largo sobre la pubkey.');
+  });
+}
+
+async function descargarBackup() {
+  if (!llaveEnMemoria) return;
+
+  const pass = llaveEnMemoria.passwordTemporal;
+  if (!pass) {
+    mostrar('bad', 'No hay contraseña para cifrar el backup. Regenerá la llave.');
+    return;
+  }
+
+  try {
+    // 1. Derivar clave desde password con PBKDF2
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const passBytes = new TextEncoder().encode(pass);
+    const baseKey = await crypto.subtle.importKey(
+      'raw', passBytes, { name: 'PBKDF2' }, false, ['deriveKey']
+    );
+    const aesKey = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt, iterations: PBKDF2_ITER, hash: 'SHA-256' },
+      baseKey,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['encrypt']
+    );
+
+    // 2. Exportar llave privada
+    const privBytes = hexToBytes(localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)).privHex : '');
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ciphertext = await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv },
+      aesKey,
+      privBytes
+    );
+
+    // 3. Armar archivo de backup
+    const backup = {
+      tipo: 'kronos-llave-agente',
+      version: '1.0.0',
+      advertencia: 'NO COMPARTIR. Esta llave firma como vos.',
+      nombre: llaveEnMemoria.nombre,
+      pubkey_hex: llaveEnMemoria.pubHex,
+      creada: new Date().toISOString(),
+      cifrado: {
+        algoritmo: 'AES-GCM-256',
+        kdf: 'PBKDF2-SHA256',
+        iteraciones: PBKDF2_ITER,
+        salt_hex: bytesToHex(salt),
+        iv_hex: bytesToHex(iv),
+        ciphertext_hex: bytesToHex(new Uint8Array(ciphertext))
+      }
+    };
+
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    descargarBlob(blob, 'llave-agente-' + llaveEnMemoria.nombre.replace(/\s+/g, '-').toLowerCase() + '.json');
+    mostrar('ok', '✓ Backup descargado. Guardalo FUERA del celular.');
+  } catch (e) {
+    console.error(e);
+    mostrar('bad', 'Error al generar backup: ' + e.message);
+  }
+}
+
+function irACapturar() {
+  llaveEnMemoria.passwordTemporal = null;
+  mostrarPaso('paso-2');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CARGAR BACKUP
+// ═══════════════════════════════════════════════════════════════════
+
+async function cargarBackup() {
+  const fileInput = document.getElementById('in-backup');
+  const pass = document.getElementById('in-password-carga').value;
+
+  if (!fileInput.files || fileInput.files.length === 0) {
+    mostrar('bad', 'Elegí un archivo de backup.');
+    return;
+  }
+  if (!pass) {
+    mostrar('bad', 'Ingresá tu contraseña.');
+    return;
+  }
+
+  try {
+    const texto = await fileInput.files[0].text();
+    const backup = JSON.parse(texto);
+
+    if (backup.tipo !== 'kronos-llave-agente') {
+      mostrar('bad', 'Archivo no es un backup de KRONOS.');
+      return;
+    }
+
+    const salt = hexToBytes(backup.cifrado.salt_hex);
+    const iv = hexToBytes(backup.cifrado.iv_hex);
+    const ciphertext = hexToBytes(backup.cifrado.ciphertext_hex);
+
+    // Derivar AES key
+    const passBytes = new TextEncoder().encode(pass);
+    const baseKey = await crypto.subtle.importKey(
+      'raw', passBytes, { name: 'PBKDF2' }, false, ['deriveKey']
+    );
+    const aesKey = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt, iterations: backup.cifrado.iteraciones, hash: 'SHA-256' },
+      baseKey,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    // Descifrar
+    const privBytes = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv },
+      aesKey,
+      ciphertext
+    );
+
+    // Importar llave privada
+    const privKey = await crypto.subtle.importKey(
+      'pkcs8', privBytes, { name: 'Ed25519' }, true, ['sign']
+    );
+    const pubBytes = hexToBytes(backup.pubkey_hex);
+    const pubKey = await crypto.subtle.importKey(
+      'raw', pubBytes, { name: 'Ed25519' }, true, ['verify']
+    );
+
+    llaveEnMemoria = {
+      privateKey: privKey,
+      publicKey: pubKey,
+      pubHex: backup.pubkey_hex,
+      nombre: backup.nombre
+    };
+
+    // Guardar en localStorage
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      pubHex: backup.pubkey_hex,
+      privHex: bytesToHex(new Uint8Array(privBytes)),
+      nombre: backup.nombre,
+      creada: backup.creada
+    }));
+
+    mostrarPaso('paso-2');
+    mostrar('ok', '✓ Llave cargada para ' + backup.nombre);
+  } catch (e) {
+    console.error(e);
+    mostrar('bad', 'Error al cargar: contraseña incorrecta o archivo corrupto.');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// FIRMAR ORIGEN
+// ═══════════════════════════════════════════════════════════════════
+
+async function firmarOrigen() {
+  if (!llaveEnMemoria) {
+    mostrar('bad', 'No hay llave cargada.');
+    return;
+  }
+
+  const cliente = document.getElementById('in-cliente').value.trim();
+  const nota = document.getElementById('in-nota').value.trim();
+
+  if (!cliente) {
+    mostrar('bad', 'Ingresá el nombre del cliente.');
+    return;
+  }
+
+  try {
+    const timestamp = new Date().toISOString();
+
+    // 1. Armar registro
+    const registro = {
+      version: '1.0.0',
+      tipo: 'origen',
+      cliente,
+      nota,
+      agente_nombre: llaveEnMemoria.nombre,
+      agente_pubkey: llaveEnMemoria.pubHex,
+      timestamp
+    };
+
+    // 2. Hash del registro
+    const canon = canonicalize(registro);
+    const hashRegistro = await sha256Hex(canon);
+
+    // 3. Firma Ed25519 sobre el hash
+    const firmaBuf = await crypto.subtle.sign(
+      'Ed25519',
+      llaveEnMemoria.privateKey,
+      new TextEncoder().encode(hashRegistro)
+    );
+    const firmaHex = bytesToHex(new Uint8Array(firmaBuf));
+
+    // 4. interaction_id = primeros 32 chars del hash (16 bytes)
+    const interactionId = hashRegistro.slice(0, 32);
+
+    // 5. Armar boleto completo
+    boletoActual = {
+      ...registro,
+      hash_registro: hashRegistro,
+      firma_hex: firmaHex,
+      interaction_id: interactionId,
+      algoritmo: 'Ed25519'
+    };
+
+    document.getElementById('out-interaction').textContent = interactionId;
+    mostrarPaso('paso-3');
+    mostrar('ok', '✓ Origen firmado. Mandá los 2 archivos.');
+  } catch (e) {
+    console.error(e);
+    mostrar('bad', 'Error firmando: ' + e.message);
+  }
+}
+
+function descargarBoletoJSON() {
+  if (!boletoActual) return;
+  const blob = new Blob([JSON.stringify(boletoActual, null, 2)], { type: 'application/json' });
+  descargarBlob(blob, 'boleto-origen-' + boletoActual.interaction_id.slice(0,8) + '.json');
+  mostrar('ok', '✓ Boleto JSON descargado.');
+}
+
+async function descargarBoletoPNG() {
+  if (!boletoActual) return;
+
+  const W = 900;
+  const H = 500;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Fondo
+  ctx.fillStyle = '#0a0a0b';
+  ctx.fillRect(0, 0, W, H);
+
+  // Borde dorado
+  ctx.strokeStyle = '#c9a227';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(20, 20, W - 40, H - 40);
+  ctx.lineWidth = 1;
+  ctx.strokeRect(30, 30, W - 60, H - 60);
+
+  // Header
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#e5c76b';
+  ctx.font = '600 22px Georgia, serif';
+  ctx.fillText('BOLETO DE ORIGEN · KRONOS', W/2, 85);
+
+  ctx.fillStyle = 'rgba(245,240,230,0.5)';
+  ctx.font = '500 11px monospace';
+  ctx.fillText('INTERACTION_ID: ' + boletoActual.interaction_id, W/2, 110);
+
+  // Línea separadora
+  ctx.strokeStyle = 'rgba(201,162,39,0.4)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(80, 130);
+  ctx.lineTo(W-80, 130);
+  ctx.stroke();
+
+  // Contenido
+  ctx.textAlign = 'left';
+  const items = [
+    ['Cliente:', boletoActual.cliente],
+    ['Agente:', boletoActual.agente_nombre],
+    ['Timestamp:', boletoActual.timestamp],
+    ['Nota:', boletoActual.nota.slice(0, 80) + (boletoActual.nota.length > 80 ? '...' : '')]
+  ];
+
+  let y = 170;
+  for (const [label, value] of items) {
+    ctx.fillStyle = '#c9a227';
+    ctx.font = '600 12px monospace';
+    ctx.fillText(label, 80, y);
+    ctx.fillStyle = 'rgba(245,240,230,0.9)';
+    ctx.font = '400 12px monospace';
+    ctx.fillText(value, 220, y);
+    y += 34;
+  }
+
+  // Hash
+  ctx.fillStyle = '#c9a227';
+  ctx.font = '600 10px monospace';
+  ctx.fillText('Hash:', 80, y + 10);
+  ctx.fillStyle = 'rgba(245,240,230,0.6)';
+  ctx.font = '400 9px monospace';
+  ctx.fillText(boletoActual.hash_registro.slice(0, 64), 220, y + 10);
+
+  ctx.fillStyle = '#c9a227';
+  ctx.font = '600 10px monospace';
+  ctx.fillText('Firma:', 80, y + 34);
+  ctx.fillStyle = 'rgba(245,240,230,0.6)';
+  ctx.font = '400 9px monospace';
+  ctx.fillText(boletoActual.firma_hex.slice(0, 64) + '...', 220, y + 34);
+
+  // Pie
+  ctx.textAlign = 'center';
+  ctx.fillStyle = 'rgba(201,162,39,0.6)';
+  ctx.font = '500 10px monospace';
+  ctx.fillText('Verificable offline · Sin servidor · Sin autoridad', W/2, H - 55);
+  ctx.fillText('○_● KRONOS PROTOCOL', W/2, H - 38);
+
+  canvas.toBlob((blob) => {
+    if (!blob) { mostrar('bad', 'Error generando PNG'); return; }
+    descargarBlob(blob, 'boleto-origen-' + boletoActual.interaction_id.slice(0,8) + '.png');
+    mostrar('ok', '✓ Boleto PNG descargado.');
+  }, 'image/png', 1.0);
+}
+
+function resetearFormulario() {
+  document.getElementById('in-cliente').value = '';
+  document.getElementById('in-nota').value = '';
+  document.getElementById('out-interaction').textContent = '---';
+  boletoActual = null;
+  mostrarPaso('paso-2');
+}
+</script>
+
+</body>
+</html>
