@@ -24,6 +24,7 @@ kronos-protocol/
 │   │   └── verify.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── 00-FUNDACION/
+│   ├── ACTA-v2.md
 │   ├── INDICE.md
 │   └── VERIFICADOR-OFICIAL.md
 ├── 00-SCHEMA/
@@ -58,6 +59,15 @@ kronos-protocol/
 │   │   ├── 082-tlachixqui.json
 │   │   └── esquema.json
 │   └── INDICE.md
+├── 08-HERRAMIENTAS/
+│   ├── certificado-genesis.html
+│   ├── certificado-png.html
+│   ├── certificado-svg.html
+│   ├── certificado-v10.html
+│   ├── certificado-v11.html
+│   ├── certificado-v8.html
+│   ├── certificado-vivo.html
+│   └── generar-fundador-v2.html
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -244,7 +254,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
@@ -448,6 +458,7 @@ kronos-protocol/
 ├── CODE_OF_CONDUCT.md
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
+├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.13
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7
 ├── CONTRIBUTING.md
