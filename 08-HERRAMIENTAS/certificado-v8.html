@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · Registro 001</title>
+<style>
+  :root {
+    --obsidian: #0a0a0b;
+    --panel: #0d0d10;
+    --gold: #c9a227;
+    --gold-light: #e5c76b;
+    --cream: #f5f0e6;
+    --angle: 180deg;
+    --cx: 0.5;
+    --cy: 0.5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    min-height: 100vh;
+    background: var(--obsidian);
+    color: var(--cream);
+    font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 130px;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+    animation: grain 0.15s steps(4) infinite;
+    mix-blend-mode: overlay;
+  }
+  @keyframes grain {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-2%, 1%); }
+    50%  { transform: translate(1%, -2%); }
+    75%  { transform: translate(-1%, 2%); }
+    100% { transform: translate(2%, -1%); }
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(45deg, transparent 0px, transparent 1px, rgba(201,162,39,0.35) 1px, rgba(201,162,39,0.35) 2px);
+    background-size: 3px 3px;
+  }
+
+  .certificado {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 1 / 1.414;
+    border-radius: 8px;
+    padding: 8px;
+    background: conic-gradient(
+      from var(--angle),
+      #ff6ba3 0deg, #ff9f44 40deg, #ffdd44 80deg,
+      #88ff88 130deg, #44ddff 180deg, #7799ff 220deg,
+      #cc66ff 260deg, #ff66cc 300deg, #ff6ba3 360deg
+    );
+    box-shadow:
+      0 0 30px rgba(255,107,163,0.35),
+      0 0 60px rgba(68,221,255,0.25),
+      0 0 100px rgba(204,102,255,0.2),
+      0 24px 80px rgba(0,0,0,0.7);
+  }
+  .certificado::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 6px;
+    background: linear-gradient(calc(var(--angle) + 45deg),
+      rgba(255,255,255,0.6) 0%, transparent 30%,
+      transparent 70%, rgba(255,255,255,0.4) 100%);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .contenido {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background:
+      radial-gradient(circle at calc(var(--cx)*100%) calc(var(--cy)*100%), rgba(255,220,130,0.12), transparent 55%),
+      radial-gradient(ellipse at top left, rgba(255,107,163,0.04), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(68,221,255,0.04), transparent 60%),
+      var(--panel);
+    padding: 36px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .contenido::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(201,162,39,0.3);
+    pointer-events: none;
+  }
+
+  .esquina {
+    position: absolute;
+    width: 70px; height: 70px;
+    pointer-events: none;
+    z-index: 4;
+    filter: drop-shadow(0 0 6px rgba(229,199,107,0.5));
+  }
+  .esquina-tl { top: 14px; left: 14px; }
+  .esquina-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+  .esquina-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+  .esquina-br { bottom: 14px; right: 14px; transform: scale(-1,-1); }
+
+  .header {
+    text-align: center;
+    border-bottom: 1px solid rgba(201,162,39,0.3);
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+  .titulo {
+    font-size: 22px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    background: linear-gradient(135deg, #ffdd77 0%, #c9a227 30%, #f5f0e6 50%, #c9a227 70%, #ffdd77 100%);
+    background-size: 200% 200%;
+    background-position: calc(var(--cx)*100%) calc(var(--cy)*100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitulo {
+    font-size: 9px; letter-spacing: 3px;
+    color: rgba(245,240,230,0.5);
+    margin-top: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  .cuerpo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    padding: 12px 0;
+    position: relative;
+    z-index: 3;
+  }
+  .etiqueta {
+    font-size: 8px; letter-spacing: 3px;
+    color: rgba(245,240,230,0.4);
+    text-transform: uppercase;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .nombre {
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #f5f0e6 0%, #ffdd77 40%, #f5f0e6 60%, #ffdd77 100%);
+    background-size: 200% 200%;
+    background-position: calc(var(--cx)*100%) calc(var(--cy)*100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .declaracion {
+    font-size: 10px;
+    color: rgba(245,240,230,0.7);
+    line-height: 1.5;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .fecha {
+    font-size: 10px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  .meta {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(201,162,39,0.25);
+    border-radius: 4px;
+    padding: 8px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 7px;
+    color: rgba(245,240,230,0.6);
+    text-align: left;
+    word-break: break-all;
+    line-height: 1.4;
+    position: relative;
+    z-index: 3;
+  }
+  .meta strong {
+    color: var(--gold);
+    font-weight: normal;
+    display: inline-block;
+    min-width: 60px;
+  }
+  .meta .valor { color: rgba(245,240,230,0.85); }
+
+  .firma-bloque {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(201,162,39,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    position: relative;
+    z-index: 3;
+  }
+  .rubrica {
+    width: 160px; height: 40px;
+    filter: drop-shadow(0 0 4px rgba(229,199,107,0.4));
+  }
+  .linea-firma {
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    margin: 2px 0 4px;
+  }
+  .firma-nombre {
+    font-size: 12px;
+    color: var(--cream);
+    font-style: italic;
+  }
+  .firma-cargo {
+    font-size: 7px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .firma-ciudad {
+    font-size: 7px;
+    color: rgba(245,240,230,0.4);
+    letter-spacing: 1.5px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  .pie {
+    text-align: center;
+    padding-top: 6px;
+    font-size: 7px;
+    color: rgba(201,162,39,0.7);
+    letter-spacing: 2px;
+    font-family: 'SF Mono', Menlo, monospace;
+    line-height: 1.5;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+
+  .sello {
+    position: absolute;
+    bottom: 28px;
+    right: 4px;
+    width: 110px;
+    height: 110px;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 0 20px rgba(255,107,163,0.5))
+            drop-shadow(0 0 35px rgba(68,221,255,0.35));
+  }
+
+  .acciones {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 560px;
+  }
+  .btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 130px;
+  }
+  .btn:active { background: var(--gold); color: var(--obsidian); }
+  .aviso {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,220,68,0.1);
+    border: 1px solid #ffdd44;
+    color: #ffdd44;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-family: monospace;
+    z-index: 20;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="aviso" id="aviso"></div>
+
+<div class="certificado" id="certificado">
+  <div class="contenido" id="contenido">
+
+    <svg class="esquina esquina-tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="#e5c76b" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="#e5c76b" stroke="none"/>
+      </g>
+    </svg>
+    <svg class="esquina esquina-tr" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="#e5c76b" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="#e5c76b" stroke="none"/>
+      </g>
+    </svg>
+    <svg class="esquina esquina-bl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="#e5c76b" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="#e5c76b" stroke="none"/>
+      </g>
+    </svg>
+    <svg class="esquina esquina-br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#e5c76b" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 2 L2 55 M2 2 L55 2"/>
+        <path d="M6 6 L6 50 M6 6 L50 6"/>
+        <path d="M14 14 Q14 28 28 28 Q42 28 42 42" opacity="0.9"/>
+        <path d="M6 6 Q18 6 22 14 Q26 22 18 26 Q10 30 10 38" opacity="0.8"/>
+        <circle cx="42" cy="42" r="2" fill="#e5c76b" stroke="none"/>
+        <circle cx="10" cy="10" r="1.8" fill="#e5c76b" stroke="none"/>
+      </g>
+    </svg>
+
+    <div class="header">
+      <div class="titulo">Certificado Kronos</div>
+      <div class="subtitulo">◆ REGISTRO OFICIAL · 001 ◆</div>
+    </div>
+
+    <div class="cuerpo">
+      <div class="etiqueta">Otorgado a</div>
+      <div class="nombre">Marco Antonio Rojas Valdovinos</div>
+
+      <div class="declaracion">
+        Es autor fundador del protocolo KRONOS.<br>
+        Este certificado acredita su autoría de forma matemáticamente
+        verificable, sin dependencia de servidor, autoridad o tercero.
+      </div>
+
+      <div class="fecha">Toluca, México · 2026-09-30</div>
+
+      <div class="meta">
+        <div><strong>Obra base:</strong> <span class="valor">2607086319439</span></div>
+        <div><strong>Acta v1:</strong> <span class="valor">2026-09-29T05:02:22Z</span></div>
+        <div><strong>Merkle art:</strong> <span class="valor">e69b2c24...390d93</span></div>
+        <div><strong>Merkle doc:</strong> <span class="valor">67180206...ae813</span></div>
+        <div><strong>Hash cert:</strong> <span class="valor" id="hash_registro">calculando...</span></div>
+        <div><strong>Firma:</strong> <span class="valor" id="firma">calculando...</span></div>
+        <div><strong>Pubkey:</strong> <span class="valor" id="pubkey">calculando...</span></div>
+      </div>
+
+      <div class="firma-bloque">
+        <svg class="rubrica" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="url(#rubrica-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="rubrica-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#e5c76b"/>
+                <stop offset="50%" stop-color="#f5f0e6"/>
+                <stop offset="100%" stop-color="#c9a227"/>
+              </linearGradient>
+            </defs>
+            <path d="M 15 50 L 25 15 L 40 45 L 55 15 L 65 50"/>
+            <path d="M 65 45 Q 75 25 85 40" opacity="0.9"/>
+            <path d="M 90 50 L 105 15 L 120 50 M 96 38 L 114 38"/>
+            <path d="M 120 40 Q 130 30 138 42 Q 146 52 155 42" opacity="0.85"/>
+            <path d="M 158 50 L 158 15 M 158 15 Q 175 15 175 28 Q 175 38 158 38 L 175 50"/>
+            <path d="M 175 42 Q 185 30 195 42" opacity="0.85"/>
+            <path d="M 200 15 L 215 50 L 230 15"/>
+            <path d="M 230 40 Q 240 20 250 35 Q 258 48 268 35 Q 275 25 282 35" opacity="0.9"/>
+            <circle cx="288" cy="42" r="1.8" fill="url(#rubrica-grad)" stroke="none"/>
+          </g>
+        </svg>
+        <div class="linea-firma"></div>
+        <div class="firma-nombre">Marco Antonio Rojas Valdovinos</div>
+        <div class="firma-cargo">Autor Fundador · Protocolo KRONOS</div>
+        <div class="firma-ciudad">Toluca de Lerdo, Estado de México</div>
+      </div>
+    </div>
+
+    <div class="pie">
+      <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+      <div>51% HUMANO · 49% IA · 100% REAL</div>
+      <div>"El legado no se hereda. Se firma."</div>
+    </div>
+
+    <div class="sello" id="sello">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id="sello-svg">
+        <defs>
+          <linearGradient id="irid1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff6ba3"/>
+            <stop offset="20%" stop-color="#ff9f44"/>
+            <stop offset="40%" stop-color="#ffdd44"/>
+            <stop offset="60%" stop-color="#88ff88"/>
+            <stop offset="80%" stop-color="#44ddff"/>
+            <stop offset="100%" stop-color="#cc66ff"/>
+          </linearGradient>
+          <linearGradient id="irid2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#f5f0e6"/>
+            <stop offset="50%" stop-color="#ff88cc"/>
+            <stop offset="100%" stop-color="#88ddff"/>
+          </linearGradient>
+          <linearGradient id="irid3" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ff5577"/>
+            <stop offset="50%" stop-color="#ffcc44"/>
+            <stop offset="100%" stop-color="#44ff88"/>
+          </linearGradient>
+        </defs>
+
+        <g id="rayos" opacity="0.85">
+          <polygon points="100,90 200,10 175,35" fill="#ff6ba3" opacity="0.7"/>
+          <polygon points="100,90 200,170 175,145" fill="#ffdd44" opacity="0.7"/>
+          <polygon points="100,90 0,170 25,145" fill="#44ddff" opacity="0.7"/>
+          <polygon points="100,90 0,10 25,35" fill="#88ff88" opacity="0.7"/>
+        </g>
+
+        <circle cx="100" cy="90" r="78" fill="none" stroke="url(#irid1)" stroke-width="1.8" stroke-dasharray="4 5" opacity="0.75"/>
+
+        <g transform="translate(100, 90)">
+          <path d="M0 -50 L-45 -15 L-22 30 Z" fill="url(#irid1)" opacity="0.95"/>
+          <path d="M0 -50 L45 -15 L22 30 Z" fill="url(#irid2)" opacity="0.88"/>
+          <path d="M-45 -15 L-22 30 L0 50 Z" fill="url(#irid3)" opacity="0.85"/>
+          <path d="M45 -15 L22 30 L0 50 Z" fill="url(#irid1)" opacity="0.7"/>
+          <path d="M0 -50 L45 -15 L0 50 L-45 -15 Z" fill="url(#irid2)" opacity="0.45"/>
+          <path d="M-15 -35 L12 -15 L-6 5 Z" fill="#ffffff" opacity="0.65"/>
+          <path d="M0 -50 L45 -15 L0 50 L-45 -15 Z" fill="none" stroke="#f5f0e6" stroke-width="1.5" opacity="0.95"/>
+          <path d="M-45 -15 L0 0 L45 -15" fill="none" stroke="#f5f0e6" stroke-width="0.9" opacity="0.85"/>
+          <path d="M0 0 L0 50" fill="none" stroke="#f5f0e6" stroke-width="0.9" opacity="0.85"/>
+        </g>
+
+        <rect x="52" y="182" width="96" height="14" rx="3" fill="rgba(10,10,11,0.92)" stroke="url(#irid1)" stroke-width="1.2"/>
+        <text x="100" y="192" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="url(#irid2)" letter-spacing="2">VERIFIED · 2026</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="acciones">
+  <button class="btn" onclick="descargarPNG()">⬇ PNG</button>
+  <button class="btn" onclick="descargarHTML()">⬇ HTML</button>
+</div>
+
+<script>
+const cert = document.getElementById('certificado');
+const root = document.documentElement;
+const aviso = document.getElementById('aviso');
+
+function mostrarAviso(msg) {
+  aviso.textContent = msg;
+  aviso.style.display = 'block';
+  setTimeout(() => aviso.style.display = 'none', 3000);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// EFECTO IRIDISCENTE · responde a puntero Y a inclinación del celular
+// ═══════════════════════════════════════════════════════════════════
+
+function actualizarIrdiscente(x, y) {
+  const cx = Math.max(0, Math.min(1, x));
+  const cy = Math.max(0, Math.min(1, y));
+  root.style.setProperty('--cx', cx);
+  root.style.setProperty('--cy', cy);
+  const dx = cx - 0.5;
+  const dy = cy - 0.5;
+  const angulo = (Math.atan2(dy, dx) * 180 / Math.PI) + 180;
+  root.style.setProperty('--angle', angulo + 'deg');
+  const rayos = document.getElementById('rayos');
+  if (rayos) rayos.setAttribute('transform', `rotate(${angulo * 0.2} 100 90)`);
+}
+
+cert.addEventListener('pointermove', (e) => {
+  const r = cert.getBoundingClientRect();
+  actualizarIrdiscente((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+});
+
+cert.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    const r = cert.getBoundingClientRect();
+    const t = e.touches[0];
+    actualizarIrdiscente((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
+  }
+}, { passive: true });
+
+// INCLINACIÓN DEL CELULAR (giroscopio)
+window.addEventListener('deviceorientation', (e) => {
+  if (e.gamma !== null && e.beta !== null) {
+    const x = (e.gamma + 45) / 90;
+    const y = (e.beta + 45) / 90;
+    actualizarIrdiscente(x, y);
+  }
+});
+
+// Activar permisos de giroscopio en iOS
+if (typeof DeviceOrientationEvent !== 'undefined' &&
+    typeof DeviceOrientationEvent.requestPermission === 'function') {
+  document.body.addEventListener('click', function pedirPermiso() {
+    DeviceOrientationEvent.requestPermission().catch(() => {});
+    document.body.removeEventListener('click', pedirPermiso);
+  }, { once: true });
+}
+
+actualizarIrdiscente(0.5, 0.5);
+
+// ═══════════════════════════════════════════════════════════════════
+// FIRMA Ed25519
+// ═══════════════════════════════════════════════════════════════════
+
+const DATOS_CERTIFICADO = {
+  schema_version: '1.0.0',
+  tipo: 'certificado-kodice',
+  nombre: 'Marco Antonio Rojas Valdovinos',
+  rol: 'autor-fundador',
+  protocolo: 'KRONOS',
+  obra_base: '2607086319439',
+  acta_v1: '2026-09-29T05:02:22Z',
+  merkle_articulos: 'e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93',
+  merkle_documentos: '67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813',
+  fecha: '2026-09-30',
+  lugar: 'Toluca, México'
+};
+
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function generarFirma() {
+  try {
+    const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
+    const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = Array.from(new Uint8Array(pubRaw)).map(b => b.toString(16).padStart(2, '0')).join('');
+    const canon = canonicalize(DATOS_CERTIFICADO);
+    const hashRegistro = await sha256Hex(canon);
+    const firmaBuf = await crypto.subtle.sign('Ed25519', kp.privateKey, new TextEncoder().encode(hashRegistro));
+    const firmaHex = Array.from(new Uint8Array(firmaBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+    document.getElementById('hash_registro').textContent = hashRegistro.slice(0, 30) + '...';
+    document.getElementById('firma').textContent = firmaHex.slice(0, 30) + '...';
+    document.getElementById('pubkey').textContent = pubHex.slice(0, 30) + '...';
+
+    window.__certFirmado = {
+      datos: DATOS_CERTIFICADO,
+      hash_registro: hashRegistro,
+      firma: firmaHex,
+      pubkey: pubHex,
+      algoritmo: 'Ed25519'
+    };
+  } catch (e) {
+    console.error(e);
+    document.getElementById('hash_registro').textContent = 'sin WebCrypto Ed25519';
+    document.getElementById('firma').textContent = '---';
+    document.getElementById('pubkey').textContent = '---';
+  }
+}
+generarFirma();
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA PNG · dibujamos en canvas 2D todo el certificado
+// ═══════════════════════════════════════════════════════════════════
+
+async function descargarPNG() {
+  mostrarAviso('Generando imagen...');
+
+  const W = 1200;
+  const H = 1697;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Fondo
+  ctx.fillStyle = '#0d0d10';
+  ctx.fillRect(0, 0, W, H);
+
+  // Borde arcoíris
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, '#ff6ba3');
+  grad.addColorStop(0.15, '#ff9f44');
+  grad.addColorStop(0.3, '#ffdd44');
+  grad.addColorStop(0.45, '#88ff88');
+  grad.addColorStop(0.6, '#44ddff');
+  grad.addColorStop(0.75, '#7799ff');
+  grad.addColorStop(0.9, '#cc66ff');
+  grad.addColorStop(1, '#ff6ba3');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 16;
+  ctx.strokeRect(30, 30, W - 60, H - 60);
+
+  ctx.strokeStyle = 'rgba(201,162,39,0.55)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(60, 60, W - 120, H - 120);
+
+  // Esquinas ornamentales
+  ctx.strokeStyle = '#e5c76b';
+  ctx.lineWidth = 2.5;
+  const corners = [
+    { x: 80, y: 80, dx: 1, dy: 1 },
+    { x: W - 80, y: 80, dx: -1, dy: 1 },
+    { x: 80, y: H - 80, dx: 1, dy: -1 },
+    { x: W - 80, y: H - 80, dx: -1, dy: -1 }
+  ];
+  for (const e of corners) {
+    ctx.beginPath();
+    ctx.moveTo(e.x, e.y);
+    ctx.lineTo(e.x + 100 * e.dx, e.y);
+    ctx.moveTo(e.x, e.y);
+    ctx.lineTo(e.x, e.y + 100 * e.dy);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(e.x, e.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#e5c76b';
+    ctx.fill();
+  }
+
+  // Título
+  ctx.textAlign = 'center';
+  ctx.font = '300 60px Georgia, serif';
+  ctx.fillStyle = '#c9a227';
+  ctx.fillText('CERTIFICADO', W / 2, 240);
+  ctx.fillStyle = '#e5c76b';
+  ctx.fillText('KRONOS', W / 2, 320);
+
+  // Subtítulo
+  ctx.font = '600 22px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.55)';
+  ctx.fillText('◆ REGISTRO OFICIAL · 001 ◆', W / 2, 380);
+
+  // Línea
+  ctx.strokeStyle = 'rgba(201,162,39,0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 300, 415);
+  ctx.lineTo(W / 2 + 300, 415);
+  ctx.stroke();
+
+  // OTORGADO A
+  ctx.font = '500 22px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.45)';
+  ctx.fillText('OTORGADO A', W / 2, 490);
+
+  // NOMBRE
+  ctx.font = 'italic 400 62px Georgia, serif';
+  ctx.fillStyle = '#f5f0e6';
+  ctx.fillText('Marco Antonio Rojas Valdovinos', W / 2, 570);
+
+  // Firmado con
+  ctx.font = '400 20px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.5)';
+  ctx.fillText('Firmado con llave Ed25519 · Fundador', W / 2, 615);
+
+  // Declaración
+  ctx.font = '400 24px Georgia, serif';
+  ctx.fillStyle = 'rgba(245,240,230,0.75)';
+  const lineas = [
+    'Es autor fundador del protocolo KRONOS.',
+    'Este certificado acredita su autoría de forma',
+    'matemáticamente verificable, sin dependencia',
+    'de servidor, autoridad o tercero.'
+  ];
+  let yD = 670;
+  for (const l of lineas) {
+    ctx.fillText(l, W / 2, yD);
+    yD += 34;
+  }
+
+  // Fecha
+  ctx.font = '600 22px monospace';
+  ctx.fillStyle = '#e5c76b';
+  ctx.fillText('Toluca, México · 2026-09-30', W / 2, yD + 30);
+
+  // Bloque meta
+  const metaY = yD + 70;
+  const metaX = 100;
+  const metaW = W - 200;
+  const metaH = 280;
+  ctx.fillStyle = 'rgba(0,0,0,0.45)';
+  ctx.fillRect(metaX, metaY, metaW, metaH);
+  ctx.strokeStyle = 'rgba(201,162,39,0.35)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(metaX, metaY, metaW, metaH);
+
+  ctx.textAlign = 'left';
+  const f = window.__certFirmado || { hash_registro: 'pendiente', firma: 'pendiente', pubkey: 'pendiente' };
+  const items = [
+    ['Obra base:', '2607086319439'],
+    ['Acta v1:', '2026-09-29T05:02:22Z'],
+    ['Merkle art:', 'e69b2c24...390d93'],
+    ['Merkle doc:', '67180206...ae813'],
+    ['Hash cert:', f.hash_registro.slice(0, 40) + '...'],
+    ['Firma:', f.firma.slice(0, 40) + '...'],
+    ['Pubkey:', f.pubkey.slice(0, 40) + '...']
+  ];
+  let yI = metaY + 40;
+  for (const [lbl, val] of items) {
+    ctx.font = '600 18px monospace';
+    ctx.fillStyle = '#c9a227';
+    ctx.fillText(lbl, metaX + 30, yI);
+    ctx.font = '400 16px monospace';
+    ctx.fillStyle = 'rgba(245,240,230,0.85)';
+    ctx.fillText(val, metaX + 230, yI);
+    yI += 34;
+  }
+
+  // Rúbrica (firma manuscrita)
+  const firmaY = metaY + metaH + 90;
+  ctx.textAlign = 'center';
+  ctx.strokeStyle = '#e5c76b';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  const sX = W / 2 - 180;
+  const bY = firmaY - 20;
+  ctx.beginPath();
+  ctx.moveTo(sX, bY); ctx.lineTo(sX + 15, bY - 45); ctx.lineTo(sX + 30, bY - 10);
+  ctx.lineTo(sX + 45, bY - 45); ctx.lineTo(sX + 60, bY);
+  ctx.moveTo(sX + 60, bY - 5);
+  ctx.bezierCurveTo(sX + 75, bY - 40, sX + 90, bY - 40, sX + 105, bY - 5);
+  ctx.moveTo(sX + 115, bY); ctx.lineTo(sX + 130, bY - 45); ctx.lineTo(sX + 145, bY);
+  ctx.moveTo(sX + 120, bY - 20); ctx.lineTo(sX + 140, bY - 20);
+  ctx.moveTo(sX + 145, bY - 5);
+  ctx.bezierCurveTo(sX + 160, bY - 35, sX + 175, bY - 35, sX + 190, bY - 5);
+  ctx.moveTo(sX + 200, bY); ctx.lineTo(sX + 200, bY - 45);
+  ctx.bezierCurveTo(sX + 220, bY - 45, sX + 220, bY - 20, sX + 200, bY - 20);
+  ctx.lineTo(sX + 225, bY);
+  ctx.moveTo(sX + 225, bY - 5);
+  ctx.bezierCurveTo(sX + 240, bY - 35, sX + 255, bY - 35, sX + 270, bY - 5);
+  ctx.moveTo(sX + 280, bY - 45); ctx.lineTo(sX + 295, bY); ctx.lineTo(sX + 310, bY - 45);
+  ctx.moveTo(sX + 310, bY - 10);
+  ctx.bezierCurveTo(sX + 330, bY - 45, sX + 345, bY - 10, sX + 360, bY - 30);
+  ctx.stroke();
+
+  // Línea de firma
+  ctx.strokeStyle = 'rgba(201,162,39,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 220, firmaY);
+  ctx.lineTo(W / 2 + 220, firmaY);
+  ctx.stroke();
+
+  // Nombre firmante
+  ctx.font = 'italic 400 28px Georgia, serif';
+  ctx.fillStyle = '#f5f0e6';
+  ctx.fillText('Marco Antonio Rojas Valdovinos', W / 2, firmaY + 45);
+  ctx.font = '600 16px monospace';
+  ctx.fillStyle = '#c9a227';
+  ctx.fillText('AUTOR FUNDADOR · PROTOCOLO KRONOS', W / 2, firmaY + 75);
+  ctx.font = '400 14px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.4)';
+  ctx.fillText('Toluca de Lerdo, Estado de México', W / 2, firmaY + 100);
+
+  // Pie
+  ctx.font = '600 18px monospace';
+  ctx.fillStyle = 'rgba(201,162,39,0.75)';
+  ctx.fillText('○_● · ◢◤◥◣ · ◥◣◢◤', W / 2, H - 140);
+  ctx.font = '500 16px monospace';
+  ctx.fillStyle = 'rgba(201,162,39,0.65)';
+  ctx.fillText('51% HUMANO · 49% IA · 100% REAL', W / 2, H - 110);
+  ctx.font = 'italic 400 18px Georgia, serif';
+  ctx.fillStyle = 'rgba(201,162,39,0.75)';
+  ctx.fillText('"El legado no se hereda. Se firma."', W / 2, H - 75);
+
+  // Sello
+  const sX2 = W - 200;
+  const sY = H - 200;
+  const sR = 90;
+
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 3;
+  ctx.setLineDash([6, 6]);
+  ctx.beginPath();
+  ctx.arc(sX2, sY, sR, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = '#c9a227';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.arc(sX2, sY, sR - 8, 0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.save();
+  ctx.translate(sX2, sY);
+  const g1 = ctx.createLinearGradient(-30, -30, 30, 30);
+  g1.addColorStop(0, '#ff6ba3');
+  g1.addColorStop(0.3, '#ffdd44');
+  g1.addColorStop(0.6, '#88ff88');
+  g1.addColorStop(1, '#44ddff');
+  const g2 = ctx.createLinearGradient(30, -30, -30, 30);
+  g2.addColorStop(0, '#f5f0e6');
+  g2.addColorStop(0.4, '#ffdd77');
+  g2.addColorStop(1, '#cc66ff');
+
+  ctx.beginPath(); ctx.moveTo(0, -50); ctx.lineTo(-42, -15); ctx.lineTo(-20, 28); ctx.closePath();
+  ctx.fillStyle = g1; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(0, -50); ctx.lineTo(42, -15); ctx.lineTo(20, 28); ctx.closePath();
+  ctx.fillStyle = g2; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-42, -15); ctx.lineTo(-20, 28); ctx.lineTo(0, 48); ctx.closePath();
+  ctx.fillStyle = g2; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(42, -15); ctx.lineTo(20, 28); ctx.lineTo(0, 48); ctx.closePath();
+  ctx.fillStyle = g1; ctx.fill();
+
+  ctx.beginPath(); ctx.moveTo(0, -50); ctx.lineTo(42, -15); ctx.lineTo(0, 48); ctx.lineTo(-42, -15); ctx.closePath();
+  ctx.strokeStyle = '#f5f0e6'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-42, -15); ctx.lineTo(0, 0); ctx.lineTo(42, -15); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, 48); ctx.stroke();
+
+  ctx.beginPath(); ctx.moveTo(-12, -32); ctx.lineTo(10, -15); ctx.lineTo(-5, -5); ctx.closePath();
+  ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.fill();
+  ctx.restore();
+
+  ctx.font = '700 15px monospace';
+  ctx.fillStyle = '#e5c76b';
+  ctx.textAlign = 'center';
+  ctx.fillText('VERIFIED · 2026', sX2, sY + sR + 5);
+
+  // Descargar
+  canvas.toBlob((blob) => {
+    if (!blob) { mostrarAviso('Error generando PNG'); return; }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `certificado-kronos-001-${Date.now()}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    mostrarAviso('✓ PNG descargado');
+  }, 'image/png', 1.0);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA HTML · guarda el HTML con firma embebida
+// ═══════════════════════════════════════════════════════════════════
+
+function descargarHTML() {
+  mostrarAviso('Preparando HTML offline...');
+  const firma = window.__certFirmado;
+  let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  if (firma) {
+    const comentario = '\n<!--\n' +
+      'KRONOS · CERTIFICADO REGISTRO-001\n' +
+      '════════════════════════════════════\n' +
+      JSON.stringify(firma, null, 2) + '\n' +
+      '════════════════════════════════════\n' +
+      'Guardá este archivo. Es tu certificado offline.\n' +
+      '-->';
+    html = html.replace('</body>', comentario + '\n</body>');
+  }
+
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `certificado-kronos-001-${Date.now()}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  mostrarAviso('✓ HTML guardado');
+}
+</script>
+
+</body>
+</html>
