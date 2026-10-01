@@ -1,0 +1,94 @@
+name: arbol
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commits-main
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generar arbol completo
+        run: |
+          python3 <<'PYEOF'
+          from pathlib import Path
+          from datetime import datetime
+
+          EXCLUIR = {'.git', 'node_modules', '__pycache__', '.venv', '.pytest_cache', '.ruff_cache'}
+
+          lineas = []
+          lineas.append("# ARBOL COMPLETO DEL REPO")
+          lineas.append("")
+          lineas.append(f"Generado: {datetime.utcnow().isoformat()}Z")
+          lineas.append("")
+
+          total_archivos = 0
+          total_bytes = 0
+          por_ext = {}
+
+          def caminar(ruta, prefijo=""):
+              global total_archivos, total_bytes
+              try:
+                  hijos = sorted(ruta.iterdir(), key=lambda p: (not p.is_dir(), p.name.lower()))
+              except PermissionError:
+                  return
+              hijos = [h for h in hijos if h.name not in EXCLUIR]
+              for i, hijo in enumerate(hijos):
+                  ultimo = i == len(hijos) - 1
+                  conector = "└── " if ultimo else "├── "
+                  if hijo.is_dir():
+                      lineas.append(f"{prefijo}{conector}{hijo.name}/")
+                      caminar(hijo, prefijo + ("    " if ultimo else "│   "))
+                  else:
+                      tam = hijo.stat().st_size
+                      ext = hijo.suffix or "(sin ext)"
+                      por_ext[ext] = por_ext.get(ext, 0) + 1
+                      total_archivos += 1
+                      total_bytes += tam
+                      lineas.append(f"{prefijo}{conector}{hijo.name}  ({tam} B)")
+
+          lineas.append("```")
+          lineas.append("kronos-protocol/")
+          caminar(Path('.'))
+          lineas.append("```")
+          lineas.append("")
+          lineas.append("## RESUMEN")
+          lineas.append("")
+          lineas.append(f"- Total archivos: {total_archivos}")
+          lineas.append(f"- Total tamano: {total_bytes} B ({round(total_bytes/1024, 1)} KB)")
+          lineas.append("")
+          lineas.append("## Por extension")
+          lineas.append("")
+          for ext, cant in sorted(por_ext.items(), key=lambda x: -x[1])[:30]:
+              lineas.append(f"- `{ext}` — {cant} archivos")
+
+          Path('ARBOL-COMPLETO.md').write_text('\n'.join(lineas), encoding='utf-8')
+          print(f"Total: {total_archivos} archivos, {total_bytes} bytes")
+          PYEOF
+
+      - name: Commit
+        run: |
+          git config user.name "kronos-bot"
+          git config user.email "bot@kronos.local"
+          git add ARBOL-COMPLETO.md
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "chore: arbol completo del repo [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi
