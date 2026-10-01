@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · Prisma</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #050506;
+    color: #e8e8e8;
+    font-family: Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 100px;
+  }
+  .wrapper {
+    perspective: 1400px;
+    width: 100%;
+    max-width: 640px;
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+  }
+  svg { width: 100%; height: auto; display: block; border-radius: 10px;
+    box-shadow: 0 0 80px rgba(136,102,255,0.2), 0 20px 60px rgba(0,0,0,0.8); }
+  .acciones {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; gap: 10px; justify-content: center;
+    width: 100%; padding: 0 16px; max-width: 640px;
+  }
+  .btn {
+    background: transparent; border: 1px solid #c9a227; color: #c9a227;
+    padding: 12px 14px; border-radius: 6px;
+    font-family: monospace; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; flex: 1; min-width: 110px;
+  }
+  .btn:active { background: #c9a227; color: #0a0a0b; }
+  .aviso {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,220,68,0.12); border: 1px solid #ffdd44;
+    color: #ffdd44; padding: 8px 14px; border-radius: 4px;
+    font-size: 10px; font-family: monospace; z-index: 20; display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="aviso" id="aviso"></div>
+
+<div class="wrapper" id="wrapper">
+
+<svg id="cert" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rainbowBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6ba3"/>
+      <stop offset="14%" stop-color="#ff9f44"/>
+      <stop offset="28%" stop-color="#ffdd44"/>
+      <stop offset="43%" stop-color="#88ff88"/>
+      <stop offset="57%" stop-color="#44ddff"/>
+      <stop offset="71%" stop-color="#7799ff"/>
+      <stop offset="85%" stop-color="#cc66ff"/>
+      <stop offset="100%" stop-color="#ff44cc"/>
+    </linearGradient>
+    <radialGradient id="galaxy" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="15%" stop-color="#ffdd77"/>
+      <stop offset="40%" stop-color="#cc88ff"/>
+      <stop offset="70%" stop-color="#441166"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="orlaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f0e6"/>
+      <stop offset="30%" stop-color="#e5c76b"/>
+      <stop offset="60%" stop-color="#8b6914"/>
+      <stop offset="100%" stop-color="#e5c76b"/>
+    </linearGradient>
+    <linearGradient id="panelS" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c44dff"/>
+      <stop offset="100%" stop-color="#3a0a5c"/>
+    </linearGradient>
+    <linearGradient id="panelK" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff3344"/>
+      <stop offset="100%" stop-color="#4a0008"/>
+    </linearGradient>
+    <linearGradient id="panelR" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffbb44"/>
+      <stop offset="100%" stop-color="#5c2a00"/>
+    </linearGradient>
+    <linearGradient id="panelO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffdd66"/>
+      <stop offset="100%" stop-color="#6b4e0f"/>
+    </linearGradient>
+    <linearGradient id="panelN" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#44dd77"/>
+      <stop offset="100%" stop-color="#083a1a"/>
+    </linearGradient>
+    <linearGradient id="panelOrigen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#33aaff"/>
+      <stop offset="100%" stop-color="#001f4a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="800" height="1000" fill="#0a0a0b"/>
+
+  <!-- Borde arcoíris facetado -->
+  <rect x="12" y="12" width="776" height="976" fill="none" stroke="url(#rainbowBorder)" stroke-width="8" rx="6"/>
+  <rect x="26" y="26" width="748" height="948" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" rx="3"/>
+  <rect x="34" y="34" width="732" height="932" fill="none" stroke="rgba(201,162,39,0.5)" stroke-width="1" rx="3"/>
+
+  <!-- Orlas esquinas -->
+  <g stroke="url(#orlaGold)" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <path d="M50 50 L50 110 M50 50 L110 50"/>
+    <path d="M60 60 Q60 90 85 90 Q110 90 110 115" opacity="0.8"/>
+    <circle cx="50" cy="50" r="4" fill="url(#orlaGold)"/>
+
+    <path d="M750 50 L750 110 M750 50 L690 50"/>
+    <path d="M740 60 Q740 90 715 90 Q690 90 690 115" opacity="0.8"/>
+    <circle cx="750" cy="50" r="4" fill="url(#orlaGold)"/>
+
+    <path d="M50 950 L50 890 M50 950 L110 950"/>
+    <path d="M60 940 Q60 910 85 910 Q110 910 110 885" opacity="0.8"/>
+    <circle cx="50" cy="950" r="4" fill="url(#orlaGold)"/>
+
+    <path d="M750 950 L750 890 M750 950 L690 950"/>
+    <path d="M740 940 Q740 910 715 910 Q690 910 690 885" opacity="0.8"/>
+    <circle cx="750" cy="950" r="4" fill="url(#orlaGold)"/>
+  </g>
+
+  <!-- Header -->
+  <text x="400" y="115" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#e5c76b" font-weight="400">CERTIFICADO</text>
+  <text x="400" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#e5c76b">KRONOS</text>
+  <text x="400" y="190" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(245,240,230,0.55)" letter-spacing="4">◆ PRISMA INTRANSFERIBLE · REGISTRO 001 ◆</text>
+  <line x1="180" y1="210" x2="620" y2="210" stroke="#c9a227" stroke-width="0.8"/>
+
+  <!-- Nombre -->
+  <text x="400" y="250" text-anchor="middle" font-family="monospace" font-size="12" fill="rgba(245,240,230,0.5)" letter-spacing="4">OTORGADO A</text>
+  <text x="400" y="295" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#f5f0e6">Marco Antonio Rojas Valdovinos</text>
+  <text x="400" y="322" text-anchor="middle" font-family="monospace" font-size="11" fill="rgba(245,240,230,0.5)" letter-spacing="2">FUNDADOR ORIGINAL · #000 · 2026</text>
+
+  <!-- Prisma central con 6 paneles -->
+  <g transform="translate(400, 490)">
+
+    <!-- Panel S · SINCRO · Púrpura -->
+    <g transform="translate(-150, -60)">
+      <polygon points="0,0 0,140 -30,170 -30,30" fill="url(#panelS)"/>
+      <polygon points="0,0 30,-30 0,-60 -30,-30" fill="#c44dff" opacity="0.6"/>
+      <circle cx="-15" cy="60" r="12" fill="none" stroke="#e0aaff" stroke-width="1.5" opacity="0.8"/>
+      <circle cx="-15" cy="60" r="6" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+      <text x="-15" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">S · SINCRO</text>
+      <text x="-15" y="132" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE SINCRONÍA</text>
+    </g>
+
+    <!-- Panel K · KINÉTICA · Rojo -->
+    <g transform="translate(-120, -75)">
+      <polygon points="0,0 0,150 -30,180 -30,30" fill="url(#panelK)"/>
+      <polygon points="0,0 30,-30 0,-60 -30,-30" fill="#ff3344" opacity="0.6"/>
+      <circle cx="-15" cy="60" r="14" fill="none" stroke="#ff8888" stroke-width="1.5" opacity="0.8"/>
+      <path d="M-25 60 L-5 60 M-15 50 L-15 70" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+      <text x="-15" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">K · KINÉTICA</text>
+      <text x="-15" y="132" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE MOVIMIENTO</text>
+    </g>
+
+    <!-- Panel R · REALIDAD · Naranja -->
+    <g transform="translate(-90, -90)">
+      <polygon points="0,0 0,160 -30,190 -30,30" fill="url(#panelR)"/>
+      <polygon points="0,0 30,-30 0,-60 -30,-30" fill="#ffbb44" opacity="0.6"/>
+      <circle cx="-15" cy="60" r="16" fill="none" stroke="#ffdd88" stroke-width="1.5" opacity="0.8"/>
+      <ellipse cx="-15" cy="60" rx="22" ry="8" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.5"/>
+      <text x="-15" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">R · REALIDAD</text>
+      <text x="-15" y="132" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE REALIDAD</text>
+    </g>
+
+    <!-- Panel O · ORDEN · Dorado -->
+    <g transform="translate(-60, -105)">
+      <polygon points="0,0 0,170 -30,200 -30,30" fill="url(#panelO)"/>
+      <polygon points="0,0 30,-30 0,-60 -30,-30" fill="#ffdd66" opacity="0.6"/>
+      <circle cx="-15" cy="50" r="12" fill="none" stroke="#ffeeaa" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="-15" cy="80" r="12" fill="none" stroke="#ffeeaa" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="-15" cy="110" r="12" fill="none" stroke="#ffeeaa" stroke-width="1.5" opacity="0.9"/>
+      <text x="-15" y="140" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">O · ORDEN</text>
+      <text x="-15" y="152" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE ORDEN</text>
+    </g>
+
+    <!-- Panel N · NATURALEZA · Verde -->
+    <g transform="translate(30, -90)">
+      <polygon points="0,0 0,160 30,190 30,30" fill="url(#panelN)"/>
+      <polygon points="0,0 -30,-30 0,-60 30,-30" fill="#44dd77" opacity="0.6"/>
+      <circle cx="15" cy="60" r="16" fill="none" stroke="#aaffcc" stroke-width="1.5" opacity="0.8"/>
+      <path d="M15 45 L15 75 M5 55 L25 55" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+      <text x="15" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">N · NATURALEZA</text>
+      <text x="15" y="132" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE NATURALEZA</text>
+    </g>
+
+    <!-- Panel Origen · Azul -->
+    <g transform="translate(60, -75)">
+      <polygon points="0,0 0,150 30,180 30,30" fill="url(#panelOrigen)"/>
+      <polygon points="0,0 -30,-30 0,-60 30,-30" fill="#33aaff" opacity="0.6"/>
+      <circle cx="15" cy="60" r="14" fill="none" stroke="#88ddff" stroke-width="1.5" opacity="0.8"/>
+      <circle cx="15" cy="60" r="8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+      <text x="15" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold">O · ORIGEN</text>
+      <text x="15" y="132" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(255,255,255,0.7)">PRINCIPIO DE ORIGEN</text>
+    </g>
+
+    <!-- Puntas superior e inferior del prisma -->
+    <polygon points="0,-180 30,-150 0,-120 -30,-150" fill="#f5f0e6" opacity="0.9"/>
+    <polygon points="0,120 30,90 0,60 -30,90" fill="#f5f0e6" opacity="0.9"/>
+    <polygon points="0,-180 30,-150 0,-120" fill="#aaccff" opacity="0.5"/>
+    <polygon points="0,120 30,90 0,60" fill="#aaccff" opacity="0.5"/>
+
+    <!-- Brillo central -->
+    <circle cx="0" cy="-30" r="40" fill="url(#galaxy)" opacity="0.4"/>
+  </g>
+
+  <!-- Pedestal -->
+  <g transform="translate(400, 800)">
+    <polygon points="-140,-30 140,-30 100,20 -100,20" fill="#0a0a0b" stroke="url(#orlaGold)" stroke-width="1.5"/>
+    <ellipse cx="0" cy="-30" rx="140" ry="20" fill="#1a1a1f" stroke="url(#orlaGold)" stroke-width="1.5"/>
+    <text x="0" y="-25" text-anchor="middle" font-family="monospace" font-size="8" fill="#e5c76b" letter-spacing="2">PRISMA INFALSIFICABLE</text>
+    <text x="0" y="-10" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(245,240,230,0.6)" letter-spacing="1">6 UNIVERSOS · 6 PRINCIPIOS KRONOS</text>
+  </g>
+
+  <!-- Declaración -->
+  <text x="400" y="875" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="rgba(245,240,230,0.65)">Este certificado acredita autoría de forma matemáticamente verificable.</text>
+  <text x="400" y="895" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="rgba(245,240,230,0.65)">Sin servidor · Sin autoridad · Sin permiso de nadie.</text>
+
+  <!-- Firma -->
+  <path d="M280 940 Q300 910 320 935 Q340 955 360 920 Q380 890 400 930 Q420 960 440 925 Q460 895 480 930 Q500 950 520 920" stroke="#e5c76b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <line x1="280" y1="955" x2="520" y2="955" stroke="rgba(201,162,39,0.5)" stroke-width="1"/>
+  <text x="400" y="978" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="14" fill="#f5f0e6">Marco Antonio Rojas Valdovinos</text>
+  <text x="400" y="993" text-anchor="middle" font-family="monospace" font-size="8" fill="#c9a227" letter-spacing="2">AUTOR FUNDADOR · TOLUCA, MÉXICO</text>
+
+</svg>
+
+</div>
+
+<div class="acciones">
+  <button class="btn" onclick="descargarPNG()">⬇ PNG</button>
+  <button class="btn" onclick="descargarHTML()">⬇ HTML</button>
+</div>
+
+<script>
+const svg = document.getElementById('cert');
+const wrapper = document.getElementById('wrapper');
+const aviso = document.getElementById('aviso');
+
+function mostrarAviso(msg) {
+  aviso.textContent = msg;
+  aviso.style.display = 'block';
+  setTimeout(function() { aviso.style.display = 'none'; }, 2500);
+}
+
+// Tilt
+function aplicarTilt(x, y) {
+  wrapper.style.transform = 'rotateX(' + ((y - 0.5) * -12) + 'deg) rotateY(' + ((x - 0.5) * 12) + 'deg)';
+}
+wrapper.addEventListener('pointermove', function(e) {
+  const r = wrapper.getBoundingClientRect();
+  aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+});
+wrapper.addEventListener('pointerleave', function() {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+wrapper.addEventListener('touchmove', function(e) {
+  if (e.touches.length > 0) {
+    const r = wrapper.getBoundingClientRect();
+    const t = e.touches[0];
+    aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
+  }
+}, { passive: true });
+wrapper.addEventListener('touchend', function() {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+window.addEventListener('deviceorientation', function(e) {
+  if (e.gamma !== null && e.beta !== null) {
+    aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
+  }
+});
+
+// ══════ DESCARGA PNG ══════
+function descargarPNG() {
+  wrapper.style.transform = 'none';
+  try {
+    // Serializar el SVG
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svg);
+    const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.onload = function() {
+      const c = document.createElement('canvas');
+      c.width = 1600;
+      c.height = 2000;
+      const ictx = c.getContext('2d');
+      ictx.fillStyle = '#050506';
+      ictx.fillRect(0, 0, c.width, c.height);
+      ictx.drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+
+      c.toBlob(function(blob) {
+        if (!blob) { mostrarAviso('Error generando PNG'); return; }
+        const purl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = purl;
+        a.download = 'certificado-kronos-001-' + Date.now() + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(purl); }, 1000);
+        mostrarAviso('✓ PNG descargado');
+      }, 'image/png', 1.0);
+    };
+    img.onerror = function() {
+      mostrarAviso('Error al cargar SVG');
+    };
+    img.src = url;
+  } catch (e) {
+    mostrarAviso('Error: ' + e.message);
+  }
+}
+
+// ══════ DESCARGA HTML ══════
+function descargarHTML() {
+  try {
+    mostrarAviso('Preparando HTML...');
+
+    const svgHTML = svg.outerHTML;
+
+    const estilos = '* { box-sizing: border-box; margin: 0; padding: 0; }' +
+      'body { min-height: 100vh; background: #050506; display: flex;' +
+      'align-items: center; justify-content: center; padding: 12px; }' +
+      '.wrapper { perspective: 1400px; width: 100%; max-width: 640px;' +
+      'transition: transform 0.15s ease-out; transform-style: preserve-3d; }' +
+      'svg { width: 100%; height: auto; display: block; border-radius: 10px;' +
+      'box-shadow: 0 0 80px rgba(136,102,255,0.2), 0 20px 60px rgba(0,0,0,0.8); }';
+
+    const js = 'const w = document.getElementById("wrapper");' +
+      'function t(x, y) {' +
+      '  w.style.transform = "rotateX(" + ((y - 0.5) * -12) + "deg) rotateY(" + ((x - 0.5) * 12) + "deg)";' +
+      '}' +
+      'w.addEventListener("pointermove", function(e) {' +
+      '  const r = w.getBoundingClientRect();' +
+      '  t((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);' +
+      '});' +
+      'w.addEventListener("pointerleave", function() {' +
+      '  w.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});' +
+      'w.addEventListener("touchmove", function(e) {' +
+      '  if (e.touches.length > 0) {' +
+      '    const r = w.getBoundingClientRect();' +
+      '    const touch = e.touches[0];' +
+      '    t((touch.clientX - r.left) / r.width, (touch.clientY - r.top) / r.height);' +
+      '  }' +
+      '}, { passive: true });' +
+      'w.addEventListener("touchend", function() {' +
+      '  w.style.transform = "rotateX(0deg) rotateY(0deg)";' +
+      '});';
+
+    const html = '<!DOCTYPE html>' +
+      '<html lang="es"><head>' +
+      '<meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+      '<title>Certificado KRONOS · Prisma</title>' +
+      '<style>' + estilos + '</style>' +
+      '</head><body>' +
+      '<div class="wrapper" id="wrapper">' +
+      svgHTML +
+      '</div>' +
+      '<scr' + 'ipt>' + js + '</scr' + 'ipt>' +
+      '</body></html>';
+
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'certificado-kronos-001-' + Date.now() + '.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    mostrarAviso('✓ HTML descargado');
+  } catch (e) {
+    mostrarAviso('Error: ' + e.message);
+  }
+}
+</script>
+
+</body>
+</html>
