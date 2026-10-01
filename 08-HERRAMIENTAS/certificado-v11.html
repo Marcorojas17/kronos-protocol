@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · Registro 001</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    min-height: 100vh;
+    background: #050506;
+    color: #e8e8e8;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px 100px;
+  }
+  .wrapper {
+    perspective: 1400px;
+    width: 100%;
+    max-width: 720px;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+  canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow:
+      0 0 80px rgba(255,107,163,0.15),
+      0 0 120px rgba(136,102,255,0.12),
+      0 20px 60px rgba(0,0,0,0.8);
+    transition: box-shadow 0.3s;
+  }
+  .acciones {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+    padding: 0 16px;
+    max-width: 720px;
+  }
+  .btn {
+    background: transparent;
+    border: 1px solid #c9a227;
+    color: #c9a227;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex: 1;
+    min-width: 110px;
+    transition: all 0.2s;
+  }
+  .btn:active { background: #c9a227; color: #0a0a0b; }
+  .aviso {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,220,68,0.12);
+    border: 1px solid #ffdd44;
+    color: #ffdd44;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: monospace;
+    z-index: 20;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="aviso" id="aviso"></div>
+
+<div class="wrapper" id="wrapper">
+  <canvas id="cert" width="1400" height="1400"></canvas>
+</div>
+
+<div class="acciones">
+  <button class="btn" onclick="descargarPNG()">⬇ PNG</button>
+  <button class="btn" onclick="descargarHTML()">⬇ HTML</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// DATOS
+// ═══════════════════════════════════════════════════════════════════
+
+const DATOS = {
+  nombre: 'Marco Antonio Rojas Valdovinos',
+  cargo: 'Autor Fundador · Protocolo KRONOS',
+  ciudad: 'Toluca de Lerdo, Estado de México',
+  titulo: 'CERTIFICADO KRONOS',
+  registro: 'REGISTRO OFICIAL · 001',
+  declaracion: 'Es autor fundador del protocolo KRONOS. Este certificado acredita su autoría de forma matemáticamente verificable, sin dependencia de servidor, autoridad o tercero.',
+  fecha: 'Toluca, México · 2026-09-30',
+  obra_base: '2607086319439',
+  acta_v1: '2026-09-29T05:02:22Z',
+  merkle_art: 'e69b2c24...390d93',
+  merkle_doc: '67180206...ae813',
+  hash_cert: 'd646c5d8bad7b229a6e4c38dfd99a122040c4ea1...',
+  firma: 'd685545c6a4236427a9822cbb814227a4726ac05...',
+  pubkey: 'c54d2855292daaef881991c28119f9f7e2b9974c...'
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// CANVAS
+// ═══════════════════════════════════════════════════════════════════
+
+const canvas = document.getElementById('cert');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;   // 1400
+const H = canvas.height;  // 1400
+
+const ORO = '#c9a227';
+const ORO_CLARO = '#e5c76b';
+const ORO_OSCURO = '#6b4e0f';
+const CREMA = '#f5f0e6';
+const FONDO = '#0a0a0b';
+
+// Colores tipo facetas de diamante
+const DIAMANTE = ['#ff6ba3', '#ff9f44', '#ffdd44', '#88ff88', '#44ddff', '#7799ff', '#cc66ff', '#ff44cc'];
+
+// ═══════════════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════════════
+
+// Devuelve el color de la faceta según posición (0-1)
+function facetColor(pos) {
+  const idx = Math.floor(pos * DIAMANTE.length) % DIAMANTE.length;
+  return DIAMANTE[idx];
+}
+
+// Gradiente multicolor tipo diamante
+function gradienteDiamante(x1, y1, x2, y2) {
+  const g = ctx.createLinearGradient(x1, y1, x2, y2);
+  for (let i = 0; i < DIAMANTE.length; i++) {
+    g.addColorStop(i / (DIAMANTE.length - 1), DIAMANTE[i]);
+  }
+  return g;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// BORDE FACETADO TIPO DIAMANTE
+// ═══════════════════════════════════════════════════════════════════
+
+function bordeFacetado(inset) {
+  const x = inset;
+  const y = inset;
+  const w = W - inset * 2;
+  const h = H - inset * 2;
+
+  // Trazo exterior grueso con gradiente
+  ctx.save();
+  ctx.lineJoin = 'round';
+
+  // Capa 1: borde grueso multicolor (13px)
+  ctx.strokeStyle = gradienteDiamante(x, y, x + w, y + h);
+  ctx.lineWidth = 14;
+  ctx.strokeRect(x, y, w, h);
+
+  // Capa 2: borde interior blanco translúcido (efecto luz)
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(x + 9, y + 9, w - 18, h - 18);
+
+  // Capa 3: borde oscuro exterior
+  ctx.strokeStyle = 'rgba(0,0,0,0.7)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(x - 8, y - 8, w + 16, h + 16);
+
+  ctx.restore();
+}
+
+// Marco facetado interior
+function marcoInterior(inset) {
+  const x = inset;
+  const y = inset;
+  const w = W - inset * 2;
+  const h = H - inset * 2;
+
+  ctx.save();
+  ctx.strokeStyle = 'rgba(201,162,39,0.55)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(x, y, w, h);
+  ctx.restore();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// GUILLOCHE
+// ═══════════════════════════════════════════════════════════════════
+
+function bandaGuilloche(x, y, ancho, alto, color, iteraciones) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x, y, ancho, alto);
+  ctx.clip();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 0.8;
+  ctx.globalAlpha = 0.5;
+
+  const pasos = 400;
+  const ciclos = iteraciones || 6;
+  const amplitud = alto / 2 - 2;
+
+  for (let k = 0; k < 12; k++) {
+    ctx.beginPath();
+    const phase = k * 0.15;
+    for (let i = 0; i <= pasos; i++) {
+      const t = i / pasos;
+      const px = x + t * ancho;
+      const py = y + alto / 2 + Math.sin(t * Math.PI * 2 * ciclos + phase) * amplitud * 0.8
+                    + Math.sin(t * Math.PI * 2 * (ciclos * 2) + phase * 2) * amplitud * 0.2;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+function bandaGuillocheV(x, y, ancho, alto, color, iteraciones) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x, y, ancho, alto);
+  ctx.clip();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 0.8;
+  ctx.globalAlpha = 0.5;
+
+  const pasos = 400;
+  const ciclos = iteraciones || 8;
+  const amplitud = ancho / 2 - 2;
+
+  for (let k = 0; k < 12; k++) {
+    ctx.beginPath();
+    const phase = k * 0.15;
+    for (let i = 0; i <= pasos; i++) {
+      const t = i / pasos;
+      const py = y + t * alto;
+      const px = x + ancho / 2 + Math.sin(t * Math.PI * 2 * ciclos + phase) * amplitud * 0.8
+                    + Math.sin(t * Math.PI * 2 * (ciclos * 2) + phase * 2) * amplitud * 0.2;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MICROTEXTO Y ROSETA
+// ═══════════════════════════════════════════════════════════════════
+
+function microtextoCircular(cx, cy, radio, texto, tamano, color) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.font = `${tamano}px monospace`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const chars = texto.split('');
+  const paso = (Math.PI * 2) / chars.length;
+  for (let i = 0; i < chars.length; i++) {
+    const a = i * paso - Math.PI / 2;
+    const x = cx + Math.cos(a) * radio;
+    const y = cy + Math.sin(a) * radio;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(a + Math.PI / 2);
+    ctx.fillText(chars[i], 0, 0);
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+function roseta(cx, cy, radio, opciones) {
+  const opt = opciones || {};
+  const capas = opt.capas || 40;
+  const colorBase = opt.color || ORO_CLARO;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Elipses rotadas
+  ctx.strokeStyle = colorBase;
+  ctx.lineWidth = 0.8;
+  ctx.globalAlpha = 0.7;
+  for (let i = 0; i < capas; i++) {
+    const angle = (i / capas) * Math.PI;
+    ctx.save();
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, radio * 0.9, radio * 0.28, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Elipses más pequeñas
+  ctx.globalAlpha = 0.45;
+  for (let i = 0; i < capas; i++) {
+    const angle = (i / capas) * Math.PI + Math.PI / capas;
+    ctx.save();
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, radio * 0.75, radio * 0.18, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Círculos concéntricos
+  ctx.globalAlpha = 0.55;
+  for (let r = radio; r > radio * 0.7; r -= 3) {
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Rayos
+  ctx.globalAlpha = 0.5;
+  const numRayos = 72;
+  for (let i = 0; i < numRayos; i++) {
+    const a = (i / numRayos) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a) * radio * 0.7, Math.sin(a) * radio * 0.7);
+    ctx.lineTo(Math.cos(a) * radio * 0.98, Math.sin(a) * radio * 0.98);
+    ctx.stroke();
+  }
+
+  // Puntos
+  ctx.globalAlpha = 0.9;
+  ctx.fillStyle = colorBase;
+  for (let i = 0; i < 96; i++) {
+    const a = (i / 96) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(Math.cos(a) * radio * 0.62, Math.sin(a) * radio * 0.62, 1, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DIBUJO PRINCIPAL
+// ═══════════════════════════════════════════════════════════════════
+
+function dibujarCertificado() {
+  // Fondo negro
+  ctx.fillStyle = FONDO;
+  ctx.fillRect(0, 0, W, H);
+
+  // Resplandor sutil de fondo
+  const bgGrad = ctx.createRadialGradient(W/2, H/2, 100, W/2, H/2, W);
+  bgGrad.addColorStop(0, 'rgba(201,162,39,0.05)');
+  bgGrad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // ═══════ BORDES FACETADOS DIAMANTE ═══════
+  bordeFacetado(40);
+
+  // Guilloche superior e inferior (más anchas para formato cuadrado)
+  bandaGuilloche(70, 70, W - 140, 50, ORO_CLARO, 10);
+  bandaGuilloche(70, H - 120, W - 140, 50, ORO_CLARO, 10);
+
+  // Guilloche lateral
+  bandaGuillocheV(70, 130, 50, H - 260, ORO_CLARO, 14);
+  bandaGuillocheV(W - 120, 130, 50, H - 260, ORO_CLARO, 14);
+
+  // Marco interior dorado
+  marcoInterior(145);
+  marcoInterior(155);
+
+  // Microtexto circular
+  microtextoCircular(
+    W/2, H/2, W/2 - 95,
+    '· KRONOS PROTOCOL · VERIFICABLE OFFLINE · SIN SERVIDOR · SIN AUTORIDAD · REGISTRO ' + DATOS.obra_base + ' · ',
+    6, 'rgba(201,162,39,0.5)'
+  );
+
+  // Esquinas con espirales
+  const esquinas = [
+    { x: 175, y: 175, dx: 1, dy: 1 },
+    { x: W - 175, y: 175, dx: -1, dy: 1 },
+    { x: 175, y: H - 175, dx: 1, dy: -1 },
+    { x: W - 175, y: H - 175, dx: -1, dy: -1 }
+  ];
+  for (const e of esquinas) {
+    ctx.save();
+    ctx.translate(e.x, e.y);
+    ctx.scale(e.dx, e.dy);
+    ctx.strokeStyle = ORO_CLARO;
+    ctx.lineWidth = 1.6;
+
+    // Espiral
+    ctx.beginPath();
+    for (let t = 0; t < 220; t++) {
+      const a = (t / 220) * Math.PI * 4.5;
+      const r = 5 + (t / 220) * 55;
+      const x = Math.cos(a) * r;
+      const y = Math.sin(a) * r;
+      if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Puntos
+    ctx.beginPath();
+    ctx.arc(75, 0, 3.5, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 75, 3.5, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Líneas
+    ctx.beginPath();
+    ctx.moveTo(85, 0); ctx.lineTo(120, 0);
+    ctx.moveTo(0, 85); ctx.lineTo(0, 120);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // ═══════ HEADER ═══════
+  ctx.textAlign = 'center';
+
+  // Título
+  ctx.font = '400 78px Georgia, "Times New Roman", serif';
+  ctx.fillStyle = ORO_CLARO;
+  ctx.shadowColor = 'rgba(0,0,0,0.9)';
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetY = 3;
+  ctx.fillText('CERTIFICADO', W/2, 295);
+  ctx.fillText('KRONOS', W/2, 385);
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+
+  // Registro
+  ctx.font = '500 24px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.55)';
+  ctx.fillText('◆  ' + DATOS.registro + '  ◆', W/2, 445);
+
+  // Línea separadora
+  ctx.strokeStyle = ORO;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(W/2 - 320, 480);
+  ctx.lineTo(W/2 + 320, 480);
+  ctx.stroke();
+
+  // ═══════ NOMBRE ═══════
+  ctx.font = '500 22px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.5)';
+  ctx.fillText('OTORGADO A', W/2, 535);
+
+  ctx.font = 'italic 400 62px Georgia, "Times New Roman", serif';
+  ctx.fillStyle = CREMA;
+  ctx.shadowColor = 'rgba(201,162,39,0.5)';
+  ctx.shadowBlur = 22;
+  ctx.fillText(DATOS.nombre, W/2, 620);
+  ctx.shadowBlur = 0;
+
+  ctx.font = '400 20px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.5)';
+  ctx.fillText('Firmado con llave Ed25519 · Fundador', W/2, 665);
+
+  // ═══════ DECLARACIÓN ═══════
+  ctx.font = '400 23px Georgia, serif';
+  ctx.fillStyle = 'rgba(245,240,230,0.75)';
+
+  const palabras = DATOS.declaracion.split(' ');
+  const lineas = [];
+  let lineaActual = '';
+  const maxAncho = W - 380;
+  for (const p of palabras) {
+    const test = lineaActual ? lineaActual + ' ' + p : p;
+    if (ctx.measureText(test).width > maxAncho && lineaActual) {
+      lineas.push(lineaActual);
+      lineaActual = p;
+    } else {
+      lineaActual = test;
+    }
+  }
+  if (lineaActual) lineas.push(lineaActual);
+
+  let yL = 725;
+  for (const l of lineas) {
+    ctx.fillText(l, W/2, yL);
+    yL += 34;
+  }
+
+  // Fecha
+  ctx.font = '600 23px monospace';
+  ctx.fillStyle = ORO_CLARO;
+  ctx.fillText(DATOS.fecha, W/2, yL + 45);
+
+  // ═══════ BLOQUE META ═══════
+  const metaY = yL + 90;
+  const metaX = 220;
+  const metaW = W - 440;
+  const metaH = 330;
+
+  ctx.fillStyle = 'rgba(0,0,0,0.55)';
+  ctx.fillRect(metaX, metaY, metaW, metaH);
+
+  ctx.strokeStyle = 'rgba(201,162,39,0.45)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(metaX, metaY, metaW, metaH);
+
+  ctx.textAlign = 'left';
+  const items = [
+    ['Obra base:', DATOS.obra_base],
+    ['Acta v1:', DATOS.acta_v1],
+    ['Merkle art:', DATOS.merkle_art],
+    ['Merkle doc:', DATOS.merkle_doc],
+    ['Hash cert:', DATOS.hash_cert],
+    ['Firma:', DATOS.firma],
+    ['Pubkey:', DATOS.pubkey]
+  ];
+
+  let yItem = metaY + 48;
+  for (const [label, valor] of items) {
+    ctx.font = '600 18px monospace';
+    ctx.fillStyle = ORO;
+    ctx.fillText(label, metaX + 45, yItem);
+
+    ctx.font = '400 16px monospace';
+    ctx.fillStyle = 'rgba(245,240,230,0.88)';
+    ctx.fillText(valor, metaX + 290, yItem);
+
+    yItem += 42;
+  }
+
+  // ═══════ RÚBRICA + FIRMA ═══════
+  const firmaY = metaY + metaH + 90;
+  ctx.textAlign = 'center';
+
+  // Rúbrica
+  ctx.strokeStyle = ORO_CLARO;
+  ctx.lineWidth = 2.6;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+
+  const sx = W/2 - 240;
+  const by = firmaY - 15;
+
+  // M
+  ctx.moveTo(sx, by);
+  ctx.lineTo(sx + 20, by - 60);
+  ctx.lineTo(sx + 40, by - 10);
+  ctx.lineTo(sx + 60, by - 60);
+  ctx.lineTo(sx + 80, by);
+
+  // onda
+  ctx.moveTo(sx + 80, by - 5);
+  ctx.bezierCurveTo(sx + 98, by - 55, sx + 120, by - 55, sx + 138, by - 5);
+
+  // A
+  ctx.moveTo(sx + 154, by);
+  ctx.lineTo(sx + 174, by - 60);
+  ctx.lineTo(sx + 194, by);
+  ctx.moveTo(sx + 162, by - 28);
+  ctx.lineTo(sx + 187, by - 28);
+
+  // onda
+  ctx.moveTo(sx + 194, by - 5);
+  ctx.bezierCurveTo(sx + 212, by - 50, sx + 232, by - 50, sx + 250, by - 5);
+
+  // R
+  ctx.moveTo(sx + 265, by);
+  ctx.lineTo(sx + 265, by - 60);
+  ctx.bezierCurveTo(sx + 292, by - 60, sx + 292, by - 28, sx + 265, by - 28);
+  ctx.lineTo(sx + 298, by);
+
+  // onda
+  ctx.moveTo(sx + 298, by - 5);
+  ctx.bezierCurveTo(sx + 316, by - 50, sx + 336, by - 50, sx + 354, by - 5);
+
+  // V
+  ctx.moveTo(sx + 370, by - 60);
+  ctx.lineTo(sx + 390, by);
+  ctx.lineTo(sx + 410, by - 60);
+
+  // rizo final
+  ctx.moveTo(sx + 410, by - 10);
+  ctx.bezierCurveTo(sx + 434, by - 60, sx + 456, by - 10, sx + 478, by - 38);
+
+  ctx.stroke();
+
+  // Línea firma
+  ctx.strokeStyle = 'rgba(201,162,39,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(W/2 - 300, firmaY);
+  ctx.lineTo(W/2 + 300, firmaY);
+  ctx.stroke();
+
+  // Nombre firmante
+  ctx.font = 'italic 400 32px Georgia, serif';
+  ctx.fillStyle = CREMA;
+  ctx.fillText(DATOS.nombre, W/2, firmaY + 60);
+
+  ctx.font = '600 17px monospace';
+  ctx.fillStyle = ORO;
+  ctx.fillText('AUTOR FUNDADOR · PROTOCOLO KRONOS', W/2, firmaY + 96);
+
+  ctx.font = '400 15px monospace';
+  ctx.fillStyle = 'rgba(245,240,230,0.45)';
+  ctx.fillText(DATOS.ciudad, W/2, firmaY + 124);
+
+  // ═══════ PIE ═══════
+  ctx.font = '500 18px monospace';
+  ctx.fillStyle = 'rgba(201,162,39,0.75)';
+  ctx.fillText('REGISTRO VERIFICABLE · ED25519 · SHA-256', W/2, H - 250);
+  ctx.font = '400 16px monospace';
+  ctx.fillStyle = 'rgba(201,162,39,0.5)';
+  ctx.fillText('KRONOS PROTOCOL · ' + DATOS.obra_base, W/2, H - 218);
+
+  // ═══════ SELLO ROSETA · ESQUINA INFERIOR DERECHA ═══════
+  const selloX = W - 240;
+  const selloY = H - 240;
+  const selloR = 140;
+
+  // Halo
+  const halo = ctx.createRadialGradient(selloX, selloY, 10, selloX, selloY, selloR + 50);
+  halo.addColorStop(0, 'rgba(229,199,107,0.4)');
+  halo.addColorStop(0.5, 'rgba(201,162,39,0.15)');
+  halo.addColorStop(1, 'rgba(201,162,39,0)');
+  ctx.fillStyle = halo;
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR + 50, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Anillo holográfico grueso
+  ctx.strokeStyle = gradienteDiamante(selloX - selloR, selloY - selloR, selloX + selloR, selloY + selloR);
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR + 15, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Anillo punteado
+  ctx.strokeStyle = ORO;
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 6]);
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR + 28, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Fondo del sello
+  ctx.fillStyle = '#08080a';
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR + 10, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Roseta
+  roseta(selloX, selloY, selloR, { capas: 44, color: ORO_CLARO });
+
+  // Microtexto sello
+  microtextoCircular(
+    selloX, selloY, selloR * 0.5,
+    '·KRONOS·VERIFIED·ED25519·KRONOS·VERIFIED·2026·',
+    7, ORO_CLARO
+  );
+
+  // Diamante central (facetas multicolor)
+  ctx.save();
+  ctx.translate(selloX, selloY);
+
+  // Faceta superior izquierda
+  ctx.beginPath();
+  ctx.moveTo(0, -58);
+  ctx.lineTo(-42, -20);
+  ctx.lineTo(-20, 28);
+  ctx.closePath();
+  ctx.fillStyle = DIAMANTE[0];
+  ctx.globalAlpha = 0.95;
+  ctx.fill();
+
+  // Faceta superior derecha
+  ctx.beginPath();
+  ctx.moveTo(0, -58);
+  ctx.lineTo(42, -20);
+  ctx.lineTo(20, 28);
+  ctx.closePath();
+  ctx.fillStyle = DIAMANTE[3];
+  ctx.globalAlpha = 0.9;
+  ctx.fill();
+
+  // Faceta inferior izquierda
+  ctx.beginPath();
+  ctx.moveTo(-42, -20);
+  ctx.lineTo(-20, 28);
+  ctx.lineTo(0, 58);
+  ctx.closePath();
+  ctx.fillStyle = DIAMANTE[4];
+  ctx.globalAlpha = 0.85;
+  ctx.fill();
+
+  // Faceta inferior derecha
+  ctx.beginPath();
+  ctx.moveTo(42, -20);
+  ctx.lineTo(20, 28);
+  ctx.lineTo(0, 58);
+  ctx.closePath();
+  ctx.fillStyle = DIAMANTE[6];
+  ctx.globalAlpha = 0.75;
+  ctx.fill();
+
+  // Faceta frontal brillante
+  ctx.globalAlpha = 0.4;
+  ctx.beginPath();
+  ctx.moveTo(0, -58);
+  ctx.lineTo(42, -20);
+  ctx.lineTo(0, 58);
+  ctx.lineTo(-42, -20);
+  ctx.closePath();
+  ctx.fillStyle = CREMA;
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Bordes
+  ctx.strokeStyle = CREMA;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(0, -58);
+  ctx.lineTo(42, -20);
+  ctx.lineTo(0, 58);
+  ctx.lineTo(-42, -20);
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(-42, -20);
+  ctx.lineTo(0, 0);
+  ctx.lineTo(42, -20);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, 58);
+  ctx.stroke();
+
+  // Destello
+  ctx.beginPath();
+  ctx.moveTo(-14, -38);
+  ctx.lineTo(12, -16);
+  ctx.lineTo(-4, -4);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fill();
+
+  ctx.restore();
+
+  // Texto VERIFIED
+  ctx.textAlign = 'center';
+  ctx.font = '700 15px monospace';
+  ctx.fillStyle = ORO_CLARO;
+  ctx.fillText('VERIFIED · 2026', selloX, selloY + selloR + 55);
+}
+
+// Dibujar al cargar
+dibujarCertificado();
+
+// ═══════════════════════════════════════════════════════════════════
+// TILT
+// ═══════════════════════════════════════════════════════════════════
+
+const wrapper = document.getElementById('wrapper');
+function aplicarTilt(x, y) {
+  const rx = (y - 0.5) * -14;
+  const ry = (x - 0.5) * 14;
+  wrapper.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+}
+wrapper.addEventListener('pointermove', (e) => {
+  const r = wrapper.getBoundingClientRect();
+  aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+});
+wrapper.addEventListener('pointerleave', () => {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+wrapper.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    const r = wrapper.getBoundingClientRect();
+    const t = e.touches[0];
+    aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
+  }
+}, { passive: true });
+wrapper.addEventListener('touchend', () => {
+  wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+});
+window.addEventListener('deviceorientation', (e) => {
+  if (e.gamma !== null && e.beta !== null) {
+    aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
+  }
+});
+if (typeof DeviceOrientationEvent !== 'undefined' &&
+    typeof DeviceOrientationEvent.requestPermission === 'function') {
+  document.body.addEventListener('click', function pedir() {
+    DeviceOrientationEvent.requestPermission().catch(() => {});
+    document.body.removeEventListener('click', pedir);
+  }, { once: true });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGAS
+// ═══════════════════════════════════════════════════════════════════
+
+const aviso = document.getElementById('aviso');
+function mostrarAviso(msg) {
+  aviso.textContent = msg;
+  aviso.style.display = 'block';
+  setTimeout(() => aviso.style.display = 'none', 3000);
+}
+
+function descargarPNG() {
+  try {
+    wrapper.style.transform = 'none';
+    canvas.toBlob((blob) => {
+      if (!blob) { mostrarAviso('Error: blob vacío'); return; }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `certificado-kronos-001-${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      mostrarAviso('✓ PNG descargado');
+    }, 'image/png', 1.0);
+  } catch (e) {
+    mostrarAviso('Error: ' + e.message);
+    console.error(e);
+  }
+}
+
+function descargarHTML() {
+  try {
+    mostrarAviso('Preparando HTML...');
+
+    // Convertir el canvas actual a imagen base64
+    const imagenB64 = canvas.toDataURL('image/png');
+
+    // Estilos para el HTML descargado
+    const estilos = `
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        min-height: 100vh;
+        background: #050506;
+        color: #e8e8e8;
+        font-family: Georgia, serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        overflow-x: hidden;
+      }
+      .wrapper {
+        perspective: 1400px;
+        width: 100%;
+        max-width: 720px;
+        transition: transform 0.15s ease-out;
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        box-shadow:
+          0 0 80px rgba(255,107,163,0.15),
+          0 0 120px rgba(136,102,255,0.12),
+          0 20px 60px rgba(0,0,0,0.8);
+      }
+    `;
+
+    // JS para el tilt en el HTML descargado
+    const js = `
+      const wrapper = document.getElementById('wrapper');
+      function aplicarTilt(x, y) {
+        const rx = (y - 0.5) * -14;
+        const ry = (x - 0.5) * 14;
+        wrapper.style.transform = 'rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+      }
+      wrapper.addEventListener('pointermove', function(e) {
+        const r = wrapper.getBoundingClientRect();
+        aplicarTilt((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+      });
+      wrapper.addEventListener('pointerleave', function() {
+        wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+      wrapper.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 0) {
+          const r = wrapper.getBoundingClientRect();
+          const t = e.touches[0];
+          aplicarTilt((t.clientX - r.left) / r.width, (t.clientY - r.top) / r.height);
+        }
+      }, { passive: true });
+      wrapper.addEventListener('touchend', function() {
+        wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+      window.addEventListener('deviceorientation', function(e) {
+        if (e.gamma !== null && e.beta !== null) {
+          aplicarTilt((e.gamma + 45) / 90, (e.beta + 45) / 90);
+        }
+      });
+    `;
+
+    const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · Registro 001</title>
+<style>${estilos}</style>
+</head>
+<body>
+<div class="wrapper" id="wrapper">
+  <img src="${imagenB64}" alt="Certificado KRONOS · Registro 001">
+</div>
+
+<!--
+KRONOS · CERTIFICADO REGISTRO-001
+════════════════════════════════════
+${JSON.stringify(DATOS, null, 2)}
+════════════════════════════════════
+Guardá este archivo. Es tu certificado offline.
+-->
+
+<script>${js}</script>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `certificado-kronos-001-${Date.now()}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    mostrarAviso('✓ HTML descargado');
+  } catch (e) {
+    mostrarAviso('Error: ' + e.message);
+    console.error(e);
+  }
+}
+</script>
+
+</body>
+</html>
