@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notario Digital · KRONOS</title>
+<style>
+  :root{--bg:#0a0a0b;--panel:#14141c;--gold:#c9a227;--gold-light:#e5c76b;--text:#e8e8e8;--muted:#888;--ok:#4ade80;--bad:#ef4444;--warn:#f59e0b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'SF Mono',Menlo,Consolas,monospace;min-height:100vh;padding:20px;line-height:1.6;}
+  .container{max-width:680px;margin:0 auto;padding-bottom:40px;}
+  h1{color:var(--gold);font-size:15px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+  .sub{color:var(--muted);font-size:11px;margin-bottom:20px;}
+  .panel{background:var(--panel);border:1px solid var(--gold);border-radius:8px;padding:16px;margin-bottom:14px;}
+  .panel h2{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;border-bottom:1px solid rgba(201,162,39,0.3);padding-bottom:8px;}
+  label{display:block;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin:12px 0 6px;}
+  input[type="file"]{width:100%;background:var(--bg);border:1px solid #333;border-radius:4px;color:var(--text);padding:10px;font-family:inherit;font-size:12px;}
+  button{background:var(--gold);color:var(--bg);border:none;padding:12px 20px;border-radius:4px;font-family:inherit;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;cursor:pointer;width:100%;margin-top:8px;}
+  button:hover{background:var(--gold-light);}
+  button.sec{background:transparent;border:1px solid var(--gold);color:var(--gold);}
+  .msg{padding:12px;border-radius:4px;font-size:11px;margin-bottom:12px;display:none;white-space:pre-wrap;word-break:break-word;}
+  .msg.ok{background:rgba(74,222,128,0.1);border:1px solid var(--ok);color:var(--ok);display:block;}
+  .msg.bad{background:rgba(239,68,68,0.1);border:1px solid var(--bad);color:var(--bad);display:block;}
+  .msg.warn{background:rgba(245,158,11,0.1);border:1px solid var(--warn);color:var(--warn);display:block;}
+  .oculto{display:none!important;}
+  .boleto-item{background:var(--bg);border:1px solid #333;border-radius:4px;padding:10px;margin-bottom:6px;font-size:10px;word-break:break-all;}
+  .boleto-item .estado{font-weight:bold;font-size:11px;}
+  .boleto-item.ok{border-color:var(--ok);}
+  .boleto-item.bad{border-color:var(--bad);}
+  .boleto-item.warn{border-color:var(--warn);}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+  .stat{background:var(--bg);border:1px solid #333;border-radius:4px;padding:10px;text-align:center;}
+  .stat .num{font-size:20px;color:var(--gold-light);font-weight:bold;}
+  .stat .lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .sello{text-align:center;color:var(--gold);font-size:10px;margin-top:32px;opacity:0.5;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>◢◤ Notario Digital · KRONOS</h1>
+  <div class="sub">v1 · indexa y valida boletos · sin servidor</div>
+
+  <div id="msg" class="msg"></div>
+
+  <!-- PASO 1 · EMPRESA -->
+  <div class="panel">
+    <h2>Paso 1 · Cargar empresa.json</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Es la lista de agentes autorizados. Solo se leen sus pubkeys públicas.
+    </p>
+    <input type="file" id="in-empresa" accept=".json,application/json" onchange="cargarEmpresa(event)">
+    <div id="empresa-info" class="oculto" style="margin-top:12px;font-size:11px;color:var(--ok);"></div>
+  </div>
+
+  <!-- PASO 2 · BOLETOS -->
+  <div class="panel">
+    <h2>Paso 2 · Cargar boletos</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">
+      Elegí todos los boleto-origen-*.json que quieras indexar. Podés elegir varios a la vez.
+    </p>
+    <input type="file" id="in-boletos" accept=".json,application/json" multiple onchange="cargarBoletos(event)">
+    <button onclick="procesar()">📋 Procesar y generar índice</button>
+  </div>
+
+  <!-- PASO 3 · RESULTADO -->
+  <div class="panel oculto" id="panel-resultado">
+    <h2>Paso 3 · Índice generado</h2>
+
+    <div class="stats" id="stats"></div>
+
+    <label style="margin-top:16px;">Boletos procesados</label>
+    <div id="lista-boletos"></div>
+
+    <button onclick="descargarIndiceJSON()" style="margin-top:14px;">⬇ Índice JSON</button>
+    <button class="sec" onclick="descargarIndiceMD()">⬇ Índice Markdown</button>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+  </div>
+
+</div>
+
+<script>
+let empresa = null;
+let boletos = [];
+let resultado = null;
+
+function mostrar(tipo, texto){
+  const el = document.getElementById('msg');
+  el.className = 'msg ' + tipo;
+  el.textContent = texto;
+  el.style.display = 'block';
+  setTimeout(()=>{el.style.display='none';},5000);
+}
+
+function bytesToHex(bytes){return Array.from(bytes).map(b=>b.toString(16).padStart(2,'0')).join('');}
+function hexToBytes(hex){const out=new Uint8Array(hex.length/2);for(let i=0;i<out.length;i++)out[i]=parseInt(hex.substr(i*2,2),16);return out;}
+function canonicalize(o){
+  if(o===null||typeof o!=='object')return JSON.stringify(o);
+  if(Array.isArray(o))return '['+o.map(canonicalize).join(',')+']';
+  const k=Object.keys(o).sort();
+  return '{'+k.map(x=>JSON.stringify(x)+':'+canonicalize(o[x])).join(',')+'}';
+}
+async function sha256Hex(t){
+  const b=new TextEncoder().encode(t);
+  const d=await crypto.subtle.digest('SHA-256',b);
+  return bytesToHex(new Uint8Array(d));
+}
+function descargarBlob(blob,nombre){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=nombre;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+
+// ═══════ CARGAR EMPRESA ═══════
+function cargarEmpresa(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=(e)=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!data.empresa||!Array.isArray(data.agentes)){
+        mostrar('bad','empresa.json inválido.');return;
+      }
+      empresa=data;
+      const info=document.getElementById('empresa-info');
+      info.textContent='✓ Empresa: '+data.empresa+' · '+data.agentes.length+' agentes';
+      info.classList.remove('oculto');
+      mostrar('ok','Empresa cargada: '+data.empresa);
+    }catch(err){mostrar('bad','Error: '+err.message);}
+  };
+  r.readAsText(file);
+}
+
+// ═══════ CARGAR BOLETOS ═══════
+async function cargarBoletos(event){
+  const files=Array.from(event.target.files);
+  if(!files.length)return;
+  boletos=[];
+  for(const f of files){
+    try{
+      const texto=await f.text();
+      const data=JSON.parse(texto);
+      boletos.push({archivo:f.name,data});
+    }catch(e){console.error('Error leyendo',f.name,e);}
+  }
+  mostrar('ok','✓ '+boletos.length+' boletos cargados. Tocá "Procesar".');
+}
+
+// ═══════ PROCESAR ═══════
+async function procesar(){
+  if(!empresa){mostrar('bad','Cargá empresa.json primero.');return;}
+  if(!boletos.length){mostrar('bad','Cargá al menos 1 boleto.');return;}
+
+  const resultados=[];
+  let ok=0,alterado=0,noAut=0,inactivo=0,fuera=0,incompleto=0;
+
+  for(const {archivo,data} of boletos){
+    const r=await validarBoleto(data);
+    r.archivo=archivo;
+    resultados.push(r);
+    if(r.estado==='VERIFICADO')ok++;
+    else if(r.estado==='ALTERADO')alterado++;
+    else if(r.estado==='NO_AUTORIZADO')noAut++;
+    else if(r.estado==='INACTIVO')inactivo++;
+    else if(r.estado==='FUERA_PERIODO')fuera++;
+    else if(r.estado==='INCOMPLETO')incompleto++;
+  }
+
+  resultado={
+    timestamp:new Date().toISOString(),
+    empresa:empresa.empresa,
+    total:boletos.length,
+    verificados:ok,
+    alterados:alterado,
+    no_autorizados:noAut,
+    inactivos:inactivo,
+    fuera_periodo:fuera,
+    incompletos:incompleto,
+    boletos:resultados
+  };
+
+  document.getElementById('stats').innerHTML =
+    '<div class="stat"><div class="num">'+boletos.length+'</div><div class="lbl">Total</div></div>'+
+    '<div class="stat"><div class="num" style="color:var(--ok)">'+ok+'</div><div class="lbl">Verificados</div></div>'+
+    '<div class="stat"><div class="num" style="color:var(--bad)">'+alterado+'</div><div class="lbl">Alterados</div></div>'+
+    '<div class="stat"><div class="num" style="color:var(--warn)">'+(noAut+inactivo+fuera+incompleto)+'</div><div class="lbl">Con reservas</div></div>';
+
+  const list=document.getElementById('lista-boletos');
+  list.innerHTML='';
+  for(const r of resultados){
+    const div=document.createElement('div');
+    let clase='ok';
+    if(r.estado==='ALTERADO'||r.estado==='INCOMPLETO')clase='bad';
+    else if(r.estado!=='VERIFICADO')clase='warn';
+    div.className='boleto-item '+clase;
+    div.innerHTML=
+      '<div class="estado" style="color:var(--'+clase==='ok'?'ok':(clase==='bad'?'bad':'warn')+')">'+r.estado+'</div>'+
+      '<div>'+r.archivo+'</div>'+
+      (r.cliente?'<div>Cliente: '+r.cliente+'</div>':'')+
+      (r.agente?'<div>Agente: '+r.agente+'</div>':'')+
+      (r.timestamp?'<div>'+r.timestamp+'</div>':'');
+    list.appendChild(div);
+  }
+
+  document.getElementById('panel-resultado').classList.remove('oculto');
+  mostrar('ok','✓ Índice generado. '+ok+'/'+boletos.length+' verificados.');
+}
+
+// ═══════ VALIDAR UN BOLETO ═══════
+async function validarBoleto(b){
+  const requeridos=['version','tipo','cliente','nota','agente_nombre','agente_pubkey','timestamp','hash_registro','firma_hex','interaction_id','algoritmo'];
+  for(const c of requeridos){
+    if(!(c in b))return {estado:'INCOMPLETO',detalle:'Falta campo: '+c};
+  }
+
+  const registro={
+    version:b.version,tipo:b.tipo,cliente:b.cliente,nota:b.nota,
+    agente_nombre:b.agente_nombre,agente_pubkey:b.agente_pubkey,timestamp:b.timestamp
+  };
+  const canon=canonicalize(registro);
+  const hashCalc=await sha256Hex(canon);
+
+  const agente=empresa.agentes.find(a=>a.pubkey===b.agente_pubkey);
+  const t=new Date(b.timestamp).getTime();
+  const alta=agente?new Date(agente.alta).getTime():Infinity;
+  const baja=agente&&agente.baja?new Date(agente.baja).getTime():Infinity;
+
+  const base={
+    cliente:b.cliente,
+    agente:b.agente_nombre,
+    timestamp:b.timestamp,
+    interaction_id:b.interaction_id,
+    hash_registro:b.hash_registro
+  };
+
+  if(hashCalc!==b.hash_registro)return Object.assign({estado:'ALTERADO',detalle:'Hash no coincide'},base);
+
+  let firmaValida=false;
+  try{
+    const pubBytes=hexToBytes(b.agente_pubkey);
+    const pk=await crypto.subtle.importKey('raw',pubBytes,{name:'Ed25519'},false,['verify']);
+    firmaValida=await crypto.subtle.verify('Ed25519',pk,hexToBytes(b.firma_hex),new TextEncoder().encode(b.hash_registro));
+  }catch(e){firmaValida=false;}
+  if(!firmaValida)return Object.assign({estado:'ALTERADO',detalle:'Firma inválida'},base);
+
+  if(!agente)return Object.assign({estado:'NO_AUTORIZADO',detalle:'Pubkey no en empresa.json'},base);
+  if(!agente.activo)return Object.assign({estado:'INACTIVO',detalle:'Agente dado de baja'},base);
+  if(t<alta||t>baja)return Object.assign({estado:'FUERA_PERIODO',detalle:'Timestamp fuera de rango'},base);
+
+  return Object.assign({estado:'VERIFICADO',detalle:'OK'},base);
+}
+
+// ═══════ DESCARGAS ═══════
+function descargarIndiceJSON(){
+  if(!resultado)return;
+  const blob=new Blob([JSON.stringify(resultado,null,2)],{type:'application/json'});
+  descargarBlob(blob,'indice-boletos-'+Date.now()+'.json');
+  mostrar('ok','✓ Índice JSON descargado.');
+}
+
+function descargarIndiceMD(){
+  if(!resultado)return;
+  const r=resultado;
+  const lineas=[];
+  lineas.push('# Índice de Boletos · '+r.empresa);
+  lineas.push('');
+  lineas.push('Generado: '+r.timestamp);
+  lineas.push('');
+  lineas.push('## Resumen');
+  lineas.push('');
+  lineas.push('- Total: '+r.total);
+  lineas.push('- ✓ Verificados: '+r.verificados);
+  lineas.push('- ✗ Alterados: '+r.alterados);
+  lineas.push('- ⚠ No autorizados: '+r.no_autorizados);
+  lineas.push('- ⚠ Inactivos: '+r.inactivos);
+  lineas.push('- ⚠ Fuera de periodo: '+r.fuera_periodo);
+  lineas.push('- ⚠ Incompletos: '+r.incompletos);
+  lineas.push('');
+  lineas.push('## Detalle');
+  lineas.push('');
+  lineas.push('| # | Estado | Cliente | Agente | Timestamp | Archivo |');
+  lineas.push('|---|---|---|---|---|---|');
+  r.boletos.forEach((b,i)=>{
+    lineas.push('| '+(i+1)+' | '+b.estado+' | '+(b.cliente||'-')+' | '+(b.agente||'-')+' | '+(b.timestamp||'-')+' | '+b.archivo+' |');
+  });
+  const blob=new Blob([lineas.join('\n')],{type:'text/markdown'});
+  descargarBlob(blob,'indice-boletos-'+Date.now()+'.md');
+  mostrar('ok','✓ Índice Markdown descargado.');
+}
+</script>
+
+</body>
+</html>
