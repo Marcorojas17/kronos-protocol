@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado KRONOS · PNG</title>
+<style>
+  :root {
+    --obsidian: #0a0a0b;
+    --panel: #14141c;
+    --gold: #c9a227;
+    --gold-light: #e5c76b;
+    --text: #e8e8e8;
+    --muted: #888;
+    --ok: #4ade80;
+    --bad: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--obsidian);
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 {
+    color: var(--gold);
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sub { color: var(--muted); font-size: 11px; margin-bottom: 24px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    color: var(--gold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(201,162,39,0.3);
+    padding-bottom: 8px;
+  }
+  .ok {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid var(--ok);
+    color: var(--ok);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    white-space: pre-wrap;
+    display: none;
+  }
+  .bad {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--bad);
+    color: var(--bad);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    display: none;
+  }
+  label {
+    display: block;
+    font-size: 10px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 6px;
+  }
+  input[type="text"] {
+    width: 100%;
+    background: var(--obsidian);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-family: inherit;
+    font-size: 11px;
+  }
+  button {
+    background: var(--gold);
+    color: var(--obsidian);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+  }
+  button:hover { background: var(--gold-light); }
+  button:disabled { background: #444; cursor: not-allowed; }
+  button.sec {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+  #preview {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+    margin-top: 12px;
+    border: 1px solid rgba(201,162,39,0.3);
+  }
+  .sello {
+    text-align: center;
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 32px;
+    opacity: 0.6;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>◢◤ Certificado KRONOS · PNG</h1>
+  <div class="sub">v2 · descarga nativa · canvas 2D · sin librerías</div>
+
+  <div id="msg-ok" class="ok"></div>
+  <div id="msg-bad" class="bad"></div>
+
+  <!-- Datos del certificado -->
+  <div class="panel">
+    <h2>Datos del certificado</h2>
+
+    <label>Nombre del titular</label>
+    <input type="text" id="in-nombre" value="Marco Antonio Rojas Valdovinos">
+
+    <label>Cargo / Rol</label>
+    <input type="text" id="in-cargo" value="Autor Fundador · Protocolo KRONOS">
+
+    <label>Hash del certificado (64 hex)</label>
+    <input type="text" id="in-hash" placeholder="pegá acá el hash">
+
+    <label>Firma Ed25519 (128 hex)</label>
+    <input type="text" id="in-firma" placeholder="pegá acá la firma">
+
+    <label>Pubkey del Fundador (64 hex)</label>
+    <input type="text" id="in-pubkey" placeholder="pegá acá la pubkey">
+
+    <button onclick="generarPreview()">▶ Generar vista previa</button>
+  </div>
+
+  <!-- Preview y descarga -->
+  <div class="panel">
+    <h2>Vista previa</h2>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <img id="preview" style="display:none;" alt="Vista previa del certificado">
+    <button id="btn-descargar" onclick="descargarPNG()" style="display:none;">⬇ Descargar PNG</button>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+    <div>"El legado no se hereda. Se firma."</div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// GENERACIÓN DEL CERTIFICADO EN CANVAS
+// ═══════════════════════════════════════════════════════════════════
+
+const W = 1200;   // ancho en px (alta resolución)
+const H = 1697;   // alto en px (aspect ratio 1:1.414)
+
+function mostrarOk(texto) {
+  const el = document.getElementById('msg-ok');
+  el.textContent = texto;
+  el.style.display = 'block';
+  document.getElementById('msg-bad').style.display = 'none';
+}
+
+function mostrarBad(texto) {
+  const el = document.getElementById('msg-bad');
+  el.textContent = texto;
+  el.style.display = 'block';
+  document.getElementById('msg-ok').style.display = 'none';
+}
+
+function wrapText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let linea = '';
+  for (const word of words) {
+    const test = linea ? linea + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && linea) {
+      lines.push(linea);
+      linea = word;
+    } else {
+      linea = test;
+    }
+  }
+  if (linea) lines.push(linea);
+  return lines;
+}
+
+function generarPreview() {
+  const nombre = document.getElementById('in-nombre').value.trim();
+  const cargo = document.getElementById('in-cargo').value.trim();
+  const hash = document.getElementById('in-hash').value.trim() || 'PENDIENTE_DE_FIRMAR';
+  const firma = document.getElementById('in-firma').value.trim() || 'PENDIENTE_DE_FIRMAR';
+  const pubkey = document.getElementById('in-pubkey').value.trim() || 'PENDIENTE_DE_FIRMAR';
+
+  const canvas = document.getElementById('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // ─────── Fondo oscuro ───────
+  ctx.fillStyle = '#0d0d10';
+  ctx.fillRect(0, 0, W, H);
+
+  // ─────── Borde con gradiente arcoíris ───────
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0.00, '#ff6ba3');
+  grad.addColorStop(0.15, '#ff9f44');
+  grad.addColorStop(0.30, '#ffdd44');
+  grad.addColorStop(0.45, '#88ff88');
+  grad.addColorStop(0.60, '#44ddff');
+  grad.addColorStop(0.75, '#7799ff');
+  grad.addColorStop(0.90, '#cc66ff');
+  grad.addColorStop(1.00, '#ff6ba3');
+
+  // Borde exterior grueso
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 16;
+  ctx.strokeRect(30, 30, W - 60, H - 60);
+
+  // Borde interior dorado
+  ctx.strokeStyle = 'rgba(201, 162, 39, 0.55)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(60, 60, W - 120, H - 120);
+
+  // ─────── Esquinas ornamentales (líneas simples) ───────
+  const esquinas = [
+    { x: 80, y: 80, dx: 1, dy: 1 },
+    { x: W - 80, y: 80, dx: -1, dy: 1 },
+    { x: 80, y: H - 80, dx: 1, dy: -1 },
+    { x: W - 80, y: H - 80, dx: -1, dy: -1 }
+  ];
+  ctx.strokeStyle = '#e5c76b';
+  ctx.lineWidth = 2.5;
+  for (const e of esquinas) {
+    // Marco
+    ctx.beginPath();
+    ctx.moveTo(e.x, e.y);
+    ctx.lineTo(e.x + 100 * e.dx, e.y);
+    ctx.moveTo(e.x, e.y);
+    ctx.lineTo(e.x, e.y + 100 * e.dy);
+    ctx.stroke();
+
+    // Círculo pequeño
+    ctx.beginPath();
+    ctx.arc(e.x, e.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#e5c76b';
+    ctx.fill();
+  }
+
+  // ─────── Header: "CERTIFICADO KRONOS" ───────
+  ctx.textAlign = 'center';
+
+  // Sombra del título (simula gradient)
+  ctx.font = '300 68px Georgia, serif';
+  ctx.fillStyle = '#c9a227';
+  ctx.fillText('CERTIFICADO', W / 2, 250);
+
+  ctx.font = '300 68px Georgia, serif';
+  ctx.fillStyle = '#e5c76b';
+  ctx.fillText('KRONOS', W / 2, 330);
+
+  // Subtítulo
+  ctx.font = '600 22px monospace';
+  ctx.fillStyle = 'rgba(245, 240, 230, 0.55)';
+  ctx.fillText('◆ REGISTRO OFICIAL · 001 ◆', W / 2, 390);
+
+  // Línea
+  ctx.strokeStyle = 'rgba(201, 162, 39, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 300, 425);
+  ctx.lineTo(W / 2 + 300, 425);
+  ctx.stroke();
+
+  // ─────── "OTORGADO A" ───────
+  ctx.font = '500 22px monospace';
+  ctx.fillStyle = 'rgba(245, 240, 230, 0.45)';
+  ctx.fillText('OTORGADO A', W / 2, 500);
+
+  // ─────── NOMBRE ───────
+  ctx.font = 'italic 400 62px Georgia, serif';
+  ctx.fillStyle = '#f5f0e6';
+
+  // Ajustar tamaño si el nombre es muy largo
+  let tamanoNombre = 62;
+  while (ctx.measureText(nombre).width > W - 200 && tamanoNombre > 30) {
+    tamanoNombre -= 2;
+    ctx.font = `italic 400 ${tamanoNombre}px Georgia, serif`;
+  }
+
+  const nombreLines = wrapText(ctx, nombre, W - 200);
+  let yNombre = 580;
+  for (const line of nombreLines) {
+    ctx.fillText(line, W / 2, yNombre);
+    yNombre += tamanoNombre + 10;
+  }
+
+  // ─────── FIRMADO POR ───────
+  ctx.font = '400 20px monospace';
+  ctx.fillStyle = 'rgba(245, 240, 230, 0.5)';
+  ctx.fillText('Firmado con llave Ed25519 · Fundador', W / 2, yNombre + 20);
+
+  // ─────── DECLARACIÓN ───────
+  ctx.font = '400 22px Georgia, serif';
+  ctx.fillStyle = 'rgba(245, 240, 230, 0.75)';
+  const textoDecl =
+    'Es autor fundador del protocolo KRONOS. Este certificado acredita ' +
+    'su autoría de forma matemáticamente verificable, sin dependencia ' +
+    'de servidor, autoridad o tercero.';
+
+  const declLines = wrapText(ctx, textoDecl, W - 260);
+  let yDecl = yNombre + 90;
+  for (const line of declLines) {
+    ctx.fillText(line, W / 2, yDecl);
+    yDecl += 32;
+  }
+
+  // ─────── FECHA ───────
+  ctx.font = '600 22px monospace';
+  ctx.fillStyle = '#e5c76b';
+  ctx.fillText('Toluca, México · 2026-09-30', W / 2, yDecl + 40);
+
+  // ─────── Bloque de metadatos ───────
+  const metaY = yDecl + 80;
+  const metaX = 100;
+  const metaW = W - 200;
+  const metaH = 300;
+
+  // Fondo del bloque
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+  ctx.fillRect(metaX, metaY, metaW, metaH);
+  ctx.strokeStyle = 'rgba(201, 162, 39, 0.35)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(metaX, metaY, metaW, metaH);
+
+  // Contenido del bloque
+  ctx.textAlign = 'left';
+  const metaItems = [
+    ['Obra base:', '2607086319439'],
+    ['Acta v1:', '2026-09-29T05:02:22Z'],
+    ['Merkle art:', 'e69b2c24...390d93'],
+    ['Merkle doc:', '67180206...ae813'],
+    ['Hash cert:', hash.length > 40 ? hash.slice(0, 40) + '...' : hash],
+    ['Firma:', firma.length > 40 ? firma.slice(0, 40) + '...' : firma],
+    ['Pubkey:', pubkey.length > 40 ? pubkey.slice(0, 40) + '...' : pubkey]
+  ];
+
+  let yItem = metaY + 40;
+  for (const [label, valor] of metaItems) {
+    ctx.font = '600 18px monospace';
+    ctx.fillStyle = '#c9a227';
+    ctx.fillText(label, metaX + 30, yItem);
+
+    ctx.font = '400 16px monospace';
+    ctx.fillStyle = 'rgba(245, 240, 230, 0.85)';
+    ctx.fillText(valor, metaX + 230, yItem);
+
+    yItem += 36;
+  }
+
+  // ─────── FIRMA / RÚBRICA ───────
+  const firmaY = metaY + metaH + 100;
+  ctx.textAlign = 'center';
+
+  // Rúbrica: línea curva dorada (simula firma manuscrita)
+  ctx.strokeStyle = '#e5c76b';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+
+  // Trazo estilizado: "MARV" entrelazado
+  const startX = W / 2 - 180;
+  const baseY = firmaY - 20;
+
+  // M
+  ctx.moveTo(startX, baseY);
+  ctx.lineTo(startX + 15, baseY - 45);
+  ctx.lineTo(startX + 30, baseY - 10);
+  ctx.lineTo(startX + 45, baseY - 45);
+  ctx.lineTo(startX + 60, baseY);
+
+  // onda
+  ctx.moveTo(startX + 60, baseY - 5);
+  ctx.bezierCurveTo(startX + 75, baseY - 40, startX + 90, baseY - 40, startX + 105, baseY - 5);
+
+  // A
+  ctx.moveTo(startX + 115, baseY);
+  ctx.lineTo(startX + 130, baseY - 45);
+  ctx.lineTo(startX + 145, baseY);
+  ctx.moveTo(startX + 120, baseY - 20);
+  ctx.lineTo(startX + 140, baseY - 20);
+
+  // onda
+  ctx.moveTo(startX + 145, baseY - 5);
+  ctx.bezierCurveTo(startX + 160, baseY - 35, startX + 175, baseY - 35, startX + 190, baseY - 5);
+
+  // R
+  ctx.moveTo(startX + 200, baseY);
+  ctx.lineTo(startX + 200, baseY - 45);
+  ctx.bezierCurveTo(startX + 220, baseY - 45, startX + 220, baseY - 20, startX + 200, baseY - 20);
+  ctx.lineTo(startX + 225, baseY);
+
+  // onda
+  ctx.moveTo(startX + 225, baseY - 5);
+  ctx.bezierCurveTo(startX + 240, baseY - 35, startX + 255, baseY - 35, startX + 270, baseY - 5);
+
+  // V
+  ctx.moveTo(startX + 280, baseY - 45);
+  ctx.lineTo(startX + 295, baseY);
+  ctx.lineTo(startX + 310, baseY - 45);
+
+  // rizo final
+  ctx.moveTo(startX + 310, baseY - 10);
+  ctx.bezierCurveTo(startX + 330, baseY - 45, startX + 345, baseY - 10, startX + 360, baseY - 30);
+
+  ctx.stroke();
+
+  // Línea de firma
+  ctx.strokeStyle = 'rgba(201, 162, 39, 0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(W / 2 - 220, firmaY);
+  ctx.lineTo(W / 2 + 220, firmaY);
+  ctx.stroke();
+
+  // Nombre firmante
+  ctx.font = 'italic 400 28px Georgia, serif';
+  ctx.fillStyle = '#f5f0e6';
+  ctx.fillText('Marco Antonio Rojas Valdovinos', W / 2, firmaY + 45);
+
+  ctx.font = '600 16px monospace';
+  ctx.fillStyle = '#c9a227';
+  ctx.fillText('AUTOR FUNDADOR · PROTOCOLO KRONOS', W / 2, firmaY + 75);
+
+  ctx.font = '400 14px monospace';
+  ctx.fillStyle = 'rgba(245, 240, 230, 0.4)';
+  ctx.fillText('Toluca de Lerdo, Estado de México', W / 2, firmaY + 100);
+
+  // ─────── PIE ───────
+  ctx.font = '600 18px monospace';
+  ctx.fillStyle = 'rgba(201, 162, 39, 0.75)';
+  ctx.fillText('○_● · ◢◤◥◣ · ◥◣◢◤', W / 2, H - 140);
+
+  ctx.font = '500 16px monospace';
+  ctx.fillStyle = 'rgba(201, 162, 39, 0.65)';
+  ctx.fillText('51% HUMANO · 49% IA · 100% REAL', W / 2, H - 110);
+
+  ctx.font = 'italic 400 18px Georgia, serif';
+  ctx.fillStyle = 'rgba(201, 162, 39, 0.75)';
+  ctx.fillText('"El legado no se hereda. Se firma."', W / 2, H - 75);
+
+  // ─────── SELLO (círculo dorado en esquina inferior derecha) ───────
+  const selloX = W - 200;
+  const selloY = H - 200;
+  const selloR = 90;
+
+  // Halo
+  const halo = ctx.createRadialGradient(selloX, selloY, 10, selloX, selloY, selloR + 30);
+  halo.addColorStop(0, 'rgba(229, 199, 107, 0.6)');
+  halo.addColorStop(0.6, 'rgba(201, 162, 39, 0.15)');
+  halo.addColorStop(1, 'rgba(201, 162, 39, 0)');
+  ctx.fillStyle = halo;
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR + 30, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Círculo exterior punteado
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 3;
+  ctx.setLineDash([6, 6]);
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Círculo dorado
+  ctx.strokeStyle = '#c9a227';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.arc(selloX, selloY, selloR - 8, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Diamante central
+  ctx.save();
+  ctx.translate(selloX, selloY);
+
+  // Facetas con gradientes
+  const diamGrad1 = ctx.createLinearGradient(-30, -30, 30, 30);
+  diamGrad1.addColorStop(0, '#ff6ba3');
+  diamGrad1.addColorStop(0.3, '#ffdd44');
+  diamGrad1.addColorStop(0.6, '#88ff88');
+  diamGrad1.addColorStop(1, '#44ddff');
+
+  const diamGrad2 = ctx.createLinearGradient(30, -30, -30, 30);
+  diamGrad2.addColorStop(0, '#f5f0e6');
+  diamGrad2.addColorStop(0.4, '#ffdd77');
+  diamGrad2.addColorStop(1, '#cc66ff');
+
+  // Faceta superior izquierda
+  ctx.beginPath();
+  ctx.moveTo(0, -50);
+  ctx.lineTo(-42, -15);
+  ctx.lineTo(-20, 28);
+  ctx.closePath();
+  ctx.fillStyle = diamGrad1;
+  ctx.fill();
+
+  // Faceta superior derecha
+  ctx.beginPath();
+  ctx.moveTo(0, -50);
+  ctx.lineTo(42, -15);
+  ctx.lineTo(20, 28);
+  ctx.closePath();
+  ctx.fillStyle = diamGrad2;
+  ctx.fill();
+
+  // Faceta inferior izquierda
+  ctx.beginPath();
+  ctx.moveTo(-42, -15);
+  ctx.lineTo(-20, 28);
+  ctx.lineTo(0, 48);
+  ctx.closePath();
+  ctx.fillStyle = diamGrad2;
+  ctx.fill();
+
+  // Faceta inferior derecha
+  ctx.beginPath();
+  ctx.moveTo(42, -15);
+  ctx.lineTo(20, 28);
+  ctx.lineTo(0, 48);
+  ctx.closePath();
+  ctx.fillStyle = diamGrad1;
+  ctx.fill();
+
+  // Borde del diamante
+  ctx.beginPath();
+  ctx.moveTo(0, -50);
+  ctx.lineTo(42, -15);
+  ctx.lineTo(0, 48);
+  ctx.lineTo(-42, -15);
+  ctx.closePath();
+  ctx.strokeStyle = '#f5f0e6';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Línea horizontal media
+  ctx.beginPath();
+  ctx.moveTo(-42, -15);
+  ctx.lineTo(0, 0);
+  ctx.lineTo(42, -15);
+  ctx.stroke();
+
+  // Línea vertical media
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, 48);
+  ctx.stroke();
+
+  // Destello
+  ctx.beginPath();
+  ctx.moveTo(-12, -32);
+  ctx.lineTo(10, -15);
+  ctx.lineTo(-5, -5);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.fill();
+
+  ctx.restore();
+
+  // Etiqueta VERIFIED
+  ctx.font = '700 15px monospace';
+  ctx.fillStyle = '#e5c76b';
+  ctx.textAlign = 'center';
+  ctx.fillText('VERIFIED · 2026', selloX, selloY + selloR + 5);
+
+  // ─────── Mostrar preview ───────
+  const previewImg = document.getElementById('preview');
+  previewImg.src = canvas.toDataURL('image/png');
+  previewImg.style.display = 'block';
+  canvas.style.display = 'none';
+  document.getElementById('btn-descargar').style.display = 'block';
+
+  mostrarOk('✓ Certificado generado.\nTocá "Descargar PNG" para guardarlo.');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DESCARGA PNG
+// ═══════════════════════════════════════════════════════════════════
+
+function descargarPNG() {
+  try {
+    const canvas = document.getElementById('canvas');
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        mostrarBad('No se pudo generar el PNG.');
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `certificado-kronos-001-${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      mostrarOk('✓ PNG descargado.\nRevisalo en tu carpeta de Descargas.');
+    }, 'image/png', 1.0);
+  } catch (e) {
+    mostrarBad('Error al descargar: ' + e.message);
+    console.error(e);
+  }
+}
+
+// Auto-generar al abrir
+window.addEventListener('load', () => {
+  setTimeout(generarPreview, 300);
+});
+</script>
+
+</body>
+</html>
