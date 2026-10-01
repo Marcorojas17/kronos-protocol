@@ -4,18 +4,22 @@
   "rol_pipeline": "🚪 ENTRADA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-09-30T20:59:22.449259+00:00",
+  "timestamp": "2026-10-01T03:19:58.176678+00:00",
   "ok": true,
   "hallazgos": [
     {
       "tipo": "sospechosos-contextuales",
       "cantidad": 3,
-      "rutas": ["i", "Pnp", "403"],
+      "rutas": [
+        "i",
+        "Pnp",
+        "403"
+      ],
       "nota": "revisar manualmente antes de borrar"
     },
     {
       "tipo": "duplicados-nombre",
-      "cantidad": 13,
+      "cantidad": 14,
       "ejemplos": [
         [
           "manifest.json",
@@ -80,7 +84,13 @@
             "projects/md33/index.html"
           ]
         ],
-        ["MAPA.md", ["MAPA.md", "docs/MAPA.md"]],
+        [
+          "MAPA.md",
+          [
+            "MAPA.md",
+            "docs/MAPA.md"
+          ]
+        ],
         [
           "README.md",
           [
@@ -127,6 +137,17 @@
             "projects/cymatic/README.md",
             "projects/acta/README.md",
             "projects/md33/README.md"
+          ]
+        ],
+        [
+          "INDICE.md",
+          [
+            "02-VERIFICADOR/INDICE.md",
+            "00-SCHEMA/INDICE.md",
+            "00-FUNDACION/INDICE.md",
+            "07-LLAVES/INDICE.md",
+            "05-AGENTES/INDICE.md",
+            "docs/INDICE.md"
           ]
         ],
         [
@@ -227,13 +248,6 @@
             "cimiento/storage-dexie/AUTORIA",
             "cimiento/cripto-core/AUTORIA"
           ]
-        ],
-        [
-          "ultimo.json",
-          [
-            "05-AGENTES/095-cartografo/ultimo.json",
-            "05-AGENTES/094-bibliotecario/ultimo.json"
-          ]
         ]
       ]
     },
@@ -241,7 +255,10 @@
       "tipo": "duplicados-contenido",
       "cantidad": 3,
       "ejemplos": [
-        ["cimiento/AUTORIA", "cimiento/anclaje-ethereum/AUTORIA"],
+        [
+          "cimiento/AUTORIA",
+          "cimiento/anclaje-ethereum/AUTORIA"
+        ],
         [
           "reportes/bibliotecario.json",
           "reportes/contralor.json",
@@ -250,14 +267,17 @@
           "reportes/arquitecto.json",
           "reportes/auditor.json"
         ],
-        ["projects/boveda/index.html", "projects/bobeda/index.html"]
+        [
+          "projects/boveda/index.html",
+          "projects/bobeda/index.html"
+        ]
       ]
     }
   ],
   "metricas": {
     "basura": 0,
     "sospechosos": 3,
-    "duplicados_nombre": 13,
+    "duplicados_nombre": 14,
     "duplicados_contenido": 3
   },
   "supuestos": [
