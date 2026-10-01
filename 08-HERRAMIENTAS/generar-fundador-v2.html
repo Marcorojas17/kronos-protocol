@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundador v2 · Generador KRONOS</title>
+<style>
+  :root {
+    --obsidian: #0a0a0b;
+    --panel: #14141c;
+    --gold: #c9a227;
+    --gold-light: #e5c76b;
+    --text: #e8e8e8;
+    --muted: #888;
+    --ok: #4ade80;
+    --bad: #ef4444;
+    --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--obsidian);
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 {
+    color: var(--gold);
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sub { color: var(--muted); font-size: 11px; margin-bottom: 24px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    color: var(--gold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(201,162,39,0.3);
+    padding-bottom: 8px;
+  }
+  .aviso {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--warn);
+    color: var(--warn);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .ok {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid var(--ok);
+    color: var(--ok);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .bad {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--bad);
+    color: var(--bad);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  label {
+    display: block;
+    font-size: 10px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 6px;
+  }
+  .valor {
+    background: var(--obsidian);
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--text);
+    padding: 10px;
+    font-size: 10px;
+    word-break: break-all;
+    font-family: inherit;
+    line-height: 1.5;
+    display: block;
+    user-select: all;
+  }
+  button {
+    background: var(--gold);
+    color: var(--obsidian);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+  }
+  button:hover { background: var(--gold-light); }
+  button:disabled { background: #444; cursor: not-allowed; }
+  button.sec {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+  .sello {
+    text-align: center;
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 32px;
+    opacity: 0.6;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>◢◤ Fundador v2 · KRONOS</h1>
+  <div class="sub">Generador de llave · Sin terminal · Sin servidor · Ed25519</div>
+
+  <div id="aviso-legal" class="aviso">
+    <strong>Antes de empezar:</strong> este generador crea tu llave privada
+    del Fundador v2. Guardala en 2 lugares antes de cerrar esta página.
+    Si la perdés, no se puede recuperar.
+  </div>
+
+  <div id="estado" class="ok" style="display:none;"></div>
+
+  <!-- ══════ PASO 1 · GENERAR LLAVE ══════ -->
+  <div class="panel" id="panel-1">
+    <h2>Paso 1 · Generar llave Fundador v2</h2>
+    <p style="font-size: 11px; color: var(--muted); margin-bottom: 12px;">
+      Si nunca generaste una, toca el botón. Se guardará en este navegador
+      y podrás descargarla.
+    </p>
+    <button onclick="generarLlave()">⚡ Generar nueva llave Fundador v2</button>
+    <button class="sec" onclick="cargarLlaveExistente()">↻ Cargar llave existente</button>
+  </div>
+
+  <!-- ══════ PASO 2 · FIRMAR CERTIFICADO ══════ -->
+  <div class="panel" id="panel-2" style="display:none;">
+    <h2>Paso 2 · Firmar el certificado REGISTRO-001</h2>
+    <p style="font-size: 11px; color: var(--muted); margin-bottom: 12px;">
+      Se firmará el Acta Fundacional de KRONOS con tu llave v2.
+    </p>
+    <button onclick="firmarCertificado()">✍ Firmar certificado</button>
+  </div>
+
+  <!-- ══════ RESULTADO ══════ -->
+  <div class="panel" id="panel-3" style="display:none;">
+    <h2>Resultado · Los 3 valores</h2>
+
+    <label>VALOR 1 · PUBKEY (64 hex)</label>
+    <span class="valor" id="v-pubkey">---</span>
+
+    <label>VALOR 2 · HASH DEL CERTIFICADO (64 hex)</label>
+    <span class="valor" id="v-hash">---</span>
+
+    <label>VALOR 3 · FIRMA ED25519 (128 hex)</label>
+    <span class="valor" id="v-firma">---</span>
+
+    <button onclick="copiarTodo()">📋 Copiar los 3 valores</button>
+    <button class="sec" onclick="descargarBackup()">⬇ Descargar backup de llave (obligatorio)</button>
+  </div>
+
+  <div class="sello">
+    <div>○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div>51% HUMANO · 49% IA · 100% REAL</div>
+    <div>"El legado no se hereda. Se firma."</div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// DATOS DEL CERTIFICADO · REGISTRO-001
+// ═══════════════════════════════════════════════════════════════════
+
+const DATOS_CERTIFICADO = {
+  schema_version: '1.0.0',
+  tipo: 'certificado-kodice',
+  nombre: 'Marco Antonio Rojas Valdovinos',
+  rol: 'autor-fundador',
+  protocolo: 'KRONOS',
+  obra_base: '2607086319439',
+  acta_v1: '2026-09-29T05:02:22Z',
+  merkle_articulos: 'e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93',
+  merkle_documentos: '67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813',
+  fecha: '2026-09-30',
+  lugar: 'Toluca, México'
+};
+
+const STORAGE_KEY = 'kronos-fundador-v2-jwk';
+
+let llaveActual = null; // { privateKey, publicKey, pubHex }
+
+// ═══════════════════════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════════════════════
+
+function bytesToHex(bytes) {
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function hexToBytes(hex) {
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i*2, 2), 16);
+  return out;
+}
+
+function canonicalize(obj) {
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(canonicalize).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k) + ':' + canonicalize(obj[k])).join(',') + '}';
+}
+
+async function sha256Hex(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return bytesToHex(new Uint8Array(digest));
+}
+
+function mostrarEstado(tipo, texto) {
+  const el = document.getElementById('estado');
+  el.className = tipo; // 'ok', 'bad', 'aviso'
+  el.textContent = texto;
+  el.style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PASO 1 · GENERAR LLAVE
+// ═══════════════════════════════════════════════════════════════════
+
+async function generarLlave() {
+  try {
+    // Verificar si ya hay una llave guardada
+    const existente = localStorage.getItem(STORAGE_KEY);
+    if (existente) {
+      const confirmar = confirm(
+        'Ya existe una llave Fundador v2 guardada en este navegador. ' +
+        '¿Querés reemplazarla? Si lo hacés, perdés la anterior (salvo que tengas backup).'
+      );
+      if (!confirmar) return;
+    }
+
+    const kp = await crypto.subtle.generateKey('Ed25519', true, ['sign','verify']);
+    const pubRaw = await crypto.subtle.exportKey('raw', kp.publicKey);
+    const pubHex = bytesToHex(new Uint8Array(pubRaw));
+
+    // Exportar llave privada como PKCS8 para guardar
+    const privRaw = await crypto.subtle.exportKey('pkcs8', kp.privateKey);
+    const privHex = bytesToHex(new Uint8Array(privRaw));
+
+    // Guardar en localStorage
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      pubHex,
+      privHex,
+      creada: new Date().toISOString()
+    }));
+
+    llaveActual = { privateKey: kp.privateKey, publicKey: kp.publicKey, pubHex };
+
+    mostrarEstado('ok',
+      '✓ Llave generada y guardada. Pubkey: ' + pubHex.slice(0, 16) + '...\n' +
+      '⚠ IMPORTANTE: antes de cerrar, descargá el backup de la llave.'
+    );
+
+    document.getElementById('panel-2').style.display = 'block';
+    document.getElementById('panel-3').style.display = 'block';
+    document.getElementById('v-pubkey').textContent = pubHex;
+
+  } catch (e) {
+    mostrarEstado('bad', 'Error generando llave: ' + e.message);
+    console.error(e);
+  }
+}
+
+async function cargarLlaveExistente() {
+  try {
+    const guardada = localStorage.getItem(STORAGE_KEY);
+    if (!guardada) {
+      mostrarEstado('aviso', 'No hay llave guardada en este navegador. Generá una nueva.');
+      return;
+    }
+
+    const data = JSON.parse(guardada);
+    const privBytes = hexToBytes(data.privHex);
+
+    const privKey = await crypto.subtle.importKey(
+      'pkcs8',
+      privBytes,
+      { name: 'Ed25519' },
+      true,
+      ['sign']
+    );
+    const pubBytes = hexToBytes(data.pubHex);
+    const pubKey = await crypto.subtle.importKey(
+      'raw',
+      pubBytes,
+      { name: 'Ed25519' },
+      true,
+      ['verify']
+    );
+
+    llaveActual = { privateKey: privKey, publicKey: pubKey, pubHex: data.pubHex };
+
+    mostrarEstado('ok',
+      '✓ Llave cargada. Pubkey: ' + data.pubHex.slice(0, 16) + '...\n' +
+      'Creada: ' + data.creada
+    );
+
+    document.getElementById('panel-2').style.display = 'block';
+    document.getElementById('panel-3').style.display = 'block';
+    document.getElementById('v-pubkey').textContent = data.pubHex;
+
+  } catch (e) {
+    mostrarEstado('bad', 'Error cargando llave: ' + e.message);
+    console.error(e);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PASO 2 · FIRMAR CERTIFICADO
+// ═══════════════════════════════════════════════════════════════════
+
+async function firmarCertificado() {
+  if (!llaveActual) {
+    mostrarEstado('bad', 'Primero generá o cargá una llave.');
+    return;
+  }
+
+  try {
+    const canon = canonicalize(DATOS_CERTIFICADO);
+    const hash = await sha256Hex(canon);
+
+    const firmaBuf = await crypto.subtle.sign(
+      'Ed25519',
+      llaveActual.privateKey,
+      new TextEncoder().encode(hash)
+    );
+    const firmaHex = bytesToHex(new Uint8Array(firmaBuf));
+
+    // Verificar que la firma es válida
+    const valida = await crypto.subtle.verify(
+      'Ed25519',
+      llaveActual.publicKey,
+      firmaBuf,
+      new TextEncoder().encode(hash)
+    );
+
+    if (!valida) {
+      mostrarEstado('bad', 'Error: la firma generada no verifica. Algo falló.');
+      return;
+    }
+
+    document.getElementById('v-pubkey').textContent = llaveActual.pubHex;
+    document.getElementById('v-hash').textContent = hash;
+    document.getElementById('v-firma').textContent = firmaHex;
+
+    mostrarEstado('ok',
+      '✓ Certificado firmado y verificado.\n' +
+      'Hash: ' + hash.slice(0, 16) + '...\n' +
+      'Firma: ' + firmaHex.slice(0, 16) + '...\n' +
+      'Ahora descargá el backup de la llave y copiá los 3 valores.'
+    );
+
+  } catch (e) {
+    mostrarEstado('bad', 'Error firmando: ' + e.message);
+    console.error(e);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// COPIAR Y DESCARGAR
+// ═══════════════════════════════════════════════════════════════════
+
+function copiarTodo() {
+  const pub = document.getElementById('v-pubkey').textContent;
+  const hash = document.getElementById('v-hash').textContent;
+  const firma = document.getElementById('v-firma').textContent;
+
+  const texto = `VALOR 1 (PUBKEY):
+${pub}
+
+VALOR 2 (HASH):
+${hash}
+
+VALOR 3 (FIRMA):
+${firma}`;
+
+  navigator.clipboard.writeText(texto).then(() => {
+    mostrarEstado('ok', '✓ Los 3 valores copiados al portapapeles.');
+  }).catch(() => {
+    mostrarEstado('aviso', 'Copiá manualmente. Presioná largo sobre cada valor.');
+  });
+}
+
+function descargarBackup() {
+  const guardada = localStorage.getItem(STORAGE_KEY);
+  if (!guardada) {
+    mostrarEstado('bad', 'No hay llave para respaldar.');
+    return;
+  }
+
+  const data = JSON.parse(guardada);
+
+  const backup = {
+    tipo: 'KRONOS Fundador v2',
+    advertencia: 'NO COMPARTIR. Si alguien tiene esta llave, puede firmar como Fundador.',
+    creada: data.creada,
+    pubkey_hex: data.pubHex,
+    privatekey_pkcs8_hex: data.privHex,
+    instrucciones: 'Guardá este archivo en 2 lugares. Sin él, no podés firmar más certificados como Fundador.'
+  };
+
+  const texto = JSON.stringify(backup, null, 2);
+  const blob = new Blob([texto], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `KRONOS-FUNDADOR-V2-BACKUP-${Date.now()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  mostrarEstado('ok',
+    '✓ Backup descargado.\n' +
+    'Guardalo en 2 lugares: nota privada + correo a vos mismo.\n' +
+    'Sin este archivo, no podés firmar más certificados como Fundador.'
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// AUTO-CARGA AL ABRIR
+// ═══════════════════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  const guardada = localStorage.getItem(STORAGE_KEY);
+  if (guardada) {
+    mostrarEstado('aviso',
+      'Hay una llave Fundador v2 guardada en este navegador. ' +
+      'Podés cargarla (Paso 1) o generar una nueva.'
+    );
+  }
+});
+</script>
+
+</body>
+</html>
