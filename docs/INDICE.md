@@ -21,11 +21,11 @@ _Generado automaticamente._
 - [CIUDAD/verificar.html](CIUDAD/verificar.html) - 25909 bytes
 - [EXPLICACION-UNIVERSAL.md](EXPLICACION-UNIVERSAL.md) - 12375 bytes
 - [HONESTIDAD.md](HONESTIDAD.md) - 18508 bytes
-- [INDICE.md](INDICE.md) - 1813 bytes
+- [INDICE.md](INDICE.md) - 1904 bytes
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
-- [NMX-151.md](NMX-151.md) - 8648 bytes
+- [NMX-151.md](NMX-151.md) - 16355 bytes
 - [NMX-27001.md](NMX-27001.md) - 10886 bytes
 - [PLANTILLA-TERMINAL.md](PLANTILLA-TERMINAL.md) - 6779 bytes
 - [README.md](README.md) - 4812 bytes
