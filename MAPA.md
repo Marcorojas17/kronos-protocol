@@ -73,6 +73,9 @@ kronos-protocol/
 │   ├── generar-fundador-v2.html
 │   ├── notario-digital.html
 │   └── verificador-empresa.html
+├── 11-ARCHIVO/
+│   └── HONESTIDAD/
+│       └── README.md
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -214,7 +217,8 @@ kronos-protocol/
 │   ├── IP/
 │   │   └── README.md
 │   ├── normas/
-│   │   └── 151.md
+│   │   ├── 151.md
+│   │   └── 27001.md
 │   ├── ARQUITECTURA-VIVA.md
 │   ├── EXPLICACION-UNIVERSAL.md
 │   ├── INDICE.md
