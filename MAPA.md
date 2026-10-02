@@ -225,6 +225,7 @@ kronos-protocol/
 │   ├── MAPA.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
+│   ├── RESUMEN-EJECUTIVO.md
 │   ├── TESIS-VISUAL.md
 │   ├── demos-oficiales.html
 │   ├── index.html
@@ -265,7 +266,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
