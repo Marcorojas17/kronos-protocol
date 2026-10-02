@@ -203,6 +203,7 @@ kronos-protocol/
 │   │   ├── AUDITOR_HOSTIL.js
 │   │   ├── CIUDADANOS.html
 │   │   ├── CIUDADANOS.md
+│   │   ├── CONSTITUCION.html
 │   │   ├── CONSTITUCION.md
 │   │   ├── CONVIVENCIA.md
 │   │   ├── DERECHOS.md
@@ -273,7 +274,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
@@ -498,6 +499,7 @@ kronos-protocol/
 ├── aditoria
 ├── admin.html
 ├── carta-presentación.txt
+├── comandos iSH
 ├── curriculum-terminal.txt
 ├── favicon.svg
 ├── guardian.py
