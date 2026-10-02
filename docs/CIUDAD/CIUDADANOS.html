@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS · Ciudadanos</title>
+<style>
+:root{--bg:#06060a;--panel:#0f0f18;--panel2:#14141e;--gold:#D4AF37;--gold-light:#E5C76B;--gold-dim:rgba(212,175,55,0.3);--text:#E0E0E0;--dim:#888;--ok:#4ade80;--warn:#f59e0b;--bad:#ef4444;--border:#1a1a22}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px rgba(212,175,55,0.8);animation:float 12s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0);opacity:0.2}50%{transform:translateY(-40px);opacity:0.8}}
+.wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 20px 60px}
+nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,6,10,0.85);backdrop-filter:blur(10px);z-index:50}
+nav.top .brand{font-family:Georgia,serif;font-size:0.85rem;letter-spacing:6px;color:var(--gold);font-weight:700}
+nav.top a{color:var(--dim);text-decoration:none;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+nav.top a:hover{color:var(--gold)}
+.hero{text-align:center;padding:60px 0 40px}
+.kicker{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--gold-light);letter-spacing:2px;margin-bottom:14px;line-height:1.1;text-shadow:0 0 30px rgba(212,175,55,0.3)}
+.hero .sub{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--text);opacity:0.85;max-width:520px;margin:0 auto;line-height:1.6}
+.hero .stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:0.7rem;letter-spacing:2px;color:var(--dim)}
+.hero .stats span{color:var(--ok)}
+section{margin-top:50px}
+.sec-title{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'▸';color:var(--gold)}
+.prog{display:flex;flex-direction:column;gap:14px}
+.prog-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.prog-row .label{font-size:0.8rem;color:var(--text)}.prog-row .label strong{color:var(--gold-light);font-weight:500}
+.prog-row .pct{font-family:'Courier New',monospace;font-size:0.75rem;color:var(--dim)}
+.bar{grid-column:1/-1;height:8px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:4px;box-shadow:0 0 12px rgba(212,175,55,0.5)}
+.bar-fill.warn{background:linear-gradient(90deg,var(--warn),#fbbf24)}
+.map{display:flex;flex-direction:column;gap:12px;align-items:center}
+.map-node{background:var(--panel);border:1px solid var(--gold-dim);padding:14px 20px;border-radius:6px;text-align:center;font-size:0.8rem;color:var(--gold-light);font-family:Georgia,serif;letter-spacing:1px;min-width:180px}
+.map-node.root{background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));border-color:var(--gold);font-weight:700}
+.map-arrow{color:var(--gold);font-size:1.2rem}
+.map-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.map-child{background:var(--panel2);border:1px solid var(--border);padding:10px 16px;border-radius:4px;font-size:0.75rem;color:var(--text)}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:6px}
+.flow-step{background:var(--panel2);border:1px solid var(--gold-dim);padding:10px 14px;border-radius:4px;font-size:0.78rem;color:var(--text)}
+.flow-step.pass{border-color:var(--ok);color:var(--ok)}
+.flow-arrow{color:var(--gold);font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.78rem}
+th{color:var(--gold);text-align:left;padding:8px 10px;border-bottom:1px solid var(--gold-dim);font-weight:500;letter-spacing:1px;font-size:0.7rem;text-transform:uppercase}
+td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+td code{background:#000;color:var(--gold-light);padding:2px 5px;border-radius:3px;font-size:0.72rem}
+.alert{padding:14px 18px;border-radius:6px;margin:14px 0;font-size:0.82rem;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+.alert.info{background:rgba(74,222,128,0.08);border-left:3px solid var(--ok);color:var(--text)}
+.alert.warn{background:rgba(245,158,11,0.08);border-left:3px solid var(--warn);color:var(--text)}
+.alert.bad{background:rgba(239,68,68,0.08);border-left:3px solid var(--bad);color:var(--text)}
+footer{margin-top:60px;padding-top:30px;border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--dim);line-height:2;letter-spacing:1px}
+footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'Courier New',monospace}
+</style>
+</head>
+<body>
+<div id="particles"></div>
+<nav class="top"><div class="brand">KRONOS</div><a href="../../index.html">← Inicio</a></nav>
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">100 PLAZAS DE ORIGEN</div>
+    <h1>CIUDADANOS</h1>
+    <p class="sub">Para ser ciudadano no pagás.<br>Firmás.</p>
+    <div class="stats"><span>○_●</span> 51% HUMANO · 49% IA · 100% REAL <span>◢◤◥◣</span></div>
+  </div>
+
+  <section>
+    <div class="sec-title">estado de plazas</div>
+    <div class="prog">
+      <div class="prog-row"><div class="label"><strong>reservadas</strong> · Plaza 001 Eduardo</div><div class="pct">1%</div><div class="bar"><div class="bar-fill" style="width:1%"></div></div></div>
+      <div class="prog-row"><div class="label"><strong>ocupadas</strong> · boletos verificados</div><div class="pct">0%</div><div class="bar"><div class="bar-fill" style="width:0%"></div></div></div>
+      <div class="prog-row"><div class="label"><strong>libres</strong> · plazas 002-100</div><div class="pct">99%</div><div class="bar"><div class="bar-fill" style="width:99%"></div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">filosofía · mapa conceptual</div>
+    <div class="map">
+      <div class="map-node root">CIUDAD · 100 plazas</div>
+      <div class="map-arrow">▼</div>
+      <div class="map-row">
+        <div class="map-node">REGLA</div><div class="map-node">PLAZA</div><div class="map-node">FIRMA</div>
+      </div>
+      <div class="map-arrow">▼</div>
+      <div class="map-row">
+        <div class="map-child">sin compra</div>
+        <div class="map-child">1 boleto verificado</div>
+        <div class="map-child">Ed25519</div>
+      </div>
+      <div class="map-row">
+        <div class="map-child">sin suscripción</div>
+        <div class="map-child">= 1 plaza</div>
+        <div class="map-child">anclaje Ethereum</div>
+      </div>
+      <div class="map-row">
+        <div class="map-child">sin KYC</div>
+        <div class="map-child">hash público</div>
+        <div class="map-child">verificable por tercero</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">flujo de entrada a la ciudad</div>
+    <div class="flow">
+      <div class="flow-step">Candidato</div><span class="flow-arrow">→</span>
+      <div class="flow-step">firma origen</div><span class="flow-arrow">→</span>
+      <div class="flow-step">verifica boleto</div><span class="flow-arrow">→</span>
+      <div class="flow-step">emite plaza</div><span class="flow-arrow">→</span>
+      <div class="flow-step pass">hash público</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">registro de plazas</div>
+    <table>
+      <tr><th>plaza</th><th>ciudadano</th><th>origen</th><th>estado</th></tr>
+      <tr><td><strong>001</strong></td><td>Eduardo / Inmobiliaria Toluca</td><td><code>boleto-sra-rios.json</code></td><td style="color:var(--warn)">🟡 RESERVADA</td></tr>
+      <tr><td>002</td><td>LIBRE</td><td>—</td><td>—</td></tr>
+      <tr><td>003</td><td>LIBRE</td><td>—</td><td>—</td></tr>
+      <tr><td>004</td><td>LIBRE</td><td>—</td><td>—</td></tr>
+      <tr><td>005</td><td>LIBRE</td><td>—</td><td>—</td></tr>
+      <tr><td>006-100</td><td>LIBRE</td><td>—</td><td>—</td></tr>
+    </table>
+    <div class="alert warn" style="margin-top:14px"><span>⚠</span><div>Plaza 001 reservada, no ocupada. Se activa cuando el boleto real sea firmado y verificado.</div></div>
+  </section>
+
+  <section>
+    <div class="sec-title">cómo obtener una plaza</div>
+    <div class="alert info"><span>✓</span><div>
+      01 · abrir <code style="background:#000;color:var(--gold-light);padding:2px 5px;border-radius:3px">capturar-origen.html</code><br>
+      02 · firmar un origen real (no ficticio)<br>
+      03 · verificar el boleto.json en <code style="background:#000;color:var(--gold-light);padding:2px 5px;border-radius:3px">verificador-empresa.html</code><br>
+      04 · la plaza queda registrada con tu hash público
+    </div></div>
+  </section>
+
+  <section>
+    <div class="sec-title">límites de la ciudad</div>
+    <div class="alert bad"><span>⚠</span><div><strong>ESTA CIUDAD NO ES:</strong> NFT · colección digital · sistema de pago · comunidad cerrada.</div></div>
+    <div class="alert info"><span>✓</span><div><strong>ESTA CIUDAD SÍ ES:</strong> registro de origen firmado · verificable por cualquiera · 100 plazas reales sin reventa.</div></div>
+  </section>
+
+  <footer>
+    <div>KRONOS PROTOCOL · CIUDADANOS</div>
+    <div>© 2026 Marco Antonio Rojas Valdovinos · CC BY-NC-ND 4.0</div>
+    <div class="seal">○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div class="seal">51% HUMANO · 49% IA · 100% REAL</div>
+    <div class="seal">"Para ser ciudadano no pagás. Firmás."</div>
+  </footer>
+</div>
+<script>
+(function(){const c=document.getElementById('particles');for(let i=0;i<35;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=(Math.random()*12)+'s';p.style.animationDuration=(8+Math.random()*8)+'s';p.style.opacity=(0.15+Math.random()*0.4).toString();c.appendChild(p)}})();
+</script>
+</body>
+</html>
