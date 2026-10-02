@@ -1,0 +1,23 @@
+cd ~/kronos-protocol
+
+# 1. Borrar basura confirmada
+rm -f i Pnp 403 aditoria
+
+# 2. Archivar contextos viejos
+mkdir -p 11-ARCHIVO/CONTEXTOS
+mv "CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5"  11-ARCHIVO/CONTEXTOS/ 2>/dev/null
+mv "CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7"  11-ARCHIVO/CONTEXTOS/ 2>/dev/null
+mv "CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10" 11-ARCHIVO/CONTEXTOS/ 2>/dev/null
+mv "CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12" 11-ARCHIVO/CONTEXTOS/ 2>/dev/null
+
+# 3. Apagar Jekyll
+mv _config.yml _config.yml.off 2>/dev/null
+
+# 4. Commit
+git add -A
+git commit -m "🧹 chore: limpieza de basura + apagado de Jekyll + archivado de contextos"
+git push origin main
+
+ls -la 11-ARCHIVO/CONTEXTOS/ | wc -l
+ls _config.yml.off 2>/dev/null && echo "Jekyll apagado ✅"
+ls i Pnp 403 aditoria 2>/dev/null || echo "Basura borrada ✅"
