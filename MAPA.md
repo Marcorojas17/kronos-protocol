@@ -213,6 +213,8 @@ kronos-protocol/
 │   │   └── verificar.html
 │   ├── IP/
 │   │   └── README.md
+│   ├── normas/
+│   │   └── 151.md
 │   ├── ARQUITECTURA-VIVA.md
 │   ├── EXPLICACION-UNIVERSAL.md
 │   ├── INDICE.md
@@ -458,6 +460,7 @@ kronos-protocol/
 │   └── test_evidence.py
 ├── 403
 ├── 404.html
+├── ARBOL-COMPLETO.md
 ├── AUTHORS.md
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
@@ -487,15 +490,18 @@ kronos-protocol/
 ├── favicon.svg
 ├── guardian.py
 ├── i
+├── index-v2.html
 ├── index.html
 ├── luxury.html
 ├── manifest.json
+├── monorepo.html
 ├── pyproject.toml
 ├── registrar.html
 ├── robots.txt
 ├── servicios.html
 ├── sitemap.xml
 ├── tesis.md
+├── tesis_visual.md
 ├── tesiscompleta.md
 ├── verificar-certificado.html
 ├── verifier.py
