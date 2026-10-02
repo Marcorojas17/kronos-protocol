@@ -4,7 +4,7 @@
   "rol_pipeline": "🚪 ENTRADA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-10-02T03:11:24.815153+00:00",
+  "timestamp": "2026-10-02T03:13:25.254894+00:00",
   "ok": true,
   "hallazgos": [
     {
@@ -120,6 +120,7 @@
             "gobernanza/quorum-mayorias/README.md",
             "gobernanza/revocacion-auditoria/README.md",
             "gobernanza/ejecucion-decisiones/README.md",
+            "11-ARCHIVO/HONESTIDAD/README.md",
             "legado/autoria/README.md",
             "legado/genesis/README.md",
             "legado/manifiesto/README.md",
