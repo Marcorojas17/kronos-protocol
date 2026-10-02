@@ -201,6 +201,7 @@ kronos-protocol/
 │   ├── CIUDAD/
 │   │   ├── AUDITORIA-IA.md
 │   │   ├── AUDITOR_HOSTIL.js
+│   │   ├── CIUDADANOS.html
 │   │   ├── CIUDADANOS.md
 │   │   ├── CONSTITUCION.md
 │   │   ├── CONVIVENCIA.md
@@ -230,6 +231,7 @@ kronos-protocol/
 │   ├── NMX-27001.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
+│   ├── RESUMEN-EJECUTIVO.html
 │   ├── RESUMEN-EJECUTIVO.md
 │   ├── TESIS-VISUAL.md
 │   ├── demos-oficiales.html
@@ -271,7 +273,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
