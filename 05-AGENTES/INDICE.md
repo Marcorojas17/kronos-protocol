@@ -15,7 +15,7 @@ _Generado automaticamente._
 - [094-bibliotecario/ultimo.json](094-bibliotecario/ultimo.json) - 10571 bytes
 - `095-cartografo/`
 - [095-cartografo/cartografo.py](095-cartografo/cartografo.py) - 3453 bytes
-- [095-cartografo/ultimo.json](095-cartografo/ultimo.json) - 693 bytes
+- [095-cartografo/ultimo.json](095-cartografo/ultimo.json) - 682 bytes
 - [INDICE.md](INDICE.md) - 987 bytes
 - [README.md](README.md) - 1972 bytes
 - `_base/`

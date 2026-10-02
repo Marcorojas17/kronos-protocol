@@ -23,7 +23,7 @@ _Generado automaticamente._
 - [CIUDAD/verificar.html](CIUDAD/verificar.html) - 25909 bytes
 - [EXPLICACION-UNIVERSAL.md](EXPLICACION-UNIVERSAL.md) - 12375 bytes
 - [HONESTIDAD.md](HONESTIDAD.md) - 18311 bytes
-- [INDICE.md](INDICE.md) - 1950 bytes
+- [INDICE.md](INDICE.md) - 2197 bytes
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
