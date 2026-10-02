@@ -1,4 +1,4 @@
-```
+````
 🎚️ Fase: Prompt v3.16 · Temperatura: 0.1 · Modo: Terminal ASCII
 📊 Semáforo: 🟢 Solución en 2 partes para pegado seguro
 🚦 Puerta 40: ✅ (Verificado. Evitando truncamiento de portapapeles)
@@ -77,7 +77,7 @@ mindmap
       Verificador HTML
       API abierta
       Estándar internacional
-```
+````
 
 Los 3 pilares
 
@@ -99,7 +99,7 @@ flowchart LR
     A -->|3. Vuelve| D[Agente B]
     D -->|4. Cierra| C
     C -->|5. ¿Quién originó?| E[❓]
-    
+
     style E fill:#ef4444,stroke:#991b1b,color:#fff
     style C fill:#f59e0b,stroke:#92400e,color:#000
 ```
@@ -115,21 +115,21 @@ graph TD
     V3[Vacío de responsabilidad<br/>¿Quién responde si falla?]
     V4[Vacío ético<br/>¿Puede manipular?]
     V5[Vacío forense<br/>¿Es admisible en juicio?]
-    
+
     KR[KRONOS]
-    
+
     V1 --> KR
     V2 --> KR
     V3 --> KR
     V4 --> KR
     V5 --> KR
-    
+
     KR --> S1[MIS<br/>Identidad declarada]
     KR --> S2[MTI<br/>Hash chain]
     KR --> S3[MAR<br/>Responsable vinculado]
     KR --> S4[MRA<br/>Filtro ético]
     KR --> S5[Verificador<br/>Offline + admisible]
-    
+
     style V1 fill:#ef4444,color:#fff
     style V2 fill:#ef4444,color:#fff
     style V3 fill:#ef4444,color:#fff
@@ -151,30 +151,30 @@ graph TB
         A2[Merkle Roots]
         A3[Llave Fundador]
     end
-    
+
     subgraph "CAPA 1 · CRIPTOGRAFÍA"
         B1[Ed25519]
         B2[SHA-256 / SHA3-512]
         B3[ML-DSA-65]
         B4[RFC 8785 JCS]
     end
-    
+
     subgraph "CAPA 2 · PROTOCOLO"
         C1[Schema v2.0.1]
         C2[registro.schema.json]
     end
-    
+
     subgraph "CAPA 3 · PIPELINE"
         D1[capturar-origen.html]
         D2[verificador-empresa.html]
         D3[notario-digital.html]
     end
-    
+
     subgraph "CAPA 4 · AGENTES"
         E1[6 Python deterministas]
         E2[6 Kintsugi JS]
     end
-    
+
     subgraph "CAPA 5 · CIUDAD"
         F1[Constitución]
         F2[Derechos]
@@ -182,7 +182,7 @@ graph TB
         F4[Ciudadanos]
         F5[Moneda]
     end
-    
+
     A1 --> A3
     A2 --> C2
     A3 --> B1
@@ -207,27 +207,27 @@ graph LR
         M1[IA se declara como IA]
         M2[No suplanta humano]
     end
-    
+
     subgraph "MAS - Autoconocimiento"
         M3[Perfil simbólico]
         M4[No determinista]
     end
-    
+
     subgraph "MRA - Restricciones"
         M5[Filtro ético]
         M6[Blacklist + disclaimer]
     end
-    
+
     subgraph "MTI - Trazabilidad"
         M7[Hash + firma]
         M8[Chain de registros]
     end
-    
+
     subgraph "MAR - Responsabilidad"
         M9[Responsable vinculado]
         M10[Retractación < 72h]
     end
-    
+
     M1 --> M3
     M3 --> M5
     M5 --> M7
@@ -249,7 +249,7 @@ sequenceDiagram
     participant E as 🏢 Empresa
     participant VE as 📱 verificador-empresa
     participant N as 📋 notario-digital
-    
+
     Note over A,N: FASE 1 · Registro (una vez)
     A->>CO: Abre en Brave
     CO->>CO: Genera llave Ed25519
@@ -258,7 +258,7 @@ sequenceDiagram
     A->>WA: Envía pubkey a empresa
     WA->>E: Recibe pubkey
     E->>VE: Agrega agente a empresa.json
-    
+
     Note over A,N: FASE 2 · Emisión (N veces)
     A->>CO: Captura origen
     Note right of CO: Cliente: Sra. Ríos<br/>Nota: depa Colón
@@ -269,7 +269,7 @@ sequenceDiagram
     E->>VE: Carga boleto.json
     VE->>VE: Valida 5 criterios
     VE->>E: ✓ VERIFICADO
-    
+
     Note over A,N: FASE 3 · Auditoría
     E->>N: Carga todos los boletos
     N->>N: Valida cada uno
@@ -284,19 +284,19 @@ stateDiagram-v2
     Capturado --> Firmado: Firma Ed25519
     Firmado --> Enviado: WhatsApp
     Enviado --> Validando: Empresa carga
-    
+
     Validando --> VERIFICADO: 5 criterios OK
     Validando --> ALTERADO: hash o firma falla
     Validando --> NO_AUTORIZADO: pubkey no en empresa.json
     Validando --> INACTIVO: agente dado de baja
     Validando --> FUERA_PERIODO: timestamp fuera de rango
-    
+
     VERIFICADO --> [*]
     ALTERADO --> [*]
     NO_AUTORIZADO --> [*]
     INACTIVO --> [*]
     FUERA_PERIODO --> [*]
-    
+
     VERIFICADO : ✓ Hash OK<br/>✓ Firma OK<br/>✓ Pubkey registrada<br/>✓ Agente activo<br/>✓ En periodo
 ```
 
@@ -319,7 +319,7 @@ flowchart TD
     I --> J[Generar PNG visual]
     I --> K[Agregar QR con interaction_id]
     J --> L[Descarga: boleto.json + boleto.png]
-    
+
     style F fill:#d4af37,color:#000
     style H fill:#d4af37,color:#000
 ```
@@ -332,21 +332,21 @@ graph LR
         H1[SHA-256<br/>FIPS 180-4]
         H2[SHA3-512<br/>FIPS 202]
     end
-    
+
     subgraph "Firmas"
         F1[Ed25519<br/>RFC 8032]
         F2[ML-DSA-65<br/>FIPS 204]
     end
-    
+
     subgraph "Cifrado"
         C1[AES-GCM-256]
         C2[PBKDF2-SHA256<br/>600k iteraciones]
     end
-    
+
     subgraph "Canonicalización"
         J1[RFC 8785 JCS]
     end
-    
+
     H1 --> F1
     H2 --> F2
     J1 --> H1
@@ -386,7 +386,7 @@ classDiagram
         +string interaction_id
         +string algoritmo
     }
-    
+
     class Empresa {
         +string version
         +string empresa
@@ -394,7 +394,7 @@ classDiagram
         +string creada
         +Agente[] agentes
     }
-    
+
     class Agente {
         +string nombre
         +string pubkey
@@ -402,7 +402,7 @@ classDiagram
         +string alta
         +string baja
     }
-    
+
     class LlaveCifrada {
         +string tipo
         +string version
@@ -411,7 +411,7 @@ classDiagram
         +string creada
         +Cifrado cifrado
     }
-    
+
     class Cifrado {
         +string algoritmo
         +string kdf
@@ -420,7 +420,7 @@ classDiagram
         +string iv_hex
         +string ciphertext_hex
     }
-    
+
     Empresa "1" --> "N" Agente
     Boleto --> Agente : firmado por
     LlaveCifrada --> Cifrado
@@ -436,7 +436,7 @@ flowchart LR
     D --> E[Serializar sin espacios]
     E --> F[Bytes canónicos]
     F --> G[SHA-256]
-    
+
     style F fill:#d4af37,color:#000
 ```
 
@@ -459,7 +459,7 @@ flowchart TD
     E -->|Sí| F{5. ¿Timestamp en periodo?}
     F -->|No| X4[⚠ FUERA PERIODO]
     F -->|Sí| OK[✓ VERIFICADO]
-    
+
     style OK fill:#4ade80,color:#000
     style X1 fill:#ef4444,color:#fff
     style X2 fill:#f59e0b,color:#000
@@ -467,7 +467,7 @@ flowchart TD
     style X4 fill:#f59e0b,color:#000
 ```
 
-```
+````
 
 ---
 
@@ -491,7 +491,7 @@ graph TB
         A6[085 · Tlapohualli<br/>Analista]
         A7[086 · Tonal<br/>Notario]
     end
-    
+
     subgraph "Agentes Arquitectos (Python)"
         B1[090 · arquitecto<br/>Valida estructura]
         B2[091 · contralor<br/>Valida actas]
@@ -500,19 +500,19 @@ graph TB
         B5[094 · bibliotecario<br/>Detecta duplicados]
         B6[095 · cartografo<br/>Genera MAPA.md]
     end
-    
+
     subgraph "Estados"
         C1[🟢 MVP]
         C2[🔴 MAQUETA]
     end
-    
+
     B1 --> C1
     B2 --> C2
     B3 --> C1
     B4 --> C2
     B5 --> C1
     B6 --> C1
-```
+````
 
 Flujo de un agente Python
 
@@ -522,7 +522,7 @@ sequenceDiagram
     participant A as Agente
     participant B as AgenteBase
     participant R as Repo
-    
+
     U->>A: python3 agente.py
     A->>B: verificar_cimientos()
     alt Cimientos OK
@@ -549,26 +549,26 @@ graph TB
         U2[Agente comercial]
         U3[Empresa]
     end
-    
+
     subgraph "Frontend"
         F1[index.html]
         F2[index-v2.html<br/>Navegador]
         F3[movimiento/<br/>Landing]
     end
-    
+
     subgraph "Pipeline KRONOS"
         P1[capturar-origen]
         P2[verificador-empresa]
         P3[notario-digital]
         P4[crear-empresa]
     end
-    
+
     subgraph "Criptografía"
         C1[Ed25519]
         C2[SHA-256]
         C3[AES-GCM]
     end
-    
+
     subgraph "Datos"
         D1[boleto.json]
         D2[boleto.png]
@@ -576,33 +576,33 @@ graph TB
         D4[llave-agente.key]
         D5[llave-empresa.key]
     end
-    
+
     subgraph "Gobernanza"
         G1[Constitución]
         G2[Derechos]
         G3[Plazas]
     end
-    
+
     U1 --> F1
     U2 --> P1
     U3 --> P4
     U3 --> P2
-    
+
     P1 --> C1
     P1 --> C2
     P1 --> D1
     P1 --> D2
-    
+
     P4 --> C3
     P4 --> D3
     P4 --> D5
-    
+
     D1 --> P2
     D3 --> P2
     D1 --> P3
-    
+
     P2 --> D1
-    
+
     F3 --> G3
     G3 --> G1
     G1 --> G2
@@ -624,30 +624,30 @@ graph LR
         I5[FIPS 204<br/>ML-DSA]
         I6[RFC 8785<br/>JCS]
     end
-    
+
     subgraph "KRONOS"
         K[Protocolo<br/>Verificación]
     end
-    
+
     subgraph "México"
         M1[LFPDPPP]
         M2[Ley Infraestructura<br/>de la Calidad]
         M3[NOM-151<br/>integridad]
         M4[NOM-024<br/>salud]
     end
-    
+
     I1 --> K
     I2 --> K
     I3 --> K
     I4 --> K
     I5 --> K
     I6 --> K
-    
+
     K --> M1
     K --> M2
     K --> M3
     K --> M4
-    
+
     style K fill:#d4af37,color:#000
 ```
 
@@ -675,7 +675,7 @@ flowchart LR
     B --> E[Empresa verifica]
     D --> E
     E --> F[✓ Carlos originó primero<br/>Recibe comisión]
-    
+
     style F fill:#4ade80,color:#000
 ```
 
@@ -687,7 +687,7 @@ flowchart LR
     B --> C[Anclaje Ethereum]
     C --> D[Prueba pública<br/>de existencia]
     D --> E[Verificación<br/>en juicio]
-    
+
     style E fill:#4ade80,color:#000
 ```
 
@@ -700,7 +700,7 @@ flowchart LR
     C --> D{¿Es auténtico?}
     D -->|Sí| E[Acepta estudio]
     D -->|No| F[Rechaza]
-    
+
     style E fill:#4ade80,color:#000
     style F fill:#ef4444,color:#fff
 ```
@@ -733,7 +733,7 @@ flowchart LR
     B --> C[Registran empresa: 3]
     C --> D[Emiten boleto: 1]
     D --> E[Pagan por certificado: 0]
-    
+
     style A fill:#1A1A24,stroke:#D4AF37,color:#E0E0E0
     style B fill:#1A1A24,stroke:#D4AF37,color:#E0E0E0
     style C fill:#1A1A24,stroke:#D4AF37,color:#E0E0E0
