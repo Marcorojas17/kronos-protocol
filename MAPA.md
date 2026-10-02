@@ -223,6 +223,7 @@ kronos-protocol/
 │   ├── EXPLICACION-UNIVERSAL.md
 │   ├── INDICE.md
 │   ├── MAPA.md
+│   ├── NMX-151.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
 │   ├── RESUMEN-EJECUTIVO.md
@@ -266,7 +267,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
