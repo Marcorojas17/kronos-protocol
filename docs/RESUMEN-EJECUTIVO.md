@@ -49,7 +49,6 @@ Próximo paso: emitir el primer certificado real y probarlo con un caso document
 ## 5. Prueba en 2 minutos
 
 Cualquiera con Brave puede:
-
 1. Abrir marcorojas17.github.io/kronos-protocol/08-HERRAMIENTAS/capturar-origen.html.
 2. Firmar un origen de prueba.
 3. Verificar el boleto.json resultante en verificador-empresa.html.
