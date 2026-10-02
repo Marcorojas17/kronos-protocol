@@ -6,7 +6,9 @@ _Generado automaticamente._
 - `CIUDAD/`
 - [CIUDAD/AUDITORIA-IA.md](CIUDAD/AUDITORIA-IA.md) - 19776 bytes
 - [CIUDAD/AUDITOR_HOSTIL.js](CIUDAD/AUDITOR_HOSTIL.js) - 5802 bytes
+- [CIUDAD/CIUDADANOS.html](CIUDAD/CIUDADANOS.html) - 10614 bytes
 - [CIUDAD/CIUDADANOS.md](CIUDAD/CIUDADANOS.md) - 7453 bytes
+- [CIUDAD/CONSTITUCION.html](CIUDAD/CONSTITUCION.html) - 7297 bytes
 - [CIUDAD/CONSTITUCION.md](CIUDAD/CONSTITUCION.md) - 44811 bytes
 - [CIUDAD/CONVIVENCIA.md](CIUDAD/CONVIVENCIA.md) - 23906 bytes
 - [CIUDAD/DERECHOS.md](CIUDAD/DERECHOS.md) - 33710 bytes
@@ -21,15 +23,17 @@ _Generado automaticamente._
 - [CIUDAD/verificar.html](CIUDAD/verificar.html) - 25909 bytes
 - [EXPLICACION-UNIVERSAL.md](EXPLICACION-UNIVERSAL.md) - 12375 bytes
 - [HONESTIDAD.md](HONESTIDAD.md) - 18311 bytes
-- [INDICE.md](INDICE.md) - 1905 bytes
+- [INDICE.md](INDICE.md) - 1950 bytes
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
 - [NMX-151.html](NMX-151.html) - 16355 bytes
 - [NMX-151.md](NMX-151.md) - 16124 bytes
+- [NMX-27001.html](NMX-27001.html) - 13906 bytes
 - [NMX-27001.md](NMX-27001.md) - 13907 bytes
 - [PLANTILLA-TERMINAL.md](PLANTILLA-TERMINAL.md) - 6779 bytes
 - [README.md](README.md) - 4812 bytes
+- [RESUMEN-EJECUTIVO.html](RESUMEN-EJECUTIVO.html) - 10872 bytes
 - [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) - 7045 bytes
 - [TESIS-VISUAL.md](TESIS-VISUAL.md) - 10515 bytes
 - [demos-oficiales.html](demos-oficiales.html) - 20604 bytes
