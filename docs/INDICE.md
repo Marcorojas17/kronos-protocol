@@ -20,13 +20,14 @@ _Generado automaticamente._
 - [CIUDAD/lector.html](CIUDAD/lector.html) - 13165 bytes
 - [CIUDAD/verificar.html](CIUDAD/verificar.html) - 25909 bytes
 - [EXPLICACION-UNIVERSAL.md](EXPLICACION-UNIVERSAL.md) - 12375 bytes
-- [HONESTIDAD.md](HONESTIDAD.md) - 18508 bytes
-- [INDICE.md](INDICE.md) - 1904 bytes
+- [HONESTIDAD.md](HONESTIDAD.md) - 18311 bytes
+- [INDICE.md](INDICE.md) - 1905 bytes
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
-- [NMX-151.md](NMX-151.md) - 16355 bytes
-- [NMX-27001.md](NMX-27001.md) - 10886 bytes
+- [NMX-151.html](NMX-151.html) - 16355 bytes
+- [NMX-151.md](NMX-151.md) - 16124 bytes
+- [NMX-27001.md](NMX-27001.md) - 13907 bytes
 - [PLANTILLA-TERMINAL.md](PLANTILLA-TERMINAL.md) - 6779 bytes
 - [README.md](README.md) - 4812 bytes
 - [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) - 7045 bytes
