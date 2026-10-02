@@ -148,26 +148,26 @@ pie title 771 archivos
 
 ### ▸ comandos disponibles
 
-| comando | acción | verifica con |
-|:---|:---|:---|
-| `syscall` | este archivo | `cat README.md` |
-| `list` | qué hay acá | `ls` |
-| `pipeline` | cómo verifica | `ls 08-HERRAMIENTAS/` |
-| `ciudad` | 100 plazas | `docs/CIUDAD/CIUDADANOS.md` |
-| `normas` | NOM-151 + ISO | `docs/NMX-*.md` |
-| `test` | prueba 2 min | `capturar-origen.html` |
+| comando    | acción        | verifica con                |
+| :--------- | :------------ | :-------------------------- |
+| `syscall`  | este archivo  | `cat README.md`             |
+| `list`     | qué hay acá   | `ls`                        |
+| `pipeline` | cómo verifica | `ls 08-HERRAMIENTAS/`       |
+| `ciudad`   | 100 plazas    | `docs/CIUDAD/CIUDADANOS.md` |
+| `normas`   | NOM-151 + ISO | `docs/NMX-*.md`             |
+| `test`     | prueba 2 min  | `capturar-origen.html`      |
 
 ---
 
 ### $ ps -ef | grep kronos
 
-| pid | módulo | resultado | proof |
-|:---:|:---|:---:|:---|
-| root.01 | `pipeline E2E` | ✅ ACTIVO | boleto verificado |
-| root.02 | `agentes Python` | ✅ 6 ACTIVOS | 05-AGENTES/ |
-| root.03 | `Kintsugi JS` | 🟡 SIN MOTOR | agentes/ |
-| root.04 | `documentación` | ✅ COMPLETA | docs/ |
-| root.05 | `clientes` | 🔴 0 | — |
+|   pid   | módulo           |  resultado   | proof             |
+| :-----: | :--------------- | :----------: | :---------------- |
+| root.01 | `pipeline E2E`   |  ✅ ACTIVO   | boleto verificado |
+| root.02 | `agentes Python` | ✅ 6 ACTIVOS | 05-AGENTES/       |
+| root.03 | `Kintsugi JS`    | 🟡 SIN MOTOR | agentes/          |
+| root.04 | `documentación`  | ✅ COMPLETA  | docs/             |
+| root.05 | `clientes`       |     🔴 0     | —                 |
 
 <sub>5 procesos · 3 activos · 1 parcial · 1 pendiente</sub>
 
@@ -175,13 +175,13 @@ pie title 771 archivos
 
 ### $ syscall kronos --evidence
 
-| key | value | check |
-|---|---|---|
-| merkle_articles | `e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93` | `cat 00-FUNDACION/*.md \| sha256sum` |
-| merkle_docs | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813` | `cat 00-SCHEMA/*.json \| sha256sum` |
-| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` | `cat 07-LLAVES/*.json \| grep pubkey` |
-| eth_tx_1 | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` | [etherscan](https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e) |
-| eth_tx_2 | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
+| key             | value                                                                 | check                                                                                                    |
+| --------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| merkle_articles | `e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93`    | `cat 00-FUNDACION/*.md \| sha256sum`                                                                     |
+| merkle_docs     | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813`    | `cat 00-SCHEMA/*.json \| sha256sum`                                                                      |
+| pubkey_founder  | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977`    | `cat 07-LLAVES/*.json \| grep pubkey`                                                                    |
+| eth_tx_1        | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e`  | [etherscan](https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e)  |
+| eth_tx_2        | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
 
 ---
 
@@ -290,6 +290,7 @@ $ cat docs/NMX-151.md | head -n 30
 
 > [!CAUTION]
 > **KRONOS NO ES:**
+>
 > - ❌ App con login
 > - ❌ SaaS con servidor
 > - ❌ Certificación ISO acreditada
@@ -297,6 +298,7 @@ $ cat docs/NMX-151.md | head -n 30
 
 > [!NOTE]
 > **KRONOS SÍ ES:**
+>
 > - ✅ Protocolo local-first
 > - ✅ Pipeline E2E verificado
 > - ✅ 100 plazas de ciudadanía firmables
