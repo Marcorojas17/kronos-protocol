@@ -92,27 +92,27 @@ pie title HONESTIDAD · 6 categorías
 
 ### ▸ comandos disponibles
 
-| comando | acción | verifica con |
-|:---|:---|:---|
-| `syscall` | resumen de iteraciones | `ls 11-ARCHIVO/` |
-| `ps` | 6 procesos auditados | `git log --all` |
-| `evidence` | 3 hashes reales | `sha256sum` |
-| `map` | iteración → archivo | `grep` |
-| `rule` | la regla del archivo | `cat` |
-| `limits` | lo que NO es | `echo $?` |
+| comando    | acción                 | verifica con     |
+| :--------- | :--------------------- | :--------------- |
+| `syscall`  | resumen de iteraciones | `ls 11-ARCHIVO/` |
+| `ps`       | 6 procesos auditados   | `git log --all`  |
+| `evidence` | 3 hashes reales        | `sha256sum`      |
+| `map`      | iteración → archivo    | `grep`           |
+| `rule`     | la regla del archivo   | `cat`            |
+| `limits`   | lo que NO es           | `echo $?`        |
 
 ---
 
 ### $ ps -ef | grep kronos
 
-| pid | iteración | resultado | proof |
-|:---:|:---|:---:|:---|
+|    pid    | iteración            |  resultado   | proof            |
+| :-------: | :------------------- | :----------: | :--------------- |
 | honest.01 | `certificados v1-v8` | ✅ ARCHIVADO | 08-HERRAMIENTAS/ |
-| honest.02 | `index-v2 iframe` | ✅ ARCHIVADO | git history |
-| honest.03 | `fundador-v2.key` | ✅ ELIMINADO | git log |
-| honest.04 | `CONTEXTO v1-v3.16` | ✅ ARCHIVADO | raíz |
-| honest.05 | `duplicados` | ✅ ELIMINADO | refactor |
-| honest.06 | `basura (i/Pnp/403)` | 🟡 PENDIENTE | sin clasificar |
+| honest.02 | `index-v2 iframe`    | ✅ ARCHIVADO | git history      |
+| honest.03 | `fundador-v2.key`    | ✅ ELIMINADO | git log          |
+| honest.04 | `CONTEXTO v1-v3.16`  | ✅ ARCHIVADO | raíz             |
+| honest.05 | `duplicados`         | ✅ ELIMINADO | refactor         |
+| honest.06 | `basura (i/Pnp/403)` | 🟡 PENDIENTE | sin clasificar   |
 
 <sub>6 procesos · 5 resueltos · 1 pendiente</sub>
 
@@ -120,11 +120,11 @@ pie title HONESTIDAD · 6 categorías
 
 ### $ syscall honest --evidence
 
-| key | value | check |
-|---|---|---|
-| merkle_docs | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813` | `cat 00-SCHEMA/*.json \| sha256sum` |
-| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` | `cat 07-LLAVES/*.json \| grep pubkey` |
-| eth_tx_2 | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
+| key            | value                                                                 | check                                                                                                    |
+| -------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| merkle_docs    | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813`    | `cat 00-SCHEMA/*.json \| sha256sum`                                                                      |
+| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977`    | `cat 07-LLAVES/*.json \| grep pubkey`                                                                    |
+| eth_tx_2       | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
 
 ---
 
@@ -321,12 +321,14 @@ $ cat 11-ARCHIVO/README.md 2>/dev/null | grep -i regla
 
 > [!CAUTION]
 > **KRONOS NO ES:**
+>
 > - ❌ Respaldo de emergencia
 > - ❌ Almacén de llaves privadas
 > - ❌ Basurero sin reglas
 
 > [!NOTE]
 > **KRONOS SÍ ES:**
+>
 > - ✅ Prueba de trabajo real
 > - ✅ Trazable vía `git log`
 > - ✅ Reproducible por cualquiera
