@@ -94,24 +94,24 @@ pie title Estado por área
 
 ### ▸ comandos disponibles
 
-| comando | acción | verifica con |
-|:---|:---|:---|
-| `syscall` | resumen | este archivo |
-| `problem` | qué resuelve | `docs/CIUDAD/` |
-| `pipeline` | cómo verifica | `08-HERRAMIENTAS/` |
-| `status` | estado real | `ls 05-AGENTES/` |
-| `test` | prueba 2 min | `capturar-origen.html` |
+| comando    | acción        | verifica con           |
+| :--------- | :------------ | :--------------------- |
+| `syscall`  | resumen       | este archivo           |
+| `problem`  | qué resuelve  | `docs/CIUDAD/`         |
+| `pipeline` | cómo verifica | `08-HERRAMIENTAS/`     |
+| `status`   | estado real   | `ls 05-AGENTES/`       |
+| `test`     | prueba 2 min  | `capturar-origen.html` |
 
 ---
 
 ### $ ps -ef | grep kronos
 
-| pid | módulo | resultado | proof |
-|:---:|:---|:---:|:---|
-| exec.01 | `pipeline E2E` | ✅ ACTIVO | boleto verificado |
-| exec.02 | `agentes Python` | ✅ ACTIVO | 6 corriendo |
-| exec.03 | `Kintsugi JS` | 🟡 SIN MOTOR | 6 con UI |
-| exec.04 | `clientes pagando` | 🔴 0 | ninguno |
+|   pid   | módulo             |  resultado   | proof             |
+| :-----: | :----------------- | :----------: | :---------------- |
+| exec.01 | `pipeline E2E`     |  ✅ ACTIVO   | boleto verificado |
+| exec.02 | `agentes Python`   |  ✅ ACTIVO   | 6 corriendo       |
+| exec.03 | `Kintsugi JS`      | 🟡 SIN MOTOR | 6 con UI          |
+| exec.04 | `clientes pagando` |     🔴 0     | ninguno           |
 
 <sub>4 procesos · 2 activos · 1 parcial · 1 pendiente</sub>
 
@@ -119,11 +119,11 @@ pie title Estado por área
 
 ### $ syscall exec --evidence
 
-| key | value | check |
-|---|---|---|
-| merkle_articles | `e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93` | `cat 00-FUNDACION/*.md \| sha256sum` |
-| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` | `cat 07-LLAVES/*.json \| grep pubkey` |
-| eth_tx_1 | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` | [etherscan](https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e) |
+| key             | value                                                                | check                                                                                                   |
+| --------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| merkle_articles | `e69b2c242ab44d90b67ff1b8eda679e34911fb347e867e43d23344a703390d93`   | `cat 00-FUNDACION/*.md \| sha256sum`                                                                    |
+| pubkey_founder  | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977`   | `cat 07-LLAVES/*.json \| grep pubkey`                                                                   |
+| eth_tx_1        | `0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e` | [etherscan](https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e) |
 
 ---
 
@@ -159,12 +159,12 @@ $ ls 08-HERRAMIENTAS/
 $ grep -R "Ed25519\|SHA-256" 08-HERRAMIENTAS/
 ```
 
-| paso | archivo | acción |
-|:-:|---|---|
-| 01 | `capturar-origen.html` | firma + genera boleto |
-| 02 | `verificador-empresa.html` | valida 5 criterios |
-| 03 | `notario-digital.html` | indexa boletos |
-| 04 | Ethereum | anclaje inmutable |
+| paso | archivo                    | acción                |
+| :--: | -------------------------- | --------------------- |
+|  01  | `capturar-origen.html`     | firma + genera boleto |
+|  02  | `verificador-empresa.html` | valida 5 criterios    |
+|  03  | `notario-digital.html`     | indexa boletos        |
+|  04  | Ethereum                   | anclaje inmutable     |
 
 </details>
 
@@ -185,11 +185,11 @@ $ ls .github/workflows/ | wc -l
 $ git log --oneline | wc -l
 ```
 
-| área | estado | detalle |
-|---|:-:|---|
-| técnico | 🟢 62% | pipeline OK |
-| negocio | 🔴 0% | sin clientes |
-| adopción | 🔴 0% | sin usuarios |
+| área     | estado | detalle      |
+| -------- | :----: | ------------ |
+| técnico  | 🟢 62% | pipeline OK  |
+| negocio  | 🔴 0%  | sin clientes |
+| adopción | 🔴 0%  | sin usuarios |
 
 </details>
 
@@ -219,12 +219,14 @@ $ git log --oneline | wc -l
 
 > [!CAUTION]
 > **KRONOS NO ES:**
+>
 > - ❌ Aplicación con login
 > - ❌ SaaS con servidor
 > - ❌ Promesa de pago garantizado
 
 > [!NOTE]
 > **KRONOS SÍ ES:**
+>
 > - ✅ Infraestructura offline
 > - ✅ Pipeline E2E verificado
 > - ✅ Prueba de origen firmada
