@@ -224,6 +224,7 @@ kronos-protocol/
 │   ├── INDICE.md
 │   ├── MAPA.md
 │   ├── NMX-151.md
+│   ├── NMX-27001.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
 │   ├── RESUMEN-EJECUTIVO.md
