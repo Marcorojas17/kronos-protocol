@@ -24,7 +24,7 @@ _Generado automaticamente._
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
-- [NMX-151.md](NMX-151.md) - 4461 bytes
+- [NMX-151.md](NMX-151.md) - 6291 bytes
 - [PLANTILLA-TERMINAL.md](PLANTILLA-TERMINAL.md) - 6779 bytes
 - [README.md](README.md) - 4812 bytes
 - [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) - 3555 bytes
