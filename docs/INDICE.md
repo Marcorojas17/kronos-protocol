@@ -24,14 +24,15 @@ _Generado automaticamente._
 - `IP/`
 - [IP/README.md](IP/README.md) - 6447 bytes
 - [MAPA.md](MAPA.md) - 15139 bytes
+- [NMX-151.md](NMX-151.md) - 1624 bytes
 - [PLANTILLA-TERMINAL.md](PLANTILLA-TERMINAL.md) - 6779 bytes
 - [README.md](README.md) - 4812 bytes
-- [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) - 2042 bytes
+- [RESUMEN-EJECUTIVO.md](RESUMEN-EJECUTIVO.md) - 3555 bytes
 - [TESIS-VISUAL.md](TESIS-VISUAL.md) - 10515 bytes
 - [demos-oficiales.html](demos-oficiales.html) - 20604 bytes
 - [index.html](index.html) - 11867 bytes
 - [kronos-para-ninos.html](kronos-para-ninos.html) - 20025 bytes
 - `normas/`
 - [normas/151.md](normas/151.md) - 2902 bytes
-- [normas/27001.md](normas/27001.md) - 2643 bytes
+- [normas/27001.md](normas/27001.md) - 2975 bytes
 - [tesis-visual.html](tesis-visual.html) - 11603 bytes
