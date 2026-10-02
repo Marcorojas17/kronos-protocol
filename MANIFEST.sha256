@@ -1,5 +1,5 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-10-02T04:11:21Z
+# Generado: 2026-10-02T04:17:47Z
 # Autor: Marco Antonio Rojas Valdovinos
 
 3860484932ce78146b9ab7bc6f9946a4f0c51bcf55a51208d81cfc276bf56d5f  ./00-FUNDACION/ACTA-v2.md
@@ -245,6 +245,7 @@ b30627442270d6d842beb9c9249a13115b8b3c62e7f40c061b748dbb5e67bfa2  ./identidad/ro
 f0aa5ae823f41fdf33d3f980639516f82e8715700b42062d228dbcbdb5c7d9fa  ./identidad/roles-permisos/permisos.js
 ad699e81d05364ba68f234c3201a7c71ec6b912c4644f26fd2e72f2837888fa1  ./identidad/roles-permisos/roles.js
 6e299fabcac271554b9870a3f2c9b26e84a3c9e59d6aea9e4cdc2e4513165ee7  ./identidad/roles-permisos/styles.css
+46f338e13759de4348e4e9e7c8f19cba1234823378ad82ba10258eb60df812fc  ./index-browser.html
 573a81bdbfb4d47b42edbe89e93421a402c5e69c7edf68eed0f20396cd4f1b17  ./index-v2.html
 130ce02f5348b22ae814be52aff619d3115c2bcd66821361dc9fe09826e3cf1f  ./index.html
 9a6a9536a6deeece25d0f913eebddbd6ddf77f115b06631892e6f4fe339a86ca  ./kodice-secreto/index.html
