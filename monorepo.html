@@ -1,234 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KRONOS // SYSCALL OS · v7.2</title>
+<title>KRONOS · Monorepo OS</title>
 <style>
-  :root {
-    --bg: #0D0D12;
-    --gold: #D4AF37;
-    --gold-light: #E5C76B;
-    --text: #E0E0E0;
-    --ok: #4ade80;
-    --bad: #ef4444;
-    --warn: #f59e0b;
-    --panel: #1A1A24;
-    --panel-light: #22222e;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Fira Code', 'Courier New', monospace;
-    padding: 18px;
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.55;
-    font-size: 14px;
-  }
-  h1 {
-    color: var(--gold);
-    font-size: 1.05rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 8px;
-    margin-bottom: 18px;
-  }
-  pre {
-    background: #000;
-    border: 1px solid #333;
-    padding: 12px;
-    overflow-x: auto;
-    font-size: 0.74rem;
-    line-height: 1.45;
-    border-radius: 4px;
-    margin-bottom: 16px;
-  }
-  .section {
-    margin-bottom: 22px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed #2a2a35;
-  }
-  .section-title {
-    color: var(--gold);
-    font-size: 0.82rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-  .proc {
-    background: var(--panel);
-    border: 1px solid #333;
-    padding: 10px 14px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    transition: border-color 0.2s;
-  }
-  .proc:hover { border-color: var(--gold); }
-  .proc-header {
-    color: var(--gold);
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  .proc-body {
-    font-size: 0.72rem;
-    color: #aaa;
-  }
-  .proc a {
-    color: var(--gold-light);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--gold-light);
-  }
-  .proc a:hover { background: rgba(212, 175, 55, 0.12); }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 14px;
-    font-size: 0.75rem;
-  }
-  th, td {
-    padding: 6px 8px;
-    text-align: left;
-    border-bottom: 1px solid #2a2a35;
-  }
-  th { color: var(--gold); background: #15151c; }
-  .ok { color: var(--ok); }
-  .bad { color: var(--bad); }
-  .warn { color: var(--warn); }
-  .dim { color: #888; }
-  .flow {
-    background: #000;
-    border: 1px solid #333;
-    padding: 16px;
-    border-radius: 4px;
-    overflow-x: auto;
-    font-size: 0.7rem;
-    line-height: 1.5;
-    margin-bottom: 14px;
-  }
-  footer {
-    margin-top: 30px;
-    padding-top: 16px;
-    border-top: 1px solid #333;
-    text-align: center;
-    font-size: 0.72rem;
-    color: #888;
-  }
-  .seal {
-    color: var(--gold);
-    margin-top: 6px;
-    font-size: 0.75rem;
-  }
+:root{--bg:#06060a;--panel:#0f0f18;--panel2:#14141e;--gold:#D4AF37;--gold-light:#E5C76B;--gold-dim:rgba(212,175,55,0.3);--text:#E0E0E0;--dim:#888;--ok:#4ade80;--warn:#f59e0b;--bad:#ef4444;--border:#1a1a22}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px rgba(212,175,55,0.8);animation:float 12s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0);opacity:0.2}50%{transform:translateY(-40px);opacity:0.8}}
+.wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 20px 60px}
+nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,6,10,0.85);backdrop-filter:blur(10px);z-index:50}
+nav.top .brand{font-family:Georgia,serif;font-size:0.85rem;letter-spacing:6px;color:var(--gold);font-weight:700}
+nav.top a{color:var(--dim);text-decoration:none;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+nav.top a:hover{color:var(--gold)}
+.hero{text-align:center;padding:60px 0 40px}
+.kicker{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--gold-light);letter-spacing:2px;margin-bottom:14px;line-height:1.1;text-shadow:0 0 30px rgba(212,175,55,0.3)}
+.hero .sub{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--text);opacity:0.85;max-width:520px;margin:0 auto;line-height:1.6}
+.hero .stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:0.7rem;letter-spacing:2px;color:var(--dim)}
+.hero .stats span{color:var(--ok)}
+section{margin-top:50px}
+.sec-title{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'▸';color:var(--gold)}
+.proc{background:var(--panel);border:1px solid var(--border);padding:16px 18px;margin-bottom:10px;border-radius:6px;transition:border-color 0.2s}
+.proc:hover{border-color:var(--gold-dim)}
+.proc-header{color:var(--gold-light);font-size:0.9rem;font-weight:600;margin-bottom:6px}
+.proc-body{font-size:0.78rem;color:var(--dim);line-height:1.6}
+.proc-body a{color:var(--gold-light);text-decoration:none;border-bottom:1px dotted var(--gold-light)}
+.proc-body code{background:#000;color:var(--gold-light);padding:2px 6px;border-radius:3px;font-size:0.72rem}
+table{width:100%;border-collapse:collapse;font-size:0.78rem}
+th{color:var(--gold);text-align:left;padding:8px 10px;border-bottom:1px solid var(--gold-dim);font-weight:500;letter-spacing:1px;font-size:0.7rem;text-transform:uppercase}
+td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+.term{background:#000;border:1px solid var(--border);border-radius:6px;padding:18px 20px;font-family:'Fira Code','Courier New',monospace;font-size:0.78rem;line-height:1.7;color:var(--gold-light);overflow-x:auto}
+.term .ok{color:var(--ok)}
+footer{margin-top:60px;padding-top:30px;border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--dim);line-height:2;letter-spacing:1px}
+footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'Courier New',monospace}
 </style>
 </head>
 <body>
+<div id="particles"></div>
+<nav class="top"><div class="brand">KRONOS</div><a href="index.html">← Inicio</a></nav>
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">MONOREPO OS · SYSCALL</div>
+    <h1>KRONOS</h1>
+    <p class="sub">Un solo punto de entrada.<br>Nueve procesos vivos.</p>
+    <div class="stats"><span>○_●</span> 51% HUMANO · 49% IA · 100% REAL <span>◢◤◥◣</span></div>
+  </div>
 
-<h1>KRONOS // SYSCALL OS · v7.2 FLOW + MAPS</h1>
-
-<pre>
-┌─[kronos@protocol]─[~/]─┐
-│ os: SYSCALL · v7.2       │
-│ chain: git + merkle + eth│
-└──────────────────────────┘
-$ kronos --os --list
-</pre>
-
-<div class="section">
-  <div class="section-title">▸ procesos activos</div>
-
-  <div class="proc">
-    <div class="proc-header">[fd 151] conformidad NOM-151</div>
-    <div class="proc-body">
-      CONFORME != CERTIFICADO ·
-      <a href="docs/NMX-151.md">docs/NMX-151.md</a><br>
-      verificar: <code>grep SHA-256 Ed25519 08-HERRAMIENTAS/</code>
+  <section>
+    <div class="sec-title">procesos activos</div>
+    <div class="proc">
+      <div class="proc-header">[fd 151] conformidad NOM-151</div>
+      <div class="proc-body">CONFORME != CERTIFICADO · <a href="docs/NMX-151.html">docs/NMX-151.html</a><br>verificar: <code>grep SHA-256 08-HERRAMIENTAS/</code></div>
     </div>
-  </div>
-
-  <div class="proc">
-    <div class="proc-header">[fd 27001] conformidad ISO/IEC 27001</div>
-    <div class="proc-body">
-      CONFORME != CERTIFICADO ·
-      <a href="docs/NMX-27001.md">docs/NMX-27001.md</a><br>
-      verificar: <code>ls .github/workflows/ | wc -l</code>
+    <div class="proc">
+      <div class="proc-header">[fd 27001] conformidad ISO/IEC 27001</div>
+      <div class="proc-body">CONFORME != CERTIFICADO · <a href="docs/NMX-27001.html">docs/NMX-27001.html</a><br>verificar: <code>ls .github/workflows/ | wc -l</code></div>
     </div>
-  </div>
-
-  <div class="proc">
-    <div class="proc-header">[fd honest] registro de trabajo real</div>
-    <div class="proc-body">
-      PRESERVADO != LIMPIO ·
-      <a href="docs/HONESTIDAD.md">docs/HONESTIDAD.md</a><br>
-      verificar: <code>git log --all | grep -iE "certificado|index-v2"</code>
+    <div class="proc">
+      <div class="proc-header">[fd honest] registro de trabajo real</div>
+      <div class="proc-body">PRESERVADO != LIMPIO · <a href="docs/HONESTIDAD.html">docs/HONESTIDAD.html</a><br>verificar: <code>git log --all | grep -iE "certificado"</code></div>
     </div>
-  </div>
+    <div class="proc">
+      <div class="proc-header">[fd exec] resumen ejecutivo</div>
+      <div class="proc-body">Dos minutos para entender · <a href="docs/RESUMEN-EJECUTIVO.html">docs/RESUMEN-EJECUTIVO.html</a></div>
+    </div>
+    <div class="proc">
+      <div class="proc-header">[fd ciudad] 100 plazas de origen</div>
+      <div class="proc-body">Para ser ciudadano no pagás · <a href="docs/CIUDAD/CIUDADANOS.html">docs/CIUDAD/CIUDADANOS.html</a></div>
+    </div>
+    <div class="proc">
+      <div class="proc-header">[fd constitucion] marco normativo</div>
+      <div class="proc-body">50 artículos · <a href="docs/CIUDAD/CONSTITUCION.html">docs/CIUDAD/CONSTITUCION.html</a></div>
+    </div>
+  </section>
 
+  <section>
+    <div class="sec-title">workflows del repo</div>
+    <div class="term">
+      pages-build       <span class="ok">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>  1,259  ← DRIFT<br>
+      KRONOS Verificar  ▓▓▓▓▓▓▓▓▓▓▓▓▓                           632<br>
+      GUARDIAN-SHA      ▓▓▓▓▓▓▓▓▓▓▓▓                            599<br>
+      VERIFY-SHA        ▓▓▓▓▓▓▓▓▓▓▓▓                            598<br>
+      Verificar Acta    ▓▓▓                                      113<br>
+      otros (14)        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    945<br>
+      ─────────────────────────────────────────────────────────────<br>
+      total             <span class="ok">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>  4,146
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">evidencia pública</div>
+    <table>
+      <tr><th>key</th><th>valor</th></tr>
+      <tr><td>merkle_articles</td><td><code>e69b2c24...0d93</code></td></tr>
+      <tr><td>merkle_docs</td><td><code>67180206...e813</code></td></tr>
+      <tr><td>pubkey_founder</td><td><code>fd2fb1e9...4977</code></td></tr>
+      <tr><td>eth_tx_1</td><td><a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank" style="color:var(--gold-light)">0x8ca8...2970e</a></td></tr>
+      <tr><td>eth_tx_2</td><td><a href="https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c" target="_blank" style="color:var(--gold-light)">0xd2c2...774c</a></td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <div>KRONOS PROTOCOL · MONOREPO OS</div>
+    <div>© 2026 Marco Antonio Rojas Valdovinos · CC BY-NC-ND 4.0</div>
+    <div class="seal">○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div class="seal">51% HUMANO · 49% IA · 100% REAL</div>
+    <div class="seal">"El sistema no decide quién cobra. Solo prueba quién originó."</div>
+  </footer>
 </div>
-
-<div class="section">
-  <div class="section-title">▸ pipeline E2E · flujo</div>
-  <div class="flow">
-    <span class="gold">[AGENTE]</span> ─firma──▶ <span class="gold">[EMPRESA]</span> ─valida──▶ <span class="ok">✓ VERIFICADO</span><br>
-    <span class="dim">   │</span><br>
-    <span class="dim">   └─▶</span> boleto.json + boleto.png ─anclaje──▶ <span class="gold">[ETHEREUM]</span>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-title">▸ estado de verificaciones</div>
-  <table>
-    <tr><th>módulo</th><th>estado</th><th>verificación</th></tr>
-    <tr><td>integrity</td><td class="ok">✅ PASS</td><td>SHA-256 + RFC 8785</td></tr>
-    <tr><td>non-repudio</td><td class="ok">✅ PASS</td><td>Ed25519 (RFC 8032)</td></tr>
-    <tr><td>conservación</td><td class="ok">✅ PASS</td><td>git log + merkle</td></tr>
-    <tr><td>timestamp</td><td class="ok">✅ PASS</td><td>ISO-8601 + Ethereum</td></tr>
-    <tr><td>workflows (A.12)</td><td class="warn">🟡 DRIFT</td><td>Jekyll 1,259 runs</td></tr>
-    <tr><td>cumplimiento (A.18)</td><td class="warn">🟡 OPEN</td><td>NOM-151 + LFPDPPP</td></tr>
-  </table>
-</div>
-
-<div class="section">
-  <div class="section-title">▸ workflows del repo</div>
-  <pre>
-pages-build       ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  1,259  ← DRIFT
-KRONOS Verificar  ▓▓▓▓▓▓▓▓▓▓▓▓▓                           632
-GUARDIAN-SHA      ▓▓▓▓▓▓▓▓▓▓▓▓                            599
-VERIFY-SHA        ▓▓▓▓▓▓▓▓▓▓▓▓                            598
-Verificar Acta    ▓▓▓                                      113
-otros (14)        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    945
-─────────────────────────────────────────────────────────────
-total             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 4,146
-  </pre>
-  <div class="proc-body">19 workflows · 4,146 runs · 3 días de actividad</div>
-</div>
-
-<div class="section">
-  <div class="section-title">▸ evidencia pública</div>
-  <table>
-    <tr><th>key</th><th>valor</th></tr>
-    <tr><td>merkle_articles</td><td><code>e69b2c24...0d93</code></td></tr>
-    <tr><td>merkle_docs</td><td><code>67180206...e813</code></td></tr>
-    <tr><td>pubkey_founder</td><td><code>fd2fb1e9...4977</code></td></tr>
-    <tr><td>eth_tx_1</td><td><a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank">0x8ca8...2970e</a></td></tr>
-    <tr><td>eth_tx_2</td><td><a href="https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c" target="_blank">0xd2c2...774c</a></td></tr>
-  </table>
-</div>
-
-<pre>
-$ echo $?
-0   <span class="ok"># todo verificable sin inventar</span>
-$ _
-</pre>
-
-<footer>
-  <div>KRONOS PROTOCOL · SYSCALL OS · v7.2 FLOW + MAPS</div>
-  <div>© 2026 Marco Antonio Rojas Valdovinos · CC BY-NC-ND 4.0</div>
-  <div class="seal">○_● · ◢◤◥◣ · ◥◣◢◤</div>
-  <div class="seal">51% HUMANO · 49% IA · 100% REAL</div>
-  <div class="seal">"El sistema no decide quién cobra. Solo prueba quién originó."</div>
-</footer>
-
+<script>
+(function(){const c=document.getElementById('particles');for(let i=0;i<35;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=(Math.random()*12)+'s';p.style.animationDuration=(8+Math.random()*8)+'s';p.style.opacity=(0.15+Math.random()*0.4).toString();c.appendChild(p)}})();
+</script>
 </body>
 </html>
