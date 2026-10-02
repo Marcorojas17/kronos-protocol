@@ -1,6 +1,6 @@
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-█  KRONOS PROTOCOL                                              █
-█  RESUMEN EJECUTIVO                                            █
+█ KRONOS PROTOCOL █
+█ RESUMEN EJECUTIVO █
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 
 > <kbd>v1.0</kbd> · <kbd>2026-10-01</kbd> · <kbd>PRODUCCIÓN</kbd> · <kbd>AUDITADO</kbd>
@@ -58,13 +58,13 @@ Sin servidor. Sin nube. Sin permiso de nadie.
 `03` La empresa carga `boleto.json` en `verificador-empresa.html`.  
 `04` El verificador valida **5 criterios**:
 
-| # | Criterio | Falla si |
-|---|---|---|
-| 1 | Hash coincide | ✗ ALTERADO |
-| 2 | Firma válida | ✗ ALTERADO |
-| 3 | Pubkey en `empresa.json` | ⚠ NO AUTORIZADO |
-| 4 | Agente activo | ⚠ INACTIVO |
-| 5 | Timestamp en periodo | ⚠ FUERA PERIODO |
+| #   | Criterio                 | Falla si        |
+| --- | ------------------------ | --------------- |
+| 1   | Hash coincide            | ✗ ALTERADO      |
+| 2   | Firma válida             | ✗ ALTERADO      |
+| 3   | Pubkey en `empresa.json` | ⚠ NO AUTORIZADO |
+| 4   | Agente activo            | ⚠ INACTIVO      |
+| 5   | Timestamp en periodo     | ⚠ FUERA PERIODO |
 
 `05` Devuelve uno de **4 estados**:
 

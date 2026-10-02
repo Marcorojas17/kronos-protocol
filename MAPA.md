@@ -266,7 +266,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado 
+│   │   ├── estructura del certificado
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html

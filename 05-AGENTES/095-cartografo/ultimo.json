@@ -11,10 +11,7 @@
     "mapa_escrito_en": "/home/runner/work/kronos-protocol/kronos-protocol/MAPA.md",
     "lineas": 516
   },
-  "supuestos": [
-    "El repo tiene raíz accesible",
-    "Profundidad 3 es suficiente"
-  ],
+  "supuestos": ["El repo tiene raíz accesible", "Profundidad 3 es suficiente"],
   "riesgos": [
     "Repos anchos generan MAPA.md grandes",
     "Nombres raros pueden verse mal"

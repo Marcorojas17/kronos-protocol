@@ -18,13 +18,13 @@ KRONOS no fue diseñado de una vez. Fue construido en iteraciones. Cada archivo 
 
 ## Contenido del archivo
 
-| Categoría | Qué contiene | Por qué se conserva |
-|---|---|---|
-| CONTEXTO-v*.md | Contextos portátiles previos (v1 a v3.16) | Muestra evolución del protocolo |
-| certificados-v1-a-v8.* | Iteraciones visuales descartadas | Prueba de búsqueda estética |
-| reportes/*.json | Análisis previos (algunos vacíos) | Registro de auditorías internas |
-| agent-base.* | Duplicado de agente-base.* | Bug de nomenclatura, no de diseño |
-| index-v1.html | Dashboard anterior | Comparación con el actual |
+| Categoría              | Qué contiene                              | Por qué se conserva               |
+| ---------------------- | ----------------------------------------- | --------------------------------- |
+| CONTEXTO-v*.md         | Contextos portátiles previos (v1 a v3.16) | Muestra evolución del protocolo   |
+| certificados-v1-a-v8.* | Iteraciones visuales descartadas          | Prueba de búsqueda estética       |
+| reportes/*.json        | Análisis previos (algunos vacíos)         | Registro de auditorías internas   |
+| agent-base.*           | Duplicado de agente-base.*                | Bug de nomenclatura, no de diseño |
+| index-v1.html          | Dashboard anterior                        | Comparación con el actual         |
 
 Nota para Marco: completar la tabla con los archivos reales que hay hoy en 11-ARCHIVO/. No se inventó contenido no verificado.
 
