@@ -221,9 +221,12 @@ kronos-protocol/
 │   │   └── 27001.md
 │   ├── ARQUITECTURA-VIVA.md
 │   ├── EXPLICACION-UNIVERSAL.md
+│   ├── HONESTIDAD.md
 │   ├── INDICE.md
 │   ├── MAPA.md
+│   ├── NMX-151.html
 │   ├── NMX-151.md
+│   ├── NMX-27001.html
 │   ├── NMX-27001.md
 │   ├── PLANTILLA-TERMINAL.md
 │   ├── README.md
@@ -268,7 +271,7 @@ kronos-protocol/
 │   ├── registro-humano/
 │   │   ├── AUTORIA
 │   │   ├── README.md
-│   │   ├── estructura del certificado
+│   │   ├── estructura del certificado 
 │   │   ├── identidad.js
 │   │   ├── index.html
 │   │   ├── manual.html
@@ -497,6 +500,7 @@ kronos-protocol/
 ├── favicon.svg
 ├── guardian.py
 ├── i
+├── index-browser.html
 ├── index-v2.html
 ├── index.html
 ├── luxury.html
