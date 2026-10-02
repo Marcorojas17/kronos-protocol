@@ -1,87 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KRONOS MONOREPO · Todo funcionando</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS // SYSCALL OS · v7.2</title>
 <style>
-:root{--gold:#D4AF37;--bg:#0a0a0f;--card:#1A1A24;--text:#E0E0E0}
-body{background:var(--bg);color:var(--text);font-family:monospace;padding:20px}
-a{color:var(--gold)} .card{border:1px solid var(--gold);padding:16px;margin:12px 0;border-radius:8px;background:var(--card)}
-h1{color:var(--gold)} .ok{color:#4ade80} .warn{color:#f59e0b} .bad{color:#ef4444}
+  :root {
+    --bg: #0D0D12;
+    --gold: #D4AF37;
+    --gold-light: #E5C76B;
+    --text: #E0E0E0;
+    --ok: #4ade80;
+    --bad: #ef4444;
+    --warn: #f59e0b;
+    --panel: #1A1A24;
+    --panel-light: #22222e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    padding: 18px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.55;
+    font-size: 14px;
+  }
+  h1 {
+    color: var(--gold);
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  pre {
+    background: #000;
+    border: 1px solid #333;
+    padding: 12px;
+    overflow-x: auto;
+    font-size: 0.74rem;
+    line-height: 1.45;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .section {
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed #2a2a35;
+  }
+  .section-title {
+    color: var(--gold);
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .proc {
+    background: var(--panel);
+    border: 1px solid #333;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .proc:hover { border-color: var(--gold); }
+  .proc-header {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .proc-body {
+    font-size: 0.72rem;
+    color: #aaa;
+  }
+  .proc a {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold-light);
+  }
+  .proc a:hover { background: rgba(212, 175, 55, 0.12); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 0.75rem;
+  }
+  th, td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #2a2a35;
+  }
+  th { color: var(--gold); background: #15151c; }
+  .ok { color: var(--ok); }
+  .bad { color: var(--bad); }
+  .warn { color: var(--warn); }
+  .dim { color: #888; }
+  .flow {
+    background: #000;
+    border: 1px solid #333;
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  footer {
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid #333;
+    text-align: center;
+    font-size: 0.72rem;
+    color: #888;
+  }
+  .seal {
+    color: var(--gold);
+    margin-top: 6px;
+    font-size: 0.75rem;
+  }
 </style>
 </head>
 <body>
-<h1>○_● KRONOS MONOREPO DASHBOARD</h1>
-<p>51% HUMANO · 49% IA · 100% REAL · 771 archivos · ~20MB</p>
 
-<div class="card">
-<h2>📚 TESIS VISUAL - 23 DIAGRAMAS (v3.16 corregida)</h2>
-<p><a href="docs/TESIS-VISUAL-COMPLETA.md">docs/TESIS-VISUAL-COMPLETA.md</a> <span class="ok">✅ flowchart LR (funnel bug eliminado)</span></p>
-<ul>
-<li>1. Resumen ejecutivo - mindmap</li>
-<li>2. El problema - cadena rota + 5 vacíos</li>
-<li>3. Arquitectura - 6 capas (0 a 5)</li>
-<li>4. Pipeline E2E - sequence + state</li>
-<li>5. Criptografía - flujo firma + algoritmos</li>
-<li>6. Estructura datos - classDiagram + RFC8785</li>
-<li>7. Verificación - 5 criterios</li>
-<li>8. Agentes Kintsugi - 7+6 agentes</li>
-<li>9. Ecosistema completo - conexiones</li>
-<li>10. Cumplimiento - W3C, FIPS, NOM</li>
-<li>11. Casos uso - 3 casos (inmobiliario, autoría, salud)</li>
-<li>12. Métricas - pie + funnel (corregido a flowchart)</li>
-<li>13. Roadmap - gantt 12 meses</li>
-<li>14. Conclusiones - mindmap 5 aportes</li>
-</ul>
+<h1>KRONOS // SYSCALL OS · v7.2 FLOW + MAPS</h1>
+
+<pre>
+┌─[kronos@protocol]─[~/]─┐
+│ os: SYSCALL · v7.2       │
+│ chain: git + merkle + eth│
+└──────────────────────────┘
+$ kronos --os --list
+</pre>
+
+<div class="section">
+  <div class="section-title">▸ procesos activos</div>
+
+  <div class="proc">
+    <div class="proc-header">[fd 151] conformidad NOM-151</div>
+    <div class="proc-body">
+      CONFORME != CERTIFICADO ·
+      <a href="docs/NMX-151.md">docs/NMX-151.md</a><br>
+      verificar: <code>grep SHA-256 Ed25519 08-HERRAMIENTAS/</code>
+    </div>
+  </div>
+
+  <div class="proc">
+    <div class="proc-header">[fd 27001] conformidad ISO/IEC 27001</div>
+    <div class="proc-body">
+      CONFORME != CERTIFICADO ·
+      <a href="docs/NMX-27001.md">docs/NMX-27001.md</a><br>
+      verificar: <code>ls .github/workflows/ | wc -l</code>
+    </div>
+  </div>
+
+  <div class="proc">
+    <div class="proc-header">[fd honest] registro de trabajo real</div>
+    <div class="proc-body">
+      PRESERVADO != LIMPIO ·
+      <a href="docs/HONESTIDAD.md">docs/HONESTIDAD.md</a><br>
+      verificar: <code>git log --all | grep -iE "certificado|index-v2"</code>
+    </div>
+  </div>
+
 </div>
 
-<div class="card">
-<h2>🔐 PIPELINE E2E - 100% FUNCIONANDO</h2>
-<p class="ok">VERIFICADO 2026-10-01 con Sra. Ríos</p>
-<ul>
-<li><a href="08-HERRAMIENTAS/capturar-origen.html">08-HERRAMIENTAS/capturar-origen.html</a> <span class="ok">✅ 23KB</span> - Genera llave Ed25519 + boleto.json+png</li>
-<li><a href="08-HERRAMIENTAS/verificador-empresa.html">verificador-empresa.html</a> <span class="ok">✅ 15KB</span> - Valida 5 criterios: VERIFICADO / ALTERADO / NO_AUTORIZADO / INACTIVO / FUERA_PERIODO</li>
-<li><a href="08-HERRAMIENTAS/notario-digital.html">notario-digital.html</a> <span class="ok">✅ 12KB</span> - Indexa N boletos → índice JSON+MD</li>
-<li><a href="08-HERRAMIENTAS/crear-empresa.html">crear-empresa.html</a> <span class="warn">🟡 Falta probar</span> - Genera empresa.json</li>
-</ul>
+<div class="section">
+  <div class="section-title">▸ pipeline E2E · flujo</div>
+  <div class="flow">
+    <span class="gold">[AGENTE]</span> ─firma──▶ <span class="gold">[EMPRESA]</span> ─valida──▶ <span class="ok">✓ VERIFICADO</span><br>
+    <span class="dim">   │</span><br>
+    <span class="dim">   └─▶</span> boleto.json + boleto.png ─anclaje──▶ <span class="gold">[ETHEREUM]</span>
+  </div>
 </div>
 
-<div class="card">
-<h2>🏛️ FUNDACIÓN Y PROTOCOLO - 95%</h2>
-<ul>
-<li><a href="00-FUNDACION/">00-FUNDACION/</a> - Acta v2 anclada Ethereum</li>
-<li><a href="00-SCHEMA/registro.schema.json">00-SCHEMA/registro.schema.json</a> v2.0.1 - Validador</li>
-<li><a href="02-VERIFICADOR/verificador.html">02-VERIFICADOR/verificador.html</a> v0.3 - Offline</li>
-<li><a href="docs/CIUDAD/">docs/CIUDAD/</a> - 7 docs: Constitución (44KB), Derechos (33KB), Convivencia, Ciudadanos, Moneda, Auditoría, Guía</li>
-</ul>
+<div class="section">
+  <div class="section-title">▸ estado de verificaciones</div>
+  <table>
+    <tr><th>módulo</th><th>estado</th><th>verificación</th></tr>
+    <tr><td>integrity</td><td class="ok">✅ PASS</td><td>SHA-256 + RFC 8785</td></tr>
+    <tr><td>non-repudio</td><td class="ok">✅ PASS</td><td>Ed25519 (RFC 8032)</td></tr>
+    <tr><td>conservación</td><td class="ok">✅ PASS</td><td>git log + merkle</td></tr>
+    <tr><td>timestamp</td><td class="ok">✅ PASS</td><td>ISO-8601 + Ethereum</td></tr>
+    <tr><td>workflows (A.12)</td><td class="warn">🟡 DRIFT</td><td>Jekyll 1,259 runs</td></tr>
+    <tr><td>cumplimiento (A.18)</td><td class="warn">🟡 OPEN</td><td>NOM-151 + LFPDPPP</td></tr>
+  </table>
 </div>
 
-<div class="card">
-<h2>🤖 AGENTES - 62% promedio</h2>
-<ul>
-<li>05-AGENTES/ - 6 Python deterministas (090-095) - 70% MVP</li>
-<li>agentes/ - 7 Kintsugi JS (001,081-086) - 30% sin motor</li>
-<li>.github/workflows/ - 19 workflows - 4,146 runs totales</li>
-</ul>
+<div class="section">
+  <div class="section-title">▸ workflows del repo</div>
+  <pre>
+pages-build       ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  1,259  ← DRIFT
+KRONOS Verificar  ▓▓▓▓▓▓▓▓▓▓▓▓▓                           632
+GUARDIAN-SHA      ▓▓▓▓▓▓▓▓▓▓▓▓                            599
+VERIFY-SHA        ▓▓▓▓▓▓▓▓▓▓▓▓                            598
+Verificar Acta    ▓▓▓                                      113
+otros (14)        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    945
+─────────────────────────────────────────────────────────────
+total             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 4,146
+  </pre>
+  <div class="proc-body">19 workflows · 4,146 runs · 3 días de actividad</div>
 </div>
 
-<div class="card">
-<h2>📦 PROJECTS - 11 SATÉLITES</h2>
-<p>projects/genesis-miner, cymatic, bobeda, etc.</p>
+<div class="section">
+  <div class="section-title">▸ evidencia pública</div>
+  <table>
+    <tr><th>key</th><th>valor</th></tr>
+    <tr><td>merkle_articles</td><td><code>e69b2c24...0d93</code></td></tr>
+    <tr><td>merkle_docs</td><td><code>67180206...e813</code></td></tr>
+    <tr><td>pubkey_founder</td><td><code>fd2fb1e9...4977</code></td></tr>
+    <tr><td>eth_tx_1</td><td><a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank">0x8ca8...2970e</a></td></tr>
+    <tr><td>eth_tx_2</td><td><a href="https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c" target="_blank">0xd2c2...774c</a></td></tr>
+  </table>
 </div>
 
-<div class="card">
-<h2>🔴 LO QUE FALTA PARA INSUPERABLE</h2>
-<ol>
-<li>Probar crear-empresa.html → empresa.json real</li>
-<li>Primer cliente pagando ($299) → capa 4 activa</li>
-<li>IMPI marca "KRONOS" → monopolio legal</li>
-<li>NMX → estándar mexicano</li>
-</ol>
-</div>
+<pre>
+$ echo $?
+0   <span class="ok"># todo verificable sin inventar</span>
+$ _
+</pre>
 
-<p><a href="index-v2.html">← Volver a index-v2.html (navegador completo)</a></p>
-<p>"El legado no se hereda. Se firma."</p>
+<footer>
+  <div>KRONOS PROTOCOL · SYSCALL OS · v7.2 FLOW + MAPS</div>
+  <div>© 2026 Marco Antonio Rojas Valdovinos · CC BY-NC-ND 4.0</div>
+  <div class="seal">○_● · ◢◤◥◣ · ◥◣◢◤</div>
+  <div class="seal">51% HUMANO · 49% IA · 100% REAL</div>
+  <div class="seal">"El sistema no decide quién cobra. Solo prueba quién originó."</div>
+</footer>
+
 </body>
 </html>
