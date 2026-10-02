@@ -5,84 +5,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KRONOS · Monorepo OS</title>
 <style>
-:root{--bg:#06060a;--panel:#0f0f18;--panel2:#14141e;--gold:#D4AF37;--gold-light:#E5C76B;--gold-dim:rgba(212,175,55,0.3);--text:#E0E0E0;--dim:#888;--ok:#4ade80;--warn:#f59e0b;--bad:#ef4444;--border:#1a1a22}
+:root{--bg:#050508;--panel:#0c0c14;--panel2:#14141e;--gold:#D4AF37;--gold-light:#E5C76B;--gold-dim:rgba(212,175,55,0.25);--text:#E0E0E0;--dim:#7a7a85;--ok:#4ade80;--warn:#f59e0b;--bad:#ef4444;--border:#1a1a22}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
-.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px rgba(212,175,55,0.8);animation:float 12s infinite ease-in-out}
-@keyframes float{0%,100%{transform:translateY(0);opacity:0.2}50%{transform:translateY(-40px);opacity:0.8}}
-.wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 20px 60px}
-nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,6,10,0.85);backdrop-filter:blur(10px);z-index:50}
-nav.top .brand{font-family:Georgia,serif;font-size:0.85rem;letter-spacing:6px;color:var(--gold);font-weight:700}
-nav.top a{color:var(--dim);text-decoration:none;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;position:relative;min-height:100vh}
+
+/* FONDO ATMOSFÉRICO */
+#bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 35%),
+    radial-gradient(circle at 80% 60%, rgba(212,175,55,0.06), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(212,175,55,0.05), transparent 50%);
+}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;background:var(--gold);border-radius:50%;box-shadow:0 0 10px rgba(212,175,55,1);animation:float 10s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:0.15}50%{transform:translateY(-50px) scale(1.3);opacity:0.85}}
+
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 20px 60px}
+
+/* NAV */
+nav.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(5,5,8,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50}
+nav.top .brand{font-family:Georgia,serif;font-size:0.9rem;letter-spacing:7px;color:var(--gold);font-weight:700}
+nav.top a{color:var(--dim);text-decoration:none;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;font-weight:500}
 nav.top a:hover{color:var(--gold)}
-.hero{text-align:center;padding:60px 0 40px}
-.kicker{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
-.hero h1{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--gold-light);letter-spacing:2px;margin-bottom:14px;line-height:1.1;text-shadow:0 0 30px rgba(212,175,55,0.3)}
-.hero .sub{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--text);opacity:0.85;max-width:520px;margin:0 auto;line-height:1.6}
-.hero .stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:0.7rem;letter-spacing:2px;color:var(--dim)}
+
+/* HERO */
+.hero{text-align:center;padding:70px 0 50px}
+.kicker{font-size:0.68rem;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:22px;opacity:0.85}
+.hero h1{font-family:Georgia,serif;font-size:2.6rem;font-weight:700;color:var(--gold-light);letter-spacing:3px;margin-bottom:16px;line-height:1.1;text-shadow:0 0 40px rgba(212,175,55,0.4)}
+.hero .sub{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--text);opacity:0.75;max-width:520px;margin:0 auto;line-height:1.7}
+.hero .stats{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:32px;font-size:0.68rem;letter-spacing:3px;color:var(--dim)}
 .hero .stats span{color:var(--ok)}
-section{margin-top:50px}
-.sec-title{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;gap:10px}
-.sec-title::before{content:'▸';color:var(--gold)}
-.proc{background:var(--panel);border:1px solid var(--border);padding:16px 18px;margin-bottom:10px;border-radius:6px;transition:border-color 0.2s}
-.proc:hover{border-color:var(--gold-dim)}
-.proc-header{color:var(--gold-light);font-size:0.9rem;font-weight:600;margin-bottom:6px}
-.proc-body{font-size:0.78rem;color:var(--dim);line-height:1.6}
-.proc-body a{color:var(--gold-light);text-decoration:none;border-bottom:1px dotted var(--gold-light)}
-.proc-body code{background:#000;color:var(--gold-light);padding:2px 6px;border-radius:3px;font-size:0.72rem}
-table{width:100%;border-collapse:collapse;font-size:0.78rem}
-th{color:var(--gold);text-align:left;padding:8px 10px;border-bottom:1px solid var(--gold-dim);font-weight:500;letter-spacing:1px;font-size:0.7rem;text-transform:uppercase}
-td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
-.term{background:#000;border:1px solid var(--border);border-radius:6px;padding:18px 20px;font-family:'Fira Code','Courier New',monospace;font-size:0.78rem;line-height:1.7;color:var(--gold-light);overflow-x:auto}
+
+/* SECTION */
+section{margin-top:55px}
+.sec-title{font-size:0.68rem;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;gap:12px;opacity:0.9}
+.sec-title::before{content:'▸';color:var(--gold);font-size:0.9rem}
+
+/* LISTA DE PROCESOS — sin apariencia de botón */
+.proc-list{display:flex;flex-direction:column}
+.proc{padding:20px 4px 20px 0;border-bottom:1px solid var(--border);position:relative;transition:all 0.25s ease;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;cursor:pointer;text-decoration:none;color:inherit}
+.proc:last-child{border-bottom:none}
+.proc::before{content:'';position:absolute;left:-20px;top:0;bottom:0;width:2px;background:var(--gold);opacity:0;transition:opacity 0.25s}
+.proc:hover{padding-left:8px}
+.proc:hover::before{opacity:1}
+.proc:hover .proc-header{color:var(--gold-light)}
+.proc:hover .arrow{color:var(--gold);transform:translateX(4px)}
+
+.proc .left{min-width:0}
+.proc-header{color:var(--text);font-size:0.92rem;font-weight:500;margin-bottom:6px;transition:color 0.25s;font-family:'Fira Code','Courier New',monospace;letter-spacing:0.5px}
+.proc-header .fd{color:var(--gold);font-weight:700;margin-right:8px;opacity:0.85}
+.proc-body{font-size:0.76rem;color:var(--dim);line-height:1.6}
+.proc-body .sep{color:var(--gold);opacity:0.5;margin:0 6px}
+.proc-body code{background:rgba(0,0,0,0.5);color:var(--gold-light);padding:2px 7px;border-radius:3px;font-size:0.72rem;font-family:'Fira Code',monospace;border:1px solid var(--border)}
+.proc .arrow{color:var(--dim);font-size:1.1rem;transition:all 0.25s;opacity:0.5}
+
+/* TERMINAL */
+.term{background:rgba(0,0,0,0.6);border:1px solid var(--border);border-radius:6px;padding:22px 24px;font-family:'Fira Code','Courier New',monospace;font-size:0.75rem;line-height:1.9;color:var(--gold-light);overflow-x:auto;backdrop-filter:blur(4px)}
 .term .ok{color:var(--ok)}
-footer{margin-top:60px;padding-top:30px;border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--dim);line-height:2;letter-spacing:1px}
-footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'Courier New',monospace}
+.term .drift{color:var(--warn)}
+
+/* TABLA */
+table{width:100%;border-collapse:collapse;font-size:0.78rem;background:rgba(0,0,0,0.3);border-radius:6px;overflow:hidden}
+th{color:var(--gold);text-align:left;padding:14px 16px;background:rgba(212,175,55,0.05);border-bottom:1px solid var(--gold-dim);font-weight:500;letter-spacing:2px;font-size:0.68rem;text-transform:uppercase}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+td code{background:rgba(0,0,0,0.5);color:var(--gold-light);padding:2px 7px;border-radius:3px;font-size:0.72rem;font-family:'Fira Code',monospace}
+td a{color:var(--gold-light);text-decoration:none;border-bottom:1px dotted var(--gold-dim);transition:border-color 0.2s}
+td a:hover{border-bottom-color:var(--gold)}
+
+/* FOOTER */
+footer{margin-top:70px;padding-top:35px;border-top:1px solid var(--border);text-align:center;font-size:0.7rem;color:var(--dim);line-height:2.2;letter-spacing:1px}
+footer .seal{color:var(--gold);letter-spacing:5px;margin-top:14px;font-family:'Fira Code','Courier New',monospace;font-size:0.72rem}
 </style>
 </head>
 <body>
+<div id="bg-glow"></div>
 <div id="particles"></div>
 <nav class="top"><div class="brand">KRONOS</div><a href="index.html">← Inicio</a></nav>
 <div class="wrap">
   <div class="hero">
     <div class="kicker">MONOREPO OS · SYSCALL</div>
     <h1>KRONOS</h1>
-    <p class="sub">Un solo punto de entrada.<br>Nueve procesos vivos.</p>
+    <p class="sub">Un solo punto de entrada.<br>Seis procesos vivos.</p>
     <div class="stats"><span>○_●</span> 51% HUMANO · 49% IA · 100% REAL <span>◢◤◥◣</span></div>
   </div>
 
   <section>
     <div class="sec-title">procesos activos</div>
-    <div class="proc">
-      <div class="proc-header">[fd 151] conformidad NOM-151</div>
-      <div class="proc-body">CONFORME != CERTIFICADO · <a href="docs/NMX-151.html">docs/NMX-151.html</a><br>verificar: <code>grep SHA-256 08-HERRAMIENTAS/</code></div>
-    </div>
-    <div class="proc">
-      <div class="proc-header">[fd 27001] conformidad ISO/IEC 27001</div>
-      <div class="proc-body">CONFORME != CERTIFICADO · <a href="docs/NMX-27001.html">docs/NMX-27001.html</a><br>verificar: <code>ls .github/workflows/ | wc -l</code></div>
-    </div>
-    <div class="proc">
-      <div class="proc-header">[fd honest] registro de trabajo real</div>
-      <div class="proc-body">PRESERVADO != LIMPIO · <a href="docs/HONESTIDAD.html">docs/HONESTIDAD.html</a><br>verificar: <code>git log --all | grep -iE "certificado"</code></div>
-    </div>
-    <div class="proc">
-      <div class="proc-header">[fd exec] resumen ejecutivo</div>
-      <div class="proc-body">Dos minutos para entender · <a href="docs/RESUMEN-EJECUTIVO.html">docs/RESUMEN-EJECUTIVO.html</a></div>
-    </div>
-    <div class="proc">
-      <div class="proc-header">[fd ciudad] 100 plazas de origen</div>
-      <div class="proc-body">Para ser ciudadano no pagás · <a href="docs/CIUDAD/CIUDADANOS.html">docs/CIUDAD/CIUDADANOS.html</a></div>
-    </div>
-    <div class="proc">
-      <div class="proc-header">[fd constitucion] marco normativo</div>
-      <div class="proc-body">50 artículos · <a href="docs/CIUDAD/CONSTITUCION.html">docs/CIUDAD/CONSTITUCION.html</a></div>
+    <div class="proc-list">
+      <a class="proc" href="docs/NMX-151.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd 151]</span>conformidad NOM-151</div>
+          <div class="proc-body">CONFORME != CERTIFICADO <span class="sep">·</span> verificar con <code>grep SHA-256</code></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="proc" href="docs/NMX-27001.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd 27001]</span>conformidad ISO/IEC 27001</div>
+          <div class="proc-body">CONFORME != CERTIFICADO <span class="sep">·</span> verificar con <code>ls .github/workflows/</code></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="proc" href="docs/HONESTIDAD.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd honest]</span>registro de trabajo real</div>
+          <div class="proc-body">PRESERVADO != LIMPIO <span class="sep">·</span> verificar con <code>git log --all</code></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="proc" href="docs/RESUMEN-EJECUTIVO.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd exec]</span>resumen ejecutivo</div>
+          <div class="proc-body">Dos minutos para entender <span class="sep">·</span> cinco comandos para verificar</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="proc" href="docs/CIUDAD/CIUDADANOS.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd ciudad]</span>100 plazas de origen</div>
+          <div class="proc-body">Para ser ciudadano no pagás <span class="sep">·</span> firmás un origen real</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="proc" href="docs/CIUDAD/CONSTITUCION.html">
+        <div class="left">
+          <div class="proc-header"><span class="fd">[fd constitucion]</span>marco normativo</div>
+          <div class="proc-body">50 artículos que definen qué es real <span class="sep">·</span> 7 documentos fundacionales</div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
     </div>
   </section>
 
   <section>
     <div class="sec-title">workflows del repo</div>
     <div class="term">
-      pages-build       <span class="ok">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>  1,259  ← DRIFT<br>
+      pages-build       <span class="drift">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</span>  1,259  ← DRIFT<br>
       KRONOS Verificar  ▓▓▓▓▓▓▓▓▓▓▓▓▓                           632<br>
       GUARDIAN-SHA      ▓▓▓▓▓▓▓▓▓▓▓▓                            599<br>
       VERIFY-SHA        ▓▓▓▓▓▓▓▓▓▓▓▓                            598<br>
@@ -100,8 +159,8 @@ footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'C
       <tr><td>merkle_articles</td><td><code>e69b2c24...0d93</code></td></tr>
       <tr><td>merkle_docs</td><td><code>67180206...e813</code></td></tr>
       <tr><td>pubkey_founder</td><td><code>fd2fb1e9...4977</code></td></tr>
-      <tr><td>eth_tx_1</td><td><a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank" style="color:var(--gold-light)">0x8ca8...2970e</a></td></tr>
-      <tr><td>eth_tx_2</td><td><a href="https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c" target="_blank" style="color:var(--gold-light)">0xd2c2...774c</a></td></tr>
+      <tr><td>eth_tx_1</td><td><a href="https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e" target="_blank">0x8ca8...2970e</a></td></tr>
+      <tr><td>eth_tx_2</td><td><a href="https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c" target="_blank">0xd2c2...774c</a></td></tr>
     </table>
   </section>
 
@@ -114,7 +173,23 @@ footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'C
   </footer>
 </div>
 <script>
-(function(){const c=document.getElementById('particles');for(let i=0;i<35;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=(Math.random()*12)+'s';p.style.animationDuration=(8+Math.random()*8)+'s';p.style.opacity=(0.15+Math.random()*0.4).toString();c.appendChild(p)}})();
+(function(){
+  const c = document.getElementById('particles');
+  // 60 partículas más grandes y visibles
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 2 + Math.random() * 4;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.animationDuration = (7 + Math.random() * 8) + 's';
+    p.style.opacity = (0.3 + Math.random() * 0.5).toString();
+    c.appendChild(p);
+  }
+})();
 </script>
 </body>
 </html>
