@@ -85,14 +85,14 @@ pie title 100 plazas
 
 ### ▸ registro de plazas
 
-| plaza | ciudadano | origen firmado | fecha | hash |
-|:---:|---|---|---|---|
+|  plaza  | ciudadano                                   | origen firmado         | fecha       | hash        |
+| :-----: | ------------------------------------------- | ---------------------- | ----------- | ----------- |
 | **001** | (reservada — Eduardo / Inmobiliaria Toluca) | `boleto-sra-rios.json` | (pendiente) | (pendiente) |
-| 002 | LIBRE | — | — | — |
-| 003 | LIBRE | — | — | — |
-| 004 | LIBRE | — | — | — |
-| 005 | LIBRE | — | — | — |
-| 006–100 | LIBRE | — | — | — |
+|   002   | LIBRE                                       | —                      | —           | —           |
+|   003   | LIBRE                                       | —                      | —           | —           |
+|   004   | LIBRE                                       | —                      | —           | —           |
+|   005   | LIBRE                                       | —                      | —           | —           |
+| 006–100 | LIBRE                                       | —                      | —           | —           |
 
 <sub>Plaza 001 reservada, no ocupada. Se activa cuando el boleto real sea verificado.</sub>
 
@@ -100,24 +100,24 @@ pie title 100 plazas
 
 ### ▸ comandos disponibles
 
-| comando | acción | verifica con |
-|:---|:---|:---|
-| `syscall` | estado de plazas | este archivo |
-| `ps` | procesos | `ls docs/CIUDAD/` |
-| `rule` | regla única | `cat` |
-| `plaza` | cómo obtener una | `capturar-origen.html` |
-| `limits` | lo que NO es | `echo $?` |
+| comando   | acción           | verifica con           |
+| :-------- | :--------------- | :--------------------- |
+| `syscall` | estado de plazas | este archivo           |
+| `ps`      | procesos         | `ls docs/CIUDAD/`      |
+| `rule`    | regla única      | `cat`                  |
+| `plaza`   | cómo obtener una | `capturar-origen.html` |
+| `limits`  | lo que NO es     | `echo $?`              |
 
 ---
 
 ### $ ps -ef | grep ciudad
 
-| pid | proceso | resultado | proof |
-|:---:|:---|:---:|:---|
-| ciudad.01 | `plaza 001` | 🟡 RESERVADA | Eduardo |
-| ciudad.02 | `plaza 002` | ⚪ LIBRE | — |
-| ciudad.03 | `plaza 003` | ⚪ LIBRE | — |
-| ciudad.04 | `plazas 004-100` | ⚪ LIBRES | — |
+|    pid    | proceso          |  resultado   | proof   |
+| :-------: | :--------------- | :----------: | :------ |
+| ciudad.01 | `plaza 001`      | 🟡 RESERVADA | Eduardo |
+| ciudad.02 | `plaza 002`      |   ⚪ LIBRE   | —       |
+| ciudad.03 | `plaza 003`      |   ⚪ LIBRE   | —       |
+| ciudad.04 | `plazas 004-100` |  ⚪ LIBRES   | —       |
 
 <sub>4 procesos · 1 reservada · 99 libres</sub>
 
@@ -125,11 +125,11 @@ pie title 100 plazas
 
 ### $ syscall ciudad --evidence
 
-| key | value | check |
-|---|---|---|
-| merkle_docs | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813` | `cat 00-SCHEMA/*.json \| sha256sum` |
-| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977` | `cat 07-LLAVES/*.json \| grep pubkey` |
-| eth_tx_2 | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
+| key            | value                                                                 | check                                                                                                    |
+| -------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| merkle_docs    | `67180206595ec66d4d422b223f8d966961ecdf00cc2c32ed81133e83162ae813`    | `cat 00-SCHEMA/*.json \| sha256sum`                                                                      |
+| pubkey_founder | `fd2fb1e9f198f5fa08ec6391b67730e3d997826c40cd7652dd5774aa5e744977`    | `cat 07-LLAVES/*.json \| grep pubkey`                                                                    |
+| eth_tx_2       | `0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c` | [etherscan](https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c) |
 
 ---
 
@@ -222,6 +222,7 @@ $ cat docs/CIUDAD/CIUDADANOS.md | grep "001"
 
 > [!CAUTION]
 > **ESTA CIUDAD NO ES:**
+>
 > - ❌ NFT
 > - ❌ Colección digital
 > - ❌ Sistema de pago
@@ -229,6 +230,7 @@ $ cat docs/CIUDAD/CIUDADANOS.md | grep "001"
 
 > [!NOTE]
 > **ESTA CIUDAD SÍ ES:**
+>
 > - ✅ Registro de origen firmado
 > - ✅ Verificable por cualquiera
 > - ✅ 100 plazas reales, sin reventa
