@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS · Constitución</title>
+<style>
+:root{--bg:#06060a;--panel:#0f0f18;--panel2:#14141e;--gold:#D4AF37;--gold-light:#E5C76B;--gold-dim:rgba(212,175,55,0.3);--text:#E0E0E0;--dim:#888;--ok:#4ade80;--warn:#f59e0b;--bad:#ef4444;--border:#1a1a22}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px rgba(212,175,55,0.8);animation:float 12s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0);opacity:0.2}50%{transform:translateY(-40px);opacity:0.8}}
+.wrap{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 20px 60px}
+nav.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,6,10,0.85);backdrop-filter:blur(10px);z-index:50}
+nav.top .brand{font-family:Georgia,serif;font-size:0.85rem;letter-spacing:6px;color:var(--gold);font-weight:700}
+nav.top a{color:var(--dim);text-decoration:none;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+nav.top a:hover{color:var(--gold)}
+.hero{text-align:center;padding:60px 0 40px}
+.kicker{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;color:var(--gold-light);letter-spacing:2px;margin-bottom:14px;line-height:1.1;text-shadow:0 0 30px rgba(212,175,55,0.3)}
+.hero .sub{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--text);opacity:0.85;max-width:520px;margin:0 auto;line-height:1.6}
+.hero .stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-size:0.7rem;letter-spacing:2px;color:var(--dim)}
+.hero .stats span{color:var(--ok)}
+section{margin-top:50px}
+.sec-title{font-size:0.7rem;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'▸';color:var(--gold)}
+.map{display:flex;flex-direction:column;gap:12px;align-items:center}
+.map-node{background:var(--panel);border:1px solid var(--gold-dim);padding:14px 20px;border-radius:6px;text-align:center;font-size:0.8rem;color:var(--gold-light);font-family:Georgia,serif;letter-spacing:1px;min-width:180px}
+.map-node.root{background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));border-color:var(--gold);font-weight:700}
+.map-arrow{color:var(--gold);font-size:1.2rem}
+.map-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.map-child{background:var(--panel2);border:1px solid var(--border);padding:10px 16px;border-radius:4px;font-size:0.75rem;color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:0.78rem}
+th{color:var(--gold);text-align:left;padding:8px 10px;border-bottom:1px solid var(--gold-dim);font-weight:500;letter-spacing:1px;font-size:0.7rem;text-transform:uppercase}
+td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
+.alert{padding:14px 18px;border-radius:6px;margin:14px 0;font-size:0.82rem;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+.alert.info{background:rgba(74,222,128,0.08);border-left:3px solid var(--ok);color:var(--text)}
+footer{margin-top:60px;padding-top:30px;border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--dim);line-height:2;letter-spacing:1px}
+footer .seal{color:var(--gold);letter-spacing:4px;margin-top:10px;font-family:'Courier New',monospace}
+</style>
+</head>
+<body>
+<div id="particles"></div>
+<nav class="top"><div class="brand">KRONOS</div><a href="../../index.html">← Inicio</a></nav>
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">MARCO NORMATIVO DE LA CIUDAD</div>
+    <h1>CONSTITUCIÓN</h1>
+    <p class="sub">50 artículos que definen qué es real<br>y qué se puede probar.</p>
+    <div class="stats"><span>○_●</span> 51% HUMANO · 49% IA · 100% REAL <span>◢◤◥◣</span></div>
+  </div>
+
+  <section>
+    <div class="sec-title">documentos fundacionales</div>
+    <table>
+      <tr><th>documento</th><th>artículos</th><th>tamaño</th></tr>
+      <tr><td>CONSTITUCION.md</td><td>50</td><td>44 KB</td></tr>
+      <tr><td>DERECHOS.md</td><td>26</td><td>33 KB</td></tr>
+      <tr><td>CONVIVENCIA.md</td><td>34</td><td>24 KB</td></tr>
+      <tr><td>CIUDADANOS.md</td><td>100 plazas</td><td>14 KB</td></tr>
+      <tr><td>MONEDA.md</td><td>30</td><td>20 KB</td></tr>
+      <tr><td>AUDITORIA-IA.md</td><td>—</td><td>20 KB</td></tr>
+      <tr><td>GUIA-AUDITOR.md</td><td>—</td><td>13 KB</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-title">mapa conceptual</div>
+    <div class="map">
+      <div class="map-node root">CIUDAD KRONOS</div>
+      <div class="map-arrow">▼</div>
+      <div class="map-row">
+        <div class="map-node">CONSTITUCIÓN</div>
+        <div class="map-node">DERECHOS</div>
+        <div class="map-node">CONVIVENCIA</div>
+      </div>
+      <div class="map-arrow">▼</div>
+      <div class="map-row">
+        <div class="map-child">50 artículos</div>
+        <div class="map-child">26 artículos</div>
+        <div class="map-child">34 artículos</div>
+      </div>
+      <div class="map-row">
+        <div class="map-node">CIUDADANOS</div>
+        <div class="map-node">MONEDA</div>
+        <div class="map-node">AUDITORIA-IA</div>
+      </div>
+      <div class="map-arrow">▼</div>
+      <div class="map-row">
+        <div class="map-child">100 plazas</div>
+        <div class="map-child">30 artículos</div>
+        <div class="map-child">guía auditor</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">sistema de archivos</div>
+    <div class="alert info"><span>✓</span><div>
+      <strong>docs/CIUDAD/</strong> contiene los 7 documentos fundacionales.<br>
+      Cada uno con sello criptográfico y hash público.<br>
+      Verificables vía <code style="background:#000;color:var(--gold-light);padding:2px 5px;border-radius:3px">git log</code>.
+    </div></div>
+  </section>
+
+  <footer>
+    <div>KRONOS PROTOCOL · CONSTITUCIÓN</div>
+    <div>© 2026 Marco Antonio Rojas Valdovinos · CC BY-NC-ND 4.0</div>
+    <div class="seal">○_● · ◢◤◥◣ · ◥◣◢◤</div>
+    <div class="seal">51% HUMANO · 49% IA · 100% REAL</div>
+    <div class="seal">"El legado no se hereda. Se firma."</div>
+  </footer>
+</div>
+<script>
+(function(){const c=document.getElementById('particles');for(let i=0;i<35;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=(Math.random()*12)+'s';p.style.animationDuration=(8+Math.random()*8)+'s';p.style.opacity=(0.15+Math.random()*0.4).toString();c.appendChild(p)}})();
+</script>
+</body>
+</html>
