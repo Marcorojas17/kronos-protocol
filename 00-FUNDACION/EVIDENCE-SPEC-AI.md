@@ -1,221 +1,207 @@
-# 📋 EVIDENCE-SPEC-AI · Especificación de Evidencia Forense de IA
+# EVIDENCE-SPEC-AI
 
 **Proyecto:** KRONOS PROTOCOL  
-**Autor:** Marco Antonio Rojas Valdovinos (#000)  
-**Versión:** 1.0  
-**Estado:** Borrador · Sin implementar  
+**Autor:** Marco Antonio Rojas Valdovinos  
+**Versión:** 0.1 · borrador  
+**Estado:** NO IMPLEMENTADO · sólo especificación  
 **Licencia:** CC BY-NC-ND 4.0  
-**Fecha:** 2026-10-03
+**Fecha del sistema:** (automática del commit)  
+**Fecha del mundo narrativo:** 2026-10-03
+
+> **Nota de estado.** Este documento describe un formato. No describe software funcionando. Ninguna función aquí descrita ha sido probada contra un sistema real de IA a la fecha de este commit.
 
 ---
 
 ## 1. Propósito
 
-Definir el formato de evidencia forense para inferencias de sistemas de IA que sea:
+Definir el formato de evidencia forense para inferencias de sistemas de IA, verificable sin servidor, sin autoridad central, y admisible como prueba técnica ante terceros.
 
-- **Local-first** (no requiere servidor)
-- **Verificable offline** (cualquiera puede auditar sin nosotros)
-- **Trazable** (quién, cuándo, qué modelo, qué input, qué output)
-- **Forensic-grade** (admisible como prueba técnica)
+## 2. Estructura del artefacto
 
-**Cumple con:**
-- EU AI Act Art. 13 (transparencia y documentación)
-- ISO/IEC 42001 (gestión de sistemas de IA)
-- NIST AI RMF 1.0 (Govern, Map, Measure, Manage)
-- NOM-151 (integridad de mensajes de datos, México)
-
----
-
-## 2. Problema que resuelve
-
-Los sistemas de IA actuales **no dejan evidencia verificable** de:
-
-1. Qué modelo generó qué output
-2. Con qué input exacto
-3. En qué momento preciso
-4. Bajo qué configuración
-5. Firmado por quién
-
-Los logs de OpenAI, Anthropic, Google o modelos locales **no son forenses**. Son comerciales. No hay sello de tiempo certificado. No hay firma criptográfica del operador. No hay cadena de custodia verificable por terceros.
-
-**KRONOS resuelve esto.**
-
----
-
-## 3. Estructura de una Evidencia Forense de IA
-
-Cada inferencia se registra como un **artefacto firmado**. Estructura:
+Cada inferencia se registra como un objeto JSON. Los campos sin valor se escriben como `null`, nunca como el string `"Pendiente"` (rompe validaciones silenciosamente).
 
 ```json
 {
-  "kronos_version": "1.0",
+  "kronos_version": "0.1",
   "artifact_type": "ai_inference_evidence",
-  "artifact_id": "sha256_hash_del_artefacto_sin_este_campo",
-  
+  "artifact_id": null,
+
   "inference": {
-    "timestamp_utc": "2026-10-03T15:32:11.234Z",
-    "timestamp_rfc3161": "base64_del_sello_TSA",
-    
+    "timestamp_utc": null,
+    "timestamp_rfc3161": null,
+
     "model": {
-      "provider": "openai | anthropic | google | meta | local",
-      "name": "gpt-4-turbo-2024-04-09",
-      "version": "2024-04-09",
-      "parameters_fingerprint": "sha256_de_params",
-      "context_window": 128000,
-      "temperature": 0.2,
-      "top_p": 0.9
+      "provider": null,
+      "name": null,
+      "version": null,
+      "parameters_fingerprint": null,
+      "context_window": null,
+      "temperature": null,
+      "top_p": null
     },
-    
+
     "input": {
-      "prompt_hash": "sha256_del_prompt",
-      "prompt_ciphertext": "opcional · sólo si el operador consiente",
-      "system_prompt_hash": "sha256_del_system_prompt",
-      "documents_attached": [
-        { "name": "ejemplo.pdf", "hash": "sha256" }
-      ]
+      "prompt_hash": null,
+      "system_prompt_hash": null,
+      "documents_attached": []
     },
-    
+
     "output": {
-      "response_hash": "sha256_de_la_respuesta",
-      "response_ciphertext": "opcional",
-      "tokens_in": 1247,
-      "tokens_out": 382,
-      "latency_ms": 1843
+      "response_hash": null,
+      "tokens_in": null,
+      "tokens_out": null,
+      "latency_ms": null
     },
-    
+
     "operator": {
-      "kronos_id": "KRONOS-AGENT-XXXX",
-      "public_key_ed25519": "hex_64_caracteres",
-      "jurisdiction": "MX | US | EU | OTRO",
-      "declared_role": "operador | auditor | investigador | usuario_final"
-    },
-    
-    "declaration_51_49": {
-      "human_direction_pct": 51,
-      "ai_generation_pct": 49,
-      "human_review_hash": "sha256_de_notas_revision",
-      "method": "asistido | directo | revisado"
+      "kronos_id": null,
+      "public_key_ed25519": null,
+      "jurisdiction": null,
+      "declared_role": null
     }
   },
-  
+
+  "optional_metadata": {
+    "declaration_51_49": null,
+    "notes": null
+  },
+
   "signature": {
     "algorithm": "Ed25519",
-    "public_key_hex": "64_chars",
-    "signature_hex": "128_chars",
-    "hash_signed": "sha256_del_bloque_inference_canonicalizado"
+    "public_key_hex": null,
+    "signature_hex": null,
+    "hash_signed": null
   },
-  
+
   "verification": {
-    "chain_previous_artifact": "sha256_del_artefacto_anterior",
-    "chain_hash": "sha256(prev + current)",
-    "status": "VERIFIED | ALTERED | NO_AUTORIZADO | FUERA_PERIODO"
+    "chain_previous_artifact": null,
+    "chain_hash": null,
+    "status": null
   }
 }
 ```
 
----
+**Campos marcados como `null`** son requeridos pero no calculados aún. Al emitir un artefacto real, todos deben tener valor o el artefacto se rechaza.
 
-## 4. Reglas de Canonicalización
+**`optional_metadata.declaration_51_49`** es opcional. Pertenece al discurso público de KRONOS, no al protocolo técnico. Un auditor externo puede ignorarlo sin invalidar la evidencia.
 
-**RFC 8785 JSON Canonicalization Scheme** obligatorio antes de firmar:
+## 3. Canonicalización
 
-1. Ordenar claves alfabéticamente (recursivo)
-2. Sin espacios en blanco
-3. Unicode NFC
-4. Números sin notación exponencial
-5. Fechas en ISO 8601 UTC
+Antes de firmar, el bloque `inference` se canonicaliza según **RFC 8785 (JCS)**:
 
-**Por qué:** si el orden cambia, el hash cambia. Si el hash cambia, la firma no verifica. La canonicalización es lo que hace que la firma sea reproducible.
+1. Claves ordenadas alfabéticamente, recursivamente.
+2. Sin espacios en blanco.
+3. Unicode NFC.
+4. Números sin notación exponencial.
+5. Fechas en ISO 8601 UTC.
 
----
+Sin canonicalización determinista, el hash no es reproducible y la firma no verifica.
 
-## 5. Cadena de Custodia
+## 4. Cadena de custodia
 
-Cada evidencia referencia la anterior. Se forma una **cadena de hashes**:
+Cada artefacto referencia el hash del anterior:
 
 ```
-E1.hash = sha256(canonical(E1))
-E2.hash = sha256(canonical(E2) + E1.hash)
-E3.hash = sha256(canonical(E3) + E2.hash)
-...
-En.hash = sha256(canonical(En) + E(n-1).hash)
+E1.hash = sha256(canonical(E1.inference))
+E2.hash = sha256(canonical(E2.inference) + E1.hash)
+En.hash = sha256(canonical(En.inference) + E(n-1).hash)
 ```
 
-**Consecuencia:** si alguien altera E1, todas las firmas posteriores dejan de verificar. La alteración es detectable sin servidor.
+Alterar cualquier artefacto previo invalida todos los posteriores. La alteración es detectable sin servidor.
 
-**Anclaje periódico:** cada 144 evidencias (número simbólico, arbitrario) se ancla el hash acumulado en Ethereum o Bitcoin vía OpenTimestamps. Costo: $0 (OpenTimestamps es gratis).
+**Anclaje periódico:** el hash acumulado se publica en OpenTimestamps (Bitcoin) en intervalos que se definirán empíricamente. El intervalo no está fijado en este documento — no existe justificación técnica para un número específico todavía.
 
----
+## 5. Estados de verificación
 
-## 6. Los 4 Estados de Verificación
-
-| Estado | Significado |
+| Estado | Condición |
 |:--|:--|
-| ✓ VERIFICADO | Hash + firma + cadena + timestamp coinciden |
-| ✗ ALTERADO | Algún hash o firma no coincide |
-| ⚠ NO AUTORIZADO | El operador no está en el registro de operadores autorizados |
-| ⚠ FUERA PERIODO | El timestamp está fuera del periodo declarado del operador |
+| `VERIFIED` | Hash + firma + cadena + timestamp coinciden |
+| `ALTERED` | Hash o firma no coinciden |
+| `NOT_AUTHORIZED` | `operator.public_key_ed25519` no está en registro de operadores |
+| `OUT_OF_PERIOD` | `timestamp_utc` fuera del periodo declarado del operador |
 
----
+Nombres en inglés porque el campo es dato de máquina, no de humano.
 
-## 7. Lo que la evidencia NO contiene
+## 6. Lo que la evidencia NO contiene
 
-**Por diseño de privacidad:**
+Por diseño de privacidad:
 
-- No contiene el prompt en claro (sólo hash)
-- No contiene la respuesta en claro (sólo hash)
-- No contiene datos del usuario final
-- No contiene PII de terceros
-- No contiene credenciales del operador
+- El prompt en claro (sólo hash).
+- La respuesta en claro (sólo hash).
+- Datos personales del usuario final.
+- Credenciales del operador.
+- PII de terceros.
 
-**El operador puede, opcionalmente, adjuntar el contenido cifrado** para que sólo él pueda descifrarlo con su llave privada. KRONOS nunca lo ve.
+Si el operador quiere adjuntar contenido, lo cifra con su propia llave antes de incluirlo. KRONOS nunca descifra.
 
----
+## 7. Mapa contra regulaciones
 
-## 8. Mapa contra regulaciones
-
-| Regulación | Requisito | Cómo lo cumple KRONOS |
+| Regulación | Requisito | Cómo lo aborda el formato |
 |:--|:--|:--|
-| EU AI Act Art. 13 | Documentación técnica del sistema | `artifact_type` + `model` declarados |
-| EU AI Act Art. 50 | Transparencia de contenido IA | `declaration_51_49` explícita |
-| ISO 42001 · 7.5 | Información documentada | Cadena de custodia + firma |
-| NIST AI RMF · MAP 1.5 | Origen de datos documentado | `input.prompt_hash` + documentos adjuntos |
-| NOM-151 · 5.1 | Integridad de mensajes | SHA-256 + RFC 3161 |
-| NOM-151 · 5.4 | Estampado de tiempo | `timestamp_rfc3161` |
+| EU AI Act Art. 13 | Documentación técnica del sistema | `inference.model` declarado |
+| EU AI Act Art. 50 | Transparencia de contenido IA | `optional_metadata.declaration_51_49` |
+| ISO/IEC 42001 §7.5 | Información documentada | Firma + cadena de custodia |
+| NIST AI RMF · MAP 1.5 | Origen de datos documentado | `inference.input.prompt_hash` |
+| NOM-151 §5.1 | Integridad de mensajes | SHA-256 + Ed25519 |
+| NOM-151 §5.4 | Estampado de tiempo | `inference.timestamp_rfc3161` |
+
+**Advertencia:** este mapeo es propuesta, no certificación. Un auditor externo debe validarlo antes de declararlo cumplimiento.
+
+## 8. Caso 0 · RFC hasheado
+
+Antes de auditar IA, el protocolo debe demostrar que resuelve un caso mínimo: probar que un identificador es válido sin exponerlo.
+
+```
+1. Usuario calcula sha256(rfc + salt_personal)
+2. Publica el hash en un registro público (OpenTimestamps)
+3. Tercero quiere verificar → pide al usuario que le mande el RFC por canal privado
+4. Tercero calcula sha256(rfc_recibido + salt_privado) 
+5. Compara con el hash público
+6. Coincide → el RFC es válido y no fue alterado
+```
+
+El RFC nunca viaja por canal público. La prueba es matemática, no testimonial.
+
+**Estado:** documentado, no implementado.
+
+## 9. Casos de uso
+
+- **Empresa que usa APIs de LLM** y necesita probar a un cliente o regulador que un output específico fue generado por un modelo específico en una fecha específica.
+- **Investigador académico** que cita outputs de IA y necesita trazabilidad verificable.
+- **Estudio legal** que documenta uso de asistencia de IA con porcentaje declarado.
+- **Desarrollador de agentes** que audita la cadena de decisiones de su agente autónomo.
+
+## 10. Estado actual
+
+### [REAL HOY]
+
+- Ninguno. Este documento es especificación.
+
+### [PLAN · ordenado por dependencia]
+
+1. `00-SCHEMA/ai-evidence.schema.json` — esquema JSON validable con `ajv`.
+2. `08-HERRAMIENTAS/capturar-inferencia-ia.html` — capturador local.
+3. `02-VERIFICADOR/verificador-ia.html` — verificador offline.
+4. Caso 0 (RFC hasheado) implementado y probado.
+5. Caso de uso real con un usuario externo.
+6. Anclaje OpenTimestamps.
+7. Auditoría legal externa.
+
+### [BLOQUEADO]
+
+Nada se implementa antes de tener un caso de uso confirmado con un usuario real. Ver Regla 38 del contexto operativo.
+
+## 11. Referencias
+
+- RFC 8785 — JSON Canonicalization Scheme.
+- RFC 8032 — EdDSA (Ed25519).
+- FIPS 180-4 — SHA-256.
+- RFC 3161 — Time-Stamp Protocol.
+- EU AI Act (Reglamento UE 2024/1689).
+- ISO/IEC 42001:2023.
+- NIST AI RMF 1.0.
+- NOM-151-SCFI-2016.
 
 ---
 
-## 9. Estado Actual
-
-- [x] Especificación redactada (este documento)
-- [ ] Schema JSON v1.0 (pendiente · `00-SCHEMA/ai-evidence.schema.json`)
-- [ ] Implementación de captura (pendiente · `08-HERRAMIENTAS/capturar-inferencia-ia.html`)
-- [ ] Implementación de verificación (pendiente · `02-VERIFICADOR/verificador-ia.html`)
-- [ ] Anclaje OpenTimestamps (pendiente)
-- [ ] Caso de uso real (pendiente)
-- [ ] Auditoría externa (pendiente)
-
-**Nada de esto existe todavía en código.** Este documento es la tesis. Lo que sigue es la implementación.
-
----
-
-## 10. Aplicabilidad inmediata
-
-**Caso 1 · Empresa que usa ChatGPT**  
-Necesita probar a un cliente o regulador que un output específico fue generado por GPT-4 en fecha X. Hoy no puede. Con KRONOS sí.
-
-**Caso 2 · Investigador académico**  
-Necesita citar outputs de IA con trazabilidad verificable. Hoy no puede. Con KRONOS sí.
-
-**Caso 3 · Estudio legal que usa IA para redactar**  
-Necesita probar que un documento fue asistido por IA en porcentaje X, firmado por humano. Hoy no puede. Con KRONOS sí.
-
-**Caso 4 · Desarrollador de agentes autónomos**  
-Necesita auditar la cadena de decisiones de su agente. Hoy no puede. Con KRONOS sí.
-
----
-
-**Firmado:**  
-Marco Antonio Rojas Valdovinos  
-Fundador #000 · KRONOS PROTOCOL  
-`○_●` · "El legado no se hereda. Se firma."
+**Fin del documento técnico.**
