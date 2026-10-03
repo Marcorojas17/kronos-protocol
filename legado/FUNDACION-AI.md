@@ -10,7 +10,7 @@
 
 ## El problema
 
-Un sistema de IA genera una respuesta. Un humano la firma. Un cliente la recibe. Un año después alguien pregunta: *"¿realmente la generó ese modelo? ¿en esa fecha? ¿con ese input?"*
+Un sistema de IA genera una respuesta. Un humano la firma. Un cliente la recibe. Un año después alguien pregunta: _"¿realmente la generó ese modelo? ¿en esa fecha? ¿con ese input?"_
 
 Hoy nadie puede responder sin pedirle permiso a OpenAI, Anthropic o Google. Y ellos no tienen incentivo para confirmarlo.
 
@@ -92,7 +92,7 @@ Sin los tres, escribir código sería otro castillo en el aire.
 
 ## La frase que resume
 
-> *"El pipeline funciona. Falta el primer cliente real."*
+> _"El pipeline funciona. Falta el primer cliente real."_
 
 Eso es el estado del proyecto. No más. No menos.
 
@@ -109,6 +109,7 @@ Eso es el estado del proyecto. No más. No menos.
 ## Cómo subir los dos archivos
 
 **Archivo 1:**
+
 1. Abre `github.com/Marcorojas17/kronos-protocol`
 2. Add file → Create new file
 3. Nombre: `00-FUNDACION/EVIDENCE-SPEC-AI.md`
@@ -116,6 +117,7 @@ Eso es el estado del proyecto. No más. No menos.
 5. Commit: `📚 docs(fundacion): especificación evidencia forense IA · EU AI Act + ISO 42001 [🟡 BORRADOR] — Marco Antonio Rojas Valdovinos`
 
 **Archivo 2:**
+
 1. Add file → Create new file
 2. Nombre: `legado/FUNDACION-AI.md`
 3. Pega el contenido del archivo 2

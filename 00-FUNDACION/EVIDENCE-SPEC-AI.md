@@ -113,12 +113,12 @@ Alterar cualquier artefacto previo invalida todos los posteriores. La alteració
 
 ## 5. Estados de verificación
 
-| Estado | Condición |
-|:--|:--|
-| `VERIFIED` | Hash + firma + cadena + timestamp coinciden |
-| `ALTERED` | Hash o firma no coinciden |
+| Estado           | Condición                                                       |
+| :--------------- | :-------------------------------------------------------------- |
+| `VERIFIED`       | Hash + firma + cadena + timestamp coinciden                     |
+| `ALTERED`        | Hash o firma no coinciden                                       |
 | `NOT_AUTHORIZED` | `operator.public_key_ed25519` no está en registro de operadores |
-| `OUT_OF_PERIOD` | `timestamp_utc` fuera del periodo declarado del operador |
+| `OUT_OF_PERIOD`  | `timestamp_utc` fuera del periodo declarado del operador        |
 
 Nombres en inglés porque el campo es dato de máquina, no de humano.
 
@@ -136,14 +136,14 @@ Si el operador quiere adjuntar contenido, lo cifra con su propia llave antes de 
 
 ## 7. Mapa contra regulaciones
 
-| Regulación | Requisito | Cómo lo aborda el formato |
-|:--|:--|:--|
-| EU AI Act Art. 13 | Documentación técnica del sistema | `inference.model` declarado |
-| EU AI Act Art. 50 | Transparencia de contenido IA | `optional_metadata.declaration_51_49` |
-| ISO/IEC 42001 §7.5 | Información documentada | Firma + cadena de custodia |
-| NIST AI RMF · MAP 1.5 | Origen de datos documentado | `inference.input.prompt_hash` |
-| NOM-151 §5.1 | Integridad de mensajes | SHA-256 + Ed25519 |
-| NOM-151 §5.4 | Estampado de tiempo | `inference.timestamp_rfc3161` |
+| Regulación            | Requisito                         | Cómo lo aborda el formato             |
+| :-------------------- | :-------------------------------- | :------------------------------------ |
+| EU AI Act Art. 13     | Documentación técnica del sistema | `inference.model` declarado           |
+| EU AI Act Art. 50     | Transparencia de contenido IA     | `optional_metadata.declaration_51_49` |
+| ISO/IEC 42001 §7.5    | Información documentada           | Firma + cadena de custodia            |
+| NIST AI RMF · MAP 1.5 | Origen de datos documentado       | `inference.input.prompt_hash`         |
+| NOM-151 §5.1          | Integridad de mensajes            | SHA-256 + Ed25519                     |
+| NOM-151 §5.4          | Estampado de tiempo               | `inference.timestamp_rfc3161`         |
 
 **Advertencia:** este mapeo es propuesta, no certificación. Un auditor externo debe validarlo antes de declararlo cumplimiento.
 
@@ -155,7 +155,7 @@ Antes de auditar IA, el protocolo debe demostrar que resuelve un caso mínimo: p
 1. Usuario calcula sha256(rfc + salt_personal)
 2. Publica el hash en un registro público (OpenTimestamps)
 3. Tercero quiere verificar → pide al usuario que le mande el RFC por canal privado
-4. Tercero calcula sha256(rfc_recibido + salt_privado) 
+4. Tercero calcula sha256(rfc_recibido + salt_privado)
 5. Compara con el hash público
 6. Coincide → el RFC es válido y no fue alterado
 ```

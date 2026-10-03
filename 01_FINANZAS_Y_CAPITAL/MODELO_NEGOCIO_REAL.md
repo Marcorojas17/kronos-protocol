@@ -46,13 +46,13 @@ Elegido: capturar-origen + verificador-empresa
 
 **Respuesta:** Porque WhatsApp no prueba hora ni autor. KRONOS sí, con firma Ed25519 (quién) + RFC 3161 (cuándo exacto) + SHA-256 (que no fue alterado) + local-first (funciona sin internet). WhatsApp depende de Meta, KRONOS depende de matemáticas.
 
-| Criterio | WhatsApp | KRONOS |
-|:--|:--:|:--:|
-| Quién originó | ❌ | ✅ Ed25519 |
-| Cuándo exacto | ❌ | ✅ RFC 3161 |
-| Sin alteración | ❌ | ✅ SHA-256 |
-| Sin servidor | ❌ | ✅ Local-first |
-| Verificable por terceros | ❌ | ✅ Offline |
+| Criterio                 | WhatsApp |     KRONOS     |
+| :----------------------- | :------: | :------------: |
+| Quién originó            |    ❌    |   ✅ Ed25519   |
+| Cuándo exacto            |    ❌    |  ✅ RFC 3161   |
+| Sin alteración           |    ❌    |   ✅ SHA-256   |
+| Sin servidor             |    ❌    | ✅ Local-first |
+| Verificable por terceros |    ❌    |   ✅ Offline   |
 
 ---
 
@@ -71,6 +71,7 @@ Sistema previo:  capturar-origen + verificador-empresa en demo con caso real
 ## BLOQUE 6 · ¿CON QUIÉN LO PROBAMOS?
 
 **Ruta:**
+
 ```
 Contacto Inmobiliario #1
   → Llamada 06 Oct
@@ -90,6 +91,7 @@ Contacto Inmobiliario #1
 ```
 
 **Regla de hierro:**
+
 ```
 ╔═══════════════════════════════════════════════╗
 ║  Sin estos 3 → NO SE CODIFICA                 ║
