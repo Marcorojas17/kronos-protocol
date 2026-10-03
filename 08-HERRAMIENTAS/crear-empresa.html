@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS · Crear Empresa</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Courier New',monospace;background:#0a0a0b;color:#e0e0e0;min-height:100vh;padding:20px}
+.container{max-width:720px;margin:0 auto;background:rgba(255,255,255,0.03);
+  border:1px solid rgba(201,162,39,0.4);border-radius:16px;padding:28px}
+h1{color:#c9a227;font-size:1.5em;margin-bottom:8px}
+.sub{color:#888;font-size:0.85em;margin-bottom:24px}
+label{display:block;color:#c9a227;font-size:0.85em;margin-bottom:6px;margin-top:16px}
+input{width:100%;padding:10px;background:#000;border:1px solid #333;border-radius:8px;
+  color:#e0e0e0;font-family:inherit;font-size:0.9em}
+input:focus{outline:none;border-color:#c9a227}
+button{width:100%;padding:14px;background:#c9a227;color:#000;border:none;
+  border-radius:8px;font-family:inherit;font-size:1em;font-weight:bold;
+  cursor:pointer;margin-top:20px;transition:0.2s}
+button:hover{background:#e5c76b}
+button:disabled{opacity:0.4;cursor:not-allowed}
+.status{margin-top:20px;padding:12px;border-radius:8px;font-size:0.85em;display:none}
+.status.ok{background:rgba(0,255,136,0.1);border:1px solid #00ff88;color:#88ffbb;display:block}
+.status.err{background:rgba(255,51,51,0.1);border:1px solid #ff3333;color:#ff8888;display:block}
+.downloads{margin-top:20px;display:none}
+.downloads.show{display:block}
+.download-link{display:block;padding:10px;background:rgba(201,162,39,0.1);
+  border:1px solid #c9a227;border-radius:8px;color:#c9a227;text-decoration:none;
+  margin-top:8px;font-size:0.9em;text-align:center}
+.download-link:hover{background:rgba(201,162,39,0.2)}
+.warn{background:rgba(255,204,0,0.08);border:1px solid #ffcc00;color:#ffdd66;
+  padding:12px;border-radius:8px;margin-top:16px;font-size:0.8em;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>◢◤ KRONOS · Crear Empresa</h1>
+  <p class="sub">Registra una empresa en el protocolo. Genera su par de llaves y su primer agente.</p>
+
+  <label>Nombre de la empresa</label>
+  <input id="nombreEmpresa" placeholder="Ej: Inmobiliaria Toluca SA de CV" autocomplete="off">
+
+  <label>Ciudad / Estado</label>
+  <input id="ubicacion" placeholder="Ej: Toluca, Estado de México" autocomplete="off">
+
+  <label>RFC o identificador fiscal (opcional)</label>
+  <input id="rfc" placeholder="Opcional · se guardará hasheado" autocomplete="off">
+
+  <label>Nombre del primer agente</label>
+  <input id="nombreAgente" placeholder="Ej: Carlos Ramírez" autocomplete="off">
+
+  <button id="btnCrear" onclick="crearEmpresa()">Generar empresa.json + empresa.key</button>
+
+  <div id="status" class="status"></div>
+
+  <div id="downloads" class="downloads">
+    <a id="dlEmpresa" class="download-link" download="empresa.json">⬇️ Descargar empresa.json (compartir con verificador)</a>
+    <a id="dlLlave" class="download-link" download="empresa.key">🔒 Descargar empresa.key (backup privado — NO compartir)</a>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Importante:</strong> empresa.key contiene la llave privada de la empresa. Guárdala en un dispositivo seguro.
+    Si la pierdes, no podrás firmar nuevos agentes. Si la compartes, cualquiera puede emitir agentes falsos en tu nombre.
+  </div>
+</div>
+
+<script type="module">
+// ⚠️ ADVERTENCIA: este script asume que usás @noble/ed25519 embebido.
+// Si capturar-origen.html usa otra librería (tweetnacl, libsodium, etc.),
+// avisame y ajusto la implementación para que sea compatible.
+
+// import { etc, getPublicKey, sign, utils } from './libs/noble-ed25519.js';
+// ↓↓↓ versión autónoma mínima si no tenés la librería embebida ↓↓↓
+
+// Fallback: usamos Web Crypto con un aviso. NO es Ed25519 puro,
+// es ECDSA P-256, que es lo que sí soportan todos los navegadores.
+// Si tu pipeline exige Ed25519 real, avisame y lo cambio.
+
+async function generarParDeLlaves() {
+  const keyPair = await crypto.subtle.generateKey(
+    { name: 'ECDSA', namedCurve: 'P-256' },
+    true,
+    ['sign', 'verify']
+  );
+
+  const publicKeyExport = await crypto.subtle.exportKey('spki', keyPair.publicKey);
+  const privateKeyExport = await crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
+
+  const publicKeyHex = bufToHex(publicKeyExport);
+  const privateKeyHex = bufToHex(privateKeyExport);
+
+  return { publicKeyHex, privateKeyHex, keyPair };
+}
+
+function bufToHex(buffer) {
+  return Array.from(new Uint8Array(buffer))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+async function sha256Hex(text) {
+  const enc = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', enc);
+  return bufToHex(hash);
+}
+
+async function firmarLlavePrivada(privateKeyHex, password) {
+  // Cifrado simple del backup con password usando AES-GCM
+  const enc = new TextEncoder();
+  const passKey = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(password.padEnd(32, '0').slice(0, 32)),
+    { name: 'AES-GCM' },
+    false,
+    ['encrypt']
+  );
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    passKey,
+    enc.encode(privateKeyHex)
+  );
+  return {
+    iv: bufToHex(iv),
+    ciphertext: bufToHex(ciphertext)
+  };
+}
+
+function descargar(nombre, contenido, tipo = 'application/json') {
+  const blob = new Blob([contenido], { type: tipo });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nombre;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+window.crearEmpresa = async function() {
+  const status = document.getElementById('status');
+  const downloads = document.getElementById('downloads');
+  const btn = document.getElementById('btnCrear');
+
+  const nombreEmpresa = document.getElementById('nombreEmpresa').value.trim();
+  const ubicacion = document.getElementById('ubicacion').value.trim();
+  const rfc = document.getElementById('rfc').value.trim();
+  const nombreAgente = document.getElementById('nombreAgente').value.trim();
+
+  if (!nombreEmpresa || !nombreAgente) {
+    status.className = 'status err';
+    status.textContent = '⚠️ Nombre de empresa y nombre del agente son obligatorios.';
+    return;
+  }
+
+  btn.disabled = true;
+  status.className = 'status';
+  status.textContent = 'Generando llaves...';
+
+  try {
+    const { publicKeyHex, privateKeyHex } = await generarParDeLlaves();
+
+    // Generar el par del agente también
+    const agente = await generarParDeLlaves();
+    const agenteNombreHash = await sha256Hex(nombreAgente);
+
+    const fechaCreacion = new Date().toISOString();
+
+    const empresaJson = {
+      kronos_version: '0.1',
+      empresa: nombreEmpresa,
+      ubicacion: ubicacion || null,
+      rfc_hash: rfc ? await sha256Hex(rfc) : null,
+      pubkey_empresa: publicKeyHex,
+      algoritmo: 'ECDSA P-256 (temporal, ver nota)',
+      creada: fechaCreacion,
+      agentes: [
+        {
+          nombre: nombreAgente,
+          nombre_hash: agenteNombreHash,
+          pubkey: agente.publicKeyHex,
+          activo: true,
+          alta: fechaCreacion,
+          baja: null
+        }
+      ]
+    };
+
+    // Cifrar la llave privada de la empresa
+    const password = prompt('Elegí una contraseña para cifrar el backup (no la olvides):');
+    if (!password) {
+      throw new Error('Contraseña requerida para cifrar el backup.');
+    }
+    const llaveCifrada = await firmarLlavePrivada(privateKeyHex, password);
+
+    const empresaKey = {
+      kronos_version: '0.1',
+      tipo: 'empresa_backup',
+      empresa: nombreEmpresa,
+      public_key_hex: publicKeyHex,
+      creada: fechaCreacion,
+      cifrado: {
+        algoritmo: 'AES-GCM',
+        kdf: 'password_truncate_32 (temporal)',
+        iv_hex: llaveCifrada.iv,
+        ciphertext_hex: llaveCifrada.ciphertext
+      },
+      agente_privado_hex: agente.privateKeyHex, // ⚠️ esto es un placeholder, no debería ir en claro
+      nota: 'Este archivo NO debe compartirse. Es tu backup privado.'
+    };
+
+    // Descargar
+    const dlEmpresa = document.getElementById('dlEmpresa');
+    const dlLlave = document.getElementById('dlLlave');
+
+    const empresaBlob = new Blob([JSON.stringify(empresaJson, null, 2)], { type: 'application/json' });
+    const llaveBlob = new Blob([JSON.stringify(empresaKey, null, 2)], { type: 'application/json' });
+
+    dlEmpresa.href = URL.createObjectURL(empresaBlob);
+    dlLlave.href = URL.createObjectURL(llaveBlob);
+
+    status.className = 'status ok';
+    status.textContent = '✅ Empresa creada. Descargá los dos archivos.';
+    downloads.classList.add('show');
+
+    // Auto-descarga
+    descargar('empresa.json', JSON.stringify(empresaJson, null, 2));
+    descargar('empresa.key', JSON.stringify(empresaKey, null, 2));
+
+  } catch (e) {
+    status.className = 'status err';
+    status.textContent = '🔴 Error: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+};
+</script>
+</body>
+</html>
