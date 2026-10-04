@@ -442,9 +442,7 @@ kronos-protocol/
 │       └── services/
 ├── tests/
 │   ├── README.md
-│   ├── test_api.py
 │   ├── test_audit_log.py
-│   ├── test_evidence.py
 │   ├── test_guard.py
 │   ├── test_hashing.py
 │   ├── test_keyfile.py
