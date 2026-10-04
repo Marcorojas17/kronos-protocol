@@ -457,9 +457,11 @@ kronos-protocol/
 │   ├── test_keyfile.py
 │   └── test_signatures.py
 ├── 404.html
+├── AGENTS.md
 ├── ARCHITECTURE.md
 ├── AUTHORS.md
 ├── CHANGELOG.md
+├── CLAUDE.md
 ├── CODE_OF_CONDUCT.md
 ├── COMPLIANCE.md
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
@@ -471,11 +473,14 @@ kronos-protocol/
 ├── LICENSE-CC-BY-NC-ND
 ├── MANIFEST.sha256
 ├── MAPA.md
+├── MEMORY.md
+├── ONBOARDING_BLOCKED.json
 ├── OPERATIONS.md
 ├── PRIVACY.md
 ├── PROTOCOL.md
 ├── Procfile
 ├── README.md
+├── RISK_DISCLOSURE.md
 ├── SECURITY.md
 ├── TERMS.md
 ├── _config.yml
@@ -486,6 +491,7 @@ kronos-protocol/
 ├── favicon.svg
 ├── guardian.py
 ├── index.html
+├── llms.txt
 ├── luxury.html
 ├── manifest.json
 ├── package-lock.json

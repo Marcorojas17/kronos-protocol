@@ -7,11 +7,11 @@
     "Sin comparación contra snapshot anterior",
     "Sin generación de CHANGELOG.md"
   ],
-  "timestamp": "2026-10-04T23:02:07.571772+00:00",
+  "timestamp": "2026-10-04T23:26:08.090546+00:00",
   "ok": true,
   "hallazgos": [],
   "metricas": {
-    "total_archivos": 409,
+    "total_archivos": 416,
     "por_extension": [
       {
         "ext": ".html",
@@ -20,8 +20,8 @@
       },
       {
         "ext": ".md",
-        "cantidad": 96,
-        "bytes": 761732
+        "cantidad": 100,
+        "bytes": 763278
       },
       {
         "ext": ".js",
@@ -35,13 +35,13 @@
       },
       {
         "ext": "(sin ext)",
-        "cantidad": 27,
-        "bytes": 122540
+        "cantidad": 28,
+        "bytes": 122605
       },
       {
         "ext": ".json",
-        "cantidad": 24,
-        "bytes": 55013
+        "cantidad": 25,
+        "bytes": 66130
       },
       {
         "ext": ".css",
@@ -55,8 +55,8 @@
       },
       {
         "ext": ".txt",
-        "cantidad": 5,
-        "bytes": 28584
+        "cantidad": 6,
+        "bytes": 29223
       },
       {
         "ext": ".png",
@@ -86,7 +86,7 @@
       {
         "ext": ".sha256",
         "cantidad": 1,
-        "bytes": 35362
+        "bytes": 38201
       }
     ]
   },

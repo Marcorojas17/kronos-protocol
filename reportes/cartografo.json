@@ -4,12 +4,12 @@
   "rol_pipeline": "📤 SALIDA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-10-04T23:02:07.647355+00:00",
+  "timestamp": "2026-10-04T23:26:08.211997+00:00",
   "ok": true,
   "hallazgos": [],
   "metricas": {
     "mapa_escrito_en": "/home/runner/work/kronos-protocol/kronos-protocol/MAPA.md",
-    "lineas": 507
+    "lineas": 513
   },
   "supuestos": [
     "El repo tiene raíz accesible",

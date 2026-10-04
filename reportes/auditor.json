@@ -4,7 +4,7 @@
   "rol_pipeline": "🔔 ALERTA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-10-04T23:02:07.536085+00:00",
+  "timestamp": "2026-10-04T23:26:08.035304+00:00",
   "ok": false,
   "hallazgos": [
     {
@@ -54,7 +54,7 @@
     }
   ],
   "metricas": {
-    "archivos_escaneados": 404,
+    "archivos_escaneados": 411,
     "hallazgos": 9,
     "truncado": false
   },

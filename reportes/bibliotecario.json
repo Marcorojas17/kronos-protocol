@@ -4,7 +4,7 @@
   "rol_pipeline": "🚪 ENTRADA",
   "util_hoy": true,
   "bloqueado_por": [],
-  "timestamp": "2026-10-04T23:02:07.614298+00:00",
+  "timestamp": "2026-10-04T23:26:08.160014+00:00",
   "ok": true,
   "hallazgos": [
     {
@@ -244,8 +244,7 @@
         [
           "apps/__init__.py",
           "apps/api/__init__.py",
-          "reportes/bibliotecario.json",
-          "reportes/cartografo.json"
+          "reportes/bibliotecario.json"
         ],
         [
           "cimiento/AUTORIA",
