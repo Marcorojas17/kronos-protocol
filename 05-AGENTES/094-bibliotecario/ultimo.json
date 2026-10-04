@@ -1,0 +1,241 @@
+{
+  "agente": "094-bibliotecario",
+  "estado": "🟡 MVP",
+  "rol_pipeline": "🚪 ENTRADA",
+  "util_hoy": true,
+  "bloqueado_por": [],
+  "timestamp": "2026-09-30T20:35:28.818713+00:00",
+  "ok": true,
+  "hallazgos": [
+    {
+      "tipo": "sospechosos-contextuales",
+      "cantidad": 3,
+      "rutas": [
+        "kronos-protocol/i",
+        "kronos-protocol/Pnp",
+        "kronos-protocol/403"
+      ],
+      "nota": "revisar manualmente antes de borrar"
+    },
+    {
+      "tipo": "duplicados-nombre",
+      "cantidad": 185,
+      "ejemplos": [
+        [
+          "aditoria",
+          [
+            "aditoria",
+            "kronos-protocol/aditoria"
+          ]
+        ],
+        [
+          "LICENSE-CC-BY-NC-ND",
+          [
+            "LICENSE-CC-BY-NC-ND",
+            "kronos-protocol/LICENSE-CC-BY-NC-ND"
+          ]
+        ],
+        [
+          "curriculum-terminal.txt",
+          [
+            "curriculum-terminal.txt",
+            "kronos-protocol/curriculum-terminal.txt"
+          ]
+        ],
+        [
+          "index.html",
+          [
+            "index.html",
+            "cimiento/cripto-core/index.html",
+            "cimiento/anclaje-ethereum/index.html",
+            "cimiento/storage-dexie/index.html",
+            "movimiento/index.html",
+            "movimiento/registro-fundacional/index.html",
+            "projects/dmd-33/index.html",
+            "projects/boveda/index.html",
+            "projects/md33/index.html",
+            "projects/acta/index.html",
+            "projects/evidence-os/index.html",
+            "projects/cymatic/index.html",
+            "projects/yejida/index.html",
+            "projects/bobeda/index.html",
+            "projects/kronos-vault/index.html",
+            "projects/genesis-miner/index.html",
+            "kronos-protocol/index.html",
+            "kronos-protocol/cimiento/cripto-core/index.html",
+            "kronos-protocol/cimiento/anclaje-ethereum/index.html",
+            "kronos-protocol/cimiento/storage-dexie/index.html",
+            "kronos-protocol/movimiento/index.html",
+            "kronos-protocol/movimiento/registro-fundacional/index.html",
+            "kronos-protocol/projects/dmd-33/index.html",
+            "kronos-protocol/projects/boveda/index.html",
+            "kronos-protocol/projects/md33/index.html",
+            "kronos-protocol/projects/acta/index.html",
+            "kronos-protocol/projects/evidence-os/index.html",
+            "kronos-protocol/projects/cymatic/index.html",
+            "kronos-protocol/projects/yejida/index.html",
+            "kronos-protocol/projects/bobeda/index.html",
+            "kronos-protocol/projects/kronos-vault/index.html",
+            "kronos-protocol/projects/genesis-miner/index.html",
+            "kronos-protocol/operacion/dashboard-salud/index.html",
+            "kronos-protocol/operacion/rituales/index.html",
+            "kronos-protocol/agentes/temachtiani-reclutador/index.html",
+            "kronos-protocol/agentes/tlamatini-cronista/index.html",
+            "kronos-protocol/agentes/tlachixqui-auditor/index.html",
+            "kronos-protocol/agentes/cuicatl-publicista/index.html",
+            "kronos-protocol/agentes/tlapohualli-analista/index.html",
+            "kronos-protocol/agentes/tonal-notario/index.html",
+            "kronos-protocol/cierre/fin-digno/index.html",
+            "kronos-protocol/cierre/export-cifrado/index.html",
+            "kronos-protocol/docs/index.html",
+            "kronos-protocol/docs/CIUDAD/index.html",
+            "kronos-protocol/identidad/roles-permisos/index.html",
+            "kronos-protocol/identidad/registro-ia/index.html",
+            "kronos-protocol/identidad/registro-humano/index.html",
+            "kronos-protocol/legado/manifiesto/index.html",
+            "kronos-protocol/legado/autoria/index.html",
+            "kronos-protocol/legado/filosofia/index.html",
+            "kronos-protocol/legado/genesis/index.html",
+            "kronos-protocol/orquestacion/router-modulos/index.html",
+            "kronos-protocol/orquestacion/event-bus/index.html",
+            "kronos-protocol/certificacion/anclaje-manifest/index.html",
+            "kronos-protocol/certificacion/manifest-integridad/index.html",
+            "kronos-protocol/certificacion/notario-kronos/index.html",
+            "kronos-protocol/certificacion/sello-tiempo/index.html",
+            "kronos-protocol/certificacion/verificador-publico/index.html",
+            "kronos-protocol/certificacion/emisor-certificados/index.html",
+            "kronos-protocol/kodice-secreto/index.html",
+            "kronos-protocol/modulos/evidence-os/index.html",
+            "kronos-protocol/modulos/boveda-voz/index.html",
+            "kronos-protocol/gobernanza/revocacion-auditoria/index.html",
+            "kronos-protocol/gobernanza/propuestas-votacion/index.html",
+            "kronos-protocol/gobernanza/ejecucion-decisiones/index.html",
+            "kronos-protocol/gobernanza/quorum-mayorias/index.html",
+            "operacion/dashboard-salud/index.html",
+            "operacion/rituales/index.html",
+            "agentes/temachtiani-reclutador/index.html",
+            "agentes/tlamatini-cronista/index.html",
+            "agentes/tlachixqui-auditor/index.html",
+            "agentes/cuicatl-publicista/index.html",
+            "agentes/tlapohualli-analista/index.html",
+            "agentes/tonal-notario/index.html",
+            "cierre/fin-digno/index.html",
+            "cierre/export-cifrado/index.html",
+            "docs/index.html",
+            "docs/CIUDAD/index.html",
+            "identidad/roles-permisos/index.html",
+            "identidad/registro-ia/index.html",
+            "identidad/registro-humano/index.html",
+            "legado/manifiesto/index.html",
+            "legado/autoria/index.html",
+            "legado/filosofia/index.html",
+            "legado/genesis/index.html",
+            "orquestacion/router-modulos/index.html",
+            "orquestacion/event-bus/index.html",
+            "certificacion/anclaje-manifest/index.html",
+            "certificacion/manifest-integridad/index.html",
+            "certificacion/notario-kronos/index.html",
+            "certificacion/sello-tiempo/index.html",
+            "certificacion/verificador-publico/index.html",
+            "certificacion/emisor-certificados/index.html",
+            "kodice-secreto/index.html",
+            "modulos/evidence-os/index.html",
+            "modulos/boveda-voz/index.html",
+            "gobernanza/revocacion-auditoria/index.html",
+            "gobernanza/propuestas-votacion/index.html",
+            "gobernanza/ejecucion-decisiones/index.html",
+            "gobernanza/quorum-mayorias/index.html"
+          ]
+        ],
+        [
+          "GOVERNANCE.md",
+          [
+            "GOVERNANCE.md",
+            "kronos-protocol/GOVERNANCE.md"
+          ]
+        ],
+        [
+          "luxury.html",
+          [
+            "luxury.html",
+            "kronos-protocol/luxury.html"
+          ]
+        ],
+        [
+          "admin.html",
+          [
+            "admin.html",
+            "kronos-protocol/admin.html"
+          ]
+        ],
+        [
+          "pyproject.toml",
+          [
+            "pyproject.toml",
+            "kronos-protocol/pyproject.toml"
+          ]
+        ],
+        [
+          "COPYRIGHT.md",
+          [
+            "COPYRIGHT.md",
+            "kronos-protocol/COPYRIGHT.md"
+          ]
+        ],
+        [
+          "404.html",
+          [
+            "404.html",
+            "kronos-protocol/404.html"
+          ]
+        ]
+      ]
+    },
+    {
+      "tipo": "duplicados-contenido",
+      "cantidad": 341,
+      "ejemplos": [
+        [
+          "aditoria",
+          "kronos-protocol/aditoria"
+        ],
+        [
+          "LICENSE-CC-BY-NC-ND",
+          "kronos-protocol/LICENSE-CC-BY-NC-ND"
+        ],
+        [
+          "curriculum-terminal.txt",
+          "kronos-protocol/curriculum-terminal.txt"
+        ],
+        [
+          "index.html",
+          "kronos-protocol/index.html"
+        ],
+        [
+          "GOVERNANCE.md",
+          "kronos-protocol/GOVERNANCE.md"
+        ]
+      ]
+    }
+  ],
+  "metricas": {
+    "basura": 0,
+    "sospechosos": 3,
+    "duplicados_nombre": 185,
+    "duplicados_contenido": 341
+  },
+  "supuestos": [
+    "Archivos < 100 KB son candidatos a hashing",
+    "Nombres basura: .DS_Store, Thumbs.db, ._*",
+    "Nombres sospechosos contextuales: i, Pnp, 403"
+  ],
+  "riesgos": [
+    "Falsos positivos: 'i' puede ser legítimo",
+    "Falsos negativos: duplicados > 100 KB no se detectan"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Detectar todos los duplicados (solo < 100 KB)",
+    "Distinguir basura real de archivos legítimos con nombres raros"
+  ]
+}

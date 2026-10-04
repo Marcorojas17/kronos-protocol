@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Marcorojas17/kronos-protocol/00-SCHEMA/registro.schema.json",
   "title": "Registro KRONOS-KODICE-kronos360",
-  "schema_version": "2.0.0",
+  "schema_version": "2.0.1",
   "type": "object",
   "required": [
     "schema_version",
@@ -17,10 +17,11 @@
     "firma"
   ],
   "additionalProperties": false,
+  "unevaluatedProperties": false,
   "properties": {
     "schema_version": {
       "type": "string",
-      "enum": ["1.0.0", "1.1.0", "2.0.0"]
+      "enum": ["1.0.0", "1.1.0", "2.0.0", "2.0.1"]
     },
     "tipo": {
       "type": "string",
@@ -60,13 +61,82 @@
       "enum": ["SHA-256", "SHA3-512"],
       "description": "Algoritmo del payload_hash. KRONOS usa SHA-256. kronos360 usa SHA3-512."
     },
-    "payload_hash": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
-    "prev_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "hash_registro": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+    "payload_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{128}$",
+      "description": "SHA3-512 siempre 128 hex. Si el protocolo usa SHA-256, se documenta en metadata.hash_original."
+    },
+    "prev_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Hash del registro anterior. Primer bloque apunta al genesis."
+    },
+    "hash_registro": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{128}$",
+      "description": "SHA3-512 del registro canonico (RFC 8785) SIN los campos hash_registro ni firma."
+    },
     "firma": {
       "type": "object",
       "required": ["algoritmo", "firma_hex", "firmante"],
       "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "algoritmo": { "const": "Ed25519" },
+            "firma_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" }
+          }
+        },
+        {
+          "properties": {
+            "algoritmo": { "const": "ML-DSA-65" },
+            "firma_hex": {
+              "type": "string",
+              "minLength": 4000,
+              "maxLength": 7000
+            }
+          }
+        },
+        {
+          "properties": {
+            "algoritmo": { "const": "hibrido" },
+            "firma_hex": { "type": "string", "minLength": 1 },
+            "firmas": {
+              "type": "array",
+              "minItems": 2,
+              "contains": {
+                "type": "object",
+                "properties": { "algoritmo": { "const": "Ed25519" } },
+                "required": ["algoritmo"]
+              },
+              "minContains": 1,
+              "allOf": [
+                {
+                  "contains": {
+                    "type": "object",
+                    "properties": { "algoritmo": { "const": "ML-DSA-65" } },
+                    "required": ["algoritmo"]
+                  },
+                  "minContains": 1
+                }
+              ],
+              "items": {
+                "type": "object",
+                "required": ["algoritmo", "firma_hex", "firmante"],
+                "additionalProperties": false,
+                "properties": {
+                  "algoritmo": {
+                    "type": "string",
+                    "enum": ["Ed25519", "ML-DSA-65"]
+                  },
+                  "firma_hex": { "type": "string" },
+                  "firmante": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      ],
       "properties": {
         "algoritmo": {
           "type": "string",
@@ -74,9 +144,13 @@
         },
         "firma_hex": {
           "type": "string",
-          "description": "Firma en hex. Ed25519: 128 chars. ML-DSA-65: variable. Hibrido: objeto."
+          "description": "Firma en hex. Ed25519: 128 chars. ML-DSA-65: variable (~6600). Hibrido: ver campo firmas[]."
         },
         "firmante": { "type": "string" },
+        "firmas": {
+          "type": "array",
+          "description": "Usado cuando algoritmo = hibrido. Debe contener al menos 1 Ed25519 y 1 ML-DSA-65 (politica AND)."
+        },
         "atestacion": {
           "type": "object",
           "required": ["firma_hex", "firmante"],
@@ -84,23 +158,6 @@
           "properties": {
             "firma_hex": { "type": "string" },
             "firmante": { "type": "string" }
-          }
-        },
-        "firmas": {
-          "type": "array",
-          "description": "Usado cuando algoritmo = hibrido. Array de firmas individuales.",
-          "items": {
-            "type": "object",
-            "required": ["algoritmo", "firma_hex", "firmante"],
-            "additionalProperties": false,
-            "properties": {
-              "algoritmo": {
-                "type": "string",
-                "enum": ["Ed25519", "ML-DSA-65"]
-              },
-              "firma_hex": { "type": "string" },
-              "firmante": { "type": "string" }
-            }
           }
         }
       }
@@ -128,7 +185,17 @@
     },
     "metadata": {
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "properties": {
+        "obra_ref": { "type": "string" },
+        "sector": { "type": "string" },
+        "session_id": { "type": "string" },
+        "nota": { "type": "string" },
+        "hash_original": {
+          "type": "string",
+          "description": "Hash original si el protocolo uso algoritmo distinto. Ej: SHA-256."
+        }
+      }
     }
   }
 }

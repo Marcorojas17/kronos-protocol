@@ -1,0 +1,33 @@
+{
+  "agente": "091-contralor",
+  "estado": "🔴 MAQUETA",
+  "rol_pipeline": "🚪 ENTRADA",
+  "util_hoy": false,
+  "bloqueado_por": [
+    "Mesa Directiva no existe todavía",
+    "Primera Acta sin firmar en 06-GOBERNANZA/ACTAS/"
+  ],
+  "timestamp": "2026-09-30T20:34:58.955873+00:00",
+  "ok": true,
+  "hallazgos": [
+    {
+      "tipo": "bloqueado",
+      "detalle": "06-GOBERNANZA/ACTAS no existe todavía"
+    }
+  ],
+  "metricas": {},
+  "supuestos": [
+    "Actas en 06-GOBERNANZA/ACTAS/",
+    "Cada acta declara 'quorum: N/M'",
+    "Cada acta declara firmas como 'firma: <128hex>'"
+  ],
+  "riesgos": [
+    "Cambio de formato de acta rompe el regex",
+    "No verifica criptografía (requiere cryptography)"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Que las firmas sean válidas criptográficamente",
+    "Que el quórum declarado sea suficiente"
+  ]
+}
