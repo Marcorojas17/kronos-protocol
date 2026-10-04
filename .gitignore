@@ -1,25 +1,26 @@
+# Llaves privadas — NUNCA commitear
+*.key
+*.pem
+07-LLAVES/
+
+# Node (residuo de intentos previos)
+package.json
+package-lock.json
+node_modules/
+
 # Python
 __pycache__/
 *.pyc
-*.pyo
-.venv/
-venv/
 .pytest_cache/
-.ruff_cache/
 
-# Node
-node_modules/
+# Auditoría local
+audit.jsonl
+audit.jsonl.*
+
+# Entorno
+.env
+.env.*
 
 # Sistema
 .DS_Store
-._*
-Th.
-
-umbs.db
-
-# Local
-.env**
-.env.local
-
-# Reportes generados (Silos vuelve a crear el workflow `)
-reportes/
+*.bak
