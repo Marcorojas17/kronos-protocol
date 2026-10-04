@@ -54,6 +54,13 @@ kronos-protocol/
 │   │   ├── agente-base.py
 │   │   └── agente_base.py
 │   └── README.md
+├── 07-LLAVES/
+│   ├── ATESTACIONES/
+│   │   ├── 082-tlachixqui.json
+│   │   └── esquema.json
+│   └── FUNDADOR-V2/
+│       ├── fundador-v2.key
+│       └── fundador-v2.pub
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -273,7 +280,6 @@ kronos-protocol/
 │       └── styles.css
 ├── kodice-secreto/
 │   └── index.html
-├── kronos-protocol/
 ├── laboratorio/
 │   └── README.md
 ├── legado/
@@ -443,7 +449,9 @@ kronos-protocol/
 ├── tests/
 │   ├── README.md
 │   ├── test_api.py
+│   ├── test_api.py.bak
 │   ├── test_audit_log.py
+│   ├── test_evidence.py.bak
 │   ├── test_guard.py
 │   ├── test_hashing.py
 │   ├── test_keyfile.py

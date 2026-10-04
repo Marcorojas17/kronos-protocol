@@ -1,0 +1,106 @@
+{
+  "agente": "093-relator",
+  "estado": "🔴 MAQUETA",
+  "rol_pipeline": "⚙️ PROCESO",
+  "util_hoy": false,
+  "bloqueado_por": [
+    "Sin comparación contra snapshot anterior",
+    "Sin generación de CHANGELOG.md"
+  ],
+  "timestamp": "2026-10-04T23:02:07.571772+00:00",
+  "ok": true,
+  "hallazgos": [],
+  "metricas": {
+    "total_archivos": 409,
+    "por_extension": [
+      {
+        "ext": ".html",
+        "cantidad": 120,
+        "bytes": 1717632
+      },
+      {
+        "ext": ".md",
+        "cantidad": 96,
+        "bytes": 761732
+      },
+      {
+        "ext": ".js",
+        "cantidad": 48,
+        "bytes": 432306
+      },
+      {
+        "ext": ".py",
+        "cantidad": 31,
+        "bytes": 112059
+      },
+      {
+        "ext": "(sin ext)",
+        "cantidad": 27,
+        "bytes": 122540
+      },
+      {
+        "ext": ".json",
+        "cantidad": 24,
+        "bytes": 55013
+      },
+      {
+        "ext": ".css",
+        "cantidad": 24,
+        "bytes": 193623
+      },
+      {
+        "ext": ".yml",
+        "cantidad": 20,
+        "bytes": 35510
+      },
+      {
+        "ext": ".txt",
+        "cantidad": 5,
+        "bytes": 28584
+      },
+      {
+        "ext": ".png",
+        "cantidad": 4,
+        "bytes": 12228223
+      },
+      {
+        "ext": ".bak",
+        "cantidad": 2,
+        "bytes": 4016
+      },
+      {
+        "ext": ".12",
+        "cantidad": 1,
+        "bytes": 33702
+      },
+      {
+        "ext": ".svg",
+        "cantidad": 1,
+        "bytes": 730
+      },
+      {
+        "ext": ".toml",
+        "cantidad": 1,
+        "bytes": 610
+      },
+      {
+        "ext": ".sha256",
+        "cantidad": 1,
+        "bytes": 35362
+      }
+    ]
+  },
+  "supuestos": [
+    "El repo tiene raíz accesible",
+    "Los archivos relevantes excluyen .git y similares"
+  ],
+  "riesgos": [
+    "Carpetas grandes pueden tardar",
+    "No distingue código de datos"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Que el conteo sea representativo",
+    "Que los bytes totales sean útiles"
+  ]
+}
