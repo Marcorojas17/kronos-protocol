@@ -54,10 +54,6 @@ kronos-protocol/
 │   │   ├── agente-base.py
 │   │   └── agente_base.py
 │   └── README.md
-├── 07-LLAVES/
-│   └── ATESTACIONES/
-│       ├── 082-tlachixqui.json
-│       └── esquema.json
 ├── _data/
 │   └── navigation.yml
 ├── agentes/
@@ -83,6 +79,12 @@ kronos-protocol/
 │   │   └── politica.md
 │   ├── README.md
 │   └── agente-base.js
+├── apps/
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   └── schemas.py
+│   └── __init__.py
 ├── archive/
 │   └── README.md
 ├── assets/
@@ -272,175 +274,6 @@ kronos-protocol/
 ├── kodice-secreto/
 │   └── index.html
 ├── kronos-protocol/
-│   ├── .github/
-│   │   ├── workflows/
-│   │   └── PULL_REQUEST_TEMPLATE.md
-│   ├── 00-FUNDACION/
-│   │   └── VERIFICADOR-OFICIAL.md
-│   ├── 00-SCHEMA/
-│   │   ├── ejemplo.registro.json
-│   │   └── registro.schema.json
-│   ├── 02-VERIFICADOR/
-│   │   ├── INDICE.md
-│   │   └── verificador.html
-│   ├── 07-LLAVES/
-│   │   └── ATESTACIONES/
-│   ├── _data/
-│   │   └── navigation.yml
-│   ├── agentes/
-│   │   ├── cuicatl-publicista/
-│   │   ├── temachtiani-reclutador/
-│   │   ├── tlachixqui-auditor/
-│   │   ├── tlamatini-cronista/
-│   │   ├── tlapohualli-analista/
-│   │   ├── tonal-notario/
-│   │   ├── README.md
-│   │   └── agente-base.js
-│   ├── archive/
-│   │   └── README.md
-│   ├── assets/
-│   │   ├── css/
-│   │   ├── data/
-│   │   └── js/
-│   ├── certificacion/
-│   │   ├── anclaje-manifest/
-│   │   ├── emisor-certificados/
-│   │   ├── manifest-integridad/
-│   │   ├── notario-kronos/
-│   │   ├── sello-tiempo/
-│   │   ├── verificador-publico/
-│   │   └── certificado-maestro.html
-│   ├── certificates/
-│   │   └── README.md
-│   ├── cierre/
-│   │   ├── export-cifrado/
-│   │   └── fin-digno/
-│   ├── cimiento/
-│   │   ├── anclaje-ethereum/
-│   │   ├── cripto-core/
-│   │   ├── storage-dexie/
-│   │   └── AUTORIA
-│   ├── docs/
-│   │   ├── CIUDAD/
-│   │   ├── IP/
-│   │   ├── ARQUITECTURA-VIVA.md
-│   │   ├── EXPLICACION-UNIVERSAL.md
-│   │   ├── MAPA.md
-│   │   ├── PLANTILLA-TERMINAL.md
-│   │   ├── README.md
-│   │   ├── TESIS-VISUAL.md
-│   │   ├── demos-oficiales.html
-│   │   ├── index.html
-│   │   ├── kronos-para-ninos.html
-│   │   └── tesis-visual.html
-│   ├── evidence/
-│   │   └── manifest.json
-│   ├── gobernanza/
-│   │   ├── ejecucion-decisiones/
-│   │   ├── propuestas-votacion/
-│   │   ├── quorum-mayorias/
-│   │   └── revocacion-auditoria/
-│   ├── guardians/
-│   │   ├── GUARDIAN-ACTA.md
-│   │   ├── GUARDIAN-MRR.md
-│   │   ├── GUARDIAN-SHA.md
-│   │   ├── GUARDIAN-TSA.md
-│   │   └── GUARDIAN-VAULT.md
-│   ├── identidad/
-│   │   ├── registro-humano/
-│   │   ├── registro-ia/
-│   │   └── roles-permisos/
-│   ├── kodice-secreto/
-│   │   └── index.html
-│   ├── laboratorio/
-│   │   └── README.md
-│   ├── legado/
-│   │   ├── autoria/
-│   │   ├── filosofia/
-│   │   ├── genesis/
-│   │   └── manifiesto/
-│   ├── logs/
-│   │   └── log.json
-│   ├── modulos/
-│   │   ├── boveda-voz/
-│   │   └── evidence-os/
-│   ├── movimiento/
-│   │   ├── assets/
-│   │   ├── registro-fundacional/
-│   │   ├── carta-bienvenida.html
-│   │   ├── faq.md
-│   │   ├── fundador.html
-│   │   ├── genesis.md
-│   │   ├── gracias.html
-│   │   ├── index.html
-│   │   ├── iniciacion.html
-│   │   ├── manifiesto.md
-│   │   ├── roadmap.md
-│   │   └── solicitar_plaza.html
-│   ├── operacion/
-│   │   ├── dashboard-salud/
-│   │   └── rituales/
-│   ├── orquestacion/
-│   │   ├── event-bus/
-│   │   └── router-modulos/
-│   ├── projects/
-│   │   ├── acta/
-│   │   ├── bobeda/
-│   │   ├── boveda/
-│   │   ├── cymatic/
-│   │   ├── dmd-33/
-│   │   ├── evidence-os/
-│   │   ├── genesis-miner/
-│   │   ├── k4-framework/
-│   │   ├── kronos-vault/
-│   │   ├── md33/
-│   │   └── yejida/
-│   ├── protocol/
-│   │   └── KTP-001.md
-│   ├── src/
-│   │   └── kronos360/
-│   ├── tests/
-│   │   ├── README.md
-│   │   └── test_evidence.py
-│   ├── 403
-│   ├── 404.html
-│   ├── CHANGELOG.md
-│   ├── CODE_OF_CONDUCT.md
-│   ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10
-│   ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5
-│   ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7
-│   ├── CONTRIBUTING.md
-│   ├── COPYRIGHT.md
-│   ├── GOVERNANCE.md
-│   ├── KRONOS-CONTEXTO-EXTENDIDO.md
-│   ├── LICENSE
-│   ├── LICENSE-CC-BY-NC-ND
-│   ├── MANIFEST.sha256
-│   ├── PROTOCOL.md
-│   ├── Pnp
-│   ├── README.md
-│   ├── SECURITY.md
-│   ├── _config.yml
-│   ├── aditoria
-│   ├── admin.html
-│   ├── carta-presentación.txt
-│   ├── curriculum-terminal.txt
-│   ├── favicon.svg
-│   ├── guardian.py
-│   ├── i
-│   ├── index.html
-│   ├── luxury.html
-│   ├── manifest.json
-│   ├── pyproject.toml
-│   ├── registrar.html
-│   ├── robots.txt
-│   ├── servicios.html
-│   ├── sitemap.xml
-│   ├── tesis.md
-│   ├── tesiscompleta.md
-│   ├── verificar-certificado.html
-│   ├── verifier.py
-│   └── verify.html
 ├── laboratorio/
 │   └── README.md
 ├── legado/
@@ -609,11 +442,19 @@ kronos-protocol/
 │       └── services/
 ├── tests/
 │   ├── README.md
-│   └── test_evidence.py
+│   ├── test_api.py
+│   ├── test_audit_log.py
+│   ├── test_evidence.py
+│   ├── test_guard.py
+│   ├── test_hashing.py
+│   ├── test_keyfile.py
+│   └── test_signatures.py
 ├── 404.html
+├── ARCHITECTURE.md
 ├── AUTHORS.md
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
+├── COMPLIANCE.md
 ├── CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
 ├── CONTRIBUTING.md
 ├── COPYRIGHT.md
@@ -623,9 +464,13 @@ kronos-protocol/
 ├── LICENSE-CC-BY-NC-ND
 ├── MANIFEST.sha256
 ├── MAPA.md
+├── OPERATIONS.md
+├── PRIVACY.md
 ├── PROTOCOL.md
+├── Procfile
 ├── README.md
 ├── SECURITY.md
+├── TERMS.md
 ├── _config.yml
 ├── aditoria
 ├── admin.html
@@ -636,8 +481,12 @@ kronos-protocol/
 ├── index.html
 ├── luxury.html
 ├── manifest.json
+├── package-lock.json
+├── package.json
 ├── pyproject.toml
+├── railway.json
 ├── registrar.html
+├── requirements.txt
 ├── robots.txt
 ├── servicios.html
 ├── sitemap.xml
