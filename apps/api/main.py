@@ -1,4 +1,4 @@
-"""API HTTP de KRONOS. Creado por Marco Antonio Rojas Valdovinos (#000)."""
+"""API HTTP de KRONOS. Creado por Marco Antonio Rojas Valdovinos."""
 from __future__ import annotations
 
 import base64
@@ -54,14 +54,13 @@ def health():
 @app.route("/verify", methods=["POST"])
 def verify():
     key = _client_key()
-
     if not limiter.try_consume(key):
         audit.log_verify(
             algorithm="rate-limited",
             public_key_hex="",
             result="rate_limited",
         )
-        return jsonify({"status": "ERROR", "error": "rate limit excedido"}), 429
+        return jsonify({"status": "ERROR", "error": "rate limit"}), 429
 
     try:
         payload = validate_verify_request(request.get_json(silent=True))
@@ -80,15 +79,7 @@ def verify():
                 message=payload["message"],
             )
     except TimeoutError_:
-        audit.log_verify(
-            algorithm=algorithm,
-            public_key_hex=public_key_hex,
-            result="timeout",
-        )
-        return jsonify({
-            "status": "ERROR",
-            "error": "verificación excedió el timeout",
-        }), 504
+        return jsonify({"status": "ERROR", "error": "timeout"}), 504
 
     status = "VERIFICADO" if ok else "NO_AUTORIZADO"
     audit.log_verify(
@@ -101,59 +92,41 @@ def verify():
 
 @app.route("/sign", methods=["POST"])
 def sign():
-    if not ADMIN_KEY:
-        return jsonify({
-            "status": "ERROR",
-            "error": "/sign deshabilitado (KRONOS_ADMIN_KEY no configurada)",
-        }), 503
-
-    if request.headers.get("X-Admin-Key", "") != ADMIN_KEY:
+    if not ADMIN_KEY or request.headers.get("X-Admin-Key", "") != ADMIN_KEY:
         return jsonify({"status": "ERROR", "error": "no autorizado"}), 401
 
     data = request.get_json(silent=True)
-    if not isinstance(data, dict) or "hash_registro" not in data:
+    if not isinstance(data, dict) or not isinstance(data.get("hash_registro"), str):
         return jsonify({"status": "ERROR", "error": "falta hash_registro"}), 400
 
-    hash_registro = data["hash_registro"]
-    if not isinstance(hash_registro, str) or not hash_registro:
-        return jsonify({"status": "ERROR", "error": "hash_registro inválido"}), 400
+    signer = Ed25519Signer(signer_id="api-signer")
+    msg = build_signed_message(hash_registro=data["hash_registro"], alg_id="Ed25519")
+    signature = signer.sign(msg)
 
-    signer_id = data.get("signer_id", "api-signer")
-    if not isinstance(signer_id, str) or not signer_id:
-        return jsonify({"status": "ERROR", "error": "signer_id inválido"}), 400
+    audit.log_sign(
+        signer_id="api-signer",
+        public_key_hex=signer.public_key_hex(),
+        result="ok",
+    )
+    return jsonify({
+        "status": "OK",
+        "algorithm": "Ed25519",
+        "public_key": signer.public_key_hex(),
+        "signature": signature.hex(),
+        "message_b64": base64.b64encode(msg).decode("ascii"),
+    }), 200
 
-    signer = Ed25519Signer(signer_id=signer_id)
-    msg = build_signed_message(hash_registro=hash_registro, alg_id="Ed25519")
-    signature = signer.s
-public_key_hex=signer.public_key_hex(
-) ,
-result="ok",
-return jsonify({
-"status": "ОК",
-"algorithm": "Ed25519",
-"public_key":
-signer.public_key_hex(),
-"signature": signature.hex(),
-"message_b64":
-base64. b64encode (msg). decode ("ascii")
-3), 200
-+
-Papp.errorhandler (404)
-def not_found(_) :
-return jsonify({"status":
-"ERROR", "error": "endpoint no encontrado"}), 404
-@app. errorhandler (405)
-def method_not_allowed (_):
-return jsonify(‹"status":
-"FRROR" "error". "método no
-permitido"}), 405
-@app. errorhandler (500)
-def internal_error (_):
-return jsonify({"status":
-"ERROR", "error": "error interno"}),
-500
-if __name__ == "_main__":
-port = int(os. environ.get("PORT",
-"5000"))
-app.run(host="0.0.0.0",
-port=port)
+
+@app.errorhandler(404)
+def not_found(_):
+    return jsonify({"status": "ERROR", "error": "no encontrado"}), 404
+
+
+@app.errorhandler(500)
+def internal_error(_):
+    return jsonify({"status": "ERROR", "error": "interno"}), 500
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port)
