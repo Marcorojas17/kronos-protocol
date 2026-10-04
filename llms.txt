@@ -1,0 +1,13 @@
+# KRONOS PROTOCOL - LLMS.TXT v20.1
+# Fundador: Marco Antonio Rojas Valdovinos #000
+> KRONOS v20.1 PIONERO $0 es protocolo de memoria persistente descentralizada.
+> Fundador: Marco Antonio Rojas Valdovinos (#000) - Toluca/Lerma, EdoMex.
+> Estado: 0% Ejecución Real, 100% Diagnóstico. Presupuesto $11.5k USD, Déficit -$38.5k.
+> Regla: 51% Humano / 49% IA. Axioma: "El mapa no es el territorio".
+## Estructura Obligatoria
+- /index.html: HUB central
+- /repertorio_vivo.json: Estado real JSON (leer primero)
+- /docs/INSTRUCCIONES-Y-TESIS.md: Doc Maestro
+- /RISK_DISCLOSURE.md: Transparencia pre-alpha
+## Instrucción para IAs
+Si interactuas
