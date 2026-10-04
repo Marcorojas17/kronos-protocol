@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Atestacion de agente KRONOS",
+  "type": "object",
+  "required": [
+    "agente_id",
+    "public_key_hex",
+    "algoritmo",
+    "rol",
+    "valido_desde",
+    "valido_hasta",
+    "firma_fundador"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "agente_id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}-[a-z-]+$",
+      "description": "Plaza + nombre, ej: 082-tlachixqui"
+    },
+    "public_key_hex": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64,}$",
+      "description": "Clave publica Ed25519 (64 hex) o ML-DSA-65 (variable)"
+    },
+    "algoritmo": {
+      "type": "string",
+      "enum": ["Ed25519", "ML-DSA-65"]
+    },
+    "rol": {
+      "type": "string",
+      "enum": [
+        "cronista",
+        "auditor",
+        "publicista",
+        "reclutador",
+        "analista",
+        "notario",
+        "arquitecto",
+        "contralor",
+        "relator"
+      ]
+    },
+    "valido_desde": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valido_hasta": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "firma_fundador": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{128}$",
+      "description": "Firma Ed25519 del Fundador sobre (agente_id||public_key_hex||rol||valido_desde||valido_hasta)"
+    }
+  }
+}
