@@ -1,43 +1,57 @@
 # KRONOS PROTOCOL · MANIFEST SHA-256
-# Generado: 2026-09-30T15:55:46Z
+# Generado: 2026-10-04T23:15:05Z
 # Autor: Marco Antonio Rojas Valdovinos
 
-220d2c514bcba4f32a519bf6c8a4e7263075dbf4a8c3144c6010609c7306362c  ./00-FUNDACION/VERIFICADOR-OFICIAL.md
+74551e9679f476594ba2937f9f0ad583030d46113afef4368794aad92557faa9  ./.cursorrules
+0e61f615177078f3568903df1f35b626cd24fab39160d4a281bc69a082784297  ./.gitignore
+3877220384b150c36cbd026d5d6595f659f74ce39dce93bc7ae77487a316bf18  ./00-FUNDACION/VERIFICADOR-OFICIAL.md
 2677811d1c08fadf38e30cc141c06d6466521daae593d09aadb9030dbcbc3822  ./00-SCHEMA/ejemplo.registro.json
-120a2a1e7a25f5f38c575de17e704bcd3a0a18c57d3e9015d1f57b246bd31480  ./00-SCHEMA/registro.schema.json
+f8b22741e8189f830b9ce13b3438fc8303614ee5ce669dd336e947f42f7e98eb  ./00-SCHEMA/registro.schema.json
 2e6115aa03d678d524fc35a8bfe871794920dbae72e380d51cdd4bfe7f5224f0  ./02-VERIFICADOR/INDICE.md
 b01baf1ccc19ac0d5a47bec4ab8e2bdc0b0e0e7ce1d6ffff829a061622e0fa33  ./02-VERIFICADOR/verificador.html
 ff42dc44e84814b3929d48184be73e9cce2b35c5172373ea7a746ab9548eda78  ./05-AGENTES/090-arquitecto/arquitecto.py
+9bcd6d24a61d47a77f1e0723946bc0f32b14ec92cd8164e2b116191c0e2142ec  ./05-AGENTES/090-arquitecto/ultimo.json
 d10145c572ce93cd8287d67665444e4173f3d42bb8a424804ac813aa2dcf08a3  ./05-AGENTES/091-contralor/contralor.py
+3403eab81c603cf631cb4f5902a6c2aceacced48507fc8ba5356d3f5f329d7bf  ./05-AGENTES/091-contralor/ultimo.json
 2f1c2cd546f1ad75c2e7ffa6eead58f40755138b557a1c460b1f52c1b7ffd579  ./05-AGENTES/092-auditor-externo/auditor.py
+0bf1deab13eefdb55b3c94c74e16523d1218e554e7f057c0072200f2a70f2cc2  ./05-AGENTES/092-auditor-externo/ultimo.json
 01c1b8c61a42a37402b87913c67fbd81e8a4997a97f4c607c36abe328d485b32  ./05-AGENTES/093-relator/relator.py
+06fc9ef446c952b612dff200da26381ec9090b4ed453b5d5342ab1c24a657aed  ./05-AGENTES/093-relator/ultimo.json
 f74c96ed75e226ccda057fcde3b8164b4884f2ff0c19d536eb8880d3fd15282c  ./05-AGENTES/094-bibliotecario/bibliotecario.py
-e4b54f34ec0bc6461a4dfa0efc2fa04d1fbacfd839bb642757343ff06648cddb  ./05-AGENTES/094-bibliotecario/ultimo.json
+ab17d674800e64880a6ac8970a06379a9212fdb46994f0655c135ac7fc839afd  ./05-AGENTES/094-bibliotecario/ultimo.json
 97eef9bbe5216620b53d444972247721177ed4b56c57e01b09146cff860428db  ./05-AGENTES/095-cartografo/cartografo.py
-1266d4df9694eff07b7fa22cd00dbed92913d4f6ab17eaee6b412e5f4e8f25a4  ./05-AGENTES/095-cartografo/ultimo.json
+9714d9addb8cb857b157137aeade4ee0782d15919927cda3c30495deff67a6be  ./05-AGENTES/095-cartografo/ultimo.json
 3b99d75180b779f72f611839e0ab5e785b9be1ac78c4db83fa1638f08247decf  ./05-AGENTES/README.md
 f3c1a083673ea1b3d61e603213474cbfdefb54ab8d2a1db4555c32e48103eb79  ./05-AGENTES/_base/agente-base.py
-5db4c61747a933794a85a359a848b795a2fe083cd2d3d103dac6ccb2971d32e9  ./05-AGENTES/_base/agente_base.py
+96686d1e58eee31114cd32d5e5305a86fe1932a66bf876281e54c45b7f4d9084  ./05-AGENTES/_base/agente_base.py
 63e1273ccb2d3e173c299926a27d2b2133e6ab27f1bd0b4ef5aacab2f934993a  ./07-LLAVES/ATESTACIONES/082-tlachixqui.json
 3c0c37deb72b4ec65ad738ff23713a16ca1edbbf9171e6516ca278db0a40a069  ./07-LLAVES/ATESTACIONES/esquema.json
-6e0ca9c6fc32eb529323781a6a10ee38e8579a14d167a8db432d0d4e7c8b370c  ./403
+13652674ce2d7272ef468a7e2ee3e3a13342035a464b1a4f4a16b1f55a3811d7  ./07-LLAVES/FUNDADOR-V2/fundador-v2.key
+3d68667f999efc27a97f6ccd0727e6cb7203ec85c769c0e2e417c249f9e24e8a  ./07-LLAVES/FUNDADOR-V2/fundador-v2.pub
 1d55e403cd3ca29007dd1d861475cd1f85b8c03d80eba194523d323536430dba  ./404.html
-d93790bd3ceadb329ce7c90859c046cd8629e5c004aac665c35c4c03a299fd39  ./CHANGELOG.md
+508a8b598fef51692c5a57b92cbb70e300b638909e4d5a6d89ccb22be2eb404f  ./AGENTS.md
+4f3c405c8a7aca994f69b09d5871245be6010290b872c8248dc9588aeaa1e493  ./ARCHITECTURE.md
+8fd66d5e1ac6c6d79376d6ec74e2222f28fb7ae70f9c12914278bc940e67c051  ./AUTHORS.md
+8c84ba54d29b72eb78f5650e2cc20fcc395b94b6f25f994ecb4749d265f8b100  ./CHANGELOG.md
+33183ca4ca660feba48cd085cb0246152d7403a81ac299778f92ba1678cb1918  ./CLAUDE.md
 a7f14e0d11cdfb2a7b40982d80dcfcca130ace2d3cb10620fd745b3831b597a8  ./CODE_OF_CONDUCT.md
-7af9e6b61b0eff21d8bcac347fffecb8d7a6e0676f30b0cd1f672e26b7a31d0f  ./CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.10
-4354acb50b26171e3473b2c9f2bb770fcad8026e3fefd2748ab1d14ecf3755f7  ./CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.5
-ae91544e6f35f678b145e252251b9c95417b8e6cf2dbebfea9c09be6b56095e7  ./CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.7
+cb8674f347b8fdd14b40ea3dbfb20c765bdbfe76185b36cdda89c5372a9d0701  ./COMPLIANCE.md
+1b7ccd02a55074fd72e0336304a1cbdc75f0aeae4efe85a1d2fb9f37a835ef74  ./CONTEXTO PORTÁTIL · KRONOS PROTOCOL · v3.12
 c82837af92a74250206ac1a84f15bddd86251f4c7160f9a8de160ff3ecf61489  ./CONTRIBUTING.md
 e1c19c7850348ce9936e8ae0bf73823a602a8d2b88303da42cf6b2efa3595c4a  ./COPYRIGHT.md
 551f19a61b461dadeff8e2b6921d9ed16cebb47863b15cdbc06ac5006ff7e3c7  ./GOVERNANCE.md
 293f2b114adc5ab2c8c26522088713d9bf41e097d51b9efaa7e1e21a86bdadb1  ./KRONOS-CONTEXTO-EXTENDIDO.md
 05bc0a2f895f3b92dd8ec24c97ceaf233388878ada3cc216f69b34965749094e  ./LICENSE
 76c995e7b2dd8199a611ab14a893730dd2ff4f3ff98ef6a83b81df0b834bc6cb  ./LICENSE-CC-BY-NC-ND
-6f251b940a28dbd59325ba07d9b82c2841a7d89ba85251124e72f2a5dbbb3e72  ./MAPA.md
+458dfd379abe859ceb05f5cfef25d5f1788254a6bbf678eed0f23df964aec406  ./MAPA.md
+5e0e6aa2ce8e832e0d3c761888d76ec0cb545e371f3786cd7e9893a98cecc035  ./MEMORY.md
+4b8865aa0a1d3f5631a95803f66edcceafbbace70c4dfcf84f1124eb0a456b20  ./OPERATIONS.md
+df22aeadaf6f2a6c4b2a810a7c87f3781bb855b9f65e71a4a2dc85e47245c0de  ./PRIVACY.md
 548a847a940020e72d937d4cc38794a54bb4861badb88b3e8151aecd391b203a  ./PROTOCOL.md
-80edb9085aa5573a334324905adc112efc86298d57e6001b8f6ab6ecf34a6597  ./Pnp
+fd041b872a375b82eb49b19c52c537c8ba17dd2e3376e3f7ee5dc950640149b4  ./Procfile
 6fedf0717d5478ccfd2845dd29ad281fdce5aa1ab0a9da2be09be3c1e5765e2a  ./README.md
 7f529385517220587afecf7d4fc2270765c2b051f990f5c3f4fa75eb637b2356  ./SECURITY.md
+b785c0c5957b202af39e9e55ea8d769e85da950e0a57eb6f7d466466620d906c  ./TERMS.md
 5dc97c78ca7dc3292d65f380a0948759baef70d0ababddfa1cfca69fae0b3a24  ./_config.yml
 a8d4d81f02cd30f1abf86250aaa6c1192eb65d25c49fdab75a44c30f78f512e0  ./_data/navigation.yml
 316bebf565493d372c0f2cdb416b7c03a97402ce30eb09b1eeae9c22de676e03  ./aditoria
@@ -58,6 +72,10 @@ cfee3f57ce7a1f019757ebbb8fb1b9f3dabfb6cfd10eae8e0859ffa40f11942a  ./agentes/tlac
 84548fc0197ae39ea67fbc23a465d8e2c2158c2646406230dc55926375d2b101  ./agentes/tlapohualli-analista/politica.md
 8ec3cda86e67c65e0f46e8bd9c3352bc7767e53b7c160e747f2c15dac57780ad  ./agentes/tonal-notario/index.html
 2b7ce8433070f418bdbd21eb4f6f14eb2427dd6891686c2494b7ccce25c5d93f  ./agentes/tonal-notario/politica.md
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./apps/__init__.py
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./apps/api/__init__.py
+84e3dde0bcab7fdd3750daadff3370022fba7f29f54cbea1d2feb532e6fc4fb8  ./apps/api/main.py
+305e128daa0866a619af598c557953f288dd1fa18504a210812f0a2eb07e5aa3  ./apps/api/schemas.py
 dc4abd29b9f17e4a0589715c50d4ec1e698bd43f496d0f3e10e001788b8f4c4c  ./archive/README.md
 aa1032994432084fd09c558f2c2e17be4d5ccd0bc95b7edbbf385624667758f6  ./assets/css/animations.css
 157e2e9966f905b105d98cc04dde07739fa03b3541a9c2f974c236469bc50672  ./assets/css/components.css
@@ -188,7 +206,6 @@ d4e8b44886d983a2345568de9bca9333451f292924fc525187f74f19807c52dd  ./gobernanza/r
 543d1e869cc6ced436463061fd741aebfb9e40fe6471d95292fd9a45f9cdbcbc  ./guardians/GUARDIAN-SHA.md
 d6466e078d4ad8634fa8f06bb4e3d8315c21ebfec2e822acaa6abc07c21c7e32  ./guardians/GUARDIAN-TSA.md
 70f40d01e9d947b10dedc102d0066cdf45f602608015b78d72218a64a2494b15  ./guardians/GUARDIAN-VAULT.md
-9836801a1e4a4b308904317b50d48318cef12e60c584fc0bd802bdc7fb33f5f3  ./i
 7f431260a9f6e07973e39bf61624eee626962b8b228eb0675e63e986ca41617f  ./identidad/registro-humano/AUTORIA
 b2a1b8e1b37fb918391e360d6ac6723d948d3e02c372a65390b2ec772aa7b22e  ./identidad/registro-humano/README.md
   ./identidad/registro-humano/estructura del certificado
@@ -241,6 +258,7 @@ a689fe69861d241ad65d61b6ced9acad8c51d48b31f524aeb7a006f0d03c74e3  ./legado/manif
 140b51f6cca7cb216cd52b847089c601a17faccc84b239dd6cbabc829308df3f  ./legado/manifiesto/manifiesto.js
 bad7b9767189e3dbb6b48e315b67e2a727fd5794209f85f275ed05bf90528a73  ./legado/manifiesto/manual.html
 bb2283d082f2613d702f57b62baee432d57aa73ec6deca666f931006c8456725  ./legado/manifiesto/styles.css
+68fd06607fe1c696af89ac089f3ad635c05518f6c4df5e8cfaca79f7df2ebc2a  ./llms.txt
 0ef7aa93b627aafe3f1b4bc64dccf010a487703eea30a7b79de6d5a565d020c4  ./logs/log.json
 79cc5f0bc8f0aa37084f9d6647943e53889316dcbd28a5d94cecd5aa30f7379f  ./luxury.html
 83f97b1a95bcec97b29487f8ae596b18ffac36891d46bec5ef7b8a2d01f96fe0  ./manifest.json
@@ -297,6 +315,8 @@ bc68155faa238979cf5f8ef4fb21f7c94a251cade2dd3350ccbe7b67b789d0b6  ./orquestacion
 770a55cc51eb68f96cf4afcea753fed28e0f793fe17d8b335496b66abe8a7988  ./orquestacion/router-modulos/manual.html
 4de071a05b990dd1f2288b87849d3a145a6ae1168b9d71729ac335223f260797  ./orquestacion/router-modulos/router.js
 fc0a44b1913740c9b3bff7ece3fc13f5a0d551835396bfc5cc088fc1dce1b558  ./orquestacion/router-modulos/styles.css
+cc2784a00ef666eeda50b3f2b20f2945c17ffdb6e6efdc4f77f54eeb23354154  ./package-lock.json
+b0dfb58f127382adef455b0ed3b0ff6776ab976ec42b9aaad94fdf82246db819  ./package.json
 00b6c89c88faa996b45784109dc28d7e777c81289897be3853a10fdf2deaaf86  ./projects/acta/README.md
 8c0b6b17268453c9d86054e7d32584a98e4f0cbfb5835bea7647cb785fad6ea6  ./projects/acta/index.html
 4d9839e925614e2daa972fe6ed91ffe77708760bd90c17b94835dd0149652f54  ./projects/bobeda/bobeda.html
@@ -337,25 +357,37 @@ c7542979d644f179397f662c7fd64bc0f503dd635eb8e42262e639da4518a469  ./projects/md3
 bbdaa0179b34f86f9e1e9293d6d4eeaffa80b0cf93f7100f39cef5712b301a21  ./projects/yejida/index.html
 c0a724844687932d1c8ab03d64b805215af3c625bdf511a8f9c60164df5f00df  ./protocol/KTP-001.md
 92e40d7265d447b514b3e33d7e7dfbdf71bd8d501d92e3812865d45863c07d17  ./pyproject.toml
+14798db653d9fc58e468641b893893e51be3ef7fe7c56a75c99ce378eb8485fe  ./railway.json
 0b0f8f22fbf3739893f399e38ef05fd058728ae016e1a084f8d2b0e8409898c2  ./registrar.html
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/arquitecto.json
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/auditor.json
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/bibliotecario.json
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/cartografo.json
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/contralor.json
-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./reportes/relator.json
+a750ce3e3391d8c3abfdbb23f0fbcfa3bd3c56062d1bf67ef2885781ef2b4e86  ./reportes/arquitecto.json
+63806045dfde902aa4ce544929e9ca4ad7817152185e282babc3a77fc90e5e2c  ./reportes/auditor.json
+a1a018b6316998b992b4c72c52827f323bc2f1345f53174544a95c47db3041b9  ./reportes/bibliotecario.json
+4b9605fceb8ac104e00a07a0412003b4d77d87fdb128a6e1488997fcc2afe89f  ./reportes/cartografo.json
+28a7cc9ee053ee7b714a29263a8e3972b321aa1688eb1a2a848db975302dbf63  ./reportes/contralor.json
+e59ad48f18e6509a4e3f6b7176c96b6d97beddf6839c160a260c4605fe81383a  ./reportes/relator.json
+54fd468e647665a7992c5221cf0e110691af0198d6aef978ae359e4a56d006a5  ./requirements.txt
 eb8ddb925997fdb850d8e579ee363f350c4a83ea6dce702651928395ab7a72bb  ./robots.txt
 3472d6b4a55d4f88357af855eb4e322418e7487f41e9eb0e2185469a3a292c49  ./servicios.html
 55f4aefd11da17dee771fc12e311c0141b5fc821bb3bdc97a7e436988ed33dd4  ./sitemap.xml
+8d69a0ff32e88ed988a8456ffb81f777ecf94ae5c2cd2642dcc9ce59ca4ef9f1  ./src/kronos360/crypto/audit_log.py
 22d47d95ca0c4bd46e7df5b01b5e74cf854c69e507f58f7d6699403444ff449c  ./src/kronos360/crypto/canonicalization.py
+cc3ecb13fa21020f5749ff678c5550245f8b08b28b10dc907a872dd6e456286e  ./src/kronos360/crypto/guard.py
 de6ebb87948422e4e29dc556235fd7af9593e12197189be111d1f16b4b98313b  ./src/kronos360/crypto/hashing.py
+6d3c6185565da308cecdc5137b63bd3f8fb9dabb686cf0404254ba2e195054ca  ./src/kronos360/crypto/keyfile.py
 f5e8d42ac37fdd063122b862aae32b99a57d7b3d504513734f607de41d4c2b23  ./src/kronos360/crypto/signatures.py
 8544834760dc5e8e60bdfcef96ddee612584c0900463d21ab1f927f4d36095bc  ./src/kronos360/models/evidence.py
 9ee97d0e524bedfdb6850db5ae0f33189271d155d183faee82f6a5cfe69868b9  ./src/kronos360/services/evidence.py
 1ab5035c82db690c29a204953a813b6522b3f09f0e697cbe78ed6c269dfadeb9  ./tesis.md
 da8969bb947dab0bd812eb633bebf05018befdaf6b3d80d6d60a2d912c4f1b57  ./tesiscompleta.md
 0bfeab729cc0fbe345f104fcba26226b84e0b3d3cd29704b1e71711da82863d3  ./tests/README.md
-11e1032e4e14af52b0b37dfaca3568060ab8c31daaf6d33fb98d9146f05a843c  ./tests/test_evidence.py
+f29222ff2c026cfa2d2fc01973fc2ded1e0c5d064da619ac3f407db41fdd5bd2  ./tests/test_api.py
+0054ba85304556f2aad4e07a9a1cc1659bd979e26d516dc529e98331b86a6285  ./tests/test_api.py.bak
+9f925dc6df6f0151e0c716fb1d75e8399409ff587c1a3e602a351097ede66c0d  ./tests/test_audit_log.py
+11e1032e4e14af52b0b37dfaca3568060ab8c31daaf6d33fb98d9146f05a843c  ./tests/test_evidence.py.bak
+7b44eb484c5c73f499b147e3decebe22d712cc9e02f336bc696219bc4b9214b9  ./tests/test_guard.py
+adcd01d73788dd0bdef1d06311655cb7d683e3d2c1a928bb16e2283986ade89b  ./tests/test_hashing.py
+72850f9b0dbb4b439312c4587ae0e92bb5a6add612c965322354e02160298fad  ./tests/test_keyfile.py
+9f47e72d70ed94fdc518ec16441a9ea46b310a02a24b5d159b42f84ed4aea259  ./tests/test_signatures.py
 8fa237da581c6f6fb916095ff27b80ba576decd83b4ae6f2260a297c63ae6151  ./verificar-certificado.html
 bfea2673bc9faafda4d015b90b519adda92a56806066ecc34ccbf6965c3f187b  ./verifier.py
 0e5f8876acccb8003e4d36dcd77429e0859ec495908ef9305293670a2eed3ffe  ./verify.html
