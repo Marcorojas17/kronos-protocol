@@ -1,0 +1,100 @@
+{
+  "agente": "092-auditor-externo",
+  "estado": "🟡 MVP",
+  "rol_pipeline": "🔔 ALERTA",
+  "util_hoy": true,
+  "bloqueado_por": [],
+  "timestamp": "2026-09-30T20:35:12.387413+00:00",
+  "ok": false,
+  "hallazgos": [
+    {
+      "tipo": "pendientes",
+      "archivo": "00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 19
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 28
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "02-VERIFICADOR/verificador.html",
+      "linea": 151
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "02-VERIFICADOR/verificador.html",
+      "linea": 152
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "kronos-protocol/00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 17
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "kronos-protocol/00-FUNDACION/VERIFICADOR-OFICIAL.md",
+      "linea": 18
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "kronos-protocol/02-VERIFICADOR/verificador.html",
+      "linea": 151
+    },
+    {
+      "tipo": "pendientes",
+      "archivo": "kronos-protocol/02-VERIFICADOR/verificador.html",
+      "linea": 152
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "kronos-protocol/.github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "kronos-protocol/.github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": ".github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": ".github/workflows/salud-repo.yml",
+      "linea": 50
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "05-AGENTES/092-auditor-externo/auditor.py",
+      "linea": 17
+    },
+    {
+      "tipo": "placeholders",
+      "archivo": "05-AGENTES/092-auditor-externo/auditor.py",
+      "linea": 17
+    }
+  ],
+  "metricas": {
+    "archivos_escaneados": 727,
+    "hallazgos": 14,
+    "truncado": false
+  },
+  "supuestos": [
+    "Archivos de texto UTF-8 (o UTF-8 con errores ignorables)",
+    "Archivos < 500 KB son los relevantes"
+  ],
+  "riesgos": [
+    "Falsos positivos en binarios con extensión .txt",
+    "Falsos negativos en archivos > 500 KB"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Detectar TODOS los secretos (solo patrones conocidos)",
+    "Detectar secretos cifrados o codificados",
+    "Reemplazar auditoría humana"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "agente": "095-cartografo",
+  "estado": "🟡 MVP",
+  "rol_pipeline": "📤 SALIDA",
+  "util_hoy": true,
+  "bloqueado_por": [],
+  "timestamp": "2026-09-30T20:35:33.542748+00:00",
+  "ok": true,
+  "hallazgos": [],
+  "metricas": {
+    "mapa_escrito_en": "/root/kronos-protocol/MAPA.md",
+    "lineas": 651
+  },
+  "supuestos": [
+    "El repo tiene raíz accesible",
+    "Profundidad 3 es suficiente"
+  ],
+  "riesgos": [
+    "Repos anchos generan MAPA.md grandes",
+    "Nombres raros pueden verse mal"
+  ],
+  "cimientos": [],
+  "no_garantiza": [
+    "Que el mapa se vea bien en todos los terminales",
+    "Que profundidad 3 capture toda la estructura relevante"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "kronos-protocol",
+  "version": "1.0.0",
+  "description": "<!-- ═══════════════════════════════════════════════════════════════════ --> <!--  KRONOS PROTOCOL · README OFICIAL · v2.0                           --> <!--  Autor: Marco Antonio Rojas Valdovinos · Toluca, México · 2026     --> <!-- ═══════════════════════════════════════════════════════════════════ -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcorojas17/kronos-protocol.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marcorojas17/kronos-protocol/issues"
+  },
+  "homepage": "https://github.com/Marcorojas17/kronos-protocol#readme",
+  "devDependencies": {
+    "@types/node": "^14.18.63",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
