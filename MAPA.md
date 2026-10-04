@@ -31,6 +31,8 @@ kronos-protocol/
 ├── 02-VERIFICADOR/
 │   ├── INDICE.md
 │   └── verificador.html
+├── 04_SEGURIDAD_Y_OPERACIONES/
+│   └── LLAVE_QUEMADA_EVIDENCIA.md
 ├── 05-AGENTES/
 │   ├── 090-arquitecto/
 │   │   ├── arquitecto.py
@@ -483,6 +485,7 @@ kronos-protocol/
 ├── RISK_DISCLOSURE.md
 ├── SECURITY.md
 ├── TERMS.md
+├── TESIS_ACTUAL_FASE0_CERRADA.md
 ├── _config.yml
 ├── aditoria
 ├── admin.html
