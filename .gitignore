@@ -1,26 +1,7 @@
-# Llaves privadas — NUNCA commitear
-*.key
-*.pem
-07-LLAVES/
-
-# Node (residuo de intentos previos)
-package.json
-package-lock.json
-node_modules/
-
-# Python
+.venv/
 __pycache__/
-*.pyc
-.pytest_cache/
-
-# Auditoría local
-audit.jsonl
-audit.jsonl.*
-
-# Entorno
+node_modules/
+kronos-protocol/
 .env
-.env.*
-
-# Sistema
+*.pyc
 .DS_Store
-*.bak
