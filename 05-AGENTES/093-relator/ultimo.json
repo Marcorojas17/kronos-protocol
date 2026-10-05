@@ -7,86 +7,86 @@
     "Sin comparación contra snapshot anterior",
     "Sin generación de CHANGELOG.md"
   ],
-  "timestamp": "2026-09-30T20:35:18.602276+00:00",
+  "timestamp": "2026-10-05T18:59:19.777292+00:00",
   "ok": true,
   "hallazgos": [],
   "metricas": {
-    "total_archivos": 738,
+    "total_archivos": 419,
     "por_extension": [
       {
         "ext": ".html",
-        "cantidad": 240,
-        "bytes": 3435264
+        "cantidad": 120,
+        "bytes": 1717632
       },
       {
         "ext": ".md",
-        "cantidad": 179,
-        "bytes": 1491011
+        "cantidad": 103,
+        "bytes": 767807
       },
       {
         "ext": ".js",
-        "cantidad": 96,
-        "bytes": 864612
-      },
-      {
-        "ext": "(sin ext)",
-        "cantidad": 54,
-        "bytes": 304521
-      },
-      {
-        "ext": ".css",
         "cantidad": 48,
-        "bytes": 387246
-      },
-      {
-        "ext": ".yml",
-        "cantidad": 32,
-        "bytes": 59053
+        "bytes": 432306
       },
       {
         "ext": ".py",
-        "cantidad": 30,
-        "bytes": 129791
+        "cantidad": 31,
+        "bytes": 112059
+      },
+      {
+        "ext": "(sin ext)",
+        "cantidad": 28,
+        "bytes": 122605
       },
       {
         "ext": ".json",
-        "cantidad": 29,
-        "bytes": 52347
+        "cantidad": 25,
+        "bytes": 70274
+      },
+      {
+        "ext": ".css",
+        "cantidad": 24,
+        "bytes": 193623
+      },
+      {
+        "ext": ".yml",
+        "cantidad": 20,
+        "bytes": 35510
       },
       {
         "ext": ".txt",
-        "cantidad": 8,
-        "bytes": 57076
+        "cantidad": 6,
+        "bytes": 29223
       },
       {
         "ext": ".png",
-        "cantidad": 8,
-        "bytes": 24456446
+        "cantidad": 4,
+        "bytes": 12228223
       },
       {
-        "ext": ".toml",
+        "ext": ".bak",
         "cantidad": 2,
-        "bytes": 1220
+        "bytes": 4016
       },
       {
-        "ext": ".sha256",
-        "cantidad": 2,
-        "bytes": 68942
-      },
-      {
-        "ext": ".xml",
-        "cantidad": 2,
-        "bytes": 3696
+        "ext": ".12",
+        "cantidad": 1,
+        "bytes": 33702
       },
       {
         "ext": ".svg",
-        "cantidad": 2,
-        "bytes": 1460
+        "cantidad": 1,
+        "bytes": 730
       },
       {
-        "ext": ".jpg",
-        "cantidad": 2,
-        "bytes": 2
+        "ext": ".toml",
+        "cantidad": 1,
+        "bytes": 610
+      },
+      {
+        "ext": ".sha256",
+        "cantidad": 1,
+        "bytes": 38201
       }
     ]
   },
