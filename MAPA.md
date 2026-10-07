@@ -482,6 +482,7 @@ kronos-protocol/
 ├── PROTOCOL.md
 ├── Procfile
 ├── README.md
+├── REPORTE-SALUD.md
 ├── RISK_DISCLOSURE.md
 ├── SECURITY.md
 ├── TERMS.md
@@ -490,6 +491,7 @@ kronos-protocol/
 ├── aditoria
 ├── admin.html
 ├── carta-presentación.txt
+├── creativo.html
 ├── curriculum-terminal.txt
 ├── favicon.svg
 ├── guardian.py
