@@ -1,0 +1,9 @@
+backups/
+*.tar.gz
+*.sha256
+logs/*.log
+logs/*.log.*
+node_modules/
+.DS_Store
+*.tmp
+*.cache
