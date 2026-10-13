@@ -42,7 +42,7 @@
     "@noble/hashes": "^1.4.0",
     "@noble/post-quantum": "^0.2.0",
     "dotenv": "^16.4.5",
-    "zod": "^3.23.8"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
