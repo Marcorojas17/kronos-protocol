@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMPOSER · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="composer" data-theme="terminal-gold">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/composer]────────────────────┐
+   │   C O M P O S E R   ·   ◯_●                        │
+   │   Compón · Firma · Ancla                           │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🎼 Compositor Ceremonial</h1>
+
+<form class="form-canonical" id="composer-form">
+  <label for="titulo">TÍTULO DE LA OBRA *</label>
+  <input id="titulo" required placeholder="Acta fundacional · 2026">
+
+  <label for="tipo">TIPO</label>
+  <select id="tipo">
+    <option value="acta">Acta</option>
+    <option value="obra">Obra</option>
+    <option value="decision">Decisión</option>
+    <option value="testamento">Testamento</option>
+  </select>
+
+  <label for="contenido">CONTENIDO *</label>
+  <textarea id="contenido" rows="10" required placeholder="Escribe o pega el contenido a firmar..."></textarea>
+
+  <label for="algoritmo">ALGORITMO DE FIRMA</label>
+  <select id="algoritmo">
+    <option value="ML-DSA-87">ML-DSA-87 · FIPS 204</option>
+    <option value="SLH-DSA-SHAKE-256s">SLH-DSA-SHAKE-256s · FIPS 205</option>
+    <option value="Ed25519+ML-DSA-87">Ed25519 + ML-DSA-87 híbrido</option>
+  </select>
+
+  <button type="submit" class="btn-primary">▶ COMPONER Y FIRMAR</button>
+</form>
+
+<pre id="composer-output" class="terminal-block output-block">
+[ INFO ] Esperando contenido...
+[ >> ] El hash SHA3-512 se calculará localmente
+[ >> ] La firma se preparará para HSM
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · composer</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+</body>
+</html>

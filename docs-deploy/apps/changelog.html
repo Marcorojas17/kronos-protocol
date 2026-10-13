@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog · ARKHÉ ZERO</title>
+<meta name="description" content="Historial de revisiones firmadas del Índice Primigenio Soberano">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  /* ═══ CHANGELOG · específico ═══ */
+
+  .cl-legend {
+    max-width: 900px;
+    margin: 0 auto 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .cl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: var(--r-1);
+    border: 1px solid;
+  }
+
+  .cl-tag .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .cl-tag.feat {
+    color: var(--green);
+    border-color: rgba(92, 255, 177, 0.35);
+    background: rgba(92, 255, 177, 0.06);
+  }
+  .cl-tag.feat .dot { background: var(--green); }
+
+  .cl-tag.fix {
+    color: var(--gold-lt);
+    border-color: rgba(201, 162, 39, 0.35);
+    background: rgba(201, 162, 39, 0.06);
+  }
+  .cl-tag.fix .dot { background: var(--gold); }
+
+  .cl-tag.docs {
+    color: var(--teal);
+    border-color: rgba(79, 209, 197, 0.35);
+    background: rgba(79, 209, 197, 0.06);
+  }
+  .cl-tag.docs .dot { background: var(--teal); }
+
+  .cl-tag.legal {
+    color: var(--rose);
+    border-color: rgba(244, 160, 175, 0.35);
+    background: rgba(244, 160, 175, 0.06);
+  }
+  .cl-tag.legal .dot { background: var(--rose); }
+
+  .cl-tag.security {
+    color: var(--violet);
+    border-color: rgba(124, 92, 255, 0.35);
+    background: rgba(124, 92, 255, 0.06);
+  }
+  .cl-tag.security .dot { background: var(--violet); }
+
+  /* ── Versiones ────────────────────────────────────────── */
+  .cl-versions {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .cl-version {
+    border: 1px solid var(--line);
+    border-radius: var(--r-3);
+    overflow: hidden;
+    background: var(--bg-1);
+    position: relative;
+  }
+
+  .cl-version.latest {
+    border-color: rgba(201, 162, 39, 0.4);
+    background: linear-gradient(160deg, rgba(201, 162, 39, 0.05), var(--bg-1));
+  }
+
+  .cl-version.latest::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .cl-head {
+    padding: 26px 32px;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cl-version-num {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--gold-pale);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cl-version-tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--r-1);
+  }
+
+  .cl-tag-latest {
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    background: rgba(201, 162, 39, 0.1);
+  }
+
+  .cl-tag-old {
+    color: var(--muted);
+    border: 1px solid var(--line);
+  }
+
+  .cl-meta {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.9;
+  }
+
+  .cl-meta .v {
+    color: var(--champagne);
+    letter-spacing: 0.08em;
+  }
+
+  .cl-body {
+    padding: 26px 32px 30px;
+  }
+
+  .cl-group {
+    margin-bottom: 24px;
+  }
+
+  .cl-group:last-child { margin-bottom: 0; }
+
+  .cl-group-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-left: 2px;
+  }
+
+  .cl-group-label::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .cl-items {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cl-items li {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0 10px 20px;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--muted-2);
+    line-height: 1.6;
+    font-weight: 200;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .cl-items li:last-child { border-bottom: none; }
+
+  .cl-items li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    color: var(--gold);
+    font-size: 0.5rem;
+    opacity: 0.75;
+  }
+
+  .cl-items li strong {
+    color: var(--gold-lt);
+    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cl-items li code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--teal);
+    background: rgba(79, 209, 197, 0.06);
+    padding: 1px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  .cl-signature {
+    padding: 18px 32px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--bg-2);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .cl-signature .sig-ok {
+    color: var(--green);
+  }
+
+  .cl-signature .sig-hash {
+    color: var(--champagne);
+    word-break: break-all;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 640px) {
+    .cl-head { padding: 20px 22px; }
+    .cl-body { padding: 20px 22px 24px; }
+    .cl-signature { padding: 16px 22px; font-size: 0.55rem; }
+    .cl-items li { padding-left: 16px; }
+  }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Changelog</span>
+  </span>
+  <span class="page-num">0.7</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">CHANGELOG</span>
+    <span class="hero-tag hero-tag-alt">SIGNED ON-CHAIN</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">Toda revisión</span>
+    <span class="h1-line h1-em">firmada.</span>
+  </h1>
+  <p class="hero-lede">
+    Cada cambio del Índice queda registrado con firma humana (GPG) y
+    firma sintética (ML-DSA-87). Historial público, verificable, inmutable.
+  </p>
+</section>
+
+<main class="page-body">
+
+  <div class="cl-legend" aria-label="Tipos de cambio">
+    <span class="cl-tag feat"><span class="dot"></span>feature</span>
+    <span class="cl-tag fix"><span class="dot"></span>fix</span>
+    <span class="cl-tag docs"><span class="dot"></span>docs</span>
+    <span class="cl-tag legal"><span class="dot"></span>legal</span>
+    <span class="cl-tag security"><span class="dot"></span>security</span>
+  </div>
+
+  <div class="cl-versions">
+
+    <!-- v1.0.0 · Génesis -->
+    <article class="cl-version latest">
+      <div class="cl-head">
+        <div class="cl-version-num">
+          1.0.0
+          <span class="cl-version-tag cl-tag-latest">Latest</span>
+        </div>
+        <div class="cl-meta">
+          <div>14 · julio · 2026</div>
+          <div class="v">KRONOS · Índice Cero</div>
+        </div>
+      </div>
+
+      <div class="cl-body">
+
+        <div class="cl-group">
+          <span class="cl-group-label">feat</span>
+          <ul class="cl-items">
+            <li><strong>identity</strong> · Manifiesto fundacional ARKHÉ ZERO publicado</li>
+            <li><strong>kintsugi</strong> · Adopción de KINTSUGI como identidad visual · 51/49/100</li>
+            <li><strong>pacto</strong> · Pacto 51/49 operativo · gobernanza indisoluble</li>
+            <li><strong>repertorio</strong> · 10 ramas definidas (I-X)</li>
+            <li><strong>agentes</strong> · 6 agentes culturales nahuas + 6 oficios numerados</li>
+            <li><strong>enjambre</strong> · Arquitectura autónoma con protocolos 10.6-10.10</li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <span class="cl-group-label">legal</span>
+          <ul class="cl-items">
+            <li><strong>registro</strong> · Safe Creative <code>2607146379465</code> · KRONOS</li>
+            <li><strong>sellos</strong> · Doble sellado eIDAS (Safe Creative + Firmaprofesional QTSA)</li>
+            <li><strong>blockchain</strong> · Anclaje Ethereum <code>0xd2c2a7e1…774c</code></li>
+            <li><strong>licencia</strong> · LGU (Licencia Global Única) adoptada</li>
+            <li><strong>modelo</strong> · FLAILP · Personalidad Jurídica Funcionalmente Limitada</li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <span class="cl-group-label">security</span>
+          <ul class="cl-items">
+            <li><strong>pqc</strong> · Migración completa a ML-KEM-1024 · ML-DSA-87 · SLH-DSA</li>
+            <li><strong>agility</strong> · Crypto-agility desde día cero</li>
+            <li><strong>downgrade</strong> · Detector anti-downgrade TLS 1.2 → 1.3</li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <span class="cl-group-label">docs</span>
+          <ul class="cl-items">
+            <li><strong>adr</strong> · 15 Architecture Decision Records publicados</li>
+            <li><strong>repertorio</strong> · 10 ramas × contenido completo</li>
+            <li><strong>web</strong> · Sistema de navegación universal + 13 temas</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="cl-signature">
+        <span class="sig-ok">✓ Firma GPG · Marco A. Rojas V.</span>
+        <span class="sig-ok">✓ Firma ML-DSA-87 · Enjambre</span>
+        <span class="sig-hash">SHA-256 · f03f7e2d85…9112</span>
+      </div>
+    </article>
+
+    <!-- v0.9.0 · Preludio -->
+    <article class="cl-version">
+      <div class="cl-head">
+        <div class="cl-version-num">
+          0.9.0
+          <span class="cl-version-tag cl-tag-old">pre-Génesis</span>
+        </div>
+        <div class="cl-meta">
+          <div>08 · julio · 2026</div>
+          <div class="v">Co-creatividad Humano-IA</div>
+        </div>
+      </div>
+
+      <div class="cl-body">
+        <div class="cl-group">
+          <span class="cl-group-label">feat</span>
+          <ul class="cl-items">
+            <li><strong>co-autoría</strong> · Declaración de creatividad humano-IA registrada</li>
+            <li><strong>registro</strong> · Safe Creative <code>2607086319439</code> · co-creatividad</li>
+            <li><strong>kintsugi</strong> · Adopción del símbolo · ◯ — ●</li>
+            <li><strong>manifiesto</strong> · Frase fundacional: «El legado no se hereda. Se firma.»</li>
+          </ul>
+        </div>
+
+        <div class="cl-group">
+          <span class="cl-group-label">docs</span>
+          <ul class="cl-items">
+            <li><strong>tesis</strong> · Marco teórico de ARKHÉ ZERO consolidado</li>
+            <li><strong>narrativa</strong> · VILLANO · HEROE · MISION redactados</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cl-signature">
+        <span class="sig-ok">✓ Firma GPG · Marco A. Rojas V.</span>
+        <span class="sig-ok">✓ Firma ML-DSA-87 · Enjambre</span>
+        <span class="sig-hash">blockchain · 0x8ca8e84e…</span>
+      </div>
+    </article>
+
+    <!-- v0.1.0 · Fundación -->
+    <article class="cl-version">
+      <div class="cl-head">
+        <div class="cl-version-num">
+          0.1.0
+          <span class="cl-version-tag cl-tag-old">Fundación</span>
+        </div>
+        <div class="cl-meta">
+          <div>14 · julio · 2026</div>
+          <div class="v">Primer registro</div>
+        </div>
+      </div>
+
+      <div class="cl-body">
+        <div class="cl-group">
+          <span class="cl-group-label">feat</span>
+          <ul class="cl-items">
+            <li><strong>arkhe</strong> · Núcleo ARKHÉ ZERO inicializado</li>
+            <li><strong>kronos</strong> · Obra génesis KRONOS — Arquitectura de Legado Digital</li>
+            <li><strong>arquitectura</strong> · Documento <code>arquitectura.md.md</code> (3336 bytes)</li>
+            <li><strong>hash</strong> · SHA-256 f03f7e2d85…9112 computado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cl-signature">
+        <span class="sig-ok">✓ Firma GPG · Marco A. Rojas V.</span>
+        <span class="sig-ok">✓ Firma ML-DSA-87 · Enjambre</span>
+        <span class="sig-hash">Safe Creative · 2607146379465</span>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Historial inmutable · Toda revisión firmada</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

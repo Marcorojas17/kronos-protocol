@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIMULADOR CONSENSO · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="simulador-consenso" data-theme="terminal-purple">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/simulador]────────────────────┐
+   │   S I M U L A D O R   C O N S E N S O   ·   ◯_●    │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🗳️ Simulador de Consenso</h1>
+
+<p>Prueba cómo funciona el quórum 4/5 del enjambre.</p>
+
+<form class="form-canonical" id="consenso-form">
+  <label for="propuesta-sim">PROPUESTA</label>
+  <input id="propuesta-sim" value="Aprobar nuevo bloque" placeholder="Propuesta a simular">
+
+  <label for="votos-si">VOTOS A FAVOR (0-5)</label>
+  <input id="votos-si" type="number" min="0" max="5" value="4">
+
+  <label>VETO HUMANO</label>
+  <select id="veto-sim">
+    <option value="no">Sin veto</option>
+    <option value="si">Con veto humano (51%)</option>
+  </select>
+
+  <button type="submit" class="btn-primary">▶ SIMULAR</button>
+</form>
+
+<pre id="consenso-output" class="terminal-block output-block">
+[ INFO ] Configura los votos y presiona SIMULAR
+[ >> ] Quórum requerido: 4/5
+[ >> ] Veto humano: 51% siempre activo
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · simulador-consenso</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('consenso-form');
+  const out = document.getElementById('consenso-output');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const votos = parseInt(document.getElementById('votos-si').value);
+    const veto = document.getElementById('veto-sim').value === 'si';
+    const aprobado = votos >= 4 && !veto;
+    out.textContent = `
+[ >> ] Propuesta: ${document.getElementById('propuesta-sim').value}
+[ >> ] Votos:     ${votos}/5
+[ >> ] Veto:      ${veto ? 'SÍ' : 'NO'}
+[ >> ] Quórum:    ${votos >= 4 ? 'alcanzado' : 'insuficiente'}
+[ >> ] Resultado: ${aprobado ? '✅ APROBADO' : '❌ RECHAZADO'}
+
+◯_● · 51/49/100`;
+  });
+});
+</script>
+</body>
+</html>

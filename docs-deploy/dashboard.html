@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
+h1{font-family:'Cinzel',serif;font-size:36px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.2);padding:22px;transition:all .3s;text-decoration:none;color:inherit}
+.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,215,0,.15)}
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px}
+.card .t{color:#00ff41;font-size:16px;font-weight:bold;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.1em}
+.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
+.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:22px;margin-bottom:18px;font-size:12px;line-height:1.9}
+footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
+@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:22px}}</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+<h1>Dashboard Dual</h1>
+<div class="sub">KRONOS · REAL VS PLAN</div>
+<div class="cita">"La brecha entre lo que hay y lo que soñamos se mide en acciones, no en promesas."</div>
+<div class="panel"><strong>KRONOS · REAL vs PLAN</strong><br>Estado actual del repo · roadmap ARKHÉ ZERO</div>
+<div class="grid">
+<a class="card" href="docs/"><div class="n">REAL</div><div class="t">📚 Documentación</div><div class="d">156 archivos en docs/</div></a>
+<a class="card" href="tests/"><div class="n">REAL</div><div class="t">🧪 Tests</div><div class="d">56/56 pasando</div></a>
+<a class="card" href="src/kronos360/"><div class="n">REAL</div><div class="t">🔐 Criptografía</div><div class="d">Ed25519 + ML-DSA-65</div></a>
+<a class="card" href="certificacion/"><div class="n">REAL</div><div class="t">📜 Certificación</div><div class="d">6 módulos operativos</div></a>
+<a class="card" href="gobernanza/"><div class="n">REAL</div><div class="t">⚖ Gobernanza</div><div class="d">4 subsistemas activos</div></a>
+<a class="card" href="identidad/"><div class="n">REAL</div><div class="t">🪪 Identidad</div><div class="d">Humano + IA + roles</div></a>
+<a class="card" href="movimiento/"><div class="n">REAL</div><div class="t">🔥 Movimiento</div><div class="d">167 archivos comunidad</div></a>
+<a class="card" href="projects/"><div class="n">REAL</div><div class="t">📁 Proyectos</div><div class="d">11 proyectos del legado</div></a>
+</div>
+<footer><span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca · 2026<br>NODO YHDRYH-92CE · SCDR-001</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),ctx=c.getContext('2d');
+let W,H;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs();addEventListener('resize',rs);
+const señales=[
+  {y:0.3,h:80,vel:0.002,col:'rgba(0,255,65,0.5)'},
+  {y:0.5,h:120,vel:0.0015,col:'rgba(255,215,0,0.5)'},
+  {y:0.7,h:60,vel:0.003,col:'rgba(124,92,255,0.4)'}
+];
+function draw(){
+  ctx.fillStyle='rgba(3,3,8,0.1)';
+  ctx.fillRect(0,0,W,H);
+  const t=Date.now();
+  for(const s of señales){
+    const cy=H*s.y;
+    ctx.beginPath();
+    for(let x=0;x<W;x+=3){
+      const p1=Math.sin((x*0.02)+t*s.vel)*s.h;
+      const p2=Math.sin((x*0.08)+t*s.vel*2)*20;
+      const spike=Math.random()<0.005?200*Math.random():0;
+      const y=cy+p1+p2-spike;
+      if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=s.col;
+    ctx.lineWidth=1.5;
+    ctx.shadowColor=s.col;
+    ctx.shadowBlur=8;
+    ctx.stroke();
+    ctx.shadowBlur=0;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

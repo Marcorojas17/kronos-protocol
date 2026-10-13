@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOTAR · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="governance-vote" data-theme="terminal-purple">
+<nav id="nav-system" data-active="governance"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/vote]────────────────────────┐
+   │   V O T A R   ·   ◯_●                              │
+   │   Quórum 4/5  ·  Veto humano activo                │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🗳️ Votación</h1>
+
+<form class="form-canonical">
+  <label for="propuesta">PROPUESTA</label>
+  <select id="propuesta">
+    <option>--- Sin propuestas activas ---</option>
+  </select>
+
+  <label for="voto">VOTO</label>
+  <select id="voto">
+    <option value="aprobar">✓ Aprobar</option>
+    <option value="rechazar">✗ Rechazar</option>
+    <option value="veto">🛑 Veto humano (51%)</option>
+  </select>
+
+  <label for="razon">RAZÓN</label>
+  <textarea id="razon" rows="4" placeholder="Argumenta tu decisión..."></textarea>
+
+  <button type="submit" class="btn-primary">▶ EMITIR VOTO</button>
+</form>
+
+<pre class="terminal-block">
+[ INFO ] Quórum requerido: 4/5
+[ INFO ] Veto humano: siempre activo
+[ INFO ] Una vez firmado: irreversible
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · votar</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

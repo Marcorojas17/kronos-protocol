@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROVENANCE · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/hub.css">
+</head>
+<body data-page="provenance" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="provenance"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/provenance]──────────────────┐
+   │                                                    │
+   │   P R O V E N A N C E   ·   ◯_●                    │
+   │                                                    │
+   │   [ C2PA 2.1 ]  ·  [ RFC 3161 ]  ·  [ ETH ]        │
+   │                                                    │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>📜 Provenance y Atribución</h1>
+
+<h2>🜂 Cadena de Trazabilidad</h2>
+<pre class="terminal-block">
+[1] CAPTURA      → documento original + metadatos
+[2] C2PA         → manifiesto firmado (creative-work + actions)
+[3] WATERMARK    → marca invisible + visible
+[4] FINGERPRINT  → pHash + embedding neuronal
+[5] TSA          → sello de tiempo RFC 3161
+[6] BLOCKCHAIN   → anclaje Merkle root a Ethereum
+[7] NOTARIZACIÓN → ledger proof + notary API
+[ ✓✓ ] CADENA ÍNTEGRA · ◯_● · 51/49/100
+</pre>
+
+<h2>🜃 Módulos</h2>
+<table class="data-table">
+<thead><tr><th>Módulo</th><th>Rol</th></tr></thead>
+<tbody>
+<tr><td><code>c2pa/</code></td><td>Manifiesto C2PA + claims + validación</td></tr>
+<tr><td><code>watermarking/</code></td><td>Marca robusta (invisible + visible)</td></tr>
+<tr><td><code>fingerprinting/</code></td><td>Huella perceptual (pHash + neural)</td></tr>
+<tr><td><code>timestamping/</code></td><td>Sello RFC 3161 + anclaje on-chain</td></tr>
+<tr><td><code>notarization/</code></td><td>Notario KRONOS + ledger proof</td></tr>
+</tbody>
+</table>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · provenance</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

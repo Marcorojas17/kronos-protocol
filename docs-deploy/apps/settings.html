@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETTINGS · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="settings" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/settings]────────────────────┐
+   │   S E T T I N G S   ·   ◯_●                        │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>⚙️ Configuración</h1>
+
+<form class="form-canonical">
+  <label>TEMA VISUAL</label>
+  <select id="theme-select">
+    <option value="terminal-amber">Ámbar (default)</option>
+    <option value="terminal-gold">Oro (KINTSUGI)</option>
+    <option value="terminal-green">Verde (verificación)</option>
+    <option value="terminal-cyan">Cian (firma)</option>
+    <option value="terminal-red">Rojo (HALT)</option>
+  </select>
+
+  <label>EFECTOS VISUALES</label>
+  <select>
+    <option value="on">Activar partículas + scanlines</option>
+    <option value="off">Desactivar (más rápido)</option>
+  </select>
+
+  <label>MODO DE ANCLAJE</label>
+  <select>
+    <option value="mainnet">Ethereum Mainnet</option>
+    <option value="sepolia">Sepolia Testnet</option>
+    <option value="local">Solo local</option>
+  </select>
+
+  <label>ALGORITMO POR DEFECTO</label>
+  <select>
+    <option value="ML-DSA-87">ML-DSA-87 (FIPS 204)</option>
+    <option value="SLH-DSA-SHAKE-256s">SLH-DSA-SHAKE-256s (FIPS 205)</option>
+    <option value="Ed25519+ML-DSA-87">Ed25519 + ML-DSA-87 híbrido</option>
+  </select>
+
+  <button type="button" class="btn-primary">▶ GUARDAR CONFIGURACIÓN</button>
+</form>
+
+<pre class="terminal-block">
+[ INFO ] Toda configuración vive en localStorage
+[ INFO ] Nada se envía al servidor
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · settings</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+<script type="module" src="../assets/js/theme-switcher.js"></script>
+</body>
+</html>

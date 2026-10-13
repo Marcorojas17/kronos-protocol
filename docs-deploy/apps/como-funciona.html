@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CÓMO FUNCIONA · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-page="como-funciona" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/como-funciona]───────────────┐
+   │   C Ó M O   F U N C I O N A   ·   ◯_●              │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🔍 Cómo Funciona</h1>
+
+<h2>🜂 Los 6 pasos del flujo</h2>
+
+<pre class="terminal-block">
+[1] ESCRIBES          → tu contenido (texto, audio, imagen)
+[2] HASHEAS          → SHA3-512 (huella digital)
+[3] FIRMAS           → ML-DSA-87 + Ed25519 (doble capa)
+[4] SELLAS TIEMPO    → TSA RFC 3161 (Firmaprofesional QTSA)
+[5] ANCLAS           → Merkle root → Ethereum mainnet
+[6] VERIFICAS        → cualquiera puede auditar sin permiso
+
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<h2>🜃 ¿Qué prueba cada paso?</h2>
+
+<table class="data-table">
+<thead><tr><th>Paso</th><th>Prueba</th></tr></thead>
+<tbody>
+<tr><td>Hash SHA3-512</td><td>Que el contenido es idéntico al original</td></tr>
+<tr><td>Firma ML-DSA-87</td><td>Que tú (no otro) lo firmaste</td></tr>
+<tr><td>Sello TSA</td><td>Que existía en una fecha exacta</td></tr>
+<tr><td>Anclaje Ethereum</td><td>Que nadie puede alterarlo después</td></tr>
+<tr><td>Firma híbrida Ed25519</td><td>Defensa en profundidad clásica</td></tr>
+</tbody>
+</table>
+
+<h2>🜄 ¿Por qué post-cuántico?</h2>
+<p>
+RSA y ECC caerán cuando existan computadoras cuánticas
+suficientes. La criptografía post-cuántica (FIPS 203/204/205)
+resiste al algoritmo de Shor. Firmamos con ambas: clásica y
+post-cuántica.
+</p>
+
+<h2>🜁 ¿Por qué Local-First?</h2>
+<p>
+Tus datos viven contigo. La nube es testigo, no dueña. La
+blockchain es notaria, no jueza. Nadie más decide sobre tu
+legado.
+</p>
+
+<h2>🜆 Ejemplo completo</h2>
+<pre class="terminal-block">
+$ echo "Mi acta fundacional" | kronos sign
+
+[ >> ] Calculando SHA3-512...
+       hash: f03f7e2d852617309457e0fe207f8f8bd...
+[ >> ] Firmando con ML-DSA-87...
+[ >> ] Firmando con Ed25519 (híbrido)...
+[ >> ] Solicitando sello TSA...
+       tsa: Firmaprofesional QTSA
+[ >> ] Anclando a Ethereum...
+       tx:   0xd2c2a7e1...fb895774c
+[ ✓✓ ] Acta firmada y anclada · ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · como-funciona</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Export Cifrado · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--violeta-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(124,58,237,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(124,58,237,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--violeta-l);border-bottom-color:var(--violeta)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#05070b;border:1px solid rgba(124,58,237,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Exportar</a><a href="manual.html">Manual</a><a href="../">Cierre</a></nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 6.1</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Export Cifrado.</h1>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Empaqueta todo el ecosistema (identidades, evidencias, eventos, rituales) en un único archivo <code>.legado</code> cifrado con AES-GCM-256 y firmado con Ed25519. Restaurable en cualquier navegador.</p>
+      <h3>¿Cómo exportar?</h3>
+      <ul>
+        <li>Ejecuta primero los módulos 2.x, 3.x, 4.x y 5.x.</li>
+        <li>Abre <code>cierre/export-cifrado/index.html</code>.</li>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Toca "Ver inventario" para revisar qué se va a exportar.</li>
+        <li>Toca "Exportar paquete .legado".</li>
+        <li>Guarda el archivo en lugar seguro (disco externo, USB, etc.).</li>
+      </ul>
+      <h3>¿Cómo restaurar?</h3>
+      <ul>
+        <li>Baja a la sección "Restaurar / Verificar".</li>
+        <li>Selecciona el archivo <code>.legado</code>.</li>
+        <li>Elige el modo: verificar, fusionar o reemplazar.</li>
+        <li>Toca "Restaurar paquete".</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { ExportCifrado } from './export.js';
+
+const exp = new ExportCifrado(core, storage);
+
+// Exportar
+const { blob, manifiesto } = await exp.exportar(humano);
+
+// Solo manifiesto
+const manifiestoBlob = await exp.exportarManifiesto(humano);
+
+// Restaurar
+const res = await exp.restaurar(paquete, 'fusionar');
+// res: { manifiesto_ok, firma_ok, importados, tipos }</pre>
+      <h3>Modos de restauración</h3>
+      <ul>
+        <li><code>verificar</code> · solo lee el paquete, no escribe nada.</li>
+        <li><code>fusionar</code> · añade registros sin borrar los actuales.</li>
+        <li><code>reemplazar</code> · limpia IndexedDB e importa desde cero.</li>
+      </ul>
+      <h3>Estructura del paquete</h3>
+      <p>El archivo <code>.legado</code> contiene: <code>manifiesto</code> (público, firmado) + <code>cipher</code> (datos cifrados) + <code>iv</code>.</p>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Robo del paquete:</strong> los datos están cifrados con AES-GCM-256; sin contraseña no se leen.</li>
+        <li><strong>Manipulación del manifiesto:</strong> el <code>manifiesto_hash</code> lo detecta.</li>
+        <li><strong>Suplantación del fundador:</strong> la firma Ed25519 lo impide.</li>
+        <li><strong>Sustitución del cipher:</strong> el <code>cipher_hash</code> del manifiesto lo detecta.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>AES-GCM-256</code> con IV de 12 bytes único por exportación.</li>
+        <li><code>SHA-256</code> para hash del manifiesto y del cipher.</li>
+        <li><code>Ed25519</code> para firma del manifiesto.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>Si pierdes la <strong>contraseña maestra</strong>, el paquete <code>.legado</code> es irrecuperable. No hay backdoor.</li>
+        <li>El paquete NO verifica criptográficamente que el <code>cipher_hash</code> coincida con el cipher real durante la restauración en esta v1.0 (futura mejora).</li>
+        <li>El modo "reemplazar" borra sin confirmación adicional. Úsalo con cuidado.</li>
+        <li>El paquete <code>.legado</code> no incluye las claves privadas Ed25519 ni la clave AES del Cripto Core: solo los datos cifrados. La restauración requiere la misma contraseña maestra en el mismo navegador (o en uno nuevo, donde se derive la misma clave desde la misma contraseña + mismo salt persistido).</li>
+        <li>NO sustituye a un backup profesional: para preservación a décadas, exporta múltiples copias en distintos medios.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 6.1</span>
+    <span><a href="./">Exportar</a> · <a href="../">Cierre</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[124,58,237],[196,181,253],[201,162,39],[229,199,107]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.26)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>

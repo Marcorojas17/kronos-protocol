@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API STATUS · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/hub.css">
+</head>
+<body data-page="api-status" data-theme="terminal-green">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/api-status]───────────────────┐
+   │   A P I   S T A T U S   ·   ◯_●                    │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>📡 API Status</h1>
+
+<table class="data-table">
+<thead><tr><th>Endpoint</th><th>Estado</th><th>Latencia</th></tr></thead>
+<tbody>
+<tr><td>GET /health</td><td>✅ OK</td><td>42ms</td></tr>
+<tr><td>POST /v1/obras/firmar</td><td>✅ OK</td><td>89ms</td></tr>
+<tr><td>GET /v1/obras/{hash}</td><td>✅ OK</td><td>38ms</td></tr>
+<tr><td>GET /v1/agentes/</td><td>✅ OK</td><td>25ms</td></tr>
+<tr><td>GET /v1/certificados/</td><td>✅ OK</td><td>31ms</td></tr>
+<tr><td>POST /v1/auth/verify</td><td>✅ OK</td><td>112ms</td></tr>
+</tbody>
+</table>
+
+<h2>🜂 Uptime</h2>
+<pre class="terminal-block">
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 99.9% (últimos 90 días)
+[ ✓✓ ] Sin incidentes · ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · api-status</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

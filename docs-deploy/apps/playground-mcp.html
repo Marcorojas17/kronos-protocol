@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP PLAYGROUND · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="playground-mcp" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/mcp]──────────────────────────┐
+   │   M C P   P L A Y G R O U N D   ·   ◯_●            │
+   │   marco.mcp · Local-First · Humano-IA              │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🔌 MCP Playground</h1>
+
+<h2>🜂 Tools disponibles</h2>
+<table class="data-table">
+<thead><tr><th>Tool</th><th>Descripción</th></tr></thead>
+<tbody>
+<tr><td><code>marco.firmar</code></td><td>Firma contenido con ML-DSA-87</td></tr>
+<tr><td><code>marco.verificar</code></td><td>Verifica firma contra el Índice Cero</td></tr>
+<tr><td><code>marco.contextualizar</code></td><td>Genera contexto para IA</td></tr>
+<tr><td><code>marco.recordar</code></td><td>Guarda decisión en MEMORY.md</td></tr>
+<tr><td><code>marco.consultar</code></td><td>Consulta Índice Cero</td></tr>
+</tbody>
+</table>
+
+<h2>🜃 Ejemplo</h2>
+<pre class="terminal-block">
+$ node marco.mcp/dist/index.js
+
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "marco.firmar",
+    "arguments": {
+      "contenido": "Aprobar bloque 15",
+      "tipo": "decision"
+    }
+  }
+}
+
+[ >> ] Respuesta:
+{
+  "ok": true,
+  "hash_sha3_512": "f03f7e2d...",
+  "sellado": "◯_● · 51/49/100"
+}
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · playground-mcp</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>
