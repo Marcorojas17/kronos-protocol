@@ -9,7 +9,7 @@ jobs:
         with: { node-version: 20, cache: npm }
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
-      - run: npm ci && pip install -r requirements.txt
+      - run: npm install && pip install -r requirements.txt
       - run: npm run test:unit
       - run: npm run test:integration
       - run: npm run test:e2e
