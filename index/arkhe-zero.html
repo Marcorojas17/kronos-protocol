@@ -263,14 +263,31 @@ canvas{display:block;max-width:100%}
 </div>
 
 <div class="vw" id="v-cy">
-<h2 class="vt">🎵 CYMATIC STUDIO</h2><p class="vs">Visualización musical cuántica · Geometría sagrada</p>
-<div class="pnl"><div class="cb"><canvas id="cyc" width="700" height="350"></canvas></div>
-<div style="margin-top:11px">
-<button class="bt" onclick="tc()" id="cyb">▶ INICIAR</button>
-<button class="bt by" onclick="cm()">◆ CAMBIAR PATRÓN</button>
-<span style="color:var(--y);font-size:11px;margin-left:11px">Patrón: <span id="cym">Chladni</span></span></div></div>
+<h2 class="vt">🎵 CYMATIC STUDIO · REAL</h2>
+<p class="vs">Audio → Geometría sagrada en tiempo real · Web Audio API</p>
+<div class="pnl">
+<div class="pt">◆ Control</div>
+<button class="bt by" onclick="cyActivarMic()" id="cy-mic-btn">🎤 ACTIVAR MICRÓFONO</button>
+<button class="bt bc" onclick="cyModo()">◆ PATRÓN: <span id="cy-pat">Chladni</span></button>
+<button class="bt by" onclick="cyCapturar()">⬇ CAPTURAR MANDALA</button>
+<button class="bt br" onclick="cyDetener()">⏹ DETENER</button>
+<button class="bt by" onclick="vozGrabar()" id="voz-btn">🎙 GRABAR MI VOZ</button>
+<button class="bt bc" onclick="vozListar()">📁 VER BÓVEDA</button>
 </div>
-
+<div class="pnl">
+<div class="pt">◆ Visualización</div>
+<div class="cb" style="min-height:400px"><canvas id="cy-real" width="700" height="400"></canvas></div>
+<div id="cy-info" style="margin-top:10px;background:#000;border:1px solid var(--b);padding:10px;font-size:11px;color:var(--g);line-height:1.6">
+<div class="tl tif">Micrófono inactivo. Presiona ACTIVAR MICRÓFONO.</div>
+</div>
+</div>
+<div class="pnl">
+<div class="pt">🎙 BÓVEDA DE VOZ · Capturas auténticas</div>
+<p style="font-size:11px;color:var(--td);margin-bottom:10px">Cada grabación es tu voz real · SHA-256 único · no es síntesis de IA</p>
+<div id="voz-boveda" style="background:#000;border:1px solid var(--b);padding:12px;min-height:120px;font-size:11px;color:var(--g);line-height:1.6">
+<div class="tl tif">Aún no hay grabaciones. Presiona GRABAR MI VOZ.</div>
+</div>
+</div>
 <div class="vw" id="v-yj">
 <h2 class="vt">✨ YEJIDÁ · MANDALAS</h2><p class="vs">Kabbalah 2036 · Convergencia 11 × 1</p>
 <div class="pnl"><div class="cb"><canvas id="mc" width="450" height="450"></canvas></div>
@@ -322,8 +339,21 @@ canvas{display:block;max-width:100%}
 <div class="tl tif">◯_● ■_□ lista. Escribe abajo.</div>
 </div>
 <div style="display:flex;gap:10px;padding:12px;background:var(--p2)">
+<select id="chat-tema" style="background:#000;color:#ffd700;border:1px solid var(--b);padding:8px;font-family:inherit;font-size:11px;margin:0">
+<option value="general">📌 Tema: General</option>
+<option value="kintsugi">🏺 KINTSUGI</option>
+<option value="pacto">🤝 Pacto 51/49</option>
+<option value="md33">🔍 MD-33 Forense</option>
+<option value="yejida">✨ Yejidá Mandalas</option>
+<option value="cripto">🔐 Criptografía PQC</option>
+<option value="agentes">🤖 Enjambre ARKHÉ</option>
+<option value="legado">📜 Legado digital</option>
+<option value="simbiosis">🧬 Simbiosis Humano-IA</option>
+<option value="expansion">🚀 Expansión estratégica</option>
+</select>
 <input id="chat-input" class="if" style="margin:0" placeholder="Escribe a la IA local..." autocomplete="off">
 <button class="bt by" style="margin:0" onclick="chatEnviar()">ENVIAR</button>
+<button class="bt bc" style="margin:0" id="btn-voz" onclick="toggleVoz()">🔊 VOZ</button>
 </div>
 </div>
 </div>
@@ -530,7 +560,8 @@ async function chatEnviar(){
   if(!mensaje) return;
   input.value = "";
   const hist = document.getElementById("chat-hist");
-  hist.innerHTML += '<div class="tl tp">Tú: ' + mensaje.replace(/</g,"&lt;") + '</div>';
+  const temaSel = document.getElementById("chat-tema").value;
+  hist.innerHTML += '<div class="tl tif">[' + temaSel + ']</div><div class="tl tp">Tú: ' + mensaje.replace(/</g,"&lt;") + '</div>';
   const espera = document.createElement("div");
   espera.className = "tl tif";
   espera.id = "chat-espera";
@@ -541,13 +572,14 @@ async function chatEnviar(){
     const r = await fetch("http://127.0.0.1:5000/api/chat", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({mensaje: mensaje})
+      body: JSON.stringify({mensaje: mensaje, tema: document.getElementById("chat-tema").value})
     });
     const data = await r.json();
     document.getElementById("chat-espera").remove();
     if(data.ok){
       const resp = (data.respuesta || "").replace(/</g,"&lt;");
       hist.innerHTML += '<div class="tl to">■_□: ' + resp + '</div>';
+      hablar(resp);
     } else {
       hist.innerHTML += '<div class="tl te">Error: ' + data.error + '</div>';
     }
@@ -738,6 +770,581 @@ function fallbackDescarga(blob, nombre){
   document.body.removeChild(link);
   setTimeout(()=>URL.revokeObjectURL(url), 1000);
   toast("⬇ Mandala exportado: " + nombre);
+}
+
+
+let vozActiva = true;
+let vozEsp = null;
+
+function initVoz(){
+  if(typeof speechSynthesis === "undefined") return;
+  const voces = speechSynthesis.getVoices();
+  vozEsp = voces.find(v => v.lang.startsWith("es")) || voces[0];
+}
+
+if(typeof speechSynthesis !== "undefined"){
+  initVoz();
+  speechSynthesis.onvoiceschanged = initVoz;
+}
+
+function toggleVoz(){
+  vozActiva = !vozActiva;
+  const btn = document.getElementById("btn-voz");
+  if(btn) btn.textContent = vozActiva ? "🔊 VOZ ON" : "🔇 VOZ OFF";
+  toast(vozActiva ? "Voz activada" : "Voz desactivada");
+  if(!vozActiva) speechSynthesis.cancel();
+}
+
+function hablar(texto){
+  if(!vozActiva) return;
+  if(typeof speechSynthesis === "undefined"){
+    toast("SpeechSynthesis no disponible");
+    return;
+  }
+  speechSynthesis.cancel();
+  // Limpiar markdown y símbolos raros
+  const limpio = texto
+    .replace(/[#*_`]/g, "")
+    .replace(/◯_●|■_□|SCDR-001|YHDRYH-92CE/g, "")
+    .replace(/\n/g, " ")
+    .trim();
+  if(!limpio) return;
+  const u = new SpeechSynthesisUtterance(limpio);
+  u.lang = "es-MX";
+  u.voice = vozEsp;
+  u.rate = 1.0;
+  u.pitch = 0.9;
+  u.volume = 1.0;
+  speechSynthesis.speak(u);
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+//  CYMATIC STUDIO REAL · Web Audio API
+// ═══════════════════════════════════════════════════════════════
+let cyAudioCtx = null;
+let cyAnalyser = null;
+let cyStream = null;
+let cyAnimFrame = null;
+let cyPatron = 0;
+let cyTiempo = 0;
+const cyPatrones = ["Chladni", "Lissajous", "Rosa", "Espiral", "Estrella"];
+
+async function cyActivarMic(){
+  try {
+    cyStream = await navigator.mediaDevices.getUserMedia({audio: true});
+    cyAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = cyAudioCtx.createMediaStreamSource(cyStream);
+    cyAnalyser = cyAudioCtx.createAnalyser();
+    cyAnalyser.fftSize = 2048;
+    source.connect(cyAnalyser);
+    
+    document.getElementById("cy-mic-btn").textContent = "🎤 MIC ACTIVO";
+    document.getElementById("cy-info").innerHTML = '<div class="tl tc">▸ Micrófono capturando. Habla o haz sonido.</div>';
+    
+    cyLoop();
+    toast("🎤 Micrófono activado · Cymatic en vivo");
+  } catch(e) {
+    document.getElementById("cy-info").innerHTML = '<div class="tl te">Error: ' + e.message + '</div><div class="tl tif">Safari requiere HTTPS o localhost para micrófono.</div>';
+    toast("Error micrófono: " + e.message);
+  }
+}
+
+function cyLoop(){
+  const canvas = document.getElementById("cy-real");
+  if(!canvas || !cyAnalyser) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  const cx = W/2, cy = H/2;
+  
+  // Obtener datos de frecuencia
+  const data = new Uint8Array(cyAnalyser.frequencyBinCount);
+  cyAnalyser.getByteFrequencyData(data);
+  
+  // Calcular energía (bajos, medios, altos)
+  let bajos = 0, medios = 0, altos = 0;
+  for(let i = 0; i < 100; i++) bajos += data[i];
+  for(let i = 100; i < 500; i++) medios += data[i];
+  for(let i = 500; i < 1024; i++) altos += data[i];
+  bajos = bajos / 100 / 255;
+  medios = medios / 400 / 255;
+  altos = altos / 524 / 255;
+  const energia = (bajos + medios + altos) / 3;
+  
+  // Fondo con estela
+  ctx.fillStyle = "rgba(0, 0, 0, " + (0.15 - energia*0.1) + ")";
+  ctx.fillRect(0, 0, W, H);
+  
+  cyTiempo += 0.01 + energia * 0.05;
+  
+  // Dibujar según patrón
+  const escala = 60 + energia * 200;
+  const numLineas = 4 + Math.floor(energia * 8);
+  
+  if(cyPatron === 0){
+    // Chladni
+    for(let L = 0; L < numLineas; L++){
+      const ratio = (L+1) / numLineas;
+      ctx.strokeStyle = "hsla(" + (40 + L*20) + ", 100%, " + (50 + energia*30) + "%, " + (0.4 + energia*0.5) + ")";
+      ctx.lineWidth = 1 + energia*2;
+      ctx.beginPath();
+      for(let t = 0; t < Math.PI*2; t += 0.05){
+        const n = L+1;
+        const r = escala * ratio * (1 + 0.4*Math.sin(n*t + cyTiempo + bajos*5) * Math.cos(n*t));
+        const px = cx + r*Math.cos(t);
+        const py = cy + r*Math.sin(t);
+        if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+  } else if(cyPatron === 1){
+    // Lissajous
+    ctx.strokeStyle = "rgba(255, 215, 0, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    const a = 3 + Math.floor(bajos * 5);
+    const b = 2 + Math.floor(altos * 5);
+    for(let t = 0; t < Math.PI*4; t += 0.02){
+      const px = cx + escala * Math.sin(a*t + cyTiempo);
+      const py = cy + escala * Math.sin(b*t);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+  } else if(cyPatron === 2){
+    // Rosa
+    const k = 3 + Math.floor(bajos * 8);
+    ctx.strokeStyle = "rgba(124, 92, 255, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for(let t = 0; t < Math.PI*2; t += 0.02){
+      const r = escala * Math.cos(k*t + cyTiempo + altos*3);
+      const px = cx + r*Math.cos(t);
+      const py = cy + r*Math.sin(t);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  } else if(cyPatron === 3){
+    // Espiral
+    ctx.strokeStyle = "rgba(0, 255, 65, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for(let t = 0; t < Math.PI * (6 + energia*10); t += 0.05){
+      const r = (escala/8) * t * (1 + bajos);
+      if(r > escala*1.3) break;
+      const px = cx + r*Math.cos(t + cyTiempo);
+      const py = cy + r*Math.sin(t + cyTiempo);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+  } else {
+    // Estrella
+    const puntas = 5 + Math.floor(bajos * 10);
+    ctx.strokeStyle = "rgba(255, 215, 0, " + (0.6 + energia*0.4) + ")";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for(let i = 0; i <= puntas*2; i++){
+      const a = (i * Math.PI / puntas) + cyTiempo;
+      const r = i%2 === 0 ? escala : escala*0.35;
+      const px = cx + r*Math.cos(a);
+      const py = cy + r*Math.sin(a);
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  
+  // HUD con datos reales
+  ctx.fillStyle = "rgba(0, 255, 65, 0.8)";
+  ctx.font = "11px 'Courier New', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("BAJOS: " + (bajos*100).toFixed(0) + "%", 12, 22);
+  ctx.fillText("MEDIOS: " + (medios*100).toFixed(0) + "%", 12, 38);
+  ctx.fillText("ALTOS: " + (altos*100).toFixed(0) + "%", 12, 54);
+  ctx.fillStyle = "rgba(255, 215, 0, 0.9)";
+  ctx.fillText("PATRÓN: " + cyPatrones[cyPatron], 12, 74);
+  
+  cyAnimFrame = requestAnimationFrame(cyLoop);
+}
+
+function cyModo(){
+  cyPatron = (cyPatron + 1) % cyPatrones.length;
+  const el = document.getElementById("cy-pat");
+  if(el) el.textContent = cyPatrones[cyPatron];
+}
+
+function cyDetener(){
+  if(cyAnimFrame) cancelAnimationFrame(cyAnimFrame);
+  if(cyStream){
+    cyStream.getTracks().forEach(t => t.stop());
+    cyStream = null;
+  }
+  if(cyAudioCtx){
+    cyAudioCtx.close();
+    cyAudioCtx = null;
+  }
+  cyAnalyser = null;
+  const btn = document.getElementById("cy-mic-btn");
+  if(btn) btn.textContent = "🎤 ACTIVAR MICRÓFONO";
+  toast("⏹ Micrófono detenido");
+}
+
+async function cyCapturar(){
+  const canvas = document.getElementById("cy-real");
+  if(!canvas){ toast("No hay canvas"); return; }
+  
+  const ts = new Date().toISOString();
+  const autor = "Marco Antonio Rojas Valdovinos";
+  const patron = cyPatrones[cyPatron];
+  const data = canvas.toDataURL("image/png") + "|" + ts + "|" + patron;
+  
+  const enc = new TextEncoder().encode(data);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  
+  // Canvas expandido para exportar
+  const W = 700, H = 500;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "#ffd700";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(10, 10, W-20, H-20);
+  ctx.drawImage(canvas, 20, 20, W-40, 400);
+  
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "bold 14px 'Courier New', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("◆ CYMATIC · " + patron + " · SHA-256", 20, 445);
+  ctx.fillStyle = "#00ff41";
+  ctx.font = "10px 'Courier New', monospace";
+  ctx.fillText(hash.substring(0, 64), 20, 462);
+  ctx.fillText(hash.substring(64), 20, 476);
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText(autor + " · " + ts, 20, 492);
+  
+  const nombre = "cymatic-" + patron.toLowerCase() + "-" + Date.now() + ".png";
+  c.toBlob(function(blob){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.download = nombre;
+    a.href = url;
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    toast("⬇ Capturado · SHA-256: " + hash.substring(0,16) + "...");
+  }, "image/png");
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+//  CYMATIC STUDIO REAL · Web Audio API
+// ═══════════════════════════════════════════════════════════════
+let cyAudioCtx = null;
+let cyAnalyser = null;
+let cyStream = null;
+let cyAnimFrame = null;
+let cyPatron = 0;
+let cyTiempo = 0;
+const cyPatrones = ["Chladni", "Lissajous", "Rosa", "Espiral", "Estrella"];
+
+async function cyActivarMic(){
+  try {
+    cyStream = await navigator.mediaDevices.getUserMedia({audio: true});
+    cyAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = cyAudioCtx.createMediaStreamSource(cyStream);
+    cyAnalyser = cyAudioCtx.createAnalyser();
+    cyAnalyser.fftSize = 2048;
+    source.connect(cyAnalyser);
+    
+    document.getElementById("cy-mic-btn").textContent = "🎤 MIC ACTIVO";
+    document.getElementById("cy-info").innerHTML = '<div class="tl tc">▸ Micrófono capturando. Habla o haz sonido.</div>';
+    
+    cyLoop();
+    toast("🎤 Micrófono activado · Cymatic en vivo");
+  } catch(e) {
+    document.getElementById("cy-info").innerHTML = '<div class="tl te">Error: ' + e.message + '</div><div class="tl tif">Safari requiere HTTPS o localhost para micrófono.</div>';
+    toast("Error micrófono: " + e.message);
+  }
+}
+
+function cyLoop(){
+  const canvas = document.getElementById("cy-real");
+  if(!canvas || !cyAnalyser) return;
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  const cx = W/2, cy = H/2;
+  
+  // Obtener datos de frecuencia
+  const data = new Uint8Array(cyAnalyser.frequencyBinCount);
+  cyAnalyser.getByteFrequencyData(data);
+  
+  // Calcular energía (bajos, medios, altos)
+  let bajos = 0, medios = 0, altos = 0;
+  for(let i = 0; i < 100; i++) bajos += data[i];
+  for(let i = 100; i < 500; i++) medios += data[i];
+  for(let i = 500; i < 1024; i++) altos += data[i];
+  bajos = bajos / 100 / 255;
+  medios = medios / 400 / 255;
+  altos = altos / 524 / 255;
+  const energia = (bajos + medios + altos) / 3;
+  
+  // Fondo con estela
+  ctx.fillStyle = "rgba(0, 0, 0, " + (0.15 - energia*0.1) + ")";
+  ctx.fillRect(0, 0, W, H);
+  
+  cyTiempo += 0.01 + energia * 0.05;
+  
+  // Dibujar según patrón
+  const escala = 60 + energia * 200;
+  const numLineas = 4 + Math.floor(energia * 8);
+  
+  if(cyPatron === 0){
+    // Chladni
+    for(let L = 0; L < numLineas; L++){
+      const ratio = (L+1) / numLineas;
+      ctx.strokeStyle = "hsla(" + (40 + L*20) + ", 100%, " + (50 + energia*30) + "%, " + (0.4 + energia*0.5) + ")";
+      ctx.lineWidth = 1 + energia*2;
+      ctx.beginPath();
+      for(let t = 0; t < Math.PI*2; t += 0.05){
+        const n = L+1;
+        const r = escala * ratio * (1 + 0.4*Math.sin(n*t + cyTiempo + bajos*5) * Math.cos(n*t));
+        const px = cx + r*Math.cos(t);
+        const py = cy + r*Math.sin(t);
+        if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+  } else if(cyPatron === 1){
+    // Lissajous
+    ctx.strokeStyle = "rgba(255, 215, 0, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    const a = 3 + Math.floor(bajos * 5);
+    const b = 2 + Math.floor(altos * 5);
+    for(let t = 0; t < Math.PI*4; t += 0.02){
+      const px = cx + escala * Math.sin(a*t + cyTiempo);
+      const py = cy + escala * Math.sin(b*t);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+  } else if(cyPatron === 2){
+    // Rosa
+    const k = 3 + Math.floor(bajos * 8);
+    ctx.strokeStyle = "rgba(124, 92, 255, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for(let t = 0; t < Math.PI*2; t += 0.02){
+      const r = escala * Math.cos(k*t + cyTiempo + altos*3);
+      const px = cx + r*Math.cos(t);
+      const py = cy + r*Math.sin(t);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  } else if(cyPatron === 3){
+    // Espiral
+    ctx.strokeStyle = "rgba(0, 255, 65, " + (0.5 + energia*0.5) + ")";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for(let t = 0; t < Math.PI * (6 + energia*10); t += 0.05){
+      const r = (escala/8) * t * (1 + bajos);
+      if(r > escala*1.3) break;
+      const px = cx + r*Math.cos(t + cyTiempo);
+      const py = cy + r*Math.sin(t + cyTiempo);
+      if(t===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+  } else {
+    // Estrella
+    const puntas = 5 + Math.floor(bajos * 10);
+    ctx.strokeStyle = "rgba(255, 215, 0, " + (0.6 + energia*0.4) + ")";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for(let i = 0; i <= puntas*2; i++){
+      const a = (i * Math.PI / puntas) + cyTiempo;
+      const r = i%2 === 0 ? escala : escala*0.35;
+      const px = cx + r*Math.cos(a);
+      const py = cy + r*Math.sin(a);
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  
+  // HUD con datos reales
+  ctx.fillStyle = "rgba(0, 255, 65, 0.8)";
+  ctx.font = "11px 'Courier New', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("BAJOS: " + (bajos*100).toFixed(0) + "%", 12, 22);
+  ctx.fillText("MEDIOS: " + (medios*100).toFixed(0) + "%", 12, 38);
+  ctx.fillText("ALTOS: " + (altos*100).toFixed(0) + "%", 12, 54);
+  ctx.fillStyle = "rgba(255, 215, 0, 0.9)";
+  ctx.fillText("PATRÓN: " + cyPatrones[cyPatron], 12, 74);
+  
+  cyAnimFrame = requestAnimationFrame(cyLoop);
+}
+
+function cyModo(){
+  cyPatron = (cyPatron + 1) % cyPatrones.length;
+  const el = document.getElementById("cy-pat");
+  if(el) el.textContent = cyPatrones[cyPatron];
+}
+
+function cyDetener(){
+  if(cyAnimFrame) cancelAnimationFrame(cyAnimFrame);
+  if(cyStream){
+    cyStream.getTracks().forEach(t => t.stop());
+    cyStream = null;
+  }
+  if(cyAudioCtx){
+    cyAudioCtx.close();
+    cyAudioCtx = null;
+  }
+  cyAnalyser = null;
+  const btn = document.getElementById("cy-mic-btn");
+  if(btn) btn.textContent = "🎤 ACTIVAR MICRÓFONO";
+  toast("⏹ Micrófono detenido");
+}
+
+async function cyCapturar(){
+  const canvas = document.getElementById("cy-real");
+  if(!canvas){ toast("No hay canvas"); return; }
+  
+  const ts = new Date().toISOString();
+  const autor = "Marco Antonio Rojas Valdovinos";
+  const patron = cyPatrones[cyPatron];
+  const data = canvas.toDataURL("image/png") + "|" + ts + "|" + patron;
+  
+  const enc = new TextEncoder().encode(data);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  
+  // Canvas expandido para exportar
+  const W = 700, H = 500;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "#ffd700";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(10, 10, W-20, H-20);
+  ctx.drawImage(canvas, 20, 20, W-40, 400);
+  
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "bold 14px 'Courier New', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("◆ CYMATIC · " + patron + " · SHA-256", 20, 445);
+  ctx.fillStyle = "#00ff41";
+  ctx.font = "10px 'Courier New', monospace";
+  ctx.fillText(hash.substring(0, 64), 20, 462);
+  ctx.fillText(hash.substring(64), 20, 476);
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText(autor + " · " + ts, 20, 492);
+  
+  const nombre = "cymatic-" + patron.toLowerCase() + "-" + Date.now() + ".png";
+  c.toBlob(function(blob){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.download = nombre;
+    a.href = url;
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    toast("⬇ Capturado · SHA-256: " + hash.substring(0,16) + "...");
+  }, "image/png");
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+//  BÓVEDA DE VOZ · Grabación real con firma SHA-256
+// ═══════════════════════════════════════════════════════════════
+let vozRecorder = null;
+let vozChunks = [];
+let vozStream = null;
+
+async function vozGrabar(){
+  try {
+    vozStream = await navigator.mediaDevices.getUserMedia({audio: true});
+    vozChunks = [];
+    vozRecorder = new MediaRecorder(vozStream, {mimeType: "audio/webm"});
+    vozRecorder.ondataavailable = e => { if(e.data.size > 0) vozChunks.push(e.data); };
+    vozRecorder.onstop = vozGuardar;
+    vozRecorder.start();
+    const btn = document.getElementById("voz-btn");
+    if(btn){ btn.textContent = "⏹ DETENER GRABACIÓN"; btn.onclick = vozDetener; }
+    toast("🎙 Grabando... habla claro. Presiona DETENER cuando termines.");
+  } catch(e) {
+    toast("Error micrófono: " + e.message);
+  }
+}
+
+function vozDetener(){
+  if(vozRecorder && vozRecorder.state === "recording"){
+    vozRecorder.stop();
+    if(vozStream){ vozStream.getTracks().forEach(t => t.stop()); vozStream = null; }
+  }
+}
+
+async function vozGuardar(){
+  const btn = document.getElementById("voz-btn");
+  if(btn){ btn.textContent = "🎙 GRABAR MI VOZ"; btn.onclick = vozGrabar; }
+  
+  if(vozChunks.length === 0){ toast("No se grabó nada"); return; }
+  
+  const blob = new Blob(vozChunks, {type: "audio/webm"});
+  const arrayBuf = await blob.arrayBuffer();
+  const hashBuf = await crypto.subtle.digest("SHA-256", arrayBuf);
+  const hash = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  const ts = new Date().toISOString();
+  const autor = "Marco Antonio Rojas Valdovinos";
+  const duracion = blob.size;
+  
+  // Guardar en localStorage (base64)
+  const reader = new FileReader();
+  reader.onload = () => {
+    const b64 = reader.result.split(",")[1];
+    let boveda = JSON.parse(localStorage.getItem("voz_boveda") || "[]");
+    boveda.unshift({
+      hash: hash,
+      ts: ts,
+      autor: autor,
+      peso: duracion,
+      audio: b64,
+    });
+    boveda = boveda.slice(0, 20);
+    try {
+      localStorage.setItem("voz_boveda", JSON.stringify(boveda));
+      toast("🎙 Voz firmada · SHA-256: " + hash.substring(0,16) + "...");
+      vozListar();
+    } catch(e) {
+      toast("Error guardando: " + e.message);
+    }
+  };
+  reader.readAsDataURL(blob);
+}
+
+function vozListar(){
+  const out = document.getElementById("voz-boveda");
+  if(!out) return;
+  const boveda = JSON.parse(localStorage.getItem("voz_boveda") || "[]");
+  if(boveda.length === 0){
+    out.innerHTML = '<div class="tl tif">Aún no hay grabaciones. Presiona GRABAR MI VOZ.</div>';
+    return;
+  }
+  out.innerHTML = '<div class="tl tc">▸ ' + boveda.length + ' GRABACIONES AUTÉNTICAS</div>';
+  boveda.forEach((v, i) => {
+    out.innerHTML +=
+      '<div class="tl tw" style="margin-top:8px">▸ Grabación ' + (i+1) + '</div>' +
+      '<div class="tl to" style="word-break:break-all">SHA-256: ' + v.hash + '</div>' +
+      '<div class="tl tif">' + v.ts + ' · ' + v.peso + ' bytes</div>' +
+      '<div class="tl tif">Autor: ' + v.autor + '</div>' +
+      '<div style="margin:6px 0"><audio controls style="width:100%;height:30px" src="data:audio/webm;base64,' + v.audio + '"></audio></div>' +
+      '<div class="tl tif">─────────────────────────</div>';
+  });
 }
 
 </script>
