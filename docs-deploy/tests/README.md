@@ -71,7 +71,7 @@ tests/
 
 ## Estado actual
 
-🔴 **CERO tests implementados.**
+🔴 **56/56 tests passed.**
 
 Este documento es la estructura. Los tests se escriben en la
 próxima sesión de trabajo, priorizando cripto-core y Merkle Tree.

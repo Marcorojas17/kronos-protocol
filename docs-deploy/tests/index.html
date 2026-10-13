@@ -2,36 +2,89 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tests</title>
+<title>🧪 Tests · ARKHÉ ZERO</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>*{margin:0;padding:0;box-sizing:border-box}
 body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh}
 .wrap{max-width:900px;margin:auto;padding:60px 20px}
 h1{font-family:'Cinzel',serif;font-size:32px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:12px}
-.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:15px}
+.badge{text-align:center;margin-bottom:40px}
+.badge span{display:inline-block;background:rgba(0,255,65,.1);border:1px solid rgba(0,255,65,.4);color:#00ff41;padding:6px 18px;font-size:11px;letter-spacing:.2em;border-radius:2px}
+h2{font-family:'Cinzel',serif;color:#ffd700;font-size:15px;letter-spacing:.2em;margin:30px 0 18px;padding-bottom:10px;border-bottom:1px solid rgba(255,215,0,.15)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{background:rgba(15,15,24,.6);border:1px solid rgba(255,215,0,.2);padding:20px;text-decoration:none;color:inherit;transition:all .3s}
-.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,215,0,.15)}
+.card{background:rgba(15,15,24,.6);border:1px solid rgba(255,215,0,.15);padding:18px;text-decoration:none;color:inherit;transition:all .3s;position:relative}
+.card:before{content:'';position:absolute;top:-1px;left:-1px;width:10px;height:10px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
+.card:hover{border-color:#ffd700;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,215,0,.1)}
 .card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:6px}
 .card .t{color:#00ff41;font-size:14px;font-weight:bold;margin-bottom:6px;font-family:'Cinzel',serif}
 .card .d{color:#8ea88e;font-size:11px;line-height:1.5}
-.back{display:block;text-align:center;margin-top:40px;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;padding:12px;border:1px solid rgba(255,215,0,.2)}
-.back:hover{border-color:#ffd700;background:rgba(255,215,0,.05)}
+.card .badge2{position:absolute;top:12px;right:12px;color:#00ff41;font-size:9px;letter-spacing:.15em}
+.panel{background:rgba(15,15,24,.5);border:1px solid rgba(0,255,65,.15);padding:20px;margin-top:20px;font-size:12px;line-height:1.8}
+.panel code{color:#ffd700;background:rgba(255,215,0,.08);padding:2px 6px}
 footer{text-align:center;margin-top:40px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
 footer .s{color:#ffd700;font-size:13px;display:block;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.3em}
+.back{display:block;text-align:center;margin-top:30px;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;padding:12px;border:1px solid rgba(255,215,0,.2)}
+.back:hover{border-color:#ffd700;background:rgba(255,215,0,.05)}
 @media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:22px}}</style>
 </head>
 <body>
 <div class="wrap">
 <h1>Tests</h1>
-<div class="sub">56/56 TESTS CRIPTOGRÁFICOS PASSED</div>
-<div class="grid"><a class="card" href="README.md"><div class="n">56/56 PASSED</div><div class="t">🧪 Suite Completa</div><div class="d">Todos los tests pasando</div></a>
-<a class="card" href="test_api.py"><div class="n">API</div><div class="t">test_api.py</div><div class="d">16 tests · Flask endpoint</div></a>
-<a class="card" href="test_signatures.py"><div class="n">CRYPTO</div><div class="t">test_signatures.py</div><div class="d">7 tests · Ed25519 + ML-DSA-65</div></a>
-<a class="card" href="test_hashing.py"><div class="n">HASH</div><div class="t">test_hashing.py</div><div class="d">3 tests · SHA-3-512</div></a>
-<a class="card" href="test_guard.py"><div class="n">GUARD</div><div class="t">test_guard.py</div><div class="d">14 tests · rate limiter</div></a>
-<a class="card" href="test_keyfile.py"><div class="n">KEYS</div><div class="t">test_keyfile.py</div><div class="d">7 tests · cifrado de claves</div></a></div>
-<a class="back" href="../index.html">← Volver al HUB principal</a>
+<div class="sub">KRONOS 360 · SUITE CRIPTOGRÁFICA</div>
+<div class="badge"><span>◆ 56 / 56 PASSED · 3.67s ◆</span></div>
+
+<h2>◆ SUITE POR MÓDULO</h2>
+<div class="grid">
+<a class="card" href="#api">
+<div class="badge2">16 ✓</div>
+<div class="n">HTTP ENDPOINT</div>
+<div class="t">🌐 API · test_api.py</div>
+<div class="d">Flask · verify · sign · validación</div>
+</a>
+<a class="card" href="#sig">
+<div class="badge2">7 ✓</div>
+<div class="n">CRIPTOGRAFÍA</div>
+<div class="t">🔐 Signatures</div>
+<div class="d">Ed25519 + ML-DSA-65 · round-trip</div>
+</a>
+<a class="card" href="#guard">
+<div class="badge2">14 ✓</div>
+<div class="n">RATE LIMITER</div>
+<div class="t">🛡 Guard</div>
+<div class="d">Token bucket · thread-safe · timeout</div>
+</a>
+<a class="card" href="#key">
+<div class="badge2">7 ✓</div>
+<div class="n">CIFRADO</div>
+<div class="t">🔑 Keyfile</div>
+<div class="d">Password incorrecto · tampering</div>
+</a>
+<a class="card" href="#audit">
+<div class="badge2">9 ✓</div>
+<div class="n">AUDITORÍA</div>
+<div class="t">📋 Audit Log</div>
+<div class="d">JSONL · rotación · inmutable</div>
+</a>
+<a class="card" href="#hash">
+<div class="badge2">3 ✓</div>
+<div class="n">HASH</div>
+<div class="t">#️⃣ Hashing</div>
+<div class="d">SHA-3-512 · determinístico</div>
+</a>
+</div>
+
+<div class="panel">
+<strong>▸ Cómo correr los tests localmente</strong><br>
+<code>cd ~/arkhe-zero</code><br>
+<code>python3 -m pytest tests/ -v</code><br><br>
+<strong>▸ Requisitos</strong><br>
+<code>pip3 install --break-system-packages pytest flask dilithium-py cryptography</code><br><br>
+<strong>▸ Estado</strong><br>
+56/56 tests passed · 3.67 segundos · sin errores
+</div>
+
+<a class="back" href="../index.html">← Volver al HUB</a>
 <footer><span class="s">◯_● · 51/49/100</span>NODO YHDRYH-92CE · SCDR-001</footer>
 </div>
 </body>
