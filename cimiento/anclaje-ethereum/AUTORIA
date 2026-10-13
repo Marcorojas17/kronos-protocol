@@ -1,0 +1,76 @@
+
+---
+
+## 4 · CINCO PÁGINAS
+
+1. **Inicio/hero** → `index.html`.
+2. **Panel de anclaje (3 pasos)** → `index.html`.
+3. **Panel de resultados + tx hash** → `index.html`.
+4. **Estructura del paquete** → `index.html`.
+5. **Manual** → `manual.html` (3 pestañas).
+
+---
+
+## 5 · MANUALES
+
+✅ Usuario · ✅ Admin · ✅ Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · LCP < 2.5s · bundle < 25KB gzip |
+| **Humano** | Paquete Merkle + firma listo en < 3 s · anclaje con MetaMask en < 60 s |
+| **Económico** | $0/mes sin anclar · ~0.0002 ETH por anclaje en mainnet |
+| **Simbiótico** | Humano decide · IA calcula y estructura · wallet humana firma tx |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Módulo 1.3 cierra la Capa 1 con el anclaje verificable en Ethereum. Calcula la raíz Merkle de la cadena local, la firma con Ed25519 y permite publicarla on-chain vía MetaMask. Sin backend, sin servidor.
+
+**3 lecciones:**
+1. La raíz Merkle resuelve el problema de anclar N hashes con 1 sola transacción.
+2. MetaMask + ethers.js permiten firmar transacciones sin backend propio.
+3. El paquete exportable sirve incluso si el usuario no tiene wallet hoy.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Probar calcular Merkle + exportar paquete.
+3. (Opcional) Anclar en mainnet con una wallet de prueba.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Verificación automática del txHash vía Etherscan API (BYOK).
+2. Soporte multi-red: Polygon, Base, Arbitrum (más baratas).
+3. Múltiples anclajes periódicos: cadena de roots por mes/año.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** gas alto en mainnet → **Mitigación:** módulo futuro de redes L2.
+2. **Riesgo:** MetaMask no disponible en móvil → **Mitigación:** el paquete exportable permite anclar después desde escritorio.
+
+**1 idea audaz:**
+Convertir cada anclaje en un "sello anual" del legado: 2099 tendrá ~73 anclajes encadenados, formando una línea temporal criptográfica.
+
+**1 conexión con otro módulo:**
+`legado/operacion` leerá los txHash anclados para mostrar el historial de sellos en el dashboard de salud.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 1.3 · ANCLAJE ETHEREUM · v1.0                   ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Cierra la Capa 1 (Cimiento) al 100%                    ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝

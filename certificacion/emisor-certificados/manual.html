@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Emisor de Certificados · KRONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../manifest-integridad/styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:30px;margin:44px 0 18px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:20px;margin:28px 0 14px;color:var(--gold-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:10px}
+  .manual ul,.manual ol{padding-left:24px;margin-bottom:18px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-bright);background:rgba(255,215,0,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(255,215,0,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--gold-l);border-bottom-color:var(--gold-bright)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#0a0800;border:1px solid rgba(255,215,0,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a><a href="../sello-tiempo/">Sello</a></nav>
+  </header>
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 3.4</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Emisor Certificados.</h1>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
+  </section>
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Emite certificados oficiales que combinan hash del contenido + firma Ed25519 + sello de tiempo opcional. Cada certificado es verificable por cualquier tercero con las claves públicas.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ol>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Selecciona tipo de documento, título, destinatario.</li>
+        <li>Pega el contenido a certificar.</li>
+        <li>Toca "Emitir certificado".</li>
+        <li>Puedes verificarlo, exportarlo como JSON, o generar un certificado visual (PNG/PDF).</li>
+      </ol>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { EmisorCertificados } from './certificados.js';
+
+const emisor = new EmisorCertificados(core, storage, sello);
+await emisor.init();
+
+const cert = await emisor.emitir({
+  tipo_documento: 'Contrato',
+  titulo: 'Contrato de servicios',
+  destinatario: 'Empresa XYZ S.A.',
+  contenido: 'Texto completo del contrato...',
+  tsa_info: null
+});
+
+const v = await emisor.verificar(cert);
+// v.valido === true</pre>
+      <h3>Base de datos</h3>
+      <ul>
+        <li>Nombre Dexie: <code>kronos-certificados</code></li>
+        <li>Tabla: <code>emitidos</code></li>
+      </ul>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de confianza</h3>
+      <ul>
+        <li>El hash del contenido detecta cualquier alteración posterior.</li>
+        <li>La firma Ed25519 prueba autoría del fundador.</li>
+        <li>El sello de tiempo RFC 3161 (opcional) prueba cuándo existió.</li>
+        <li>Cualquiera con la clave pública del fundador puede verificar.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>Este certificado NO sustituye a un documento notarial.</li>
+        <li>La validez legal plena requiere integración con PSC oficiales.</li>
+        <li>El sello de tiempo es opcional; sin él, no hay prueba cualificada de cuándo se emitió.</li>
+        <li>La firma es válida, pero no hay cadena de certificación PKI/x509 completa.</li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 3.4</span>
+    <span><a href="./">Demo</a></span>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

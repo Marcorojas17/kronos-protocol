@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios · Marco Rojas · Desarrollo web verificable</title>
+<meta name="description" content="Desarrollo web, evidencia digital verificable y visualizadores WebGL. Toluca, México.">
+<meta property="og:title" content="Servicios · Marco Rojas">
+<meta property="og:description" content="Desarrollo web, evidencia digital y visualizadores WebGL.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --gold:#c9a44c;
+    --gold-light:#f3e5ab;
+    --ink:#05070b;
+    --ink-2:#0a0e15;
+    --text:#e8e4d8;
+    --dim:#8892a0;
+    --line:rgba(201,164,76,0.15);
+    --line-h:rgba(201,164,76,0.4);
+  }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:900px; margin:0 auto; padding:3rem 1.5rem 6rem; }
+
+  /* HEADER */
+  header {
+    text-align:center;
+    padding-bottom:3rem;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4rem;
+  }
+  .marca {
+    font-family:'Cinzel',serif;
+    font-size:0.7rem;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:1.5rem;
+  }
+  h1 {
+    font-family:'Cinzel',serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,46px);
+    letter-spacing:-0.5px;
+    background:linear-gradient(180deg,#fff8e0 0%,var(--gold-light) 40%,var(--gold) 70%,#8a6f2c 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:1rem;
+    line-height:1.15;
+  }
+  .sub {
+    color:var(--dim);
+    font-size:0.85rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+  }
+
+  /* SECTIONS */
+  section { margin-bottom:4rem; }
+  h2 {
+    font-family:'Cinzel',serif;
+    font-size:0.95rem;
+    font-weight:600;
+    letter-spacing:5px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:2rem;
+    padding-bottom:0.8rem;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* INTRO */
+  .intro {
+    background:rgba(201,164,76,0.04);
+    border-left:3px solid var(--gold);
+    padding:1.5rem 1.5rem 1.5rem 2rem;
+    border-radius:4px;
+    margin-bottom:4rem;
+    font-size:0.95rem;
+    line-height:1.7;
+    color:var(--text);
+  }
+  .intro strong { color:var(--gold-light); font-weight:500; }
+
+  /* SERVICIOS */
+  .servicios { display:flex; flex-direction:column; gap:1rem; }
+  .serv {
+    background:linear-gradient(155deg,rgba(20,24,32,0.5) 0%,rgba(10,14,21,0.7) 100%);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:2rem 1.8rem;
+    transition:border-color .3s,transform .3s;
+  }
+  .serv:hover {
+    border-color:var(--line-h);
+    transform:translateY(-2px);
+  }
+  .serv .head {
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:1rem;
+    margin-bottom:1rem;
+  }
+  .serv h3 {
+    font-family:'Cinzel',serif;
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--text);
+    letter-spacing:0.5px;
+  }
+  .serv .precio {
+    font-family:'Cinzel',serif;
+    color:var(--gold-light);
+    font-size:0.95rem;
+    letter-spacing:1px;
+    white-space:nowrap;
+  }
+  .serv p {
+    color:var(--dim);
+    font-size:0.9rem;
+    margin-bottom:1.2rem;
+    font-weight:300;
+  }
+  .serv ul { list-style:none; padding:0; }
+  .serv li {
+    padding-left:1.3rem;
+    position:relative;
+    margin-bottom:0.4rem;
+    font-size:0.85rem;
+    color:var(--text);
+    font-weight:300;
+  }
+  .serv li::before {
+    content:'✓';
+    position:absolute;
+    left:0;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .serv .tiempo {
+    display:inline-block;
+    margin-top:1rem;
+    padding-top:1rem;
+    border-top:1px solid var(--line);
+    font-size:0.75rem;
+    letter-spacing:2px;
+    color:var(--dim);
+    text-transform:uppercase;
+    width:100%;
+  }
+
+  /* QUÉ NO INCLUYE */
+  .no-incluye {
+    background:rgba(255,51,68,0.04);
+    border-left:3px solid rgba(255,51,68,0.4);
+    padding:1.5rem 1.5rem 1.5rem 2rem;
+    border-radius:4px;
+    font-size:0.9rem;
+    line-height:1.7;
+    color:var(--dim);
+  }
+  .no-incluye strong { color:#ffb8c0; font-weight:500; }
+
+  /* PROCESO */
+  .proceso { display:flex; flex-direction:column; gap:1.5rem; }
+  .paso {
+    display:flex;
+    gap:1.5rem;
+    align-items:flex-start;
+  }
+  .paso .num {
+    font-family:'Cinzel',serif;
+    font-size:1.5rem;
+    color:var(--gold);
+    line-height:1;
+    min-width:36px;
+  }
+  .paso .contenido h4 {
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--text);
+    margin-bottom:0.3rem;
+  }
+  .paso .contenido p {
+    font-size:0.85rem;
+    color:var(--dim);
+    font-weight:300;
+  }
+
+  /* CONTACTO */
+  .contacto {
+    background:linear-gradient(180deg,rgba(201,164,76,0.06) 0%,transparent 100%);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:3rem 1.5rem;
+    text-align:center;
+  }
+  .contacto h2 {
+    border:none;
+    padding:0;
+    margin-bottom:1rem;
+    font-size:1.3rem;
+    letter-spacing:3px;
+  }
+  .contacto p {
+    color:var(--dim);
+    font-size:0.9rem;
+    max-width:460px;
+    margin:0 auto 2rem;
+    font-weight:300;
+  }
+  .contacto a.mail {
+    display:inline-block;
+    padding:1rem 2.2rem;
+    background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 100%);
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.85rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    border-radius:4px;
+    transition:transform .3s,box-shadow .3s;
+  }
+  .contacto a.mail:hover {
+    transform:translateY(-2px);
+    box-shadow:0 14px 40px rgba(201,164,76,0.3);
+  }
+  .contacto .nota {
+    margin-top:1.5rem;
+    font-size:0.75rem;
+    color:var(--dim);
+    letter-spacing:1px;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top:5rem;
+    padding-top:2rem;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    font-size:0.7rem;
+    letter-spacing:2px;
+    color:var(--dim);
+    text-transform:uppercase;
+  }
+  footer a { color:var(--dim); text-decoration:none; }
+  footer a:hover { color:var(--gold); }
+
+  /* NAV SUPERIOR */
+  nav.top {
+    position:fixed;
+    top:0; left:0; right:0;
+    background:rgba(5,7,11,0.9);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    z-index:10;
+    padding:0.9rem 1.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  nav.top .brand {
+    font-family:'Cinzel',serif;
+    font-size:0.75rem;
+    letter-spacing:4px;
+    color:var(--gold);
+  }
+  nav.top .links {
+    display:flex;
+    gap:1.5rem;
+  }
+  nav.top a {
+    color:var(--dim);
+    text-decoration:none;
+    font-size:0.7rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:color .3s;
+  }
+  nav.top a:hover { color:var(--gold); }
+  @media (max-width:600px) {
+    nav.top .links { display:none; }
+    .wrap { padding:2rem 1rem 4rem; }
+    .serv { padding:1.5rem 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="brand">Marco Rojas</div>
+  <div class="links">
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+    <a href="index.html">Portafolio</a>
+  </div>
+</nav>
+
+<div class="wrap" style="padding-top:5rem">
+
+  <header>
+    <div class="marca">Servicios profesionales</div>
+    <h1>Desarrollo web <br>verificable.</h1>
+    <div class="sub">Toluca · Remoto · Disponible</div>
+  </header>
+
+  <div class="intro">
+    Construyo <strong>sitios web</strong>, <strong>evidencia digital verificable</strong> y <strong>visualizadores WebGL</strong>. Entrego con código limpio, demo funcionando y certificado de integridad cuando aplica.
+    <br><br>
+    Sin promesas infladas. Sin "primer sistema mexicano". Sin "tesis doctoral". Solo trabajo real que puedes abrir y verificar.
+  </div>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="servicios">
+
+      <div class="serv">
+        <div class="head">
+          <h3>Sitio web profesional</h3>
+          <div class="precio">desde $6,000 MXN</div>
+        </div>
+        <p>Landing o sitio completo para negocio local o marca personal.</p>
+        <ul>
+          <li>Diseño responsive (móvil, tablet, escritorio)</li>
+          <li>5 a 7 secciones</li>
+          <li>Formulario de contacto funcional</li>
+          <li>SEO técnico (meta tags, velocidad)</li>
+          <li>Dominio y hosting configurados (primer año)</li>
+          <li>Una ronda de cambios incluida</li>
+          <li>Código entregado, es tuyo</li>
+        </ul>
+        <div class="tiempo">Entrega: 7 a 10 días hábiles</div>
+      </div>
+
+      <div class="serv">
+        <div class="head">
+          <h3>Evidencia digital verificable</h3>
+          <div class="precio">desde $2,500 MXN</div>
+        </div>
+        <p>Empaqueto tu evidencia con hash, timestamp y sellado cualificado. Apto para auditoría o juicio.</p>
+        <ul>
+          <li>SHA-256 + HMAC del archivo</li>
+          <li>Sellado de tiempo RFC 3161 (QTSA externo)</li>
+          <li>Anclaje en blockchain Ethereum (opcional)</li>
+          <li>Documento PDF con hashes y códigos de verificación</li>
+          <li>Instrucciones para verificar por tu cuenta</li>
+        </ul>
+        <div class="tiempo">Entrega: 3 a 5 días hábiles</div>
+      </div>
+
+      <div class="serv">
+        <div class="head">
+          <h3>Visualizador WebGL</h3>
+          <div class="precio">desde $9,000 MXN</div>
+        </div>
+        <p>Efecto visual en vivo para eventos, marketing o producto digital.</p>
+        <ul>
+          <li>Audio-reactivo en tiempo real</li>
+          <li>Corre en cualquier navegador moderno</li>
+          <li>Código entregado, es tuyo</li>
+          <li>Demo antes de pagar el saldo</li>
+          <li>Personalización de paleta y geometría</li>
+        </ul>
+        <div class="tiempo">Entrega: 10 a 14 días hábiles</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Qué no incluye</h2>
+    <div class="no-incluye">
+      <strong>Logo, identidad visual, copywriting y fotografías</strong> se cotizan aparte. Si no tienes textos o imágenes, lo hablamos y lo resolvemos — no es un problema, es un extra.
+      <br><br>
+      Tampoco incluye <strong>mantenimiento mensual</strong> ni <strong>cambios después de la primera ronda</strong>. Todo eso se cobra por separado y se acuerda por escrito antes de empezar.
+    </div>
+  </section>
+
+  <section id="proceso">
+    <h2>Proceso</h2>
+    <div class="proceso">
+      <div class="paso">
+        <div class="num">01</div>
+        <div class="contenido">
+          <h4>Conversación inicial</h4>
+          <p>Me cuentas qué necesitas. Yo te digo si puedo ayudarte o no. Sin compromiso.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="num">02</div>
+        <div class="contenido">
+          <h4>Propuesta por escrito</h4>
+          <p>Te mando alcance, precio, tiempo de entrega y qué incluye. Todo claro antes de empezar.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="num">03</div>
+        <div class="contenido">
+          <h4>Anticipo del 50%</h4>
+          <p>Empiezo el trabajo cuando el anticipo está confirmado. Sin excepción.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="num">04</div>
+        <div class="contenido">
+          <h4>Entrega y revisión</h4>
+          <p>Te entrego el trabajo en la fecha acordada. Una ronda de cambios incluida.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="num">05</div>
+        <div class="contenido">
+          <h4>Pago final y publicación</h4>
+          <p>Pagas el 50% restante al aprobar. Publico y te entrego accesos y código.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="contacto">
+      <h2>¿Tienes un proyecto?</h2>
+      <p>Cuéntame qué necesitas. Respondo en menos de 24 horas con una propuesta concreta o con un "no puedo" honesto.</p>
+      <a class="mail" href="mailto:marco.a.rojas.v@hotmail.com?subject=Consulta%20de%20proyecto">marco.a.rojas.v@hotmail.com</a>
+      <div class="nota">Toluca, Estado de México · Disponible para proyectos remotos</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span>
+      <a href="index.html">Portafolio</a> ·
+      <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
+    </span>
+  </footer>
+
+</div>
+
+</body>
+</html>

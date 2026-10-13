@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitar Plaza Génesis · KRONOS Protocol</title>
+<meta name="description" content="Solicita tu Plaza Génesis en KRONOS Protocol. 100 plazas fundacionales. Marco ético y legal para la co-creatividad humano-IA.">
+<meta name="author" content="Marco Antonio Rojas Valdovinos">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="assets/k-avatar.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --ink-2: #0a0e15;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+    --cyan: #00eaff;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(201,164,76,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(201,164,76,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 0%, rgba(5,7,11,0.9) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,164,76,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,164,76,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 60px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  header.top a.mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-decoration: none;
+  }
+  header.top a.mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  header.top nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-left: 24px;
+    transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--gold); }
+
+  .hero {
+    padding: 20px 0 48px;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(34px, 6vw, 64px);
+    line-height: 1.0;
+    letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+  }
+  .lede {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 560px;
+    font-weight: 300;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  /* ── FORM ── */
+  .form-shell {
+    margin-top: 40px;
+    padding: 48px 40px 44px;
+    border: 1px solid rgba(201,164,76,0.25);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.85) 100%);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .form-shell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent 60%);
+  }
+  .form-shell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(270deg, rgba(201,164,76,0.4), transparent 60%);
+  }
+
+  .form-head {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(201,164,76,0.12);
+  }
+  .form-head .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .form-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .form-head p {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .field {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .field label .req {
+    color: var(--gold);
+    margin-left: 4px;
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(201,164,76,0.25);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    transition: border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+    padding-top: 14px;
+  }
+  .field select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c9a44c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    padding-right: 24px;
+  }
+  .field select option {
+    background: var(--ink-2);
+    color: var(--text);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(136,146,160,0.5);
+    font-weight: 300;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-bottom-color: var(--gold);
+    box-shadow: 0 1px 0 0 var(--gold);
+  }
+  .field .hint {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  /* Checkbox custom */
+  .checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 28px;
+    cursor: pointer;
+  }
+  .checkbox-field input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(201,164,76,0.4);
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  .checkbox-field input[type="checkbox"]:checked {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .checkbox-field input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .checkbox-field span {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .checkbox-field span a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,164,76,0.3);
+    transition: border-color 0.3s;
+  }
+  .checkbox-field span a:hover { border-bottom-color: var(--gold); }
+
+  /* Honeypot (anti-bot) */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+  }
+
+  /* Submit */
+  .submit-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(201,164,76,0.12);
+    flex-wrap: wrap;
+  }
+  .submit-wrap .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  button.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  button.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.45);
+  }
+  button.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+  button.btn-submit .arrow {
+    transition: transform 0.3s ease;
+  }
+  button.btn-submit:hover:not(:disabled) .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Feedback */
+  .feedback {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 300;
+    display: none;
+    line-height: 1.6;
+  }
+  .feedback.success {
+    display: block;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #a7f3d0;
+  }
+  .feedback.error {
+    display: block;
+    background: rgba(176, 74, 74, 0.08);
+    border: 1px solid rgba(176, 74, 74, 0.3);
+    color: #fca5a5;
+  }
+  .feedback strong { font-weight: 500; }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--gold); }
+  footer .sig {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    .form-shell { padding: 32px 24px; }
+    .submit-wrap { flex-direction: column; align-items: stretch; }
+    button.btn-submit { width: 100%; justify-content: center; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <a href="../" class="mark">KRONOS PROTOCOL</a>
+    <nav>
+      <a href="../">Inicio</a>
+      <a href="./">Movimiento</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Plazas Génesis · 100 fundadores · 2026</div>
+    <h1 class="title">Solicita tu<br>Plaza Génesis.</h1>
+    <p class="lede">
+      Forma parte de la gobernanza fundacional de <strong>KRONOS Protocol</strong>.
+      Un marco ético y legal para declarar honestamente cómo humanos e IA crean juntos.
+      <strong>6 principios</strong>. <strong>100 plazas</strong>. <strong>Hasta 2099</strong>.
+    </p>
+  </section>
+
+  <div class="form-shell">
+
+    <div class="form-head">
+      <span class="num">Formulario 001</span>
+      <h2>Solicitud de admisión</h2>
+      <p>Todos los campos marcados con <span style="color: var(--gold);">*</span> son obligatorios. Tu información se transmite cifrada y no se comparte con terceros.</p>
+    </div>
+
+    <form id="genesis-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+      <!-- ── CONFIGURACIÓN WEB3FORMS ── -->
+      <!-- Reemplaza el valor por tu Access Key real de https://web3forms.com -->
+      <input type="hidden" name="access_key" value="TU_ACCESS_KEY_AQUI">
+
+      <!-- ── METADATOS DEL FORMULARIO ── -->
+      <input type="hidden" name="subject" value="🜲 Nueva solicitud de Plaza Génesis · KRONOS Protocol">
+      <input type="hidden" name="from_name" value="KRONOS Protocol · Plazas Génesis">
+      <input type="hidden" name="redirect" value="false">
+
+      <!-- ── HONEYPOT ANTI-BOT (no tocar) ── -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="botcheck">No rellenar</label>
+        <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- ── NOMBRE ── -->
+      <div class="field">
+        <label for="nombre">Nombre completo <span class="req">*</span></label>
+        <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Cómo quieres ser reconocido en el registro">
+      </div>
+
+      <!-- ── EMAIL ── -->
+      <div class="field">
+        <label for="email">Correo electrónico <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@correo.com">
+        <div class="hint">Aquí recibirás tu número de plaza y los documentos fundacionales.</div>
+      </div>
+
+      <!-- ── PERFIL ── -->
+      <div class="field">
+        <label for="perfil">¿Cuál describe mejor tu perfil? <span class="req">*</span></label>
+        <select id="perfil" name="perfil" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="Artista visual / diseñador">Artista visual / diseñador</option>
+          <option value="Escritor / guionista">Escritor / guionista</option>
+          <option value="Músico / productor de audio">Músico / productor de audio</option>
+          <option value="Desarrollador / ingeniero">Desarrollador / ingeniero</option>
+          <option value="Investigador / académico">Investigador / académico</option>
+          <option value="Abogado / legaltech">Abogado / legaltech</option>
+          <option value="Emprendedor / fundador">Emprendedor / fundador</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <!-- ── MOTIVACIÓN ── -->
+      <div class="field">
+        <label for="motivacion">¿Por qué quieres una Plaza Génesis? <span class="req">*</span></label>
+        <textarea id="motivacion" name="motivacion" required placeholder="Cuéntanos en pocas líneas qué te mueve a formar parte de este movimiento fundacional."></textarea>
+        <div class="hint">Mínimo 20 caracteres. La honestidad vale más que la extensión.</div>
+      </div>
+
+      <!-- ── OBRA / PROYECTO ── -->
+      <div class="field">
+        <label for="obra">¿Qué obra o proyecto quieres proteger?</label>
+        <textarea id="obra" name="obra" placeholder="Opcional. Un enlace, un título, o una breve descripción de tu trabajo."></textarea>
+      </div>
+
+      <!-- ── CONSENTIMIENTO ── -->
+      <label class="checkbox-field" for="consentimiento">
+        <input type="checkbox" id="consentimiento" name="consentimiento" value="aceptado" required>
+        <span>
+          Acepto el <a href="../boveda/privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y los
+          <a href="../boveda/terminos.html" target="_blank" rel="noopener">Términos y Condiciones</a> de KRONOS Protocol.
+          Autorizo el tratamiento de mis datos conforme a la LFPDPPP (México) y el GDPR (Unión Europea) para los
+          fines de esta solicitud.
+        </span>
+      </label>
+
+      <!-- ── SUBMIT ── -->
+      <div class="submit-wrap">
+        <div class="meta">
+          <span id="estado-envio">Listo para enviar</span>
+        </div>
+        <button type="submit" class="btn-submit" id="btn-submit">
+          <span>Solicitar plaza</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <!-- ── FEEDBACK ── -->
+      <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
+
+    </form>
+
+  </div>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span class="sig">KRONOS · Plazas Génesis</span>
+    <span>
+      <a href="./">Movimiento</a> ·
+      <a href="../boveda/terminos.html">Términos</a> ·
+      <a href="../boveda/privacidad.html">Privacidad</a>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  const form = document.getElementById('genesis-form');
+  const btn = document.getElementById('btn-submit');
+  const feedback = document.getElementById('feedback');
+  const estado = document.getElementById('estado-envio');
+
+  // ── Guardado temporal en localStorage (por si falla la red) ──
+  const STORAGE_KEY = 'kronos_genesis_draft';
+
+  function guardarBorrador() {
+    const datos = {};
+    new FormData(form).forEach((v, k) => {
+      if (k !== 'access_key' && k !== 'botcheck') datos[k] = v;
+    });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
+    } catch (e) { /* silencio */ }
+  }
+
+  function cargarBorrador() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const datos = JSON.parse(raw);
+      Object.entries(datos).forEach(([k, v]) => {
+        const el = form.querySelector(`[name="${k}"]`);
+        if (el && el.type !== 'checkbox') el.value = v;
+      });
+    } catch (e) { /* silencio */ }
+  }
+
+  cargarBorrador();
+
+  // ── Autoguardado cada 3 segundos ──
+  setInterval(guardarBorrador, 3000);
+
+  // ── Validación nativa ──
+  form.addEventListener('input', () => {
+    estado.textContent = 'Borrador guardado localmente';
+    estado.style.color = '#8892a0';
+  });
+
+  // ── Envío con fetch ──
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Validación nativa
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Enviando…';
+    feedback.className = 'feedback';
+    feedback.textContent = '';
+    estado.textContent = 'Transmitiendo…';
+    estado.style.color = '#c9a44c';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        feedback.className = 'feedback success';
+        feedback.innerHTML = '<strong>✓ Solicitud recibida.</strong> En las próximas 48 horas recibirás en tu correo el número de plaza asignado, el Acta de Iniciación y la Carta de Bienvenida al Movimiento. Gracias por confiar en KRONOS Protocol.';
+        estado.textContent = 'Envío exitoso';
+        estado.style.color = '#10B981';
+        form.reset();
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      } else {
+        throw new Error(data.message || 'Error desconocido en el servidor.');
+      }
+    } catch (err) {
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ No se pudo enviar.</strong> Tu información quedó guardada en este navegador. ' +
+                          'Por favor intenta de nuevo en unos minutos, o escríbenos directamente si el problema persiste.';
+      estado.textContent = 'Error de red';
+      estado.style.color = '#b04a4a';
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Solicitar plaza';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

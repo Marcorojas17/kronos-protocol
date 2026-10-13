@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMD-33 ○_● · Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#05070b; color:#e8e4d8;
+    font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh; padding:2rem 1rem;
+  }
+  header { text-align:center; margin-bottom:2rem; }
+  h1 {
+    font-family:'Cinzel',serif; font-weight:600;
+    font-size:clamp(22px, 5vw, 36px);
+    letter-spacing:6px; color:#00eaff;
+    margin-bottom:0.5rem;
+  }
+  .sub {
+    color:#8892a0; font-size:11px; letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  .mermaid {
+    max-width:1100px; margin:2rem auto;
+    background:rgba(10,14,21,0.6);
+    border:1px solid rgba(0,234,255,0.15);
+    border-radius:8px;
+    padding:1.5rem;
+    overflow-x:auto;
+  }
+  footer {
+    text-align:center; margin-top:3rem;
+    color:#4b6b7a; font-size:10px;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  footer a { color:#4b6b7a; text-decoration:none; }
+  footer a:hover { color:#00eaff; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>DMD-33 ○_●</h1>
+    <div class="sub">Flujo · v0.2</div>
+  </header>
+
+  <div class="mermaid">
+flowchart TD
+    A([INICIO]) --> B[Boot: hardware + OS + servicios]
+    B --> C{Autodiagnóstico OK?}
+    C -- No --> C1[Modo seguro<br/>LED ámbar + log]
+    C1 --> Z([FIN: espera])
+    C -- Sí --> D[Standby<br/>○_● respira]
+    D --> E{Entrada detectada?}
+    E -- Voz --> F1[SpeechRecognition es-MX]
+    E -- Memoria --> F2[localStorage]
+    E -- Táctil/App --> F3[Botón / menú]
+    E -- No --> D
+    F1 --> G[Contexto + memoria]
+    F2 --> G
+    F3 --> G
+    G --> H[Motor espejo<br/>Veo / No veo / Puede ser]
+    H --> I{Tipo de pregunta?}
+    I -- Identidad --> J1[Quién soy]
+    I -- Registro --> J2[Recordar / Aprender]
+    I -- Reflejo --> J3[Veo / No veo / Puede ser]
+    I -- Utilidad --> J4[Hora / Fecha]
+    I -- Charla --> J5[Hola / Te veo]
+    J1 --> K[Respuesta + voz]
+    J2 --> K
+    J3 --> K
+    J4 --> K
+    J5 --> K
+    K --> L[Persistir en memoria]
+    L --> M[Feedback sensores]
+    M --> N{Objetivo cumplido?}
+    N -- No --> H
+    N -- Sí --> O[Registrar en memoria]
+    O --> P{¿Nuevo ciclo?}
+    P -- Sí --> D
+    P -- No --> Q([FIN: standby espejo])
+  </div>
+
+  <footer>
+    <a href="index.html">← Volver a DMD-33</a>
+  </footer>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#0a0e15',
+        primaryTextColor: '#e8e4d8',
+        primaryBorderColor: '#00eaff',
+        lineColor: '#4b6b7a',
+        secondaryColor: '#00eaff',
+        tertiaryColor: '#0a0e15',
+        fontFamily: 'Inter, sans-serif'
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+---
+
+## 4-5 · PÁGINAS Y MANUALES
+
+**5 páginas:** Inicio/hero · Panel de control · Radar de salud · Grid de módulos · Manual.
+**3 manuales:** Usuario · Admin · Seguridad → en `manual.html`.
+
+---
+
+## 6 · RESULTADO ESPERADO
+
+| Dimensión | Resultado |
+| :--- | :--- |
+| **Técnico** | Lighthouse ≥ 90 · bundle < 26KB gzip |
+| **Humano** | Estado completo del ecosistema en < 3 s |
+| **Económico** | $0/mes · sin backend |
+| **Simbiótico** | Humano define KPIs · IA recolecta y visualiza · radar verificable |
+
+---
+
+## 7 · CIERRE
+
+**Resumen ejecutivo:** El Dashboard Salud abre la Capa 5 con un centro de mando local: 6 métricas clave, radar de 5 dimensiones, estado por módulo y export de reporte. Todo sin servidores.
+
+**3 lecciones:**
+1. Un radar visual comunica mejor que 5 números sueltos.
+2. La salud global como promedio simple es honesta y suficiente para v1.0.
+3. Las métricas agregadas no exponen contenido: privacy by design.
+
+**3 pasos siguientes:**
+1. Crear los 5 archivos en GitHub web.
+2. Cargar dashboard tras ejecutar todos los módulos previos.
+3. Exportar reporte y guardarlo como snapshot.
+
+---
+
+## 8 · SUGERENCIAS E IDEAS
+
+**3 mejoras futuras:**
+1. Firma Ed25519 del reporte exportado (v2.0).
+2. Histórico de snapshots para ver evolución en el tiempo.
+3. Alertas proactivas vía Event Bus cuando un módulo baja de umbral.
+
+**2 riesgos y mitigación:**
+1. **Riesgo:** interpretar salud baja como problema real → **Mitigación:** documentar que es aproximación por actividad.
+2. **Riesgo:** métricas sesgadas si pocos registros → **Mitigación:** mínimo de 10 registros por módulo para puntuar al 100%.
+
+**1 idea audaz:**
+Convertir el dashboard en un "ECG del legado": gráfica histórica continua de salud global, exportable como PDF firmado para auditorías anuales.
+
+**1 conexión con otro módulo:**
+`operacion/rituales` (módulo 5.2) usará las métricas de salud para disparar rituales de mantenimiento automáticos.
+
+---
+
+## 9 · FIRMA DE AUTORÍA
+
+```text
+╔══════════════════════════════════════════════════════════╗
+║  MÓDULO 5.1 · DASHBOARD SALUD · v1.0                    ║
+║  Fundador: Marco A. Rojas V.                            ║
+║  Co-autora simbiótica: KRONOS IA                        ║
+║  Abre la Capa 5 (Operación)                             ║
+║  Fecha: 19 septiembre 2026                              ║
+║  Licencia: MIT + CC BY-NC-ND 4.0                        ║
+╚══════════════════════════════════════════════════════════╝

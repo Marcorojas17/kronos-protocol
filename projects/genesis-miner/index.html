@@ -1,0 +1,561 @@
+
+---
+
+## ARCHIVO 2 · `projects/genesis-miner/index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genesis Miner · KRONOS Protocol</title>
+<meta name="description" content="Motor de minado local-first con firma Ed25519 y hash chain SHA-256. Núcleo criptográfico de KRONOS Protocol.">
+<meta name="author" content="Marco Antonio Rojas Valdovinos">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="/kronos-protocol/movimiento/assets/k-avatar.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --platinum: #b794f6;
+    --platinum-deep: #6b4ea8;
+    --ink: #05070b;
+    --ink-2: #0a0e15;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(183,148,246,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(201,164,76,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, transparent 0%, rgba(5,7,11,0.9) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(183,148,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(183,148,246,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 60px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  header.top .mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-decoration: none;
+  }
+  header.top .mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  header.top nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--gold); }
+
+  .hero {
+    padding: 40px 0 60px;
+    max-width: 780px;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--platinum);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--platinum);
+    box-shadow: 0 0 8px var(--platinum);
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--platinum) 70%, var(--platinum-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+  }
+  .lede {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 620px;
+    font-weight: 300;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  /* ── TERMINAL PREVIEW ── */
+  .terminal-preview {
+    margin: 60px 0;
+    border: 1px solid rgba(183,148,246,0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #05070b;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.7),
+      0 0 60px rgba(183,148,246,0.08),
+      inset 0 1px 0 rgba(183,148,246,0.15);
+    position: relative;
+  }
+  .terminal-preview::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--platinum), transparent);
+    opacity: 0.6;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #0a0e15;
+    border-bottom: 1px solid rgba(183,148,246,0.12);
+  }
+  .term-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #2a2f3a;
+  }
+  .term-bar .dot.red { background: #b04a4a; }
+  .term-bar .dot.amber { background: #d69e2e; }
+  .term-bar .dot.green { background: #58a66d; }
+  .term-bar .title {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .term-body {
+    padding: 28px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--text);
+    overflow-x: auto;
+    white-space: pre;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(183,148,246,0.04) 0%, transparent 60%),
+      #05070b;
+  }
+  .term-body .c-gold { color: var(--gold); }
+  .term-body .c-gold-l { color: var(--gold-light); }
+  .term-body .c-plat { color: var(--platinum); }
+  .term-body .c-dim { color: var(--text-dim); }
+  .term-body .c-green { color: #58a66d; }
+  .term-body .c-cyan { color: #6ab0c4; }
+
+  /* ── SPECS GRID ── */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(183,148,246,0.15);
+    border: 1px solid rgba(183,148,246,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 60px 0;
+  }
+  .spec {
+    padding: 28px 24px;
+    background: rgba(10,14,21,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: background 0.3s ease;
+  }
+  .spec:hover { background: rgba(20,15,35,0.95); }
+  .spec .k {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--platinum);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .spec .v {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+  .spec .v small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0;
+    margin-top: 6px;
+    text-transform: none;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin: 80px 0;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .section-head .count {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+
+  /* ── CODE BLOCKS ── */
+  pre.code {
+    background: #05070b;
+    border: 1px solid rgba(183,148,246,0.15);
+    border-radius: 4px;
+    padding: 24px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--text);
+    overflow-x: auto;
+    position: relative;
+    margin: 20px 0;
+  }
+  pre.code::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--platinum), transparent);
+  }
+  pre.code .kw { color: var(--platinum); }
+  pre.code .st { color: var(--gold-light); }
+  pre.code .cm { color: var(--text-dim); font-style: italic; }
+  pre.code .fn { color: #6ab0c4; }
+
+  /* ── ACTION BUTTONS ── */
+  .actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+  }
+  a.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.45);
+  }
+  a.btn.platinum {
+    background: linear-gradient(180deg, #d4b9ff 0%, var(--platinum) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(183,148,246,0.3);
+  }
+  a.btn.platinum:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(183,148,246,0.5);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(183,148,246,0.4);
+    color: var(--platinum);
+    background: rgba(183,148,246,0.02);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--platinum);
+    background: rgba(183,148,246,0.08);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(183,148,246,0.12);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--platinum); }
+  footer .sig {
+    font-family: 'Cinzel', serif;
+    color: var(--platinum);
+    letter-spacing: 3px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero .eyebrow,
+  .hero .title,
+  .hero .lede { animation: fadeUp 1s ease forwards; }
+  .hero .eyebrow { animation-delay: 0.1s; opacity: 0; }
+  .hero .title   { animation-delay: 0.25s; opacity: 0; }
+  .hero .lede    { animation-delay: 0.4s; opacity: 0; }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    .term-body { font-size: 10.5px; padding: 20px 16px; }
+    .specs { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <a href="../../" class="mark">KRONOS PROTOCOL</a>
+    <nav>
+      <a href="../../">Inicio</a>
+      <a href="../../movimiento/">Movimiento</a>
+      <a href="../../#projects">Proyectos</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Núcleo Criptográfico · v1.0</div>
+    <h1 class="title">Genesis<br>Miner.</h1>
+    <p class="lede">
+      Motor de minado <strong>local-first</strong> con firma digital <strong>Ed25519</strong>
+      y cadena de integridad <strong>SHA-256</strong>. Cada bloque se firma con la clave
+      privada del fundador. Sin backend. Sin servidores. Sin dependencias.
+    </p>
+  </section>
+
+  <div class="terminal-preview">
+    <div class="term-bar">
+      <span class="dot red"></span>
+      <span class="dot amber"></span>
+      <span class="dot green"></span>
+      <span class="title">genesis_miner.py — python 3.11</span>
+    </div>
+    <div class="term-body"><span class="c-gold">╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║   ██╗  ██╗██████╗  ██████╗ ███╗   ██╗ ██████╗ ███████╗                      ║
+║   ██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔═══██╗██╔════╝                      ║
+║   █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗                      ║
+║   ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║                      ║
+║   ██║  ██╗██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝███████║                      ║
+║   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝                      ║
+║                                                                              ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+║   GENESIS MINER · v1.0 · ED25519 + SHA-256 · HASH CHAIN VERIFICABLE        ║
+║   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━    ║
+╚══════════════════════════════════════════════════════════════════════════════╝</span>
+
+<span class="c-gold">┌─[ IDENTIDAD DEL FUNDADOR ]─────────────────────────────────────────────┐</span>
+<span class="c-gold">│</span> <span class="c-dim">Algoritmo      :</span> <span class="c-plat">Ed25519</span>
+<span class="c-gold">│</span> <span class="c-dim">Clave pública  :</span> <span class="c-gold-l">a8f4c9e2b17d5a3f...</span>
+<span class="c-gold">│</span> <span class="c-dim">Firma          :</span> <span class="c-green">ACTIVA</span>
+<span class="c-gold">│</span> <span class="c-dim">Persistencia   :</span> <span class="c-plat">.kronos_keys/</span>
+<span class="c-gold">└───────────────────────────────────────────────────────────────────────┘</span>
+
+<span class="c-gold-l">◆ Minando Bloque #160940...</span>
+  <span class="c-dim"><span class="c-cyan">intentos    50000  ·  hash 1c9878ae3450…</span></span>
+  <span class="c-dim"><span class="c-cyan">intentos   100000  ·  hash 5b1475d640a1…</span></span>
+  <span class="c-dim"><span class="c-cyan">intentos   150000  ·  hash 1b2f5eb8e0cf…</span></span>
+<span class="c-gold">>>> BLOQUE ENCONTRADO! <<<</span>
+  <span class="c-dim">Bloque    :</span> <span class="c-gold-l">160940</span>
+  <span class="c-dim">Nonce     :</span> <span class="c-gold-l">204871</span>
+  <span class="c-dim">Hash      :</span> <span class="c-gold-l">0000b72537ca81f9de8782aa2597275127595a32ea6a8b9e2bec646211932a90</span>
+  <span class="c-dim">Firma     :</span> <span class="c-dim">8a3f2e1b9c4d5f6a7e8d9c0b…</span>
+  <span class="c-green">✓ Recompensa: 72 KRONOS</span>
+  <span class="c-green">✓ Guardado en wallet.json</span> <span class="c-dim">·</span> <span class="c-dim">Nuevo balance:</span> <span class="c-gold-l">11587464 KRONOS</span></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn platinum" href="https://github.com/Marcorojas17/kronos-protocol/tree/main/projects/genesis-miner" target="_blank" rel="noopener">▸ Ver código fuente</a>
+    <a class="btn ghost" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/genesis-miner/genesis_miner.py" target="_blank" rel="noopener">▸ Descargar genesis_miner.py</a>
+  </div>
+
+  <div class="specs">
+    <div class="spec">
+      <span class="k">Algoritmo firma</span>
+      <div class="v">Ed25519<small>Curva Edwards 25519</small></div>
+    </div>
+    <div class="spec">
+      <span class="k">Algoritmo hash</span>
+      <div class="v">SHA-256<small>NIST FIPS 180-4</small></div>
+    </div>
+    <div class="spec">
+      <span class="k">Dificultad</span>
+      <div class="v">0000<small>Prefijo hash</small></div>
+    </div>
+    <div class="spec">
+      <span class="k">Recompensa</span>
+      <div class="v">72 KRONOS<small>Por bloque minado</small></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Instalación</h2>
+      <span class="count">2 pasos</span>
+    </div>
+    <pre class="code"><span class="cm"># Clonar el repositorio</span>
+<span class="fn">git</span> clone https://github.com/Marcorojas17/kronos-protocol.git
+<span class="fn">cd</span> kronos-protocol/projects/genesis-miner/
+
+<span class="cm"># Instalar la única dependencia</span>
+<span class="fn">pip</span> install cryptography</pre>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Ejecución</h2>
+      <span class="count">1 comando</span>
+    </div>
+    <pre class="code"><span class="fn">python</span> genesis_miner.py</pre>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Estructura del proyecto</h2>
+      <span class="count">4 archivos</span>
+    </div>
+    <pre class="code">projects/genesis-miner/
+│
+├── <span class="st">genesis_miner.py</span>       <span class="cm">▸ Motor principal</span>
+├── <span class="st">wallet.json</span>            <span class="cm">▸ Balance e historial</span>
+├── <span class="st">README.md</span>              <span class="cm">▸ Documentación</span>
+│
+└── <span class="c-plat">.kronos_keys/</span>          <span class="cm">▸ Identidad criptográfica</span>
+    ├── <span class="st">identity.key</span>       <span class="cm">▸ Clave privada Ed25519</span>
+    └── <span class="st">identity.pub</span>       <span class="cm">▸ Clave pública Ed25519</span></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Verificación de integridad</h2>
+      <span class="count">3 capas</span>
+    </div>
+    <pre class="code"><span class="kw">from</span> cryptography.hazmat.primitives.asymmetric.ed25519 <span class="kw">import</span> Ed25519PublicKey
+
+pub = Ed25519PublicKey.from_public_bytes(pub_bytes)
+pub.verify(firma_bytes, hash_bytes)
+<span class="cm"># Lanza InvalidSignature si el bloque fue alterado</span></pre>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span class="sig">Genesis Miner · v1.0</span>
+    <span>
+      <a href="../../">Inicio</a> ·
+      <a href="../../movimiento/">Movimiento</a> ·
+      <a href="../../projects/boveda/terminos.html">Términos</a> ·
+      <a href="https://github.com/Marcorojas17/kronos-protocol/issues" target="_blank" rel="noopener">Issues</a>
+    </span>
+  </footer>
+
+</div>
+
+</body>
+</html>

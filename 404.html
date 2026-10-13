@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · Nodo no encontrado · KRONOS PROTOCOL</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.5) 60%, rgba(5,7,11,0.98) 100%);
+    pointer-events: none;
+  }
+  .box {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 40px;
+    max-width: 620px;
+  }
+  .code {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(80px, 20vw, 200px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 24px 0 18px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .btns {
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+  a.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--gold);
+    background: rgba(201,164,76,0.08);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="vignette"></div>
+<div class="box">
+  <div class="code">404</div>
+  <h1>Nodo no encontrado</h1>
+  <p>El registro que buscas no existe en el protocolo, o fue movido. Verifica la URL o regresa al inicio.</p>
+  <div class="btns">
+    <a class="btn solid" href="/kronos-protocol/">Volver al inicio</a>
+    <a class="btn ghost" href="/kronos-protocol/verify.html">Verificar folio</a>
+  </div>
+</div>
+</body>
+</html>

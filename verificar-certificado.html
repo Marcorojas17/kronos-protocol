@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificar certificado · KRONOS PROTOCOL</title>
+<meta name="description" content="Verifica tu certificado Kronos arrastrando el archivo. Sin terminal, sin consola, sin internet.">
+<meta name="theme-color" content="#05070b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --ink: #05070b;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+    --cyan: #00eaff;
+    --green: #10B981;
+    --red: #ff4d6d;
+  }
+  html, body {
+    background: var(--ink); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  #webgl { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap {
+    position: relative; z-index: 2;
+    max-width: 900px; margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0 60px;
+    font-size: 11px; letter-spacing: 3px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  header.top .mark {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold); font-family: 'Cinzel', serif;
+    font-weight: 600; letter-spacing: 4px; text-decoration: none;
+  }
+  header.top .mark::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%; box-shadow: 0 0 12px var(--gold);
+  }
+  header.top nav a {
+    color: var(--text-dim); text-decoration: none;
+    margin-left: 24px; transition: color 0.3s ease;
+  }
+  header.top nav a:hover, header.top nav a.is-active { color: var(--gold); }
+
+  .page-head { padding: 20px 0 40px; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 5px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.page-title {
+    font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: clamp(34px, 6vw, 60px);
+    line-height: 1; letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 22px;
+    opacity: 0; animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .lede {
+    font-size: 15px; line-height: 1.7;
+    color: var(--text-dim); max-width: 600px;
+    font-weight: 300;
+    opacity: 0; animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes shine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* ── DROPZONE ── */
+  .dropzone {
+    border: 2px dashed rgba(201,164,76,0.4);
+    background: linear-gradient(155deg, rgba(20,24,32,0.5) 0%, rgba(10,14,21,0.8) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 8px;
+    padding: 60px 32px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+  }
+  .dropzone:hover, .dropzone.is-over {
+    border-color: var(--gold);
+    border-style: solid;
+    background: linear-gradient(155deg, rgba(201,164,76,0.08) 0%, rgba(10,14,21,0.9) 100%);
+    box-shadow: 0 0 60px rgba(201,164,76,0.2);
+    transform: scale(1.01);
+  }
+  .dropzone .dz-icon {
+    font-size: 56px; color: var(--gold);
+    margin-bottom: 20px; display: inline-block;
+    filter: drop-shadow(0 0 16px rgba(201,164,76,0.6));
+    animation: float-icon 3s ease-in-out infinite;
+  }
+  .dropzone h3 {
+    font-family: 'Cinzel', serif; font-size: 20px;
+    color: var(--text); margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .dropzone p {
+    font-size: 13px; color: var(--text-dim);
+    letter-spacing: 1px; margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .dropzone p strong { color: var(--gold); font-weight: 600; }
+  .dropzone input[type="file"] { display: none; }
+  .dz-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    border: 0; cursor: pointer;
+  }
+  .btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink); box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  .btn.solid:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,164,76,0.4); }
+  .btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold); background: rgba(201,164,76,0.02);
+  }
+  .btn.ghost:hover { border-color: var(--gold); background: rgba(201,164,76,0.08); }
+
+  /* ── RESULTADO ── */
+  .resultado {
+    margin-top: 40px;
+    padding: 48px 32px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    animation: pop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .resultado.show { display: block; }
+  .resultado.ok {
+    border: 2px solid var(--green);
+    background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.15), rgba(10,14,21,0.9) 70%);
+    box-shadow: 0 0 80px rgba(16,185,129,0.25);
+  }
+  .resultado.ko {
+    border: 2px solid var(--red);
+    background: radial-gradient(circle at 50% 30%, rgba(255,77,109,0.15), rgba(10,14,21,0.9) 70%);
+    box-shadow: 0 0 80px rgba(255,77,109,0.25);
+  }
+  .resultado .icon-grande {
+    font-size: 96px; line-height: 1;
+    margin-bottom: 20px;
+    animation: pop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  }
+  .resultado.ok .icon-grande { color: var(--green); text-shadow: 0 0 40px rgba(16,185,129,0.6); }
+  .resultado.ko .icon-grande { color: var(--red); text-shadow: 0 0 40px rgba(255,77,109,0.6); }
+  .resultado h2 {
+    font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 32px);
+    margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .resultado.ok h2 { color: var(--green); }
+  .resultado.ko h2 { color: var(--red); }
+  .resultado .mensaje {
+    font-size: 15px; color: var(--text-dim);
+    max-width: 520px; margin: 0 auto 28px;
+    line-height: 1.7; font-weight: 300;
+  }
+  .resultado .mensaje strong { color: var(--text); font-weight: 500; }
+
+  .detalles {
+    text-align: left;
+    background: rgba(10,14,21,0.6);
+    border: 1px solid rgba(201,164,76,0.15);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .detalles .fila {
+    display: flex; justify-content: space-between;
+    gap: 16px; padding: 10px 0;
+    border-bottom: 1px dashed rgba(201,164,76,0.12);
+    font-size: 13px;
+  }
+  .detalles .fila:last-child { border-bottom: 0; }
+  .detalles .fila .k { color: var(--text-dim); flex-shrink: 0; }
+  .detalles .fila .v {
+    font-family: 'Courier New', monospace;
+    color: var(--text); word-break: break-all;
+    text-align: right;
+  }
+  .detalles .fila .v.verde { color: var(--green); }
+  .detalles .fila .v.rojo { color: var(--red); }
+  .detalles .fila .v.dorado { color: var(--gold); }
+
+  /* ── EJEMPLO / AYUDA ── */
+  .ayuda {
+    margin-top: 40px;
+    padding: 28px 26px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: rgba(20,24,32,0.4);
+    border-radius: 4px;
+  }
+  .ayuda h4 {
+    font-family: 'Cinzel', serif; font-size: 13px;
+    color: var(--gold); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .ayuda ol {
+    list-style: none; counter-reset: paso;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ayuda ol li {
+    counter-increment: paso;
+    font-size: 13px; line-height: 1.6;
+    color: var(--text-dim); padding-left: 32px;
+    position: relative; font-weight: 300;
+  }
+  .ayuda ol li::before {
+    content: counter(paso);
+    position: absolute; left: 0; top: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(201,164,76,0.15);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .ayuda ol li strong { color: var(--text); font-weight: 500; }
+
+  footer {
+    margin-top: 80px; padding-top: 40px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+  footer .sig { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 3px; }
+
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    .dropzone { padding: 44px 20px; }
+    .dropzone .dz-icon { font-size: 44px; }
+    .resultado { padding: 36px 20px; }
+    .resultado .icon-grande { font-size: 72px; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="webgl"></canvas>
+<div class="vignette"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <a href="index.html" class="mark">KRONOS PROTOCOL</a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="verify.html">Cadena</a>
+      <a href="verificar-certificado.html" class="is-active">Certificado</a>
+      <a href="registrar.html">Registrar</a>
+    </nav>
+  </header>
+
+  <section class="page-head">
+    <div class="eyebrow">Verificación · Sin terminal · Sin internet</div>
+    <h1 class="page-title">Verifica tu certificado<br>en 5 segundos.</h1>
+    <p class="lede">
+      Arrastra tu archivo <strong>.txt</strong> o <strong>.json</strong> al recuadro.
+      El navegador recalculará el hash <strong>SHA-256</strong> y te dirá al instante
+      si el certificado es auténtico o fue alterado.
+    </p>
+  </section>
+
+  <div class="dropzone" id="dropzone">
+    <span class="dz-icon">⬡</span>
+    <h3>Arrastra tu certificado aquí</h3>
+    <p>
+      Acepta <strong>KRONOS-KR-XXXX-XXXX.txt</strong> (certificado legible)<br>
+      o <strong>KRONOS-KR-XXXX-XXXX.json</strong> (recibo offline)
+    </p>
+    <div class="dz-actions">
+      <label class="btn solid" for="file-input">Seleccionar archivo</label>
+      <input type="file" id="file-input" accept=".txt,.json,text/plain,application/json">
+    </div>
+  </div>
+
+  <div class="resultado" id="resultado">
+    <div class="icon-grande" id="icon-grande">✓</div>
+    <h2 id="resultado-titulo">Certificado auténtico</h2>
+    <p class="mensaje" id="resultado-mensaje">
+      El hash recalculado coincide con el hash del certificado.
+      El documento no ha sido alterado desde su emisión.
+    </p>
+    <div class="detalles" id="detalles"></div>
+  </div>
+
+  <section class="ayuda">
+    <h4>¿Cómo funciona?</h4>
+    <ol>
+      <li><strong>Abres tu certificado</strong> y el navegador lee el "payload" y el hash que contiene.</li>
+      <li><strong>Recalcula el SHA-256</strong> del payload directamente en tu dispositivo. Nada se sube a ningún servidor.</li>
+      <li><strong>Compara</strong> el hash calculado con el que está escrito en el certificado.</li>
+      <li><strong>Resultado:</strong> si coinciden, el certificado es auténtico. Si no, fue alterado.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span class="sig">Kronos Protocol · Verificador de certificado</span>
+    <span>
+      <a href="index.html">Inicio</a> ·
+      <a href="verify.html">Cadena</a> ·
+      <a href="registrar.html">Registrar</a>
+    </span>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+/* ============================================================
+   verificar-certificado.html · Lógica de verificación visual
+   ============================================================ */
+(function () {
+  'use strict';
+
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('file-input');
+  const resultado = document.getElementById('resultado');
+  const iconGrande = document.getElementById('icon-grande');
+  const titulo = document.getElementById('resultado-titulo');
+  const mensaje = document.getElementById('resultado-mensaje');
+  const detalles = document.getElementById('detalles');
+
+  // ---------- SHA-256 ----------
+  async function sha256(texto) {
+    const enc = new TextEncoder().encode(texto);
+    const buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  }
+
+  // ---------- Base64 ----------
+  function b64decode(b64) {
+    try {
+      return decodeURIComponent(escape(atob(b64.replace(/\s+/g, ''))));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // ---------- Extraer datos del .json ----------
+  function parsearJSON(texto) {
+    try {
+      const obj = JSON.parse(texto);
+      if (!obj.hash || !obj.payload) return null;
+      return {
+        hash: obj.hash,
+        payload: obj.payload,
+        folio: obj.folio || '—',
+        titulo: (obj.metadatos && obj.metadatos.titulo) || obj.titulo || '—',
+        autor: (obj.metadatos && obj.metadatos.autor) || obj.autor || '—',
+        timestamp: obj.timestamp || '—',
+        algoritmo: obj.algoritmo || 'SHA-256'
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // ---------- Extraer datos del .txt ----------
+  function parsearTXT(texto) {
+    // 1. Buscar el bloque base64 embebido
+    const beginMarker = '─────BEGIN-KRONOS-JSON─────';
+    const endMarker = '─────END-KRONOS-JSON─────';
+    const re = new RegExp(beginMarker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*([\\s\\S]*?)\\s*' + endMarker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const m = texto.match(re);
+
+    if (m) {
+      const jsonTexto = b64decode(m[1]);
+      if (jsonTexto) {
+        const parsed = parsearJSON(jsonTexto);
+        if (parsed) return parsed;
+      }
+    }
+
+    // 2. Fallback: parsear el .txt legible
+    const lineas = texto.split('\n');
+    let hash = null, folio = null, titulo = null, autor = null, timestamp = null;
+    let payloadLinea = null;
+
+    for (let i = 0; i < lineas.length; i++) {
+      const l = lineas[i].trim();
+      if (l.startsWith('Hash del payload:')) hash = l.split(':').slice(1).join(':').trim();
+      if (l.startsWith('Folio:')) folio = l.split(':').slice(1).join(':').trim();
+      if (l.startsWith('Título:')) titulo = l.split(':').slice(1).join(':').trim();
+      if (l.startsWith('Autor:')) autor = l.split(':').slice(1).join(':').trim();
+      if (l.startsWith('Fecha de emisión:')) timestamp = l.split(':').slice(1).join(':').trim();
+      if (l.includes('Payload canónico') && i + 1 < lineas.length) {
+        // La línea siguiente al título puede estar vacía; buscamos la siguiente no vacía que no sea la línea separadora
+        for (let j = i + 1; j < lineas.length; j++) {
+          const cand = lineas[j].trim();
+          if (cand && !cand.match(/^─+$/)) { payloadLinea = cand; break; }
+        }
+      }
+    }
+
+    if (!hash || !payloadLinea) return null;
+    return { hash, payload: payloadLinea, folio, titulo, autor, timestamp, algoritmo: 'SHA-256' };
+  }
+
+  // ---------- Render ----------
+  function mostrarResultado(ok, datos, hashRecalculado) {
+    resultado.classList.remove('ok', 'ko');
+    resultado.classList.add('show', ok ? 'ok' : 'ko');
+    resultado.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    if (ok) {
+      iconGrande.textContent = '✓';
+      titulo.textContent = 'Certificado auténtico';
+      mensaje.innerHTML = 'El hash recalculado coincide exactamente con el hash del certificado. <strong>El documento no ha sido alterado</strong> desde su emisión.';
+    } else {
+      iconGrande.textContent = '✗';
+      titulo.textContent = 'Certificado alterado';
+      mensaje.innerHTML = 'El hash recalculado <strong>NO coincide</strong> con el hash del certificado. El archivo fue modificado o no pertenece a este sistema.';
+    }
+
+    const filas = [
+      ['Folio', datos.folio || '—', 'dorado'],
+      ['Título', datos.titulo || '—', ''],
+      ['Autor', datos.autor || '—', ''],
+      ['Fecha de emisión', datos.timestamp || '—', ''],
+      ['Algoritmo', datos.algoritmo || 'SHA-256', ''],
+      ['Hash en el certificado', datos.hash, 'dorado'],
+      ['Hash recalculado', hashRecalculado, ok ? 'verde' : 'rojo'],
+      ['Estado', ok ? '✓ ÍNTEGRO' : '✗ ALTERADO', ok ? 'verde' : 'rojo']
+    ];
+
+    detalles.innerHTML = filas.map(([k, v, cls]) =>
+      `<div class="fila"><span class="k">${k}</span><span class="v ${cls}">${v}</span></div>`
+    ).join('');
+  }
+
+  function mostrarError(msg) {
+    resultado.classList.remove('ok');
+    resultado.classList.add('show', 'ko');
+    iconGrande.textContent = '⚠';
+    titulo.textContent = 'No se pudo leer el archivo';
+    mensaje.textContent = msg;
+    detalles.innerHTML = '';
+  }
+
+  // ---------- Procesar archivo ----------
+  async function procesarArchivo(file) {
+    try {
+      const texto = await file.text();
+      let datos = null;
+
+      if (file.name.toLowerCase().endsWith('.json')) {
+        datos = parsearJSON(texto);
+      } else {
+        datos = parsearTXT(texto);
+      }
+
+      if (!datos) {
+        mostrarError('El archivo no tiene el formato esperado. Asegúrate de que sea el certificado .txt o el recibo .json generado por Kronos Protocol.');
+        return;
+      }
+
+      const recalculado = await sha256(datos.payload);
+      const ok = recalculado === datos.hash;
+      mostrarResultado(ok, datos, recalculado);
+    } catch (err) {
+      mostrarError('Error al leer el archivo: ' + err.message);
+    }
+  }
+
+  // ---------- Eventos ----------
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) procesarArchivo(file);
+  });
+
+  ['dragenter', 'dragover'].forEach(ev => {
+    dropzone.addEventListener(ev, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      dropzone.classList.add('is-over');
+    });
+  });
+  ['dragleave', 'drop'].forEach(ev => {
+    dropzone.addEventListener(ev, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      dropzone.classList.remove('is-over');
+    });
+  });
+  dropzone.addEventListener('drop', (e) => {
+    const file = e.dataTransfer.files[0];
+    if (file) procesarArchivo(file);
+  });
+  dropzone.addEventListener('click', (e) => {
+    if (e.target.closest('label') || e.target.closest('button')) return;
+    fileInput.click();
+  });
+
+  // ---------- WebGL fondo ----------
+  (function webgl() {
+    const canvas = document.getElementById('webgl');
+    if (!canvas || typeof THREE === 'undefined') return;
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x05070b, 0.035);
+    const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 22);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    const COUNT = 1400;
+    const pos = new Float32Array(COUNT*3), col = new Float32Array(COUNT*3), siz = new Float32Array(COUNT);
+    for (let i=0;i<COUNT;i++){
+      const r=8+Math.random()*22,t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1);
+      pos[i*3]=r*Math.sin(p)*Math.cos(t); pos[i*3+1]=r*Math.sin(p)*Math.sin(t); pos[i*3+2]=r*Math.cos(p);
+      const g=Math.random()>0.4;
+      col[i*3]=g?0.79:0.95; col[i*3+1]=g?0.64:0.90; col[i*3+2]=g?0.30:0.67;
+      siz[i]=0.5+Math.random()*1.8;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+    geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+    geo.setAttribute('size', new THREE.BufferAttribute(siz,1));
+    const mat = new THREE.ShaderMaterial({
+      uniforms:{uTime:{value:0},uPixelRatio:{value:Math.min(devicePixelRatio,2)}},
+      vertexShader:`attribute float size; attribute vec3 color; varying vec3 vColor; varying float vAlpha; uniform float uTime; uniform float uPixelRatio; void main(){ vColor=color; vAlpha=0.4+0.6*(0.5+0.5*sin(uTime*1.5+position.x*0.3+position.y*0.2)); vec4 mv=modelViewMatrix*vec4(position,1.0); gl_PointSize=size*uPixelRatio*(180.0/-mv.z); gl_Position=projectionMatrix*mv; }`,
+      fragmentShader:`varying vec3 vColor; varying float vAlpha; void main(){ float d=length(gl_PointCoord-vec2(0.5)); if(d>0.5)discard; float a=smoothstep(0.5,0.0,d)*vAlpha; gl_FragColor=vec4(vColor,a); }`,
+      transparent:true, blending:THREE.AdditiveBlending, depthWrite:false
+    });
+    const points = new THREE.Points(geo, mat);
+    scene.add(points);
+    let mx=0,my=0,tx=0,ty=0;
+    addEventListener('mousemove', e => { mx=(e.clientX/innerWidth)*2-1; my=(e.clientY/innerHeight)*2-1; });
+    let t0=performance.now();
+    (function loop(){
+      requestAnimationFrame(loop);
+      const t=(performance.now()-t0)*0.001;
+      tx+=(mx-tx)*0.03; ty+=(my-ty)*0.03;
+      points.rotation.y=t*0.04+tx*0.4;
+      points.rotation.x=Math.sin(t*0.15)*0.1+ty*0.2;
+      mat.uniforms.uTime.value=t;
+      renderer.render(scene,camera);
+    })();
+    addEventListener('resize',()=>{
+      camera.aspect=innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth,innerHeight);
+    });
+  })();
+})();
+</script>
+</body>
+</html>
