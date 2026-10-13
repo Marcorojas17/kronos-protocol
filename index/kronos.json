@@ -1,0 +1,19 @@
+{
+  "nodo": "YHDRYH-92CE",
+  "sello": "SCDR-001",
+  "ts": "2026-10-13T12:33:00Z",
+  "daemon": "VIVO",
+  "pid": "193",
+  "web": "OK",
+  "eventos": 14,
+  "costuras": 18,
+  "ok": 15,
+  "belleza": 83,
+  "ultimas": [
+    "[2026-10-13T06:36:33Z] SELLO ◯_● | EVENTO: EXPR_BUSYBOX_FALLA | ACCION: sustituir_expr_por_awk_para_RATIO | RESULTADO: OK",
+    "[2026-10-13T06:36:33Z] SELLO ◯_● | EVENTO: FASE_2_CLI_CERRADA | ACCION: status_kintsugi_events_emit_heal_beauty_operativos | RESULTADO: OK",
+    "[2026-10-13T06:40:12Z] SELLO ◯_● | EVENTO: SED_PATTERN_MAL_ESCAPADO | ACCION: rebuild_cli_en_4_bloques + evitar_sed_con_awk | RESULTADO: OK",
+    "[2026-10-13T06:40:12Z] SELLO ◯_● | EVENTO: HEREDOC_LARGO_CORRUPTO_ISH | ACCION: politica_bloques_cortos_max40_lineas | RESULTADO: OK",
+    "[2026-10-13T06:43:38Z] SELLO ◯_● | EVENTO: FASE_3_DASHBOARD | ACCION: kronos_render.sh + kronos.json + kronos.html + fetch_5s | RESULTADO: OK"
+  ]
+}
