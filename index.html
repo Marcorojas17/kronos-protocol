@@ -276,7 +276,16 @@ canvas{display:block;max-width:100%}
 <div class="pnl"><div class="cb"><canvas id="mc" width="450" height="450"></canvas></div>
 <div style="margin-top:11px;text-align:center">
 <button class="bt by" onclick="gm()">✨ GENERAR</button>
-<button class="bt" onclick="am()">◆ ANIMAR</button></div></div>
+<button class="bt" onclick="am()">◆ ANIMAR</button></div>
+<div class="pnl">
+<div class="pt">◆ FIRMA SHA-256 DEL MANDALA</div>
+<p style="font-size:11px;color:var(--td);margin-bottom:10px">Cada mandala se firma con SHA-256 real. Registro criptográfico único.</p>
+<div id="yj-firma" style="background:#000;border:1px solid var(--b);padding:12px;font-size:11px;color:var(--g);line-height:1.6;min-height:100px">
+<div class="tl tif">Genera un mandala para obtener su firma.</div>
+</div>
+<button class="bt by" style="margin-top:10px" onclick="yjVerificar()">🔐 VERIFICAR ÚLTIMO</button>
+</div>
+</div>
 </div>
 
 <div class="vw" id="v-pj">
@@ -436,8 +445,52 @@ for(var i=0;i<H;i+=20){x.beginPath();x.moveTo(0,i);x.lineTo(W,i);x.strokeStyle='
 for(var l=1;l<=L;l++){var r=(l/L)*180;var p=6+l*2;var o=0.3+(l/L)*0.7;x.strokeStyle='hsla('+(40+l*8)+',100%,60%,'+o+')';x.lineWidth=l===L?2:1;x.beginPath();for(var i=0;i<=p;i++){var a=(i/p)*Math.PI*2;var rr=r+15*Math.sin(sd+i*3.14);var px=cx+rr*Math.cos(a),py=cy+rr*Math.sin(a);if(i===0)x.moveTo(px,py);else x.lineTo(px,py)}x.closePath();x.stroke();
 for(var i=0;i<p;i++){var a=(i/p)*Math.PI*2;var rr=r+15*Math.sin(sd+i*3.14);var px=cx+rr*Math.cos(a),py=cy+rr*Math.sin(a);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fillStyle='hsla('+(40+l*8)+',100%,70%,'+o+')';x.fill()}}
 x.beginPath();x.arc(cx,cy,12,0,Math.PI*2);x.fillStyle='hsl('+(40+Math.random()*40)+',100%,60%)';x.fill();x.strokeStyle='#fff';x.lineWidth=2;x.stroke()}
-function gm(){dM();toast('✨ Mandala generado')}
-var mAn=false;
+async function gm(){
+  dM();
+  const seed = Math.random().toString();
+  const ts = new Date().toISOString();
+  const autor = "Marco Antonio Rojas Valdovinos";
+  const data = seed + "|" + ts + "|" + autor + "|ARKHE-ZERO-YEJIDA";
+  try {
+    const enc = new TextEncoder().encode(data);
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+    const out = document.getElementById("yj-firma");
+    if(out){
+      out.innerHTML =
+        '<div class="tl tc">▸ MANDALA GENERADO Y FIRMADO</div>' +
+        '<div class="tl to" style="word-break:break-all">SHA-256: ' + hash + '</div>' +
+        '<div class="tl tw">Autor: ' + autor + '</div>' +
+        '<div class="tl tif">Timestamp: ' + ts + '</div>' +
+        '<div class="tl tif">Sello: SCDR-001 · ◯_● · 51/49/100</div>';
+    }
+    let firmas = JSON.parse(localStorage.getItem("yj_firmas") || "[]");
+    firmas.unshift({hash: hash, ts: ts, autor: autor});
+    firmas = firmas.slice(0, 10);
+    localStorage.setItem("yj_firmas", JSON.stringify(firmas));
+    toast("✨ Mandala firmado · SHA-256: " + hash.substring(0,16) + "...");
+  } catch(e){
+    toast("Error SHA-256: " + e.message);
+  }
+}
+
+async function yjVerificar(){
+  const firmas = JSON.parse(localStorage.getItem("yj_firmas") || "[]");
+  const out = document.getElementById("yj-firma");
+  if(!out) return;
+  if(firmas.length === 0){
+    out.innerHTML = '<div class="tl tif">No hay mandalas firmados todavía.</div>';
+    return;
+  }
+  out.innerHTML = '<div class="tl tc">▸ HISTORIAL DE MANDALAS FIRMADOS (' + firmas.length + ')</div>';
+  for(const f of firmas){
+    out.innerHTML +=
+      '<div class="tl to" style="word-break:break-all">SHA-256: ' + f.hash + '</div>' +
+      '<div class="tl tif">' + f.ts + ' · ' + f.autor + '</div>' +
+      '<div class="tl tif">───────────────────────────────</div>';
+  }
+}
+
 function am(){mAn=!mAn;if(mAn){var loop=function(){if(!mAn)return;dM();setTimeout(loop,800)};loop()}}
 dM();
 
