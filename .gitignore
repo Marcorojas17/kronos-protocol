@@ -16,3 +16,22 @@ __pycache__/
 modelos/*.gguf
 _duplicados/
 coverage/
+
+# SEGURIDAD · NUNCA subir claves privadas
+*.priv
+*.key
+*.pem
+*.p12
+*.pfx
+testimonio/claves/
+
+# Backups locales
+*.bak
+*.bak-*
+*.old
+*.backup
+
+# Archivos sensibles
+.env
+.env.*
+*.secret
