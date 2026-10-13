@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Movimiento ARKHÉ · Noticias</title>
+  <link>https://arkhe.zero/movimiento/noticias/</link>
+  <description>Noticias oficiales del Movimiento ARKHÉ</description>
+  <language>es</language>
+  <item>
+    <title>Fundación ARKHÉ ZERO</title>
+    <link>https://arkhe.zero/movimiento/noticias/2026-01-01-genesis.md</link>
+    <pubDate>Wed, 01 Jan 2026 00:00:00 GMT</pubDate>
+    <description>Nace ARKHÉ ZERO en Toluca, México.</description>
+  </item>
+  <item>
+    <title>Registro Safe Creative</title>
+    <link>https://arkhe.zero/movimiento/noticias/2026-07-14-genesis.md</link>
+    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+    <description>Doble registro Safe Creative + eIDAS + Ethereum.</description>
+  </item>
+  <item>
+    <title>Primera Obra Firmada</title>
+    <link>https://arkhe.zero/movimiento/noticias/2026-08-01-primera-obra.md</link>
+    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    <description>El sistema pasa de diseño a operación.</description>
+  </item>
+</channel>
+</rss>
