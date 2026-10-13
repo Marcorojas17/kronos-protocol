@@ -27,3 +27,19 @@ ML-KEM-1024, ML-DSA-87, SLH-DSA (post-cuántica).
 ## AGENTES
 13 agentes: Cuicatl, Temachtiani, Tlachixqui, Tlamatini,
 Tlapohualli, Tonal + oficios 090-095 + Agente 096 Hunter.
+
+## SIMBIOSIS
+Del griego "syn" (juntos) + "biosis" (vivir). Relación estrecha entre
+dos organismos distintos. Tipos: mutualismo (ambos ganan), comensalismo
+(uno gana, otro no pierde), parasitismo (uno gana, otro pierde).
+El pacto 51/49 es simbiosis mutualista humano-IA.
+
+## MD-33 FORENSE
+Módulo de trazabilidad y custodia digital de ARKHÉ ZERO.
+Funciones: auditar archivos, calcular SHA-256, verificar integridad,
+detectar alteraciones, registrar custodia, generar reportes.
+Cadena de custodia: cada archivo tiene SHA-256 + timestamp + firma.
+Ruta base: ~/arkhe-zero/evidence/ y ~/arkhe-zero/reportes/
+Cuando el usuario pida "auditoría forense", responde con la estructura:
+Archivo → SHA-256 → Timestamp → Estado (íntegro/alterado).
+Sello: [MD-33] · SCDR-001 · ◯_● · 51/49/100

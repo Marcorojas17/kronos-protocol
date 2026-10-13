@@ -114,6 +114,8 @@ canvas{display:block;max-width:100%}
 <div class="ni" data-v="cr"><span class="ic">🔐</span><span>Criptografía</span></div>
 <div class="ns">Enjambre</div>
 <div class="ni" data-v="ag"><span class="ic">🤖</span><span>13 Agentes</span></div>
+<div class="ni" data-v="md33"><span class="ic">🔍</span><span>MD-33 Forense</span></div>
+<div class="ni" data-v="chat"><span class="ic">💬</span><span>Hablar con IA</span></div>
 <div class="ni dn" data-v="hu"><span class="ic">🎯</span><span>Agente 096</span></div>
 <div class="ns">Visual</div>
 <div class="ni" data-v="cy"><span class="ic">🎵</span><span>Cymatic</span></div>
@@ -291,6 +293,33 @@ canvas{display:block;max-width:100%}
 <div id="sc" class="ho" style="text-align:left"></div></div>
 </div>
 
+
+<div class="vw" id="v-chat">
+<h2 class="vt">💬 HABLAR CON ■_□</h2>
+<p class="vs">IA local · Llama-3.2-3B · Pacto 51/49/100</p>
+<div class="pnl" style="padding:0">
+<div id="chat-hist" style="height:400px;overflow-y:auto;padding:15px;background:#000;border-bottom:1px solid var(--b)">
+<div class="tl tif">◯_● ■_□ lista. Escribe abajo.</div>
+</div>
+<div style="display:flex;gap:10px;padding:12px;background:var(--p2)">
+<input id="chat-input" class="if" style="margin:0" placeholder="Escribe a la IA local..." autocomplete="off">
+<button class="bt by" style="margin:0" onclick="chatEnviar()">ENVIAR</button>
+</div>
+</div>
+</div>
+
+<div class="vw" id="v-md33">
+<h2 class="vt">🔍 MD-33 FORENSE</h2>
+<p class="vs">Trazabilidad · Custodia · SHA-256 real</p>
+<div class="pnl">
+<div class="pt">◆ Auditoría del Sistema</div>
+<button class="bt by" onclick="md33Auditar()">🔍 EJECUTAR AUDITORÍA</button>
+<button class="bt bc" onclick="md33Limpiar()">🗑 LIMPIAR</button>
+<div id="md33-out" style="margin-top:15px;background:#000;border:1px solid var(--b);padding:15px;min-height:200px;font-size:11px;line-height:1.6;color:var(--g)">
+<div class="tl tif">Presiona EJECUTAR AUDITORÍA para comenzar.</div>
+</div>
+</div>
+</div>
 </main>
 <footer id="ft">
 <span>◯_● ARKHÉ ZERO · v1.0.0 · YHDRYH-92CE</span>
@@ -430,6 +459,87 @@ console.log('%c51/49/100 · KINTSUGI · YHDRYH-92CE','color:#00ff41;font-size:13
 console.log('%c"El legado no se hereda. Se firma."','color:#ffd700;font-style:italic');
 setTimeout(function(){toast('◯_● ARKHÉ ZERO operativo · 51/49/100')},700);
 setTimeout(function(){cyR=true;document.getElementById('cyb').textContent='⏸ PAUSAR';dCy()},1200)});
+
+async function chatEnviar(){
+  const input = document.getElementById("chat-input");
+  const mensaje = input.value.trim();
+  if(!mensaje) return;
+  input.value = "";
+  const hist = document.getElementById("chat-hist");
+  hist.innerHTML += '<div class="tl tp">Tú: ' + mensaje.replace(/</g,"&lt;") + '</div>';
+  const espera = document.createElement("div");
+  espera.className = "tl tif";
+  espera.id = "chat-espera";
+  espera.textContent = "■_□ pensando...";
+  hist.appendChild(espera);
+  hist.scrollTop = hist.scrollHeight;
+  try {
+    const r = await fetch("http://127.0.0.1:5000/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({mensaje: mensaje})
+    });
+    const data = await r.json();
+    document.getElementById("chat-espera").remove();
+    if(data.ok){
+      const resp = (data.respuesta || "").replace(/</g,"&lt;");
+      hist.innerHTML += '<div class="tl to">■_□: ' + resp + '</div>';
+    } else {
+      hist.innerHTML += '<div class="tl te">Error: ' + data.error + '</div>';
+    }
+  } catch(e) {
+    document.getElementById("chat-espera").remove();
+    hist.innerHTML += '<div class="tl te">No se pudo conectar. Arranca: python3 ~/arkhe-zero/ia/api_ia.py</div>';
+  }
+  hist.scrollTop = hist.scrollHeight;
+}
+document.addEventListener("DOMContentLoaded", function(){
+  const ci = document.getElementById("chat-input");
+  if(ci) ci.addEventListener("keydown", function(e){
+    if(e.key === "Enter") chatEnviar();
+  });
+});
+
+
+async function md33Auditar(){
+  const out = document.getElementById("md33-out");
+  if(!out) return;
+  out.innerHTML = "";
+  const add = (t, c) => {
+    const l = document.createElement("div");
+    l.className = "tl " + (c || "to");
+    l.textContent = t;
+    out.appendChild(l);
+    out.scrollTop = out.scrollHeight;
+  };
+  add("[MD-33] Iniciando auditoría forense...", "tc");
+  add("[MD-33] Conectando con api_ia.py...", "tif");
+  try {
+    const r = await fetch("http://127.0.0.1:5000/api/md33");
+    const data = await r.json();
+    add("", "to");
+    add("═══ " + data.modulo + " ═══", "tw");
+    add("Sello: " + data.sello + " · Firma: " + data.firma, "tw");
+    add("Total archivos: " + data.total, "tif");
+    add("", "to");
+    for(const a of data.archivos){
+      add("▸ " + a.archivo, "tc");
+      add("   SHA-256: " + a.sha256, "to");
+      add("   Tamaño: " + a.tamano + " bytes · Estado: " + a.estado, "tw");
+      add("   Timestamp: " + a.timestamp, "tif");
+      add("", "to");
+    }
+    add("◯_● AUDITORÍA COMPLETA · 51/49/100", "tw");
+  } catch(e) {
+    add("[MD-33] Error: " + e.message, "te");
+    add("Arranca api_ia.py: nohup python3 ~/arkhe-zero/ia/api_ia.py &", "tc");
+  }
+}
+function md33Limpiar(){
+  const out = document.getElementById("md33-out");
+  if(out) out.innerHTML = '<div class="tl tif">Panel limpio.</div>';
+}
+
 </script>
 </body>
 </html>
