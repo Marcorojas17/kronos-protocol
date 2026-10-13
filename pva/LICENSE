@@ -1,0 +1,54 @@
+MIT License
+
+Copyright (c) 2026 Marco Antonio Rojas Valdovinos (kronosproyecto@hotmail.com)
+FOLIO PERICIAL: KRONOS-MT01JAAF
+FOLIO MAESTRO: 5204160405358537
+SHA GENESIS: a4ff808e
+HASH GENESIS: 41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3
+SafeCreative ID: 2607146379465
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+COMMERCIAL ADDENDUM - KRONOS 360 - 51/49 - LUZ PRENDIDA OFFLINE
+
+MIT LIBRE (puedes usar, forkear, comercializar):
+- core/, web/, contracts/, scripts/, tests/, app.py, index.html
+- web/index.html, web/marketplace.html, web/verification.html
+- requirements.txt, render.yaml, cadena_sha256.txt
+- SECURITY.md, README.md, pyproject.toml
+
+PROPIEDAD PRIVADA - REQUIERE LICENCIA COMERCIAL:
+- audit/ (PDFs dictámenes con datos clientes)
+- prompts_library/, docs/KRONOS_360_LAWS.md, peritaje/
+- Sello KRONOS-TRACE-PVA-5204160405358537 y KRONOS-MT01JAAF
+- Uso del folio 5204160405358537 como sello pericial
+
+Para licencia comercial: kronosproyecto@hotmail.com
+Asunto: [LICENCIA COMERCIAL] KRONOS-MT01JAAF - <tu proyecto>
+
+ADVERTENCIA LEGAL:
+El uso no autorizado del sello KRONOS-TRACE-PVA-5204160405358537, 
+KRONOS-MT01JAAF, o la suplantación de dictamen pericial constituye 
+falsificación de documento (Art. 243 CPF México) y fraude.
+
+Principio 51/49: El 51% humano mantiene autoridad final. El software es 
+herramienta 49% - no sustituye validación pericial humana.
+
+ISO 27001:2022 / ISO 27037:2012 / eIDAS QSeal / NOM-151-SCFI-2016

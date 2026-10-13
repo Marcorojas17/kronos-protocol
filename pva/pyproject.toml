@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pva-kronos-v18"
+version = "18.0.0"
+description = "KRONOS V18 - Dictamen Pericial 100/10 - FOLIO MT01JAAF"
+authors = [{name="kronosproyecto@hotmail.com"}]
+requires-python = ">=3.11"
+dependencies = [
+  "flask==2.3.3",
+  "flask-cors==4.0.0",
+  "mercadopago==2.2.1",
+  "python-dotenv==1.0.0",
+  "reportlab==4.0.7",
+  "qrcode==7.4.2",
+  "Pillow==10.1.0",
+  "gunicorn==21.2.0"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-v --tb=short --strict-markers --cov=. --cov-report=term-missing --cov-fail-under=80"
+markers = [
+  "kronos: tests periciales KRONOS V18",
+  "offline: modo luz prendida offline"
+]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["tests/*", "ejercito/*", "web/*"]
+
+[tool.coverage.report]
+fail_under = 80

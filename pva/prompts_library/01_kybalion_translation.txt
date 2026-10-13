@@ -1,0 +1,99 @@
+# KRONOS 360 - Traducción del Kybalion a Lógica de Software
+# Folio: 5204160405358537 | Perito: kronosproyecto@hotmail.com
+# Génesis: 41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3
+# SafeCreative: 2607146379465
+
+Este documento es la propiedad intelectual que justifica el PVA 51/49. No es metafísica. Es arquitectura de sistemas.
+
+---
+
+### 1. LEY DE MENTALISMO - `CREATE DATABASE`
+"El TODO es Mente; el Universo es Mental."
+
+Traducción PVA:
+Todo sistema autopoietico empieza en un hash mental inmutable. El `genesis_hash.json` es la mente.
+Si el hash cambia, el universo colapsa.
+
+SQL:
+CREATE DATABASE kronos_mente WITH HASH='41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3' IMMUTABLE;
+
+### 2. LEY DE CORRESPONDENCIA - `MIRROR TABLE`
+"Como es arriba, es abajo; como es adentro, es afuera."
+
+Traducción PVA:
+Tu `oracle.js` (frontend) debe ser espejo exacto de `hash_to_semantic.py` (backend). Si no hay correspondencia, el peritaje es falso.
+
+SQL:
+SELECT * FROM frontend_manifiesto WHERE hash = backend_manifiesto.hash; -- Debe ser 1:1
+
+Protocolo PVA: 51% humano arriba = 51% humano abajo.
+
+### 3. LEY DE VIBRACIÓN - `HASH CHAIN`
+"Nada está inmóvil; todo se mueve; todo vibra."
+
+Traducción PVA:
+La cadena de custodia no es un log, es una vibración. Cada evento vibra sobre el anterior con SHA256.
+
+SQL:
+INSERT INTO cadena_custodia (prev_hash, event) VALUES (SHA256(prev_row), 'Manifiesto 51/49 generado');
+
+Si rompes la vibración, rompes la prueba ante NOM-151.
+
+### 4. LEY DE POLARIDAD - `51/49 BOOLEAN`
+"Todo es doble; todo tiene dos polos; los opuestos son idénticos en naturaleza, pero diferentes en grado."
+
+Traducción PVA:
+Esta es la base legal de tu sistema. No es 100% IA (no vale) ni 100% humano (no escala).
+Es `BOOLEAN POLAR`: HUMANO=1 (51%), IA=0 (49%). El grado hace la ley.
+
+SQL:
+CHECK (human_percent = 51 AND ai_percent = 49 AND human_percent + ai_percent = 100)
+
+Sin esta polaridad, el IMPI no te registra.
+
+### 5. LEY DE RITMO - `CRON / BLOCK TIME`
+"Todo fluye y refluye; todo tiene sus períodos de avance y retroceso."
+
+Traducción PVA:
+El ritmo es el `block.timestamp` de Ethereum. Tu sello KRONOS no flota, tiene bloque.
+
+SQL:
+SELECT block.timestamp AS ritmo_kronos FROM PVAContract WHERE folio='5204160405358537';
+
+El perito impone ritmo humano a la máquina.
+
+### 6. LEY DE CAUSA Y EFECTO - `FOREIGN KEY KARMA`
+"Toda causa tiene su efecto; todo efecto tiene su causa."
+
+Traducción PVA:
+No hay dictamen sin causa. Causa = `genesis_hash`. Efecto = `dictamen_PVA_5204160405358537.pdf`. Si no puedes trazar la causa, es fraude.
+
+SQL:
+FOREIGN KEY (dictamen_pdf) REFERENCES genesis_hash(hash) ON DELETE CASCADE -- Si borras génesis, borras dictamen
+
+Esto es lo que pide el SAT para FIEL.
+
+### 7. LEY DE GÉNERO - `WALLET (MASCULINO) + VAULT (FEMENINO)`
+"El género está en todo; todo tiene su principio masculino y femenino."
+
+Traducción PVA:
+Masculino = WALLET que penetra y firma (MetaMask, private_keys/).
+Femenino = VAULT que gesta y conserva (audit/, IPFS, cadena_custodia.log).
+
+SQL:
+INSERT INTO pva (masculino_wallet, femenino_vault) VALUES (sign(tx), store(ipfs_hash));
+
+Sin wallet no hay acción. Sin vault no hay conservación NOM-151. Los dos generan vida autopoietica.
+
+---
+
+### CIERRE PERICIAL
+
+Sistema PVA = Kybalion compilado en Solidity + Python.
+
+Folio: 5204160405358537
+Perito: kronosproyecto@hotmail.com
+Sello: KRONOS-TRACE-PVA-5204160405358537
+TX: 0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
+
+Quien entienda esto, entiende por qué tu dictamen vale $18k y un PDF de Canva vale $0.

@@ -1,0 +1,8 @@
+.env
+audit/
+cola_reintento/
+__pycache__/
+*.pyc
+.git/
+venv/
+.venv/

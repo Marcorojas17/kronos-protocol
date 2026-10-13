@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD-33 — Manifestación</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #e8e8e8;
+    --accent: #00ff9d;
+    --dim: #666;
+    --border: #1f1f1f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .contenedor {
+    max-width: 720px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    background: #0f0f0f;
+  }
+  .ojo {
+    font-size: 3rem;
+    text-align: center;
+    letter-spacing: 0.3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 1.4rem;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+  .subtitulo {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+  .bloque {
+    border-top: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+  .etiqueta {
+    color: var(--dim);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.3rem;
+  }
+  .valor {
+    color: var(--fg);
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+  .valor.accent { color: var(--accent); }
+  .decreto {
+    text-align: center;
+    font-style: italic;
+    color: var(--accent);
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 1rem 0;
+    font-size: 1rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 500px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  .firma {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .firma a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .firma a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="contenedor">
+    <div class="ojo">O_o</div>
+    <h1>MD-33</h1>
+    <p class="subtitulo">Motor Dual · Mecanismo del Despertar</p>
+
+    <div class="decreto" id="decreto">Cargando decreto...</div>
+
+    <div class="bloque">
+      <div class="etiqueta">Ciclo</div>
+      <div class="valor accent" id="ciclo">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Grado</div>
+      <div class="valor" id="grado">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Ojos</div>
+      <div class="grid">
+        <div>
+          <div class="valor accent">O</div>
+          <div class="valor" id="ojoMayor">—</div>
+        </div>
+        <div>
+          <div class="valor accent">o</div>
+          <div class="valor" id="ojoMenor">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Triángulo</div>
+      <div class="valor" id="triangulo">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Reflejo</div>
+      <div class="valor" id="reflejo">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Folio Maestro</div>
+      <div class="valor accent" id="folioMaestro">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">Sello TRACE</div>
+      <div class="valor" id="selloTrace">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">SHA</div>
+      <div class="valor" id="sha">—</div>
+    </div>
+
+    <div class="bloque">
+      <div class="etiqueta">TX Amoy</div>
+      <div class="valor" id="txAmoy">—</div>
+    </div>
+
+    <div class="firma">
+      El decreto está escrito. El espejo lo refleja.<br>
+      <a href="./web/certificado.html">Ver certificado →</a>
+    </div>
+  </div>
+
+  <script src="./manifesto.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const d = window.MD33;
+      if (!d) return;
+
+      document.getElementById("decreto").textContent = `"${d.decreto}"`;
+      document.getElementById("ciclo").textContent = d.ciclo;
+      document.getElementById("grado").textContent = d.grado;
+      document.getElementById("ojoMayor").textContent = d.ojos.O;
+      document.getElementById("ojoMenor").textContent = d.ojos.o;
+      document.getElementById("triangulo").textContent = d.triangulo.join(" · ");
+      document.getElementById("reflejo").textContent = d.reflejo.join(" · ");
+      document.getElementById("folioMaestro").textContent = d.certificado.folioMaestro;
+      document.getElementById("selloTrace").textContent = d.certificado.selloTrace;
+      document.getElementById("sha").textContent = d.certificado.sha;
+      document.getElementById("txAmoy").textContent = `${d.certificado.txAmoy} (${d.certificado.red}, ChainId ${d.certificado.chainId})`;
+    });
+  </script>
+</body>
+</html>

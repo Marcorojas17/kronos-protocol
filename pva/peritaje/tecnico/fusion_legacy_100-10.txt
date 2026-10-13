@@ -1,0 +1,6 @@
+KRONOS V18 FUSION 5 LEGACY - 2026-09-05 08:56:59.330339
+FOLIO KRONOS-MT01JAAF - SHA a4ff808e
+índice.html - 1a0fda54 - AUDITADO
+web/index.html - a4ff808e - AUDITADO
+
+TOTAL: 2 archivos legacy fusionados - SIN BORRADOS

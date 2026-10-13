@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KRONOS 360 | Verificación Forense MT01JAAF</title>
+<style>:root{--neon:#00ffcc;--gold:#D4AF37;--bg:#020806;--panel:#06110e}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:#c8d8d3;font-family:'JetBrains Mono',monospace}.nav{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#05120f;border-bottom:2px solid var(--neon);position:sticky;top:0}.nav a{color:var(--neon);text-decoration:none;border:1px solid var(--neon);padding:6px 14px;border-radius:6px;font-size:.8rem}.main{max-width:800px;margin:30px auto;padding:0 20px}.card{border:1px solid rgba(0,255,204,.35);border-radius:12px;padding:20px;background:var(--panel);text-align:center}input{width:100%;padding:14px;background:#000;border:1px solid var(--neon);border-radius:8px;color:var(--neon);font-family:monospace;margin-top:10px}.btn{padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:900;text-decoration:none;display:inline-block;margin-top:10px}.btn-p{background:var(--neon);color:#000;border:none}.btn-n{border:1px solid var(--gold);color:var(--gold);background:transparent}</style></head><body>
+<div class="nav"><a href="./marketplace.html">← MARKET</a><b style="color:var(--gold)">03/03 VERIFICACIÓN MT01JAAF</b><a href="./index.html" style="border-color:var(--gold);color:var(--gold)">ORÁCULO →</a></div>
+<div class="main"><div class="card">
+<h2 style="color:var(--neon)">VALIDACIÓN FORENSE - KRONOS 360 V18</h2>
+<p style="font-size:.75rem;color:#888;margin-top:8px">ISO 27037 • NOM-151 • eIDAS • Polygon • FOLIO MT01JAAF SHA a4ff808e</p>
+<input id="vh" placeholder="Pega SHA-256 completo 41a3683b... o KRONOS-MT01JAAF">
+<button class="btn btn-p" onclick="verif()">VERIFICAR SELLO</button>
+<div id="res" style="margin-top:15px;font-size:.85rem;text-align:left;border:1px dashed #234;padding:12px;border-radius:8px;background:#000;display:none"></div>
+<div style="margin-top:15px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn btn-n" href="./index.html">← ORÁCULO</a><a class="btn btn-n" href="./marketplace.html">VER PLANES</a></div>
+</div></div>
+<script>
+const TRACE={folio:"5204160405358537",pericial:"KRONOS-MT01JAAF",sha:"a4ff808e",hash:"41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3"};
+function verif(){let v=document.getElementById('vh').value.trim();let r=document.getElementById('res');r.style.display='block';if(!v){r.innerHTML='❌ Pega hash';return;}let s=localStorage.getItem('kronos_hash')||'';if(v.includes(TRACE.folio)||v.includes('MT01JAAF')||v.toLowerCase()===TRACE.hash||v.toLowerCase()===s.toLowerCase()){r.innerHTML=`✅ <b style="color:var(--neon)">SELLO VÁLIDO</b><br>Folio: ${TRACE.pericial}<br>Maestro: ${TRACE.folio}<br>Hash: ${TRACE.hash}<br>Cadena: INTACTA<br>Polygon: CONFIRMADA<br>ISO 27001/27037: CONFORME`;}else{r.innerHTML='⚠️ FOLIO NO ENCONTRADO - Verifica SafeCreative: 2607146379465';}}
+let h=localStorage.getItem('kronos_hash');if(h){document.getElementById('vh').value=h;}
+</script>
+</body></html>

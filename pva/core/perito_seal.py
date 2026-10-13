@@ -1,0 +1,22 @@
+"""
+PVA perito_seal - KRONOS 360 MT01JAAF SHA a4ff808e
+Sello: KRONOS-TRACE-PVA-5204160405358537-MT01JAAF
+SC: 2607146379465
+"""
+
+FOLIO_MAESTRO = "5204160405358537"
+FOLIO_PERICIAL = "KRONOS-MT01JAAF"
+SHA = "a4ff808e"
+PERITO = "kronosproyecto@hotmail.com"
+GENESIS_MAESTRO = "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3"
+SELLO = "KRONOS-TRACE-PVA-5204160405358537-MT01JAAF"
+SC = "2607146379465"
+TX_AMOY = "0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e"
+
+def generar_sello_kronos(genesis: str = GENESIS_MAESTRO) -> str:
+    g = genesis or GENESIS_MAESTRO
+    sha = g[:8] if len(g) >= 8 else SHA
+    return f"FOLIO:{FOLIO_MAESTRO}|FOLIO_PERICIAL:{FOLIO_PERICIAL}|SHA:{sha}|PERITO:{PERITO}|GENESIS:{g}|SELLO:{SELLO}|SC:{SC}|TX:{TX_AMOY}|MT01JAAF:{FOLIO_PERICIAL}:{sha}"
+
+def verificar_sello(sello: str) -> bool:
+    return FOLIO_MAESTRO in sello and "MT01JAAF" in sello and SHA in sello.lower() and PERITO in sello

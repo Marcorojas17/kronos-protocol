@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PVA · Consola Unificada</title>
+<style>
+  :root {
+    --bg:#050505; --fg:#00ff9c; --dim:#0a3a26; --ink:#0a7a52;
+    --warn:#ff5555; --amber:#ffb000; --panel:#0c0c0c;
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--bg); color:var(--fg);
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size:14px; }
+  a { color:var(--fg); }
+  header { padding:20px 16px 12px; border-bottom:1px solid var(--dim); }
+  .eye { display:flex; align-items:baseline; gap:8px; }
+  .bigO { font-size:42px; line-height:1; letter-spacing:2px; }
+  .smallO { font-size:18px; color:var(--ink); transform:translateY(-14px); }
+  .tag { font-size:11px; color:var(--ink); letter-spacing:3px; margin-top:4px; }
+  nav { display:flex; margin-top:14px; border:1px solid var(--dim); }
+  nav button { flex:1; background:transparent; color:var(--ink); border:0;
+    border-right:1px solid var(--dim); padding:10px 6px; font-family:inherit;
+    font-size:11px; letter-spacing:2px; cursor:pointer; }
+  nav button:last-child { border-right:0; }
+  nav button.active { background:var(--fg); color:var(--bg); }
+  main { padding:16px; max-width:1100px; margin:0 auto; }
+  section { margin-bottom:24px; }
+  .view { display:none; }
+  .view.active { display:block; }
+  h2 { font-size:12px; letter-spacing:3px; color:var(--ink);
+    font-weight:normal; margin:20px 0 10px; }
+  .drop { border:1px dashed var(--dim); padding:28px 16px; text-align:center;
+    color:var(--ink); cursor:pointer; }
+  .drop:hover, .drop.over { border-color:var(--fg); color:var(--fg); }
+  input[type=file] { display:none; }
+  textarea { width:100%; min-height:160px; background:var(--panel); color:var(--fg);
+    border:1px solid var(--dim); padding:10px; font-family:inherit; font-size:12px; resize:vertical; }
+  button.act { background:var(--dim); color:var(--fg); border:1px solid var(--fg);
+    padding:8px 14px; font-family:inherit; letter-spacing:2px; cursor:pointer; font-size:12px; }
+  button.act:hover { background:var(--fg); color:var(--bg); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+  .card { border:1px solid var(--dim); padding:12px; }
+  .card .k { font-size:10px; color:var(--ink); letter-spacing:2px; }
+  .card .v { font-size:22px; margin-top:4px; }
+  .card.warn .v { color:var(--warn); }
+  .card.amber .v { color:var(--amber); }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--dim); }
+  th { color:var(--ink); letter-spacing:1px; font-weight:normal; }
+  .empty { color:var(--ink); font-style:italic; }
+  .badge { padding:2px 6px; border:1px solid var(--dim); font-size:10px; letter-spacing:1px; }
+  .badge.m0 { color:var(--amber); border-color:var(--amber); }
+  .badge.u,.badge.us,.badge.ulc,.badge.iwc { color:var(--ink); }
+  .badge.raw { color:#888; border-color:#444; }
+  .badge.unknown { color:var(--warn); border-color:var(--warn); }
+  .insight { border:1px solid var(--amber); padding:12px; margin-top:12px;
+    color:var(--amber); font-size:12px; line-height:1.5; }
+  .hashbox { background:var(--panel); border:1px solid var(--dim); padding:12px;
+    word-break:break-all; font-size:12px; color:var(--ink); margin-top:10px; }
+  footer { text-align:center; color:var(--ink); font-size:11px; padding:24px 16px; letter-spacing:2px; }
+  .filelist { list-style:none; padding:0; margin:10px 0; }
+  .filelist li { padding:4px 0; font-size:12px; border-bottom:1px dashed var(--dim);
+    display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eye"><span class="bigO">O</span><span class="smallO">o</span></div>
+  <div class="tag">PVA · CONSOLA UNIFICADA · MD-33</div>
+  <nav id="nav">
+    <button data-v="pano" class="active">PANORAMA</button>
+    <button data-v="wifi">WIFI</button>
+    <button data-v="store">STORAGE</button>
+    <button data-v="hash">HASH</button>
+  </nav>
+</header>
+
+<main>
+
+<section id="v-pano" class="view active">
+  <h2>PANORAMA · ENRUTADO AUTOMÁTICO</h2>
+  <div class="drop" id="dropPano">ARRASTRA O TOCA PARA CARGAR ARCHIVOS</div>
+  <input type="file" id="filePano" multiple accept=".txt,.log">
+  <ul class="filelist" id="listPano"><li class="empty">Sin archivos</li></ul>
+  <div class="row">
+    <button class="act" id="btnPano">ANALIZAR TODO</button>
+    <button class="act" id="btnClearPano">LIMPIAR</button>
+  </div>
+  <div id="panoOut"></div>
+</section>
+
+<section id="v-wifi" class="view">
+  <h2>WIFI · LOGS IWC</h2>
+  <textarea id="wifiText" placeholder="Pega el log IWC aquí..."></textarea>
+  <div class="row">
+    <button class="act" id="btnWifi">ANALIZAR</button>
+    <button class="act" id="btnWifiDemo">VER EJEMPLO</button>
+    <button class="act" id="btnWifiClear">LIMPIAR</button>
+  </div>
+  <div id="wifiOut"></div>
+</section>
+
+<section id="v-store" class="view">
+  <h2>STORAGE · LOGS FSDBG</h2>
+  <div class="drop" id="dropStore">ARRASTRA O TOCA (m0_history, u_history, us_history, ulc_history)</div>
+  <input type="file" id="fileStore" multiple accept=".txt,.log">
+  <ul class="filelist" id="listStore"><li class="empty">Sin archivos</li></ul>
+  <div class="row">
+    <button class="act" id="btnStore">ANALIZAR</button>
+    <button class="act" id="btnStoreClear">LIMPIAR</button>
+  </div>
+  <div id="storeOut"></div>
+</section>
+
+<section id="v-hash" class="view">
+  <h2>HASH · SHA-256 EN NAVEGADOR</h2>
+  <div class="drop" id="dropHash">ARRASTRA UN ARCHIVO O TOCA PARA ELEGIR</div>
+  <input type="file" id="fileHash">
+  <div class="hashbox" id="hashOut">— sin hash aún —</div>
+</section>
+
+</main>
+
+<footer>
+  ← <a href="./index.html">VOLVER A PVA</a> · 
+  <a href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-">GITHUB</a>
+</footer>
+
+<script src="fsdbg/parser.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  document.querySelectorAll('#nav button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('#nav button').forEach(function (x) { x.classList.remove('active'); });
+      document.querySelectorAll('.view').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      $('v-' + b.dataset.v).classList.add('active');
+    });
+  });
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function addCard(c, k, v, cls) {
+    var d = el('div', 'card' + (cls ? ' ' + cls : ''));
+    d.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>';
+    c.appendChild(d);
+  }
+  function detect(text) {
+    var t = String(text || '').trim();
+    if (!t) return 'unknown';
+    if (/^H4sIAAAAAAAAA/.test(t)) return 'raw';
+    if (/type\s*:\s*err/.test(t)) return 'm0';
+    if (/"OPERR"/.test(t)) return 'u';
+    if (/"MEDIUM"/.test(t)) return 'us';
+    if (/good_link|poor_link|net_disconnect/.test(t)) return 'iwc';
+    if (/\[\d+\]\s*-\s*fsdbg\s*:/.test(t) && /^0\s*$/m.test(t)) return 'ulc';
+    return 'unknown';
+  }
+  function readFiles(fileList, cb) {
+    Array.from(fileList).forEach(function (f) {
+      var r = new FileReader();
+      r.onload = function () { cb({ name: f.name, text: String(r.result) }); };
+      r.readAsText(f);
+    });
+  }
+
+  // -------- WIFI parser inline --------
+  function parseIWC(text) {
+    var lines = String(text || '').split(/\r?\n/);
+    var events = [], currentTs = null;
+    var TS_RE = /\[(\d+)\]\s*-\s*fsdbg\s*:\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/;
+    var KV_RE = /([a-z_]+)\s*[=:]\s*(-?[\w:.]+)/gi;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      var ts = line.match(TS_RE);
+      if (ts) { currentTs = ts[2]; continue; }
+      var low = line.toLowerCase();
+      var kind = 'other';
+      if (low.indexOf('good_link') === 0) kind = 'good_link';
+      else if (low.indexOf('poor_link') === 0) kind = 'poor_link';
+      else if (low.indexOf('net_disconnect') === 0) kind = 'net_disconnect';
+      else if (low.indexOf('disconnect') === 0) kind = 'disconnect';
+      else if (low.indexOf('connect') === 0) kind = 'connect';
+      else if (low.indexOf('app ') === 0) kind = 'app';
+      else if (low.indexOf('qtable') === 0) kind = 'qtable';
+      else if (low.indexOf('qaction') === 0) kind = 'qaction';
+      var data = {};
+      KV_RE.lastIndex = 0;
+      var m;
+      while ((m = KV_RE.exec(line)) !== null) {
+        var k = m[1].toLowerCase();
+        var v = m[2];
+        if (/^-?\d+(\.\d+)?$/.test(v)) data[k] = parseFloat(v);
+        else data[k] = v;
+      }
+      if (kind === 'app' && !data.app) data.app = line.slice(4).trim();
+      events.push({ ts: currentTs, kind: kind, raw: line, data: data });
+    }
+    return events;
+  }
+
+  $('btnWifi').addEventListener('click', function () {
+    var txt = $('wifiText').value;
+    var out = $('wifiOut');
+    out.innerHTML = '';
+    if (!txt.trim()) return;
+
+    var events = parseIWC(txt);
+    var byKind = {}, apps = {}, hours = {};
+    var rssiMap = {};
+
+    events.forEach(function (e) {
+      byKind[e.kind] = (byKind[e.kind] || 0) + 1;
+      if (e.data.rssi !== undefined) {
+        var b = e.data.bssid || 'desconocido';
+        if (!rssiMap[b]) rssiMap[b] = { bssid: b, min: Infinity, max: -Infinity, sum: 0, n: 0 };
+        rssiMap[b].sum += e.data.rssi;
+        rssiMap[b].n++;
+        if (e.data.rssi < rssiMap[b].min) rssiMap[b].min = e.data.rssi;
+        if (e.data.rssi > rssiMap[b].max) rssiMap[b].max = e.data.rssi;
+      }
+      if (e.kind === 'app' && e.data.app) apps[e.data.app] = (apps[e.data.app] || 0) + 1;
+      if (e.ts) { var h = e.ts.slice(11, 13); hours[h] = (hours[h] || 0) + 1; }
+    });
+
+    var cards = el('div', 'cards');
+    addCard(cards, 'EVENTOS', events.length, events.length ? '' : 'warn');
+    addCard(cards, 'APS', Object.keys(rssiMap).length);
+    addCard(cards, 'APPS', Object.keys(apps).length);
+    addCard(cards, 'HORAS', Object.keys(hours).length);
+    out.appendChild(cards);
+
+    if (Object.keys(byKind).length) {
+      out.appendChild(el('h2', null, 'DESGLOSE POR TIPO'));
+      var t = el('table');
+      t.innerHTML = '<thead><tr><th>TIPO</th><th>COUNT</th></tr></thead>';
+      var tb = el('tbody');
+      Object.keys(byKind).sort().forEach(function (k) {
+        tb.appendChild(el('tr', null, '<td>' + k + '</td><td>' + byKind[k] + '</td>'));
+      });
+      t.appendChild(tb);
+      out.appendChild(t);
+    }
+
+    if (Object.keys(rssiMap).length) {
+      out.appendChild(el('h2', null, 'RANKING DE APS POR RSSI'));
+      var t2 = el('table');
+      t2.innerHTML = '<thead><tr><th>BSSID</th><th>AVG</th><th>MIN</th><th>MAX</th><th>N</th></tr></thead>';
+      var tb2 = el('tbody');
+      var arr = Object.keys(rssiMap).map(function (b) {
+        var a = rssiMap[b];
+        a.avg = Math.round(a.sum / a.n * 10) / 10;
+        return a;
+      }).sort(function (a, b) { return b.avg - a.avg; });
+      arr.forEach(function (a) {
+        tb2.appendChild(el('tr', null, '<td>' + a.bssid + '</td><td>' + a.avg +
+          '</td><td>' + a.min + '</td><td>' + a.max + '</td><td>' + a.n + '</td>'));
+      });
+      t2.appendChild(tb2);
+      out.appendChild(t2);
+    }
+
+    if (Object.keys(apps).length) {
+      out.appendChild(el('h2', null, 'APLICACIONES'));
+      var t3 = el('table');
+      t3.innerHTML = '<thead><tr><th>APP</th><th>APARICIONES</th></tr></thead>';
+      var tb3 = el('tbody');
+      Object.keys(apps).forEach(function (a) {
+        tb3.appendChild(el('tr', null, '<td>' + a + '</td><td>' + apps[a] + '</td>'));
+      });
+      t3.appendChild(tb3);
+      out.appendChild(t3);
+    }
+  });
+
+  $('btnWifiDemo').addEventListener('click', function () {
+    $('wifiText').value =
+      '[0] - fsdbg : 2026-09-24 15:53:18\n' +
+      'good_link rssi=-44 bssid=aa:c4:f1\n' +
+      'app com.android.chrome\n' +
+      '[1] - fsdbg : 2026-09-24 16:10:00\n' +
+      'good_link rssi=-52 bssid=aa:30:2e\n' +
+      'poor_link rssi=-64 bssid=aa:14:50\n' +
+      'app com.sec.android.app.music\n';
+    $('btnWifi').click();
+  });
+  $('btnWifiClear').addEventListener('click', function () {
+    $('wifiText').value = ''; $('wifiOut').innerHTML = '';
+  });
+
+  // -------- PANORAMA --------
+  var panoFiles = [];
+  function renderPanoList() {
+    var ul = $('listPano'); ul.innerHTML = '';
+    if (!panoFiles.length) { ul.innerHTML = '<li class="empty">Sin archivos</li>'; return; }
+    panoFiles.forEach(function (f) {
+      var t = detect(f.text);
+      ul.appendChild(el('li', null, '<span>' + f.name + '</span><span class="badge ' + t + '">' + t + '</span>'));
+    });
+  }
+  $('dropPano').addEventListener('click', function () { $('filePano').click(); });
+  $('filePano').addEventListener('change', function (e) {
+    readFiles(e.target.files, function (f) { panoFiles.push(f); renderPanoList(); });
+    e.target.value = '';
+  });
+  ['dragover','dragenter'].forEach(function (ev) {
+    $('dropPano').addEventListener(ev, function (e) { e.preventDefault(); $('dropPano').classList.add('over'); });
+  });
+  ['dragleave','drop'].forEach(function (ev) {
+    $('dropPano').addEventListener(ev, function (e) { e.preventDefault(); $('dropPano').classList.remove('over'); });
+  });
+  $('dropPano').addEventListener('drop', function (e) {
+    readFiles(e.dataTransfer.files, function (f) { panoFiles.push(f); renderPanoList(); });
+  });
+  $('btnClearPano').addEventListener('click', function () {
+    panoFiles = []; renderPanoList(); $('panoOut').innerHTML = '';
+  });
+
+  $('btnPano').addEventListener('click', function () {
+    if (!panoFiles.length) return;
+    var out = $('panoOut'); out.innerHTML = '';
+    var buckets = { iwc: [], m0: [], u: [], us: [], ulc: [], raw: [], unknown: [] };
+    panoFiles.forEach(function (f) { buckets[detect(f.text)].push(f); });
+
+    var cards = el('div', 'cards');
+    addCard(cards, 'ARCHIVOS', panoFiles.length);
+    addCard(cards, 'IWC', buckets.iwc.length);
+    addCard(cards, 'M0', buckets.m0.length, buckets.m0.length ? 'amber' : '');
+    addCard(cards, 'U', buckets.u.length);
+    addCard(cards, 'US', buckets.us.length);
+    addCard(cards, 'ULC', buckets.ulc.length);
+    addCard(cards, 'CRUDOS', buckets.raw.length);
+    addCard(cards, 'DESCONOCIDOS', buckets.unknown.length, buckets.unknown.length ? 'warn' : '');
+    out.appendChild(cards);
+
+    var flagTotals = {}, worst = { tmo: 0, day: null };
+    var totalEntries = 0, totalAnom = 0;
+    var insightText = '';
+
+    if (buckets.m0.length && window.FSDBG) {
+      buckets.m0.forEach(function (f) {
+        var parsed = FSDBG.parse(f.text);
+        var s = FSDBG.summarize(parsed);
+        totalEntries += s.total || 0;
+        totalAnom += s.anomalous || 0;
+        for (var k in s.flagTotals) flagTotals[k] = (flagTotals[k] || 0) + s.flagTotals[k];
+        parsed.events.forEach(function (ev) {
+          if (ev.flags && ev.flags.TMO > worst.tmo) { worst.tmo = ev.flags.TMO; worst.day = ev.timestamp; }
+        });
+      });
+      insightText = '<strong>LECTURA:</strong> ';
+      if (flagTotals.ECC > 0 && flagTotals.TMO > 0) {
+        insightText += 'ECC=' + flagTotals.ECC + ' y TMO=' + flagTotals.TMO +
+          ' acumulados. Storage arrastra anomalías crónicas. ';
+        if (worst.day) insightText += 'Pico TMO=' + worst.tmo + ' en ' + worst.day + '.';
+      } else if (flagTotals.ECC > 0) {
+        insightText += 'Solo ECC=' + flagTotals.ECC + '. Integridad de datos comprometida.';
+      } else if (flagTotals.TMO > 0) {
+        insightText += 'Solo TMO=' + flagTotals.TMO + '. Timeouts de I/O.';
+      } else {
+        insightText += 'Sin flags de error acumulados. Storage limpio.';
+      }
+      out.appendChild(el('div', 'insight', insightText));
+
+      // Botón COPIAR DIAGNÓSTICO
+      var btnCopy = el('button', 'act', 'COPIAR DIAGNÓSTICO');
+      btnCopy.style.marginTop = '10px';
+      btnCopy.addEventListener('click', function () {
+        var md = [
+          '# Diagnóstico PVA · Storage',
+          '',
+          '- Archivos analizados: ' + panoFiles.length,
+          '- M0 (storage): ' + buckets.m0.length,
+          '- Entradas totales: ' + totalEntries,
+          '- Anomalías: ' + totalAnom,
+          '',
+          '## Contadores acumulados'
+        ];
+        Object.keys(flagTotals).sort().forEach(function (k) {
+          md.push('- ' + k + ': ' + flagTotals[k]);
+        });
+        md.push('');
+        md.push('## Lectura');
+        md.push(insightText.replace(/<[^>]*>/g, ''));
+        md.push('');
+        md.push('---');
+        md.push('Generado con PVA · https://marcorojas17.github.io/PVA-Protocolo-Vida-Autopoietica-/pva.html');
+        var final = md.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(final).then(function () {
+            btnCopy.textContent = 'COPIADO';
+            setTimeout(function () { btnCopy.textContent = 'COPIAR DIAGNÓSTICO'; }, 1500);
+          }).catch(function () {
+            fallbackCopy(final, btnCopy);
+          });
+        } else {
+          fallbackCopy(final, btnCopy);
+        }
+      });
+      out.appendChild(btnCopy);
+    }
+
+    ['iwc','m0','u','us','ulc','raw','unknown'].forEach(function (k) {
+      if (!buckets[k].length) return;
+      out.appendChild(el('h2', null, k.toUpperCase() + ' · ' + buckets[k].length));
+      var ul = el('ul', 'filelist');
+      buckets[k].forEach(function (f) {
+        ul.appendChild(el('li', null, '<span>' + f.name + '</span><span class="badge ' + k + '">' + k + '</span>'));
+      });
+      out.appendChild(ul);
+    });
+  });
+
+  function fallbackCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); btn.textContent = 'COPIADO'; }
+    catch (e) { btn.textContent = 'ERROR AL COPIAR'; }
+    document.body.removeChild(ta);
+    setTimeout(function () { btn.textContent = 'COPIAR DIAGNÓSTICO'; }, 1500);
+  }
+
+  // -------- STORAGE --------
+  var storeFiles = [];
+  function renderStoreList() {
+    var ul = $('listStore'); ul.innerHTML = '';
+    if (!storeFiles.length) { ul.innerHTML = '<li class="empty">Sin archivos</li>'; return; }
+    storeFiles.forEach(function (f) {
+      var t = window.FSDBG ? FSDBG.detectType(f.text) : 'unknown';
+      ul.appendChild(el('li', null, '<span>' + f.name + '</span><span class="badge ' + t + '">' + t + '</span>'));
+    });
+  }
+  $('dropStore').addEventListener('click', function () { $('fileStore').click(); });
+  $('fileStore').addEventListener('change', function (e) {
+    readFiles(e.target.files, function (f) { storeFiles.push(f); renderStoreList(); });
+    e.target.value = '';
+  });
+  ['dragover','dragenter'].forEach(function (ev) {
+    $('dropStore').addEventListener(ev, function (e) { e.preventDefault(); $('dropStore').classList.add('over'); });
+  });
+  ['dragleave','drop'].forEach(function (ev) {
+    $('dropStore').addEventListener(ev, function (e) { e.preventDefault(); $('dropStore').classList.remove('over'); });
+  });
+  $('dropStore').addEventListener('drop', function (e) {
+    readFiles(e.dataTransfer.files, function (f) { storeFiles.push(f); renderStoreList(); });
+  });
+  $('btnStoreClear').addEventListener('click', function () {
+    storeFiles = []; renderStoreList(); $('storeOut').innerHTML = '';
+  });
+  $('btnStore').addEventListener('click', function () {
+    if (!storeFiles.length || !window.FSDBG) return;
+    var out = $('storeOut'); out.innerHTML = '';
+    var cards = el('div', 'cards');
+    var totalAnom = 0, totalEntries = 0, flagTotals = {};
+    storeFiles.forEach(function (f) {
+      var p = FSDBG.parse(f.text);
+      var s = FSDBG.summarize(p);
+      totalAnom += s.anomalous; totalEntries += s.total;
+      for (var k in s.flagTotals) flagTotals[k] = (flagTotals[k] || 0) + s.flagTotals[k];
+    });
+    addCard(cards, 'ARCHIVOS', storeFiles.length);
+    addCard(cards, 'ENTRADAS', totalEntries);
+    addCard(cards, 'ANOMALÍAS', totalAnom, totalAnom ? 'warn' : '');
+    Object.keys(flagTotals).sort().forEach(function (k) {
+      addCard(cards, k, flagTotals[k], flagTotals[k] > 0 ? 'warn' : '');
+    });
+    out.appendChild(cards);
+  });
+
+  // -------- HASH --------
+  $('dropHash').addEventListener('click', function () { $('fileHash').click(); });
+  ['dragover','dragenter'].forEach(function (ev) {
+    $('dropHash').addEventListener(ev, function (e) { e.preventDefault(); $('dropHash').classList.add('over'); });
+  });
+  ['dragleave','drop'].forEach(function (ev) {
+    $('dropHash').addEventListener(ev, function (e) { e.preventDefault(); $('dropHash').classList.remove('over'); });
+  });
+  function hashFile(file) {
+    var r = new FileReader();
+    r.onload = function () {
+      crypto.subtle.digest('SHA-256', r.result).then(function (buf) {
+        var hex = Array.from(new Uint8Array(buf)).map(function (b) {
+          return b.toString(16).padStart(2, '0');
+        }).join('');
+        $('hashOut').innerHTML = 'SHA-256 · ' + file.name + '<br><br>' + hex;
+      });
+    };
+    r.readAsArrayBuffer(file);
+  }
+  $('fileHash').addEventListener('change', function (e) {
+    if (e.target.files[0]) hashFile(e.target.files[0]);
+    e.target.value = '';
+  });
+  $('dropHash').addEventListener('drop', function (e) {
+    if (e.dataTransfer.files[0]) hashFile(e.dataTransfer.files[0]);
+  });
+
+})();
+</script>
+</body>
+</html>

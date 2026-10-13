@@ -1,0 +1,24 @@
+services:
+    - type: web
+    name: pva-kronos-webhook
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2
+    envVars:
+            - key: MP_ACCESS_TOKEN
+        sync: false
+            - key: MP_WEBHOOK_SECRET
+        sync: false
+            - key: MP_SUCCESS_URL
+        value: https://marcorojas17.github.io/PVA-Protocolo-Vida-Autopoietica-/success.html
+            - key: MP_FAILURE_URL
+        value: https://marcorojas17.github.io/PVA-Protocolo-Vida-Autopoietica-/failure.html
+            - key: MP_PENDING_URL
+        value: https://marcorojas17.github.io/PVA-Protocolo-Vida-Autopoietica-/pending.html
+            - key: MP_NOTIFICATION_URL
+        value: https://pva-kronos-webhook.onrender.com/webhook/mp
+            - key: PYTHON_VERSION
+        value: 3.11.6
+    healthCheckPath: /

@@ -1,0 +1,26 @@
+{
+  "1": {
+    "init_point": "https://www.mercadopago.com.mx/checkout/v1/payment?pref_id=MOCK-N1-MT01JAAF-a4ff808e",
+    "pref_id": "MOCK-N1-MT01JAAF",
+    "external_reference": "5204160405358537-N1-KRONOS-MT01JAAF",
+    "nivel": "N1",
+    "precio": 0,
+    "status": "MOCK-TEST-SIN-TOKEN-REAL"
+  },
+  "2": {
+    "init_point": "https://www.mercadopago.com.mx/checkout/v1/payment?pref_id=MOCK-N2-MT01JAAF-a4ff808e",
+    "pref_id": "MOCK-N2-MT01JAAF",
+    "external_reference": "5204160405358537-N2-KRONOS-MT01JAAF",
+    "nivel": "N2",
+    "precio": 450,
+    "status": "MOCK-TEST-SIN-TOKEN-REAL"
+  },
+  "3": {
+    "init_point": "https://www.mercadopago.com.mx/checkout/v1/payment?pref_id=MOCK-N3-MT01JAAF-a4ff808e",
+    "pref_id": "MOCK-N3-MT01JAAF",
+    "external_reference": "5204160405358537-N3-KRONOS-MT01JAAF",
+    "nivel": "N3",
+    "precio": 1200,
+    "status": "MOCK-TEST-SIN-TOKEN-REAL"
+  }
+}

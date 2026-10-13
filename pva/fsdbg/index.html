@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSDBG · Análisis de Almacenamiento</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root { --bg:#0a0a0a; --fg:#00ff9c; --dim:#0a3a26; --warn:#ff5555; --amber:#ffb000; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family: ui-monospace, Menlo, monospace; font-size:14px; }
+  header { padding:16px; border-bottom:1px solid var(--dim); }
+  h1 { font-size:16px; margin:0; letter-spacing:2px; }
+  .sub { color:#0a7a52; font-size:12px; margin-top:4px; }
+  main { padding:16px; max-width:1100px; margin:0 auto; }
+  section { margin-bottom:24px; }
+  input[type="file"] { width:100%; color:var(--fg); }
+  button { background:var(--dim); color:var(--fg); border:1px solid var(--fg); padding:8px 14px; font-family:inherit; cursor:pointer; letter-spacing:1px; }
+  button:hover { background:var(--fg); color:var(--bg); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+  .card { border:1px solid var(--dim); padding:12px; }
+  .card .k { font-size:11px; color:#0a7a52; letter-spacing:1px; }
+  .card .v { font-size:22px; margin-top:4px; }
+  .card.warn .v { color:var(--warn); }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--dim); }
+  th { color:#0a7a52; letter-spacing:1px; font-weight:normal; }
+  .empty { color:#0a7a52; font-style:italic; }
+  canvas { max-height:260px; }
+  .file-list { list-style:none; padding:0; margin:8px 0; }
+  .file-list li { padding:4px 0; font-size:12px; border-bottom:1px dashed var(--dim); display:flex; justify-content:space-between; }
+  .badge { padding:2px 6px; border:1px solid var(--dim); font-size:10px; letter-spacing:1px; }
+  .badge.m0 { color:var(--amber); border-color:var(--amber); }
+  .badge.u, .badge.us, .badge.ulc { color:#0a7a52; }
+  .badge.raw { color:#888; border-color:#444; }
+  .badge.unknown { color:var(--warn); border-color:var(--warn); }
+</style>
+</head>
+<body>
+<header>
+  <h1>FSDBG · ANÁLISIS DE ALMACENAMIENTO</h1>
+  <div class="sub">UFS/eMMC · UIC · LUN counters · parser multi-formato</div>
+</header>
+<main>
+
+<section>
+  <h2 style="font-size:13px;letter-spacing:2px;color:#0a7a52;">ARCHIVOS DE ENTRADA</h2>
+  <input type="file" id="files" multiple accept=".txt,.log">
+  <ul class="file-list" id="fileList"></ul>
+  <div class="row">
+    <button id="btnAnalyze">ANALIZAR</button>
+    <button id="btnDemo">VER EJEMPLO</button>
+    <button id="btnClear">LIMPIAR</button>
+  </div>
+</section>
+
+<section id="results" style="display:none;">
+  <h2 style="font-size:13px;letter-spacing:2px;color:#0a7a52;">RESUMEN</h2>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section id="anomaliesSection" style="display:none;">
+  <h2 style="font-size:13px;letter-spacing:2px;color:#0a7a52;">ANOMALÍAS DETECTADAS</h2>
+  <table id="anomalies">
+    <thead><tr><th>Archivo</th><th>#</th><th>Timestamp</th><th>Tipo</th><th>Detalle</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="timelineSection" style="display:none;">
+  <h2 style="font-size:13px;letter-spacing:2px;color:#0a7a52;">LÍNEA DE TIEMPO</h2>
+  <canvas id="timeline"></canvas>
+</section>
+
+<section id="flagSection" style="display:none;">
+  <h2 style="font-size:13px;letter-spacing:2px;color:#0a7a52;">CONTADORES ACUMULADOS (m0)</h2>
+  <table id="flagsTable">
+    <thead><tr><th>Flag</th><th>Total</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+</main>
+
+<script src="parser.js"></script>
+<script>
+(function () {
+  'use strict';
+  var allFiles = [];
+  var $ = function (id) { return document.getElementById(id); };
+
+  $('files').addEventListener('change', function (e) {
+    Array.from(e.target.files).forEach(function (f) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        allFiles.push({ name: f.name, text: String(reader.result) });
+        renderFileList();
+      };
+      reader.readAsText(f);
+    });
+    e.target.value = '';
+  });
+
+  function renderFileList() {
+    var ul = $('fileList');
+    ul.innerHTML = '';
+    if (!allFiles.length) { ul.innerHTML = '<li class="empty">Sin archivos cargados</li>'; return; }
+    allFiles.forEach(function (f) {
+      var t = FSDBG.detectType(f.text);
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + f.name + '</span><span class="badge ' + t + '">' + t + '</span>';
+      ul.appendChild(li);
+    });
+  }
+
+  $('btnClear').addEventListener('click', function () {
+    allFiles = [];
+    renderFileList();
+    ['results', 'anomaliesSection', 'timelineSection', 'flagSection'].forEach(function (id) {
+      $(id).style.display = 'none';
+    });
+  });
+
+  $('btnDemo').addEventListener('click', function () {
+    var demo =
+      '[0] - fsdbg : 2025-03-13 08:11:23\n' +
+      'type : err    status: first_issue_time:  last_issue_time:      count\n' +
+      ' sbc : -84 0x00000000                0,                0,          0\n' +
+      ' sbc :-110 0x00000000                0,                0,          0\n' +
+      ' cmd : -84 0x00000000                0,                0,          0\n' +
+      ' cmd :-110 0x00000000                0,                0,          0\n' +
+      ' data: -84 0x00000000                0,                0,          0\n' +
+      ' data:-110 0x00000900      29809993527,      30126232747,          2\n' +
+      ' stop: -84 0x00000000                0,                0,          0\n' +
+      ' stop:-110 0x00000000                0,                0,          0\n' +
+      ' busy: -84 0x00000000                0,                0,          0\n' +
+      ' busy:-110 0x00000000                0,                0,          0\n' +
+      'GE:0,CC:0,ECC:2,WP:0,OOR:0,CRC:0,TMO:2,HALT:0,CQEN:0,RPMB:0\n' +
+      '[1] - fsdbg : 2025-03-13 16:24:11\n' +
+      'type : err    status: first_issue_time:  last_issue_time:      count\n' +
+      ' sbc : -84 0x00000000                0,                0,          0\n' +
+      ' sbc :-110 0x00000000                0,                0,          0\n' +
+      ' cmd : -84 0x00000000                0,                0,          0\n' +
+      ' cmd :-110 0x00000000                0,                0,          0\n' +
+      ' data: -84 0x00000000                0,                0,          0\n' +
+      ' data:-110 0x00000900     506188482528,     506503509040,          2\n' +
+      ' stop: -84 0x00000000                0,                0,          0\n' +
+      ' stop:-110 0x00000000                0,                0,          0\n' +
+      ' busy: -84 0x00000000                0,                0,          0\n' +
+      ' busy:-110 0x00000000                0,                0,          0\n' +
+      'GE:0,CC:0,ECC:2,WP:0,OOR:0,CRC:0,TMO:2,HALT:0,CQEN:0,RPMB:0\n';
+    allFiles = [{ name: 'demo_m0_history.txt', text: demo }];
+    renderFileList();
+    analyze();
+  });
+
+  $('btnAnalyze').addEventListener('click', analyze);
+
+  function analyze() {
+    if (!allFiles.length) return;
+    var parsedFiles = allFiles.map(function (f) {
+      var parsed = FSDBG.parse(f.text);
+      return { name: f.name, parsed: parsed, summary: FSDBG.summarize(parsed) };
+    });
+
+    var totalEntries = 0, totalAnom = 0, allFlags = {};
+    var anomalies = [];
+    var timelinePoints = [];
+
+    parsedFiles.forEach(function (pf) {
+      totalEntries += pf.summary.total;
+      totalAnom += pf.summary.anomalous;
+      for (var k in pf.summary.flagTotals) allFlags[k] = (allFlags[k] || 0) + pf.summary.flagTotals[k];
+
+      pf.parsed.events.forEach(function (e) {
+        if (e.type === 'm0') {
+          var bad = [];
+          for (var k2 in e.flags) if (e.flags[k2] > 0) bad.push(k2 + ':' + e.flags[k2]);
+          if (bad.length) anomalies.push({ file: pf.name, index: e.index, ts: e.timestamp, type: 'm0', detail: bad.join(' ') });
+        } else if (e.type === 'u' || e.type === 'us') {
+          var bad2 = [];
+          for (var k3 in e.data) if (e.data[k3] > 0) bad2.push(k3 + ':' + e.data[k3]);
+          if (bad2.length) anomalies.push({ file: pf.name, index: e.index, ts: e.timestamp, type: e.type, detail: bad2.join(' ') });
+        } else if (e.type === 'ulc') {
+          if (e.value > 0) anomalies.push({ file: pf.name, index: e.index, ts: e.timestamp, type: 'ulc', detail: 'value:' + e.value });
+        }
+        timelinePoints.push({ day: e.timestamp.slice(0, 10) });
+      });
+    });
+
+    var cards = $('cards');
+    cards.innerHTML = '';
+    addCard(cards, 'ARCHIVOS', parsedFiles.length, false);
+    addCard(cards, 'ENTRADAS', totalEntries, false);
+    addCard(cards, 'ANOMALÍAS', totalAnom, totalAnom > 0);
+    Object.keys(allFlags).sort().forEach(function (k) {
+      addCard(cards, k, allFlags[k], allFlags[k] > 0);
+    });
+    $('results').style.display = 'block';
+
+    var tbody = $('anomalies').querySelector('tbody');
+    tbody.innerHTML = '';
+    if (!anomalies.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty">Sin anomalías</td></tr>';
+    } else {
+      anomalies.forEach(function (a) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + a.file + '</td><td>' + a.index + '</td><td>' + a.ts + '</td><td>' + a.type + '</td><td>' + a.detail + '</td>';
+        tbody.appendChild(tr);
+      });
+    }
+    $('anomaliesSection').style.display = 'block';
+
+    renderTimeline(timelinePoints);
+    $('timelineSection').style.display = 'block';
+
+    var ftb = $('flagsTable').querySelector('tbody');
+    ftb.innerHTML = '';
+    Object.keys(allFlags).sort().forEach(function (k) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + k + '</td><td' + (allFlags[k] > 0 ? ' style="color:#ff5555"' : '') + '>' + allFlags[k] + '</td>';
+      ftb.appendChild(tr);
+    });
+    $('flagSection').style.display = Object.keys(allFlags).length ? 'block' : 'none';
+  }
+
+  function addCard(container, k, v, warn) {
+    var d = document.createElement('div');
+    d.className = 'card' + (warn ? ' warn' : '');
+    d.innerHTML = '<div class="k">' + k + '</div><div class="v">' + v + '</div>';
+    container.appendChild(d);
+  }
+
+  var timelineChart = null;
+  function renderTimeline(points) {
+    var counts = {};
+    points.forEach(function (p) { counts[p.day] = (counts[p.day] || 0) + 1; });
+    var days = Object.keys(counts).sort();
+    var values = days.map(function (d) { return counts[d]; });
+    var ctx = $('timeline').getContext('2d');
+    if (timelineChart) timelineChart.destroy();
+    timelineChart = new Chart(ctx, {
+      type: 'bar',
+      data: { labels: days, datasets: [{ label: 'Entradas', data: values, backgroundColor: '#00ff9c' }] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#0a7a52', font: { size: 9 } }, grid: { color: '#0a3a26' } },
+          y: { ticks: { color: '#0a7a52' }, grid: { color: '#0a3a26' }, beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  renderFileList();
+})();
+</script>
+</body>
+</html>

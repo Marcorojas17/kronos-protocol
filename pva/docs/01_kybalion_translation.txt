@@ -1,0 +1,27 @@
+KRONOS 360 - KYBALION TRADUCCION MT01JAAF SHA a4ff808e
+Folio Maestro: 5204160405358537
+Folio Pericial: KRONOS-MT01JAAF
+Sello TRACE: KRONOS-TRACE-PVA-5204160405358537-MT01JAAF
+SC: 2607146379465
+TX Amoy: 0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
+ChainId: 80002 Polygon Amoy
+
+PRINCIPIOS HERMETICOS TRADUCIDOS A LOGICA PVA AUTOPOIETICA:
+
+1. Mentalismo: Todo es mente -> core/hash_to_semantic.py genera manifiesto 51% humano / 49% IA desde GENESIS 41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3
+   SHA a4ff808e = prefijo verificable.
+
+2. Correspondencia: Como es arriba es abajo -> audit/sello_kronos.json refleja blockchain TX Amoy + GitHub Pages jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-MT01JAAF
+
+3. Vibracion: Nada esta inmovil -> robots/robot_kronos.py vibra autopoiesis MT01JAAF
+
+4. Polaridad: 51% HUMANO / 49% IA - innegociable -> scripts/manifiesto_generator.py asegura polaridad + SHA a4ff808e
+
+5. Ritmo: robots/ejecutar.py ciclo auditor->kronos->matriz
+
+6. Causa y Efecto: core/perito_seal.py causa Sello TRACE efecto TX 0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
+
+7. Generacion: web/certificado.html genera prueba NOM-151 Art.8/10/38 + ISO 27001
+
+TRACE COMPLETO MT01JAAF 100/10:
+FOLIO_MAESTRO:5204160405358537|FOLIO_PERICIAL:KRONOS-MT01JAAF|SHA:a4ff808e|SELLO:KRONOS-TRACE-PVA-5204160405358537-MT01JAAF|GENESIS:41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3|SC:2607146379465|TX:0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e

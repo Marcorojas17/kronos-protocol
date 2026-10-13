@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IWC · Análisis de logs WiFi</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --panel: #0f0f0f; --fg: #e8e8e8;
+    --accent: #00ff9d; --dim: #666; --border: #1f1f1f;
+    --warn: #ffb020; --bad: #ff4d4d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    line-height: 1.6; padding: 1.5rem 1rem;
+  }
+  .contenedor { max-width: 1000px; margin: 0 auto; }
+  header {
+    text-align: center; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
+  }
+  .ojo {
+    font-size: 2.5rem; color: var(--accent); letter-spacing: .3rem;
+    text-shadow: 0 0 20px rgba(0,255,157,.35);
+  }
+  h1 { font-size: 1.1rem; letter-spacing: .2rem; color: var(--accent); margin-top: .5rem; }
+  .sub { color: var(--dim); font-size: .7rem; letter-spacing: .1rem; text-transform: uppercase; }
+
+  section {
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.2rem; margin-bottom: 1.2rem; background: var(--panel);
+  }
+  h2 {
+    font-size: .75rem; letter-spacing: .2rem; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem; padding-bottom: .5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  textarea {
+    width: 100%; min-height: 140px; background: #000; color: var(--fg);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: .8rem; font-family: inherit; font-size: .75rem;
+    line-height: 1.5; resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+
+  .botones { display: flex; gap: .6rem; margin-top: .8rem; flex-wrap: wrap; }
+  button {
+    background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 6px;
+    padding: .5rem 1rem; font-family: inherit; font-size: .75rem;
+    letter-spacing: .1rem; text-transform: uppercase; cursor: pointer;
+    transition: background .15s;
+  }
+  button:hover { background: rgba(0,255,157,.1); }
+  button.sec { color: var(--dim); border-color: var(--border); }
+  button.sec:hover { color: var(--fg); border-color: var(--dim); background: transparent; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .8rem; }
+  .card {
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: .8rem; text-align: center;
+  }
+  .card .k { color: var(--dim); font-size: .6rem; letter-spacing: .1rem; text-transform: uppercase; }
+  .card .v { color: var(--accent); font-size: 1.4rem; font-weight: bold; margin-top: .3rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .75rem; }
+  th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--dim); font-size: .65rem; letter-spacing: .1rem; text-transform: uppercase; }
+  td.num { text-align: right; }
+  td.bad { color: var(--bad); }
+  td.good { color: var(--accent); }
+  td.warn { color: var(--warn); }
+
+  .bar {
+    display: inline-block; height: 6px; background: var(--accent);
+    border-radius: 3px; vertical-align: middle; margin-right: .4rem;
+  }
+
+  .status {
+    color: var(--dim); font-size: .8rem; text-align: center;
+    padding: 1rem; border: 1px dashed var(--border); border-radius: 6px;
+  }
+  .err { color: var(--bad); }
+
+  canvas { max-height: 260px; }
+
+  footer {
+    text-align: center; color: var(--dim); font-size: .65rem;
+    padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid var(--border);
+    letter-spacing: .1rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    th, td { padding: .3rem .3rem; font-size: .65rem; }
+    .card .v { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="contenedor">
+
+  <header>
+    <div class="ojo">O_o</div>
+    <h1>IWC · Análisis de logs WiFi</h1>
+    <p class="sub">Q-learning · Samsung Galaxy S9+</p>
+  </header>
+
+  <section>
+    <h2>Pegar log</h2>
+    <textarea id="input" placeholder="Pega aquí el contenido de iwc_dump.txt (o un fragmento). Luego pulsa Analizar."></textarea>
+    <div class="botones">
+      <button id="btn-analizar">Analizar</button>
+      <button id="btn-ejemplo" class="sec">Ver ejemplo</button>
+      <button id="btn-limpiar" class="sec">Limpiar</button>
+    </div>
+  </section>
+
+  <div id="status" class="status">Esperando log. Pega contenido y pulsa Analizar.</div>
+
+  <section id="resumen" hidden>
+    <h2>Resumen general</h2>
+    <div class="cards">
+      <div class="card"><div class="k">Eventos</div><div class="v" id="c-total">—</div></div>
+      <div class="card"><div class="k">APs únicos</div><div class="v" id="c-aps">—</div></div>
+      <div class="card"><div class="k">Conexiones</div><div class="v" id="c-conn">—</div></div>
+      <div class="card"><div class="k">Desconexiones</div><div class="v" id="c-disc">—</div></div>
+      <div class="card"><div class="k">Poor Link</div><div class="v" id="c-poor">—</div></div>
+      <div class="card"><div class="k">Good Link</div><div class="v" id="c-good">—</div></div>
+    </div>
+  </section>
+
+  <section id="ranking" hidden>
+    <h2>Ranking de APs por RSSI promedio</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>BSSID</th>
+          <th class="num">RSSI</th>
+          <th class="num">Mín</th>
+          <th class="num">Máx</th>
+          <th class="num">Buenos</th>
+          <th class="num">Malos</th>
+        </tr>
+      </thead>
+      <tbody id="t-ranking"></tbody>
+    </table>
+  </section>
+
+  <section id="horas" hidden>
+    <h2>Eventos por hora del día</h2>
+    <canvas id="chart-horas"></canvas>
+  </section>
+
+  <section id="apps" hidden>
+    <h2>Aplicaciones en primer plano</h2>
+    <table>
+      <thead><tr><th>App</th><th class="num">Apariciones</th><th></th></tr></thead>
+      <tbody id="t-apps"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    Como es arriba, es en el commit.<br><br>
+    <a href="../">← Volver a PVA</a> ·
+    <a href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-">GitHub</a>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="./parser.js"></script>
+<script>
+(function () {
+  const input      = document.getElementById('input');
+  const status     = document.getElementById('status');
+  const btnAnalizar= document.getElementById('btn-analizar');
+  const btnEjemplo = document.getElementById('btn-ejemplo');
+  const btnLimpiar = document.getElementById('btn-limpiar');
+
+  let chart = null;
+
+  const EJEMPLO = `[09-17 23:12:48.813] Good Link, timestamp =: 1789708365679  RSSI:-65  AP:##:##:##:##:14:50 Direction: -1 Direction (soft): -1
+[09-17 23:17:59.787] Poor Link, timestamp =: 1789708679787  RSSI:-64  AP:##:##:##:##:14:50
+[09-18 01:04:15.534] SNS state, true, timestamp =1789715055534: , edgeflag = false, NEW AP:##:##:##:##:c4:f1
+[09-18 01:04:15.676] Good Link, timestamp =: 1789715055676, RSSI:-44, AP:##:##:##:##:c4:f1
+[09-18 01:26:58.761] Foreground package,:  com.android.chrome(10170)
+[09-18 01:26:58.783] mSNSAvailability:  false, #SteadyState before: 3 after: 3, qai: 1, mCurSNS: true
+[09-18 01:32:21.657] Connecting event, timestamp =1789716741657: , new AP:##:##:##:##:a2:2f
+[09-18 01:32:27.705] List of Known APs: Candidate List: [ <##:##:##:##:55:88;0;1522941629> ]
+[09-18 02:30:03.053] Qtable Dump: < ##:##:##:##:5d:a0 - 4.114158 2.000000 0.000000 > < isSteadyState - 0, mLastSNS - 1, mLastAGG - 1 > < EventBuffer  0 0 0 0 0 0 >
+[09-18 02:30:03.933] Qtable Dump: < ##:##:##:##:5d:9c - 4.454515 2.000000 0.000000 > < isSteadyState - 1, mLastSNS - 1, mLastAGG - 1 > < EventBuffer  0 0 0 0 0 0 >
+[09-18 15:02:25.888] Foreground package,:  com.sec.android.app.music(10711)
+[09-18 15:02:25.976] Auto Disconnection Event, timestamp = 1789765345976: , RSSI=-55, Old AP=##:##:##:##:30:2e
+[09-18 15:16:12.261] SNS state, true, timestamp =1789766172260: , edgeflag = true, NEW AP:##:##:##:##:30:2e
+[09-18 15:16:13.451] Good Link, timestamp =: 1789766173450, RSSI:-49, AP:##:##:##:##:30:2e
+[09-18 15:20:03.959] Qtable Dump: < ##:##:##:##:30:2e - 4.995456 2.000000 0.000000 > < isSteadyState - 1 >`;
+
+  function mostrar(secciones, visible) {
+    secciones.forEach(id => {
+      document.getElementById(id).hidden = !visible;
+    });
+  }
+
+  function analizar(texto) {
+    if (!texto || !texto.trim()) {
+      status.className = 'status err';
+      status.textContent = 'Pega algo de log primero.';
+      mostrar(['resumen','ranking','horas','apps'], false);
+      return;
+    }
+
+    const eventos = window.IWC.parseLog(texto);
+
+    if (eventos.length === 0) {
+      status.className = 'status err';
+      status.textContent = 'No se extrajeron eventos. ¿El log es del formato IWC de Samsung?';
+      mostrar(['resumen','ranking','horas','apps'], false);
+      return;
+    }
+
+    const s = window.IWC.summarize(eventos);
+
+    status.className = 'status';
+    status.textContent = `OK · ${eventos.length} eventos procesados.`;
+    mostrar(['resumen','ranking','horas','apps'], true);
+
+    // Resumen
+    document.getElementById('c-total').textContent = s.total.toLocaleString();
+    document.getElementById('c-aps').textContent   = s.ranking.length;
+    document.getElementById('c-conn').textContent  = s.byType.connect || 0;
+    document.getElementById('c-disc').textContent  = s.byType.disconnect || 0;
+    document.getElementById('c-poor').textContent  = s.byType.poor_link || 0;
+    document.getElementById('c-good').textContent  = s.byType.good_link || 0;
+
+    // Ranking
+    const tb = document.getElementById('t-ranking');
+    tb.innerHTML = '';
+    for (const ap of s.ranking.slice(0, 40)) {
+      const tr = document.createElement('tr');
+      const cls = ap.avgRssi > -50 ? 'good' : ap.avgRssi > -70 ? 'warn' : 'bad';
+      tr.innerHTML = `
+        <td>${ap.bssid}</td>
+        <td class="num ${cls}">${ap.avgRssi ?? '—'}</td>
+        <td class="num">${ap.min}</td>
+        <td class="num">${ap.max}</td>
+        <td class="num good">${ap.good}</td>
+        <td class="num bad">${ap.poor}</td>
+      `;
+      tb.appendChild(tr);
+    }
+
+    // Apps
+    const ta = document.getElementById('t-apps');
+    ta.innerHTML = '';
+    const maxApp = s.apps[0]?.n || 1;
+    for (const a of s.apps.slice(0, 15)) {
+      const tr = document.createElement('tr');
+      const w = Math.round((a.n / maxApp) * 100);
+      tr.innerHTML = `
+        <td>${a.app}</td>
+        <td class="num">${a.n}</td>
+        <td><span class="bar" style="width:${w}px"></span></td>
+      `;
+      ta.appendChild(tr);
+    }
+
+    // Chart
+    if (chart) chart.destroy();
+    chart = new Chart(document.getElementById('chart-horas'), {
+      type: 'bar',
+      data: {
+        labels: s.hours.map(h => h.hour + 'h'),
+        datasets: [{
+          data: s.hours.map(h => h.n),
+          backgroundColor: 'rgba(0,255,157,0.5)',
+          borderColor: '#00ff9d',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#666', font: { size: 9 } }, grid: { color: '#1a1a1a' } },
+          y: { ticks: { color: '#666' }, grid: { color: '#1a1a1a' } }
+        }
+      }
+    });
+  }
+
+  btnAnalizar.addEventListener('click', () => analizar(input.value));
+  btnEjemplo.addEventListener('click', () => {
+    input.value = EJEMPLO;
+    analizar(EJEMPLO);
+  });
+  btnLimpiar.addEventListener('click', () => {
+    input.value = '';
+    status.className = 'status';
+    status.textContent = 'Esperando log. Pega contenido y pulsa Analizar.';
+    mostrar(['resumen','ranking','horas','apps'], false);
+  });
+})();
+</script>
+</body>
+</html>
