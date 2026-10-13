@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false,
+    "baseUrl": ".",
+    "paths": {
+      "@arkhe/crypto/*": ["crypto/*"],
+      "@arkhe/cimiento/*": ["cimiento/*"],
+      "@arkhe/provenance/*": ["provenance/*"],
+      "@arkhe/agents/*": ["agents/*"],
+      "@arkhe/certificacion/*": ["certificacion/*"],
+      "@arkhe/gobernanza/*": ["gobernanza/*"]
+    }
+  },
+  "include": [
+    "crypto/**/*.js",
+    "cimiento/**/*.js",
+    "provenance/**/*.js",
+    "agents/**/*.js",
+    "certificacion/**/*.js",
+    "gobernanza/**/*.js",
+    "src/**/*.js"
+  ],
+  "exclude": ["node_modules", "dist", "marco.mcp", "tests"]
+}

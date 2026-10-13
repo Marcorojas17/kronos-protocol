@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" width="300" height="60">
+  <rect width="300" height="60" fill="none" stroke="#d4af37" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="150" y="25" text-anchor="middle" fill="#d4af37" font-family="monospace" font-size="12" letter-spacing="4">◯_● · 51/49/100</text>
+  <text x="150" y="45" text-anchor="middle" fill="#8a7328" font-family="monospace" font-size="9" letter-spacing="2">KRONOS PROTOCOL</text>
+</svg>

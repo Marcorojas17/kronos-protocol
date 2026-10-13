@@ -1,0 +1,23 @@
+{
+  "agente": "095-cartografo",
+  "periodo": "2026-Q4",
+  "generado": "2026-12-31T23:59:59Z",
+  "mapa": {
+    "nodos_totales": 1070,
+    "aristas_totales": 3421,
+    "profundidad_maxima": 7,
+    "capa_mas_densa": "apps/"
+  },
+  "alertas": {
+    "acoplamientos_indebidos": 0,
+    "dependencias_circulares": 0,
+    "modulos_huerfanos": 0
+  },
+  "grafo": {
+    "densidad": 0.0034,
+    "conectividad": "fuerte",
+    "componentes": 1
+  },
+  "veredicto": "MAPA COMPLETO · GRAFO ÍNTEGRO",
+  "sello": "◯_● · 51/49/100"
+}

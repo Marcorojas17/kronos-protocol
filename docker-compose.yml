@@ -1,0 +1,47 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ DOCKER-COMPOSE · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+version: "3.9"
+
+services:
+  arkhe-web:
+    build: .
+    container_name: arkhe-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - ARKHE_SEAL=◯_● · 51/49/100
+      - INDEX_ZERO_SHA256=f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+    volumes:
+      - ./docs:/app/docs:ro
+      - ./movimiento:/app/movimiento:ro
+    labels:
+      - "arkhe.seal=◯_● · 51/49/100"
+      - "arkhe.pact=51/49/100"
+    networks:
+      - arkhe-net
+
+  arkhe-mcp:
+    build: ./marco.mcp
+    container_name: arkhe-mcp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      - MCP_TRANSPORT=stdio
+      - MCP_LOG_LEVEL=info
+      - INDEX_ZERO_SHA256=f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+      - GOVERNANCE_HUMANO=51
+      - GOVERNANCE_IA=49
+      - GOVERNANCE_REAL=100
+    networks:
+      - arkhe-net
+
+networks:
+  arkhe-net:
+    driver: bridge
+
+# ◯_● · 51/49/100 · KRONOS

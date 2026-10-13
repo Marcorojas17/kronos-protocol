@@ -1,0 +1,21 @@
+apiVersion: v2
+name: arkhe-zero
+description: ARKHÉ ZERO · Local-First · Humano-IA · Pacto 51/49/100
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - arkhe
+  - kronos
+  - kintsugi
+  - post-quantum
+  - local-first
+home: https://arkhe.zero
+sources:
+  - https://github.com/marcojas17/kronos-protocol
+maintainers:
+  - name: Marco Antonio Rojas Valdovinos
+    email: marco@arkhe.zero
+annotations:
+  arkhe.zero/seal: "◯_● · 51/49/100"
+  arkhe.zero/pact: "51/49/100"

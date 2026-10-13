@@ -1,0 +1,62 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ SERVICE MESH · ZERO-TRUST · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · GENESIS: K28-M05-MN01-YHDRYH-92CE
+# ═══════════════════════════════════════════════════════════════════════════
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: arkhe-web
+  namespace: arkhe-zero
+  labels:
+    app: arkhe-web
+    seal: "◯_●-51-49-100"
+    nodo: "YHDRYH-92CE"
+  annotations:
+    arkhe.zero/genesis: "K28-M05-MN01-YHDRYH-92CE"
+    arkhe.zero/pact: "51-49-100"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+    - name: metrics
+      port: 9090
+      targetPort: 9090
+  selector:
+    app: arkhe-web
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arkhe-mcp
+  namespace: arkhe-zero
+  labels:
+    app: arkhe-mcp
+    seal: "◯_●-51-49-100"
+spec:
+  type: ClusterIP
+  ports:
+    - name: mcp
+      port: 7777
+      targetPort: 7777
+  selector:
+    app: arkhe-mcp
+
+---
+# mTLS · todas las comunicaciones internas cifradas
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: arkhe-mtls
+  namespace: arkhe-zero
+  labels:
+    seal: "◯_●-51-49-100"
+spec:
+  mtls:
+    mode: STRICT
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEMO · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="demo" data-theme="terminal-green">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/demo]────────────────────────┐
+   │   D E M O   ·   ◯_●                                │
+   │   Prueba el sistema sin firmar nada real           │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🧪 Demo Interactiva</h1>
+
+<p>Prueba el flujo completo sin compromiso. Nada se ancla a Ethereum.</p>
+
+<form class="form-canonical" id="demo-form">
+  <label for="demo-contenido">CONTENIDO DE PRUEBA</label>
+  <textarea id="demo-contenido" rows="4" placeholder="Escribe cualquier cosa. Ejemplo: 'Prueba de demo 2026'"></textarea>
+
+  <label for="demo-alg">ALGORITMO</label>
+  <select id="demo-alg">
+    <option value="ML-DSA-87">ML-DSA-87</option>
+    <option value="SLH-DSA-SHAKE-256s">SLH-DSA-SHAKE-256s</option>
+    <option value="Ed25519+ML-DSA-87">Ed25519 + ML-DSA-87</option>
+  </select>
+
+  <button type="submit" class="btn-primary">▶ EJECUTAR DEMO</button>
+</form>
+
+<pre id="demo-output" class="terminal-block output-block">
+[ INFO ] Esperando contenido...
+[ >> ] Esta es una demo · no se ancla nada real
+[ >> ] Prueba el flujo completo sin compromiso
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · demo</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+<script type="module" src="../assets/js/crypto-handler.js"></script>
+<script type="module">
+import { firmar } from '../assets/js/crypto-handler.js';
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('demo-form');
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const out = document.getElementById('demo-output');
+    const contenido = document.getElementById('demo-contenido').value;
+    const alg = document.getElementById('demo-alg').value;
+    out.textContent = '[ >> ] Procesando...';
+    const r = await firmar({ contenido, algoritmo: alg });
+    out.textContent = JSON.stringify(r, null, 2);
+  });
+});
+</script>
+</body>
+</html>

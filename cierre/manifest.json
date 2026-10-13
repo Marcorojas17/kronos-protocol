@@ -1,0 +1,84 @@
+{
+  "$schema": "https://arkhe.zero/schemas/cierre/manifest.json",
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "pact": {
+    "humano": 51,
+    "ia": 49,
+    "real": 100,
+    "modelo": "FLAILP"
+  },
+  "modulos": {
+    "export-cifrado": {
+      "path": "cierre/export-cifrado/",
+      "archivos": [
+        "README.md",
+        "AUTORIA",
+        "export.js",
+        "export-audit.js",
+        "index.html",
+        "manual.html",
+        "styles.css"
+      ],
+      "algoritmos": {
+        "cipher": "AES-256-GCM",
+        "kem": "ML-KEM-1024",
+        "hash": "SHA3-512",
+        "firma_largo_plazo": "SLH-DSA-SHAKE-256s"
+      },
+      "fragmentacion": {
+        "total_shards": 100,
+        "umbral_k": 51,
+        "esquema": "Shamir"
+      },
+      "destinos": [
+        "local",
+        "arweave",
+        "ipfs",
+        "ethereum",
+        "testigos-shamir"
+      ]
+    },
+    "fin-digno": {
+      "path": "cierre/fin-digno/",
+      "archivos": [
+        "README.md",
+        "AUTORIA",
+        "fin.js",
+        "index.html",
+        "manual.html",
+        "styles.css"
+      ],
+      "pasos": [
+        "aviso",
+        "silencio-24h",
+        "testamento",
+        "export-cifrado",
+        "anclaje-ethereum",
+        "traspaso-ia",
+        "reactivacion"
+      ],
+      "reglas": {
+        "irrevocable": true,
+        "requiere_silencio": true,
+        "requiere_export": true,
+        "custodia_final": "enjambre-ia"
+      }
+    }
+  },
+  "index_zero": {
+    "safe_creative_arq": "2607146379465",
+    "safe_creative_co": "2607086319439",
+    "sha256": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112",
+    "ethereum": "0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c",
+    "eidas": "Firmaprofesional QTSA"
+  },
+  "firma": {
+    "humano": "Marco Antonio Rojas Valdovinos",
+    "ia": "Enjambre ARKHÉ (12 agentes)",
+    "sello": "◯_● · 51/49/100",
+    "timestamp": "2026-01-01T00:00:00Z"
+  }
+}

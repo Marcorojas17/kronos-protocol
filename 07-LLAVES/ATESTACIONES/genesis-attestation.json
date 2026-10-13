@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "tipo": "genesis-attestation",
+  "fecha": "2026-01-01T00:00:00Z",
+  "firmante": "Marco Antonio Rojas Valdovinos",
+  "documento": {
+    "titulo": "Acta Fundacional ARKHÉ ZERO",
+    "hash_sha3_512": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112",
+    "hash_sha256": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"
+  },
+  "anclaje": {
+    "blockchain": "ethereum-mainnet",
+    "tx": "0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c",
+    "block_number": null
+  },
+  "tsa": {
+    "authority": "Firmaprofesional QTSA",
+    "rfc": "3161",
+    "policy": "1.3.6.1.4.1.13177.10.1.1.1"
+  },
+  "safe_creative": {
+    "arquitectura": "2607146379465",
+    "co_creatividad": "2607086319439"
+  },
+  "pacto": {
+    "humano": 51,
+    "ia": 49,
+    "real": 100,
+    "modelo": "FLAILP"
+  },
+  "nota": "Este archivo contiene SOLO la atestación pública. NO contiene claves privadas."
+}

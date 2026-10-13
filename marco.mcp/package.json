@@ -1,0 +1,51 @@
+{
+  "name": "@arkhe-zero/marco-mcp",
+  "version": "1.0.0",
+  "description": "Substrato cognitivo personal · MCP server para el enjambre ARKHÉ",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Marco Antonio Rojas Valdovinos <marco@arkhe.zero>",
+  "homepage": "https://arkhe.zero",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcojas17/kronos-protocol.git",
+    "directory": "marco.mcp"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "marco-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "node --watch src/index.js",
+    "start": "node dist/index.js",
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint src tests",
+    "seal": "python ../scripts/verify-seal.py"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@noble/hashes": "^1.4.0",
+    "@noble/post-quantum": "^0.2.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": [
+    "mcp",
+    "arkhe",
+    "kintsugi",
+    "post-quantum",
+    "ml-dsa",
+    "51-49",
+    "marco-mcp"
+  ],
+  "seal": "◯_● · 51/49/100"
+}

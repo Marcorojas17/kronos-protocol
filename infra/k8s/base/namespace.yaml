@@ -1,0 +1,14 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ K8S · NAMESPACE · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: arkhe-zero
+  labels:
+    name: arkhe-zero
+    seal: "◯_●-51-49-100"
+    pact: "51-49-100"
+  annotations:
+    arkhe.zero/seal: "◯_● · 51/49/100"
+    arkhe.zero/index-zero-sha256: "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"

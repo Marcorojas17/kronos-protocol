@@ -1,0 +1,20 @@
+{
+  "network": "mainnet",
+  "chainId": 1,
+  "seal": "◯_● · 51/49/100",
+  "contracts": {
+    "RegistroGenesis": "0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c",
+    "Pacto5149": null,
+    "LicenciaGlobalUnica": null,
+    "FondoFLAILP": null,
+    "CoAutoria": null,
+    "AgenteReclutamiento": null,
+    "ReporteCARF": null
+  },
+  "deployed_at": "2026-01-01T00:00:00Z",
+  "notas": [
+    "Solo RegistroGenesis está desplegado en mainnet.",
+    "Otros contratos pendientes de despliegue post-auditoría.",
+    "Todo contrato desplegado debe cumplir Pacto 51/49/100."
+  ]
+}

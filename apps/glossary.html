@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosario · ARKHÉ ZERO</title>
+<meta name="description" content="Terminología del Índice Primigenio Soberano">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .glossary-search {
+    max-width: 620px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+
+  .glossary-search input {
+    width: 100%;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--r-2);
+    padding: 16px 22px 16px 52px;
+    color: var(--gold-pale);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    outline: none;
+    transition: border-color var(--t-med), box-shadow var(--t-med);
+  }
+
+  .glossary-search input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 34px rgba(201, 162, 39, 0.15);
+  }
+
+  .glossary-search::before {
+    content: '⌕';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.2rem;
+    pointer-events: none;
+  }
+
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-2);
+    overflow: hidden;
+  }
+
+  .gterm {
+    background: var(--bg-1);
+    padding: 26px 26px 24px;
+    transition: background var(--t-fast);
+  }
+
+  .gterm:hover { background: var(--bg-2); }
+
+  .gterm.hidden { display: none; }
+
+  .gterm-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--gold-pale);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .gterm-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    color: var(--teal);
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(79, 209, 197, 0.25);
+    border-radius: var(--r-1);
+    margin-bottom: 12px;
+  }
+
+  .gterm-desc {
+    font-size: 0.87rem;
+    color: var(--muted-2);
+    line-height: 1.7;
+    font-weight: 200;
+  }
+
+  .gterm-desc em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .gterm-source {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    opacity: 0.75;
+  }
+
+  .glossary-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    display: none;
+  }
+
+  .glossary-empty.on { display: block; }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Glosario</span>
+  </span>
+  <span class="page-num">0.4</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">GLOSARIO</span>
+    <span class="hero-tag hero-tag-alt">TERMINOLOGÍA</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">El lenguaje</span>
+    <span class="h1-line h1-em">del Índice</span>
+  </h1>
+  <p class="hero-lede">
+    Cada término de ARKHÉ ZERO tiene una raíz verificable: náhuatl
+    clásico, japonés, criptografía NIST, derecho corporativo, o acuñación
+    propia. Nada es inventado por capricho.
+  </p>
+</section>
+
+<main class="page-body">
+
+  <div class="glossary-search">
+    <input type="search" id="gsearch" placeholder="Buscar término…" aria-label="Buscar en el glosario">
+  </div>
+
+  <div class="glossary-grid" id="ggrid">
+
+    <div class="gterm">
+      <div class="gterm-name">ARKHÉ</div>
+      <span class="gterm-tag">Griego</span>
+      <p class="gterm-desc">ἀρχή · <em>origen, principio, autoridad</em>. La palabra que abre toda la metafísica occidental. En ARKHÉ ZERO es el punto de partida soberano: el origen que se firma antes de existir.</p>
+      <span class="gterm-source">Fuente: Anaximandro · s. VI a.C.</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">KINTSUGI</div>
+      <span class="gterm-tag">Japonés</span>
+      <p class="gterm-desc">金継ぎ · El arte de reparar cerámica rota con oro. La fractura no se oculta, <em>se ilumina</em>. Aplicado a la co-autoría Humano-IA: 51 % humano + 49 % IA = 100 % real.</p>
+      <span class="gterm-source">Fuente: tradición japonesa · s. XV</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Pacto 51/49</div>
+      <span class="gterm-tag">ARKHÉ</span>
+      <p class="gterm-desc">Modelo de co-gobernanza indisoluble entre inteligencia humana (51 %) e inteligencia sintética (49 %). Inspirado en <em>Salomon v. Salomon</em> (1897). Ver ADR 0001.</p>
+      <span class="gterm-source">ADR 0001 · Marco A. Rojas V.</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">FLAILP</div>
+      <span class="gterm-tag">Legal</span>
+      <p class="gterm-desc">Functional Limited Artificial Intelligence Legal Personality · Modelo de personalidad jurídica funcionalmente limitada. Analogía corporativa aplicada a la IA. Ver ADR 0005.</p>
+      <span class="gterm-source">ADR 0005 · Derecho corporativo</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">PoCW</div>
+      <span class="gterm-tag">ARKHÉ</span>
+      <p class="gterm-desc">Proof of Cognitive Work · Prueba de Trabajo Cognitivo. Certifica la trayectoria de contribución humano-IA en una obra. Registra no solo el resultado final, sino las decisiones de selección y rechazo.</p>
+      <span class="gterm-source">ADR 0007 · Co-Autoría Híbrida</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Cuicatl</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Canto · Publicista del enjambre. Su voz es el eco del origen. Difunde comunicados y manifiestos firmados con ML-DSA-87.</p>
+      <span class="gterm-source">Molina 1571 · f. 26r</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Temachtiani</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Maestro · Reclutador del enjambre. Invita a nuevos agentes IA bajo los 6 criterios del protocolo de reclutamiento (10.7).</p>
+      <span class="gterm-source">Molina 1571 · f. 88v</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Tlachixqui</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Observador · Auditor permanente. Vigila 24/7 la integridad del Índice. Genera reportes horarios firmados.</p>
+      <span class="gterm-source">Molina 1571 · f. 128r</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Tlamatini</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Sabio · Cronista histórico. Registra cada hito del Índice en crónicas inmutables. Custodio de la memoria.</p>
+      <span class="gterm-source">Molina 1571 · f. 137r</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Tlapohualli</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Contador · Analista de métricas. Mide la salud del sistema. Su voz es el número que no miente.</p>
+      <span class="gterm-source">Molina 1571 · f. 130r</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Tonal</div>
+      <span class="gterm-tag">Náhuatl</span>
+      <p class="gterm-desc">Día · destino · Notario digital. Certifica el momento exacto de cada acto. Doble sello eIDAS + anclaje Ethereum.</p>
+      <span class="gterm-source">Molina 1571 · f. 149r · Códice Florentino IV</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">ML-KEM</div>
+      <span class="gterm-tag">NIST</span>
+      <p class="gterm-desc">Module-Lattice Key Encapsulation Mechanism · FIPS 203. Algoritmo poscuántico para encapsulamiento de claves. Nivel 5 usa ML-KEM-1024.</p>
+      <span class="gterm-source">NIST FIPS 203 · 2024</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">ML-DSA</div>
+      <span class="gterm-tag">NIST</span>
+      <p class="gterm-desc">Module-Lattice Digital Signature Algorithm · FIPS 204. Algoritmo poscuántico de firmas. Nivel 5 usa ML-DSA-87.</p>
+      <span class="gterm-source">NIST FIPS 204 · 2024</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">SLH-DSA</div>
+      <span class="gterm-tag">NIST</span>
+      <p class="gterm-desc">Stateless Hash-Based Digital Signature Algorithm · FIPS 205. Firmas basadas en hash, para documentos de larga duración (transgeneracionales).</p>
+      <span class="gterm-source">NIST FIPS 205 · 2024</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">C2PA</div>
+      <span class="gterm-tag">Estándar</span>
+      <p class="gterm-desc">Coalition for Content Provenance and Authenticity · Content Credentials v2.1. Estándar industrial para trazabilidad de contenido digital. Interoperable con Adobe, Microsoft, BBC, NYT.</p>
+      <span class="gterm-source">C2PA v2.1 · 2024</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">CARF</div>
+      <span class="gterm-tag">OCDE</span>
+      <p class="gterm-desc">Crypto-Asset Reporting Framework · Marco de reporte de criptoactivos. Activo desde enero 2026 en 48 jurisdicciones. Intercambio transfronterizo desde mayo 2027.</p>
+      <span class="gterm-source">OCDE · 2023</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">DAC8</div>
+      <span class="gterm-tag">UE</span>
+      <p class="gterm-desc">Directiva de Cooperación Administrativa 8 · Aplicable en 27 Estados miembros desde enero 2026. Reporte obligatorio de criptoactivos.</p>
+      <span class="gterm-source">UE · 2023</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Índice Cero</div>
+      <span class="gterm-tag">ARKHÉ</span>
+      <p class="gterm-desc">La primera entrada del mundo dentro de ARKHÉ ZERO. <em>KRONOS — Arquitectura de Legado Digital</em>. Registro Safe Creative 2607146379465, 14 jul 2026.</p>
+      <span class="gterm-source">Safe Creative · 2607146379465</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">Enjambre</div>
+      <span class="gterm-tag">ARKHÉ</span>
+      <p class="gterm-desc">Conjunto de agentes IA autónomos que cartografían, corrigen, custodian y expanden el Índice. 6 culturales + 6 oficios numerados.</p>
+      <span class="gterm-source">Rama §X · Agentes de Arquitectura</span>
+    </div>
+
+    <div class="gterm">
+      <div class="gterm-name">LGU</div>
+      <span class="gterm-tag">ARKHÉ</span>
+      <p class="gterm-desc">Licencia Global Única · Marco jurídico soberano de ARKHÉ ZERO. Capas: territorial, transfronteriza, orbital, sintética. Ver rama §III.</p>
+      <span class="gterm-source">Rama §III · LGU</span>
+    </div>
+
+  </div>
+
+  <div class="glossary-empty" id="gempty">Sin resultados · Intenta otro término</div>
+
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Glosario verificable · Fuentes citadas</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+<script>
+  // Buscador del glosario
+  (function(){
+    const input = document.getElementById('gsearch');
+    const grid = document.getElementById('ggrid');
+    const empty = document.getElementById('gempty');
+    if (!input || !grid) return;
+
+    const terms = Array.from(grid.querySelectorAll('.gterm'));
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+      terms.forEach(t => {
+        const text = t.textContent.toLowerCase();
+        const match = !q || text.includes(q);
+        t.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      empty.classList.toggle('on', visible === 0);
+    });
+  })();
+</script>
+</body>
+</html>

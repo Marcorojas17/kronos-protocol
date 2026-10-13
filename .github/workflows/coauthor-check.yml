@@ -1,0 +1,14 @@
+name: Coauthor Check
+on: [pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar pacto 51/49
+        run: |
+          echo "◯_● · 51% humano · 49% IA · 100% real"
+          grep -q "51/49/100" README.md
+      - name: Verificar coautoría IA en commits
+        run: |
+          git log --pretty=%B | grep -c "◯_●" || true

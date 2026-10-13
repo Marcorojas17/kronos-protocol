@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GUÍA AVANZADA · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-page="guia-avanzada" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/guia-avanzada]────────────────┐
+   │   G U Í A   A V A N Z A D A   ·   ◯_●              │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>📘 Guía Avanzada</h1>
+
+<h2>🜂 Firmas híbridas</h2>
+<pre class="terminal-block">
+La firma híbrida combina Ed25519 (clásica) + ML-DSA-87 (PQC).
+Si una falla → falla toda. Defensa en profundidad.
+</pre>
+
+<h2>🜃 Custodia multi-firma</h2>
+<pre class="terminal-block">
+Para obras críticas, usar Shamir Secret Sharing:
+- 100 fragmentos
+- Cualesquiera 51 reconstruyen
+- 49 son insuficientes
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<h2>🜄 Anclaje por lotes (batching)</h2>
+<pre class="terminal-block">
+Agrupa N hashes en un Merkle root.
+Un solo anclaje a Ethereum para todos.
+Reduce costos 100x.
+</pre>
+
+<h2>🜁 Integración con HSM</h2>
+<pre class="terminal-block">
+Soporta PKCS#11, CloudHSM, YubiHSM, SoftHSM.
+Las claves nunca salen del hardware.
+</pre>
+
+<h2>🜆 Auditoría externa</h2>
+<pre class="terminal-block">
+Todo hash tiene cadena de custodia.
+Verificable con: kronos audit --chain=full
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · guia-avanzada</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

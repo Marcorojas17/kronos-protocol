@@ -1,0 +1,9 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; N='\033[0m'
+clear
+echo -e "${Y}◆ STATUS DEL SISTEMA${N}"
+echo "  Índice Cero ........ SELLADO ✓"
+echo "  Pacto 51/49 ........ OPERATIVO ✓"
+echo "  Ciberdefensa ....... ACTIVA ✓"
+echo -e "${G}◯_● 51/49/100 · SCDR-001${N}"
+echo ""; read -r

@@ -1,0 +1,36 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ .EDITORCONFIG · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{js,mjs,cjs,jsx,ts,tsx,json,yml,yaml,html,css,scss,md}]
+indent_size = 2
+
+[*.py]
+indent_size = 4
+max_line_length = 88
+
+[*.sol]
+indent_size = 4
+max_line_length = 120
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[Makefile]
+indent_style = tab
+
+[*.{bat,cmd}]
+end_of_line = crlf
+
+# ◯_● · 51/49/100 · KRONOS

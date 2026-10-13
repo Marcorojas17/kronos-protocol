@@ -1,0 +1,364 @@
+/* ═══════════════════════════════════════════════════════════════
+   ARKHÉ ZERO · NAVEGACIÓN UNIVERSAL
+   Back · Forward · Home · Índice · Theme
+   Adapta colores automáticamente según data-theme
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Barra superior ─────────────────────────────────────────── */
+.nav-top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: linear-gradient(to bottom, rgba(4, 4, 10, 0.92), rgba(4, 4, 10, 0.4) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-soft);
+  transition: background var(--t-med), padding var(--t-med);
+}
+
+.nav-top.scrolled {
+  padding: 10px 28px;
+  background: rgba(4, 4, 10, 0.96);
+  border-bottom-color: var(--line);
+}
+
+/* ── Marca ──────────────────────────────────────────────────── */
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--gold-pale);
+  transition: transform var(--t-fast);
+}
+
+.nav-brand:hover { transform: translateX(2px); }
+
+.brand-symbol {
+  font-size: 1.4rem;
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--glow);
+  transition: transform var(--t-med), text-shadow var(--t-med);
+}
+
+.nav-brand:hover .brand-symbol {
+  transform: rotate(45deg);
+  text-shadow: 0 0 32px var(--glow-strong);
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.brand-kintsugi {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--teal);
+  opacity: 0.7;
+  margin-left: 6px;
+}
+
+/* ── Controles de navegación ────────────────────────────────── */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  color: var(--gold-lt);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  outline: none;
+}
+
+.nav-btn:hover {
+  background: rgba(201, 162, 39, 0.08);
+  border-color: var(--line-strong);
+  color: var(--gold-pale);
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.nav-btn:active { transform: scale(0.94); }
+
+.nav-btn:disabled,
+.nav-btn[disabled] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nav-btn.active {
+  background: rgba(201, 162, 39, 0.12);
+  border-color: var(--gold);
+  color: var(--gold-pale);
+}
+
+.nav-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: block;
+}
+
+/* Tooltip */
+.nav-btn::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--bg-2);
+  color: var(--gold-lt);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-1);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: all var(--t-fast);
+}
+
+.nav-btn:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Overlay de índice ──────────────────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(4, 4, 10, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-med), visibility var(--t-med);
+  padding: 40px 28px;
+  overflow-y: auto;
+}
+
+.nav-overlay.on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay-inner {
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+}
+
+.overlay-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  color: var(--gold-lt);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.overlay-close:hover {
+  background: rgba(201, 162, 39, 0.1);
+  border-color: var(--gold);
+  color: var(--gold-pale);
+}
+
+.overlay-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.42em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.overlay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  overflow: hidden;
+}
+
+.overlay-item {
+  background: var(--bg-1);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background var(--t-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.overlay-item:hover {
+  background: var(--bg-2);
+}
+
+.overlay-item-num {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.overlay-item-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--gold-pale);
+  letter-spacing: 0.02em;
+}
+
+.overlay-item-path {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ── Barra inferior (breadcrumbs) ───────────────────────────── */
+.nav-bottom {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px;
+  background: linear-gradient(to top, rgba(4, 4, 10, 0.94), rgba(4, 4, 10, 0.5) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nav-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-breadcrumb a {
+  color: var(--gold-lt);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.nav-breadcrumb a:hover { color: var(--gold-pale); }
+
+.nav-breadcrumb-sep {
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+.nav-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  width: 60px;
+  height: 2px;
+  background: var(--line);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width var(--t-slow);
+}
+
+/* ── Toast ──────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translate(-50%, 120%);
+  z-index: 300;
+  background: linear-gradient(160deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.08));
+  border: 1px solid var(--gold);
+  border-radius: var(--r-2);
+  color: var(--gold-pale);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--t-med), opacity var(--t-med);
+}
+
+.toast.on {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .nav-top {
+    padding: 10px 16px;
+  }
+  .nav-top.scrolled {
+    padding: 8px 16px;
+  }
+  .brand-kintsugi { display: none; }
+  .brand-text { font-size: 0.95rem; letter-spacing: 0.18em; }
+  .nav-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+  .nav-btn::after { display: none; }
+  .overlay-grid { grid-template-columns: 1fr; }
+  .nav-bottom { font-size: 0.55rem; padding: 8px 16px; }
+  .nav-breadcrumb { display: none; }
+}

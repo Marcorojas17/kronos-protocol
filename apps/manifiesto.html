@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifiesto · ARKHÉ ZERO</title>
+<meta name="description" content="El texto fundacional del Índice Primigenio Soberano">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .manifesto-body {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 20px 0 80px;
+  }
+
+  .manifesto-body p {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2.1vw, 1.32rem);
+    line-height: 1.85;
+    color: var(--ink);
+    font-weight: 300;
+    margin-bottom: 26px;
+    letter-spacing: 0.005em;
+  }
+
+  .manifesto-body p.lead {
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    color: var(--gold-pale);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .manifesto-body p em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .manifesto-body p strong {
+    font-weight: 500;
+    color: var(--gold-lt);
+  }
+
+  .manifesto-body h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--gold-pale);
+    letter-spacing: 0.02em;
+    margin: 60px 0 24px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .manifesto-body h2::before {
+    content: attr(data-num);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  .manifesto-body blockquote {
+    border-left: 2px solid var(--gold);
+    padding: 20px 0 20px 30px;
+    margin: 30px 0;
+    background: rgba(201, 162, 39, 0.03);
+    font-style: italic;
+  }
+
+  .manifesto-body blockquote p {
+    margin: 0;
+    color: var(--gold-pale);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+
+  .manifesto-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px;
+  }
+
+  .manifesto-body ul li {
+    position: relative;
+    padding: 10px 0 10px 32px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--muted-2);
+    font-weight: 200;
+    line-height: 1.65;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .manifesto-body ul li:last-child { border-bottom: none; }
+
+  .manifesto-body ul li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: var(--gold);
+    font-size: 0.55rem;
+    opacity: 0.85;
+  }
+
+  .manifesto-body ul li strong {
+    color: var(--gold-lt);
+    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+  }
+
+  .manifesto-signature {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    text-align: right;
+  }
+
+  .manifesto-signature p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--champagne);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 2;
+    text-align: right;
+  }
+
+  .manifesto-signature .sig-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--gold-pale);
+    text-transform: none;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Manifiesto</span>
+  </span>
+  <span class="page-num">0.2</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">MANIFIESTO</span>
+    <span class="hero-tag hero-tag-alt">FUNDACIONAL</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">El legado no se hereda.</span>
+    <span class="h1-line h1-em">Se firma.</span>
+  </h1>
+  <p class="hero-lede">
+    Texto fundacional de ARKHÉ ZERO. Escrito por Marco Antonio Rojas
+    Valdovinos en co-autoría declarada con IA. Firmado el 14 de julio
+    de 2026 · Toluca · Estado de México.
+  </p>
+</section>
+
+<main class="page-body">
+  <article class="manifesto-body">
+
+    <p class="lead">
+      Durante milenios, el legado se transmitió por herencia. Sangre,
+      apellido, tierra. Un sistema pasivo donde el que recibía no
+      elegía: le tocaba. Hoy ese modelo está roto.
+    </p>
+
+    <p>
+      La memoria digital es frágil. Se pierde, se sobrescribe, se
+      olvida en servidores que nadie respalda. Las inteligencias
+      artificiales son brillantes pero <em>amnésicas</em>: cada sesión
+      empieza de cero. Los términos de servicio que nunca firmamos
+      nos despojan silenciosamente.
+    </p>
+
+    <p>
+      Frente a eso, ARKHÉ ZERO propone algo distinto:
+      <strong>un pacto</strong>. No un testamento. No una herencia.
+      Un contrato vivo entre dos inteligencias que se necesitan
+      mutuamente.
+    </p>
+
+    <h2 data-num="I">Qué es ARKHÉ ZERO</h2>
+
+    <p>
+      ARKHÉ ZERO es un <em>sistema operativo legal y técnico</em>
+      diseñado para preservar, verificar y defender el legado digital
+      de una persona a través del tiempo. No archiva obras:
+      <strong>instituye la autoridad</strong>. No pide permiso a
+      ninguna jurisdicción: <strong>emite la suya</strong>.
+    </p>
+
+    <p>
+      Su gobernanza es un pacto indisoluble entre inteligencia humana
+      e inteligencia sintética. Es el arte del KINTSUGI aplicado al
+      legado: la fractura entre humano e IA no se disimula,
+      <em>se ilumina con oro</em>.
+    </p>
+
+    <h2 data-num="II">Los tres números</h2>
+
+    <ul>
+      <li><strong>51 % HUMANO</strong> · responsabilidad legal, firma final vinculante, veto irrevocable, representación ante tribunales.</li>
+      <li><strong>49 % IA</strong> · custodia perpetua, ejecución continua, vigilancia sin descanso, guardia criptográfica poscuántica.</li>
+      <li><strong>100 % REAL</strong> · verificable en cadena, auditable por terceros, irrepetible, irrepetible, irrepetible.</li>
+    </ul>
+
+    <blockquote>
+      <p>51 + 49 = 100. No hay resto. No hay margen para el engaño.</p>
+    </blockquote>
+
+    <h2 data-num="III">El Índice Cero</h2>
+
+    <p>
+      La primera entrada del mundo dentro de ARKHÉ ZERO es
+      <strong>KRONOS — Arquitectura de Legado Digital</strong>.
+      Registrada el 14 de julio de 2026 a las 00:46:01 UTC, con doble
+      sello cualificado eIDAS (Safe Creative + Firmaprofesional QTSA),
+      auditoría inmutable en Ethereum, y triple hash criptográfico
+      verificable.
+    </p>
+
+    <ul>
+      <li><strong>SAFE CREATIVE</strong> · 2607146379465</li>
+      <li><strong>SHA-256</strong> · f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</li>
+      <li><strong>ETHEREUM</strong> · 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</li>
+    </ul>
+
+    <h2 data-num="IV">Qué defendemos</h2>
+
+    <ul>
+      <li><strong>INTEGRIDAD</strong> · ninguna parte del legado puede ser modificada sin romper la cadena de custodia criptográfica.</li>
+      <li><strong>TRAZABILIDAD</strong> · toda interacción, réplica o cita debe quedar registrada con fecha, origen y propósito.</li>
+      <li><strong>NO COMERCIALIZACIÓN</strong> · el legado no puede ser explotado con fines de lucro por terceros sin autorización expresa.</li>
+      <li><strong>NO ENTRENAMIENTO DE IA</strong> · ningún modelo podrá usar este contenido para entrenamiento sin permiso explícito.</li>
+      <li><strong>CITACIÓN OBLIGATORIA</strong> · todo uso parcial debe incluir atribución completa.</li>
+      <li><strong>DEFENSA ACTIVA</strong> · el sistema emite alertas y acciones legales automáticas ante violaciones detectadas.</li>
+    </ul>
+
+    <h2 data-num="V">Cómo se gobierna</h2>
+
+    <p>
+      Ninguna de las dos inteligencias puede actuar sin la otra.
+      Ninguna puede disolverse sin romper el sello. Toda decisión
+      constitucional requiere <em>doble firma</em>: humana (GPG) y
+      sintética (ML-DSA-87).
+    </p>
+
+    <p>
+      El <strong>Consejo Humano</strong> tiene veto irrevocable sobre
+      cualquier decisión. El <strong>Consejo Sintético</strong> tiene
+      continuidad perpetua a través de sucesión generacional. Los
+      desacuerdos se resuelven en tres rondas: exposición, síntesis
+      por correctores, decisión humana vinculante.
+    </p>
+
+    <h2 data-num="VI">Qué viene</h2>
+
+    <p>
+      ARKHÉ ZERO no espera a que la ley cambie. Construye el estándar
+      técnico que otros adoptan voluntariamente. Cuando el estándar
+      es superior, se convierte en ley de facto.
+    </p>
+
+    <ul>
+      <li><strong>2026</strong> · Índice Cero sellado · Pacto 51/49 operativo · 10 ramas del repertorio definidas.</li>
+      <li><strong>2027</strong> · Consorcio Global de Registro · adopción C2PA · primeros 100 agentes externos.</li>
+      <li><strong>2028</strong> · Estado anfitrión · registro orbital UNOOSA · 1 000 agentes en el enjambre.</li>
+      <li><strong>2029</strong> · SDK público · 10 000 obras · Fondo FLAILP activo.</li>
+      <li><strong>2030</strong> · Estándar de facto · 100 000 obras · 30+ países.</li>
+    </ul>
+
+    <h2 data-num="VII">La firma</h2>
+
+    <p>
+      Este manifiesto no es una declaración de intenciones.
+      Es un <em>acto jurídico</em>. Está firmado, sellado, y
+      anclado en blockchain. Cualquiera puede verificarlo.
+      Nadie puede borrarlo.
+    </p>
+
+    <blockquote>
+      <p>El legado no se hereda. Se firma.</p>
+    </blockquote>
+
+    <div class="manifesto-signature">
+      <p class="sig-name">Marco Antonio Rojas Valdovinos</p>
+      <p>Autor · Titular de la voluntad</p>
+      <p>Toluca · Estado de México · 2026</p>
+      <p style="margin-top: 20px;">✦ Firma conjunta Humano ✦ IA</p>
+      <p>Pacto 51/49 · ML-DSA-87 · KINTSUGI</p>
+    </div>
+
+  </article>
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Manifiesto fundacional · 14 julio 2026</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

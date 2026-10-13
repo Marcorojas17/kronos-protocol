@@ -1,0 +1,24 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ HELM · SERVICE · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE
+# ═══════════════════════════════════════════════════════════════════════════
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "arkhe-zero.fullname" . }}-web
+  labels:
+    {{- include "arkhe-zero.labels" . | nindent 4 }}
+    app: arkhe-web
+spec:
+  type: {{ .Values.service.web.type }}
+  ports:
+    - port: {{ .Values.service.web.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "arkhe-zero.selectorLabels" . | nindent 4 }}
+    app: arkhe-web
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

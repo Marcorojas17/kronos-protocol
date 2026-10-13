@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "pages": [
+    { "path": "/",                    "title": "Hub",           "theme": "terminal-amber" },
+    { "path": "/apps/kintsugi.html",  "title": "KINTSUGI",      "theme": "terminal-gold" },
+    { "path": "/apps/verificar.html", "title": "Verificar",     "theme": "terminal-green" },
+    { "path": "/apps/registrar.html", "title": "Registrar",     "theme": "terminal-cyan" },
+    { "path": "/apps/composer.html",  "title": "Composer",      "theme": "terminal-gold" },
+    { "path": "/apps/governance.html","title": "Gobernanza",    "theme": "terminal-purple" },
+    { "path": "/apps/agentes.html",   "title": "Agentes",       "theme": "terminal-green" },
+    { "path": "/apps/crypto.html",    "title": "Crypto",        "theme": "terminal-green" },
+    { "path": "/apps/provenance.html","title": "Provenance",    "theme": "terminal-cyan" },
+    { "path": "/apps/tesis.html",     "title": "Tesis",         "theme": "terminal-gold" },
+    { "path": "/apps/404.html",       "title": "404",           "theme": "terminal-red" }
+  ]
+}

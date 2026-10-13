@@ -1,0 +1,57 @@
+# ▓▒░ ARKHÉ ZERO · marco.mcp · .gitignore ░▒▓
+
+# ─── Node ──────────────────────────────────────────────
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.npm/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ─── Entorno y secretos ────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+vault/
+.llaves/
+
+# ─── Índice Cero (NUNCA SUBIR) ─────────────────────────
+!*.example
+*.hash
+*.sig
+*.ml-dsa
+*.ml-kem
+
+# ─── Editor ────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*~
+
+# ─── SO ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Tests ─────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+
+# ─── Logs ──────────────────────────────────────────────
+logs/
+*.log
+
+# ─── Backup ────────────────────────────────────────────
+backup/
+*.bak
+*.tmp
+
+# ◯_● · 51/49/100 · KRONOS

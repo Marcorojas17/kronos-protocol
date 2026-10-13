@@ -1,0 +1,12 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; N='\033[0m'
+echo -e "${Y}◯_● ARKHÉ ZERO · INSTALADOR${N}"
+echo "Instalando dependencias..."
+apk add bash curl wget git python3 openssl nmap netcat-openbsd bind-tools figlet toilet 2>/dev/null
+echo -e "${G}✓ Dependencias instaladas${N}"
+mkdir -p ~/arkhe-zero/{logs,index,firma,backups}
+echo -e "${G}✓ Directorios creados${N}"
+echo ""
+echo -e "${Y}Ahora copia tus scripts desde el backup o Git.${N}"
+echo "Cuando termines: bash ~/arkhe-zero/autostart &"
+echo ""; read -r

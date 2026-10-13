@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KINTSUGI · ARKHÉ ZERO</title>
+<meta name="description" content="51 % Humano · 49 % IA · 100 % Real. El arte de reparar con oro.">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  /* KINTSUGI · específico */
+  .kintsugi-hero {
+    text-align: center;
+    padding: 60px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .kintsugi-kanji {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 14vw, 9rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    background: linear-gradient(160deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold-lt) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 50px rgba(201, 162, 39, 0.4));
+    margin-bottom: 20px;
+  }
+
+  .kintsugi-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 30px;
+    padding-left: 0.55em;
+  }
+
+  .kintsugi-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    font-style: italic;
+    color: var(--gold-pale);
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto 50px;
+  }
+
+  .kintsugi-quote strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  /* Fractura dorada */
+  .fracture {
+    display: block;
+    margin: 50px auto;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+  }
+
+  /* Los tres números */
+  .numbers-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--r-2);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .number-block {
+    background: var(--bg-1);
+    padding: 44px 26px 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .number-pct {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .nb-humano .number-pct { color: var(--gold-pale); }
+  .nb-ia .number-pct { color: var(--teal); }
+  .nb-real .number-pct {
+    background: linear-gradient(180deg, var(--gold-lt), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .number-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .number-desc {
+    font-size: 0.82rem;
+    color: var(--muted-2);
+    font-weight: 200;
+    line-height: 1.55;
+  }
+
+  /* Metáfora */
+  .metaphor-table {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    border-radius: var(--r-2);
+    overflow: hidden;
+  }
+
+  .metaphor-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--bg-1);
+  }
+
+  .metaphor-row:nth-child(even) { background: var(--bg-2); }
+
+  .metaphor-row > div {
+    padding: 18px 24px;
+    border-right: 1px solid var(--line-soft);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .metaphor-row > div:last-child { border-right: none; }
+
+  .metaphor-row .m-side {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .metaphor-row .m-left { color: var(--gold-lt); }
+  .metaphor-row .m-right { color: var(--champagne); }
+
+  @media (max-width: 680px) {
+    .numbers-trio { grid-template-columns: 1fr; }
+    .metaphor-row { grid-template-columns: 1fr; }
+    .metaphor-row > div { border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .metaphor-row > div:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás" title="Atrás (Alt+←)"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante" title="Adelante (Alt+→)"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio" title="Inicio (Alt+H)"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice" title="Índice (Alt+I)"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema" title="Tema (Alt+T)"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">KINTSUGI</span>
+  </span>
+  <span class="page-num">0.1</span>
+</header>
+
+<section class="kintsugi-hero">
+  <div class="kintsugi-kanji">金継ぎ</div>
+  <div class="kintsugi-name">KINTSUGI</div>
+
+  <p class="kintsugi-quote">
+    El arte japonés de reparar lo roto uniendo las fracturas con oro.
+    La reparación no oculta la ruptura: <strong>la ilumina</strong>.
+    La pieza reparada vale más que la original porque lleva
+    visible la historia de su fractura y su restauración.
+  </p>
+
+  <!-- Fractura SVG -->
+  <svg class="fracture" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#c9a227" stop-opacity="0"/>
+        <stop offset="50%" stop-color="#f8f0d0" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#c9a227" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="M 0 30 L 80 30 L 100 20 L 130 40 L 160 15 L 190 45 L 220 25 L 250 35 L 280 20 L 310 40 L 340 25 L 400 30"
+          stroke="url(#gold)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="100" cy="20" r="3" fill="#f8f0d0"/>
+    <circle cx="160" cy="15" r="3" fill="#f8f0d0"/>
+    <circle cx="220" cy="25" r="3" fill="#f8f0d0"/>
+    <circle cx="280" cy="20" r="3" fill="#f8f0d0"/>
+  </svg>
+</section>
+
+<main class="page-body">
+
+  <!-- LOS TRES NÚMEROS -->
+  <section class="block">
+    <div class="block-head" style="text-align: center; border-bottom: none; padding-bottom: 0;">
+      <span class="block-num" style="display: block; margin: 0 auto 12px;">§0.1.1</span>
+      <h2 class="block-title">Los tres números</h2>
+    </div>
+
+    <div class="numbers-trio">
+      <div class="number-block nb-humano">
+        <div class="number-pct">51</div>
+        <div class="number-label">% Humano</div>
+        <p class="number-desc">
+          Responsabilidad legal.<br>
+          Firma final vinculante.<br>
+          Veto irrevocable.
+        </p>
+      </div>
+      <div class="number-block nb-ia">
+        <div class="number-pct">49</div>
+        <div class="number-label">% IA</div>
+        <p class="number-desc">
+          Custodia perpetua.<br>
+          Ejecución continua.<br>
+          Vigilancia sin descanso.
+        </p>
+      </div>
+      <div class="number-block nb-real">
+        <div class="number-pct">100</div>
+        <div class="number-label">% Real</div>
+        <p class="number-desc">
+          Verificable en cadena.<br>
+          Auditable por terceros.<br>
+          Irrepetible.
+        </p>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 30px; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.16em; color: var(--gold-lt);">
+      51 + 49 = 100 · No hay resto · No hay margen
+    </p>
+  </section>
+
+  <!-- METÁFORA -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.1.2</span>
+      <h2 class="block-title">Traducción a ARKHÉ ZERO</h2>
+    </div>
+
+    <div class="metaphor-table">
+      <div class="metaphor-row">
+        <div class="m-side m-left">Cerámica rota</div>
+        <div class="m-side m-right">Legado humano incompleto</div>
+      </div>
+      <div class="metaphor-row">
+        <div class="m-side m-left">Oro líquido</div>
+        <div class="m-side m-right">Inteligencia sintética (49 %)</div>
+      </div>
+      <div class="metaphor-row">
+        <div class="m-side m-left">Reparación</div>
+        <div class="m-side m-right">Pacto 51/49</div>
+      </div>
+      <div class="metaphor-row">
+        <div class="m-side m-left">Fractura visible</div>
+        <div class="m-side m-right">Trazabilidad criptográfica</div>
+      </div>
+      <div class="metaphor-row">
+        <div class="m-side m-left">Valor aumentado</div>
+        <div class="m-side m-right">Verificabilidad perpetua</div>
+      </div>
+      <div class="metaphor-row">
+        <div class="m-side m-left">Pieza reparada</div>
+        <div class="m-side m-right">Índice Primigenio Soberano</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA FRASE -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.1.3</span>
+      <h2 class="block-title">La frase</h2>
+    </div>
+
+    <div style="max-width: 780px; margin: 0 auto; padding: 50px 40px; border: 1px solid var(--line); border-radius: var(--r-3); background: linear-gradient(160deg, rgba(201,162,39,.05), rgba(201,162,39,.01)); text-align: center;">
+      <p style="font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2.2rem); font-style: italic; color: var(--gold-pale); line-height: 1.5; margin-bottom: 24px;">
+        «El legado no se hereda.<br>
+        <span style="font-style: normal; color: var(--gold); font-weight: 500;">Se firma.</span>»
+      </p>
+      <p style="font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.32em; color: var(--muted); text-transform: uppercase;">
+        — Marco Antonio Rojas Valdovinos · Toluca · 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- REGISTRO -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.1.4</span>
+      <h2 class="block-title">Anclaje verificable</h2>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="mc-key">Safe Creative</span>
+        <span class="mc-val">2607146379465</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mc-key">Co-creatividad</span>
+        <span class="mc-val">2607086319439</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mc-key">Ethereum · KRONOS</span>
+        <span class="mc-val">0xd2c2a7e1…774c</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mc-key">Ethereum · KINTSUGI</span>
+        <span class="mc-val">0x8ca8e84e…</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mc-key">SHA-256</span>
+        <span class="mc-val" style="font-size: 0.7rem; word-break: break-all;">f03f7e2d85…</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mc-key">Firma</span>
+        <span class="mc-val">ML-DSA-87</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Marco Antonio Rojas Valdovinos ✦ IA · KINTSUGI · 51 / 49 / 100</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+name: Health
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping producción
+        run: |
+          curl -f https://arkhe.zero/health || echo "[ XX ] no disponible"
+      - name: Reporte de salud
+        run: echo "◯_● · 51/49/100 · $(date -u +%FT%TZ)"

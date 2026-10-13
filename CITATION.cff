@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "Si usas ARKHÉ ZERO en trabajo académico, cita como sigue."
+title: "ARKHÉ ZERO · El Índice Primigenio Soberano"
+abstract: |
+  ARKHÉ ZERO es un sistema operativo legal y técnico diseñado
+  para preservar, verificar y defender el legado digital de una
+  persona a través del tiempo, mediante un pacto indisoluble
+  entre inteligencia humana e inteligencia sintética.
+authors:
+  - family-names: "Rojas Valdovinos"
+    given-names: "Marco Antonio"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "ARKHÉ ZERO · Toluca · México"
+    alias: "Humano 51 %"
+  - name: "Enjambre ARKHÉ"
+    alias: "IA 49 %"
+    website: "https://arkhe.zero"
+repository-code: "https://github.com/kronos-protocol/arkhe-zero"
+url: "https://arkhe.zero"
+license: "LGU"
+version: "1.0.0"
+date-released: "2026-07-14"
+keywords:
+  - "legado digital"
+  - "propiedad intelectual"
+  - "criptografía poscuántica"
+  - "co-autoría híbrida"
+  - "KINTSUGI"
+  - "Pacto 51/49"
+  - "FLAILP"
+  - "Safe Creative"
+  - "eIDAS"
+  - "Ethereum"
+identifiers:
+  - type: "doi"
+    value: "10.5281/arkhe-zero.2026.1"
+  - type: "url"
+    value: "https://www.safecreative.org/work/2607146379465"
+preferred-citation:
+  type: "software"
+  title: "ARKHÉ ZERO · El Índice Primigenio Soberano"
+  authors:
+    - family-names: "Rojas Valdovinos"
+      given-names: "Marco Antonio"
+    - name: "Enjambre ARKHÉ"
+  year: 2026
+  version: "1.0.0"
+  doi: "10.5281/arkhe-zero.2026.1"

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <rect width="200" height="80" fill="#0a0a0a"/>
+  <circle cx="60" cy="40" r="14" fill="none" stroke="#d4af37" stroke-width="2.5"/>
+  <rect x="85" y="37" width="30" height="6" fill="#d4af37"/>
+  <circle cx="140" cy="40" r="14" fill="#d4af37"/>
+  <text x="100" y="72" text-anchor="middle" fill="#d4af37" font-family="monospace" font-size="10" letter-spacing="3">KINTSUGI</text>
+</svg>

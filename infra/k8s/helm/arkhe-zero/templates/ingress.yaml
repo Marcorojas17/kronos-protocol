@@ -1,0 +1,41 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ HELM · INGRESS · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · HTTPS force redirect · TLS auto
+# ═══════════════════════════════════════════════════════════════════════════
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "arkhe-zero.fullname" . }}
+  labels:
+    {{- include "arkhe-zero.labels" . | nindent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-protocols: "TLSv1.3"
+    arkhe.zero/nodo: "YHDRYH-92CE"
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ include "arkhe-zero.fullname" . }}-tls
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "arkhe-zero.fullname" . }}-web
+                port:
+                  number: {{ .Values.service.web.port }}
+{{- end }}
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

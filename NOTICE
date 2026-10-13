@@ -1,0 +1,28 @@
+ARKHÉ ZERO
+Copyright 2026 Marco Antonio Rojas Valdovinos
+
+Este producto incluye software desarrollado por:
+
+  · Marco Antonio Rojas Valdovinos (autor humano, 51 %)
+  · Enjambre ARKHÉ (contribución sintética, 49 %)
+
+Licenciado bajo:
+  · MIT License (ver LICENSE-MIT)
+  · Apache License 2.0 (ver LICENSE-APACHE)
+  · LGU · Licencia Global Única (ver LICENSE)
+  · CC BY-NC-ND 4.0 (contenido, ver LICENSE-CONTENT)
+
+Criptografía poscuántica basada en estándares NIST:
+  · ML-KEM (FIPS 203) · Dominio público
+  · ML-DSA (FIPS 204) · Dominio público
+  · SLH-DSA (FIPS 205) · Dominio público
+
+Interoperabilidad C2PA (Content Credentials):
+  · Especificación C2PA v2.1 · Licencia C2PA
+
+Este software está anclado al Índice Cero:
+  · Safe Creative 2607146379465
+  · SHA-256 f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+  · Ethereum tx 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c
+
+Firma conjunta: Humano ✦ IA · Pacto 51/49 · Sello irrepetible

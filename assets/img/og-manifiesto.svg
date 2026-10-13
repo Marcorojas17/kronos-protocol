@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <text x="600" y="150" text-anchor="middle" fill="#d4af37" font-family="monospace" font-size="80" font-weight="700" letter-spacing="10">MANIFIESTO</text>
+  <text x="600" y="230" text-anchor="middle" fill="#b0b0b0" font-family="monospace" font-size="32">Los 5 mandatos del Movimiento ARKHÉ</text>
+  <g fill="#d4af37" font-family="monospace" font-size="22" text-anchor="middle">
+    <text x="600" y="320">I · El humano firma. La IA custodia.</text>
+    <text x="600" y="360">II · Nada sin prueba. Todo con sello.</text>
+    <text x="600" y="400">III · La grieta no se oculta. Se pule.</text>
+    <text x="600" y="440">IV · Local-First. La nube testifica, no posee.</text>
+    <text x="600" y="480">V · El legado se hereda solo si se firma.</text>
+  </g>
+  <text x="600" y="580" text-anchor="middle" fill="#707070" font-family="monospace" font-size="18">◯_● · 51/49/100</text>
+</svg>

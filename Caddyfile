@@ -1,0 +1,42 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ CADDYFILE · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+arkhe.zero {
+  encode gzip zstd
+  root * /app
+  file_server
+
+  header {
+    X-Frame-Options "DENY"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    X-Arkhe-Seal "◯_● · 51/49/100"
+    -Server
+  }
+
+  @blocked {
+    path /07-LLAVES/* /secrets/* /.env*
+  }
+  respond @blocked 403
+
+  try_files {path} {path}/ {path}.html /apps/404.html
+
+  handle_errors {
+    @404 expression {err.status_code} == 404
+    rewrite @404 /apps/404.html
+    file_server
+  }
+
+  log {
+    output file /var/log/caddy/arkhe.log
+    format json
+  }
+
+  tls {
+    protocols tls1.3
+  }
+}
+
+# ◯_● · 51/49/100 · KRONOS

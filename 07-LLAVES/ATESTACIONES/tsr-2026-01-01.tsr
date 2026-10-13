@@ -1,0 +1,20 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ TOKEN TSA · RFC 3161 · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+#
+#  Este archivo es un PLACEHOLDER para el token ASN.1 real.
+#  En producción: binario emitido por Firmaprofesional QTSA.
+#
+#  TSA      : Firmaprofesional QTSA
+#  RFC      : 3161
+#  Policy   : 1.3.6.1.4.1.13177.10.1.1.1
+#  Hash     : f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce...
+#  Fecha    : 2026-01-01T00:00:00Z
+#
+#  Para verificar el token real:
+#  openssl ts -verify -in tsr-2026-01-01.tsr -data acta.pdf -CAfile tsa.crt
+#
+# ───────────────────────────────────────────────────────────────
+#  [ PLACEHOLDER · NO CONTIENE TOKEN REAL ]
+#  ◯_● · 51/49/100 · KRONOS
+# ═══════════════════════════════════════════════════════════════

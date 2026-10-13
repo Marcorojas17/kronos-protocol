@@ -1,0 +1,19 @@
+{
+  "network": "localhost",
+  "chainId": 31337,
+  "seal": "◯_● · 51/49/100",
+  "contracts": {
+    "RegistroGenesis": null,
+    "Pacto5149": null,
+    "LicenciaGlobalUnica": null,
+    "FondoFLAILP": null,
+    "CoAutoria": null,
+    "AgenteReclutamiento": null,
+    "ReporteCARF": null
+  },
+  "deployed_at": null,
+  "notas": [
+    "Entorno de desarrollo local.",
+    "Comando: anvil + forge script"
+  ]
+}

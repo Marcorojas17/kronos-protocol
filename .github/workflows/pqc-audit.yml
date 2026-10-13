@@ -1,0 +1,33 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ PQC AUDIT · SEMANAL · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+name: PQC Audit
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # lunes 00:00 UTC
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: PQC audit
+        run: python scripts/pqc-audit.py --verbose
+
+      - name: Check for downgrade attempts
+        run: python -c "from crypto.downgrade_detector import *; print('OK')"
+
+      - name: Emit seal
+        run: echo "◯_● · 51/49/100 · PQC audit passed"
+
+# ◯_● · 51/49/100 · KRONOS

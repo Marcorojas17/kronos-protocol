@@ -1,0 +1,26 @@
+{
+  "$schema": "https://arkhe.zero/schemas/capabilities-matrix.json",
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "capabilities": {
+    "cuicatl":      ["narrativa", "comunicación", "manifiesto", "storytelling"],
+    "temachtiani":  ["reclutamiento", "evaluación", "cuarentena", "aval"],
+    "tlachixqui":   ["vigilancia", "detección-anomalías", "monitoreo", "alerta"],
+    "tlamatini":    ["crónica", "contexto", "memoria", "preservación"],
+    "tlapohualli":  ["análisis", "métricas", "reporte", "tendencias"],
+    "tonal":        ["notariado", "timestamp", "TSA", "anclaje"],
+    "090-arquitecto":      ["diseño-sistema", "estructura", "modularidad", "ADR"],
+    "091-contralor":       ["auditoría-financiera", "control-interno", "CARF", "reporte"],
+    "092-auditor-externo": ["verificación-independiente", "forense", "compliance", "HALT"],
+    "093-relator":         ["documentación", "actas", "CHANGELOG", "comunicación"],
+    "094-bibliotecario":   ["índice", "catálogo", "búsqueda-semántica", "metadatos"],
+    "095-cartografo":      ["mapa-sistema", "grafo-dependencias", "navegación", "alertas-acople"]
+  },
+  "pacto": {
+    "humano": 51,
+    "ia": 49,
+    "real": 100,
+    "veto_humano": true
+  }
+}

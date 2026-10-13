@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <g opacity="0.08" fill="#d4af37">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="200" cy="200" r="100" fill="none" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="200" cy="200" r="50" fill="none" stroke="#d4af37" stroke-width="2"/>
+    <text x="200" y="210" text-anchor="middle" font-family="monospace" font-size="40" letter-spacing="8">◯_●</text>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; R='\033[0;31m'; N='\033[0m'
+clear
+echo -e "${R}🚨 SIMULANDO ATAQUE...${N}"
+sleep 1; echo -e "${Y}► Detectando payload...${N}"
+sleep 1; echo -e "${Y}► Analizando firma...${N}"
+sleep 1; echo -e "${G}✅ BLOQUEADO POR ML-KEM-1024${N}"
+echo "$(date) ATAQUE BLOQUEADO" >> ~/arkhe-zero/logs/defensa.log
+echo ""; read -r

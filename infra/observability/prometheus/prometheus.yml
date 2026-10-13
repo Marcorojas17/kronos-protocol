@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ PROMETHEUS · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    seal: "◯_● · 51/49/100"
+    pact: "51/49/100"
+
+scrape_configs:
+  - job_name: 'arkhe-web'
+    static_configs:
+      - targets: ['arkhe-web:8080']
+        labels:
+          service: 'web'
+
+  - job_name: 'arkhe-mcp'
+    static_configs:
+      - targets: ['arkhe-mcp:7777']
+        labels:
+          service: 'mcp'
+
+  - job_name: 'arkhe-crypto'
+    static_configs:
+      - targets: ['arkhe-crypto:9090']
+        labels:
+          service: 'crypto'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - 'alerts/*.yml'
+
+# ◯_● · 51/49/100 · KRONOS

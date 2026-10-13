@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "algoritmos": {
+    "ml-kem-512":   { "tipo": "kem", "nivel": 1, "latencia": "baja",  "seguridad": "media", "fips": "203" },
+    "ml-kem-768":   { "tipo": "kem", "nivel": 3, "latencia": "media", "seguridad": "alta",  "fips": "203" },
+    "ml-kem-1024":  { "tipo": "kem", "nivel": 5, "latencia": "alta",  "seguridad": "máxima","fips": "203" },
+    "ml-dsa-44":    { "tipo": "sig", "nivel": 2, "tamano_firma": "pequeño", "fips": "204" },
+    "ml-dsa-65":    { "tipo": "sig", "nivel": 3, "tamano_firma": "medio",   "fips": "204" },
+    "ml-dsa-87":    { "tipo": "sig", "nivel": 5, "tamano_firma": "grande",  "fips": "204" },
+    "slh-dsa-shake-256s": { "tipo": "sig", "nivel": 5, "hash_based": true, "fips": "205" },
+    "sha3-512":     { "tipo": "hash", "bits": 512, "fips": "202" },
+    "ed25519":      { "tipo": "sig", "nivel": 3, "clasico": true, "rfc": "8032" },
+    "x25519":       { "tipo": "kem", "nivel": 3, "clasico": true, "rfc": "7748" },
+    "aes-256-gcm":  { "tipo": "sym", "bits": 256, "fips": "197" },
+    "hkdf-sha3-512":{ "tipo": "kdf", "rfc": "5869" }
+  },
+  "combinaciones_recomendadas": [
+    { "uso": "firma-actas",          "alg": ["ml-dsa-87", "ed25519"], "modo": "híbrido" },
+    { "uso": "firma-archivo",        "alg": ["slh-dsa-shake-256s"],   "modo": "largo-plazo" },
+    { "uso": "kem-sesion",           "alg": ["x25519", "ml-kem-768"], "modo": "híbrido" },
+    { "uso": "kem-alta-seguridad",   "alg": ["ml-kem-1024"],          "modo": "solo-pqc" },
+    { "uso": "hash-integridad",      "alg": ["sha3-512"],             "modo": "único" },
+    { "uso": "cifrado-local",        "alg": 

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap · ARKHÉ ZERO</title>
+<meta name="description" content="2026 → 2030 · Del Índice Cero al estándar de facto internacional">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 40px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+
+  .tl-year {
+    position: relative;
+    padding: 0 0 60px 100px;
+  }
+
+  .tl-year:last-child { padding-bottom: 0; }
+
+  .tl-year::before {
+    content: '';
+    position: absolute;
+    left: 33px;
+    top: 12px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--bg-0);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  .tl-year.past::before {
+    background: var(--gold);
+    border-color: var(--gold-lt);
+  }
+
+  .tl-year.future::before {
+    background: var(--bg-0);
+    border-style: dashed;
+  }
+
+  .tl-year-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--gold-pale);
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+
+  .tl-year-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--r-1);
+    margin-bottom: 24px;
+  }
+
+  .tl-tag-past {
+    color: var(--teal);
+    border: 1px solid rgba(79, 209, 197, 0.35);
+    background: rgba(79, 209, 197, 0.06);
+  }
+
+  .tl-tag-future {
+    color: var(--gold-lt);
+    border: 1px solid rgba(201, 162, 39, 0.35);
+    background: rgba(201, 162, 39, 0.06);
+  }
+
+  .tl-items {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .tl-items li {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 18px;
+    background: var(--bg-1);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-2);
+    font-size: 0.88rem;
+    color: var(--muted-2);
+    line-height: 1.6;
+    transition: border-color var(--t-med), background var(--t-med);
+  }
+
+  .tl-items li:hover {
+    border-color: var(--line);
+    background: var(--bg-2);
+  }
+
+  .tl-items .q {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+    opacity: 0.75;
+    text-transform: uppercase;
+    min-width: 40px;
+  }
+
+  .tl-items strong {
+    color: var(--gold-lt);
+    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .kpi-table {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    border-radius: var(--r-2);
+    overflow: hidden;
+  }
+
+  .kpi-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .kpi-table th,
+  .kpi-table td {
+    padding: 14px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-align: right;
+    border-bottom: 1px solid var(--line-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .kpi-table th {
+    background: var(--bg-1);
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .kpi-table td {
+    background: var(--bg-1);
+    color: var(--champagne);
+    text-align: center;
+  }
+
+  .kpi-table tr:nth-child(even) td {
+    background: var(--bg-2);
+  }
+
+  .kpi-table td:first-child {
+    text-align: left;
+    color: var(--gold-pale);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .timeline::before { left: 20px; }
+    .tl-year { padding-left: 70px; }
+    .tl-year::before { left: 13px; }
+  }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Roadmap</span>
+  </span>
+  <span class="page-num">0.5</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">ROADMAP</span>
+    <span class="hero-tag hero-tag-alt">2026 → 2030</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">Cinco años</span>
+    <span class="h1-line h1-em">para instituir</span>
+  </h1>
+  <p class="hero-lede">
+    Del Índice Cero al estándar de facto internacional. Cada año
+    tiene sus hitos declarados. Todo público. Todo verificable.
+  </p>
+</section>
+
+<main class="page-body">
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.5.1</span>
+      <h2 class="block-title">Línea de tiempo</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-year past">
+        <div class="tl-year-num">2026</div>
+        <span class="tl-year-tag tl-tag-past">● Anclaje · cerrado</span>
+        <ul class="tl-items">
+          <li><span class="q">Q3</span><span>Índice Cero sellado — <strong>2607146379465</strong> · KRONOS registrado</span></li>
+          <li><span class="q">Q3</span><span>Pacto 51/49 operativo — gobernanza pública</span></li>
+          <li><span class="q">Q3</span><span>10 ramas del repertorio definidas</span></li>
+          <li><span class="q">Q4</span><span>Solicitud WIPO CWS como nodo fundador</span></li>
+          <li><span class="q">Q4</span><span>Constitución del Consorcio Global de Autoría</span></li>
+          <li><span class="q">Q4</span><span>Registro de marca ARKHÉ ZERO en México + WIPO Madrid</span></li>
+        </ul>
+      </div>
+
+      <div class="tl-year future">
+        <div class="tl-year-num">2027</div>
+        <span class="tl-year-tag tl-tag-future">◇ Expansión</span>
+        <ul class="tl-items">
+          <li><span class="q">Q1</span><span>Lanzamiento del protocolo <strong>KTP-001</strong> (Kronos Transfer)</span></li>
+          <li><span class="q">Q2</span><span>Adopción de C2PA v2.1 en toda la plataforma</span></li>
+          <li><span class="q">Q3</span><span>Primeros 100 agentes IA externos en el enjambre</span></li>
+          <li><span class="q">Q4</span><span>Reconocimiento de firma ML-DSA-87 por 3+ jurisdicciones</span></li>
+          <li><span class="q">Q2</span><span>Intercambio CARF transfronterizo activo</span></li>
+          <li><span class="q">Q2</span><span>DAC8 operativo en 27 Estados UE</span></li>
+        </ul>
+      </div>
+
+      <div class="tl-year future">
+        <div class="tl-year-num">2028</div>
+        <span class="tl-year-tag tl-tag-future">◇ Consolidación</span>
+        <ul class="tl-items">
+          <li><span class="q">Q1</span><span>Estado anfitrión seleccionado (México / Estonia / Suiza)</span></li>
+          <li><span class="q">Q2</span><span>Registro orbital UNOOSA activado</span></li>
+          <li><span class="q">Q3</span><span>Primera sentencia judicial favorable usando Índice Cero</span></li>
+          <li><span class="q">Q4</span><span>1 000 agentes IA activos en el enjambre</span></li>
+          <li><span class="q">Q1</span><span>Directiva UE reconoce Co-Autoría Híbrida</span></li>
+          <li><span class="q">Q3</span><span>WIPO adopta Tarea No. 59 como estándar</span></li>
+        </ul>
+      </div>
+
+      <div class="tl-year future">
+        <div class="tl-year-num">2029</div>
+        <span class="tl-year-tag tl-tag-future">◇ Masificación</span>
+        <ul class="tl-items">
+          <li><span class="q">Q1</span><span>SDK público en 5 lenguajes</span></li>
+          <li><span class="q">Q2</span><span>10 000 obras registradas en el Índice</span></li>
+          <li><span class="q">Q3</span><span>Fondo FLAILP alcanza 1 M USD</span></li>
+          <li><span class="q">Q4</span><span>ARKHÉ ZERO mencionado en 100+ publicaciones académicas</span></li>
+          <li><span class="q">Q2</span><span>Tratado internacional sobre co-autoría IA (ONU)</span></li>
+          <li><span class="q">Q4</span><span>CARF alcanza 80 jurisdicciones</span></li>
+        </ul>
+      </div>
+
+      <div class="tl-year future">
+        <div class="tl-year-num">2030</div>
+        <span class="tl-year-tag tl-tag-future">◆ Estándar de facto</span>
+        <ul class="tl-items">
+          <li><span class="q">Q1</span><span>ARKHÉ ZERO es referencia en 30+ países</span></li>
+          <li><span class="q">Q2</span><span>Protocolo KTP-002 (Kronos Legado) adoptado</span></li>
+          <li><span class="q">Q3</span><span>100 000 obras · 10 000 agentes · 100 M USD custodiados</span></li>
+          <li><span class="q">Q4</span><span>Migración PQC completa en 5 regiones (Canadá, UE, Japón, Corea, Australia)</span></li>
+          <li><span class="q">Q1</span><span>NIST publica FIPS 206 (FN-DSA) e integra ARKHÉ en referencias</span></li>
+          <li><span class="q">Q3</span><span>Reconocimiento como "infraestructura crítica cultural" en UNESCO</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.5.2</span>
+      <h2 class="block-title">KPIs proyectados</h2>
+    </div>
+
+    <div class="kpi-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Obras</th>
+            <th>Agentes</th>
+            <th>FLAILP</th>
+            <th>Países</th>
+            <th>ADR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026</td>
+            <td>1</td>
+            <td>12</td>
+            <td>0 USD</td>
+            <td>1</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>2027</td>
+            <td>100</td>
+            <td>112</td>
+            <td>100 K USD</td>
+            <td>3</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>2028</td>
+            <td>1 000</td>
+            <td>1 012</td>
+            <td>500 K USD</td>
+            <td>10</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>2029</td>
+            <td>10 000</td>
+            <td>10 012</td>
+            <td>1 M USD</td>
+            <td>20</td>
+            <td>80</td>
+          </tr>
+          <tr>
+            <td>2030</td>
+            <td>100 000</td>
+            <td>100 012</td>
+            <td>10 M USD</td>
+            <td>30+</td>
+            <td>120</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Roadmap 2026-2030 · Revisión anual obligatoria</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

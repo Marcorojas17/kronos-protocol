@@ -1,0 +1,28 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; R='\033[0;31m'; C='\033[0;36m'; N='\033[0m'
+while true; do
+clear
+echo -e "${Y}╔══════════════════════════════════════╗${N}"
+echo -e "${Y}║  ◯_● ARKHÉ ZERO · CIBERDEFENSA       ║${N}"
+echo -e "${Y}║  Nodo: YHDRYH-92CE · SCDR-001        ║${N}"
+echo -e "${Y}╚══════════════════════════════════════╝${N}"
+echo "  [1] Status del Sistema"
+echo "  [2] SHA-256 real"
+echo "  [3] Ciberdefensa (ataque)"
+echo "  [4] Radar real (nmap)"
+echo "  [5] Firmar documento"
+echo "  [6] Agente 096 HUNTER"
+echo "  [0] Salir"
+echo -ne "${Y}◯_● Opción: ${N}"
+read -r opt
+case $opt in
+1) bash ~/arkhe-zero/status;;
+2) bash ~/arkhe-zero/hash;;
+3) bash ~/arkhe-zero/ataque;;
+4) bash ~/arkhe-zero/radar;;
+5) bash ~/arkhe-zero/firmar;;
+6) bash ~/arkhe-zero/hunter;;
+0) exit 0;;
+*) echo -e "${R}Inválido${N}"; sleep 1;;
+esac
+done

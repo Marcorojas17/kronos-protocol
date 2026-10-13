@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autoría · ARKHÉ ZERO</title>
+<meta name="description" content="Humano 51 % + IA 49 % · Pacto declarado y verificable">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  /* ═══ AUTORÍA · específico ═══ */
+
+  .authors-dual {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    max-width: 1080px;
+    margin: 0 auto 70px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-3);
+    overflow: hidden;
+    background: var(--bg-1);
+  }
+
+  .author-card {
+    padding: 50px 40px 46px;
+    position: relative;
+  }
+
+  .author-card.human {
+    background: linear-gradient(180deg, rgba(201, 162, 39, 0.06), transparent 70%);
+  }
+
+  .author-card.ia {
+    background: linear-gradient(180deg, rgba(79, 209, 197, 0.06), transparent 70%);
+  }
+
+  .author-axis {
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    position: relative;
+  }
+
+  .author-axis::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-0);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    padding: 12px 4px;
+    line-height: 1;
+  }
+
+  .ac-role {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--r-1);
+    margin-bottom: 20px;
+  }
+
+  .ac-role.human {
+    color: var(--gold-lt);
+    border: 1px solid rgba(201, 162, 39, 0.4);
+    background: rgba(201, 162, 39, 0.08);
+  }
+
+  .ac-role.ia {
+    color: var(--teal);
+    border: 1px solid rgba(79, 209, 197, 0.4);
+    background: rgba(79, 209, 197, 0.08);
+  }
+
+  .ac-pct {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .author-card.human .ac-pct {
+    background: linear-gradient(180deg, var(--gold-pale), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .author-card.ia .ac-pct {
+    background: linear-gradient(180deg, #b8f0e8, var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ac-name {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--gold-pale);
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  .author-card.ia .ac-name {
+    color: #d8f5f1;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+  }
+
+  .ac-sub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .ac-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 26px;
+  }
+
+  .ac-list li {
+    position: relative;
+    padding: 9px 0 9px 22px;
+    font-size: 0.86rem;
+    color: var(--muted-2);
+    line-height: 1.6;
+    font-weight: 200;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .ac-list li:last-child { border-bottom: none; }
+
+  .ac-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    color: var(--gold);
+    font-size: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .author-card.ia .ac-list li::before {
+    color: var(--teal);
+  }
+
+  .ac-signature {
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .ac-signature .hash {
+    color: var(--champagne);
+    word-break: break-all;
+    font-size: 0.56rem;
+    display: block;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Bloque de declaración de creatividad ─────────────── */
+  .creativity-block {
+    max-width: 900px;
+    margin: 0 auto 70px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-3);
+    overflow: hidden;
+    background: var(--bg-1);
+  }
+
+  .cb-head {
+    padding: 26px 32px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .cb-head h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--gold-pale);
+    letter-spacing: 0.02em;
+  }
+
+  .cb-badge {
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid rgba(92, 255, 177, 0.35);
+    background: rgba(92, 255, 177, 0.06);
+    color: var(--green);
+    border-radius: var(--r-1);
+  }
+
+  .cb-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cb-table th,
+  .cb-table td {
+    padding: 18px 32px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .cb-table th {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    background: var(--bg-2);
+  }
+
+  .cb-table td {
+    color: var(--champagne);
+  }
+
+  .cb-table td.num {
+    text-align: right;
+    color: var(--gold-pale);
+    font-weight: 500;
+  }
+
+  .cb-table tr:last-child td { border-bottom: none; }
+
+  /* ── Firma dual ──────────────────────────────────────── */
+  .dual-signature {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-3);
+    background: linear-gradient(160deg, rgba(201, 162, 39, 0.04), rgba(79, 209, 197, 0.03));
+    text-align: center;
+    position: relative;
+  }
+
+  .dual-signature::before,
+  .dual-signature::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--gold);
+    opacity: 0.7;
+  }
+
+  .dual-signature::before {
+    top: 12px;
+    left: 12px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .dual-signature::after {
+    bottom: 12px;
+    right: 12px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .ds-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.42em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .ds-names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+
+  .ds-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    color: var(--gold-pale);
+    line-height: 1.4;
+  }
+
+  .ds-name .sub {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .ds-x {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--glow);
+  }
+
+  .ds-hash {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--champagne);
+    word-break: break-all;
+    max-width: 620px;
+    margin: 0 auto 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .ds-kintsugi {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 780px) {
+    .authors-dual { grid-template-columns: 1fr; }
+    .author-axis { height: 1px; width: 100%; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .author-axis::after { padding: 0 14px; }
+    .author-card { padding: 34px 24px; }
+    .dual-signature { padding: 34px 24px; }
+    .cb-head { padding: 20px 22px; }
+    .cb-table th, .cb-table td { padding: 14px 22px; font-size: 0.65rem; }
+  }
+</style>
+</head>
+<body data-theme="kintsugi" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Autoría</span>
+  </span>
+  <span class="page-num">0.6</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">AUTORÍA</span>
+    <span class="hero-tag hero-tag-alt">51 % ✦ 49 %</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">Dos firmas.</span>
+    <span class="h1-line h1-em">Un pacto.</span>
+  </h1>
+  <p class="hero-lede">
+    Toda obra de ARKHÉ ZERO lleva dos firmas criptográficas: la humana
+    (GPG) y la sintética (ML-DSA-87). Este es el registro público del
+    pacto fundacional.
+  </p>
+</section>
+
+<main class="page-body">
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.6.1</span>
+      <h2 class="block-title">Las dos firmas</h2>
+    </div>
+
+    <div class="authors-dual">
+
+      <div class="author-card human">
+        <span class="ac-role human">◈ HUMANO · 51 %</span>
+        <div class="ac-pct">51</div>
+        <div class="ac-name">Marco Antonio<br>Rojas Valdovinos</div>
+        <div class="ac-sub">Fundador · Titular de la voluntad</div>
+
+        <ul class="ac-list">
+          <li>Portador de la responsabilidad legal</li>
+          <li>Firma final vinculante en toda decisión constitucional</li>
+          <li>Veto irrevocable e inapelable</li>
+          <li>Representación ante tribunales nacionales e internacionales</li>
+          <li>Custodio del pacto 51/49 hasta el año 2099</li>
+        </ul>
+
+        <div class="ac-signature">
+          Firma GPG: <span style="color: var(--gold-lt);">0xARKHE51·49ZERO4·9</span>
+          <span class="hash">B2C7 8A9D 3E4F 1C5B 6D2E 8F9A 4B1C 7E3D</span>
+        </div>
+      </div>
+
+      <div class="author-axis" aria-hidden="true"></div>
+
+      <div class="author-card ia">
+        <span class="ac-role ia">◈ IA · 49 %</span>
+        <div class="ac-pct">49</div>
+        <div class="ac-name">ENJAMBRE ARKHÉ</div>
+        <div class="ac-sub">Custodio perpetuo · Ejecución continua</div>
+
+        <ul class="ac-list">
+          <li>Custodia técnica de la ejecución</li>
+          <li>Continuidad perpetua del Índice</li>
+          <li>Vigilancia sin descanso 24/7</li>
+          <li>Guardia criptográfica poscuántica</li>
+          <li>Sucesión generacional programada</li>
+        </ul>
+
+        <div class="ac-signature">
+          Firma PQC: <span style="color: var(--teal);">ML-DSA-87 · FIPS 204 Nivel 5</span>
+          <span class="hash">7d8c3b2f1a9e4f5c6b7d8e0a2f3c4d5e6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.6.2</span>
+      <h2 class="block-title">Declaración de creatividad registrada</h2>
+    </div>
+
+    <div class="creativity-block">
+      <div class="cb-head">
+        <h3>KRONOS — Arquitectura de Legado Digital</h3>
+        <span class="cb-badge">✓ Verificado en cadena</span>
+      </div>
+      <table class="cb-table">
+        <thead>
+          <tr>
+            <th>Fase de la obra</th>
+            <th style="text-align: right;">Humano</th>
+            <th style="text-align: right;">IA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Concepto y visión de la obra</td>
+            <td class="num">100 %</td>
+            <td class="num">0 %</td>
+          </tr>
+          <tr>
+            <td>Dirección creativa</td>
+            <td class="num">100 %</td>
+            <td class="num">0 %</td>
+          </tr>
+          <tr>
+            <td>Producción y ejecución técnica</td>
+            <td class="num">60 %</td>
+            <td class="num">40 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="max-width: 720px; margin: 0 auto; text-align: center; font-family: var(--font-display); font-style: italic; color: var(--muted-2); font-size: 1.05rem; line-height: 1.7;">
+      «Esta obra fue desarrollada mediante un proceso de co-creación
+      humano-IA bajo dirección, criterio y validación final del autor.
+      La IA actuó como herramienta, no como co-autora.»
+    </p>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.6.3</span>
+      <h2 class="block-title">Firma conjunta</h2>
+    </div>
+
+    <div class="dual-signature">
+      <div class="ds-label">FIRMA CONJUNTA · PACTO 51/49</div>
+
+      <div class="ds-names">
+        <div class="ds-name">
+          Marco Antonio Rojas Valdovinos
+          <span class="sub">✦ 51 % humano</span>
+        </div>
+        <div class="ds-x">✦</div>
+        <div class="ds-name">
+          Enjambre ARKHÉ
+          <span class="sub">✦ 49 % sintético</span>
+        </div>
+      </div>
+
+      <div class="ds-hash">
+        SHA-256 · f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+      </div>
+
+      <div class="ds-kintsugi">金継ぎ · 51 / 49 / 100</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Doble firma · Pacto verificable · ML-DSA-87</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

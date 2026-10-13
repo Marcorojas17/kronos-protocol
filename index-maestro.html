@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--                                                                           -->
+<!--    ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗                    -->
+<!--    ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗                   -->
+<!--    ██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝                   -->
+<!--    ██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗                   -->
+<!--    ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║                   -->
+<!--    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝                   -->
+<!--                                                                           -->
+<!--   ▓▒░ MASTER INDEX · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓                   -->
+<!--                                                                           -->
+<!--   NODO: YHDRYH-92CE · GENESIS: K28-M05-MN01-YHDRYH-92CE                  -->
+<!--   AUTH: Marco Antonio Rojas Valdovinos · Toluca, México · 2026          -->
+<!--                                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASTER INDEX · ARKHÉ ZERO · ◯_● · 51/49/100</title>
+<meta name="description" content="Índice maestro de ARKHÉ ZERO · Todas las páginas del sistema · ◯_● KINTSUGI">
+<link rel="stylesheet" href="assets/css/themes.css">
+<link rel="stylesheet" href="assets/css/nav-system.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+<style>
+  .master-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .master-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    color: var(--fg-0);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    transition: all 150ms;
+  }
+  .master-link:hover {
+    background: var(--bg-2);
+    border-left-color: var(--accent-2);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(255,176,0,0.1);
+  }
+  .master-link .icon { font-size: 1.2em; }
+  .master-link .label { flex: 1; color: var(--fg-0); }
+  .master-link .path {
+    color: var(--fg-2);
+    font-size: 10px;
+    opacity: 0.6;
+  }
+  .master-section {
+    margin: 40px 0;
+    scroll-margin-top: 80px;
+  }
+  .master-section h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+    font-size: 1.1em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .master-toc {
+    position: sticky;
+    top: 60px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 24px 0;
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }
+  .master-toc a {
+    display: inline-block;
+    padding: 3px 8px;
+    margin: 2px;
+    color: var(--fg-1);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  .master-toc a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .master-counter {
+    display: inline-block;
+    background: var(--bg-2);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    margin-left: 8px;
+  }
+</style>
+</head>
+<body data-page="master-index" data-theme="terminal-amber">
+
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+
+<pre class="ascii-banner glow">
+  ╔══════════════════════════════════════════════════════════════════════════════╗
+  ║                                                                              ║
+  ║    ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗                       ║
+  ║    ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗                      ║
+  ║    ██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝                      ║
+  ║    ██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗                      ║
+  ║    ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║                      ║
+  ║    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝                      ║
+  ║                                                                              ║
+  ║                       I  N  D  E  X                                              ║
+  ║                                                                              ║
+  ║              ◯_●  ·  KINTSUGI  ·  51/49/100                                  ║
+  ║                                                                              ║
+  ║              Todas las páginas y archivos del sistema                         ║
+  ║                                                                              ║
+  ╚══════════════════════════════════════════════════════════════════════════════╝
+</pre>
+
+<h1>🗺️ Master Index · ARKHÉ ZERO</h1>
+
+<blockquote>
+<p><em>"El legado no se hereda. Se firma. Y se navega."</em></p>
+</blockquote>
+
+<div class="master-toc">
+<strong>IR A:</strong>
+<a href="#sec-0">🏠 Hub</a>
+<a href="#sec-core">🔍 Core</a>
+<a href="#sec-gob">⚖️ Gobernanza</a>
+<a href="#sec-tech">🔐 Técnico</a>
+<a href="#sec-admin">🔧 Admin</a>
+<a href="#sec-legal">📜 Legal</a>
+<a href="#sec-info">📖 Info</a>
+<a href="#sec-mov">🔥 Movimiento</a>
+<a href="#sec-grow">🌱 Growth</a>
+<a href="#sec-narr">📖 Narrativa</a>
+<a href="#sec-projects">🗂️ Projects</a>
+<a href="#sec-archive">📦 Archive</a>
+<a href="#sec-other">🧪 Otros</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-0">
+<h2>🏠 Hub Principal & Variantes <span class="master-counter">7</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="index.html">
+    <span class="icon">🏠</span>
+    <span class="label">Hub principal</span>
+    <span class="path">index.html</span>
+  </a>
+  <a class="master-link" href="apps/index-kintsugi.html">
+    <span class="icon">🩹</span>
+    <span class="label">KINTSUGI</span>
+    <span class="path">apps/index-kintsugi.html</span>
+  </a>
+  <a class="master-link" href="apps/index-light.html">
+    <span class="icon">☀️</span>
+    <span class="label">Modo claro</span>
+    <span class="path">apps/index-light.html</span>
+  </a>
+  <a class="master-link" href="apps/index-dark.html">
+    <span class="icon">🌑</span>
+    <span class="label">Modo oscuro</span>
+    <span class="path">apps/index-dark.html</span>
+  </a>
+  <a class="master-link" href="apps/web-hub.html">
+    <span class="icon">🗂️</span>
+    <span class="label">Web Hub</span>
+    <span class="path">apps/web-hub.html</span>
+  </a>
+  <a class="master-link" href="apps/kintsugi-manual.html">
+    <span class="icon">📖</span>
+    <span class="label">KINTSUGI Manual</span>
+    <span class="path">apps/kintsugi-manual.html</span>
+  </a>
+  <a class="master-link" href="apps/sitemap.html">
+    <span class="icon">🗺️</span>
+    <span class="label">Sitemap interactivo</span>
+    <span class="path">apps/sitemap.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-core">
+<h2>🔍 Servicios Core <span class="master-counter">4</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/verificar.html">
+    <span class="icon">🔍</span>
+    <span class="label">Verificar hash</span>
+    <span class="path">apps/verificar.html</span>
+  </a>
+  <a class="master-link" href="apps/registrar.html">
+    <span class="icon">✍️</span>
+    <span class="label">Registrar obra</span>
+    <span class="path">apps/registrar.html</span>
+  </a>
+  <a class="master-link" href="apps/composer.html">
+    <span class="icon">🎼</span>
+    <span class="label">Composer</span>
+    <span class="path">apps/composer.html</span>
+  </a>
+  <a class="master-link" href="apps/servicios.html">
+    <span class="icon">⚡</span>
+    <span class="label">Servicios</span>
+    <span class="path">apps/servicios.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-gob">
+<h2>⚖️ Gobernanza + Agentes <span class="master-counter">4</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/governance.html">
+    <span class="icon">⚖️</span>
+    <span class="label">Gobernanza</span>
+    <span class="path">apps/governance.html</span>
+  </a>
+  <a class="master-link" href="apps/governance-vote.html">
+    <span class="icon">🗳️</span>
+    <span class="label">Votar</span>
+    <span class="path">apps/governance-vote.html</span>
+  </a>
+  <a class="master-link" href="apps/agentes.html">
+    <span class="icon">🤖</span>
+    <span class="label">Enjambre 12 agentes</span>
+    <span class="path">apps/agentes.html</span>
+  </a>
+  <a class="master-link" href="apps/agents-monitor.html">
+    <span class="icon">👁️</span>
+    <span class="label">Monitor enjambre</span>
+    <span class="path">apps/agents-monitor.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-tech">
+<h2>🔐 Técnico · Crypto + API <span class="master-counter">11</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/crypto.html">
+    <span class="icon">🔐</span>
+    <span class="label">Crypto PQC</span>
+    <span class="path">apps/crypto.html</span>
+  </a>
+  <a class="master-link" href="apps/provenance.html">
+    <span class="icon">📜</span>
+    <span class="label">Provenance</span>
+    <span class="path">apps/provenance.html</span>
+  </a>
+  <a class="master-link" href="apps/api.html">
+    <span class="icon">🌐</span>
+    <span class="label">API Docs</span>
+    <span class="path">apps/api.html</span>
+  </a>
+  <a class="master-link" href="apps/api-playground.html">
+    <span class="icon">🧪</span>
+    <span class="label">API Playground</span>
+    <span class="path">apps/api-playground.html</span>
+  </a>
+  <a class="master-link" href="apps/contracts.html">
+    <span class="icon">⛓️</span>
+    <span class="label">Contracts</span>
+    <span class="path">apps/contracts.html</span>
+  </a>
+  <a class="master-link" href="apps/infra.html">
+    <span class="icon">🏗️</span>
+    <span class="label">Infra</span>
+    <span class="path">apps/infra.html</span>
+  </a>
+  <a class="master-link" href="apps/scripts.html">
+    <span class="icon">🔧</span>
+    <span class="label">Scripts</span>
+    <span class="path">apps/scripts.html</span>
+  </a>
+  <a class="master-link" href="apps/tests.html">
+    <span class="icon">🧪</span>
+    <span class="label">Tests</span>
+    <span class="path">apps/tests.html</span>
+  </a>
+  <a class="master-link" href="apps/architecture.html">
+    <span class="icon">📐</span>
+    <span class="label">Arquitectura</span>
+    <span class="path">apps/architecture.html</span>
+  </a>
+  <a class="master-link" href="apps/protocol.html">
+    <span class="icon">🔱</span>
+    <span class="label">Protocol</span>
+    <span class="path">apps/protocol.html</span>
+  </a>
+  <a class="master-link" href="apps/operations.html">
+    <span class="icon">⚙️</span>
+    <span class="label">Operations</span>
+    <span class="path">apps/operations.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-admin">
+<h2>🔧 Admin + Dashboards <span class="master-counter">7</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/admin.html">
+    <span class="icon">🔧</span>
+    <span class="label">Admin</span>
+    <span class="path">apps/admin.html</span>
+  </a>
+  <a class="master-link" href="apps/admin-kintsugi.html">
+    <span class="icon">🩹</span>
+    <span class="label">Admin KINTSUGI</span>
+    <span class="path">apps/admin-kintsugi.html</span>
+  </a>
+  <a class="master-link" href="apps/admin-dashboard.html">
+    <span class="icon">📊</span>
+    <span class="label">Admin Dashboard</span>
+    <span class="path">apps/admin-dashboard.html</span>
+  </a>
+  <a class="master-link" href="apps/metrics-dashboard.html">
+    <span class="icon">📈</span>
+    <span class="label">Metrics Dashboard</span>
+    <span class="path">apps/metrics-dashboard.html</span>
+  </a>
+  <a class="master-link" href="apps/system-health.html">
+    <span class="icon">💚</span>
+    <span class="label">System Health</span>
+    <span class="path">apps/system-health.html</span>
+  </a>
+  <a class="master-link" href="apps/config.html">
+    <span class="icon">⚙️</span>
+    <span class="label">Config</span>
+    <span class="path">apps/config.html</span>
+  </a>
+  <a class="master-link" href="apps/certificates-viewer.html">
+    <span class="icon">🎖️</span>
+    <span class="label">Certificados</span>
+    <span class="path">apps/certificates-viewer.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-legal">
+<h2>📜 Legal <span class="master-counter">9</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/legal.html">
+    <span class="icon">⚖️</span>
+    <span class="label">Legal</span>
+    <span class="path">apps/legal.html</span>
+  </a>
+  <a class="master-link" href="apps/privacy.html">
+    <span class="icon">🔒</span>
+    <span class="label">Privacy</span>
+    <span class="path">apps/privacy.html</span>
+  </a>
+  <a class="master-link" href="apps/terms.html">
+    <span class="icon">📜</span>
+    <span class="label">Terms</span>
+    <span class="path">apps/terms.html</span>
+  </a>
+  <a class="master-link" href="apps/dpa.html">
+    <span class="icon">📄</span>
+    <span class="label">DPA</span>
+    <span class="path">apps/dpa.html</span>
+  </a>
+  <a class="master-link" href="apps/trademark.html">
+    <span class="icon">™️</span>
+    <span class="label">Trademark</span>
+    <span class="path">apps/trademark.html</span>
+  </a>
+  <a class="master-link" href="apps/patents.html">
+    <span class="icon">📜</span>
+    <span class="label">Patents</span>
+    <span class="path">apps/patents.html</span>
+  </a>
+  <a class="master-link" href="apps/notice.html">
+    <span class="icon">📋</span>
+    <span class="label">Notice</span>
+    <span class="path">apps/notice.html</span>
+  </a>
+  <a class="master-link" href="apps/copyright.html">
+    <span class="icon">©</span>
+    <span class="label">Copyright</span>
+    <span class="path">apps/copyright.html</span>
+  </a>
+  <a class="master-link" href="apps/citacion.html">
+    <span class="icon">🔖</span>
+    <span class="label">Citación</span>
+    <span class="path">apps/citacion.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-info">
+<h2>📖 Info + Docs <span class="master-counter">12</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/glossary.html">
+    <span class="icon">📖</span>
+    <span class="label">Glossary</span>
+    <span class="path">apps/glossary.html</span>
+  </a>
+  <a class="master-link" href="apps/roadmap.html">
+    <span class="icon">🗺️</span>
+    <span class="label">Roadmap</span>
+    <span class="path">apps/roadmap.html</span>
+  </a>
+  <a class="master-link" href="apps/authors.html">
+    <span class="icon">👥</span>
+    <span class="label">Authors</span>
+    <span class="path">apps/authors.html</span>
+  </a>
+  <a class="master-link" href="apps/changelog.html">
+    <span class="icon">📝</span>
+    <span class="label">Changelog</span>
+    <span class="path">apps/changelog.html</span>
+  </a>
+  <a class="master-link" href="apps/identidad.html">
+    <span class="icon">🪪</span>
+    <span class="label">Identidad</span>
+    <span class="path">apps/identidad.html</span>
+  </a>
+  <a class="master-link" href="apps/security.html">
+    <span class="icon">🛡️</span>
+    <span class="label">Security</span>
+    <span class="path">apps/security.html</span>
+  </a>
+  <a class="master-link" href="apps/compliance.html">
+    <span class="icon">✅</span>
+    <span class="label">Compliance</span>
+    <span class="path">apps/compliance.html</span>
+  </a>
+  <a class="master-link" href="apps/onboarding.html">
+    <span class="icon">🎯</span>
+    <span class="label">Onboarding</span>
+    <span class="path">apps/onboarding.html</span>
+  </a>
+  <a class="master-link" href="apps/reporte-salud.html">
+    <span class="icon">💚</span>
+    <span class="label">Reporte Salud</span>
+    <span class="path">apps/reporte-salud.html</span>
+  </a>
+  <a class="master-link" href="apps/risk-disclosure.html">
+    <span class="icon">⚠️</span>
+    <span class="label">Risk Disclosure</span>
+    <span class="path">apps/risk-disclosure.html</span>
+  </a>
+  <a class="master-link" href="apps/explicacion-universal.html">
+    <span class="icon">🌍</span>
+    <span class="label">Explicación Universal</span>
+    <span class="path">apps/explicacion-universal.html</span>
+  </a>
+  <a class="master-link" href="apps/tesis.html">
+    <span class="icon">📖</span>
+    <span class="label">Tesis</span>
+    <span class="path">apps/tesis.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-mov">
+<h2>🔥 Movimiento <span class="master-counter">8</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="movimiento/index.html">
+    <span class="icon">🔥</span>
+    <span class="label">Movimiento ARKHÉ</span>
+    <span class="path">movimiento/index.html</span>
+  </a>
+  <a class="master-link" href="movimiento/fundador.html">
+    <span class="icon">👤</span>
+    <span class="label">Carta del Fundador</span>
+    <span class="path">movimiento/fundador.html</span>
+  </a>
+  <a class="master-link" href="movimiento/manifiesto.html">
+    <span class="icon">⚡</span>
+    <span class="label">Manifiesto</span>
+    <span class="path">movimiento/manifiesto.html</span>
+  </a>
+  <a class="master-link" href="movimiento/genesis.html">
+    <span class="icon">🌱</span>
+    <span class="label">Génesis</span>
+    <span class="path">movimiento/genesis.html</span>
+  </a>
+  <a class="master-link" href="movimiento/iniciacion.html">
+    <span class="icon">🚪</span>
+    <span class="label">Iniciación</span>
+    <span class="path">movimiento/iniciacion.html</span>
+  </a>
+  <a class="master-link" href="movimiento/carta-bienvenida.html">
+    <span class="icon">✉️</span>
+    <span class="label">Carta de Bienvenida</span>
+    <span class="path">movimiento/carta-bienvenida.html</span>
+  </a>
+  <a class="master-link" href="movimiento/solicitar_plaza.html">
+    <span class="icon">✊</span>
+    <span class="label">Solicitar Plaza</span>
+    <span class="path">movimiento/solicitar_plaza.html</span>
+  </a>
+  <a class="master-link" href="movimiento/registro-fundacional/index.html">
+    <span class="icon">🏛️</span>
+    <span class="label">Registro Fundacional</span>
+    <span class="path">movimiento/registro-fundacional/</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-grow">
+<h2>🌱 Growth · Atracción · Métricas <span class="master-counter">12</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="atraccion/index.html">
+    <span class="icon">🧲</span>
+    <span class="label">Atracción Magnética</span>
+    <span class="path">atraccion/index.html</span>
+  </a>
+  <a class="master-link" href="growth/index.html">
+    <span class="icon">🌱</span>
+    <span class="label">Growth Programas</span>
+    <span class="path">growth/index.html</span>
+  </a>
+  <a class="master-link" href="metrics/index.html">
+    <span class="icon">📊</span>
+    <span class="label">Métricas</span>
+    <span class="path">metrics/index.html</span>
+  </a>
+  <a class="master-link" href="metrics/dashboard.html">
+    <span class="icon">📈</span>
+    <span class="label">Metrics Dashboard</span>
+    <span class="path">metrics/dashboard.html</span>
+  </a>
+  <a class="master-link" href="narrativa/index.html">
+    <span class="icon">📖</span>
+    <span class="label">Narrativa</span>
+    <span class="path">narrativa/index.html</span>
+  </a>
+  <a class="master-link" href="apps/atraccion.html">
+    <span class="icon">🧲</span>
+    <span class="label">Atracción</span>
+    <span class="path">apps/atraccion.html</span>
+  </a>
+  <a class="master-link" href="apps/narrativa.html">
+    <span class="icon">📖</span>
+    <span class="label">Narrativa HTML</span>
+    <span class="path">apps/narrativa.html</span>
+  </a>
+  <a class="master-link" href="apps/metrics.html">
+    <span class="icon">📊</span>
+    <span class="label">Metrics HTML</span>
+    <span class="path">apps/metrics.html</span>
+  </a>
+  <a class="master-link" href="apps/growth.html">
+    <span class="icon">🌱</span>
+    <span class="label">Growth HTML</span>
+    <span class="path">apps/growth.html</span>
+  </a>
+  <a class="master-link" href="growth/beta-privada/acceso.html">
+    <span class="icon">🔒</span>
+    <span class="label">Acceso Beta</span>
+    <span class="path">growth/beta-privada/acceso.html</span>
+  </a>
+  <a class="master-link" href="growth/afiliados/dashboard.html">
+    <span class="icon">💼</span>
+    <span class="label">Dashboard Afiliado</span>
+    <span class="path">growth/afiliados/dashboard.html</span>
+  </a>
+  <a class="master-link" href="apps/villano.html">
+    <span class="icon">🌫️</span>
+    <span class="label">Villano</span>
+    <span class="path">apps/villano.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-narr">
+<h2>📖 Narrativa y Mitología <span class="master-counter">1</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="narrativa/index.html">
+    <span class="icon">📖</span>
+    <span class="label">Narrativa completa</span>
+    <span class="path">narrativa/index.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-projects">
+<h2>🗂️ Portfolio del Legado <span class="master-counter">12</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="projects/index.html">
+    <span class="icon">🗂️</span>
+    <span class="label">Portfolio completo</span>
+    <span class="path">projects/index.html</span>
+  </a>
+  <a class="master-link" href="projects/cymatic/index.html">
+    <span class="icon">🎵</span>
+    <span class="label">Cymatic Studio</span>
+    <span class="path">projects/cymatic/</span>
+  </a>
+  <a class="master-link" href="projects/yejida/index.html">
+    <span class="icon">🌀</span>
+    <span class="label">Yejidá Mandalas</span>
+    <span class="path">projects/yejida/</span>
+  </a>
+  <a class="master-link" href="projects/md33/index.html">
+    <span class="icon">🔍</span>
+    <span class="label">MD-33 Forense</span>
+    <span class="path">projects/md33/</span>
+  </a>
+  <a class="master-link" href="projects/acta/index.html">
+    <span class="icon">📜</span>
+    <span class="label">Acta</span>
+    <span class="path">projects/acta/</span>
+  </a>
+  <a class="master-link" href="projects/evidence-os/index.html">
+    <span class="icon">🗂️</span>
+    <span class="label">Evidence OS</span>
+    <span class="path">projects/evidence-os/</span>
+  </a>
+  <a class="master-link" href="projects/kronos-vault/index.html">
+    <span class="icon">🗝️</span>
+    <span class="label">Kronos Vault</span>
+    <span class="path">projects/kronos-vault/</span>
+  </a>
+  <a class="master-link" href="projects/boveda/README.md">
+    <span class="icon">🔐</span>
+    <span class="label">Bóveda</span>
+    <span class="path">projects/boveda/</span>
+  </a>
+  <a class="master-link" href="projects/bobeda/README.md">
+    <span class="icon">🏛️</span>
+    <span class="label">Bobeda</span>
+    <span class="path">projects/bobeda/</span>
+  </a>
+  <a class="master-link" href="projects/genesis-miner/README.md">
+    <span class="icon">⛏️</span>
+    <span class="label">Genesis Miner</span>
+    <span class="path">projects/genesis-miner/</span>
+  </a>
+  <a class="master-link" href="projects/k4-framework/README.md">
+    <span class="icon">📐</span>
+    <span class="label">K4 Framework</span>
+    <span class="path">projects/k4-framework/</span>
+  </a>
+  <a class="master-link" href="projects/dmd-33/README.md">
+    <span class="icon">🔍</span>
+    <span class="label">DMD-33</span>
+    <span class="path">projects/dmd-33/</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-archive">
+<h2>📦 Archive Histórico <span class="master-counter">5</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="archive/index2.html">
+    <span class="icon">📦</span>
+    <span class="label">Archive v2</span>
+    <span class="path">archive/index2.html</span>
+  </a>
+  <a class="master-link" href="archive/index3.html">
+    <span class="icon">📦</span>
+    <span class="label">Archive v3</span>
+    <span class="path">archive/index3.html</span>
+  </a>
+  <a class="master-link" href="archive/index4.html">
+    <span class="icon">📦</span>
+    <span class="label">Archive v4</span>
+    <span class="path">archive/index4.html</span>
+  </a>
+  <a class="master-link" href="archive/luxury.html">
+    <span class="icon">💎</span>
+    <span class="label">Archive Luxury</span>
+    <span class="path">archive/luxury.html</span>
+  </a>
+  <a class="master-link" href="cierre/fin-digno/index.html">
+    <span class="icon">🕯️</span>
+    <span class="label">Fin Digno</span>
+    <span class="path">cierre/fin-digno/</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section" id="sec-other">
+<h2>🧪 Otros + Cierre <span class="master-counter">6</span></h2>
+<div class="master-grid">
+  <a class="master-link" href="apps/web.html">
+    <span class="icon">🌐</span>
+    <span class="label">Web index</span>
+    <span class="path">apps/web.html</span>
+  </a>
+  <a class="master-link" href="apps/github.html">
+    <span class="icon">🐙</span>
+    <span class="label">GitHub</span>
+    <span class="path">apps/github.html</span>
+  </a>
+  <a class="master-link" href="apps/registro.html">
+    <span class="icon">📝</span>
+    <span class="label">Registro</span>
+    <span class="path">apps/registro.html</span>
+  </a>
+  <a class="master-link" href="cierre/export-cifrado/index.html">
+    <span class="icon">💾</span>
+    <span class="label">Export Cifrado</span>
+    <span class="path">cierre/export-cifrado/</span>
+  </a>
+  <a class="master-link" href="operacion/dashboard-salud/index.html">
+    <span class="icon">💚</span>
+    <span class="label">Dashboard Salud</span>
+    <span class="path">operacion/dashboard-salud/</span>
+  </a>
+  <a class="master-link" href="apps/404.html">
+    <span class="icon">💀</span>
+    <span class="label">404 HALT</span>
+    <span class="path">apps/404.html</span>
+  </a>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section">
+<h2>🜂 Cómo levantar el servidor local</h2>
+
+<pre class="terminal-block">
+┌─(kali㉿arkhe-zero)-[~/ARKHE-ZERO]
+└─$ python3 -m http.server 8080
+
+# Abrir en el navegador:
+http://localhost:8080/index-maestro.html
+
+# Servir en red local:
+└─$ python3 -m http.server 8080 --bind 0.0.0.0
+</pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<section class="master-section">
+<h2>🌐 URLs en producción (cuando se despliegue)</h2>
+
+<pre class="terminal-block">
+# GitHub Pages
+https://marcojas17.github.io/kronos-protocol/index-maestro.html
+
+# Cloudflare Pages
+https://kronos-protocol.pages.dev/index-maestro.html
+
+# Dominio propio (futuro)
+https://arkhe.zero/index-maestro.html
+</pre>
+</section>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · MASTER INDEX</p>
+<p>Nodo YHDRYH-92CE · Genesis K28-M05-MN01-YHDRYH-92CE</p>
+<p>© 2026 Marco Antonio Rojas Valdovinos · Toluca, México</p>
+</footer>
+
+</main>
+
+<script type="module" src="assets/js/nav-system.js"></script>
+</body>
+</html>

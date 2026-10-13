@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════════════════════════
+ *  ▓▒░ CARDS.CSS · ARKHÉ ZERO · ◯_● ░▒▓
+ * ═══════════════════════════════════════════════════════════════ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.card {
+  display: block;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  transition: all 200ms ease;
+  overflow: hidden;
+  color: var(--fg-0);
+  text-decoration: none;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+}
+
+.card:hover::before { transform: scaleX(1); }
+
+.card-icon {
+  font-size: 2em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.85em;
+  color: var(--fg-1);
+}
+
+.card-seal {
+  position: absolute;
+  top: 8px; right: 12px;
+  color: var(--fg-2);
+  font-size: 11px;
+}
+
+.card-compact { padding: 12px; }
+.card-compact h3 { font-size: 0.9em; }
+
+@media (max-width: 720px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,47 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ VELERO · BACKUP SCHEDULE · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Backup diario + semanal completo
+# ═══════════════════════════════════════════════════════════════════════════
+
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: arkhe-zero-daily
+  namespace: velero
+  labels:
+    arkhe.zero/seal: "◯_●-51-49-100"
+    arkhe.zero/nodo: "YHDRYH-92CE"
+spec:
+  schedule: "0 3 * * *"  # 03:00 UTC diario
+  template:
+    includedNamespaces:
+      - arkhe-zero
+    excludedResources:
+      - events
+      - events.events.k8s.io
+    ttl: 720h  # retención 30 días
+    storageLocation: default
+    volumeSnapshotLocations:
+      - default
+    hooks: {}
+
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: arkhe-zero-weekly-full
+  namespace: velero
+  labels:
+    arkhe.zero/seal: "◯_●-51-49-100"
+    arkhe.zero/nodo: "YHDRYH-92CE"
+spec:
+  schedule: "0 4 * * 0"  # domingos 04:00 UTC
+  template:
+    includedNamespaces:
+      - arkhe-zero
+    ttl: 8760h  # retención 1 año
+    storageLocation: default
+    snapshotVolumes: true
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

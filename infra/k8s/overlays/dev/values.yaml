@@ -1,0 +1,40 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ K8S · OVERLAY DEV · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Environment: DEV · Replicas: 1
+# ═══════════════════════════════════════════════════════════════════════════
+
+environment: dev
+replicaCount: 1
+
+image:
+  web:
+    repository: arkhe-web
+    tag: dev
+    pullPolicy: IfNotPresent
+  mcp:
+    repository: arkhe-mcp
+    tag: dev
+
+resources:
+  web:
+    requests: { cpu: "100m", memory: "128Mi" }
+    limits:   { cpu: "500m", memory: "512Mi" }
+
+ingress:
+  enabled: false
+
+persistence:
+  enabled: false
+
+logging:
+  level: debug
+
+arkhe:
+  seal: "◯_● · 51/49/100"
+  pact: "51/49/100"
+  strictMode: false
+  nodo: "YHDRYH-92CE"
+  genesis: "K28-M05-MN01-YHDRYH-92CE"
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE · dev

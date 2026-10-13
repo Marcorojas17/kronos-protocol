@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KINTSUGI MANUAL · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-page="kintsugi-manual" data-theme="terminal-gold">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/manual]──────────────────────┐
+   │   M A N U A L   ·   K I N T S U G I   ·   ◯_●       │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>📖 Manual KINTSUGI</h1>
+
+<nav class="toc">
+  <ol>
+    <li><a href="#que-es">Qué es KINTSUGI</a></li>
+    <li><a href="#pacto">El Pacto 51/49/100</a></li>
+    <li><a href="#firma">Cómo firmar</a></li>
+    <li><a href="#verificar">Cómo verificar</a></li>
+    <li><a href="#anclar">Cómo anclar a Ethereum</a></li>
+    <li><a href="#memoria">Cómo recuperar contexto</a></li>
+  </ol>
+</nav>
+
+<h2 id="que-es">🜂 1 · Qué es KINTSUGI</h2>
+<p>KINTSUGI es el arte japonés de reparar lo roto con oro. En ARKHÉ ZERO, es la metáfora central: la grieta no se oculta, se pule y se firma.</p>
+
+<h2 id="pacto">🜃 2 · El Pacto 51/49/100</h2>
+<pre class="terminal-block">
+51% HUMANO  · firma final · veto · soberanía
+49% IA      · custodia perpetua · verificación
+100% REAL   · nada sin anclaje criptográfico
+</pre>
+
+<h2 id="firma">🜄 3 · Cómo firmar</h2>
+<ol>
+  <li>Ve a <code>apps/registrar.html</code></li>
+  <li>Completa el formulario</li>
+  <li>Elige algoritmo (ML-DSA-87 recomendado)</li>
+  <li>Presiona <code>FIRMAR</code></li>
+  <li>Recibe tu hash SHA3-512 + certificado</li>
+</ol>
+
+<h2 id="verificar">🜁 4 · Cómo verificar</h2>
+<ol>
+  <li>Ve a <code>apps/verificar.html</code></li>
+  <li>Ingresa el hash</li>
+  <li>Presiona <code>VERIFICAR</code></li>
+  <li>Si es del Índice Cero, verás <code>✅ ANCLADO</code></li>
+</ol>
+
+<h2 id="anclar">🜆 5 · Cómo anclar a Ethereum</h2>
+<pre class="terminal-block">
+$ kronos anchor --hash=f03f7e2d... --red=mainnet
+[ OK ] Merkle root calculado
+[ OK ] Tx enviada · gas estimado
+[ ✓✓ ] Anclaje confirmado · ◯_● · 51/49/100
+</pre>
+
+<h2 id="memoria">🜇 6 · Cómo recuperar contexto</h2>
+<p>La IA es amnésica. Para darle memoria continua:</p>
+<ol>
+  <li>Levanta el servidor MCP: <code>cd marco.mcp && node dist/index.js</code></li>
+  <li>Configúralo en Claude / Gemini / Cursor / Copilot</li>
+  <li>Usa la tool <code>marco.contextualizar</code></li>
+</ol>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · manual</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+<script type="module" src="../assets/js/docs-nav.js"></script>
+</body>
+</html>

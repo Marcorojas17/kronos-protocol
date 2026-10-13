@@ -1,0 +1,59 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ CODEOWNERS · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+# Global · fundador humano (51%)
+*                                   @marcojas17
+
+# ─── Capa 0 · Génesis ────────────────────────────────────────────
+README.md                           @marcojas17
+KINTSUGI.md                         @marcojas17
+GOVERNANCE.md                       @marcojas17
+AI-MANIFEST.json                    @marcojas17
+
+# ─── Capa 1 · Cimiento ───────────────────────────────────────────
+/crypto/                            @marcojas17
+/cimiento/                          @marcojas17
+/contracts/                         @marcojas17
+
+# ─── Capa 2 · Identidad ──────────────────────────────────────────
+/agents/                            @marcojas17
+/agentes/                           @marcojas17
+/05-AGENTES/                        @marcojas17
+
+# ─── Capa 3 · Módulos Op. ────────────────────────────────────────
+/certificacion/                     @marcojas17
+/evidence/                          @marcojas17
+/provenance/                        @marcojas17
+
+# ─── Capa 4 · Orquestación ───────────────────────────────────────
+/gobernanza/                        @marcojas17
+/guardians/                         @marcojas17
+
+# ─── Capa 5 · Operación ──────────────────────────────────────────
+/apps/                              @marcojas17
+/assets/                            @marcojas17
+/movimiento/                        @marcojas17
+/marco.mcp/                         @marcojas17
+
+# ─── Legal y seguridad ──────────────────────────────────────────
+/LICENSE*                           @marcojas17
+/PRIVACY.md                         @marcojas17
+/TERMS.md                           @marcojas17
+/DPA.md                             @marcojas17
+/SECURITY.md                        @marcojas17
+/.github/                           @marcojas17
+
+# ─── Configuración crítica ──────────────────────────────────────
+/package.json                       @marcojas17
+/package-lock.json                  @marcojas17
+/Dockerfile                         @marcojas17
+/Makefile                           @marcojas17
+/nginx.conf                         @marcojas17
+
+# ─── Nunca auto-merge ────────────────────────────────────────────
+/infra/                             @marcojas17
+/07-LLAVES/                         @marcojas17
+/.well-known/                       @marcojas17
+
+# ◯_● · 51/49/100 · KRONOS

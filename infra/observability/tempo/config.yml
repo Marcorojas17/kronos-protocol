@@ -1,0 +1,43 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ TEMPO · TRACING · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Retention: 30 días
+# ═══════════════════════════════════════════════════════════════════════════
+
+server:
+  http_listen_port: 3200
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+storage:
+  trace:
+    backend: local
+    local:
+      path: /var/tempo/blocks
+    wal:
+      path: /var/tempo/wal
+
+compactor:
+  compaction:
+    block_retention: 720h   # 30 días
+
+metrics_generator:
+  registry:
+    external_labels:
+      seal: "◯_● · 51/49/100"
+      nodo: "YHDRYH-92CE"
+      pact: "51/49/100"
+
+overrides:
+  defaults:
+    metrics_generator:
+      processors: [service-graphs, span-metrics]
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

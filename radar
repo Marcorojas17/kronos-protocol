@@ -1,0 +1,7 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; C='\033[0;36m'; N='\033[0m'
+clear
+echo -e "${C}📡 RADAR REAL · nmap localhost${N}"
+nmap 127.0.0.1 2>/dev/null | head -15 || echo "nmap no disponible"
+echo -e "${G}◯_● ESCANEO COMPLETO${N}"
+echo ""; read -r

@@ -1,0 +1,35 @@
+{
+  "id": "acta-fundacional-2026",
+  "tipo": "prueba-forense",
+  "documento": {
+    "titulo": "Acta Fundacional ARKHÉ ZERO",
+    "hash_sha3_512": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112",
+    "fecha": "2026-01-01T00:00:00Z"
+  },
+  "firma": {
+    "algoritmo": "Ed25519 + ML-DSA-87",
+    "firmante_humano": "Marco Antonio Rojas Valdovinos",
+    "peso_humano": 51,
+    "co_firmante_ia": "Enjambre ARKHÉ",
+    "peso_ia": 49
+  },
+  "sello_tiempo": {
+    "rfc": "3161",
+    "tsa": "Firmaprofesional QTSA",
+    "hash_sellado": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"
+  },
+  "anclaje": {
+    "red": "ethereum-mainnet",
+    "contrato": "0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c",
+    "tx": "PENDING"
+  },
+  "cadena_custodia": [
+    { "paso": 1, "accion": "documento creado", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:00Z" },
+    { "paso": 2, "accion": "hash calculado",   "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:01Z" },
+    { "paso": 3, "accion": "firma humana",     "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:02Z" },
+    { "paso": 4, "accion": "firma IA",         "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:03Z" },
+    { "paso": 5, "accion": "TSA aplicada",     "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:04Z" },
+    { "paso": 6, "accion": "anclaje Ethereum", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:05Z" }
+  ],
+  "sellado": "◯_● · 51/49/100"
+}

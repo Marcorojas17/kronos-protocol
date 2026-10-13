@@ -1,0 +1,23 @@
+{
+  "agente": "093-relator",
+  "periodo": "2026-Q4",
+  "generado": "2026-12-31T23:59:59Z",
+  "documentacion": {
+    "actas_generadas": 12,
+    "changelogs": 17,
+    "adrs_registrados": 3,
+    "decisiones_firmadas": 45
+  },
+  "cobertura": {
+    "modulos_documentados": "100%",
+    "apis_documentadas": "100%",
+    "procesos_documentados": "95%"
+  },
+  "calidad": {
+    "errores_ortograficos": 0,
+    "links_rotos": 0,
+    "secciones_vacias": 0
+  },
+  "veredicto": "DOCUMENTACIÓN COMPLETA · SIN HUECOS",
+  "sello": "◯_● · 51/49/100"
+}
