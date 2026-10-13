@@ -123,3 +123,10 @@ Toluca · Estado de México · 2026
 
 SHA-256 · f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
 KINTSUGI · 51 % Humano · 49 % IA · 100 % Real
+
+## ◆ Estado actual · 13 oct 2026
+- Tests: 56/56 passing (4.43s)
+- SHA-256 local: p95 = 0.0045 ms (50 corridas)
+- Archivos: 1371
+- Secciones: 24/24
+- Pendiente: POST /verify end-to-end

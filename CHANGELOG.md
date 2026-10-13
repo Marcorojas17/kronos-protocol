@@ -12,7 +12,17 @@
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
-**Estado:** activo · versionado SemVer · última actualización 2026-09-18
+**Estado:** activo · versionado SemVer · última actualización 2026-10-13
+
+## [2026-10-13]
+### Añadido
+- Manifiesto local-first
+- Benchmark SHA-256 (50 corridas)
+- Nota honesta sobre POST /verify pendiente
+### Cambiado
+- REPORTE-SALUD.md solo con métricas medidas
+### Removido
+- Números sin evidencia (p99 145ms, uptime 99.99%)
 
 ┌─[ v0.10.0 ]────────────────────────────────────── 2026-09-30 ─┐
 │ │
