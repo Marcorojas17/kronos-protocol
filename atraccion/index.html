@@ -1,151 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!--                                                                           -->
-<!--    █████╗ ████████╗██████╗  █████╗  ██████╗ ██████╗██╗ ██████╗ ███╗   ██╗ -->
-<!--   ██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██║██╔═══██╗████╗  ██║ -->
-<!--   ███████║   ██║   ██████╔╝███████║██║     ██║     ██║██║   ██║██╔██╗ ██║ -->
-<!--   ██╔══██║   ██║   ██╔══██╗██╔══██║██║     ██║     ██║██║   ██║██║╚██╗██║ -->
-<!--   ██║  ██║   ██║   ██║  ██║██║  ██║╚██████╗╚██████╗██║╚██████╔╝██║ ╚████║ -->
-<!--   ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ -->
-<!--                                                                           -->
-<!--   ▓▒░ ATRACCIÓN · LANDING · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓            -->
-<!--                                                                           -->
-<!--   NODO: YHDRYH-92CE · GENESIS: K28-M05-MN01-YHDRYH-92CE                  -->
-<!--                                                                           -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATRACCIÓN MAGNÉTICA · ARKHÉ ZERO · ◯_●</title>
-<meta name="description" content="El movimiento no se promociona. Se atrae.">
-<link rel="stylesheet" href="../assets/css/themes.css">
-<link rel="stylesheet" href="../assets/css/nav-system.css">
-<link rel="stylesheet" href="../assets/css/hub.css">
+<title>🧲 Atracción Magnética · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
+h1{font-family:'Cinzel',serif;font-size:38px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.2);padding:22px;position:relative;transition:all .3s;text-decoration:none;color:inherit}
+.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,215,0,.15)}
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px}
+.card .t{color:#00ff41;font-size:16px;font-weight:bold;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.1em}
+.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
+footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
+@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:24px}}
+</style>
 </head>
-<body data-page="atraccion" data-theme="terminal-gold">
-<nav id="nav-system" data-active="hub"></nav>
-
-<main class="doc-container">
-
-<pre class="ascii-banner">
-  ╔══════════════════════════════════════════════════════════════════════════════╗
-  ║                                                                              ║
-  ║    ▓▒░  ◯_●  ·  A T R A C C I Ó N   M A G N É T I C A  ·  ◯_●  ░▒▓           ║
-  ║                                                                              ║
-  ║    ─────────────────────────────────────────────────────────────────────     ║
-  ║                                                                              ║
-  ║              E L   M O V I M I E N T O   N O   S E   P R O M O C I O N A .   ║
-  ║              S E   A T R A E .                                               ║
-  ║                                                                              ║
-  ║    ─────────────────────────────────────────────────────────────────────     ║
-  ║                                                                              ║
-  ║              NODO      ·  YHDRYH-92CE                                        ║
-  ║              GENESIS   ·  K28-M05-MN01-YHDRYH-92CE                           ║
-  ║              PACTO     ·  51% HUMANO · 49% IA · 100% REAL                    ║
-  ║                                                                              ║
-  ╚══════════════════════════════════════════════════════════════════════════════╝
-</pre>
-
-<h1>🧲 Atracción Magnética</h1>
-
-<blockquote>
-<p><em>"El que firma, atrae. El que solo mira, pasa."</em></p>
-</blockquote>
-
-<h2>🜂 Las 8 capas de atracción</h2>
-
-<div class="cards-grid">
-
-  <a class="card" href="descubrimiento/README.md">
-    <div class="card-icon">🔍</div>
-    <h3>DESCUBRIMIENTO</h3>
-    <p>SEO · AEO · GEO · schema.org</p>
-  </a>
-
-  <a class="card" href="contenido/README.md">
-    <div class="card-icon">📝</div>
-    <h3>CONTENIDO</h3>
-    <p>Blog · ensayos · historias</p>
-  </a>
-
-  <a class="card" href="viral/README.md">
-    <div class="card-icon">📣</div>
-    <h3>VIRAL</h3>
-    <p>Share engine · medallas</p>
-  </a>
-
-  <a class="card" href="autoridad/README.md">
-    <div class="card-icon">🏆</div>
-    <h3>AUTORIDAD</h3>
-    <p>Prensa · papers · conferencias</p>
-  </a>
-
-  <a class="card" href="comunidad/README.md">
-    <div class="card-icon">👥</div>
-    <h3>COMUNIDAD</h3>
-    <p>Plataforma · mentorship</p>
-  </a>
-
-  <a class="card" href="newsletter/README.md">
-    <div class="card-icon">📧</div>
-    <h3>NEWSLETTER</h3>
-    <p>Suscriptores · ediciones</p>
-  </a>
-
-  <a class="card" href="educacion/README.md">
-    <div class="card-icon">🎓</div>
-    <h3>EDUCACIÓN</h3>
-    <p>Cursos · tutoriales · podcast</p>
-  </a>
-
-  <a class="card" href="sandbox/README.md">
-    <div class="card-icon">🧪</div>
-    <h3>SANDBOX</h3>
-    <p>Demo · API · MCP público</p>
-  </a>
-
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+<h1>Atracción Magnética</h1>
+<div class="sub">SECCIÓN 21 · NODO YHDRYH-92CE</div>
+<div class="cita">"El que firma, atrae. El que solo mira, pasa."</div>
+<div class="grid">
+<a class="card" href="#descubrimiento"><div class="n">01 · DESCUBRIMIENTO</div><div class="t">🔎 SEO · AEO · GEO</div><div class="d">Search · Answer · Generative Engine Optimization</div></a>
+<a class="card" href="#contenido"><div class="n">02 · CONTENIDO</div><div class="t">📝 Blog y Ensayos</div><div class="d">Historias que resisten el escrutinio del tiempo</div></a>
+<a class="card" href="#viral"><div class="n">03 · VIRAL</div><div class="t">📢 Viralidad</div><div class="d">Lo que se comparte solo, sin empujar</div></a>
+<a class="card" href="#autoridad"><div class="n">04 · AUTORIDAD</div><div class="t">⚜ Autoridad Técnica</div><div class="d">Sello criptográfico · verificación pública</div></a>
+<a class="card" href="#comunidad"><div class="n">05 · COMUNIDAD</div><div class="t">👥 Nodos de Confianza</div><div class="d">Cada miembro es un nodo verificable</div></a>
+<a class="card" href="#newsletter"><div class="n">06 · NEWSLETTER</div><div class="t">📬 Comunicación Directa</div><div class="d">Sin intermediarios · correo propio</div></a>
+<a class="card" href="#educacion"><div class="n">07 · EDUCACIÓN</div><div class="t">🎓 Formación</div><div class="d">Guías, tutoriales, casos de uso</div></a>
+<a class="card" href="#sandbox"><div class="n">08 · SANDBOX</div><div class="t">🧪 Prueba Pública</div><div class="d">Demo interactiva sin registro</div></a>
 </div>
-
-<h2>🜃 Flujo de atracción</h2>
-
-<pre class="terminal-block">
-╔══════════════════════════════════════════════════════════════════╗
-║                    FLUJO DE ATRACCIÓN                            ║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                  ║
-║   [ Descubrimiento ] ──▶ [ Contenido ] ──▶ [ Viral ]             ║
-║            │                                     │               ║
-║            ▼                                     ▼               ║
-║   [ Autoridad ] ◀─── [ Comunidad ] ◀─── [ Newsletter ]           ║
-║            │                                     │               ║
-║            ▼                                     ▼               ║
-║   [ Educación ] ──▶ [ Sandbox ] ──▶ [ FIRMA ]                    ║
-║                                                                  ║
-║   ◯_● · 51/49/100                                                ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-</pre>
-
-<h2>🜄 Principios</h2>
-
-<pre class="terminal-block">
-+ El sistema no busca usuarios. Los atrae.
-+ El contenido no convence. Testifica.
-+ La comunidad no capta. Acoge.
-+ La autoridad no se proclama. Se verifica.
-- NUNCA publicidad invasiva
-- NUNCA engagement forzado
-- NUNCA dark patterns
-</pre>
-
-<footer class="doc-footer">
-<p class="seal-line">◯_● · 51/49/100 · ATRACCIÓN MAGNÉTICA</p>
-<p>Nodo YHDRYH-92CE · Genesis K28-M05-MN01-YHDRYH-92CE</p>
+<footer>
+<span class="s">◯_● · 51/49/100</span>
+Marco Antonio Rojas Valdovinos · Toluca · 2026<br>
+NODO YHDRYH-92CE · SCDR-001
 </footer>
+</div>
+<script>
+// ANIMACIÓN ÚNICA: Campo magnético con líneas de fuerza
+const c = document.getElementById('bg'), ctx = c.getContext('2d');
+let W, H;
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs(); addEventListener('resize', rs);
 
-</main>
+// Partículas atraídas hacia el centro magnético
+const cx = () => W/2, cy = () => H/2;
+const parts = Array.from({length: 80}, () => ({
+  x: Math.random()*W, y: Math.random()*H,
+  vx: 0, vy: 0,
+  r: Math.random()*2+0.5,
+  carga: Math.random() < 0.7 ? -1 : 1 // negativo atrae, positivo repele
+}));
 
-<script type="module" src="../assets/js/nav-system.js"></script>
+function draw(){
+  ctx.fillStyle = 'rgba(3,3,8,0.12)';
+  ctx.fillRect(0,0,W,H);
+  
+  const mx = cx(), my = cy();
+  
+  // Dibujar líneas de campo magnético estáticas
+  ctx.strokeStyle = 'rgba(255,215,0,0.08)';
+  ctx.lineWidth = 1;
+  for(let i = 0; i < 12; i++){
+    const angle = (i / 12) * Math.PI * 2;
+    ctx.beginPath();
+    for(let t = 0; t < 1; t += 0.02){
+      const r = t * 400;
+      const ax = mx + Math.cos(angle + t*0.5) * r;
+      const ay = my + Math.sin(angle + t*0.5) * r;
+      if(t === 0) ctx.moveTo(ax, ay);
+      else ctx.lineTo(ax, ay);
+    }
+    ctx.stroke();
+  }
+  
+  // Dibujar el polo magnético
+  ctx.beginPath();
+  ctx.arc(mx, my, 20, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(255,215,0,0.6)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(mx, my, 8, 0, Math.PI*2);
+  ctx.fillStyle = 'rgba(255,215,0,0.9)';
+  ctx.shadowColor = '#ffd700'; ctx.shadowBlur = 30;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  
+  // Mover partículas
+  for(const p of parts){
+    const dx = mx - p.x;
+    const dy = my - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy) + 0.01;
+    const fuerza = p.carga / (dist * dist) * 800;
+    p.vx += (dx / dist) * fuerza * 0.02;
+    p.vy += (dy / dist) * fuerza * 0.02;
+    // viento lateral
+    p.vx += Math.sin(Date.now()*0.001 + p.y*0.01) * 0.05;
+    p.vx *= 0.96; p.vy *= 0.96;
+    p.x += p.vx; p.y += p.vy;
+    
+    // si se sale, reaparecer
+    if(p.x < 0 || p.x > W || p.y < 0 || p.y > H){
+      p.x = Math.random()*W; p.y = Math.random()*H;
+      p.vx = 0; p.vy = 0;
+    }
+    
+    // dibujar
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    if(p.carga < 0){
+      ctx.fillStyle = 'rgba(0,255,65,0.7)';
+      ctx.shadowColor = '#00ff41';
+    } else {
+      ctx.fillStyle = 'rgba(255,215,0,0.5)';
+      ctx.shadowColor = '#ffd700';
+    }
+    ctx.shadowBlur = 6;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 </body>
 </html>

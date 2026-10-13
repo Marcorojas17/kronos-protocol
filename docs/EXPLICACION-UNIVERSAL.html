@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>🌍 Explicación Universal · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
+h1{font-family:'Cinzel',serif;font-size:34px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+h2{font-family:'Cinzel',serif;color:#ffd700;font-size:16px;letter-spacing:.2em;margin:35px 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,215,0,.15)}
+.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:25px;margin-bottom:20px;font-size:12px;line-height:1.9;color:#c8ffc8}
+.panel strong{color:#ffd700}
+.panel em{color:#00ff41;font-style:normal}
+.tabla{width:100%;font-size:11px;border-collapse:collapse;margin-top:15px}
+.tabla th{color:#ffd700;text-align:left;padding:8px;border-bottom:1px solid rgba(255,215,0,.2);font-family:'Cinzel',serif;letter-spacing:.1em}
+.tabla td{padding:8px;border-bottom:1px dashed rgba(0,255,65,.1);color:#c8ffc8}
+footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
+@media(max-width:600px){h1{font-size:22px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+<h1>Explicación Universal</h1>
+<div class="sub">KRONOS · EN UNA PÁGINA</div>
+
+<div class="panel">
+<p><strong>KRONOS</strong> es la infraestructura criptográfica que permite a cualquier persona (humana o IA) probar que algo existió, sin pedirle permiso a nadie.</p>
+</div>
+
+<h2>◆ Capítulo 1 · El Problema</h2>
+<div class="panel">
+<p><em>El problema del mundo hoy:</em></p>
+<p>▸ No puedo probar que un contrato existía → Depende de un servidor ajeno.<br>
+▸ No sé si una IA tomó esta decisión → No hay trazabilidad criptográfica.<br>
+▸ Perdí archivos por un hackeo → Todo vive en la nube.<br>
+▸ Un gobierno puede borrar mi información → No tengo copia soberana.<br>
+▸ Mi notario cobra y tarda días → Depende de un humano.</p>
+<p><strong>Conclusión:</strong> Toda prueba de existencia depende hoy de <em>terceros que pueden desaparecer</em>.</p>
+</div>
+
+<h2>◆ Capítulo 2 · La Respuesta</h2>
+<div class="panel">
+<p><strong>La respuesta de KRONOS:</strong></p>
+<table class="tabla">
+<tr><th>Primitiva</th><th>Estándar</th><th>Función</th></tr>
+<tr><td>SHA-256</td><td>NIST FIPS 180-4</td><td>Huella digital única</td></tr>
+<tr><td>Ed25519</td><td>RFC 8032</td><td>Firma sin intermediarios</td></tr>
+<tr><td>AES-GCM-256</td><td>NIST SP 800-38D</td><td>Cifrado local</td></tr>
+<tr><td>Merkle Tree</td><td>3G</td><td>Agregación verificable</td></tr>
+<tr><td>Ethereum</td><td>EIP-155</td><td>Testigo público eterno</td></tr>
+</table>
+</div>
+
+<h2>◆ Capítulo 3 · Cómo Funciona</h2>
+<div class="panel">
+<p><em>Secuencia:</em></p>
+<p>1. Usuario introduce información.<br>
+2. Se cifra con AES-GCM.<br>
+3. Se calcula SHA-256.<br>
+4. Se firma con Ed25519.<br>
+5. Se encadena al bloque previo.<br>
+6. Se construye árbol Merkle.<br>
+7. Anclaje a Ethereum mainnet.</p>
+</div>
+
+<footer>
+<span class="s">◯_● · 51/49/100</span>
+Marco Antonio Rojas Valdovinos · Toluca · 2026<br>
+NODO YHDRYH-92CE · SCDR-001
+</footer>
+</div>
+<script>
+// ANIMACIÓN ÚNICA: Hélice de ADN criptográfico
+const c = document.getElementById('bg'), ctx = c.getContext('2d');
+let W, H;
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs(); addEventListener('resize', rs);
+
+function draw(){
+  ctx.fillStyle = 'rgba(3,3,8,0.15)';
+  ctx.fillRect(0,0,W,H);
+  
+  const t = Date.now() * 0.001;
+  const centro = H/2;
+  const ancho = Math.min(W * 0.8, 500);
+  const x0 = (W - ancho) / 2;
+  const puntos = 60;
+  
+  for(let i = 0; i < puntos; i++){
+    const x = x0 + (i / puntos) * ancho;
+    const phase = (i / puntos) * Math.PI * 8 + t * 0.5;
+    
+    const y1 = centro + Math.sin(phase) * 80;
+    const y2 = centro + Math.sin(phase + Math.PI) * 80;
+    
+    // Barra horizontal conectando las dos hélices
+    const intensidad = Math.abs(Math.cos(phase));
+    ctx.beginPath();
+    ctx.moveTo(x, y1);
+    ctx.lineTo(x, y2);
+    ctx.strokeStyle = `rgba(0,255,65,${intensidad * 0.4})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    // Nodo hélice 1
+    ctx.beginPath();
+    ctx.arc(x, y1, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,215,0,0.8)';
+    ctx.shadowColor = '#ffd700';
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    
+    // Nodo hélice 2
+    ctx.beginPath();
+    ctx.arc(x, y2, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(0,255,65,0.8)';
+    ctx.shadowColor = '#00ff41';
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

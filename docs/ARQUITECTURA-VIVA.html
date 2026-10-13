@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>🏗 Arquitectura Viva · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
+h1{font-family:'Cinzel',serif;font-size:34px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+h2{font-family:'Cinzel',serif;color:#ffd700;font-size:15px;letter-spacing:.2em;margin:30px 0 15px;padding-bottom:10px;border-bottom:1px solid rgba(255,215,0,.15)}
+.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:22px;margin-bottom:18px;font-size:12px;line-height:1.9;color:#c8ffc8}
+.panel strong{color:#ffd700}
+.panel em{color:#00ff41;font-style:normal}
+footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
+@media(max-width:600px){h1{font-size:22px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+<h1>Arquitectura Viva</h1>
+<div class="sub">KRONOS · SISTEMA VIVO</div>
+
+<div class="panel">
+<p><strong>KRONOS no es un sistema perfecto. Es un sistema vivo.</strong></p>
+<p>Este documento declara la arquitectura conceptual del protocolo KRONOS. No es un manual técnico. Es una <em>tesis estructural</em>.</p>
+</div>
+
+<h2>◆ I · Principio fundamental</h2>
+<div class="panel">
+<p>Los sistemas perfectos son <em>frágiles</em>. Los sistemas vivos son <em>resilientes</em>.</p>
+<p>Linux tiene miles de forks. Bitcoin tiene bloques huérfanos. Internet tiene enlaces rotos que aún funcionan. La imperfección no es un defecto del diseño: es parte de su <strong>capacidad de adaptación</strong>.</p>
+<p>KRONOS adopta este principio y lo declara explícitamente.</p>
+</div>
+
+<h2>◆ II · Doble lectura</h2>
+<div class="panel">
+<p>Todo artefacto en KRONOS puede leerse de dos formas distintas y complementarias:</p>
+<p><strong>Lectura Estructural:</strong> la que ve un auditor humano (universidad, gobierno, empresa, developer).<br>
+<em>Cero capas 0 a 6, módulos con función clara, documentación coherente.</em></p>
+<p><strong>Lectura Sistémica:</strong> la que ve una máquina, una IA, o un intérprete cuántico.<br>
+<em>Red de caminos alternativos de acceso, redundancias funcionales que garantizan resiliencia.</em></p>
+<p>Ambas lecturas son válidas. No se contradicen. Se complementan.</p>
+</div>
+
+<h2>◆ III · Dialectos nominales</h2>
+<div class="panel">
+<p>KRONOS admite variantes ortográficas internas como <em>dialectos históricos</em> del lenguaje del protocolo:</p>
+<p>▸ auditoria | auditoría<br>
+▸ boveda | bóveda | bobeda<br>
+▸ kodice | código</p>
+<p>Los dialectos NO son errores. Son <strong>capas históricas del lenguaje interno</strong>. Documentan la evolución del proyecto como un fósil geológico.</p>
+</div>
+
+<h2>◆ IV · Fractales de ruta</h2>
+<div class="panel">
+<p>Rutas como <em>cimiento/storage-dexie/cimiento/storage-dexie/</em> son fractales auto-referenciales.</p>
+<p>En computación clásica parecen duplicados. En computación cuántica son superposiciones de estado: el mismo archivo existe simultáneamente en múltiples ubicaciones, y el sistema decide cuál invocar según el contexto.</p>
+</div>
+
+<footer>
+<span class="s">◯_● · 51/49/100</span>
+Marco Antonio Rojas Valdovinos · Toluca · 2026<br>
+NODO YHDRYH-92CE · SCDR-001
+</footer>
+</div>
+<script>
+// ANIMACIÓN ÚNICA: Red neuronal pulsante con señales viajando
+const c = document.getElementById('bg'), ctx = c.getContext('2d');
+let W, H;
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs(); addEventListener('resize', rs);
+
+const numNodos = 45;
+const nodos = Array.from({length: numNodos}, () => ({
+  x: Math.random()*W, y: Math.random()*H,
+  vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15,
+  pulse: Math.random()*Math.PI*2,
+  r: Math.random()*2 + 1
+}));
+
+// señales viajando de nodo a nodo
+const señales = [];
+
+function draw(){
+  ctx.fillStyle = 'rgba(3,3,8,0.12)';
+  ctx.fillRect(0,0,W,H);
+  
+  const t = Date.now() * 0.001;
+  
+  // mover nodos
+  for(const n of nodos){
+    n.x += n.vx; n.y += n.vy;
+    if(n.x < 0 || n.x > W) n.vx *= -1;
+    if(n.y < 0 || n.y > H) n.vy *= -1;
+  }
+  
+  // dibujar conexiones
+  for(let i = 0; i < nodos.length; i++){
+    for(let j = i+1; j < nodos.length; j++){
+      const d = Math.hypot(nodos[i].x - nodos[j].x, nodos[i].y - nodos[j].y);
+      if(d < 130){
+        ctx.beginPath();
+        ctx.moveTo(nodos[i].x, nodos[i].y);
+        ctx.lineTo(nodos[j].x, nodos[j].y);
+        ctx.strokeStyle = `rgba(0,255,65,${0.08 * (1 - d/130)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  
+  // dibujar nodos con pulso
+  for(const n of nodos){
+    const pulso = 1 + Math.sin(t*2 + n.pulse) * 0.6;
+    const r = n.r * pulso;
+    
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(0,255,65,0.7)';
+    ctx.shadowColor = '#00ff41';
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    
+    // aurora dorada
+    if(Math.sin(t*3 + n.pulse) > 0.7){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r * 3, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(255,215,0,0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+  
+  // nuevas señales
+  if(Math.random() < 0.08){
+    const a = nodos[Math.floor(Math.random()*nodos.length)];
+    const b = nodos[Math.floor(Math.random()*nodos.length)];
+    if(a !== b) señales.push({a, b, t: 0});
+  }
+  
+  // mover señales
+  for(let i = señales.length - 1; i >= 0; i--){
+    const s = señales[i];
+    s.t += 0.03;
+    if(s.t >= 1){ señales.splice(i, 1); continue; }
+    const x = s.a.x + (s.b.x - s.a.x) * s.t;
+    const y = s.a.y + (s.b.y - s.a.y) * s.t;
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,215,0,0.9)';
+    ctx.shadowColor = '#ffd700';
+    ctx.shadowBlur = 12;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
