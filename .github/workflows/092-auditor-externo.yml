@@ -12,7 +12,7 @@ jobs:
         with: { python-version: '3.11' }
       - run: python scripts/index-cero-verify.py --forense
       - run: python scripts/pqc-audit.py --verbose
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: auditor-report
           path: reportes/auditor.json
