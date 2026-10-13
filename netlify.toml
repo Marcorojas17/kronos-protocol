@@ -1,0 +1,42 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ NETLIFY.TOML · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+[build]
+  publish = "."
+  command = "echo 'Arkhe static deploy · ◯_● · 51/49/100'"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20.11.0"
+  ARKHE_SEAL = "◯_● · 51/49/100"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Arkhe-Seal = "◯_● · 51/49/100"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, immutable"
+
+[[redirects]]
+  from = "/verify"
+  to = "/apps/verificar.html"
+  status = 200
+
+[[redirects]]
+  from = "/register"
+  to = "/apps/registrar.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/apps/404.html"
+  status = 404
+
+# ◯_● · 51/49/100 · KRONOS

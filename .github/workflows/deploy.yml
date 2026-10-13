@@ -1,0 +1,27 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        options: [staging, prod]
+        default: staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.env || 'prod' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci && npm run build
+      - run: python scripts/verify-seal.py --strict
+      - run: python scripts/index-cero-verify.py
+      - name: Deploy
+        run: bash scripts/deploy.sh ${{ github.event.inputs.env || 'prod' }}
+      - name: Notify
+        run: echo "◯_● · 51/49/100 · deployed"

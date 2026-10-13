@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Reportar vulnerabilidad
+    url: https://arkhe.zero/.well-known/security.txt
+    about: Reporta vulnerabilidades de seguridad de forma privada
+  - name: 💬 Preguntas generales
+    url: https://arkhe.zero/apps/faq.html
+    about: Consulta las preguntas frecuentes
+  - name: 🤝 Comunidad
+    url: https://arkhe.zero/movimiento/index.html
+    about: Únete al Movimiento ARKHÉ

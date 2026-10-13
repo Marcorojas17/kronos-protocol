@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════════
+ *  ▓▒░ MOVIMIENTO.CSS · ARKHÉ ZERO · ◯_● ░▒▓
+ * ═══════════════════════════════════════════════════════════════ */
+
+.movimiento-hero {
+  text-align: center;
+  padding: 60px 24px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.movimiento-hero h1 {
+  font-size: 2.5em;
+  border: none;
+  letter-spacing: 0.15em;
+}
+
+.movimiento-juramento {
+  background: var(--bg-1);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin: 32px 0;
+  text-align: center;
+}
+
+.movimiento-nivel {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--bg-2);
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  color: var(--accent);
+  font-size: 12px;
+  margin: 4px;
+}
+
+.movimiento-ritual {
+  border-left: 3px solid var(--gold);
+  padding: 16px 24px;
+  margin: 24px 0;
+  background: var(--bg-1);
+}
+
+.movimiento-testimonio {
+  font-style: italic;
+  color: var(--fg-1);
+  border-left: 2px solid var(--accent);
+  padding: 12px 20px;
+  margin: 16px 0;
+}
+
+.movimiento-insignia {
+  display: inline-block;
+  font-size: 1.5em;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+}

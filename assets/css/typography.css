@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════════════════════
+ *  ▓▒░ TYPOGRAPHY.CSS · ARKHÉ ZERO · ◯_● ░▒▓
+ * ═══════════════════════════════════════════════════════════════ */
+
+body {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 1.5em 0 0.5em;
+  color: var(--accent);
+}
+
+h1 { font-size: 2em; border-bottom: 2px solid var(--accent); padding-bottom: 0.3em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.1em; }
+h4 { font-size: 1em; color: var(--fg-0); }
+
+p {
+  margin: 0 0 1em;
+  color: var(--fg-0);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 150ms;
+}
+a:hover { border-bottom-color: var(--accent); }
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-2);
+  color: var(--accent);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+kbd {
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin: 1em 0;
+  font-style: italic;
+  color: var(--fg-1);
+}
+
+ul, ol {
+  margin: 0 0 1em;
+  padding-left: 2em;
+  color: var(--fg-0);
+}
+
+li { margin: 0.3em 0; }
+
+strong, b { color: var(--accent); font-weight: 700; }
+em, i { font-style: italic; }
+u { text-decoration: underline; text-decoration-color: var(--accent); }
+mark { background: var(--accent); color: var(--bg-0); }

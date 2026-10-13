@@ -1,0 +1,295 @@
+/* ═══════════════════════════════════════════════════════════════
+   ARKHÉ ZERO · SISTEMA DE TEMAS
+   Cada página define data-theme="X" y obtiene su propia paleta.
+   Todos los temas derivan de la base KINTSUGI.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── BASE · KINTSUGI (default) ─────────────────────────────── */
+:root,
+[data-theme="kintsugi"] {
+  /* Fondos */
+  --bg-0: #04040a;         /* obsidiana */
+  --bg-1: #08080f;         /* void */
+  --bg-2: #0c0c14;         /* panel */
+  --bg-3: #121218;         /* card */
+
+  /* Acentos principales */
+  --gold: #c9a227;
+  --gold-lt: #e8d48b;
+  --gold-pale: #f8f0d0;
+  --champagne: #d8c48e;
+
+  /* Acentos secundarios */
+  --teal: #4fd1c5;
+  --violet: #7c5cff;
+  --rose: #f4a0af;
+  --green: #5cffb1;
+
+  /* Semánticos */
+  --danger: #c8102e;
+  --warn: #d97706;
+  --ok: #059669;
+
+  /* Texto */
+  --ink: #eae5d6;
+  --muted: #7d7768;
+  --muted-2: #a8a294;
+
+  /* Líneas */
+  --line: rgba(201, 162, 39, 0.18);
+  --line-soft: rgba(201, 162, 39, 0.08);
+  --line-strong: rgba(201, 162, 39, 0.35);
+
+  /* Efectos */
+  --glow: rgba(201, 162, 39, 0.28);
+  --glow-strong: rgba(201, 162, 39, 0.55);
+
+  /* Tipografías */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Espaciados */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  /* Radios */
+  --r-1: 2px; --r-2: 3px; --r-3: 6px; --r-4: 12px;
+
+  /* Transiciones */
+  --t-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-med: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── TEMA · LEX PRIMA · Rojo ceremonial ─────────────────────── */
+[data-theme="lex-prima"] {
+  --gold: #c8102e;
+  --gold-lt: #e84a5f;
+  --gold-pale: #fce8eb;
+  --champagne: #e8a4af;
+  --line: rgba(200, 16, 46, 0.18);
+  --line-strong: rgba(200, 16, 46, 0.35);
+  --glow: rgba(200, 16, 46, 0.28);
+  --glow-strong: rgba(200, 16, 46, 0.55);
+}
+
+/* ── TEMA · PACTO 51/49 · Violeta simétrico ─────────────────── */
+[data-theme="pacto"] {
+  --gold: #7c5cff;
+  --gold-lt: #a894ff;
+  --gold-pale: #e8e2ff;
+  --champagne: #b8a8f0;
+  --line: rgba(124, 92, 255, 0.18);
+  --line-strong: rgba(124, 92, 255, 0.35);
+  --glow: rgba(124, 92, 255, 0.28);
+  --glow-strong: rgba(124, 92, 255, 0.55);
+}
+
+/* ── TEMA · LGU · Azul territorial ──────────────────────────── */
+[data-theme="lgu"] {
+  --gold: #4a9eff;
+  --gold-lt: #7cb8ff;
+  --gold-pale: #e0efff;
+  --champagne: #90c0f0;
+  --line: rgba(74, 158, 255, 0.18);
+  --line-strong: rgba(74, 158, 255, 0.35);
+  --glow: rgba(74, 158, 255, 0.28);
+  --glow-strong: rgba(74, 158, 255, 0.55);
+}
+
+/* ── TEMA · GUARDIANES · Teal poscuántico ───────────────────── */
+[data-theme="guardianes"] {
+  --gold: #4fd1c5;
+  --gold-lt: #7fdfd6;
+  --gold-pale: #d8f5f1;
+  --champagne: #98d8d1;
+  --line: rgba(79, 209, 197, 0.18);
+  --line-strong: rgba(79, 209, 197, 0.35);
+  --glow: rgba(79, 209, 197, 0.28);
+  --glow-strong: rgba(79, 209, 197, 0.55);
+}
+
+/* ── TEMA · ÍNDICE CERO · Oro sellado ───────────────────────── */
+[data-theme="indice-cero"] {
+  --gold: #c9a227;
+  --gold-lt: #e8d48b;
+  --gold-pale: #f8f0d0;
+  --champagne: #d8c48e;
+  --line: rgba(201, 162, 39, 0.3);
+  --line-strong: rgba(201, 162, 39, 0.55);
+  --glow: rgba(201, 162, 39, 0.4);
+  --glow-strong: rgba(201, 162, 39, 0.7);
+}
+
+/* ── TEMA · MEMORIA · Verde esmeralda ───────────────────────── */
+[data-theme="memoria"] {
+  --gold: #5cffb1;
+  --gold-lt: #8cffc8;
+  --gold-pale: #d8ffe8;
+  --champagne: #a0e8c0;
+  --line: rgba(92, 255, 177, 0.18);
+  --line-strong: rgba(92, 255, 177, 0.35);
+  --glow: rgba(92, 255, 177, 0.28);
+  --glow-strong: rgba(92, 255, 177, 0.55);
+}
+
+/* ── TEMA · CO-AUTORÍA · Rosa dual ──────────────────────────── */
+[data-theme="coautoria"] {
+  --gold: #f4a0af;
+  --gold-lt: #f8c0c8;
+  --gold-pale: #fce8eb;
+  --champagne: #e0a8b0;
+  --line: rgba(244, 160, 175, 0.18);
+  --line-strong: rgba(244, 160, 175, 0.35);
+  --glow: rgba(244, 160, 175, 0.28);
+  --glow-strong: rgba(244, 160, 175, 0.55);
+}
+
+/* ── TEMA · FISCALIDAD · Ámbar financiero ───────────────────── */
+[data-theme="fiscalidad"] {
+  --gold: #d97706;
+  --gold-lt: #f0a020;
+  --gold-pale: #fef0d8;
+  --champagne: #e0b070;
+  --line: rgba(217, 119, 6, 0.18);
+  --line-strong: rgba(217, 119, 6, 0.35);
+  --glow: rgba(217, 119, 6, 0.28);
+  --glow-strong: rgba(217, 119, 6, 0.55);
+}
+
+/* ── TEMA · JURISDICCIÓN · Índigo territorial ───────────────── */
+[data-theme="jurisdiccion"] {
+  --gold: #6366f1;
+  --gold-lt: #8f91f8;
+  --gold-pale: #e0e1fc;
+  --champagne: #a8aae8;
+  --line: rgba(99, 102, 241, 0.18);
+  --line-strong: rgba(99, 102, 241, 0.35);
+  --glow: rgba(99, 102, 241, 0.28);
+  --glow-strong: rgba(99, 102, 241, 0.55);
+}
+
+/* ── TEMA · AGENTES · Verde enjambre ────────────────────────── */
+[data-theme="agentes"] {
+  --gold: #5cffb1;
+  --gold-lt: #8cffc8;
+  --gold-pale: #d8ffe8;
+  --champagne: #a0e8c0;
+  --teal: #4fd1c5;
+  --violet: #7c5cff;
+  --line: rgba(92, 255, 177, 0.18);
+  --line-strong: rgba(92, 255, 177, 0.4);
+  --glow: rgba(92, 255, 177, 0.28);
+  --glow-strong: rgba(92, 255, 177, 0.6);
+}
+
+/* ── TEMA · MOVIMIENTO · Naranja ritual ─────────────────────── */
+[data-theme="movimiento"] {
+  --gold: #f59e0b;
+  --gold-lt: #fbbf24;
+  --gold-pale: #fef3c7;
+  --champagne: #e8c070;
+  --line: rgba(245, 158, 11, 0.18);
+  --line-strong: rgba(245, 158, 11, 0.35);
+  --glow: rgba(245, 158, 11, 0.28);
+  --glow-strong: rgba(245, 158, 11, 0.55);
+}
+
+/* ── TEMA · ATRACCIÓN · Magenta magnético ───────────────────── */
+[data-theme="atraccion"] {
+  --gold: #ec4899;
+  --gold-lt: #f472b6;
+  --gold-pale: #fce7f3;
+  --champagne: #e8a0c0;
+  --line: rgba(236, 72, 153, 0.18);
+  --line-strong: rgba(236, 72, 153, 0.35);
+  --glow: rgba(236, 72, 153, 0.28);
+  --glow-strong: rgba(236, 72, 153, 0.55);
+}
+
+/* ── Reset mínimo ───────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--bg-0);
+}
+
+/* ── Utilidades compartidas ─────────────────────────────────── */
+.u-font-display { font-family: var(--font-display); }
+.u-font-mono    { font-family: var(--font-mono); }
+.u-gold         { color: var(--gold); }
+.u-gold-lt      { color: var(--gold-lt); }
+.u-muted        { color: var(--muted); }
+.u-center       { text-align: center; }
+
+/* ── Fondo animado compartido ───────────────────────────────── */
+#field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.aurora {
+  position: fixed;
+  inset: -30%;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(20px);
+  background:
+    radial-gradient(circle at 20% 30%, var(--glow), transparent 45%),
+    radial-gradient(circle at 80% 70%, var(--glow), transparent 50%),
+    radial-gradient(circle at 50% 90%, var(--glow-strong), transparent 45%);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+  opacity: 0.6;
+}
+
+@keyframes aurora-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(3%, -2%) scale(1.08); }
+  100% { transform: translate(-3%, 2%) scale(1.04); }
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+/* ── Accesibilidad ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  #field, .aurora, .grain, .nav-top, .toast, .nav-overlay { display: none !important; }
+  body { background: #fff; color: #000; }
+}

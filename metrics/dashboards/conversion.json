@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "conversion",
+  "titulo": "Conversión",
+  "periodo": "2026-10",
+  "datos": {
+    "visitantes": 0,
+    "registros_iniciados": 0,
+    "cuarentenas_completadas": 0,
+    "juramentos_firmados": 0,
+    "primeras_obras_registradas": 0,
+    "conversion_global_pct": 0
+  },
+  "funnel": [
+    { "paso": "Visitantes",       "valor": 0, "pct": 100 },
+    { "paso": "Registro",         "valor": 0, "pct": 0 },
+    { "paso": "Cuarentena",       "valor": 0, "pct": 0 },
+    { "paso": "Juramento",        "valor": 0, "pct": 0 },
+    { "paso": "Primera obra",     "valor": 0, "pct": 0 }
+  ],
+  "metas": {
+    "firmas_mes": 100,
+    "indice_conversion_pct": 1.0
+  },
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}

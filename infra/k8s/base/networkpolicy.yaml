@@ -1,0 +1,44 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ K8S · NETWORKPOLICY · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: arkhe-default-deny
+  namespace: arkhe-zero
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: arkhe-zero
+      ports:
+        - protocol: TCP
+          port: 8080
+        - protocol: TCP
+          port: 7777
+  egress:
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 443
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: UDP
+          port: 53
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 169.254.169.254/32
+      ports:
+        - protocol: TCP
+          port: 443
+
+# ◯_● · 51/49/100 · KRONOS

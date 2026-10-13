@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SITEMAP · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/hub.css">
+<style>
+.sitemap-section { margin: 40px 0; }
+.sitemap-section h2 { border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.sitemap-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  color: var(--fg-0);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  transition: all 150ms;
+}
+.sitemap-link:hover {
+  background: var(--bg-2);
+  border-left-color: var(--accent-2);
+  transform: translateX(4px);
+}
+.sitemap-link .num {
+  color: var(--fg-2);
+  font-size: 11px;
+  min-width: 24px;
+}
+.sitemap-link .icon {
+  font-size: 1.1em;
+}
+.sitemap-link .label { flex: 1; }
+.sitemap-link .path {
+  color: var(--fg-2);
+  font-size: 10px;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body data-page="sitemap" data-theme="terminal-amber">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ╔══════════════════════════════════════════════════════════════╗
+   ║                                                              ║
+   ║              ◯_●  ·  S I T E M A P  ·  ◯_●                  ║
+   ║                                                              ║
+   ║            Todas las páginas de ARKHÉ ZERO                  ║
+   ║                                                              ║
+   ╚══════════════════════════════════════════════════════════════╝
+</pre>
+
+<h1>🗺️ Índice Completo</h1>
+<p>Haz clic en cualquier enlace para navegar directamente.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🏠 Hub & Variantes</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="../index.html">
+      <span class="num">01</span><span class="icon">🏠</span>
+      <span class="label">Hub principal</span><span class="path">index.html</span>
+    </a>
+    <a class="sitemap-link" href="index-kintsugi.html">
+      <span class="num">02</span><span class="icon">🩹</span>
+      <span class="label">KINTSUGI</span><span class="path">apps/index-kintsugi.html</span>
+    </a>
+    <a class="sitemap-link" href="index-light.html">
+      <span class="num">03</span><span class="icon">☀️</span>
+      <span class="label">Modo claro</span><span class="path">apps/index-light.html</span>
+    </a>
+    <a class="sitemap-link" href="index-dark.html">
+      <span class="num">04</span><span class="icon">🌑</span>
+      <span class="label">Modo oscuro</span><span class="path">apps/index-dark.html</span>
+    </a>
+    <a class="sitemap-link" href="web-hub.html">
+      <span class="num">05</span><span class="icon">🗂️</span>
+      <span class="label">Web Hub</span><span class="path">apps/web-hub.html</span>
+    </a>
+    <a class="sitemap-link" href="kintsugi-manual.html">
+      <span class="num">06</span><span class="icon">📖</span>
+      <span class="label">KINTSUGI Manual</span><span class="path">apps/kintsugi-manual.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🔍 Servicios Core</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="verificar.html">
+      <span class="num">10</span><span class="icon">🔍</span>
+      <span class="label">Verificar</span><span class="path">apps/verificar.html</span>
+    </a>
+    <a class="sitemap-link" href="registrar.html">
+      <span class="num">11</span><span class="icon">✍️</span>
+      <span class="label">Registrar</span><span class="path">apps/registrar.html</span>
+    </a>
+    <a class="sitemap-link" href="composer.html">
+      <span class="num">12</span><span class="icon">🎼</span>
+      <span class="label">Composer</span><span class="path">apps/composer.html</span>
+    </a>
+    <a class="sitemap-link" href="servicios.html">
+      <span class="num">13</span><span class="icon">⚡</span>
+      <span class="label">Servicios</span><span class="path">apps/servicios.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>⚖️ Gobernanza + Agentes</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="governance.html">
+      <span class="num">14</span><span class="icon">⚖️</span>
+      <span class="label">Gobernanza</span><span class="path">apps/governance.html</span>
+    </a>
+    <a class="sitemap-link" href="governance-vote.html">
+      <span class="num">15</span><span class="icon">🗳️</span>
+      <span class="label">Votar</span><span class="path">apps/governance-vote.html</span>
+    </a>
+    <a class="sitemap-link" href="agentes.html">
+      <span class="num">16</span><span class="icon">🤖</span>
+      <span class="label">Agentes</span><span class="path">apps/agentes.html</span>
+    </a>
+    <a class="sitemap-link" href="agents-monitor.html">
+      <span class="num">17</span><span class="icon">👁️</span>
+      <span class="label">Monitor enjambre</span><span class="path">apps/agents-monitor.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🔐 Técnico · Crypto + API</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="crypto.html">
+      <span class="num">18</span><span class="icon">🔐</span>
+      <span class="label">Crypto</span><span class="path">apps/crypto.html</span>
+    </a>
+    <a class="sitemap-link" href="provenance.html">
+      <span class="num">19</span><span class="icon">📜</span>
+      <span class="label">Provenance</span><span class="path">apps/provenance.html</span>
+    </a>
+    <a class="sitemap-link" href="api.html">
+      <span class="num">20</span><span class="icon">🌐</span>
+      <span class="label">API Docs</span><span class="path">apps/api.html</span>
+    </a>
+    <a class="sitemap-link" href="api-playground.html">
+      <span class="num">21</span><span class="icon">🧪</span>
+      <span class="label">API Playground</span><span class="path">apps/api-playground.html</span>
+    </a>
+    <a class="sitemap-link" href="contracts.html">
+      <span class="num">22</span><span class="icon">⛓️</span>
+      <span class="label">Contracts</span><span class="path">apps/contracts.html</span>
+    </a>
+    <a class="sitemap-link" href="infra.html">
+      <span class="num">23</span><span class="icon">🏗️</span>
+      <span class="label">Infra</span><span class="path">apps/infra.html</span>
+    </a>
+    <a class="sitemap-link" href="scripts.html">
+      <span class="num">24</span><span class="icon">🔧</span>
+      <span class="label">Scripts</span><span class="path">apps/scripts.html</span>
+    </a>
+    <a class="sitemap-link" href="tests.html">
+      <span class="num">25</span><span class="icon">🧪</span>
+      <span class="label">Tests</span><span class="path">apps/tests.html</span>
+    </a>
+    <a class="sitemap-link" href="architecture.html">
+      <span class="num">26</span><span class="icon">📐</span>
+      <span class="label">Arquitectura</span><span class="path">apps/architecture.html</span>
+    </a>
+    <a class="sitemap-link" href="protocol.html">
+      <span class="num">27</span><span class="icon">🔱</span>
+      <span class="label">Protocol</span><span class="path">apps/protocol.html</span>
+    </a>
+    <a class="sitemap-link" href="operations.html">
+      <span class="num">28</span><span class="icon">⚙️</span>
+      <span class="label">Operations</span><span class="path">apps/operations.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🔧 Admin + Dashboards</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="admin.html">
+      <span class="num">30</span><span class="icon">🔧</span>
+      <span class="label">Admin</span><span class="path">apps/admin.html</span>
+    </a>
+    <a class="sitemap-link" href="admin-kintsugi.html">
+      <span class="num">31</span><span class="icon">🩹</span>
+      <span class="label">Admin KINTSUGI</span><span class="path">apps/admin-kintsugi.html</span>
+    </a>
+    <a class="sitemap-link" href="admin-dashboard.html">
+      <span class="num">32</span><span class="icon">📊</span>
+      <span class="label">Admin Dashboard</span><span class="path">apps/admin-dashboard.html</span>
+    </a>
+    <a class="sitemap-link" href="metrics-dashboard.html">
+      <span class="num">33</span><span class="icon">📈</span>
+      <span class="label">Metrics Dashboard</span><span class="path">apps/metrics-dashboard.html</span>
+    </a>
+    <a class="sitemap-link" href="config.html">
+      <span class="num">34</span><span class="icon">⚙️</span>
+      <span class="label">Config</span><span class="path">apps/config.html</span>
+    </a>
+    <a class="sitemap-link" href="certificates-viewer.html">
+      <span class="num">35</span><span class="icon">🎖️</span>
+      <span class="label">Certificados</span><span class="path">apps/certificates-viewer.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>📜 Legal</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="legal.html">
+      <span class="num">40</span><span class="icon">⚖️</span>
+      <span class="label">Legal</span><span class="path">apps/legal.html</span>
+    </a>
+    <a class="sitemap-link" href="privacy.html">
+      <span class="num">41</span><span class="icon">🔒</span>
+      <span class="label">Privacy</span><span class="path">apps/privacy.html</span>
+    </a>
+    <a class="sitemap-link" href="terms.html">
+      <span class="num">42</span><span class="icon">📜</span>
+      <span class="label">Terms</span><span class="path">apps/terms.html</span>
+    </a>
+    <a class="sitemap-link" href="dpa.html">
+      <span class="num">43</span><span class="icon">📄</span>
+      <span class="label">DPA</span><span class="path">apps/dpa.html</span>
+    </a>
+    <a class="sitemap-link" href="trademark.html">
+      <span class="num">44</span><span class="icon">™️</span>
+      <span class="label">Trademark</span><span class="path">apps/trademark.html</span>
+    </a>
+    <a class="sitemap-link" href="patents.html">
+      <span class="num">45</span><span class="icon">📜</span>
+      <span class="label">Patents</span><span class="path">apps/patents.html</span>
+    </a>
+    <a class="sitemap-link" href="notice.html">
+      <span class="num">46</span><span class="icon">📋</span>
+      <span class="label">Notice</span><span class="path">apps/notice.html</span>
+    </a>
+    <a class="sitemap-link" href="copyright.html">
+      <span class="num">47</span><span class="icon">©</span>
+      <span class="label">Copyright</span><span class="path">apps/copyright.html</span>
+    </a>
+    <a class="sitemap-link" href="citacion.html">
+      <span class="num">48</span><span class="icon">🔖</span>
+      <span class="label">Citación</span><span class="path">apps/citacion.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>📖 Info + Docs</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="glossary.html">
+      <span class="num">50</span><span class="icon">📖</span>
+      <span class="label">Glossary</span><span class="path">apps/glossary.html</span>
+    </a>
+    <a class="sitemap-link" href="roadmap.html">
+      <span class="num">51</span><span class="icon">🗺️</span>
+      <span class="label">Roadmap</span><span class="path">apps/roadmap.html</span>
+    </a>
+    <a class="sitemap-link" href="authors.html">
+      <span class="num">52</span><span class="icon">👥</span>
+      <span class="label">Authors</span><span class="path">apps/authors.html</span>
+    </a>
+    <a class="sitemap-link" href="changelog.html">
+      <span class="num">53</span><span class="icon">📝</span>
+      <span class="label">Changelog</span><span class="path">apps/changelog.html</span>
+    </a>
+    <a class="sitemap-link" href="identidad.html">
+      <span class="num">54</span><span class="icon">🪪</span>
+      <span class="label">Identidad</span><span class="path">apps/identidad.html</span>
+    </a>
+    <a class="sitemap-link" href="security.html">
+      <span class="num">55</span><span class="icon">🛡️</span>
+      <span class="label">Security</span><span class="path">apps/security.html</span>
+    </a>
+    <a class="sitemap-link" href="compliance.html">
+      <span class="num">56</span><span class="icon">✅</span>
+      <span class="label">Compliance</span><span class="path">apps/compliance.html</span>
+    </a>
+    <a class="sitemap-link" href="onboarding.html">
+      <span class="num">57</span><span class="icon">🎯</span>
+      <span class="label">Onboarding</span><span class="path">apps/onboarding.html</span>
+    </a>
+    <a class="sitemap-link" href="reporte-salud.html">
+      <span class="num">58</span><span class="icon">💚</span>
+      <span class="label">Reporte Salud</span><span class="path">apps/reporte-salud.html</span>
+    </a>
+    <a class="sitemap-link" href="risk-disclosure.html">
+      <span class="num">59</span><span class="icon">⚠️</span>
+      <span class="label">Risk Disclosure</span><span class="path">apps/risk-disclosure.html</span>
+    </a>
+    <a class="sitemap-link" href="explicacion-universal.html">
+      <span class="num">60</span><span class="icon">🌍</span>
+      <span class="label">Explicación Universal</span><span class="path">apps/explicacion-universal.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🔥 Movimiento</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="../movimiento/index.html">
+      <span class="num">70</span><span class="icon">🔥</span>
+      <span class="label">Movimiento</span><span class="path">movimiento/index.html</span>
+    </a>
+    <a class="sitemap-link" href="../movimiento/fundador.html">
+      <span class="num">71</span><span class="icon">👤</span>
+      <span class="label">Carta Fundador</span><span class="path">movimiento/fundador.html</span>
+    </a>
+    <a class="sitemap-link" href="../movimiento/solicitar_plaza.html">
+      <span class="num">72</span><span class="icon">✊</span>
+      <span class="label">Solicitar Plaza</span><span class="path">movimiento/solicitar_plaza.html</span>
+    </a>
+    <a class="sitemap-link" href="../movimiento/registro-fundacional/index.html">
+      <span class="num">73</span><span class="icon">🏛️</span>
+      <span class="label">Registro Fundacional</span><span class="path">movimiento/registro-fundacional/</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🗂️ Portfolio + Archive</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="../projects/index.html">
+      <span class="num">80</span><span class="icon">🗂️</span>
+      <span class="label">Projects</span><span class="path">projects/index.html</span>
+    </a>
+    <a class="sitemap-link" href="../archive/index2.html">
+      <span class="num">81</span><span class="icon">📦</span>
+      <span class="label">Archive v2</span><span class="path">archive/index2.html</span>
+    </a>
+    <a class="sitemap-link" href="../archive/index3.html">
+      <span class="num">82</span><span class="icon">📦</span>
+      <span class="label">Archive v3</span><span class="path">archive/index3.html</span>
+    </a>
+    <a class="sitemap-link" href="../archive/index4.html">
+      <span class="num">83</span><span class="icon">📦</span>
+      <span class="label">Archive v4</span><span class="path">archive/index4.html</span>
+    </a>
+    <a class="sitemap-link" href="../archive/luxury.html">
+      <span class="num">84</span><span class="icon">💎</span>
+      <span class="label">Archive Luxury</span><span class="path">archive/luxury.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🎨 Narrativa + Atracción</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="villano.html">
+      <span class="num">90</span><span class="icon">🌫️</span>
+      <span class="label">Villano</span><span class="path">apps/villano.html</span>
+    </a>
+    <a class="sitemap-link" href="heroe.html">
+      <span class="num">91</span><span class="icon">⚔️</span>
+      <span class="label">Héroe</span><span class="path">apps/heroe.html</span>
+    </a>
+    <a class="sitemap-link" href="mision.html">
+      <span class="num">92</span><span class="icon">🎯</span>
+      <span class="label">Misión</span><span class="path">apps/mision.html</span>
+    </a>
+    <a class="sitemap-link" href="manifiesto.html">
+      <span class="num">93</span><span class="icon">⚡</span>
+      <span class="label">Manifiesto</span><span class="path">apps/manifiesto.html</span>
+    </a>
+    <a class="sitemap-link" href="tesis.html">
+      <span class="num">94</span><span class="icon">📖</span>
+      <span class="label">Tesis</span><span class="path">apps/tesis.html</span>
+    </a>
+    <a class="sitemap-link" href="atraccion.html">
+      <span class="num">95</span><span class="icon">🧲</span>
+      <span class="label">Atracción</span><span class="path">apps/atraccion.html</span>
+    </a>
+    <a class="sitemap-link" href="narrativa.html">
+      <span class="num">96</span><span class="icon">📖</span>
+      <span class="label">Narrativa</span><span class="path">apps/narrativa.html</span>
+    </a>
+    <a class="sitemap-link" href="metrics.html">
+      <span class="num">97</span><span class="icon">📊</span>
+      <span class="label">Metrics</span><span class="path">apps/metrics.html</span>
+    </a>
+    <a class="sitemap-link" href="growth.html">
+      <span class="num">98</span><span class="icon">🚀</span>
+      <span class="label">Growth</span><span class="path">apps/growth.html</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="sitemap-section">
+  <h2>🎨 Otros</h2>
+  <div class="sitemap-grid">
+    <a class="sitemap-link" href="web.html">
+      <span class="num">99</span><span class="icon">🌐</span>
+      <span class="label">Web</span><span class="path">apps/web.html</span>
+    </a>
+    <a class="sitemap-link" href="github.html">
+      <span class="num">100</span><span class="icon">🐙</span>
+      <span class="label">GitHub</span><span class="path">apps/github.html</span>
+    </a>
+    <a class="sitemap-link" href="registro.html">
+      <span class="num">101</span><span class="icon">📝</span>
+      <span class="label">Registro</span><span class="path">apps/registro.html</span>
+    </a>
+    <a class="sitemap-link" href="404.html">
+      <span class="num">102</span><span class="icon">💀</span>
+      <span class="label">404 HALT</span><span class="path">apps/404.html</span>
+    </a>
+  </div>
+</section>
+
+<footer classÉ="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · sitemap</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

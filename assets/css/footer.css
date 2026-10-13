@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════════════════════════════
+ *  ▓▒░ FOOTER.CSS · ARKHÉ ZERO · ◯_● ░▒▓
+ * ═══════════════════════════════════════════════════════════════ */
+
+.hub-footer, .doc-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border);
+  text-align: center;
+  color: var(--fg-2);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.hub-footer p, .doc-footer p { margin: 4px 0; }
+
+.seal-line {
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.footer-links a {
+  color: var(--fg-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.footer-links a:hover { color: var(--accent); }

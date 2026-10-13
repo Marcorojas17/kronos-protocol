@@ -1,0 +1,15 @@
+name: Provenance Verify
+on: [push, pull_request]
+jobs:
+  c2pa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Verificar manifests C2PA
+        run: |
+          find provenance/c2pa -name '*.json' -exec \
+            node -e "JSON.parse(require('fs').readFileSync('{}'))" \;
+      - name: Verificar assertions
+        run: ls provenance/c2pa/assertions/

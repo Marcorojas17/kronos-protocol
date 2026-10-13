@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "reglas": {
+    "escala": "0-100",
+    "penalizacion_downgrade": -30,
+    "penalizacion_fallo_consenso": -10,
+    "premio_quorum_perfecto": +5,
+    "premio_auditoria_limpia": +10,
+    "cuarentena_bajo": 40,
+    "expulsion_bajo": 20
+  },
+  "scores": {
+    "cuicatl":      98,
+    "temachtiani":  95,
+    "tlachixqui":   99,
+    "tlamatini":    97,
+    "tlapohualli":  96,
+    "tonal":        99,
+    "090-arquitecto":      100,
+    "091-contralor":       97,
+    "092-auditor-externo": 100,
+    "093-relator":         98,
+    "094-bibliotecario":   99,
+    "095-cartografo":      97
+  },
+  "promedio_enjambre": 97.9,
+  "estado": "ENJAMBRE SALUDABLE · 12/12 sobre 90"
+}

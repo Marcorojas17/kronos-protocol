@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguridad · ARKHÉ ZERO</title>
+<meta name="description" content="Divulgación responsable · Criptografía poscuántica · ML-KEM · ML-DSA">
+<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<style>
+  /* ═══ SECURITY · específico ═══ */
+
+  .sec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-2);
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .sec-cell {
+    background: var(--bg-1);
+    padding: 30px 28px;
+  }
+
+  .sec-cell-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 18px var(--glow));
+  }
+
+  .sec-cell-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--gold-pale);
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+  }
+
+  .sec-cell-desc {
+    font-size: 0.84rem;
+    color: var(--muted-2);
+    line-height: 1.7;
+    font-weight: 200;
+  }
+
+  .sec-cell-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--teal);
+    background: rgba(79, 209, 197, 0.06);
+    padding: 1px 5px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Matriz de algoritmos ─────────────────────────────── */
+  .algo-matrix {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    border-radius: var(--r-2);
+    overflow: hidden;
+  }
+
+  .algo-matrix table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .algo-matrix th,
+  .algo-matrix td {
+    padding: 16px 22px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    letter-spacing: 0.03em;
+  }
+
+  .algo-matrix th {
+    background: var(--bg-2);
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .algo-matrix td {
+    background: var(--bg-1);
+    color: var(--champagne);
+  }
+
+  .algo-matrix tr:nth-child(even) td {
+    background: var(--bg-2);
+  }
+
+  .algo-matrix .algo-name {
+    color: var(--gold-pale);
+    font-weight: 500;
+  }
+
+  .algo-matrix .algo-active {
+    color: var(--green);
+  }
+
+  .algo-matrix .algo-planned {
+    color: var(--gold-lt);
+  }
+
+  .algo-matrix .algo-retired {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(125, 119, 104, 0.5);
+  }
+
+  /* ── Disclosure timeline ──────────────────────────────── */
+  .disclosure-timeline {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .disclosure-timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+
+  .dt-item {
+    position: relative;
+    padding: 0 0 28px 30px;
+  }
+
+  .dt-item:last-child { padding-bottom: 0; }
+
+  .dt-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg-0);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 14px var(--glow);
+  }
+
+  .dt-item.sev-critical::before {
+    border-color: var(--rose);
+    box-shadow: 0 0 14px rgba(244, 160, 175, 0.5);
+  }
+
+  .dt-item.sev-high::before {
+    border-color: var(--gold-lt);
+  }
+
+  .dt-item.sev-medium::before {
+    border-color: var(--teal);
+    box-shadow: 0 0 14px rgba(79, 209, 197, 0.5);
+  }
+
+  .dt-item.sev-low::before {
+    border-color: var(--muted);
+    box-shadow: none;
+  }
+
+  .dt-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .dt-sev {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: var(--r-1);
+    border: 1px solid;
+  }
+
+  .sev-critical .dt-sev {
+    color: var(--rose);
+    border-color: rgba(244, 160, 175, 0.4);
+    background: rgba(244, 160, 175, 0.06);
+  }
+  .sev-high .dt-sev {
+    color: var(--gold-lt);
+    border-color: rgba(201, 162, 39, 0.4);
+    background: rgba(201, 162, 39, 0.06);
+  }
+  .sev-medium .dt-sev {
+    color: var(--teal);
+    border-color: rgba(79, 209, 197, 0.4);
+    background: rgba(79, 209, 197, 0.06);
+  }
+  .sev-low .dt-sev {
+    color: var(--muted);
+    border-color: var(--line);
+  }
+
+  .dt-sla {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--champagne);
+    text-transform: uppercase;
+  }
+
+  .dt-desc {
+    font-size: 0.88rem;
+    color: var(--muted-2);
+    line-height: 1.65;
+    font-weight: 200;
+  }
+
+  /* ── Bloque contacto ──────────────────────────────────── */
+  .contact-block {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 44px 40px;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-3);
+    background: linear-gradient(160deg, rgba(124, 92, 255, 0.05), rgba(201, 162, 39, 0.02));
+    text-align: center;
+  }
+
+  .contact-block .label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .contact-block .email {
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 2.4vw, 1.35rem);
+    color: var(--gold-pale);
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    word-break: break-all;
+  }
+
+  .contact-block .pgp {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    color: var(--champagne);
+    margin-bottom: 26px;
+  }
+
+  .contact-block .pgp code {
+    color: var(--teal);
+    background: rgba(79, 209, 197, 0.08);
+    padding: 3px 10px;
+    border-radius: var(--r-1);
+  }
+
+  .contact-block .note {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--muted-2);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 720px) {
+    .algo-matrix th,
+    .algo-matrix td { padding: 12px 14px; font-size: 0.64rem; }
+    .contact-block { padding: 30px 22px; }
+    .disclosure-timeline { padding-left: 26px; }
+  }
+</style>
+</head>
+<body data-theme="guardianes" data-page="00">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav-top" data-nav="top">
+  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
+    <span class="brand-symbol">◈</span>
+    <span class="brand-text">ARKHÉ ZERO</span>
+    <span class="brand-kintsugi">◇ ◈ ◇</span>
+  </a>
+  <div class="nav-controls">
+    <button class="nav-btn" data-nav-action="back" aria-label="Atrás"><span class="nav-icon">←</span></button>
+    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante"><span class="nav-icon">→</span></button>
+    <button class="nav-btn" data-nav-action="home" aria-label="Inicio"><span class="nav-icon">⌂</span></button>
+    <button class="nav-btn" data-nav-action="index" aria-label="Índice"><span class="nav-icon">☰</span></button>
+    <button class="nav-btn" data-nav-action="theme" aria-label="Tema"><span class="nav-icon">◐</span></button>
+  </div>
+</nav>
+
+<header class="page-header">
+  <span class="page-crumbs">
+    <a href="../index.html">Raíz</a>
+    <span class="sep">›</span>
+    <a href="index.html">Capa 00</a>
+    <span class="sep">›</span>
+    <span class="current">Seguridad</span>
+  </span>
+  <span class="page-num">0.8</span>
+</header>
+
+<section class="page-hero">
+  <div class="hero-meta">
+    <span class="hero-tag">SEGURIDAD</span>
+    <span class="hero-tag hero-tag-alt">PQC · FIPS</span>
+  </div>
+  <h1 class="hero-h1">
+    <span class="h1-line">Divulgación</span>
+    <span class="h1-line h1-em">responsable.</span>
+  </h1>
+  <p class="hero-lede">
+    ARKHÉ ZERO no oculta vulnerabilidades: las reporta, las parchea y las
+    publica. Toda la criptografía es estándar NIST poscuántico. Todo el
+    código es auditable.
+  </p>
+</section>
+
+<main class="page-body">
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.8.1</span>
+      <h2 class="block-title">Principios de seguridad</h2>
+    </div>
+
+    <div class="sec-grid">
+      <div class="sec-cell">
+        <div class="sec-cell-icon">🔐</div>
+        <div class="sec-cell-title">Pos-cuántico desde hoy</div>
+        <p class="sec-cell-desc">
+          Toda la criptografía de producción usa <code>ML-KEM-1024</code> ·
+          <code>ML-DSA-87</code> · <code>SLH-DSA</code>. Los algoritmos clásicos
+          están prohibidos desde 2026-01-01.
+        </p>
+      </div>
+      <div class="sec-cell">
+        <div class="sec-cell-icon">🛡</div>
+        <div class="sec-cell-title">Anti-downgrade</div>
+        <p class="sec-cell-desc">
+          Todo handshake TLS exige 1.3 mínimo. <code>TLS 1.2</code> se
+          rechaza explícitamente. Detección activa de ataques de degradación.
+        </p>
+      </div>
+      <div class="sec-cell">
+        <div class="sec-cell-icon">🔄</div>
+        <div class="sec-cell-title">Crypto-agility</div>
+        <p class="sec-cell-desc">
+          Rotación algorítmica cada 24 meses. Nuevos estándares se integran sin
+          rediseño. Migración a <code>FIPS 206</code> planificada.
+        </p>
+      </div>
+      <div class="sec-cell">
+        <div class="sec-cell-icon">🎯</div>
+        <div class="sec-cell-title">Vulnerabilidades publicadas</div>
+        <p class="sec-cell-desc">
+          Toda vulnerabilidad reportada se documenta públicamente tras el
+          parche. Firmamos nuestro compromiso con el ecosistema.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.8.2</span>
+      <h2 class="block-title">Matriz criptográfica</h2>
+    </div>
+
+    <div class="algo-matrix">
+      <table>
+        <thead>
+          <tr>
+            <th>Algoritmo</th>
+            <th>Estándar</th>
+            <th>Nivel</th>
+            <th>Estado</th>
+            <th>Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="algo-name">ML-KEM-1024</td>
+            <td>FIPS 203</td>
+            <td>Nivel 5</td>
+            <td class="algo-active">● activo</td>
+            <td>Encapsulamiento</td>
+          </tr>
+          <tr>
+            <td class="algo-name">ML-DSA-87</td>
+            <td>FIPS 204</td>
+            <td>Nivel 5</td>
+            <td class="algo-active">● activo</td>
+            <td>Firmas digitales</td>
+          </tr>
+          <tr>
+            <td class="algo-name">SLH-DSA-SHAKE-256s</td>
+            <td>FIPS 205</td>
+            <td>—</td>
+            <td class="algo-active">● activo</td>
+            <td>Larga duración</td>
+          </tr>
+          <tr>
+            <td class="algo-name">X25519 + ML-KEM-768</td>
+            <td>Híbrido</td>
+            <td>—</td>
+            <td class="algo-active">● activo</td>
+            <td>TLS 1.3</td>
+          </tr>
+          <tr>
+            <td class="algo-name">Ed25519 + ML-DSA-87</td>
+            <td>Híbrido</td>
+            <td>—</td>
+            <td class="algo-active">● activo</td>
+            <td>Firma híbrida</td>
+          </tr>
+          <tr>
+            <td class="algo-name">FN-DSA (FALCON)</td>
+            <td>FIPS 206</td>
+            <td>—</td>
+            <td class="algo-planned">◇ planificado</td>
+            <td>Firmas compactas</td>
+          </tr>
+          <tr>
+            <td class="algo-name">HQC</td>
+            <td>NIST backup</td>
+            <td>—</td>
+            <td class="algo-planned">◇ planificado</td>
+            <td>KEM respaldo</td>
+          </tr>
+          <tr>
+            <td class="algo-name">RSA</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="algo-retired">○ retirado</td>
+            <td>Prohibido 2026+</td>
+          </tr>
+          <tr>
+            <td class="algo-name">ECDSA / EdDSA</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="algo-retired">○ retirado</td>
+            <td>Prohibido 2026+</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.8.3</span>
+      <h2 class="block-title">SLA de respuesta</h2>
+    </div>
+
+    <div class="disclosure-timeline">
+      <div class="dt-item sev-critical">
+        <div class="dt-head">
+          <span class="dt-sev">CRÍTICA</span>
+          <span class="dt-sla">Primer contacto · 24 h</span>
+        </div>
+        <p class="dt-desc">Parche objetivo en 72 h. Afecta integridad del Índice, claves privadas o sellos criptográficos.</p>
+      </div>
+      <div class="dt-item sev-high">
+        <div class="dt-head">
+          <span class="dt-sev">ALTA</span>
+          <span class="dt-sla">Primer contacto · 72 h</span>
+        </div>
+        <p class="dt-desc">Parche objetivo en 7 días. Afecta disponibilidad, autenticación o autorización de agentes.</p>
+      </div>
+      <div class="dt-item sev-medium">
+        <div class="dt-head">
+          <span class="dt-sev">MEDIA</span>
+          <span class="dt-sla">Primer contacto · 7 días</span>
+        </div>
+        <p class="dt-desc">Parche objetivo en 30 días. Afecta rendimiento, logs o metadatos no críticos.</p>
+      </div>
+      <div class="dt-item sev-low">
+        <div class="dt-head">
+          <span class="dt-sev">BAJA</span>
+          <span class="dt-sla">Primer contacto · 14 días</span>
+        </div>
+        <p class="dt-desc">Parche objetivo en 90 días. Afecta UX, documentación o mejoras incrementales.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">§0.8.4</span>
+      <h2 class="block-title">Cómo reportar</h2>
+    </div>
+
+    <div class="contact-block">
+      <div class="label">CANAL DE DIVULGACIÓN RESPONSABLE</div>
+      <div class="email">seguridad@arkhe.zero</div>
+      <div class="pgp">
+        PGP público: <code>0xARKHE51 49ZERO4 9</code>
+      </div>
+      <p class="note">
+        No abras issues públicos. Envía tu reporte cifrado con la llave PGP
+        pública. Respondemos en el plazo máximo indicado según severidad.
+        Los investigadores válidos reciben un <strong style="color: var(--gold-lt); font-style: normal;">sello ARKHÉ nominal</strong>
+        firmado con ML-DSA-87.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
+  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
+  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
+  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
+  <p class="foot-author">Divulgación responsable · PQC desde día cero</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/particles.js"></script>
+<script src="../assets/js/nav-system.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ .GITMESSAGE · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+#
+#  Tipos: feat · fix · docs · chore · refactor · test · style · perf
+#  Alcance: crypto · cimiento · agents · gobernanza · web · mcp · etc.
+#
+#  Ejemplo:
+#    ✨ feat(crypto): ML-DSA-87 firma post-cuántica [🔱]
+#
+# ───────────────────────────────────────────────────────────────
+#  TIPOS CANÓNICOS
+# ───────────────────────────────────────────────────────────────
+#  ✨ feat     · nueva funcionalidad
+#  🐛 fix      · corrección de bug
+#  📝 docs     · documentación
+#  🔧 chore    · tareas de mantenimiento
+#  ♻️ refactor · refactorización
+#  ✅ test     · tests
+#  🎨 style    · estilo (no afecta lógica)
+#  ⚡ perf     · performance
+#  🔐 security · seguridad
+#  🎉 init     · inicio de proyecto
+#
+# ───────────────────────────────────────────────────────────────
+#  REGLAS
+# ───────────────────────────────────────────────────────────────
+#  1. Primera línea: máx 72 chars
+#  2. Emoji + tipo(alcance): mensaje [emoji-final]
+#  3. Cuerpo: qué y por qué (no cómo)
+#  4. Firmar: ◯_● · 51/49/100
+#
+# ═══════════════════════════════════════════════════════════════

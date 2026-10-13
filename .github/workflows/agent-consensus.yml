@@ -1,0 +1,22 @@
+name: Agent Consensus
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  quorum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Simular deliberación del enjambre
+        run: |
+          node -e "
+            import('./agents/consensus/quorum-4-5.js').then(m => {
+              const e = new m.Enjambre({humanos:1, ia:12});
+              e.deliberar({
+                propuesta: 'PR ${{ github.event.pull_request.number }}',
+                votos_ia: ['cuicatl','temachtiani','tlachixqui','tlamatini','tonal']
+              }).then(r => console.log(r.veredicto));
+            })
+          "

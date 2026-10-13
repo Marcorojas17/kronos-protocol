@@ -1,0 +1,11 @@
+#!/bin/bash
+cd ~/arkhe-zero
+if ! pgrep -f "http.server 8080" > /dev/null; then
+    cd ~/arkhe-zero/index
+    nohup python3 -m http.server 8080 > ~/arkhe-zero/logs/server.log 2>&1 &
+    echo "✓ Servidor web arrancado en http://localhost:8080"
+fi
+while true; do
+    ~/arkhe-zero/gen-data > /dev/null 2>&1
+    sleep 10
+done

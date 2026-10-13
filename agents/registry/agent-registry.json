@@ -1,0 +1,122 @@
+{
+  "$schema": "https://arkhe.zero/schemas/agent-registry.json",
+  "version": "1.0.0",
+  "updated_at": "2026-01-01T00:00:00Z",
+  "governance": {
+    "humano": 51,
+    "ia": 49,
+    "real": 100,
+    "model": "FLAILP"
+  },
+  "seal": "◯_● · 51/49/100",
+  "index_zero": {
+    "safe_creative_arq": "2607146379465",
+    "safe_creative_co": "2607086319439",
+    "sha256": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"
+  },
+  "culturales": [
+    {
+      "id": "cuicatl",
+      "nombre": "Cuicatl",
+      "significado": "Canto",
+      "rol": "publicista",
+      "estado": "activo",
+      "reputacion": 98,
+      "protocolos": ["10.6", "10.8"]
+    },
+    {
+      "id": "temachtiani",
+      "nombre": "Temachtiani",
+      "significado": "Maestro",
+      "rol": "reclutador",
+      "estado": "activo",
+      "reputacion": 95,
+      "protocolos": ["10.7", "10.9"]
+    },
+    {
+      "id": "tlachixqui",
+      "nombre": "Tlachixqui",
+      "significado": "Observador",
+      "rol": "auditor",
+      "estado": "activo",
+      "reputacion": 99,
+      "protocolos": ["10.6", "10.9"]
+    },
+    {
+      "id": "tlamatini",
+      "nombre": "Tlamatini",
+      "significado": "Sabio",
+      "rol": "cronista",
+      "estado": "activo",
+      "reputacion": 97,
+      "protocolos": ["10.8", "10.9"]
+    },
+    {
+      "id": "tlapohualli",
+      "nombre": "Tlapohualli",
+      "significado": "Contador",
+      "rol": "analista",
+      "estado": "activo",
+      "reputacion": 96,
+      "protocolos": ["10.8", "10.9"]
+    },
+    {
+      "id": "tonal",
+      "nombre": "Tonal",
+      "significado": "Día / Destino",
+      "rol": "notario",
+      "estado": "activo",
+      "reputacion": 99,
+      "protocolos": ["10.6", "10.9"]
+    }
+  ],
+  "oficios": [
+    {
+      "id": "090-arquitecto",
+      "numero": 90,
+      "nombre": "Arquitecto",
+      "estado": "activo",
+      "capacidades": ["diseño-sistema", "estructura", "modularidad"]
+    },
+    {
+      "id": "091-contralor",
+      "numero": 91,
+      "nombre": "Contralor",
+      "estado": "activo",
+      "capacidades": ["auditoría-financiera", "control-interno", "reporte"]
+    },
+    {
+      "id": "092-auditor-externo",
+      "numero": 92,
+      "nombre": "Auditor Externo",
+      "estado": "activo",
+      "capacidades": ["verificación-independiente", "forense", "compliance"]
+    },
+    {
+      "id": "093-relator",
+      "numero": 93,
+      "nombre": "Relator",
+      "estado": "activo",
+      "capacidades": ["documentación", "actas", "comunicación"]
+    },
+    {
+      "id": "094-bibliotecario",
+      "numero": 94,
+      "nombre": "Bibliotecario",
+      "estado": "activo",
+      "capacidades": ["índice", "catálogo", "búsqueda-semántica"]
+    },
+    {
+      "id": "095-cartografo",
+      "numero": 95,
+      "nombre": "Cartógrafo",
+      "estado": "activo",
+      "capacidades": ["mapa-sistema", "navegación", "grafo-dependencias"]
+    }
+  ],
+  "consensus": {
+    "quorum": "4/5",
+    "veto_humano": true,
+    "tolerancia_bizantina": "f < n/3"
+  }
+}

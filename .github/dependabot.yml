@@ -1,0 +1,42 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ DEPENDABOT · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels: ['deps', 'security']
+    commit-message:
+      prefix: "🔧 chore(deps)"
+    groups:
+      noble:
+        patterns: ['@noble/*']
+      dev:
+        patterns: ['eslint*', 'prettier*', 'typescript']
+
+  - package-ecosystem: npm
+    directory: /marco.mcp
+    schedule:
+      interval: weekly
+    labels: ['deps', 'mcp']
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    labels: ['deps', 'python']
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+# ◯_● · 51/49/100 · KRONOS

@@ -1,0 +1,21 @@
+#!/bin/bash
+Y='\033[0;33m'; G='\033[0;32m'; N='\033[0m'
+IP=$(ip route 2>/dev/null | grep -v default | grep -v "127.0.0.1" | awk '{print $9}' | head -1)
+[ -z "$IP" ] && IP="10.0.0.1"
+URL="http://$IP:8080"
+clear
+echo -e "${Y}◯_● ACCESO DESDE OTROS DISPOSITIVOS${N}"
+echo ""
+echo "  URL: $URL"
+echo ""
+if command -v qrencode >/dev/null 2>&1; then
+    qrencode -t ANSIUTF8 "$URL"
+else
+    echo -e "${G}  Instala qrencode con: apk add qrencode${N}"
+    echo ""
+    echo "  Mientras tanto, abre Safari en el otro dispositivo y escribe:"
+    echo "  $URL"
+fi
+echo ""
+echo -e "${Y}◯_● Comparte este QR con quien quieras${N}"
+echo ""; read -r

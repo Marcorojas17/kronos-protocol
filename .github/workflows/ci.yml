@@ -1,0 +1,92 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ CI · CONTINUOUS INTEGRATION · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test & Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22]
+        python: ['3.11']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Setup Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd marco.mcp && npm ci && cd ..
+          pip install -r requirements.txt
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Verify seal
+        run: python scripts/verify-seal.py
+
+      - name: PQC audit
+        run: python scripts/pqc-audit.py
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-node${{ matrix.node }}
+          path: coverage/
+
+  mcp:
+    name: MCP Server tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Test MCP
+        run: |
+          cd marco.mcp
+          npm ci
+          npm test
+
+  contracts:
+    name: Smart Contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+      - name: Test contracts
+        run: forge test -vvv
+        working-directory: contracts
+
+# ◯_● · 51/49/100 · KRONOS

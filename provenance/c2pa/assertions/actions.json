@@ -1,0 +1,21 @@
+{
+  "$schema": "https://c2pa.org/specifications/2.1/assertions/actions.json",
+  "label": "c2pa.actions",
+  "version": "2.1",
+  "data": {
+    "actions": [
+      {
+        "action": "c2pa.created",
+        "when": "2026-01-01T00:00:00Z",
+        "softwareAgent": "ARKHÉ ZERO · Kronos v1.0.0"
+      },
+      {
+        "action": "c2pa.published",
+        "when": "2026-01-01T00:00:00Z",
+        "softwareAgent": "ARKHÉ ZERO"
+      }
+    ],
+    "governance": { "humano": 51, "ia": 49, "real": 100 },
+    "seal": "◯_● · 51/49/100"
+  }
+}

@@ -1,0 +1,26 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ SEAL VERIFY · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+name: Verify KINTSUGI Seal
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify-seal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify ◯_● · 51/49/100
+        run: python scripts/verify-seal.py --strict
+
+      - name: Verify Index Zero
+        run: python scripts/index-cero-verify.py
+
+# ◯_● · 51/49/100 · KRONOS

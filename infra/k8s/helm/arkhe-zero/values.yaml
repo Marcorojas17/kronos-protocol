@@ -1,0 +1,71 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ HELM · VALUES · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Chart: arkhe-zero v1.0.0
+#  Valores por defecto del chart.
+# ═══════════════════════════════════════════════════════════════════════════
+
+nameOverride: ""
+fullnameOverride: "arkhe-zero"
+
+replicaCount: 1
+
+image:
+  web:
+    repository: arkhe-web
+    tag: latest
+    pullPolicy: IfNotPresent
+  mcp:
+    repository: arkhe-mcp
+    tag: latest
+    pullPolicy: IfNotPresent
+
+service:
+  web:
+    type: ClusterIP
+    port: 8080
+  mcp:
+    type: ClusterIP
+    port: 7777
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  host: arkhe.zero
+  tls: false
+
+resources:
+  web:
+    requests: { cpu: "100m", memory: "128Mi" }
+    limits:   { cpu: "500m", memory: "512Mi" }
+  mcp:
+    requests: { cpu: "100m", memory: "128Mi" }
+    limits:   { cpu: "500m", memory: "512Mi" }
+
+persistence:
+  enabled: false
+  size: 1Gi
+  storageClass: ""
+
+autoscaling:
+  enabled: false
+
+arkhe:
+  seal: "◯_● · 51/49/100"
+  pact: "51/49/100"
+  nodo: "YHDRYH-92CE"
+  genesis: "K28-M05-MN01-YHDRYH-92CE"
+  model: "FLAILP"
+  indexZero:
+    safeCreativeArq: "2607146379465"
+    safeCreativeCo: "2607086319439"
+    sha256: "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"
+    ethereum: "0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c"
+    eidas: "Firmaprofesional QTSA"
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

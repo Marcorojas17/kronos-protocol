@@ -1,0 +1,9 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; N='\033[0m'
+clear
+echo -ne "${Y}Texto: ${N}"; read -r t
+[ -z "$t" ] && t="ARKHÉ ZERO"
+H=$(echo -n "$t" | sha256sum | awk '{print $1}')
+echo -e "${G}SHA-256: $H${N}"
+echo "$(date) HASH $t" >> ~/arkhe-zero/logs/cripto.log
+echo ""; read -r

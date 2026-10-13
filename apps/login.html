@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOGIN · ARKHÉ ZERO</title>
+<link rel="stylesheet" href="../assets/css/themes.css">
+<link rel="stylesheet" href="../assets/css/nav-system.css">
+<link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body data-page="login" data-theme="terminal-cyan">
+<nav id="nav-system" data-active="hub"></nav>
+
+<main class="doc-container">
+<pre class="ascii-banner">
+   ┌─(kali㉿arkhe-zero)-[~/login]───────────────────────┐
+   │   L O G I N   ·   ◯_●                              │
+   │   Firma tu identidad con PQC                       │
+   └────────────────────────────────────────────────────┘
+</pre>
+
+<h1>🚪 Iniciar Sesión</h1>
+
+<form class="form-canonical" id="login-form">
+  <label for="did">DID / IDENTIFICADOR *</label>
+  <input id="did" required placeholder="did:arkhe:...">
+
+  <label for="challenge">FIRMA DEL DESAFÍO *</label>
+  <textarea id="challenge" rows="4" required placeholder="Firma el desafío con tu clave ML-DSA-87"></textarea>
+
+  <button type="submit" class="btn-primary">▶ VERIFICAR Y ENTRAR</button>
+</form>
+
+<pre class="terminal-block">
+[ INFO ] Sin contraseñas · solo firmas criptográficas
+[ INFO ] Compatible con ML-DSA-87 · Ed25519 · SLH-DSA
+[ INFO ] La firma se verifica localmente
+[ ✓✓ ] ◯_● · 51/49/100
+</pre>
+
+<footer class="doc-footer">
+<p class="seal-line">◯_● · 51/49/100 · KRONOS · login</p>
+</footer>
+</main>
+
+<script type="module" src="../assets/js/nav-system.js"></script>
+</body>
+</html>

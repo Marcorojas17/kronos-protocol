@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arkhe.zero/schemas/c2pa/assertions.json",
+  "title": "ARKHÉ C2PA Assertions",
+  "version": "2.1",
+  "type": "object",
+  "properties": {
+    "c2pa.creative-work": { "type": "object" },
+    "c2pa.actions": { "type": "object" },
+    "c2pa.training-mining": {
+      "type": "object",
+      "properties": {
+        "c2pa.ai_training": { "enum": ["allowed", "notAllowed", "constrained"] },
+        "c2pa.ai_generative_training": { "enum": ["allowed", "notAllowed", "constrained"] },
+        "c2pa.ai_inference": { "enum": ["allowed", "notAllowed", "constrained"] }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "humano": { "const": 51 },
+        "ia": { "const": 49 },
+        "real": { "const": 100 }
+      }
+    },
+    "seal": { "const": "◯_● · 51/49/100" }
+  }
+}

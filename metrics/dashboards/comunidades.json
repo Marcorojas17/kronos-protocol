@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "comunidades",
+  "titulo": "Comunidades",
+  "periodo": "2026-10",
+  "datos": {
+    "miembros_activos": 0,
+    "miembros_totales": 1,
+    "por_nivel": {
+      "nivel-0-visitante": 0,
+      "nivel-1-iniciado": 0,
+      "nivel-2-guardian": 0,
+      "nivel-3-maestro": 0,
+      "nivel-4-embajador": 0,
+      "nivel-5-custodio": 0,
+      "nivel-6-fundador": 1
+    },
+    "actividad_mensual": {
+      "obras_registradas": 0,
+      "propuestas_gobernanza": 0,
+      "eventos_realizados": 0
+    }
+  },
+  "metas": {
+    "miembros_mes": 100,
+    "embajadores_e1": 5
+  },
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}

@@ -1,0 +1,14 @@
+name: "093 Relator"
+on:
+  push:
+    branches: [main]
+jobs:
+  acta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generar acta del commit
+        run: |
+          echo "## Acta · $(date -u +%FT%TZ)" > /tmp/acta.md
+          git log -1 --pretty=%B >> /tmp/acta.md
+          echo "◯_● · 51/49/100" >> /tmp/acta.md

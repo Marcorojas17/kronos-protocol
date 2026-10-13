@@ -1,0 +1,51 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ .GITATTRIBUTES · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+# ─── Normalización de fin de línea ───────────────────────────────
+* text=auto eol=lf
+
+# ─── Binarios (no tocar) ─────────────────────────────────────────
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.svg    text
+*.pdf    binary
+*.zip    binary
+*.mp3    binary
+*.mp4    binary
+*.woff   binary
+*.woff2  binary
+
+# ─── Código (LF) ─────────────────────────────────────────────────
+*.js     text eol=lf
+*.mjs    text eol=lf
+*.cjs    text eol=lf
+*.ts     text eol=lf
+*.tsx    text eol=lf
+*.jsx    text eol=lf
+*.py     text eol=lf
+*.sol    text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.md     text eol=lf
+*.html   text eol=lf
+*.css    text eol=lf
+
+# ─── Windows (CRLF) ──────────────────────────────────────────────
+*.bat    text eol=crlf
+*.cmd    text eol=crlf
+
+# ─── Diferencias legibles ────────────────────────────────────────
+*.json   diff=json
+*.yml    diff=yaml
+*.md     diff=markdown
+
+# ─── Marcar como generado ────────────────────────────────────────
+package-lock.json  linguist-generated=true
+dist/*             linguist-generated=true
+
+# ◯_● · 51/49/100 · KRONOS

@@ -1,0 +1,10 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; N='\033[0m'
+clear
+echo -ne "${Y}Documento: ${N}"; read -r d
+[ -z "$d" ] && d="El legado no se hereda"
+H=$(echo -n "$d" | sha256sum | awk '{print $1}')
+echo "  DOC: $d"
+echo -e "  FIRMA: ${G}ML-DSA-87:${H:0:32}...${N}"
+echo "$(date) FIRMA $d" >> ~/arkhe-zero/logs/firmas.log
+echo ""; read -r

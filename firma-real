@@ -1,0 +1,21 @@
+#!/bin/bash
+G='\033[0;32m'; Y='\033[0;33m'; N='\033[0m'
+F=~/arkhe-zero/firma
+mkdir -p "$F"
+[ ! -f "$F/privada.pem" ] && openssl genpkey -algorithm ED25519 -out "$F/privada.pem" 2>/dev/null && openssl pkey -in "$F/privada.pem" -pubout -out "$F/publica.pem" 2>/dev/null
+clear
+echo -e "${Y}✍ FIRMA REAL · Ed25519 · openssl${N}"
+echo -ne "Documento: "; read -r doc
+[ -z "$doc" ] && doc="El legado no se hereda. Se firma."
+echo -n "$doc" > "$F/documento.txt"
+openssl pkeyutl -sign -inkey "$F/privada.pem" -rawin -in "$F/documento.txt" -out "$F/firma.bin" 2>/dev/null
+HASH=$(sha256sum "$F/documento.txt" | awk '{print $1}')
+SIGHEX=$(xxd -p "$F/firma.bin" | tr -d '\n' | head -c 64)
+echo ""
+echo -e "${G}  DOC:${N}    $doc"
+echo -e "${G}  SHA256:${N} $HASH"
+echo -e "${G}  FIRMA:${N}  ${SIGHEX}..."
+echo -e "${G}  ARCHIVOS:${N} $F/"
+echo -e "${Y}◯_● FIRMADO CON CLAVE PRIVADA REAL${N}"
+echo "$(date) FIRMA-REAL $HASH" >> ~/arkhe-zero/logs/firma-real.log
+echo ""; read -r

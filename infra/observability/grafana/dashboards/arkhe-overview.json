@@ -1,0 +1,74 @@
+{
+  "title": "ARKHÉ ZERO · Overview",
+  "uid": "arkhe-overview",
+  "tags": ["arkhe", "kronos", "51-49-100", "YHDRYH-92CE"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "◯_● Requests / min",
+      "type": "graph",
+      "targets": [
+        { "expr": "rate(arkhe_http_requests_total[1m])", "legendFormat": "{{path}}" }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 }
+    },
+    {
+      "id": 2,
+      "title": "Firmas PQC / hora",
+      "type": "graph",
+      "targets": [
+        { "expr": "rate(arkhe_signatures_total[1h])", "legendFormat": "{{algo}}" }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 }
+    },
+    {
+      "id": 3,
+      "title": "Anclajes Ethereum",
+      "type": "stat",
+      "targets": [
+        { "expr": "arkhe_ethereum_anchors_total" }
+      ],
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 8 }
+    },
+    {
+      "id": 4,
+      "title": "◯_● Sello KINTSUGI",
+      "type": "stat",
+      "options": {
+        "textMode": "value",
+        "colorMode": "background"
+      },
+      "targets": [
+        { "expr": "arkhe_seal_verified" }
+      ],
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 8 }
+    },
+    {
+      "id": 5,
+      "title": "Nodo YHDRYH-92CE · Uptime",
+      "type": "stat",
+      "targets": [
+        { "expr": "up{job='arkhe-web'}" }
+      ],
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 8 }
+    },
+    {
+      "id": 6,
+      "title": "Agentes IA activos",
+      "type": "gauge",
+      "targets": [
+        { "expr": "arkhe_agents_active" }
+      ],
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 8 }
+    }
+  ],
+  "arkhe": {
+    "seal": "◯_● · 51/49/100",
+    "pact": "51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "genesis": "K28-M05-MN01-YHDRYH-92CE"
+  }
+}

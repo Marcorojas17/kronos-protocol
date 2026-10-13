@@ -1,0 +1,18 @@
+name: "092 Auditor Externo"
+on:
+  schedule:
+    - cron: '0 0 1 */3 *'
+  workflow_dispatch:
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: python scripts/index-cero-verify.py --forense
+      - run: python scripts/pqc-audit.py --verbose
+      - uses: actions/upload-artifact@v4
+        with:
+          name: auditor-report
+          path: reportes/auditor.json

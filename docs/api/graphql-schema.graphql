@@ -1,0 +1,80 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ GRAPHQL SCHEMA · ARKHÉ ZERO · ◯_● ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+type Query {
+  health: Health!
+  obra(hash: String!): Obra
+  agente(id: String!): Agente
+  agentes: [Agente!]!
+  certificado(id: String!): Certificado
+}
+
+type Mutation {
+  firmar(input: FirmaInput!): FirmaResult!
+  vetar(input: VetoInput!): VetoResult!
+}
+
+type Health {
+  status: String!
+  seal: String!
+  indexZeroSha256: String!
+  timestamp: String!
+}
+
+type Obra {
+  hash: String!
+  titulo: String!
+  autores: [Autor!]!
+  anclaje: String
+  sellado: String!
+}
+
+type Autor {
+  nombre: String!
+  tipo: String!      # humano | ia
+  peso: Int!
+}
+
+type Agente {
+  id: String!
+  nombre: String!
+  significado: String
+  rol: String!
+  estado: String!
+  reputacion: Int!
+}
+
+type Certificado {
+  id: String!
+  tipo: String!
+  hashActa: String!
+  emitido: String!
+  sellado: String!
+}
+
+input FirmaInput {
+  contenido: String!
+  tipo: String
+  algoritmo: String
+}
+
+type FirmaResult {
+  ok: Boolean!
+  hashSha3512: String!
+  firma: String!
+  sellado: String!
+}
+
+input VetoInput {
+  propuesta: String!
+  razon: String!
+}
+
+type VetoResult {
+  ok: Boolean!
+  firmante: String!
+  peso: String!
+  veredicto: String!
+  sellado: String!
+}

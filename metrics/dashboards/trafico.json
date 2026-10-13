@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "trafico",
+  "titulo": "Tráfico",
+  "periodo": "2026-10",
+  "datos": {
+    "visitantes_unicos": 0,
+    "visitas_totales": 0,
+    "paginas_mas_visitadas": [],
+    "fuentes": {
+      "organic-search": 0,
+      "ai-search": 0,
+      "social": 0,
+      "direct": 0,
+      "internal": 0,
+      "referral": 0
+    },
+    "tiempo_promedio_seg": 0,
+    "tasa_rebote_pct": 0
+  },
+  "metas": {
+    "visitantes_unicos_mes": 10000,
+    "visitas_totales_mes": 25000
+  },
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}

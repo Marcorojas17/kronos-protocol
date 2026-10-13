@@ -1,0 +1,68 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ HELM · DEPLOYMENT · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Núcleo web ARKHÉ ZERO
+# ═══════════════════════════════════════════════════════════════════════════
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "arkhe-zero.fullname" . }}-web
+  labels:
+    {{- include "arkhe-zero.labels" . | nindent 4 }}
+    app: arkhe-web
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "arkhe-zero.selectorLabels" . | nindent 6 }}
+      app: arkhe-web
+  template:
+    metadata:
+      labels:
+        {{- include "arkhe-zero.selectorLabels" . | nindent 8 }}
+        app: arkhe-web
+      annotations:
+        arkhe.zero/nodo: "YHDRYH-92CE"
+        arkhe.zero/genesis: "K28-M05-MN01-YHDRYH-92CE"
+    spec:
+      containers:
+        - name: web
+          image: "{{ .Values.image.web.repository }}:{{ .Values.image.web.tag }}"
+          imagePullPolicy: {{ .Values.image.web.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: ARKHE_SEAL
+              value: {{ .Values.arkhe.seal | quote }}
+            - name: ARKHE_PACT
+              value: {{ .Values.arkhe.pact | quote }}
+            - name: ARKHE_NODO
+              value: {{ .Values.arkhe.nodo | quote }}
+            - name: ARKHE_GENESIS
+              value: {{ .Values.arkhe.genesis | quote }}
+            - name: INDEX_ZERO_SHA256
+              value: {{ .Values.arkhe.indexZero.sha256 | quote }}
+            - name: GOVERNANCE_HUMANO
+              value: "51"
+            - name: GOVERNANCE_IA
+              value: "49"
+            - name: GOVERNANCE_REAL
+              value: "100"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources.web | nindent 12 }}
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

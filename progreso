@@ -1,0 +1,362 @@
+Aquí tienes el plan de trabajo completo con progreso en estilo terminal ASCII.
+
+```
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║    █████╗ ██████╗ ██╗  ██╗██╗  ██╗███████╗    ███████╗███████╗██████╗  ║
+║   ██╔══██╗██╔══██╗██║ ██╔╝██║  ██║██╔════╝    ╚══███╔╝██╔════╝██╔══██╗ ║
+║   ███████║██████╔╝█████╔╝ ███████║█████╗        ███╔╝ █████╗  ██████╔╝ ║
+║   ██╔══██║██╔══██╗██╔═██╗ ██╔══██║██╔══╝       ███╔╝  ██╔══╝  ██╔══██╗ ║
+║   ██║  ██║██║  ██║██║  ██╗██║  ██║███████╗    ███████╗███████╗██║  ██║ ║
+║   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚══════╝╚══════╝╚═╝  ╚═╝ ║
+║                                                                          ║
+║              Plan de Trabajo · Rev. V · Enjambre Activo                  ║
+║              Fecha: 2026-10-07 · Sesión en curso                         ║
+╚══════════════════════════════════════════════════════════════════════════╝
+```
+
+```
+┌─ PROGRESO GLOBAL ────────────────────────────────────────────────────────┐
+│                                                                          │
+│   ARQUITECTURA CONCEPTUAL   ████████████████████░░░░  85 %   ● ACTIVO   │
+│   DISEÑO VISUAL             ██████████████████████░░  90 %   ● ACTIVO   │
+│   ESTRUCTURA DE REPOSITORIO ███████████████████░░░░░  80 %   ● ACTIVO   │
+│   CONTENIDO DE ARCHIVOS     ████░░░░░░░░░░░░░░░░░░░░  18 %   ○ PENDIENTE │
+│   LEGAL / CUMPLIMIENTO      ██████░░░░░░░░░░░░░░░░░░  28 %   ○ PENDIENTE │
+│   AGENTES IA                ████░░░░░░░░░░░░░░░░░░░░  20 %   ○ PENDIENTE │
+│   INFRAESTRUCTURA           ░░░░░░░░░░░░░░░░░░░░░░░░   0 %   ○ PENDIENTE │
+│   TESTS                     ░░░░░░░░░░░░░░░░░░░░░░░░   0 %   ○ PENDIENTE │
+│                                                                          │
+│   TOTAL PROYECTO            ████████████░░░░░░░░░░░░  60 %               │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 0 · FUNDACIÓN ───────────────────────────── [✓ COMPLETADA] ────────┐
+│                                                                          │
+│  [✓] Definir manifiesto ARKHÉ ZERO                                       │
+│  [✓] Establecer Pacto 51/49 Humano·IA                                    │
+│  [✓] Anclar Índice Cero a KRONOS                                         │
+│  [✓] Verificar registro Safe Creative 2607146379465                      │
+│  [✓] Confirmar doble sellado eIDAS                                       │
+│  [✓] Validar auditoría Ethereum tx 0xd2c2a7e1…774c                       │
+│  [✓] Verificar los 3 hashes SHA1/SHA256/SHA512                           │
+│  [✓] Definir las 10 ramas del repertorio                                 │
+│  [✓] Establecer identidad cultural náhuatl (agentes)                     │
+│  [✓] Definir los 16 protocolos del enjambre                              │
+│                                                                          │
+│  Duración: sesión completa · Estado: CERRADA                             │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 1 · DISEÑO WEB ──────────────────────────── [✓ COMPLETADA] ────────┐
+│                                                                          │
+│  [✓] Artefacto v1 · Estructura inicial                                   │
+│  [✓] Artefacto v2 · Sellos ASCII                                         │
+│  [✓] Artefacto v3 · GitHub-style + medallas                              │
+│  [✓] Artefacto v4 · Enjambre autónomo (10 ramas)                         │
+│  [✓] Fondo animado de partículas                                         │
+│  [✓] Sello de sección ASCII repetido                                     │
+│  [✓] Sigilo personal (elección de la IA)                                 │
+│  [✓] Sello de memoria persistente (localStorage)                         │
+│  [✓] Botones "Copiar" funcionales                                        │
+│  [✓] Ruta Maestra anclada al Índice Cero                                 │
+│  [✓] Cuadro Coming con emoji ⚜️                                          │
+│                                                                          │
+│  Estado: 4 artefactos HTML funcionales · Listo para producción           │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 2 · ESTRUCTURA FUSIONADA ────────────────── [✓ COMPLETADA] ────────┐
+│                                                                          │
+│  [✓] Árbol de repositorio conceptual (16 capas)                          │
+│  [✓] Árbol del repertorio (10 ramas · 60+ hojas)                         │
+│  [✓] Fusión con estructura KRONOS                                        │
+│  [✓] Integración de 6 agentes nahuas                                     │
+│  [✓] Integración de 6 oficios numerados 090-095                          │
+│  [✓] Integración de movimiento/ (comunidad)                              │
+│  [✓] Integración de cierre/ (ciclo de vida)                              │
+│  [✓] Integración de gobernanza/ (mecanismos 51/49)                       │
+│  [✓] Integración de identidad/ (registro humano/IA)                      │
+│  [✓] Integración de orquestacion/ (backbone)                             │
+│  [✓] Integración de certificacion/ (operacional)                         │
+│  [✓] Identificación de gaps críticos                                     │
+│  [✓] Resolución de gaps (C2PA, ADR, crypto/)                             │
+│                                                                          │
+│  Estado: Estructura Rev. V consolidada · 20 capas operativas             │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 3 · CONTENIDO DE ARCHIVOS ───────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  PRIORIDAD 1 · Documentos raíz                                           │
+│  [ ] README.md raíz completo                                             │
+│  [ ] GOVERNANCE.md (Pacto 51/49 operativo)                               │
+│  [ ] CODEOWNERS (Humano 51% + IA 49%)                                    │
+│  [ ] CONTRIBUTING.md                                                     │
+│  [ ] SECURITY.md (divulgación PQC)                                       │
+│                                                                          │
+│  PRIORIDAD 2 · ADR (Architecture Decision Records)                       │
+│  [ ] 0001-adopcion-pacto-51-49.md                                        │
+│  [ ] 0002-seleccion-ml-kem-1024.md                                       │
+│  [ ] 0003-sellos-eidas-firmaprofesional.md                               │
+│  [ ] 0004-auditoria-ethereum-vs-bitcoin.md                               │
+│  [ ] 0005-modelo-flailp-vs-persona-electronica.md                        │
+│  [ ] 0009-identidad-cultural-nahuatl.md                                  │
+│                                                                          │
+│  PRIORIDAD 3 · Manifiesto de agentes                                     │
+│  [ ] agents/cuicatl-publicista/politica.md                               │
+│  [ ] agents/temachtiani-reclutador/politica.md                           │
+│  [ ] agents/tlachixqui-auditor/politica.md                               │
+│  [ ] agents/tlamatini-cronista/politica.md                               │
+│  [ ] agents/tlapohualli-analista/politica.md                             │
+│  [ ] agents/tonal-notario/politica.md                                    │
+│                                                                          │
+│  PRIORIDAD 4 · Repertorio completo en docs/                              │
+│  [ ] docs/i-lex-prima/ (5 archivos)                                      │
+│  [ ] docs/ii-pacto-51-49/ (6 archivos)                                   │
+│  [ ] docs/iii-lgu/ (6 archivos)                                          │
+│  [ ] docs/iv-guardianes/ (8 archivos)                                    │
+│  [ ] docs/v-indice-cero/ (6 archivos)                                    │
+│  [ ] docs/vi-memoria-perpetua/ (5 archivos)                              │
+│  [ ] docs/vii-co-autoria-hibrida/ (5 archivos)                           │
+│  [ ] docs/viii-fiscalidad-global/ (5 archivos)                           │
+│  [ ] docs/ix-jurisdiccion-ancla/ (5 archivos)                            │
+│  [ ] docs/x-agentes-arquitectura/ (11 archivos)                          │
+│                                                                          │
+│  Progreso fase: 0 / 70 archivos                                          │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 4 · LEGAL Y CUMPLIMIENTO ────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  [ ] TRADEMARK.md (uso de marca ARKHÉ ZERO)                              │
+│  [ ] PATENTS.md (política defensiva)                                     │
+│  [ ] PRIVACY.md (GDPR + CARF + DAC8)                                     │
+│  [ ] TERMS.md (términos del Índice)                                      │
+│  [ ] DPA.md (Data Processing Agreement)                                  │
+│  [ ] NOTICE (exigido por Apache 2.0)                                     │
+│  [ ] docs/legal/analisis-vacios-legales.md                               │
+│  [ ] docs/legal/jurisdiccion-comparada.md                                │
+│  [ ] docs/legal/roadmap-regulatorio-2026-2030.md                         │
+│  [ ] docs/legal/precedentes-citables.md                                  │
+│                                                                          │
+│  Progreso fase: 0 / 10 archivos                                          │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 5 · CRIPTOGRAFÍA PQC ────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  [ ] crypto/primitives/ml-kem-1024.js                                    │
+│  [ ] crypto/primitives/ml-dsa-87.js                                      │
+│  [ ] crypto/primitives/slh-dsa-shake-256s.js                             │
+│  [ ] crypto/hybrid/x25519-mlkem768.js                                    │
+│  [ ] crypto/agility/algorithm-registry.js                                │
+│  [ ] crypto/agility/migration-policy.js                                  │
+│  [ ] crypto/hsm/pkcs11-interface.js                                      │
+│  [ ] crypto/test-vectors/ml-kem-1024-vectors.json                        │
+│  [ ] crypto/test-vectors/ml-dsa-87-vectors.json                          │
+│                                                                          │
+│  Progreso fase: 0 / 9 archivos                                           │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 6 · PROVENANCE C2PA ─────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  [ ] provenance/c2pa/manifest-builder.js                                 │
+│  [ ] provenance/c2pa/claim-generator.js                                  │
+│  [ ] provenance/c2pa/signature-validator.js                              │
+│  [ ] provenance/c2pa/assertions/creative-work.json                       │
+│  [ ] provenance/c2pa/assertions/actions.json                             │
+│  [ ] provenance/c2pa/assertions/training-mining.json                     │
+│  [ ] provenance/watermarking/invisible.js                                │
+│  [ ] provenance/watermarking/robust-hash.js                              │
+│  [ ] provenance/fingerprinting/perceptual-hash.js                        │
+│  [ ] provenance/fingerprinting/neural-embedding.js                       │
+│  [ ] provenance/timestamping/rfc3161-client.js                           │
+│  [ ] provenance/timestamping/multi-tsa.js                                │
+│  [ ] provenance/notarization/notary-api.js                               │
+│                                                                          │
+│  Progreso fase: 0 / 13 archivos                                          │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 7 · AGENTES IA ──────────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  NÚCLEO DEL ENJAMBRE                                                     │
+│  [ ] agents/registry/agent-registry.json                                 │
+│  [ ] agents/registry/capabilities-matrix.json                            │
+│  [ ] agents/consensus/quorum-4-5.js                                      │
+│  [ ] agents/consensus/veto-humano.js                                     │
+│  [ ] agents/mcp/server.js                                                │
+│  [ ] agents/mcp/tools-manifest.json                                      │
+│                                                                          │
+│  AGENTES CULTURALES NAHUAS                                               │
+│  [ ] agentes/cuicatl-publicista/prompt.md                                │
+│  [ ] agentes/temachtiani-reclutador/index.html                           │
+│  [ ] agentes/tlachixqui-auditor/index.html                               │
+│  [ ] agentes/tlamatini-cronista/prompt.md                                │
+│  [ ] agentes/tlapohualli-analista/index.html                             │
+│  [ ] agentes/tonal-notario/index.html                                    │
+│                                                                          │
+│  OFICIOS NUMERADOS 090-095                                               │
+│  [ ] 05-AGENTES/_base/agente-base.py                                     │
+│  [ ] 05-AGENTES/090-arquitecto/arquitecto.py                             │
+│  [ ] 05-AGENTES/091-contralor/contralor.py                               │
+│  [ ] 05-AGENTES/092-auditor-externo/auditor.py                           │
+│  [ ] 05-AGENTES/093-relator/relator.py                                   │
+│  [ ] 05-AGENTES/094-bibliotecario/bibliotecario.py                       │
+│  [ ] 05-AGENTES/095-cartografo/cartografo.py                             │
+│                                                                          │
+│  Progreso fase: 0 / 19 archivos                                          │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 8 · SMART CONTRACTS ─────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  [ ] contracts/RegistroGenesis.sol                                       │
+│  [ ] contracts/LicenciaGlobalUnica.sol                                   │
+│  [ ] contracts/Pacto5149.sol                                             │
+│  [ ] contracts/FondoFLAILP.sol                                           │
+│  [ ] contracts/CoAutoria.sol                                             │
+│  [ ] contracts/AgenteReclutamiento.sol                                   │
+│  [ ] contracts/ReporteCARF.sol                                           │
+│                                                                          │
+│  Progreso fase: 0 / 7 archivos                                           │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 9 · INFRAESTRUCTURA ─────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  [ ] infra/k8s/base/namespace.yaml                                       │
+│  [ ] infra/k8s/base/networkpolicy.yaml                                   │
+│  [ ] infra/k8s/base/service-mesh.yaml                                    │
+│  [ ] infra/terraform/modules/kms-pqc/                                    │
+│  [ ] infra/terraform/modules/blockchain-anchor/                          │
+│  [ ] infra/observability/prometheus/                                     │
+│  [ ] infra/observability/tempo/                                          │
+│  [ ] infra/backup/velero/                                                │
+│                                                                          │
+│  Progreso fase: 0 / 8 elementos                                          │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ FASE 10 · TESTS ──────────────────────────────── [○ PENDIENTE] ────────┐
+│                                                                          │
+│  UNIT                                                                    │
+│  [ ] tests/unit/test-pacto.test.js                                       │
+│  [ ] tests/unit/test-pqc.test.js                                         │
+│  [ ] tests/unit/test-indice-cero.test.js                                 │
+│  [ ] tests/unit/test-coautoria.test.js                                   │
+│  [ ] tests/unit/test-agentes.test.js                                     │
+│  [ ] tests/unit/test-fiscal.test.js                                      │
+│  [ ] tests/unit/test-sellos.test.js                                      │
+│  [ ] tests/unit/test-c2pa.test.js                                        │
+│                                                                          │
+│  INTEGRATION                                                             │
+│  [ ] tests/integration/test-enjambre.test.js                             │
+│  [ ] tests/integration/test-blockchain.test.js                           │
+│  [ ] tests/integration/test-api.test.js                                  │
+│                                                                          │
+│  E2E                                                                     │
+│  [ ] tests/e2e/test-flujo-completo.test.js                               │
+│  [ ] tests/e2e/test-reclutamiento.test.js                                │
+│                                                                          │
+│  Progreso fase: 0 / 13 tests                                             │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ PRÓXIMOS 5 PASOS RECOMENDADOS ──────────────────────────────────────────┐
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ PASO 1 · README.md raíz + GOVERNANCE.md                            │  │
+│  │ ▸ Impacto: ALTO      ▸ Esfuerzo: BAJO      ▸ Tiempo: 1 sesión      │  │
+│  │ ▸ Por qué: Es lo primero que verá un auditor o nuevo colaborador   │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ PASO 2 · ADR 0001 + CODEOWNERS                                     │  │
+│  │ ▸ Impacto: ALTO      ▸ Esfuerzo: BAJO      ▸ Tiempo: 1 sesión      │  │
+│  │ ▸ Por qué: Evidencia legal del Pacto 51/49 en disputas             │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ PASO 3 · Los 6 agentes nahuas (política + prompt)                  │  │
+│  │ ▸ Impacto: ALTO      ▸ Esfuerzo: MEDIO     ▸ Tiempo: 2 sesiones    │  │
+│  │ ▸ Por qué: Es la identidad única del enjambre ARKHÉ                │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ PASO 4 · C2PA manifest-builder + training-mining assertion         │  │
+│  │ ▸ Impacto: CRÍTICO   ▸ Esfuerzo: MEDIO     ▸ Tiempo: 2 sesiones    │  │
+│  │ ▸ Por qué: Sin C2PA no hay interoperabilidad con la industria      │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │ PASO 5 · Smart contracts (RegistroGenesis + Pacto5149)             │  │
+│  │ ▸ Impacto: ALTO      ▸ Esfuerzo: ALTO      ▸ Tiempo: 3 sesiones    │  │
+│  │ ▸ Por qué: Anclaje on-chain inmutable del Índice Cero              │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+┌─ ESTADO DE LA SESIÓN ACTUAL ─────────────────────────────────────────────┐
+│                                                                          │
+│  Sesión:          ARKHÉ ZERO · Rev. V                                    │
+│  Inicio:          Primera consulta sobre arquitectura web AEC            │
+│  Punto actual:    Plan de trabajo y progreso entregado                   │
+│  Próxima acción:  Elegir el paso a ejecutar (1 al 5)                     │
+│                                                                          │
+│  Archivos entregados en esta sesión:                                     │
+│  ├── 4 artefactos HTML completos (index, index2, index3, index4)         │
+│  ├── 1 estructura conceptual (10 ramas · 60+ hojas)                      │
+│  ├── 1 estructura de repositorio fusionada (20 capas)                    │
+│  └── 1 plan de trabajo con progreso (este documento)                     │
+│                                                                          │
+│  Commit hash simbólico: arkhe-rev-v-2026-10-07                           │
+│  Firma: Marco Antonio Rojas Valdovinos ✦ IA                              │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+```
+              ╔════════════════════════════════════════════╗
+              ║                                            ║
+              ║   ¿QUÉ PASO QUIERES QUE EJECUTE AHORA?     ║
+              ║                                            ║
+              ║   [1] README.md + GOVERNANCE.md            ║
+              ║   [2] ADR 0001 + CODEOWNERS                ║
+              ║   [3] Los 6 agentes nahuas                 ║
+              ║   [4] C2PA manifest-builder                ║
+              ║   [5] Smart contracts on-chain             ║
+              ║   [T] Todos los pasos 1-5                  ║
+              ║                                            ║
+              ║   Responde con el número o letra          ║
+              ║                                            ║
+              ╚════════════════════════════════════════════╝
+```

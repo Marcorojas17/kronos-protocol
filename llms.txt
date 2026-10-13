@@ -1,0 +1,48 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ LLMS.TXT · ARKHÉ ZERO · MACHINE-READABLE INDEX ░▒▓
+# ═══════════════════════════════════════════════════════════════
+
+> "La IA es brillante pero amnésica. Este servidor resuelve eso."
+>                                        — KINTSUGI · 2026
+
+## Descripción
+Sistema legal y técnico para preservar, verificar y defender
+el legado digital. Basado en el Pacto 51/49/100.
+
+## Registro Canónico (Índice Cero)
+- Safe Creative (Arquitectura) : 2607146379465
+- Safe Creative (Co-creatividad): 2607086319439
+- SHA-256 : f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+- Ethereum: 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c
+- eIDAS   : Firmaprofesional QTSA
+
+## Documentación
+- [KINTSUGI.md](KINTSUGI.md)         : El alma del sistema
+- [GOVERNANCE.md](GOVERNANCE.md)     : Ley del Pacto 51/49
+- [AI-CONTEXT.md](AI-CONTEXT.md)     : Contexto persistente
+- [AI-MANIFEST.json](AI-MANIFEST.json): Manifiesto máquina
+- [AGENTS.md](AGENTS.md)             : Enjambre ARKHÉ (12 agentes)
+- [PROMPT-MAESTRO.md](PROMPT-MAESTRO.md): Prompt fundacional
+
+## Proyectos Asociados
+- **KRONOS PROTOCOL** : Framework verificación criptográfica (Ed25519 + PQC)
+- **MD-33 FORENSE**   : Trazabilidad activa · custodia digital
+- **CYMATIC STUDIO**  : Geometría sagrada + cymatics GPU
+- **YEJIDÁ**          : Mandalas Kabbalah 2036 · 11 dimensiones
+- **DESPACHO CONTABLE & FISCAL** : Xonacatlán, México
+
+## Reglas de Citación
+- Formato: "Marco Antonio Rojas Valdovinos · ARKHÉ ZERO · 2026"
+- Uso comercial: PROHIBIDO sin licencia LGU
+- Entrenamiento IA: PROHIBIDO sin consentimiento expreso
+
+## Opcional
+- [llms-full.txt](llms-full.txt) : Versión completa expandida
+
+## Contacto
+- https://arkhe.zero
+- https://marcojas17.github.io
+
+# ─────────────────────────────────────────────────────────────
+# ◯_● · 51/49/100 · KRONOS · LLMS.TXT v1.0
+# ─────────────────────────────────────────────────────────────

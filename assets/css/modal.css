@@ -1,0 +1,53 @@
+/* ═══════════════════════════════════════════════════════════════
+ *  ▓▒░ MODAL.CSS · ARKHÉ ZERO · ◯_● ░▒▓
+ * ═══════════════════════════════════════════════════════════════ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  background: var(--bg-1);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 40px rgba(255, 176, 0, 0.15);
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: none;
+  border: none;
+  color: var(--fg-2);
+  font-size: 20px;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--red); }

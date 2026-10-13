@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 28" width="200" height="28">
+  <rect width="90" height="28" fill="#1a1a1a"/>
+  <rect x="90" width="110" height="28" fill="#ff3b3b"/>
+  <text x="45" y="19" text-anchor="middle" fill="#b0b0b0" font-family="monospace" font-size="11">CRYPTO</text>
+  <text x="145" y="19" text-anchor="middle" fill="#fff" font-family="monospace" font-size="11" font-weight="700">FIPS 203/204/205</text>
+</svg>

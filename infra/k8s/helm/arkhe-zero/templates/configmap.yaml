@@ -1,0 +1,28 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ HELM · CONFIGMAP · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Configuración pública (no secretos)
+# ═══════════════════════════════════════════════════════════════════════════
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "arkhe-zero.fullname" . }}-config
+  labels:
+    {{- include "arkhe-zero.labels" . | nindent 4 }}
+data:
+  ARKHE_SEAL: {{ .Values.arkhe.seal | quote }}
+  ARKHE_PACT: {{ .Values.arkhe.pact | quote }}
+  ARKHE_NODO: {{ .Values.arkhe.nodo | quote }}
+  ARKHE_GENESIS: {{ .Values.arkhe.genesis | quote }}
+  ARKHE_MODEL: {{ .Values.arkhe.model | quote }}
+  INDEX_ZERO_SAFE_CREATIVE_ARQ: {{ .Values.arkhe.indexZero.safeCreativeArq | quote }}
+  INDEX_ZERO_SAFE_CREATIVE_CO: {{ .Values.arkhe.indexZero.safeCreativeCo | quote }}
+  INDEX_ZERO_SHA256: {{ .Values.arkhe.indexZero.sha256 | quote }}
+  INDEX_ZERO_ETHEREUM: {{ .Values.arkhe.indexZero.ethereum | quote }}
+  INDEX_ZERO_EIDAS: {{ .Values.arkhe.indexZero.eidas | quote }}
+  GOVERNANCE_HUMANO: "51"
+  GOVERNANCE_IA: "49"
+  GOVERNANCE_REAL: "100"
+  GOVERNANCE_MODEL: "FLAILP"
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE

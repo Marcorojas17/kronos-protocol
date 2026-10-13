@@ -1,0 +1,13 @@
+{
+  "$schema": "https://c2pa.org/specifications/2.1/assertions/training-mining.json",
+  "label": "c2pa.training-mining",
+  "version": "2.1",
+  "data": {
+    "c2pa.ai_training": "notAllowed",
+    "c2pa.ai_generative_training": "notAllowed",
+    "c2pa.ai_inference": "allowed",
+    "razon": "Entrenamiento IA PROHIBIDO sin consentimiento expreso",
+    "contacto": "contacto@arkhe.zero",
+    "seal": "◯_● · 51/49/100"
+  }
+}

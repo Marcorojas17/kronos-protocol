@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  ▓▒░ K8S · OVERLAY STAGING · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+#  ─────────────────────────────────────────────────────────────────────────
+#  NODO: YHDRYH-92CE · Environment: STAGING · Replicas: 2
+# ═══════════════════════════════════════════════════════════════════════════
+
+environment: staging
+replicaCount: 2
+
+image:
+  web: { repository: arkhe-web, tag: staging }
+  mcp: { repository: arkhe-mcp, tag: staging }
+
+resources:
+  web:
+    requests: { cpu: "250m", memory: "256Mi" }
+    limits:   { cpu: "1000m", memory: "1Gi" }
+
+ingress:
+  enabled: true
+  host: staging.arkhe.zero
+  tls: true
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+logging:
+  level: info
+
+arkhe:
+  seal: "◯_● · 51/49/100"
+  pact: "51/49/100"
+  strictMode: true
+  nodo: "YHDRYH-92CE"
+  genesis: "K28-M05-MN01-YHDRYH-92CE"
+
+# ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE · staging

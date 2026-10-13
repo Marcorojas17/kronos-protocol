@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "custom",
+  "titulo": "Dashboard Custom",
+  "descripcion": "Métricas personalizadas por el fundador",
+  "widgets": [
+    {
+      "id": "w1",
+      "tipo": "kpi",
+      "titulo": "Firmas totales",
+      "metrica": "firmas_totales",
+      "meta": 1000
+    },
+    {
+      "id": "w2",
+      "tipo": "chart",
+      "titulo": "Visitantes por mes",
+      "metrica": "visitantes_mes",
+      "rango": "12m"
+    },
+    {
+      "id": "w3",
+      "tipo": "table",
+      "titulo": "Top 10 obras recientes",
+      "metrica": "obras_recientes",
+      "limite": 10
+    },
+    {
+      "id": "w4",
+      "tipo": "gauge",
+      "titulo": "Uptime %",
+      "metrica": "uptime",
+      "meta": 99.9
+    }
+  ],
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}
