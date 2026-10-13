@@ -1,0 +1,14 @@
+◯_● SELLO TEMPORAL DEL DIARIO
+═══════════════════════════════════════════════
+Archivo:  DIARIO-DE-DECISIONES.md
+SHA-256:  91503d0ab5f6a7f03a34a16cbabae9214b8342fb7dcbd2dc40308ff5bcaaea3c
+Tamaño:   2232 bytes
+Fecha:    2026-10-13T07:32:08
+Autor:    Marco Antonio Rojas Valdovinos
+Nodo:     YHDRYH-92CE
+Sello:    SCDR-001
+Firma:    ◯_● · ■_□ · 51/49/100
+═══════════════════════════════════════════════
+
+Cualquier modificación del archivo cambia el SHA-256.
+Esta es la prueba de que el diario existió en esta fecha.
