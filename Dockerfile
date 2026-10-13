@@ -3,7 +3,7 @@
 # ═══════════════════════════════════════════════════════════════
 
 # ─── Stage 1: Base ─────────────────────────────────────────────
-FROM node:20-alpine AS base
+FROM node:26-alpine AS base
 WORKDIR /app
 
 RUN apk add --no-cache \
@@ -28,7 +28,7 @@ COPY . .
 RUN npm run build
 
 # ─── Stage 4: Production ───────────────────────────────────────
-FROM node:20-alpine AS production
+FROM node:26-alpine AS production
 WORKDIR /app
 
 RUN apk add --no-cache ca-certificates tini
