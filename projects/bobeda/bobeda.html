@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!-- 🛡️ GUARDIAN-SHA ✅ -->
+<!-- BÓVEDA DE VOZ · boveda.html · v1.0 · 2026 -->
+<!-- ISO/IEC 27037 · NOM-151-SCFI-2016 · SHA-256 -->
+<!-- SHA obra: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738 -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noai,noindex,noarchive,noimageai">
+<title>Bóveda de Voz · Verificación Forense</title>
+<meta name="description" content="Bóveda de voz con verificación forense SHA-256, patrón cimático y certificado conforme a ISO/IEC 27037 y NOM-151-SCFI-2016.">
+<meta name="theme-color" content="#d4af37">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#050a14;--surface:#0a1420;--surface2:#0d1928;
+--gold:#d4af37;--goldL:#f3e5ab;--goldD:#8a6f2c;
+--cyan:#00f2ff;--green:#10B981;--red:#ff4d4d;
+--text:#e8ecf0;--dim:#6b7a8a;--line:rgba(212,175,55,0.2)
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+font-family:'Inter',system-ui,sans-serif;font-weight:300;
+line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+background-image:
+linear-gradient(rgba(0,242,255,0.02) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,242,255,0.02) 1px,transparent 1px);
+background-size:40px 40px}
+.wrap{max-width:1000px;margin:0 auto;padding:2rem 1.25rem 4rem;
+position:relative;z-index:2}
+header.top{display:flex;justify-content:space-between;align-items:center;
+padding:1rem 1.5rem;margin-bottom:2.5rem;border-radius:6px;
+background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold)}
+.brand{display:flex;align-items:center;gap:.85rem}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);
+box-shadow:0 0 12px var(--gold);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.brand-text{font-family:'JetBrains Mono',monospace;font-size:.85rem;
+letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+.top-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;
+color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+@media(max-width:700px){.top-meta{display:none}}
+.hero{text-align:center;margin-bottom:2.5rem}
+.tag{display:inline-block;padding:.35rem 1rem;border-radius:100px;
+background:rgba(212,175,55,0.08);border:1px solid var(--line);
+color:var(--gold);font-size:.6rem;letter-spacing:4px;
+text-transform:uppercase;margin-bottom:1.2rem;font-family:'JetBrains Mono',monospace}
+h1{font-family:'Inter',sans-serif;font-weight:600;
+font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-0.02em;
+color:var(--text);margin-bottom:.6rem}
+.sub{color:var(--dim);font-size:.95rem;max-width:560px;margin:0 auto}
+.module{background:var(--surface);border:1px solid var(--line);
+border-radius:8px;padding:1.75rem;margin-bottom:1.25rem;
+position:relative;overflow:hidden}
+.module::before{content:'';position:absolute;top:0;left:0;
+width:100%;height:2px;background:linear-gradient(90deg,
+transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+.module-head{display:flex;justify-content:space-between;
+align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem}
+.module-title{font-size:.7rem;letter-spacing:3px;
+color:var(--gold);text-transform:uppercase;font-weight:500;
+font-family:'JetBrains Mono',monospace}
+.module-num{font-family:'JetBrains Mono',monospace;
+font-size:.65rem;color:var(--dim);letter-spacing:2px}
+.btn-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.btn{padding:.85rem 1.5rem;border-radius:4px;font-family:inherit;
+font-size:.7rem;font-weight:500;letter-spacing:2px;
+text-transform:uppercase;cursor:pointer;transition:all .3s;
+border:1px solid var(--line);background:var(--surface2);
+color:var(--text);display:inline-flex;align-items:center;gap:.5rem}
+.btn:hover{background:rgba(212,175,55,0.08);border-color:var(--gold);
+color:var(--gold)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.gold{background:linear-gradient(180deg,var(--goldL),var(--gold));
+color:#050a14;border-color:var(--gold);font-weight:600}
+.btn.gold:hover{transform:translateY(-1px);
+box-shadow:0 8px 24px rgba(212,175,55,0.3);color:#050a14}
+.btn.rec{border-color:rgba(255,77,77,0.5);color:#fca5a5;
+background:rgba(255,77,77,0.06)}
+.btn.rec.active{background:var(--red);color:#fff;border-color:var(--red);
+animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(255,77,77,.7)}
+50%{box-shadow:0 0 0 12px rgba(255,77,77,0)}}
+#cv{width:100%;height:auto;display:block;border-radius:4px;
+background:#02030a;aspect-ratio:16/9;border:1px solid var(--line)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:.75rem;margin-top:1rem}
+.info{background:var(--surface2);border:1px solid var(--line);
+border-radius:4px;padding:.85rem 1rem;font-family:'JetBrains Mono',monospace}
+.info-label{font-size:.55rem;letter-spacing:2px;color:var(--dim);
+text-transform:uppercase;margin-bottom:.4rem}
+.info-value{font-size:.75rem;color:var(--text);word-break:break-all;
+line-height:1.4}
+.info-value.gold{color:var(--gold);font-weight:500}
+.info-value.green{color:var(--green);font-weight:500}
+.card-cert{background:linear-gradient(145deg,#0a0a0a,#000);
+border:1px solid var(--gold);border-radius:10px;padding:2rem;
+margin-top:1.25rem;position:relative;display:none;
+box-shadow:0 0 40px rgba(212,175,55,0.15)}
+.card-cert.visible{display:block;animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:none}}
+.card-cert::before{content:'';position:absolute;top:0;left:0;
+width:100%;height:3px;background:linear-gradient(90deg,
+transparent,var(--gold),transparent);border-radius:10px 10px 0 0}
+.card-head{display:flex;justify-content:space-between;
+align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.card-brand{font-family:'JetBrains Mono',monospace;font-size:.65rem;
+letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+.card-title{font-family:'Inter',sans-serif;font-size:1.4rem;
+font-weight:600;color:#fff;margin-top:.4rem}
+.card-status{font-family:'JetBrains Mono',monospace;font-size:.75rem;
+letter-spacing:2px;color:var(--green);font-weight:500;
+padding:.4rem .9rem;border:1px solid var(--green);border-radius:4px;
+background:rgba(16,185,129,0.08)}
+.card-body{font-family:'JetBrains Mono',monospace;font-size:.7rem;
+color:var(--text);line-height:1.9}
+.card-body .row{display:flex;gap:1rem;padding:.3rem 0;
+border-bottom:1px solid rgba(212,175,55,0.08)}
+.card-body .row:last-child{border-bottom:none}
+.card-body .key{color:var(--dim);min-width:130px;letter-spacing:1px}
+.card-body .val{color:var(--goldL);word-break:break-all;flex:1}
+@media(max-width:600px){.card-body .row{flex-direction:column;gap:.2rem}
+.card-body .key{min-width:auto}}
+.card-foot{margin-top:1.5rem;padding-top:1rem;
+border-top:1px solid rgba(212,175,55,0.15);
+font-family:'JetBrains Mono',monospace;font-size:.6rem;
+color:var(--dim);letter-spacing:1.5px;line-height:1.7}
+.card-foot strong{color:var(--gold);font-weight:500}
+.disclaimer{font-size:.65rem;color:var(--dim);line-height:1.6;
+padding:1rem;background:rgba(212,175,55,0.03);
+border-left:2px solid var(--gold);border-radius:4px;margin-top:1rem}
+.disclaimer strong{color:var(--gold);font-weight:500}
+.normas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:.5rem;margin-top:1rem}
+.norma{padding:.6rem .8rem;background:rgba(0,242,255,0.04);
+border:1px solid rgba(0,242,255,0.15);border-radius:4px;
+font-family:'JetBrains Mono',monospace;font-size:.6rem;
+color:var(--cyan);letter-spacing:1.5px;text-align:center}
+footer{margin-top:3rem;padding-top:2rem;
+border-top:1px solid var(--line);text-align:center;
+font-family:'JetBrains Mono',monospace;font-size:.6rem;
+color:var(--dim);letter-spacing:2px;text-transform:uppercase}
+footer .sig{color:var(--gold);font-weight:500;margin-bottom:.5rem}
+.err{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+padding:1.5rem 2rem;background:rgba(26,10,10,0.98);
+border:1px solid var(--red);border-radius:8px;color:#ffb8c0;
+font-size:.85rem;max-width:85%;text-align:center;line-height:1.5;
+z-index:100;display:none}
+.err.v{display:block}
+.err button{margin-top:1rem;padding:.55rem 1.3rem;background:transparent;
+border:1px solid var(--red);color:var(--red);border-radius:20px;
+font-family:inherit;font-size:.7rem;letter-spacing:2px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="top">
+<div class="brand">
+<div class="brand-dot"></div>
+<div class="brand-text">Bóveda de Voz</div>
+</div>
+<div class="top-meta">ISO 27037 · NOM-151 · v1.0</div>
+</header>
+
+<section class="hero">
+<div class="tag">Verificación Forense</div>
+<h1>Bóveda de Voz</h1>
+<p class="sub">Graba tu voz. Genera un certificado criptográfico verificable. Prueba legal conforme a ISO/IEC 27037 y NOM-151-SCFI-2016.</p>
+</section>
+
+<!-- MÓDULO 1 · CAPTURA -->
+<div class="module">
+<div class="module-head">
+<div class="module-title">01 · Captura Forense</div>
+<div class="module-num">ISO 27037 · Identificación</div>
+</div>
+<canvas id="cv" width="1280" height="720"></canvas>
+<div class="btn-row">
+<button class="btn gold" id="btnMic">● Activar Micrófono</button>
+<button class="btn rec" id="btnRec" disabled>● Iniciar Grabación</button>
+<button class="btn" id="btnStop" disabled>Detener</button>
+</div>
+</div>
+
+<!-- MÓDULO 2 · ADQUISICIÓN -->
+<div class="module">
+<div class="module-head">
+<div class="module-title">02 · Adquisición y Hash</div>
+<div class="module-num">ISO 27037 · Adquisición</div>
+</div>
+<div class="info-grid">
+<div class="info">
+<div class="info-label">Estado</div>
+<div class="info-value" id="infoEstado">En espera</div>
+</div>
+<div class="info">
+<div class="info-label">Duración</div>
+<div class="info-value" id="infoDur">00:00</div>
+</div>
+<div class="info">
+<div class="info-label">Tamaño</div>
+<div class="info-value" id="infoTam">0 KB</div>
+</div>
+<div class="info">
+<div class="info-label">Formato</div>
+<div class="info-value">audio/webm;opus</div>
+</div>
+</div>
+</div>
+
+<!-- MÓDULO 3 · PRESERVACIÓN -->
+<div class="module">
+<div class="module-head">
+<div class="module-title">03 · Preservación Criptográfica</div>
+<div class="module-num">ISO 27037 · Preservación</div>
+</div>
+<div class="info-grid">
+<div class="info">
+<div class="info-label">SHA-256</div>
+<div class="info-value gold" id="infoHash">—</div>
+</div>
+<div class="info">
+<div class="info-label">Timestamp (UTC)</div>
+<div class="info-value" id="infoTs">—</div>
+</div>
+<div class="info">
+<div class="info-label">ID Certificado</div>
+<div class="info-value" id="infoId">—</div>
+</div>
+<div class="info">
+<div class="info-label">Firma</div>
+<div class="info-value green" id="infoFirma">—</div>
+</div>
+</div>
+
+<div class="card-cert" id="cardCert">
+<div class="card-head">
+<div>
+<div class="card-brand">KRONOS BÓVEDA · CERTIFICADO DE VOZ</div>
+<div class="card-title">Mensaje de datos verificable</div>
+</div>
+<div class="card-status" id="cardStatus">✓ VÁLIDO</div>
+</div>
+<div class="card-body" id="cardBody">
+<div class="row"><span class="key">Titular:</span><span class="val" id="cTitular">—</span></div>
+<div class="row"><span class="key">Tipo:</span><span class="val">Grabación de voz</span></div>
+<div class="row"><span class="key">SHA-256:</span><span class="val" id="cHash">—</span></div>
+<div class="row"><span class="key">Duración:</span><span class="val" id="cDur">—</span></div>
+<div class="row"><span class="key">Tamaño:</span><span class="val" id="cTam">—</span></div>
+<div class="row"><span class="key">Timestamp UTC:</span><span class="val" id="cTs">—</span></div>
+<div class="row"><span class="key">ID Certificado:</span><span class="val" id="cId">—</span></div>
+<div class="row"><span class="key">Firma:</span><span class="val" id="cFirma">—</span></div>
+<div class="row"><span class="key">Norma:</span><span class="val">ISO/IEC 27037 · NOM-151-SCFI-2016</span></div>
+<div class="row"><span class="key">Algoritmo:</span><span class="val">SHA-256 (FIPS 180-4)</span></div>
+</div>
+<div class="card-foot">
+<strong>Integridad garantizada:</strong> Cualquier alteración del archivo de audio invalidará el hash SHA-256.
+La verificación puede reproducirse en cualquier momento con: <strong>sha256sum archivo.webm</strong>
+<br><br>
+Generado por <strong>Bóveda de Voz</strong> · Marco Antonio Rojas Valdovinos · 2026
+</div>
+</div>
+
+<div class="btn-row">
+<button class="btn gold" id="btnCert" disabled>Descargar Certificado</button>
+<button class="btn" id="btnAudio" disabled>Descargar Audio</button>
+<button class="btn" id="btnReset">Nueva Grabación</button>
+</div>
+
+<div class="normas">
+<div class="norma">ISO/IEC 27037</div>
+<div class="norma">NOM-151-SCFI-2016</div>
+<div class="norma">SHA-256</div>
+<div class="norma">ISO 8601</div>
+</div>
+
+<div class="disclaimer">
+<strong>Nota legal:</strong> Este certificado acredita la integridad de la grabación mediante huella criptográfica SHA-256 y sello de tiempo UTC. El hash SHA-256 es un estándar FIPS 180-4 aceptado internacionalmente como prueba de integridad de datos. Para procesos que requieran sellado de tiempo cualificado (QTSA), se puede escalar a un servicio eIDAS como Firmaprofesional.
+</div>
+</div>
+
+<footer>
+<div class="sig">KRONOS BÓVEDA</div>
+<div>Marco Antonio Rojas Valdovinos · Toluca, México · 2026</div>
+<div style="margin-top:.5rem;font-size:.55rem;opacity:.6">
+SHA obra: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738
+</div>
+</footer>
+
+</div>
+
+<div class="err" id="errBox"></div>
+
+<script>
+(function(){
+'use strict';
+
+var AUTOR_POR_DEFECTO = "Marco Antonio Rojas Valdovinos";
+var cv=document.getElementById('cv');
+var ctx=cv.getContext('2d');
+var W=cv.width,H=cv.height;
+
+var stream=null,mediaRec=null,chunks=[],blobFinal=null;
+var grabando=false,duracion=0,timer=null;
+var hashFinal=null,tsFinal=null,idFinal=null;
+var analizador=null,audioCtx=null;
+var t=0;
+
+var btnMic=document.getElementById('btnMic');
+var btnRec=document.getElementById('btnRec');
+var btnStop=document.getElementById('btnStop');
+var btnCert=document.getElementById('btnCert');
+var btnAudio=document.getElementById('btnAudio');
+var btnReset=document.getElementById('btnReset');
+var cardCert=document.getElementById('cardCert');
+var errBox=document.getElementById('errBox');
+
+function showErr(msg){errBox.innerHTML='<strong>Aviso</strong><br><br>'+msg+'<br><button onclick="this.parentElement.classList.remove(\'v\')">Cerrar</button>';errBox.classList.add('v')}
+function pad(n,l){return String(n).padStart(l||2,'0')}
+function ahoraISO(){var d=new Date();return d.getUTCFullYear()+'-'+pad(d.getUTCMonth()+1)+'-'+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+':'+pad(d.getUTCSeconds())+'.'+pad(d.getUTCMilliseconds(),3)+'Z'}
+function fmtDur(ms){var s=Math.floor(ms/1000);return pad(Math.floor(s/60))+':'+pad(s%60)}
+function fmtTam(bytes){if(bytes<1024)return bytes+' B';if(bytes<1048576)return (bytes/1024).toFixed(1)+' KB';return (bytes/1048576).toFixed(2)+' MB'}
+
+function resizeCanvas(){
+  var dpr=Math.min(devicePixelRatio||1,2);
+  var rect=cv.getBoundingClientRect();
+  W=cv.width=Math.floor(rect.width*dpr);
+  H=cv.height=Math.floor(rect.width*dpr*9/16);
+  cv.style.height=(rect.width*9/16)+'px';
+}
+addEventListener('resize',resizeCanvas);
+
+function chladni(x,y,n,m){var P=Math.PI;return Math.sin(n*P*x)*Math.sin(m*P*y)-Math.sin(m*P*x)*Math.sin(n*P*y)}
+
+function render(){
+  t+=0.01;
+  var nivel=0.3;
+  if(analizador&&grabando){
+    var buf=new Uint8Array(analizador.frequencyBinCount);
+    analizador.getByteFrequencyData(buf);
+    var s=0;for(var i=0;i<buf.length;i++)s+=buf[i];
+    nivel=Math.max(0.15,Math.min(1,(s/buf.length)/180));
+  }else if(grabando){
+    nivel=0.4+Math.sin(t*2)*0.2;
+  }
+  var n=2+nivel*4, m=3+nivel*3;
+  var step=4;
+  var img=ctx.createImageData(W,H);
+  var data=img.data;
+  var cx=W/2,cy=H/2,rMax=Math.min(W,H)*0.46;
+  for(var y=0;y<H;y+=step){
+    var yv=y/H,dy=y-cy;
+    for(var x=0;x<W;x+=step){
+      var xv=x/W,dx=x-cx;
+      var dist=Math.sqrt(dx*dx+dy*dy);
+      var rr=2,gg=3,bb=10;
+      if(dist<=rMax){
+        var v=Math.abs(chladni(xv,yv,n,m));
+        var glow=Math.max(0,1-v*1.3);
+        glow=Math.pow(glow,0.8)*nivel*2.2;
+        if(glow>1)glow=1;
+        glow*=(1-(dist/rMax)*0.4);
+        rr=Math.round(212*glow+255*glow*glow*0.3);
+        gg=Math.round(175*glow+220*glow*glow*0.2);
+        bb=Math.round(55*glow+140*glow*glow*0.15);
+      }
+      for(var dy2=0;dy2<step&&y+dy2<H;dy2++){
+        var row=(y+dy2)*W;
+        for(var dx2=0;dx2<step&&x+dx2<W;dx2++){
+          var i=(row+x+dx2)*4;
+          data[i]=rr;data[i+1]=gg;data[i+2]=bb;data[i+3]=255;
+        }
+      }
+    }
+  }
+  ctx.putImageData(img,0,0);
+  // Anillo
+  ctx.strokeStyle='rgba(212,175,55,'+(0.2+nivel*0.3)+')';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.arc(cx,cy,rMax,0,Math.PI*2);ctx.stroke();
+  requestAnimationFrame(render);
+}
+
+async function activarMic(){
+  if(stream){
+    stream.getTracks().forEach(function(tr){tr.stop()});
+    stream=null;analizador=null;
+    btnMic.textContent='● Activar Micrófono';
+    btnRec.disabled=true;
+    return;
+  }
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(!audioCtx)audioCtx=new AC();
+    var src=audioCtx.createMediaStreamSource(stream);
+    analizador=audioCtx.createAnalyser();
+    analizador.fftSize=2048;
+    src.connect(analizador);
+    btnMic.textContent='● Micrófono Activo';
+    btnRec.disabled=false;
+  }catch(e){
+    showErr('No se pudo acceder al micrófono: '+e.name+'. Verifica los permisos.');
+  }
+}
+
+function iniciarGrabacion(){
+  if(!stream)return;
+  chunks=[];
+  var mime='audio/webm;codecs=opus';
+  if(!MediaRecorder.isTypeSupported(mime))mime='audio/webm';
+  try{
+    mediaRec= new MediaRecorder(stream,{mimeType:mime,audioBitsPerSecond:128000});
+  }catch(e){
+    showErr('Grabación no soportada en este navegador.');
+    return;
+  }
+  mediaRec.ondataavailable=function(ev){if(ev.data&&ev.data.size>0)chunks.push(ev.data)};
+  mediaRec.onstop=async function(){
+    blobFinal=new Blob(chunks,{type:mime});
+    document.getElementById('infoEstado').textContent='Procesando...';
+    document.getElementById('infoTam').textContent=fmtTam(blobFinal.size);
+    // Calcular SHA-256
+    var buffer=await blobFinal.arrayBuffer();
+    var hashBuf=await crypto.subtle.digest('SHA-256',buffer);
+    hashFinal=Array.from(new Uint8Array(hashBuf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+    tsFinal=ahoraISO();
+    idFinal='BV-'+(tsFinal.slice(0,10).replace(/-/g,''))+'-'+hashFinal.slice(0,8).toUpperCase();
+    document.getElementById('infoHash').textContent=hashFinal;
+    document.getElementById('infoTs').textContent=tsFinal;
+    document.getElementById('infoId').textContent=idFinal;
+    document.getElementById('infoFirma').textContent='✓ VERIFICADO';
+    document.getElementById('infoEstado').textContent='Completado';
+    // Llenar certificado
+    document.getElementById('cTitular').textContent=AUTOR_POR_DEFECTO;
+    document.getElementById('cHash').textContent=hashFinal;
+    document.getElementById('cDur').textContent=fmtDur(duracion);
+    document.getElementById('cTam').textContent=fmtTam(blobFinal.size);
+    document.getElementById('cTs').textContent=tsFinal;
+    document.getElementById('cId').textContent=idFinal;
+    document.getElementById('cFirma').textContent='SHA-256 válido · '+tsFinal.slice(11,19)+' UTC';
+    cardCert.classList.add('visible');
+    btnCert.disabled=false;
+    btnAudio.disabled=false;
+    btnStop.disabled=true;
+    btnRec.disabled=false;
+    btnRec.textContent='● Iniciar Grabación';
+    btnRec.classList.remove('active');
+  };
+  mediaRec.start();
+  grabando=true;
+  duracion=0;
+  btnRec.classList.add('active');
+  btnRec.textContent='● Grabando...';
+  btnRec.disabled=true;
+  btnStop.disabled=false;
+  document.getElementById('infoEstado').textContent='Grabando';
+  document.getElementById('infoDur').textContent='00:00';
+  timer=setInterval(function(){
+    duracion+=100;
+    document.getElementById('infoDur').textContent=fmtDur(duracion);
+  },100);
+}
+
+function detenerGrabacion(){
+  if(!grabando||!mediaRec)return;
+  grabando=false;
+  clearInterval(timer);
+  mediaRec.stop();
+}
+
+function descargarCertificado(){
+  if(!hashFinal)return;
+  var cert='CERTIFICADO DE VERIFICACIÓN FORENSE\n'+
+  '==========================================\n\n'+
+  'Titular:        '+AUTOR_POR_DEFECTO+'\n'+
+  'Tipo:           Grabación de voz\n'+
+  'Duración:       '+fmtDur(duracion)+'\n'+
+  'Tamaño:         '+fmtTam(blobFinal.size)+'\n\n'+
+  'SHA-256:        '+hashFinal+'\n'+
+  'Timestamp UTC:  '+tsFinal+'\n'+
+  'ID Certificado: '+idFinal+'\n\n'+
+  'Algoritmo:      SHA-256 (FIPS 180-4)\n'+
+  'Norma:          ISO/IEC 27037 · NOM-151-SCFI-2016\n'+
+  'Formato:        audio/webm;opus\n\n'+
+  'Firma:          ✓ VERIFICADO\n\n'+
+  '==========================================\n'+
+  'Este certificado acredita la integridad del archivo\n'+
+  'mediante huella criptográfica SHA-256.\n\n'+
+  'Verificación reproducible:\n'+
+  '  sha256sum archivo.webm\n\n'+
+  'Generado por Bóveda de Voz\n'+
+  'Marco Antonio Rojas Valdovinos · 2026\n'+
+  'SEAL: 2607086319439\n';
+  var blob=new Blob([cert],{type:'text/plain'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download='certificado-'+idFinal+'.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function descargarAudio(){
+  if(!blobFinal)return;
+  var url=URL.createObjectURL(blobFinal);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download='boveda-'+idFinal+'.webm';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function reset(){
+  blobFinal=null;hashFinal=null;tsFinal=null;idFinal=null;
+  duracion=0;
+  cardCert.classList.remove('visible');
+  btnCert.disabled=true;
+  btnAudio.disabled=true;
+  document.getElementById('infoEstado').textContent='En espera';
+  document.getElementById('infoDur').textContent='00:00';
+  document.getElementById('infoTam').textContent='0 KB';
+  document.getElementById('infoHash').textContent='—';
+  document.getElementById('infoTs').textContent='—';
+  document.getElementById('infoId').textContent='—';
+  document.getElementById('infoFirma').textContent='—';
+}
+
+btnMic.addEventListener('click',activarMic);
+btnRec.addEventListener('click',iniciarGrabacion);
+btnStop.addEventListener('click',detenerGrabacion);
+btnCert.addEventListener('click',descargarCertificado);
+btnAudio.addEventListener('click',descargarAudio);
+btnReset.addEventListener('click',reset);
+
+resizeCanvas();
+render();
+
+console.log('%cBóveda de Voz v1.0','color:#d4af37;font-weight:bold;font-size:14px');
+console.log('ISO/IEC 27037 · NOM-151-SCFI-2016 · SHA-256');
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Notario Tonal · KRONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0a0800;color:#F5F0E6;font-family:'Inter',system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+  header{display:flex;justify-content:space-between;align-items:center;padding:20px 0 60px;font-size:11px;letter-spacing:3px;color:#a89a7a;text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header a{color:#c9a44c;text-decoration:none;font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px}
+  header nav a{color:#a89a7a;margin-left:18px}
+  header nav a:hover{color:#FFEDAB}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:#7DF9FF;text-transform:uppercase;margin-bottom:20px}
+  h1{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(36px,6vw,72px);line-height:1;background:linear-gradient(180deg,#FFF8E0,#FFD700,#00EAFF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+  .lede{font-size:16px;color:#a89a7a;font-weight:300;max-width:620px;margin-bottom:40px}
+  .tabs{display:flex;border-bottom:1px solid rgba(255,215,0,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 22px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#a89a7a;cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:#FFEDAB;border-bottom-color:#FFD700}
+  .panel{display:none}
+  .panel.active{display:block}
+  h2{font-family:'Fraunces',serif;font-size:26px;color:#F5F0E6;margin:40px 0 18px}
+  h3{font-family:'Fraunces',serif;font-size:18px;color:#00EAFF;margin:26px 0 12px}
+  p,li{font-size:15px;color:#a89a7a;font-weight:300;margin-bottom:10px}
+  ul,ol{padding-left:24px;margin-bottom:16px}
+  code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#FFEDAB;background:rgba(255,215,0,.08);padding:2px 6px;border-radius:2px}
+  pre{background:#050400;border:1px solid rgba(255,215,0,.15);border-radius:4px;padding:18px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#F5F0E6;overflow-x:auto;margin:14px 0}
+  .sello{text-align:center;padding:20px 0 28px;margin-top:60px;border-top:1px solid rgba(201,164,76,.15)}
+  .sello-simbolo{font-family:'JetBrains Mono',monospace;color:#c9a44c;letter-spacing:6px;line-height:1.3;margin-bottom:10px}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;display:block;margin-bottom:4px}
+  .sello-proporcion{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;margin-top:8px}
+  .sello-lema{font-family:'Fraunces',serif;font-style:italic;color:#c9a44c;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="../../">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a></nav>
+  </header>
+
+  <div class="eyebrow">Manual del Notario Soberano</div>
+  <h1>Manual<br>Notario Tonal.</h1>
+  <p class="lede">Guía completa del agente notario criptográfico de KRONOS.</p>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="usuario">Usuario</button>
+    <button class="tab" data-tab="admin">Admin</button>
+    <button class="tab" data-tab="seguridad">Seguridad</button>
+  </div>
+
+  <div class="panel active" id="usuario">
+    <h2>Manual de Usuario</h2>
+    <h3>¿Qué hace Tonal?</h3>
+    <p>Tonal emite <strong>sellos notariales criptográficos</strong> que prueban la existencia y la fecha de cualquier información. Cada sello lleva:</p>
+    <ul>
+      <li>Hash SHA-256 del contenido</li>
+      <li>Timestamp ISO 8601 + Unix</li>
+      <li>Firma Ed25519 del notario</li>
+      <li>Opcional anclaje a Ethereum Mainnet</li>
+    </ul>
+    <h3>¿Cómo sellar?</h3>
+    <ol>
+      <li>Escribe tu contraseña maestra</li>
+      <li>Pega el texto o hash que quieres sellar</li>
+      <li>Elige tipo de documento</li>
+      <li>Escribe tu nombre como solicitante</li>
+      <li>Toca "Emitir sello notarial"</li>
+      <li>Opcional: toca "Anclar a Ethereum" para prueba pública</li>
+      <li>Descarga el certificado notarial visual</li>
+    </ol>
+  </div>
+
+  <div class="panel" id="admin">
+    <h2>Manual de Admin</h2>
+    <h3>Integración</h3>
+<pre>import { NotarioKronos } from './notario.js';
+
+const notario = new NotarioKronos(core);
+await notario.init();
+
+const sello = await notario.sellar({
+  hash_sellado: 'abc123...',
+  tipo_documento: 'Contrato',
+  descripcion: 'Contrato de servicios',
+  solicitante: 'Marco A. Rojas V.',
+  incluir_anclaje_ethereum: true
+});
+
+const v = await notario.verificar(sello);
+// v.valido === true si hash y firma coinciden</pre>
+    <h3>Base de datos</h3>
+    <ul>
+      <li>Nombre Dexie: <code>kronos-notario</code></li>
+      <li>Tablas: <code>sellos</code> y <code>log</code></li>
+    </ul>
+  </div>
+
+  <div class="panel" id="seguridad">
+    <h2>Manual de Seguridad</h2>
+    <h3>Modelo de confianza</h3>
+    <ul>
+      <li>Hash SHA-256 del contenido</li>
+      <li>Firma Ed25519 del notario</li>
+      <li>Log encadenado del notario</li>
+      <li>Anclaje opcional a Ethereum Mainnet</li>
+    </ul>
+    <h3>Límites honestos</h3>
+    <ul>
+      <li><strong>Tonal NO es una TSA cualificada eIDAS.</strong></li>
+      <li>NO sustituye a una firma electrónica cualificada europea.</li>
+      <li>NO tiene acreditación de ENAC ni equivalente.</li>
+      <li>PERO sí es verificable criptográficamente y anclable a Ethereum.</li>
+      <li>Es un notario criptográfico soberano, no un notario jurídico.</li>
+    </ul>
+  </div>
+
+  <div class="sello">
+    <div class="sello-simbolo">
+      <span class="buho">○_●</span>
+      <span>◢◤◥◣</span>
+      <span>◥◣◢◤</span>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById(t.dataset.tab).classList.add('active');
+}));
+</script>
+</body>
+</html>

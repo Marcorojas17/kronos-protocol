@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Integrity OS</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    min-height: 100%;
+    background: #0a0d10;
+    color: #e9eef5;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+  #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(201,164,76,0.06), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(0,255,65,0.05), transparent 60%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+  .hero { text-align: center; margin-bottom: 50px; }
+  pre.banner {
+    color: #c9a44c; font-size: 9px; line-height: 1.1; margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(201,164,76,0.5); white-space: pre; overflow-x: auto; display: inline-block; text-align: left;
+  }
+  h1 {
+    font-size: clamp(22px, 4vw, 36px); color: #c9a44c; letter-spacing: 5px;
+    margin-bottom: 12px; text-shadow: 0 0 30px rgba(201,164,76,0.4); font-weight: 700;
+  }
+  .sub { font-size: 11px; color: #00ff41; letter-spacing: 3px; margin-bottom: 30px; opacity: 0.9; }
+  .desc { max-width: 620px; margin: 0 auto 30px; font-size: 13px; line-height: 1.8; color: #b8c4cc; }
+  .warning {
+    max-width: 620px; margin: 0 auto 30px; padding: 14px 20px;
+    border-left: 3px solid #c9a44c; background: rgba(201,164,76,0.05);
+    font-size: 11px; color: #c9a44c; text-align: left; line-height: 1.7;
+  }
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  a.btn {
+    display: inline-block; padding: 12px 28px; border: 1px solid #c9a44c; color: #c9a44c;
+    text-decoration: none; letter-spacing: 3px; font-size: 11px; font-weight: 700;
+    transition: all 0.3s ease; background: rgba(201,164,76,0.02);
+  }
+  a.btn:hover { background: #c9a44c; color: #0a0d10; box-shadow: 0 0 30px rgba(201,164,76,0.5); }
+  a.btn.green { border-color: #00ff41; color: #00ff41; }
+  a.btn.green:hover { background: #00ff41; color: #0a0d10; box-shadow: 0 0 30px rgba(0,255,65,0.5); }
+  .footer { text-align: center; font-size: 9px; color: #4a5568; letter-spacing: 2px; padding-top: 30px; border-top: 1px solid rgba(201,164,76,0.1); }
+  .footer a { color: #4a5568; text-decoration: none; }
+  .footer a:hover { color: #c9a44c; }
+  @media (max-width: 700px) { pre.banner { display: none; } .wrap { padding: 30px 16px; } }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hero">
+    <pre class="banner">╔══════════════════════════════════════════════════════════════════════════════╗
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+║ ▓   ███████╗██╗   ██╗██╗██████╗ ███████╗███╗   ██╗ ██████╗███████╗         ▓ ║
+║ ▓   ██╔════╝██║   ██║██║██╔══██╗██╔════╝████╗  ██║██╔════╝██╔════╝         ▓ ║
+║ ▓   █████╗  ██║   ██║██║██║  ██║█████╗  ██╔██╗ ██║██║     █████╗           ▓ ║
+║ ▓   ██╔══╝  ╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║╚██╗██║██║     ██╔══╝           ▓ ║
+║ ▓   ███████╗ ╚████╔╝ ██║██████╔╝███████╗██║ ╚████║╚██████╗███████╗         ▓ ║
+║ ▓   ╚══════╝  ╚═══╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝         ▓ ║
+║ ▓   I N T E G R I T Y   O S                                                 ║
+║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+╚══════════════════════════════════════════════════════════════════════════════╝</pre>
+    <h1>EVIDENCE INTEGRITY OS</h1>
+    <div class="sub">CADENA DE CUSTODIA DIGITAL VERIFICABLE</div>
+    <p class="desc">
+      Plataforma de integridad, trazabilidad y verificación de evidencia digital
+      para México y Latinoamérica.
+    </p>
+    <div class="warning">
+      ⚠ Evidence Integrity OS no sustituye a abogado, perito, notario ni PSC.
+      Los sellos RFC 3161 y las constancias NOM-151 son emitidos exclusivamente
+      por terceros autorizados.
+    </div>
+    <div class="actions">
+      <a class="btn" href="./README.md">LEER README</a>
+      <a class="btn green" href="https://github.com/Marcorojas17/kronos-protocol">GITHUB</a>
+    </div>
+  </div>
+  <div class="footer">
+    © 2026 · EVIDENCE INTEGRITY OS · v0.0.1 · PRE-ALPHA
+  </div>
+</div>
+
+<script>
+// Fondo: red de hexágonos conectados
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, nodes;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  const count = Math.floor((w * h) / 25000);
+  nodes = Array.from({ length: count }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    r: 1 + Math.random() * 1.5,
+  }));
+}
+
+function draw() {
+  ctx.fillStyle = 'rgba(10, 13, 16, 0.15)';
+  ctx.fillRect(0, 0, w, h);
+
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < 0 || n.x > w) n.vx *= -1;
+    if (n.y < 0 || n.y > h) n.vy *= -1;
+
+    for (let j = i + 1; j < nodes.length; j++) {
+      const o = nodes[j];
+      const dx = n.x - o.x, dy = n.y - o.y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 130) {
+        ctx.strokeStyle = `rgba(201, 164, 76, ${0.15 * (1 - d / 130)})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(o.x, o.y);
+        ctx.stroke();
+      }
+    }
+
+    ctx.fillStyle = Math.random() > 0.97 ? '#c9a44c' : 'rgba(0, 255, 65, 0.5)';
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+</script>
+</body>
+</html>

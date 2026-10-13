@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Génesis · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--gold)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(201,164,76,.06);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;gap:0;border-bottom:1px solid rgba(201,164,76,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+  .panel{display:none}
+  .panel.active{display:block}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Génesis</a>
+      <a href="manual.html">Manual</a>
+      <a href="../">Legado</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 0.1</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Génesis.</h1>
+    <p class="lede">Tres manuales en una página: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Sella tu génesis fundacional: un registro criptográfico inmutable de tu intención, firmado con Ed25519 y hasheado con SHA-256.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Abre <code>legado/genesis/index.html</code> en tu navegador.</li>
+        <li>Escribe tu nombre y tu intención fundacional.</li>
+        <li>Elige la co-autoría IA (o "Ninguna").</li>
+        <li>Toca "Sellar génesis".</li>
+        <li>Descarga el certificado <code>.json</code>.</li>
+      </ul>
+      <h3>¿Qué evitar?</h3>
+      <ul>
+        <li>No uses navegadores antiguos (sin Web Crypto).</li>
+        <li>No compartas tu certificado si contiene datos privados.</li>
+        <li>No cierres la pestaña antes de descargar el certificado.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Configuración</h3>
+      <p>No requiere configuración. El módulo es 100% estático.</p>
+      <h3>BYOK (IA)</h3>
+      <p>Si quieres conectar una IA real (OpenAI, Anthropic, OpenRouter), añade tu API Key en el futuro módulo <code>legado/identidad</code>. Por ahora, la co-autoría es declarativa.</p>
+      <h3>Backup</h3>
+      <ul>
+        <li>El certificado <code>.json</code> es tu respaldo. Guárdalo.</li>
+        <li>El borrador se guarda en <code>localStorage</code>. No hay sync remoto.</li>
+      </ul>
+      <h3>Crisis</h3>
+      <ul>
+        <li>Si el certificado se pierde: vuelve a sellar (pero el hash será distinto).</li>
+        <li>Si el navegador no soporta Ed25519: actualiza o cambia de navegador.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Plagio:</strong> el hash prueba autoría y fecha del manifiesto.</li>
+        <li><strong>Alteración:</strong> cualquier cambio rompe el hash y la firma.</li>
+        <li><strong>Man-in-the-middle:</strong> no hay red, no hay MITM.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>SHA-256</code> para hash del manifiesto.</li>
+        <li><code>Ed25519</code> para firma digital.</li>
+        <li>Clave privada generada localmente, nunca transmitida.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>No garantizamos anclaje en blockchain en este módulo (se hará en la Capa 1).</li>
+        <li>El certificado es local; la verificación por terceros requiere compartirlo manualmente.</li>
+        <li>Este módulo no es inmune a un atacante con acceso físico a tu dispositivo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 0.1</span>
+    <span><a href="./">Génesis</a> · <a href="../">Legado</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(target).classList.add('active');
+  });
+});
+</script>
+<script src="genesis.js" type="module"></script>
+</body>
+</html>

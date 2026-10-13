@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Ejecución de Decisiones · KRONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../propuestas-votacion/styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:30px;margin:44px 0 18px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:20px;margin:28px 0 14px;color:var(--go-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:10px}
+  .manual ul,.manual ol{padding-left:24px;margin-bottom:18px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(255,107,53,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(255,107,53,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--go-l);border-bottom-color:var(--go)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#0a0500;border:1px solid rgba(255,107,53,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Demo</a><a href="manual.html">Manual</a><a href="../quorum-mayorias/">Quórum</a></nav>
+  </header>
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 4.3</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Ejecución de Decisiones.</h1>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
+  </section>
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Cierra propuestas abiertas y emite un <strong>acta oficial firmada</strong> con el veredicto final. El acta registra cuántos votos hubo, qué opción ganó, si se alcanzó quórum y mayoría, y la acción ejecutada.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ol>
+        <li>Escribe tu contraseña maestra.</li>
+        <li>Indica cuántos ciudadanos activos hay.</li>
+        <li>Toca "Ver propuestas abiertas".</li>
+        <li>Selecciona la propuesta que quieras cerrar.</li>
+        <li>Verás un veredicto anticipado (aprobada/rechazada/sin quórum).</li>
+        <li>Escribe la acción ejecutada (opcional).</li>
+        <li>Toca "Firmar acta y cerrar".</li>
+        <li>Se emite el acta firmada y se registra.</li>
+      </ol>
+      <h3>¿Qué obtengo?</h3>
+      <ul>
+        <li>Un acta con ID único (formato ACTA-XXXXXXXX).</li>
+        <li>Firma Ed25519 verificable.</li>
+        <li>Hash del payload auditable.</li>
+        <li>Posibilidad de exportarlo como JSON.</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { EjecucionDecisiones } from './ejecucion.js';
+
+const ejecucion = new EjecucionDecisiones(core, propuestas, votacion, quorum);
+await ejecucion.init();
+
+const acta = await ejecucion.cerrar({
+  propuesta: propuestaObj,
+  ciudadanos_activos: 100,
+  accion_ejecutada: 'Actualizar versión del protocolo'
+});
+
+// acta.veredicto → 'aprobada' | 'rechazada' | 'sin_quorum'
+// acta.id_acta → 'ACTA-XXXXXXXX'
+// acta.firma_ed25519 → firma verificable</pre>
+      <h3>Base de datos</h3>
+      <ul>
+        <li><code>kronos-actas</code> → tabla <code>actas</code></li>
+      </ul>
+      <h3>Dependencias</h3>
+      <ul>
+        <li><code>../propuestas-votacion/propuestas.js</code></li>
+        <li><code>../propuestas-votacion/votacion.js</code></li>
+        <li><code>../quorum-mayorias/quorum.js</code></li>
+      </ul>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de confianza</h3>
+      <ul>
+        <li>Cada acta es firmada con Ed25519 por el fundador.</li>
+        <li>El hash del payload detecta cualquier alteración posterior.</li>
+        <li>La verificación no requiere contraseña (solo claves públicas).</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>La "acción ejecutada" es declarativa: no se aplica automáticamente al código del protocolo.</li>
+        <li>El acta prueba la decisión, no la implementación técnica del cambio.</li>
+        <li>En v1.0 todo se firma con la llave del fundador.</li>
+        <li>El anclaje del acta a Ethereum es opcional (pendiente para v1.1).</li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+      <span class="sig">Manual · Módulo 4.3</span>
+    </div>
+    <div class="footer-links">
+      <a href="./">Demo</a>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,107,53],[255,160,122],[196,61,10],[243,229,171]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>

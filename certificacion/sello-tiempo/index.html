@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sello de Tiempo RFC 3161 · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../manifest-integridad/styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Sello</a>
+      <a href="manual.html">Manual</a>
+      <a href="../verificador-publico/">Verificador</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.3 · Capa 3 · Certificación</div>
+    <h1 class="title">Que el<br>tiempo<br>lo firme.</h1>
+    <p class="lede">
+      Genera un <strong>sello de tiempo RFC 3161</strong> de cualquier hash.
+      El sello es emitido por una <strong>Autoridad de Sellado de Tiempo (TSA)</strong> reconocida internacionalmente.
+      Prueba cualificada de <strong>cuándo existió</strong> tu información.
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Generador de Sello de Tiempo</h2>
+      <span class="count">RFC 3161 · v1.0</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="entrada">Texto a sellar *</label>
+        <textarea id="entrada" rows="4" placeholder="Pega aquí el hash o el texto que quieres sellar temporalmente..."></textarea>
+        <div class="hint">Si ya tienes un hash SHA-256, pégalo. Si no, se calculará del texto ingresado.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="archivo">O sube un archivo *</label>
+        <input type="file" id="archivo" accept="*/*">
+        <div class="hint">El hash SHA-256 del archivo se calculará automáticamente.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-hash">Calcular hash SHA-256 →</button>
+          <button class="btn ghost" id="btn-limpiar">Limpiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-hash" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Hash Calculado</h2>
+        <span class="count">SHA-256</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">HASH PARA SELLO</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Hash SHA-256</span><span class="v mono" id="p-hash">—</span></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn" id="btn-tsq">Generar TimeStampQuery (.tsq)</button>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="tarjeta-tsq" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>TimeStampQuery Generado</h2>
+        <span class="count">RFC 3161</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">TIME STAMP QUERY · DER</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Bytes</span><span class="v" id="p-tsq-bytes">—</span></div>
+          <div class="tk"><span class="k">Formato</span><span class="v mono">ASN.1 DER · application/timestamp-query</span></div>
+        </div>
+        <div class="tarjeta-permisos" style="background:rgba(255,215,0,.06);border-color:rgba(255,215,0,.4);padding:20px">
+          <h4>📋 Cómo obtener el sello oficial</h4>
+          <ol style="padding-left:20px;font-size:13px;line-height:1.9;color:#F5F0E6">
+            <li>Descarga el archivo <code style="color:#FFD700">.tsq</code> de abajo.</li>
+            <li>Abre en tu navegador: <a href="https://freetsa.org/tsr" target="_blank" rel="noopener" style="color:#FFD700">freetsa.org/tsr</a></li>
+            <li>Sube el <code>.tsq</code> y descarga el <code>.tsr</code> resultante.</li>
+            <li>Vuelve aquí y sube el <code>.tsr</code> en el Paso 04.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn" id="btn-descargar-tsq">Descargar .tsq</button>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="tarjeta-recibir-tsr" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Recibir Sello (TSR)</h2>
+        <span class="count">RFC 3161</span>
+      </div>
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="archivo-tsr">Sube el archivo .tsr descargado de la TSA *</label>
+        <input type="file" id="archivo-tsr" accept=".tsr,application/timestamp-reply">
+      </div>
+      <div class="acciones" style="margin-top:16px;">
+        <button class="btn" id="btn-procesar-tsr">Procesar sello →</button>
+      </div>
+    </div>
+
+    <div class="tarjeta-wrap" id="tarjeta-tsr" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Sello de Tiempo Procesado</h2>
+        <span class="count">RFC 3161</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">TIME STAMP REPLY · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Bytes del sello</span><span class="v" id="p-tsr-bytes">—</span></div>
+          <div class="tk"><span class="k">Fecha detectada</span><span class="v mono" id="p-tsr-fecha">—</span></div>
+          <div class="tk"><span class="k">Hash sellado</span><span class="v mono" id="p-tsr-hash">—</span></div>
+          <div class="tk"><span class="k">Estado</span><span class="v" id="p-tsr-estado">—</span></div>
+        </div>
+        <div class="tarjeta-permisos" style="background:rgba(255,215,0,.04);border-color:rgba(255,215,0,.2);padding:16px;margin-top:16px">
+          <p style="font-size:12px;color:#a89a7a;line-height:1.6;margin:0">
+            <strong style="color:#FFD700">Nota honesta:</strong> Este cliente extrae la fecha del token TSR de forma heurística. La verificación criptográfica completa (validar la cadena de certificados de la TSA) requiere herramientas especializadas como <code>openssl ts -verify</code>. Documentamos esta limitación en el manual.
+          </p>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-descargar-tsr">Guardar copia del .tsr</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.3 · Sello de Tiempo</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../verificador-publico/">Verificador</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { SelloTiempo } from './sello-tiempo.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const sello = new SelloTiempo();
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  $('btn-hash').addEventListener('click', async () => {
+    try {
+      const archivo = $('archivo').files[0];
+      const texto = $('entrada').value.trim();
+      let hash;
+
+      if (archivo) {
+        hash = await sello.hashArchivo(archivo);
+        setFb('success', `<strong>✓ Hash del archivo "${archivo.name}" calculado.</strong>`);
+      } else if (texto) {
+        // Si el texto ya parece un hash SHA-256 (64 hex chars), usarlo directamente
+        if (/^[a-f0-9]{64}$/i.test(texto)) {
+          sello.ultimoHash = texto.toLowerCase();
+          hash = texto.toLowerCase();
+          setFb('success', '<strong>✓ Hash SHA-256 detectado directamente.</strong>');
+        } else {
+          hash = await sello.hashTexto(texto);
+          setFb('success', '<strong>✓ Hash calculado del texto.</strong>');
+        }
+      } else {
+        setFb('error', '<strong>✗ Ingresa un texto o sube un archivo.</strong>');
+        return;
+      }
+
+      $('p-hash').textContent = hash;
+      $('tarjeta-hash').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-tsq').addEventListener('click', () => {
+    try {
+      if (!sello.ultimoHash) {
+        setFb('error', '<strong>✗ Primero calcula el hash.</strong>');
+        return;
+      }
+      const tsq = sello.construirTSQ(sello.ultimoHash, true);
+      $('p-tsq-bytes').textContent = tsq.length;
+      $('tarjeta-tsq').hidden = false;
+      $('tarjeta-recibir-tsr').hidden = false;
+      setFb('success', '<strong>✓ TimeStampQuery generado.</strong> Sigue los pasos para obtener el sello.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-descargar-tsq').addEventListener('click', () => {
+    try {
+      const blob = sello.exportarTSQ();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `solicitud-sello-${Date.now()}.tsq`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ .tsq descargado.</strong> Súbelo a freetsa.org/tsr para obtener el .tsr.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-procesar-tsr').addEventListener('click', async () => {
+    try {
+      const archivo = $('archivo-tsr').files[0];
+      if (!archivo) {
+        setFb('error', '<strong>✗ Sube el archivo .tsr primero.</strong>');
+        return;
+      }
+
+      const resultado = await sello.parsearTSR(archivo);
+
+      $('p-tsr-bytes').textContent = resultado.bytes + ' bytes';
+      $('p-tsr-fecha').textContent = resultado.fechaDetectada || '(no detectada)';
+      $('p-tsr-hash').textContent = sello.ultimoHash || '—';
+      $('p-tsr-estado').textContent = resultado.ok ? '✓ Estructura válida (ASN.1)' : '✗ Estructura no reconocida';
+      $('p-tsr-estado').style.color = resultado.ok ? '#3ddc84' : '#fca5a5';
+
+      $('tarjeta-tsr').hidden = false;
+      setFb(resultado.ok ? 'success' : 'error',
+        resultado.ok
+          ? '<strong>✓ Sello procesado.</strong> Fecha extraída del token.'
+          : '<strong>✗ El archivo no parece un TSR válido.</strong>'
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-descargar-tsr').addEventListener('click', () => {
+    try {
+      const blob = sello.exportarTSR();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sello-tiempo-${Date.now()}.tsr`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Copia del .tsr guardada.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-limpiar').addEventListener('click', () => {
+    sello.limpiar();
+    $('entrada').value = '';
+    $('archivo').value = '';
+    $('archivo-tsr').value = '';
+    ['tarjeta-hash','tarjeta-tsq','tarjeta-tsr','tarjeta-recibir-tsr'].forEach(id => $(id).hidden = true);
+    feedback.className = 'feedback';
+  });
+
+  // Fondo líquido dorado
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[201,164,76],[255,180,60]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.18)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>

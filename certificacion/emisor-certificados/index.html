@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emisor de Certificados · KRONOS</title>
+<meta name="theme-color" content="#1a1200">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<link rel="stylesheet" href="../manifest-integridad/styles.css">
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="wrap">
+  <header class="top">
+    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+    <nav>
+      <a href="./">Emisor</a>
+      <a href="manual.html">Manual</a>
+      <a href="../sello-tiempo/">Sello</a>
+      <a href="/kronos-protocol/">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Módulo 3.4 · Capa 3 · Certificación</div>
+    <h1 class="title">Documentos<br>que nadie<br>puede negar.</h1>
+    <p class="lede">
+      Emite <strong>certificados oficiales</strong> firmados con Ed25519.
+      Cada certificado incluye hash del contenido, sello de tiempo opcional,
+      y firma del fundador. <strong>Verificable por cualquier tercero.</strong>
+    </p>
+  </section>
+
+  <section class="demo">
+    <div class="section-head">
+      <h2>Emisión de Certificado</h2>
+      <span class="count">Ed25519 · SHA-256 · v1.0</span>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <span class="num">01</span>
+        <label for="password">Contraseña maestra *</label>
+        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+      </div>
+
+      <div class="paso">
+        <span class="num">02</span>
+        <label for="tipo">Tipo de documento *</label>
+        <select id="tipo">
+          <option value="">Selecciona un tipo</option>
+          <option value="Contrato">Contrato</option>
+          <option value="Acta">Acta</option>
+          <option value="Certificado académico">Certificado académico</option>
+          <option value="Certificado de autoría">Certificado de autoría</option>
+          <option value="Constancia">Constancia</option>
+          <option value="Evidencia">Evidencia</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="paso">
+        <span class="num">03</span>
+        <label for="titulo">Título del documento *</label>
+        <input type="text" id="titulo" placeholder="Ej. Contrato de servicios digitales">
+      </div>
+
+      <div class="paso">
+        <span class="num">04</span>
+        <label for="destinatario">Destinatario *</label>
+        <input type="text" id="destinatario" placeholder="Ej. Empresa XYZ S.A. de C.V.">
+      </div>
+
+      <div class="paso">
+        <span class="num">05</span>
+        <label for="descripcion">Descripción <span class="hint">(opcional)</span></label>
+        <textarea id="descripcion" rows="2" placeholder="Breve descripción del contenido"></textarea>
+      </div>
+
+      <div class="paso">
+        <span class="num">06</span>
+        <label for="contenido">Contenido a certificar *</label>
+        <textarea id="contenido" rows="4" placeholder="Pega aquí el texto o datos que serán certificados"></textarea>
+        <div class="hint">El hash SHA-256 de este contenido formará parte del certificado.</div>
+      </div>
+
+      <div class="paso">
+        <span class="num">07</span>
+        <label>Acciones</label>
+        <div class="acciones">
+          <button class="btn" id="btn-emitir">Emitir certificado →</button>
+          <button class="btn ghost" id="btn-listar">Ver certificados emitidos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Certificado Oficial</h2>
+        <span class="count">Ed25519 · SHA-256</span>
+      </div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">CERTIFICADO OFICIAL · v1.0</div>
+        <div class="tarjeta-kv">
+          <div class="tk"><span class="k">Tipo</span><span class="v" id="p-tipo">—</span></div>
+          <div class="tk"><span class="k">Título</span><span class="v" id="p-titulo">—</span></div>
+          <div class="tk"><span class="k">Destinatario</span><span class="v" id="p-dest">—</span></div>
+          <div class="tk"><span class="k">Hash contenido</span><span class="v mono" id="p-hash-cont">—</span></div>
+          <div class="tk"><span class="k">Payload hash</span><span class="v mono" id="p-payload">—</span></div>
+          <div class="tk"><span class="k">Firma Ed25519</span><span class="v mono" id="p-firma">—</span></div>
+          <div class="tk"><span class="k">Firmante</span><span class="v" id="p-firmante">—</span></div>
+          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+        </div>
+      </div>
+      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
+        <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar firma</button>
+        <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
+      </div>
+      <a href="certificado-visual.html" id="btn-abrir-visual" class="btn" style="width:100%;margin-top:12px;text-decoration:none;">
+        🛂 Ver certificado visual →
+      </a>
+    </div>
+
+    <div class="tarjeta-wrap" id="lista-wrap" hidden>
+      <div class="section-head" style="margin-top:40px;">
+        <h2>Certificados Emitidos</h2>
+        <span class="count" id="count-lista">0</span>
+      </div>
+      <div class="lista" id="lista"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Módulo 3.4 · Emisor de Certificados</span>
+    <span>
+      <a href="manual.html">Manual</a> ·
+      <a href="../sello-tiempo/">Sello</a>
+    </span>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+  import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+  import { SelloTiempo } from '../sello-tiempo/sello-tiempo.js';
+  import { EmisorCertificados } from './certificados.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+
+  const core = new CriptoCore();
+  const storage = new StorageDexie(core);
+  const sello = new SelloTiempo();
+  const emisor = new EmisorCertificados(core, storage, sello);
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core.inicializado) await core.init(pass);
+    await storage.init();
+    await emisor.init();
+    return true;
+  }
+
+  function renderTarjeta(cert) {
+    $('p-tipo').textContent = cert.tipo_documento;
+    $('p-titulo').textContent = cert.titulo;
+    $('p-dest').textContent = cert.destinatario;
+    $('p-hash-cont').textContent = cert.hash_contenido;
+    $('p-payload').textContent = cert.payload_hash;
+    $('p-firma').textContent = cert.firma_ed25519.slice(0, 80) + '…';
+    $('p-firmante').textContent = cert.firmante;
+    $('p-fecha').textContent = cert.timestamp;
+    $('tarjeta-wrap').hidden = false;
+  }
+
+  $('btn-emitir').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+
+      const datos = {
+        tipo_documento: $('tipo').value,
+        titulo: $('titulo').value.trim(),
+        destinatario: $('destinatario').value.trim(),
+        descripcion: $('descripcion').value.trim(),
+        contenido: $('contenido').value.trim(),
+        tsa_info: null
+      };
+
+      if (!datos.tipo_documento || !datos.titulo || !datos.destinatario || !datos.contenido) {
+        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+        return;
+      }
+
+      setFb('success', '<strong>⏳ Firmando certificado con Ed25519…</strong>');
+      const cert = await emisor.emitir(datos);
+      renderTarjeta(cert);
+      setFb('success', '<strong>✓ Certificado emitido y firmado.</strong> Puedes verificarlo o exportarlo.');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-listar').addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      const items = await emisor.listar();
+      $('count-lista').textContent = items.length;
+      if (items.length === 0) {
+        setFb('error', '<strong>No hay certificados emitidos.</strong>');
+        $('lista-wrap').hidden = true;
+        return;
+      }
+      $('lista').innerHTML = items.map(it => `
+        <div class="lista-item">
+          <div style="font-size:15px;color:#F5F0E6;margin-bottom:6px;">${it.titulo}</div>
+          <div style="font-size:10px;letter-spacing:2px;color:#FFD700;text-transform:uppercase;margin-bottom:6px;">${it.tipo_documento}</div>
+          <div style="font-size:10.5px;color:#FFEDAB;word-break:break-all;font-family:monospace;">${it.hash_contenido}</div>
+          <div style="font-size:10px;color:#a89a7a;margin-top:4px;">${it.timestamp}</div>
+        </div>
+      `).join('');
+      $('lista-wrap').hidden = false;
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-verificar').addEventListener('click', async () => {
+    try {
+      if (!emisor.certificadoActual) {
+        await emisor.init();
+        const items = await emisor.listar();
+        if (items.length === 0) {
+          setFb('error', '<strong>✗ No hay certificados para verificar.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        emisor.certificadoActual = items[0];
+      }
+      const v = await emisor.verificar(emisor.certificadoActual);
+      setFb(v.valido ? 'success' : 'error',
+        v.valido
+          ? '<strong>✓ Certificado válido.</strong> Hash y firma coinciden.'
+          : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma: ${v.firmaOk ? 'ok' : 'no'}`
+      );
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  $('btn-exportar').addEventListener('click', async () => {
+    try {
+      if (!emisor.certificadoActual) {
+        await emisor.init();
+        const items = await emisor.listar();
+        if (items.length === 0) {
+          setFb('error', '<strong>✗ No hay certificados para exportar.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        emisor.certificadoActual = items[0];
+      }
+      const blob = emisor.exportar();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `certificado-${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      setFb('success', '<strong>✓ Certificado exportado.</strong>');
+    } catch (e) {
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    }
+  });
+
+  document.getElementById('btn-abrir-visual').addEventListener('click', async (e) => {
+    try {
+      if (!emisor.certificadoActual) {
+        await emisor.init();
+        const items = await emisor.listar();
+        if (items.length === 0) {
+          e.preventDefault();
+          setFb('error', '<strong>✗ Emite un certificado primero.</strong>');
+          return;
+        }
+        items.sort((a,b) => (b.id || 0) - (a.id || 0));
+        emisor.certificadoActual = items[0];
+      }
+      sessionStorage.setItem('certificado-temp', JSON.stringify(emisor.certificadoActual));
+    } catch (err) {
+      console.warn('sessionStorage fallo');
+    }
+  });
+
+  // Fondo líquido dorado
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[255,215,0],[255,237,171],[201,164,76],[255,180,60]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.18)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Integrity OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --green: #00ff41;
+    --green-dim: #00a82b;
+    --ink: #05070b;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  #webgl {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0; pointer-events: none;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.5) 60%, rgba(5,7,11,0.95) 100%);
+    z-index: 1; pointer-events: none;
+  }
+  .wrap {
+    position: relative; z-index: 2;
+    max-width: 980px; margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0 80px;
+    font-size: 11px; letter-spacing: 3px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  header.top .mark {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 600; letter-spacing: 4px;
+  }
+  header.top .mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  header.top nav a {
+    color: var(--text-dim); text-decoration: none;
+    margin-left: 28px; transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--gold); }
+
+  .hero { padding: 40px 0 80px; max-width: 780px; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 5px;
+    color: var(--green); text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .lede {
+    font-size: 16px; line-height: 1.75;
+    color: var(--text-dim); max-width: 580px;
+    font-weight: 300;
+    opacity: 0; animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
+    margin: 60px 0;
+  }
+
+  .section-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 4px; color: var(--gold);
+    text-transform: uppercase;
+  }
+  .section-head .count {
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+
+  /* Warning band */
+  .warning {
+    padding: 22px 28px;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,164,76,0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    font-size: 13px; line-height: 1.75;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .warning strong { color: var(--gold); font-weight: 500; letter-spacing: 1px; font-size: 11px; display: block; margin-bottom: 6px; text-transform: uppercase; }
+
+  /* Grid de módulos */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .mod {
+    padding: 26px 24px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 3px;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .mod::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%; height: 1px;
+    background: linear-gradient(90deg, var(--green), transparent);
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mod:hover {
+    border-color: rgba(201,164,76,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(0,255,65,0.05);
+  }
+  .mod:hover::after { width: 100%; }
+  .mod .label {
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--green); text-transform: uppercase;
+    margin-bottom: 14px; display: block;
+  }
+  .mod h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px; font-weight: 600;
+    color: var(--text); margin-bottom: 10px;
+    letter-spacing: 0.3px;
+  }
+  .mod p {
+    font-size: 12px; line-height: 1.65;
+    color: var(--text-dim); font-weight: 300;
+  }
+
+  /* CTA */
+  .cta {
+    margin-top: 60px; text-align: center;
+    padding: 60px 32px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: linear-gradient(180deg, rgba(201,164,76,0.03) 0%, transparent 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 3px;
+    position: relative;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 1px;
+    background: var(--gold);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cta h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--text); margin-bottom: 14px;
+  }
+  .cta p {
+    font-size: 13px; color: var(--text-dim);
+    max-width: 480px; margin: 0 auto 32px;
+    line-height: 1.7; font-weight: 300;
+  }
+  .btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  a.btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 30px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  a.btn.solid {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.25);
+  }
+  a.btn.solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.4);
+  }
+  a.btn.ghost {
+    border: 1px solid rgba(201,164,76,0.4);
+    color: var(--gold);
+    background: rgba(201,164,76,0.02);
+  }
+  a.btn.ghost:hover {
+    border-color: var(--gold);
+    background: rgba(201,164,76,0.08);
+  }
+
+  footer {
+    margin-top: 80px; padding-top: 32px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  footer a {
+    color: var(--text-dim); text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    header.top { padding-bottom: 40px; }
+    .hero { padding: 20px 0 50px; }
+    .divider { margin: 40px 0; }
+    .cta { padding: 40px 22px; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="webgl"></canvas>
+<div class="vignette"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="mark">Evidence OS</div>
+    <nav>
+      <a href="../../">Kronos</a>
+      <a href="../../#projects">Proyectos</a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Integridad · Trazabilidad · Verificación</div>
+    <h1 class="title">Cadena de<br>custodia<br>digital.</h1>
+    <p class="lede">
+      Plataforma de <strong>integridad y verificación de evidencia digital</strong>
+      para México y Latinoamérica.
+      Paquete <strong>.evidence</strong> verificable: SHA-256 + HMAC + RFC 3161 +
+      JWS detached + PAdES-B-T.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="warning">
+    <strong>Aviso</strong>
+    Evidence Integrity OS no sustituye a abogado, perito, notario ni Prestador
+    de Servicios de Certificación (PSC). Los sellos RFC 3161 y las constancias
+    NOM-151 son emitidos exclusivamente por terceros autorizados.
+  </div>
+
+  <div class="section-head">
+    <h2>Componentes</h2>
+    <span class="count">06 · Módulos</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="mod">
+      <span class="label">Empaquetado</span>
+      <h3>Paquete .evidence</h3>
+      <p>Convierte archivos en paquetes verificables e independientes del sistema emisor.</p>
+    </div>
+
+    <div class="mod">
+      <span class="label">Integridad</span>
+      <h3>Hash + HMAC</h3>
+      <p>Calcula content_hash (SHA-256) y private_commitment (HMAC) con claves en KMS.</p>
+    </div>
+
+    <div class="mod">
+      <span class="label">Tiempo</span>
+      <h3>Sellos RFC 3161</h3>
+      <p>Vinculación temporal mediante TSA externa. Verificable por terceros independientes.</p>
+    </div>
+
+    <div class="mod">
+      <span class="label">Auditoría</span>
+      <h3>Hash Chain</h3>
+      <p>Log encadenado con firma por evento. Cierres periódicos y anclaje externo.</p>
+    </div>
+
+    <div class="mod">
+      <span class="label">API</span>
+      <h3>FastAPI HTTP</h3>
+      <p>Endpoints de órdenes, evidencia, webhook, verificación pública y admin.</p>
+    </div>
+
+    <div class="mod">
+      <span class="label">Infra</span>
+      <h3>KMS + Anchor</h3>
+      <p>LocalKMS y AWSKMS. LocalFilesystemAnchor y S3 Object Lock con retención COMPLIANCE.</p>
+    </div>
+
+  </div>
+
+  <div class="cta">
+    <h2>Estado pre-alpha</h2>
+    <p>
+      Núcleo criptográfico al 100%. Revisión legal México pendiente.
+      Sin claims de certificación oficial.
+    </p>
+    <div class="btns">
+      <a class="btn solid" href="https://github.com/Marcorojas17/kronos-protocol/tree/main/projects/evidence-os" target="_blank">Ver código</a>
+      <a class="btn ghost" href="https://github.com/Marcorojas17/kronos-protocol/blob/main/projects/evidence-os/README.md" target="_blank">Leer README</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 · Evidence Integrity OS</span>
+    <span>v0.0.1 · Pre-alpha</span>
+    <span><a href="../../">← Volver a Kronos</a></span>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+// Fondo 3D: red de nodos conectados (blockchain visual)
+(function() {
+  const canvas = document.getElementById('webgl');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x05070b, 0.028);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 26);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const NODE_COUNT = 90;
+  const nodes = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push(new THREE.Vector3(
+      (Math.random() - 0.5) * 40,
+      (Math.random() - 0.5) * 30,
+      (Math.random() - 0.5) * 40
+    ));
+  }
+
+  // Puntos
+  const pointGeo = new THREE.BufferGeometry();
+  const positions = new Float32Array(NODE_COUNT * 3);
+  nodes.forEach((n, i) => {
+    positions[i * 3] = n.x;
+    positions[i * 3 + 1] = n.y;
+    positions[i * 3 + 2] = n.z;
+  });
+  pointGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  const pointMat = new THREE.PointsMaterial({
+    color: 0xc9a44c,
+    size: 0.35,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const points = new THREE.Points(pointGeo, pointMat);
+  scene.add(points);
+
+  // Líneas entre nodos cercanos
+  const linePositions = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    for (let j = i + 1; j < NODE_COUNT; j++) {
+      const d = nodes[i].distanceTo(nodes[j]);
+      if (d < 10) {
+        linePositions.push(nodes[i].x, nodes[i].y, nodes[i].z);
+        linePositions.push(nodes[j].x, nodes[j].y, nodes[j].z);
+      }
+    }
+  }
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+  const lineMat = new THREE.LineBasicMaterial({
+    color: 0x00ff41,
+    transparent: true,
+    opacity: 0.12,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  // Parallax mouse
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  window.addEventListener('mousemove', (e) => {
+    mx = (e.clientX / window.innerWidth) * 2 - 1;
+    my = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  const t0 = performance.now();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = (performance.now() - t0) * 0.001;
+    tx += (mx - tx) * 0.03;
+    ty += (my - ty) * 0.03;
+    points.rotation.y = t * 0.05 + tx * 0.5;
+    points.rotation.x = Math.sin(t * 0.1) * 0.08 + ty * 0.3;
+    lines.rotation.y = points.rotation.y;
+    lines.rotation.x = points.rotation.x;
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  animate();
+})();
+</script>
+</body>
+</html>

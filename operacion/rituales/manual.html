@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual · Rituales · Legado Humano–IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .manual{padding:40px 0}
+  .manual h2{font-family:'Fraunces',serif;font-size:32px;margin:48px 0 20px;color:var(--text)}
+  .manual h3{font-family:'Fraunces',serif;font-size:22px;margin:32px 0 16px;color:var(--ambar-l)}
+  .manual p,.manual li{font-size:15px;line-height:1.8;color:var(--dim);font-weight:300;margin-bottom:12px}
+  .manual ul{padding-left:24px;margin-bottom:20px}
+  .manual code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold-l);background:rgba(245,158,11,.08);padding:2px 6px;border-radius:2px}
+  .tabs{display:flex;border-bottom:1px solid rgba(245,158,11,.15);margin-bottom:32px;overflow-x:auto}
+  .tab{padding:14px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .3s}
+  .tab.active{color:var(--ambar-l);border-bottom-color:var(--ambar)}
+  .panel{display:none}
+  .panel.active{display:block}
+  pre.code{background:#05070b;border:1px solid rgba(245,158,11,.15);border-radius:4px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.7;color:var(--text);overflow-x:auto}
+</style>
+</head>
+<body>
+<canvas id="liquido" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="./" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Rituales</a><a href="manual.html">Manual</a><a href="../dashboard-salud/">Dashboard</a></nav>
+  </header>
+
+  <section class="hero" style="padding:40px 0 60px">
+    <div class="eyebrow">Manual del Módulo 5.2</div>
+    <h1 class="title" style="font-size:clamp(36px,6vw,72px)">Manual<br>Rituales.</h1>
+    <p class="lede">Tres manuales: usuario, admin y seguridad.</p>
+  </section>
+
+  <div class="manual">
+    <div class="tabs">
+      <button class="tab active" data-tab="usuario">Usuario</button>
+      <button class="tab" data-tab="admin">Admin</button>
+      <button class="tab" data-tab="seguridad">Seguridad</button>
+    </div>
+
+    <div class="panel active" id="usuario">
+      <h2>Manual de Usuario</h2>
+      <h3>¿Qué hace este módulo?</h3>
+      <p>Define tres rituales canónicos (diario, semanal, mensual) y permite ejecutarlos, registrarlos con notas y firmarlos con Ed25519.</p>
+      <h3>¿Cómo se usa?</h3>
+      <ul>
+        <li>Ejecuta primero todos los módulos previos.</li>
+        <li>Abre <code>operacion/rituales/index.html</code>.</li>
+        <li>Escribe la contraseña maestra.</li>
+        <li>Toca "Cargar rituales".</li>
+        <li>Verás los 3 rituales y su estado (al día o vencido).</li>
+        <li>Toca "Ejecutar ritual" en el que toque.</li>
+        <li>Escribe notas y firma.</li>
+      </ul>
+      <h3>Los 3 rituales</h3>
+      <ul>
+        <li><strong>Diario:</strong> revisar dashboard + integridad (5 min).</li>
+        <li><strong>Semanal:</strong> backup cifrado + copia externa (15 min).</li>
+        <li><strong>Mensual:</strong> anclaje Merkle a Ethereum (30 min).</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="admin">
+      <h2>Manual de Admin</h2>
+      <h3>Integración</h3>
+      <pre class="code">import { Rituales } from './rituales.js';
+
+const rituales = new Rituales(core, storage, bus);
+
+const estado = await rituales.estado(humano);
+// estado.rituales · estado.historial
+
+const registro = await rituales.ejecutar(
+  'diario',
+  'Revisé dashboard. Cadena íntegra.',
+  'optimo',
+  humano
+);
+
+const ok = await rituales.verificar(registro);
+const blob = await rituales.exportar();</pre>
+      <h3>Añadir un ritual nuevo</h3>
+      <p>Edita el array <code>RITUALES</code> en <code>rituales.js</code>. Cada ritual requiere id, nombre, descripción y <code>frecuencia_ms</code>.</p>
+      <h3>Cálculo de caducidad</h3>
+      <p>La próxima fecha = última ejecución + frecuencia. Si no hay ejecución previa, se considera vencido desde el inicio.</p>
+    </div>
+
+    <div class="panel" id="seguridad">
+      <h2>Manual de Seguridad</h2>
+      <h3>Modelo de amenazas</h3>
+      <ul>
+        <li><strong>Ejecución alterada:</strong> el payload_hash lo detecta.</li>
+        <li><strong>Suplantación del firmante:</strong> requiere la clave privada Ed25519.</li>
+        <li><strong>Falsas ejecuciones:</strong> solo se firman con identidad humana real.</li>
+      </ul>
+      <h3>Parámetros criptográficos</h3>
+      <ul>
+        <li><code>SHA-256</code> para hash del payload canónico.</li>
+        <li><code>Ed25519</code> para firma del humano.</li>
+        <li><code>AES-GCM-256</code> heredado para persistencia cifrada.</li>
+      </ul>
+      <h3>Limitaciones honestas</h3>
+      <ul>
+        <li>Los rituales son <strong>disciplina personal</strong>: no hay recordatorios automáticos por notificaciones del sistema operativo. El humano debe auto-disciplinarse.</li>
+        <li>No hay verificación cruzada con el dashboard: si el humano marca "óptimo" sin revisar, no hay sanción. La integridad del sistema depende de la honestidad del fundador.</li>
+        <li>No hay bloqueo por rituales vencidos: el ecosistema sigue funcionando aunque el humano no los ejecute.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+    <span class="sig">Manual · Módulo 5.2</span>
+    <span><a href="./">Rituales</a> · <a href="../dashboard-salud/">Dashboard</a></span>
+  </footer>
+</main>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+<script>
+  const canvas = document.getElementById('liquido');
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = window.innerWidth * dpr;
+      h = canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    const COLORES = [[245,158,11],[252,211,77],[16,185,129],[201,162,39]];
+    const blobs = Array.from({length:6}, (_,i) => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 240 + Math.random()*320,
+      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
+      color: COLORES[i % COLORES.length]
+    }));
+    const frame = (t) => {
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of blobs) {
+        b.x += b.vx*dpr; b.y += b.vy*dpr;
+        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
+        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
+        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
+        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
+        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.26)`);
+        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+</body>
+</html>
