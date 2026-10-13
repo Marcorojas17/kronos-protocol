@@ -30,7 +30,7 @@
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@noble/hashes": "^1.4.0",
     "@noble/post-quantum": "^0.2.0",
-    "dotenv": "^16.4.5",
+    "dotenv": "^18.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
