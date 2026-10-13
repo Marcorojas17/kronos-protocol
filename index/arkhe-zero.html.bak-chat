@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>◯_● ARKHÉ ZERO · ■_□ IA Local</title>
+<style>
+:root{--bg:#050507;--p:#0a0a0f;--p2:#0f0f18;--b:rgba(0,255,65,.18);--bg2:rgba(255,215,0,.35);--g:#00ff41;--gd:#00b32e;--y:#ffd700;--yd:#b39500;--pu:#7c5cff;--r:#ff3355;--cy:#00ffff;--t:#c8ffc8;--td:#6a8f6a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:'Courier New',monospace;font-size:13px;line-height:1.5;min-height:100vh}
+#app{display:grid;grid-template-columns:220px 1fr;grid-template-rows:50px 1fr 30px;min-height:100vh}
+#hdr{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:linear-gradient(90deg,#050507,#0a0a12,#050507);border-bottom:1px solid var(--b)}
+#hdr .lg{display:flex;gap:10px;align-items:center;color:var(--y);font-weight:bold;letter-spacing:.2em;font-size:14px;text-shadow:0 0 10px rgba(255,215,0,.5)}
+#hdr .sl{font-size:20px;animation:pl 2s infinite}
+@keyframes pl{0%,100%{opacity:.8}50%{opacity:1;text-shadow:0 0 20px rgba(255,215,0,1)}}
+#hdr .st{display:flex;gap:14px;font-size:10px;color:var(--g);letter-spacing:.15em;align-items:center}
+.dt{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g);animation:bl 1.5s infinite;display:inline-block}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+#sb{background:var(--p);border-right:1px solid var(--b);overflow-y:auto;padding:12px 0}
+.ns{padding:9px 18px 5px;color:var(--yd);font-size:9px;letter-spacing:.2em;text-transform:uppercase;border-top:1px solid var(--b);margin-top:6px}
+.ns:first-child{border-top:none;margin-top:0}
+.ni{padding:7px 18px;color:var(--td);cursor:pointer;display:flex;gap:8px;font-size:11px;border-left:2px solid transparent;transition:all .2s}
+.ni:hover{background:rgba(0,255,65,.05);color:var(--g);border-left-color:var(--g)}
+.ni.ac{background:rgba(0,255,65,.08);color:var(--g);border-left-color:var(--y)}
+.ni.dn{color:var(--r)}
+.ni.dn:hover,.ni.dn.ac{color:var(--r);border-left-color:var(--r)}
+#mn{overflow-y:auto;padding:22px 30px;background:radial-gradient(ellipse at top,#0a0a12,#050507 70%)}
+#ft{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:var(--p);border-top:1px solid var(--b);font-size:10px;color:var(--td);letter-spacing:.15em}
+#ft .sl{color:var(--y)}
+.vw{display:none;animation:fi .4s}
+.vw.ac{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.vt{color:var(--y);font-size:20px;letter-spacing:.15em;margin-bottom:6px;text-shadow:0 0 15px rgba(255,215,0,.4)}
+.vs{color:var(--td);font-size:11px;letter-spacing:.1em;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--b)}
+.pnl{background:var(--p2);border:1px solid var(--b);padding:16px;margin-bottom:16px;position:relative}
+.pnl:before,.pnl:after{content:'';position:absolute;width:10px;height:10px}
+.pnl:before{top:-1px;left:-1px;border-top:2px solid var(--y);border-left:2px solid var(--y)}
+.pnl:after{bottom:-1px;right:-1px;border-bottom:2px solid var(--y);border-right:2px solid var(--y)}
+.pt{color:var(--g);font-size:11px;letter-spacing:.2em;margin-bottom:11px;text-transform:uppercase}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+pre{color:var(--g);font-size:10px;line-height:1.55;overflow-x:auto;padding:9px;background:rgba(0,255,65,.03);border-left:2px solid var(--gd);white-space:pre;font-family:inherit}
+.bt{background:transparent;color:var(--g);border:1px solid var(--g);padding:7px 14px;font-family:inherit;font-size:10px;letter-spacing:.15em;cursor:pointer;text-transform:uppercase;transition:all .2s;margin-right:7px;margin-top:7px}
+.bt:hover{background:var(--g);color:var(--bg);box-shadow:0 0 20px rgba(0,255,65,.5)}
+.by{color:var(--y);border-color:var(--y)}.by:hover{background:var(--y);color:var(--bg)}
+.br{color:var(--r);border-color:var(--r)}.br:hover{background:var(--r);color:var(--bg)}
+.bc{color:var(--cy);border-color:var(--cy)}.bc:hover{background:var(--cy);color:var(--bg)}
+.hr{text-align:center;padding:32px 18px;border:1px solid var(--bg2);background:radial-gradient(ellipse at center,rgba(255,215,0,.03),transparent 70%);margin-bottom:22px}
+.hr .sb{font-size:52px;color:var(--y);text-shadow:0 0 40px rgba(255,215,0,.8);animation:pl 3s infinite}
+.hr h1{font-size:34px;letter-spacing:.3em;color:var(--y);margin:14px 0 8px;text-shadow:0 0 30px rgba(255,215,0,.5)}
+.hr .tg{font-size:14px;font-style:italic;margin-bottom:14px}
+.hr .pc{display:flex;justify-content:center;gap:22px;margin-top:18px;font-size:12px;letter-spacing:.2em}
+.hr .pc b{color:var(--y);font-size:18px;display:block}
+.sc{background:var(--p2);border:1px solid var(--b);padding:14px;text-align:center}
+.sc .n{color:var(--y);font-size:26px;font-weight:bold;text-shadow:0 0 15px rgba(255,215,0,.4)}
+.sc .l{color:var(--td);font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px}
+.tr{background:#000;border:1px solid var(--b);padding:11px;font-size:11px;color:var(--g);height:380px;overflow-y:auto;box-shadow:inset 0 0 40px rgba(0,255,65,.08)}
+.ti{display:flex;gap:9px;align-items:center;margin-top:7px;background:#000;border:1px solid var(--b);padding:7px 11px}
+.ti span{color:var(--y);font-size:11px}
+.ti input{flex:1;background:transparent;border:none;color:var(--g);font-family:inherit;font-size:11px;outline:none}
+.tl{margin-bottom:2px;font-size:11px}
+.tp{color:var(--y)}.to{color:var(--g)}.te{color:var(--r)}.tif{color:var(--td)}.tw{color:var(--y)}.tc{color:var(--cy)}
+.ac{background:var(--p2);border:1px solid var(--b);padding:12px;transition:all .3s;cursor:pointer}
+.ac:hover{border-color:var(--y);transform:translateY(-3px)}
+.ac .ai{font-size:22px;margin-bottom:5px}
+.ac .an{color:var(--y);font-size:11px;letter-spacing:.15em;font-weight:bold}
+.ac .ar{color:var(--td);font-size:9px;letter-spacing:.1em;margin-top:3px;text-transform:uppercase}
+.ac.act{border-color:var(--g);box-shadow:0 0 30px rgba(0,255,65,.35)}
+.ac.hu{border-color:var(--r)}
+.if{width:100%;background:#000;border:1px solid var(--b);padding:9px 14px;color:var(--g);font-family:inherit;font-size:11px;outline:none;margin-bottom:9px}
+.if:focus{border-color:var(--y)}
+.ho{background:#000;border:1px solid var(--b);padding:11px;color:var(--g);font-size:10px;word-break:break-all;margin-top:9px;line-height:1.6}
+.ho .lb{color:var(--y)}
+.db{display:inline-block;padding:3px 7px;font-size:9px;letter-spacing:.1em;border:1px solid var(--gd);color:var(--g);margin-right:5px;margin-bottom:5px}
+.db.r{border-color:var(--r);color:var(--r)}
+.db.y{border-color:var(--y);color:var(--y)}
+.db.p{border-color:var(--pu);color:var(--pu)}
+.db.c{border-color:var(--cy);color:var(--cy)}
+.atk{background:#0a0000;border:1px solid var(--r);padding:9px;margin-bottom:7px}
+.atk.bl{background:#000a00;border-color:var(--g);opacity:.75}
+.atk .ah{display:flex;justify-content:space-between;margin-bottom:4px;font-size:10px}
+.atk .at{color:var(--r);font-weight:bold;letter-spacing:.12em}
+.atk.bl .at{color:var(--g)}
+.atk .am{color:var(--td);font-size:9px}
+.atk .ad{font-size:9px;color:var(--td);line-height:1.5}
+.ld{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--r);box-shadow:0 0 10px var(--r);animation:bl .8s infinite;margin-right:5px}
+#ts{position:fixed;bottom:45px;right:22px;background:var(--p);border:1px solid var(--y);padding:12px 20px;color:var(--y);font-size:11px;letter-spacing:.1em;box-shadow:0 0 30px rgba(255,215,0,.4);transform:translateY(200%);transition:transform .4s;z-index:999;max-width:320px}
+#ts.sh{transform:translateY(0)}
+#ts.dg{border-color:var(--r);color:var(--r)}
+canvas{display:block;max-width:100%}
+.cb{background:#000;border:1px solid var(--b);padding:9px;display:flex;justify-content:center;min-height:300px}
+.pjc{background:var(--p2);border:1px solid var(--b);padding:14px;margin-bottom:11px;cursor:pointer;transition:all .3s}
+.pjc:hover{border-color:var(--y);transform:translateX(5px)}
+.pjc .pn{color:var(--y);font-size:10px;letter-spacing:.2em}
+.pjc .pm{color:var(--g);font-size:15px;letter-spacing:.15em;margin:4px 0;font-weight:bold}
+.pjc .pd{color:var(--td);font-size:10px}
+@media(max-width:900px){#app{grid-template-columns:55px 1fr}.ni span:not(.ic){display:none}.ns{font-size:8px;padding:9px 5px 4px}.ni{justify-content:center;padding:11px 5px}.g2,.g3,.g4{grid-template-columns:1fr}#mn{padding:16px}.hr h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div id="app">
+<header id="hdr">
+<div class="lg"><span class="sl">◯_●</span><span>ARKHÉ ZERO</span></div>
+<div class="st"><div><span class="dt"></span>ACTIVO</div><div style="color:var(--y)">YHDRYH-92CE</div><div id="ck"></div></div>
+</header>
+<aside id="sb">
+<div class="ns">Principal</div>
+<div class="ni ac" data-v="dash"><span class="ic">◆</span><span>Dashboard</span></div>
+<div class="ni" data-v="idx"><span class="ic">◆</span><span>Índice Cero</span></div>
+<div class="ns">Seguridad</div>
+<div class="ni dn" data-v="cd"><span class="ic">🛡</span><span>Ciberdefensa</span></div>
+<div class="ni dn" data-v="kl"><span class="ic">🐉</span><span>Terminal Kali</span></div>
+<div class="ni" data-v="cr"><span class="ic">🔐</span><span>Criptografía</span></div>
+<div class="ns">Enjambre</div>
+<div class="ni" data-v="ag"><span class="ic">🤖</span><span>13 Agentes</span></div>
+<div class="ni dn" data-v="hu"><span class="ic">🎯</span><span>Agente 096</span></div>
+<div class="ns">Visual</div>
+<div class="ni" data-v="cy"><span class="ic">🎵</span><span>Cymatic</span></div>
+<div class="ni" data-v="yj"><span class="ic">✨</span><span>Yejidá</span></div>
+<div class="ns">Sistema</div>
+<div class="ni" data-v="pj"><span class="ic">📁</span><span>Portfolio</span></div>
+<div class="ni" data-v="tr"><span class="ic">⌨</span><span>Terminal</span></div>
+<div class="ni" data-v="fr"><span class="ic">✍</span><span>Firma</span></div>
+</aside>
+<main id="mn">
+
+<div class="vw ac" id="v-dash">
+<div class="hr"><div class="sb">◯_●</div><h1>ARKHÉ ZERO</h1><p class="tg">"El legado no se hereda. Se firma."</p>
+<div class="pc"><div><b>51%</b><span>HUMANO</span></div><div><b>49%</b><span>IA</span></div><div><b>100%</b><span>REAL</span></div></div></div>
+<div class="g4">
+<div class="sc"><div class="n">24</div><div class="l">Secciones</div></div>
+<div class="sc"><div class="n">1070</div><div class="l">Archivos</div></div>
+<div class="sc"><div class="n">13</div><div class="l">Agentes</div></div>
+<div class="sc"><div class="n" style="color:var(--r)" id="dt">0</div><div class="l">Amenazas</div></div>
+</div>
+<div class="pnl" style="margin-top:22px"><div class="pt">◆ Estado del Sistema</div>
+<pre>┌─────────────────────────────────────────────────────────────┐
+│  ÍNDICE CERO ................ [ SELLADO ✓ ]                 │
+│  PACTO 51/49 ................ [ OPERATIVO ✓ ]               │
+│  ENJAMBRE ARKHÉ ............. [ 13/13 ACTIVOS ✓ ]           │
+│  CRIPTOGRAFÍA PQC ........... [ ML-KEM · ML-DSA · SLH-DSA ] │
+│  CIBERDEFENSA ............... [ ACTIVA ✓ ]                  │
+│  FIRMA KINTSUGI ............. [ ◯_● · 51/49/100 ]           │
+└─────────────────────────────────────────────────────────────┘</pre></div>
+<div class="pnl"><div class="pt">◆ Acciones Rápidas</div>
+<button class="bt br" onclick="go('cd')">🛡 Ciberdefensa</button>
+<button class="bt br" onclick="go('kl')">🐉 Kali</button>
+<button class="bt bc" onclick="go('cr')">🔐 Cripto</button>
+<button class="bt by" onclick="go('hu')">🎯 Hunter</button></div>
+</div>
+
+<div class="vw" id="v-idx">
+<h2 class="vt">◆ ÍNDICE CERO</h2><p class="vs">KRONOS · Arquitectura de Legado Digital · 2607146379465</p>
+<div class="pnl"><div class="pt">◆ ADN Criptográfico</div>
+<div class="ho">
+<div><span class="lb">Safe Creative:</span> 2607146379465</div>
+<div><span class="lb">Co-creatividad:</span> 2607086319439</div>
+<div><span class="lb">SHA-256:</span> f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</div>
+<div><span class="lb">Ethereum:</span> 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</div>
+<div style="color:var(--y);margin-top:8px">🔒 SELLADO · VERIFICABLE · ETERNO</div></div></div>
+<div class="pnl"><div class="pt">◆ Verificar Hash SHA-256</div>
+<input class="if" id="vi" placeholder="Escribe algo...">
+<button class="bt by" onclick="vfy()">◆ VERIFICAR</button>
+<div id="vo" class="ho" style="display:none"></div></div>
+</div>
+
+<div class="vw" id="v-cd">
+<h2 class="vt">🛡 CIBERDEFENSA</h2><p class="vs">Defensa PQC activa · Monitoreo en tiempo real</p>
+<div class="g4">
+<div class="sc"><div class="n" style="color:var(--g)">247</div><div class="l">Defensas</div></div>
+<div class="sc"><div class="n" style="color:var(--r)" id="ca">0</div><div class="l">Ataques</div></div>
+<div class="sc"><div class="n" style="color:var(--y)" id="cb">0</div><div class="l">Bloqueados</div></div>
+<div class="sc"><div class="n" style="color:var(--cy)">100%</div><div class="l">Uptime</div></div></div>
+<div class="pnl" style="margin-top:22px"><div class="pt"><span class="ld"></span>Centro de Comando</div>
+<div style="text-align:center;padding:18px">
+<div style="font-size:44px;color:var(--g);text-shadow:0 0 30px var(--g)" id="tl">NIVEL 1</div>
+<div style="color:var(--td);font-size:10px;letter-spacing:.15em;margin-top:8px">SISTEMA PROTEGIDO · PQC ACTIVA</div></div>
+<div style="margin-top:12px">
+<div class="db">ML-KEM-1024</div><div class="db">ML-DSA-87</div><div class="db">SLH-DSA</div>
+<div class="db y">eIDAS QTSA</div><div class="db c">C2PA v2.1</div><div class="db p">Crypto-Agility</div></div></div>
+<div class="pnl"><div class="pt">◆ Simular Ataque</div>
+<button class="bt br" onclick="atk('SQL_INJECTION')">💉 SQL Injection</button>
+<button class="bt br" onclick="atk('DDoS')">💥 DDoS</button>
+<button class="bt br" onclick="atk('MITM')">🕵️ MITM</button>
+<button class="bt br" onclick="atk('QUANTUM')">⚛️ Cuántico</button>
+<button class="bt br" onclick="atk('RANSOMWARE')">🔒 Ransomware</button>
+<button class="bt br" onclick="atk('ZERO_DAY')">🚨 Zero-Day</button></div>
+<div class="pnl"><div class="pt">◆ Registro de Amenazas</div>
+<div id="tlog" style="max-height:280px;overflow-y:auto;background:#000;border:1px solid var(--b);padding:11px">
+<div style="color:var(--td);font-size:10px">> Sistema en espera...</div></div></div>
+</div>
+
+<div class="vw" id="v-kl">
+<h2 class="vt">🐉 TERMINAL KALI</h2><p class="vs">Simulación Red Team · Herramientas de pentesting</p>
+<div class="pnl"><div class="pt">◆ Comandos Rápidos</div>
+<button class="bt bc" onclick="kc('nmap')">nmap</button>
+<button class="bt bc" onclick="kc('ffuf')">ffuf</button>
+<button class="bt bc" onclick="kc('nxc')">nxc smb</button>
+<button class="bt bc" onclick="kc('gobuster')">gobuster</button>
+<button class="bt bc" onclick="kc('hydra')">hydra</button>
+<button class="bt bc" onclick="kc('msf')">msfconsole</button>
+<button class="bt br" onclick="kc('clear')">Limpiar</button></div>
+<div class="pnl"><div class="pt">◆ Terminal Kali</div>
+<div class="tr" id="ko">
+<div class="tl tif">┌──(kali㉿kali)-[~]</div>
+<div class="tl tif">└─$ <span style="color:var(--g)">Escribe "help"</span></div></div>
+<div class="ti"><span>┌──(kali㉿kali)-[~]</span><span style="color:var(--g)">└─$</span>
+<input id="ki" placeholder="nmap, ffuf, nxc..." autocomplete="off"></div></div>
+</div>
+
+<div class="vw" id="v-cr">
+<h2 class="vt">🔐 CRIPTOGRAFÍA PQC</h2><p class="vs">Post-Quantum · FIPS 203/204/205</p>
+<div class="g3">
+<div class="pnl"><div class="pt">◆ ML-KEM</div><div style="font-size:10px;color:var(--td)">FIPS 203 · Nivel 5</div><div style="color:var(--g);margin-top:6px;font-size:11px">Encapsulamiento</div></div>
+<div class="pnl"><div class="pt">◆ ML-DSA</div><div style="font-size:10px;color:var(--td)">FIPS 204 · Nivel 5</div><div style="color:var(--g);margin-top:6px;font-size:11px">Firmas digitales</div></div>
+<div class="pnl"><div class="pt">◆ SLH-DSA</div><div style="font-size:10px;color:var(--td)">FIPS 205</div><div style="color:var(--g);margin-top:6px;font-size:11px">Larga duración</div></div></div>
+<div class="pnl"><div class="pt">◆ Generador SHA-256 Real</div>
+<input class="if" id="hi" placeholder="Texto a hashear...">
+<button class="bt" onclick="gh()">🔐 SHA-256</button>
+<button class="bt by" onclick="sp()">✍ FIRMAR ML-DSA-87</button>
+<div id="ho" class="ho" style="display:none"></div></div>
+</div>
+
+<div class="vw" id="v-ag">
+<h2 class="vt">🤖 ENJAMBRE ARKHÉ</h2><p class="vs">13 agentes · 6 culturales + 6 oficios + 096 Hunter</p>
+<div class="pt" style="margin-top:14px">◆ Culturales</div>
+<div class="g3" id="agc"></div>
+<div class="pt" style="margin-top:22px">◆ Oficios</div>
+<div class="g3" id="ago"></div>
+<div class="pnl" style="margin-top:22px"><div class="pt">◆ Log del Enjambre</div>
+<div id="agl" style="font-size:11px;color:var(--g);height:150px;overflow-y:auto;background:#000;padding:11px;border:1px solid var(--b)">
+<div class="tl tif">> En espera...</div></div>
+<button class="bt" onclick="asw()">◆ ACTIVAR</button></div>
+</div>
+
+<div class="vw" id="v-hu">
+<h2 class="vt" style="color:var(--r)">🎯 AGENTE 096 · EL CAZADOR</h2>
+<p class="vs">Ciberseguridad ofensiva · Red Team · Auditoría ética</p>
+<div class="pnl" style="border-color:var(--r)"><div style="display:flex;gap:16px;align-items:center">
+<div style="font-size:58px">🎯</div>
+<div><div style="color:var(--r);font-size:18px;letter-spacing:.2em;font-weight:bold">AGENTE 096</div>
+<div style="color:var(--td);font-size:11px;letter-spacing:.15em;margin-top:4px">"EL CAZADOR" · Ciberdefensa Ofensiva</div>
+<div style="margin-top:9px"><div class="db r">Red Team</div><div class="db r">Pentesting</div><div class="db r">OSINT</div></div></div></div></div>
+<div class="pnl"><div class="pt">◆ Panel de Caza</div>
+<div class="tr" id="hout" style="height:240px">
+<div class="tl te">> [HUNTER-096] Inicializando...</div>
+<div class="tl to">> [HUNTER-096] Esperando orden de caza.</div></div>
+<button class="bt br" onclick="hh()">🎯 INICIAR CAZA</button>
+<button class="bt bc" onclick="hs()">🔍 ESCANEO</button></div>
+</div>
+
+<div class="vw" id="v-cy">
+<h2 class="vt">🎵 CYMATIC STUDIO</h2><p class="vs">Visualización musical cuántica · Geometría sagrada</p>
+<div class="pnl"><div class="cb"><canvas id="cyc" width="700" height="350"></canvas></div>
+<div style="margin-top:11px">
+<button class="bt" onclick="tc()" id="cyb">▶ INICIAR</button>
+<button class="bt by" onclick="cm()">◆ CAMBIAR PATRÓN</button>
+<span style="color:var(--y);font-size:11px;margin-left:11px">Patrón: <span id="cym">Chladni</span></span></div></div>
+</div>
+
+<div class="vw" id="v-yj">
+<h2 class="vt">✨ YEJIDÁ · MANDALAS</h2><p class="vs">Kabbalah 2036 · Convergencia 11 × 1</p>
+<div class="pnl"><div class="cb"><canvas id="mc" width="450" height="450"></canvas></div>
+<div style="margin-top:11px;text-align:center">
+<button class="bt by" onclick="gm()">✨ GENERAR</button>
+<button class="bt" onclick="am()">◆ ANIMAR</button></div></div>
+</div>
+
+<div class="vw" id="v-pj">
+<h2 class="vt">📁 PORTFOLIO DEL LEGADO</h2><p class="vs">11 proyectos · Ecosistema simbiótico</p>
+<div id="pl"></div>
+</div>
+
+<div class="vw" id="v-tr">
+<h2 class="vt">⌨ TERMINAL ARKHÉ</h2><p class="vs">Escribe "help" para ver comandos</p>
+<div class="tr" id="to">
+<div class="tl tif">ARKHÉ ZERO Terminal v1.0.0 · YHDRYH-92CE</div>
+<div class="tl tif">Escribe "help"</div>
+<div class="tl tif">──────────────────────────────────────</div></div>
+<div class="ti"><span>arkhe@zero:~$</span><input id="tin" placeholder="Comando..." autocomplete="off"></div>
+</div>
+
+<div class="vw" id="v-fr">
+<h2 class="vt">✍ FIRMA KINTSUGI</h2><p class="vs">51% Humano · 49% IA · 100% Real</p>
+<div class="pnl"><input class="if" id="si" placeholder="Contenido a firmar...">
+<button class="bt by" onclick="sf()">◯_● FIRMAR</button></div>
+<div id="sbx" style="display:none;border:2px dashed var(--yd);padding:20px;background:radial-gradient(ellipse,rgba(255,215,0,.05),transparent);margin:13px 0">
+<div style="font-size:32px;color:var(--y);text-align:center;margin-bottom:11px">◯_●</div>
+<div style="color:var(--y);text-align:center;font-size:14px;letter-spacing:.2em;margin-bottom:11px">KINTSUGI · 51/49/100</div>
+<div id="sc" class="ho" style="text-align:left"></div></div>
+</div>
+
+</main>
+<footer id="ft">
+<span>◯_● ARKHÉ ZERO · v1.0.0 · YHDRYH-92CE</span>
+<span class="sl">51/49/100 · KINTSUGI · SCDR-001</span>
+<span>© 2026 · ◯_● · ■_□ · 51/49/100</span>
+</footer>
+</div>
+<div id="ts"></div>
+
+<script>
+function toast(m,d){var t=document.getElementById('ts');t.textContent=m;t.className=d?'sh dg':'sh';setTimeout(function(){t.classList.remove('sh')},3000)}
+function go(v){document.querySelectorAll('.vw').forEach(function(x){x.classList.remove('ac')});document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('ac')});document.getElementById('v-'+v).classList.add('ac');var n=document.querySelector('[data-v="'+v+'"]');if(n)n.classList.add('ac');document.getElementById('mn').scrollTop=0;if(v==='cy'&&!cyR){cyR=true;document.getElementById('cyb').textContent='⏸ PAUSAR';dCy()}}
+document.querySelectorAll('.ni').forEach(function(i){i.addEventListener('click',function(){go(i.dataset.v)})});
+function ck(){document.getElementById('ck').textContent=new Date().toTimeString().slice(0,8)+' UTC'}
+setInterval(ck,1000);ck();
+
+async function sha(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')}
+
+async function vfy(){var t=document.getElementById('vi').value.trim();if(!t){toast('⚠ Introduce texto');return}var h=await sha(t);var o=document.getElementById('vo');o.style.display='block';o.innerHTML='<div><span class="lb">INPUT:</span> '+t+'</div><div><span class="lb">SHA-256:</span> '+h+'</div><div style="color:var(--y);margin-top:8px">◯_● Verificado</div>'}
+
+async function gh(){var t=document.getElementById('hi').value.trim();if(!t){toast('⚠ Introduce texto');return}var h=await sha(t);var o=document.getElementById('ho');o.style.display='block';o.innerHTML='<div><span class="lb">INPUT:</span> '+t+'</div><div><span class="lb">SHA-256:</span> '+h+'</div>'}
+
+async function sp(){var t=document.getElementById('hi').value.trim()||'documento';var h=await sha(t);var s='ML-DSA-87:'+h.substring(0,32)+'...';var o=document.getElementById('ho');o.style.display='block';o.innerHTML='<div><span class="lb">DOC:</span> '+t+'</div><div><span class="lb">SHA-256:</span> '+h+'</div><div><span class="lb">FIRMA:</span> '+s+'</div><div style="color:var(--y);margin-top:8px">◯_● FIRMA PQC · FIPS 204</div>';toast('◯_● Firmado ML-DSA-87')}
+
+var ca_=0,cb_=0;
+var atkT={
+SQL_INJECTION:{n:'SQL INJECTION',p:'443/tcp',pl:"' OR '1'='1",d:'ML-KEM-1024',t:1200},
+DDoS:{n:'DDoS FLOOD',p:'80/tcp',pl:'SYN flood',d:'Rate Limiting',t:1800},
+MITM:{n:'MITM',p:'443/tcp',pl:'Cert spoof',d:'SLH-DSA',t:1500},
+QUANTUM:{n:'CUÁNTICO',p:'ALL',pl:"Shor's",d:'ML-KEM-1024',t:2500},
+RANSOMWARE:{n:'RANSOMWARE',p:'445/tcp',pl:'Encrypt',d:'Immutable Backup',t:2000},
+ZERO_DAY:{n:'ZERO-DAY',p:'UNKNOWN',pl:'Unknown CVE',d:'Anomaly AI',t:2200}};
+
+function atk(t){var a=atkT[t];if(!a)return;ca_++;document.getElementById('ca').textContent=ca_;document.getElementById('dt').textContent=cb_;toast('🚨 ATAQUE: '+a.n,true);
+var l=document.getElementById('tlog'),id='ak-'+Date.now(),dv=document.createElement('div');dv.className='atk';dv.id=id;
+dv.innerHTML='<div class="ah"><span class="at">🔴 '+a.n+'</span><span class="am">'+new Date().toLocaleTimeString()+'</span></div><div class="ad">PORT: '+a.p+' · PAYLOAD: '+a.pl+'<br>ESTADO: <span style="color:var(--r)">DETECTADO</span></div>';
+l.appendChild(dv);l.scrollTop=l.scrollHeight;
+setTimeout(function(){cb_++;document.getElementById('cb').textContent=cb_;document.getElementById('dt').textContent=cb_;var c=document.getElementById(id);if(c){c.className='atk bl';c.innerHTML='<div class="ah"><span class="at">✅ '+a.n+' · BLOQUEADO</span><span class="am">'+new Date().toLocaleTimeString()+'</span></div><div class="ad">DEFENSA: <span style="color:var(--g)">'+a.d+'</span><br>TIEMPO: '+a.t+'ms</div>'}toast('✅ Neutralizado: '+a.d)},a.t)}
+
+var ko=document.getElementById('ko'),ki=document.getElementById('ki');
+function kl(t,c){var l=document.createElement('div');l.className='tl '+(c||'to');l.innerHTML=t;ko.appendChild(l);ko.scrollTop=ko.scrollHeight}
+var kCmds={
+nmap:['[+] Starting Nmap 7.95','Host is up (0.011s latency).','<span style="color:var(--y)">PORT     STATE SERVICE</span>','80/tcp   open  http','443/tcp  open  ssl/http','445/tcp  open  microsoft-ds','Service Info: Host: FILE01'],
+ffuf:[':: Method     : GET',':: URL        : http://northwind.internal',':: Header     : Host: FUZZ.northwind.internal','<span style="color:var(--y)">www</span>       [Status: 200, Size: 10234]','<span style="color:var(--y)">admin</span>     [Status: 302]','<span style="color:var(--y)">api</span>       [Status: 200]'],
+nxc:['<span style="color:var(--cy)">SMB</span>  10.10.11.42  445  FILE01  [*] Windows Server 2019','<span style="color:var(--r)">SMB</span>  10.10.11.42  445  FILE01  [-] STATUS_ACCESS_DENIED','<span style="color:var(--g)">SMB</span>  10.10.11.42  445  FILE01  [+] Share: IPC$','<span style="color:var(--g)">SMB</span>  10.10.11.42  445  FILE01  [+] Share: SYSVOL'],
+gobuster:['Gobuster v3.6','[+] Url: http://northwind.internal','[+] Threads: 10','<span style="color:var(--y)">/admin</span>    (Status: 302)','<span style="color:var(--y)">/api</span>      (Status: 200)','<span style="color:var(--y)">/backup</span>   (Status: 301)'],
+hydra:['Hydra v9.5','[DATA] attacking ssh://10.10.11.42:22/','<span style="color:var(--r)">[ERROR] Target protected by ML-KEM-1024</span>','[+] Attack blocked.'],
+msf:['=[ metasploit v6.4.0-dev ]','+ -- --=[ 2400 exploits ]','msf6 > use exploit/multi/handler','<span style="color:var(--r)">[-] Connection refused · PQC</span>','<span style="color:var(--g)">[+] ARKHÉ ZERO defense active</span>'],
+help:['Comandos: nmap · ffuf · nxc · gobuster · hydra · msf · help · clear']};
+function kc(c){if(c==='clear'){ko.innerHTML='';return}if(kCmds[c]){kl('<span class="tp">┌──(kali㉿kali)-[~]</span>');kl('<span class="tp">└─$</span> '+c);kl(' ');kCmds[c].forEach(function(l){kl(l)});kl(' ');toast('🐉 '+c+' ejecutado')}else{kl('Comando no reconocido.','te')}}
+ki.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var c=ki.value.trim().toLowerCase().split(' ')[0];ki.value='';if(c)kc(c)});
+
+var agC=[{i:'🌅',n:'CUICATL',r:'Canto · Publicista'},{i:'📚',n:'TEMACHTIANI',r:'Maestro · Reclutador'},{i:'👁️',n:'TLACHIXQUI',r:'Observador · Auditor'},{i:'🧠',n:'TLAMATINI',r:'Sabio · Cronista'},{i:'🔢',n:'TLAPOHUALLI',r:'Contador · Analista'},{i:'⏳',n:'TONAL',r:'Día · Notario'}];
+var agO=[{i:'🏗️',n:'090 ARQUITECTO',r:'Expansión'},{i:'📊',n:'091 CONTRALOR',r:'Auditoría'},{i:'🔍',n:'092 AUDITOR',r:'Verificación'},{i:'📜',n:'093 RELATOR',r:'Informes'},{i:'📖',n:'094 BIBLIOTECARIO',r:'Indexación'},{i:'🗺️',n:'095 CARTÓGRAFO',r:'Mapa vivo'}];
+function rAg(){var c=document.getElementById('agc'),o=document.getElementById('ago');c.innerHTML=agC.map(function(a){return '<div class="ac" onclick="this.classList.toggle(\'act\')"><div class="ai">'+a.i+'</div><div class="an">'+a.n+'</div><div class="ar">'+a.r+'</div></div>'}).join('');o.innerHTML=agO.map(function(a){return '<div class="ac" onclick="this.classList.toggle(\'act\')"><div class="ai">'+a.i+'</div><div class="an">'+a.n+'</div><div class="ar">'+a.r+'</div></div>'}).join('')}
+rAg();
+
+function asw(){var l=document.getElementById('agl');l.innerHTML='';var ag=agC.concat(agO);var i=0;var int=setInterval(function(){if(i>=ag.length){clearInterval(int);var x=document.createElement('div');x.className='tl tw';x.textContent='◯_● ENJAMBRE COMPLETO · 13/13';l.appendChild(x);l.scrollTop=l.scrollHeight;return}var a=ag[i];var x=document.createElement('div');x.className='tl to';x.textContent='[ OK ] '+a.i+' '+a.n;l.appendChild(x);l.scrollTop=l.scrollHeight;i++},180);toast('🤖 Activando enjambre...')}
+
+function hl(t,c){var o=document.getElementById('hout');var l=document.createElement('div');l.className='tl '+(c||'to');l.textContent=t;o.appendChild(l);o.scrollTop=o.scrollHeight}
+function hh(){var o=document.getElementById('hout');o.innerHTML='';var ls=[['[HUNTER-096] Iniciando cacería...','te'],['[HUNTER-096] Escaneando superficie...','to'],['[HUNTER-096] Port 80 open','tc'],['[HUNTER-096] Vulnerabilidad: TLS 1.2','tw'],['[HUNTER-096] Aplicando TLS 1.3 + PQC','to'],['[HUNTER-096] ✓ 0 amenazas','to'],['[HUNTER-096] Simulando ataque...','te'],['[HUNTER-096] Bloqueado por ML-KEM-1024','to'],['◯_● CACERÍA COMPLETA · 51/49/100','tw']];var i=0;var int=setInterval(function(){if(i>=ls.length){clearInterval(int);return}hl(ls[i][0],ls[i][1]);i++},350);toast('🎯 Agente 096 en cacería',true)}
+async function hs(){
+  const o = document.getElementById("hout");
+  if(!o){ alert("DEBUG: no existe #hout"); return; }
+  o.innerHTML = "";
+  const add = (t, c) => {
+    const l = document.createElement("div");
+    l.className = "tl " + (c || "to");
+    l.textContent = t;
+    o.appendChild(l);
+    o.scrollTop = o.scrollHeight;
+  };
+  try {
+    const r = await fetch("http://127.0.0.1:5001/api/scan");
+    const data = await r.json();
+    add("> Target: " + data.target, "to");
+    const info = [[22,"SSH"],[80,"HTTP"],[443,"HTTPS"],[8080,"ARKHE"],[5001,"IA"]];
+    for(const [p,n] of info){
+      const ab = data.abiertos.includes(p);
+      add("> Puerto " + p + " (" + n + ") · " + (ab ? "ABIERTO" : "cerrado"), ab ? "tw" : "tif");
+    }
+    add("> Total escaneados: " + data.total, "tif");
+    add("> ◯_● Puertos abiertos: " + data.abiertos.join(", "), "tw");
+    add("> ◯_● ESCANEO COMPLETO · 51/49/100", "tw");
+  } catch(e) {
+    add(">>> ERROR: " + e.message, "te");
+    add(">>> Stack: " + (e.stack || "sin stack"), "te");
+  }
+}
+
+function dCy(){var c=document.getElementById('cyc');if(!c)return;var x=c.getContext('2d'),W=c.width,H=c.height,cx=W/2,cy=H/2;x.fillStyle='rgba(0,0,0,0.08)';x.fillRect(0,0,W,H);cyT+=0.02;
+if(cyM===0){x.strokeStyle='rgba(0,255,65,0.6)';x.lineWidth=1;for(var i=0;i<6;i++){x.beginPath();for(var t=0;t<Math.PI*2;t+=0.05){var n=i+1;var r=100+40*Math.sin(n*t+cyT)*Math.cos(n*t);var px=cx+r*Math.cos(t),py=cy+r*Math.sin(t);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}}
+else if(cyM===1){x.strokeStyle='rgba(255,215,0,0.6)';x.beginPath();for(var t=0;t<Math.PI*4;t+=0.02){var px=cx+130*Math.sin(3*t+cyT),py=cy+130*Math.sin(2*t);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}
+else if(cyM===2){x.strokeStyle='rgba(124,92,255,0.6)';x.beginPath();for(var t=0;t<Math.PI*2;t+=0.02){var r=130*Math.cos(5*t+cyT);var px=cx+r*Math.cos(t),py=cy+r*Math.sin(t);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}
+else if(cyM===3){x.strokeStyle='rgba(0,255,65,0.7)';x.beginPath();for(var t=0;t<Math.PI*8;t+=0.05){var r=5*t;if(r>150)break;var px=cx+r*Math.cos(t+cyT),py=cy+r*Math.sin(t+cyT);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}
+else{x.strokeStyle='rgba(255,215,0,0.7)';x.beginPath();for(var i=0;i<10;i++){var a=(i*Math.PI/5)+cyT;var r=i%2===0?150:60;var px=cx+r*Math.cos(a),py=cy+r*Math.sin(a);if(i===0)x.moveTo(px,py);else x.lineTo(px,py)}x.closePath();x.stroke()}
+if(cyR)requestAnimationFrame(dCy)}
+function tc(){cyR=!cyR;document.getElementById('cyb').textContent=cyR?'⏸ PAUSAR':'▶ INICIAR';if(cyR)dCy()}
+function cm(){cyM=(cyM+1)%cyMs.length;document.getElementById('cym').textContent=cyMs[cyM]}
+
+function dM(){var c=document.getElementById('mc');if(!c)return;var x=c.getContext('2d'),W=c.width,H=c.height,cx=W/2,cy=H/2;x.fillStyle='#000';x.fillRect(0,0,W,H);var sd=Math.random()*1000;var L=11;
+for(var i=0;i<W;i+=20){x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.strokeStyle='rgba(255,215,0,0.05)';x.stroke()}
+for(var i=0;i<H;i+=20){x.beginPath();x.moveTo(0,i);x.lineTo(W,i);x.strokeStyle='rgba(255,215,0,0.05)';x.stroke()}
+for(var l=1;l<=L;l++){var r=(l/L)*180;var p=6+l*2;var o=0.3+(l/L)*0.7;x.strokeStyle='hsla('+(40+l*8)+',100%,60%,'+o+')';x.lineWidth=l===L?2:1;x.beginPath();for(var i=0;i<=p;i++){var a=(i/p)*Math.PI*2;var rr=r+15*Math.sin(sd+i*3.14);var px=cx+rr*Math.cos(a),py=cy+rr*Math.sin(a);if(i===0)x.moveTo(px,py);else x.lineTo(px,py)}x.closePath();x.stroke();
+for(var i=0;i<p;i++){var a=(i/p)*Math.PI*2;var rr=r+15*Math.sin(sd+i*3.14);var px=cx+rr*Math.cos(a),py=cy+rr*Math.sin(a);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fillStyle='hsla('+(40+l*8)+',100%,70%,'+o+')';x.fill()}}
+x.beginPath();x.arc(cx,cy,12,0,Math.PI*2);x.fillStyle='hsl('+(40+Math.random()*40)+',100%,60%)';x.fill();x.strokeStyle='#fff';x.lineWidth=2;x.stroke()}
+function gm(){dM();toast('✨ Mandala generado')}
+var mAn=false;
+function am(){mAn=!mAn;if(mAn){var loop=function(){if(!mAn)return;dM();setTimeout(loop,800)};loop()}}
+dM();
+
+var pjs=[{n:'[01]',m:'KRONOS',d:'Verificación criptográfica Local-First'},{n:'[02]',m:'MD-33',d:'Trazabilidad forense'},{n:'[03]',m:'CYMATIC',d:'Visualización musical cuántica'},{n:'[04]',m:'YEJIDÁ',d:'Mandalas Kabbalah 2036'},{n:'[05]',m:'DESPACHO',d:'Anclaje legal y físico'},{n:'[06]',m:'MARCO.MCP',d:'Substrato cognitivo'},{n:'[07]',m:'BÓVEDA VOZ',d:'Identidad sonora'},{n:'[08]',m:'EVIDENCE OS',d:'Sistema de evidencia'},{n:'[09]',m:'ARKHÉ CORE',d:'Núcleo 24 secciones'},{n:'[10]',m:'YEJIDÁ 2036',d:'Visión futura'},{n:'[11]',m:'KTP-001',d:'Kronos Transfer Protocol'}];
+function rPj(){document.getElementById('pl').innerHTML=pjs.map(function(p){return '<div class="pjc"><div class="pn">'+p.n+'</div><div class="pm">'+p.m+'</div><div class="pd">'+p.d+'</div></div>'}).join('')}
+rPj();
+
+var tO=document.getElementById('to'),tI=document.getElementById('tin');
+function aT(t,c){var l=document.createElement('div');l.className='tl '+(c||'to');l.textContent=t;tO.appendChild(l);tO.scrollTop=tO.scrollHeight}
+var cmds={
+help:function(){return['Comandos: help · status · agents · hunter · attack <tipo> · sign <txt> · hash <txt> · verify · seal · clear','Ataques: SQL_INJECTION · DDoS · MITM · QUANTUM · RANSOMWARE · ZERO_DAY']},
+status:function(){return['◯_● ARKHÉ ZERO · Estado:','  Índice Cero ...... SELLADO ✓','  Pacto 51/49 ...... OPERATIVO ✓','  Enjambre ......... 13/13','  Ciberdefensa ..... ACTIVA','  Firma ............ ◯_● · 51/49/100']},
+agents:function(){return['Enjambre ARKHÉ · 13 agentes:','  🌅 Cuicatl · 📚 Temachtiani · 👁️ Tlachixqui','  🧠 Tlamatini · 🔢 Tlapohualli · ⏳ Tonal','  🏗️ 090 · 📊 091 · 🔍 092 · 📜 093 · 📖 094 · 🗺️ 095','  🎯 096 HUNTER']},
+verify:function(){return['◯_● Verificando Índice Cero...','  Safe Creative ... 2607146379465 ✓','  SHA-256 ......... f03f7e2d85... ✓','  Ethereum ........ 0xd2c2a7e1... ✓','  eIDAS ........... Firmaprofesional ✓']},
+seal:function(){return['◯_● KINTSUGI · 51/49/100 · SCDR-001 · NODO YHDRYH-92CE']},
+clear:function(){tO.innerHTML='';return null}};
+tI.addEventListener('keydown',async function(e){if(e.key!=='Enter')return;var inp=tI.value.trim();if(!inp)return;tI.value='';aT('arkhe@zero:~$ '+inp,'tp');var parts=inp.split(' ');var cmd=parts[0];var args=parts.slice(1);
+if(cmd==='sign'){var t=args.join(' ')||'documento';var h=await sha(t);aT('  SHA-256: '+h.substring(0,32)+'...');aT('  FIRMA: ML-DSA-87:'+h.substring(0,16)+'...');aT('  ✦ 51% Humano · 49% IA · 100% Real','tw');return}
+if(cmd==='hash'){var h=await sha(args.join(' ')||'texto');aT('  SHA-256: '+h);return}
+if(cmd==='attack'){var t=(args[0]||'SQL_INJECTION').toUpperCase();if(atkT[t]){atk(t);aT('[ OK ] Simulando: '+atkT[t].n,'te')}else aT('Tipo no válido','te');return}
+if(cmd==='hunter'){go('hu');aT('[ OK ] Navegando a Agente 096');return}
+if(cmds[cmd]){var r=cmds[cmd]();if(r)r.forEach(function(l){aT(l)})}else{aT('Comando no reconocido: '+cmd,'te');aT('Escribe "help"','tif')}});
+
+async function sf(){var t=document.getElementById('si').value.trim();if(!t){toast('⚠ Introduce contenido');return}var h=await sha(t);document.getElementById('sbx').style.display='block';document.getElementById('sc').innerHTML='<div><span class="lb">DOCUMENTO:</span> '+t+'</div><div><span class="lb">SHA-256:</span> '+h+'</div><div><span class="lb">FIRMA:</span> ML-DSA-87:'+h.substring(0,32)+'...</div><div><span class="lb">TIMESTAMP:</span> '+new Date().toISOString()+'</div><div style="color:var(--y);margin-top:11px;letter-spacing:.1em">✦ FIRMADO: Marco Antonio Rojas Valdovinos (51%)<br>✦ FIRMADO: Enjambre ARKHÉ (49%)<br>◯_● SELLO KINTSUGI · 100% REAL</div>';toast('◯_● Documento firmado')}
+
+window.addEventListener('load',function(){
+console.log('%c◯_● ARKHÉ ZERO','color:#ffd700;font-size:20px;font-weight:bold');
+console.log('%c51/49/100 · KINTSUGI · YHDRYH-92CE','color:#00ff41;font-size:13px');
+console.log('%c"El legado no se hereda. Se firma."','color:#ffd700;font-style:italic');
+setTimeout(function(){toast('◯_● ARKHÉ ZERO operativo · 51/49/100')},700);
+setTimeout(function(){cyR=true;document.getElementById('cyb').textContent='⏸ PAUSAR';dCy()},1200)});
+</script>
+</body>
+</html>
