@@ -35,3 +35,4 @@ testimonio/claves/
 .env
 .env.*
 *.secret
+MANIFEST-*.txt
