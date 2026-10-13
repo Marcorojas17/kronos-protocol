@@ -6,7 +6,7 @@ jobs:
   acta:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Generar acta del commit
         run: |
           echo "## Acta · $(date -u +%FT%TZ)" > /tmp/acta.md
