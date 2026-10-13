@@ -352,10 +352,35 @@ function asw(){var l=document.getElementById('agl');l.innerHTML='';var ag=agC.co
 
 function hl(t,c){var o=document.getElementById('hout');var l=document.createElement('div');l.className='tl '+(c||'to');l.textContent=t;o.appendChild(l);o.scrollTop=o.scrollHeight}
 function hh(){var o=document.getElementById('hout');o.innerHTML='';var ls=[['[HUNTER-096] Iniciando cacería...','te'],['[HUNTER-096] Escaneando superficie...','to'],['[HUNTER-096] Port 80 open','tc'],['[HUNTER-096] Vulnerabilidad: TLS 1.2','tw'],['[HUNTER-096] Aplicando TLS 1.3 + PQC','to'],['[HUNTER-096] ✓ 0 amenazas','to'],['[HUNTER-096] Simulando ataque...','te'],['[HUNTER-096] Bloqueado por ML-KEM-1024','to'],['◯_● CACERÍA COMPLETA · 51/49/100','tw']];var i=0;var int=setInterval(function(){if(i>=ls.length){clearInterval(int);return}hl(ls[i][0],ls[i][1]);i++},350);toast('🎯 Agente 096 en cacería',true)}
-function hs(){var o=document.getElementById('hout');var ls=[['[HUNTER-096] Escaneo profundo...','tc'],['[HUNTER-096] nmap -sV -p- 10.10.11.0/24','to'],['[HUNTER-096] 12 hosts · 47 puertos','to'],['[HUNTER-096] 8 subdominios','to'],['[HUNTER-096] Reporte: logs/hunter.json','tc'],['◯_● ESCANEO COMPLETO','tw']];var i=0;var int=setInterval(function(){if(i>=ls.length){clearInterval(int);return}hl(ls[i][0],ls[i][1]);i++},400)}
+async function hs(){
+  const o = document.getElementById("hout");
+  if(!o){ alert("DEBUG: no existe #hout"); return; }
+  o.innerHTML = "";
+  const add = (t, c) => {
+    const l = document.createElement("div");
+    l.className = "tl " + (c || "to");
+    l.textContent = t;
+    o.appendChild(l);
+    o.scrollTop = o.scrollHeight;
+  };
+  try {
+    const r = await fetch("http://127.0.0.1:5001/api/scan");
+    const data = await r.json();
+    add("> Target: " + data.target, "to");
+    const info = [[22,"SSH"],[80,"HTTP"],[443,"HTTPS"],[8080,"ARKHE"],[5001,"IA"]];
+    for(const [p,n] of info){
+      const ab = data.abiertos.includes(p);
+      add("> Puerto " + p + " (" + n + ") · " + (ab ? "ABIERTO" : "cerrado"), ab ? "tw" : "tif");
+    }
+    add("> Total escaneados: " + data.total, "tif");
+    add("> ◯_● Puertos abiertos: " + data.abiertos.join(", "), "tw");
+    add("> ◯_● ESCANEO COMPLETO · 51/49/100", "tw");
+  } catch(e) {
+    add(">>> ERROR: " + e.message, "te");
+    add(">>> Stack: " + (e.stack || "sin stack"), "te");
+  }
+}
 
-var cyR=false,cyM=0,cyT=0;
-var cyMs=['Chladni','Lissajous','Rosa','Espiral','Estrella'];
 function dCy(){var c=document.getElementById('cyc');if(!c)return;var x=c.getContext('2d'),W=c.width,H=c.height,cx=W/2,cy=H/2;x.fillStyle='rgba(0,0,0,0.08)';x.fillRect(0,0,W,H);cyT+=0.02;
 if(cyM===0){x.strokeStyle='rgba(0,255,65,0.6)';x.lineWidth=1;for(var i=0;i<6;i++){x.beginPath();for(var t=0;t<Math.PI*2;t+=0.05){var n=i+1;var r=100+40*Math.sin(n*t+cyT)*Math.cos(n*t);var px=cx+r*Math.cos(t),py=cy+r*Math.sin(t);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}}
 else if(cyM===1){x.strokeStyle='rgba(255,215,0,0.6)';x.beginPath();for(var t=0;t<Math.PI*4;t+=0.02){var px=cx+130*Math.sin(3*t+cyT),py=cy+130*Math.sin(2*t);if(t===0)x.moveTo(px,py);else x.lineTo(px,py)}x.stroke()}
