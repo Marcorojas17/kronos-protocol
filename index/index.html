@@ -1,83 +1,256 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>◯_● ARKHÉ ZERO · Índice Primigenio</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>◯_● ARKHÉ ZERO</title>
+<meta name="description" content="ARKHÉ ZERO · Sistema operativo legal-técnico con IA local, criptografía PQC y 24 secciones verificables.">
 <style>
-body{background:#050507;color:#c8ffc8;font-family:'Courier New',monospace;padding:15px;margin:0}
-.h{text-align:center;border:1px solid #ffd700;padding:15px;border-radius:8px;margin-bottom:15px;box-shadow:0 0 25px rgba(255,215,0,.3)}
-.h h1{color:#ffd700;letter-spacing:.2em;margin:8px 0;font-size:20px}
-.seal{font-size:32px;color:#ffd700}
-.pact{display:flex;justify-content:center;gap:20px;margin-top:10px;font-size:10px;color:#00ff41}
-.pact b{color:#ffd700;display:block;font-size:16px}
-.c{background:#0a0a0f;border:1px solid rgba(0,255,65,.25);padding:12px;margin-bottom:10px;border-radius:6px}
-.c h2{color:#00ff41;font-size:11px;letter-spacing:.2em;margin:0 0 8px 0;text-transform:uppercase}
-.r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed rgba(0,255,65,.15);font-size:11px}
-.r:last-child{border:none}
-.l{color:#6a8f6a}
-.v{color:#00ff41;font-weight:bold;text-align:right;word-break:break-all;max-width:60%}
-.hs{background:#000;padding:8px;border-left:2px solid #00ff41;font-size:9px;color:#00ff41;word-break:break-all;margin-top:8px;line-height:1.5}
-button{background:transparent;border:1px solid #00ff41;color:#00ff41;padding:8px 12px;font-family:inherit;font-size:10px;letter-spacing:.1em;border-radius:4px;margin:3px;text-transform:uppercase}
-button:active{background:#00ff41;color:#000}
-.g{border-color:#ffd700;color:#ffd700}
-.rd{border-color:#ff3355;color:#ff3355}
-.f{text-align:center;padding:15px;font-size:9px;color:#6a8f6a;border-top:1px solid rgba(0,255,65,.15);margin-top:15px;letter-spacing:.1em}
-.d{display:inline-block;width:6px;height:6px;background:#00ff41;border-radius:50%;box-shadow:0 0 8px #00ff41;margin-right:5px;animation:b 1.5s infinite}
-@keyframes b{50%{opacity:.3}}
-</style></head><body>
-<div class="h"><div class="seal">◯_●</div>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050507;color:#c8ffc8;font-family:'Courier New',monospace;line-height:1.6;font-size:14px}
+.wrap{max-width:1100px;margin:auto;padding:40px 20px}
+.hero{text-align:center;padding:60px 20px;border:2px solid rgba(255,215,0,.35);background:radial-gradient(ellipse at center,rgba(255,215,0,.05),transparent 70%);margin-bottom:40px;position:relative}
+.hero:before,.hero:after{content:'';position:absolute;width:16px;height:16px}
+.hero:before{top:-2px;left:-2px;border-top:3px solid #ffd700;border-left:3px solid #ffd700}
+.hero:after{bottom:-2px;right:-2px;border-bottom:3px solid #ffd700;border-right:3px solid #ffd700}
+.seal{font-size:76px;color:#ffd700;text-shadow:0 0 40px rgba(255,215,0,.8);animation:p 3s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:.9}50%{opacity:1;text-shadow:0 0 60px rgba(255,215,0,1)}}
+h1{font-size:44px;letter-spacing:.25em;color:#ffd700;margin:20px 0 10px;text-shadow:0 0 30px rgba(255,215,0,.5)}
+.tag{font-size:15px;font-style:italic;color:#c8ffc8;margin-bottom:20px}
+.pact{display:flex;justify-content:center;gap:32px;margin-top:20px;font-size:12px;letter-spacing:.15em}
+.pact div{text-align:center}
+.pact b{color:#ffd700;font-size:24px;display:block}
+h2{color:#ffd700;font-size:17px;letter-spacing:.2em;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,215,0,.2);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:#0f0f18;border:1px solid rgba(0,255,65,.18);padding:18px;text-decoration:none;color:inherit;transition:all .25s;position:relative;display:block}
+.card:before,.card:after{content:'';position:absolute;width:10px;height:10px}
+.card:before{top:-1px;left:-1px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
+.card:after{bottom:-1px;right:-1px;border-bottom:2px solid #ffd700;border-right:2px solid #ffd700}
+.card:hover{border-color:#ffd700;transform:translateY(-4px);box-shadow:0 0 30px rgba(255,215,0,.18)}
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.25em;margin-bottom:6px}
+.card .t{color:#00ff41;font-size:13px;letter-spacing:.1em;font-weight:bold;margin-bottom:6px}
+.card .d{color:#6a8f6a;font-size:10px;line-height:1.5}
+.card .m{color:#00ff41;font-size:9px;margin-top:8px;letter-spacing:.1em;opacity:.7}
+.hub-main{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:30px}
+.card.main{padding:24px;background:linear-gradient(135deg,#0f0f18,#0a0f18)}
+.card.main .t{font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0}
+.stat{background:#000;border:1px solid rgba(0,255,65,.15);padding:16px;text-align:center}
+.stat .num{color:#ffd700;font-size:22px;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,.4)}
+.stat .lbl{color:#6a8f6a;font-size:9px;letter-spacing:.15em;margin-top:6px}
+.cita{text-align:center;font-style:italic;color:#ffd700;font-size:17px;margin:45px 0;padding:28px;border-top:2px solid rgba(255,215,0,.15);border-bottom:2px solid rgba(255,215,0,.15)}
+footer{text-align:center;color:#6a8f6a;font-size:10px;letter-spacing:.15em;padding-top:25px;border-top:1px solid rgba(0,255,65,.1);margin-top:30px}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px}
+footer a{color:#00ff41;text-decoration:none}
+@media(max-width:768px){.grid,.stats{grid-template-columns:1fr}h1{font-size:26px}.seal{font-size:52px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+<div class="seal">◯_●</div>
 <h1>ARKHÉ ZERO</h1>
-<div style="font-size:9px;color:#6a8f6a;letter-spacing:.15em">iSH · iOS</div>
-<div class="pact"><div><b>51%</b>HUMANO</div><div><b>49%</b>IA</div><div><b>100%</b>REAL</div></div></div>
-<div class="c"><h2><span class="d"></span>Sistema</h2>
-<div class="r"><span class="l">NODO</span><span class="v" id="nodo">...</span></div>
-<div class="r"><span class="l">SELLO</span><span class="v" id="sello">...</span></div>
-<div class="r"><span class="l">TIMESTAMP</span><span class="v" id="ts">...</span></div>
-<div class="r"><span class="l">UPTIME</span><span class="v" id="uptime">...</span></div>
-<div class="r"><span class="l">KERNEL</span><span class="v" id="kernel">...</span></div>
-<div class="r"><span class="l">IP</span><span class="v" id="ip">...</span></div></div>
-<div class="c"><h2>◆ Índice Cero</h2>
-<div class="r"><span class="l">SAFE CREATIVE</span><span class="v" id="sc">...</span></div>
-<div class="r"><span class="l">AGENTES</span><span class="v" id="ag">...</span></div>
-<div class="r"><span class="l">BLOQUEADOS</span><span class="v" id="atk">...</span></div>
-<div class="hs" id="hash">Cargando...</div></div>
-<div class="c"><h2>◆ Acciones</h2>
-<button onclick="ref()">↻ Refrescar</button>
-<button class="g" onclick="firmar()">✍ Firmar</button>
-<button class="rd" onclick="simular()">🚨 Ataque</button>
-<div class="hs" id="out" style="display:none;margin-top:10px"></div></div>
-<div class="f">◯_● · 51/49/100 · SCDR-001<br>
-<span style="color:#ffd700;font-style:italic">"El legado no se hereda. Se firma."</span><br>
-Marco Antonio Rojas Valdovinos · Toluca · 2026</div>
-<script>
-async function ref(){
-try{
-var r=await fetch('data.json?t='+Date.now());
-var d=await r.json();
-document.getElementById('nodo').textContent=d.nodo;
-document.getElementById('sello').textContent=d.sello;
-document.getElementById('ts').textContent=d.timestamp;
-document.getElementById('uptime').textContent=d.uptime;
-document.getElementById('kernel').textContent=d.kernel;
-document.getElementById('ip').textContent=d.ip;
-document.getElementById('sc').textContent=d.safe_creative;
-document.getElementById('ag').textContent=d.agentes+' activos';
-document.getElementById('atk').textContent=d.amenazas_bloqueadas+' bloqueados';
-document.getElementById('hash').textContent='SHA-256: '+d.sha_root;
-}catch(e){document.getElementById('hash').textContent='Error: '+e.message;}
-}
-function firmar(){
-var t=prompt('Documento:','El legado no se hereda.');
-if(!t)return;
-var s=document.getElementById('out');
-s.style.display='block';
-s.innerHTML='✍ FIRMANDO: '+t+'<br>✍ FIRMA: ML-DSA-87:'+Math.random().toString(16).substr(2,32)+'<br>◯_● FIRMADO';
-}
-function simular(){
-var s=document.getElementById('out');
-s.style.display='block';
-s.innerHTML='🚨 ATAQUE DETECTADO...';
-setTimeout(function(){s.innerHTML+='<br>► Analizando...';},600);
-setTimeout(function(){s.innerHTML+='<br>✅ BLOQUEADO POR ML-KEM-1024';},1200);
-}
-ref();setInterval(ref,5000);
-</script>
-</body></html>
+<div class="tag">"El legado no se hereda. Se firma."</div>
+<div class="pact">
+<div><b>51%</b>HUMANO</div>
+<div><b>49%</b>IA</div>
+<div><b>100%</b>REAL</div>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="num">24/24</div><div class="lbl">SECCIONES</div></div>
+<div class="stat"><div class="num">1371</div><div class="lbl">ARCHIVOS</div></div>
+<div class="stat"><div class="num">56/56</div><div class="lbl">TESTS</div></div>
+<div class="stat"><div class="num">PQC</div><div class="lbl">POST-CUÁNTICA</div></div>
+</div>
+
+<h2>◆ ACCESO PRINCIPAL</h2>
+<div class="hub-main">
+
+<a class="card main" href="index/arkhe-zero.html">
+<div class="n">SISTEMA OPERATIVO</div>
+<div class="t">⚙️ ARKHÉ ZERO · SISTEMA COMPLETO</div>
+<div class="d">16 módulos interactivos · IA local · ciberdefensa · criptografía SHA-256 · 13 vistas de agentes · mandalas firmadas · bóveda de voz · cymatic studio</div>
+<div class="m">→ ENTRAR AL SISTEMA</div>
+</a>
+
+<a class="card main" href="sello.html">
+<div class="n">PRODUCTO COMERCIAL</div>
+<div class="t">🔐 ARKHÉ SELLO</div>
+<div class="d">Prueba criptográfica de existencia · sube archivo → recibe certificado SHA-256 con timestamp · 4 planes desde $0 hasta $199</div>
+<div class="m">→ PROBAR PRODUCTO</div>
+</a>
+
+<a class="card main" href="verificar.html">
+<div class="n">VERIFICACIÓN PÚBLICA</div>
+<div class="t">🔍 VERIFICAR ÍNDICE CERO</div>
+<div class="d">KRONOS · Safe Creative 2607146379465 · SHA-256 f03f7e2d85... · Ethereum 0xd2c2a7e1...774c · eIDAS Firmaprofesional QTSA</div>
+<div class="m">→ VERIFICAR AUTENTICIDAD</div>
+</a>
+
+</div>
+
+<h2>◆ LAS 24 SECCIONES</h2>
+<div class="grid">
+
+<a class="card" href="docs/">
+<div class="n">SECCIÓN 05</div>
+<div class="t">📚 DOCUMENTACIÓN</div>
+<div class="d">142 archivos · 10 ramas del Repertorio · ADR · arquitectura</div>
+</a>
+
+<a class="card" href="certificacion/notario-kronos/">
+<div class="n">SECCIÓN 07</div>
+<div class="t">📜 CERTIFICACIÓN</div>
+<div class="d">Notario · sello de tiempo · verificador público</div>
+</a>
+
+<a class="card" href="src/kronos360/">
+<div class="n">SECCIÓN 06</div>
+<div class="t">🔐 CRIPTOGRAFÍA</div>
+<div class="d">KRONOS 360 · Ed25519 · ML-DSA-65 · SHA-3 · 56 tests pasando</div>
+</a>
+
+<a class="card" href="tests/">
+<div class="n">SECCIÓN 16</div>
+<div class="t">🧪 TESTS</div>
+<div class="d">29 archivos · 56 tests pasando · criptografía verificada</div>
+</a>
+
+<a class="card" href="05-AGENTES/">
+<div class="n">SECCIÓN 09</div>
+<div class="t">🤖 AGENTES 090-095</div>
+<div class="d">6 oficios con código Python real · arquitecto · contralor · auditor</div>
+</a>
+
+<a class="card" href="gobernanza/">
+<div class="n">SECCIÓN 10</div>
+<div class="t">⚖️ GOBERNANZA</div>
+<div class="d">Propuestas · quórum · revocación · ejecución de decisiones</div>
+</a>
+
+<a class="card" href="identidad/">
+<div class="n">SECCIÓN 11</div>
+<div class="t">🪪 IDENTIDAD</div>
+<div class="d">Registro humano · registro IA · roles y permisos</div>
+</a>
+
+<a class="card" href="legado/">
+<div class="n">SECCIÓN 19</div>
+<div class="t">📖 LEGADO</div>
+<div class="d">Autoría · filosofía · génesis · manifiesto</div>
+</a>
+
+<a class="card" href="movimiento/">
+<div class="n">SECCIÓN 17</div>
+<div class="t">🔥 MOVIMIENTO</div>
+<div class="d">162 archivos · comunidad · fundador · iniciación</div>
+</a>
+
+<a class="card" href="cierre/">
+<div class="n">SECCIÓN 18</div>
+<div class="t">⚱️ CIERRE DE VIDA</div>
+<div class="d">Export cifrado · fin digno</div>
+</a>
+
+<a class="card" href="modulos/">
+<div class="n">SECCIÓN 19</div>
+<div class="t">🎙️ MÓDULOS</div>
+<div class="d">Bóveda de voz · Evidence OS</div>
+</a>
+
+<a class="card" href="operacion/">
+<div class="n">SECCIÓN 14</div>
+<div class="t">📊 OPERACIÓN</div>
+<div class="d">Dashboard de salud · rituales</div>
+</a>
+
+<a class="card" href="growth/">
+<div class="n">SECCIÓN 24</div>
+<div class="t">🌱 CRECIMIENTO</div>
+<div class="d">20 archivos · referidos · beta privada · afiliados</div>
+</a>
+
+<a class="card" href="metrics/">
+<div class="n">SECCIÓN 23</div>
+<div class="t">📈 MÉTRICAS</div>
+<div class="d">25 archivos · KPIs · dashboards · cohortes</div>
+</a>
+
+<a class="card" href="atraccion/">
+<div class="n">SECCIÓN 21</div>
+<div class="t">🧲 ATRACCIÓN</div>
+<div class="d">10 archivos · descubrimiento · viral · autoridad</div>
+</a>
+
+<a class="card" href="narrativa/">
+<div class="n">SECCIÓN 22</div>
+<div class="t">📖 NARRATIVA</div>
+<div class="d">13 archivos · villano · héroe · mito · arquetipos</div>
+</a>
+
+<a class="card" href="docs/CIUDAD/">
+<div class="n">SECCIÓN ESPECIAL</div>
+<div class="t">🏛 CIUDAD DIGITAL</div>
+<div class="d">Constitución · derechos · moneda · convivencia</div>
+</a>
+
+<a class="card" href="provenance/">
+<div class="n">SECCIÓN 07</div>
+<div class="t">🔏 PROVENANCE</div>
+<div class="d">24 archivos · C2PA · watermarking · fingerprinting</div>
+</a>
+
+<a class="card" href="contracts/">
+<div class="n">SECCIÓN 13</div>
+<div class="t">⛓️ SMART CONTRACTS</div>
+<div class="d">Solidity · EVM · deployments</div>
+</a>
+
+<a class="card" href="infra/">
+<div class="n">SECCIÓN 14</div>
+<div class="t">🏗 INFRAESTRUCTURA</div>
+<div class="d">28 archivos · K8s · Terraform · observabilidad</div>
+</a>
+
+<a class="card" href="scripts/">
+<div class="n">SECCIÓN 15</div>
+<div class="t">⚙️ SCRIPTS</div>
+<div class="d">19 archivos · deploy · backup · verificación</div>
+</a>
+
+<a class="card" href="sdk/">
+<div class="n">SECCIÓN 12</div>
+<div class="t">🔧 SDK</div>
+<div class="d">11 archivos · Python · JavaScript</div>
+</a>
+
+<a class="card" href="mapa.html">
+<div class="n">MAPA GENERAL</div>
+<div class="t">🗺️ MAPA DEL SISTEMA</div>
+<div class="d">24 capas navegables · estado de cada módulo</div>
+</a>
+
+<a class="card" href="marco.mcp/">
+<div class="n">SUBSTRATO IA</div>
+<div class="t">🧠 MARCO.MCP</div>
+<div class="d">21 archivos · servidor MCP · memoria continua</div>
+</a>
+
+</div>
+
+<div class="cita">"El legado no se hereda. Se firma."</div>
+
+<footer>
+<span class="s">◯_● · ■_□ · 51/49/100</span>
+Marco Antonio Rojas Valdovinos · Toluca · Estado de México · 2026<br>
+NODO YHDRYH-92CE · Sello SCDR-001 · Genesis K28-M05-MN01-YHDRYH-92CE<br>
+<a href="https://github.com/Marcorojas17/kronos-protocol">github.com/Marcorojas17/kronos-protocol</a>
+</footer>
+
+</div>
+</body>
+</html>
