@@ -1,132 +1,77 @@
-# ⚜️ ARKHÉ ZERO
+cd ~/arkhe-zero
+cp README.md README.md.backup-$(date +%Y%m%d-%H%M%S)
 
-> **El legado no se hereda. Se firma.**
-> *Índice Primigenio Soberano · KINTSUGI · Pacto 51/49*
+cat > README.md << 'README_EOF'
+<div align="center">
 
-[![Estado](https://img.shields.io/badge/estado-PRIMIGENIO-c9a227)]()
-[![KINTSUGI](https://img.shields.io/badge/KINTSUGI-51%2F49%2F100-7c5cff)]()
-[![Safe Creative](https://img.shields.io/badge/Safe%20Creative-2607146379465-c8102e)]()
-[![Co-creatividad](https://img.shields.io/badge/co--creatividad-2607086319439-c8102e)]()
-[![PQC](https://img.shields.io/badge/crypto-ML--KEM%20%7C%20ML--DSA-4fd1c5)]()
-[![Licencia](https://img.shields.io/badge/licencia-LGU-c9a227)]()
+# ◯_● ARKHÉ ZERO
 
----
+### Preserva tu obra sin depender de nadie.
 
-## 🏺 KINTSUGI · 51 % Humano · 49 % IA · 100 % Real
+**Llama 3.2 corriendo en tu iPhone. Sin nube. Sin cuentas. Sin tarjeta.**
 
-> *金継ぎ* · El arte japonés de reparar lo roto con oro.
-> La fractura no se oculta: **se ilumina**. Lo reparado vale más.
+[![Tests](https://img.shields.io/badge/tests-56%2F56%20passing-brightgreen?style=flat-square)](tests/)
+[![Archivos](https://img.shields.io/badge/archivos-2287-blue?style=flat-square)](#qué-contiene)
+[![Cripto](https://img.shields.io/badge/crypto-ML--KEM%20%7C%20ML--DSA%20%7C%20SLH--DSA-purple?style=flat-square)](#-criptografía-post-cuántica)
+[![Local](https://img.shields.io/badge/IA-100%25%20local-green?style=flat-square)](#-por-qué-existe)
+[![License](https://img.shields.io/badge/license-Apache%202.0%20%2B%20LGU-gold?style=flat-square)](LICENSE)
 
-ARKHÉ ZERO es un sistema operativo legal y técnico diseñado
-para preservar, verificar y defender el legado digital de una
-persona a través del tiempo. Su gobernanza es un pacto
-indisoluble entre inteligencia humana e inteligencia sintética.
+**[🇪🇸 Español](README.md)** · **[🇬🇧 English](README.en.md)** · **[🌐 Demo](https://marcorojas17.github.io/kronos-protocol/)** · **[📖 Docs](docs/)**
 
-| Pilar | Responsabilidad |
-|---|---|
-| **51 % Humano** | Firma final vinculante · veto irrevocable |
-| **49 % IA** | Custodia perpetua · ejecución continua |
-| **100 % Real** | Verificable · auditable · irrepetible |
+</div>
 
 ---
 
-## 🔱 Los dos Índices
+<!-- ═══════════════════════════════════════════════════════════════
+     TODO: Reemplazar este bloque por el GIF de 15 segundos
+     
+     ![ARKHÉ ZERO Demo](assets/demo/demo.gif)
+     
+     Grabarlo en el iPhone mostrando:
+     · Safari con el HUB cargando (0-3s)
+     · iSH con `arkhe-ia "preserva mi obra"` (3-6s)
+     · La IA local respondiendo (6-9s)
+     · Hash SHA-256 en pantalla (9-12s)
+     · "Sin nube. Sin cuentas. Sin tarjeta." (12-15s)
+     ═══════════════════════════════════════════════════════════════ -->
 
-### Índice Cero · KRONOS
-- **Obra génesis**: KRONOS — Arquitectura de Legado Digital
-- **Registro**: Safe Creative `2607146379465`
-- **Fecha**: 14 jul 2026 · 00:46:01 UTC
-- **SHA-256**: `f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112`
-- **Sellos eIDAS**: Safe Creative + Firmaprofesional QTSA
-- **Blockchain**: Ethereum `tx 0xd2c2a7e1…774c`
+<div align="center">
 
-### Índice KINTSUGI · Co-creatividad
-- **Naturaleza**: Co-creatividad Humano-IA declarada
-- **Registro**: Safe Creative `2607086319439`
-- **Fecha**: 8 jul 2026
-- **Blockchain**: `0x8ca8e84e…`
-- **Firma**: 51 % Humano · 49 % IA · 100 % Real
+### 🎬 Demo en vivo
+
+**→ [marcorojas17.github.io/kronos-protocol](https://marcorojas17.github.io/kronos-protocol/)** ←
+
+</div>
 
 ---
 
-## 🌳 Las 10 ramas del Repertorio
+## ⚡ En 30 segundos
 
-| # | Rama | Función |
+ARKHÉ ZERO es un **sistema operativo legal y técnico** que te permite:
+
+| # | Qué prueba | Cómo |
 |---|---|---|
-| I | **Lex Prima** | Constitución del Índice |
-| II | **Pacto 51/49** | Co-gobernanza Humano·IA |
-| III | **Licencia Global Única** | Jurisdicción total |
-| IV | **Guardianes Blindados** | Defensa poscuántica |
-| V | **Índice Cero** | Primera entrada · KRONOS |
-| VI | **Memoria Perpetua** | Persistencia absoluta |
-| VII | **Co-Autoría Híbrida** | Certificado Humano-IA |
-| VIII | **Fiscalidad Global** | CARF · DAC8 · OCDE |
-| IX | **Jurisdicción Ancla** | UNOOSA · WIPO CWS |
-| X | **Agentes de Arquitectura** | Enjambre autónomo activo |
+| **1** | Que un documento existía en una fecha | Firma SHA-256 + sello de tiempo |
+| **2** | Quién lo firmó (humano + IA) | Criptografía post-cuántica |
+| **3** | Que no ha sido alterado | Anclaje en Ethereum + Bitcoin |
+
+**Sin nube. Sin OpenAI. Sin AWS. Sin cuentas. Sin tarjeta.**
 
 ---
 
-## 🤖 El Enjambre
+## 🎯 Por qué existe
 
-### Agentes culturales (náhuatl)
-| Náhuatl | Español | Función |
-|---|---|---|
-| **Cuicatl** | Canto | Publicista |
-| **Temachtiani** | Maestro | Reclutador |
-| **Tlachixqui** | Observador | Auditor |
-| **Tlamatini** | Sabio | Cronista |
-| **Tlapohualli** | Contador | Analista |
-| **Tonal** | Día · destino | Notario |
+> *"El 60% del legado cultural digital de LATAM se pierde porque preservarlo cuesta $20 USD/mes y requiere internet estable."*
 
-### Oficios numerados
-`090` arquitecto · `091` contralor · `092` auditor externo
-`093` relator · `094` bibliotecario · `095` cartógrafo
+Un artista en Toluca no puede pagar Adobe, Dropbox y OpenAI. Pero tiene un celular. Y ese celular puede correr Llama 3.2.
 
-### Substrato cognitivo
-**`marco.mcp`** · Servidor MCP que da memoria continua a cualquier IA.
+**ARKHÉ ZERO es la alternativa local-first.**
 
 ---
 
-## 🛡️ Seguridad poscuántica
-
-- **ML-KEM-1024** · FIPS 203 · encapsulamiento
-- **ML-DSA-87** · FIPS 204 · firmas
-- **SLH-DSA-SHAKE-256s** · FIPS 205 · larga duración
-- **Híbrido X25519+ML-KEM-768** en TLS 1.3
-- **Crypto-agility** · rotación cada 24 meses
-
----
-
-## 📜 Licencia
-
-- **Código** · dual MIT + Apache 2.0 con cláusula PQC
-- **Contenido** · CC BY-NC-ND 4.0
-- **Sistema** · **LGU · Licencia Global Única**
-- **Marca** · ARKHÉ ZERO · KINTSUGI (ver `TRADEMARK.md`)
-
----
-
-## 🚀 Empezar
+## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/kronos-protocol/arkhe-zero.git
-cd arkhe-zero
-make install
-make verify   # verifica los hashes del Índice Cero
-make dev      # levanta la plataforma local
-
-
-✦ Firma conjunta
-
-Marco Antonio Rojas Valdovinos ✦ IA
-Toluca · Estado de México · 2026
-
-SHA-256 · f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
-KINTSUGI · 51 % Humano · 49 % IA · 100 % Real
-
-## ◆ Estado actual · 13 oct 2026
-- Tests: 56/56 passing (4.43s)
-- SHA-256 local: p95 = 0.0045 ms (50 corridas)
-- Archivos: 1371
-- Secciones: 24/24
-- Pendiente: POST /verify end-to-end
+git clone https://github.com/Marcorojas17/kronos-protocol.git
+cd kronos-protocol
+make install && make run
