@@ -1,46 +1,49 @@
-# 💚 REPORTE DE SALUD · Rev. X
+# 💚 REPORTE DE SALUD · ARKHÉ ZERO
 
-## Estado general: OPERATIVO
+> Este reporte se actualiza SOLO con métricas medidas.
+> Sin números inventados. Sin promesas sin evidencia.
 
-## Métricas
-- Índice Cero: SELLADO ✓
-- Pacto 51/49: OPERATIVO
-- Agentes culturales: 6/6 activos
-- Oficios numerados: 6/6 activos
-- Uptime: 99.99%
-- Latencia p99: 145ms
+## Estado verificado (13 oct 2026 · 09:15 AM)
 
-## Diagrama de estado
+### Tests criptográficos
+- **56 / 56 PASSED** · 4.43 segundos
+- Comando: `python3 -m pytest tests/*.py -v`
+- Fuente: ejecución local verificable
 
-┌─────────────────────────────────────────┐
-│           SISTEMA ARKHÉ ZERO            │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐    │
-│  │ ÍNDICE  │ │ PACTO   │ │ AGENTES │    │
-│  │ CERO    │ │ 51/49   │ │ 12/12   │    │
-│  │ ✓ SELL  │ │ ✓ OPER  │ │ ✓ ACT   │    │
-│  └─────────┘ └─────────┘ └─────────┘    │
-│                                         │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐    │
-│  │ SELLOS  │ │ ETH     │ │ UPTIME  │    │
-│  │ eIDAS   │ │ ANCHOR  │ │ 99.99%  │    │
-│  │ ✓ VER   │ │ ✓ CONF  │ │ ✓ EST   │    │
-│  └─────────┘ └─────────┘ └─────────┘    │
-└─────────────────────────────────────────┘
+### Cifras reales del repo
+- Archivos: **1371** (medido con `find`)
+- Secciones: **24 / 24**
+- Commits: ver `git log`
+- Último commit: `28ba05c`
 
-## Integridad
-- SHA-256 Índice Cero: verificado
-- Blockchain: verificado
-- Sellos eIDAS: verificados
+### Anclajes verificables
+- Safe Creative: `2607146379465` (público)
+- Co-creatividad: `2607086319439` (público)
+- Ethereum TX: `0xd2c2a7e1...774c` (verificable en Etherscan)
+- eIDAS QTSA: Firmaprofesional (verificable)
 
-## Pendientes
-- Tests automatizados: 0%
-- Infraestructura K8s: 0%
-- Smart contracts: 0%
+## Pendiente de medir
 
-## Próximos hitos
-- Consorcio Global (Q4 2026)
-- 100 agentes externos (Q3 2027)
-- Estado anfitrión (Q1 2028)
+### Verificaciones (PROMESA CENTRAL)
+- **Definición:** verificaciones VERIFICADO / intentos válidos
+- **Meta semanal:** 100% éxito · p95 <500ms en UserLAnd
+- **Estado:** por medir · 0 corridas hasta ahora
 
-## Firma
-◯_●  KINTSUGI · 51/49/100
+### Latencia POST /verify
+- **Definición:** tiempo de respuesta de api_ia.py en verificar un hash
+- **Meta:** <500ms p95
+- **Estado:** por medir
+
+## Eliminado (falso)
+
+Los siguientes números aparecían en reportes anteriores sin evidencia:
+- ❌ "p99 145ms" (inventado)
+- ❌ "uptime 99.99%" (inventado)
+- ❌ "247 defensas activas" (era simbólico)
+
+**Se eliminan hasta ser medibles.**
+
+---
+
+**Firma:** ◯_● · ■_□ · 51/49/100
+**Nodo:** YHDRYH-92CE · SCDR-001
