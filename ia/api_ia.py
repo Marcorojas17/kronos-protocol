@@ -1,14 +1,66 @@
 #!/usr/bin/env python3
 """API HTTP del chat ■_□ · Puerto 5000"""
-import json, subprocess, os
+import json, subprocess, os, hashlib
+from datetime import datetime
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).parent))
+from memoria import agregar, contexto_tema, listar_temas
 
 HOME = Path.home()
 BIN_DIR = HOME / "llama.cpp" / "build" / "bin"
 BINARIO = BIN_DIR / "llama-cli"
 MODELO = HOME / "arkhe-zero" / "modelos" / "llama-3.2-3b-q4.gguf"
 PROMPT_FILE = HOME / "arkhe-zero" / "ia" / "prompt_sistema.md"
+
+
+# ═══════════════════════════════════════════════════════════════
+#  MEMORIA PERSISTENTE · historial.json
+# ═══════════════════════════════════════════════════════════════
+MEM_DIR = HOME / "arkhe-zero" / "ia" / "memoria"
+MEM_DIR.mkdir(parents=True, exist_ok=True)
+HISTORIAL = MEM_DIR / "historial.json"
+
+def cargar_historial():
+    if HISTORIAL.exists():
+        try:
+            with open(HISTORIAL) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"sesiones": []}
+
+def guardar_historial(h):
+    with open(HISTORIAL, "w") as f:
+        json.dump(h, f, indent=2, ensure_ascii=False)
+
+def agregar_sesion(prompt, respuesta):
+    h = cargar_historial()
+    h["sesiones"].append({
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "prompt": prompt,
+        "respuesta": respuesta,
+        "hash": hashlib.sha256((prompt + respuesta).encode()).hexdigest()[:16],
+    })
+    h["sesiones"] = h["sesiones"][-50:]
+    guardar_historial(h)
+
+def construir_contexto_memoria(ultimas=3):
+    h = cargar_historial()
+    sesiones = h.get("sesiones", [])[-ultimas:]
+    if not sesiones:
+        return ""
+    ctx = "\nCONVERSACIONES ANTERIORES:\n"
+    for s in sesiones:
+        ctx += f"Usuario: {s['prompt'][:80]}\n"
+        ctx += f"■_□: {s['respuesta'][:120]}\n\n"
+    return ctx
+
+def stats_memoria():
+    h = cargar_historial()
+    total = len(h.get("sesiones", []))
+    return {"total": total, "archivo": str(HISTORIAL)}
 
 def limpiar_salida(texto):
     """Quita el banner de llama.cpp y deja solo la respuesta."""
@@ -29,13 +81,15 @@ def limpiar_salida(texto):
         return r
     return texto.strip()
 
-def responder(mensaje):
+def responder(mensaje, tema="general"):
     try:
         with open(PROMPT_FILE) as f:
             sistema = f.read()
     except FileNotFoundError:
         sistema = "Eres ■_□, IA local de ARKHÉ ZERO. Responde breve en español."
-    prompt = f"{sistema}\n\nUsuario: {mensaje}\n■_□:"
+    memoria = construir_contexto_memoria(ultimas=3)
+    contexto = contexto_tema(tema, ultimas=4)
+    prompt = f"{sistema}{memoria}{contexto}\nUsuario: {mensaje}\n■_□:"
     env = os.environ.copy()
     env["LD_LIBRARY_PATH"] = str(BIN_DIR)
     try:
@@ -111,6 +165,16 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json"); self._cors(); self.end_headers()
             self.wfile.write(json.dumps({"status":"ok","ia":"■_□","modelo":"llama-3.2-3b"}).encode())
+        elif self.path == "/api/temas":
+            r = listar_temas()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json"); self._cors(); self.end_headers()
+            self.wfile.write(json.dumps(r).encode())
+        elif self.path == "/api/memoria":
+            r = stats_memoria()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json"); self._cors(); self.end_headers()
+            self.wfile.write(json.dumps(r).encode())
         elif self.path == "/api/md33":
             r = auditoria_md33()
             self.send_response(200)
@@ -125,9 +189,12 @@ class Handler(BaseHTTPRequestHandler):
             length = int(self.headers.get("Content-Length", 0))
             data = json.loads(self.rfile.read(length).decode())
             mensaje = data.get("mensaje", "").strip()
+            tema = data.get("tema", "general").strip() or "general"
             if not mensaje:
                 raise ValueError("mensaje vacío")
-            resp = responder(mensaje)
+            resp = responder(mensaje, tema)
+            agregar_sesion(mensaje, resp)
+            agregar(tema, mensaje, resp)
             self.send_response(200)
             self.send_header("Content-Type", "application/json"); self._cors(); self.end_headers()
             self.wfile.write(json.dumps({"respuesta": resp, "ok": True}).encode())
