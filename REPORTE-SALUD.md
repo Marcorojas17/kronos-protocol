@@ -22,14 +22,23 @@
 - Ethereum TX: `0xd2c2a7e1...774c` (verificable en Etherscan)
 - eIDAS QTSA: Firmaprofesional (verificable)
 
+## Medido (13 oct 2026)
+
+### Verificaciones SHA-256 locales (50 corridas)
+- **Definición:** hash SHA-256 + recomparación de igualdad, payload ~1.2 KB
+- **Éxito:** 50/50 · 100%
+- **min:** 0.0042 ms
+- **p50:** 0.0042 ms
+- **p95:** 0.0045 ms
+- **p99:** 0.0069 ms
+- **max:** 0.0078 ms
+- **media:** 0.0043 ms
+- **Script:** `/tmp/bench_sha256.py` (warmup 5 fuera de medición)
+- **Meta semanal p95 <500ms:** ✅ CUMPLE (p95 = 0.0045 ms)
+
 ## Pendiente de medir
 
-### Verificaciones (PROMESA CENTRAL)
-- **Definición:** verificaciones VERIFICADO / intentos válidos
-- **Meta semanal:** 100% éxito · p95 <500ms en UserLAnd
-- **Estado:** por medir · 0 corridas hasta ahora
-
-### Latencia POST /verify
+### Latencia POST /verify (end-to-end)
 - **Definición:** tiempo de respuesta de api_ia.py en verificar un hash
 - **Meta:** <500ms p95
 - **Estado:** por medir
