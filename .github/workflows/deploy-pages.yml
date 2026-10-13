@@ -36,7 +36,7 @@ jobs:
         run: echo "◯_● · 51/49/100" > ./_site/SEAL
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
 
   deploy:
     environment:
