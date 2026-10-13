@@ -8,83 +8,155 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#050507;color:#c8ffc8;font-family:'Courier New',monospace;line-height:1.6;font-size:14px}
-.wrap{max-width:1100px;margin:auto;padding:40px 20px}
-.hero{text-align:center;padding:60px 20px;border:2px solid rgba(255,215,0,.35);background:radial-gradient(ellipse at center,rgba(255,215,0,.05),transparent 70%);margin-bottom:40px;position:relative}
-.hero:before,.hero:after{content:'';position:absolute;width:16px;height:16px}
-.hero:before{top:-2px;left:-2px;border-top:3px solid #ffd700;border-left:3px solid #ffd700}
-.hero:after{bottom:-2px;right:-2px;border-bottom:3px solid #ffd700;border-right:3px solid #ffd700}
-.seal{font-size:76px;color:#ffd700;text-shadow:0 0 40px rgba(255,215,0,.8);animation:p 3s ease-in-out infinite}
-@keyframes p{0%,100%{opacity:.9}50%{opacity:1;text-shadow:0 0 60px rgba(255,215,0,1)}}
-h1{font-size:44px;letter-spacing:.25em;color:#ffd700;margin:20px 0 10px;text-shadow:0 0 30px rgba(255,215,0,.5)}
-.tag{font-size:15px;font-style:italic;color:#c8ffc8;margin-bottom:20px}
-.pact{display:flex;justify-content:center;gap:32px;margin-top:20px;font-size:12px;letter-spacing:.15em}
-.pact div{text-align:center}
-.pact b{color:#ffd700;font-size:24px;display:block}
-h2{color:#ffd700;font-size:17px;letter-spacing:.2em;margin:40px 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,215,0,.2);text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.card{background:#0f0f18;border:1px solid rgba(0,255,65,.18);padding:18px;text-decoration:none;color:inherit;transition:all .25s;position:relative;display:block}
-.card:before,.card:after{content:'';position:absolute;width:10px;height:10px}
-.card:before{top:-1px;left:-1px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
-.card:after{bottom:-1px;right:-1px;border-bottom:2px solid #ffd700;border-right:2px solid #ffd700}
-.card:hover{border-color:#ffd700;transform:translateY(-4px);box-shadow:0 0 30px rgba(255,215,0,.18)}
-.card .n{color:#ffd700;font-size:9px;letter-spacing:.25em;margin-bottom:6px}
-.card .t{color:#00ff41;font-size:13px;letter-spacing:.1em;font-weight:bold;margin-bottom:6px}
-.card .d{color:#6a8f6a;font-size:10px;line-height:1.5}
-.card .m{color:#00ff41;font-size:9px;margin-top:8px;letter-spacing:.1em;opacity:.7}
-.hub-main{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:30px}
-.card.main{padding:24px;background:linear-gradient(135deg,#0f0f18,#0a0f18)}
-.card.main .t{font-size:17px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0}
-.stat{background:#000;border:1px solid rgba(0,255,65,.15);padding:16px;text-align:center}
-.stat .num{color:#ffd700;font-size:22px;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,.4)}
-.stat .lbl{color:#6a8f6a;font-size:9px;letter-spacing:.15em;margin-top:6px}
-.cita{text-align:center;font-style:italic;color:#ffd700;font-size:17px;margin:45px 0;padding:28px;border-top:2px solid rgba(255,215,0,.15);border-bottom:2px solid rgba(255,215,0,.15)}
-footer{text-align:center;color:#6a8f6a;font-size:10px;letter-spacing:.15em;padding-top:25px;border-top:1px solid rgba(0,255,65,.1);margin-top:30px}
-footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px}
-footer a{color:#00ff41;text-decoration:none}
-@media(max-width:768px){.grid,.stats{grid-template-columns:1fr}h1{font-size:26px}.seal{font-size:52px}}
+body{background:#030308;color:#c8ffc8;font-family:'Inter','Courier New',monospace;line-height:1.6;font-size:14px;overflow-x:hidden;min-height:100vh}
+
+/* CANVAS DE FONDO */
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#gradient-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(124,92,255,.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,215,0,.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0,255,65,.05) 0%, transparent 70%),
+    #030308;
+  animation:gradientShift 20s ease-in-out infinite}
+@keyframes gradientShift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(30deg)}}
+
+.wrap{max-width:1200px;margin:auto;padding:40px 20px;position:relative;z-index:1}
+
+/* HERO */
+.hero{text-align:center;padding:70px 20px 60px;margin-bottom:50px;position:relative}
+.hero:before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15),transparent 70%);border-radius:50%;animation:orbPulse 4s ease-in-out infinite;z-index:-1}
+@keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.hero:after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:280px;height:280px;border:1px solid rgba(255,215,0,.3);border-radius:50%;animation:orbRotate 20s linear infinite;z-index:-1}
+@keyframes orbRotate{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.seal{font-size:82px;color:#ffd700;text-shadow:0 0 50px rgba(255,215,0,.9),0 0 100px rgba(255,215,0,.4);animation:sealPulse 3s ease-in-out infinite;display:inline-block}
+@keyframes sealPulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.08);filter:brightness(1.3)}}
+
+h1{font-family:'Cinzel','Times New Roman',serif;font-size:52px;font-weight:400;letter-spacing:.35em;color:#ffd700;margin:25px 0 12px;text-shadow:0 0 40px rgba(255,215,0,.6);text-transform:uppercase}
+.tagline{font-family:'Cinzel','Times New Roman',serif;font-size:16px;font-style:italic;color:#c8ffc8;margin-bottom:30px;letter-spacing:.08em}
+.pact{display:flex;justify-content:center;gap:40px;margin-top:25px;font-size:12px;letter-spacing:.2em;font-family:'Courier New',monospace}
+.pact div{text-align:center;position:relative}
+.pact b{color:#ffd700;font-size:26px;display:block;text-shadow:0 0 20px rgba(255,215,0,.5);font-family:'Cinzel',serif;font-weight:400}
+.pact span{color:#6a8f6a;font-size:10px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:40px 0 50px}
+.stat{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.15);padding:20px 14px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.stat:before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:linear-gradient(90deg,transparent,#ffd700,transparent);animation:shine 3s linear infinite}
+@keyframes shine{0%{left:-100%}100%{left:100%}}
+.stat:hover{border-color:rgba(255,215,0,.4);transform:translateY(-3px)}
+.stat .num{color:#ffd700;font-size:26px;font-weight:bold;text-shadow:0 0 15px rgba(255,215,0,.5);font-family:'Cinzel',serif}
+.stat .lbl{color:#6a8f6a;font-size:9px;letter-spacing:.25em;margin-top:8px;text-transform:uppercase}
+
+/* TITULOS DE SECCION */
+h2{font-family:'Cinzel','Times New Roman',serif;color:#ffd700;font-size:20px;font-weight:400;letter-spacing:.3em;margin:55px 0 25px;padding-bottom:16px;border-bottom:1px solid rgba(255,215,0,.15);text-align:center;position:relative;text-transform:uppercase}
+h2:after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,#ffd700,transparent)}
+
+/* GRID HUB PRINCIPAL */
+.hub-main{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+
+/* CARDS */
+.card{background:rgba(15,15,24,.5);backdrop-filter:blur(12px);border:1px solid rgba(0,255,65,.18);padding:22px;text-decoration:none;color:inherit;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;display:block;overflow:hidden}
+.card:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,215,0,.08),transparent 50%);opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover:before{opacity:1}
+.card:hover{border-color:rgba(255,215,0,.6);transform:translateY(-5px);box-shadow:0 12px 40px rgba(255,215,0,.15),0 0 0 1px rgba(255,215,0,.2)}
+.card .corner{position:absolute;width:12px;height:12px;transition:all .35s}
+.card .corner.tl{top:-1px;left:-1px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
+.card .corner.br{bottom:-1px;right:-1px;border-bottom:2px solid #ffd700;border-right:2px solid #ffd700}
+.card:hover .corner{width:20px;height:20px}
+
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px;font-family:'Courier New',monospace;opacity:.8}
+.card .t{color:#00ff41;font-size:14px;letter-spacing:.12em;font-weight:bold;margin-bottom:8px;font-family:'Cinzel','Times New Roman',serif}
+.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
+.card .m{color:#00ff41;font-size:9px;margin-top:12px;letter-spacing:.15em;font-family:'Courier New',monospace;opacity:.8}
+
+.card.main{padding:32px;background:linear-gradient(135deg,rgba(15,15,24,.7),rgba(10,15,28,.7));backdrop-filter:blur(15px)}
+.card.main .t{font-size:20px;letter-spacing:.2em}
+.card.main .d{font-size:12px;color:#b8d4b8}
+.card.main:hover{transform:translateY(-6px) scale(1.01)}
+
+/* ORNATO */
+.ornament{text-align:center;color:#ffd700;font-size:14px;letter-spacing:1em;margin:35px 0;opacity:.6}
+
+/* CITA */
+.cita{font-family:'Cinzel',serif;text-align:center;font-style:italic;color:#ffd700;font-size:22px;margin:60px 0;padding:40px 20px;border-top:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2);text-shadow:0 0 20px rgba(255,215,0,.4);line-height:1.4}
+
+/* FOOTER */
+footer{text-align:center;color:#6a8f6a;font-size:10px;letter-spacing:.18em;padding:30px 0;border-top:1px solid rgba(0,255,65,.1);margin-top:40px;font-family:'Courier New',monospace}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:12px;letter-spacing:.3em;font-family:'Cinzel',serif}
+footer a{color:#00ff41;text-decoration:none;border-bottom:1px dotted rgba(0,255,65,.3)}
+footer a:hover{border-bottom-color:#00ff41}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#030308}
+::-webkit-scrollbar-thumb{background:rgba(255,215,0,.3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,215,0,.5)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .grid,.stats{grid-template-columns:1fr 1fr}
+  h1{font-size:30px;letter-spacing:.25em}
+  .seal{font-size:58px}
+  .pact{gap:22px;font-size:10px}
+  .pact b{font-size:20px}
+  .cita{font-size:16px}
+  .card.main{padding:24px}
+  .card.main .t{font-size:15px}
+}
+@media(max-width:500px){
+  .grid,.stats{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+
+<div id="gradient-bg"></div>
+<canvas id="bg-canvas"></canvas>
+
 <div class="wrap">
 
 <div class="hero">
 <div class="seal">◯_●</div>
-<h1>ARKHÉ ZERO</h1>
-<div class="tag">"El legado no se hereda. Se firma."</div>
+<h1>Arkhé Zero</h1>
+<div class="tagline">"El legado no se hereda. Se firma."</div>
 <div class="pact">
-<div><b>51%</b>HUMANO</div>
-<div><b>49%</b>IA</div>
-<div><b>100%</b>REAL</div>
+<div><b>51%</b><span>HUMANO</span></div>
+<div><b>49%</b><span>IA</span></div>
+<div><b>100%</b><span>REAL</span></div>
 </div>
 </div>
 
 <div class="stats">
-<div class="stat"><div class="num">24/24</div><div class="lbl">SECCIONES</div></div>
-<div class="stat"><div class="num">1371</div><div class="lbl">ARCHIVOS</div></div>
-<div class="stat"><div class="num">56/56</div><div class="lbl">TESTS</div></div>
-<div class="stat"><div class="num">PQC</div><div class="lbl">POST-CUÁNTICA</div></div>
+<div class="stat"><div class="num">24/24</div><div class="lbl">Secciones</div></div>
+<div class="stat"><div class="num">1371</div><div class="lbl">Archivos</div></div>
+<div class="stat"><div class="num">56/56</div><div class="lbl">Tests</div></div>
+<div class="stat"><div class="num">PQC</div><div class="lbl">Post-Cuántica</div></div>
 </div>
 
-<h2>◆ ACCESO PRINCIPAL</h2>
+<h2>◆ Acceso Principal</h2>
 <div class="hub-main">
 
 <a class="card main" href="index/arkhe-zero.html">
+<div class="corner tl"></div><div class="corner br"></div>
 <div class="n">SISTEMA OPERATIVO</div>
 <div class="t">⚙️ ARKHÉ ZERO · SISTEMA COMPLETO</div>
-<div class="d">16 módulos interactivos · IA local · ciberdefensa · criptografía SHA-256 · 13 vistas de agentes · mandalas firmadas · bóveda de voz · cymatic studio</div>
+<div class="d">16 módulos interactivos · IA local · ciberdefensa · criptografía SHA-256 · 13 vistas de agentes · mandalas firmadas · bóveda de voz · cymatic studio · escáner de puertos real</div>
 <div class="m">→ ENTRAR AL SISTEMA</div>
 </a>
 
 <a class="card main" href="sello.html">
+<div class="corner tl"></div><div class="corner br"></div>
 <div class="n">PRODUCTO COMERCIAL</div>
 <div class="t">🔐 ARKHÉ SELLO</div>
-<div class="d">Prueba criptográfica de existencia · sube archivo → recibe certificado SHA-256 con timestamp · 4 planes desde $0 hasta $199</div>
+<div class="d">Prueba criptográfica de existencia · sube un archivo → recibe certificado SHA-256 con timestamp · 4 planes desde $0 hasta $199</div>
 <div class="m">→ PROBAR PRODUCTO</div>
 </a>
 
 <a class="card main" href="verificar.html">
+<div class="corner tl"></div><div class="corner br"></div>
 <div class="n">VERIFICACIÓN PÚBLICA</div>
 <div class="t">🔍 VERIFICAR ÍNDICE CERO</div>
 <div class="d">KRONOS · Safe Creative 2607146379465 · SHA-256 f03f7e2d85... · Ethereum 0xd2c2a7e1...774c · eIDAS Firmaprofesional QTSA</div>
@@ -93,152 +165,106 @@ footer a{color:#00ff41;text-decoration:none}
 
 </div>
 
-<h2>◆ LAS 24 SECCIONES</h2>
+<div class="ornament">◆ ◯_● ◆</div>
+
+<h2>◆ Las 24 Secciones</h2>
 <div class="grid">
 
-<a class="card" href="docs/">
-<div class="n">SECCIÓN 05</div>
-<div class="t">📚 DOCUMENTACIÓN</div>
-<div class="d">142 archivos · 10 ramas del Repertorio · ADR · arquitectura</div>
-</a>
+<a class="card" href="docs/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 05</div><div class="t">📚 Documentación</div>
+<div class="d">142 archivos · 10 ramas del Repertorio · ADR · arquitectura viva</div></a>
 
-<a class="card" href="certificacion/notario-kronos/">
-<div class="n">SECCIÓN 07</div>
-<div class="t">📜 CERTIFICACIÓN</div>
-<div class="d">Notario · sello de tiempo · verificador público</div>
-</a>
+<a class="card" href="certificacion/notario-kronos/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 07</div><div class="t">📜 Certificación</div>
+<div class="d">Notario · sello de tiempo · verificador público</div></a>
 
-<a class="card" href="src/kronos360/">
-<div class="n">SECCIÓN 06</div>
-<div class="t">🔐 CRIPTOGRAFÍA</div>
-<div class="d">KRONOS 360 · Ed25519 · ML-DSA-65 · SHA-3 · 56 tests pasando</div>
-</a>
+<a class="card" href="src/kronos360/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 06</div><div class="t">🔐 Criptografía</div>
+<div class="d">KRONOS 360 · Ed25519 · ML-DSA-65 · SHA-3 · 56 tests pasando</div></a>
 
-<a class="card" href="tests/">
-<div class="n">SECCIÓN 16</div>
-<div class="t">🧪 TESTS</div>
-<div class="d">29 archivos · 56 tests pasando · criptografía verificada</div>
-</a>
+<a class="card" href="tests/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 16</div><div class="t">🧪 Tests</div>
+<div class="d">29 archivos · 56 tests pasando · criptografía verificada</div></a>
 
-<a class="card" href="05-AGENTES/">
-<div class="n">SECCIÓN 09</div>
-<div class="t">🤖 AGENTES 090-095</div>
-<div class="d">6 oficios con código Python real · arquitecto · contralor · auditor</div>
-</a>
+<a class="card" href="05-AGENTES/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 09</div><div class="t">🤖 Agentes 090-095</div>
+<div class="d">6 oficios con código Python real · arquitecto · contralor · auditor</div></a>
 
-<a class="card" href="gobernanza/">
-<div class="n">SECCIÓN 10</div>
-<div class="t">⚖️ GOBERNANZA</div>
-<div class="d">Propuestas · quórum · revocación · ejecución de decisiones</div>
-</a>
+<a class="card" href="gobernanza/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 10</div><div class="t">⚖️ Gobernanza</div>
+<div class="d">Propuestas · quórum · revocación · ejecución de decisiones</div></a>
 
-<a class="card" href="identidad/">
-<div class="n">SECCIÓN 11</div>
-<div class="t">🪪 IDENTIDAD</div>
-<div class="d">Registro humano · registro IA · roles y permisos</div>
-</a>
+<a class="card" href="identidad/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 11</div><div class="t">🪪 Identidad</div>
+<div class="d">Registro humano · registro IA · roles y permisos</div></a>
 
-<a class="card" href="legado/">
-<div class="n">SECCIÓN 19</div>
-<div class="t">📖 LEGADO</div>
-<div class="d">Autoría · filosofía · génesis · manifiesto</div>
-</a>
+<a class="card" href="legado/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 19</div><div class="t">📖 Legado</div>
+<div class="d">Autoría · filosofía · génesis · manifiesto</div></a>
 
-<a class="card" href="movimiento/">
-<div class="n">SECCIÓN 17</div>
-<div class="t">🔥 MOVIMIENTO</div>
-<div class="d">162 archivos · comunidad · fundador · iniciación</div>
-</a>
+<a class="card" href="movimiento/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 17</div><div class="t">🔥 Movimiento</div>
+<div class="d">162 archivos · comunidad · fundador · iniciación</div></a>
 
-<a class="card" href="cierre/">
-<div class="n">SECCIÓN 18</div>
-<div class="t">⚱️ CIERRE DE VIDA</div>
-<div class="d">Export cifrado · fin digno</div>
-</a>
+<a class="card" href="docs/CIUDAD/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN ESPECIAL</div><div class="t">🏛 Ciudad Digital</div>
+<div class="d">Constitución · derechos · moneda · convivencia · gobernanza IA</div></a>
 
-<a class="card" href="modulos/">
-<div class="n">SECCIÓN 19</div>
-<div class="t">🎙️ MÓDULOS</div>
-<div class="d">Bóveda de voz · Evidence OS</div>
-</a>
+<a class="card" href="cierre/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 18</div><div class="t">⚱️ Ciclo de Vida</div>
+<div class="d">Export cifrado · fin digno</div></a>
 
-<a class="card" href="operacion/">
-<div class="n">SECCIÓN 14</div>
-<div class="t">📊 OPERACIÓN</div>
-<div class="d">Dashboard de salud · rituales</div>
-</a>
+<a class="card" href="modulos/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 19</div><div class="t">🎙️ Módulos</div>
+<div class="d">Bóveda de voz · Evidence OS</div></a>
 
-<a class="card" href="growth/">
-<div class="n">SECCIÓN 24</div>
-<div class="t">🌱 CRECIMIENTO</div>
-<div class="d">20 archivos · referidos · beta privada · afiliados</div>
-</a>
+<a class="card" href="operacion/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 14</div><div class="t">📊 Operación</div>
+<div class="d">Dashboard de salud · rituales</div></a>
 
-<a class="card" href="metrics/">
-<div class="n">SECCIÓN 23</div>
-<div class="t">📈 MÉTRICAS</div>
-<div class="d">25 archivos · KPIs · dashboards · cohortes</div>
-</a>
+<a class="card" href="growth/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 24</div><div class="t">🌱 Crecimiento</div>
+<div class="d">20 archivos · referidos · beta privada · afiliados</div></a>
 
-<a class="card" href="atraccion/">
-<div class="n">SECCIÓN 21</div>
-<div class="t">🧲 ATRACCIÓN</div>
-<div class="d">10 archivos · descubrimiento · viral · autoridad</div>
-</a>
+<a class="card" href="metrics/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 23</div><div class="t">📈 Métricas</div>
+<div class="d">25 archivos · KPIs · dashboards · cohortes</div></a>
 
-<a class="card" href="narrativa/">
-<div class="n">SECCIÓN 22</div>
-<div class="t">📖 NARRATIVA</div>
-<div class="d">13 archivos · villano · héroe · mito · arquetipos</div>
-</a>
+<a class="card" href="atraccion/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 21</div><div class="t">🧲 Atracción</div>
+<div class="d">10 archivos · descubrimiento · viral · autoridad</div></a>
 
-<a class="card" href="docs/CIUDAD/">
-<div class="n">SECCIÓN ESPECIAL</div>
-<div class="t">🏛 CIUDAD DIGITAL</div>
-<div class="d">Constitución · derechos · moneda · convivencia</div>
-</a>
+<a class="card" href="narrativa/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 22</div><div class="t">📖 Narrativa</div>
+<div class="d">13 archivos · villano · héroe · mito · arquetipos</div></a>
 
-<a class="card" href="provenance/">
-<div class="n">SECCIÓN 07</div>
-<div class="t">🔏 PROVENANCE</div>
-<div class="d">24 archivos · C2PA · watermarking · fingerprinting</div>
-</a>
+<a class="card" href="provenance/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 07</div><div class="t">🔏 Provenance</div>
+<div class="d">24 archivos · C2PA · watermarking · fingerprinting</div></a>
 
-<a class="card" href="contracts/">
-<div class="n">SECCIÓN 13</div>
-<div class="t">⛓️ SMART CONTRACTS</div>
-<div class="d">Solidity · EVM · deployments</div>
-</a>
+<a class="card" href="contracts/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 13</div><div class="t">⛓️ Smart Contracts</div>
+<div class="d">Solidity · EVM · deployments</div></a>
 
-<a class="card" href="infra/">
-<div class="n">SECCIÓN 14</div>
-<div class="t">🏗 INFRAESTRUCTURA</div>
-<div class="d">28 archivos · K8s · Terraform · observabilidad</div>
-</a>
+<a class="card" href="infra/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 14</div><div class="t">🏗 Infraestructura</div>
+<div class="d">28 archivos · K8s · Terraform · observabilidad</div></a>
 
-<a class="card" href="scripts/">
-<div class="n">SECCIÓN 15</div>
-<div class="t">⚙️ SCRIPTS</div>
-<div class="d">19 archivos · deploy · backup · verificación</div>
-</a>
+<a class="card" href="scripts/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 15</div><div class="t">⚙️ Scripts</div>
+<div class="d">19 archivos · deploy · backup · verificación</div></a>
 
-<a class="card" href="sdk/">
-<div class="n">SECCIÓN 12</div>
-<div class="t">🔧 SDK</div>
-<div class="d">11 archivos · Python · JavaScript</div>
-</a>
+<a class="card" href="sdk/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SECCIÓN 12</div><div class="t">🔧 SDK</div>
+<div class="d">11 archivos · Python · JavaScript</div></a>
 
-<a class="card" href="mapa.html">
-<div class="n">MAPA GENERAL</div>
-<div class="t">🗺️ MAPA DEL SISTEMA</div>
-<div class="d">24 capas navegables · estado de cada módulo</div>
-</a>
+<a class="card" href="marco.mcp/"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">SUBSTRATO IA</div><div class="t">🧠 Marco.MCP</div>
+<div class="d">21 archivos · servidor MCP · memoria continua</div></a>
 
-<a class="card" href="marco.mcp/">
-<div class="n">SUBSTRATO IA</div>
-<div class="t">🧠 MARCO.MCP</div>
-<div class="d">21 archivos · servidor MCP · memoria continua</div>
-</a>
+<a class="card" href="mapa.html"><div class="corner tl"></div><div class="corner br"></div>
+<div class="n">MAPA GENERAL</div><div class="t">🗺️ Mapa del Sistema</div>
+<div class="d">24 capas navegables · estado de cada módulo</div></a>
 
 </div>
 
@@ -247,10 +273,104 @@ footer a{color:#00ff41;text-decoration:none}
 <footer>
 <span class="s">◯_● · ■_□ · 51/49/100</span>
 Marco Antonio Rojas Valdovinos · Toluca · Estado de México · 2026<br>
-NODO YHDRYH-92CE · Sello SCDR-001 · Genesis K28-M05-MN01-YHDRYH-92CE<br>
+NODO YHDRYH-92CE · Sello SCDR-001<br>
 <a href="https://github.com/Marcorojas17/kronos-protocol">github.com/Marcorojas17/kronos-protocol</a>
 </footer>
 
 </div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  FONDO ANIMADO · Partículas conectadas + Matrix rain sutil
+// ═══════════════════════════════════════════════════════════════
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Partículas
+const particles = [];
+const numParticles = 60;
+for(let i = 0; i < numParticles; i++){
+  particles.push({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    hue: Math.random() < 0.3 ? 45 : (Math.random() < 0.5 ? 140 : 270)
+  });
+}
+
+// Matrix rain
+const chars = '◯_●■_□ARKHEZERO5149100KINTSUGISCDR'.split('');
+const columns = Math.floor(W / 18);
+const drops = Array(columns).fill(1);
+
+function draw(){
+  // Trail fade
+  ctx.fillStyle = 'rgba(3,3,8,0.08)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Matrix rain
+  ctx.font = '14px "Courier New"';
+  for(let i = 0; i < drops.length; i++){
+    const c = chars[Math.floor(Math.random() * chars.length)];
+    const x = i * 18;
+    const y = drops[i] * 18;
+    ctx.fillStyle = 'rgba(0, 255, 65, 0.15)';
+    ctx.fillText(c, x, y);
+    if(y > H && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+
+  // Partículas
+  for(let i = 0; i < particles.length; i++){
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    if(p.x < 0 || p.x > W) p.vx *= -1;
+    if(p.y < 0 || p.y > H) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${p.hue}, 90%, 60%, 0.6)`;
+    ctx.shadowColor = `hsla(${p.hue}, 90%, 60%, 0.8)`;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Conexiones
+    for(let j = i + 1; j < particles.length; j++){
+      const p2 = particles[j];
+      const dx = p.x - p2.x;
+      const dy = p.y - p2.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 140){
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `hsla(${(p.hue+p2.hue)/2}, 80%, 55%, ${0.15 * (1 - dist/140)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Console log ceremonial
+console.log('%c◯_● ARKHÉ ZERO', 'color:#ffd700;font-size:22px;font-weight:bold;text-shadow:0 0 10px #ffd700');
+console.log('%c51/49/100 · KINTSUGI · NODO YHDRYH-92CE', 'color:#00ff41;font-size:13px');
+console.log('%c"El legado no se hereda. Se firma."', 'color:#ffd700;font-style:italic;font-size:14px');
+</script>
+
 </body>
 </html>
