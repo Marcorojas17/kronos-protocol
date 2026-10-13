@@ -181,6 +181,16 @@ canvas{display:block;max-width:100%}
 <div style="margin-top:12px">
 <div class="db">ML-KEM-1024</div><div class="db">ML-DSA-87</div><div class="db">SLH-DSA</div>
 <div class="db y">eIDAS QTSA</div><div class="db c">C2PA v2.1</div><div class="db p">Crypto-Agility</div></div></div>
+
+<div class="pnl">
+<div class="pt">◆ SCAN REAL DE PUERTOS</div>
+<p style="font-size:11px;color:var(--td);margin-bottom:10px">Escaneo de sockets TCP reales. No simulación.</p>
+<button class="bt by" onclick="cdScanReal()">🔍 EJECUTAR SCAN REAL</button>
+<button class="bt bc" onclick="cdLimpiarScan()">🗑 LIMPIAR</button>
+<div id="cd-scan-out" style="margin-top:12px;background:#000;border:1px solid var(--b);padding:12px;min-height:180px;font-size:11px;line-height:1.6;color:var(--g)">
+<div class="tl tif">Presiona SCAN REAL para auditar el sistema.</div>
+</div>
+</div>
 <div class="pnl"><div class="pt">◆ Simular Ataque</div>
 <button class="bt br" onclick="atk('SQL_INJECTION')">💉 SQL Injection</button>
 <button class="bt br" onclick="atk('DDoS')">💥 DDoS</button>
@@ -537,6 +547,55 @@ async function md33Auditar(){
 }
 function md33Limpiar(){
   const out = document.getElementById("md33-out");
+  if(out) out.innerHTML = '<div class="tl tif">Panel limpio.</div>';
+}
+
+
+async function cdScanReal(){
+  const out = document.getElementById("cd-scan-out");
+  if(!out) return;
+  out.innerHTML = "";
+  const add = (t, c) => {
+    const l = document.createElement("div");
+    l.className = "tl " + (c || "to");
+    l.textContent = t;
+    out.appendChild(l);
+    out.scrollTop = out.scrollHeight;
+  };
+  add("[CD-SCAN] Iniciando escaneo real de puertos...", "tc");
+  add("[CD-SCAN] Motor: api_scan.py (sockets TCP)", "tif");
+  try {
+    const r = await fetch("http://127.0.0.1:5001/api/scan", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({target: "127.0.0.1"})
+    });
+    const data = await r.json();
+    add("", "to");
+    add("Target: " + data.target, "tw");
+    add("Total puertos escaneados: " + data.total, "tif");
+    add("Abiertos: " + data.abiertos.length, "tw");
+    add("", "to");
+    for(const p of data.abiertos){
+      let nombre = "desconocido";
+      if(p===22) nombre = "SSH";
+      else if(p===80) nombre = "HTTP";
+      else if(p===443) nombre = "HTTPS";
+      else if(p===8080) nombre = "ARKHÉ-WEB";
+      else if(p===5001) nombre = "SCAN-API";
+      else if(p===5000) nombre = "IA-API";
+      add("▸ Puerto " + p + " (" + nombre + ") · ABIERTO", "tw");
+    }
+    add("", "to");
+    add("Cerrados: " + data.cerrados.length, "tif");
+    add("◯_● SCAN REAL COMPLETO · 51/49/100", "tw");
+  } catch(e) {
+    add("[CD-SCAN] Error: " + e.message, "te");
+    add("Arranca api_scan: nohup python3 ~/arkhe-zero/ia/api_scan.py &", "tc");
+  }
+}
+function cdLimpiarScan(){
+  const out = document.getElementById("cd-scan-out");
   if(out) out.innerHTML = '<div class="tl tif">Panel limpio.</div>';
 }
 
