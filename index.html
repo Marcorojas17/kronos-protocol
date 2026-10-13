@@ -276,7 +276,8 @@ canvas{display:block;max-width:100%}
 <div class="pnl"><div class="cb"><canvas id="mc" width="450" height="450"></canvas></div>
 <div style="margin-top:11px;text-align:center">
 <button class="bt by" onclick="gm()">✨ GENERAR</button>
-<button class="bt" onclick="am()">◆ ANIMAR</button></div>
+<button class="bt" onclick="am()">◆ ANIMAR</button>
+<button class="bt by" onclick="yjExportarPNG()">⬇ EXPORTAR PNG</button></div>
 <div class="pnl">
 <div class="pt">◆ FIRMA SHA-256 DEL MANDALA</div>
 <p style="font-size:11px;color:var(--td);margin-bottom:10px">Cada mandala se firma con SHA-256 real. Registro criptográfico único.</p>
@@ -650,6 +651,93 @@ async function cdScanReal(){
 function cdLimpiarScan(){
   const out = document.getElementById("cd-scan-out");
   if(out) out.innerHTML = '<div class="tl tif">Panel limpio.</div>';
+}
+
+
+async function yjExportarPNG(){
+  const canvasOrig = document.getElementById("mc");
+  if(!canvasOrig){ toast("No hay mandala"); return; }
+  
+  // Obtener la última firma
+  const firmas = JSON.parse(localStorage.getItem("yj_firmas") || "[]");
+  const firma = firmas[0] || {hash: "sin-firma", ts: new Date().toISOString(), autor: "Marco Antonio Rojas Valdovinos"};
+  
+  // Crear canvas expandido (mandala + bloque de firma)
+  const W = 500, H = 640;
+  const c = document.createElement("canvas");
+  c.width = W;
+  c.height = H;
+  const ctx = c.getContext("2d");
+  
+  // Fondo negro
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, W, H);
+  
+  // Borde dorado
+  ctx.strokeStyle = "#ffd700";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(10, 10, W-20, H-20);
+  ctx.strokeStyle = "#00ff41";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(14, 14, W-28, H-28);
+  
+  // Título superior
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "bold 20px 'Courier New', monospace";
+  ctx.textAlign = "center";
+  ctx.fillText("◯_● YEJIDÁ · MANDALA", W/2, 48);
+  ctx.fillStyle = "#00ff41";
+  ctx.font = "12px 'Courier New', monospace";
+  ctx.fillText("Kabbalah 2036 · Convergencia 11 × 1", W/2, 68);
+  
+  // Pegar el mandala (450x450 escalado a 400x400)
+  ctx.drawImage(canvasOrig, 50, 85, 400, 400);
+  
+  // Bloque de firma
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "bold 12px 'Courier New', monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("◆ FIRMA CRIPTOGRÁFICA", 30, 512);
+  
+  ctx.fillStyle = "#00ff41";
+  ctx.font = "10px 'Courier New', monospace";
+  ctx.fillText("SHA-256:", 30, 532);
+  
+  // Hash en 2 líneas
+  const hash = firma.hash;
+  ctx.fillText(hash.substring(0, 32), 30, 548);
+  ctx.fillText(hash.substring(32), 30, 562);
+  
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("Autor: " + firma.autor, 30, 588);
+  ctx.fillStyle = "#6a8f6a";
+  ctx.fillText("Timestamp: " + firma.ts, 30, 604);
+  ctx.fillText("Sello: SCDR-001 · NODO YHDRYH-92CE · 51/49/100", 30, 620);
+  
+  // Descargar
+  const nombre = "yejida-mandala-" + new Date().toISOString().slice(0,19).replace(/[:T]/g,"-") + ".png";
+  c.toBlob(function(blob){
+    if(navigator.share && navigator.canShare && navigator.canShare({files:[new File([blob], nombre, {type:"image/png"})]})){
+      const file = new File([blob], nombre, {type:"image/png"});
+      navigator.share({files: [file], title: "Yejidá Mandala", text: "Mandala firmado · SHA-256 · ARKHÉ ZERO"})
+        .then(()=>toast("⬇ Mandala compartido"))
+        .catch(()=>fallbackDescarga(blob, nombre));
+    } else {
+      fallbackDescarga(blob, nombre);
+    }
+  }, "image/png");
+}
+
+function fallbackDescarga(blob, nombre){
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.download = nombre;
+  link.href = url;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  toast("⬇ Mandala exportado: " + nombre);
 }
 
 </script>
