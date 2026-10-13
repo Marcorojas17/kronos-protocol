@@ -2,200 +2,93 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Identidad · ARKHÉ ZERO</title>
-<meta name="description" content="Capa 0 · Identidad y Manifiesto del Índice Primigenio Soberano">
-<link rel="icon" href="../assets/svg/sigilo-arkhe.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/themes.css">
-<link rel="stylesheet" href="../assets/css/nav-system.css">
-<link rel="stylesheet" href="../assets/css/animations.css">
-<link rel="stylesheet" href="../assets/css/main.css">
+<title>Apps · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
+h1{font-family:'Cinzel',serif;font-size:36px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
+.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
+.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.2);padding:22px;transition:all .3s;text-decoration:none;color:inherit}
+.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,215,0,.15)}
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px}
+.card .t{color:#00ff41;font-size:16px;font-weight:bold;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.1em}
+.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
+.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:22px;margin-bottom:18px;font-size:12px;line-height:1.9}
+footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
+@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:22px}}</style>
 </head>
-<body data-theme="kintsugi" data-page="00">
-
-<canvas id="field" aria-hidden="true"></canvas>
-<div class="aurora" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-
-<!-- NAV TOP -->
-<nav class="nav-top" data-nav="top">
-  <a href="../index.html" class="nav-brand" aria-label="ARKHÉ ZERO · Inicio">
-    <span class="brand-symbol">◈</span>
-    <span class="brand-text">ARKHÉ ZERO</span>
-    <span class="brand-kintsugi">◇ ◈ ◇</span>
-  </a>
-  <div class="nav-controls">
-    <button class="nav-btn" data-nav-action="back" aria-label="Atrás" title="Atrás (Alt+←)"><span class="nav-icon">←</span></button>
-    <button class="nav-btn" data-nav-action="forward" aria-label="Adelante" title="Adelante (Alt+→)"><span class="nav-icon">→</span></button>
-    <button class="nav-btn" data-nav-action="home" aria-label="Inicio" title="Inicio (Alt+H)"><span class="nav-icon">⌂</span></button>
-    <button class="nav-btn" data-nav-action="index" aria-label="Índice" title="Índice (Alt+I)"><span class="nav-icon">☰</span></button>
-    <button class="nav-btn" data-nav-action="theme" aria-label="Tema" title="Tema (Alt+T)"><span class="nav-icon">◐</span></button>
-  </div>
-</nav>
-
-<!-- HEADER -->
-<header class="page-header">
-  <span class="page-crumbs">
-    <a href="../index.html">Raíz</a>
-    <span class="sep">›</span>
-    <span class="current">Capa 00 · Identidad</span>
-  </span>
-  <span class="page-num">00 / 24</span>
-</header>
-
-<!-- HERO -->
-<section class="page-hero">
-  <div class="hero-meta">
-    <span class="hero-tag">CAPA 0</span>
-    <span class="hero-tag hero-tag-alt">IDENTIDAD & MANIFIESTO</span>
-  </div>
-  <h1 class="hero-h1">
-    <span class="h1-line">El cuerpo</span>
-    <span class="h1-line h1-em">fundacional</span>
-  </h1>
-  <p class="hero-lede">
-    La capa que define quién es ARKHÉ ZERO. Manifiesto, KINTSUGI,
-    Pacto 51/49, Glosario, Roadmap, Autoría y Crónica.
-    Sin esta capa, el resto del repertorio no tendría identidad.
-  </p>
-  <div class="hero-seal-sm">
-    <span class="symbol-circ">◯</span>
-    <span class="symbol-line">—</span>
-    <span class="symbol-dot">●</span>
-  </div>
-</section>
-
-<!-- GRID DE PÁGINAS -->
-<main class="page-body">
-
-  <section class="block">
-    <div class="block-head">
-      <span class="block-num">§0.1 — §0.8</span>
-      <h2 class="block-title">Las 8 páginas de la identidad</h2>
-    </div>
-
-    <div class="pages-grid">
-
-      <a href="kintsugi.html" class="page-card page-card-featured">
-        <span class="pc-num">0.1</span>
-        <span class="pc-icon">🏺</span>
-        <h3 class="pc-name">KINTSUGI</h3>
-        <p class="pc-desc">La metáfora completa. El arte de reparar con oro. 51/49/100.</p>
-        <span class="pc-status pc-featured">◆ destacado</span>
-      </a>
-
-      <a href="manifiesto.html" class="page-card">
-        <span class="pc-num">0.2</span>
-        <span class="pc-icon">📜</span>
-        <h3 class="pc-name">Manifiesto</h3>
-        <p class="pc-desc">El texto fundacional completo. El legado no se hereda. Se firma.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="governance.html" class="page-card">
-        <span class="pc-num">0.3</span>
-        <span class="pc-icon">⚖</span>
-        <h3 class="pc-name">Gobernanza</h3>
-        <p class="pc-desc">Pacto 51/49 · Convergencia · Revocación · Sucesión generacional.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="glossary.html" class="page-card">
-        <span class="pc-num">0.4</span>
-        <span class="pc-icon">📖</span>
-        <h3 class="pc-name">Glosario</h3>
-        <p class="pc-desc">Terminología ARKHÉ. KINTSUGI · FLAILP · PoCW · Enjambre.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="roadmap.html" class="page-card">
-        <span class="pc-num">0.5</span>
-        <span class="pc-icon">🗺</span>
-        <h3 class="pc-name">Roadmap</h3>
-        <p class="pc-desc">2026 → 2030. Del Índice Cero al estándar de facto internacional.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="authors.html" class="page-card">
-        <span class="pc-num">0.6</span>
-        <span class="pc-icon">✦</span>
-        <h3 class="pc-name">Autoría</h3>
-        <p class="pc-desc">Humano 51 % + IA 49 %. Pacto declarado y verificable.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="changelog.html" class="page-card">
-        <span class="pc-num">0.7</span>
-        <span class="pc-icon">📋</span>
-        <h3 class="pc-name">Changelog</h3>
-        <p class="pc-desc">Historial de revisiones del Índice. Cada cambio firmado.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-      <a href="security.html" class="page-card">
-        <span class="pc-num">0.8</span>
-        <span class="pc-icon">🛡</span>
-        <h3 class="pc-name">Seguridad</h3>
-        <p class="pc-desc">Divulgación PQC · ML-KEM · ML-DSA · KINTSUGI verification.</p>
-        <span class="pc-status pc-ready">● listo</span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- META INFO -->
-  <section class="block">
-    <div class="block-head">
-      <span class="block-num">§0.0</span>
-      <h2 class="block-title">Ficha de la capa</h2>
-    </div>
-    <div class="meta-grid">
-      <div class="meta-cell">
-        <span class="mc-key">Rama §</span>
-        <span class="mc-val">Capa 0 · Identidad</span>
-      </div>
-      <div class="meta-cell">
-        <span class="mc-key">Páginas</span>
-        <span class="mc-val">8</span>
-      </div>
-      <div class="meta-cell">
-        <span class="mc-key">Theme</span>
-        <span class="mc-val">kintsugi</span>
-      </div>
-      <div class="meta-cell">
-        <span class="mc-key">Estado</span>
-        <span class="mc-val" style="color: var(--green);">● activo</span>
-      </div>
-      <div class="meta-cell">
-        <span class="mc-key">Ancla</span>
-        <span class="mc-val">2607146379465</span>
-      </div>
-      <div class="meta-cell">
-        <span class="mc-key">Firma</span>
-        <span class="mc-val">ML-DSA-87</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="page-footer">
-  <pre class="foot-seal" aria-hidden="true">  <span class="fseal-l">╭─────────◇─────────╮</span>
-  <span class="fseal-l">│</span>      <span class="fseal-g">A R K H É</span>    <span class="fseal-l">│</span>
-  <span class="fseal-l">│</span>         <span class="fseal-t">◈</span>         <span class="fseal-l">│</span>
-  <span class="fseal-l">│</span>       <span class="fseal-g">Z E R O</span>     <span class="fseal-l">│</span>
-  <span class="fseal-l">│</span>   <span class="fseal-g">5 1</span> <span class="fseal-t">─</span> <span class="fseal-t">◈</span> <span class="fseal-t">─</span> <span class="fseal-g">4 9</span>   <span class="fseal-l">│</span>
-  <span class="fseal-l">╰─────────◇─────────╯</span></pre>
-  <p class="foot-author">Marco Antonio Rojas Valdovinos ✦ IA · Toluca · México · 2026</p>
-</footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="../assets/js/particles.js"></script>
-<script src="../assets/js/nav-system.js"></script>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+<h1>Aplicaciones</h1>
+<div class="sub">ECOSISTEMA ORBITANDO</div>
+<div class="cita">"Cada app es un satélite del núcleo. Ninguna es la dueña del sistema."</div>
+<div class="grid">
+<a class="card" href="index/arkhe-zero.html"><div class="n">PRINCIPAL</div><div class="t">⚙ Sistema Completo</div><div class="d">16 módulos interactivos</div></a>
+<a class="card" href="sello.html"><div class="n">PRODUCTO</div><div class="t">🔐 ARKHÉ SELLO</div><div class="d">Prueba de existencia</div></a>
+<a class="card" href="docs/CIUDAD/"><div class="n">DEMO</div><div class="t">🏛 Ciudad Digital</div><div class="d">Constitución viva</div></a>
+<a class="card" href="projects/cymatic/"><div class="n">PROYECTO</div><div class="t">🎵 Cymatic Studio</div><div class="d">Visualización musical</div></a>
+<a class="card" href="projects/yejida/"><div class="n">PROYECTO</div><div class="t">✨ Yejidá</div><div class="d">Mandalas firmados</div></a>
+<a class="card" href="projects/kronos-vault/"><div class="n">PROYECTO</div><div class="t">🔒 Kronos Vault</div><div class="d">Bóveda criptográfica</div></a>
+<a class="card" href="modulos/boveda-voz/"><div class="n">MÓDULO</div><div class="t">🎙 Bóveda de Voz</div><div class="d">Identidad sonora</div></a>
+<a class="card" href="modulos/evidence-os/"><div class="n">MÓDULO</div><div class="t">📁 Evidence OS</div><div class="d">Sistema de evidencia</div></a>
+</div>
+<footer><span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca · 2026<br>NODO YHDRYH-92CE · SCDR-001</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),ctx=c.getContext('2d');
+let W,H;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs();addEventListener('resize',rs);
+const apps=[
+  {n:'KRONOS',col:'#ffd700',orb:140,vel:0.0008,size:14},
+  {n:'MD-33',col:'#00ff41',orb:200,vel:0.0012,size:12},
+  {n:'CYMATIC',col:'#7c5cff',orb:260,vel:0.0006,size:12},
+  {n:'YEJIDÁ',col:'#ffd700',orb:320,vel:0.001,size:12},
+  {n:'EVIDENCE',col:'#00ff41',orb:380,vel:0.0007,size:11},
+  {n:'BÓVEDA',col:'#ffd700',orb:440,vel:0.0009,size:11},
+  {n:'MCP',col:'#7c5cff',orb:500,vel:0.0005,size:10}
+];
+function draw(){
+  ctx.fillStyle='rgba(3,3,8,0.15)';
+  ctx.fillRect(0,0,W,H);
+  const cx=W/2,cy=H/2,t=Date.now();
+  // núcleo
+  const pulso=1+Math.sin(t*0.002)*0.15;
+  ctx.beginPath();
+  ctx.arc(cx,cy,20*pulso,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,215,0,0.9)';
+  ctx.shadowColor='#ffd700';ctx.shadowBlur=40;
+  ctx.fill();ctx.shadowBlur=0;
+  // órbitas
+  for(const a of apps){
+    ctx.beginPath();
+    ctx.arc(cx,cy,a.orb,0,Math.PI*2);
+    ctx.strokeStyle=a.col.replace(')',',0.08)').replace('rgb','rgba').replace('#','rgba(');
+    ctx.strokeStyle='rgba(255,215,0,0.05)';
+    ctx.stroke();
+    // satélite
+    const ang=t*a.vel;
+    const x=cx+Math.cos(ang)*a.orb;
+    const y=cy+Math.sin(ang)*a.orb;
+    ctx.beginPath();
+    ctx.arc(x,y,6,0,Math.PI*2);
+    ctx.fillStyle=a.col;
+    ctx.shadowColor=a.col;ctx.shadowBlur=15;
+    ctx.fill();ctx.shadowBlur=0;
+    // etiqueta
+    ctx.font=a.size+'px "Cinzel",serif';
+    ctx.fillStyle=a.col;
+    ctx.textAlign='center';
+    ctx.fillText(a.n,x,y-12);
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 </body>
 </html>
