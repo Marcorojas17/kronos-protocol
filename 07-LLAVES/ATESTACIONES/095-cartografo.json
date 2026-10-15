@@ -1,0 +1,11 @@
+{
+  "agente_id": "095-cartografo",
+  "public_key_hex": "b3d87e8bc17f793671f063ea9266e2b596d4915c172ea94f28169718794a4d9c",
+  "algoritmo": "Ed25519",
+  "rol": "cartografo",
+  "descripcion": "Mapeo del sistema y territorios de datos",
+  "valido_desde": "2026-09-30T00:00:00Z",
+  "valido_hasta": "2027-09-30T00:00:00Z",
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente."
+}

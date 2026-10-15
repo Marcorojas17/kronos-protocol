@@ -1,9 +1,10 @@
 {
   "agente_id": "082-tlachixqui",
-  "public_key_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+  "public_key_hex": "032002b925d17621e41d7aa2a4ba12716b8945799ed24080c7075eef0066f019",
   "algoritmo": "Ed25519",
   "rol": "auditor",
   "valido_desde": "2026-09-30T00:00:00Z",
   "valido_hasta": "2027-09-30T00:00:00Z",
-  "firma_fundador": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente Tlachixqui."
 }

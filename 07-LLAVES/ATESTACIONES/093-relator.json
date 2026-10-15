@@ -1,0 +1,11 @@
+{
+  "agente_id": "093-relator",
+  "public_key_hex": "ae057ecc7f850c33217ad79db1facd4d4c4867711606323075c8b46a06b5b653",
+  "algoritmo": "Ed25519",
+  "rol": "relator",
+  "descripcion": "Documentación y relatoría de decisiones",
+  "valido_desde": "2026-09-30T00:00:00Z",
+  "valido_hasta": "2027-09-30T00:00:00Z",
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente."
+}
