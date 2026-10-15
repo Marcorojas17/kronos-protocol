@@ -49,3 +49,4 @@ firma/privada.pem
 firma/*.key
 firma/*.pem.secret
 *.priv.pem
+firma/*.OLD-*
