@@ -41,3 +41,15 @@ Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE
 
 ## Comando de auditoría para el futuro
     git log --all --diff-filter=A --name-only --pretty=format: | sort -u | grep -E "\.key$|\.pem$|privada|secret"
+
+## Cierre final · 2026-10-15
+
+- [x] Limpieza completa del historial con git filter-repo (2 pasadas)
+- [x] Push forzado exitoso (69f938f)
+- [x] fundador-v2.key removida del historial
+- [x] firma/privada.pem removida del historial
+- [x] Backup de 1.9 GB eliminado (liberado espacio)
+- [x] fundador-v3 generada y activa
+- [x] Documentado en SUCESION-LLAVES.md
+
+Estado: ✅ CERRADO
