@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>ADR-0004 · Auditoría Ethereum vs Bitcoin · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="adr-0004-auditoria-ethereum-vs-bitcoin">ADR-0004 · Auditoría Ethereum vs Bitcoin</h1>
+<ul>
+<li><strong>Estado</strong>: Aceptado</li>
+<li><strong>Fecha</strong>: 2026-02-01</li>
+<li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+</ul>
+<h2 id="contexto">🜂 Contexto</h2>
+<p>¿Dónde anclar los Merkle roots? Ethereum o Bitcoin.</p>
+<h2 id="decision">🜃 Decisión</h2>
+<p><strong>Ethereum</strong> como primario + <strong>Bitcoin</strong> (OpenTimestamps) como secundario.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Ethereum</th>
+<th>Bitcoin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Velocidad</td>
+<td>12s</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>Costo</td>
+<td>~$0.50</td>
+<td>~$0.10</td>
+</tr>
+<tr>
+<td>Programable</td>
+<td>✅ Sí</td>
+<td>⚠️ Limitado</td>
+</tr>
+<tr>
+<td>Adopción legal</td>
+<td>✅ Alta</td>
+<td>⚠️ Media</td>
+</tr>
+<tr>
+<td>Smart contracts</td>
+<td>✅ Sí</td>
+<td>❌ No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="consecuencias">🜄 Consecuencias</h2>
+<ul>
+<li>Ethereum: anclaje de hashes + smart contracts</li>
+<li>Bitcoin: anclaje secundario vía OpenTimestamps</li>
+<li>Doble redundancia blockchain</li>
+</ul>
+<h2 id="alternativas">🜁 Alternativas</h2>
+<ol>
+<li>Solo Ethereum · Rechazada (sin redundancia)</li>
+<li>Solo Bitcoin · Rechazada (sin smart contracts)</li>
+<li>Polkadot · Rechazada (menos adoptada)</li>
+</ol>
+<hr />
+<p><code>◯_● · 51/49/100 · ADR-0004</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

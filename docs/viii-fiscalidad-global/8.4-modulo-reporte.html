@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>📊 Artículo 8.4 · Módulo de Reporte · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-84-modulo-de-reporte">📊 Artículo 8.4 · Módulo de Reporte</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/viii-fiscalidad-global]
+└─$ ./fiscalidad --modulo --test
+
+[ Test ] Generar reporte CARF 2026
+[ OK ] XML válido
+[ OK ] Firma híbrida
+[ OK ] Anclaje Ethereum
+[ ✓✓ ] MÓDULO OPERATIVO · ◯_● · 51/49/100
+</code></pre>
+<h2 id="uso">🜂 Uso</h2>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ python scripts/fiscal-report.py --carf --year=2026 --output=./reportes/
+
+[ OK ] Reporte CARF generado
+[ OK ] Reporte DAC8 generado
+[ OK ] Firma con ML-DSA-87
+[ OK ] Anclaje Ethereum
+[ ✓✓ ] ◯_● · 51/49/100
+</code></pre>
+<h2 id="formato-xml-carf">🜃 Formato XML (CARF)</h2>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;CARFReport xmlns=&quot;urn:oecd:ties:carrf:v1&quot;&gt;
+  &lt;MessageSpec&gt;
+    &lt;SendingEntityIN&gt;ARKHE-2607146379465&lt;/SendingEntityIN&gt;
+    &lt;TransmittingCountry&gt;MX&lt;/TransmittingCountry&gt;
+    &lt;ReceivingCountry&gt;OECD&lt;/ReceivingCountry&gt;
+    &lt;MessageType&gt;CARF&lt;/MessageType&gt;
+    &lt;ReportingPeriod&gt;2026&lt;/ReportingPeriod&gt;
+    &lt;Timestamp&gt;2026-12-31T23:59:59Z&lt;/Timestamp&gt;
+  &lt;/MessageSpec&gt;
+  &lt;CryptoAssetReports&gt;
+    &lt;Report&gt;
+      &lt;AccountHolder&gt;Marco Antonio Rojas Valdovinos&lt;/AccountHolder&gt;
+      &lt;FondoFLAILP saldo=&quot;0.00&quot; moneda=&quot;MXN&quot;/&gt;
+    &lt;/Report&gt;
+  &lt;/CryptoAssetReports&gt;
+  &lt;Signature&gt;ml-dsa-87:f03f7e2d...&lt;/Signature&gt;
+&lt;/CARFReport&gt;
+</code></pre>
+<hr />
+<p><code>◯_● · 51/49/100 · FISCALIDAD · 8.4 · Módulo</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

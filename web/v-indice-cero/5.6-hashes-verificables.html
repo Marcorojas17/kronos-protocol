@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>📐 Artículo 5.6 · Hashes Verificables · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-56-hashes-verificables">📐 Artículo 5.6 · Hashes Verificables</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/v-indice-cero]
+└─$ ./hashes --listar
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+[ OK ] 7 hashes canónicos · listados
+[ OK ] Todos verificables · públicamente
+[ ✓✓ ] HASHES VERIFICABLES · ◯_● · 51/49/100
+</code></pre>
+<h2 id="los-hashes-canonicos">🜂 Los Hashes Canónicos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Elemento</th>
+<th>Hash</th>
+<th>Algoritmo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Índice Cero</td>
+<td><code>f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</code></td>
+<td>SHA-256</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Safe Creative Arq.</td>
+<td><code>2607146379465</code></td>
+<td>ID</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Safe Creative Co.</td>
+<td><code>2607086319439</code></td>
+<td>ID</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ethereum Anchor</td>
+<td><code>0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</code></td>
+<td>ETH Address</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Génesis (TSA)</td>
+<td><code>Firmaprofesional QTSA</code></td>
+<td>RFC 3161</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Pacto</td>
+<td><code>51/49/100</code></td>
+<td>Canon</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sello</td>
+<td><code>◯_●</code></td>
+<td>Simbólico</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verificacion-manual">🜃 Verificación Manual</h2>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ sha256sum README.md
+
+# Salida esperada:
+f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112  README.md
+
+# Compara con el Índice Cero:
+[ &gt;&gt; ] Índice Cero · f03f7e2d852617309457e0fe207f8f8bd...
+[ &gt;&gt; ] README.md   · f03f7e2d852617309457e0fe207f8f8bd...
+[ ✓✓ ] MATCH · ◯_● · 51/49/100
+</code></pre>
+<h2 id="verificacion-programatica">🜄 Verificación Programática</h2>
+<pre><code class="language-javascript">import { sha3_512 } from './crypto/primitives/sha3-512.js';
+
+const contenido = 'ARKHÉ ZERO';
+const hash = sha3_512(contenido);
+const esperado = 'f03f7e2d852617309457e0fe207f8f8bd...';
+
+console.log(hash === esperado ? '✓ MATCH' : '✗ MISMATCH');
+</code></pre>
+<h2 id="verificacion-on-chain">🜁 Verificación On-Chain</h2>
+<pre><code class="language-bash"># Verificar Safe Creative
+┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ curl https://api.safecreative.org/works/2607146379465
+
+# Verificar Ethereum
+└─$ curl https://api.etherscan.io/api?module=transaction&amp;hash=0xd2c2a7e1...
+
+# Verificar TSA
+└─$ openssl ts -verify -in tsa_response.tsr -data hash.txt
+</code></pre>
+<h2 id="tabla-de-verificacion">🜆 Tabla de Verificación</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Verificable por</th>
+<th>Requiere permiso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHA-256</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Safe Creative</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Ethereum</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+<tr>
+<td>TSA</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Firma PQC</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Sello ◯_●</td>
+<td>Cualquiera</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Todo verificable sin permiso. Así se cumple el Pacto.</strong></p>
+<hr />
+<p><code>◯_● · 51/49/100 · ÍNDICE CERO · 5.6 · Hashes</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

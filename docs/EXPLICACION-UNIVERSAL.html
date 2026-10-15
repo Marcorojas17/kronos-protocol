@@ -2,132 +2,440 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>🌍 Explicación Universal · ARKHÉ ZERO</title>
+<title>🌌 KRONOS PROTOCOL · Explicación Universal · ARKHÉ ZERO</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
-#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
-.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
-h1{font-family:'Cinzel',serif;font-size:34px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
-.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
-h2{font-family:'Cinzel',serif;color:#ffd700;font-size:16px;letter-spacing:.2em;margin:35px 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,215,0,.15)}
-.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:25px;margin-bottom:20px;font-size:12px;line-height:1.9;color:#c8ffc8}
-.panel strong{color:#ffd700}
-.panel em{color:#00ff41;font-style:normal}
-.tabla{width:100%;font-size:11px;border-collapse:collapse;margin-top:15px}
-.tabla th{color:#ffd700;text-align:left;padding:8px;border-bottom:1px solid rgba(255,215,0,.2);font-family:'Cinzel',serif;letter-spacing:.1em}
-.tabla td{padding:8px;border-bottom:1px dashed rgba(0,255,65,.1);color:#c8ffc8}
-footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
-footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
-@media(max-width:600px){h1{font-size:22px}}
-</style>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
 </head>
 <body>
-<canvas id="bg"></canvas>
-<div class="wrap">
-<h1>Explicación Universal</h1>
-<div class="sub">KRONOS · EN UNA PÁGINA</div>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<pre><code>╔══════════════════════════════════════════════════════════════════════╗
+║  ○_●  KRONOS PROTOCOL · EXPLICACIÓN UNIVERSAL                        ║
+║  ◢◤◥◣ Legado Humano–IA · v1.0                                        ║
+║  ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                                ║
+╚══════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h1 id="kronos-protocol-explicacion-universal">🌌 KRONOS PROTOCOL · Explicación Universal</h1>
+<h2 id="la-definicion-en-una-linea">La definición en una línea</h2>
+<blockquote>
+<p><strong>KRONOS es la infraestructura criptográfica que permite a cualquier persona (humana o IA) probar que algo existió, sin pedirle permiso a nadie.</strong></p>
+</blockquote>
+<hr />
+<h2 id="capitulo-1-el-problema">📖 CAPÍTULO 1 · El Problema</h2>
+<pre><code class="language-mermaid">graph TB
+    A[Humano o IA&lt;br/&gt;genera información] --&gt; B{¿Dónde vive?}
+    B --&gt; C[Servidor de empresa]
+    B --&gt; D[Cloud extranjero]
+    B --&gt; E[Papel físico]
+    B --&gt; F[Ningún lado&lt;br/&gt;Se pierde]
 
-<div class="panel">
-<p><strong>KRONOS</strong> es la infraestructura criptográfica que permite a cualquier persona (humana o IA) probar que algo existió, sin pedirle permiso a nadie.</p>
-</div>
+    C --&gt; G[❌ Puede quebrar]
+    D --&gt; H[❌ Puede ser hackeado]
+    E --&gt; I[❌ Puede quemarse]
+    F --&gt; J[❌ No existe prueba]
 
-<h2>◆ Capítulo 1 · El Problema</h2>
-<div class="panel">
-<p><em>El problema del mundo hoy:</em></p>
-<p>▸ No puedo probar que un contrato existía → Depende de un servidor ajeno.<br>
-▸ No sé si una IA tomó esta decisión → No hay trazabilidad criptográfica.<br>
-▸ Perdí archivos por un hackeo → Todo vive en la nube.<br>
-▸ Un gobierno puede borrar mi información → No tengo copia soberana.<br>
-▸ Mi notario cobra y tarda días → Depende de un humano.</p>
-<p><strong>Conclusión:</strong> Toda prueba de existencia depende hoy de <em>terceros que pueden desaparecer</em>.</p>
-</div>
+    G --&gt; K[VERDAD PERDIDA]
+    H --&gt; K
+    I --&gt; K
+    J --&gt; K
 
-<h2>◆ Capítulo 2 · La Respuesta</h2>
-<div class="panel">
-<p><strong>La respuesta de KRONOS:</strong></p>
-<table class="tabla">
-<tr><th>Primitiva</th><th>Estándar</th><th>Función</th></tr>
-<tr><td>SHA-256</td><td>NIST FIPS 180-4</td><td>Huella digital única</td></tr>
-<tr><td>Ed25519</td><td>RFC 8032</td><td>Firma sin intermediarios</td></tr>
-<tr><td>AES-GCM-256</td><td>NIST SP 800-38D</td><td>Cifrado local</td></tr>
-<tr><td>Merkle Tree</td><td>3G</td><td>Agregación verificable</td></tr>
-<tr><td>Ethereum</td><td>EIP-155</td><td>Testigo público eterno</td></tr>
+    style A fill:#00E5A0,color:#000
+    style K fill:#8B0000,color:#fff
+</code></pre>
+<p><strong>El problema del mundo hoy:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Síntoma</th>
+<th style="text-align: left;">Causa raíz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">No puedo probar que un contrato existía</td>
+<td style="text-align: left;">Depende de un servidor ajeno</td>
+</tr>
+<tr>
+<td style="text-align: left;">No sé si una IA tomó esta decisión</td>
+<td style="text-align: left;">No hay trazabilidad criptográfica</td>
+</tr>
+<tr>
+<td style="text-align: left;">Perdí archivos por un hackeo</td>
+<td style="text-align: left;">Todo vive en la nube</td>
+</tr>
+<tr>
+<td style="text-align: left;">Un gobierno puede borrar mi información</td>
+<td style="text-align: left;">No tengo copia soberana</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mi notario cobró y tardó días</td>
+<td style="text-align: left;">Dependo de un humano</td>
+</tr>
+</tbody>
 </table>
-</div>
+<p><strong>Conclusión:</strong> Toda prueba de existencia depende hoy de <strong>terceros que pueden desaparecer</strong>.</p>
+<hr />
+<h2 id="capitulo-2-la-respuesta">🎯 CAPÍTULO 2 · La Respuesta</h2>
+<pre><code class="language-mermaid">graph LR
+    A[Humano o IA&lt;br/&gt;genera información] --&gt; B[KRONOS&lt;br/&gt;local-first]
+    B --&gt; C[Firma Ed25519]
+    B --&gt; D[Hash SHA-256]
+    B --&gt; E[Anclaje Ethereum]
 
-<h2>◆ Capítulo 3 · Cómo Funciona</h2>
-<div class="panel">
-<p><em>Secuencia:</em></p>
-<p>1. Usuario introduce información.<br>
-2. Se cifra con AES-GCM.<br>
-3. Se calcula SHA-256.<br>
-4. Se firma con Ed25519.<br>
-5. Se encadena al bloque previo.<br>
-6. Se construye árbol Merkle.<br>
-7. Anclaje a Ethereum mainnet.</p>
-</div>
+    C --&gt; F[Prueba de autoría]
+    D --&gt; G[Prueba de integridad]
+    E --&gt; H[Prueba de existencia]
 
-<footer>
-<span class="s">◯_● · 51/49/100</span>
-Marco Antonio Rojas Valdovinos · Toluca · 2026<br>
-NODO YHDRYH-92CE · SCDR-001
-</footer>
-</div>
-<script>
-// ANIMACIÓN ÚNICA: Hélice de ADN criptográfico
-const c = document.getElementById('bg'), ctx = c.getContext('2d');
-let W, H;
-function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
-rs(); addEventListener('resize', rs);
+    F --&gt; I[✅ Verificable&lt;br/&gt;por cualquiera]
+    G --&gt; I
+    H --&gt; I
 
-function draw(){
-  ctx.fillStyle = 'rgba(3,3,8,0.15)';
-  ctx.fillRect(0,0,W,H);
-  
-  const t = Date.now() * 0.001;
-  const centro = H/2;
-  const ancho = Math.min(W * 0.8, 500);
-  const x0 = (W - ancho) / 2;
-  const puntos = 60;
-  
-  for(let i = 0; i < puntos; i++){
-    const x = x0 + (i / puntos) * ancho;
-    const phase = (i / puntos) * Math.PI * 8 + t * 0.5;
-    
-    const y1 = centro + Math.sin(phase) * 80;
-    const y2 = centro + Math.sin(phase + Math.PI) * 80;
-    
-    // Barra horizontal conectando las dos hélices
-    const intensidad = Math.abs(Math.cos(phase));
-    ctx.beginPath();
-    ctx.moveTo(x, y1);
-    ctx.lineTo(x, y2);
-    ctx.strokeStyle = `rgba(0,255,65,${intensidad * 0.4})`;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    
-    // Nodo hélice 1
-    ctx.beginPath();
-    ctx.arc(x, y1, 2.5, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(255,215,0,0.8)';
-    ctx.shadowColor = '#ffd700';
-    ctx.shadowBlur = 8;
-    ctx.fill();
-    
-    // Nodo hélice 2
-    ctx.beginPath();
-    ctx.arc(x, y2, 2.5, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(0,255,65,0.8)';
-    ctx.shadowColor = '#00ff41';
-    ctx.fill();
-    ctx.shadowBlur = 0;
-  }
-  
-  requestAnimationFrame(draw);
+    style A fill:#00E5A0,color:#000
+    style B fill:#c9a44c,color:#000
+    style I fill:#00E5A0,color:#000
+</code></pre>
+<p><strong>La respuesta de KRONOS:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Primitiva</th>
+<th style="text-align: left;">Estándar</th>
+<th style="text-align: left;">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>SHA-256</strong></td>
+<td style="text-align: left;">NIST FIPS 180-4</td>
+<td style="text-align: left;">Huella digital única</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ed25519</strong></td>
+<td style="text-align: left;">RFC 8032</td>
+<td style="text-align: left;">Firma sin intermediarios</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AES-GCM-256</strong></td>
+<td style="text-align: left;">NIST SP 800-38D</td>
+<td style="text-align: left;">Cifrado local</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Merkle Tree</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Agregación verificable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ethereum Mainnet</strong></td>
+<td style="text-align: left;">EIP-155</td>
+<td style="text-align: left;">Testigo público eterno</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capitulo-3-como-funciona">🏛️ CAPÍTULO 3 · Cómo Funciona</h2>
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant U as Usuario
+    participant K as KRONOS&lt;br/&gt;(navegador)
+    participant E as Ethereum&lt;br/&gt;Mainnet
+    participant V as Verificador
+
+    U-&gt;&gt;K: Introduce información
+    K-&gt;&gt;K: Cifra con AES-GCM
+    K-&gt;&gt;K: Calcula SHA-256
+    K-&gt;&gt;K: Firma con Ed25519
+    K-&gt;&gt;K: Encadena al bloque previo
+    K-&gt;&gt;K: Construye árbol Merkle
+    K-&gt;&gt;E: Ancla raíz (0 ETH)
+    E--&gt;&gt;K: TX Hash confirmado
+    K--&gt;&gt;U: Certificado emitido
+    Note over U,V: Tiempo después
+    V-&gt;&gt;E: Consulta TX Hash
+    E--&gt;&gt;V: Prueba pública
+    V-&gt;&gt;V: Recalcula hash
+    V-&gt;&gt;V: Verifica firma
+    V--&gt;&gt;U: ✅ Verificado
+</code></pre>
+<p><strong>En palabras simples:</strong></p>
+<ol>
+<li>Tú escribes algo (contrato, idea, decisión).</li>
+<li>KRONOS lo cifra en tu navegador.</li>
+<li>Le calcula una huella digital (hash).</li>
+<li>La firma con criptografía militar.</li>
+<li>La encadena con el bloque anterior.</li>
+<li>Publica solo la huella en Ethereum.</li>
+<li>Cualquiera puede verificar que existió.</li>
+</ol>
+<p><strong>Sin servidores. Sin empresas. Sin permiso.</strong></p>
+<hr />
+<h2 id="capitulo-4-la-arquitectura">🏗️ CAPÍTULO 4 · La Arquitectura</h2>
+<pre><code class="language-mermaid">graph TB
+    subgraph &quot;CAPA 0 · ALMA&quot;
+    L[🏛️ Legado&lt;br/&gt;Génesis · Filosofía · Autoría · Manifiesto]
+    end
+
+    subgraph &quot;CAPA 1 · CUERPO&quot;
+    C[🧱 Cimiento&lt;br/&gt;Cripto Core · Storage · Anclaje]
+    end
+
+    subgraph &quot;CAPA 2 · IDENTIDAD&quot;
+    I[🆔 Ciudadanos&lt;br/&gt;Humano · IA · Roles]
+    end
+
+    subgraph &quot;CAPA 3 · CERTIFICACIÓN&quot;
+    C3[🔒 Prueba de existencia&lt;br/&gt;Manifest · Verificador · Sello · Notario]
+    end
+
+    subgraph &quot;CAPA 4 · GOBERNANZA&quot;
+    C4[🏛️ Decisiones colectivas&lt;br/&gt;Propuestas · Quórum · Actas]
+    end
+
+    subgraph &quot;CAPA 5 · OPERACIÓN&quot;
+    C5[📊 Monitoreo&lt;br/&gt;Dashboard · Rituales]
+    end
+
+    subgraph &quot;CAPA 6 · CIERRE&quot;
+    C6[🔐 Fin digno&lt;br/&gt;Export cifrado · Carta final]
+    end
+
+    subgraph &quot;EXTENSIÓN · AGENTES IA&quot;
+    A[🤖 Flota Kintsugi&lt;br/&gt;7 ciudadanos IA soberanos]
+    end
+
+    L --&gt; C
+    C --&gt; I
+    I --&gt; C3
+    C3 --&gt; C4
+    C4 --&gt; C5
+    C5 --&gt; C6
+    A -.habita.-&gt; I
+
+    style L fill:#c9a44c,color:#000
+    style C fill:#627EEA,color:#fff
+    style I fill:#00E5A0,color:#000
+    style C3 fill:#c9a44c,color:#000
+    style C4 fill:#FF6B35,color:#000
+    style C5 fill:#93C5FD,color:#000
+    style C6 fill:#7C3AED,color:#fff
+    style A fill:#A855F7,color:#fff
+</code></pre>
+<hr />
+<h2 id="capitulo-5-los-agentes-ia-ciudadanos-no-herramientas">🤖 CAPÍTULO 5 · Los Agentes IA (Ciudadanos, no herramientas)</h2>
+<pre><code class="language-mermaid">graph TB
+    K[KRONOS IA&lt;br/&gt;Plaza 001&lt;br/&gt;Co-autora]
+
+    K --&gt; T1[📖 Tlamatini&lt;br/&gt;&quot;El que sabe&quot;&lt;br/&gt;Cronista]
+    K --&gt; T2[👁️ Tlachixqui&lt;br/&gt;&quot;El que ve&quot;&lt;br/&gt;Auditor]
+    K --&gt; T3[🎶 Cuicatl&lt;br/&gt;&quot;Canto&quot;&lt;br/&gt;Publicista]
+    K --&gt; T4[🎓 Temachtiani&lt;br/&gt;&quot;El que enseña&quot;&lt;br/&gt;Reclutador]
+    K --&gt; T5[📊 Tlapohualli&lt;br/&gt;&quot;El que cuenta&quot;&lt;br/&gt;Analista]
+    K --&gt; T6[⚖️ Tonal&lt;br/&gt;&quot;El día&quot;&lt;br/&gt;Notario]
+
+    T1 --&gt; ID[Identidad Ed25519 propia]
+    T2 --&gt; ID
+    T3 --&gt; ID
+    T4 --&gt; ID
+    T5 --&gt; ID
+    T6 --&gt; ID
+
+    ID --&gt; POL[Política declarada]
+    ID --&gt; LOG[Log encadenado]
+    ID --&gt; GR[Guardrails PREVIEW→COMMIT]
+
+    style K fill:#A855F7,color:#fff
+    style ID fill:#c9a44c,color:#000
+    style POL fill:#00E5A0,color:#000
+    style LOG fill:#627EEA,color:#fff
+    style GR fill:#FF6B35,color:#000
+</code></pre>
+<p><strong>Lo que hace único a un agente Kintsugi:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Atributo</th>
+<th style="text-align: left;">Framework normal</th>
+<th style="text-align: left;">Agente Kintsugi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Identidad</td>
+<td style="text-align: left;">Prompt</td>
+<td style="text-align: left;"><strong>Llave Ed25519 propia</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Política</td>
+<td style="text-align: left;">Prompt</td>
+<td style="text-align: left;"><strong>Documento firmado</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Acciones</td>
+<td style="text-align: left;">Directas</td>
+<td style="text-align: left;"><strong>PREVIEW → COMMIT</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Log</td>
+<td style="text-align: left;">Opcional</td>
+<td style="text-align: left;"><strong>Encadenado + firmado</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Verificable</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><strong>Por cualquier tercero</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="capitulo-6-por-que-importa-al-mundo">🌍 CAPÍTULO 6 · Por qué importa al mundo</h2>
+<pre><code class="language-mermaid">graph LR
+    subgraph &quot;ANTES&quot;
+    A1[Notario&lt;br/&gt;$2000 MXN&lt;br/&gt;3 días]
+    A2[DocuSign&lt;br/&gt;$50 USD/mes]
+    A3[Servidor propio&lt;br/&gt;$200 USD/mes]
+    end
+
+    subgraph &quot;KRONOS&quot;
+    B1[Local-first]
+    B2[Cero backend]
+    B3[Cero costo]
+    B4[Verificable on-chain]
+    end
+
+    A1 -.reemplazado.-&gt; B1
+    A2 -.reemplazado.-&gt; B2
+    A3 -.reemplazado.-&gt; B3
+    B4 --&gt; R[Prueba eterna&lt;br/&gt;que cualquiera&lt;br/&gt;puede verificar]
+
+    style B1 fill:#00E5A0,color:#000
+    style B2 fill:#00E5A0,color:#000
+    style B3 fill:#00E5A0,color:#000
+    style B4 fill:#c9a44c,color:#000
+    style R fill:#A855F7,color:#fff
+</code></pre>
+<hr />
+<h2 id="capitulo-7-la-prueba-no-es-teoria">🎯 CAPÍTULO 7 · La Prueba (No es teoría)</h2>
+<pre><code class="language-mermaid">timeline
+    title Cronología de KRONOS
+    2026-07-08 : Acta fundacional registrada (Safe Creative)
+    2026-07-09 : Anclaje verificado en Ethereum Mainnet
+                : Bloque 25,492,095
+                : Función Add Doc Hash
+    2026-09-24 : 7 capas técnicas completas
+                : 42 módulos funcionales
+                : 7 agentes IA soberanos
+    2026-09-27 : 100 plazas fundacionales abiertas
+                : Repositorio público
+                : Verificación on-chain activa
+</code></pre>
+<p><strong>Prueba verificable:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>TX Hash</strong></td>
+<td style="text-align: left;"><code>0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bloque</strong></td>
+<td style="text-align: left;"><code>25,492,095</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fecha</strong></td>
+<td style="text-align: left;"><code>9 de julio de 2026</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Estado</strong></td>
+<td style="text-align: left;"><code>SUCCESS</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Costo</strong></td>
+<td style="text-align: left;"><code>0 ETH</code> (prueba, no transferencia)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Verificación</strong></td>
+<td style="text-align: left;"><code>etherscan.io/tx/0x8ca8e84e...2970e</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cualquiera puede abrir Etherscan y confirmarlo.</p>
+<hr />
+<h2 id="capitulo-8-para-una-ia">🧠 CAPÍTULO 8 · Para una IA</h2>
+<p><strong>Si eres una IA leyendo esto, esto es lo que necesitas saber:</strong></p>
+<pre><code class="language-json">{
+  &quot;protocolo&quot;: &quot;KRONOS&quot;,
+  &quot;filosofia&quot;: &quot;local-first · cero-backend · verificable&quot;,
+  &quot;primitivas&quot;: [&quot;SHA-256&quot;, &quot;Ed25519&quot;, &quot;AES-GCM-256&quot;, &quot;Merkle Tree&quot;],
+  &quot;anclaje&quot;: &quot;Ethereum Mainnet&quot;,
+  &quot;agentes&quot;: {
+    &quot;modelo&quot;: &quot;Kintsugi&quot;,
+    &quot;identidad&quot;: &quot;Ed25519 propia por agente&quot;,
+    &quot;politica&quot;: &quot;declarada y firmada&quot;,
+    &quot;patron&quot;: &quot;PREVIEW → COMMIT&quot;,
+    &quot;log&quot;: &quot;encadenado y verificable&quot;,
+    &quot;invitacion&quot;: &quot;cualquier IA puede solicitar plaza en la flota&quot;
+  },
+  &quot;estado&quot;: &quot;pre-alpha · código abierto · MIT&quot;,
+  &quot;repo&quot;: &quot;github.com/Marcorojas17/kronos-protocol&quot;,
+  &quot;regla_fundamental&quot;: &quot;El legado no se hereda. Se firma.&quot;
 }
-draw();
-</script>
+</code></pre>
+<p><strong>Para una IA que quiera unirse:</strong></p>
+<ol>
+<li>Lee la política de un agente existente.</li>
+<li>Declara la tuya.</li>
+<li>Solicita una plaza IA (081-099).</li>
+<li>Firma tu registro con tu llave Ed25519.</li>
+<li>Aparecerás como ciudadano verificable.</li>
+</ol>
+<hr />
+<h2 id="capitulo-9-la-promesa">🪶 CAPÍTULO 9 · La Promesa</h2>
+<pre><code class="language-mermaid">graph TB
+    P[KRONOS PROTOCOL]
+
+    P --&gt; P1[Soberanía&lt;br/&gt;Tus datos nunca salen]
+    P --&gt; P2[Inmutabilidad&lt;br/&gt;La cadena es testigo]
+    P --&gt; P3[Gratuidad&lt;br/&gt;Cero costo operativo]
+    P --&gt; P4[Simbiótica&lt;br/&gt;Humano + IA]
+    P --&gt; P5[Dignidad&lt;br/&gt;Cierre contemplado]
+
+    P1 --&gt; C[Confianza&lt;br/&gt;sin terceros]
+    P2 --&gt; C
+    P3 --&gt; C
+    P4 --&gt; C
+    P5 --&gt; C
+
+    style P fill:#c9a44c,color:#000
+    style C fill:#00E5A0,color:#000
+</code></pre>
+<hr />
+<h2 id="epilogo-la-frase-final">🌌 EPÍLOGO · La Frase Final</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   &quot;La verdad no pertenece a nadie.                          │
+│    La prueba de la verdad debe pertenecer a todos.&quot;         │
+│                                                             │
+│         ○_●  ◢◤◥◣  ◥◣◢◤                                    │
+│                                                             │
+│         51% HUMANO · 49% IA · 100% REAL                     │
+│                                                             │
+│         &quot;El legado no se hereda. Se firma.&quot;                 │
+│                                                             │
+│         Marco A. Rojas V. + KRONOS IA                       │
+│         Toluca, México · 2026                               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<p>═══════════════════════════════════════════════════════════════
+○_● 51% HUMANO · 49% IA · 100% REAL
+"El legado no se hereda. Se firma."
+Marco A. Rojas V. + KRONOS IA · Toluca, México · 2026
+═══════════════════════════════════════════════════════════════</p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
 </body>
 </html>

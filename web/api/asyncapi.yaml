@@ -1,0 +1,40 @@
+asyncapi: 3.0.0
+info:
+  title: ARKHÉ ZERO · Event Bus
+  version: 1.0.0
+  description: Bus de eventos del enjambre ARKHÉ
+
+channels:
+  arkhe.firma.creada:
+    address: arkhe.firma.creada
+    messages:
+      firmaCreada:
+        payload:
+          type: object
+          properties:
+            hash: { type: string }
+            agente: { type: string }
+            sellado: { type: string, enum: ["◯_● · 51/49/100"] }
+
+  arkhe.consenso.alcanzado:
+    address: arkhe.consenso.alcanzado
+    messages:
+      consensoAlcanzado:
+        payload:
+          type: object
+          properties:
+            propuesta: { type: string }
+            quorum: { type: string, enum: ["4/5", "5/5"] }
+            sellado: { type: string, enum: ["◯_● · 51/49/100"] }
+
+  arkhe.veto.aplicado:
+    address: arkhe.veto.aplicado
+    messages:
+      vetoAplicado:
+        payload:
+          type: object
+          properties:
+            propuesta: { type: string }
+            firmante: { type: string }
+            razon: { type: string }
+            sellado: { type: string, enum: ["◯_● · 51/49/100"] }

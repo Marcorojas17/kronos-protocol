@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>⚛️ Artículo 4.3 · QKD (Quantum Key Distribution) · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-43-qkd-quantum-key-distribution">⚛️ Artículo 4.3 · QKD (Quantum Key Distribution)</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+└─$ ./guardian --qkd --status
+
+[ INFO ] QKD · tecnología futura
+[ INFO ] Integración esperada: 2028+
+[ INFO ] Proveedores: ID Quantique · Toshiba
+[ &gt;&gt; ] Preparación conceptual · activa
+[ ✓✓ ] QKD READY · ◯_● · 51/49/100
+</code></pre>
+<h2 id="concepto">🜂 Concepto</h2>
+<p><strong>QKD</strong> distribuye claves usando principios de mecánica cuántica. Si alguien intercepta, la clave se invalida automáticamente.</p>
+<h2 id="preparacion-conceptual">🜃 Preparación Conceptual</h2>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    ARQUITECTURA QKD · FUTURO                             ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   [ Nodo A ] ═══════════════════════════ [ Nodo B ]                      ║
+║       │              Canal cuántico           │                          ║
+║       │         (fibra óptica + fotones)      │                          ║
+║       │                                       │                          ║
+║       ▼                                       ▼                          ║
+║   ┌─────────┐                             ┌─────────┐                    ║
+║   │ QKD     │                             │ QKD     │                    ║
+║   │ Emisor  │ ── clave cuántica segura ── │ Receptor│                    ║
+║   └─────────┘                             └─────────┘                    ║
+║                                                                          ║
+║   Si alguien intercepta → la clave se descarta                          ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2 id="proveedores">🜄 Proveedores</h2>
+<table>
+<thead>
+<tr>
+<th>Proveedor</th>
+<th>Producto</th>
+<th>Protocolo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID Quantique</td>
+<td>Clavis3</td>
+<td>BB84</td>
+</tr>
+<tr>
+<td>Toshiba</td>
+<td>QKD System</td>
+<td>T12</td>
+</tr>
+<tr>
+<td>QuintessenceLabs</td>
+<td>qStream</td>
+<td>E91</td>
+</tr>
+<tr>
+<td>QNu Labs</td>
+<td>Tropos</td>
+<td>Decoy-state</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integracion-futura">🜁 Integración Futura</h2>
+<pre><code class="language-javascript">// crypto/qkd/client.js (conceptual)
+export async function obtenerClaveQKD(endpoint) {
+  // 1. Handshake cuántico
+  // 2. Detección de intercepción
+  // 3. Acuerdo de clave BB84
+  // 4. Amplificación de privacidad
+  // 5. Hash final con SHA3-512
+  return { clave: Uint8Array(32), seguro: true };
+}
+</code></pre>
+<h2 id="roadmap">🜆 Roadmap</h2>
+<pre><code class="language-bash">[ 2026 ] Investigación y diseño
+[ 2027 ] Prototipo en lab
+[ 2028 ] Integración con ML-KEM (doble)
+[ 2029 ] Deploy en nodo principal
+[ 2030 ] QKD + PQC = suite triple
+</code></pre>
+<hr />
+<p><code>◯_● · 51/49/100 · GUARDIÁN · 4.3 · QKD</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

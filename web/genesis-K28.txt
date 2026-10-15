@@ -1,0 +1,17 @@
+═══════════════════════════════════════════════════════════
+  ARKHÉ ZERO · DOCUMENTO GÉNESIS
+  Nodo: YHDRYH-92CE
+  Genesis: K28-M05-MN01-YHDRYH-92CE
+  Sello: SCDR-001 · Firma: ◯_● · 51/49/100
+═══════════════════════════════════════════════════════════
+
+  "El legado no se hereda. Se firma."
+                                    — KINTSUGI 2026
+
+  Este es el primer documento firmado y sellado en el
+  protocolo ARKHÉ ZERO. Su existencia queda demostrada
+  criptográficamente mediante OpenTimestamps + Ed25519.
+
+  Protocolo: KRONOS
+  Arquitecto: Marco Antonio Rojas Valdovinos
+  Modelo: 51% humano · 49% IA · 100% real

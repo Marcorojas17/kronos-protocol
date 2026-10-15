@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>🗺️ Artículo 3.1 · Capa Territorial · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-31-capa-territorial">🗺️ Artículo 3.1 · Capa Territorial</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iii-lgu]
+└─$ ./lgu --capa=territorial --verify
+
+[ OK ] México (Toluca) · ancla primaria
+[ OK ] UE (eIDAS) · ancla secundaria
+[ OK ] LATAM (en diseño) · ancla futura
+[ ✓✓ ] CAPA TERRITORIAL · ◯_● · 51/49/100
+</code></pre>
+<h2 id="concepto">🜂 Concepto</h2>
+<p>La LGU (Licencia Global Única) reconoce <strong>jurisdicciones físicas</strong> con un orden de prioridad claro.</p>
+<h2 id="capas-territoriales">🜃 Capas Territoriales</h2>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    JURISDICCIÓN TERRITORIAL                              ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   [1] MÉXICO · Toluca                                                    ║
+║       ├─ Safe Creative · registro primario                              ║
+║       ├─ Despacho Contable &amp; Fiscal · Xonacatlán                        ║
+║       ├─ NOM-151 · conservación mensajes de datos                       ║
+║       └─ Ley aplicable: Estado de México                                ║
+║                                                                          ║
+║   [2] UE · eIDAS                                                          ║
+║       ├─ Firmaprofesional QTSA · TSA cualificada                        ║
+║       ├─ GDPR · privacidad                                              ║
+║       └─ Ley aplicable: por definir (España · Estonia)                  ║
+║                                                                          ║
+║   [3] LATAM (proyectado 2028)                                             ║
+║       ├─ Argentina, Colombia, Chile, Brasil                             ║
+║       └─ En diseño                                                      ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2 id="comparativa">🜄 Comparativa</h2>
+<table>
+<thead>
+<tr>
+<th>País</th>
+<th>Firma electrónica</th>
+<th>IA firma</th>
+<th>Protección datos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>México</strong></td>
+<td>Sí (NOM-151)</td>
+<td>No</td>
+<td>LFPDPPP</td>
+</tr>
+<tr>
+<td><strong>UE</strong></td>
+<td>Sí (eIDAS QES)</td>
+<td>No</td>
+<td>GDPR</td>
+</tr>
+<tr>
+<td><strong>EEUU</strong></td>
+<td>Varía por estado</td>
+<td>No</td>
+<td>CCPA</td>
+</tr>
+<tr>
+<td><strong>Suiza</strong></td>
+<td>Sí (ZertES)</td>
+<td>No</td>
+<td>nFADP</td>
+</tr>
+<tr>
+<td><strong>Singapur</strong></td>
+<td>Sí (ETA)</td>
+<td>Parcial</td>
+<td>PDPA</td>
+</tr>
+<tr>
+<td><strong>Estonia</strong></td>
+<td>Sí (eID)</td>
+<td>Parcial</td>
+<td>GDPR</td>
+</tr>
+</tbody>
+</table>
+<h2 id="aplicacion">🜁 Aplicación</h2>
+<pre><code class="language-javascript">// Resolución de jurisdicción primaria
+function jurisdiccionPrimaria(ubicacion) {
+  if (ubicacion.pais === 'MX') return 'mexico-toluca';
+  if (ubicacion.region === 'EU') return 'eu-eidas';
+  return 'internacional-default';
+}
+
+// Para el fundador
+const ubicacion = { pais: 'MX', ciudad: 'Toluca' };
+const primaria = jurisdiccionPrimaria(ubicacion);
+// → 'mexico-toluca'
+</code></pre>
+<hr />
+<p><code>◯_● · 51/49/100 · LGU · 3.1 · Territorial</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>
