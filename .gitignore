@@ -40,3 +40,12 @@ MANIFEST-*.txt
 backup/
 .arkhe-private/
 venv/
+firma/privada.pem
+firma/*.pem
+firma/*.key
+
+# Llaves privadas
+firma/privada.pem
+firma/*.key
+firma/*.pem.secret
+*.priv.pem
