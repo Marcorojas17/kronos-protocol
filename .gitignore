@@ -36,3 +36,7 @@ testimonio/claves/
 .env.*
 *.secret
 MANIFEST-*.txt
+07-LLAVES/FUNDADOR-V2/
+backup/
+.arkhe-private/
+venv/
