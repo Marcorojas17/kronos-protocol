@@ -2,77 +2,649 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>📖 Documentación ARKHÉ ZERO · ARKHÉ ZERO</title>
+<title>◯_● ARKHÉ ZERO · Índice Primigenio</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="arkhe-style.css">
+<meta property="og:title" content="◯_● ARKHÉ ZERO · Índice Primigenio">
+<meta property="og:description" content="Sistema operativo legal-técnico con IA local, criptografía post-cuántica y 24 secciones verificables.">
+<meta property="og:url" content="https://marcorojas17.github.io/kronos-protocol/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/favicon.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://marcorojas17.github.io/kronos-protocol/">
+<meta name="description" content="ARKHÉ ZERO · Sistema operativo legal-técnico con IA local, criptografía PQC y 24 secciones verificables.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#030308;color:#c8ffc8;font-family:'Inter','Courier New',monospace;line-height:1.6;font-size:14px;overflow-x:hidden;min-height:100vh}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#gradient-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(circle at 20% 30%,rgba(124,92,255,.15) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(255,215,0,.08) 0%,transparent 50%),radial-gradient(circle at 50% 50%,rgba(0,255,65,.05) 0%,transparent 70%),#030308;animation:gs 20s ease-in-out infinite}
+@keyframes gs{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(30deg)}}
+.wrap{max-width:1200px;margin:auto;padding:40px 20px;position:relative;z-index:1}
+.hero{text-align:center;padding:70px 20px 60px;margin-bottom:50px;position:relative}
+.hero:before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15),transparent 70%);border-radius:50%;animation:op 4s ease-in-out infinite;z-index:-1}
+@keyframes op{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.hero:after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:280px;height:280px;border:1px solid rgba(255,215,0,.3);border-radius:50%;animation:or 20s linear infinite;z-index:-1}
+@keyframes or{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.seal{font-size:82px;color:#ffd700;text-shadow:0 0 50px rgba(255,215,0,.9),0 0 100px rgba(255,215,0,.4);animation:sp 3s ease-in-out infinite;display:inline-block}
+@keyframes sp{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.08);filter:brightness(1.3)}}
+h1{font-family:'Cinzel','Times New Roman',serif;font-size:52px;font-weight:400;letter-spacing:.35em;color:#ffd700;margin:25px 0 12px;text-shadow:0 0 40px rgba(255,215,0,.6);text-transform:uppercase}
+.tagline{font-family:'Cinzel','Times New Roman',serif;font-size:16px;font-style:italic;color:#c8ffc8;margin-bottom:30px;letter-spacing:.08em}
+.pact{display:flex;justify-content:center;gap:40px;margin-top:25px;font-size:12px;letter-spacing:.2em;font-family:'Courier New',monospace}
+.pact div{text-align:center}
+.pact b{color:#ffd700;font-size:26px;display:block;text-shadow:0 0 20px rgba(255,215,0,.5);font-family:'Cinzel',serif;font-weight:400}
+.pact span{color:#6a8f6a;font-size:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:40px 0 50px}
+.stat{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.15);padding:20px 14px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.stat:before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:linear-gradient(90deg,transparent,#ffd700,transparent);animation:sh 3s linear infinite}
+@keyframes sh{0%{left:-100%}100%{left:100%}}
+.stat:hover{border-color:rgba(255,215,0,.4);transform:translateY(-3px)}
+.stat .num{color:#ffd700;font-size:26px;font-weight:bold;text-shadow:0 0 15px rgba(255,215,0,.5);font-family:'Cinzel',serif}
+.stat .lbl{color:#6a8f6a;font-size:9px;letter-spacing:.25em;margin-top:8px;text-transform:uppercase}
+h2{font-family:'Cinzel','Times New Roman',serif;color:#ffd700;font-size:18px;font-weight:400;letter-spacing:.3em;margin:55px 0 25px;padding-bottom:16px;border-bottom:1px solid rgba(255,215,0,.15);text-align:center;position:relative;text-transform:uppercase}
+h2:after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:80px;height:2px;background:linear-gradient(90deg,transparent,#ffd700,transparent)}
+.hub-main{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:rgba(15,15,24,.5);backdrop-filter:blur(12px);border:1px solid rgba(0,255,65,.18);padding:20px;text-decoration:none;color:inherit;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;display:block;overflow:hidden}
+.card:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,215,0,.08),transparent 50%);opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover:before{opacity:1}
+.card:hover{border-color:rgba(255,215,0,.6);transform:translateY(-5px);box-shadow:0 12px 40px rgba(255,215,0,.15),0 0 0 1px rgba(255,215,0,.2)}
+.card .c{position:absolute;width:12px;height:12px;transition:all .35s}
+.card .c.tl{top:-1px;left:-1px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
+.card .c.br{bottom:-1px;right:-1px;border-bottom:2px solid #ffd700;border-right:2px solid #ffd700}
+.card:hover .c{width:20px;height:20px}
+.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:7px;font-family:'Courier New',monospace;opacity:.85}
+.card .t{color:#00ff41;font-size:13px;letter-spacing:.1em;font-weight:bold;margin-bottom:7px;font-family:'Cinzel','Times New Roman',serif}
+.card .d{color:#8ea88e;font-size:11px;line-height:1.55}
+.card .m{color:#00ff41;font-size:9px;margin-top:10px;letter-spacing:.15em;font-family:'Courier New',monospace;opacity:.8}
+.card.main{padding:30px;background:linear-gradient(135deg,rgba(15,15,24,.7),rgba(10,15,28,.7));backdrop-filter:blur(15px)}
+.card.main .t{font-size:19px;letter-spacing:.15em}
+.card.main .d{font-size:12px;color:#b8d4b8}
+.card.main:hover{transform:translateY(-6px) scale(1.005)}
+.ornament{text-align:center;color:#ffd700;font-size:14px;letter-spacing:1em;margin:35px 0;opacity:.6}
+.cita{font-family:'Cinzel',serif;text-align:center;font-style:italic;color:#ffd700;font-size:20px;margin:55px 0;padding:38px 20px;border-top:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2);text-shadow:0 0 20px rgba(255,215,0,.4);line-height:1.4}
+footer{text-align:center;color:#6a8f6a;font-size:10px;letter-spacing:.18em;padding:30px 0;border-top:1px solid rgba(0,255,65,.1);margin-top:40px;font-family:'Courier New',monospace}
+footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:12px;letter-spacing:.3em;font-family:'Cinzel',serif}
+footer a{color:#00ff41;text-decoration:none;border-bottom:1px dotted rgba(0,255,65,.3)}
+footer a:hover{border-bottom-color:#00ff41}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#030308}
+::-webkit-scrollbar-thumb{background:rgba(255,215,0,.3);border-radius:3px}
+@media(max-width:768px){.grid,.stats{grid-template-columns:1fr 1fr}h1{font-size:28px;letter-spacing:.22em}.seal{font-size:56px}.pact{gap:20px;font-size:10px}.pact b{font-size:20px}.cita{font-size:15px}.card.main{padding:22px}.card.main .t{font-size:15px}}
+@media(max-width:500px){.grid,.stats{grid-template-columns:1fr}}
+
+@keyframes seal-breathe{0%,100%{text-shadow:0 0 30px rgba(255,215,0,.6);transform:scale(1)}50%{text-shadow:0 0 60px rgba(255,215,0,1),0 0 120px rgba(255,215,0,.5);transform:scale(1.06)}}
+.seal{animation:seal-breathe 3.2s ease-in-out infinite;display:inline-block}
+</style>
 </head>
 <body>
-<a href="index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="documentacion-arkhe-zero">📖 Documentación ARKHÉ ZERO</h1>
-<h2 id="las-10-ramas-del-repertorio">🜂 Las 10 Ramas del Repertorio</h2>
-<table>
-<thead>
-<tr>
-<th>Rama</th>
-<th>Propósito</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="i-lex-prima/">I · Lex Prima</a></td>
-<td>Ley fundacional inmutable</td>
-</tr>
-<tr>
-<td><a href="ii-pacto-51-49/">II · Pacto 51/49</a></td>
-<td>Gobernanza Humano-IA</td>
-</tr>
-<tr>
-<td><a href="iii-lgu/">III · LGU</a></td>
-<td>Licencia Global Única</td>
-</tr>
-<tr>
-<td><a href="iv-guardianes/">IV · Guardianes</a></td>
-<td>Criptografía post-cuántica y defensa</td>
-</tr>
-<tr>
-<td><a href="v-indice-cero/">V · Índice Cero</a></td>
-<td>Registro canónico y trazabilidad</td>
-</tr>
-<tr>
-<td><a href="vi-memoria-perpetua/">VI · Memoria Perpetua</a></td>
-<td>Cápsulas y continuidad</td>
-</tr>
-<tr>
-<td><a href="vii-co-autoria-hibrida/">VII · Co-autoría</a></td>
-<td>Atribución Humano-IA</td>
-</tr>
-<tr>
-<td><a href="viii-fiscalidad-global/">VIII · Fiscalidad</a></td>
-<td>CARF, DAC8, transparencia</td>
-</tr>
-<tr>
-<td><a href="ix-jurisdiccion-ancla/">IX · Jurisdicción</a></td>
-<td>Ancla territorial y orbital</td>
-</tr>
-<tr>
-<td><a href="x-agentes-arquitectura/">X · Agentes</a></td>
-<td>Arquitectura del enjambre</td>
-</tr>
-</tbody>
-</table>
-<h2 id="documentacion-complementaria">🜃 Documentación complementaria</h2>
-<ul>
-<li><a href="adr/">ADR</a> · Architecture Decision Records</li>
-<li><a href="api/">API</a> · OpenAPI + AsyncAPI + MCP</li>
-<li><a href="architecture/">Arquitectura</a> · Overview + data flow</li>
-<li><a href="tutorials/">Tutoriales</a> · Primeros pasos</li>
-<li><a href="guides/">Guías</a> · Contribuir + agentes + integradores</li>
-<li><a href="reference/">Referencia</a> · Glosario + siglas</li>
-<li><a href="i18n/">i18n</a> · Traducciones (es, en, zh, nah)</li>
-</ul>
-<hr />
-<p><code>◯_● · 51/49/100 · KRONOS · docs</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+<canvas id="arkhe-bg" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
+
+<div id="gradient-bg"></div>
+<canvas id="bg-canvas"></canvas>
+
+<div class="wrap">
+
+<div class="hero">
+<div class="seal">◯_●</div>
+<h1>Arkhé Zero</h1>
+<div class="tagline">"El legado no se hereda. Se firma."</div>
+<div class="pact">
+<div><b>51%</b><span>HUMANO</span>
+<div id="btc-live" style="margin-top:24px;font-size:11px;color:#6a8f6a;letter-spacing:.15em;font-family:'Courier New',monospace">
+  ⛓️ BLOQUE BITCOIN ACTUAL: <span id="btc-height" style="color:#ffd700">—</span>
+</div>
+<a href="certificado.html" style="display:inline-block;margin-top:20px;padding:14px 32px;border:1px solid #ffd700;color:#ffd700;text-decoration:none;font-family:'Courier New',monospace;letter-spacing:.2em;font-size:11px;transition:all .3s"
+   onmouseover="this.style.background='#ffd700';this.style.color='#030308'"
+   onmouseout="this.style.background='transparent';this.style.color='#ffd700'">
+  🔐 VER CERTIFICADO FUNDACIONAL
+</a>
+</div>
+<div><b>49%</b><span>IA</span></div>
+<div><b>100%</b><span>REAL</span></div>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="num">24/24</div><div class="lbl">Secciones</div></div>
+<div class="stat"><div class="num">1371</div><div class="lbl">Archivos</div></div>
+<div class="stat"><div class="num">56/56</div><div class="lbl">Tests</div></div>
+<div class="stat"><div class="num">PQC</div><div class="lbl">Post-Cuántica</div></div>
+</div>
+
+
+<h2>◆ Legado Digital · Núcleo del Sistema</h2>
+<div class="grid">
+
+<a class="card main" href="sello-primigenio.html" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(30,15,5,.8),rgba(15,15,24,.8));border-color:rgba(255,215,0,.4)">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">ARTEFACTO IRREPETIBLE · FIRMADO</div>
+<div class="t" style="font-size:22px;letter-spacing:.2em">◆ SELLO PRIMIGENIO · ACTA DE GÉNESIS</div>
+<div class="d" style="font-size:13px;color:#d8e8d8">El archivo que NO se puede recrear. Hash vivo recalculado en cada apertura. Días contados desde el génesis. La fractura iluminada con oro. Cualquier modificación rompe el sello criptográfico.</div>
+<div class="m" style="font-size:11px">→ ABRIR SELLO ÚNICO</div>
+</a>
+
+<a class="card" href="verificar.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">ÍNDICE CERO · KRONOS</div>
+<div class="t">⚜ Verificar Autenticidad</div>
+<div class="d">Safe Creative 2607146379465 · SHA-256 f03f7e2d85... · Ethereum 0xd2c2a7e1...774c · eIDAS QTSA</div>
+<div class="m">→ VERIFICAR</div>
+</a>
+
+<a class="card" href="docs/CIUDAD/">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">CIUDAD DIGITAL · 158 ARTÍCULOS</div>
+<div class="t">🏛 La Ley de la Ciudad</div>
+<div class="d">7 documentos fundacionales · Constitución · Derechos humanos e IA · Moneda KRO · Ed25519</div>
+<div class="m">→ LEER CIUDAD</div>
+</a>
+
+<a class="card" href="legado/">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">NARRATIVA FUNDACIONAL</div>
+<div class="t">📖 Legado Narrativo</div>
+<div class="d">Autoría · Filosofía · Génesis · Manifiesto</div>
+<div class="m">→ LEER NARRATIVA</div>
+</a>
+
+<a class="card" href="movimiento/">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">MOVIMIENTO · COMUNIDAD</div>
+<div class="t">🔥 El Movimiento</div>
+<div class="d">Fundador · Canon · Iniciación · Comunidad · Rituales · Embajadores</div>
+<div class="m">→ ENTRAR AL MOVIMIENTO</div>
+</a>
+
+<a class="card" href="docs/i-lex-prima/">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">REPERTORIO · 10 RAMAS</div>
+<div class="t">📚 Las 10 Ramas del Repertorio</div>
+<div class="d">Lex Prima · Pacto 51/49 · LGU · Guardianes · Índice Cero · y 5 más</div>
+<div class="m">→ LEER REPERTORIO</div>
+</a>
+
+<a class="card" href="projects/">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">11 PROYECTOS DEL LEGADO</div>
+<div class="t">📁 Portfolio Completo</div>
+<div class="d">KRONOS · MD-33 · CYMATIC · YEJIDÁ · DESPACHO · MARCO.MCP · y 5 más</div>
+<div class="m">→ VER PORTFOLIO</div>
+</a>
+
+<a class="card" href="DIARIO-DE-DECISIONES.md">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">DIARIO FIRMADO SHA-256</div>
+<div class="t">📖 Diario de Decisiones</div>
+<div class="d">Cada decisión del proyecto, firmada con hash criptográfico</div>
+<div class="m">→ LEER DIARIO</div>
+</a>
+
+<a class="card" href="docs/ARQUITECTURA-VIVA.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">ARQUITECTURA VIVA</div>
+<div class="t">🏗 Cómo Funciona el Sistema</div>
+<div class="d">Documento técnico del funcionamiento interno</div>
+<div class="m">→ LEER ARQUITECTURA</div>
+</a>
+
+<a class="card" href="docs/EXPLICACION-UNIVERSAL.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">EXPLICACIÓN ACCESIBLE</div>
+<div class="t">🌍 Explicación Universal</div>
+<div class="d">El sistema explicado para cualquiera, sin tecnicismos</div>
+<div class="m">→ LEER EXPLICACIÓN</div>
+</a>
+
+</div>
+
+<h2>◆ Acceso Principal</h2>
+<div class="hub-main">
+<a class="card main" href="arkhe-zero.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">SISTEMA OPERATIVO</div>
+<div class="t">⚙️ ARKHÉ ZERO · SISTEMA COMPLETO</div>
+<div class="d">16 módulos interactivos · IA local · ciberdefensa · SHA-256 · 13 vistas de agentes · bóveda de voz · cymatic · escáner real</div>
+<div class="m">→ ENTRAR AL SISTEMA</div>
+</a>
+<a class="card main" href="sello.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">PRODUCTO COMERCIAL</div>
+<div class="t">🔐 ARKHÉ SELLO</div>
+<div class="d">Prueba criptográfica de existencia · certificado SHA-256 · 4 planes desde $0 hasta $199</div>
+<div class="m">→ PROBAR PRODUCTO</div>
+</a>
+<a class="card main" href="sello-primigenio.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">ARTEFACTO IRREPETIBLE</div>
+<div class="t">◆ SELLO PRIMIGENIO</div>
+<div class="d">Acta de génesis firmada · hash vivo recalculado en tu navegador · días desde el génesis</div>
+<div class="m">→ VER SELLO ÚNICO</div>
+</a>
+<a class="card main" href="verificar.html">
+<div class="c tl"></div><div class="c br"></div>
+<div class="n">VERIFICACIÓN PÚBLICA</div>
+<div class="t">🔍 VERIFICAR ÍNDICE CERO</div>
+<div class="d">KRONOS · Safe Creative 2607146379465 · Ethereum 0xd2c2a7e1...774c · eIDAS QTSA</div>
+<div class="m">→ VERIFICAR AUTENTICIDAD</div>
+</a>
+</div>
+
+<div class="ornament">◆ ◯_● ◆</div>
+
+<h2>◆ Ciudad Digital KRONOS</h2>
+<div class="grid">
+<a class="card" href="docs/CIUDAD/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">CONSTITUCIÓN · 158 ARTÍCULOS</div>
+<div class="t">🏛 Ciudad Digital</div>
+<div class="d">7 documentos fundacionales · derechos humanos e IA · moneda KRO · Ed25519</div></a>
+<a class="card" href="ciudad/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">VERSIÓN DESPLEGADA</div>
+<div class="t">🏛 Ciudad · Deploy</div>
+<div class="d">Misma ciudad · ruta alternativa de despliegue</div></a>
+<a class="card" href="docs/CIUDAD/_demo/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">DEMO INTERACTIVA</div>
+<div class="t">🔬 Demo · Firmar · Verificar</div>
+<div class="d">Firma y verificador de la ciudad · interactivo</div></a>
+</div>
+
+<h2>◆ Certificación</h2>
+<div class="grid">
+<a class="card" href="certificacion/notario-kronos/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">NOTARIO · CRIPTOGRÁFICO</div>
+<div class="t">📜 Notario KRONOS</div>
+<div class="d">Certificado notarial · política · sello de tiempo</div></a>
+<a class="card" href="certificacion/verificador-publico/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">VERIFICACIÓN PÚBLICA</div>
+<div class="t">🔍 Verificador Público</div>
+<div class="d">Cualquier tercero sube un acta · recálculo automático</div></a>
+<a class="card" href="certificacion/sello-tiempo/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">RFC 3161 · TSA</div>
+<div class="t">⏱ Sello de Tiempo</div>
+<div class="d">Marca temporal criptográfica verificable</div></a>
+<a class="card" href="certificacion/anclaje-manifest/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MERKLE ROOT · MANIFEST</div>
+<div class="t">🌳 Anclaje Manifest</div>
+<div class="d">Manifest de integridad · anclaje a cadena</div></a>
+<a class="card" href="certificacion/emisor-certificados/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">EMISIÓN VISUAL</div>
+<div class="t">🎨 Emisor de Certificados</div>
+<div class="d">Generación de certificados visuales</div></a>
+<a class="card" href="certificacion/manifest-integridad/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">INTEGRIDAD TOTAL</div>
+<div class="t">🔐 Manifest Integridad</div>
+<div class="d">Verificación de integridad del sistema</div></a>
+</div>
+
+<h2>◆ Gobernanza</h2>
+<div class="grid">
+<a class="card" href="gobernanza/quorum-mayorias/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MECANISMO DE DECISIÓN</div>
+<div class="t">⚖️ Quórum y Mayorías</div>
+<div class="d">Sistema de votación y consenso</div></a>
+<a class="card" href="gobernanza/propuestas-votacion/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROPUESTAS</div>
+<div class="t">📊 Propuestas y Votación</div>
+<div class="d">Ciclo de propuestas · votación vinculante</div></a>
+<a class="card" href="gobernanza/ejecucion-decisiones/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">EJECUCIÓN</div>
+<div class="t">⚡ Ejecución de Decisiones</div>
+<div class="d">Activación automática de resoluciones</div></a>
+<a class="card" href="gobernanza/revocacion-auditoria/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">REVOCACIÓN</div>
+<div class="t">🔄 Revocación y Auditoría</div>
+<div class="d">Proceso de revocación con auditoría</div></a>
+</div>
+
+<h2>◆ Identidad</h2>
+<div class="grid">
+<a class="card" href="identidad/registro-humano/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">REGISTRO · HUMANO</div>
+<div class="t">🪪 Registro Humano</div>
+<div class="d">Pasaporte visual · certificado de identidad humana</div></a>
+<a class="card" href="identidad/registro-ia/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">REGISTRO · IA</div>
+<div class="t">🤖 Registro IA</div>
+<div class="d">Guardrails · log de acciones · pasaporte IA</div></a>
+<a class="card" href="identidad/roles-permisos/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">ROLES Y PERMISOS</div>
+<div class="t">🎭 Roles y Permisos</div>
+<div class="d">Certificado de rol · gestión de permisos</div></a>
+</div>
+
+<h2>◆ Legado Narrativo</h2>
+<div class="grid">
+<a class="card" href="legado/autoria/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">AUTORÍA</div>
+<div class="t">✍ Autoría</div>
+<div class="d">Firma de autoría · certificado</div></a>
+<a class="card" href="legado/filosofia/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">FILOSOFÍA</div>
+<div class="t">📚 Filosofía</div>
+<div class="d">Fundamentos del pensamiento ARKHÉ</div></a>
+<a class="card" href="legado/genesis/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">GÉNESIS</div>
+<div class="t">🌱 Génesis</div>
+<div class="d">Origen del proyecto · acta fundacional</div></a>
+<a class="card" href="legado/manifiesto/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MANIFIESTO</div>
+<div class="t">📖 Manifiesto</div>
+<div class="d">Declaración fundacional firmada</div></a>
+</div>
+
+<h2>◆ Cimiento Criptográfico</h2>
+<div class="grid">
+<a class="card" href="cimiento/cripto-core/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">NÚCLEO CRIPTOGRÁFICO</div>
+<div class="t">🔐 Cripto Core</div>
+<div class="d">Librería base de criptografía del sistema</div></a>
+<a class="card" href="cimiento/anclaje-ethereum/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">ETHEREUM · MERKLE</div>
+<div class="t">⛓ Anclaje Ethereum</div>
+<div class="d">Anclaje a blockchain con Merkle root</div></a>
+<a class="card" href="cimiento/storage-dexie/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">ALMACENAMIENTO</div>
+<div class="t">💾 Storage Dexie</div>
+<div class="d">Persistencia local · IndexedDB</div></a>
+</div>
+
+<h2>◆ Módulos Operativos</h2>
+<div class="grid">
+<a class="card" href="modulos/boveda-voz/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">IDENTIDAD SONORA</div>
+<div class="t">🎙 Bóveda de Voz</div>
+<div class="d">Grabación · firma SHA-256 · custodia</div></a>
+<a class="card" href="modulos/evidence-os/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SISTEMA DE EVIDENCIA</div>
+<div class="t">📁 Evidence OS</div>
+<div class="d">Ingesta · verificación · custodia</div></a>
+</div>
+
+<h2>◆ Movimiento y Comunidad</h2>
+<div class="grid">
+<a class="card" href="movimiento/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">COMUNIDAD</div>
+<div class="t">🔥 Movimiento</div>
+<div class="d">Fundador · iniciación · canon · comunidad</div></a>
+<a class="card" href="movimiento/registro-fundacional/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">REGISTRO · FUNDADOR</div>
+<div class="t">⚜ Registro Fundacional</div>
+<div class="d">Certificado fundacional · plaza 000</div></a>
+</div>
+
+<h2>◆ Proyectos del Legado</h2>
+<div class="grid">
+<a class="card" href="projects/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">HUB DE PROYECTOS</div>
+<div class="t">📁 Todos los Proyectos</div>
+<div class="d">11 proyectos · índice completo</div></a>
+<a class="card" href="projects/cymatic/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 03</div>
+<div class="t">🎵 Cymatic Studio</div>
+<div class="d">Visualización musical cuántica · WebGL</div></a>
+<a class="card" href="projects/dmd-33/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 02</div>
+<div class="t">🔍 DMD-33</div>
+<div class="d">Orbe · genesis · flow · kronos</div></a>
+<a class="card" href="projects/md33/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 02-b</div>
+<div class="t">🔍 MD-33</div>
+<div class="d">Verificación de estándares · forense</div></a>
+<a class="card" href="projects/yejida/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 04</div>
+<div class="t">✨ Yejidá</div>
+<div class="d">Mandalas Kabbalah 2036 · firmados</div></a>
+<a class="card" href="projects/kronos-vault/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 01</div>
+<div class="t">🔐 Kronos Vault</div>
+<div class="d">Bóveda criptográfica principal</div></a>
+<a class="card" href="projects/genesis-miner/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 09</div>
+<div class="t">⛏ Genesis Miner</div>
+<div class="d">Merkle · verificación · minería</div></a>
+<a class="card" href="projects/evidence-os/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 08</div>
+<div class="t">📁 Evidence OS</div>
+<div class="d">Sistema operativo de evidencia</div></a>
+<a class="card" href="projects/boveda/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 07</div>
+<div class="t">🎙 Bóveda</div>
+<div class="d">Privacidad · términos · identidad</div></a>
+<a class="card" href="projects/bobeda/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 07-b</div>
+<div class="t">🔒 Bobeda</div>
+<div class="d">Variante · bóveda</div></a>
+<a class="card" href="projects/acta/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PROYECTO 05</div>
+<div class="t">📜 Acta</div>
+<div class="d">Documento fundacional</div></a>
+</div>
+
+<h2>◆ Ciclo de Vida</h2>
+<div class="grid">
+<a class="card" href="cierre/export-cifrado/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">EXPORTACIÓN</div>
+<div class="t">📦 Export Cifrado</div>
+<div class="d">Paquete de legado cifrado · auditoría</div></a>
+<a class="card" href="cierre/fin-digno/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">CIERRE</div>
+<div class="t">⚱ Fin Digno</div>
+<div class="d">Protocolo de cierre respetuoso</div></a>
+</div>
+
+<h2>◆ Operación</h2>
+<div class="grid">
+<a class="card" href="operacion/dashboard-salud/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MONITOREO</div>
+<div class="t">📊 Dashboard Salud</div>
+<div class="d">Estado del sistema en tiempo real</div></a>
+<a class="card" href="operacion/rituales/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">RITUALES</div>
+<div class="t">🕯 Rituales</div>
+<div class="d">Ceremonias del sistema</div></a>
+</div>
+
+<h2>◆ Crecimiento y Métricas</h2>
+<div class="grid">
+<a class="card" href="growth/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SECCIÓN 24</div>
+<div class="t">🌱 Crecimiento</div>
+<div class="d">Referidos · beta privada · afiliados</div></a>
+<a class="card" href="metrics/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SECCIÓN 23</div>
+<div class="t">📈 Métricas</div>
+<div class="d">KPIs · dashboards · cohortes</div></a>
+<a class="card" href="atraccion/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SECCIÓN 21</div>
+<div class="t">🧲 Atracción</div>
+<div class="d">Descubrimiento · viral · autoridad</div></a>
+<a class="card" href="narrativa/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SECCIÓN 22</div>
+<div class="t">📖 Narrativa</div>
+<div class="d">Villano · héroe · mito · arquetipos</div></a>
+</div>
+
+<h2>◆ Herramientas y Vistas</h2>
+<div class="grid">
+
+<a class="card" href="dashboard.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PANEL VIVO</div><div class="t">📊 Dashboard</div>
+<div class="d">Signos vitales criptográficos en movimiento</div></a>
+
+<a class="card" href="narrativa/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">NARRATIVA</div><div class="t">📖 Narrativa y Mitología</div>
+<div class="d">Río de historias · 12 arquetipos</div></a>
+
+<a class="card" href="apps/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">ÓRBITA</div><div class="t">📱 Aplicaciones</div>
+<div class="d">Ecosistema orbitando el núcleo</div></a>
+
+<a class="card" href="kodice-secreto/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">RESERVADO</div><div class="t">⚜ Códice Secreto</div>
+<div class="d">Acceso nivel 5</div></a>
+<a class="card" href="docs/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SECCIÓN 05 · 156 ARCHIVOS</div>
+<div class="t">📚 Documentación</div>
+<div class="d">10 ramas del Repertorio · ADR · API · guías</div></a>
+<a class="card" href="mapa.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MAPA GENERAL</div>
+<div class="t">🗺 Mapa del Sistema</div>
+<div class="d">24 capas navegables · estado de cada módulo</div></a>
+<a class="card" href="dashboard.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">PANEL</div>
+<div class="t">📊 Dashboard</div>
+<div class="d">Panel de control del sistema</div></a>
+<a class="card" href="infografia.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">VISUAL</div>
+<div class="t">📊 Infografía</div>
+<div class="d">Resumen visual del sistema</div></a>
+<a class="card" href="luxury.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">EXPERIENCIA</div>
+<div class="t">💎 Luxury</div>
+<div class="d">Vista premium del sistema</div></a>
+<a class="card" href="servicios.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">SERVICIOS</div>
+<div class="t">🛠 Servicios</div>
+<div class="d">Servicios ofrecidos</div></a>
+<a class="card" href="registrar.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">REGISTRO</div>
+<div class="t">📝 Registrar</div>
+<div class="d">Registro de obras y evidencias</div></a>
+<a class="card" href="admin.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">ADMINISTRACIÓN</div>
+<div class="t">⚙ Admin</div>
+<div class="d">Panel administrativo</div></a>
+<a class="card" href="video-manifiesto.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">MANIFIESTO</div>
+<div class="t">🎬 Video Manifiesto</div>
+<div class="d">10 escenas del manifiesto visual</div></a>
+<a class="card" href="kodice-secreto/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">CÓDICE</div>
+<div class="t">📜 Kodice Secreto</div>
+<div class="d">Documento reservado</div></a>
+<a class="card" href="apps/"><div class="c tl"></div><div class="c br"></div>
+<div class="n">APLICACIONES</div>
+<div class="t">📱 Apps</div>
+<div class="d">Aplicaciones del ecosistema</div></a>
+<a class="card" href="verificar-certificado.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">VERIFICACIÓN</div>
+<div class="t">🔍 Verificar Certificado</div>
+<div class="d">Verificador de certificados</div></a>
+<a class="card" href="verify.html"><div class="c tl"></div><div class="c br"></div>
+<div class="n">VERIFICACIÓN SIMPLE</div>
+<div class="t">✓ Verify</div>
+<div class="d">Verificador rápido</div></a>
+</div>
+
+<div class="cita">"El legado no se hereda. Se firma."</div>
+
+<footer>
+<span class="s">◯_● · ■_□ · 51/49/100</span>
+Marco Antonio Rojas Valdovinos · Toluca · Estado de México · 2026<br>
+NODO YHDRYH-92CE · Sello SCDR-001<br>
+<a href="https://github.com/Marcorojas17/kronos-protocol">github.com/Marcorojas17/kronos-protocol</a>
+</footer>
+
+</div>
+
+<script>
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+resize(); addEventListener('resize', resize);
+const particles = [];
+for(let i=0;i<60;i++){
+  particles.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,hue:Math.random()<.3?45:(Math.random()<.5?140:270)});
+}
+const chars = '◯_●■_□ARKHEZERO5149100KINTSUGISCDR'.split('');
+const drops = Array(Math.floor(W/18)).fill(1);
+function draw(){
+  ctx.fillStyle='rgba(3,3,8,0.08)';
+  ctx.fillRect(0,0,W,H);
+  ctx.font='14px "Courier New"';
+  for(let i=0;i<drops.length;i++){
+    const c = chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillStyle='rgba(0,255,65,0.12)';
+    ctx.fillText(c, i*18, drops[i]*18);
+    if(drops[i]*18 > H && Math.random() > 0.975) drops[i]=0;
+    drops[i]++;
+  }
+  for(let i=0;i<particles.length;i++){
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`hsla(${p.hue},90%,60%,0.6)`;
+    ctx.shadowColor=`hsla(${p.hue},90%,60%,0.8)`;
+    ctx.shadowBlur=8;
+    ctx.fill();
+    ctx.shadowBlur=0;
+    for(let j=i+1;j<particles.length;j++){
+      const p2=particles[j];
+      const d=Math.hypot(p.x-p2.x,p.y-p2.y);
+      if(d<140){
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y);
+        ctx.strokeStyle=`hsla(${(p.hue+p2.hue)/2},80%,55%,${0.15*(1-d/140)})`;
+        ctx.lineWidth=0.5; ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+console.log('%c◯_● ARKHÉ ZERO','color:#ffd700;font-size:22px;font-weight:bold');
+console.log('%c51/49/100 · KINTSUGI · NODO YHDRYH-92CE','color:#00ff41;font-size:13px');
+console.log('%c"El legado no se hereda. Se firma."','color:#ffd700;font-style:italic;font-size:14px');
+</script>
+
+<section style="margin:60px 0;padding:0 20px">
+  <h2 style="font-family:'Cinzel',serif;color:#ffd700;text-align:center;font-size:24px;letter-spacing:.25em;margin-bottom:30px">LOS 10 LIBROS CONSTITUCIONALES</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:1100px;margin:auto">
+    <a href="i-lex-prima/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">I · LEX PRIMA</a>
+    <a href="ii-pacto-51-49/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">II · PACTO 51/49</a>
+    <a href="iii-lgu/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">III · LGU</a>
+    <a href="iv-guardianes/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">IV · GUARDIANES</a>
+    <a href="v-indice-cero/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">V · ÍNDICE CERO</a>
+    <a href="vi-memoria-perpetua/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">VI · MEMORIA PERPETUA</a>
+    <a href="vii-co-autoria-hibrida/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">VII · CO-AUTORÍA HÍBRIDA</a>
+    <a href="viii-fiscalidad-global/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">VIII · FISCALIDAD GLOBAL</a>
+    <a href="ix-jurisdiccion-ancla/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">IX · JURISDICCIÓN ANCLA</a>
+    <a href="x-agentes-arquitectura/" style="padding:18px;border:1px solid rgba(0,255,65,.2);background:rgba(15,15,24,.6);color:#c8ffc8;text-decoration:none;font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-align:center">X · AGENTES</a>
+  </div>
+</section>
+
+<section style="margin:60px auto;max-width:900px;padding:30px;border:1px solid rgba(255,215,0,.2);background:rgba(255,215,0,.03)">
+  <h2 style="font-family:'Cinzel',serif;color:#ffd700;font-size:20px;letter-spacing:.25em;margin-bottom:24px;text-align:center">⛓️ CÓMO SE SELLÓ</h2>
+  <div style="font-family:'Courier New',monospace;font-size:10px;color:#6a8f6a;line-height:2">
+    <div><strong style="color:#ffd700;font-size:12px">GÉNESIS K28</strong><br>
+      SHA-256: <code style="color:#c8ffc8;word-break:break-all">abee47b2c6cd3207bb2f233a5facbe6855060e4c84e486cea5e9627dee9e61f6</code><br>
+      Bitcoin tx: <code style="color:#c8ffc8;word-break:break-all">8ecf89d22e3945f8c2afb1d2aab9fd157e36fb7a34b7ee5517d82faf9daff8fe</code>
+    </div>
+    <div style="margin-top:20px"><strong style="color:#ffd700;font-size:12px">PACTO 51/49</strong><br>
+      SHA-256: <code style="color:#c8ffc8;word-break:break-all">9922176adc57c40c102d83d6927e2a8a41fb11a56538e60a935a4474401b941a</code><br>
+      Bitcoin tx: <code style="color:#c8ffc8;word-break:break-all">34842cc1d4f8e3debdac8e633168833391cd53ad5dc40ed1b85720912aee4251</code>
+    </div>
+    <div style="margin-top:20px"><strong style="color:#ffd700;font-size:12px">FIRMA ED25519</strong><br>
+      <code style="color:#c8ffc8;word-break:break-all">6e7521991a6684ccaa3b467d893a08623bb1854a3d7b8495eb597b429fab54a1<br>237fbb665d820876e00552eb0ceab21da75d7cfb9b6aa865baaf537e02af9a02</code>
+    </div>
+  </div>
+</section>
+
+<script>
+(async function() {
+  try {
+    const r = await fetch('https://mempool.space/api/v1/blocks/tip/height');
+    const h = await r.text();
+    document.getElementById('btc-height').textContent = h;
+  } catch(e) {
+    document.getElementById('btc-height').textContent = 'sin conexión';
+  }
+})();
+</script>
+<script src="arkhe-bg.js"></script>
 </body>
 </html>
