@@ -28,3 +28,16 @@ Antes de commitear, verificar con:
     git status --short | grep -E "\.key|\.pem|privada|secret"
 
 Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE
+
+## Pendiente
+- [ ] Limpieza completa del historial de git con  (sesión futura)
+- [ ] Rotar URL del remoto si es necesario
+
+
+## Pendiente (sesión futura)
+- [ ] Limpieza completa del historial de git con git filter-repo
+- [ ] Rotar URL del remoto si es necesario
+- [ ] Auditar si hay otras llaves privadas en commits antiguos
+
+## Comando de auditoría para el futuro
+    git log --all --diff-filter=A --name-only --pretty=format: | sort -u | grep -E "\.key$|\.pem$|privada|secret"
