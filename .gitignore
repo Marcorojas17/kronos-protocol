@@ -41,12 +41,19 @@ backup/
 .arkhe-private/
 venv/
 firma/privada.pem
-firma/*.pem
-firma/*.key
 
 # Llaves privadas
 firma/privada.pem
-firma/*.key
 firma/*.pem.secret
 *.priv.pem
 firma/*.OLD-*
+
+# Llaves privadas (nunca al repo)
+firma/privada.pem
+firma/*.OLD-*
+firma/*.key
+firma/*.secret
+
+# La pública SÍ va al repo (para verificación)
+!firma/publica.pem
+!firma/*.pub
