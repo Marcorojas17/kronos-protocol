@@ -57,3 +57,4 @@ firma/*.secret
 # La pública SÍ va al repo (para verificación)
 !firma/publica.pem
 !firma/*.pub
+docs-deploy/
