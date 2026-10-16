@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """TONAL · Notario · Firma archivos con openssl Ed25519"""
 import os, sys, subprocess
+sys.path.insert(0, str(__import__('pathlib').Path.home() / 'arkhe-zero' / 'runtime'))
+from mandate_gate import verificar as verificar_mandato
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from base import Agente
 
@@ -9,6 +11,11 @@ class Tonal(Agente):
         super().__init__("TONAL", "Día · Notario")
 
     def firmar(self, archivo):
+        # Mandate Gate: verificar permiso
+        permitido, razon = verificar_mandato("tonal", "firmar_archivo")
+        if not permitido:
+            self.log(f"Mandate Gate DENEGÓ: {razon}", "ERROR")
+            return 1
         if not os.path.exists(archivo):
             self.log(f"Archivo no existe: {archivo}", "ERROR")
             return 1

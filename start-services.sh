@@ -49,6 +49,15 @@ else
     fi
 fi
 
+# ─── 3.5 · Mandate Gate ───────────────────────────────────
+if [ -f "$HOME/arkhe-zero/runtime/mandate_gate.py" ]; then
+    if [ ! -f "$HOME/arkhe-zero/runtime/mandatos.json.minisig" ]; then
+        warn "mandatos.json sin firma · firma con fundador-v3"
+    else
+        ok "Mandate Gate activo (mandatos firmados)"
+    fi
+fi
+
 # ─── 4. ENJAMBRE · Agentes y Guardians ───────────────────
 if [ -f "$HOME/arkhe-zero/runtime/agentes_runner.py" ]; then
     nohup python3 "$HOME/arkhe-zero/runtime/agentes_runner.py" > "$HOME/arkhe-zero/logs/agentes_boot.log" 2>&1 &
