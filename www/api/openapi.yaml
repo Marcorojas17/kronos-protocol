@@ -1,0 +1,90 @@
+# ═══════════════════════════════════════════════════════════════
+#  ▓▒░ OPENAPI · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
+# ═══════════════════════════════════════════════════════════════
+openapi: 3.1.0
+info:
+  title: ARKHÉ ZERO · Attribution API
+  version: 1.0.0
+  description: Protocolo de verificación criptográfica · Local-First · Humano-IA
+  contact:
+    name: Marco Antonio Rojas Valdovinos
+    email: contacto@arkhe.zero
+  license:
+    name: Apache 2.0
+    url: https://arkhe.zero/LICENSE
+
+servers:
+  - url: https://arkhe.zero/api/v1
+    description: Producción
+  - url: http://localhost:8080/api/v1
+    description: Desarrollo
+
+paths:
+  /health:
+    get:
+      summary: Estado del sistema
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+
+  /obras/firmar:
+    post:
+      summary: Firmar una obra
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirmaRequest'
+      responses:
+        '200':
+          description: Firmado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmaResponse'
+
+  /verificar/{hash}:
+    get:
+      summary: Verificar un hash
+      parameters:
+        - name: hash
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Veredicto
+
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:     { type: string, enum: [ok] }
+        seal:       { type: string, enum: ["◯_● · 51/49/100"] }
+        index_zero_sha256: { type: string }
+        timestamp:  { type: string, format: date-time }
+
+    FirmaRequest:
+      type: object
+      required: [contenido]
+      properties:
+        contenido: { type: string, minLength: 1 }
+        tipo:      { type: string, enum: [acta, obra, decision], default: decision }
+        algoritmo: { type: string, enum: [ML-DSA-87, SLH-DSA-SHAKE-256s, Ed25519+ML-DSA-87], default: ML-DSA-87 }
+
+    FirmaResponse:
+      type: object
+      properties:
+        ok:             { type: boolean }
+        hash_sha3_512:  { type: string }
+        firma:          { type: string }
+        alg:            { type: string }
+        sellado:        { type: string, enum: ["◯_● · 51/49/100"] }
+        timestamp:      { type: string, format: date-time }

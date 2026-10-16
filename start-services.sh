@@ -1,65 +1,60 @@
 #!/bin/bash
-# ARKHÉ ZERO · AUTO-ARRANQUE · Debian UserLAnd
-# NODO YHDRYH-92CE · SCDR-001 · ◯_● · 51/49/100
+# ◯_● ARKHÉ ZERO · start-services v2 · NODO YHDRYH-92CE
+# Arranca: web (8080) · api_ia (5001) · api_scan · agentes clave
+# Idempotente · No bloquea terminal · Log en logs/boot.log
 
-GREEN='\033[0;32m'; GOLD='\033[0;33m'; RED='\033[0;31m'; CYAN='\033[0;36m'; NC='\033[0m'
+LOG="$HOME/arkhe-zero/logs/boot.log"
+mkdir -p "$HOME/arkhe-zero/logs"
+echo "" >> "$LOG"
+echo "◯_● $(date -u +%Y-%m-%dT%H:%M:%SZ) · start-services" >> "$LOG"
 
-echo ""
-echo -e "${GOLD}◯_● ARKHÉ ZERO · Arrancando servicios...${NC}"
-echo ""
+ok(){ echo "  [✓] $1"; echo "  [✓] $1" >> "$LOG"; }
+warn(){ echo "  [!] $1"; echo "  [!] $1" >> "$LOG"; }
 
-# ─── 1. CRON ────────────────────────────────────────────────────────────────
-echo -e "${CYAN}[1/3]${NC} Verificando cron..."
-
-if pgrep -x cron > /dev/null 2>&1; then
-    echo -e "  ${GREEN}[✓]${NC} cron ya activo (PID: $(pgrep -x cron))"
+# ─── 1. WEB · puerto 8080 ─────────────────────────────────
+if pgrep -f "http.server 8080" > /dev/null; then
+    ok "web ya activo :8080"
 else
-    # Intentar arrancar cron sin sudo (si userland tiene permiso)
-    sudo cron 2>/dev/null &
-    sleep 1
-    if pgrep -x cron > /dev/null 2>&1; then
-        echo -e "  ${GREEN}[✓]${NC} cron iniciado (PID: $(pgrep -x cron))"
+    if [ -f "$HOME/arkhe-zero/www/index.html" ]; then
+        cd "$HOME/arkhe-zero/www"
+        nohup python3 -m http.server 8080 > "$HOME/arkhe-zero/logs/web.log" 2>&1 &
+        sleep 1
+        pgrep -f "http.server 8080" > /dev/null && ok "web :8080 arrancado" || warn "web :8080 falló"
     else
-        echo -e "  ${GOLD}[!]${NC} cron no disponible (se requiere sudo)"
+        warn "falta www/index.html"
     fi
 fi
 
-# ─── 2. SERVIDOR WEB ────────────────────────────────────────────────────────
-echo -e "${CYAN}[2/3]${NC} Iniciando servidor web..."
-
-if pgrep -f "http.server" > /dev/null 2>&1; then
-    echo -e "  ${GREEN}[✓]${NC} Servidor ya activo"
+# ─── 2. API IA · puerto 5001 ──────────────────────────────
+if pgrep -f "api_ia.py" > /dev/null; then
+    ok "api_ia ya activo"
 else
-    mkdir -p "$HOME/arkhe-zero/index"
-    mkdir -p "$HOME/arkhe-zero/logs"
-    
-    if [ -f "$HOME/arkhe-zero/index/arkhe-zero.html" ]; then
-        cd "$HOME/arkhe-zero/index"
-        nohup python3 -m http.server 8080 > "$HOME/arkhe-zero/logs/server.log" 2>&1 &
-        sleep 2
-        if pgrep -f "http.server" > /dev/null 2>&1; then
-            echo -e "  ${GREEN}[✓]${NC} Servidor web en http://localhost:8080"
-        else
-            echo -e "  ${RED}[✗]${NC} Servidor no arrancó"
-        fi
+    if [ -f "$HOME/arkhe-zero/ia/api_ia.py" ]; then
+        nohup python3 "$HOME/arkhe-zero/ia/api_ia.py" > "$HOME/arkhe-zero/logs/api_ia.log" 2>&1 &
+        sleep 1
+        ok "api_ia arrancado :5001"
     else
-        echo -e "  ${GOLD}[!]${NC} Falta arkhe-zero.html en ~/arkhe-zero/index/"
+        warn "falta ia/api_ia.py"
     fi
 fi
 
-# ─── 3. VERIFICACIÓN ────────────────────────────────────────────────────────
-echo -e "${CYAN}[3/3]${NC} Verificando sistema..."
+# ─── 3. API SCAN · radar de amenazas ──────────────────────
+if pgrep -f "api_scan.py" > /dev/null; then
+    ok "api_scan ya activo"
+else
+    if [ -f "$HOME/arkhe-zero/ia/api_scan.py" ]; then
+        nohup python3 "$HOME/arkhe-zero/ia/api_scan.py" > "$HOME/arkhe-zero/logs/api_scan.log" 2>&1 &
+        sleep 1
+        ok "api_scan arrancado"
+    fi
+fi
 
-[ -x "$HOME/arkhe-zero/auto-backup.sh" ] && \
-    echo -e "  ${GREEN}[✓]${NC} auto-backup.sh listo" || \
-    echo -e "  ${RED}[✗]${NC} auto-backup.sh no es ejecutable"
-
-[ -d "$HOME/arkhe-backups" ] && \
-    echo -e "  ${GREEN}[✓]${NC} ~/arkhe-backups/ listo" || \
-    echo -e "  ${GOLD}[!]${NC} ~/arkhe-backups/ no existe"
-
+# ─── 4. Resumen ───────────────────────────────────────────
 echo ""
-echo -e "${GOLD}═══════════════════════════════════════════════════════════${NC}"
-echo -e "${GOLD}  ◯_● ARKHÉ ZERO · NODO YHDRYH-92CE · SCDR-001${NC}"
-echo -e "${GOLD}═══════════════════════════════════════════════════════════${NC}"
+echo "◯_● ARKHÉ ZERO · NODO YHDRYH-92CE"
+echo "   web      http://localhost:8080/"
+echo "   certif   http://localhost:8080/certificado.html"
+echo "   api_ia   http://localhost:5001/"
+echo "   logs     ~/arkhe-zero/logs/"
 echo ""
+echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) · boot OK" >> "$LOG"

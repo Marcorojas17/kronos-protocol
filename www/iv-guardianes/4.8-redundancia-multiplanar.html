@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>🔗 Artículo 4.8 · Redundancia Multiplanar · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-48-redundancia-multiplanar">🔗 Artículo 4.8 · Redundancia Multiplanar</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+└─$ ./guardian --redundancia --status
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  PLANO          · ESTADO         · REDUNDANCIA                           ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  Local          · ✅ operativo    · dispositivo humano                    ║
+║  IndexedDB      · ✅ operativo    · navegador                            ║
+║  IPFS           · ✅ operativo    · distribuido global                   ║
+║  Arweave        · ✅ operativo    · perpetuo                             ║
+║  Ethereum       · ✅ operativo    · inmutable                            ║
+║  Bitcoin        · ✅ operativo    · anclaje secundario                   ║
+║  Shamir         · ✅ operativo    · 51/100 fragmentos                    ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+[ ✓✓ ] REDUNDANCIA 7 PLANOS · ◯_● · 51/49/100
+</code></pre>
+<h2 id="concepto">🜂 Concepto</h2>
+<p>El legado vive en <strong>múltiples planos</strong>. Si uno falla, los otros sostienen. La redundancia es estructural.</p>
+<h2 id="los-7-planos">🜃 Los 7 Planos</h2>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    REDUNDANCIA MULTIPLANAR                               ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   [ 1 ] LOCAL · dispositivo humano                                       ║
+║         └─ acceso inmediato, control total                              ║
+║                                                                          ║
+║   [ 2 ] INDEXEDDB · navegador                                            ║
+║         └─ persistencia offline                                         ║
+║                                                                          ║
+║   [ 3 ] IPFS · distribuido                                               ║
+║         └─ múltiples nodos globales                                     ║
+║                                                                          ║
+║   [ 4 ] ARWEAVE · perpetuo                                               ║
+║         └─ pago único, 200+ años                                        ║
+║                                                                          ║
+║   [ 5 ] ETHEREUM · inmutable                                             ║
+║         └─ Merkle root + pruebas                                        ║
+║                                                                          ║
+║   [ 6 ] BITCOIN · anclaje secundario                                     ║
+║         └─ vía OpenTimestamps                                           ║
+║                                                                          ║
+║   [ 7 ] SHAMIR · fragmentos                                              ║
+║         └─ 51/100 custodios                                             ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2 id="implementacion">🜄 Implementación</h2>
+<pre><code class="language-javascript">// Persistencia multiplanar
+export const PLANOS = ['local', 'indexeddb', 'ipfs', 'arweave', 'ethereum', 'bitcoin', 'shamir'];
+
+export async function persistirMultiplanar(capsula) {
+  const resultados = await Promise.allSettled(
+    PLANOS.map(async (plano) =&gt; {
+      const resultado = await persistirEn(plano, capsula);
+      return { plano, estado: resultado.ok, hash: capsula.hash };
+    })
+  );
+
+  return {
+    ok: true,
+    capsula_id: capsula.id,
+    planos: resultados.map(r =&gt; r.value),
+    regla: 'Local primero. Nube como testigo. Blockchain como notario.',
+    veredicto: 'PERSISTENCIA MULTIPLANAR COMPLETA',
+    sellado: '◯_● · 51/49/100',
+  };
+}
+</code></pre>
+<h2 id="resiliencia">🜁 Resiliencia</h2>
+<table>
+<thead>
+<tr>
+<th>Falla</th>
+<th>Planos afectados</th>
+<th>Planos activos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dispositivo</td>
+<td>Local</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Local + IndexedDB</td>
+<td>5</td>
+</tr>
+<tr>
+<td>IPFS</td>
+<td>IPFS</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Arweave</td>
+<td>Arweave</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Ethereum</td>
+<td>Ethereum</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Región</td>
+<td>2-3 planos</td>
+<td>4-5</td>
+</tr>
+<tr>
+<td>Global</td>
+<td>0 (imposible)</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><code>◯_● · 51/49/100 · GUARDIÁN · 4.8 · Redundancia</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

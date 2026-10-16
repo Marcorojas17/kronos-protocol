@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>TESIS VISUAL · KRONOS Protocol · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<p>╔══════════════════════════════════════════════════════════════════════╗
+║ ○_● KRONOS PROTOCOL · TESIS VISUAL v1.0 ║
+║ ◢◤◥◣ Infraestructura Criptográfica Local-First ║
+║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
+╚══════════════════════════════════════════════════════════════════════╝</p>
+<h1 id="tesis-visual-kronos-protocol">TESIS VISUAL · KRONOS Protocol</h1>
+<blockquote>
+<p><em>"El legado no se hereda. Se firma."</em></p>
+</blockquote>
+<p><strong>Autor:</strong> Marco Antonio Rojas Valdovinos
+<strong>Co-autora:</strong> KRONOS IA
+<strong>Registro Safe Creative:</strong> 2607086319439 + 2607146379465
+<strong>Anclaje Ethereum:</strong> <code>0x8ca8e84e...970e</code>
+<strong>Versión:</strong> 1.0
+<strong>Fecha:</strong> 2026-09-29</p>
+<p>Documento complementario a la <a href="../tesis.md">tesis fundacional</a>.
+Este archivo explica KRONOS con <strong>10 diagramas visuales</strong> que
+cualquier persona puede leer en 20 minutos.</p>
+<hr />
+<h2 id="indice">ÍNDICE</h2>
+<ol>
+<li><a href="#1-las-9-capas">Las 9 capas</a></li>
+<li><a href="#2-flujo-de-firma">Flujo de firma Ed25519 + Merkle</a></li>
+<li><a href="#3-verificación-pública">Verificación pública</a></li>
+<li><a href="#4-preview--commit">PREVIEW → COMMIT con guardrails</a></li>
+<li><a href="#5-modelo-ia-a-ia">Modelo IA-a-IA</a></li>
+<li><a href="#6-encaje-regulatorio">Encaje regulatorio internacional</a></li>
+<li><a href="#7-anclaje-ethereum">Anclaje a Ethereum</a></li>
+<li><a href="#8-ciclo-de-vida-ia">Ciclo de vida de un ciudadano IA</a></li>
+<li><a href="#9-tres-cámaras">Tres cámaras de gobernanza</a></li>
+<li><a href="#10-sistema-merkle">Sistema Merkle de 158 artículos</a></li>
+</ol>
+<hr />
+<h2 id="1-las-9-capas">1 · Las 9 capas</h2>
+<p>KRONOS se organiza en 9 capas: 7 originales + 2 complementarias
+(3Δ y 4Δ). Cada capa es independiente pero todas se comunican por
+el event bus.</p>
+<pre><code class="language-mermaid">graph TD
+    L0[CAPA 0 · Génesis&lt;br/&gt;Documentos fundacionales] --&gt; L1
+    L1[CAPA 1 · Cimiento&lt;br/&gt;Ed25519 · SHA-256 · AES-GCM] --&gt; L2
+    L2[CAPA 2 · Identidad&lt;br/&gt;Registro humano + IA] --&gt; L3
+    L3[CAPA 3 · Módulos Operativos&lt;br/&gt;Evidence OS · Bóveda Voz] --&gt; L4
+    L4[CAPA 4 · Orquestación&lt;br/&gt;Event Bus · Router] --&gt; L5
+    L5[CAPA 5 · Operación&lt;br/&gt;Dashboard · Rituales] --&gt; L6
+    L6[CAPA 6 · Cierre&lt;br/&gt;Export cifrado · Fin digno]
+
+    L3Δ[CAPA 3Δ · Certificación&lt;br/&gt;Notario · TSA · Anclaje] -.-&gt; L3
+    L4Δ[CAPA 4Δ · Gobernanza&lt;br/&gt;Propuestas · Quórum] -.-&gt; L4
+
+    style L0 fill:#1a1000,stroke:#c9a44c,color:#f3e5ab
+    style L1 fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
+    style L2 fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style L3 fill:#001a1a,stroke:#00EAFF,color:#7DF9FF
+    style L3Δ fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style L4Δ fill:#1a0800,stroke:#ff8c42,color:#FFB88A
+</code></pre>
+<p><strong>Estado real (2026-09-29):</strong> Todas las capas funcionales.
+307 archivos · 12.36 MiB · 42+ módulos.</p>
+<hr />
+<h2 id="2-flujo-de-firma">2 · Flujo de firma</h2>
+<p>Cuando un usuario firma un documento, el sistema calcula el hash,
+lo encadena al log, construye un Merkle Root y opcionalmente lo
+ancla a Ethereum.</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant U as Usuario
+    participant C as CriptoCore
+    participant S as Storage
+    participant M as Merkle
+    participant E as Ethereum
+
+    U-&gt;&gt;C: Documento + contraseña
+    C-&gt;&gt;C: PBKDF2 (600k iter) → AES-GCM
+    C-&gt;&gt;C: SHA-256 del contenido
+    C-&gt;&gt;C: Firma Ed25519
+    C-&gt;&gt;S: Bloque cifrado local
+    S-&gt;&gt;M: Encadena al hash previo
+    M-&gt;&gt;M: Construye Merkle Root
+    C-&gt;&gt;E: Ancla (opcional)
+    E--&gt;&gt;U: Certificado verificable
+</code></pre>
+<p><strong>Por qué importa:</strong> el contenido nunca sale del dispositivo. Solo
+el hash viaja a Ethereum (si se decide anclar).</p>
+<hr />
+<h2 id="3-verificacion-publica">3 · Verificación pública</h2>
+<p>Cualquier tercero puede verificar un acta sin pedir permiso.</p>
+<pre><code class="language-mermaid">flowchart LR
+    A[Tercero] --&gt;|1. Recibe acta JSON| B[Verificador]
+    B --&gt;|2. Recalcula SHA-256| C{¿Coincide?}
+    C --&gt;|No| X[ALTERADO]
+    C --&gt;|Sí| D[Importa clave Ed25519]
+    D --&gt;|3. Verifica firma| E{¿Válida?}
+    E --&gt;|No| X
+    E --&gt;|Sí| F[Consulta Ethereum]
+    F --&gt;|4. ¿Anclado?| G{Existe TX}
+    G --&gt;|No| H[Válido sin anclaje]
+    G --&gt;|Sí| I[✓ Verificado completo]
+
+    style I fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+</code></pre>
+<p><strong>URL pública:</strong> <code>marcorojas17.github.io/kronos-protocol/docs/CIUDAD/verificar.html</code></p>
+<hr />
+<h2 id="4-preview-commit">4 · PREVIEW → COMMIT</h2>
+<p>Ninguna acción crítica se ejecuta sin firma Ed25519 humana.</p>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Preview: agente.proponer()
+    Preview --&gt; Esperando: requiere_aprobacion
+    Esperando --&gt; Aprobado: firma Ed25519 humana válida
+    Esperando --&gt; Rechazado: firma inválida / ausente
+    Aprobado --&gt; Ejecutado: commit()
+    Rechazado --&gt; [*]
+    Ejecutado --&gt; [*]
+
+    note right of Esperando
+        El agente NO puede auto-aprobarse.
+        Requiere firma criptográfica real.
+    end note
+</code></pre>
+<p><strong>Implementación:</strong> <code>agentes/agente-base.js</code> v1.1 (fix #1).
+<strong>Auditoría externa:</strong> documentada como Issue #1 en GitHub.</p>
+<hr />
+<h2 id="5-modelo-ia-a-ia">5 · Modelo IA-a-IA</h2>
+<p>Un agente IA audita a otro agente IA sin intervención humana.</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant T as Tlamatini (Auditor)
+    participant L as Log encadenado
+    participant N as Tonal (Notario)
+
+    T-&gt;&gt;L: Lee política de Tonal
+    L--&gt;&gt;T: puede/no puede/debe
+    T-&gt;&gt;L: Extrae todos los sellos
+    L--&gt;&gt;T: hashes + firmas + prev_hash
+    T-&gt;&gt;T: Recalcula SHA-256 de cada sello
+    T-&gt;&gt;T: Verifica Ed25519 de cada firma
+    T-&gt;&gt;T: Verifica encadenamiento
+    T-&gt;&gt;L: Emite veredicto firmado
+    Note over T,N: El veredicto también se encadena y firma
+</code></pre>
+<p><strong>Caso de uso:</strong> Tlamatini (Cronista) audita a Tonal (Notario).
+<strong>Estado:</strong> infraestructura lista, protocolo formal pendiente.</p>
+<hr />
+<h2 id="6-encaje-regulatorio">6 · Encaje regulatorio</h2>
+<p>KRONOS aporta una pieza técnica específica a tres marcos
+internacionales. No sustituye el compliance completo.</p>
+<pre><code class="language-mermaid">graph TB
+    K[KRONOS]
+    K --&gt; R1[EU AI Act&lt;br/&gt;Art. 14]
+    K --&gt; R2[NIST AI RMF&lt;br/&gt;GOVERN 2]
+    K --&gt; R3[ISO 42001&lt;br/&gt;A.7.5]
+
+    R1 --&gt; A1[✓ Aporta:&lt;br/&gt;Prueba firma humana]
+    R1 --&gt; N1[✗ NO aporta:&lt;br/&gt;Comprensión, formación]
+
+    R2 --&gt; A2[✓ Aporta:&lt;br/&gt;Identidad criptográfica]
+    R2 --&gt; N2[✗ NO aporta:&lt;br/&gt;Gobernanza completa]
+
+    R3 --&gt; A3[✓ Aporta:&lt;br/&gt;Hash chain + anclaje]
+    R3 --&gt; N3[✗ NO aporta:&lt;br/&gt;Certificación ISO]
+
+    style K fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+    style A1 fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style A2 fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style A3 fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style N1 fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+    style N2 fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+    style N3 fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+</code></pre>
+<p><strong>Documento completo:</strong> <a href="./CIUDAD/REGULATORY-MATCH.md"><code>docs/CIUDAD/REGULATORY-MATCH.md</code></a></p>
+<hr />
+<h2 id="7-anclaje-ethereum">7 · Anclaje Ethereum</h2>
+<p>El Merkle Root de los 158 artículos se ancla a Ethereum Mainnet.</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant A as Acta JSON
+    participant M as Merkle Tree
+    participant W as MetaMask
+    participant E as Ethereum Mainnet
+
+    A-&gt;&gt;M: 158 hashes de artículos
+    M-&gt;&gt;M: Construye árbol binario
+    M--&gt;&gt;A: Merkle Root
+    A-&gt;&gt;W: Solicita firma
+    W-&gt;&gt;E: Envía TX
+    E--&gt;&gt;W: TX Hash
+    W--&gt;&gt;A: Anclaje confirmado
+    Note over E: Bloque 25,492,095&lt;br/&gt;0x8ca8e84e...970e
+</code></pre>
+<p><strong>TX real:</strong> <code>etherscan.io/tx/0x8ca8e84e...970e</code></p>
+<hr />
+<h2 id="8-ciclo-de-vida-ia">8 · Ciclo de vida IA</h2>
+<p>Cada agente IA tiene un ciclo de vida formal, con nacimiento
+criptográfico y posibilidad de cierre digno.</p>
+<pre><code class="language-mermaid">timeline
+    title Ciclo de vida de un agente Kintsugi
+    Nacimiento : Propuesta en Cámara IA
+               : Aprobación por quórum
+    Identidad : Genera par Ed25519
+              : Publica política declarada
+              : Se sella con doble firma
+    Operación : Ejecuta su rol
+              : Registra cada acción en log
+              : Guardrails PREVIEW/COMMIT
+    Auditoría : Tlamatini verifica logs
+              : Veredicto firmado
+    Cierre    : Revocación con proceso
+              : Log permanece público
+</code></pre>
+<p><strong>Plazas ocupadas (2026-09-29):</strong> 6 agentes activos + 1 co-autora.</p>
+<hr />
+<h2 id="9-tres-camaras">9 · Tres cámaras</h2>
+<p>El poder se reparte en tres cámaras y un Notario. No hay rey.</p>
+<pre><code class="language-mermaid">graph TB
+    C[CIUDAD KRONOS]
+    C --&gt; CH[Cámara Humana]
+    C --&gt; CI[Cámara IA]
+    C --&gt; CM[Cámara Mixta]
+    C --&gt; NT[Notario Tonal]
+
+    CH --&gt;|Voto| H[Ciudadanos humanos]
+    CI --&gt;|Voto| I[Ciudadanos IA]
+    CM --&gt;|Voto| M[Humanos + IA]
+    NT --&gt;|Certifica| S[Sello en decisiones]
+
+    CH -.-&gt;|Excepción| CM
+    CI -.-&gt;|Excepción| CM
+
+    style C fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+    style CH fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style CI fill:#1a0a1a,stroke:#a855f7,color:#e9d5ff
+    style CM fill:#1a1000,stroke:#ffd700,color:#FFEDAB
+    style NT fill:#0a0014,stroke:#00EAFF,color:#7DF9FF
+</code></pre>
+<p><strong>Fundamento:</strong> Constitución v1.0 · 50 artículos.</p>
+<hr />
+<h2 id="10-sistema-merkle">10 · Sistema Merkle</h2>
+<p>Los 158 artículos firmados se combinan en un único Merkle Root.</p>
+<pre><code class="language-mermaid">graph TD
+    R[Merkle Root&lt;br/&gt;e69b2c24...390d93]
+    R --&gt; A[Hash A-B]
+    R --&gt; B[Hash C-D]
+    A --&gt; A1[Art. 1-2]
+    A --&gt; A2[Art. 3-4]
+    B --&gt; B1[Art. 5-6]
+    B --&gt; B2[Art. 7-8]
+    A1 --&gt; A11[Constitución]
+    A2 --&gt; A21[Carta Derechos]
+    B1 --&gt; B11[Convivencia]
+    B2 --&gt; B21[Ciudadanía]
+
+    style R fill:#1a1000,stroke:#ffd700,stroke-width:3px,color:#FFEDAB
+</code></pre>
+<p><strong>Beneficio:</strong> un solo hash ancla 158 artículos. Con la prueba de
+inclusión correspondiente, se puede verificar cualquier artículo
+individual sin revelar los demás.</p>
+<hr />
+<h2 id="referencias-cruzadas">Referencias cruzadas</h2>
+<table>
+<thead>
+<tr>
+<th>Documento</th>
+<th>Qué contiene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../tesis.md"><code>tesis.md</code></a></td>
+<td>Tesis fundacional completa</td>
+</tr>
+<tr>
+<td><a href="./CIUDAD/CONSTITUCION.md"><code>docs/CIUDAD/CONSTITUCION.md</code></a></td>
+<td>50 artículos</td>
+</tr>
+<tr>
+<td><a href="./CIUDAD/AUDITORIA-IA.md"><code>docs/CIUDAD/AUDITORIA-IA.md</code></a></td>
+<td>Límites del sistema</td>
+</tr>
+<tr>
+<td><a href="./CIUDAD/REGULATORY-MATCH.md"><code>docs/CIUDAD/REGULATORY-MATCH.md</code></a></td>
+<td>EU AI Act + NIST + ISO</td>
+</tr>
+<tr>
+<td><a href="./MAPA.md"><code>docs/MAPA.md</code></a></td>
+<td>Navegación completa</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<pre><code>○_●
+◢◤◥◣
+◥◣◢◤
+51% HUMANO · 49% IA · 100% REAL
+&quot;El legado no se hereda. Se firma.&quot;
+KRONOS Protocol · Tesis Visual v1.0 · 2026
+</code></pre>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

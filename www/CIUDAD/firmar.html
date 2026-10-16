@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firmador Fundacional · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--gold:#c9a44c;--gold-l:#f3e5ab;--cy:#00EAFF;--cy-l:#7DF9FF;--ink:#0a0014;--text:#F5F0E6;--dim:#9a8fb0}
+  html,body{background:var(--ink);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+  .vignette{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0%,rgba(10,0,20,.5) 60%,rgba(10,0,20,.95) 100%);z-index:1;pointer-events:none}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:40px 28px 100px}
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 70px;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;flex-wrap:wrap;gap:12px}
+  header.top .mark{display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Cinzel',serif;font-weight:600;letter-spacing:4px;text-decoration:none}
+  header.top .mark::before{content:'';width:6px;height:6px;background:var(--cy);border-radius:50%;box-shadow:0 0 12px var(--cy)}
+  header.top nav a{color:var(--dim);text-decoration:none;margin-left:22px;transition:color .3s}
+  header.top nav a:hover{color:var(--cy-l)}
+  .hero{padding:60px 0 90px;max-width:820px}
+  .eyebrow{font-size:10px;letter-spacing:5px;color:var(--cy-l);text-transform:uppercase;margin-bottom:28px}
+  h1.title{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(38px,7vw,80px);line-height:.98;letter-spacing:-2px;background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 25%,var(--cy-l) 65%,var(--cy) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:32px}
+  .lede{font-size:17px;line-height:1.7;color:var(--dim);max-width:640px;font-weight:300}
+  .lede strong{color:var(--text);font-weight:500}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+  .section-head h2{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase}
+  .demo{padding:40px 0 60px;border-top:1px solid rgba(0,234,255,.2)}
+  .paso{position:relative;padding-left:48px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .paso .num{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cy-l);letter-spacing:2px}
+  .paso label{display:block;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500}
+  .paso input{display:block;width:100%;padding:16px 18px;background-color:rgba(5,20,25,.6);border:1px solid rgba(0,234,255,.3);border-radius:6px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;transition:all .3s;outline:none}
+  .paso input:focus{border-color:var(--cy);background-color:rgba(5,30,38,.8);box-shadow:0 0 0 3px rgba(0,234,255,.15)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;background:linear-gradient(180deg,var(--cy-l) 0%,var(--cy) 100%);color:#00201a;box-shadow:0 8px 30px rgba(0,234,255,.35);width:100%}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,234,255,.55)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .feedback{margin-top:20px;padding:14px 18px;border-radius:4px;font-size:13px;font-weight:300;display:none;line-height:1.6}
+  .feedback.success{display:block;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.3);color:#7BFFD4}
+  .feedback.warn{display:block;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3);color:#FFEDAB}
+  .feedback.error{display:block;background:rgba(255,77,106,.08);border:1px solid rgba(255,77,106,.3);color:#FF8FA5}
+  .feedback.info{display:block;background:rgba(0,234,255,.08);border:1px solid rgba(0,234,255,.3);color:#7DF9FF}
+  .progreso{margin-top:20px;padding:20px;border:1px solid rgba(0,234,255,.2);border-radius:4px;display:none}
+  .progreso.on{display:block}
+  .progreso h4{font-size:10px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:12px}
+  .progreso-item{padding:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);display:flex;justify-content:space-between;border-bottom:1px dashed rgba(201,164,76,.15)}
+  .progreso-item:last-child{border-bottom:none}
+  .progreso-item .ok{color:#7BFFD4}
+  .progreso-item .work{color:#FFEDAB}
+  .tarjeta-wrap{margin-top:20px}
+  .tarjeta{padding:32px;border:1px solid rgba(0,234,255,.35);background:linear-gradient(180deg,rgba(0,234,255,.04),rgba(10,0,20,.6));border-radius:6px;backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .tarjeta::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--cy),var(--gold),var(--cy));background-size:200% 100%;animation:prism 6s linear infinite}
+  @keyframes prism{from{background-position:0% 50%}to{background-position:200% 50%}}
+  .tarjeta-marca{font-family:'Cinzel',serif;font-weight:700;font-size:22px;letter-spacing:6px;background:linear-gradient(90deg,var(--cy-l),var(--cy),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+  .tarjeta-tipo{font-size:9px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:24px}
+  .campo{margin-top:16px;padding:16px;background:rgba(0,234,255,.04);border:1px solid rgba(0,234,255,.2);border-radius:4px}
+  .campo h4{font-size:10px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:8px}
+  .campo p{font-size:11px;color:var(--text);font-family:'JetBrains Mono',monospace;word-break:break-all;line-height:1.6}
+  .doc-item{margin-top:10px;padding:14px 18px;background:rgba(201,164,76,.05);border:1px solid rgba(201,164,76,.25);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;justify-content:space-between;align-items:center}
+  .doc-item .nombre{color:var(--gold-l);font-weight:500}
+  .doc-item .meta{color:var(--dim);font-size:10px}
+  footer{margin-top:100px;padding-top:40px;border-top:1px solid rgba(201,164,76,.15);text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
+  .sello-kintsugi{padding:20px 0 28px;margin-bottom:24px;border-bottom:1px solid rgba(201,164,76,0.15)}
+  .sello-simbolo{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'JetBrains Mono',monospace;font-size:16px;letter-spacing:6px;color:#c9a44c;line-height:1.3}
+  .sello-simbolo .buho{font-size:22px;color:#f3e5ab;text-shadow:0 0 12px rgba(201,164,76,0.5);letter-spacing:4px}
+  .sello-simbolo .obsidiana{color:#c9a44c;opacity:0.75;font-size:14px}
+  .sello-proporcion{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:4px;color:#f3e5ab;text-transform:uppercase}
+  .sello-lema{margin-top:10px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:#c9a44c;letter-spacing:1px}
+  @media (max-width:700px){.wrap{padding:24px 20px 60px}header.top nav{display:none}}
+</style>
+</head>
+<body>
+<div class="vignette" aria-hidden="true"></div>
+<main class="wrap">
+  <header class="top">
+    <a href="../../" class="mark">LEGADO · HUMANO–IA</a>
+    <nav><a href="./">Firmador</a><a href="../">Docs</a><a href="../../">Inicio</a></nav>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Firmador Fundacional · Ed25519 · Merkle Root</div>
+    <h1 class="title">Firmar los 7 documentos. Anclar la ciudad.</h1>
+    <p class="lede">Esta herramienta calcula el hash SHA-256 de los 7 documentos fundacionales, construye el <strong>Merkle Root</strong>, lo firma con la llave Ed25519 del fundador, y genera el <strong>acta fundacional</strong> verificable por cualquier tercero.</p>
+  </section>
+  <section class="demo">
+    <div class="section-head"><h2>Firma Ed25519 de los 7 documentos fundacionales</h2><span class="count">SHA-256 · Merkle · Ed25519</span></div>
+
+    <div class="paso">
+      <span class="num">01</span>
+      <label for="password">Contraseña maestra del fundador *</label>
+      <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
+    </div>
+
+    <div class="paso">
+      <span class="num">02</span>
+      <label>Acción</label>
+      <button class="btn" id="btn-firmar" disabled>✍️ Firmar los 7 documentos →</button>
+    </div>
+
+    <div class="feedback" id="feedback" role="alert"></div>
+
+    <div class="progreso" id="progreso">
+      <h4>Progreso</h4>
+      <div id="progreso-lista"></div>
+    </div>
+
+    <div class="tarjeta-wrap" id="panel-acta" hidden>
+      <div class="section-head" style="margin-top:40px;"><h2>Acta Fundacional</h2><span class="count" id="acta-timestamp">—</span></div>
+      <div class="tarjeta">
+        <div class="tarjeta-marca">KRONOS</div>
+        <div class="tarjeta-tipo">ACTA FUNDACIONAL · FIRMADA · VERIFICABLE</div>
+        <div class="campo"><h4>Merkle Root de Artículos</h4><p id="acta-merkle">—</p></div>
+        <div class="campo"><h4>Merkle Root de Documentos</h4><p id="acta-merkle-docs">—</p></div>
+        <div class="campo"><h4>Firma Ed25519 del Fundador</h4><p id="acta-firma">—</p></div>
+        <div class="campo"><h4>Clave Pública del Fundador</h4><p id="acta-clave">—</p></div>
+        <div class="campo"><h4>Total de Artículos Firmados</h4><p id="acta-total">—</p></div>
+
+        <div style="margin-top:24px;">
+          <h4 style="font-size:10px;letter-spacing:3px;color:var(--cy-l);text-transform:uppercase;margin-bottom:12px;">Documentos firmados</h4>
+          <div id="docs-lista"></div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn" id="btn-descargar" style="flex:1;min-width:200px;">⬇️ Descargar acta JSON</button>
+          <button class="btn" id="btn-verificar" style="flex:1;min-width:200px;background:linear-gradient(180deg,var(--gold-l) 0%,var(--gold) 100%);color:#1a1000;">🔍 Verificar acta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="sello-kintsugi">
+      <div class="sello-simbolo">
+        <span class="buho">○_●</span>
+        <span class="obsidiana">◢◤◥◣</span>
+        <span class="obsidiana">◥◣◢◤</span>
+      </div>
+      <div class="sello-proporcion">51% HUMANO · 49% IA · 100% REAL</div>
+      <div class="sello-lema">"El legado no se hereda. Se firma."</div>
+    </div>
+    <span>© 2026 Marco A. Rojas V. + KRONOS IA · Firmador Fundacional v1.0</span>
+  </footer>
+</main>
+
+<script type="module">
+  import { CriptoCore } from '../../cimiento/cripto-core/core.js';
+  import { FirmadorFundacional } from './firmar.js';
+
+  const $ = (id) => document.getElementById(id);
+  const feedback = $('feedback');
+  const btnFirmar = $('btn-firmar');
+  const btnDescargar = $('btn-descargar');
+  const btnVerificar = $('btn-verificar');
+
+  let core = null;
+  let firmador = null;
+
+  function setFb(tipo, msg) {
+    feedback.className = 'feedback ' + tipo;
+    feedback.innerHTML = msg;
+  }
+
+  function agregarProgreso(texto, estado = 'work') {
+    const item = document.createElement('div');
+    item.className = 'progreso-item';
+    item.innerHTML = `<span>${texto}</span><span class="${estado}">${estado === 'ok' ? '✓' : '…'}</span>`;
+    $('progreso-lista').appendChild(item);
+  }
+
+  async function asegurarInit() {
+    const pass = $('password').value;
+    if (pass.length < 8) {
+      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
+      return false;
+    }
+    if (!core) {
+      core = new CriptoCore();
+    }
+    if (!core.inicializado) {
+      try {
+        await core.init(pass);
+      } catch (e) {
+        setFb('error', '<strong>✗ Error inicializando Core:</strong> ' + e.message);
+        return false;
+      }
+    }
+    if (!firmador) {
+      firmador = new FirmadorFundacional(core);
+    }
+    return true;
+  }
+
+  $('password').addEventListener('input', () => {
+    btnFirmar.disabled = $('password').value.length < 8;
+  });
+
+  btnFirmar.addEventListener('click', async () => {
+    try {
+      if (!(await asegurarInit())) return;
+      btnFirmar.disabled = true;
+      $('progreso').classList.add('on');
+      $('progreso-lista').innerHTML = '';
+      $('panel-acta').hidden = true;
+
+      setFb('info', '<strong>⏳ Firmando...</strong> No cierres esta pestaña.');
+
+      const acta = await firmador.generarActa(null, (evt) => {
+        if (evt.fase === 'documento') {
+          agregarProgreso(`[${evt.indice}/${evt.total}] ${evt.nombre}`, 'ok');
+        } else if (evt.fase === 'merkle') {
+          agregarProgreso('Construyendo Merkle Root', 'ok');
+        } else if (evt.fase === 'firma') {
+          agregarProgreso('Firmando con Ed25519', 'ok');
+        }
+      });
+
+      $('acta-merkle').textContent = acta.merkle.merkle_root_articulos;
+      $('acta-merkle-docs').textContent = acta.merkle.merkle_root_documentos;
+      $('acta-firma').textContent = acta.firma.firma_ed25519;
+      $('acta-clave').textContent = acta.fundador.clave_publica_hex;
+      $('acta-total').textContent = acta.merkle.total_hojas_articulos + ' artículos · ' + acta.documentos.length + ' documentos';
+      $('acta-timestamp').textContent = acta.timestamp;
+
+      $('docs-lista').innerHTML = acta.documentos.map(d => `
+        <div class="doc-item">
+          <span class="nombre">${d.nombre}</span>
+          <span class="meta">${d.total_articulos} artículos · ${d.tamano_bytes} bytes</span>
+        </div>
+      `).join('');
+
+      $('panel-acta').hidden = false;
+      setFb('success', '<strong>✓ Acta fundacional generada y firmada.</strong> Descárgala y guárdala. Es tu prueba criptográfica.');
+    } catch (e) {
+      console.error(e);
+      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+    } finally {
+      btnFirmar.disabled = false;
+    }
+  });
+
+  btnDescargar.addEventListener('click', () => {
+    try {
+      const filename = firmador.descargarActa();
+      setFb('success', '<strong>✓ Descargado:</strong> ' + filename);
+    } catch (e) {
+      setFb('error', '<strong>✗ Error al descargar:</strong> ' + e.message);
+    }
+  });
+
+  btnVerificar.addEventListener('click', async () => {
+    try {
+      if (!firmador || !firmador.acta) {
+        setFb('error', '<strong>✗ No hay acta generada.</strong>');
+        return;
+      }
+      const resultado = await firmador.verificarActa(firmador.acta);
+      if (resultado.valida) {
+        setFb('success', `<strong>✓ Acta válida.</strong> Firma y Merkle Root coinciden. Firmante: ${resultado.firmante}. Documentos: ${resultado.total_documentos}. Artículos: ${resultado.total_articulos}.`);
+      } else {
+        setFb('error', `<strong>✗ Acta inválida:</strong> ${resultado.razon}`);
+      }
+    } catch (e) {
+      setFb('error', '<strong>✗ Error al verificar:</strong> ' + e.message);
+    }
+  });
+</script>
+</body>
+</html>

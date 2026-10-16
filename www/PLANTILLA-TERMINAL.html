@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>PLANTILLA · Estilo Terminal Único de KRONOS · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<pre><code>╔══════════════════════════════════════════════════════════════════════╗
+║  ○_●  KRONOS PROTOCOL · PLANTILLA DE ESTILO TERMINAL                 ║
+║  ◢◤◥◣ Legado Humano–IA · v1.0                                        ║
+║  ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL                                ║
+╚══════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h1 id="plantilla-estilo-terminal-unico-de-kronos">PLANTILLA · Estilo Terminal Único de KRONOS</h1>
+<p>Este documento define el <strong>estilo visual único</strong> de todos los archivos
+<code>.md</code> del protocolo KRONOS. Un formato que <strong>ningún otro proyecto en
+GitHub usa</strong>.</p>
+<hr />
+<p>┌─[ SECCIÓN 01 ]─────────────────────────── [ PROPÓSITO ] ─┐
+│ │
+│ Este estilo combina: │
+│ │
+│ ▶ Terminal clásica (cajas, símbolos, prompts) │
+│ ▶ Rigor documental (secciones numeradas, tablas) │
+│ ▶ Identidad Kintsugi (sello ○_● · 51/49) │
+│ ▶ Jerarquía visual clara para móvil │
+│ │
+│ Cada .md del repo debe sentirse como si estuvieras │
+│ dentro de una sesión de terminal premium. │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<hr />
+<p>┌─[ SECCIÓN 02 ]─────────────────────────── [ ELEMENTOS ] ─┐
+│ │
+│ ▶ CAJA DE SECCIÓN │
+│ ┌─[ N ]─────────────────── [ TÍTULO ] ─┐ │
+│ │ Contenido indentado 2 espacios │ │
+│ └─────────────────────────────────────┘ │
+│ │
+│ ▶ CAJA DE CÓDIGO │
+│ Inicia con <code>$</code> para comandos │
+│ Indenta el código con 2 espacios │
+│ Termina con <code>[ OK ]</code> o <code>[ !! ]</code> │
+│ │
+│ ▶ CAJA DE TABLA │
+│ Columnas separadas por <code>│</code> │
+│ Encabezado con <code>─</code> │
+│ Estado con emoji: ✅ ⏳ 🔴 🟡 │
+│ │
+│ ▶ CAJA DE FLUJO │
+│ Flechas <code>→</code> para secuencia │
+│ <code>↓</code> para pasos verticales │
+│ <code>[TAG]</code> para nombrar nodos │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<hr />
+<p>┌─[ SECCIÓN 03 ]─────────────────────────── [ EJEMPLO ] ─┐
+│ │
+│ ▶ Aquí un ejemplo de cómo se vería un módulo: │
+│ │
+└─────────────────────────────────────────────────────────┘</p>
+<p>┌─[ TABLA · ESTADO DEL MÓDULO ]────────────────────────────┐
+│ │
+│ CAMPO │ VALOR │ ESTADO │
+│ ───────────────────┼────────────────────┼─────────────── │
+│ Algoritmo │ Ed25519 │ ✅ Activo │
+│ Hash │ SHA-256 │ ✅ Activo │
+│ Cifrado │ AES-GCM-256 │ ✅ Activo │
+│ Persistencia │ IndexedDB (Dexie) │ ✅ Activo │
+│ Anclaje │ Ethereum Mainnet │ ✅ Verificado │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<p>┌─[ CÓDIGO · USO BÁSICO ]──────────────────────────────────┐
+│ │
+│ $ cat init.js │
+│ import { CriptoCore } from './core.js'; │
+│ │
+│ const core = new CriptoCore(); │
+│ await core.init(password); │
+│ const firma = await core.firmar('datos'); │
+│ │
+│ [ OK ] Módulo cargado correctamente │
+│ [ OK ] Firma Ed25519 generada │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<p>┌─[ FLUJO · EJECUCIÓN ]────────────────────────────────────┐
+│ │
+│ USUARIO → CONTRASEÑA → CRIPTO CORE → FIRMA │
+│ ↓ ↓ ↓ ↓ │
+│ [IN] → [AUTH] → [CORE] → [OUT] │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<hr />
+<p>┌─[ SECCIÓN 04 ]────────────────────────── [ FIRMA ] ─┐
+│ │
+│ Todo .md termina con el sello Kintsugi: │
+│ │
+└───────────────────────────────────────────────────────┘</p>
+<p>═══════════════════════════════════════════════════════════════
+○_● 51% HUMANO · 49% IA · 100% REAL
+"El legado no se hereda. Se firma."
+Marco Antonio Rojas Valdovinos · Toluca, México · 2026
+═══════════════════════════════════════════════════════════════</p>
+<hr />
+<p>┌─[ REGLAS DE ORO ]───────────────────────────────────────┐
+│ │
+│ 01. Nunca uses markdown "plano" sin cajas │
+│ 02. Cada sección va en caja numerada │
+│ 03. Los códigos empiezan con $ y terminan con [ OK ] │
+│ 04. Las tablas usan │ y ─ como separadores │
+│ 05. Los flujos usan → y ↓ para dirección │
+│ 06. Cada archivo cierra con sello Kintsugi │
+│ 07. Los emojis permitidos: ✅ 🟡 🔴 ⏳ 🟢 🔵 │
+│ 08. Los símbolos unicode: ═ ║ ╔ ╗ ╚ ╝ ─ │ ┌ ┐ └ ┘ │
+│ 09. Los caracteres Kintsugi: ○_● ◢◤◥◣ ◥◣◢◤ │
+│ 10. Nunca rompas el formato. El estilo ES la firma │
+│ │
+└───────────────────────────────────────────────────────────┘</p>
+<pre><code>
+</code></pre>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>
