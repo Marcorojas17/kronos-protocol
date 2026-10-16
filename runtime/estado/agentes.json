@@ -1,6 +1,6 @@
 {
-  "ts": "2026-10-16T16:16:42.265626+00:00Z",
-  "inicio": "2026-10-16T16:16:38.352156+00:00Z",
+  "ts": "2026-10-16T16:20:57.652647+00:00Z",
+  "inicio": "2026-10-16T16:20:54.185443+00:00Z",
   "total": 5,
   "ok": 4,
   "fallidos": 1,
@@ -10,45 +10,45 @@
       "rol": "Notario · firma Ed25519",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T16:16:38] [TONAL] [OK] Firmado: ../07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt\n[2026-10-16T16:16:38] [TONAL] [INFO]   SHA-256: 9922176adc57c40c102d83d6927e2a8a...\n[2026-10-16T16:16:38] [TONAL] [INFO]   Firma:   ../07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt.sig\n\n◯_● · 51/49/100 · KINTSUGI\n\n",
+      "salida": "[2026-10-16T16:20:54] [TONAL] [OK] Firmado: ../runtime/estado/prueba-tonal.txt\n[2026-10-16T16:20:54] [TONAL] [INFO]   SHA-256: 4b84ddd640131f472741366fe57b4177...\n[2026-10-16T16:20:54] [TONAL] [INFO]   Firma:   ../runtime/estado/prueba-tonal.txt.sig\n\n◯_● · 51/49/100 · KINTSUGI\n\n",
       "err": "",
-      "ts": "2026-10-16T16:16:38.645072+00:00Z"
+      "ts": "2026-10-16T16:20:54.539720+00:00Z"
     },
     {
       "id": "tlachixqui",
       "rol": "Auditor",
       "ok": true,
       "returncode": 1,
-      "salida": "16:38] [TLACHIXQUI] [CHECK]   [OK] tonal.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] api_ia.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] cuicatl.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] access.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] agentes_boot.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] audit.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [CHECK]   [OK] tlachixqui.log\n[2026-10-16T16:16:38] [TLACHIXQUI] [WARN]   [ALERTA] hunter-096.log: 1 errores\n",
+      "salida": "XQUI] [CHECK]   [OK] tonal.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [CHECK]   [OK] api_ia.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [CHECK]   [OK] access.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [CHECK]   [OK] agentes_boot.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [CHECK]   [OK] audit.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [CHECK]   [OK] tlachixqui.log\n[2026-10-16T16:20:54] [TLACHIXQUI] [WARN]   [ALERTA] hunter-096.log: 1 errores\n[2026-10-16T16:20:54] [TLACHIXQUI] [WARN]   [ALERTA] cuicatl.log: 1 errores\n",
       "err": "",
-      "ts": "2026-10-16T16:16:38.803810+00:00Z"
+      "ts": "2026-10-16T16:20:54.708504+00:00Z"
     },
     {
       "id": "tlapohualli",
       "rol": "Analista",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T16:16:41] [TLAPOHUALLI] [METRIC] Archivos del proyecto: 5134\n[2026-10-16T16:16:41] [TLAPOHUALLI] [METRIC] Tamaño del proyecto:   2055572 KB\n[2026-10-16T16:16:41] [TLAPOHUALLI] [METRIC] Backups en disco:      5\n[2026-10-16T16:16:41] [TLAPOHUALLI] [METRIC] Tamaño backups:        2 KB\n",
+      "salida": "[2026-10-16T16:20:57] [TLAPOHUALLI] [METRIC] Archivos del proyecto: 5137\n[2026-10-16T16:20:57] [TLAPOHUALLI] [METRIC] Tamaño del proyecto:   2055575 KB\n[2026-10-16T16:20:57] [TLAPOHUALLI] [METRIC] Backups en disco:      5\n[2026-10-16T16:20:57] [TLAPOHUALLI] [METRIC] Tamaño backups:        2 KB\n",
       "err": "",
-      "ts": "2026-10-16T16:16:41.813332+00:00Z"
+      "ts": "2026-10-16T16:20:57.254460+00:00Z"
     },
     {
       "id": "tlamatini",
       "rol": "Cronista · reportes",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T16:16:41] [TLAMATINI] [OK] Reporte generado: /home/userland/arkhe-zero/reportes/reporte_20261016_161641.md\n",
+      "salida": "[2026-10-16T16:20:57] [TLAMATINI] [OK] Reporte generado: /home/userland/arkhe-zero/reportes/reporte_20261016_162057.md\n",
       "err": "",
-      "ts": "2026-10-16T16:16:41.988653+00:00Z"
+      "ts": "2026-10-16T16:20:57.437767+00:00Z"
     },
     {
       "id": "cuicatl",
       "rol": "Publicista · contenido",
       "ok": false,
       "returncode": 1,
-      "salida": "[2026-10-16T16:16:42] [CUICATL] [ERROR] Mandate Gate DENEGÓ: acción 'generar_contenido' requiere aprobación humana\n",
+      "salida": "[2026-10-16T16:20:57] [CUICATL] [ERROR] Mandate Gate DENEGÓ: acción 'generar_contenido' requiere aprobación humana\n",
       "err": "",
-      "ts": "2026-10-16T16:16:42.265550+00:00Z"
+      "ts": "2026-10-16T16:20:57.652572+00:00Z"
     }
   ]
 }
