@@ -58,3 +58,4 @@ firma/*.secret
 !firma/publica.pem
 !firma/*.pub
 docs-deploy/
+_duplicados/
