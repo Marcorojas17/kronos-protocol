@@ -34,3 +34,31 @@ son válidas históricamente pero no se usarán para nuevos documentos.
 4. Auditoría periódica: git log --all --diff-filter=A --name-only --pretty=format: | sort -u | grep -E "\.key$|\.pem$"
 
 Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE · 2026-10-15
+
+## Llaves Post-Cuánticas (NIST FIPS 204)
+
+### fundador-mldsa65
+- Creada: 2026-10-15
+- Algoritmo: ML-DSA-65 (Dilithium3, NIST FIPS 204)
+- Tamaño clave pública: 1952 bytes
+- Tamaño clave privada: 4032 bytes
+- Tamaño firma: 3309 bytes
+- Librería: dilithium-py 1.5.1 (Python puro)
+- Estado: ✅ ACTIVA
+- Ubicación privada: ~/.arkhe-private/post-quantum/fundador-mldsa65.key
+- Ubicación pública: 07-LLAVES/POST-QUANTUM/fundador-mldsa65.pub
+
+### Uso
+- Firma híbrida: Ed25519 + ML-DSA-65 sobre el mismo documento
+- Doble blindaje: compatibilidad universal + resistencia cuántica
+- Documentado en: 07-LLAVES/ATESTACIONES/HIBRIDA-pacto-5149.md
+
+### Verificación
+    python3 -c "
+    from dilithium_py.ml_dsa import ML_DSA_65
+    pk = open('fundador-mldsa65.pub','rb').read()
+    msg = open('pacto-5149-canonico.txt','rb').read()
+    sig = open('pacto-5149-canonico.mldsa65.sig','rb').read()
+    print('OK' if ML_DSA_65.verify(pk, msg, sig) else 'FALLO')
+    "
+
