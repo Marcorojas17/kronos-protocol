@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>◯_● Verificar licencia</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;padding:30px 20px;max-width:800px;margin:auto;line-height:1.6}
+.back{display:inline-block;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;border:1px solid rgba(255,215,0,.4);padding:6px 14px;margin-bottom:20px}
+h1{color:#ffd700;font-size:20px;text-align:center;margin:20px 0}
+label{display:block;color:#6a8f6a;font-size:11px;margin:12px 0 4px}
+textarea{width:100%;min-height:200px;background:rgba(15,15,24,.8);border:1px solid rgba(255,215,0,.3);color:#c8ffc8;padding:10px;font-family:inherit;font-size:11px}
+button{background:transparent;border:1px solid #ffd700;color:#ffd700;padding:12px 28px;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:.2em;margin-top:16px}
+button:hover{background:#ffd700;color:#030308}
+.result{margin-top:20px;padding:16px;border:2px solid rgba(255,215,0,.3);background:rgba(255,215,0,.05);font-size:12px}
+.ok{color:#00ff65;border-color:#00ff65}
+.fail{color:#ff4d6a;border-color:#ff4d6a}
+pre{background:rgba(255,215,0,.05);padding:10px;font-size:10px;overflow:auto;word-break:break-all;margin-top:10px}
+</style>
+</head>
+<body>
+<a href="../" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1>🔐 VERIFICAR LICENCIA</h1>
+
+<label>Folio de licencia:</label>
+<input id="folio" type="text" placeholder="LIC-20261016-DD990503" style="width:100%;background:rgba(15,15,24,.8);border:1px solid rgba(255,215,0,.3);color:#c8ffc8;padding:10px;font-family:inherit;font-size:12px">
+
+<label>Contenido del JSON (pega el archivo .json):</label>
+<textarea id="json" placeholder='{"folio":"LIC-...","obra":"..."}'></textarea>
+
+<label>Firma (pega el contenido del .json.sig en hex):</label>
+<textarea id="sig" placeholder="firma en hex"></textarea>
+
+<label>Llave pública fundador-v3 (PEM):</label>
+<textarea id="pub" placeholder="-----BEGIN PUBLIC KEY-----&#10;MCowBQYDK2VwAyEA...&#10;-----END PUBLIC KEY-----"></textarea>
+
+<button onclick="verificar()">▶ VERIFICAR LICENCIA</button>
+
+<div class="result" id="res" style="display:none"></div>
+
+<script>
+async function verificar() {
+  const res = document.getElementById('res');
+  res.style.display = 'block';
+  try {
+    const jsonTxt = document.getElementById('json').value.trim();
+    const sigHex = document.getElementById('sig').value.trim().replace(/\s/g,'');
+    const pubPem = document.getElementById('pub').value.trim();
+    if (!jsonTxt || !sigHex || !pubPem) throw new Error('Faltan datos');
+
+    const pemBody = pubPem.replace(/-----[^-]+-----/g,'').replace(/\s/g,'');
+    const pubDer = Uint8Array.from(atob(pemBody), c => c.charCodeAt(0));
+    const pubKey = await crypto.subtle.importKey('spki', pubDer, {name:'Ed25519'}, false, ['verify']);
+    const sig = new Uint8Array(sigHex.match(/.{1,2}/g).map(b => parseInt(b,16)));
+    const msg = new TextEncoder().encode(jsonTxt);
+
+    const ok = await crypto.subtle.verify('Ed25519', pubKey, sig, msg);
+    if (ok) {
+      const data = JSON.parse(jsonTxt);
+      res.className = 'result ok';
+      res.innerHTML = `
+        <strong>✅ LICENCIA VÁLIDA</strong><br><br>
+        Folio: ${data.folio}<br>
+        Obra: ${data.obra}<br>
+        Titular: ${data.titular}<br>
+        Uso: ${data.uso}<br>
+        Emitida: ${data.fecha_emision}<br>
+        Vigente hasta: ${data.vigencia}<br>
+        Pacto: ${data.pacto}
+      `;
+    } else {
+      res.className = 'result fail';
+      res.textContent = '❌ LICENCIA INVÁLIDA · firma no corresponde';
+    }
+  } catch (e) {
+    res.className = 'result fail';
+    res.textContent = '❌ Error: ' + e.message;
+  }
+}
+</script>
+</body>
+</html>
