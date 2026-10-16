@@ -1,54 +1,54 @@
 {
-  "ts": "2026-10-16T02:43:03.272892+00:00Z",
-  "inicio": "2026-10-16T02:42:59.883774+00:00Z",
+  "ts": "2026-10-16T16:22:22.122229+00:00Z",
+  "inicio": "2026-10-16T16:22:18.666230+00:00Z",
   "total": 5,
-  "ok": 5,
-  "fallidos": 0,
+  "ok": 4,
+  "fallidos": 1,
   "agentes": [
     {
       "id": "tonal",
       "rol": "Notario · firma Ed25519",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T02:43:00] [TONAL] [OK] Firmado: ../07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt\n[2026-10-16T02:43:00] [TONAL] [INFO]   SHA-256: 9922176adc57c40c102d83d6927e2a8a...\n[2026-10-16T02:43:00] [TONAL] [INFO]   Firma:   ../07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt.sig\n\n◯_● · 51/49/100 · KINTSUGI\n\n",
+      "salida": "[2026-10-16T16:22:19] [TONAL] [OK] Firmado: ../runtime/estado/prueba-tonal.txt\n[2026-10-16T16:22:19] [TONAL] [INFO]   SHA-256: 4b84ddd640131f472741366fe57b4177...\n[2026-10-16T16:22:19] [TONAL] [INFO]   Firma:   ../runtime/estado/prueba-tonal.txt.sig\n\n◯_● · 51/49/100 · KINTSUGI\n\n",
       "err": "",
-      "ts": "2026-10-16T02:43:00.246861+00:00Z"
+      "ts": "2026-10-16T16:22:19.142912+00:00Z"
     },
     {
       "id": "tlachixqui",
       "rol": "Auditor",
       "ok": true,
       "returncode": 1,
-      "salida": "02:43:00] [TLACHIXQUI] [CHECK]   [OK] tlamatini.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] tonal.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] api_ia.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] cuicatl.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] access.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] audit.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [CHECK]   [OK] tlachixqui.log\n[2026-10-16T02:43:00] [TLACHIXQUI] [WARN]   [ALERTA] hunter-096.log: 1 errores\n",
+      "salida": "XQUI] [CHECK]   [OK] tonal.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [CHECK]   [OK] api_ia.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [CHECK]   [OK] access.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [CHECK]   [OK] agentes_boot.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [CHECK]   [OK] audit.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [CHECK]   [OK] tlachixqui.log\n[2026-10-16T16:22:19] [TLACHIXQUI] [WARN]   [ALERTA] hunter-096.log: 1 errores\n[2026-10-16T16:22:19] [TLACHIXQUI] [WARN]   [ALERTA] cuicatl.log: 2 errores\n",
       "err": "",
-      "ts": "2026-10-16T02:43:00.410300+00:00Z"
+      "ts": "2026-10-16T16:22:19.319761+00:00Z"
     },
     {
       "id": "tlapohualli",
       "rol": "Analista",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T02:43:02] [TLAPOHUALLI] [METRIC] Archivos del proyecto: 5113\n[2026-10-16T02:43:02] [TLAPOHUALLI] [METRIC] Tamaño del proyecto:   2055519 KB\n[2026-10-16T02:43:02] [TLAPOHUALLI] [METRIC] Backups en disco:      5\n[2026-10-16T02:43:02] [TLAPOHUALLI] [METRIC] Tamaño backups:        2 KB\n",
+      "salida": "[2026-10-16T16:22:21] [TLAPOHUALLI] [METRIC] Archivos del proyecto: 5138\n[2026-10-16T16:22:21] [TLAPOHUALLI] [METRIC] Tamaño del proyecto:   2055578 KB\n[2026-10-16T16:22:21] [TLAPOHUALLI] [METRIC] Backups en disco:      5\n[2026-10-16T16:22:21] [TLAPOHUALLI] [METRIC] Tamaño backups:        2 KB\n",
       "err": "",
-      "ts": "2026-10-16T02:43:02.831306+00:00Z"
+      "ts": "2026-10-16T16:22:21.784101+00:00Z"
     },
     {
       "id": "tlamatini",
       "rol": "Cronista · reportes",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T02:43:02] [TLAMATINI] [OK] Reporte generado: /home/userland/arkhe-zero/reportes/reporte_20261016_024302.md\n",
+      "salida": "[2026-10-16T16:22:21] [TLAMATINI] [OK] Reporte generado: /home/userland/arkhe-zero/reportes/reporte_20261016_162221.md\n",
       "err": "",
-      "ts": "2026-10-16T02:43:02.980043+00:00Z"
+      "ts": "2026-10-16T16:22:21.919007+00:00Z"
     },
     {
       "id": "cuicatl",
       "rol": "Publicista · contenido",
-      "ok": true,
-      "returncode": 0,
-      "salida": "[2026-10-16T02:43:03] [CUICATL] [INFO] Generando 1 posts para x...\n[2026-10-16T02:43:03] [CUICATL] [OK]   [OK] post_x_1.txt\n\n--- Post 1 ---\nCriptografía poscuántica para tu obra.\n\n⚜️ arkhe.zero\n#ARKHE #KINTSUGI #LegadoDigital #PQC\n\n\n◯_● · 51/49/100 · KINTSUGI\n\n",
+      "ok": false,
+      "returncode": 1,
+      "salida": "[2026-10-16T16:22:22] [CUICATL] [ERROR] Mandate Gate DENEGÓ: acción 'generar_contenido' requiere aprobación humana\n",
       "err": "",
-      "ts": "2026-10-16T02:43:03.272569+00:00Z"
+      "ts": "2026-10-16T16:22:22.122148+00:00Z"
     }
   ]
 }

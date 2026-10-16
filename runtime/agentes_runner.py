@@ -76,21 +76,20 @@ def main():
     (ESTADO / "agentes.json").write_text(json.dumps(estado, indent=2, ensure_ascii=False))
     print(f"◯_● {estado['ok']}/{estado['total']} agentes OK")
     print(f"   Estado: {ESTADO / 'agentes.json'}")
-    sync_www()
+
+    # Sync inline: copiar JSONs a www/ y docs/ para el dashboard web
+    import shutil
+    for dest in [ARKHE / "www" / "estado", ARKHE / "docs" / "estado"]:
+        dest.mkdir(parents=True, exist_ok=True)
+        for f in ESTADO.glob("*.json"):
+            try:
+                shutil.copy(f, dest / f.name)
+            except Exception:
+                pass
+
     return 0 if estado["fallidos"] == 0 else 1
 
 if __name__ == "__main__":
     sys.exit(main())
 
 # ─── Sincronizar estado con www/ (para el dashboard web) ───
-def sync_www():
-    import shutil
-    dst = ARKHE / "www" / "estado"
-    dst.mkdir(parents=True, exist_ok=True)
-    for f in ESTADO.glob("*.json"):
-        try:
-            shutil.copy(f, dst / f.name)
-        except Exception:
-            pass
-
-# Ejecutar sync al final del main
