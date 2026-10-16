@@ -49,7 +49,19 @@ else
     fi
 fi
 
-# ─── 4. Resumen ───────────────────────────────────────────
+# ─── 4. ENJAMBRE · Agentes y Guardians ───────────────────
+if [ -f "$HOME/arkhe-zero/runtime/agentes_runner.py" ]; then
+    nohup python3 "$HOME/arkhe-zero/runtime/agentes_runner.py" > "$HOME/arkhe-zero/logs/agentes_boot.log" 2>&1 &
+    sleep 2
+    ok "enjambre de agentes arrancado"
+fi
+
+if [ -f "$HOME/arkhe-zero/runtime/guardians_runner.py" ]; then
+    nohup python3 "$HOME/arkhe-zero/runtime/guardians_runner.py" > "$HOME/arkhe-zero/logs/guardians_boot.log" 2>&1 &
+    ok "guardians ejecutados"
+fi
+
+# ─── 5. Resumen ───────────────────────────────────────────
 echo ""
 echo "◯_● ARKHÉ ZERO · NODO YHDRYH-92CE"
 echo "   web      http://localhost:8080/"
