@@ -4,6 +4,9 @@ import sys, random
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from base_soberano import AgenteSoberano
+import sys as _sys
+_sys.path.insert(0, str(__import__('pathlib').Path.home() / 'arkhe-zero' / 'runtime'))
+from mandate_gate import verificar as verificar_mandato
 
 FRASES = [
     "El legado no se hereda. Se firma.",
@@ -32,6 +35,10 @@ class Cuicatl(AgenteSoberano):
         return frase
 
     def ejecutar_generacion(self, plataforma="x", cantidad=3):
+        permitido, razon = verificar_mandato("cuicatl", "generar_contenido")
+        if not permitido:
+            self.log(f"Mandate Gate DENEGÓ: {razon}", "ERROR")
+            return 1
         self.log(f"Generando {cantidad} posts para {plataforma}...", "INFO")
         out_dir = self.arkhe / "contenido" / "cuicatl"
         out_dir.mkdir(parents=True, exist_ok=True)

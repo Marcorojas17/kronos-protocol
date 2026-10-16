@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "pacto": "51/49/100",
+  "firmante": "Marco Antonio Rojas Valdovinos",
+  "nodo": "YHDRYH-92CE",
+  "creado": "2026-10-16T00:00:00Z",
+  "principio": "Ningún agente puede ejecutar acción sensible sin mandato explícito del fundador.",
+  "agentes": {
+    "tonal": {
+      "rol": "Notario",
+      "acciones_permitidas": ["firmar_archivo", "verificar_firma", "generar_llave"],
+      "acciones_prohibidas": ["borrar_archivo", "ejecutar_comando", "acceder_llaves"],
+      "requiere_aprobacion_humana": false,
+      "nivel_autonomia": 2
+    },
+    "tlachixqui": {
+      "rol": "Auditor",
+      "acciones_permitidas": ["leer_logs", "verificar_hashes", "reportar_alertas"],
+      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando"],
+      "requiere_aprobacion_humana": false,
+      "nivel_autonomia": 1
+    },
+    "tlapohualli": {
+      "rol": "Analista",
+      "acciones_permitidas": ["leer_metricas", "generar_reporte"],
+      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando"],
+      "requiere_aprobacion_humana": false,
+      "nivel_autonomia": 1
+    },
+    "tlamatini": {
+      "rol": "Cronista",
+      "acciones_permitidas": ["leer_sistema", "generar_reporte"],
+      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando"],
+      "requiere_aprobacion_humana": false,
+      "nivel_autonomia": 1
+    },
+    "cuicatl": {
+      "rol": "Publicista",
+      "acciones_permitidas": ["generar_contenido", "leer_sistema"],
+      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando", "publicar_externo"],
+      "requiere_aprobacion_humana": true,
+      "nivel_autonomia": 0
+    },
+    "hunter": {
+      "rol": "Cazador",
+      "acciones_permitidas": ["leer_logs", "escanear_localhost", "reportar_amenazas"],
+      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando", "escanear_externo"],
+      "requiere_aprobacion_humana": false,
+      "nivel_autonomia": 1
+    }
+  }
+}
