@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>◯_● Autotest Verificador</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;padding:20px;max-width:900px;margin:auto;line-height:1.6}
+h1{color:#ffd700;font-size:20px;letter-spacing:.15em;text-align:center}
+button{background:transparent;border:1px solid #ffd700;color:#ffd700;padding:14px 28px;cursor:pointer;font-family:inherit;font-size:13px;letter-spacing:.2em;margin:20px auto;display:block}
+.result{margin-top:20px;padding:20px;border:2px solid rgba(255,215,0,.3);background:rgba(255,215,0,.05);font-size:14px;text-align:center}
+.ok{color:#00ff65;border-color:#00ff65}
+.fail{color:#ff4d6a;border-color:#ff4d6a}
+pre{background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.2);padding:10px;font-size:10px;overflow:auto;word-break:break-all}
+</style>
+</head>
+<body>
+<h1>🔐 AUTOTEST DEL VERIFICADOR</h1>
+<p style="text-align:center;color:#6a8f6a;font-size:11px">Prueba del verificador Ed25519 con el Pacto 51/49 real</p>
+
+<button onclick="probar()">▶ PROBAR VERIFICACIÓN</button>
+
+<div class="result" id="res" style="display:none"></div>
+
+<h2 style="color:#ffd700;font-size:12px;margin-top:30px">Datos de prueba:</h2>
+<pre>Firma hex: 6e7521991a6684ccaa3b467d893a08623bb1854a3d7b8495eb597b429fab54a1...</pre>
+
+<script>
+const FIRMA_HEX = "6e7521991a6684ccaa3b467d893a08623bb1854a3d7b8495eb597b429fab54a1237fbb665d820876e00552eb0ceab21da75d7cfb9b6aa865baaf537e02af9a02";
+const PUB_PEM = `-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEAE+g5N/2ozOgjtVxbjcT++OdpW4HfcZviv5PCvORDABE=
+-----END PUBLIC KEY-----`;
+const PACTO_B64 = "UEFDVE8gNTEvNDkvMTAwIC0gQVJLSEUgWkVSTwpGaXJtYW50ZTogTWFyY28gQW50b25pbyBSb2phcyBWYWxkb3Zpbm9zCk1vZGVsbzogNTElIGh1bWFubyAtIDQ5JSBJQSAtIDEwMCUgcmVhbApGZWNoYTogMjAyNi0wMS0wMVQwMDowMDowMFoKUHJvdG9jb2xvOiBLUk9OT1MKU2VsbG86IFNDRFItMDAxCg==";
+
+async function probar() {
+  const res = document.getElementById('res');
+  res.style.display = 'block';
+  res.className = 'result';
+  res.textContent = '⏳ Verificando...';
+
+  try {
+    // 1. Importar llave pública
+    const pemBody = PUB_PEM.replace(/-----[^-]+-----/g,'').replace(/\s/g,'');
+    const pubDer = Uint8Array.from(atob(pemBody), c => c.charCodeAt(0));
+    const pubKey = await crypto.subtle.importKey('spki', pubDer, {name:'Ed25519'}, false, ['verify']);
+
+    // 2. Firma hex → bytes
+    const sig = new Uint8Array(FIRMA_HEX.match(/.{1,2}/g).map(b => parseInt(b,16)));
+
+    // 3. Mensaje original
+    const msg = Uint8Array.from(atob(PACTO_B64), c => c.charCodeAt(0));
+
+    // 4. Verificar
+    const ok = await crypto.subtle.verify('Ed25519', pubKey, sig, msg);
+    res.className = 'result ' + (ok ? 'ok' : 'fail');
+    res.textContent = ok 
+      ? '✅ FIRMA Ed25519 VÁLIDA · el Pacto 51/49 fue firmado por fundador-v2 y no ha sido alterado'
+      : '❌ FIRMA INVÁLIDA · algo falló en la verificación';
+  } catch (e) {
+    res.className = 'result fail';
+    res.textContent = '❌ Error: ' + e.message;
+  }
+}
+</script>
+</body>
+</html>
