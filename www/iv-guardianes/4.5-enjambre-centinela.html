@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>🛡️ Artículo 4.5 · Enjambre Centinela · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../arkhe-style.css">
+</head>
+<body>
+<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1 id="articulo-45-enjambre-centinela">🛡️ Artículo 4.5 · Enjambre Centinela</h1>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+└─$ ./guardian --centinela --status
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+[ OK ] 12 agentes · monitoreando
+[ OK ] 0 anomalías · detectadas
+[ OK ] 0 downgrades · intentados
+[ ✓✓ ] CENTINELA ACTIVO · ◯_● · 51/49/100
+</code></pre>
+<h2 id="funcion">🜂 Función</h2>
+<p>El enjambre centinela <strong>monitorea 24/7</strong> todos los procesos criptográficos. Detecta anomalías antes de que causen daño.</p>
+<h2 id="responsabilidades">🜃 Responsabilidades</h2>
+<table>
+<thead>
+<tr>
+<th>Agente</th>
+<th>Función centinela</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>👁️ Tlachixqui</td>
+<td>Vigilancia general</td>
+</tr>
+<tr>
+<td>🔍 092-auditor</td>
+<td>Verificación forense</td>
+</tr>
+<tr>
+<td>🧠 Tlamatini</td>
+<td>Análisis de patrones</td>
+</tr>
+<tr>
+<td>⏳ Tonal</td>
+<td>Timestamps anómalos</td>
+</tr>
+</tbody>
+</table>
+<h2 id="detecciones">🜄 Detecciones</h2>
+<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    TIPOS DE ANOMALÍA                                     ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   · Hash mismatch                                                       ║
+║   · Firma inválida                                                      ║
+║   · Downgrade de algoritmo                                              ║
+║   · Timestamp retroactivo                                               ║
+║   · Acceso no autorizado                                                ║
+║   · Cambio en Índice Cero                                               ║
+║   · Vetor de ataque conocido                                            ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2 id="implementacion">🜁 Implementación</h2>
+<pre><code class="language-javascript">import { EventBus } from './orquestacion/event-bus/event-bus.js';
+
+const bus = new EventBus();
+
+bus.suscribir('arkhe.firma.creada', async (evento) =&gt; {
+  // Verificar hash + firma + TSA + anclaje
+  const ok = await verificarFirma(evento.payload);
+  if (!ok) {
+    throw new Error('[ 🚨 ] CENTINELA · firma inválida');
+  }
+});
+
+bus.suscribir('arkhe.veto.aplicado', async (evento) =&gt; {
+  // Log + anclaje del veto
+  console.log('[ &gt;&gt; ] Veto registrado:', evento.payload);
+});
+</code></pre>
+<h2 id="alertas">🜆 Alertas</h2>
+<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./centinela --alertas --últimas-24h
+
+[ 2026-01-15 08:32:11 ] Hash mismatch · RESUELTO
+[ 2026-01-15 12:47:03 ] Intento de downgrade · BLOQUEADO
+[ 2026-01-15 18:21:09 ] Timestamp anómalo · IGNORADO
+[ &gt;&gt; ] 0 alertas activas
+[ ✓✓ ] CENTINELA SIN NOVEDAD · ◯_● · 51/49/100
+</code></pre>
+<hr />
+<p><code>◯_● · 51/49/100 · GUARDIÁN · 4.5 · Centinela</code></p>
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+</body>
+</html>

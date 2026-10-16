@@ -1,0 +1,61 @@
+{
+  "$schema": "https://arkhe.zero/schemas/i18n/languages.json",
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "canonical": "es",
+  "fallback": "en",
+  "languages": [
+    {
+      "code": "es",
+      "name": "Español",
+      "nativeName": "Español",
+      "dir": "ltr",
+      "canonical": true,
+      "status": "complete",
+      "coverage": 100,
+      "emoji": "🇪🇸"
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "nativeName": "English",
+      "dir": "ltr",
+      "canonical": false,
+      "status": "complete",
+      "coverage": 95,
+      "emoji": "🇬🇧"
+    },
+    {
+      "code": "zh",
+      "name": "Chinese",
+      "nativeName": "中文",
+      "dir": "ltr",
+      "canonical": false,
+      "status": "in-progress",
+      "coverage": 40,
+      "emoji": "🇨🇳"
+    },
+    {
+      "code": "nah",
+      "name": "Náhuatl",
+      "nativeName": "Nāhuatl",
+      "dir": "ltr",
+      "canonical": false,
+      "status": "ancestral",
+      "coverage": 25,
+      "emoji": "🌽"
+    }
+  ],
+  "index_zero": {
+    "safe_creative_arq": "2607146379465",
+    "safe_creative_co": "2607086319439",
+    "sha256": "f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112"
+  },
+  "pact": {
+    "humano": 51,
+    "ia": 49,
+    "real": 100
+  }
+}
