@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>◯_● Comprar licencia · ARKHÉ ZERO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;padding:24px 16px;max-width:1000px;margin:auto;line-height:1.6}
+.back{display:inline-block;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;border:1px solid rgba(255,215,0,.4);padding:6px 14px;margin-bottom:20px}
+h1{font-family:Georgia,serif;color:#ffd700;font-size:24px;letter-spacing:.15em;text-align:center;margin:20px 0}
+.sub{color:#6a8f6a;font-size:11px;text-align:center;margin-bottom:30px}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.level{background:rgba(15,15,24,.7);border:1px solid rgba(255,215,0,.25);padding:24px;text-align:center}
+.level.destacado{border:2px solid #ffd700;background:rgba(255,215,0,.05)}
+.level h2{color:#ffd700;font-size:14px;letter-spacing:.2em;margin-bottom:8px}
+.level .precio{font-size:32px;color:#ffd700;font-family:Georgia,serif;margin:12px 0}
+.level ul{list-style:none;text-align:left;font-size:11px;color:#c8ffc8;margin:16px 0}
+.level li{padding:6px 0;border-bottom:1px solid rgba(255,215,0,.1)}
+.level li:before{content:"✓ ";color:#ffd700}
+.btn{display:inline-block;margin-top:16px;padding:12px 28px;border:1px solid #ffd700;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.15em}
+.btn:hover{background:#ffd700;color:#030308}
+.badge{display:inline-block;padding:3px 10px;background:rgba(255,215,0,.2);color:#ffd700;font-size:9px;letter-spacing:.15em;margin-bottom:8px}
+.footer{margin-top:40px;text-align:center;font-size:10px;color:#6a8f6a;letter-spacing:.2em}
+</style>
+</head>
+<body>
+<a href="../" class="back">◯_● VOLVER AL ÍNDICE</a>
+<h1>⚜ LICENCIAS ARKHÉ ZERO</h1>
+<p class="sub">Certificados criptográficos · Ed25519 · verificación pública</p>
+
+<div class="levels">
+  <div class="level">
+    <h2>NIVEL 1 · CONSULTA</h2>
+    <div class="precio">$10 MXN</div>
+    <ul>
+      <li>Certificado Ed25519</li>
+      <li>Verificación pública</li>
+      <li>Vigencia 1 año</li>
+    </ul>
+    <a href="#" class="btn" onclick="comprar(1)">▶ COMPRAR</a>
+  </div>
+
+  <div class="level destacado">
+    <span class="badge">MÁS ELEGIDO</span>
+    <h2>NIVEL 2 · COMERCIAL</h2>
+    <div class="precio">$99 MXN</div>
+    <ul>
+      <li>Todo lo del Nivel 1</li>
+      <li>Uso comercial individual</li>
+      <li>Sello QR nominativo</li>
+      <li>Registro en blockchain</li>
+    </ul>
+    <a href="#" class="btn" onclick="comprar(2)">▶ COMPRAR</a>
+  </div>
+
+  <div class="level">
+    <h2>NIVEL 3 · ILIMITADO</h2>
+    <div class="precio">$199 MXN</div>
+    <ul>
+      <li>Todo lo del Nivel 2</li>
+      <li>Uso comercial ilimitado</li>
+      <li>Vigencia 10 años</li>
+      <li>Soporte prioritario</li>
+    </ul>
+    <a href="#" class="btn" onclick="comprar(3)">▶ COMPRAR</a>
+  </div>
+</div>
+
+<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+
+<script>
+function comprar(nivel) {
+  const urls = {
+    1: "https://mpago.la/PENDIENTE-NIVEL-1",
+    2: "https://mpago.la/PENDIENTE-NIVEL-2",
+    3: "https://mpago.la/PENDIENTE-NIVEL-3",
+  };
+  const url = urls[nivel] || urls[1];
+  if (url.includes("PENDIENTE")) {
+    alert("Configura los links de MercadoPago con: python3 pva/test_pago.py");
+    return;
+  }
+  window.location.href = url;
+}
+</script>
+</body>
+</html>
