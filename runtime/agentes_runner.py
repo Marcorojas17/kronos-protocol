@@ -12,7 +12,7 @@ ESTADO.mkdir(parents=True, exist_ok=True)
 
 # Agentes con código real (no simulación)
 RUNNER = [
-    {"id":"tonal",      "script":"tonal.py",       "rol":"Notario · firma Ed25519",   "args":["../07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt"]},
+    {"id":"tonal",      "script":"tonal.py",       "rol":"Notario · firma Ed25519",   "args":["../runtime/estado/prueba-tonal.txt"]},
     {"id":"tlachixqui","script":"tlachixqui.py",  "rol":"Auditor",                    "args":[]},
     {"id":"tlapohualli","script":"tlapohualli.py","rol":"Analista",                   "args":[]},
     {"id":"tlamatini", "script":"tlamatini.py",   "rol":"Cronista · reportes",        "args":[]},
