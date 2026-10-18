@@ -1,0 +1,8 @@
+{
+  "name": "ARKHE ZERO",
+  "short_name": "ARKHE",
+  "start_url": "./app.html",
+  "display": "standalone",
+  "background_color": "#07070a",
+  "theme_color": "#000000"
+}
