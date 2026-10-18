@@ -4,7 +4,8 @@ import os, sys, json, hashlib, uuid, subprocess
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-ARKHE = Path.home() / "arkhe-zero"
+# Detectar automáticamente la raíz del repositorio
+ARKHE = Path(__file__).resolve().parent.parent 
 LICENCIAS = ARKHE / "07-LLAVES" / "LICENCIAS"
 KEY = Path.home() / ".arkhe-private" / "fundador-v3.key"
 PUB = ARKHE / "07-LLAVES" / "FUNDADOR-V3" / "fundador-v3.pub"
