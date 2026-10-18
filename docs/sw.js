@@ -1,11 +1,14 @@
-// ARKHÉ ZERO · Service Worker
-const CACHE_NAME = 'arkhe-zero-v1';
+// ARKHÉ ZERO · Service Worker v2
+const CACHE_NAME = 'arkhe-zero-v2';
 const ASSETS = [
   './',
   './index.html',
+  './certificado.html',
+  './estado.html',
   './favicon.svg',
   './arkhe-style.css',
-  './arkhe-bg.js'
+  './arkhe-bg.js',
+  './manifest.json'
 ];
 
 self.addEventListener('install', (e) => {
@@ -24,7 +27,6 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  // Estrategia: Network first, fallback to cache
   e.respondWith(
     fetch(e.request).catch(() => caches.match(e.request))
   );
