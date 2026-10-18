@@ -2,185 +2,115 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>◯_● Certificado Oficial · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKHÉ ZERO - CERTIFICADO OFICIAL SCDR-001</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=JetBrains+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #050505; 
-    color: #c8ffc8; 
-    font-family: 'Courier Prime', monospace;
-    min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; padding: 15px;
-    background-image: 
-      radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1) 0%, transparent 60%),
-      radial-gradient(circle at 0% 100%, rgba(0,234,255,0.05) 0%, transparent 50%);
+  body { background:#050505; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:10px; font-family: 'JetBrains Mono', monospace;}
+  .cert {
+    width: 100%; max-width: 800px; aspect-ratio: 1/1.414;
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+    border: 1px solid #D4AF37;
+    position: relative; padding: 30px;
+    box-shadow: 0 0 0 4px #000, 0 0 0 6px #D4AF37, 0 0 40px rgba(212,175,55,0.5);
+    overflow: hidden; color: #E8DCC0;
   }
-  
-  .certificate {
-    background: linear-gradient(135deg, #0a0a0f 0%, #050508 100%);
-    border: 2px solid #b8860b; /* Borde dorado oscuro */
-    outline: 1px solid #ffd700;
-    outline-offset: -6px;
-    padding: 40px 25px;
-    max-width: 420px;
-    width: 100%;
-    box-shadow: 0 0 60px rgba(255,215,0,0.15), inset 0 0 30px rgba(0,0,0,0.8);
-    position: relative;
-    text-align: center;
+  /* Textura de seguridad */
+  .cert::before {
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(90deg, transparent 50%, rgba(0,255,255,0.03) 50%), linear-gradient(transparent 50%, rgba(255,0,255,0.03) 50%);
+    background-size: 2px 2px; opacity:0.3; pointer-events:none;
   }
-  
-  /* Esquinas tipo Kintsugi en CSS */
-  .corner { position: absolute; width: 30px; height: 30px; border: 3px solid #ffd700; }
-  .top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-  .top-right { top: -2px; right: -2px; border-left: none; border-bottom: none; }
-  .bottom-left { bottom: -2px; left: -2px; border-right: none; border-top: none; }
-  .bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
-
-  .seal {
-    font-family: 'Cinzel', serif;
-    font-size: 48px; color: #ffd700; text-shadow: 0 0 20px rgba(255,215,0,0.8);
-    margin-bottom: 5px;
+  /* Diseño Kintsugi */
+  .kintsugi {
+    position:absolute; inset:0; 
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1131"><path d="M0,0 Q400,300 800,0 M0,1131 Q400,800 800,1131 M0,0 Q300,500 0,1131 M800,0 Q500,600 800,1131" fill="none" stroke="%23D4AF37" stroke-width="2" opacity="0.4"/></svg>');
+    pointer-events:none; mix-blend-mode: screen;
   }
+  .header { text-align:center; position:relative; z-index:2; margin-bottom: 20px;}
+  .logo { font-family:'Cinzel', serif; font-size: 48px; color:#D4AF37; letter-spacing: 4px; }
+  .title { font-family:'Cinzel', serif; font-size: 22px; margin:5px 0; color:#D4AF37; letter-spacing:2px; }
+  .subtitle { font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:2px; color:#00E5FF; }
   
-  h1 {
-    font-family: 'Cinzel', serif;
-    color: #ffd700;
-    font-size: 26px;
-    letter-spacing: 0.15em;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  }
-  
-  .subtitle {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    color: #b8860b;
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255,215,0,0.2);
-    padding-bottom: 15px;
-  }
-  
-  .data-group {
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 12px;
-    line-height: 1.8;
-  }
-  
-  .data-row { display: flex; justify-content: space-between; border-bottom: 1px dotted rgba(255,255,255,0.1); padding: 5px 0; }
-  .label { color: #888; font-size: 10px; letter-spacing: 0.1em; }
-  .value { color: #fff; font-weight: 700; }
+  .data { margin: 20px 0; font-size:12px; line-height:2.2; position:relative; z-index:2; }
+  .data span { color:#fff; font-weight: bold; }
   
   .hash-box {
-    background: rgba(255,215,0,0.05);
-    border: 1px solid rgba(255,215,0,0.3);
-    padding: 10px;
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    color: #ffd700;
-    word-break: break-all;
-    margin: 20px 0;
-    text-align: center;
-    border-radius: 4px;
+    border: 1px solid; border-image: linear-gradient(90deg, #00E5FF, #D4AF37, #FF00FF) 1;
+    padding:10px; background: rgba(212,175,55,0.07); word-break:break-all;
+    font-size:11px; text-align:center; color:#D4AF37; margin:10px 0;
   }
-  
-  .btc-block {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    color: #fff;
-    margin: 25px 0 10px;
-    letter-spacing: 0.1em;
+  .bloque {
+    text-align:center; border-top:1px solid #D4AF37; border-bottom:1px solid #D4AF37;
+    padding:15px 0; margin:20px 0; position:relative; z-index:2;
   }
+  .bloque b { font-family:'Cinzel'; font-size:18px; color:#D4AF37; display:block; margin-bottom: 5px;}
+  .bloque small { font-size: 10px; color: #aaa; line-height: 1.5; display: block;}
   
-  .btc-msg { font-size: 11px; color: #00ff65; font-weight: bold; }
+  .firma { font-family:'Great Vibes', cursive; font-size:36px; color:#E8DCC0; margin-top: 10px;}
+  .footer { display:flex; justify-content:space-between; align-items:end; position:relative; z-index:2; margin-top: 20px;}
+  .qr-container { text-align: center; }
+  .qr { width:90px; height:90px; background:#fff; padding:4px; border-radius: 4px;}
+  .qr-text { font-size:7px; margin-top:5px; color: #888;}
   
-  .signature {
-    font-family: 'Great Vibes', cursive;
-    font-size: 40px;
-    color: #fff;
-    margin: 20px 0 5px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  .sello {
+    width:90px; height:90px; background: radial-gradient(circle, #FFD700, #B8860B);
+    border-radius:50%; display:flex; justify-content:center; align-items:center;
+    font-size:40px; color:#000; box-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.8);
+    border: 3px solid #8B6914; font-weight: bold;
   }
-  .sig-line { width: 150px; height: 1px; background: #ffd700; margin: 0 auto 10px; }
-  .sig-name { font-size: 9px; letter-spacing: 0.2em; color: #888; }
-
-  .qr-seal-container {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,215,0,0.2);
-  }
+  .btns { text-align:center; margin-top:20px; display: flex; gap: 10px; justify-content: center;}
+  button { background:#FFEB3B; color:#000; border:none; padding:12px 25px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; border-radius: 4px;}
+  button.outline { background:transparent; color:#FFEB3B; border:1px solid #FFEB3B; }
   
-  .qr-code { width: 90px; height: 90px; border: 2px solid #ffd700; padding: 3px; background: #fff; }
-  
-  .btc-logo {
-    width: 80px; height: 80px; border-radius: 50%;
-    background: radial-gradient(circle, #ffd700 0%, #b8860b 100%);
-    display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 0 20px rgba(255,215,0,0.4);
-    border: 2px solid #fff;
-  }
-  .btc-logo span { font-family: Arial, sans-serif; font-weight: bold; color: #000; font-size: 40px; margin-top: -5px;}
-
-  .footer-strip {
-    margin-top: 30px;
-    font-size: 8px;
-    color: #555;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+  @media print { 
+    .btns { display:none; } 
+    body { background:#fff; } 
+    .cert { box-shadow:none; width: 100%; height: 100vh; border: none; }
   }
 </style>
 </head>
 <body>
-
-  <div class="certificate">
-    <div class="corner top-left"></div>
-    <div class="corner top-right"></div>
-    <div class="corner bottom-left"></div>
-    <div class="corner bottom-right"></div>
-
-    <div class="seal">◯_●</div>
-    <h1>ARKHÉ ZERO</h1>
-    <div class="subtitle">CERTIFICADO OFICIAL</div>
-
-    <div class="data-group">
-      <div class="data-row"><span class="label">NODO</span><span class="value">YHDRYH-92CE</span></div>
-      <div class="data-row"><span class="label">PIEZA</span><span class="value">PAQUETERIA-001</span></div>
-      <div class="data-row"><span class="label">SELLO</span><span class="value">SCDR-001</span></div>
-      <div class="data-row"><span class="label">PACTO</span><span class="value">51/49/100</span></div>
-      <div class="data-row"><span class="label">FECHA</span><span class="value">2026-10-15 03:01 UTC</span></div>
+<div>
+  <div class="cert" id="cert">
+    <div class="kintsugi"></div>
+    <div class="header">
+      <div class="logo">◯_●</div>
+      <div class="title">ARKHÉ ZERO<br>CERTIFICADO OFICIAL</div>
+      <div class="subtitle">VERDADERO • PREMIUM • INFALSIFICABLE 24K</div>
     </div>
 
-    <div style="text-align:left; font-size:10px; color:#888; margin-bottom:5px;">HASH SHA-256:</div>
-    <div class="hash-box">
-      ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
+    <div class="data">
+      NODO: <span>YHDRYH-92CE</span><br>
+      PIEZA: <span>PAQUETERIA-001</span><br>
+      SELLO: <span>SCDR-001</span><br>
+      PACTO: <span>51/49/100</span><br>
+      HASH SHA-256:
+      <div class="hash-box">ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92</div>
+      FECHA: <span>2026-10-15 03:01 UTC</span><br>
+      LEMA: <span style="font-style:italic;">"El legado no se hereda. Se firma." – KINTSUGI</span>
     </div>
 
-    <div class="signature">Kintsugi</div>
-    <div class="sig-line"></div>
-    <div class="sig-name">MARCO ANTONIO ROJAS VALDOVINOS</div>
-    <div class="sig-name" style="color:#b8860b; margin-top:5px;">ARQUITECTO DE LEGADO DIGITAL</div>
+    <div class="bloque">
+      <b>Bloque Bitcoin 971527</b>
+      CERTIFICADO DE EXISTENCIA<br>
+      <small>Success! Bitcoin block 971527 attests existence as of 2026-10-15 UTC<br>(Validado por Nodo Floresta Local)</small>
+      <div class="firma">Kintsugi</div>
+    </div>
 
-    <div class="btc-block">Bloque Bitcoin 971527</div>
-    <div class="btc-msg">Success · Attests existence as of 2026-10-15</div>
-
-    <div class="qr-seal-container">
-      <div>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" alt="QR" class="qr-code">
-        <div style="font-size:8px; color:#666; margin-top:5px; letter-spacing:0.1em;">ESCANEAR PARA VERIFICAR</div>
+    <div class="footer">
+      <div class="qr-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" class="qr" alt="QR">
+        <div class="qr-text">ESCANEAR PARA VERIFICAR</div>
       </div>
-      
-      <div class="btc-logo">
-        <span>₿</span>
-      </div>
-    </div>
-
-    <div class="footer-strip">
-      INFRASIFICABLE · 24K HOLOGRÁFICO · NO REPRODUCIBLE
+      <div class="sello">₿</div>
     </div>
   </div>
-
+  
+  <div class="btns">
+    <button onclick="window.print()">GUARDAR PDF / IMPRIMIR</button>
+    <button class="outline" onclick="window.location.href='verificar/index.html'">IR AL VERIFICADOR</button>
+  </div>
+</div>
 </body>
 </html>
