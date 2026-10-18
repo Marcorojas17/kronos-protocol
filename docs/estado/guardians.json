@@ -1,13 +1,13 @@
 {
-  "ts": "2026-10-16T02:51:29.180456+00:00",
+  "ts": "2026-10-18T21:26:03.149360+00:00",
   "total": 4,
-  "ok": 4,
+  "ok": 3,
   "guardians": [
     {
-      "ok": true,
-      "msg": "153 OK · 0 fallidos · 47 no encontrados (muestra 200 de 2879)",
-      "verificados": 153,
-      "fallidos": 0,
+      "ok": false,
+      "msg": "152 OK · 1 fallidos · 47 no encontrados (muestra 200 de 2879)",
+      "verificados": 152,
+      "fallidos": 1,
       "no_encontrados": 47,
       "total": 2879,
       "nombre": "GUARDIAN-SHA",
@@ -32,10 +32,10 @@
     },
     {
       "ok": true,
-      "msg": "3/5 críticos anclados · 53 OTS totales",
-      "confirmados": 3,
-      "pendientes": 2,
-      "total_ots": 53,
+      "msg": "4/5 críticos anclados · 39 OTS totales",
+      "confirmados": 4,
+      "pendientes": 1,
+      "total_ots": 39,
       "detalles": [
         {
           "ots": "genesis-K28.txt.ots",
@@ -51,7 +51,7 @@
         },
         {
           "ots": "pacto-5149-canonico.mldsa65.sig.ots",
-          "estado": "⏳ pendiente"
+          "estado": "✅ Bitcoin"
         },
         {
           "ots": "MANIFEST-2026-10-15.sha256.ots",

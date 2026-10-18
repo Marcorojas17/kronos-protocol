@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-16T16:24:34.393599+00:00",
+  "ts": "2026-10-18T21:35:30.513187+00:00",
   "total": 4,
   "ok": 3,
   "guardians": [
@@ -32,10 +32,10 @@
     },
     {
       "ok": true,
-      "msg": "4/5 críticos anclados · 53 OTS totales",
+      "msg": "4/5 críticos anclados · 39 OTS totales",
       "confirmados": 4,
       "pendientes": 1,
-      "total_ots": 53,
+      "total_ots": 39,
       "detalles": [
         {
           "ots": "genesis-K28.txt.ots",
