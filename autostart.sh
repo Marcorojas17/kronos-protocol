@@ -3,9 +3,9 @@
 echo "◯_● Iniciando ARKHÉ ZERO..."
 
 # 1. Servidor web en background
-cd ~/arkhe-zero/index
+cd /root/kronos-protocol/index
 pkill -f "http.server" 2>/dev/null
-nohup python3 -m http.server 8080 > ~/arkhe-zero/logs/server.log 2>&1 &
+nohup python3 -m http.server 8080 > /root/kronos-protocol/logs/server.log 2>&1 &
 echo "  [✓] Servidor en localhost:8080"
 
 # 2. Radar de amenazas
@@ -21,4 +21,4 @@ echo "  ◯_● URL: http://localhost:8080/arkhe-zero.html"
 echo ""
 
 # 4. Lanzar menú principal
-~/arkhe-zero/arkhe
+/root/kronos-protocol/arkhe

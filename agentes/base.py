@@ -7,7 +7,7 @@ class Agente:
     def __init__(self, nombre, rol):
         self.nombre = nombre
         self.rol = rol
-        self.home = os.path.expanduser("~/arkhe-zero")
+        self.home = os.path.expanduser("/root/kronos-protocol")
         self.logs = os.path.join(self.home, "logs")
         os.makedirs(self.logs, exist_ok=True)
 

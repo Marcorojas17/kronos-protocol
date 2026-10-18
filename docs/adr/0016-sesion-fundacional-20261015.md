@@ -24,7 +24,7 @@ Ejecutar una sesión fundacional que:
 ## 🜄 Ejecución
 
 ### Fase 1 · Criptografía
-- Generación de `fundador-v2.key` (Ed25519)
+- Generación de `fundador-v3.key` (Ed25519)
 - Firma del Pacto 51/49: `pacto-5149-canonico.sig` (64 bytes)
 - Verificación con OpenSSL: `Signature Verified Successfully`
 

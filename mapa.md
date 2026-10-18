@@ -478,8 +478,8 @@ ARKHE-ZERO/ ──────────────────────�
 │   │   ├── 📄 082-tlachixqui.json
 │   │   └── 📄 esquema.json
 │   └── 📁 FUNDADOR-V2/
-│       ├── 📄 fundador-v2.key
-│       └── 📄 fundador-v2.pub
+│       ├── 📄 fundador-v3.key
+│       └── 📄 fundador-v3.pub
 │
 ├── 📁 04_SEGURIDAD_Y_OPERACIONES/
 │   └── 📄 LLAVE_QUEMADA_EVIDENCIA.md
