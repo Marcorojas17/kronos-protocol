@@ -61,3 +61,6 @@ docs-deploy/
 _duplicados/
 www/
 www/
+.coverage
+.pytest_cache
+__pycache__/
