@@ -2,85 +2,185 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>◯_● Certificado · ARKHÉ ZERO</title>
+<title>◯_● Certificado Oficial · ARKHÉ ZERO</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: #030308; color: #c8ffc8; font-family: 'Courier New', monospace;
+    background: #050505; 
+    color: #c8ffc8; 
+    font-family: 'Courier Prime', monospace;
     min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; padding: 20px;
-    background-image: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.08) 0%, transparent 70%);
+    align-items: center; justify-content: center; padding: 15px;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1) 0%, transparent 60%),
+      radial-gradient(circle at 0% 100%, rgba(0,234,255,0.05) 0%, transparent 50%);
   }
-  .card {
-    background: rgba(10,10,15,0.95); border: 1px solid rgba(255,215,0,0.3);
-    border-top: 4px solid #ffd700; padding: 30px; max-width: 450px; width: 100%;
-    box-shadow: 0 0 50px rgba(255,215,0,0.15); position: relative;
+  
+  .certificate {
+    background: linear-gradient(135deg, #0a0a0f 0%, #050508 100%);
+    border: 2px solid #b8860b; /* Borde dorado oscuro */
+    outline: 1px solid #ffd700;
+    outline-offset: -6px;
+    padding: 40px 25px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 0 60px rgba(255,215,0,0.15), inset 0 0 30px rgba(0,0,0,0.8);
+    position: relative;
+    text-align: center;
   }
-  .card::before, .card::after {
-    content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid #ffd700;
+  
+  /* Esquinas tipo Kintsugi en CSS */
+  .corner { position: absolute; width: 30px; height: 30px; border: 3px solid #ffd700; }
+  .top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .top-right { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+  .bottom-left { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+  .bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+  .seal {
+    font-family: 'Cinzel', serif;
+    font-size: 48px; color: #ffd700; text-shadow: 0 0 20px rgba(255,215,0,0.8);
+    margin-bottom: 5px;
   }
-  .card::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .card::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
-  .header { text-align: center; margin-bottom: 25px; }
-  .header .seal { font-size: 45px; color: #ffd700; text-shadow: 0 0 20px rgba(255,215,0,0.6); }
-  .header h1 { font-family: Georgia, serif; color: #ffd700; font-size: 22px; letter-spacing: .2em; margin-top: 10px; }
-  .header p { color: #6a8f6a; font-size: 10px; letter-spacing: .25em; margin-top: 5px; }
-  .data-row {
-    display: flex; justify-content: space-between; padding: 8px 0;
-    border-bottom: 1px dashed rgba(255,215,0,0.15); font-size: 11px;
+  
+  h1 {
+    font-family: 'Cinzel', serif;
+    color: #ffd700;
+    font-size: 26px;
+    letter-spacing: 0.15em;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
-  .data-row .label { color: #6a8f6a; }
-  .data-row .value { color: #c8ffc8; font-weight: bold; }
+  
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: #b8860b;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding-bottom: 15px;
+  }
+  
+  .data-group {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  
+  .data-row { display: flex; justify-content: space-between; border-bottom: 1px dotted rgba(255,255,255,0.1); padding: 5px 0; }
+  .label { color: #888; font-size: 10px; letter-spacing: 0.1em; }
+  .value { color: #fff; font-weight: 700; }
+  
   .hash-box {
-    background: rgba(0,0,0,0.6); border: 1px solid rgba(255,215,0,0.2);
-    padding: 12px; margin: 15px 0; font-size: 9px; color: #ffd700;
-    word-break: break-all; text-align: center; line-height: 1.4;
+    background: rgba(255,215,0,0.05);
+    border: 1px solid rgba(255,215,0,0.3);
+    padding: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: #ffd700;
+    word-break: break-all;
+    margin: 20px 0;
+    text-align: center;
+    border-radius: 4px;
   }
-  .qr-section { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
-  .qr-section img { width: 110px; height: 110px; border: 2px solid #ffd700; padding: 4px; background: #fff; }
-  .qr-section span { font-size: 9px; color: #6a8f6a; margin-top: 8px; letter-spacing: .1em; }
-  .actions { display: flex; gap: 10px; margin-top: 10px; }
-  .btn {
-    flex: 1; text-align: center; padding: 12px; border: 1px solid #ffd700;
-    color: #ffd700; text-decoration: none; font-size: 10px; letter-spacing: .1em;
-    background: transparent; cursor: pointer; transition: 0.3s;
+  
+  .btc-block {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: #fff;
+    margin: 25px 0 10px;
+    letter-spacing: 0.1em;
   }
-  .btn:hover { background: #ffd700; color: #030308; }
-  .btn.primary { background: #ffd700; color: #030308; font-weight: bold; }
-  .btn.primary:hover { background: transparent; color: #ffd700; }
-  .footer { text-align: center; margin-top: 25px; font-size: 9px; color: #6a8f6a; letter-spacing: .1em; line-height: 1.5; }
+  
+  .btc-msg { font-size: 11px; color: #00ff65; font-weight: bold; }
+  
+  .signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    color: #fff;
+    margin: 20px 0 5px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+  .sig-line { width: 150px; height: 1px; background: #ffd700; margin: 0 auto 10px; }
+  .sig-name { font-size: 9px; letter-spacing: 0.2em; color: #888; }
+
+  .qr-seal-container {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,215,0,0.2);
+  }
+  
+  .qr-code { width: 90px; height: 90px; border: 2px solid #ffd700; padding: 3px; background: #fff; }
+  
+  .btc-logo {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: radial-gradient(circle, #ffd700 0%, #b8860b 100%);
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 20px rgba(255,215,0,0.4);
+    border: 2px solid #fff;
+  }
+  .btc-logo span { font-family: Arial, sans-serif; font-weight: bold; color: #000; font-size: 40px; margin-top: -5px;}
+
+  .footer-strip {
+    margin-top: 30px;
+    font-size: 8px;
+    color: #555;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="header">
-      <div class="seal">◯_●</div>
-      <h1>ARKHÉ ZERO</h1>
-      <p>CERTIFICADO DE EXISTENCIA DIGITAL</p>
+
+  <div class="certificate">
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+
+    <div class="seal">◯_●</div>
+    <h1>ARKHÉ ZERO</h1>
+    <div class="subtitle">CERTIFICADO OFICIAL</div>
+
+    <div class="data-group">
+      <div class="data-row"><span class="label">NODO</span><span class="value">YHDRYH-92CE</span></div>
+      <div class="data-row"><span class="label">PIEZA</span><span class="value">PAQUETERIA-001</span></div>
+      <div class="data-row"><span class="label">SELLO</span><span class="value">SCDR-001</span></div>
+      <div class="data-row"><span class="label">PACTO</span><span class="value">51/49/100</span></div>
+      <div class="data-row"><span class="label">FECHA</span><span class="value">2026-10-15 03:01 UTC</span></div>
     </div>
-    <div class="data-row"><span class="label">NODO</span><span class="value">YHDRYH-92CE</span></div>
-    <div class="data-row"><span class="label">PIEZA</span><span class="value">PAQUETERIA-001</span></div>
-    <div class="data-row"><span class="label">SELLO</span><span class="value">SCDR-001</span></div>
-    <div class="data-row"><span class="label">PACTO</span><span class="value">51/49/100</span></div>
-    <div class="data-row"><span class="label">FECHA</span><span class="value">2026-10-15 03:01 UTC</span></div>
+
+    <div style="text-align:left; font-size:10px; color:#888; margin-bottom:5px;">HASH SHA-256:</div>
     <div class="hash-box">
-      <div style="color:#6a8f6a; margin-bottom:4px;">HASH SHA-256</div>
       ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
     </div>
-    <div class="qr-section">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" alt="QR Verificación">
-      <span>ESCANEA PARA VERIFICAR</span>
+
+    <div class="signature">Kintsugi</div>
+    <div class="sig-line"></div>
+    <div class="sig-name">MARCO ANTONIO ROJAS VALDOVINOS</div>
+    <div class="sig-name" style="color:#b8860b; margin-top:5px;">ARQUITECTO DE LEGADO DIGITAL</div>
+
+    <div class="btc-block">Bloque Bitcoin 971527</div>
+    <div class="btc-msg">Success · Attests existence as of 2026-10-15</div>
+
+    <div class="qr-seal-container">
+      <div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" alt="QR" class="qr-code">
+        <div style="font-size:8px; color:#666; margin-top:5px; letter-spacing:0.1em;">ESCANEAR PARA VERIFICAR</div>
+      </div>
+      
+      <div class="btc-logo">
+        <span>₿</span>
+      </div>
     </div>
-    <div class="actions">
-      <a href="https://marcorojas17.github.io/kronos-protocol/verificar/" target="_blank" class="btn primary">VERIFICAR</a>
-      <button onclick="window.print()" class="btn">IMPRIMIR / PDF</button>
-    </div>
-    <div class="footer">
-      "El legado no se hereda. Se firma."<br>
-      KINTSUGI 2026
+
+    <div class="footer-strip">
+      INFRASIFICABLE · 24K HOLOGRÁFICO · NO REPRODUCIBLE
     </div>
   </div>
+
 </body>
 </html>
