@@ -3,15 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◯_● ARKHÉ ZERO - CERTIFICADO CUÁNTICO</title>
+<title>◯_● ARKHÉ ZERO - CERTIFICADO FUNDACIONAL</title>
 <style>
   :root {
     --gold: #D4AF37; --gold-light: #FFF3A0; --gold-dark: #8B6914;
     --cyan: #00E5FF; --magenta: #FF00FF; --green-pqc: #00FF41; --bg: #050508;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 10px; font-family: 'Courier New', Courier, monospace; }
-  .perspective { width: 100%; max-width: 600px; }
+  
+  body { 
+    background: #000; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 10px; font-family: 'Courier New', Courier, monospace; 
+  }
+  
+  .perspective { width: 100%; max-width: 500px; }
+
+  /* CERTIFICADO CON TEXTURA DE BILLETE */
   .cert {
     width: 100%; background-color: var(--bg); border-radius: 4px; position: relative;
     padding: 25px 15px; border: 1px solid var(--gold-dark);
@@ -19,13 +27,19 @@
     overflow: hidden;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
   }
+
   .guilloche { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.1; background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 10px, var(--gold-dark) 11px, transparent 12px), repeating-linear-gradient(45deg, transparent 0, transparent 20px, var(--gold-dark) 21px, transparent 22px); }
+  
+  /* KINTSUSGI SVG ANIMADO */
   .kintsugi { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
   .kintsugi path { stroke: url(#goldGrad); stroke-dasharray: 1500; stroke-dashoffset: 1500; animation: drawKintsugi 3s ease-out forwards, pulseGold 4s infinite alternate 3s; }
   @keyframes drawKintsugi { to { stroke-dashoffset: 0; } }
   @keyframes pulseGold { 0% { filter: drop-shadow(0 0 2px var(--gold-dark)); opacity: 0.7; } 100% { filter: drop-shadow(0 0 12px var(--gold)); opacity: 1; } }
+
   .content { position: relative; z-index: 3; text-align: center; }
+
   .logo { font-size: 35px; color: var(--gold); text-shadow: 0 0 15px var(--gold); font-family: sans-serif; }
+  
   @keyframes holoShift { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
   .title { 
     font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 22px; letter-spacing: 3px;
@@ -33,28 +47,33 @@
     background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     animation: holoShift 4s linear infinite; margin-bottom: 3px;
   }
+  
   .subtitle { font-size: 8px; letter-spacing: 2px; color: var(--cyan); margin-bottom: 15px; }
+  
   .pqc-badge { display: inline-block; background: rgba(0, 255, 65, 0.1); border: 1px solid var(--green-pqc); color: var(--green-pqc); font-size: 8px; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px var(--green-pqc); }
-  .microprint { font-size: 5px; color: rgba(212, 175, 55, 0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; font-family: sans-serif; line-height: 1.2; }
+  
   .data-box { text-align: left; background: rgba(0,0,0,0.6); padding: 12px; border-radius: 4px; border-left: 3px solid var(--gold); margin-bottom: 15px; box-shadow: inset 0 0 20px rgba(0,0,0,1); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
   .data-row { display: flex; justify-content: space-between; font-size: 9px; margin-bottom: 5px; }
   .data-row span:first-child { color: #888; }
   .data-row span:last-child { color: #fff; font-weight: bold; letter-spacing: 1px; }
   .hash-box { background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.3); padding: 8px; border-radius: 4px; font-size: 8px; color: var(--gold); word-break: break-all; margin-top: 8px; text-align: center; }
   .pqc-hash-box { background: rgba(0,255,65,0.05); border: 1px solid rgba(0,255,65,0.3); padding: 8px; border-radius: 4px; font-size: 8px; color: var(--green-pqc); word-break: break-all; margin-top: 8px; text-align: center; box-shadow: inset 0 0 10px rgba(0,255,65,0.1); }
-  .bloque { margin: 12px 0; padding: 10px 0; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2); }
-  .bloque b { font-size: 13px; color: var(--gold); display: block; margin-bottom: 3px; letter-spacing: 1px; font-family: sans-serif;}
-  .bloque small { font-size: 7px; color: #aaa; display: block; line-height: 1.4; }
   
-  /* NUEVA SECCIÓN: SELLO ASCII OFICIAL */
+  .bloque { margin: 12px 0; padding: 10px 0; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2); }
+  .bloque b { font-size: 14px; color: var(--gold); display: block; margin-bottom: 3px; letter-spacing: 1px; font-family: sans-serif;}
+  .bloque small { font-size: 8px; color: #aaa; display: block; line-height: 1.4; }
+  .firma { font-family: 'Brush Script MT', 'Great Vibes', cursive; font-size: 32px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); margin-top: 8px; }
+
+  /* SECCIÓN ASCII CYBERPUNK */
   .ascii-seal-container {
-    margin: 15px auto;
-    padding: 15px 5px;
-    background: rgba(0, 0, 0, 0.6);
+    margin: 15px 0;
+    padding: 12px 0;
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 4px;
-    border: 1px dashed rgba(212, 175, 55, 0.4);
+    border: 1px dashed rgba(0, 229, 255, 0.4);
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05);
   }
   .ascii-label {
     position: absolute;
@@ -62,29 +81,43 @@
     left: 50%;
     transform: translateX(-50%);
     background: var(--bg);
-    color: var(--gold);
+    color: var(--cyan);
     font-size: 7px;
     padding: 0 8px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: bold;
+    text-shadow: 0 0 5px var(--cyan);
   }
+  
+  /* Contenedor para que el ASCII no rompa la pantalla en móviles */
+  .ascii-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+  }
+
   .ascii-art-box {
     font-family: 'Courier New', monospace;
-    font-size: 5.5px; /* Tamaño ajustado para que quepa en móvil */
-    line-height: 1.1;
-    color: var(--gold-light);
+    font-size: 6px; /* Tamaño ajustado para móvil */
+    line-height: 1.05;
+    color: var(--cyan); /* Color Cyan brillante de tu captura */
     white-space: pre;
-    text-align: center;
-    text-shadow: 0 0 2px rgba(212, 175, 55, 0.5);
-    margin-top: 10px;
+    text-align: left;
+    text-shadow: 0 0 4px rgba(0, 229, 255, 0.8), 0 0 8px rgba(0, 229, 255, 0.4);
     letter-spacing: 0px;
+    transform: scale(1); 
+    transform-origin: center;
   }
 
   .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
   .qr-container { text-align: center; position: relative; z-index: 5;}
-  #qr-canvas { width: 70px; height: 70px; background: #fff; padding: 3px; border-radius: 4px; }
+  #qr-canvas { width: 75px; height: 75px; background: #fff; padding: 3px; border-radius: 4px; }
   .qr-text { font-size: 6px; margin-top: 5px; color: var(--gold); letter-spacing: 1px; }
+  
+  /* SELLO CROMÁTICO */
   .chromatic-seal {
     width: 65px; height: 65px; border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
     background: conic-gradient(from 0deg, #FFD700, #FF00FF, #00FFFF, #00FF00, #FFFF00, #FF0000, #FFD700);
@@ -94,11 +127,13 @@
   .chromatic-seal::before { content: "₿"; position: absolute; font-size: 34px; font-weight: bold; color: #000; font-family: sans-serif; text-shadow: 0 0 5px rgba(255,255,255,0.5); z-index: 2; }
   .chromatic-seal::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.5); z-index: 1; }
   @keyframes spinSeal { 0% { filter: hue-rotate(0deg); transform: rotate(0deg); } 100% { filter: hue-rotate(360deg); transform: rotate(360deg); } }
-  .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 600px; }
+
+  .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 500px; }
   button, a.btn { flex: 1; padding: 12px; border: none; font-family: monospace; font-weight: bold; font-size: 10px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
   button.primary { background: var(--gold); color: #000; }
   button.primary:hover { background: var(--gold-light); box-shadow: 0 0 15px var(--gold); }
   a.outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  
   @media print { 
     body { background: #fff; padding: 0; }
     .btns { display: none; }
@@ -134,10 +169,6 @@
 
         <div class="pqc-badge">🛡️ QUANTUM-SAFE · ML-DSA-65</div>
 
-        <div class="microprint">
-          MICRO-IMPRESIÓN: NODO YHDRYH-92CE · PACTO 51/49/100 · SAFE CREATIVE 2607146379465 · BLOCKCHAIN BITCOIN · FIRMA POST-CUÁNTICA NIST FIPS 204
-        </div>
-
         <div class="data-box">
           <div class="data-row"><span>NODO</span><span>YHDRYH-92CE</span></div>
           <div class="data-row"><span>PIEZA</span><span>PAQUETERIA-001</span></div>
@@ -150,20 +181,21 @@
           </div>
           <div class="pqc-hash-box">
             <div style="color: #00aa30; margin-bottom: 3px;">FIRMA POST-CUÁNTICA (ML-DSA-65)</div>
-            Verificado · 3309 bytes · NIST FIPS 204<br>
-            <span style="font-size: 6px; opacity: 0.8;">fundador-mldsa65.sig</span>
+            Verificado · 3309 bytes · NIST FIPS 204
           </div>
         </div>
 
         <div class="bloque">
           <b>BLOQUE BITCOIN 971527</b>
           <small>Success! Bitcoin block 971527 attests existence as of 2026-10-15 UTC</small>
+          <div class="firma">Kintsugi</div>
         </div>
 
-        <!-- NUEVA SECCIÓN: EL SELLO ASCII OFICIAL -->
+        <!-- SELLO ASCII CYBERPUNK -->
         <div class="ascii-seal-container">
-          <div class="ascii-label">▸ SELLO ASCII FUNDACIONAL</div>
-          <div class="ascii-art-box">
+          <div class="ascii-label">▸ FIRMA CYPHERPUNK ▸</div>
+          <div class="ascii-wrapper">
+            <div class="ascii-art-box">
 ╔══════════════════════════════════════════════════════════════════════════╗
 ║                                                                          ║
 ║                                                                          ║
@@ -196,6 +228,7 @@
 ║                                                                          ║
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
+            </div>
           </div>
         </div>
 
