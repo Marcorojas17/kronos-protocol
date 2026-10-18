@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>◯_● ARKHÉ ZERO - CERTIFICADO DIGITAL</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=JetBrains+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Librería para capturar el HTML como imagen -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   :root {
     --gold: #E8D08B; --gold-dark: #A67C00; --gold-light: #FFF3A0;
@@ -77,7 +79,6 @@
   }
   .hash-title { text-align: center; font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
   .hash-text { font-size: 11px; color: #fff; word-break: break-all; text-align: center; line-height: 1.5; letter-spacing: 0.5px; }
-  /* Esquinas de la caja */
   .hash-box::before, .hash-box::after { content: ''; position: absolute; width: 10px; height: 10px; border: 2px solid var(--gold); }
   .hash-box::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
   .hash-box::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
@@ -94,28 +95,11 @@
   
   /* Cypherpunk Matrix Box */
   .matrix-box {
-    width: 55%; 
-    height: 85px; /* Altura fija para el canvas */
-    border: 1px solid #333; 
-    background: #000; 
-    padding: 5px; 
-    position: relative;
-    box-shadow: inset 0 0 15px rgba(0,255,65,0.15);
-    overflow: hidden;
+    width: 55%; height: 85px; border: 1px solid #333; background: #000; padding: 5px; 
+    position: relative; box-shadow: inset 0 0 15px rgba(0,255,65,0.15); overflow: hidden;
   }
-  .matrix-title { 
-    position: absolute;
-    top: 5px; left: 5px;
-    font-size: 8px; color: #fff; font-weight: bold; letter-spacing: 1px; 
-    z-index: 2; text-shadow: 0 0 3px #000, 0 0 3px #000;
-  }
-  
-  /* El Lienzo de la Matrix */
-  #matrix-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+  .matrix-title { position: absolute; top: 5px; left: 5px; font-size: 8px; color: #fff; font-weight: bold; letter-spacing: 1px; z-index: 2; text-shadow: 0 0 3px #000, 0 0 3px #000; }
+  #matrix-canvas { display: block; width: 100%; height: 100%; }
   
   /* Firma manuscrita */
   .signature-box { text-align: center; width: 40%; }
@@ -137,8 +121,7 @@
     background: radial-gradient(circle at 30% 30%, #fceabb 0%, #d4af37 40%, #8b6914 80%, #4a3600 100%);
     display: flex; justify-content: center; align-items: center;
     box-shadow: 3px 5px 15px rgba(0,0,0,0.8), inset -3px -5px 10px rgba(0,0,0,0.5), inset 3px 3px 10px rgba(255,255,255,0.6);
-    border: 1px solid #6b4d00;
-    position: relative;
+    border: 1px solid #6b4d00; position: relative;
   }
   .seal-wax::before { content: ''; position: absolute; inset: -3px; border-radius: 45% 55% 48% 52% / 50% 45% 55% 50%; border: 1px solid rgba(139,105,20,0.5); }
   .seal-wax::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.4); }
@@ -150,12 +133,15 @@
   /* AVISO FINAL */
   .legal-footer { margin-top: 25px; text-align: center; font-size: 7px; color: #666; letter-spacing: 1px; line-height: 1.5; text-transform: uppercase;}
 
-  /* BOTONES (No se imprimen) */
-  .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 480px; }
-  button, a.btn { flex: 1; padding: 12px; border: none; font-family: 'JetBrains Mono'; font-weight: bold; font-size: 10px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+  /* BOTONES */
+  .btns { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 480px; }
+  button, a.btn { padding: 12px 5px; border: none; font-family: 'JetBrains Mono'; font-weight: bold; font-size: 9px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;}
+  
   button.primary { background: var(--gold); color: #000; }
   button.primary:hover { background: var(--gold-light); box-shadow: 0 0 15px var(--gold); }
-  a.outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  
+  button.secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  button.secondary:hover { background: rgba(232, 208, 139, 0.1); }
 
   @media print { 
     body { background: #fff; padding: 0; }
@@ -163,8 +149,7 @@
     .perspective { max-width: 100%; height: 100vh; }
     .cert { 
       box-shadow: none; border-radius: 0; border: none; height: 100vh; 
-      -webkit-print-color-adjust: exact; print-color-adjust: exact; 
-      background-color: #050505 !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: #050505 !important;
     }
     @page { size: portrait; margin: 0; }
   }
@@ -173,9 +158,9 @@
 <body>
 
   <div class="perspective">
-    <div class="cert">
+    <!-- Este ID es crucial para html2canvas -->
+    <div class="cert" id="certificado-node">
       
-      <!-- SVG Kintsugi Grietas -->
       <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 850">
         <defs>
           <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -191,7 +176,6 @@
       </svg>
 
       <div class="content">
-        
         <div class="header">
           <div class="symbol">O_●</div>
           <h1>ARKHE ZERO</h1>
@@ -208,29 +192,19 @@
         
         <div class="data-list">
           <div class="data-item">
-            <span class="label">NODO</span>
-            <span class="dots"></span>
-            <span class="value">YHDRYH-92CE</span>
+            <span class="label">NODO</span><span class="dots"></span><span class="value">YHDRYH-92CE</span>
           </div>
           <div class="data-item">
-            <span class="label">FECHA</span>
-            <span class="dots"></span>
-            <span class="value">2026-10-15</span>
+            <span class="label">FECHA</span><span class="dots"></span><span class="value">2026-10-15</span>
           </div>
           <div class="data-item">
-            <span class="label">PIEZA</span>
-            <span class="dots"></span>
-            <span class="value">PAQUETERIA-001</span>
+            <span class="label">PIEZA</span><span class="dots"></span><span class="value">PAQUETERIA-001</span>
           </div>
           <div class="data-item">
-            <span class="label">SELLO</span>
-            <span class="dots"></span>
-            <span class="value">SCDR-001</span>
+            <span class="label">SELLO</span><span class="dots"></span><span class="value">SCDR-001</span>
           </div>
           <div class="data-item">
-            <span class="label">PACTO</span>
-            <span class="dots"></span>
-            <span class="value">51/49/100</span>
+            <span class="label">PACTO</span><span class="dots"></span><span class="value">51/49/100</span>
           </div>
         </div>
 
@@ -252,7 +226,6 @@
         <div class="bottom-section">
           <div class="matrix-box">
             <div class="matrix-title">FIRMA CYPHERPUNK</div>
-            <!-- Aquí va el canvas de la Matrix -->
             <canvas id="matrix-canvas"></canvas>
           </div>
           
@@ -273,12 +246,9 @@
           </div>
           
           <div>
-            <div class="seal-wax">
-              <span>₿</span>
-            </div>
+            <div class="seal-wax"><span>₿</span></div>
             <div class="seal-text">
-              <strong>SELLO BITCOIN · PRUEBA DE</strong><br>
-              EXISTENCIA · 971527
+              <strong>SELLO BITCOIN · PRUEBA DE</strong><br>EXISTENCIA · 971527
             </div>
           </div>
         </div>
@@ -287,14 +257,15 @@
           CERTIFICADO INFALSIFICABLE · PAPEL MONEDA · ANTIFALSIFICACIÓN · IMPRESO EN SUSTRATO<br>
           DE SEGURIDAD 24K KINTSUGI · SOLO VÁLIDO CON VERIFICACIÓN POST-CUÁNTICA
         </div>
-
       </div>
     </div>
   </div>
   
   <div class="btns">
+    <button class="primary" onclick="descargarPNG()">DESCARGAR PNG</button>
     <button class="primary" onclick="window.print()">GUARDAR PDF</button>
-    <a href="verificar/index.html" class="outline">VERIFICADOR</a>
+    <button class="secondary" onclick="descargarHTML()">ARCHIVO HTML</button>
+    <a href="verificar/index.html" class="secondary">VERIFICADOR</a>
   </div>
 
   <script>
@@ -331,63 +302,72 @@
     function startMatrixRain() {
       const canvas = document.getElementById('matrix-canvas');
       const ctx = canvas.getContext('2d');
-
-      // Ajustar el tamaño del canvas al contenedor
-      function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      // Caracteres que caerán (Binario y símbolos)
+      function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+      resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+      
       const chars = "01◯●ΔΩΣ█▓▒░".split("");
       const fontSize = 10;
       let columns = canvas.width / fontSize;
-      
-      // Arreglo para guardar la posición Y de cada gota
       let drops = [];
-      for (let x = 0; x < columns; x++) {
-        drops[x] = 1; 
-      }
+      for (let x = 0; x < columns; x++) drops[x] = 1; 
 
       function draw() {
-        // Fondo negro semi-transparente para crear el efecto de estela
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
         ctx.font = fontSize + "px 'JetBrains Mono'";
         
         for (let i = 0; i < drops.length; i++) {
-          // Escoger carácter aleatorio
           const text = chars[Math.floor(Math.random() * chars.length)];
-          
-          // Asignar colores: Mayoría verde, algunos cian y dorados
           const colorRand = Math.random();
-          if (colorRand > 0.9) {
-            ctx.fillStyle = "#00E5FF"; // Cian
-          } else if (colorRand > 0.8) {
-            ctx.fillStyle = "#E8D08B"; // Dorado
-          } else {
-            ctx.fillStyle = "#00FF41"; // Verde Matrix
-          }
-
-          // Dibujar el carácter
+          if (colorRand > 0.9) ctx.fillStyle = "#00E5FF"; // Cian
+          else if (colorRand > 0.8) ctx.fillStyle = "#E8D08B"; // Dorado
+          else ctx.fillStyle = "#00FF41"; // Verde Matrix
+          
           ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-          // Reiniciar la gota aleatoriamente para crear el efecto
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-            drops[i] = 0;
-          }
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) drops[i] = 0;
           drops[i]++;
         }
       }
-
-      // Ejecutar la animación a 30 FPS (evita que el móvil se caliente mucho)
       setInterval(draw, 33); 
     }
 
-    // Iniciar todo cuando cargue la página
+    // 3. DESCARGAR COMO PNG (Alta Resolución)
+    function descargarPNG() {
+      const botones = document.querySelector('.btns');
+      const originalDisplay = botones.style.display;
+      botones.style.display = 'none'; // Ocultar botones antes de tomar la foto
+      
+      const nodo = document.getElementById('certificado-node');
+      
+      // Aumentar la escala para que se vea nítido en pantallas Retina
+      html2canvas(nodo, {
+        scale: 2, 
+        backgroundColor: "#050505",
+        useCORS: true 
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ARKHE_ZERO_Certificado.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        // Restaurar los botones
+        botones.style.display = originalDisplay; 
+      });
+    }
+
+    // 4. DESCARGAR COMO HTML OFFLINE
+    function descargarHTML() {
+        // Obtenemos el código fuente de la página actual
+        const htmlContent = document.documentElement.outerHTML;
+        const blob = new Blob([htmlContent], {type: 'text/html'});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'ARKHE_ZERO_Certificado_Offline.html';
+        link.click();
+        URL.revokeObjectURL(url);
+    }
+
     window.onload = function() {
       generateQR();
       startMatrixRain();
