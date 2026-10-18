@@ -3,102 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◯_● ARKHÉ ZERO - CERTIFICADO SUPREMO</title>
+<title>◯_● ARKHÉ ZERO - CERTIFICADO CUÁNTICO</title>
 <style>
-  /* ═══════════════════════════════════════════════════════════
-     ARKHÉ ZERO · CERTIFICADO DE SEGURIDAD NIVEL BANCARIO
-     100% Offline · Cero dependencias · CSS Avanzado
-     ═══════════════════════════════════════════════════════════ */
-  
   :root {
-    --gold: #D4AF37;
-    --gold-light: #FFF3A0;
-    --gold-dark: #8B6914;
-    --cyan: #00E5FF;
-    --magenta: #FF00FF;
-    --bg: #050508;
+    --gold: #D4AF37; --gold-light: #FFF3A0; --gold-dark: #8B6914;
+    --cyan: #00E5FF; --magenta: #FF00FF; --green-pqc: #00FF41; --bg: #050508;
   }
-  
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body { 
-    background: #000; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh; padding: 10px;
-    font-family: 'Courier New', Courier, monospace; 
+    background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 10px; font-family: 'Courier New', Courier, monospace; 
   }
-  
   .perspective { width: 100%; max-width: 600px; }
 
-  /* 1. EL CONTENEDOR DEL CERTIFICADO */
+  /* CERTIFICADO CON TEXTURA DE BILLETE */
   .cert {
-    width: 100%;
-    background-color: var(--bg);
-    border-radius: 4px;
-    position: relative;
-    padding: 30px 20px;
-    border: 1px solid var(--gold-dark);
-    box-shadow: 
-      0 0 0 2px #000,
-      0 0 0 4px var(--gold),
-      0 20px 50px rgba(0,0,0,0.9),
-      0 0 50px rgba(212,175,55,0.2);
+    width: 100%; background-color: var(--bg); border-radius: 4px; position: relative;
+    padding: 30px 20px; border: 1px solid var(--gold-dark);
+    box-shadow: 0 0 0 2px #000, 0 0 0 4px var(--gold), 0 20px 50px rgba(0,0,0,0.9), 0 0 50px rgba(212,175,55,0.2);
     overflow: hidden;
-    /* Textura de papel de seguridad generada por SVG (Ruido) */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
   }
 
-  /* 2. PATRÓN GUILLOCHE (Líneas de seguridad de billetes) */
   .guilloche {
-    position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.15;
-    background-image: 
-      repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 10px, var(--gold-dark) 11px, transparent 12px),
-      repeating-linear-gradient(45deg, transparent 0, transparent 20px, var(--gold-dark) 21px, transparent 22px);
-    background-size: 100% 100%, 200% 200%;
+    position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.1;
+    background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 10px, var(--gold-dark) 11px, transparent 12px), repeating-linear-gradient(45deg, transparent 0, transparent 20px, var(--gold-dark) 21px, transparent 22px);
   }
 
-  /* 3. GRIETAS KINTSUGI SVG */
-  .kintsugi {
-    position: absolute; inset: 0; pointer-events: none; z-index: 2;
-  }
-  .kintsugi path {
-    stroke: url(#goldGrad);
-    stroke-dasharray: 1500;
-    stroke-dashoffset: 1500;
-    animation: drawKintsugi 3s ease-out forwards, pulseGold 4s infinite alternate 3s;
-  }
+  .kintsugi { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+  .kintsugi path { stroke: url(#goldGrad); stroke-dasharray: 1500; stroke-dashoffset: 1500; animation: drawKintsugi 3s ease-out forwards, pulseGold 4s infinite alternate 3s; }
   @keyframes drawKintsugi { to { stroke-dashoffset: 0; } }
-  @keyframes pulseGold {
-    0% { filter: drop-shadow(0 0 2px var(--gold-dark)); opacity: 0.7; }
-    100% { filter: drop-shadow(0 0 12px var(--gold)); opacity: 1; }
-  }
+  @keyframes pulseGold { 0% { filter: drop-shadow(0 0 2px var(--gold-dark)); opacity: 0.7; } 100% { filter: drop-shadow(0 0 12px var(--gold)); opacity: 1; } }
 
   .content { position: relative; z-index: 3; text-align: center; }
 
-  /* 4. LOGO Y TÍTULO HOLOGRÁFICO */
   .logo { font-size: 40px; color: var(--gold); text-shadow: 0 0 15px var(--gold); font-family: sans-serif; }
   
   @keyframes holoShift { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
   .title { 
-    font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 26px; letter-spacing: 3px;
+    font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 24px; letter-spacing: 3px;
     background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--cyan), var(--magenta), var(--gold));
     background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     animation: holoShift 4s linear infinite; margin-bottom: 5px;
   }
   
-  .subtitle { font-size: 9px; letter-spacing: 2px; color: var(--cyan); margin-bottom: 20px; }
+  .subtitle { font-size: 9px; letter-spacing: 2px; color: var(--cyan); margin-bottom: 15px; }
 
-  /* 5. MICRO-IMPRESIÓN */
-  .microprint {
-    font-size: 5px; color: rgba(212, 175, 55, 0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; font-family: sans-serif; line-height: 1.2;
+  /* NUEVO: INSIGNIA CUÁNTICA */
+  .pqc-badge {
+    display: inline-block; background: rgba(0, 255, 65, 0.1); border: 1px solid var(--green-pqc);
+    color: var(--green-pqc); font-size: 9px; padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 1px; margin-bottom: 15px; font-weight: bold; text-shadow: 0 0 5px var(--green-pqc);
   }
 
-  /* 6. CAJA DE DATOS CON EFECTO DE CRISTAL */
+  .microprint { font-size: 5px; color: rgba(212, 175, 55, 0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; font-family: sans-serif; line-height: 1.2; }
+
   .data-box {
-    text-align: left; background: rgba(0,0,0,0.6); padding: 15px;
-    border-radius: 4px; border-left: 3px solid var(--gold);
-    margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,1);
-    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); /* Efecto cristal */
+    text-align: left; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 4px;
+    border-left: 3px solid var(--gold); margin-bottom: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,1);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
   }
   
   .data-row { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 6px; }
@@ -111,59 +74,38 @@
     word-break: break-all; margin-top: 8px; text-align: center;
   }
 
-  /* 7. BLOQUE BITCOIN */
+  /* NUEVO: HASH CUÁNTICO */
+  .pqc-hash-box {
+    background: rgba(0,255,65,0.05); border: 1px solid rgba(0,255,65,0.3);
+    padding: 8px; border-radius: 4px; font-size: 8px; color: var(--green-pqc);
+    word-break: break-all; margin-top: 8px; text-align: center;
+    box-shadow: inset 0 0 10px rgba(0,255,65,0.1);
+  }
+
   .bloque { margin: 15px 0; padding: 12px 0; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2); }
-  .bloque b { font-size: 15px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 1px; font-family: sans-serif;}
+  .bloque b { font-size: 14px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 1px; font-family: sans-serif;}
   .bloque small { font-size: 8px; color: #aaa; display: block; line-height: 1.5; }
 
-  .firma { font-family: 'Brush Script MT', 'Great Vibes', cursive; font-size: 38px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); margin-top: 10px; }
+  .firma { font-family: 'Brush Script MT', 'Great Vibes', cursive; font-size: 35px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); margin-top: 10px; }
 
-  /* 8. FOOTER: QR Y SELLO CROMÁTICO */
   .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
   
   .qr-container { text-align: center; position: relative; z-index: 5;}
   #qr-canvas { width: 80px; height: 80px; background: #fff; padding: 3px; border-radius: 4px; }
   .qr-text { font-size: 6px; margin-top: 5px; color: var(--gold); letter-spacing: 1px; }
 
-  /* SELLO CROMÁTICO (Efecto Holográfico de Billete) */
   .chromatic-seal {
-    width: 75px; height: 75px; border-radius: 50%;
-    position: relative; display: flex; justify-content: center; align-items: center;
-    /* Gradiente cónico que simula el holograma */
-    background: conic-gradient(
-      from 0deg, #FFD700, #FF00FF, #00FFFF, #00FF00, #FFFF00, #FF0000, #FFD700
-    );
-    box-shadow: 
-      inset 0 0 10px rgba(255,255,255,0.8),
-      0 0 15px rgba(0,0,0,0.8);
-    border: 2px solid #fff;
-    /* Mezcla el sello con el fondo dorado */
-    mix-blend-mode: screen; 
-    animation: spinSeal 8s linear infinite;
+    width: 70px; height: 70px; border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
+    background: conic-gradient(from 0deg, #FFD700, #FF00FF, #00FFFF, #00FF00, #FFFF00, #FF0000, #FFD700);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.8), 0 0 15px rgba(0,0,0,0.8);
+    border: 2px solid #fff; mix-blend-mode: screen; animation: spinSeal 8s linear infinite;
   }
-  
-  /* Textura interna del sello */
-  .chromatic-seal::before {
-    content: "₿"; position: absolute; font-size: 40px; font-weight: bold; color: #000; font-family: sans-serif;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5); z-index: 2;
-  }
-  
-  /* Anillo interior de seguridad */
-  .chromatic-seal::after {
-    content: ""; position: absolute; inset: 5px; border-radius: 50%;
-    border: 1px dashed rgba(0,0,0,0.5); z-index: 1;
-  }
+  .chromatic-seal::before { content: "₿"; position: absolute; font-size: 38px; font-weight: bold; color: #000; font-family: sans-serif; text-shadow: 0 0 5px rgba(255,255,255,0.5); z-index: 2; }
+  .chromatic-seal::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.5); z-index: 1; }
+  @keyframes spinSeal { 0% { filter: hue-rotate(0deg); transform: rotate(0deg); } 100% { filter: hue-rotate(360deg); transform: rotate(360deg); } }
 
-  @keyframes spinSeal {
-    0% { filter: hue-rotate(0deg); transform: rotate(0deg); }
-    100% { filter: hue-rotate(360deg); transform: rotate(360deg); }
-  }
-
-  /* 9. BOTONES Y PDF */
   .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 600px; }
-  button, a.btn { 
-    flex: 1; padding: 14px; border: none; font-family: monospace; font-weight: bold; font-size: 11px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px;
-  }
+  button, a.btn { flex: 1; padding: 14px; border: none; font-family: monospace; font-weight: bold; font-size: 11px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
   button.primary { background: var(--gold); color: #000; }
   button.primary:hover { background: var(--gold-light); box-shadow: 0 0 15px var(--gold); }
   a.outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
@@ -172,10 +114,7 @@
     body { background: #fff; padding: 0; }
     .btns { display: none; }
     .perspective { max-width: 100%; height: 100vh; }
-    .cert { 
-      box-shadow: none; border-radius: 0; border: none; height: 100vh; 
-      -webkit-print-color-adjust: exact; print-color-adjust: exact;
-    }
+    .cert { box-shadow: none; border-radius: 0; border: none; height: 100vh; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .data-box { background: rgba(0,0,0,0.8); }
     @page { size: portrait; margin: 0; }
   }
@@ -185,11 +124,7 @@
 
   <div class="perspective">
     <div class="cert">
-      
-      <!-- Capas de Seguridad -->
       <div class="guilloche"></div>
-
-      <!-- Grietas Kintsugi SVG Animadas -->
       <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850">
         <defs>
           <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -198,7 +133,6 @@
             <stop offset="100%" stop-color="#D4AF37" />
           </linearGradient>
         </defs>
-        <!-- Trayectorias de las grietas -->
         <path d="M-10,80 Q150,180 200,100 T400,300 T610,200" fill="none" stroke-width="2"/>
         <path d="M-10,700 Q200,550 300,650 T450,450 T610,600" fill="none" stroke-width="1.5"/>
         <path d="M50,-10 Q120,150 280,250 T420,450 T500,860" fill="none" stroke-width="2.5"/>
@@ -210,8 +144,11 @@
         <div class="title">ARKHÉ ZERO</div>
         <div class="subtitle">CERTIFICADO DE EXISTENCIA DIGITAL</div>
 
+        <!-- NUEVA INSIGNIA CUÁNTICA -->
+        <div class="pqc-badge">🛡️ QUANTUM-SAFE · ML-DSA-65</div>
+
         <div class="microprint">
-          MICRO-IMPRESIÓN DE SEGURIDAD: NODO YHDRYH-92CE · PACTO 51/49/100 · SAFE CREATIVE 2607146379465 · SCDR-001 · REGISTRO BLOCKCHAIN BITCOIN · DOCUMENTO INALTERABLE
+          MICRO-IMPRESIÓN: NODO YHDRYH-92CE · PACTO 51/49/100 · SAFE CREATIVE 2607146379465 · BLOCKCHAIN BITCOIN · FIRMA POST-CUÁNTICA NIST FIPS 204
         </div>
 
         <div class="data-box">
@@ -225,6 +162,13 @@
             <div style="color: #777; margin-bottom: 4px;">HASH SHA-256</div>
             ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
           </div>
+
+          <!-- NUEVO BLOQUE CUÁNTICO -->
+          <div class="pqc-hash-box">
+            <div style="color: #00aa30; margin-bottom: 4px;">FIRMA POST-CUÁNTICA (ML-DSA-65)</div>
+            Verificado · 3309 bytes · NIST FIPS 204<br>
+            <span style="font-size: 7px; opacity: 0.8;">fundador-mldsa65.sig</span>
+          </div>
         </div>
 
         <div class="bloque">
@@ -236,12 +180,11 @@
         <div class="footer">
           <div class="qr-container">
             <canvas id="qr-canvas" width="100" height="100"></canvas>
-            <div class="qr-text">VERIFICAR OFFLINE</div>
+            <div class="qr-text">VERIFICAR ONLINE</div>
           </div>
           <div class="chromatic-seal"></div>
         </div>
       </div>
-
     </div>
   </div>
   
@@ -250,46 +193,30 @@
     <a href="verificar/index.html" class="outline">VERIFICADOR</a>
   </div>
 
-  <!-- GENERADOR DE QR OFFLINE EN JAVASCRIPT PURO -->
   <script>
     function generateQR() {
       const canvas = document.getElementById('qr-canvas');
       const ctx = canvas.getContext('2d');
-      const size = 100;
-      const modules = 25; 
-      const cellSize = size / modules;
-
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, size, size);
-
+      const size = 100, modules = 25, cellSize = size / modules;
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, size, size);
       const hash = "ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92";
       let hashIndex = 0;
-
       ctx.fillStyle = "#000000";
-
       for (let y = 0; y < modules; y++) {
         for (let x = 0; x < modules; x++) {
           const isTopLeft = (x < 7 && y < 7);
           const isTopRight = (x >= modules - 7 && y < 7);
           const isBottomLeft = (x < 7 && y >= modules - 7);
-          
           if (isTopLeft || isTopRight || isBottomLeft) {
             const localX = isTopRight ? x - (modules - 7) : x;
             const localY = isBottomLeft ? y - (modules - 7) : y;
-            
-            if (localX === 0 || localX === 6 || localY === 0 || localY === 6) {
-              ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-            } else if (localX >= 2 && localX <= 4 && localY >= 2 && localY <= 4) {
-              ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-            }
+            if (localX === 0 || localX === 6 || localY === 0 || localY === 6) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+            else if (localX >= 2 && localX <= 4 && localY >= 2 && localY <= 4) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
           } else if (x === 6 || y === 6) {
             if ((x + y) % 2 === 0) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
           } else {
             if (hashIndex >= hash.length) hashIndex = 0;
-            const charCode = hash.charCodeAt(hashIndex++);
-            if (charCode % 2 === 0) {
-              ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-            }
+            if (hash.charCodeAt(hashIndex++) % 2 === 0) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
           }
         }
       }
