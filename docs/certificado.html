@@ -3,140 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◯_● ARKHÉ ZERO - CERTIFICADO CYBERPUNK</title>
+<title>◯_● ARKHÉ ZERO - CERTIFICADO DIGITAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=JetBrains+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #D4AF37; --gold-light: #FFF3A0; --gold-dark: #8B6914;
-    --cyan: #00E5FF; --magenta: #FF00FF; --green-pqc: #00FF41; --bg: #050508;
+    --gold: #E8D08B; --gold-dark: #A67C00; --gold-light: #FFF3A0;
+    --green: #00FF41; --green-glow: rgba(0, 255, 65, 0.4);
+    --bg: #050505; --panel: #0a0a0c;
   }
+  
   * { box-sizing: border-box; margin: 0; padding: 0; }
   
   body { 
     background: #000; 
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh; padding: 10px; font-family: 'Courier New', Courier, monospace; 
+    min-height: 100vh; padding: 15px; 
+    font-family: 'JetBrains Mono', monospace; 
   }
   
-  .perspective { width: 100%; max-width: 500px; }
+  .perspective { width: 100%; max-width: 480px; }
 
-  /* CERTIFICADO */
+  /* CONTENEDOR PRINCIPAL */
   .cert {
     width: 100%; background-color: var(--bg); border-radius: 4px; position: relative;
-    padding: 25px 15px; border: 1px solid var(--gold-dark);
-    box-shadow: 0 0 0 2px #000, 0 0 0 4px var(--gold), 0 20px 50px rgba(0,0,0,0.9), 0 0 50px rgba(212,175,55,0.2);
+    padding: 30px 20px; border: 1px solid #333;
+    box-shadow: 0 0 0 1px #000, 0 0 0 3px var(--gold-dark), 0 20px 50px rgba(0,0,0,0.9);
     overflow: hidden;
     background-image: 
-      linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px; /* Rejilla cyberpunk */
+      radial-gradient(circle at 50% 0%, rgba(232, 208, 139, 0.05) 0%, transparent 60%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
   }
 
-  .guilloche { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.1; background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 10px, var(--gold-dark) 11px, transparent 12px); }
-  
-  .kintsugi { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
-  .kintsugi path { stroke: url(#goldGrad); stroke-dasharray: 1500; stroke-dashoffset: 1500; animation: drawKintsugi 3s ease-out forwards, pulseGold 4s infinite alternate 3s; }
-  @keyframes drawKintsugi { to { stroke-dashoffset: 0; } }
-  @keyframes pulseGold { 0% { filter: drop-shadow(0 0 2px var(--gold-dark)); opacity: 0.7; } 100% { filter: drop-shadow(0 0 12px var(--gold)); opacity: 1; } }
+  /* KINTSUGI GRIETAS SVG */
+  .kintsugi { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.6;}
+  .kintsugi path { stroke: url(#goldGrad); stroke-width: 1.5; fill: none; filter: drop-shadow(0 0 3px var(--gold-dark)); }
 
-  .content { position: relative; z-index: 3; text-align: center; }
+  .content { position: relative; z-index: 2; }
 
-  .logo { font-size: 35px; color: var(--gold); text-shadow: 0 0 15px var(--gold); font-family: sans-serif; }
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 20px; }
+  .header .symbol { font-family: 'Cinzel', serif; font-size: 32px; color: var(--gold); letter-spacing: 5px; text-shadow: 0 0 10px rgba(232, 208, 139, 0.5); }
+  .header h1 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); letter-spacing: 2px; margin: 5px 0; font-weight: 800;}
+  .header h2 { font-family: 'Cinzel', serif; font-size: 14px; color: #ddd; letter-spacing: 3px; font-weight: 600; }
+
+  /* BADGE CUÁNTICO */
+  .badge-container { text-align: center; margin: 20px 0; }
+  .badge {
+    display: inline-flex; align-items: center; background: rgba(0, 255, 65, 0.05);
+    border: 1px solid var(--green); color: var(--green); padding: 8px 16px; border-radius: 20px;
+    font-size: 10px; font-weight: bold; letter-spacing: 1px;
+    box-shadow: 0 0 15px var(--green-glow), inset 0 0 10px var(--green-glow);
+    text-shadow: 0 0 5px var(--green);
+  }
+  .badge span { margin-right: 5px; }
+
+  /* SECCIÓN DE DATOS */
+  .section-title { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 15px; font-weight: 600;}
   
-  @keyframes holoShift { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-  .title { 
-    font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 22px; letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--cyan), var(--magenta), var(--gold));
-    background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    animation: holoShift 4s linear infinite; margin-bottom: 3px;
+  .data-list { margin-bottom: 20px; }
+  .data-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; font-size: 11px; }
+  .data-item .label { color: #fff; font-weight: bold; letter-spacing: 1px; }
+  .data-item .dots { flex-grow: 1; border-bottom: 1px dotted #555; margin: 0 10px; position: relative; top: -4px; }
+  .data-item .value { color: var(--gold-light); font-weight: bold; letter-spacing: 1px; }
+
+  /* CAJA DE HASH */
+  .hash-box {
+    border: 1px solid rgba(232, 208, 139, 0.4); border-radius: 4px; margin-bottom: 20px;
+    background: linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
+    background-size: 10px 10px;
+    position: relative; padding: 15px;
+  }
+  .hash-title { text-align: center; font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
+  .hash-text { font-size: 11px; color: #fff; word-break: break-all; text-align: center; line-height: 1.5; letter-spacing: 0.5px; }
+  /* Esquinas de la caja */
+  .hash-box::before, .hash-box::after { content: ''; position: absolute; width: 10px; height: 10px; border: 2px solid var(--gold); }
+  .hash-box::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .hash-box::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  /* FIRMA POST-CUANTICA Y BITCOIN */
+  .pqc-status { display: flex; align-items: center; margin-bottom: 5px; font-size: 11px; color: var(--gold-light); font-weight: bold; letter-spacing: 1px;}
+  .check-icon { display: inline-block; width: 14px; height: 14px; border: 1px solid var(--green); color: var(--green); text-align: center; line-height: 12px; margin-right: 8px; font-size: 10px; }
+  
+  .btc-status { margin-left: 22px; font-size: 10px; color: #aaa; margin-bottom: 25px; }
+  .btc-status strong { color: var(--gold); display: block; margin-bottom: 2px; font-size: 11px;}
+
+  /* ZONA INFERIOR: CYPHERPUNK + FIRMA */
+  .bottom-section { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; }
+  
+  /* Cypherpunk Matrix */
+  .matrix-box {
+    width: 55%; border: 1px solid #333; background: #000; padding: 8px; position: relative;
+    box-shadow: inset 0 0 10px rgba(0,255,65,0.1);
+  }
+  .matrix-title { font-size: 9px; color: #fff; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px; }
+  .matrix-content {
+    font-size: 7px; line-height: 1.1; color: var(--green); word-break: break-all;
+    text-align: justify; text-shadow: 0 0 2px var(--green);
   }
   
-  .subtitle { font-size: 8px; letter-spacing: 2px; color: var(--cyan); margin-bottom: 15px; }
-  
-  .pqc-badge { display: inline-block; background: rgba(0, 255, 65, 0.1); border: 1px solid var(--green-pqc); color: var(--green-pqc); font-size: 8px; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px; margin-bottom: 12px; font-weight: bold; text-shadow: 0 0 5px var(--green-pqc); }
-  
-  .data-box { text-align: left; background: rgba(0,0,0,0.7); padding: 12px; border-radius: 4px; border-left: 3px solid var(--gold); margin-bottom: 15px; box-shadow: inset 0 0 20px rgba(0,0,0,1); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-top: 1px solid rgba(212,175,55,0.2); border-right: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2);}
-  .data-row { display: flex; justify-content: space-between; font-size: 9px; margin-bottom: 5px; }
-  .data-row span:first-child { color: #888; }
-  .data-row span:last-child { color: #fff; font-weight: bold; letter-spacing: 1px; }
-  .hash-box { background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.3); padding: 8px; border-radius: 4px; font-size: 8px; color: var(--gold); word-break: break-all; margin-top: 8px; text-align: center; }
-  .pqc-hash-box { background: rgba(0,255,65,0.05); border: 1px solid rgba(0,255,65,0.3); padding: 8px; border-radius: 4px; font-size: 8px; color: var(--green-pqc); word-break: break-all; margin-top: 8px; text-align: center; box-shadow: inset 0 0 10px rgba(0,255,65,0.1); }
-  
-  .bloque { margin: 12px 0; padding: 10px 0; border-top: 1px solid rgba(212,175,55,0.2); border-bottom: 1px solid rgba(212,175,55,0.2); }
-  .bloque b { font-size: 14px; color: var(--gold); display: block; margin-bottom: 3px; letter-spacing: 1px; font-family: sans-serif;}
-  .bloque small { font-size: 8px; color: #aaa; display: block; line-height: 1.4; }
-  .firma { font-family: 'Brush Script MT', 'Great Vibes', cursive; font-size: 32px; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); margin-top: 8px; }
+  /* Firma manuscrita */
+  .signature-box { text-align: center; width: 40%; }
+  .signature-name { font-family: 'Great Vibes', cursive; font-size: 28px; color: var(--gold-light); line-height: 1; transform: rotate(-5deg); margin-bottom: 5px;}
+  .signature-line { font-size: 8px; color: #888; letter-spacing: 1px; }
+  .signature-role { font-size: 9px; color: var(--gold); font-weight: bold; margin-top: 3px; letter-spacing: 1px;}
 
-  /* SECCIÓN ASCII CYBERPUNK (Glitch/Data Matrix) */
-  .ascii-seal-container {
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(0, 5, 10, 0.9);
-    border-radius: 4px;
-    border: 1px solid rgba(0, 229, 255, 0.3);
+  /* FOOTER: QR Y SELLO */
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px; padding-top: 15px; border-top: 1px solid #222; }
+  
+  .qr-box { text-align: left; }
+  #qr-canvas { width: 70px; height: 70px; background: #fff; padding: 3px; border-radius: 2px; }
+  .qr-text { font-size: 8px; color: #aaa; margin-top: 5px; }
+  .qr-text strong { color: #fff; display: block; font-size: 9px; margin-bottom: 2px;}
+
+  /* Sello de Cera Bitcoin (Efecto 3D) */
+  .seal-wax {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fceabb 0%, #d4af37 40%, #8b6914 80%, #4a3600 100%);
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 3px 5px 15px rgba(0,0,0,0.8), inset -3px -5px 10px rgba(0,0,0,0.5), inset 3px 3px 10px rgba(255,255,255,0.6);
+    border: 1px solid #6b4d00;
     position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.1), 0 0 10px rgba(0,229,255,0.1);
   }
+  /* Borde irregular del sello */
+  .seal-wax::before { content: ''; position: absolute; inset: -3px; border-radius: 45% 55% 48% 52% / 50% 45% 55% 50%; border: 1px solid rgba(139,105,20,0.5); }
+  .seal-wax::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.4); }
+  .seal-wax span { font-size: 38px; font-weight: bold; color: #331e00; text-shadow: 1px 1px 2px rgba(255,255,255,0.5), -1px -1px 2px rgba(0,0,0,0.8); font-family: sans-serif; z-index: 2; transform: translateY(-2px);}
   
-  /* Efecto de líneas de escaneo CRT */
-  .ascii-seal-container::after {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 229, 255, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-    z-index: 2;
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
-  }
+  .seal-text { font-size: 7px; color: #888; text-align: center; margin-top: 8px; letter-spacing: 1px; line-height: 1.3;}
+  .seal-text strong { color: var(--gold); }
 
-  .ascii-label {
-    position: absolute;
-    top: -7px; left: 50%; transform: translateX(-50%);
-    background: var(--bg); color: var(--cyan); font-size: 7px; padding: 0 8px;
-    letter-spacing: 2px; text-transform: uppercase; font-weight: bold; text-shadow: 0 0 5px var(--cyan); z-index: 3;
-  }
-  
-  .ascii-art-box {
-    font-family: 'Courier New', monospace;
-    font-size: 6.5px; 
-    line-height: 1;
-    color: var(--cyan);
-    white-space: pre;
-    text-align: center;
-    text-shadow: 0 0 4px rgba(0, 229, 255, 0.8), 0 0 8px rgba(0, 229, 255, 0.4);
-    letter-spacing: -0.5px;
-    margin-top: 5px;
-    position: relative;
-    z-index: 1;
-  }
+  /* AVISO FINAL */
+  .legal-footer { margin-top: 25px; text-align: center; font-size: 7px; color: #666; letter-spacing: 1px; line-height: 1.5; text-transform: uppercase;}
 
-  .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
-  .qr-container { text-align: center; position: relative; z-index: 5;}
-  #qr-canvas { width: 75px; height: 75px; background: #fff; padding: 3px; border-radius: 4px; }
-  .qr-text { font-size: 6px; margin-top: 5px; color: var(--gold); letter-spacing: 1px; }
-  
-  .chromatic-seal {
-    width: 65px; height: 65px; border-radius: 50%; position: relative; display: flex; justify-content: center; align-items: center;
-    background: conic-gradient(from 0deg, #FFD700, #FF00FF, #00FFFF, #00FF00, #FFFF00, #FF0000, #FFD700);
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.8), 0 0 15px rgba(0,0,0,0.8);
-    border: 2px solid #fff; mix-blend-mode: screen; animation: spinSeal 8s linear infinite;
-  }
-  .chromatic-seal::before { content: "₿"; position: absolute; font-size: 34px; font-weight: bold; color: #000; font-family: sans-serif; text-shadow: 0 0 5px rgba(255,255,255,0.5); z-index: 2; }
-  .chromatic-seal::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.5); z-index: 1; }
-  @keyframes spinSeal { 0% { filter: hue-rotate(0deg); transform: rotate(0deg); } 100% { filter: hue-rotate(360deg); transform: rotate(360deg); } }
-
-  .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 500px; }
-  button, a.btn { flex: 1; padding: 12px; border: none; font-family: monospace; font-weight: bold; font-size: 10px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+  /* BOTONES (No se imprimen) */
+  .btns { margin-top: 20px; display: flex; gap: 10px; width: 100%; max-width: 480px; }
+  button, a.btn { flex: 1; padding: 12px; border: none; font-family: 'JetBrains Mono'; font-weight: bold; font-size: 10px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
   button.primary { background: var(--gold); color: #000; }
   button.primary:hover { background: var(--gold-light); box-shadow: 0 0 15px var(--gold); }
   a.outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
-  
+
   @media print { 
     body { background: #fff; padding: 0; }
     .btns { display: none; }
     .perspective { max-width: 100%; height: 100vh; }
-    .cert { box-shadow: none; border-radius: 0; border: none; height: 100vh; -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: #050508 !important;}
+    .cert { 
+      box-shadow: none; border-radius: 0; border: none; height: 100vh; 
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; 
+      background-color: #050505 !important;
+    }
     @page { size: portrait; margin: 0; }
   }
 </style>
@@ -145,8 +160,9 @@
 
   <div class="perspective">
     <div class="cert">
-      <div class="guilloche"></div>
-      <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850">
+      
+      <!-- SVG Kintsugi Grietas -->
+      <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 850">
         <defs>
           <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#8B6914" />
@@ -154,54 +170,111 @@
             <stop offset="100%" stop-color="#D4AF37" />
           </linearGradient>
         </defs>
-        <path d="M-10,80 Q150,180 200,100 T400,300 T610,200" fill="none" stroke-width="2"/>
-        <path d="M-10,700 Q200,550 300,650 T450,450 T610,600" fill="none" stroke-width="1.5"/>
-        <path d="M50,-10 Q120,150 280,250 T420,450 T500,860" fill="none" stroke-width="2.5"/>
-        <path d="M520,-10 Q380,200 280,350 T100,550 T60,860" fill="none" stroke-width="1" opacity="0.6"/>
+        <path d="M-10,50 Q100,150 150,100 T300,250 T450,150 T510,200"/>
+        <path d="M-10,800 Q150,700 200,750 T400,600 T510,650"/>
+        <path d="M50,-10 Q100,200 150,300 T250,500 T150,850"/>
+        <path d="M450,-10 Q400,150 350,200 T450,400 T500,850"/>
+        <path d="M-10,400 Q100,450 150,400 T250,350 T300,450" stroke-width="0.8"/>
+        <path d="M250,200 Q300,250 280,350 T350,450 T300,600" stroke-width="0.5"/>
       </svg>
 
       <div class="content">
-        <div class="logo">◯_●</div>
-        <div class="title">ARKHÉ ZERO</div>
-        <div class="subtitle">CERTIFICADO DE EXISTENCIA DIGITAL</div>
+        
+        <div class="header">
+          <div class="symbol">O_●</div>
+          <h1>ARKHE ZERO</h1>
+          <h2>CERTIFICADO DIGITAL</h2>
+        </div>
 
-        <div class="pqc-badge">🛡️ QUANTUM-SAFE · ML-DSA-65</div>
+        <div class="badge-container">
+          <div class="badge">
+            <span>⚡</span> QUANTUM-SAFE · ML-DSA-65
+          </div>
+        </div>
 
-        <div class="data-box">
-          <div class="data-row"><span>NODO</span><span>YHDRYH-92CE</span></div>
-          <div class="data-row"><span>PIEZA</span><span>PAQUETERIA-001</span></div>
-          <div class="data-row"><span>SELLO</span><span>SCDR-001</span></div>
-          <div class="data-row"><span>PACTO</span><span>51/49/100</span></div>
-          <div class="data-row"><span>FECHA</span><span>2026-10-15 03:01 UTC</span></div>
-          <div class="hash-box">
-            <div style="color: #777; margin-bottom: 3px;">HASH SHA-256</div>
+        <div class="section-title">DATOS DEL CERTIFICADO</div>
+        
+        <div class="data-list">
+          <div class="data-item">
+            <span class="label">NODO</span>
+            <span class="dots"></span>
+            <span class="value">YHDRYH-92CE</span>
+          </div>
+          <div class="data-item">
+            <span class="label">FECHA</span>
+            <span class="dots"></span>
+            <span class="value">2026-10-15</span>
+          </div>
+          <div class="data-item">
+            <span class="label">PIEZA</span>
+            <span class="dots"></span>
+            <span class="value">PAQUETERIA-001</span>
+          </div>
+          <div class="data-item">
+            <span class="label">SELLO</span>
+            <span class="dots"></span>
+            <span class="value">SCDR-001</span>
+          </div>
+          <div class="data-item">
+            <span class="label">PACTO</span>
+            <span class="dots"></span>
+            <span class="value">51/49/100</span>
+          </div>
+        </div>
+
+        <div class="hash-box">
+          <div class="hash-title">HASH SHA-256</div>
+          <div class="hash-text">
             ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
           </div>
-          <div class="pqc-hash-box">
-            <div style="color: #00aa30; margin-bottom: 3px;">FIRMA POST-CUÁNTICA (ML-DSA-65)</div>
-            Verificado · 3309 bytes · NIST FIPS 204
+        </div>
+
+        <div class="pqc-status">
+          <span class="check-icon">✓</span> FIRMA POST-CUANTICA ML-DSA-65 — Verificado 3309 bytes
+        </div>
+        <div class="btc-status">
+          <strong>BLOQUE BITCOIN 971527 —</strong>
+          Success attests existence as of 2026-10-15 UTC
+        </div>
+
+        <div class="bottom-section">
+          <div class="matrix-box">
+            <div class="matrix-title">FIRMA CYPHERPUNK</div>
+            <div class="matrix-content" id="matrix"></div>
           </div>
-        </div>
-
-        <div class="bloque">
-          <b>BLOQUE BITCOIN 971527</b>
-          <small>Success! Bitcoin block 971527 attests existence as of 2026-10-15 UTC</small>
-          <div class="firma">Kintsugi</div>
-        </div>
-
-        <!-- SECCIÓN ASCII CYBERPUNK (Glitch) -->
-        <div class="ascii-seal-container">
-          <div class="ascii-label">▸ FIRMA CYPHERPUNK ▸</div>
-          <div class="ascii-art-box" id="ascii-art"></div>
+          
+          <div class="signature-box">
+            <div class="signature-name">Arkhe // kintsugi</div>
+            <div class="signature-line">Firmado — 2026-10-15</div>
+            <div class="signature-role">KINTSUGI AUTH</div>
+          </div>
         </div>
 
         <div class="footer">
-          <div class="qr-container">
+          <div class="qr-box">
             <canvas id="qr-canvas" width="100" height="100"></canvas>
-            <div class="qr-text">VERIFICAR ONLINE</div>
+            <div class="qr-text">
+              <strong>VERIFICAR →</strong>
+              arkhe.zero/verify/<br>YHDRYH-92CE
+            </div>
           </div>
-          <div class="chromatic-seal"></div>
+          
+          <div>
+            <div class="seal-wax">
+              <span>₿</span>
+            </div>
+            <div class="seal-text">
+              <strong>SELLO BITCOIN · PRUEBA DE</strong><br>
+              EXISTENCIA · 971527
+            </div>
+          </div>
         </div>
+
+        <div class="legal-footer">
+          CERTIFICADO INFALSIFICABLE · PAPEL MONEDA · ANTIFALSIFICACIÓN · IMPRESO EN SUSTRATO<br>
+          DE SEGURIDAD 24K KINTSUGI · SOLO VÁLIDO CON VERIFICACIÓN POST-CUÁNTICA
+        </div>
+
       </div>
     </div>
   </div>
@@ -212,7 +285,7 @@
   </div>
 
   <script>
-    // 1. GENERAR QR OFFLINE
+    // Generar QR Offline
     function generateQR() {
       const canvas = document.getElementById('qr-canvas');
       const ctx = canvas.getContext('2d');
@@ -241,46 +314,21 @@
       }
     }
 
-    // 2. GENERAR EL DATA MATRIX CYBERPUNK
-    function generateCyberpunkASCII() {
-      const container = document.getElementById('ascii-art');
-      const hash = "ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92";
-      
-      // Caracteres de "Glitch" y terminal
-      const chars = "01█▓▒░◯●▲△▼▽◆◇╔╗╚╝═║╬╠╣╦╩";
-      const width = 48; // Ancho ajustado para que quepa en el móvil
-      const height = 10; // Altura del bloque
-      
-      let art = "";
-      let hashIndex = 0;
-      
-      for (let y = 0; y < height; y++) {
-        let line = "";
-        for (let x = 0; x < width; x++) {
-          // Crear un patrón central tipo "ojo" o "grieta" usando matemáticas simples
-          const isCenter = Math.abs(x - width/2) < 8 && Math.abs(y - height/2) < 4;
-          const isDiagonal = Math.abs((x - width/2) - (y - height/2) * 2) < 3 || Math.abs((x - width/2) + (y - height/2) * 2) < 3;
-          
-          if (hashIndex >= hash.length) hashIndex = 0;
-          const charCode = hash.charCodeAt(hashIndex++);
-          
-          // Vacíos en el centro y diagonales para que parezca un glitch estructurado
-          if ((isCenter || isDiagonal) && charCode % 3 !== 0) {
-            line += " ";
-          } else {
-            // Ruido controlado por el hash
-            line += chars[charCode % chars.length];
-          }
-        }
-        art += line + "\n";
+    // Generar Matriz de Ceros y Unos (Cypherpunk)
+    function generateMatrix() {
+      const container = document.getElementById('matrix');
+      let text = "";
+      // Genera un bloque de 0s y 1s aleatorio basado en el hash
+      for (let i = 0; i < 150; i++) {
+        text += Math.random() > 0.5 ? "1" : "0";
+        if (i % 30 === 29) text += "<br>"; // Salto de línea cada 30 caracteres
       }
-      
-      container.textContent = art;
+      container.innerHTML = text;
     }
 
     window.onload = function() {
       generateQR();
-      generateCyberpunkASCII();
+      generateMatrix();
     };
   </script>
 </body>
