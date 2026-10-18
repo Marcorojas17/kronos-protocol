@@ -158,7 +158,6 @@
 <body>
 
   <div class="perspective">
-    <!-- Este ID es crucial para html2canvas -->
     <div class="cert" id="certificado-node">
       
       <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 850">
@@ -269,9 +268,11 @@
   </div>
 
   <script>
-    // 1. GENERAR QR OFFLINE
+    // 1. GENERAR QR OFFLINE (Protegido contra errores si el canvas no existe)
     function generateQR() {
       const canvas = document.getElementById('qr-canvas');
+      if (!canvas) return; // Si ya se convirtió en imagen, no hacer nada
+      
       const ctx = canvas.getContext('2d');
       const size = 100, modules = 25, cellSize = size / modules;
       ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, size, size);
@@ -298,9 +299,11 @@
       }
     }
 
-    // 2. LA MATRIX RAIN (LLUVIA DE CÓDIGO)
+    // 2. LA MATRIX RAIN (Lluvia de código)
     function startMatrixRain() {
       const canvas = document.getElementById('matrix-canvas');
+      if (!canvas) return;
+      
       const ctx = canvas.getContext('2d');
       function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
       resizeCanvas(); window.addEventListener('resize', resizeCanvas);
@@ -331,34 +334,57 @@
       setInterval(draw, 33); 
     }
 
-    // 3. DESCARGAR COMO PNG (Alta Resolución)
+    // 3. DESCARGAR COMO PNG
     function descargarPNG() {
       const botones = document.querySelector('.btns');
       const originalDisplay = botones.style.display;
-      botones.style.display = 'none'; // Ocultar botones antes de tomar la foto
+      botones.style.display = 'none';
       
       const nodo = document.getElementById('certificado-node');
       
-      // Aumentar la escala para que se vea nítido en pantallas Retina
-      html2canvas(nodo, {
-        scale: 2, 
-        backgroundColor: "#050505",
-        useCORS: true 
-      }).then(canvas => {
+      html2canvas(nodo, { scale: 2, backgroundColor: "#050505", useCORS: true }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'ARKHE_ZERO_Certificado.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        
-        // Restaurar los botones
         botones.style.display = originalDisplay; 
       });
     }
 
-    // 4. DESCARGAR COMO HTML OFFLINE
+    // 4. DESCARGAR COMO HTML OFFLINE (CORREGIDO)
     function descargarHTML() {
-        // Obtenemos el código fuente de la página actual
-        const htmlContent = document.documentElement.outerHTML;
+        // 1. Convertir el QR a una imagen estática (Base64)
+        const qrCanvas = document.getElementById('qr-canvas');
+        let qrDataUrl = "";
+        if (qrCanvas) {
+            qrDataUrl = qrCanvas.toDataURL('image/png');
+        }
+
+        // 2. Clonar el documento completo
+        const clone = document.documentElement.cloneNode(true);
+
+        // 3. Reemplazar el Canvas del QR por la imagen generada en el clon
+        const clonedQrCanvas = clone.querySelector('#qr-canvas');
+        if (clonedQrCanvas && qrDataUrl) {
+            const qrImg = document.createElement('img');
+            qrImg.src = qrDataUrl;
+            qrImg.style.width = '70px';
+            qrImg.style.height = '70px';
+            qrImg.style.background = '#fff';
+            qrImg.style.padding = '3px';
+            qrImg.style.borderRadius = '2px';
+            clonedQrCanvas.parentNode.replaceChild(qrImg, clonedQrCanvas);
+        }
+
+        // 4. Eliminar scripts externos (html2canvas y google fonts) del clon para que no den error offline
+        const externalScripts = clone.querySelectorAll('script[src]');
+        externalScripts.forEach(s => s.remove());
+        
+        const externalLinks = clone.querySelectorAll('link[href]');
+        externalLinks.forEach(l => l.remove());
+
+        // 5. Generar el archivo
+        const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
         const blob = new Blob([htmlContent], {type: 'text/html'});
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
