@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARKHE ZERO APP</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<style>
+:root{--bg:#07070a;--fg:#e8e8ea;--mut:#888;--acc:#00ffcc;--card:#111118}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace}
+header{padding:20px;border-bottom:1px solid #222;position:sticky;top:0;background:rgba(7,7,10,.9)}
+main{display:grid;grid-template-columns:1fr 360px;gap:16px;padding:16px;max-width:1300px;margin:auto}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid #222;border-radius:16px;padding:16px}
+.list{max-height:70vh;overflow:auto}
+.item{padding:10px;border-bottom:1px solid #1e1e2a;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.item:hover{background:#181826}
+.badge{font-size:10px;color:var(--mut);border:1px solid #333;border-radius:999px;padding:2px 6px}
+pre{white-space:pre-wrap;word-break:break-all;background:#0e0e14;padding:12px;border-radius:10px;font-size:12px}
+input{width:100%;background:#0e0e14;color:var(--fg);border:1px solid #222;border-radius:10px;padding:10px}
+.btn{background:var(--acc);color:#000;border:0;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.btn2{background:#222;color:#fff;border:0;padding:8px 12px;border-radius:999px;cursor:pointer}
+</style>
+</head>
+<body>
+<header><h1>◯_● ARKHE ZERO — APP</h1><div style="color:#888;font-size:12px">51/49/100 · PWA offline · 1928 archivos</div></header>
+<main>
+<section class="card">
+<div>BOX <span id="count">0</span> archivos | OK <span id="verified">0</span></div>
+<div style="margin:12px 0;display:flex;gap:8px"><input id="q" placeholder="Buscar..."><button class="btn2" id="btnScan">Re-verificar</button></div>
+<div class="list" id="list"></div>
+</section>
+<aside class="card"><h3>Detalle</h3><div id="detail">Selecciona archivo.</div><pre id="meta"></pre><button class="btn" id="btnOpen">Abrir</button> <button class="btn2" id="btnCopy">Copiar</button></aside>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+let CAT=[];
+async function load(){
+ try{const r=await fetch('./catalogo/catalogo.json');const j=await r.json();CAT=Array.isArray(j)?j:(j.archivos||[]);}catch(e){
+  const r2=await fetch('./catalogo/INDEX_MAESTRO_SEGURO.txt');const t=await r2.text();CAT=t.split('\n').filter(Boolean).map(l=>({path:l,name:l.split('/').pop()}));
+ }
+ $('count').textContent=CAT.length;render(CAT);
+}
+function render(arr){
+ const q=$('q').value.toLowerCase();let f=arr;if(q)f=arr.filter(x=>(x.path||'').toLowerCase().includes(q));f=f.slice(0,800);
+ $('list').innerHTML=f.map((x,i)=>'<div class="item" data-i="'+i+'"><span>'+ (x.path||x.name) +'</span><span class="badge">'+ ((x.hash||'').slice(0,8)||'O') +'</span></div>').join('');
+ document.querySelectorAll('.item').forEach(el=>el.onclick=()=>show(f[+el.dataset.i]));
+ $('verified').textContent=f.length;
+}
+function show(x){$('detail').innerHTML='<b>'+ (x.name||x.path) +'</b>';$('meta').textContent=JSON.stringify(x,null,2);$('btnOpen').onclick=()=>window.open('./catalogo/'+(x.path||x.name),'_blank');$('btnCopy').onclick=()=>navigator.clipboard.writeText(x.hash||x.path||'');}
+$('q').oninput=()=>render(CAT);$('btnScan').onclick=load;load();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}
+</script>
+</body></html>
