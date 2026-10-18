@@ -1,0 +1,23 @@
+<style>
+.carru{position:relative;overflow:hidden;border-radius:12px;max-width:900px;margin:auto;aspect-ratio:16/9;background:#000}
+.carru-track{display:flex;transition:transform .5s ease;height:100%}
+.carru-slide{min-width:100%;height:100%;object-fit:cover}
+.carru-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:0;padding:12px 16px;cursor:pointer;font-size:20px;border-radius:50%}
+.carru-btn.prev{left:10px} .carru-btn.next{right:10px}
+.carru-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:8px;justify-content:center}
+.carru-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);border:0;cursor:pointer}
+.carru-dot.active{background:#fff}
+</style>
+<div class="carru" id="carru">
+  <div class="carru-track">
+    <img class="carru-slide" src="./img1.jpg" alt="1">
+    <img class="carru-slide" src="./img2.jpg" alt="2">
+    <img class="carru-slide" src="./img3.jpg" alt="3">
+  </div>
+  <button class="carru-btn prev">‹</button>
+  <button class="carru-btn next">›</button>
+  <div class="carru-dots"></div>
+</div>
+<script>
+(()=>{const c=document.getElementById('carru');const track=c.querySelector('.carru-track');const slides=[...c.querySelectorAll('.carru-slide')];const dotsBox=c.querySelector('.carru-dots');let i=0;slides.forEach((_,k)=>{const d=document.createElement('button');d.className='carru-dot'+(k==0?' active':'');d.onclick=()=>go(k);dotsBox.appendChild(d)});const dots=[...dotsBox.children];function go(n){i=(n+slides.length)%slides.length;track.style.transform='translateX(-'+(i*100)+'%)';dots.forEach((d,k)=>d.classList.toggle('active',k==i))}c.querySelector('.prev').onclick=()=>go(i-1);c.querySelector('.next').onclick=()=>go(i+1);setInterval(()=>go(i+1),4000)})();
+</script>
