@@ -37,12 +37,30 @@ input{width:100%;background:#0e0e14;color:var(--fg);border:1px solid #222;border
 <script>
 const $=s=>document.querySelector(s);
 let CAT=[];
+
 async function load(){
- try{const r=await fetch('./catalogo/catalogo.json');const j=await r.json();CAT=Array.isArray(j)?j:(j.archivos||[]);}catch(e){
-  const r2=await fetch('./catalogo/INDEX_MAESTRO_SEGURO.txt');const t=await r2.text();CAT=t.split('\n').filter(Boolean).map(l=>({path:l,name:l.split('/').pop()}));
+ document.getElementById('detail').textContent='Cargando 1928...';
+ let txt='';
+ try{
+   const r=await fetch('./catalogo/INDEX_MAESTRO_SEGURO.txt');
+   txt=await r.text();
+   const lines=txt.split('
+').filter(Boolean);
+   CAT=lines.map(l=>({path:l.trim(),name:l.trim().split('/').pop(),hash:''}));
+   console.log('TXT cargado', CAT.length);
+ }catch(e){console.error('TXT fail',e);}
+ if(CAT.length===0){
+  try{
+   const r=await fetch('./catalogo/catalogo.json');
+   const j=await r.json();
+   CAT=Array.isArray(j)?j:(j.archivos||j.files||[]);
+  }catch(e){console.error('JSON fail',e);}
  }
- $('count').textContent=CAT.length;render(CAT);
+ $('count').textContent=CAT.length;
+ render(CAT);
+ $('detail').textContent='Listo: '+CAT.length+' archivos indexados';
 }
+
 function render(arr){
  const q=$('q').value.toLowerCase();let f=arr;if(q)f=arr.filter(x=>(x.path||'').toLowerCase().includes(q));f=f.slice(0,800);
  $('list').innerHTML=f.map((x,i)=>'<div class="item" data-i="'+i+'"><span>'+ (x.path||x.name) +'</span><span class="badge">'+ ((x.hash||'').slice(0,8)||'O') +'</span></div>').join('');
