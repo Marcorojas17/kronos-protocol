@@ -37,7 +37,7 @@
       "rol": "Cronista · reportes",
       "ok": true,
       "returncode": 0,
-      "salida": "[2026-10-16T16:24:37] [TLAMATINI] [OK] Reporte generado: /home/userland/arkhe-zero/reportes/reporte_20261016_162437.md\n",
+      "salida": "[2026-10-16T16:24:37] [TLAMATINI] [OK] Reporte generado: /root/kronos-protocol/reportes/reporte_20261016_162437.md\n",
       "err": "",
       "ts": "2026-10-16T16:24:37.080686+00:00Z"
     },

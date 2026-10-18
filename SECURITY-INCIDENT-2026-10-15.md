@@ -46,7 +46,7 @@ Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE
 
 - [x] Limpieza completa del historial con git filter-repo (2 pasadas)
 - [x] Push forzado exitoso (69f938f)
-- [x] fundador-v2.key removida del historial
+- [x] fundador-v3.key removida del historial
 - [x] firma/privada.pem removida del historial
 - [x] Backup de 1.9 GB eliminado (liberado espacio)
 - [x] fundador-v3 generada y activa

@@ -3,7 +3,7 @@
 ## Origen
 Clonado de: github.com/Marcorojas17/PVA-Protocolo-Vida-Autopoietica-
 Fecha: 13 oct 2026
-Ubicación: ~/arkhe-zero/pva/
+Ubicación: /root/kronos-protocol/pva/
 
 ## Qué contiene
 · KRONOS/agentes/enjambre_autopoietico.py
@@ -28,4 +28,4 @@ Aporta:
 
 ## Uso
 Material de referencia para ARKHÉ ZERO.
-El sistema activo sigue en ~/arkhe-zero/
+El sistema activo sigue en /root/kronos-protocol/

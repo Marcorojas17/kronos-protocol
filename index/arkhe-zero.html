@@ -585,7 +585,7 @@ async function chatEnviar(){
     }
   } catch(e) {
     document.getElementById("chat-espera").remove();
-    hist.innerHTML += '<div class="tl te">No se pudo conectar. Arranca: python3 ~/arkhe-zero/ia/api_ia.py</div>';
+    hist.innerHTML += '<div class="tl te">No se pudo conectar. Arranca: python3 /root/kronos-protocol/ia/api_ia.py</div>';
   }
   hist.scrollTop = hist.scrollHeight;
 }
@@ -628,7 +628,7 @@ async function md33Auditar(){
     add("◯_● AUDITORÍA COMPLETA · 51/49/100", "tw");
   } catch(e) {
     add("[MD-33] Error: " + e.message, "te");
-    add("Arranca api_ia.py: nohup python3 ~/arkhe-zero/ia/api_ia.py &", "tc");
+    add("Arranca api_ia.py: nohup python3 /root/kronos-protocol/ia/api_ia.py &", "tc");
   }
 }
 function md33Limpiar(){
@@ -677,7 +677,7 @@ async function cdScanReal(){
     add("◯_● SCAN REAL COMPLETO · 51/49/100", "tw");
   } catch(e) {
     add("[CD-SCAN] Error: " + e.message, "te");
-    add("Arranca api_scan: nohup python3 ~/arkhe-zero/ia/api_scan.py &", "tc");
+    add("Arranca api_scan: nohup python3 /root/kronos-protocol/ia/api_scan.py &", "tc");
   }
 }
 function cdLimpiarScan(){

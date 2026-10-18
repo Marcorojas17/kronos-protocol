@@ -10,7 +10,7 @@
 - Archivo: `pacto-5149-canonico.sig`
 - Tamaño: 64 bytes
 - Algoritmo: Ed25519 (EdDSA)
-- Llave pública: verificación con `fundador-v2.pub`
+- Llave pública: verificación con `fundador-v3.pub`
 - Anclaje: Bitcoin tx `34842cc1...` y `ae0ce809...`
 - Verificación: `Signature Verified Successfully`
 
@@ -39,7 +39,7 @@ Si una falla por obsolescencia, la otra permanece válida.
 
 Firma Ed25519:
     openssl pkeyutl -verify -rawin -pubin \
-      -inkey fundador-v2.pub \
+      -inkey fundador-v3.pub \
       -in pacto-5149-canonico.txt \
       -sigfile pacto-5149-canonico.sig
 

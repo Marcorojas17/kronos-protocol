@@ -5,13 +5,13 @@ GREEN='\033[0;32m'; GOLD='\033[0;33m'; NC='\033[0m'
 echo -e "${GOLD}◯_● Restauración ARKHÉ ZERO${NC}"
 echo ""
 echo "Respaldos disponibles:"
-ls -1 ~/arkhe-zero/backups/*.tar.gz 2>/dev/null | nl
+ls -1 /root/kronos-protocol/backups/*.tar.gz 2>/dev/null | nl
 
 echo ""
 echo -n "Número a restaurar: "
 read -r NUM
 
-FILE=$(ls -1 ~/arkhe-zero/backups/*.tar.gz | sed -n "${NUM}p")
+FILE=$(ls -1 /root/kronos-protocol/backups/*.tar.gz | sed -n "${NUM}p")
 
 if [ -z "$FILE" ]; then
     echo "Archivo no encontrado"

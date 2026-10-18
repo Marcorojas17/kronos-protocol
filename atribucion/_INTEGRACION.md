@@ -3,7 +3,7 @@
 ## Origen
 Clonado de: github.com/Marcorojas17/atribucion
 Fecha: 13 oct 2026
-Ubicación: ~/arkhe-zero/atribucion/
+Ubicación: /root/kronos-protocol/atribucion/
 
 ## Tema
 Trazabilidad de agentes autónomos bajo EU AI Act.
@@ -22,7 +22,7 @@ Ambos comparten el principio:
 
 ## Uso
 Los archivos aquí son material de referencia.
-El sistema activo sigue en ~/arkhe-zero/
+El sistema activo sigue en /root/kronos-protocol/
 
 ## Navegación
 El HUB principal enlaza este submódulo desde
