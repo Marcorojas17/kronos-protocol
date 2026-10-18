@@ -1,0 +1,17 @@
+{
+  "name": "ARKHÉ ZERO · Legado Digital",
+  "short_name": "ARKHÉ",
+  "description": "Protección de Propiedad Intelectual con Criptografía Post-Cuántica",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030308",
+  "theme_color": "#ffd700",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

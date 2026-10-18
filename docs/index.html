@@ -76,6 +76,7 @@ footer a:hover{border-bottom-color:#00ff41}
 @keyframes seal-breathe{0%,100%{text-shadow:0 0 30px rgba(255,215,0,.6);transform:scale(1)}50%{text-shadow:0 0 60px rgba(255,215,0,1),0 0 120px rgba(255,215,0,.5);transform:scale(1.06)}}
 .seal{animation:seal-breathe 3.2s ease-in-out infinite;display:inline-block}
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <canvas id="arkhe-bg" style="position:fixed;inset:0;z-index:0;pointer-events:none"></canvas>
@@ -666,5 +667,12 @@ console.log('%c"El legado no se hereda. Se firma."','color:#ffd700;font-style:it
 })();
 </script>
 <script src="arkhe-bg.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
+</script>
 </body>
 </html>
