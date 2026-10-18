@@ -71,9 +71,10 @@ warn_return_any = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-python_files = ["test_*.py", "test-*.py"]
+python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --cov=src --cov-report=term-missing"
+addopts = "-v"
+norecursedirs = ["_duplicados", "docs-deploy", "node_modules", ".git", "atribucion", "pva"]
+markers = ["unit", "integration", "e2e"]
 
-# ◯_● · 51/49/100 · KRONOS
