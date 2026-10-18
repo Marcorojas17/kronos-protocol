@@ -3,114 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARKHÉ ZERO - CERTIFICADO OFICIAL SCDR-001</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=JetBrains+Mono:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>ARKHÉ ZERO - CERTIFICADO OFICIAL</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=JetBrains+Mono:wght@400;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-  body { background:#050505; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:10px; font-family: 'JetBrains Mono', monospace;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    background: #000; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 100vh; 
+    padding: 15px; 
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* EL SECRETO: Usar la imagen generada por IA como fondo */
   .cert {
-    width: 100%; max-width: 800px; aspect-ratio: 1/1.414;
-    background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+    width: 100%;
+    max-width: 600px;
+    /* Aquí va tu imagen de Midjourney */
+    background-image: url('fondo-certificado.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-color: #050505; /* Respaldo por si no carga la imagen */
+    border-radius: 8px;
+    position: relative;
+    padding: 40px 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212,175,55,0.3);
     border: 1px solid #D4AF37;
-    position: relative; padding: 30px;
-    box-shadow: 0 0 0 4px #000, 0 0 0 6px #D4AF37, 0 0 40px rgba(212,175,55,0.5);
-    overflow: hidden; color: #E8DCC0;
   }
-  /* Textura de seguridad */
+
+  /* Capa oscura semi-transparente para que el texto se lea sobre la imagen */
   .cert::before {
-    content:""; position:absolute; inset:0;
-    background: linear-gradient(90deg, transparent 50%, rgba(0,255,255,0.03) 50%), linear-gradient(transparent 50%, rgba(255,0,255,0.03) 50%);
-    background-size: 2px 2px; opacity:0.3; pointer-events:none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 8px;
+    z-index: 1;
   }
-  /* Diseño Kintsugi */
-  .kintsugi {
-    position:absolute; inset:0; 
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1131"><path d="M0,0 Q400,300 800,0 M0,1131 Q400,800 800,1131 M0,0 Q300,500 0,1131 M800,0 Q500,600 800,1131" fill="none" stroke="%23D4AF37" stroke-width="2" opacity="0.4"/></svg>');
-    pointer-events:none; mix-blend-mode: screen;
+
+  /* Todo el contenido va por encima de la capa oscura */
+  .content { position: relative; z-index: 2; text-align: center; }
+
+  .logo { font-family:'Cinzel', serif; font-size: 45px; color:#D4AF37; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255,215,0,0.5); }
+  .title { font-family:'Cinzel', serif; font-size: 22px; color:#D4AF37; letter-spacing:2px; margin: 5px 0; }
+  .subtitle { font-size:9px; letter-spacing:3px; color:#00E5FF; margin-bottom: 25px; }
+
+  .data-box {
+    text-align: left;
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 3px solid #D4AF37;
+    margin-bottom: 20px;
   }
-  .header { text-align:center; position:relative; z-index:2; margin-bottom: 20px;}
-  .logo { font-family:'Cinzel', serif; font-size: 48px; color:#D4AF37; letter-spacing: 4px; }
-  .title { font-family:'Cinzel', serif; font-size: 22px; margin:5px 0; color:#D4AF37; letter-spacing:2px; }
-  .subtitle { font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:2px; color:#00E5FF; }
   
-  .data { margin: 20px 0; font-size:12px; line-height:2.2; position:relative; z-index:2; }
-  .data span { color:#fff; font-weight: bold; }
-  
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .data-row span:first-child { color: #888; }
+  .data-row span:last-child { color: #fff; font-weight: bold; }
+
   .hash-box {
-    border: 1px solid; border-image: linear-gradient(90deg, #00E5FF, #D4AF37, #FF00FF) 1;
-    padding:10px; background: rgba(212,175,55,0.07); word-break:break-all;
-    font-size:11px; text-align:center; color:#D4AF37; margin:10px 0;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.4);
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 9px;
+    color: #D4AF37;
+    word-break: break-all;
+    margin-top: 10px;
+    text-align: center;
   }
-  .bloque {
-    text-align:center; border-top:1px solid #D4AF37; border-bottom:1px solid #D4AF37;
-    padding:15px 0; margin:20px 0; position:relative; z-index:2;
-  }
-  .bloque b { font-family:'Cinzel'; font-size:18px; color:#D4AF37; display:block; margin-bottom: 5px;}
-  .bloque small { font-size: 10px; color: #aaa; line-height: 1.5; display: block;}
+
+  .bloque { margin: 25px 0; text-align: center; }
+  .bloque b { font-family:'Cinzel'; font-size: 18px; color:#D4AF37; display:block; margin-bottom:5px; }
+  .bloque small { font-size: 9px; color: #aaa; display: block; line-height: 1.5; }
+
+  .firma { font-family:'Great Vibes', cursive; font-size: 38px; color:#E8DCC0; margin-top: 15px; text-shadow: 0 0 10px rgba(0,0,0,0.8); }
+
+  .footer { display: flex; justify-content: space-between; align-items: end; margin-top: 25px; }
   
-  .firma { font-family:'Great Vibes', cursive; font-size:36px; color:#E8DCC0; margin-top: 10px;}
-  .footer { display:flex; justify-content:space-between; align-items:end; position:relative; z-index:2; margin-top: 20px;}
   .qr-container { text-align: center; }
-  .qr { width:90px; height:90px; background:#fff; padding:4px; border-radius: 4px;}
-  .qr-text { font-size:7px; margin-top:5px; color: #888;}
-  
-  .sello {
-    width:90px; height:90px; background: radial-gradient(circle, #FFD700, #B8860B);
-    border-radius:50%; display:flex; justify-content:center; align-items:center;
-    font-size:40px; color:#000; box-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.8);
-    border: 3px solid #8B6914; font-weight: bold;
+  .qr { width: 90px; height: 90px; background: #fff; padding: 3px; border-radius: 4px; }
+  .qr-text { font-size: 7px; margin-top: 5px; color: #D4AF37; letter-spacing: 1px; }
+
+  .btc-seal {
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, #FFD700, #B8860B);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 40px; color: #000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.8);
+    border: 2px solid #8B6914;
   }
-  .btns { text-align:center; margin-top:20px; display: flex; gap: 10px; justify-content: center;}
-  button { background:#FFEB3B; color:#000; border:none; padding:12px 25px; font-family:'JetBrains Mono'; font-weight:700; cursor:pointer; border-radius: 4px;}
-  button.outline { background:transparent; color:#FFEB3B; border:1px solid #FFEB3B; }
-  
+
+  .btns { margin-top: 25px; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 600px; }
+  button, a.btn { 
+    width: 100%; padding: 15px; border: none; font-family:'JetBrains Mono'; font-weight: bold; font-size: 12px; cursor: pointer; border-radius: 6px; text-decoration: none; text-align: center; transition: 0.3s;
+  }
+  button.primary, a.primary { background: #FFD700; color: #000; }
+  button.primary:hover, a.primary:hover { background: #ffea00; box-shadow: 0 0 15px rgba(255,215,0,0.5); }
+  button.outline, a.outline { background: transparent; color: #D4AF37; border: 1px solid #D4AF37; }
+  button.outline:hover, a.outline:hover { background: rgba(212,175,55,0.1); }
+
   @media print { 
-    .btns { display:none; } 
-    body { background:#fff; } 
-    .cert { box-shadow:none; width: 100%; height: 100vh; border: none; }
+    body { background: #000; padding: 0; }
+    .btns { display: none; }
+    .cert { box-shadow: none; max-width: 100%; height: 100vh; border: none; border-radius: 0; }
+    .cert::before { background: rgba(0, 0, 0, 0.7); } /* Fuerza la legibilidad en el PDF */
+    @page { size: portrait; margin: 0; }
   }
 </style>
 </head>
 <body>
-<div>
-  <div class="cert" id="cert">
-    <div class="kintsugi"></div>
-    <div class="header">
+
+  <div class="cert">
+    <div class="content">
       <div class="logo">◯_●</div>
-      <div class="title">ARKHÉ ZERO<br>CERTIFICADO OFICIAL</div>
-      <div class="subtitle">VERDADERO • PREMIUM • INFALSIFICABLE 24K</div>
-    </div>
+      <div class="title">ARKHÉ ZERO</div>
+      <div class="subtitle">CERTIFICADO OFICIAL • PREMIUM</div>
 
-    <div class="data">
-      NODO: <span>YHDRYH-92CE</span><br>
-      PIEZA: <span>PAQUETERIA-001</span><br>
-      SELLO: <span>SCDR-001</span><br>
-      PACTO: <span>51/49/100</span><br>
-      HASH SHA-256:
-      <div class="hash-box">ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92</div>
-      FECHA: <span>2026-10-15 03:01 UTC</span><br>
-      LEMA: <span style="font-style:italic;">"El legado no se hereda. Se firma." – KINTSUGI</span>
-    </div>
-
-    <div class="bloque">
-      <b>Bloque Bitcoin 971527</b>
-      CERTIFICADO DE EXISTENCIA<br>
-      <small>Success! Bitcoin block 971527 attests existence as of 2026-10-15 UTC<br>(Validado por Nodo Floresta Local)</small>
-      <div class="firma">Kintsugi</div>
-    </div>
-
-    <div class="footer">
-      <div class="qr-container">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" class="qr" alt="QR">
-        <div class="qr-text">ESCANEAR PARA VERIFICAR</div>
+      <div class="data-box">
+        <div class="data-row"><span>NODO</span><span>YHDRYH-92CE</span></div>
+        <div class="data-row"><span>PIEZA</span><span>PAQUETERIA-001</span></div>
+        <div class="data-row"><span>SELLO</span><span>SCDR-001</span></div>
+        <div class="data-row"><span>PACTO</span><span>51/49/100</span></div>
+        <div class="data-row" style="margin-top: 10px;"><span>FECHA</span><span>2026-10-15 03:01 UTC</span></div>
+        
+        <div class="hash-box">
+          <div style="color: #888; margin-bottom: 5px;">HASH SHA-256</div>
+          ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
+        </div>
       </div>
-      <div class="sello">₿</div>
+
+      <div class="bloque">
+        <b>Bloque Bitcoin 971527</b>
+        <small>Success! Bitcoin block 971527 attests<br>existence as of 2026-10-15 UTC</small>
+        <div class="firma">Kintsugi</div>
+      </div>
+
+      <div class="footer">
+        <div class="qr-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=030308&bgcolor=FFFFFF&data=https://marcorojas17.github.io/kronos-protocol/verificar/" class="qr" alt="QR">
+          <div class="qr-text">VERIFICAR EN LÍNEA</div>
+        </div>
+        <div class="btc-seal">₿</div>
+      </div>
     </div>
   </div>
   
   <div class="btns">
-    <button onclick="window.print()">GUARDAR PDF / IMPRIMIR</button>
-    <button class="outline" onclick="window.location.href='verificar/index.html'">IR AL VERIFICADOR</button>
+    <button class="primary" onclick="window.print()">GUARDAR PDF / IMPRIMIR</button>
+    <a href="verificar/index.html" class="outline">IR AL VERIFICADOR</a>
   </div>
-</div>
+
 </body>
 </html>
