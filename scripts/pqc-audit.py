@@ -18,7 +18,6 @@ CANONICOS = [
     "aes-256-gcm", "hkdf-sha3-512",
 ]
 
-# Fix: removed "des" and "sha-1" generic matches that cause false positives
 PROHIBIDOS = [
     "md5", "sha1",
     "rsa-1024", "rsa1024",
@@ -27,16 +26,23 @@ PROHIBIDOS = [
 ]
 
 SCAN_DIRS = ["crypto", "cimiento", "provenance", "certificacion", "agents"]
+# Archivos que legítimamente contienen nombres de algoritmos prohibidos para detectarlos
+EXCLUDE = [
+    "downgrade-detector",
+    "migration-policy",
+    "pqc-audit",
+]
 
 def scan(dir_path: Path) -> dict:
     results = {"canonicos": [], "prohibidos": []}
     for p in dir_path.rglob("*.js"):
+        if any(x in p.name.lower() for x in EXCLUDE):
+            continue
         try:
             content = p.read_text(encoding="utf-8").lower()
         except Exception:
             continue
         for alg in CANONICOS:
-            # match with word boundary
             if re.search(rf"\b{re.escape(alg)}\b", content):
                 results["canonicos"].append((str(p), alg))
         for alg in PROHIBIDOS:
