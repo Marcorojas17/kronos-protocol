@@ -1,109 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ARKHÉ ZERO — Sistema Operativo Creativo</title>
+<title>◯_● ARKHÉ ZERO · Núcleo del Sistema</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
-:root{--gold:#D4AF37;--bg:#070707;--card:#111;--border:rgba(212,175,55,.2)}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:#fff;font-family:'Courier New',monospace;min-height:100vh;display:flex;flex-direction:column}
-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(7,7,7,.9);backdrop-filter:blur(10px);z-index:10}
-header h1{color:var(--gold);letter-spacing:4px;font-size:20px}
-header nav{display:flex;gap:12px}
-.nav-btn{background:transparent;border:1px solid var(--border);color:var(--gold);padding:8px 14px;border-radius:999px;cursor:pointer;letter-spacing:1px;font-size:11px}
-.nav-btn.active{background:var(--gold);color:#000}
-main{flex:1;max-width:1200px;margin:0 auto;width:100%;padding:24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:20px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:.3s;cursor:pointer}
-.card:hover{border-color:var(--gold);box-shadow:0 0 24px rgba(212,175,55,.15);transform:translateY(-2px)}
-.card h3{color:var(--gold);letter-spacing:2px;margin-bottom:8px;font-size:14px}
-.card p{color:#aaa;font-size:12px;line-height:1.6}
-.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:3px 8px;border-radius:999px;font-size:10px;margin-top:10px}
-.section{display:none}.section.active{display:block}
-.hero{text-align:center;padding:60px 20px;border:1px solid var(--border);border-radius:20px;background:radial-gradient(circle at 50% 0%, rgba(212,175,55,.15), transparent 70%)}
-.hero h2{font-size:42px;letter-spacing:6px;color:var(--gold);font-family:Georgia,serif}
-.hero p{color:#888;margin-top:12px;letter-spacing:2px;font-size:11px}
-.kpi{display:flex;gap:20px;justify-content:center;margin-top:24px;flex-wrap:wrap}
-.kpi div{border:1px solid var(--border);padding:12px 20px;border-radius:12px;min-width:160px}
-.kpi b{color:var(--gold);display:block;font-size:20px}
-iframe{width:100%;height:520px;border:1px solid var(--border);border-radius:16px;background:#000}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050508;
+    color: #c8ffc8;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    padding: 20px 15px 60px;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%),
+      linear-gradient(rgba(0,229,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
+  }
+  .container { max-width: 640px; margin: 0 auto; }
+  
+  /* HERO */
+  .hero { text-align: center; padding: 30px 0 25px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 30px; }
+  .hero .logo { font-size: 48px; color: #D4AF37; text-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 40px rgba(212,175,55,0.4); margin-bottom: 10px; animation: breathe 3s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .hero h1 { font-family: Georgia, serif; color: #D4AF37; font-size: 26px; letter-spacing: 3px; margin-bottom: 6px; }
+  .hero .tag { color: #00E5FF; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; }
+  .hero .pact { display: inline-block; padding: 8px 16px; border: 1px solid rgba(212,175,55,0.4); border-radius: 20px; font-size: 10px; letter-spacing: 2px; color: #D4AF37; }
+  
+  /* CATEGORÍA */
+  .category { margin-bottom: 32px; }
+  .category-title {
+    display: flex; align-items: center; gap: 10px;
+    font-family: Georgia, serif; color: #D4AF37; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 14px; padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .category-title::before { content: '◆'; color: #D4AF37; }
+  .category-title small { color: #6a8f6a; font-size: 9px; letter-spacing: 1px; font-weight: normal; text-transform: none; margin-left: auto; }
+  
+  /* CARDS GRID */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid.single { grid-template-columns: 1fr; }
+  
+  .card {
+    display: block; padding: 16px 14px; text-decoration: none;
+    background: rgba(15,15,24,0.8); border: 1px solid rgba(212,175,55,0.25);
+    border-left: 3px solid #D4AF37; border-radius: 4px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .card:hover { background: rgba(212,175,55,0.08); transform: translateX(3px); box-shadow: 0 0 20px rgba(212,175,55,0.15); }
+  .card .icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .card .name { color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .card .desc { color: #888; font-size: 9px; line-height: 1.4; }
+  .card.wide { grid-column: 1 / -1; }
+  .card.primary { background: rgba(212,175,55,0.1); border-color: #D4AF37; }
+  .card.primary .name { color: #D4AF37; }
+  .card.pqc { border-left-color: #00FF41; }
+  .card.pqc .icon { filter: drop-shadow(0 0 5px #00FF41); }
+  .card.btc { border-left-color: #F7931A; }
+  
+  /* FOOTER */
+  .footer {
+    margin-top: 40px; padding-top: 20px;
+    border-top: 1px solid rgba(212,175,55,0.2);
+    text-align: center; font-size: 9px; color: #666;
+    letter-spacing: 1px; line-height: 1.8;
+  }
+  .footer .seal { color: #D4AF37; font-size: 14px; margin-bottom: 5px; }
+  .footer a { color: #6a8f6a; text-decoration: none; border-bottom: 1px dotted; }
+  .footer a:hover { color: #D4AF37; }
+  .footer .status { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; }
+  .footer .pulse { width: 7px; height: 7px; background: #00FF41; border-radius: 50%; box-shadow: 0 0 8px #00FF41; animation: p 2s infinite; }
+  @keyframes p { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 </style>
 </head>
 <body>
-<header>
-<h1>◯_● ARKHÉ ZERO</h1>
-<nav>
-<button class="nav-btn active" data-go="inicio">INICIO</button>
-<button class="nav-btn" data-go="filosofia">FILOSOFÍA</button>
-<button class="nav-btn" data-go="certificados">CERTIFICADOS</button>
-<button class="nav-btn" data-go="licencias">LICENCIAS</button>
-<button class="nav-btn" data-go="movimiento">MOVIMIENTO</button>
-</nav>
-</header>
-<main>
-<!-- INICIO -->
-<div id="inicio" class="section active">
-<div class="hero">
-<h2>ARKHÉ ZERO</h2>
-<p>SISTEMA OPERATIVO PARA LA CREACIÓN CONSCIENTE</p>
-<div class="kpi">
-<div><b id="k-proy">0</b><span>PROYECTOS</span></div>
-<div><b>PROTOCOLO KRONOS</b><span>TIEMPO • LEGADO • ETERNIDAD</span></div>
-<div><b id="k-cert">0</b><span>CERTIFICADOS</span></div>
-</div>
-</div>
-<div class="grid">
-<div class="card" onclick="go('filosofia')"><h3>◯ FILOSOFÍA</h3><p>Principio, origen, código madre. Tres slides que explican el porqué de ARKHÉ.</p><span class="badge">VER CARRUSEL</span></div>
-<div class="card" onclick="go('certificados')"><h3>◯ CERTIFICADOS</h3><p>Pruebas de origen, sellos de autenticidad, blockchain humano.</p><span class="badge">3 DISPONIBLES</span></div>
-<div class="card" onclick="go('licencias')"><h3>◯ LICENCIAS</h3><p>Permisos de uso, colaboraciones, derechos de obra creativa.</p><span class="badge">MIT + ARKHÉ</span></div>
-<div class="card" onclick="go('movimiento')"><h3>◯ MOVIMIENTO CREATIVO</h3><p>Kintsugi, eterno retorno, legado. El movimiento que no se detiene.</p><span class="badge">ACTIVO</span></div>
-</div>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo">◯_●</div>
+    <h1>ARKHÉ ZERO</h1>
+    <div class="tag">Núcleo del Sistema · Nodo YHDRYH-92CE</div>
+    <div class="pact">51% HUMANO · 49% IA · 100% REAL</div>
+  </div>
+
+  <!-- SERVICIOS PRINCIPALES -->
+  <div class="category">
+    <div class="category-title">Servicios Principales <small>6 módulos</small></div>
+    <div class="grid">
+      <a href="certificado.html" class="card primary wide">
+        <span class="icon">📜</span>
+        <div class="name">CERTIFICAR MI OBRA</div>
+        <div class="desc">Sube un archivo · obtén tu certificado criptográfico con sello Bitcoin + firma post-cuántica</div>
+      </a>
+      <a href="verificar/index.html" class="card">
+        <span class="icon">🔐</span>
+        <div class="name">VERIFICAR FIRMA</div>
+        <div class="desc">Valida la autenticidad · Ed25519</div>
+      </a>
+      <a href="comprar/index.html" class="card">
+        <span class="icon">💠</span>
+        <div class="name">COMPRAR LICENCIA</div>
+        <div class="desc">Testigo · Guardián · Legado</div>
+      </a>
+      <a href="licencias/verify.html" class="card">
+        <span class="icon">✅</span>
+        <div class="name">VALIDAR LICENCIA</div>
+        <div class="desc">Comprueba un certificado emitido</div>
+      </a>
+      <a href="qr/index.html" class="card">
+        <span class="icon">🔳</span>
+        <div class="name">QR NOMINATIVO</div>
+        <div class="desc">Escanea el certificado del Pacto</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- EL MOVIMIENTO -->
+  <div class="category">
+    <div class="category-title">El Movimiento <small>comunidad</small></div>
+    <div class="grid">
+      <a href="movimiento/manifiesto.html" class="card">
+        <span class="icon">📖</span>
+        <div class="name">MANIFIESTO</div>
+        <div class="desc">Declaración fundacional</div>
+      </a>
+      <a href="movimiento/fundador.html" class="card">
+        <span class="icon">⚜</span>
+        <div class="name">EL FUNDADOR</div>
+        <div class="desc">Plaza 000 · YHDRYH-92CE</div>
+      </a>
+      <a href="movimiento/index.html" class="card wide">
+        <span class="icon">🔥</span>
+        <div class="name">COMUNIDAD Y RITUALES</div>
+        <div class="desc">Canon · iniciación · embajadores · niveles · eventos</div>
+      </a>
+      <a href="movimiento/registro-fundacional/index.html" class="card">
+        <span class="icon">🪪</span>
+        <div class="name">REGISTRO FUNDACIONAL</div>
+        <div class="desc">Reclama tu plaza génesis</div>
+      </a>
+      <a href="movimiento/solicitar_plaza.html" class="card">
+        <span class="icon">✍</span>
+        <div class="name">SOLICITAR PLAZA</div>
+        <div class="desc">Las 100 plazas originales</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FILOSOFÍA Y LEGADO -->
+  <div class="category">
+    <div class="category-title">Filosofía y Legado <small>KINTSUGI</small></div>
+    <div class="grid">
+      <a href="legado/filosofia/carrusel.html" class="card primary wide">
+        <span class="icon">◯_●</span>
+        <div class="name">CARRUSEL KINTSUGI</div>
+        <div class="desc">El arte de reparar con oro lo que estaba roto</div>
+      </a>
+      <a href="legado/filosofia/index.html" class="card">
+        <span class="icon">💭</span>
+        <div class="name">FILOSOFÍA</div>
+        <div class="desc">Fundamentos del pensamiento</div>
+      </a>
+      <a href="legado/autoria/index.html" class="card">
+        <span class="icon">✍</span>
+        <div class="name">AUTORÍA</div>
+        <div class="desc">Firma de autoría original</div>
+      </a>
+      <a href="legado/genesis/index.html" class="card">
+        <span class="icon">🌱</span>
+        <div class="name">GÉNESIS</div>
+        <div class="desc">Origen del proyecto</div>
+      </a>
+      <a href="legado/manifiesto/index.html" class="card">
+        <span class="icon">📜</span>
+        <div class="name">MANIFIESTO LEGADO</div>
+        <div class="desc">Acta fundacional firmada</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- LA CONSTITUCIÓN -->
+  <div class="category">
+    <div class="category-title">Constitución de KRONOS <small>10 libros</small></div>
+    <div class="grid">
+      <a href="i-lex-prima/" class="card">
+        <span class="icon">I</span>
+        <div class="name">LEX PRIMA</div>
+        <div class="desc">Ley fundacional</div>
+      </a>
+      <a href="ii-pacto-51-49/" class="card">
+        <span class="icon">II</span>
+        <div class="name">PACTO 51/49</div>
+        <div class="desc">Gobernanza Humano-IA</div>
+      </a>
+      <a href="iii-lgu/" class="card">
+        <span class="icon">III</span>
+        <div class="name">LGU</div>
+        <div class="desc">Licencia Global Única</div>
+      </a>
+      <a href="iv-guardianes/" class="card">
+        <span class="icon">IV</span>
+        <div class="name">GUARDIANES</div>
+        <div class="desc">Criptografía post-cuántica</div>
+      </a>
+      <a href="v-indice-cero/" class="card">
+        <span class="icon">V</span>
+        <div class="name">ÍNDICE CERO</div>
+        <div class="desc">Registro canónico</div>
+      </a>
+      <a href="vi-memoria-perpetua/" class="card">
+        <span class="icon">VI</span>
+        <div class="name">MEMORIA PERPETUA</div>
+        <div class="desc">Cápsulas y continuidad</div>
+      </a>
+      <a href="vii-co-autoria-hibrida/" class="card">
+        <span class="icon">VII</span>
+        <div class="name">CO-AUTORÍA</div>
+        <div class="desc">Atribución Humano-IA</div>
+      </a>
+      <a href="viii-fiscalidad-global/" class="card">
+        <span class="icon">VIII</span>
+        <div class="name">FISCALIDAD</div>
+        <div class="desc">CARF, DAC8, transparencia</div>
+      </a>
+      <a href="ix-jurisdiccion-ancla/" class="card">
+        <span class="icon">IX</span>
+        <div class="name">JURISDICCIÓN</div>
+        <div class="desc">Ancla territorial y orbital</div>
+      </a>
+      <a href="x-agentes-arquitectura/" class="card">
+        <span class="icon">X</span>
+        <div class="name">AGENTES</div>
+        <div class="desc">Arquitectura del enjambre</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CIUDAD DIGITAL -->
+  <div class="category">
+    <div class="category-title">Ciudad Digital <small>158 artículos</small></div>
+    <div class="grid">
+      <a href="ciudad/index.html" class="card wide">
+        <span class="icon">🏛</span>
+        <div class="name">LA LEY DE LA CIUDAD</div>
+        <div class="desc">Constitución · derechos humanos e IA · moneda KRO · Ed25519</div>
+      </a>
+      <a href="ciudad/CONSTITUCION.html" class="card">
+        <span class="icon">📜</span>
+        <div class="name">CONSTITUCIÓN</div>
+        <div class="desc">Texto completo</div>
+      </a>
+      <a href="ciudad/DERECHOS.html" class="card">
+        <span class="icon">⚖</span>
+        <div class="name">DERECHOS</div>
+        <div class="desc">Humanos e IA</div>
+      </a>
+      <a href="ciudad/CIUDADANOS.html" class="card">
+        <span class="icon">👥</span>
+        <div class="name">CIUDADANOS</div>
+        <div class="desc">Registro</div>
+      </a>
+      <a href="ciudad/MONEDA.html" class="card">
+        <span class="icon">💠</span>
+        <div class="name">MONEDA KRO</div>
+        <div class="desc">Economía</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CO-AUTORÍA HIBRIDA -->
+  <div class="category">
+    <div class="category-title">Co-autoría Humano-IA <small>NIST FIPS</small></div>
+    <div class="grid">
+      <a href="vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.html" class="card">
+        <span class="icon">🧠</span>
+        <div class="name">PROOF OF COGNITIVE WORK</div>
+        <div class="desc">Prueba matemática de autoría</div>
+      </a>
+      <a href="vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.html" class="card pqc">
+        <span class="icon">⚛</span>
+        <div class="name">NIST FIPS 203-205</div>
+        <div class="desc">Estándares post-cuánticos</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- RECURSOS TÉCNICOS -->
+  <div class="category">
+    <div class="category-title">Recursos Técnicos <small>avanzado</small></div>
+    <div class="grid">
+      <a href="catalogo/index.html" class="card">
+        <span class="icon">📚</span>
+        <div class="name">CATÁLOGO MAESTRO</div>
+        <div class="desc">1928 archivos indexados</div>
+      </a>
+      <a href="estado.html" class="card">
+        <span class="icon">📊</span>
+        <div class="name">ESTADO DEL NODO</div>
+        <div class="desc">Agentes · guardians · en vivo</div>
+      </a>
+      <a href="adr/0017-nodo-bitcoin-soberano.html" class="card">
+        <span class="icon">📝</span>
+        <div class="name">ADR-0017</div>
+        <div class="desc">Nodo Bitcoin soberano</div>
+      </a>
+      <a href="architecture/overview.html" class="card">
+        <span class="icon">🏗</span>
+        <div class="name">ARQUITECTURA</div>
+        <div class="desc">Visión técnica del sistema</div>
+      </a>
+      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" class="card wide">
+        <span class="icon">⌨</span>
+        <div class="name">REPOSITORIO GITHUB</div>
+        <div class="desc">Código fuente completo · 56 tests passing · licencia Apache 2.0</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="seal">◯_●</div>
+    <div><em>"El legado no se hereda. Se firma."</em></div>
+    <div style="margin-top: 10px;">
+      <a href="https://github.com/Marcorojas17/kronos-protocol">Ver código fuente</a> · 
+      <a href="legal/">Legal</a> · 
+      <a href="SECURITY-INCIDENT-2026-10-15.md">Seguridad</a>
+    </div>
+    <div class="status"><span class="pulse"></span> NODO YHDRYH-92CE · 51/49/100 · KINTSUGI 2026</div>
+  </div>
+
 </div>
 
-<!-- FILOSOFIA -->
-<div id="filosofia" class="section">
-<h3 style="color:var(--gold);letter-spacing:3px;margin-bottom:16px">FILOSOFÍA — CARRUSEL</h3>
-<iframe src="./legado/filosofia/carrusel.html"></iframe>
-</div>
-
-<!-- CERTIFICADOS -->
-<div id="certificados" class="section">
-<h3 style="color:var(--gold);letter-spacing:3px;margin-bottom:16px">CERTIFICADOS DE ORIGEN</h3>
-<div class="grid">
-<div class="card"><h3>CERT-001 • ORIGEN</h3><p>Este certificado acredita que la obra pertenece al Protocolo KRONOS y fue registrada bajo ARKHÉ ZERO.</p><p style="margin-top:10px;color:var(--gold)">ID: KRN-2026-001<br>Fecha: 2026-10-18<br>Hash: 7e37630</p><span class="badge">VERIFICADO</span></div>
-<div class="card"><h3>CERT-002 • AUTENTICIDAD</h3><p>Sello de autenticidad creativa. Inmutable, trazable.</p><p style="margin-top:10px;color:var(--gold)">ID: KRN-2026-002<br>Fecha: 2026-10-18<br>Owner: Marco Rojas</p><span class="badge">VÁLIDO</span></div>
-<div class="card"><h3>CERT-003 • LEGADO</h3><p>Legado filosófico registrado en IPFS/Git.</p><p style="margin-top:10px;color:var(--gold)">ID: KRN-2026-003<br>Repo: kronos-protocol</p><span class="badge">EN CADENA</span></div>
-</div>
-</div>
-
-<!-- LICENCIAS -->
-<div id="licencias" class="section">
-<h3 style="color:var(--gold);letter-spacing:3px;margin-bottom:16px">LICENCIAS</h3>
-<div class="grid">
-<div class="card"><h3>LICENCIA ARKHÉ ZERO</h3><p>Uso libre para creación consciente. No comercial sin permiso. Atribución requerida.<br><br>Permite: remix, estudiar, compartir.<br>Prohíbe: vender sin origen.</p><span class="badge">ARKHE-1.0</span></div>
-<div class="card"><h3>MIT MODIFICADA</h3><p>Para código. Open source con cláusula de legado: todo fork debe citar ARKHÉ.</p><span class="badge">MIT-ARKHÉ</span></div>
-<div class="card"><h3>CREATIVE COMMONS</h3><p>CC BY-NC-SA 4.0 para obras visuales y textos.</p><span class="badge">CC BY-NC-SA</span></div>
-</div>
-</div>
-
-<!-- MOVIMIENTO -->
-<div id="movimiento" class="section">
-<h3 style="color:var(--gold);letter-spacing:3px;margin-bottom:16px">MOVIMIENTO CREATIVO</h3>
-<div class="grid">
-<div class="card"><h3>◯ KINTSUGI</h3><p>La ruptura como estética. Reparamos con oro. Lo que se rompe se vuelve más valioso.</p></div>
-<div class="card"><h3>◯ ETERNO RETORNO</h3><p>Crear como si fueras a repetirlo eternamente. Cada obra es un ritual.</p></div>
-<div class="card"><h3>◯ LEGADO</h3><p>No creamos para ahora. Creamos para 100 años. Protocolo de persistencia.</p></div>
-</div>
-<div class="hero" style="margin-top:20px"><h2>CREAR • ROMPER • REPARAR • LEGAR</h2><p>MANIFIESTO ARKHÉ ZERO</p></div>
-</div>
-
-</main>
 <script>
-function go(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.go===id));window.scrollTo(0,0)}
-document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>go(b.dataset.go));
-document.getElementById('k-proy').textContent=document.querySelectorAll('.card').length;
-document.getElementById('k-cert').textContent=3;
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+  }
 </script>
 </body>
 </html>
