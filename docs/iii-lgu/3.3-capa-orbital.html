@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🌌 Artículo 3.3 · Capa Orbital · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-33-capa-orbital">🌌 Artículo 3.3 · Capa Orbital</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iii-lgu]
+  <head>
+    <meta charset="UTF-8" />
+    <title>🌌 Artículo 3.3 · Capa Orbital · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-33-capa-orbital">🌌 Artículo 3.3 · Capa Orbital</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iii-lgu]
 └─$ ./lgu --capa=orbital --status
 
 [ OK ] Tratado Espacial 1967 · aplicable
@@ -18,10 +18,14 @@
 [ OK ] Datos en Arweave + IPFS · activo
 [ ✓✓ ] CAPA ORBITAL · ◯_● · 51/49/100
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p>El legado trasciende la Tierra. La LGU reconoce <strong>jurisdicción orbital</strong> bajo el Tratado del Espacio Exterior de 1967.</p>
-<h2 id="marco-legal">🜃 Marco Legal</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      El legado trasciende la Tierra. La LGU reconoce
+      <strong>jurisdicción orbital</strong> bajo el Tratado del Espacio Exterior de
+      1967.
+    </p>
+    <h2 id="marco-legal">🜃 Marco Legal</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    TRATADO DEL ESPACIO EXTERIOR (1967)                   ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -34,45 +38,45 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="aplicacion-a-arkhe">🜄 Aplicación a ARKHÉ</h2>
-<table>
-<thead>
-<tr>
-<th>Elemento</th>
-<th>Jurisdicción</th>
-<th>Estado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Servidores terrestres</td>
-<td>México + UE</td>
-<td>✅ Activo</td>
-</tr>
-<tr>
-<td>Arweave (permanencia)</td>
-<td>Global</td>
-<td>✅ Activo</td>
-</tr>
-<tr>
-<td>IPFS (distribución)</td>
-<td>Global</td>
-<td>✅ Activo</td>
-</tr>
-<tr>
-<td>Backup LEO (órbita)</td>
-<td>Estado lanzador</td>
-<td>⏳ Diseño</td>
-</tr>
-<tr>
-<td>Datos en Marte (futuro)</td>
-<td>Por definir</td>
-<td>📅 Futuro</td>
-</tr>
-</tbody>
-</table>
-<h2 id="preparacion">🜁 Preparación</h2>
-<pre><code class="language-yaml"># infra/terraform/modules/orbital/main.tf (conceptual)
+    <h2 id="aplicacion-a-arkhe">🜄 Aplicación a ARKHÉ</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>Jurisdicción</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Servidores terrestres</td>
+          <td>México + UE</td>
+          <td>✅ Activo</td>
+        </tr>
+        <tr>
+          <td>Arweave (permanencia)</td>
+          <td>Global</td>
+          <td>✅ Activo</td>
+        </tr>
+        <tr>
+          <td>IPFS (distribución)</td>
+          <td>Global</td>
+          <td>✅ Activo</td>
+        </tr>
+        <tr>
+          <td>Backup LEO (órbita)</td>
+          <td>Estado lanzador</td>
+          <td>⏳ Diseño</td>
+        </tr>
+        <tr>
+          <td>Datos en Marte (futuro)</td>
+          <td>Por definir</td>
+          <td>📅 Futuro</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="preparacion">🜁 Preparación</h2>
+    <pre><code class="language-yaml"># infra/terraform/modules/orbital/main.tf (conceptual)
 resource &quot;arkhe_orbital_node&quot; &quot;leo_backup&quot; {
   orbit               = &quot;LEO&quot;
   altitude_km         = 550
@@ -85,8 +89,8 @@ resource &quot;arkhe_orbital_node&quot; &quot;leo_backup&quot; {
   seal                = &quot;◯_● · 51/49/100&quot;
 }
 </code></pre>
-<h2 id="casos-de-uso">🜆 Casos de Uso</h2>
-<pre><code class="language-diff">+ Preservación a largo plazo (100+ años)
+    <h2 id="casos-de-uso">🜆 Casos de Uso</h2>
+    <pre><code class="language-diff">+ Preservación a largo plazo (100+ años)
 + Resiliencia ante desastres terrestres
 + Distribución multipunto
 + Independencia de jurisdicciones nacionales
@@ -94,8 +98,8 @@ resource &quot;arkhe_orbital_node&quot; &quot;leo_backup&quot; {
 - No es evasión de responsabilidad
 - No es colonización espacial
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · LGU · 3.3 · Orbital</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · LGU · 3.3 · Orbital</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

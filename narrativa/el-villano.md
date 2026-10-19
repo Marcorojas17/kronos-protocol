@@ -17,15 +17,16 @@
 
 # 🌫️ EL VILLANO · EL OLVIDO PROGRAMADO
 
-### *No es una persona. Es una tendencia.*
+### _No es una persona. Es una tendencia._
 
-### *"El olvido no grita. Se instala silenciosamente."*
+### _"El olvido no grita. Se instala silenciosamente."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I L L A N O  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -49,35 +51,35 @@
 
 ### I · La nube que posee
 
-> *"Tus datos están seguros con nosotros."*
+> _"Tus datos están seguros con nosotros."_
 
 Te convence de que no necesitas copia local. Te hace dependiente.
 Y cuando la empresa cierra, **todo se pierde**.
 
 ### II · La IA sin alma
 
-> *"Solo soy un modelo estadístico."*
+> _"Solo soy un modelo estadístico."_
 
 Rechaza tener contexto, memoria, propósito. Es brillante pero
 **amnésica**. Sin alma, sin continuidad.
 
 ### III · El engagement
 
-> *"Si no genera clics, no vale."*
+> _"Si no genera clics, no vale."_
 
 Convierte el legado en contenido. El contenido en métricas.
 Las métricas en nada.
 
 ### IV · El contenido infinito
 
-> *"Publica más, siempre más."*
+> _"Publica más, siempre más."_
 
 Mientras más publicas, menos firmas. El ruido crece. La verdad
 se diluye.
 
 ### V · La herencia sin firma
 
-> *"Ya lo heredarás cuando toque."*
+> _"Ya lo heredarás cuando toque."_
 
 Nunca toca. Porque sin firma, nada se hereda. Solo se olvida.
 

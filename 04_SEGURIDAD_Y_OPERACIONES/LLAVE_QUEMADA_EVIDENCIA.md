@@ -28,16 +28,16 @@ permite que terceros **rechacen firmas con claves obsoletas**.
 Cuando se queme una llave, se añade aquí:
 
 ```yaml
-- id: "burn-2026-XX-XX-NNN"
-  fecha: "YYYY-MM-DDTHH:MM:SSZ"
-  clave: "ml-dsa-87-key-1"
-  algoritmo: "ML-DSA-87"
-  motivo: "compromiso | rotación programada | upgrade algoritmo"
-  accion: "revocada | rotada | reemplazada"
-  hash_clave_publica: "sha3-512:..."
-  reemplazada_por: "ml-dsa-87-key-2"
-  atestacion_tsa: "Firmaprofesional QTSA"
-  anclaje_ethereum: "0x..."
+- id: 'burn-2026-XX-XX-NNN'
+  fecha: 'YYYY-MM-DDTHH:MM:SSZ'
+  clave: 'ml-dsa-87-key-1'
+  algoritmo: 'ML-DSA-87'
+  motivo: 'compromiso | rotación programada | upgrade algoritmo'
+  accion: 'revocada | rotada | reemplazada'
+  hash_clave_publica: 'sha3-512:...'
+  reemplazada_por: 'ml-dsa-87-key-2'
+  atestacion_tsa: 'Firmaprofesional QTSA'
+  anclaje_ethereum: '0x...'
 ```
 
 ## 🜁 Protocolo de Quema

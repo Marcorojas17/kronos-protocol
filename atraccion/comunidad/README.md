@@ -17,15 +17,16 @@
 
 # 👥 COMUNIDAD
 
-### *La comunidad no capta. Acoge.*
+### _La comunidad no capta. Acoge._
 
-### *"No es una red social. Es un pacto extendido."*
+### _"No es una red social. Es un pacto extendido."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O M U N I D A D  ·  ◯_●                           ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,15 +49,19 @@
 ## 🜂 Componentes
 
 ### 💬 plataforma/
+
 Foro oficial (self-hosted · sin tracking · sin ads).
 
 ### 🧑‍🏫 mentorship/
+
 Sistema de apadrinamiento estructurado. Un Maestro (Nivel 3+) acompaña a un Iniciado.
 
 ### 🏅 reconocimiento/
+
 Premios y honores otorgados por el movimiento.
 
 ### 🎭 rituales/
+
 Ceremonias comunitarias (Luna Nueva, Solsticio, aniversarios).
 
 ## 🜃 Flujo de acogida

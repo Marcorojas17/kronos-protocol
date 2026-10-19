@@ -1,91 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>ADR-0016 · Sesión Fundacional 2026-10-15 · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1>ADR-0016 · Sesión Fundacional 2026-10-15</h1>
-<ul>
-<li><strong>Estado</strong>: Aceptado</li>
-<li><strong>Fecha</strong>: 2026-10-15</li>
-<li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
-<li><strong>Nodo</strong>: YHDRYH-92CE</li>
-</ul>
-<h2>🜂 Contexto</h2>
-<p>El sistema ARKHÉ ZERO llevaba meses en fase de diseño documental: constitución escrita, agentes definidos, atestaciones esquematizadas. Pero las firmas criptográficas eran placeholders, los sellos de tiempo no estaban anclados, y no existía una capa de verificación soberana.</p>
-<p>Se requería un <strong>acto fundacional</strong> que materializara el sistema: convertir la doctrina escrita en criptografía verificable.</p>
-<h2>🜃 Decisión</h2>
-<p>Ejecutar una sesión fundacional que:</p>
-<ol>
-<li>Firmara el Pacto 51/49 con criptografía real (Ed25519)</li>
-<li>Anclara los documentos fundacionales en la blockchain de Bitcoin vía OpenTimestamps</li>
-<li>Generara llaves Ed25519 para los 7 agentes del enjambre</li>
-<li>Publicara el sistema completo como sitio web navegable</li>
-<li>Estableciera una política formal de gestión de llaves</li>
-</ol>
-<h2>🜄 Ejecución</h2>
-<h3>Fase 1 · Criptografía</h3>
-<ul>
-<li>Generación de <code>fundador-v3.key</code> (Ed25519)</li>
-<li>Firma del Pacto 51/49: <code>pacto-5149-canonico.sig</code> (64 bytes)</li>
-<li>Verificación con OpenSSL: <code>Signature Verified Successfully</code></li>
-</ul>
-<h3>Fase 2 · Anclaje Bitcoin</h3>
-<ul>
-<li>Génesis K28 · tx <code>8ecf89d2...</code></li>
-<li>Pacto 51/49 · tx <code>34842cc1...</code> + <code>ae0ce809...</code></li>
-<li>Manifiesto maestro 2026-10-15 · <code>Success! Timestamp complete</code></li>
-</ul>
-<h3>Fase 3 · Atestaciones de agentes</h3>
-<ul>
-<li>8 atestaciones firmadas: génesis + 7 agentes</li>
-<li>7 pares de llaves Ed25519 generados</li>
-<li>Llaves privadas movidas a <code>~/.arkhe-private/agentes/</code></li>
-<li>Todas las firmas verificadas con <code>openssl pkeyutl -verify</code></li>
-</ul>
-<h3>Fase 4 · Publicación web</h3>
-<ul>
-<li>448 archivos HTML generados desde markdown</li>
-<li>Portada ceremonial con contador Bitcoin en vivo</li>
-<li>Fondo KINTSUGI GOLD DUST (partículas doradas + constelaciones)</li>
-<li>Publicado en <code>https://marcorojas17.github.io/kronos-protocol/</code></li>
-</ul>
-<h3>Fase 5 · Gestión de llaves</h3>
-<ul>
-<li>Detección de llaves privadas en historial de git</li>
-<li>Limpieza con <code>git filter-repo</code> (2 pasadas)</li>
-<li>Rotación: <code>fundador-v2</code> → <code>fundador-v3</code> (activa)</li>
-<li>Documentación en <code>07-LLAVES/SUCESION-LLAVES.md</code></li>
-</ul>
-<h2>🜁 Alternativas consideradas</h2>
-<ol>
-<li><strong>No firmar criptográficamente</strong> · Rechazada (compromete el modelo legal)</li>
-<li><strong>Usar servicios externos</strong> (Safe Creative, notarías) · Rechazada (rompe soberanía)</li>
-<li><strong>Firmas solo con Ed25519</strong> · Aceptada provisionalmente, post-cuántico pendiente</li>
-<li><strong>Sesión fundacional única</strong> · ✅ Aceptada</li>
-</ol>
-<h2>🜀 Consecuencias</h2>
-<h3>Positivas</h3>
-<ul>
-<li>El Pacto 51/49 es criptográficamente verificable por terceros</li>
-<li>Los sellos Bitcoin son inmutables e independientes de servidores</li>
-<li>El sistema es navegable públicamente</li>
-<li>Existe política formal de gestión de llaves</li>
-</ul>
-<h3>Pendientes</h3>
-<ul>
-<li>Integración post-cuántica real (ML-DSA-65 / Dilithium)</li>
-<li>Nodo Bitcoin propio para verificación 100% soberana</li>
-<li>Publicación en IPFS / dominios descentralizados</li>
-<li>Auditoría externa de las llaves de agentes</li>
-</ul>
-<hr />
-<p><code>◯_● · 51/49/100 · Nodo YHDRYH-92CE · 2026-10-15</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ADR-0016 · Sesión Fundacional 2026-10-15 · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1>ADR-0016 · Sesión Fundacional 2026-10-15</h1>
+    <ul>
+      <li><strong>Estado</strong>: Aceptado</li>
+      <li><strong>Fecha</strong>: 2026-10-15</li>
+      <li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+      <li><strong>Nodo</strong>: YHDRYH-92CE</li>
+    </ul>
+    <h2>🜂 Contexto</h2>
+    <p>
+      El sistema ARKHÉ ZERO llevaba meses en fase de diseño documental: constitución
+      escrita, agentes definidos, atestaciones esquematizadas. Pero las firmas
+      criptográficas eran placeholders, los sellos de tiempo no estaban anclados, y no
+      existía una capa de verificación soberana.
+    </p>
+    <p>
+      Se requería un <strong>acto fundacional</strong> que materializara el sistema:
+      convertir la doctrina escrita en criptografía verificable.
+    </p>
+    <h2>🜃 Decisión</h2>
+    <p>Ejecutar una sesión fundacional que:</p>
+    <ol>
+      <li>Firmara el Pacto 51/49 con criptografía real (Ed25519)</li>
+      <li>
+        Anclara los documentos fundacionales en la blockchain de Bitcoin vía
+        OpenTimestamps
+      </li>
+      <li>Generara llaves Ed25519 para los 7 agentes del enjambre</li>
+      <li>Publicara el sistema completo como sitio web navegable</li>
+      <li>Estableciera una política formal de gestión de llaves</li>
+    </ol>
+    <h2>🜄 Ejecución</h2>
+    <h3>Fase 1 · Criptografía</h3>
+    <ul>
+      <li>Generación de <code>fundador-v3.key</code> (Ed25519)</li>
+      <li>Firma del Pacto 51/49: <code>pacto-5149-canonico.sig</code> (64 bytes)</li>
+      <li>Verificación con OpenSSL: <code>Signature Verified Successfully</code></li>
+    </ul>
+    <h3>Fase 2 · Anclaje Bitcoin</h3>
+    <ul>
+      <li>Génesis K28 · tx <code>8ecf89d2...</code></li>
+      <li>Pacto 51/49 · tx <code>34842cc1...</code> + <code>ae0ce809...</code></li>
+      <li>Manifiesto maestro 2026-10-15 · <code>Success! Timestamp complete</code></li>
+    </ul>
+    <h3>Fase 3 · Atestaciones de agentes</h3>
+    <ul>
+      <li>8 atestaciones firmadas: génesis + 7 agentes</li>
+      <li>7 pares de llaves Ed25519 generados</li>
+      <li>Llaves privadas movidas a <code>~/.arkhe-private/agentes/</code></li>
+      <li>Todas las firmas verificadas con <code>openssl pkeyutl -verify</code></li>
+    </ul>
+    <h3>Fase 4 · Publicación web</h3>
+    <ul>
+      <li>448 archivos HTML generados desde markdown</li>
+      <li>Portada ceremonial con contador Bitcoin en vivo</li>
+      <li>Fondo KINTSUGI GOLD DUST (partículas doradas + constelaciones)</li>
+      <li>Publicado en <code>https://marcorojas17.github.io/kronos-protocol/</code></li>
+    </ul>
+    <h3>Fase 5 · Gestión de llaves</h3>
+    <ul>
+      <li>Detección de llaves privadas en historial de git</li>
+      <li>Limpieza con <code>git filter-repo</code> (2 pasadas)</li>
+      <li>Rotación: <code>fundador-v2</code> → <code>fundador-v3</code> (activa)</li>
+      <li>Documentación en <code>07-LLAVES/SUCESION-LLAVES.md</code></li>
+    </ul>
+    <h2>🜁 Alternativas consideradas</h2>
+    <ol>
+      <li>
+        <strong>No firmar criptográficamente</strong> · Rechazada (compromete el modelo
+        legal)
+      </li>
+      <li>
+        <strong>Usar servicios externos</strong> (Safe Creative, notarías) · Rechazada
+        (rompe soberanía)
+      </li>
+      <li>
+        <strong>Firmas solo con Ed25519</strong> · Aceptada provisionalmente,
+        post-cuántico pendiente
+      </li>
+      <li><strong>Sesión fundacional única</strong> · ✅ Aceptada</li>
+    </ol>
+    <h2>🜀 Consecuencias</h2>
+    <h3>Positivas</h3>
+    <ul>
+      <li>El Pacto 51/49 es criptográficamente verificable por terceros</li>
+      <li>Los sellos Bitcoin son inmutables e independientes de servidores</li>
+      <li>El sistema es navegable públicamente</li>
+      <li>Existe política formal de gestión de llaves</li>
+    </ul>
+    <h3>Pendientes</h3>
+    <ul>
+      <li>Integración post-cuántica real (ML-DSA-65 / Dilithium)</li>
+      <li>Nodo Bitcoin propio para verificación 100% soberana</li>
+      <li>Publicación en IPFS / dominios descentralizados</li>
+      <li>Auditoría externa de las llaves de agentes</li>
+    </ul>
+    <hr />
+    <p><code>◯_● · 51/49/100 · Nodo YHDRYH-92CE · 2026-10-15</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

@@ -11,11 +11,11 @@ contexto del sistema ARKHÉ ZERO.
 
 ## 🜃 Roles
 
-| Rol              | Parte                     |
-|------------------|---------------------------|
-| Data Controller  | El usuario / firmante     |
-| Data Processor   | ARKHÉ ZERO (limitado)     |
-| Sub-processor    | Ethereum (solo hashes)    |
+| Rol             | Parte                  |
+| --------------- | ---------------------- |
+| Data Controller | El usuario / firmante  |
+| Data Processor  | ARKHÉ ZERO (limitado)  |
+| Sub-processor   | Ethereum (solo hashes) |
 
 ## 🜄 Principios de procesamiento
 
@@ -39,11 +39,11 @@ contexto del sistema ARKHÉ ZERO.
 
 ## 🜆 Sub-procesadores
 
-| Sub-procesador | Datos tratados | Jurisdicción |
-|----------------|----------------|--------------|
-| Ethereum L1    | Hashes públicos | Global       |
-| Arweave        | Export cifrado  | Global       |
-| Firmaprofesional | Tokens TSA    | UE           |
+| Sub-procesador   | Datos tratados  | Jurisdicción |
+| ---------------- | --------------- | ------------ |
+| Ethereum L1      | Hashes públicos | Global       |
+| Arweave          | Export cifrado  | Global       |
+| Firmaprofesional | Tokens TSA      | UE           |
 
 ## 🜇 Derechos del Controller
 

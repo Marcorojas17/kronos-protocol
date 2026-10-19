@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # 📘 Ejemplos · marco.mcp
 
 ## 1 · Firmar una decisión
@@ -15,6 +15,7 @@
   }
 }
 ```
+````
 
 Respuesta:
 
@@ -70,5 +71,7 @@ Respuesta:
 ---
 
 ◯_● · 51/49/100 · KRONOS · marco.mcp
+
+```
 
 ```

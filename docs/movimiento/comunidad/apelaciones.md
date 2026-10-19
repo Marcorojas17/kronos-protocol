@@ -17,15 +17,16 @@
 
 # ⚖️ SISTEMA DE APELACIONES
 
-### *Toda sanción se puede apelar. Excepto el veto humano.*
+### _Toda sanción se puede apelar. Excepto el veto humano._
 
-### *"La justicia sin apelación es tiranía. La apelación sin firma es ruido."*
+### _"La justicia sin apelación es tiranía. La apelación sin firma es ruido."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A P E L A C I O N E S  ·  ◯_●                       ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -69,19 +71,19 @@ Pasado ese plazo, la sanción queda firme e irrevocable.
 ## 🜄 Cómo apelar
 
 ```yaml
-- id: "APL-YYYY-XXX"
-  apelante: "nombre del sancionado"
-  sancion_original: "REF-YYYY-XXX"
-  fecha_sancion: "YYYY-MM-DDTHH:MM:SSZ"
-  fecha_apelacion: "YYYY-MM-DDTHH:MM:SSZ"
+- id: 'APL-YYYY-XXX'
+  apelante: 'nombre del sancionado'
+  sancion_original: 'REF-YYYY-XXX'
+  fecha_sancion: 'YYYY-MM-DDTHH:MM:SSZ'
+  fecha_apelacion: 'YYYY-MM-DDTHH:MM:SSZ'
   argumentos:
-    - "razón 1"
-    - "razón 2"
+    - 'razón 1'
+    - 'razón 2'
   evidencia:
-    - hash_sha3_512: "..."
-    - timestamp: "..."
-  solicitud: "revocación | reducción | sustitución"
-  firma: "◯_● · 51/49/100"
+    - hash_sha3_512: '...'
+    - timestamp: '...'
+  solicitud: 'revocación | reducción | sustitución'
+  firma: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Proceso
@@ -113,13 +115,13 @@ Pasado ese plazo, la sanción queda firme e irrevocable.
 
 ## 🜆 Escenarios posibles
 
-| Escenario              | Resultado                          |
-|------------------------|-------------------------------------|
-| Apelación aceptada     | Sanción revocada o reducida        |
-| Apelación parcial      | Sanción modificada                 |
-| Apelación rechazada    | Sanción ratificada                 |
-| Veto humano aplicado   | Decisión final del fundador        |
-| Apelación fuera plazo  | Rechazada automáticamente          |
+| Escenario             | Resultado                   |
+| --------------------- | --------------------------- |
+| Apelación aceptada    | Sanción revocada o reducida |
+| Apelación parcial     | Sanción modificada          |
+| Apelación rechazada   | Sanción ratificada          |
+| Veto humano aplicado  | Decisión final del fundador |
+| Apelación fuera plazo | Rechazada automáticamente   |
 
 ## 🜇 Reglas
 

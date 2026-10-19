@@ -17,15 +17,16 @@
 
 # ✍️ FUENTES CANÓNICAS
 
-### *Tipografía del movimiento*
+### _Tipografía del movimiento_
 
-### *"La letra correcta es parte de la firma."*
+### _"La letra correcta es parte de la firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  F U E N T E S  ·  ◯_●                               ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,12 +48,12 @@
 
 ## 🜂 Fuentes canónicas
 
-| Fuente           | Licencia  | Uso                     |
-|------------------|-----------|-------------------------|
-| JetBrains Mono   | OFL 1.1   | Cuerpo principal        |
-| Fira Code        | OFL 1.1   | Alternativa mono        |
-| Inter            | OFL 1.1   | Editorial               |
-| Courier New      | Sistema   | Fallback                |
+| Fuente         | Licencia | Uso              |
+| -------------- | -------- | ---------------- |
+| JetBrains Mono | OFL 1.1  | Cuerpo principal |
+| Fira Code      | OFL 1.1  | Alternativa mono |
+| Inter          | OFL 1.1  | Editorial        |
+| Courier New    | Sistema  | Fallback         |
 
 ## 🜃 Reglas
 

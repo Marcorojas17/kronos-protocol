@@ -25,10 +25,11 @@ export class Pacto {
   }
 
   validar() {
-    const valido = this.humano + this.ia === this.real
-      && this.humano === 51
-      && this.ia === 49
-      && this.real === 100;
+    const valido =
+      this.humano + this.ia === this.real &&
+      this.humano === 51 &&
+      this.ia === 49 &&
+      this.real === 100;
 
     return {
       valido,
@@ -36,9 +37,7 @@ export class Pacto {
       ia: this.ia,
       real: this.real,
       modelo: this.modelo,
-      veredicto: valido
-        ? 'PACTO VÁLIDO · 51/49/100'
-        : 'PACTO ROTO · HALT',
+      veredicto: valido ? 'PACTO VÁLIDO · 51/49/100' : 'PACTO ROTO · HALT',
       sellado: SEAL,
     };
   }

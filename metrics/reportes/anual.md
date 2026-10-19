@@ -7,22 +7,22 @@
 
 # 🗓️ REPORTE ANUAL
 
-### *2026 · Año fundacional*
+### _2026 · Año fundacional_
 
-### *"El primer año no se improvisa. Se firma."*
+### _"El primer año no se improvisa. Se firma."_
 
 </div>
 
 ## 🜂 Resumen del año
 
-| KPI                       | Meta    | Real | %    |
-|---------------------------|---------|------|------|
-| Visitantes únicos         | 100,000 | 0    | 0%   |
-| Firmas totales            | 1,000   | 1    | 0.1% |
-| Suscriptores newsletter   | 5,000   | 0    | 0%   |
-| Embajadores E-1           | 10      | 0    | 0%   |
-| Nodos activos             | 2       | 1    | 50%  |
-| Secciones del árbol       | 24      | 22   | 92%  |
+| KPI                     | Meta    | Real | %    |
+| ----------------------- | ------- | ---- | ---- |
+| Visitantes únicos       | 100,000 | 0    | 0%   |
+| Firmas totales          | 1,000   | 1    | 0.1% |
+| Suscriptores newsletter | 5,000   | 0    | 0%   |
+| Embajadores E-1         | 10      | 0    | 0%   |
+| Nodos activos           | 2       | 1    | 50%  |
+| Secciones del árbol     | 24      | 22   | 92%  |
 
 ## 🜃 Hitos del año
 

@@ -5,10 +5,12 @@ Herramienta de diagnóstico para parsear y visualizar logs de eventos WiFi (IWC)
 ## ¿Qué hace?
 
 `parser.js` procesa el texto crudo de los logs y extrae eventos clave: `good_link`, `poor_link`, `connect`, `disconnect`, `net_disconnect`, `app`, `qtable` y `qaction`. Expone dos funciones globales:
+
 - `window.IWC.parseLog(texto)`
 - `window.IWC.summarize(eventos)`
 
 `index.html` es un dashboard que no depende de subir archivos: pegas el log en el textarea, le das a "Analizar" y te muestra:
+
 - Tarjetas resumen
 - Ranking de APs por RSSI (mejor y peor)
 - Gráfico de barras de eventos por hora (Chart.js vía CDN)
@@ -33,4 +35,5 @@ Herramienta de diagnóstico para parsear y visualizar logs de eventos WiFi (IWC)
 - Si quieres procesar logs masivos, usa la consola del navegador para llamar a `window.IWC.parseLog()` directamente.
 
 ---
-*PVA · Protocolo Vida Autopoiética*
+
+_PVA · Protocolo Vida Autopoiética_

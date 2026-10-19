@@ -23,9 +23,11 @@
 }
 
 .card::before {
-  content: "";
+  content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: var(--accent);
   transform: scaleX(0);
@@ -36,10 +38,12 @@
 .card:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover::before { transform: scaleX(1); }
+.card:hover::before {
+  transform: scaleX(1);
+}
 
 .card-icon {
   font-size: 2em;
@@ -62,14 +66,21 @@
 
 .card-seal {
   position: absolute;
-  top: 8px; right: 12px;
+  top: 8px;
+  right: 12px;
   color: var(--fg-2);
   font-size: 11px;
 }
 
-.card-compact { padding: 12px; }
-.card-compact h3 { font-size: 0.9em; }
+.card-compact {
+  padding: 12px;
+}
+.card-compact h3 {
+  font-size: 0.9em;
+}
 
 @media (max-width: 720px) {
-  .cards-grid { grid-template-columns: 1fr; }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }

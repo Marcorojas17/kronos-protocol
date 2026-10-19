@@ -1,140 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🔒 Bóveda · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
-#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
-.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
-h1{font-family:'Cinzel',serif;font-size:38px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
-.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
-.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
-.hero{text-align:center;padding:40px 20px;background:rgba(15,15,24,.5);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.3);margin-bottom:30px}
-.hero .num{font-family:'Cinzel',serif;font-size:64px;color:#ffd700;text-shadow:0 0 40px rgba(255,215,0,.7)}
-.hero .lbl{color:#6a8f6a;font-size:11px;letter-spacing:.3em;margin-top:10px}
-.tabla{background:rgba(15,15,24,.6);border:1px solid rgba(0,255,65,.2);padding:25px;margin-bottom:20px}
-.tabla h3{color:#ffd700;font-size:13px;letter-spacing:.2em;margin-bottom:15px;font-family:'Cinzel',serif}
-.tabla ul{list-style:none;font-size:12px;line-height:2;color:#c8ffc8}
-.tabla li:before{content:'▸ ';color:#00ff41;margin-right:6px}
-.datos{background:rgba(15,15,24,.6);border:1px solid rgba(255,215,0,.25);padding:25px;font-size:12px;line-height:2}
-.datos .k{color:#ffd700;display:inline-block;width:140px}
-.datos .v{color:#00ff41}
-footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
-footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
-@media(max-width:600px){h1{font-size:24px}.hero .num{font-size:44px}}
-</style>
-</head>
-<body>
-<canvas id="bg"></canvas>
-<div class="wrap">
-<h1>Kronos Vault</h1>
-<div class="sub">BÓVEDA CRIPTOGRÁFICA · YHDRYH-92CE</div>
-<div class="cita">"La bóveda no se abre con permiso. Se abre con firma."</div>
-<div class="hero">
-<div class="num">100</div>
-<div class="lbl">PLAZAS FUNDACIONALES</div>
-</div>
-<div class="tabla">
-<h3>▼ PRINCIPIOS DE LA BÓVEDA</h3>
-<ul>
-<li>Integridad: cadena de custodia criptográfica irrompible</li>
-<li>Trazabilidad: fecha, origen y propósito de cada uso</li>
-<li>No comercialización: lucro prohibido sin autorización expresa</li>
-<li>No entrenamiento de IA: prohibición explícita de uso para modelos</li>
-<li>Citación obligatoria: atribución completa a Marco A. Rojas V.</li>
-<li>Defensa activa: alertas y acciones legales ante violaciones</li>
-</ul>
-</div>
-<div class="datos">
-<div><span class="k">Safe Creative:</span><span class="v">2607146379465</span></div>
-<div><span class="k">Fecha registro:</span><span class="v">14 jul 2026 · 00:46 UTC</span></div>
-<div><span class="k">Anclaje:</span><span class="v">Ethereum mainnet</span></div>
-<div><span class="k">Vigencia:</span><span class="v">Hasta 2099</span></div>
-<div><span class="k">Plazas:</span><span class="v">100 fundacionales</span></div>
-<div><span class="k">Versión:</span><span class="v">0.1.0 (Fase Génesis)</span></div>
-</div>
-<footer>
-<span class="s">◯_● · 51/49/100</span>
-Marco Antonio Rojas Valdovinos · Toluca · 2026<br>
-NODO YHDRYH-92CE · SCDR-001
-</footer>
-</div>
-<script>
-// ANIMACIÓN ÚNICA: Anillos concéntricos girando como combinación de caja fuerte
-const c = document.getElementById('bg'), ctx = c.getContext('2d');
-let W, H;
-function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
-rs(); addEventListener('resize', rs);
-
-// Anillos con distintas velocidades y direcciones
-const anillos = [
-  {r: 380, vel: 0.001, dir: 1, marcas: 40, color: 'rgba(0,255,65,0.15)'},
-  {r: 320, vel: 0.0015, dir: -1, marcas: 32, color: 'rgba(0,255,65,0.2)'},
-  {r: 260, vel: 0.002, dir: 1, marcas: 24, color: 'rgba(255,215,0,0.25)'},
-  {r: 200, vel: 0.003, dir: -1, marcas: 16, color: 'rgba(255,215,0,0.3)'},
-  {r: 140, vel: 0.004, dir: 1, marcas: 12, color: 'rgba(0,255,65,0.35)'},
-  {r: 80, vel: 0.006, dir: -1, marcas: 8, color: 'rgba(255,215,0,0.4)'}
-];
-
-function draw(){
-  ctx.fillStyle = 'rgba(3,3,8,0.15)';
-  ctx.fillRect(0,0,W,H);
-  
-  const cx = W/2, cy = H/2;
-  const t = Date.now() * 0.001;
-  
-  // Anillo central pulsante
-  const pulso = 1 + Math.sin(t*2) * 0.1;
-  ctx.beginPath();
-  ctx.arc(cx, cy, 25 * pulso, 0, Math.PI*2);
-  ctx.strokeStyle = 'rgba(255,215,0,0.8)';
-  ctx.lineWidth = 2;
-  ctx.shadowColor = '#ffd700'; ctx.shadowBlur = 30;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-  
-  // Dibujar cada anillo
-  for(const a of anillos){
-    const rot = t * a.vel * 1000 * a.dir;
-    
-    // círculo base
-    ctx.beginPath();
-    ctx.arc(cx, cy, a.r, 0, Math.PI*2);
-    ctx.strokeStyle = a.color;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    
-    // marcas alrededor
-    for(let i = 0; i < a.marcas; i++){
-      const angle = (i / a.marcas) * Math.PI * 2 + rot;
-      const x1 = cx + Math.cos(angle) * (a.r - 6);
-      const y1 = cy + Math.sin(angle) * (a.r - 6);
-      const x2 = cx + Math.cos(angle) * (a.r + 6);
-      const y2 = cy + Math.sin(angle) * (a.r + 6);
-      
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.strokeStyle = a.color;
-      ctx.lineWidth = i % 4 === 0 ? 2 : 1;
-      ctx.stroke();
-      
-      // marca dorada cada 4
-      if(i % 4 === 0){
-        ctx.beginPath();
-        ctx.arc(x2, y2, 2, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(255,215,0,0.5)';
-        ctx.fill();
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔒 Bóveda · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
-  }
-  
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
+      body {
+        background: #030308;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: auto;
+        padding: 60px 20px;
+        position: relative;
+        z-index: 1;
+      }
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-size: 38px;
+        letter-spacing: 0.25em;
+        color: #ffd700;
+        text-align: center;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        margin-bottom: 15px;
+      }
+      .sub {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        margin-bottom: 40px;
+      }
+      .cita {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-style: italic;
+        color: #ffd700;
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+      .hero {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(15, 15, 24, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        margin-bottom: 30px;
+      }
+      .hero .num {
+        font-family: 'Cinzel', serif;
+        font-size: 64px;
+        color: #ffd700;
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+      }
+      .hero .lbl {
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        margin-top: 10px;
+      }
+      .tabla {
+        background: rgba(15, 15, 24, 0.6);
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+      .tabla h3 {
+        color: #ffd700;
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        margin-bottom: 15px;
+        font-family: 'Cinzel', serif;
+      }
+      .tabla ul {
+        list-style: none;
+        font-size: 12px;
+        line-height: 2;
+        color: #c8ffc8;
+      }
+      .tabla li:before {
+        content: '▸ ';
+        color: #00ff41;
+        margin-right: 6px;
+      }
+      .datos {
+        background: rgba(15, 15, 24, 0.6);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        padding: 25px;
+        font-size: 12px;
+        line-height: 2;
+      }
+      .datos .k {
+        color: #ffd700;
+        display: inline-block;
+        width: 140px;
+      }
+      .datos .v {
+        color: #00ff41;
+      }
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 215, 0, 0.15);
+      }
+      footer .s {
+        color: #ffd700;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.3em;
+      }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 24px;
+        }
+        .hero .num {
+          font-size: 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="wrap">
+      <h1>Kronos Vault</h1>
+      <div class="sub">BÓVEDA CRIPTOGRÁFICA · YHDRYH-92CE</div>
+      <div class="cita">"La bóveda no se abre con permiso. Se abre con firma."</div>
+      <div class="hero">
+        <div class="num">100</div>
+        <div class="lbl">PLAZAS FUNDACIONALES</div>
+      </div>
+      <div class="tabla">
+        <h3>▼ PRINCIPIOS DE LA BÓVEDA</h3>
+        <ul>
+          <li>Integridad: cadena de custodia criptográfica irrompible</li>
+          <li>Trazabilidad: fecha, origen y propósito de cada uso</li>
+          <li>No comercialización: lucro prohibido sin autorización expresa</li>
+          <li>No entrenamiento de IA: prohibición explícita de uso para modelos</li>
+          <li>Citación obligatoria: atribución completa a Marco A. Rojas V.</li>
+          <li>Defensa activa: alertas y acciones legales ante violaciones</li>
+        </ul>
+      </div>
+      <div class="datos">
+        <div>
+          <span class="k">Safe Creative:</span><span class="v">2607146379465</span>
+        </div>
+        <div>
+          <span class="k">Fecha registro:</span
+          ><span class="v">14 jul 2026 · 00:46 UTC</span>
+        </div>
+        <div>
+          <span class="k">Anclaje:</span><span class="v">Ethereum mainnet</span>
+        </div>
+        <div><span class="k">Vigencia:</span><span class="v">Hasta 2099</span></div>
+        <div>
+          <span class="k">Plazas:</span><span class="v">100 fundacionales</span>
+        </div>
+        <div>
+          <span class="k">Versión:</span><span class="v">0.1.0 (Fase Génesis)</span>
+        </div>
+      </div>
+      <footer>
+        <span class="s">◯_● · 51/49/100</span>
+        Marco Antonio Rojas Valdovinos · Toluca · 2026<br />
+        NODO YHDRYH-92CE · SCDR-001
+      </footer>
+    </div>
+    <script>
+      // ANIMACIÓN ÚNICA: Anillos concéntricos girando como combinación de caja fuerte
+      const c = document.getElementById('bg'),
+        ctx = c.getContext('2d');
+      let W, H;
+      function rs() {
+        W = c.width = innerWidth;
+        H = c.height = innerHeight;
+      }
+      rs();
+      addEventListener('resize', rs);
+
+      // Anillos con distintas velocidades y direcciones
+      const anillos = [
+        { r: 380, vel: 0.001, dir: 1, marcas: 40, color: 'rgba(0,255,65,0.15)' },
+        { r: 320, vel: 0.0015, dir: -1, marcas: 32, color: 'rgba(0,255,65,0.2)' },
+        { r: 260, vel: 0.002, dir: 1, marcas: 24, color: 'rgba(255,215,0,0.25)' },
+        { r: 200, vel: 0.003, dir: -1, marcas: 16, color: 'rgba(255,215,0,0.3)' },
+        { r: 140, vel: 0.004, dir: 1, marcas: 12, color: 'rgba(0,255,65,0.35)' },
+        { r: 80, vel: 0.006, dir: -1, marcas: 8, color: 'rgba(255,215,0,0.4)' },
+      ];
+
+      function draw() {
+        ctx.fillStyle = 'rgba(3,3,8,0.15)';
+        ctx.fillRect(0, 0, W, H);
+
+        const cx = W / 2,
+          cy = H / 2;
+        const t = Date.now() * 0.001;
+
+        // Anillo central pulsante
+        const pulso = 1 + Math.sin(t * 2) * 0.1;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 25 * pulso, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255,215,0,0.8)';
+        ctx.lineWidth = 2;
+        ctx.shadowColor = '#ffd700';
+        ctx.shadowBlur = 30;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Dibujar cada anillo
+        for (const a of anillos) {
+          const rot = t * a.vel * 1000 * a.dir;
+
+          // círculo base
+          ctx.beginPath();
+          ctx.arc(cx, cy, a.r, 0, Math.PI * 2);
+          ctx.strokeStyle = a.color;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          // marcas alrededor
+          for (let i = 0; i < a.marcas; i++) {
+            const angle = (i / a.marcas) * Math.PI * 2 + rot;
+            const x1 = cx + Math.cos(angle) * (a.r - 6);
+            const y1 = cy + Math.sin(angle) * (a.r - 6);
+            const x2 = cx + Math.cos(angle) * (a.r + 6);
+            const y2 = cy + Math.sin(angle) * (a.r + 6);
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = a.color;
+            ctx.lineWidth = i % 4 === 0 ? 2 : 1;
+            ctx.stroke();
+
+            // marca dorada cada 4
+            if (i % 4 === 0) {
+              ctx.beginPath();
+              ctx.arc(x2, y2, 2, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(255,215,0,0.5)';
+              ctx.fill();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    </script>
+  </body>
 </html>

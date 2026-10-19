@@ -24,7 +24,7 @@ criptográficos requieren más consenso que las mejoras menores.
 ## API pública
 
 ```js
-import { QuorumMayorias } from "./quorum.js";
+import { QuorumMayorias } from './quorum.js';
 
 const q = new QuorumMayorias();
 

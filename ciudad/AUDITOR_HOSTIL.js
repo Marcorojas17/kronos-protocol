@@ -37,9 +37,9 @@
 async function auditarKRONOS_V4() {
   const acta = window.__actaKronos;
   if (!acta)
-    return "ROTO: No hay acta en window.__actaKronos. Cargá el acta primero en verificar.html";
+    return 'ROTO: No hay acta en window.__actaKronos. Cargá el acta primero en verificar.html';
 
-  console.log("--- MODO HOSTIL v4 · ATACANDO ACTA REAL ---");
+  console.log('--- MODO HOSTIL v4 · ATACANDO ACTA REAL ---');
 
   // ─── Extracción de datos del acta ─────────────────────────────
   const hashes = acta.documentos.flatMap((d) => d.articulos).map((a) => a.hash);
@@ -51,13 +51,10 @@ async function auditarKRONOS_V4() {
 
   // ─── Utilidades ───────────────────────────────────────────────
   async function sha256Hex(str) {
-    const buf = await crypto.subtle.digest(
-      "SHA-256",
-      new TextEncoder().encode(str),
-    );
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   async function calcularMerkleRoot(hashes) {
@@ -84,8 +81,8 @@ async function auditarKRONOS_V4() {
 
   // ─── ATAQUE 1 · Merkle Root ───────────────────────────────────
   const rootCalculado = await calcularMerkleRoot(hashes);
-  console.log("Root calculado:", rootCalculado);
-  console.log("Root declarado:", rootDeclarado);
+  console.log('Root calculado:', rootCalculado);
+  console.log('Root declarado:', rootDeclarado);
   if (rootCalculado !== rootDeclarado) {
     return `ROTO: Merkle ${rootCalculado} != ${rootDeclarado}`;
   }
@@ -95,34 +92,32 @@ async function auditarKRONOS_V4() {
     const pubKeyBytes = hexToBytes(pubKeyHex);
     const sigBytes = hexToBytes(firmaHex);
     const key = await crypto.subtle.importKey(
-      "raw",
+      'raw',
       pubKeyBytes,
-      { name: "Ed25519" },
+      { name: 'Ed25519' },
       false,
-      ["verify"],
+      ['verify'],
     );
     const msg = new TextEncoder().encode(rootCalculado);
     const firmaValida = await crypto.subtle.verify(
-      { name: "Ed25519" },
+      { name: 'Ed25519' },
       key,
       sigBytes,
       msg,
     );
-    console.log("¿Firma Ed25519 válida?", firmaValida);
-    if (!firmaValida) return "ROTO: Firma inválida";
+    console.log('¿Firma Ed25519 válida?', firmaValida);
+    if (!firmaValida) return 'ROTO: Firma inválida';
   } catch (e) {
     return `INCONCLUSO: Navegador sin Ed25519 - ${e.message}`;
   }
 
   // ─── ATAQUE 3 · Anclaje Ethereum (verificación manual) ────────
+  console.log('Cierre manual: revisá que la TX de Ethereum contenga este root.');
   console.log(
-    "Cierre manual: revisá que la TX de Ethereum contenga este root.",
-  );
-  console.log(
-    "https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+    'https://etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e',
   );
 
-  return "VERIFICADO - Merkle y Ed25519 intactos. No pude romperte.";
+  return 'VERIFICADO - Merkle y Ed25519 intactos. No pude romperte.';
 }
 
 // Exponer globalmente para uso desde consola

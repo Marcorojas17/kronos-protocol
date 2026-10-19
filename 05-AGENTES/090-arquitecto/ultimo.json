@@ -65,10 +65,7 @@
     "cobertura_pct": 26.7,
     "huerfanas": 27
   },
-  "supuestos": [
-    "El repo tiene raíz accesible",
-    "Las carpetas esperadas son las de v12 CIMIENTOS"
-  ],
+  "supuestos": ["El repo tiene raíz accesible", "Las carpetas esperadas son las de v12 CIMIENTOS"],
   "riesgos": [
     "Renombrar carpetas sin actualizar ESTRUCTURA_ESPERADA rompe el reporte",
     "Carpetas vacías cuentan como presentes"

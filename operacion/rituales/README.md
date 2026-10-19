@@ -21,11 +21,11 @@ Definir, ejecutar y registrar rituales periódicos firmados con Ed25519: diario,
 ## API pública
 
 ```js
-import { Rituales } from "./rituales.js";
+import { Rituales } from './rituales.js';
 
 const rituales = new Rituales(core, storage, bus);
 const estado = await rituales.estado(humano);
-const registro = await rituales.ejecutar("diario", notas, "optimo", humano);
+const registro = await rituales.ejecutar('diario', notas, 'optimo', humano);
 const ok = await rituales.verificar(registro);
 const historial = await rituales.historial();
 const blob = await rituales.exportar();

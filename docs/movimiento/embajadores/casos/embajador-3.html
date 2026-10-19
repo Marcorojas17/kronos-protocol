@@ -1,114 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🔨 CASO 3 · EL CONSTRUCTOR · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg">
-<link rel="stylesheet" href="/kronos-protocol/arkhe-style.css">
-</head>
-<body style="padding-bottom: 80px;">
-<a href="/kronos-protocol/index.html" class="back" style="display:inline-block;margin-bottom:20px;color:#D4AF37;text-decoration:none;">◯_● VOLVER AL ÍNDICE</a>
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!--                                                                           -->
-<!--    ██████╗ ██████╗ ███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗ ██████╗████████╗ ██████╗ ██████╗  -->
-<!--   ██╔════╝██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗ -->
-<!--   ██║     ██║   ██║██╔██╗ ██║███████╗   ██║   ██████╔╝██║   ██║██║        ██║   ██║   ██║██████╔╝ -->
-<!--   ██║     ██║   ██║██║╚██╗██║╚════██║   ██║   ██╔══██╗██║   ██║██║        ██║   ██║   ██║██╔══██╗ -->
-<!--   ╚██████╗╚██████╔╝██║ ╚████║███████║   ██║   ██║  ██║╚██████╔╝╚██████╗   ██║   ╚██████╔╝██║  ██║ -->
-<!--    ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ -->
-<!--                                                                           -->
-<!--   ▓▒░ CASO 3 · EL CONSTRUCTOR · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓        -->
-<!--                                                                           -->
-<!--   NODO: YHDRYH-92CE · GENESIS: K28-M05-MN01-YHDRYH-92CE                  -->
-<!--                                                                           -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔨 CASO 3 · EL CONSTRUCTOR · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg" />
+    <link rel="stylesheet" href="/kronos-protocol/arkhe-style.css" />
+  </head>
+  <body style="padding-bottom: 80px">
+    <a
+      href="/kronos-protocol/index.html"
+      class="back"
+      style="
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #d4af37;
+        text-decoration: none;
+      "
+      >◯_● VOLVER AL ÍNDICE</a
+    >
+    <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+    <!--                                                                           -->
+    <!--    ██████╗ ██████╗ ███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗ ██████╗████████╗ ██████╗ ██████╗  -->
+    <!--   ██╔════╝██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗ -->
+    <!--   ██║     ██║   ██║██╔██╗ ██║███████╗   ██║   ██████╔╝██║   ██║██║        ██║   ██║   ██║██████╔╝ -->
+    <!--   ██║     ██║   ██║██║╚██╗██║╚════██║   ██║   ██╔══██╗██║   ██║██║        ██║   ██║   ██║██╔══██╗ -->
+    <!--   ╚██████╗╚██████╔╝██║ ╚████║███████║   ██║   ██║  ██║╚██████╔╝╚██████╗   ██║   ╚██████╔╝██║  ██║ -->
+    <!--    ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ -->
+    <!--                                                                           -->
+    <!--   ▓▒░ CASO 3 · EL CONSTRUCTOR · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓        -->
+    <!--                                                                           -->
+    <!--   NODO: YHDRYH-92CE · GENESIS: K28-M05-MN01-YHDRYH-92CE                  -->
+    <!--                                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 
-<div align="center">
+    <div align="center">
+      # 🔨 CASO 3 · EL CONSTRUCTOR ### *Aquel que contribuye al código del sistema* ###
+      *"El que construye no habla. Firma commits."* ---
 
-# 🔨 CASO 3 · EL CONSTRUCTOR
-
-### *Aquel que contribuye al código del sistema*
-
-### *"El que construye no habla. Firma commits."*
-
----
-
-
-<pre><code>
+      <pre><code>
 </code></pre>
 
-        ╔═══════════════════════════════════════════════════════════════╗
-        ║                                                               ║
-        ║   ◯_●  ·  C O N S T R U C T O R  ·  ◯_●                       ║
-        ║                                                               ║
-        ║   ┌───────────────────────────────────────────────────────┐   ║
-        ║   │  Nombre:      [pendiente · 1er contribuidor técnico]  │   ║
-        ║   │  Nivel:       E-3                                     │   ║
-        ║   │  Región:      [pendiente]                             │   ║
-        ║   │  Ahijados:    —                                       │   ║
-        ║   │  Obras:       —                                       │   ║
-        ║   │  Nodos:       —                                       │   ║
-        ║   │  Commits:     —                                       │   ║
-        ║   │  PRs merged:  —                                       │   ║
-        ║   │                                                       │   ║
-        ║   │  ESTADO: ● PENDIENTE ●                                │   ║
-        ║   └───────────────────────────────────────────────────────┘   ║
-        ║                                                               ║
-        ╚═══════════════════════════════════════════════════════════════╝
+      ╔═══════════════════════════════════════════════════════════════╗ ║ ║ ║ ◯_● · C O
+      N S T R U C T O R · ◯_● ║ ║ ║ ║
+      ┌───────────────────────────────────────────────────────┐ ║ ║ │ Nombre: [pendiente
+      · 1er contribuidor técnico] │ ║ ║ │ Nivel: E-3 │ ║ ║ │ Región: [pendiente] │ ║ ║ │
+      Ahijados: — │ ║ ║ │ Obras: — │ ║ ║ │ Nodos: — │ ║ ║ │ Commits: — │ ║ ║ │ PRs
+      merged: — │ ║ ║ │ │ ║ ║ │ ESTADO: ● PENDIENTE ● │ ║ ║
+      └───────────────────────────────────────────────────────┘ ║ ║ ║
+      ╚═══════════════════════════════════════════════════════════════╝
 
-<pre><code>
+      <pre><code>
 </code></pre>
+    </div>
 
-
-</div>
-
-<h2>🜂 Historia</h2>
-<p>El <strong>Constructor</strong> es el embajador que además de representar el
-movimiento, contribuye directamente al <strong>código fuente</strong> de ARKHÉ ZERO.</p>
-<p>Su firma no está solo en las obras, sino en los commits. Cada línea
-que escribe queda anclada al repositorio y eventualmente al Índice Cero.</p>
-<h2>🜃 Áreas de contribución</h2>
-<table>
-<thead>
-<tr>
-<th>Área</th>
-<th>Contribución</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>crypto/</code></td>
-<td>Implementación de primitivas PQC</td>
-</tr>
-<tr>
-<td><code>cimiento/</code></td>
-<td>Anclaje Ethereum · storage local</td>
-</tr>
-<tr>
-<td><code>provenance/</code></td>
-<td>C2PA · watermarking · timestamping</td>
-</tr>
-<tr>
-<td><code>agents/</code></td>
-<td>Enjambre · consenso · protocolos</td>
-</tr>
-<tr>
-<td><code>apps/</code></td>
-<td>Web · HTML · CSS · JS</td>
-</tr>
-<tr>
-<td><code>docs/</code></td>
-<td>Documentación · ADRs · guías</td>
-</tr>
-<tr>
-<td><code>contracts/</code></td>
-<td>Solidity · smart contracts</td>
-</tr>
-</tbody>
-</table>
-<h2>🜄 Requisitos técnicos</h2>
-<pre><code class="language-diff">+ Al menos 1 PR merged aprobado por quórum 4/5
+    <h2>🜂 Historia</h2>
+    <p>
+      El <strong>Constructor</strong> es el embajador que además de representar el
+      movimiento, contribuye directamente al <strong>código fuente</strong> de ARKHÉ
+      ZERO.
+    </p>
+    <p>
+      Su firma no está solo en las obras, sino en los commits. Cada línea que escribe
+      queda anclada al repositorio y eventualmente al Índice Cero.
+    </p>
+    <h2>🜃 Áreas de contribución</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Área</th>
+          <th>Contribución</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>crypto/</code></td>
+          <td>Implementación de primitivas PQC</td>
+        </tr>
+        <tr>
+          <td><code>cimiento/</code></td>
+          <td>Anclaje Ethereum · storage local</td>
+        </tr>
+        <tr>
+          <td><code>provenance/</code></td>
+          <td>C2PA · watermarking · timestamping</td>
+        </tr>
+        <tr>
+          <td><code>agents/</code></td>
+          <td>Enjambre · consenso · protocolos</td>
+        </tr>
+        <tr>
+          <td><code>apps/</code></td>
+          <td>Web · HTML · CSS · JS</td>
+        </tr>
+        <tr>
+          <td><code>docs/</code></td>
+          <td>Documentación · ADRs · guías</td>
+        </tr>
+        <tr>
+          <td><code>contracts/</code></td>
+          <td>Solidity · smart contracts</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>🜄 Requisitos técnicos</h2>
+    <pre><code class="language-diff">+ Al menos 1 PR merged aprobado por quórum 4/5
 + Firma GPG en todos los commits
 + Firma criptográfica del código con ML-DSA-87
 + Adherencia total al LICENSE-KINTSUGI.md
@@ -117,51 +113,54 @@ que escribe queda anclada al repositorio y eventualmente al Índice Cero.</p>
 - NUNCA introducir backdoors
 - NUNCA romper el pacto 51/49/100
 </code></pre>
-<h2>🜁 Testimonio (placeholder)</h2>
-<blockquote>
-<p><em>"No fundé el movimiento. No prediqué. Solo escribí código.
-Pero cada línea que escribí está firmada, anclada y verificable.
-Ese es mi testimonio."</em></p>
-<p>— <em>[pendiente]</em></p>
-</blockquote>
-<h2>🜆 Métricas del Constructor</h2>
-<table>
-<thead>
-<tr>
-<th>Métrica</th>
-<th>Meta E-3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Commits firmados</td>
-<td>≥ 100</td>
-</tr>
-<tr>
-<td>PRs merged</td>
-<td>≥ 10</td>
-</tr>
-<tr>
-<td>Módulos contribuidos</td>
-<td>≥ 3</td>
-</tr>
-<tr>
-<td>Auditorías de código</td>
-<td>≥ 5</td>
-</tr>
-<tr>
-<td>Reputación técnica</td>
-<td>≥ 98</td>
-</tr>
-</tbody>
-</table>
-<h2>🜇 Firma</h2>
-<pre><code>◯_● · 51/49/100
+    <h2>🜁 Testimonio (placeholder)</h2>
+    <blockquote>
+      <p>
+        <em
+          >"No fundé el movimiento. No prediqué. Solo escribí código. Pero cada línea
+          que escribí está firmada, anclada y verificable. Ese es mi testimonio."</em
+        >
+      </p>
+      <p>— <em>[pendiente]</em></p>
+    </blockquote>
+    <h2>🜆 Métricas del Constructor</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Meta E-3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Commits firmados</td>
+          <td>≥ 100</td>
+        </tr>
+        <tr>
+          <td>PRs merged</td>
+          <td>≥ 10</td>
+        </tr>
+        <tr>
+          <td>Módulos contribuidos</td>
+          <td>≥ 3</td>
+        </tr>
+        <tr>
+          <td>Auditorías de código</td>
+          <td>≥ 5</td>
+        </tr>
+        <tr>
+          <td>Reputación técnica</td>
+          <td>≥ 98</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>🜇 Firma</h2>
+    <pre><code>◯_● · 51/49/100
 Nodo YHDRYH-92CE
 Genesis K28-M05-MN01-YHDRYH-92CE
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · KRONOS · embajadores/caso-3</code></p>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · KRONOS · embajadores/caso-3</code></p>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

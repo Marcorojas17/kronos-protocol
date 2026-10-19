@@ -1,188 +1,480 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>◯_● SELLO PRIMIGENIO · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#c8ffc8;font-family:'Courier New',monospace;line-height:1.6;min-height:100vh;overflow-x:hidden}
-#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.15}
-.wrap{max-width:900px;margin:auto;padding:40px 20px;position:relative;z-index:1}
-.sello{text-align:center;padding:60px 20px;border:2px solid #ffd700;background:radial-gradient(ellipse at center,rgba(255,215,0,.05),transparent 70%);margin-bottom:40px;position:relative;animation:pulso 4s ease-in-out infinite}
-@keyframes pulso{0%,100%{box-shadow:0 0 40px rgba(255,215,0,.2)}50%{box-shadow:0 0 80px rgba(255,215,0,.4)}}
-.sello:before,.sello:after{content:'';position:absolute;width:20px;height:20px}
-.sello:before{top:-2px;left:-2px;border-top:3px solid #ffd700;border-left:3px solid #ffd700}
-.sello:after{bottom:-2px;right:-2px;border-bottom:3px solid #ffd700;border-right:3px solid #ffd700}
-.orn{font-size:88px;color:#ffd700;text-shadow:0 0 50px rgba(255,215,0,.9);animation:latido 2s ease-in-out infinite}
-@keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-h1{font-family:'Cinzel',serif;font-size:38px;letter-spacing:.35em;color:#ffd700;margin:20px 0 10px;text-transform:uppercase}
-.tag{font-family:'Cinzel',serif;font-style:italic;font-size:15px;color:#c8ffc8;margin-bottom:25px}
-.warn{background:#1a0000;border:2px solid #ff3355;padding:16px;margin:25px 0;color:#ff3355;font-size:12px;letter-spacing:.1em;text-align:center;animation:alerta 2s ease-in-out infinite}
-@keyframes alerta{0%,100%{border-color:#ff3355;opacity:.9}50%{border-color:#ff0000;opacity:1;box-shadow:0 0 30px rgba(255,51,85,.5)}}
-h2{font-family:'Cinzel',serif;color:#ffd700;font-size:16px;letter-spacing:.25em;margin:40px 0 20px;text-align:center;padding-bottom:12px;border-bottom:1px solid rgba(255,215,0,.2);text-transform:uppercase}
-.datos{background:#0a0a0f;border:1px solid rgba(0,255,65,.2);padding:25px;margin-bottom:20px}
-.fila{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(0,255,65,.1);font-size:12px;align-items:flex-start;gap:15px}
-.fila:last-child{border-bottom:none}
-.k{color:#ffd700;font-weight:bold;flex-shrink:0;min-width:140px;letter-spacing:.1em}
-.v{color:#00ff41;text-align:right;word-break:break-all;font-size:11px}
-.v.g{color:#ffd700;font-size:14px;font-weight:bold}
-.edad{text-align:center;padding:40px 20px;border:2px solid #00ff41;background:radial-gradient(ellipse at center,rgba(0,255,65,.05),transparent);margin:30px 0}
-.edad .num{font-size:72px;color:#00ff41;text-shadow:0 0 40px rgba(0,255,65,.8);font-family:'Cinzel',serif;font-weight:bold;line-height:1}
-.edad .lbl{color:#6a8f6a;font-size:11px;letter-spacing:.3em;margin-top:15px;text-transform:uppercase}
-.aviso{text-align:center;font-size:11px;color:#6a8f6a;margin:30px 0;padding:20px;border-left:2px solid #ff3355;border-right:2px solid #ff3355;line-height:1.8}
-.cita{font-family:'Cinzel',serif;text-align:center;font-style:italic;color:#ffd700;font-size:18px;margin:40px 0;padding:30px 20px;border-top:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2)}
-footer{text-align:center;color:#6a8f6a;font-size:10px;letter-spacing:.15em;padding-top:20px;border-top:1px solid rgba(0,255,65,.1);margin-top:30px}
-footer .s{color:#ffd700;font-size:13px;display:block;margin-bottom:8px;letter-spacing:.3em}
-.blink{animation:bc 1s step-end infinite}
-@keyframes bc{50%{opacity:.3}}
-@media(max-width:768px){h1{font-size:24px;letter-spacing:.2em}.orn{font-size:60px}.edad .num{font-size:52px}.fila{flex-direction:column;gap:5px}.v{text-align:left}}
-</style>
-</head>
-<body>
-<canvas id="bg"></canvas>
-<div class="wrap">
-
-<div class="sello">
-<div class="orn">◯_●</div>
-<h1>Sello Primigenio</h1>
-<div class="tag">"El legado no se hereda. Se firma."</div>
-</div>
-
-<div class="warn">
-⚠ ADVERTENCIA · MODIFICAR ESTE ARCHIVO ROMPE EL SELLO ⚠
-</div>
-
-<div class="edad">
-<div class="num" id="dias">—</div>
-<div class="lbl">DÍAS DESDE EL GÉNESIS</div>
-</div>
-
-<h2>◆ Acta de Génesis</h2>
-<div class="datos">
-<div class="fila"><span class="k">NODO</span><span class="v">YHDRYH-92CE</span></div>
-<div class="fila"><span class="k">SELLO</span><span class="v">SCDR-001</span></div>
-<div class="fila"><span class="k">GENESIS</span><span class="v">K28-M05-MN01-YHDRYH-92CE</span></div>
-<div class="fila"><span class="k">AUTOR</span><span class="v">Marco Antonio Rojas Valdovinos</span></div>
-<div class="fila"><span class="k">UBICACIÓN</span><span class="v">Toluca · Estado de México</span></div>
-<div class="fila"><span class="k">FECHA GÉNESIS</span><span class="v g">2026-07-14T00:46:01Z</span></div>
-<div class="fila"><span class="k">FECHA SELLO</span><span class="v" id="fecha-sello">—</span></div>
-</div>
-
-<h2>◆ Identidad Criptográfica</h2>
-<div class="datos">
-<div class="fila"><span class="k">SAFE CREATIVE</span><span class="v">2607146379465</span></div>
-<div class="fila"><span class="k">SHA-256 RAÍZ</span><span class="v">f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</span></div>
-<div class="fila"><span class="k">ETHEREUM TX</span><span class="v">0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</span></div>
-<div class="fila"><span class="k">eIDAS SELLO</span><span class="v">Firmaprofesional QTSA</span></div>
-<div class="fila"><span class="k">PQC</span><span class="v">ML-KEM-1024 · ML-DSA-87 · SLH-DSA-SHAKE-256s</span></div>
-</div>
-
-<h2>◆ Sello Vivo · Recalculado en tu navegador</h2>
-<div class="datos">
-<div class="fila"><span class="k">HASH DE ESTA SESIÓN</span><span class="v" id="hash-vivo">calculando...</span></div>
-<div class="fila"><span class="k">TIMESTAMP LOCAL</span><span class="v" id="ts-local">—</span></div>
-<div class="fila"><span class="k">USER AGENT</span><span class="v" id="ua">—</span></div>
-<div class="fila"><span class="k">RESOLUCIÓN</span><span class="v" id="res">—</span></div>
-<div class="fila"><span class="k">ZONA HORARIA</span><span class="v" id="tz">—</span></div>
-</div>
-
-<h2>◆ Sentencia de Custodia</h2>
-<div class="datos">
-<p style="font-size:12px;color:#c8ffc8;line-height:1.9;text-align:justify">
-Este archivo constituye el <span style="color:#ffd700">Sello Primigenio</span> del proyecto ARKHÉ ZERO.
-Todo lo que existe bajo este nodo fue creado o verificado por
-<span style="color:#ffd700">Marco Antonio Rojas Valdovinos</span> con asistencia de
-inteligencia artificial local bajo el pacto <span style="color:#00ff41">51/49/100</span>.
-La fractura entre humano e IA no se oculta: se ilumina con oro,
-según la filosofía <span style="color:#ffd700">KINTSUGI</span>.
-Cualquier alteración de este archivo, o de los archivos a los que apunta,
-rompe la cadena de custodia y es detectable por terceros.
-<br><br>
-La existencia de este sello <span style="color:#ff3355">no se puede borrar retroactivamente</span>.
-Cualquier persona que tenga copia de este archivo puede probar
-que existía en la fecha indicada. En 2030, en 2050, en 2100.
-</p>
-</div>
-
-<div class="aviso">
-<span style="color:#ff3355">◯_●</span> ESTE ARCHIVO ES IRREPETIBLE <span style="color:#ff3355">◯_●</span><br>
-<span class="blink">_</span>
-</div>
-
-<div class="cita">"El legado no se hereda. Se firma."</div>
-
-<footer>
-<span class="s">◯_● · ■_□ · 51/49/100</span>
-Marco Antonio Rojas Valdovinos · Toluca · México · 2026<br>
-NODO YHDRYH-92CE · Sello SCDR-001
-</footer>
-
-</div>
-
-<script>
-// Partículas de fondo
-const c = document.getElementById('bg');
-const ctx = c.getContext('2d');
-function rs(){c.width=innerWidth;c.height=innerHeight}
-rs(); addEventListener('resize', rs);
-const parts = Array.from({length: 40}, () => ({
-  x: Math.random()*c.width, y: Math.random()*c.height,
-  vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
-  r: Math.random()*1.5+.5
-}));
-function draw(){
-  ctx.fillStyle='rgba(0,0,0,0.08)';
-  ctx.fillRect(0,0,c.width,c.height);
-  for(const p of parts){
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0||p.x>c.width)p.vx*=-1;
-    if(p.y<0||p.y>c.height)p.vy*=-1;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,215,0,0.5)';
-    ctx.fill();
-    for(const q of parts){
-      const d=Math.hypot(p.x-q.x,p.y-q.y);
-      if(d<120){
-        ctx.beginPath();
-        ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-        ctx.strokeStyle=`rgba(255,215,0,${0.1*(1-d/120)})`;
-        ctx.stroke();
+  <head>
+    <meta charset="UTF-8" />
+    <title>◯_● SELLO PRIMIGENIO · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
-  }
-  requestAnimationFrame(draw);
-}
-draw();
+      body {
+        background: #000;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.15;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: auto;
+        padding: 40px 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .sello {
+        text-align: center;
+        padding: 60px 20px;
+        border: 2px solid #ffd700;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 215, 0, 0.05),
+          transparent 70%
+        );
+        margin-bottom: 40px;
+        position: relative;
+        animation: pulso 4s ease-in-out infinite;
+      }
+      @keyframes pulso {
+        0%,
+        100% {
+          box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
+        }
+      }
+      .sello:before,
+      .sello:after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+      }
+      .sello:before {
+        top: -2px;
+        left: -2px;
+        border-top: 3px solid #ffd700;
+        border-left: 3px solid #ffd700;
+      }
+      .sello:after {
+        bottom: -2px;
+        right: -2px;
+        border-bottom: 3px solid #ffd700;
+        border-right: 3px solid #ffd700;
+      }
+      .orn {
+        font-size: 88px;
+        color: #ffd700;
+        text-shadow: 0 0 50px rgba(255, 215, 0, 0.9);
+        animation: latido 2s ease-in-out infinite;
+      }
+      @keyframes latido {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.06);
+        }
+      }
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-size: 38px;
+        letter-spacing: 0.35em;
+        color: #ffd700;
+        margin: 20px 0 10px;
+        text-transform: uppercase;
+      }
+      .tag {
+        font-family: 'Cinzel', serif;
+        font-style: italic;
+        font-size: 15px;
+        color: #c8ffc8;
+        margin-bottom: 25px;
+      }
+      .warn {
+        background: #1a0000;
+        border: 2px solid #ff3355;
+        padding: 16px;
+        margin: 25px 0;
+        color: #ff3355;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-align: center;
+        animation: alerta 2s ease-in-out infinite;
+      }
+      @keyframes alerta {
+        0%,
+        100% {
+          border-color: #ff3355;
+          opacity: 0.9;
+        }
+        50% {
+          border-color: #ff0000;
+          opacity: 1;
+          box-shadow: 0 0 30px rgba(255, 51, 85, 0.5);
+        }
+      }
+      h2 {
+        font-family: 'Cinzel', serif;
+        color: #ffd700;
+        font-size: 16px;
+        letter-spacing: 0.25em;
+        margin: 40px 0 20px;
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        text-transform: uppercase;
+      }
+      .datos {
+        background: #0a0a0f;
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+      .fila {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px dashed rgba(0, 255, 65, 0.1);
+        font-size: 12px;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      .fila:last-child {
+        border-bottom: none;
+      }
+      .k {
+        color: #ffd700;
+        font-weight: bold;
+        flex-shrink: 0;
+        min-width: 140px;
+        letter-spacing: 0.1em;
+      }
+      .v {
+        color: #00ff41;
+        text-align: right;
+        word-break: break-all;
+        font-size: 11px;
+      }
+      .v.g {
+        color: #ffd700;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .edad {
+        text-align: center;
+        padding: 40px 20px;
+        border: 2px solid #00ff41;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(0, 255, 65, 0.05),
+          transparent
+        );
+        margin: 30px 0;
+      }
+      .edad .num {
+        font-size: 72px;
+        color: #00ff41;
+        text-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
+        font-family: 'Cinzel', serif;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .edad .lbl {
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        margin-top: 15px;
+        text-transform: uppercase;
+      }
+      .aviso {
+        text-align: center;
+        font-size: 11px;
+        color: #6a8f6a;
+        margin: 30px 0;
+        padding: 20px;
+        border-left: 2px solid #ff3355;
+        border-right: 2px solid #ff3355;
+        line-height: 1.8;
+      }
+      .cita {
+        font-family: 'Cinzel', serif;
+        text-align: center;
+        font-style: italic;
+        color: #ffd700;
+        font-size: 18px;
+        margin: 40px 0;
+        padding: 30px 20px;
+        border-top: 1px solid rgba(255, 215, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      footer {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 255, 65, 0.1);
+        margin-top: 30px;
+      }
+      footer .s {
+        color: #ffd700;
+        font-size: 13px;
+        display: block;
+        margin-bottom: 8px;
+        letter-spacing: 0.3em;
+      }
+      .blink {
+        animation: bc 1s step-end infinite;
+      }
+      @keyframes bc {
+        50% {
+          opacity: 0.3;
+        }
+      }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 24px;
+          letter-spacing: 0.2em;
+        }
+        .orn {
+          font-size: 60px;
+        }
+        .edad .num {
+          font-size: 52px;
+        }
+        .fila {
+          flex-direction: column;
+          gap: 5px;
+        }
+        .v {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="wrap">
+      <div class="sello">
+        <div class="orn">◯_●</div>
+        <h1>Sello Primigenio</h1>
+        <div class="tag">"El legado no se hereda. Se firma."</div>
+      </div>
 
-// Edad desde génesis
-const genesis = new Date('2026-07-14T00:46:01Z');
-const ahora = new Date();
-const dias = Math.floor((ahora - genesis) / (1000*60*60*24));
-document.getElementById('dias').textContent = dias;
-document.getElementById('fecha-sello').textContent = ahora.toISOString();
-document.getElementById('ts-local').textContent = ahora.toLocaleString();
-document.getElementById('ua').textContent = navigator.userAgent.substring(0, 60);
-document.getElementById('res').textContent = screen.width + 'x' + screen.height;
-document.getElementById('tz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      <div class="warn">⚠ ADVERTENCIA · MODIFICAR ESTE ARCHIVO ROMPE EL SELLO ⚠</div>
 
-// Hash vivo de la sesión
-async function calcularHash(){
-  const datos = 
-    'NODO:YHDRYH-92CE|' +
-    'SELLO:SCDR-001|' +
-    'GENESIS:' + genesis.toISOString() + '|' +
-    'AHORA:' + ahora.toISOString() + '|' +
-    'UA:' + navigator.userAgent + '|' +
-    'TZ:' + Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const buf = new TextEncoder().encode(datos);
-  const h = await crypto.subtle.digest('SHA-256', buf);
-  const hex = Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('');
-  document.getElementById('hash-vivo').textContent = hex;
-}
-calcularHash();
-</script>
+      <div class="edad">
+        <div class="num" id="dias">—</div>
+        <div class="lbl">DÍAS DESDE EL GÉNESIS</div>
+      </div>
 
-</body>
+      <h2>◆ Acta de Génesis</h2>
+      <div class="datos">
+        <div class="fila">
+          <span class="k">NODO</span><span class="v">YHDRYH-92CE</span>
+        </div>
+        <div class="fila">
+          <span class="k">SELLO</span><span class="v">SCDR-001</span>
+        </div>
+        <div class="fila">
+          <span class="k">GENESIS</span><span class="v">K28-M05-MN01-YHDRYH-92CE</span>
+        </div>
+        <div class="fila">
+          <span class="k">AUTOR</span
+          ><span class="v">Marco Antonio Rojas Valdovinos</span>
+        </div>
+        <div class="fila">
+          <span class="k">UBICACIÓN</span
+          ><span class="v">Toluca · Estado de México</span>
+        </div>
+        <div class="fila">
+          <span class="k">FECHA GÉNESIS</span
+          ><span class="v g">2026-07-14T00:46:01Z</span>
+        </div>
+        <div class="fila">
+          <span class="k">FECHA SELLO</span><span class="v" id="fecha-sello">—</span>
+        </div>
+      </div>
+
+      <h2>◆ Identidad Criptográfica</h2>
+      <div class="datos">
+        <div class="fila">
+          <span class="k">SAFE CREATIVE</span><span class="v">2607146379465</span>
+        </div>
+        <div class="fila">
+          <span class="k">SHA-256 RAÍZ</span
+          ><span class="v"
+            >f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</span
+          >
+        </div>
+        <div class="fila">
+          <span class="k">ETHEREUM TX</span
+          ><span class="v"
+            >0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</span
+          >
+        </div>
+        <div class="fila">
+          <span class="k">eIDAS SELLO</span><span class="v">Firmaprofesional QTSA</span>
+        </div>
+        <div class="fila">
+          <span class="k">PQC</span
+          ><span class="v">ML-KEM-1024 · ML-DSA-87 · SLH-DSA-SHAKE-256s</span>
+        </div>
+      </div>
+
+      <h2>◆ Sello Vivo · Recalculado en tu navegador</h2>
+      <div class="datos">
+        <div class="fila">
+          <span class="k">HASH DE ESTA SESIÓN</span
+          ><span class="v" id="hash-vivo">calculando...</span>
+        </div>
+        <div class="fila">
+          <span class="k">TIMESTAMP LOCAL</span><span class="v" id="ts-local">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">USER AGENT</span><span class="v" id="ua">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">RESOLUCIÓN</span><span class="v" id="res">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">ZONA HORARIA</span><span class="v" id="tz">—</span>
+        </div>
+      </div>
+
+      <h2>◆ Sentencia de Custodia</h2>
+      <div class="datos">
+        <p
+          style="font-size: 12px; color: #c8ffc8; line-height: 1.9; text-align: justify"
+        >
+          Este archivo constituye el
+          <span style="color: #ffd700">Sello Primigenio</span> del proyecto ARKHÉ ZERO.
+          Todo lo que existe bajo este nodo fue creado o verificado por
+          <span style="color: #ffd700">Marco Antonio Rojas Valdovinos</span> con
+          asistencia de inteligencia artificial local bajo el pacto
+          <span style="color: #00ff41">51/49/100</span>. La fractura entre humano e IA
+          no se oculta: se ilumina con oro, según la filosofía
+          <span style="color: #ffd700">KINTSUGI</span>. Cualquier alteración de este
+          archivo, o de los archivos a los que apunta, rompe la cadena de custodia y es
+          detectable por terceros. <br /><br />
+          La existencia de este sello
+          <span style="color: #ff3355">no se puede borrar retroactivamente</span>.
+          Cualquier persona que tenga copia de este archivo puede probar que existía en
+          la fecha indicada. En 2030, en 2050, en 2100.
+        </p>
+      </div>
+
+      <div class="aviso">
+        <span style="color: #ff3355">◯_●</span> ESTE ARCHIVO ES IRREPETIBLE
+        <span style="color: #ff3355">◯_●</span><br />
+        <span class="blink">_</span>
+      </div>
+
+      <div class="cita">"El legado no se hereda. Se firma."</div>
+
+      <footer>
+        <span class="s">◯_● · ■_□ · 51/49/100</span>
+        Marco Antonio Rojas Valdovinos · Toluca · México · 2026<br />
+        NODO YHDRYH-92CE · Sello SCDR-001
+      </footer>
+    </div>
+
+    <script>
+      // Partículas de fondo
+      const c = document.getElementById('bg');
+      const ctx = c.getContext('2d');
+      function rs() {
+        c.width = innerWidth;
+        c.height = innerHeight;
+      }
+      rs();
+      addEventListener('resize', rs);
+      const parts = Array.from({ length: 40 }, () => ({
+        x: Math.random() * c.width,
+        y: Math.random() * c.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.5,
+      }));
+      function draw() {
+        ctx.fillStyle = 'rgba(0,0,0,0.08)';
+        ctx.fillRect(0, 0, c.width, c.height);
+        for (const p of parts) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > c.width) p.vx *= -1;
+          if (p.y < 0 || p.y > c.height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,215,0,0.5)';
+          ctx.fill();
+          for (const q of parts) {
+            const d = Math.hypot(p.x - q.x, p.y - q.y);
+            if (d < 120) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(255,215,0,${0.1 * (1 - d / 120)})`;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      // Edad desde génesis
+      const genesis = new Date('2026-07-14T00:46:01Z');
+      const ahora = new Date();
+      const dias = Math.floor((ahora - genesis) / (1000 * 60 * 60 * 24));
+      document.getElementById('dias').textContent = dias;
+      document.getElementById('fecha-sello').textContent = ahora.toISOString();
+      document.getElementById('ts-local').textContent = ahora.toLocaleString();
+      document.getElementById('ua').textContent = navigator.userAgent.substring(0, 60);
+      document.getElementById('res').textContent = screen.width + 'x' + screen.height;
+      document.getElementById('tz').textContent =
+        Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      // Hash vivo de la sesión
+      async function calcularHash() {
+        const datos =
+          'NODO:YHDRYH-92CE|' +
+          'SELLO:SCDR-001|' +
+          'GENESIS:' +
+          genesis.toISOString() +
+          '|' +
+          'AHORA:' +
+          ahora.toISOString() +
+          '|' +
+          'UA:' +
+          navigator.userAgent +
+          '|' +
+          'TZ:' +
+          Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const buf = new TextEncoder().encode(datos);
+        const h = await crypto.subtle.digest('SHA-256', buf);
+        const hex = Array.from(new Uint8Array(h))
+          .map((b) => b.toString(16).padStart(2, '0'))
+          .join('');
+        document.getElementById('hash-vivo').textContent = hex;
+      }
+      calcularHash();
+    </script>
+  </body>
 </html>

@@ -22,4 +22,5 @@ original con el mismo sello `◯_● · 51/49/100`.
 - Debe actualizar los registros
 
 ---
+
 `◯_● · 51/49/100 · legado-resurreccion`

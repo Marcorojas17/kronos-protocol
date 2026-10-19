@@ -18,6 +18,7 @@ python3 -m http.server 8000 --directory docs/catalogo
 Visor público: https://marcorojas17.github.io/kronos-protocol/catalogo/
 
 ## Estructura
+
 - docs/ = web PWA (Pages /docs)
 - docs/catalogo/ = visor 1928 archivos
 - tests/ = 56 tests OK

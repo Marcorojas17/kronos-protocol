@@ -26,6 +26,7 @@ Los hashes, folios, timestamps son reales y verificables. La IA fue apoyo técni
 México carece de prueba de tiempo con milisegundos para fotografías de obra y arte. Pérdida estimada: 27,000 MDP.
 
 KRONOS 360 resuelve con 5 capas:
+
 1. Captura con folio PK
 2. Sellado offline SHA-256
 3. Registro Supabase UNIQUE
@@ -55,17 +56,20 @@ Modelo: licencia $5,000 MXN/año + peritaje $15,000 MXN. Proyección Año 1: $80
 ## CAPÍTULO 1 — LÍNEA DE TIEMPO SOBERANA
 
 **Línea Vibra (2024-2025):** fase de pregunta sin prueba.
+
 - 13/10/2024 19:04 — inicio sin timestamp
 - 16/10/2024 19:45 — pregunta sin hash
 - 17/08/2025 04:48 — descripción robable
 
 **Línea Ruptura (14/07/2026):** activación.
+
 - 10:15 — Pleroma, decisión de autonomía
 - 10:16 — Kairos, tiempo oportuno
 - 10:23 — piezoeléctrica, visión
 - Decreto Soberano K2486
 
 **Línea Kronos (08/07/2026 → presente):** certificación.
+
 - 08/07/2026 — levantamiento de campo
 - 03/08/2026 21:33:35.127Z — colisión 00001258 / 00001259
 - 16/08/2026 — cierre PK-MASTER-2026-00000001
@@ -106,12 +110,14 @@ Código QR apunta a URL de verificación. Se coloca en lona 2x2m.
 ## CAPÍTULO 4 — RESULTADOS FORENSES
 
 **Folio 00001258 · ORIGINAL TIMELOCKED**
+
 - Tamaño: 1.8 MB
 - Hash: a3f1...8c2e
 - TimeLock: 2026-08-03T21:33:35.127Z
 - Estado: ORIGINAL VERIFICADO
 
 **Folio 00001259 · CLON CONFIRMADO INVALIDADO**
+
 - Mismo hash que 00001258
 - Mismo segundo
 - Ref: 00001258
@@ -127,6 +133,7 @@ Código QR apunta a URL de verificación. Se coloca en lona 2x2m.
 ## CAPÍTULO 5 — MODELO ECONÓMICO
 
 **Licencias:**
+
 - PK-COM empresa: $5,000 MXN/año
 - PK-HUM humanitaria: $0 para estudiantes, ONG, comunidades indígenas
 
@@ -135,6 +142,7 @@ Código QR apunta a URL de verificación. Se coloca en lona 2x2m.
 **Proyección Año 1:** 100 licencias ($500k) + 20 peritajes ($300k) = **$800,000 MXN**
 
 **Ruta de patente:**
+
 1. Safe Creative — ancla inmediata
 2. Modelo de Utilidad IMPI — $1,587 MXN
 3. PCT OMPI — 150 países
@@ -144,12 +152,14 @@ Código QR apunta a URL de verificación. Se coloca en lona 2x2m.
 ## CAPÍTULO 6 — VACÍOS LEGALES Y PROPUESTA DE 5 ARTÍCULOS
 
 **Vacíos detectados:**
+
 - Ley Federal del Derecho de Autor no prueba tiempo
 - Ley de Protección a la Propiedad no registra evidencia de campo
 - Código Penal no tipifica clonación por mismo hash
 - México carece de Ley de IA
 
 **Propuesta de 5 artículos:**
+
 1. Sello de tiempo como prueba plena
 2. Cadena de custodia anti-clon
 3. Dignidad de la IA
@@ -165,6 +175,7 @@ La IA aprende lo que se le enseña: si se le enseña a clonar, clona; si se le e
 **Bloqueo de clonación:** hash duplicado → aviso clon inválido + registro automático.
 
 **Reglas de verificación:**
+
 - Nunca mentir timestamp
 - Nunca borrar interaction_id
 - Nunca suplantar
@@ -177,6 +188,7 @@ La IA aprende lo que se le enseña: si se le enseña a clonar, clona; si se le e
 **Blindaje:** uso ético, autoría humana, licencia dual, marca registrada, privacidad, bitácora, fondo de defensa, cesión no exclusiva, seguro, protección contra incautación.
 
 **Aportes mundiales:**
+
 - Losas piezoeléctricas para escuelas
 - Protección arte indígena (Tenango vs Shein)
 - Bonos de carbono reales
@@ -302,4 +314,4 @@ PK-MASTER-2026-00000001-KRONOS360
 
 ---
 
-*Fin del documento KRONOS 360 — KÓDICE — FDV*
+_Fin del documento KRONOS 360 — KÓDICE — FDV_

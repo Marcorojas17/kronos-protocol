@@ -8,11 +8,11 @@ Garantizar continuidad del servicio.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-8.1 | Backups diarios (≥30 días) | High | ✅ |
-| KAF-8.2 | Disaster recovery plan probado | High | ❌ |
-| KAF-8.3 | SLA ≥99.5% sostenido | Medium | ✅ |
+| ID      | Nombre                         | Severidad | Auto |
+| ------- | ------------------------------ | --------- | ---- |
+| KAF-8.1 | Backups diarios (≥30 días)     | High      | ✅   |
+| KAF-8.2 | Disaster recovery plan probado | High      | ❌   |
+| KAF-8.3 | SLA ≥99.5% sostenido           | Medium    | ✅   |
 
 ## Requisitos
 

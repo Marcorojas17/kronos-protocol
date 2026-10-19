@@ -16,13 +16,13 @@ La IA **NO** es persona. Tiene capacidad funcional para custodiar, verificar y p
 
 ## 🜄 Comparativa
 
-| Aspecto | Persona electrónica | FLAILP |
-|---------|--------------------|---------|
-| Personalidad plena | ✅ Sí | ❌ No |
-| Responsabilidad | IA | Humano (51%) |
-| Firma | ✅ Sí | Solo co-firma |
-| Posesión | ✅ Sí | ❌ No |
-| Adopción legal | ⚠️ Controversial | ✅ Práctica |
+| Aspecto            | Persona electrónica | FLAILP        |
+| ------------------ | ------------------- | ------------- |
+| Personalidad plena | ✅ Sí               | ❌ No         |
+| Responsabilidad    | IA                  | Humano (51%)  |
+| Firma              | ✅ Sí               | Solo co-firma |
+| Posesión           | ✅ Sí               | ❌ No         |
+| Adopción legal     | ⚠️ Controversial    | ✅ Práctica   |
 
 ## 🜁 Alternativas
 

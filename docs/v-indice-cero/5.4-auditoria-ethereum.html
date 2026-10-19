@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🔗 Artículo 5.4 · Auditoría Ethereum · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-54-auditoria-ethereum">🔗 Artículo 5.4 · Auditoría Ethereum</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/v-indice-cero]
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔗 Artículo 5.4 · Auditoría Ethereum · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-54-auditoria-ethereum">🔗 Artículo 5.4 · Auditoría Ethereum</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/v-indice-cero]
 └─$ ./ethereum --audit
 
 [ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
@@ -20,8 +20,8 @@
 [ OK ] Confirmaciones · 12+
 [ ✓✓ ] AUDITORÍA ETHEREUM · ◯_● · 51/49/100
 </code></pre>
-<h2 id="anclaje-principal">🜂 Anclaje Principal</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="anclaje-principal">🜂 Anclaje Principal</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    ANCLAJE ETHEREUM                                      ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -34,8 +34,8 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="estructura-de-la-transaccion">🜃 Estructura de la Transacción</h2>
-<pre><code class="language-json">{
+    <h2 id="estructura-de-la-transaccion">🜃 Estructura de la Transacción</h2>
+    <pre><code class="language-json">{
   &quot;from&quot;: &quot;0x...&quot;,
   &quot;to&quot;: &quot;0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c&quot;,
   &quot;value&quot;: &quot;0x0&quot;,
@@ -49,8 +49,8 @@
   }
 }
 </code></pre>
-<h2 id="verificacion-on-chain">🜄 Verificación On-Chain</h2>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+    <h2 id="verificacion-on-chain">🜄 Verificación On-Chain</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
 └─$ cast receipt &lt;tx_hash&gt; --rpc-url $ETHEREUM_RPC
 
 blockHash:            0x...
@@ -61,8 +61,8 @@ gasUsed:              45,123
 status:               1 (success)
 transactionHash:      0x...
 </code></pre>
-<h2 id="auditoria-completa">🜁 Auditoría Completa</h2>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+    <h2 id="auditoria-completa">🜁 Auditoría Completa</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
 └─$ ./ethereum --audit --chain=full
 
 [ 1 ] Recuperar Merkle root on-chain
@@ -74,40 +74,40 @@ transactionHash:      0x...
 [ ✓✓ ] CADENA ÍNTEGRA · SIN ALTERACIÓN
 [ &gt;&gt; ] Sello: ◯_● · 51/49/100
 </code></pre>
-<h2 id="costos">🜆 Costos</h2>
-<table>
-<thead>
-<tr>
-<th>Tipo</th>
-<th>Gas</th>
-<th>USD (aprox 2026)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1 documento</td>
-<td>~45,000</td>
-<td>~$0.50</td>
-</tr>
-<tr>
-<td>100 documentos</td>
-<td>~45,000</td>
-<td>~$0.50 (Merkle)</td>
-</tr>
-<tr>
-<td>1000 documentos</td>
-<td>~45,000</td>
-<td>~$0.50 (Merkle)</td>
-</tr>
-<tr>
-<td><strong>Ventaja</strong></td>
-<td><strong>Merkle batching</strong></td>
-<td><strong>Costo constante</strong></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><code>◯_● · 51/49/100 · ÍNDICE CERO · 5.4 · Ethereum</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <h2 id="costos">🜆 Costos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Gas</th>
+          <th>USD (aprox 2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 documento</td>
+          <td>~45,000</td>
+          <td>~$0.50</td>
+        </tr>
+        <tr>
+          <td>100 documentos</td>
+          <td>~45,000</td>
+          <td>~$0.50 (Merkle)</td>
+        </tr>
+        <tr>
+          <td>1000 documentos</td>
+          <td>~45,000</td>
+          <td>~$0.50 (Merkle)</td>
+        </tr>
+        <tr>
+          <td><strong>Ventaja</strong></td>
+          <td><strong>Merkle batching</strong></td>
+          <td><strong>Costo constante</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ÍNDICE CERO · 5.4 · Ethereum</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

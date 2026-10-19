@@ -1,46 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>ADR-0003 · Sellos eIDAS Firmaprofesional · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="adr-0003-sellos-eidas-firmaprofesional">ADR-0003 · Sellos eIDAS Firmaprofesional</h1>
-<ul>
-<li><strong>Estado</strong>: Aceptado</li>
-<li><strong>Fecha</strong>: 2026-01-20</li>
-<li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
-</ul>
-<h2 id="contexto">🜂 Contexto</h2>
-<p>Se necesita TSA (Time Stamping Authority) cualificada para sellar documentos con validez legal en la UE.</p>
-<h2 id="decision">🜃 Decisión</h2>
-<p>Usar <strong>Firmaprofesional QTSA</strong> bajo el marco <strong>eIDAS</strong>.</p>
-<p>Razones:
-- QTSA acreditada en la EU Trust List
-- RFC 3161 estándar
-- Reconocimiento en los 27 países UE
-- Disponible vía API HTTP</p>
-<h2 id="consecuencias">🜄 Consecuencias</h2>
-<p><strong>Positivas</strong>:
-- Sellos con validez legal internacional
-- Reconocimiento ante tribunales UE
-- Cumplimiento de estándar europeo</p>
-<p><strong>Negativas</strong>:
-- Costo por sello
-- Dependencia de proveedor UE
-- Requiere conectividad</p>
-<h2 id="alternativas">🜁 Alternativas</h2>
-<ol>
-<li>DigiCert TSA · Rechazada (menos reconocida)</li>
-<li>Autoridad mexicana · Rechazada (no eIDAS)</li>
-<li>TSA propia · Rechazada (no cualificada)</li>
-</ol>
-<hr />
-<p><code>◯_● · 51/49/100 · ADR-0003</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ADR-0003 · Sellos eIDAS Firmaprofesional · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="adr-0003-sellos-eidas-firmaprofesional">
+      ADR-0003 · Sellos eIDAS Firmaprofesional
+    </h1>
+    <ul>
+      <li><strong>Estado</strong>: Aceptado</li>
+      <li><strong>Fecha</strong>: 2026-01-20</li>
+      <li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+    </ul>
+    <h2 id="contexto">🜂 Contexto</h2>
+    <p>
+      Se necesita TSA (Time Stamping Authority) cualificada para sellar documentos con
+      validez legal en la UE.
+    </p>
+    <h2 id="decision">🜃 Decisión</h2>
+    <p>
+      Usar <strong>Firmaprofesional QTSA</strong> bajo el marco <strong>eIDAS</strong>.
+    </p>
+    <p>
+      Razones: - QTSA acreditada en la EU Trust List - RFC 3161 estándar -
+      Reconocimiento en los 27 países UE - Disponible vía API HTTP
+    </p>
+    <h2 id="consecuencias">🜄 Consecuencias</h2>
+    <p>
+      <strong>Positivas</strong>: - Sellos con validez legal internacional -
+      Reconocimiento ante tribunales UE - Cumplimiento de estándar europeo
+    </p>
+    <p>
+      <strong>Negativas</strong>: - Costo por sello - Dependencia de proveedor UE -
+      Requiere conectividad
+    </p>
+    <h2 id="alternativas">🜁 Alternativas</h2>
+    <ol>
+      <li>DigiCert TSA · Rechazada (menos reconocida)</li>
+      <li>Autoridad mexicana · Rechazada (no eIDAS)</li>
+      <li>TSA propia · Rechazada (no cualificada)</li>
+    </ol>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ADR-0003</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

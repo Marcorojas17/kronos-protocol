@@ -15,7 +15,7 @@
 
 # ⚛️ INTEGRACIÓN AOM · NIVEL CUÁNTICO
 
-> *"AOM nos enseñó que las alianzas pueden ser soberanas. Aprendimos el patrón. Y lo llevamos al nivel cuántico."*
+> _"AOM nos enseñó que las alianzas pueden ser soberanas. Aprendimos el patrón. Y lo llevamos al nivel cuántico."_
 
 ---
 
@@ -347,3 +347,4 @@
 └─────────────────────────────────────────────────────────────────────────┘
 
  🔱
+```

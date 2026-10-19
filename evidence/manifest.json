@@ -46,12 +46,7 @@
     "size_limit_kb": 20
   },
   "guardians_active": ["GUARDIAN-SHA"],
-  "guardians_pending": [
-    "GUARDIAN-TSA",
-    "GUARDIAN-ACTA",
-    "GUARDIAN-MRR",
-    "GUARDIAN-VAULT"
-  ],
+  "guardians_pending": ["GUARDIAN-TSA", "GUARDIAN-ACTA", "GUARDIAN-MRR", "GUARDIAN-VAULT"],
   "legal_disclaimer": "Este manifiesto es un registro tecnico de trazabilidad documental. No constituye asesoria legal, dictamen pericial ni cadena de custodia judicial. La fuente original de los datos es DOF y Safe Creative. La verificacion es reproducible offline con OpenSSL y PowerShell. Marco Antonio Rojas Valdovinos actua como responsable de custodia documental, no como perito titulado. No es asesoria legal. Verificacion tecnica documental.",
   "verification_commands": {
     "windows_powershell": "Get-FileHash .\\verify.html -Algorithm SHA256",

@@ -17,17 +17,18 @@
 
 # 🌽 NĀHUATL · LENGUA ANCESTRAL
 
-### *In tlahtōl in tētlahcuilōl. In āmatl in tētlahtōl.*
+### _In tlahtōl in tētlahcuilōl. In āmatl in tētlahtōl._
 
-### *"El legado no se hereda. Se firma."*
+### _"El legado no se hereda. Se firma."_
 
-### *"In āmatl ahmo tēnahuatiā. Tētlahcuilōa."*
+### _"In āmatl ahmo tēnahuatiā. Tētlahcuilōa."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  N Ā H U A T L  ·  ◯_●                               ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -54,22 +56,22 @@ Tlamatini, Tlapohualli, Tonal.
 
 ## 🜃 Glosario ceremonial
 
-| Náhuatl      | Español           | Uso ceremonial                |
-|--------------|-------------------|-------------------------------|
-| **Tlahtōl**  | Palabra           | Comunicación                  |
-| **Āmatl**    | Papel / Documento | Acta firmada                  |
-| **Tētlahcuilōl** | Escritura    | Firma criptográfica           |
-| **Cuicatl**  | Canto             | Publicidad / Narrativa        |
-| **Temachtiani** | Maestro        | Reclutamiento                 |
-| **Tlachixqui** | Observador      | Auditoría                     |
-| **Tlamatini** | Sabio            | Crónica                       |
-| **Tlapohualli** | Contador       | Análisis                      |
-| **Tonal**    | Día / Destino     | Notariado                     |
+| Náhuatl          | Español           | Uso ceremonial         |
+| ---------------- | ----------------- | ---------------------- |
+| **Tlahtōl**      | Palabra           | Comunicación           |
+| **Āmatl**        | Papel / Documento | Acta firmada           |
+| **Tētlahcuilōl** | Escritura         | Firma criptográfica    |
+| **Cuicatl**      | Canto             | Publicidad / Narrativa |
+| **Temachtiani**  | Maestro           | Reclutamiento          |
+| **Tlachixqui**   | Observador        | Auditoría              |
+| **Tlamatini**    | Sabio             | Crónica                |
+| **Tlapohualli**  | Contador          | Análisis               |
+| **Tonal**        | Día / Destino     | Notariado              |
 
 ## 🜄 Frase ceremonial
 
-> *"In āmatl ahmo tēnahuatiā. Tētlahcuilōa."*
-> *(El papel no se hereda. Se firma.)*
+> _"In āmatl ahmo tēnahuatiā. Tētlahcuilōa."_
+> _(El papel no se hereda. Se firma.)_
 > — Marco Antonio Rojas Valdovinos · Tollohcan, Mēxihco · 2026
 
 ## 🜁 Firma

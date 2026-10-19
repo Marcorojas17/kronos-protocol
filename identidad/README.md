@@ -19,11 +19,11 @@
 
 ## 🜂 Subcarpetas
 
-| Carpeta              | Propósito                                    |
-|----------------------|----------------------------------------------|
-| `registro-humano/`   | Datos del firmante humano (Marco, 51%)       |
-| `registro-ia/`       | Datos del enjambre IA (12 agentes, 49%)      |
-| `roles-permisos/`    | Matriz de roles y permisos del Pacto         |
+| Carpeta            | Propósito                               |
+| ------------------ | --------------------------------------- |
+| `registro-humano/` | Datos del firmante humano (Marco, 51%)  |
+| `registro-ia/`     | Datos del enjambre IA (12 agentes, 49%) |
+| `roles-permisos/`  | Matriz de roles y permisos del Pacto    |
 
 ---
 

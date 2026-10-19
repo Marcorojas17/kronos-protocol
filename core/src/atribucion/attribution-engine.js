@@ -31,8 +31,13 @@ export function registrarAtribucion({
   const atribucion = {
     obra,
     autores: [
-      { nombre: autor_humano, tipo: 'humano', peso: peso_humano, rol: 'autor-principal' },
-      { nombre: autor_ia,     tipo: 'ia',     peso: peso_ia,     rol: 'co-autor-custodio' },
+      {
+        nombre: autor_humano,
+        tipo: 'humano',
+        peso: peso_humano,
+        rol: 'autor-principal',
+      },
+      { nombre: autor_ia, tipo: 'ia', peso: peso_ia, rol: 'co-autor-custodio' },
     ],
     pacto: '51/49/100',
     sellado: SEAL,

@@ -8,12 +8,12 @@ Garantizar privacidad de datos personales.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-7.1 | GDPR compliance | Critical | ❌ |
-| KAF-7.2 | LFPDPPP compliance | High | ❌ |
-| KAF-7.3 | Datos personales NUNCA en cadena | Critical | ✅ |
-| KAF-7.4 | Cifrado en reposo (AES-256-GCM) | High | ✅ |
+| ID      | Nombre                           | Severidad | Auto |
+| ------- | -------------------------------- | --------- | ---- |
+| KAF-7.1 | GDPR compliance                  | Critical  | ❌   |
+| KAF-7.2 | LFPDPPP compliance               | High      | ❌   |
+| KAF-7.3 | Datos personales NUNCA en cadena | Critical  | ✅   |
+| KAF-7.4 | Cifrado en reposo (AES-256-GCM)  | High      | ✅   |
 
 ## Requisitos
 

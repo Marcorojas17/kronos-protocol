@@ -29,13 +29,13 @@
 
 ## 🜃 Reglas de Autonomía
 
-| Nivel       | Acción permitida sin humano | Requiere veto humano |
-|-------------|-----------------------------|----------------------|
-| **Rutina**  | indexar, catalogar, firmar  | no                   |
-| **Operativa**| desplegar, sincronizar     | no                   |
-| **Crítica** | modificar Índice Cero       | **SÍ**               |
-| **Legal**   | cualquier acción jurídica   | **SÍ**               |
-| **Cierre**  | fin digno, export final     | **SÍ**               |
+| Nivel         | Acción permitida sin humano | Requiere veto humano |
+| ------------- | --------------------------- | -------------------- |
+| **Rutina**    | indexar, catalogar, firmar  | no                   |
+| **Operativa** | desplegar, sincronizar      | no                   |
+| **Crítica**   | modificar Índice Cero       | **SÍ**               |
+| **Legal**     | cualquier acción jurídica   | **SÍ**               |
+| **Cierre**    | fin digno, export final     | **SÍ**               |
 
 ## 🜄 Límites duros
 

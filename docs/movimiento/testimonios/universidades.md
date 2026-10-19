@@ -17,15 +17,16 @@
 
 # 🎓 VOCES DE UNIVERSIDADES
 
-### *La academia firma su verdad*
+### _La academia firma su verdad_
 
-### *"La ciencia que no se firma, no se reproduce."*
+### _"La ciencia que no se firma, no se reproduce."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  U N I V E R S I D A D E S  ·  ◯_●                   ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,9 +48,9 @@
 
 ## 🜂 Testimonio #001
 
-> *"Nuestra universidad produce tesis que se archivan en PDFs sin
+> _"Nuestra universidad produce tesis que se archivan en PDFs sin
 > firma criptográfica. Ahora cada tesis va firmada con ML-DSA-87 y
-> anclada a Ethereum. Es un cambio de paradigma."*
+> anclada a Ethereum. Es un cambio de paradigma."_
 >
 > — **Rector · Universidad** · Fundador #021
 
@@ -61,9 +63,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜃 Testimonio #002
 
-> *"Mis alumnos no creían en la reproducibilidad hasta que vieron
+> _"Mis alumnos no creían en la reproducibilidad hasta que vieron
 > cómo cada resultado quedaba firmado. Ahora entienden que la
-> ciencia que no se firma, no se reproduce."*
+> ciencia que no se firma, no se reproduce."_
 >
 > — **Investigadora** · Fundador #034
 
@@ -76,9 +78,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜄 Testimonio #003
 
-> *"Publicar en ARKHÉ ZERO no compite con publicar en revistas.
+> _"Publicar en ARKHÉ ZERO no compite con publicar en revistas.
 > Lo complementa. Es el sello que garantiza que el paper original
-> no fue alterado."*
+> no fue alterado."_
 >
 > — **Decano de investigación** · Fundador #051
 

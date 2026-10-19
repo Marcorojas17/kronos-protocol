@@ -27,11 +27,11 @@ Tu `dictamen_PVA_5204160405358537.pdf` es prueba plena ante MP y juicio mercanti
 
 Para que puedas vender y que no te clonen:
 
-| Carpeta | Licencia | Puede venderse? |
-| --- | --- | --- |
-| `core/`, `contracts/`, `web/`, `scripts/`, `tests/`, `examples/` | MIT | Sí, libre, fomenta adopción |
-| `audit/`, `prompts_library/`, `docs/KRONOS_360_LAWS.md` | **PROPIETARIA COMERCIAL** © Marco Antonio Rojas Valdovinos | Sí, solo tú vendes. Requiere licencia escrita |
-| Marca `KRONOS 360`, `KRONOS-TRACE-PVA-5204160405358537`, folio `5204160405358537` | Marca y secreto industrial | No, uso exclusivo perito |
+| Carpeta                                                                           | Licencia                                                   | Puede venderse?                               |
+| --------------------------------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------- |
+| `core/`, `contracts/`, `web/`, `scripts/`, `tests/`, `examples/`                  | MIT                                                        | Sí, libre, fomenta adopción                   |
+| `audit/`, `prompts_library/`, `docs/KRONOS_360_LAWS.md`                           | **PROPIETARIA COMERCIAL** © Marco Antonio Rojas Valdovinos | Sí, solo tú vendes. Requiere licencia escrita |
+| Marca `KRONOS 360`, `KRONOS-TRACE-PVA-5204160405358537`, folio `5204160405358537` | Marca y secreto industrial                                 | No, uso exclusivo perito                      |
 
 **Archivo legal:** `LICENSE` en root = MIT + Addendum Comercial (ver adjunto). Sin addendum, te roban `prompts_library/`.
 
@@ -47,30 +47,37 @@ Quien genere dictámenes con `FOLIO:5204160405358537` sin tu FIEL incurre en **f
 ### 4. VALIDEZ ANTE AUTORIDADES MEXICANAS
 
 #### A) SAT - FIEL / e.firma
+
 `core/perito_seal.py` genera `FOLIO:5204160405358537|PERITO:kronosproyecto@hotmail.com|GENESIS:...`
 En producción, `generate_pdf_dictamen.py` debe firmar con tu FIEL (archivo `.key` + `.cer` del SAT). Nunca subir a GitHub. Usar `scripts/setup_vault.py` -> AWS KMS.
 
 Dictamen con FIEL = documento con atribución legal directa a tu persona.
 
 #### B) NOM-151 - PRESTADOR DE SERVICIOS DE CONSERVACIÓN (PSC)
+
 Cumples Art. 38 al conservar:
+
 - `audit/sello_kronos.json` (metadatos)
 - `audit/cadena_custodia.log` (bitácora)
 - `audit/qr_folio_5204160405358537.png` (mecanismo de verificación)
-Conservación 10 años en S3 Object Lock.
+  Conservación 10 años en S3 Object Lock.
 
 #### C) MP / JUICIO - CADENA DE CUSTODIA
+
 `docs/NOM151_ISO_DOCUMENTATION.md` explica flujo 8 pasos. Romper cadena = invalidez. Mantenerla = prueba plena.
 
 ### 5. VALIDEZ INTERNACIONAL
 
 #### Convenio de Berna (1886) - 181 países
+
 Tu obra PVA está protegida en todo país firmante sin necesidad de registro local. SafeCreative 2607146379465 es prueba de autoría.
 
 #### eIDAS (Europa)
+
 Aunque tu FIEL es mexicana, tu sello con blockchain + QR califica como **Sello Electrónico Avanzado** (Art. 36). Para QSeal necesitas PSC cualificado UE (puedes aliarte con prestador español).
 
 #### DMCA (USA)
+
 Si te clonan repo en GitHub con tu `prompts_library/`, DMCA takedown con SafeCreative + TX blockchain. 100% ganable.
 
 ### 6. RESPONSABILIDAD Y LIMITACIONES
@@ -100,6 +107,7 @@ Un dictamen es auténtico solo si:
 Si falta uno, es falso.
 
 ---
+
 **Declaración pericial:** Este marco legal fue redactado por Marco Antonio Rojas Valdovinos, folio 5204160405358537, y sellado con KRONOS-TRACE-PVA-5204160405358537.
 
 PVA © 2026 - KRONOS 360 - Todos los derechos reservados sobre `audit/` y `prompts_library/`

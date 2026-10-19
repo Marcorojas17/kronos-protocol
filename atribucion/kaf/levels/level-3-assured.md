@@ -8,21 +8,21 @@
 
 KAF-3 = KAF-2 + los siguientes controles:
 
-| Control | Descripción |
-|---|---|
-| **KAF-6.1** | ISO 27001 vigente |
-| **KAF-6.2** | SOC 2 Type II (auditado en últimos 12 meses) |
-| **KAF-6.3** | Pentesting anual documentado |
-| **KAF-6.4** | HSM para claves privadas |
-| **KAF-6.5** | Arquitectura Zero Trust |
-| **KAF-7.1** | GDPR compliance documentado |
-| **KAF-8.1** | Backups diarios con retención ≥30 días |
-| **KAF-8.2** | Disaster recovery plan probado |
-| **KAF-8.3** | SLA ≥99.5% sostenido |
-| **KAF-9.3** | Rotación de claves cada ≤90 días |
-| **KAF-9.4** | TLS 1.3 obligatorio |
-| **KAF-10.2** | No almacenamiento de datos de tarjeta |
-| **KAF-10.3** | Webhooks firmados con HMAC |
+| Control      | Descripción                                          |
+| ------------ | ---------------------------------------------------- |
+| **KAF-6.1**  | ISO 27001 vigente                                    |
+| **KAF-6.2**  | SOC 2 Type II (auditado en últimos 12 meses)         |
+| **KAF-6.3**  | Pentesting anual documentado                         |
+| **KAF-6.4**  | HSM para claves privadas                             |
+| **KAF-6.5**  | Arquitectura Zero Trust                              |
+| **KAF-7.1**  | GDPR compliance documentado                          |
+| **KAF-8.1**  | Backups diarios con retención ≥30 días               |
+| **KAF-8.2**  | Disaster recovery plan probado                       |
+| **KAF-8.3**  | SLA ≥99.5% sostenido                                 |
+| **KAF-9.3**  | Rotación de claves cada ≤90 días                     |
+| **KAF-9.4**  | TLS 1.3 obligatorio                                  |
+| **KAF-10.2** | No almacenamiento de datos de tarjeta                |
+| **KAF-10.3** | Webhooks firmados con HMAC                           |
 | **KAF-12.3** | Políticas documentadas (acceso, cifrado, incidentes) |
 
 **Total: 29 controles acumulados.**
@@ -65,6 +65,7 @@ KAF-3 = KAF-2 + los siguientes controles:
 ## Renovación
 
 Anual. Requiere:
+
 - Re-auditoría de los 14 controles.
 - Evidencia de incidentes (o ausencia).
 - Actualización de certificaciones ISO/SOC 2.

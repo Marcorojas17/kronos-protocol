@@ -21,9 +21,8 @@ export const SEAL = '◯_● · 51/49/100';
  */
 export function pHash(contenido, opciones = {}) {
   const { size = 16 } = opciones;
-  const bytes = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const bytes =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
 
   // Simplificado: hash SHA3-512 → primeros N bytes como pHash
   const hash = sha3_512(bytes);

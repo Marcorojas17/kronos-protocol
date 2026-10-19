@@ -47,14 +47,14 @@
 
 ## 🜃 Puntos de control
 
-| Paso | Verifica | Falla si |
-|------|----------|----------|
-| SHA3-512 | Integridad | Hash mismatch |
-| ML-DSA-87 | Autoría PQC | Firma inválida |
-| Ed25519 | Autoría clásica | Firma inválida |
-| TSA RFC 3161 | Temporalidad | Sello inválido |
-| Merkle root | Agregación | Árbol corrupto |
-| Ethereum | Inmutabilidad | Anclaje fallido |
+| Paso         | Verifica        | Falla si        |
+| ------------ | --------------- | --------------- |
+| SHA3-512     | Integridad      | Hash mismatch   |
+| ML-DSA-87    | Autoría PQC     | Firma inválida  |
+| Ed25519      | Autoría clásica | Firma inválida  |
+| TSA RFC 3161 | Temporalidad    | Sello inválido  |
+| Merkle root  | Agregación      | Árbol corrupto  |
+| Ethereum     | Inmutabilidad   | Anclaje fallido |
 
 ## 🜄 Flujo inverso (verificación)
 

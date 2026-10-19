@@ -10,6 +10,7 @@
 **Modo:** Construcción intensiva
 
 ### Logros
+
 - Core criptográfico completo (7 módulos, 36 tests)
 - API completa (6 routers, 4 middleware)
 - SDK Python + SDK JS
@@ -24,6 +25,7 @@
 - AI Recognition (perfiles + estado + protocolos)
 
 ### Decisiones tomadas
+
 - ADR-001: Kronos como protocolo
 - ADR-002: Atribución como caballo de Troya
 - ADR-003: Firmas híbridas desde día 1
@@ -31,6 +33,7 @@
 - ADR-005: Consolidar duplicaciones
 
 ### Pendientes identificados
+
 - Deploy a producción
 - Primer cliente
 - ~160 archivos por crear
@@ -42,6 +45,7 @@
 **Duración:** ~8 horas
 
 ### Logros
+
 - Definición de los 7 bloques de jurisdicción
 - Decisión de producto (Atribución)
 - Estructura de raíz + ramas
@@ -55,6 +59,7 @@
 **Duración:** ~4 horas
 
 ### Logros
+
 - MADRE (orquestador multi-agente) conceptual
 - Tesis inicial del proyecto
 - Estructura mental del proyecto
@@ -70,10 +75,14 @@
 **Modo:** Descripción
 
 ### Logros
+
 - ...
 
 ### Decisiones tomadas
+
 - ...
 
 ### Pendientes identificados
+
 - ...
+```

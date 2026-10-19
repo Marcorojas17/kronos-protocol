@@ -17,15 +17,16 @@
 
 # 🔄 EVENTOS RECURRENTES
 
-### *Lo que se repite, se firma.*
+### _Lo que se repite, se firma._
 
-### *"La constancia es la forma más alta de la firma."*
+### _"La constancia es la forma más alta de la firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E C U R R E N T E S  ·  ◯_●                       ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -51,6 +53,7 @@
 **Frecuencia:** primer día de cada mes
 **Duración:** 1 hora
 **Ritual:**
+
 1. Silencio digital (15 min)
 2. Revisión del legado del mes
 3. Firma de nueva obra
@@ -61,6 +64,7 @@
 **Frecuencia:** cada trimestre (enero · abril · julio · octubre)
 **Duración:** 2 horas
 **Ritual:**
+
 1. Verificación pública de hashes
 2. Revisión del Índice Cero
 3. Reporte del enjambre
@@ -71,6 +75,7 @@
 **Frecuencia:** bimestral (febrero · abril · junio · agosto · octubre · diciembre)
 **Duración:** 1 hora
 **Formato:**
+
 - Preguntas directas al fundador
 - Respuestas firmadas
 - Anclaje del Q&A al Índice Cero
@@ -80,6 +85,7 @@
 **Frecuencia:** primer sábado de cada mes
 **Duración:** 3 horas
 **Formato:**
+
 - Iniciación grupal de nuevos miembros
 - Juramento KINTSUGI colectivo
 - Bienvenida oficial

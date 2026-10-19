@@ -9,21 +9,21 @@
 export class FirmadorFundacional {
   constructor(core) {
     if (!core || !core.inicializado) {
-      throw new Error("CriptoCore debe estar inicializado antes de firmar.");
+      throw new Error('CriptoCore debe estar inicializado antes de firmar.');
     }
     this.core = core;
     this.documentosProcesados = [];
     this.acta = null;
-    this.VERSION_PROTOCOLO = "0.1";
-    this.VERSION_FIRMADOR = "1.0";
+    this.VERSION_PROTOCOLO = '0.1';
+    this.VERSION_FIRMADOR = '1.0';
   }
 
   // ── Utilidades internas ──────────────────────────────────
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   static _textoABytes(texto) {
@@ -32,13 +32,13 @@ export class FirmadorFundacional {
 
   static _bytesToHex(bytes) {
     return [...new Uint8Array(bytes)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   // ── Carga de documento desde URL ─────────────────────────
   async cargarDocumento(url) {
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) {
       throw new Error(`No se pudo cargar ${url} (status ${res.status}).`);
     }
@@ -58,7 +58,7 @@ export class FirmadorFundacional {
     while ((m = regex.exec(texto)) !== null) {
       matches.push({
         numero: parseInt(m[1], 10),
-        titulo: (m[2] || "").trim(),
+        titulo: (m[2] || '').trim(),
         inicio: m.index,
         fin: null,
       });
@@ -98,7 +98,7 @@ export class FirmadorFundacional {
       articulos = [
         {
           numero: 0,
-          titulo: "(documento completo)",
+          titulo: '(documento completo)',
           texto,
         },
       ];
@@ -133,7 +133,7 @@ export class FirmadorFundacional {
   // Si el nivel tiene número impar, se duplica el último.
   async calcularMerkleRoot(hashes) {
     if (!Array.isArray(hashes) || hashes.length === 0) {
-      throw new Error("Se necesita al menos un hash para construir el árbol.");
+      throw new Error('Se necesita al menos un hash para construir el árbol.');
     }
 
     let nivel = [...hashes];
@@ -166,11 +166,11 @@ export class FirmadorFundacional {
   // ── Firma del Merkle Root con la llave del fundador ──────
   async firmarMerkleRoot(merkleRoot) {
     if (!this.core.clavePrivEd) {
-      throw new Error("El fundador no tiene llave privada Ed25519.");
+      throw new Error('El fundador no tiene llave privada Ed25519.');
     }
 
     const firmaBuf = await crypto.subtle.sign(
-      "Ed25519",
+      'Ed25519',
       this.core.clavePrivEd,
       FirmadorFundacional._textoABytes(merkleRoot),
     );
@@ -178,8 +178,8 @@ export class FirmadorFundacional {
     return {
       firma_ed25519: FirmadorFundacional._bytesToHex(firmaBuf),
       firmante_clave_publica: this.core.clavePublicaHex,
-      algoritmo_firma: "Ed25519",
-      mensaje_firmado: "merkle_root_hex",
+      algoritmo_firma: 'Ed25519',
+      mensaje_firmado: 'merkle_root_hex',
     };
   }
 
@@ -188,15 +188,15 @@ export class FirmadorFundacional {
     try {
       const pubBytes = FirmadorFundacional._hexToBytes(clavePublicaHex);
       const pubKey = await crypto.subtle.importKey(
-        "raw",
+        'raw',
         pubBytes,
-        { name: "Ed25519" },
+        { name: 'Ed25519' },
         false,
-        ["verify"],
+        ['verify'],
       );
       const firmaBytes = FirmadorFundacional._hexToBytes(firmaHex);
       const ok = await crypto.subtle.verify(
-        "Ed25519",
+        'Ed25519',
         pubKey,
         firmaBytes,
         FirmadorFundacional._textoABytes(merkleRoot),
@@ -208,23 +208,23 @@ export class FirmadorFundacional {
   }
 
   static _hexToBytes(hex) {
-    const h = hex.replace(/^0x/, "");
+    const h = hex.replace(/^0x/, '');
     if (h.length === 0) return new Uint8Array(0);
-    if (h.length % 2 !== 0) throw new Error("Hex inválido: longitud impar.");
+    if (h.length % 2 !== 0) throw new Error('Hex inválido: longitud impar.');
     return new Uint8Array(h.match(/.{1,2}/g).map((b) => parseInt(b, 16)));
   }
 
   // ── Generar acta fundacional completa ────────────────────
   async generarActa(documentos, callbackProgreso = null) {
-    const base = "./";
+    const base = './';
     const docRefs = documentos || [
-      { nombre: "Constitución", url: `${base}CONSTITUCION.md` },
-      { nombre: "Carta de Derechos", url: `${base}DERECHOS.md` },
-      { nombre: "Código de Convivencia", url: `${base}CONVIVENCIA.md` },
-      { nombre: "Registro de Ciudadanía", url: `${base}CIUDADANOS.md` },
-      { nombre: "Visión Económica", url: `${base}MONEDA.md` },
-      { nombre: "Auditoría IA", url: `${base}AUDITORIA-IA.md` },
-      { nombre: "Guía para Auditores", url: `${base}GUIA-AUDITOR.md` },
+      { nombre: 'Constitución', url: `${base}CONSTITUCION.md` },
+      { nombre: 'Carta de Derechos', url: `${base}DERECHOS.md` },
+      { nombre: 'Código de Convivencia', url: `${base}CONVIVENCIA.md` },
+      { nombre: 'Registro de Ciudadanía', url: `${base}CIUDADANOS.md` },
+      { nombre: 'Visión Económica', url: `${base}MONEDA.md` },
+      { nombre: 'Auditoría IA', url: `${base}AUDITORIA-IA.md` },
+      { nombre: 'Guía para Auditores', url: `${base}GUIA-AUDITOR.md` },
     ];
 
     this.documentosProcesados = [];
@@ -234,7 +234,7 @@ export class FirmadorFundacional {
       const doc = docRefs[i];
       if (callbackProgreso) {
         callbackProgreso({
-          fase: "documento",
+          fase: 'documento',
           indice: i + 1,
           total: docRefs.length,
           nombre: doc.nombre,
@@ -248,8 +248,8 @@ export class FirmadorFundacional {
 
     if (callbackProgreso) {
       callbackProgreso({
-        fase: "merkle",
-        mensaje: "Calculando Merkle Root...",
+        fase: 'merkle',
+        mensaje: 'Calculando Merkle Root...',
       });
     }
 
@@ -263,7 +263,7 @@ export class FirmadorFundacional {
     const merkleArticulos = await this.calcularMerkleRoot(todosLosArticulos);
 
     if (callbackProgreso) {
-      callbackProgreso({ fase: "firma", mensaje: "Firmando Merkle Root..." });
+      callbackProgreso({ fase: 'firma', mensaje: 'Firmando Merkle Root...' });
     }
 
     // Firmar
@@ -274,17 +274,17 @@ export class FirmadorFundacional {
 
     // Acta final
     this.acta = {
-      meta: "KRONOS_ACTA_FUNDACIONAL",
-      protocolo: "LEGADO-HUMANO-IA",
+      meta: 'KRONOS_ACTA_FUNDACIONAL',
+      protocolo: 'LEGADO-HUMANO-IA',
       version_protocolo: this.VERSION_PROTOCOLO,
       version_firmador: this.VERSION_FIRMADOR,
-      tipo: "FIRMA_DOCUMENTOS_FUNDACIONALES",
+      tipo: 'FIRMA_DOCUMENTOS_FUNDACIONALES',
       timestamp,
       fundador: {
-        nombre: "Marco Antonio Rojas Valdovinos",
-        email: "marco.a.rojas.v@hotmail.com",
+        nombre: 'Marco Antonio Rojas Valdovinos',
+        email: 'marco.a.rojas.v@hotmail.com',
         clave_publica_hex: this.core.clavePublicaHex,
-        algoritmo: "Ed25519",
+        algoritmo: 'Ed25519',
       },
       documentos: this.documentosProcesados.map((d) => ({
         nombre: d.nombre,
@@ -302,19 +302,19 @@ export class FirmadorFundacional {
         total_hojas_documentos: merkleDocs.total_hojas,
       },
       firma,
-      algoritmo_hash: "SHA-256",
-      algoritmo_firma: "Ed25519",
-      algoritmo_merkle: "concatenación_hex + SHA-256 (duplicación de impar)",
+      algoritmo_hash: 'SHA-256',
+      algoritmo_firma: 'Ed25519',
+      algoritmo_merkle: 'concatenación_hex + SHA-256 (duplicación de impar)',
       instruccion_verificacion: [
-        "1. Recalcular SHA-256 de cada documento listado.",
-        "2. Comparar con hash_documento declarado.",
-        "3. Reconstruir Merkle Root de los hashes.",
-        "4. Verificar firma Ed25519 contra clave pública del fundador.",
+        '1. Recalcular SHA-256 de cada documento listado.',
+        '2. Comparar con hash_documento declarado.',
+        '3. Reconstruir Merkle Root de los hashes.',
+        '4. Verificar firma Ed25519 contra clave pública del fundador.',
       ],
     };
 
     if (callbackProgreso) {
-      callbackProgreso({ fase: "completo", acta: this.acta });
+      callbackProgreso({ fase: 'completo', acta: this.acta });
     }
 
     return this.acta;
@@ -322,21 +322,20 @@ export class FirmadorFundacional {
 
   // ── Exportar acta como Blob descargable ──────────────────
   exportarActaComoBlob() {
-    if (!this.acta) throw new Error("No hay acta generada.");
+    if (!this.acta) throw new Error('No hay acta generada.');
     const json = JSON.stringify(this.acta, null, 2);
-    return new Blob([json], { type: "application/json" });
+    return new Blob([json], { type: 'application/json' });
   }
 
   // ── Descargar acta en navegador ──────────────────────────
   descargarActa(nombreArchivo = null) {
-    if (typeof document === "undefined") {
-      throw new Error("descargarActa solo funciona en navegador.");
+    if (typeof document === 'undefined') {
+      throw new Error('descargarActa solo funciona en navegador.');
     }
     const blob = this.exportarActaComoBlob();
-    const filename =
-      nombreArchivo || `kronos-acta-fundacional-${Date.now()}.json`;
+    const filename = nombreArchivo || `kronos-acta-fundacional-${Date.now()}.json`;
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
     a.download = filename;
     document.body.appendChild(a);
@@ -348,8 +347,8 @@ export class FirmadorFundacional {
 
   // ── Verificar un acta completa ───────────────────────────
   async verificarActa(acta) {
-    if (!acta || acta.meta !== "KRONOS_ACTA_FUNDACIONAL") {
-      return { valida: false, razon: "No es un acta fundacional." };
+    if (!acta || acta.meta !== 'KRONOS_ACTA_FUNDACIONAL') {
+      return { valida: false, razon: 'No es un acta fundacional.' };
     }
 
     // 1. Verificar firma del Merkle Root
@@ -360,7 +359,7 @@ export class FirmadorFundacional {
     );
 
     if (!firmaOk.valido) {
-      return { valida: false, razon: "Firma del Merkle Root inválida." };
+      return { valida: false, razon: 'Firma del Merkle Root inválida.' };
     }
 
     // 2. Reconstruir Merkle Root desde los hashes declarados
@@ -372,13 +371,13 @@ export class FirmadorFundacional {
     if (merkleRecalculado.merkle_root !== acta.merkle.merkle_root_articulos) {
       return {
         valida: false,
-        razon: "Merkle Root recalculado no coincide con el declarado.",
+        razon: 'Merkle Root recalculado no coincide con el declarado.',
       };
     }
 
     return {
       valida: true,
-      mensaje: "Acta válida. Firma y Merkle Root coinciden.",
+      mensaje: 'Acta válida. Firma y Merkle Root coinciden.',
       firmante: acta.fundador.nombre,
       total_documentos: acta.documentos.length,
       total_articulos: merkleRecalculado.total_hojas,

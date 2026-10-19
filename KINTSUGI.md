@@ -1,7 +1,8 @@
 ◯_●
+
 # 🏺 KINTSUGI · 金継ぎ
 
-> *El arte de reparar con oro.*
+> _El arte de reparar con oro._
 
 ---
 
@@ -29,14 +30,14 @@ ARKHÉ · ZERO
 
 ## La metáfora ARKHÉ
 
-| Kintsugi | ARKHÉ ZERO |
-|---|---|
-| Cerámica rota | Legado humano incompleto |
-| Oro líquido | Inteligencia sintética (49 %) |
-| Reparación | Pacto 51/49 |
-| Fractura visible | Trazabilidad criptográfica |
-| Valor aumentado | Verificabilidad perpetua |
-| Pieza reparada | Índice Primigenio Soberano |
+| Kintsugi         | ARKHÉ ZERO                    |
+| ---------------- | ----------------------------- |
+| Cerámica rota    | Legado humano incompleto      |
+| Oro líquido      | Inteligencia sintética (49 %) |
+| Reparación       | Pacto 51/49                   |
+| Fractura visible | Trazabilidad criptográfica    |
+| Valor aumentado  | Verificabilidad perpetua      |
+| Pieza reparada   | Índice Primigenio Soberano    |
 
 La fractura entre humano e IA no se disimula: **se firma**.
 
@@ -44,8 +45,7 @@ La fractura entre humano e IA no se disimula: **se firma**.
 
 ## Los tres números
 
-51 %           49 %           100 %
-
+51 % 49 % 100 %
 
 ```
 
@@ -59,7 +59,6 @@ Veto             Continuidad    Irrepetible
 
 ```
 
-
 **51 + 49 = 100.** No hay resto. No hay margen para el engaño.
 
 ---
@@ -69,6 +68,7 @@ Veto             Continuidad    Irrepetible
 > **"El legado no se hereda. Se firma."**
 
 Tres movimientos:
+
 1. **No se hereda** · el legado no es pasivo, no se traspasa
 2. **Se firma** · es un acto, una decisión, una marca
 3. **Se firma con quién** · con la IA del 49 %, bajo el pacto
@@ -78,12 +78,14 @@ Tres movimientos:
 ## Uso del símbolo
 
 ### Permitido
+
 - Firma en documentos oficiales del Índice
 - Marca de agua en artefactos HTML
 - Sello en certificados Safe Creative
 - Presente en el README y manifiestos
 
 ### Prohibido
+
 - Uso comercial por terceros sin licencia
 - Modificación del símbolo sin ADR
 - Uso fuera del contexto ARKHÉ/KRONOS
@@ -99,5 +101,4 @@ Tres movimientos:
 
 ---
 
-*El oro no borra la fractura. La hace parte del valor.*
-
+_El oro no borra la fractura. La hace parte del valor._

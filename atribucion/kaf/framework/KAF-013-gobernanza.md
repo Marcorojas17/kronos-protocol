@@ -8,12 +8,12 @@ Garantizar gobernanza documentada y auditable.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-12.1 | ISO 42001 (Sistema de Gestión de IA) | Critical | ❌ |
-| KAF-12.2 | NIST AI RMF documentado | High | ❌ |
-| KAF-12.3 | Políticas documentadas | High | ❌ |
-| KAF-12.4 | Auditoría anual externa | High | ❌ |
+| ID       | Nombre                               | Severidad | Auto |
+| -------- | ------------------------------------ | --------- | ---- |
+| KAF-12.1 | ISO 42001 (Sistema de Gestión de IA) | Critical  | ❌   |
+| KAF-12.2 | NIST AI RMF documentado              | High      | ❌   |
+| KAF-12.3 | Políticas documentadas               | High      | ❌   |
+| KAF-12.4 | Auditoría anual externa              | High      | ❌   |
 
 ## Requisitos
 

@@ -8,13 +8,13 @@
 
 ## 🜂 Opciones de HSM
 
-| Tipo             | Costo        | Uso                                |
-|------------------|--------------|------------------------------------|
-| **YubiHSM 2**    | ~$650 USD    | ⭐ Recomendado · portable · auditado |
-| **CloudHSM** (AWS) | ~$1.45/hora | Producción · alta disponibilidad   |
-| **SoftHSM**      | Gratis       | Desarrollo · testing               |
-| **Ledger Nano**  | ~$80 USD     | Uso personal · backup              |
-| **Trezor Model T** | ~$180 USD  | Uso personal · open source         |
+| Tipo               | Costo       | Uso                                  |
+| ------------------ | ----------- | ------------------------------------ |
+| **YubiHSM 2**      | ~$650 USD   | ⭐ Recomendado · portable · auditado |
+| **CloudHSM** (AWS) | ~$1.45/hora | Producción · alta disponibilidad     |
+| **SoftHSM**        | Gratis      | Desarrollo · testing                 |
+| **Ledger Nano**    | ~$80 USD    | Uso personal · backup                |
+| **Trezor Model T** | ~$180 USD   | Uso personal · open source           |
 
 ## 🜃 Setup YubiHSM 2 (recomendado)
 

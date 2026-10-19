@@ -17,15 +17,16 @@
 
 # 🎁 RECOMPENSAS DEL EMBAJADOR
 
-### *El mérito se recompensa. Nunca se compra.*
+### _El mérito se recompensa. Nunca se compra._
 
-### *"No es pago. Es reconocimiento firmado."*
+### _"No es pago. Es reconocimiento firmado."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E C O M P E N S A S  ·  ◯_●                       ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -65,14 +67,14 @@
 ### 💰 Presupuesto FLAILP
 
 | Nivel | Presupuesto mensual |
-|-------|--------------------|
-| E-1   | 1 unidad simbólica |
-| E-2   | 10 unidades        |
-| E-3   | 100 unidades       |
-| E-4   | 1000 unidades      |
-| E-5   | 10 000 unidades    |
+| ----- | ------------------- |
+| E-1   | 1 unidad simbólica  |
+| E-2   | 10 unidades         |
+| E-3   | 100 unidades        |
+| E-4   | 1000 unidades       |
+| E-5   | 10 000 unidades     |
 
-*(en MXN equivalente al Fondo FLAILP)*
+_(en MXN equivalente al Fondo FLAILP)_
 
 ### 📜 Reconocimiento
 
@@ -84,6 +86,7 @@
 ### 💸 Regalías automáticas
 
 Por cada obra referida:
+
 - 51% al autor original
 - 49% al Fondo FLAILP (parte al embajador referidor)
 

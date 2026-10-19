@@ -34,7 +34,7 @@ control de cupo (79 humanos + 19 IAs + 1 reservada + 1 plaza eterna).
 ## API pública
 
 ```js
-import { RegistroFundacional } from "./registro.js";
+import { RegistroFundacional } from './registro.js';
 
 const registro = new RegistroFundacional(core);
 await registro.init();
@@ -43,10 +43,10 @@ const cupo = await registro.estadoCupo();
 // cupo.disponibles, cupo.cerrado, etc.
 
 const s = await registro.solicitar({
-  tipo: "humano",
-  nombre: "María Fernanda López",
-  email: "maria@example.com",
-  motivacion: "...",
+  tipo: 'humano',
+  nombre: 'María Fernanda López',
+  email: 'maria@example.com',
+  motivacion: '...',
 });
 
 const f = await registro.aceptar(s.id);

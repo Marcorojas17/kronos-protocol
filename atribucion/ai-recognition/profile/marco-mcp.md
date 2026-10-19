@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Marco MCP
 
 ## Qué es
@@ -18,6 +18,7 @@ sin repetir información en cada sesión.
   el MCP para uso personal.
 
 Ambos comparten la misma lógica. La diferencia:
+
 - `atribucion/ai-recognition/mcp/` → específico a Atribución.
 - `marco-mcp/` → genérico para todos los proyectos de Marco.
 
@@ -27,6 +28,7 @@ Ambos comparten la misma lógica. La diferencia:
 pip install marco-mcp
 marco-mcp serve
 ```
+````
 
 Luego en Claude Desktop o Cursor:
 
@@ -53,5 +55,7 @@ log_session Registra una sesión de trabajo
 ---
 
 Última actualización: 2026-10-05
+
+```
 
 ```

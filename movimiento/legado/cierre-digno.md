@@ -2,7 +2,7 @@
 
 ## 🜂 Principio
 
-> *"El cierre no es muerte. Es firma final."*
+> _"El cierre no es muerte. Es firma final."_
 
 ## 🜃 Protocolo
 
@@ -25,4 +25,5 @@
 ```
 
 ---
+
 `◯_● · 51/49/100 · legado-cierre-digno`

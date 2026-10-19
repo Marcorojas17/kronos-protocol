@@ -17,15 +17,16 @@
 
 # 🔍 DESCUBRIMIENTO · SEO · AEO · GEO
 
-### *Ser encontrado sin gritar*
+### _Ser encontrado sin gritar_
 
-### *"No buscamos audiencia. Nos encuentran quienes buscan verdad."*
+### _"No buscamos audiencia. Nos encuentran quienes buscan verdad."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  D E S C U B R I M I E N T O  ·  ◯_●                 ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -49,6 +51,7 @@
 Optimización para buscadores tradicionales (Google, Bing, DuckDuckGo).
 
 **Elementos clave:**
+
 - `robots.txt` + `sitemap.xml` ✅ (en apps/)
 - Meta tags canónicas
 - Estructura semántica HTML5
@@ -60,6 +63,7 @@ Optimización para buscadores tradicionales (Google, Bing, DuckDuckGo).
 Optimización para motores de respuestas (ChatGPT, Claude, Perplexity, Gemini).
 
 **Elementos clave:**
+
 - `llms.txt` ✅ (en raíz)
 - `llms-full.txt` ✅
 - `AI-MANIFEST.json` ✅
@@ -71,6 +75,7 @@ Optimización para motores de respuestas (ChatGPT, Claude, Perplexity, Gemini).
 Optimización para motores generativos (búsqueda con IA integrada).
 
 **Elementos clave:**
+
 - Contenido estructurado en `.md`
 - Hashes verificables
 - Fechas explícitas (ISO 8601)

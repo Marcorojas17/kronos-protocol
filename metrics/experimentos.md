@@ -17,15 +17,16 @@
 
 # 🧪 EXPERIMENTOS · A/B TESTING
 
-### *Probar sin engañar*
+### _Probar sin engañar_
 
-### *"El experimento no manipula. Aprende."*
+### _"El experimento no manipula. Aprende."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E X P E R I M E N T O S  ·  ◯_●                     ║
@@ -37,6 +38,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -86,19 +88,19 @@
 ## 🜄 Formato
 
 ```yaml
-- id: "EXP-2026-001"
-  hipotesis: "..."
-  variante_control: "..."
-  variante_test: "..."
-  metrica_primaria: "tasa_registro"
-  metrica_secundaria: "retencion_m1"
+- id: 'EXP-2026-001'
+  hipotesis: '...'
+  variante_control: '...'
+  variante_test: '...'
+  metrica_primaria: 'tasa_registro'
+  metrica_secundaria: 'retencion_m1'
   duracion_dias: 30
   tamaño_muestra: 1000
-  inicio: "2026-11-01"
-  cierre: "2026-12-01"
+  inicio: '2026-11-01'
+  cierre: '2026-12-01'
   resultado: null
   decision: null
-  sello: "◯_● · 51/49/100"
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

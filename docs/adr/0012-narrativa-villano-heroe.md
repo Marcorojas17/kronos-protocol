@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 Usar **arquetipos narrativos**:
+
 - **Villano** · El olvido programado
 - **Héroe** · El testigo
 - **Tesoro** · El legado firmado

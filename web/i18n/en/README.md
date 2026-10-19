@@ -17,15 +17,16 @@
 
 # 🇬🇧 ENGLISH · OFFICIAL TRANSLATION
 
-### *The legacy is not inherited. It is signed.*
+### _The legacy is not inherited. It is signed._
 
-### *"The legacy is not inherited. It is signed."*
+### _"The legacy is not inherited. It is signed."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E N G L I S H  ·  ◯_●                               ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -57,7 +59,7 @@ All translations are anchored to the Index Zero.
 
 ## 🜄 Canonical phrase
 
-> *"The legacy is not inherited. It is signed."*
+> _"The legacy is not inherited. It is signed."_
 > — Marco Antonio Rojas Valdovinos · Toluca, Mexico · 2026
 
 ## 🜁 Signature

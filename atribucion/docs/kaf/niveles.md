@@ -10,6 +10,7 @@
 **Certificación:** Autodeclarada + verificada por API.
 
 **Controles requeridos (5):**
+
 - KAF-1.1 DID registrado
 - KAF-1.2 VC vigente
 - KAF-3.1 Log inmutable
@@ -28,6 +29,7 @@
 **Certificación:** Verificada por Atribución.
 
 **Controles requeridos (10 adicionales):**
+
 - KAF-2.1 Contrato de Atribución
 - KAF-2.2 Colateral depositado
 - KAF-2.3 Nivel de autonomía
@@ -52,6 +54,7 @@
 **Certificación:** Auditoría externa.
 
 **Controles requeridos (14 adicionales):**
+
 - KAF-6.1 a KAF-6.5 Seguridad
 - KAF-7.1 GDPR
 - KAF-8.1 a KAF-8.3 Continuidad
@@ -74,6 +77,7 @@
 **Certificación:** Auditoría Big Four.
 
 **Controles requeridos (7 adicionales):**
+
 - KAF-9.2 PQC completo
 - KAF-11.1 NOM-151
 - KAF-11.2 PSC acreditado
@@ -86,6 +90,7 @@
 **Cumple:** EU AI Act + ISO 27001 + ISO 42001 + SOC 2 + NIST AI RMF + NOM-151 + CNBV.
 
 **Beneficios exclusivos:**
+
 - Tribunal Kronos como primera instancia.
 - SLA 99.99% contractual.
 - HSM dedicado.
@@ -95,11 +100,11 @@
 
 ## Comparativa
 
-| | KAF-1 | KAF-2 | KAF-3 | KAF-4 |
-|---|---|---|---|---|
-| Controles acumulados | 5 | 15 | 29 | 36 |
-| Auto-auditable | ✅ | ✅ | 🟡 | 🟡 |
-| Auditoría externa | ❌ | ❌ | ✅ | ✅ |
-| Costo anual | €0 | €11.880 | €6.800 | €19.900 |
-| Tiempo | 1 min | 1 hora | 2-4 sem | 6-8 sem |
-| Cliente objetivo | Startup | Scaleup | Enterprise | Bank/Gov |
+|                      | KAF-1   | KAF-2   | KAF-3      | KAF-4    |
+| -------------------- | ------- | ------- | ---------- | -------- |
+| Controles acumulados | 5       | 15      | 29         | 36       |
+| Auto-auditable       | ✅      | ✅      | 🟡         | 🟡       |
+| Auditoría externa    | ❌      | ❌      | ✅         | ✅       |
+| Costo anual          | €0      | €11.880 | €6.800     | €19.900  |
+| Tiempo               | 1 min   | 1 hora  | 2-4 sem    | 6-8 sem  |
+| Cliente objetivo     | Startup | Scaleup | Enterprise | Bank/Gov |

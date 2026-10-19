@@ -8,13 +8,13 @@
 
 Para obtener KAF-1, un agente debe cumplir:
 
-| Control | Descripción |
-|---|---|
+| Control     | Descripción                          |
+| ----------- | ------------------------------------ |
 | **KAF-1.1** | DID registrado bajo el método kronos |
-| **KAF-1.2** | Credencial Verificable vigente |
-| **KAF-3.1** | Log inmutable de acciones |
-| **KAF-3.2** | Firma por cada acción |
-| **KAF-9.1** | Firmas híbridas (ECDSA + ML-DSA) |
+| **KAF-1.2** | Credencial Verificable vigente       |
+| **KAF-3.1** | Log inmutable de acciones            |
+| **KAF-3.2** | Firma por cada acción                |
+| **KAF-9.1** | Firmas híbridas (ECDSA + ML-DSA)     |
 
 **Total: 5 controles mínimos.**
 
@@ -59,3 +59,4 @@ Cualquiera puede verificar un certificado KAF-1:
 curl https://api.atribucion.io/v1/kaf/verify/{certificate_id}
 
 https://atribucion.io/verify/kaf/{certificate_id}
+```

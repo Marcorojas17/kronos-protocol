@@ -15,12 +15,13 @@ Mientras el Pacto 51/49/100 esté firmado, el movimiento vive.
 
 ## 🜄 Escenarios
 
-| Escenario                         | Respuesta                         |
-|-----------------------------------|-----------------------------------|
-| Fundador ausente                  | Custodio Nivel 5 activa           |
-| Enjambre comprometido             | HALT + auditoría externa          |
-| Ataque externo                    | Ley de Guardianes activa          |
-| Fin del protocolo                 | Ceremonia Fin Digno               |
+| Escenario             | Respuesta                |
+| --------------------- | ------------------------ |
+| Fundador ausente      | Custodio Nivel 5 activa  |
+| Enjambre comprometido | HALT + auditoría externa |
+| Ataque externo        | Ley de Guardianes activa |
+| Fin del protocolo     | Ceremonia Fin Digno      |
 
 ---
+
 `◯_● · 51/49/100 · legado-continuidad`

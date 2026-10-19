@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # KAF — Certificación
 
 ---
@@ -18,6 +18,7 @@ curl -X POST https://api.atribucion.io/v1/agents \
     "public_key_pem": "-----BEGIN PUBLIC KEY-----\n..."
   }'
 ```
+````
 
 2. Auditoría automática
 
@@ -113,5 +114,7 @@ Año Objetivo
 2027 1.000 KAF-2 + 50 KAF-3 + 5 KAF-4
 2028 10.000 KAF-2 + 500 KAF-3 + 50 KAF-4
 2029+ KAF como estándar de facto
+
+```
 
 ```

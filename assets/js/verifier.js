@@ -3,15 +3,15 @@
    Port fiel de verifier.py · verificación de cadena en cliente
    ============================================================ */
 (function (global) {
-  "use strict";
+  'use strict';
 
   // ---------- SHA-256 (equivalente a hashlib.sha256) ----------
   async function hashSha256(texto) {
     const enc = new TextEncoder().encode(texto);
-    const buf = await crypto.subtle.digest("SHA-256", enc);
+    const buf = await crypto.subtle.digest('SHA-256', enc);
     return Array.from(new Uint8Array(buf))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   // ---------- Verificación de cadena ----------
@@ -33,11 +33,11 @@
       if (e.hash_previo !== hashPrevioEsperado) {
         resultado.integra = false;
         resultado.rota_en = e.n;
-        resultado.razon = "hash_previo no coincide";
+        resultado.razon = 'hash_previo no coincide';
         resultado.entradas.push({
           n: e.n,
           ok: false,
-          motivo: "hash_previo",
+          motivo: 'hash_previo',
           accion: e.accion,
           cuando: e.cuando,
         });
@@ -53,19 +53,19 @@
         e.proposito,
         e.autor,
         e.anio,
-        e.hash_previo || "GENESIS",
-      ].join("|");
+        e.hash_previo || 'GENESIS',
+      ].join('|');
 
       const hashCalculado = await hashSha256(contenido);
 
       if (hashCalculado !== e.hash) {
         resultado.integra = false;
         resultado.rota_en = e.n;
-        resultado.razon = "hash no coincide";
+        resultado.razon = 'hash no coincide';
         resultado.entradas.push({
           n: e.n,
           ok: false,
-          motivo: "hash",
+          motivo: 'hash',
           accion: e.accion,
           cuando: e.cuando,
         });
@@ -91,10 +91,9 @@
   }
 
   // ---------- Cargar log desde URL ----------
-  async function cargarLog(url = "logs/log.json") {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok)
-      throw new Error(`No se pudo cargar ${url} (HTTP ${res.status})`);
+  async function cargarLog(url = 'logs/log.json') {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`No se pudo cargar ${url} (HTTP ${res.status})`);
     return await res.json();
   }
 
@@ -105,5 +104,5 @@
     cargarLog,
   };
 
-  console.log("[Kronos] verifier.js cargado · KronosVerifier disponible");
+  console.log('[Kronos] verifier.js cargado · KronosVerifier disponible');
 })(window);

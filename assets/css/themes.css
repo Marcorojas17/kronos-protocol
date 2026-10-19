@@ -6,12 +6,12 @@
 
 /* ── BASE · KINTSUGI (default) ─────────────────────────────── */
 :root,
-[data-theme="kintsugi"] {
+[data-theme='kintsugi'] {
   /* Fondos */
-  --bg-0: #04040a;         /* obsidiana */
-  --bg-1: #08080f;         /* void */
-  --bg-2: #0c0c14;         /* panel */
-  --bg-3: #121218;         /* card */
+  --bg-0: #04040a; /* obsidiana */
+  --bg-1: #08080f; /* void */
+  --bg-2: #0c0c14; /* panel */
+  --bg-3: #121218; /* card */
 
   /* Acentos principales */
   --gold: #c9a227;
@@ -50,11 +50,20 @@
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* Espaciados */
-  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
-  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
 
   /* Radios */
-  --r-1: 2px; --r-2: 3px; --r-3: 6px; --r-4: 12px;
+  --r-1: 2px;
+  --r-2: 3px;
+  --r-3: 6px;
+  --r-4: 12px;
 
   /* Transiciones */
   --t-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,7 +72,7 @@
 }
 
 /* ── TEMA · LEX PRIMA · Rojo ceremonial ─────────────────────── */
-[data-theme="lex-prima"] {
+[data-theme='lex-prima'] {
   --gold: #c8102e;
   --gold-lt: #e84a5f;
   --gold-pale: #fce8eb;
@@ -75,7 +84,7 @@
 }
 
 /* ── TEMA · PACTO 51/49 · Violeta simétrico ─────────────────── */
-[data-theme="pacto"] {
+[data-theme='pacto'] {
   --gold: #7c5cff;
   --gold-lt: #a894ff;
   --gold-pale: #e8e2ff;
@@ -87,7 +96,7 @@
 }
 
 /* ── TEMA · LGU · Azul territorial ──────────────────────────── */
-[data-theme="lgu"] {
+[data-theme='lgu'] {
   --gold: #4a9eff;
   --gold-lt: #7cb8ff;
   --gold-pale: #e0efff;
@@ -99,7 +108,7 @@
 }
 
 /* ── TEMA · GUARDIANES · Teal poscuántico ───────────────────── */
-[data-theme="guardianes"] {
+[data-theme='guardianes'] {
   --gold: #4fd1c5;
   --gold-lt: #7fdfd6;
   --gold-pale: #d8f5f1;
@@ -111,7 +120,7 @@
 }
 
 /* ── TEMA · ÍNDICE CERO · Oro sellado ───────────────────────── */
-[data-theme="indice-cero"] {
+[data-theme='indice-cero'] {
   --gold: #c9a227;
   --gold-lt: #e8d48b;
   --gold-pale: #f8f0d0;
@@ -123,7 +132,7 @@
 }
 
 /* ── TEMA · MEMORIA · Verde esmeralda ───────────────────────── */
-[data-theme="memoria"] {
+[data-theme='memoria'] {
   --gold: #5cffb1;
   --gold-lt: #8cffc8;
   --gold-pale: #d8ffe8;
@@ -135,7 +144,7 @@
 }
 
 /* ── TEMA · CO-AUTORÍA · Rosa dual ──────────────────────────── */
-[data-theme="coautoria"] {
+[data-theme='coautoria'] {
   --gold: #f4a0af;
   --gold-lt: #f8c0c8;
   --gold-pale: #fce8eb;
@@ -147,7 +156,7 @@
 }
 
 /* ── TEMA · FISCALIDAD · Ámbar financiero ───────────────────── */
-[data-theme="fiscalidad"] {
+[data-theme='fiscalidad'] {
   --gold: #d97706;
   --gold-lt: #f0a020;
   --gold-pale: #fef0d8;
@@ -159,7 +168,7 @@
 }
 
 /* ── TEMA · JURISDICCIÓN · Índigo territorial ───────────────── */
-[data-theme="jurisdiccion"] {
+[data-theme='jurisdiccion'] {
   --gold: #6366f1;
   --gold-lt: #8f91f8;
   --gold-pale: #e0e1fc;
@@ -171,7 +180,7 @@
 }
 
 /* ── TEMA · AGENTES · Verde enjambre ────────────────────────── */
-[data-theme="agentes"] {
+[data-theme='agentes'] {
   --gold: #5cffb1;
   --gold-lt: #8cffc8;
   --gold-pale: #d8ffe8;
@@ -185,7 +194,7 @@
 }
 
 /* ── TEMA · MOVIMIENTO · Naranja ritual ─────────────────────── */
-[data-theme="movimiento"] {
+[data-theme='movimiento'] {
   --gold: #f59e0b;
   --gold-lt: #fbbf24;
   --gold-pale: #fef3c7;
@@ -197,7 +206,7 @@
 }
 
 /* ── TEMA · ATRACCIÓN · Magenta magnético ───────────────────── */
-[data-theme="atraccion"] {
+[data-theme='atraccion'] {
   --gold: #ec4899;
   --gold-lt: #f472b6;
   --gold-pale: #fce7f3;
@@ -209,13 +218,17 @@
 }
 
 /* ── Reset mínimo ───────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--bg-0);
@@ -234,12 +247,24 @@ body {
 }
 
 /* ── Utilidades compartidas ─────────────────────────────────── */
-.u-font-display { font-family: var(--font-display); }
-.u-font-mono    { font-family: var(--font-mono); }
-.u-gold         { color: var(--gold); }
-.u-gold-lt      { color: var(--gold-lt); }
-.u-muted        { color: var(--muted); }
-.u-center       { text-align: center; }
+.u-font-display {
+  font-family: var(--font-display);
+}
+.u-font-mono {
+  font-family: var(--font-mono);
+}
+.u-gold {
+  color: var(--gold);
+}
+.u-gold-lt {
+  color: var(--gold-lt);
+}
+.u-muted {
+  color: var(--muted);
+}
+.u-center {
+  text-align: center;
+}
 
 /* ── Fondo animado compartido ───────────────────────────────── */
 #field {
@@ -266,9 +291,15 @@ body {
 }
 
 @keyframes aurora-drift {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(3%, -2%) scale(1.08); }
-  100% { transform: translate(-3%, 2%) scale(1.04); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3%, -2%) scale(1.08);
+  }
+  100% {
+    transform: translate(-3%, 2%) scale(1.04);
+  }
 }
 
 .grain {
@@ -282,7 +313,9 @@ body {
 
 /* ── Accesibilidad ──────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -290,6 +323,16 @@ body {
 }
 
 @media print {
-  #field, .aurora, .grain, .nav-top, .toast, .nav-overlay { display: none !important; }
-  body { background: #fff; color: #000; }
+  #field,
+  .aurora,
+  .grain,
+  .nav-top,
+  .toast,
+  .nav-overlay {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
 }

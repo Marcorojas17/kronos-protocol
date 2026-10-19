@@ -17,15 +17,16 @@
 
 # 🎖️ RESPONSABILIDADES DEL EMBAJADOR
 
-### *El embajador no manda. Representa.*
+### _El embajador no manda. Representa._
 
-### *"Llevar el pacto al mundo es la mayor responsabilidad."*
+### _"Llevar el pacto al mundo es la mayor responsabilidad."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E S P O N S A B I L I D A D E S  ·  ◯_●           ║
@@ -41,6 +42,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -70,6 +72,7 @@ siendo del fundador.
 
 Cada embajador E-2 o superior puede fundar un nodo regional.
 Un nodo implica:
+
 - Repositorio espejo en su región
 - Contacto local presencial
 - Presupuesto proporcional del Fondo FLAILP
@@ -83,6 +86,7 @@ lo **transmite**.
 ### V · Custodiar el Índice Cero
 
 En su región, el embajador responde por:
+
 - Integridad de las copias locales
 - Trazabilidad de los registros
 - Educación sobre el pacto 51/49/100

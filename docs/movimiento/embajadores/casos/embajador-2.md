@@ -17,15 +17,16 @@
 
 # 🧑‍🏫 CASO 2 · EL MENTOR
 
-### *Aquel que acompaña a otros a firmar*
+### _Aquel que acompaña a otros a firmar_
 
-### *"El maestro no enseña. Firma con el aprendiz."*
+### _"El maestro no enseña. Firma con el aprendiz."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M E N T O R  ·  ◯_●                                 ║
@@ -42,6 +43,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -71,20 +73,20 @@ El Mentor no crea discípulos. Crea **testigos independientes**.
 
 ## 🜄 Testimonio (placeholder)
 
-> *"Mi labor no es tener muchos ahijados. Es que cada uno se
+> _"Mi labor no es tener muchos ahijados. Es que cada uno se
 > convierta en testigo independiente. El día que un ahijado me
-> supera, ese día terminé bien mi trabajo."*
+> supera, ese día terminé bien mi trabajo."_
 >
-> — *[pendiente]*
+> — _[pendiente]_
 
 ## 🜁 Métricas del Mentor
 
-| Métrica                      | Meta E-1 | Meta E-2 |
-|------------------------------|----------|----------|
-| Ahijados iniciados           | 10       | 50       |
-| Tasa de conversión           | ≥ 70%    | ≥ 80%    |
-| Auditorías limpias           | 1        | 3        |
-| Reputación mínima            | 95       | 97       |
+| Métrica            | Meta E-1 | Meta E-2 |
+| ------------------ | -------- | -------- |
+| Ahijados iniciados | 10       | 50       |
+| Tasa de conversión | ≥ 70%    | ≥ 80%    |
+| Auditorías limpias | 1        | 3        |
+| Reputación mínima  | 95       | 97       |
 
 ## 🜆 Firma
 

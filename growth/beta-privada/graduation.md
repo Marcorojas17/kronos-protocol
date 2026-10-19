@@ -7,15 +7,16 @@
 
 # 🎓 GRADUACIÓN DE BETA
 
-### *El fin de la beta es un hito*
+### _El fin de la beta es un hito_
 
-### *"El beta-tester graduado es leyenda."*
+### _"El beta-tester graduado es leyenda."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  G R A D U A T I O N  ·  ◯_●                         ║
@@ -27,6 +28,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,13 +50,13 @@
 ## 🜃 Formato de graduación
 
 ```yaml
-- id: "GRAD-2026-001"
-  graduado: "Fundador #NNN"
-  inicio_beta: "2026-XX-XX"
-  fin_beta: "2026-XX-XX"
-  feedback_hash: "sha3-512:..."
-  insignia: "🎓 graduado"
-  sellado: "◯_● · 51/49/100"
+- id: 'GRAD-2026-001'
+  graduado: 'Fundador #NNN'
+  inicio_beta: '2026-XX-XX'
+  fin_beta: '2026-XX-XX'
+  feedback_hash: 'sha3-512:...'
+  insignia: '🎓 graduado'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Firma

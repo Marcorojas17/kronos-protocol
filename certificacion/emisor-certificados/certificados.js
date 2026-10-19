@@ -9,9 +9,9 @@ export class EmisorCertificados {
     this.core = core;
     this.storage = storage;
     this.sello = sello;
-    this.db = new Dexie("kronos-certificados");
+    this.db = new Dexie('kronos-certificados');
     this.db.version(1).stores({
-      emitidos: "++id, tipo, hash_contenido, timestamp_emision",
+      emitidos: '++id, tipo, hash_contenido, timestamp_emision',
     });
     this.certificadoActual = null;
   }
@@ -21,31 +21,22 @@ export class EmisorCertificados {
   }
 
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   // ── Emitir un certificado oficial ──────────────────────────
   async emitir(datos) {
-    if (!this.core.inicializado)
-      throw new Error("Cripto Core no inicializado.");
+    if (!this.core.inicializado) throw new Error('Cripto Core no inicializado.');
     if (!this.db.isOpen()) await this.init();
 
-    const {
-      tipo_documento,
-      titulo,
-      descripcion,
-      contenido,
-      destinatario,
-      tsa_info,
-    } = datos;
+    const { tipo_documento, titulo, descripcion, contenido, destinatario, tsa_info } =
+      datos;
 
     if (!tipo_documento || !titulo || !destinatario) {
-      throw new Error(
-        "Faltan campos obligatorios (tipo, título, destinatario).",
-      );
+      throw new Error('Faltan campos obligatorios (tipo, título, destinatario).');
     }
 
     const timestamp = new Date().toISOString();
@@ -56,16 +47,16 @@ export class EmisorCertificados {
 
     // 2. Payload canónico del certificado
     const payload = [
-      "LEGADO-HUMANO-IA · CERTIFICADO OFICIAL v1.0",
+      'LEGADO-HUMANO-IA · CERTIFICADO OFICIAL v1.0',
       `Tipo: ${tipo_documento}`,
       `Título: ${titulo}`,
-      `Descripción: ${descripcion || "(sin descripción)"}`,
+      `Descripción: ${descripcion || '(sin descripción)'}`,
       `Destinatario: ${destinatario}`,
       `Hash contenido: ${hashContenido}`,
-      `TSA: ${tsa_info ? tsa_info.tsa : "(pendiente)"}`,
-      `Fecha sello: ${tsa_info ? tsa_info.fecha : "(pendiente)"}`,
+      `TSA: ${tsa_info ? tsa_info.tsa : '(pendiente)'}`,
+      `Fecha sello: ${tsa_info ? tsa_info.fecha : '(pendiente)'}`,
       `Emitido: ${timestamp}`,
-    ].join("\n");
+    ].join('\n');
 
     const hashPayload = await EmisorCertificados._sha256Hex(
       new TextEncoder().encode(payload),
@@ -73,27 +64,27 @@ export class EmisorCertificados {
 
     // 3. Firma Ed25519 del fundador
     const firmaBuf = await crypto.subtle.sign(
-      "Ed25519",
+      'Ed25519',
       this.core.clavePrivEd,
       new TextEncoder().encode(hashPayload),
     );
     const firma = [...new Uint8Array(firmaBuf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
 
     const certificado = {
-      protocolo: "LEGADO-HUMANO-IA",
-      version: "certificado-oficial-1.0",
-      tipo: "CERTIFICADO_EMITIDO",
+      protocolo: 'LEGADO-HUMANO-IA',
+      version: 'certificado-oficial-1.0',
+      tipo: 'CERTIFICADO_EMITIDO',
       timestamp,
       tipo_documento,
       titulo,
-      descripcion: descripcion || "",
+      descripcion: descripcion || '',
       destinatario,
       hash_contenido: hashContenido,
       payload_hash: hashPayload,
       firma_ed25519: firma,
-      firmante: "Marco Antonio Rojas Valdovinos",
+      firmante: 'Marco Antonio Rojas Valdovinos',
       firmante_clave_publica: this.core.clavePublicaHex,
       tsa: tsa_info
         ? {
@@ -102,11 +93,11 @@ export class EmisorCertificados {
             archivo_tsr_disponible: !!tsa_info.bytes,
           }
         : null,
-      algoritmo_hash: "SHA-256",
-      algoritmo_firma: "Ed25519",
+      algoritmo_hash: 'SHA-256',
+      algoritmo_firma: 'Ed25519',
       verificable_por_tercero: true,
       instruccion_verificacion:
-        "SHA-256 del payload canónico debe coincidir con payload_hash. La firma Ed25519 se verifica con firmante_clave_publica.",
+        'SHA-256 del payload canónico debe coincidir con payload_hash. La firma Ed25519 se verifica con firmante_clave_publica.',
     };
 
     const id = await this.db.emitidos.add(certificado);
@@ -116,19 +107,19 @@ export class EmisorCertificados {
 
   // ── Verificar un certificado ──────────────────────────────
   async verificar(cert) {
-    if (!cert) return { valido: false, razon: "Sin certificado" };
+    if (!cert) return { valido: false, razon: 'Sin certificado' };
 
     const payload = [
-      "LEGADO-HUMANO-IA · CERTIFICADO OFICIAL v1.0",
+      'LEGADO-HUMANO-IA · CERTIFICADO OFICIAL v1.0',
       `Tipo: ${cert.tipo_documento}`,
       `Título: ${cert.titulo}`,
-      `Descripción: ${cert.descripcion || "(sin descripción)"}`,
+      `Descripción: ${cert.descripcion || '(sin descripción)'}`,
       `Destinatario: ${cert.destinatario}`,
       `Hash contenido: ${cert.hash_contenido}`,
-      `TSA: ${cert.tsa ? cert.tsa.tsa : "(pendiente)"}`,
-      `Fecha sello: ${cert.tsa ? cert.tsa.fecha : "(pendiente)"}`,
+      `TSA: ${cert.tsa ? cert.tsa.tsa : '(pendiente)'}`,
+      `Fecha sello: ${cert.tsa ? cert.tsa.fecha : '(pendiente)'}`,
       `Emitido: ${cert.timestamp}`,
-    ].join("\n");
+    ].join('\n');
 
     const hashRecalc = await EmisorCertificados._sha256Hex(
       new TextEncoder().encode(payload),
@@ -139,15 +130,15 @@ export class EmisorCertificados {
     try {
       const pubBytes = hexToBytes(cert.firmante_clave_publica);
       const pubKey = await crypto.subtle.importKey(
-        "raw",
+        'raw',
         pubBytes,
-        { name: "Ed25519" },
+        { name: 'Ed25519' },
         false,
-        ["verify"],
+        ['verify'],
       );
       const firmaBytes = hexToBytes(cert.firma_ed25519);
       firmaOk = await crypto.subtle.verify(
-        "Ed25519",
+        'Ed25519',
         pubKey,
         firmaBytes,
         new TextEncoder().encode(hashRecalc),
@@ -172,10 +163,9 @@ export class EmisorCertificados {
 
   // ── Exportar certificado actual como JSON ─────────────────
   exportar() {
-    if (!this.certificadoActual)
-      throw new Error("No hay certificado para exportar.");
+    if (!this.certificadoActual) throw new Error('No hay certificado para exportar.');
     return new Blob([JSON.stringify(this.certificadoActual, null, 2)], {
-      type: "application/json",
+      type: 'application/json',
     });
   }
 }

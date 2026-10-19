@@ -17,15 +17,16 @@
 
 # 🧑 AVATARES OFICIALES
 
-### *Identidad visual de los miembros*
+### _Identidad visual de los miembros_
 
-### *"Tu avatar es tu firma visual."*
+### _"Tu avatar es tu firma visual."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A V A T A R E S  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,15 +48,15 @@
 
 ## 🜂 Avatares por nivel
 
-| Nivel | Avatar                | Elemento             |
-|-------|-----------------------|----------------------|
-| 0     | `avatar-visitante.svg`| ○                    |
-| 1     | `avatar-iniciado.svg` | ◉                    |
-| 2     | `avatar-guardian.svg` | ◉◉                   |
-| 3     | `avatar-maestro.svg`  | ◉◉◉                  |
-| 4     | `avatar-embajador.svg`| ◉◉◉◉                 |
-| 5     | `avatar-custodio.svg` | ◉◉◉◉◉                |
-| 6     | `avatar-fundador.svg` | ★                    |
+| Nivel | Avatar                 | Elemento |
+| ----- | ---------------------- | -------- |
+| 0     | `avatar-visitante.svg` | ○        |
+| 1     | `avatar-iniciado.svg`  | ◉        |
+| 2     | `avatar-guardian.svg`  | ◉◉       |
+| 3     | `avatar-maestro.svg`   | ◉◉◉      |
+| 4     | `avatar-embajador.svg` | ◉◉◉◉     |
+| 5     | `avatar-custodio.svg`  | ◉◉◉◉◉    |
+| 6     | `avatar-fundador.svg`  | ★        |
 
 ## 🜃 Cómo usarlos
 

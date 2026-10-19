@@ -17,15 +17,16 @@
 
 # 🎨 ASSETS DEL MOVIMIENTO
 
-### *El material visual del legado*
+### _El material visual del legado_
 
-### *"Cada asset es una firma visual."*
+### _"Cada asset es una firma visual."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A S S E T S  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Subcarpetas
 
-| Carpeta       | Contenido                                |
-|---------------|------------------------------------------|
-| `art/`        | Arte conceptual, mandalas de Yejidá      |
-| `img/`        | Imágenes, banners, OG cards              |
-| `avatares/`   | Avatares oficiales de miembros           |
-| `insignias/`  | Insignias por nivel                      |
-| `fuentes/`    | Tipografías canónicas                    |
+| Carpeta      | Contenido                           |
+| ------------ | ----------------------------------- |
+| `art/`       | Arte conceptual, mandalas de Yejidá |
+| `img/`       | Imágenes, banners, OG cards         |
+| `avatares/`  | Avatares oficiales de miembros      |
+| `insignias/` | Insignias por nivel                 |
+| `fuentes/`   | Tipografías canónicas               |
 
 ## 🜃 Licencia
 

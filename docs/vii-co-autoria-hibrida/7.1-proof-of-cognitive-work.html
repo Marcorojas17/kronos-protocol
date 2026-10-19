@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>💡 Artículo 7.1 · Proof of Cognitive Work · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-71-proof-of-cognitive-work">💡 Artículo 7.1 · Proof of Cognitive Work</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/vii-co-autoria-hibrida]
+  <head>
+    <meta charset="UTF-8" />
+    <title>💡 Artículo 7.1 · Proof of Cognitive Work · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-71-proof-of-cognitive-work">
+      💡 Artículo 7.1 · Proof of Cognitive Work
+    </h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/vii-co-autoria-hibrida]
 └─$ ./coautoria --pocw --status
 
 [ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
@@ -19,10 +21,13 @@
 [ OK ] Ambas firmadas · verificadas
 [ ✓✓ ] POCW OPERATIVO · ◯_● · 51/49/100
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p><strong>Proof of Cognitive Work</strong> = prueba criptográfica de que humano + IA contribuyeron cognitivamente a una obra.</p>
-<h2 id="componentes">🜃 Componentes</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      <strong>Proof of Cognitive Work</strong> = prueba criptográfica de que humano + IA
+      contribuyeron cognitivamente a una obra.
+    </p>
+    <h2 id="componentes">🜃 Componentes</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    PROOF OF COGNITIVE WORK                               ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -42,8 +47,8 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="calculo">🜄 Cálculo</h2>
-<pre><code class="language-javascript">import { sha3_512 } from './crypto/primitives/sha3-512.js';
+    <h2 id="calculo">🜄 Cálculo</h2>
+    <pre><code class="language-javascript">import { sha3_512 } from './crypto/primitives/sha3-512.js';
 
 const trabajo = {
   humano: {
@@ -63,8 +68,8 @@ const trabajo = {
 const pocw = sha3_512(JSON.stringify(trabajo));
 // pocw: 8f7a3c9d... (prueba única)
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · CO-AUTORÍA · 7.1 · POCW</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · CO-AUTORÍA · 7.1 · POCW</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

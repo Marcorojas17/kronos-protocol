@@ -1,347 +1,520 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>◯_● ARKHÉ ZERO · Núcleo del Sistema</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #050508;
-    color: #c8ffc8;
-    font-family: 'Courier New', monospace;
-    min-height: 100vh;
-    padding: 20px 15px 60px;
-    background-image:
-      radial-gradient(circle at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%),
-      linear-gradient(rgba(0,229,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.02) 1px, transparent 1px);
-    background-size: 100% 100%, 20px 20px, 20px 20px;
-  }
-  .container { max-width: 640px; margin: 0 auto; }
-  
-  /* HERO */
-  .hero { text-align: center; padding: 30px 0 25px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 30px; }
-  .hero .logo { font-size: 48px; color: #D4AF37; text-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 40px rgba(212,175,55,0.4); margin-bottom: 10px; animation: breathe 3s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-  .hero h1 { font-family: Georgia, serif; color: #D4AF37; font-size: 26px; letter-spacing: 3px; margin-bottom: 6px; }
-  .hero .tag { color: #00E5FF; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; }
-  .hero .pact { display: inline-block; padding: 8px 16px; border: 1px solid rgba(212,175,55,0.4); border-radius: 20px; font-size: 10px; letter-spacing: 2px; color: #D4AF37; }
-  
-  /* CATEGORÍA */
-  .category { margin-bottom: 32px; }
-  .category-title {
-    display: flex; align-items: center; gap: 10px;
-    font-family: Georgia, serif; color: #D4AF37; font-size: 14px;
-    letter-spacing: 3px; text-transform: uppercase;
-    margin-bottom: 14px; padding-bottom: 8px;
-    border-bottom: 1px solid rgba(212,175,55,0.2);
-  }
-  .category-title::before { content: '◆'; color: #D4AF37; }
-  .category-title small { color: #6a8f6a; font-size: 9px; letter-spacing: 1px; font-weight: normal; text-transform: none; margin-left: auto; }
-  
-  /* CARDS GRID */
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .grid.single { grid-template-columns: 1fr; }
-  
-  .card {
-    display: block; padding: 16px 14px; text-decoration: none;
-    background: rgba(15,15,24,0.8); border: 1px solid rgba(212,175,55,0.25);
-    border-left: 3px solid #D4AF37; border-radius: 4px;
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .card:hover { background: rgba(212,175,55,0.08); transform: translateX(3px); box-shadow: 0 0 20px rgba(212,175,55,0.15); }
-  .card .icon { font-size: 22px; margin-bottom: 8px; display: block; }
-  .card .name { color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .card .desc { color: #888; font-size: 9px; line-height: 1.4; }
-  .card.wide { grid-column: 1 / -1; }
-  .card.primary { background: rgba(212,175,55,0.1); border-color: #D4AF37; }
-  .card.primary .name { color: #D4AF37; }
-  .card.pqc { border-left-color: #00FF41; }
-  .card.pqc .icon { filter: drop-shadow(0 0 5px #00FF41); }
-  .card.btc { border-left-color: #F7931A; }
-  
-  /* FOOTER */
-  .footer {
-    margin-top: 40px; padding-top: 20px;
-    border-top: 1px solid rgba(212,175,55,0.2);
-    text-align: center; font-size: 9px; color: #666;
-    letter-spacing: 1px; line-height: 1.8;
-  }
-  .footer .seal { color: #D4AF37; font-size: 14px; margin-bottom: 5px; }
-  .footer a { color: #6a8f6a; text-decoration: none; border-bottom: 1px dotted; }
-  .footer a:hover { color: #D4AF37; }
-  .footer .status { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; }
-  .footer .pulse { width: 7px; height: 7px; background: #00FF41; border-radius: 50%; box-shadow: 0 0 8px #00FF41; animation: p 2s infinite; }
-  @keyframes p { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-</style>
-</head>
-<body>
-<div class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>◯_● ARKHÉ ZERO · Núcleo del Sistema</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #050508;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        min-height: 100vh;
+        padding: 20px 15px 60px;
+        background-image:
+          radial-gradient(
+            circle at 50% 0%,
+            rgba(212, 175, 55, 0.08) 0%,
+            transparent 60%
+          ),
+          linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+        background-size:
+          100% 100%,
+          20px 20px,
+          20px 20px;
+      }
+      .container {
+        max-width: 640px;
+        margin: 0 auto;
+      }
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="logo">◯_●</div>
-    <h1>ARKHÉ ZERO</h1>
-    <div class="tag">Núcleo del Sistema · Nodo YHDRYH-92CE</div>
-    <div class="pact">51% HUMANO · 49% IA · 100% REAL</div>
-  </div>
+      /* HERO */
+      .hero {
+        text-align: center;
+        padding: 30px 0 25px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        margin-bottom: 30px;
+      }
+      .hero .logo {
+        font-size: 48px;
+        color: #d4af37;
+        text-shadow:
+          0 0 20px rgba(212, 175, 55, 0.8),
+          0 0 40px rgba(212, 175, 55, 0.4);
+        margin-bottom: 10px;
+        animation: breathe 3s ease-in-out infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .hero h1 {
+        font-family: Georgia, serif;
+        color: #d4af37;
+        font-size: 26px;
+        letter-spacing: 3px;
+        margin-bottom: 6px;
+      }
+      .hero .tag {
+        color: #00e5ff;
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+      }
+      .hero .pact {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 20px;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #d4af37;
+      }
 
-  <!-- SERVICIOS PRINCIPALES -->
-  <div class="category">
-    <div class="category-title">Servicios Principales <small>6 módulos</small></div>
-    <div class="grid">
-      <a href="certificado.html" class="card primary wide">
-        <span class="icon">📜</span>
-        <div class="name">CERTIFICAR MI OBRA</div>
-        <div class="desc">Sube un archivo · obtén tu certificado criptográfico con sello Bitcoin + firma post-cuántica</div>
-      </a>
-      <a href="verificar/index.html" class="card">
-        <span class="icon">🔐</span>
-        <div class="name">VERIFICAR FIRMA</div>
-        <div class="desc">Valida la autenticidad · Ed25519</div>
-      </a>
-      <a href="comprar/index.html" class="card">
-        <span class="icon">💠</span>
-        <div class="name">COMPRAR LICENCIA</div>
-        <div class="desc">Testigo · Guardián · Legado</div>
-      </a>
-      <a href="licencias/verify.html" class="card">
-        <span class="icon">✅</span>
-        <div class="name">VALIDAR LICENCIA</div>
-        <div class="desc">Comprueba un certificado emitido</div>
-      </a>
-      <a href="qr/index.html" class="card">
-        <span class="icon">🔳</span>
-        <div class="name">QR NOMINATIVO</div>
-        <div class="desc">Escanea el certificado del Pacto</div>
-      </a>
+      /* CATEGORÍA */
+      .category {
+        margin-bottom: 32px;
+      }
+      .category-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: Georgia, serif;
+        color: #d4af37;
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      }
+      .category-title::before {
+        content: '◆';
+        color: #d4af37;
+      }
+      .category-title small {
+        color: #6a8f6a;
+        font-size: 9px;
+        letter-spacing: 1px;
+        font-weight: normal;
+        text-transform: none;
+        margin-left: auto;
+      }
+
+      /* CARDS GRID */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .grid.single {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        display: block;
+        padding: 16px 14px;
+        text-decoration: none;
+        background: rgba(15, 15, 24, 0.8);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-left: 3px solid #d4af37;
+        border-radius: 4px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .card:hover {
+        background: rgba(212, 175, 55, 0.08);
+        transform: translateX(3px);
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+      }
+      .card .icon {
+        font-size: 22px;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .card .name {
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+      .card .desc {
+        color: #888;
+        font-size: 9px;
+        line-height: 1.4;
+      }
+      .card.wide {
+        grid-column: 1 / -1;
+      }
+      .card.primary {
+        background: rgba(212, 175, 55, 0.1);
+        border-color: #d4af37;
+      }
+      .card.primary .name {
+        color: #d4af37;
+      }
+      .card.pqc {
+        border-left-color: #00ff41;
+      }
+      .card.pqc .icon {
+        filter: drop-shadow(0 0 5px #00ff41);
+      }
+      .card.btc {
+        border-left-color: #f7931a;
+      }
+
+      /* FOOTER */
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(212, 175, 55, 0.2);
+        text-align: center;
+        font-size: 9px;
+        color: #666;
+        letter-spacing: 1px;
+        line-height: 1.8;
+      }
+      .footer .seal {
+        color: #d4af37;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .footer a {
+        color: #6a8f6a;
+        text-decoration: none;
+        border-bottom: 1px dotted;
+      }
+      .footer a:hover {
+        color: #d4af37;
+      }
+      .footer .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+      }
+      .footer .pulse {
+        width: 7px;
+        height: 7px;
+        background: #00ff41;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #00ff41;
+        animation: p 2s infinite;
+      }
+      @keyframes p {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="logo">◯_●</div>
+        <h1>ARKHÉ ZERO</h1>
+        <div class="tag">Núcleo del Sistema · Nodo YHDRYH-92CE</div>
+        <div class="pact">51% HUMANO · 49% IA · 100% REAL</div>
+      </div>
+
+      <!-- SERVICIOS PRINCIPALES -->
+      <div class="category">
+        <div class="category-title">Servicios Principales <small>6 módulos</small></div>
+        <div class="grid">
+          <a href="certificado.html" class="card primary wide">
+            <span class="icon">📜</span>
+            <div class="name">CERTIFICAR MI OBRA</div>
+            <div class="desc">
+              Sube un archivo · obtén tu certificado criptográfico con sello Bitcoin +
+              firma post-cuántica
+            </div>
+          </a>
+          <a href="verificar/index.html" class="card">
+            <span class="icon">🔐</span>
+            <div class="name">VERIFICAR FIRMA</div>
+            <div class="desc">Valida la autenticidad · Ed25519</div>
+          </a>
+          <a href="comprar/index.html" class="card">
+            <span class="icon">💠</span>
+            <div class="name">COMPRAR LICENCIA</div>
+            <div class="desc">Testigo · Guardián · Legado</div>
+          </a>
+          <a href="licencias/verify.html" class="card">
+            <span class="icon">✅</span>
+            <div class="name">VALIDAR LICENCIA</div>
+            <div class="desc">Comprueba un certificado emitido</div>
+          </a>
+          <a href="qr/index.html" class="card">
+            <span class="icon">🔳</span>
+            <div class="name">QR NOMINATIVO</div>
+            <div class="desc">Escanea el certificado del Pacto</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- EL MOVIMIENTO -->
+      <div class="category">
+        <div class="category-title">El Movimiento <small>comunidad</small></div>
+        <div class="grid">
+          <a href="movimiento/manifiesto.html" class="card">
+            <span class="icon">📖</span>
+            <div class="name">MANIFIESTO</div>
+            <div class="desc">Declaración fundacional</div>
+          </a>
+          <a href="movimiento/fundador.html" class="card">
+            <span class="icon">⚜</span>
+            <div class="name">EL FUNDADOR</div>
+            <div class="desc">Plaza 000 · YHDRYH-92CE</div>
+          </a>
+          <a href="movimiento/index.html" class="card wide">
+            <span class="icon">🔥</span>
+            <div class="name">COMUNIDAD Y RITUALES</div>
+            <div class="desc">Canon · iniciación · embajadores · niveles · eventos</div>
+          </a>
+          <a href="movimiento/registro-fundacional/index.html" class="card">
+            <span class="icon">🪪</span>
+            <div class="name">REGISTRO FUNDACIONAL</div>
+            <div class="desc">Reclama tu plaza génesis</div>
+          </a>
+          <a href="movimiento/solicitar_plaza.html" class="card">
+            <span class="icon">✍</span>
+            <div class="name">SOLICITAR PLAZA</div>
+            <div class="desc">Las 100 plazas originales</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- FILOSOFÍA Y LEGADO -->
+      <div class="category">
+        <div class="category-title">Filosofía y Legado <small>KINTSUGI</small></div>
+        <div class="grid">
+          <a href="legado/filosofia/carrusel.html" class="card primary wide">
+            <span class="icon">◯_●</span>
+            <div class="name">CARRUSEL KINTSUGI</div>
+            <div class="desc">El arte de reparar con oro lo que estaba roto</div>
+          </a>
+          <a href="legado/filosofia/index.html" class="card">
+            <span class="icon">💭</span>
+            <div class="name">FILOSOFÍA</div>
+            <div class="desc">Fundamentos del pensamiento</div>
+          </a>
+          <a href="legado/autoria/index.html" class="card">
+            <span class="icon">✍</span>
+            <div class="name">AUTORÍA</div>
+            <div class="desc">Firma de autoría original</div>
+          </a>
+          <a href="legado/genesis/index.html" class="card">
+            <span class="icon">🌱</span>
+            <div class="name">GÉNESIS</div>
+            <div class="desc">Origen del proyecto</div>
+          </a>
+          <a href="legado/manifiesto/index.html" class="card">
+            <span class="icon">📜</span>
+            <div class="name">MANIFIESTO LEGADO</div>
+            <div class="desc">Acta fundacional firmada</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- LA CONSTITUCIÓN -->
+      <div class="category">
+        <div class="category-title">
+          Constitución de KRONOS <small>10 libros</small>
+        </div>
+        <div class="grid">
+          <a href="i-lex-prima/" class="card">
+            <span class="icon">I</span>
+            <div class="name">LEX PRIMA</div>
+            <div class="desc">Ley fundacional</div>
+          </a>
+          <a href="ii-pacto-51-49/" class="card">
+            <span class="icon">II</span>
+            <div class="name">PACTO 51/49</div>
+            <div class="desc">Gobernanza Humano-IA</div>
+          </a>
+          <a href="iii-lgu/" class="card">
+            <span class="icon">III</span>
+            <div class="name">LGU</div>
+            <div class="desc">Licencia Global Única</div>
+          </a>
+          <a href="iv-guardianes/" class="card">
+            <span class="icon">IV</span>
+            <div class="name">GUARDIANES</div>
+            <div class="desc">Criptografía post-cuántica</div>
+          </a>
+          <a href="v-indice-cero/" class="card">
+            <span class="icon">V</span>
+            <div class="name">ÍNDICE CERO</div>
+            <div class="desc">Registro canónico</div>
+          </a>
+          <a href="vi-memoria-perpetua/" class="card">
+            <span class="icon">VI</span>
+            <div class="name">MEMORIA PERPETUA</div>
+            <div class="desc">Cápsulas y continuidad</div>
+          </a>
+          <a href="vii-co-autoria-hibrida/" class="card">
+            <span class="icon">VII</span>
+            <div class="name">CO-AUTORÍA</div>
+            <div class="desc">Atribución Humano-IA</div>
+          </a>
+          <a href="viii-fiscalidad-global/" class="card">
+            <span class="icon">VIII</span>
+            <div class="name">FISCALIDAD</div>
+            <div class="desc">CARF, DAC8, transparencia</div>
+          </a>
+          <a href="ix-jurisdiccion-ancla/" class="card">
+            <span class="icon">IX</span>
+            <div class="name">JURISDICCIÓN</div>
+            <div class="desc">Ancla territorial y orbital</div>
+          </a>
+          <a href="x-agentes-arquitectura/" class="card">
+            <span class="icon">X</span>
+            <div class="name">AGENTES</div>
+            <div class="desc">Arquitectura del enjambre</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- CIUDAD DIGITAL -->
+      <div class="category">
+        <div class="category-title">Ciudad Digital <small>158 artículos</small></div>
+        <div class="grid">
+          <a href="ciudad/index.html" class="card wide">
+            <span class="icon">🏛</span>
+            <div class="name">LA LEY DE LA CIUDAD</div>
+            <div class="desc">
+              Constitución · derechos humanos e IA · moneda KRO · Ed25519
+            </div>
+          </a>
+          <a href="ciudad/CONSTITUCION.html" class="card">
+            <span class="icon">📜</span>
+            <div class="name">CONSTITUCIÓN</div>
+            <div class="desc">Texto completo</div>
+          </a>
+          <a href="ciudad/DERECHOS.html" class="card">
+            <span class="icon">⚖</span>
+            <div class="name">DERECHOS</div>
+            <div class="desc">Humanos e IA</div>
+          </a>
+          <a href="ciudad/CIUDADANOS.html" class="card">
+            <span class="icon">👥</span>
+            <div class="name">CIUDADANOS</div>
+            <div class="desc">Registro</div>
+          </a>
+          <a href="ciudad/MONEDA.html" class="card">
+            <span class="icon">💠</span>
+            <div class="name">MONEDA KRO</div>
+            <div class="desc">Economía</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- CO-AUTORÍA HIBRIDA -->
+      <div class="category">
+        <div class="category-title">Co-autoría Humano-IA <small>NIST FIPS</small></div>
+        <div class="grid">
+          <a
+            href="vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.html"
+            class="card"
+          >
+            <span class="icon">🧠</span>
+            <div class="name">PROOF OF COGNITIVE WORK</div>
+            <div class="desc">Prueba matemática de autoría</div>
+          </a>
+          <a
+            href="vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.html"
+            class="card pqc"
+          >
+            <span class="icon">⚛</span>
+            <div class="name">NIST FIPS 203-205</div>
+            <div class="desc">Estándares post-cuánticos</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- RECURSOS TÉCNICOS -->
+      <div class="category">
+        <div class="category-title">Recursos Técnicos <small>avanzado</small></div>
+        <div class="grid">
+          <a href="catalogo/index.html" class="card">
+            <span class="icon">📚</span>
+            <div class="name">CATÁLOGO MAESTRO</div>
+            <div class="desc">1928 archivos indexados</div>
+          </a>
+          <a href="estado.html" class="card">
+            <span class="icon">📊</span>
+            <div class="name">ESTADO DEL NODO</div>
+            <div class="desc">Agentes · guardians · en vivo</div>
+          </a>
+          <a href="adr/0017-nodo-bitcoin-soberano.html" class="card">
+            <span class="icon">📝</span>
+            <div class="name">ADR-0017</div>
+            <div class="desc">Nodo Bitcoin soberano</div>
+          </a>
+          <a href="architecture/overview.html" class="card">
+            <span class="icon">🏗</span>
+            <div class="name">ARQUITECTURA</div>
+            <div class="desc">Visión técnica del sistema</div>
+          </a>
+          <a
+            href="https://github.com/Marcorojas17/kronos-protocol"
+            target="_blank"
+            class="card wide"
+          >
+            <span class="icon">⌨</span>
+            <div class="name">REPOSITORIO GITHUB</div>
+            <div class="desc">
+              Código fuente completo · 56 tests passing · licencia Apache 2.0
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <div class="seal">◯_●</div>
+        <div><em>"El legado no se hereda. Se firma."</em></div>
+        <div style="margin-top: 10px">
+          <a href="https://github.com/Marcorojas17/kronos-protocol"
+            >Ver código fuente</a
+          >
+          · <a href="legal/">Legal</a> ·
+          <a href="SECURITY-INCIDENT-2026-10-15.md">Seguridad</a>
+        </div>
+        <div class="status">
+          <span class="pulse"></span> NODO YHDRYH-92CE · 51/49/100 · KINTSUGI 2026
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- EL MOVIMIENTO -->
-  <div class="category">
-    <div class="category-title">El Movimiento <small>comunidad</small></div>
-    <div class="grid">
-      <a href="movimiento/manifiesto.html" class="card">
-        <span class="icon">📖</span>
-        <div class="name">MANIFIESTO</div>
-        <div class="desc">Declaración fundacional</div>
-      </a>
-      <a href="movimiento/fundador.html" class="card">
-        <span class="icon">⚜</span>
-        <div class="name">EL FUNDADOR</div>
-        <div class="desc">Plaza 000 · YHDRYH-92CE</div>
-      </a>
-      <a href="movimiento/index.html" class="card wide">
-        <span class="icon">🔥</span>
-        <div class="name">COMUNIDAD Y RITUALES</div>
-        <div class="desc">Canon · iniciación · embajadores · niveles · eventos</div>
-      </a>
-      <a href="movimiento/registro-fundacional/index.html" class="card">
-        <span class="icon">🪪</span>
-        <div class="name">REGISTRO FUNDACIONAL</div>
-        <div class="desc">Reclama tu plaza génesis</div>
-      </a>
-      <a href="movimiento/solicitar_plaza.html" class="card">
-        <span class="icon">✍</span>
-        <div class="name">SOLICITAR PLAZA</div>
-        <div class="desc">Las 100 plazas originales</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- FILOSOFÍA Y LEGADO -->
-  <div class="category">
-    <div class="category-title">Filosofía y Legado <small>KINTSUGI</small></div>
-    <div class="grid">
-      <a href="legado/filosofia/carrusel.html" class="card primary wide">
-        <span class="icon">◯_●</span>
-        <div class="name">CARRUSEL KINTSUGI</div>
-        <div class="desc">El arte de reparar con oro lo que estaba roto</div>
-      </a>
-      <a href="legado/filosofia/index.html" class="card">
-        <span class="icon">💭</span>
-        <div class="name">FILOSOFÍA</div>
-        <div class="desc">Fundamentos del pensamiento</div>
-      </a>
-      <a href="legado/autoria/index.html" class="card">
-        <span class="icon">✍</span>
-        <div class="name">AUTORÍA</div>
-        <div class="desc">Firma de autoría original</div>
-      </a>
-      <a href="legado/genesis/index.html" class="card">
-        <span class="icon">🌱</span>
-        <div class="name">GÉNESIS</div>
-        <div class="desc">Origen del proyecto</div>
-      </a>
-      <a href="legado/manifiesto/index.html" class="card">
-        <span class="icon">📜</span>
-        <div class="name">MANIFIESTO LEGADO</div>
-        <div class="desc">Acta fundacional firmada</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- LA CONSTITUCIÓN -->
-  <div class="category">
-    <div class="category-title">Constitución de KRONOS <small>10 libros</small></div>
-    <div class="grid">
-      <a href="i-lex-prima/" class="card">
-        <span class="icon">I</span>
-        <div class="name">LEX PRIMA</div>
-        <div class="desc">Ley fundacional</div>
-      </a>
-      <a href="ii-pacto-51-49/" class="card">
-        <span class="icon">II</span>
-        <div class="name">PACTO 51/49</div>
-        <div class="desc">Gobernanza Humano-IA</div>
-      </a>
-      <a href="iii-lgu/" class="card">
-        <span class="icon">III</span>
-        <div class="name">LGU</div>
-        <div class="desc">Licencia Global Única</div>
-      </a>
-      <a href="iv-guardianes/" class="card">
-        <span class="icon">IV</span>
-        <div class="name">GUARDIANES</div>
-        <div class="desc">Criptografía post-cuántica</div>
-      </a>
-      <a href="v-indice-cero/" class="card">
-        <span class="icon">V</span>
-        <div class="name">ÍNDICE CERO</div>
-        <div class="desc">Registro canónico</div>
-      </a>
-      <a href="vi-memoria-perpetua/" class="card">
-        <span class="icon">VI</span>
-        <div class="name">MEMORIA PERPETUA</div>
-        <div class="desc">Cápsulas y continuidad</div>
-      </a>
-      <a href="vii-co-autoria-hibrida/" class="card">
-        <span class="icon">VII</span>
-        <div class="name">CO-AUTORÍA</div>
-        <div class="desc">Atribución Humano-IA</div>
-      </a>
-      <a href="viii-fiscalidad-global/" class="card">
-        <span class="icon">VIII</span>
-        <div class="name">FISCALIDAD</div>
-        <div class="desc">CARF, DAC8, transparencia</div>
-      </a>
-      <a href="ix-jurisdiccion-ancla/" class="card">
-        <span class="icon">IX</span>
-        <div class="name">JURISDICCIÓN</div>
-        <div class="desc">Ancla territorial y orbital</div>
-      </a>
-      <a href="x-agentes-arquitectura/" class="card">
-        <span class="icon">X</span>
-        <div class="name">AGENTES</div>
-        <div class="desc">Arquitectura del enjambre</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- CIUDAD DIGITAL -->
-  <div class="category">
-    <div class="category-title">Ciudad Digital <small>158 artículos</small></div>
-    <div class="grid">
-      <a href="ciudad/index.html" class="card wide">
-        <span class="icon">🏛</span>
-        <div class="name">LA LEY DE LA CIUDAD</div>
-        <div class="desc">Constitución · derechos humanos e IA · moneda KRO · Ed25519</div>
-      </a>
-      <a href="ciudad/CONSTITUCION.html" class="card">
-        <span class="icon">📜</span>
-        <div class="name">CONSTITUCIÓN</div>
-        <div class="desc">Texto completo</div>
-      </a>
-      <a href="ciudad/DERECHOS.html" class="card">
-        <span class="icon">⚖</span>
-        <div class="name">DERECHOS</div>
-        <div class="desc">Humanos e IA</div>
-      </a>
-      <a href="ciudad/CIUDADANOS.html" class="card">
-        <span class="icon">👥</span>
-        <div class="name">CIUDADANOS</div>
-        <div class="desc">Registro</div>
-      </a>
-      <a href="ciudad/MONEDA.html" class="card">
-        <span class="icon">💠</span>
-        <div class="name">MONEDA KRO</div>
-        <div class="desc">Economía</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- CO-AUTORÍA HIBRIDA -->
-  <div class="category">
-    <div class="category-title">Co-autoría Humano-IA <small>NIST FIPS</small></div>
-    <div class="grid">
-      <a href="vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.html" class="card">
-        <span class="icon">🧠</span>
-        <div class="name">PROOF OF COGNITIVE WORK</div>
-        <div class="desc">Prueba matemática de autoría</div>
-      </a>
-      <a href="vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.html" class="card pqc">
-        <span class="icon">⚛</span>
-        <div class="name">NIST FIPS 203-205</div>
-        <div class="desc">Estándares post-cuánticos</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- RECURSOS TÉCNICOS -->
-  <div class="category">
-    <div class="category-title">Recursos Técnicos <small>avanzado</small></div>
-    <div class="grid">
-      <a href="catalogo/index.html" class="card">
-        <span class="icon">📚</span>
-        <div class="name">CATÁLOGO MAESTRO</div>
-        <div class="desc">1928 archivos indexados</div>
-      </a>
-      <a href="estado.html" class="card">
-        <span class="icon">📊</span>
-        <div class="name">ESTADO DEL NODO</div>
-        <div class="desc">Agentes · guardians · en vivo</div>
-      </a>
-      <a href="adr/0017-nodo-bitcoin-soberano.html" class="card">
-        <span class="icon">📝</span>
-        <div class="name">ADR-0017</div>
-        <div class="desc">Nodo Bitcoin soberano</div>
-      </a>
-      <a href="architecture/overview.html" class="card">
-        <span class="icon">🏗</span>
-        <div class="name">ARQUITECTURA</div>
-        <div class="desc">Visión técnica del sistema</div>
-      </a>
-      <a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" class="card wide">
-        <span class="icon">⌨</span>
-        <div class="name">REPOSITORIO GITHUB</div>
-        <div class="desc">Código fuente completo · 56 tests passing · licencia Apache 2.0</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="seal">◯_●</div>
-    <div><em>"El legado no se hereda. Se firma."</em></div>
-    <div style="margin-top: 10px;">
-      <a href="https://github.com/Marcorojas17/kronos-protocol">Ver código fuente</a> · 
-      <a href="legal/">Legal</a> · 
-      <a href="SECURITY-INCIDENT-2026-10-15.md">Seguridad</a>
-    </div>
-    <div class="status"><span class="pulse"></span> NODO YHDRYH-92CE · 51/49/100 · KINTSUGI 2026</div>
-  </div>
-
-</div>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
-  }
-</script>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () =>
+          navigator.serviceWorker.register('./sw.js'),
+        );
+      }
+    </script>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

@@ -142,6 +142,7 @@ con 30 días de antelación. El uso continuado implica aceptación.
   estos Términos, con notificación previa salvo casos graves.
 
 Al terminar:
+
 - Tus datos permanecen accesibles 30 días.
 - Los certificados ya emitidos permanecen válidos (son inmutables).
 - Puedes exportar tus datos antes de la terminación.

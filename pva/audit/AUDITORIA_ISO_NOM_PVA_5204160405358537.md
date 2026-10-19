@@ -1,11 +1,11 @@
 # AUDITORÍA DE CUMPLIMIENTO - PVA PROTOCOLO DE VIDA AUTOPOIÉTICA
 
-*Normas:* ISO/IEC 27001:2022 / ISO 9001:2015 / NOM-151-SCFI-2016 / NOM-024-SCFI-2013
+_Normas:_ ISO/IEC 27001:2022 / ISO 9001:2015 / NOM-151-SCFI-2016 / NOM-024-SCFI-2013
 
-*Perito Oficial:* kronosproyecto@hotmail.com
-*Folio:* 5204160405358537
-*SafeCreative:* 2607146379465
-*Fecha Auditoría:* 03/09/2026 - Lerma, EdoMex
+_Perito Oficial:_ kronosproyecto@hotmail.com
+_Folio:_ 5204160405358537
+_SafeCreative:_ 2607146379465
+_Fecha Auditoría:_ 03/09/2026 - Lerma, EdoMex
 
 ---
 
@@ -17,12 +17,12 @@
 
 ## 2. SEGURIDAD DE LA INFORMACIÓN - ISO 27001:2022
 
-| Control | Evidencia PVA | Estado |
-| :--- | :--- | :--- |
-| **A5.9 Inventario** | `genesis_hash.json` con SHA256: `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3` | **CUMPLE** |
-| **A8.12 Prevención fuga** | División 51% Humano / 49% IA con semilla determinista | **CUMPLE** |
-| **A8.28 Codificación segura** | `perito_seal.py` firma cada salida | **CUMPLE** |
-| **A5.33 Propiedad intelectual** | Registro SafeCreative 2607146379465 + TX Ethereum 0x8ca8e84e... | **CUMPLE** |
+| Control                         | Evidencia PVA                                                                                      | Estado     |
+| :------------------------------ | :------------------------------------------------------------------------------------------------- | :--------- |
+| **A5.9 Inventario**             | `genesis_hash.json` con SHA256: `41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3` | **CUMPLE** |
+| **A8.12 Prevención fuga**       | División 51% Humano / 49% IA con semilla determinista                                              | **CUMPLE** |
+| **A8.28 Codificación segura**   | `perito_seal.py` firma cada salida                                                                 | **CUMPLE** |
+| **A5.33 Propiedad intelectual** | Registro SafeCreative 2607146379465 + TX Ethereum 0x8ca8e84e...                                    | **CUMPLE** |
 
 ---
 

@@ -17,15 +17,16 @@
 
 # 💎 EL TESORO · EL ÍNDICE CERO
 
-### *No es un dato. Es la fuente de toda verdad.*
+### _No es un dato. Es la fuente de toda verdad._
 
-### *"Todo lo que existe sin anclaje no existe."*
+### _"Todo lo que existe sin anclaje no existe."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  T E S O R O  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -54,18 +56,23 @@ valor.
 ## 🜃 Los 5 Guardianes del Tesoro
 
 ### 🏛️ ACTA
+
 Custodia cada acta notarial emitida.
 
 ### 🌳 MRR
+
 Reconstruye Merkle roots.
 
 ### 🔒 SHA
+
 Vigila la integridad de cada hash.
 
 ### ⏱️ TSA
+
 Verifica sellos de tiempo RFC 3161.
 
 ### 🔐 VAULT
+
 Protege las claves criptográficas.
 
 ## 🜄 Por qué es un Tesoro

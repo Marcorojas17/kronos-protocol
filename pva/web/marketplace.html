@@ -1,91 +1,331 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KRONOS 360 | Nivel 2 - Certificado Antifalsificable</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
-        :root { --neon: #00ffcc; --gold: #D4AF37; --dark: #050505; --panel: #08120f; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--dark); color: #c0c0c0; font-family: 'Courier New', monospace; }
-        .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, var(--neon), transparent); animation: scan 6s linear infinite; z-index: 99; pointer-events: none; }
-        @keyframes scan { 0% { top: 0; } 100% { top: 100vh; } }
-        .nav-bar { position: sticky; top: 0; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--gold); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-        .nav-bar a { color: var(--neon); text-decoration: none; font-weight: bold; }
-        .main { max-width: 1300px; margin: 30px auto; padding: 20px; }
-        .header { border: 2px solid var(--gold); background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(0,0,0,0.8)); padding: 25px; text-align: center; margin-bottom: 30px; position: relative; }
-        .header::before { content: "EXPEDIENTE CLASIFICADO - NIVEL 2"; position: absolute; top: -12px; left: 20px; background: var(--dark); color: var(--gold); padding: 0 10px; font-size: 0.8rem; letter-spacing: 3px; }
-        .header h1 { font-size: 2.5rem; color: var(--neon); text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 20px rgba(0,255,204,0.5); }
-        .header p { color: #aaa; margin-top: 10px; }
-        .certificate { border: 1px solid var(--gold); background: var(--panel); padding: 25px; border-radius: 15px; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .cert-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--gold); padding-bottom: 15px; margin-bottom: 20px; }
-        .cert-header .id { color: var(--gold); font-weight: 900; font-size: 1.2rem; }
-        .cert-header .status { background: var(--neon); color: #000; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .qr-sec { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
-        #qrcode { background: #fff; padding: 10px; border-radius: 10px; display: inline-block; }
-        .seal-digital { flex: 1; border: 1px solid var(--neon); padding: 15px; border-radius: 10px; text-align: center; }
-        .seal-digital h3 { color: var(--neon); margin-bottom: 10px; }
-        .seal-digital .hash { word-break: break-all; font-size: 0.7rem; color: var(--gold); }
-        .trace-section { margin-top: 30px; border: 1px solid #1a3a2f; border-radius: 10px; padding: 20px; background: rgba(0,0,0,0.3); }
-        .trace-section h2 { color: var(--neon); margin-bottom: 20px; text-transform: uppercase; border-bottom: 1px solid var(--neon); padding-bottom: 10px; }
-        .trace-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .trace-item { background: #000; border-left: 3px solid var(--gold); padding: 15px; border-radius: 5px; }
-        .trace-item h4 { color: var(--gold); font-size: 0.9rem; margin-bottom: 5px; }
-        .trace-item p { font-size: 0.8rem; color: #aaa; line-height: 1.5; }
-        .download-btn { display: block; width: 100%; padding: 18px; background: var(--gold); color: #000; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: 900; cursor: pointer; margin-top: 30px; text-transform: uppercase; letter-spacing: 2px; }
-        .download-btn:hover { background: #ffd700; }
-        .footer { text-align: center; margin-top: 40px; font-size: 0.75rem; color: #555; }
+      :root {
+        --neon: #00ffcc;
+        --gold: #d4af37;
+        --dark: #050505;
+        --panel: #08120f;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--dark);
+        color: #c0c0c0;
+        font-family: 'Courier New', monospace;
+      }
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, var(--neon), transparent);
+        animation: scan 6s linear infinite;
+        z-index: 99;
+        pointer-events: none;
+      }
+      @keyframes scan {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: 100vh;
+        }
+      }
+      .nav-bar {
+        position: sticky;
+        top: 0;
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 2px solid var(--gold);
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+      .nav-bar a {
+        color: var(--neon);
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .main {
+        max-width: 1300px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+      .header {
+        border: 2px solid var(--gold);
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.1),
+          rgba(0, 0, 0, 0.8)
+        );
+        padding: 25px;
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      .header::before {
+        content: 'EXPEDIENTE CLASIFICADO - NIVEL 2';
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        background: var(--dark);
+        color: var(--gold);
+        padding: 0 10px;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+        color: var(--neon);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      }
+      .header p {
+        color: #aaa;
+        margin-top: 10px;
+      }
+      .certificate {
+        border: 1px solid var(--gold);
+        background: var(--panel);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+      }
+      .cert-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px dashed var(--gold);
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+      .cert-header .id {
+        color: var(--gold);
+        font-weight: 900;
+        font-size: 1.2rem;
+      }
+      .cert-header .status {
+        background: var(--neon);
+        color: #000;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        animation: blink 1.5s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .qr-sec {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      #qrcode {
+        background: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        display: inline-block;
+      }
+      .seal-digital {
+        flex: 1;
+        border: 1px solid var(--neon);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .seal-digital h3 {
+        color: var(--neon);
+        margin-bottom: 10px;
+      }
+      .seal-digital .hash {
+        word-break: break-all;
+        font-size: 0.7rem;
+        color: var(--gold);
+      }
+      .trace-section {
+        margin-top: 30px;
+        border: 1px solid #1a3a2f;
+        border-radius: 10px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .trace-section h2 {
+        color: var(--neon);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--neon);
+        padding-bottom: 10px;
+      }
+      .trace-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+      }
+      .trace-item {
+        background: #000;
+        border-left: 3px solid var(--gold);
+        padding: 15px;
+        border-radius: 5px;
+      }
+      .trace-item h4 {
+        color: var(--gold);
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+      }
+      .trace-item p {
+        font-size: 0.8rem;
+        color: #aaa;
+        line-height: 1.5;
+      }
+      .download-btn {
+        display: block;
+        width: 100%;
+        padding: 18px;
+        background: var(--gold);
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        font-weight: 900;
+        cursor: pointer;
+        margin-top: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .download-btn:hover {
+        background: #ffd700;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.75rem;
+        color: #555;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="scanline"></div>
-    <div class="nav-bar"><a href="./index.html">← Oráculo</a><a href="./verification.html">Verificación →</a></div>
+    <div class="nav-bar">
+      <a href="./index.html">← Oráculo</a
+      ><a href="./verification.html">Verificación →</a>
+    </div>
     <div class="main">
-        <div class="header">
-            <h1>⚡ KRONOS 360</h1>
-            <p>Certificado Antifalsificable + QR + Trazabilidad de Arquitectura</p>
-            <p style="font-size:0.8rem; color: var(--gold);">Folio: KRONOS-5204-8537 | SafeCreative: 2607146379465 | NOM-151 | ISO 27037</p>
+      <div class="header">
+        <h1>⚡ KRONOS 360</h1>
+        <p>Certificado Antifalsificable + QR + Trazabilidad de Arquitectura</p>
+        <p style="font-size: 0.8rem; color: var(--gold)">
+          Folio: KRONOS-5204-8537 | SafeCreative: 2607146379465 | NOM-151 | ISO 27037
+        </p>
+      </div>
+      <div class="certificate">
+        <div class="cert-header">
+          <span class="id">CERTIFICADO DE AUTENTICIDAD DIGITAL</span>
+          <span class="status">✅ VERIFICADO EN VIVO</span>
         </div>
-        <div class="certificate">
-            <div class="cert-header">
-                <span class="id">CERTIFICADO DE AUTENTICIDAD DIGITAL</span>
-                <span class="status">✅ VERIFICADO EN VIVO</span>
-            </div>
-            <div class="qr-sec">
-                <div id="qrcode"></div>
-                <div class="seal-digital">
-                    <h3>🔏 SELLO ANTIFALSIFICABLE</h3>
-                    <p style="font-size:0.8rem; color:#aaa;">Este certificado contiene un hash único generado en tiempo real. Cualquier alteración del contenido invalida el sello.</p>
-                    <div class="hash" id="hashDisplay">Generando...</div>
-                    <p style="margin-top:15px; font-size:0.7rem; color:var(--neon);">🔒 Cifrado AES-256 | Blockchain Polygon | IPFS</p>
-                </div>
-            </div>
-            <div class="trace-section">
-                <h2>🛰️ Trazabilidad de Arquitectura</h2>
-                <div class="trace-grid">
-                    <div class="trace-item"><h4>📦 Módulo Génesis</h4><p>Hash raíz: 41a3683b...<br>Anclado en cadena de custodia inmutable.</p></div>
-                    <div class="trace-item"><h4>⛓️ Blockchain (Polygon)</h4><p>Transacción registrada en red descentralizada. Verificable en explorer público.</p></div>
-                    <div class="trace-item"><h4>🌐 IPFS</h4><p>Documento distribuido en nodos globales. Imposible de alterar sin romper el hash.</p></div>
-                    <div class="trace-item"><h4>🤖 Enjambre de Agentes</h4><p>7 agentes autónomos (Custodio, Escriba, Vigilante, Notario, Defensor, Oráculo, Juez) monitorean la integridad 24/7.</p></div>
-                    <div class="trace-item"><h4>⏱️ Sello de Tiempo</h4><p>Timestamp UTC certificado (eIDAS / RFC 3161) que fija la fecha de existencia de la obra.</p></div>
-                    <div class="trace-item"><h4>🛡️ Antifalsificación</h4><p>Firma digital de clave pública/privada. Solo el perito autorizado puede emitir certificados válidos.</p></div>
-                </div>
-            </div>
-            <button class="download-btn" onclick="descargarOffline()">⬇️ DESCARGAR CERTIFICADO OFFLINE CON QR</button>
+        <div class="qr-sec">
+          <div id="qrcode"></div>
+          <div class="seal-digital">
+            <h3>🔏 SELLO ANTIFALSIFICABLE</h3>
+            <p style="font-size: 0.8rem; color: #aaa">
+              Este certificado contiene un hash único generado en tiempo real. Cualquier
+              alteración del contenido invalida el sello.
+            </p>
+            <div class="hash" id="hashDisplay">Generando...</div>
+            <p style="margin-top: 15px; font-size: 0.7rem; color: var(--neon)">
+              🔒 Cifrado AES-256 | Blockchain Polygon | IPFS
+            </p>
+          </div>
         </div>
-        <div class="footer">© 2026 Marco Antonio Rojas Valdovinos. Todos los derechos reservados.</div>
+        <div class="trace-section">
+          <h2>🛰️ Trazabilidad de Arquitectura</h2>
+          <div class="trace-grid">
+            <div class="trace-item">
+              <h4>📦 Módulo Génesis</h4>
+              <p>
+                Hash raíz: 41a3683b...<br />Anclado en cadena de custodia inmutable.
+              </p>
+            </div>
+            <div class="trace-item">
+              <h4>⛓️ Blockchain (Polygon)</h4>
+              <p>
+                Transacción registrada en red descentralizada. Verificable en explorer
+                público.
+              </p>
+            </div>
+            <div class="trace-item">
+              <h4>🌐 IPFS</h4>
+              <p>
+                Documento distribuido en nodos globales. Imposible de alterar sin romper
+                el hash.
+              </p>
+            </div>
+            <div class="trace-item">
+              <h4>🤖 Enjambre de Agentes</h4>
+              <p>
+                7 agentes autónomos (Custodio, Escriba, Vigilante, Notario, Defensor,
+                Oráculo, Juez) monitorean la integridad 24/7.
+              </p>
+            </div>
+            <div class="trace-item">
+              <h4>⏱️ Sello de Tiempo</h4>
+              <p>
+                Timestamp UTC certificado (eIDAS / RFC 3161) que fija la fecha de
+                existencia de la obra.
+              </p>
+            </div>
+            <div class="trace-item">
+              <h4>🛡️ Antifalsificación</h4>
+              <p>
+                Firma digital de clave pública/privada. Solo el perito autorizado puede
+                emitir certificados válidos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="download-btn" onclick="descargarOffline()">
+          ⬇️ DESCARGAR CERTIFICADO OFFLINE CON QR
+        </button>
+      </div>
+      <div class="footer">
+        © 2026 Marco Antonio Rojas Valdovinos. Todos los derechos reservados.
+      </div>
     </div>
     <script>
-        let hashActual = localStorage.getItem('kronos_hash') || '41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3';
-        document.getElementById('hashDisplay').innerText = 'SHA-256: ' + hashActual;
-        new QRCode(document.getElementById('qrcode'), { text: `KRONOS-5204-8537|${hashActual}|${new Date().toISOString()}|NOM151|ISO27037|POLYGON`, width: 150, height: 150 });
-        function descargarOffline() {
-            // ⚠️ FIX: Tomar el QR generado en la página e incrustarlo en el certificado offline
-            let qrCanvas = document.querySelector('#qrcode canvas');
-            let qrData = qrCanvas ? qrCanvas.toDataURL('image/png') : '';
-            let offlineHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>KRONOS 360 - CERTIFICADO OFFLINE</title>
+      let hashActual =
+        localStorage.getItem('kronos_hash') ||
+        '41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3';
+      document.getElementById('hashDisplay').innerText = 'SHA-256: ' + hashActual;
+      new QRCode(document.getElementById('qrcode'), {
+        text: `KRONOS-5204-8537|${hashActual}|${new Date().toISOString()}|NOM151|ISO27037|POLYGON`,
+        width: 150,
+        height: 150,
+      });
+      function descargarOffline() {
+        // ⚠️ FIX: Tomar el QR generado en la página e incrustarlo en el certificado offline
+        let qrCanvas = document.querySelector('#qrcode canvas');
+        let qrData = qrCanvas ? qrCanvas.toDataURL('image/png') : '';
+        let offlineHTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>KRONOS 360 - CERTIFICADO OFFLINE</title>
 <style>
 body{background:#020806;color:#c8d8d3;font-family:monospace;padding:20px}
 .card{border:1px solid #D4AF37;border-radius:15px;padding:30px;background:#08120f;max-width:800px;margin:20px auto;box-shadow:0 0 30px rgba(212,175,55,0.3)}
@@ -113,12 +353,12 @@ ${qrData ? `<img src="${qrData}" alt="QR Code" class="qr-img">` : ''}
 </div>
 <script>setInterval(()=>{document.title=(document.title.includes('●')?'○ KRONOS CERTIFICADO':'● KRONOS CERTIFICADO ACTIVO')},800);<\/script>
 </body></html>`;
-            let blob = new Blob([offlineHTML], {type: 'text/html'});
-            let a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `KRONOS_5204_8537_CERTIFICADO_${hashActual.slice(0,8)}.html`;
-            a.click();
-        }
+        let blob = new Blob([offlineHTML], { type: 'text/html' });
+        let a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `KRONOS_5204_8537_CERTIFICADO_${hashActual.slice(0, 8)}.html`;
+        a.click();
+      }
     </script>
-</body>
+  </body>
 </html>

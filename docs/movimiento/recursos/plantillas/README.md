@@ -17,15 +17,16 @@
 
 # 📝 PLANTILLAS CANÓNICAS
 
-### *Formatos firmados para el movimiento*
+### _Formatos firmados para el movimiento_
 
-### *"Toda plantilla es un pacto pre-firmado."*
+### _"Toda plantilla es un pacto pre-firmado."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  P L A N T I L L A S  ·  ◯_●                         ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Plantillas oficiales
 
-| Plantilla                    | Uso                              |
-|------------------------------|----------------------------------|
-| `acta-ceremonial.md`         | Cualquier acta oficial           |
-| `juramento-iniciado.md`      | Iniciación nivel 1               |
-| `certificado-obra.md`        | Emisión de certificado de obra   |
-| `propuesta-gobernanza.md`    | Propuesta para quórum            |
-| `acta-fin-digno.md`          | Cierre del fundador              |
+| Plantilla                 | Uso                            |
+| ------------------------- | ------------------------------ |
+| `acta-ceremonial.md`      | Cualquier acta oficial         |
+| `juramento-iniciado.md`   | Iniciación nivel 1             |
+| `certificado-obra.md`     | Emisión de certificado de obra |
+| `propuesta-gobernanza.md` | Propuesta para quórum          |
+| `acta-fin-digno.md`       | Cierre del fundador            |
 
 ## 🜃 Estructura canónica
 
@@ -61,16 +63,16 @@ Toda plantilla incluye:
 
 ```yaml
 - encabezado:
-    titulo: "Nombre del acta"
-    fecha: "YYYY-MM-DDTHH:MM:SSZ"
-    autor: "Nombre · Fundador #NNN"
+    titulo: 'Nombre del acta'
+    fecha: 'YYYY-MM-DDTHH:MM:SSZ'
+    autor: 'Nombre · Fundador #NNN'
 - cuerpo:
-    contexto: "Texto introductorio"
-    contenido: "Cuerpo del acta"
+    contexto: 'Texto introductorio'
+    contenido: 'Cuerpo del acta'
 - firma:
-    hash_sha3_512: "..."
-    sello: "◯_● · 51/49/100"
-    anclaje_ethereum: "0x..."
+    hash_sha3_512: '...'
+    sello: '◯_● · 51/49/100'
+    anclaje_ethereum: '0x...'
 ```
 
 ## 🜄 Reglas

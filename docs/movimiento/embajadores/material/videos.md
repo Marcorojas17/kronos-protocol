@@ -17,15 +17,16 @@
 
 # 🎬 VIDEOS OFICIALES
 
-### *Tutoriales y ceremonias grabadas*
+### _Tutoriales y ceremonias grabadas_
 
-### *"El video firma lo que la voz no puede."*
+### _"El video firma lo que la voz no puede."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I D E O S  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Los 5 videos
 
-| Video                    | Duración | Uso                       |
-|--------------------------|----------|---------------------------|
-| `intro-arkhe.mp4`        | 3:33     | Intro ceremonial          |
-| `tutorial-firmar.mp4`    | 5:00     | Cómo firmar obras         |
-| `tutorial-verificar.mp4` | 4:20     | Cómo verificar hashes     |
-| `ceremonia-juramento.mp4`| 12:00    | Juramento KINTSUGI        |
-| `cymatic-demo.mp4`       | 2:00     | Geometría sagrada         |
+| Video                     | Duración | Uso                   |
+| ------------------------- | -------- | --------------------- |
+| `intro-arkhe.mp4`         | 3:33     | Intro ceremonial      |
+| `tutorial-firmar.mp4`     | 5:00     | Cómo firmar obras     |
+| `tutorial-verificar.mp4`  | 4:20     | Cómo verificar hashes |
+| `ceremonia-juramento.mp4` | 12:00    | Juramento KINTSUGI    |
+| `cymatic-demo.mp4`        | 2:00     | Geometría sagrada     |
 
 ## 🜃 Especificaciones técnicas
 

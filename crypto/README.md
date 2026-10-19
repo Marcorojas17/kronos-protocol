@@ -40,7 +40,7 @@
 [ ✓✓ ] CIMIENTO CRIPTOGRÁFICO · 100% VERIFICADO · ◯_● · 51/49/100
 ```
 
-> *"El legado no se hereda. Se firma. Y se firma dos veces: con matemática clásica y con matemática post-cuántica."*
+> _"El legado no se hereda. Se firma. Y se firma dos veces: con matemática clásica y con matemática post-cuántica."_
 
 ---
 
@@ -87,19 +87,19 @@
 
 ## 🜃 Índice de Módulos
 
-| Módulo                    | Propósito                                       | Estándar        |
-|---------------------------|-------------------------------------------------|-----------------|
-| `primitives/ml-kem-*`     | KEM post-cuántico (encapsulación)               | FIPS 203        |
-| `primitives/ml-dsa-*`     | Firma digital post-cuántica                     | FIPS 204        |
-| `primitives/slh-dsa-*`    | Firma stateless hash-based (largo plazo)        | FIPS 205        |
-| `primitives/sha3-512`     | Hash principal del Índice Cero                  | FIPS 202        |
-| `primitives/hkdf`         | Derivación de claves                            | RFC 5869        |
-| `primitives/aes-gcm`      | Cifrado simétrico autenticado                   | NIST SP 800-38D |
-| `hybrid/*`                | Firmas híbridas clásica + PQC                   | —               |
-| `agility/*`               | Registry + migración + deprecación              | —               |
-| `hsm/*`                   | Adaptadores hardware seguro                     | PKCS#11         |
-| `operations/*`            | sign · verify · keygen · encaps · decaps        | —               |
-| `downgrade-detector.js`   | Centinela anti-downgrade                        | —               |
+| Módulo                  | Propósito                                | Estándar        |
+| ----------------------- | ---------------------------------------- | --------------- |
+| `primitives/ml-kem-*`   | KEM post-cuántico (encapsulación)        | FIPS 203        |
+| `primitives/ml-dsa-*`   | Firma digital post-cuántica              | FIPS 204        |
+| `primitives/slh-dsa-*`  | Firma stateless hash-based (largo plazo) | FIPS 205        |
+| `primitives/sha3-512`   | Hash principal del Índice Cero           | FIPS 202        |
+| `primitives/hkdf`       | Derivación de claves                     | RFC 5869        |
+| `primitives/aes-gcm`    | Cifrado simétrico autenticado            | NIST SP 800-38D |
+| `hybrid/*`              | Firmas híbridas clásica + PQC            | —               |
+| `agility/*`             | Registry + migración + deprecación       | —               |
+| `hsm/*`                 | Adaptadores hardware seguro              | PKCS#11         |
+| `operations/*`          | sign · verify · keygen · encaps · decaps | —               |
+| `downgrade-detector.js` | Centinela anti-downgrade                 | —               |
 
 ## 🜄 Ejemplo Rápido
 

@@ -21,4 +21,5 @@
 **[Paso 3 · Juramento →](paso-3-juramento.md)**
 
 ---
+
 `◯_● · 51/49/100 · onboarding-2`

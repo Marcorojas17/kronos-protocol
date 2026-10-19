@@ -17,15 +17,16 @@
 
 # 📐 KRONOS360 · MODELS
 
-### *Modelos de datos del sistema*
+### _Modelos de datos del sistema_
 
-### *"Todo dato sin modelo es ruido. Todo modelo sin sello es mentira."*
+### _"Todo dato sin modelo es ruido. Todo modelo sin sello es mentira."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M O D E L S  ·  3 6 0  ·  ◯_●                       ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

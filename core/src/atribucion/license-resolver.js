@@ -17,9 +17,13 @@ export const SEAL = '◯_● · 51/49/100';
  * @param {boolean} contexto.es_educativo
  * @returns {object}
  */
-export function resolverLicencia({ uso = 'personal', es_comercial = false, es_educativo = false }) {
-  if (es_comercial)  return { licencia: 'LGU',      razon: 'Uso comercial requiere LGU' };
-  if (es_educativo)  return { licencia: 'LGU-EDU',  razon: 'Uso educativo permitido' };
+export function resolverLicencia({
+  uso = 'personal',
+  es_comercial = false,
+  es_educativo = false,
+}) {
+  if (es_comercial) return { licencia: 'LGU', razon: 'Uso comercial requiere LGU' };
+  if (es_educativo) return { licencia: 'LGU-EDU', razon: 'Uso educativo permitido' };
   return { licencia: 'LGU-PERS', razon: 'Uso personal permitido', sellado: SEAL };
 }
 

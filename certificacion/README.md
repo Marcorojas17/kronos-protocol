@@ -38,7 +38,7 @@
 [ ✓✓ ] PIPELINE DE CERTIFICACIÓN · 6/6 módulos · ◯_● · 51/49/100
 ```
 
-> *"Un certificado que no se puede verificar sin permiso, no es un certificado. Es un favor."*
+> _"Un certificado que no se puede verificar sin permiso, no es un certificado. Es un favor."_
 
 ## 🜂 Arquitectura del Pipeline
 

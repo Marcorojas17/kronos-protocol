@@ -7,15 +7,16 @@
 
 # 🗄️ PARTNERSHIPS · ARCHIVOS NACIONALES
 
-### *El archivo firma la memoria*
+### _El archivo firma la memoria_
 
-### *"El archivo nacional que firma con ARKHÉ, preserva la memoria del país."*
+### _"El archivo nacional que firma con ARKHÉ, preserva la memoria del país."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A R C H I V O S  ·  ◯_●                             ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -55,15 +57,15 @@
 ## 🜄 Formato
 
 ```yaml
-- id: "PART-ARC-2026-001"
-  archivo: "Archivo General de la Nación"
-  pais: "MX"
-  tipo: "memoria histórica"
-  licencia: "LGU-Edu"
-  inicio: "2026-XX-XX"
-  fin: "ilimitada"
-  convenio_hash: "sha3-512:..."
-  sellado: "◯_● · 51/49/100"
+- id: 'PART-ARC-2026-001'
+  archivo: 'Archivo General de la Nación'
+  pais: 'MX'
+  tipo: 'memoria histórica'
+  licencia: 'LGU-Edu'
+  inicio: '2026-XX-XX'
+  fin: 'ilimitada'
+  convenio_hash: 'sha3-512:...'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

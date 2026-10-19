@@ -46,7 +46,7 @@ con el movimiento y expande su presencia a nuevas regiones.
 ## 🜁 Niveles de Embajador
 
 | Nivel | Alcance       | Ahijados |
-|-------|---------------|----------|
+| ----- | ------------- | -------- |
 | E-1   | Ciudad        | 10       |
 | E-2   | Estado/Región | 50       |
 | E-3   | País          | 200      |

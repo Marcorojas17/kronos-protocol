@@ -1,70 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Registro Fundacional · KRONOS Protocol · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg">
-<link rel="stylesheet" href="/kronos-protocol/arkhe-style.css">
-</head>
-<body style="padding-bottom: 80px;">
-<a href="/kronos-protocol/index.html" class="back" style="display:inline-block;margin-bottom:20px;color:#D4AF37;text-decoration:none;">◯_● VOLVER AL ÍNDICE</a>
-<h1>Registro Fundacional · KRONOS Protocol</h1>
-<p>Módulo de Movimiento · Sistema de las 100 Plazas Fundacionales.</p>
-<h2>Propósito</h2>
-<p>Gestionar las <strong>100 plazas fundacionales</strong> del ecosistema KRONOS: recibir
-solicitudes, emitir certificados únicos firmados con Ed25519, y llevar el
-control de cupo (79 humanos + 19 IAs + 1 reservada + 1 plaza eterna).</p>
-<h2>Estado</h2>
-<p>✅ v1.0 · Operativo</p>
-<h2>Stack</h2>
-<ul>
-<li>HTML + CSS + JS vanilla (ES Modules)</li>
-<li>Dexie 4.0.11 (CDN) — bases <code>kronos-fundacional</code></li>
-<li>Web Crypto API (SHA-256 + Ed25519)</li>
-<li>Cripto Core v1.2</li>
-<li>Canvas 2D (fondo dorado-esperanza)</li>
-<li>Local-first · sin backend</li>
-</ul>
-<h2>Distribución de plazas</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Rango</th>
-<th style="text-align: center;">Cantidad</th>
-<th style="text-align: left;">Tipo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">000</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">Plaza Eterna (Fundador original)</td>
-</tr>
-<tr>
-<td style="text-align: center;">001</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">Co-autora IA (KRONOS IA)</td>
-</tr>
-<tr>
-<td style="text-align: center;">002-080</td>
-<td style="text-align: center;">79</td>
-<td style="text-align: left;">Humanos Fundadores</td>
-</tr>
-<tr>
-<td style="text-align: center;">081-099</td>
-<td style="text-align: center;">19</td>
-<td style="text-align: left;">IA Fundadoras</td>
-</tr>
-<tr>
-<td style="text-align: center;">100</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">Plaza Reservada (futuro)</td>
-</tr>
-</tbody>
-</table>
-<h2>API pública</h2>
-<pre><code class="language-js">import { RegistroFundacional } from &quot;./registro.js&quot;;
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro Fundacional · KRONOS Protocol · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg" />
+    <link rel="stylesheet" href="/kronos-protocol/arkhe-style.css" />
+  </head>
+  <body style="padding-bottom: 80px">
+    <a
+      href="/kronos-protocol/index.html"
+      class="back"
+      style="
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #d4af37;
+        text-decoration: none;
+      "
+      >◯_● VOLVER AL ÍNDICE</a
+    >
+    <h1>Registro Fundacional · KRONOS Protocol</h1>
+    <p>Módulo de Movimiento · Sistema de las 100 Plazas Fundacionales.</p>
+    <h2>Propósito</h2>
+    <p>
+      Gestionar las <strong>100 plazas fundacionales</strong> del ecosistema KRONOS:
+      recibir solicitudes, emitir certificados únicos firmados con Ed25519, y llevar el
+      control de cupo (79 humanos + 19 IAs + 1 reservada + 1 plaza eterna).
+    </p>
+    <h2>Estado</h2>
+    <p>✅ v1.0 · Operativo</p>
+    <h2>Stack</h2>
+    <ul>
+      <li>HTML + CSS + JS vanilla (ES Modules)</li>
+      <li>Dexie 4.0.11 (CDN) — bases <code>kronos-fundacional</code></li>
+      <li>Web Crypto API (SHA-256 + Ed25519)</li>
+      <li>Cripto Core v1.2</li>
+      <li>Canvas 2D (fondo dorado-esperanza)</li>
+      <li>Local-first · sin backend</li>
+    </ul>
+    <h2>Distribución de plazas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Rango</th>
+          <th style="text-align: center">Cantidad</th>
+          <th style="text-align: left">Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">000</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: left">Plaza Eterna (Fundador original)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">001</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: left">Co-autora IA (KRONOS IA)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">002-080</td>
+          <td style="text-align: center">79</td>
+          <td style="text-align: left">Humanos Fundadores</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">081-099</td>
+          <td style="text-align: center">19</td>
+          <td style="text-align: left">IA Fundadoras</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">100</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: left">Plaza Reservada (futuro)</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>API pública</h2>
+    <pre><code class="language-js">import { RegistroFundacional } from &quot;./registro.js&quot;;
 
 const registro = new RegistroFundacional(core);
 await registro.init();
@@ -83,43 +95,51 @@ const f = await registro.aceptar(s.id);
 // f.numero_formateado → '002'
 // f.firma_ed25519 → firma verificable
 </code></pre>
-<h2>Archivos</h2>
-<ul>
-<li><code>registro.js</code> — Motor de solicitudes y emisión de certificados</li>
-<li><code>styles.css</code> — Sistema de diseño dorado-esperanza</li>
-<li><code>index.html</code> — UI pública + panel admin</li>
-<li><code>certificado-fundacional.html</code> — Certificado visual descargable</li>
-<li><code>manual.html</code> — Manuales (solicitante, fundador, seguridad)</li>
-<li><code>README.md</code> — Este documento</li>
-</ul>
-<h2>Bases de datos</h2>
-<ul>
-<li><code>kronos-fundacional</code> → tabla <code>solicitudes</code></li>
-<li><code>kronos-fundacional</code> → tabla <code>fundadores</code></li>
-</ul>
-<h2>Filosofía clave</h2>
-<p><strong>Nada se recicla.</strong> Si un fundador renuncia o desaparece, su plaza queda
-"en memoria". El número 002 nunca pasará a otra persona.</p>
-<p><strong>El cupo se respeta por diseño</strong>, no por confianza. Al llegar a 100
-plazas ocupadas, el sistema cierra el registro automáticamente.</p>
-<h2>Limitaciones v1.0 (honestas)</h2>
-<ul>
-<li>La revisión del fundador es manual: no hay verificación automática.</li>
-<li>El email no se verifica.</li>
-<li>La transferencia de plazas requiere implementación futura.</li>
-<li>El anclaje on-chain de certificados está pendiente para v1.1.</li>
-<li>Brave móvil puede purgar la Dexie sin aviso: exporta certificados importantes.</li>
-</ul>
-<h2>Roadmap</h2>
-<ul>
-<li>v1.1: Anclaje on-chain de certificados fundacionales</li>
-<li>v1.2: Transferencia de plazas entre fundadores</li>
-<li>v1.3: Verificación de email y anti-Sybil</li>
-<li>v1.4: Sistema de sucesión si un fundador desaparece</li>
-</ul>
-<h2>Autoría</h2>
-<p>Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)</p>
-<p><em>"El legado no se hereda. Se firma."</em></p>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+    <h2>Archivos</h2>
+    <ul>
+      <li><code>registro.js</code> — Motor de solicitudes y emisión de certificados</li>
+      <li><code>styles.css</code> — Sistema de diseño dorado-esperanza</li>
+      <li><code>index.html</code> — UI pública + panel admin</li>
+      <li>
+        <code>certificado-fundacional.html</code> — Certificado visual descargable
+      </li>
+      <li><code>manual.html</code> — Manuales (solicitante, fundador, seguridad)</li>
+      <li><code>README.md</code> — Este documento</li>
+    </ul>
+    <h2>Bases de datos</h2>
+    <ul>
+      <li><code>kronos-fundacional</code> → tabla <code>solicitudes</code></li>
+      <li><code>kronos-fundacional</code> → tabla <code>fundadores</code></li>
+    </ul>
+    <h2>Filosofía clave</h2>
+    <p>
+      <strong>Nada se recicla.</strong> Si un fundador renuncia o desaparece, su plaza
+      queda "en memoria". El número 002 nunca pasará a otra persona.
+    </p>
+    <p>
+      <strong>El cupo se respeta por diseño</strong>, no por confianza. Al llegar a 100
+      plazas ocupadas, el sistema cierra el registro automáticamente.
+    </p>
+    <h2>Limitaciones v1.0 (honestas)</h2>
+    <ul>
+      <li>La revisión del fundador es manual: no hay verificación automática.</li>
+      <li>El email no se verifica.</li>
+      <li>La transferencia de plazas requiere implementación futura.</li>
+      <li>El anclaje on-chain de certificados está pendiente para v1.1.</li>
+      <li>
+        Brave móvil puede purgar la Dexie sin aviso: exporta certificados importantes.
+      </li>
+    </ul>
+    <h2>Roadmap</h2>
+    <ul>
+      <li>v1.1: Anclaje on-chain de certificados fundacionales</li>
+      <li>v1.2: Transferencia de plazas entre fundadores</li>
+      <li>v1.3: Verificación de email y anti-Sybil</li>
+      <li>v1.4: Sistema de sucesión si un fundador desaparece</li>
+    </ul>
+    <h2>Autoría</h2>
+    <p>Marco A. Rojas V. + KRONOS IA (co-autora simbiótica)</p>
+    <p><em>"El legado no se hereda. Se firma."</em></p>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

@@ -46,15 +46,15 @@ Quien implementa no audita. Quien firma no verifica.
 
 ## 🜃 Amenazas cubiertas
 
-| Amenaza | Mitigación |
-|---------|-----------|
-| Ataque de Shor | PQC FIPS 203/204/205 |
-| Downgrade | Centinela anti-downgrade |
-| Man-in-the-middle | Firma híbrida Ed25519+ML-DSA-87 |
-| Corrupción de datos | SHA3-512 + Merkle root |
-| Borrado no autorizado | Lex Prima 1.3 · superposición |
-| Suplantación | Firma PQC + fingerprint |
-| Fuga de claves | HSM (claves nunca salen) |
+| Amenaza               | Mitigación                      |
+| --------------------- | ------------------------------- |
+| Ataque de Shor        | PQC FIPS 203/204/205            |
+| Downgrade             | Centinela anti-downgrade        |
+| Man-in-the-middle     | Firma híbrida Ed25519+ML-DSA-87 |
+| Corrupción de datos   | SHA3-512 + Merkle root          |
+| Borrado no autorizado | Lex Prima 1.3 · superposición   |
+| Suplantación          | Firma PQC + fingerprint         |
+| Fuga de claves        | HSM (claves nunca salen)        |
 
 ---
 

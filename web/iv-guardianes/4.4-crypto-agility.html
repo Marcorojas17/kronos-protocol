@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>⚙️ Artículo 4.4 · Crypto Agility · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-44-crypto-agility">⚙️ Artículo 4.4 · Crypto Agility</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+  <head>
+    <meta charset="UTF-8" />
+    <title>⚙️ Artículo 4.4 · Crypto Agility · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-44-crypto-agility">⚙️ Artículo 4.4 · Crypto Agility</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
 └─$ ./guardian --agility --status
 
 [ OK ] Registry de algoritmos · activo
@@ -18,10 +18,13 @@
 [ OK ] Deprecation tracker · activo
 [ ✓✓ ] AGILITY OPERATIVO · ◯_● · 51/49/100
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p><strong>Crypto agility</strong> = capacidad de migrar de un algoritmo a otro sin romper compatibilidad.</p>
-<h2 id="ciclo-de-vida">🜃 Ciclo de Vida</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      <strong>Crypto agility</strong> = capacidad de migrar de un algoritmo a otro sin
+      romper compatibilidad.
+    </p>
+    <h2 id="ciclo-de-vida">🜃 Ciclo de Vida</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    CICLO DE VIDA DE ALGORITMO                            ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -34,8 +37,8 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="registry">🜄 Registry</h2>
-<pre><code class="language-javascript">import { REGISTRY, STATUS } from './crypto/agility/algorithm-registry.js';
+    <h2 id="registry">🜄 Registry</h2>
+    <pre><code class="language-javascript">import { REGISTRY, STATUS } from './crypto/agility/algorithm-registry.js';
 
 REGISTRY['ml-dsa-87'];
 // {
@@ -46,8 +49,8 @@ REGISTRY['ml-dsa-87'];
 //   deprecacion_estimada: '2045+',
 // }
 </code></pre>
-<h2 id="migracion">🜁 Migración</h2>
-<pre><code class="language-javascript">import { planMigracion } from './crypto/agility/migration-policy.js';
+    <h2 id="migracion">🜁 Migración</h2>
+    <pre><code class="language-javascript">import { planMigracion } from './crypto/agility/migration-policy.js';
 
 planMigracion('rsa-2048');
 // {
@@ -58,8 +61,8 @@ planMigracion('rsa-2048');
 //   periodo_transicion: 'hasta 2030-12-31',
 // }
 </code></pre>
-<h2 id="deprecacion">🜆 Deprecación</h2>
-<pre><code class="language-javascript">import { estadoDeprecacion } from './crypto/agility/deprecation-tracker.js';
+    <h2 id="deprecacion">🜆 Deprecación</h2>
+    <pre><code class="language-javascript">import { estadoDeprecacion } from './crypto/agility/deprecation-tracker.js';
 
 estadoDeprecacion('ed25519');
 // {
@@ -70,8 +73,8 @@ estadoDeprecacion('ed25519');
 //   motivo: 'Solo híbrido post-2030',
 // }
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · GUARDIÁN · 4.4 · Agility</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · GUARDIÁN · 4.4 · Agility</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

@@ -17,15 +17,16 @@
 
 # 🏗️ INFRA · INFRAESTRUCTURA ARKHÉ
 
-### *Multi-cloud · Local-First · Zero-Trust*
+### _Multi-cloud · Local-First · Zero-Trust_
 
-### *"La nube testifica, no posee."*
+### _"La nube testifica, no posee."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  I N F R A S T R U C T U R E  ·  ◯_●                 ║
@@ -41,6 +42,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -65,12 +67,12 @@
 
 ## 🜃 Componentes
 
-| Módulo          | Propósito                                         | Estado |
-|-----------------|---------------------------------------------------|--------|
-| `k8s/`          | Kubernetes · namespace + network policies + helm  | 🟢 Activo |
-| `terraform/`    | Infra como código · VPC + KMS + monitoring        | 🟢 Activo |
-| `observability/`| Prometheus + Grafana + Loki + Tempo              | 🟢 Activo |
-| `backup/`       | Velero + procedimientos de restauración           | 🟢 Activo |
+| Módulo           | Propósito                                        | Estado    |
+| ---------------- | ------------------------------------------------ | --------- |
+| `k8s/`           | Kubernetes · namespace + network policies + helm | 🟢 Activo |
+| `terraform/`     | Infra como código · VPC + KMS + monitoring       | 🟢 Activo |
+| `observability/` | Prometheus + Grafana + Loki + Tempo              | 🟢 Activo |
+| `backup/`        | Velero + procedimientos de restauración          | 🟢 Activo |
 
 ## 🜄 Local-First
 

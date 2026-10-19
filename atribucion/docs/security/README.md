@@ -6,22 +6,22 @@
 
 ## Documentación
 
-| Documento | Descripción |
-|---|---|
-| [ISO 27001](../../security/compliance/iso-27001.md) | Compliance ISO 27001 |
-| [SOC 2 Type II](../../security/compliance/soc2-type2.md) | Compliance SOC 2 |
-| [PCI DSS](../../security/compliance/pci-dss.md) | Compliance PCI DSS |
-| [NIST 800-57](../../security/compliance/nist-800-57.md) | Gestión de claves |
-| [NOM-151](../../security/compliance/nom-151.md) | Compliance México |
+| Documento                                                | Descripción          |
+| -------------------------------------------------------- | -------------------- |
+| [ISO 27001](../../security/compliance/iso-27001.md)      | Compliance ISO 27001 |
+| [SOC 2 Type II](../../security/compliance/soc2-type2.md) | Compliance SOC 2     |
+| [PCI DSS](../../security/compliance/pci-dss.md)          | Compliance PCI DSS   |
+| [NIST 800-57](../../security/compliance/nist-800-57.md)  | Gestión de claves    |
+| [NOM-151](../../security/compliance/nom-151.md)          | Compliance México    |
 
 ## Políticas
 
-| Política | Descripción |
-|---|---|
-| [Access Control](../../security/policies/access-control.md) | Zero Trust + RBAC |
-| [Encryption](../../security/policies/encryption.md) | TLS 1.3 + AES-256 + PQC |
-| [Incident Response](../../security/policies/incident-response.md) | 5 niveles SEV |
-| [Key Rotation](../../security/policies/key-rotation.md) | Ciclo de rotación |
+| Política                                                          | Descripción             |
+| ----------------------------------------------------------------- | ----------------------- |
+| [Access Control](../../security/policies/access-control.md)       | Zero Trust + RBAC       |
+| [Encryption](../../security/policies/encryption.md)               | TLS 1.3 + AES-256 + PQC |
+| [Incident Response](../../security/policies/incident-response.md) | 5 niveles SEV           |
+| [Key Rotation](../../security/policies/key-rotation.md)           | Ciclo de rotación       |
 
 ## Auditorías
 
@@ -43,6 +43,7 @@ Email: **security@atribucion.io**
 Asunto: `[SECURITY] Descripción breve`
 
 Incluye:
+
 1. Descripción del problema.
 2. Pasos para reproducir.
 3. Impacto potencial.
@@ -55,15 +56,15 @@ Incluye:
 
 ## Estado de certificaciones
 
-| Certificación | Estado | Fecha |
-|---|---|---|
-| ISO 27001 | 🔴 En roadmap | Mes 7-12 |
-| SOC 2 Type I | 🔴 En roadmap | Mes 4-6 |
-| SOC 2 Type II | 🔴 En roadmap | Mes 10-12 |
-| ISO 42001 | 🔴 En roadmap | Mes 13-18 |
-| NOM-151 | 🟡 En integración | Mes 3-6 |
-| Bug Bounty | 🟡 Próximamente | Mes 6 |
-| Pentesting | 🔴 En roadmap | Mes 4-6 |
+| Certificación | Estado            | Fecha     |
+| ------------- | ----------------- | --------- |
+| ISO 27001     | 🔴 En roadmap     | Mes 7-12  |
+| SOC 2 Type I  | 🔴 En roadmap     | Mes 4-6   |
+| SOC 2 Type II | 🔴 En roadmap     | Mes 10-12 |
+| ISO 42001     | 🔴 En roadmap     | Mes 13-18 |
+| NOM-151       | 🟡 En integración | Mes 3-6   |
+| Bug Bounty    | 🟡 Próximamente   | Mes 6     |
+| Pentesting    | 🔴 En roadmap     | Mes 4-6   |
 
 ---
 

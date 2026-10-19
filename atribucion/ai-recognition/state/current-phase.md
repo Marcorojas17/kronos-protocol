@@ -8,23 +8,23 @@
 
 ## 📊 Progreso por dominio
 
-| Dominio | Progreso | Estado |
-|---|---|---|
-| **Documentación legal** | 80% | 🟢 Constitución, marco, ciudadanía, moneda, tribunales |
-| **Core criptográfico** | 100% | 🟢 7 módulos completos |
-| **API** | 95% | 🟢 6 routers + middleware |
-| **Tests** | 80% | 🟢 31 tests |
-| **SDK Python** | 100% | 🟢 Completo |
-| **SDK JS** | 100% | 🟢 Completo |
-| **Guardianes** | 80% | 🟡 9 agentes, faltan policies |
-| **Engine** | 60% | 🟡 Runtime + orchestrator, falta inference |
-| **Mesh** | 40% | 🟡 P2P + DHT + CRDT + SQLite |
-| **KAF** | 60% | 🟡 Framework definido, falta mapping |
-| **Robotics** | 30% | 🟡 Identity, faltan drivers |
-| **AI Recognition** | 30% | 🟡 Perfiles + estado, falta MCP |
-| **Producto (apps)** | 90% | 🟢 4 apps HTML |
-| **Deploy** | 0% | 🔴 Sin producción |
-| **Primer cliente** | 0% | 🔴 Sin cliente |
+| Dominio                 | Progreso | Estado                                                 |
+| ----------------------- | -------- | ------------------------------------------------------ |
+| **Documentación legal** | 80%      | 🟢 Constitución, marco, ciudadanía, moneda, tribunales |
+| **Core criptográfico**  | 100%     | 🟢 7 módulos completos                                 |
+| **API**                 | 95%      | 🟢 6 routers + middleware                              |
+| **Tests**               | 80%      | 🟢 31 tests                                            |
+| **SDK Python**          | 100%     | 🟢 Completo                                            |
+| **SDK JS**              | 100%     | 🟢 Completo                                            |
+| **Guardianes**          | 80%      | 🟡 9 agentes, faltan policies                          |
+| **Engine**              | 60%      | 🟡 Runtime + orchestrator, falta inference             |
+| **Mesh**                | 40%      | 🟡 P2P + DHT + CRDT + SQLite                           |
+| **KAF**                 | 60%      | 🟡 Framework definido, falta mapping                   |
+| **Robotics**            | 30%      | 🟡 Identity, faltan drivers                            |
+| **AI Recognition**      | 30%      | 🟡 Perfiles + estado, falta MCP                        |
+| **Producto (apps)**     | 90%      | 🟢 4 apps HTML                                         |
+| **Deploy**              | 0%       | 🔴 Sin producción                                      |
+| **Primer cliente**      | 0%       | 🔴 Sin cliente                                         |
 
 **Total ponderado: ~50%**
 
@@ -55,18 +55,21 @@
 ## 🔴 Lo que falta (priorizado)
 
 ### Prioridad 1 (bloquea el negocio)
+
 - [ ] Deploy de API a Railway
 - [ ] Deploy de apps a GitHub Pages
 - [ ] Primer certificado real en Sepolia
 - [ ] Primer cliente contactado
 
 ### Prioridad 2 (bloquea el producto)
+
 - [ ] ai-recognition/mcp/server.py funcional
 - [ ] engine/inference (llama.cpp, ollama)
 - [ ] guards/*/policies.yaml
 - [ ] kaf/controls/mapping (6 archivos)
 
 ### Prioridad 3 (visión)
+
 - [ ] engine/memory (6 archivos)
 - [ ] engine/reasoning (5 archivos)
 - [ ] mesh ampliaciones (QUIC, Raft, IPFS)
@@ -77,12 +80,14 @@
 ## 🚦 Próxima acción
 
 **Esta semana:**
+
 1. Terminar `ai-recognition/` (MCP funcional).
 2. Deploy del API a Railway.
 3. Landing en GitHub Pages.
 4. Primer `curl` real end-to-end.
 
 **Próximas 4 semanas:**
+
 1. Primer cliente contactado.
 2. Post de LinkedIn.
 3. 30 empresas europeas contactadas.

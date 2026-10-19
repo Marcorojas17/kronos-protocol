@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Quickstart
 
 **Integra Atribución en 5 minutos.**
@@ -14,6 +14,7 @@ Recibirás una API key con formato:
 ```text
 ak_live_<64_hex>
 ```
+````
 
 Guárdala en un lugar seguro. Solo se muestra una vez.
 
@@ -97,37 +98,33 @@ print("Prueba:", certificate["proof_url"])
 JavaScript / TypeScript
 
 ```typescript
-import { sign } from "crypto";
+import { sign } from 'crypto';
 
 const action = {
-  action: "trade_executed",
-  input: { symbol: "AAPL", quantity: 100 },
-  output: { order_id: "ord_1", status: "filled" },
-  reasoning: "Señal alcista confirmada.",
-  autonomy_level: "semi-autonomo",
+  action: 'trade_executed',
+  input: { symbol: 'AAPL', quantity: 100 },
+  output: { order_id: 'ord_1', status: 'filled' },
+  reasoning: 'Señal alcista confirmada.',
+  autonomy_level: 'semi-autonomo',
 };
 
 const payload = JSON.stringify(action, Object.keys(action).sort());
 
-const signature = sign("sha256", Buffer.from(payload), privateKey)
-  .toString("hex");
+const signature = sign('sha256', Buffer.from(payload), privateKey).toString('hex');
 
-const response = await fetch(
-  `https://api.atribucion.io/v1/agents/${AGENT_ID}/actions`,
-  {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      "X-Agent-Signature": `0x${signature}`,
-      "X-Agent-Signature-PQC": `0x${"0".repeat(128)}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(action),
-  }
-);
+const response = await fetch(`https://api.atribucion.io/v1/agents/${AGENT_ID}/actions`, {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${API_KEY}`,
+    'X-Agent-Signature': `0x${signature}`,
+    'X-Agent-Signature-PQC': `0x${'0'.repeat(128)}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(action),
+});
 
 const certificate = await response.json();
-console.log("Certificado:", certificate.certificate_id);
+console.log('Certificado:', certificate.certificate_id);
 ```
 
 ---
@@ -183,5 +180,7 @@ Soporte
 · Docs: docs.atribucion.io
 · Email: marco.a.rojas.v@hotmail.com
 · GitHub: github.com/Marcorojas17/atribucion
+
+```
 
 ```

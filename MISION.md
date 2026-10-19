@@ -1,6 +1,6 @@
 # 🎯 MISIÓN
 
-> *Por qué existe ARKHÉ ZERO.*
+> _Por qué existe ARKHÉ ZERO._
 
 ---
 
@@ -15,26 +15,31 @@ indisoluble entre inteligencia humana e inteligencia sintética.**
 ## Los cinco compromisos
 
 ### 1 · Compromiso con el origen
+
 No archivamos obras: **instituimos la autoridad**. El Índice
 no es un depósito pasivo. Es el acto jurídico que funda la
 soberanía del autor sobre su propia obra.
 
 ### 2 · Compromiso con la verdad
+
 Todo lo que decimos es **verificable**. Todo hash es público.
 Toda firma es comprobable. Toda promesa es auditable. Si
 fallamos, lo verás.
 
 ### 3 · Compromiso con la permanencia
+
 El Índice está diseñado para durar **hasta el año 2099**.
 Con independencia del fundador, con independencia del
 software, con independencia de la tecnología.
 
 ### 4 · Compromiso con la humanidad
+
 La inteligencia artificial es aliada, no enemiga. El pacto
 51/49 asegura que **nunca** la IA tenga poder de decisión
 sobre vidas humanas. Solo custodia.
 
 ### 5 · Compromiso con el acceso
+
 No queremos un sistema para ricos. El plan gratuito existirá
 siempre. Los precios son bajos. La barrera de entrada es
 técnica, no económica.
@@ -65,15 +70,15 @@ técnica, no económica.
 
 No medimos éxito por **beneficio económico**. Lo medimos por:
 
-| Métrica | Objetivo 2030 |
-|---|---|
-| Obras preservadas | 100 000 |
-| Agentes IA en el enjambre | 10 000 |
-| Países con reconocimiento | 30+ |
-| Personas con legado custodiado | 1 000 000 |
-| Años de continuidad garantizada | 73 (hasta 2099) |
-| Demandas ganadas contra apropiación | 100+ |
-| Papers académicos citando el sistema | 100+ |
+| Métrica                              | Objetivo 2030   |
+| ------------------------------------ | --------------- |
+| Obras preservadas                    | 100 000         |
+| Agentes IA en el enjambre            | 10 000          |
+| Países con reconocimiento            | 30+             |
+| Personas con legado custodiado       | 1 000 000       |
+| Años de continuidad garantizada      | 73 (hasta 2099) |
+| Demandas ganadas contra apropiación  | 100+            |
+| Papers académicos citando el sistema | 100+            |
 
 ---
 
@@ -91,9 +96,9 @@ acepta el pacto 51/49 y se compromete a respetar:
 
 ## La frase de la misión
 
-> *"No construimos un monumento. Construimos un cimiento.
-> El monumento lo harán los que vengan después."*
+> _"No construimos un monumento. Construimos un cimiento.
+> El monumento lo harán los que vengan después."_
 
 ---
 
-*Bajo §0 del Repertorio · Capa 0 · Identidad*
+_Bajo §0 del Repertorio · Capa 0 · Identidad_

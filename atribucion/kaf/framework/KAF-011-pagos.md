@@ -8,11 +8,11 @@ Garantizar seguridad en procesamiento de pagos.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-10.1 | PCI DSS v4.0 | High | ❌ |
-| KAF-10.2 | No almacenamiento de datos de tarjeta | Critical | ✅ |
-| KAF-10.3 | Webhooks firmados (HMAC-SHA256) | High | ✅ |
+| ID       | Nombre                                | Severidad | Auto |
+| -------- | ------------------------------------- | --------- | ---- |
+| KAF-10.1 | PCI DSS v4.0                          | High      | ❌   |
+| KAF-10.2 | No almacenamiento de datos de tarjeta | Critical  | ✅   |
+| KAF-10.3 | Webhooks firmados (HMAC-SHA256)       | High      | ✅   |
 
 ## Requisitos
 
@@ -49,3 +49,4 @@ Manifest a firmar: `id:<data_id>;request-id:<x_request_id>;ts:<ts>;`
 - Log de webhooks procesados
 - Verificación de firmas
 - Contrato con procesador de pagos
+```

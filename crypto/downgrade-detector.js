@@ -14,17 +14,27 @@
  */
 
 export const ALGORITMOS_PROHIBIDOS = [
-  'md5', 'sha1', 'sha-1',
-  'rsa-1024', 'rsa1024',
-  'des', '3des', 'rc4',
+  'md5',
+  'sha1',
+  'sha-1',
+  'rsa-1024',
+  'rsa1024',
+  'des',
+  '3des',
+  'rc4',
   'ecdsa-p192',
 ];
 
 export const ALGORITMOS_CANONICOS = [
-  'sha3-512', 'sha-3-512',
-  'ml-kem-1024', 'ml-dsa-87', 'slh-dsa-shake-256s',
-  'ed25519', 'x25519',
-  'aes-256-gcm', 'hkdf-sha3-512',
+  'sha3-512',
+  'sha-3-512',
+  'ml-kem-1024',
+  'ml-dsa-87',
+  'slh-dsa-shake-256s',
+  'ed25519',
+  'x25519',
+  'aes-256-gcm',
+  'hkdf-sha3-512',
 ];
 
 export const SEAL = '◯_● · 51/49/100';

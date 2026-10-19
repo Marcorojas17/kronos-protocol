@@ -146,7 +146,7 @@ services:
     method: GET
     timeout_seconds: 5
     expected_status: 200
-    expected_body_contains: "ok"
+    expected_body_contains: 'ok'
     critical: true
 
   - id: internal-postgres

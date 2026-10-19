@@ -9,11 +9,11 @@ Garantizar el derecho a explicación de decisiones automatizadas
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-5.1 | Reasoning documentado | Critical | ✅ |
-| KAF-5.2 | Razonamiento hasheado y anclado | High | ✅ |
-| KAF-5.3 | Endpoint público de explicación | Medium | ✅ |
+| ID      | Nombre                          | Severidad | Auto |
+| ------- | ------------------------------- | --------- | ---- |
+| KAF-5.1 | Reasoning documentado           | Critical  | ✅   |
+| KAF-5.2 | Razonamiento hasheado y anclado | High      | ✅   |
+| KAF-5.3 | Endpoint público de explicación | Medium    | ✅   |
 
 ## Requisitos
 
@@ -44,3 +44,4 @@ devuelve el reasoning original (si el usuario lo autoriza).
 {
   "reasoning": "Señal alcista confirmada por 3 indicadores: RSI < 30, MACD crossover, volumen +25%. Operación dentro de límites de riesgo."
 }
+```

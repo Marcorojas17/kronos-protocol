@@ -24,4 +24,5 @@
 **[Paso 7 · Misión →](paso-7-mision.md)**
 
 ---
+
 `◯_● · 51/49/100 · onboarding-6`

@@ -12,12 +12,12 @@
 
 **SHA3-512** (FIPS 202).
 
-| Aspecto | SHA3-512 | FNV |
-|---------|----------|-----|
-| Estándar | FIPS 202 | No |
-| Seguridad | 256 bits | 32-64 bits |
-| Resistencia cuántica | ✅ Sí | ❌ No |
-| Aceptación legal | ✅ Alta | ❌ Baja |
+| Aspecto              | SHA3-512 | FNV        |
+| -------------------- | -------- | ---------- |
+| Estándar             | FIPS 202 | No         |
+| Seguridad            | 256 bits | 32-64 bits |
+| Resistencia cuántica | ✅ Sí    | ❌ No      |
+| Aceptación legal     | ✅ Alta  | ❌ Baja    |
 
 ## 🜄 Consecuencias
 

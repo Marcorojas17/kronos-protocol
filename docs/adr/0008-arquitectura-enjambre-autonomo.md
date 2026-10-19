@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 **Enjambre de 12 agentes** con:
+
 - 6 culturales (Náhuatl)
 - 6 oficios (numerados)
 - Consenso quórum 4/5

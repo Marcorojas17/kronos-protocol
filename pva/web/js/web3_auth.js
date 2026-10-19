@@ -7,14 +7,14 @@
  */
 
 const PVA_AUTH_CONFIG = {
-  FOLIO: "5204160405358537",
-  PERITO: "kronosproyecto@hotmail.com",
-  GENESIS: "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3",
-  SELLO: "KRONOS-TRACE-PVA-5204160405358537",
-  CHAIN_ID_SEPOLIA: "0xaa36a7", // 11155111
-  CHAIN_ID_MAINNET: "0x1",
-  RPC_SEPOLIA: "https://sepolia.infura.io/v3/TU_INFURA_KEY",
-  CONTRACT_ADDRESS: localStorage.getItem("pva_contract") || "",
+  FOLIO: '5204160405358537',
+  PERITO: 'kronosproyecto@hotmail.com',
+  GENESIS: '41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3',
+  SELLO: 'KRONOS-TRACE-PVA-5204160405358537',
+  CHAIN_ID_SEPOLIA: '0xaa36a7', // 11155111
+  CHAIN_ID_MAINNET: '0x1',
+  RPC_SEPOLIA: 'https://sepolia.infura.io/v3/TU_INFURA_KEY',
+  CONTRACT_ADDRESS: localStorage.getItem('pva_contract') || '',
 };
 
 // Estado global auth
@@ -25,47 +25,49 @@ let pvaAccount = null;
 function logAuth(msg) {
   const entry = `[${new Date().toISOString()}] [AUTH:${PVA_AUTH_CONFIG.FOLIO}] ${msg}`;
   console.log(entry);
-  const logs = JSON.parse(localStorage.getItem("pva_logs") || "[]");
+  const logs = JSON.parse(localStorage.getItem('pva_logs') || '[]');
   logs.push(entry);
-  localStorage.setItem("pva_logs", JSON.stringify(logs.slice(-100)));
+  localStorage.setItem('pva_logs', JSON.stringify(logs.slice(-100)));
 }
 
 // Detecta wallet
 function hasWallet() {
-  return typeof window.ethereum!== "undefined";
+  return typeof window.ethereum !== 'undefined';
 }
 
 // Conecta MetaMask / WalletConnect
 async function connectWallet() {
   if (!hasWallet()) {
-    alert("Instala MetaMask para autenticar como perito.\nhttps://metamask.io");
-    logAuth("Wallet no detectada");
-    window.open("https://metamask.io/download/", "_blank");
+    alert('Instala MetaMask para autenticar como perito.\nhttps://metamask.io');
+    logAuth('Wallet no detectada');
+    window.open('https://metamask.io/download/', '_blank');
     return null;
   }
 
   try {
-    logAuth("Solicitando conexión wallet...");
-    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+    logAuth('Solicitando conexión wallet...');
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     pvaAccount = accounts[0];
 
     // Cambia a Sepolia automáticamente
     try {
       await window.ethereum.request({
-        method: "wallet_switchEthereumChain",
+        method: 'wallet_switchEthereumChain',
         params: [{ chainId: PVA_AUTH_CONFIG.CHAIN_ID_SEPOLIA }],
       });
     } catch (switchError) {
       if (switchError.code === 4902) {
         await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [{
-            chainId: PVA_AUTH_CONFIG.CHAIN_ID_SEPOLIA,
-            chainName: "Sepolia",
-            rpcUrls: [PVA_AUTH_CONFIG.RPC_SEPOLIA],
-            nativeCurrency: { name: "SepoliaETH", symbol: "ETH", decimals: 18 },
-            blockExplorerUrls: ["https://sepolia.etherscan.io"]
-          }]
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: PVA_AUTH_CONFIG.CHAIN_ID_SEPOLIA,
+              chainName: 'Sepolia',
+              rpcUrls: [PVA_AUTH_CONFIG.RPC_SEPOLIA],
+              nativeCurrency: { name: 'SepoliaETH', symbol: 'ETH', decimals: 18 },
+              blockExplorerUrls: ['https://sepolia.etherscan.io'],
+            },
+          ],
         });
       }
     }
@@ -74,13 +76,12 @@ async function connectWallet() {
     logAuth(`Wallet conectada ${pvaAccount}`);
 
     // Guarda sesión
-    localStorage.setItem("pva_account", pvaAccount);
-    localStorage.setItem("pva_perito", PVA_AUTH_CONFIG.PERITO);
-    localStorage.setItem("pva_folio", PVA_AUTH_CONFIG.FOLIO);
+    localStorage.setItem('pva_account', pvaAccount);
+    localStorage.setItem('pva_perito', PVA_AUTH_CONFIG.PERITO);
+    localStorage.setItem('pva_folio', PVA_AUTH_CONFIG.FOLIO);
 
     updateUIConnected();
     return pvaAccount;
-
   } catch (err) {
     logAuth(`Error connect ${err.message}`);
     throw err;
@@ -96,16 +97,15 @@ async function signSello() {
   try {
     logAuth(`Firmando sello ${PVA_AUTH_CONFIG.SELLO}`);
     const signature = await window.ethereum.request({
-      method: "personal_sign",
+      method: 'personal_sign',
       params: [message, pvaAccount],
     });
 
-    localStorage.setItem("pva_signature", signature);
-    localStorage.setItem("pva_signed_message", message);
-    logAuth(`Sello firmado sig:${signature.slice(0,20)}...`);
+    localStorage.setItem('pva_signature', signature);
+    localStorage.setItem('pva_signed_message', message);
+    logAuth(`Sello firmado sig:${signature.slice(0, 20)}...`);
 
     return { message, signature, account: pvaAccount, folio: PVA_AUTH_CONFIG.FOLIO };
-
   } catch (err) {
     logAuth(`Error firma ${err.message}`);
     throw err;
@@ -131,11 +131,11 @@ async function login() {
     genesis: PVA_AUTH_CONFIG.GENESIS,
     signature: signed.signature,
     isPerito: true,
-    chainId: PVA_AUTH_CONFIG.CHAIN_ID_SEPOLIA
+    chainId: PVA_AUTH_CONFIG.CHAIN_ID_SEPOLIA,
   };
 
   // Guarda user para app.js
-  localStorage.setItem("pva_user", JSON.stringify(user));
+  localStorage.setItem('pva_user', JSON.stringify(user));
   logAuth(`Login OK perito ${PVA_AUTH_CONFIG.PERITO} account ${account}`);
 
   return user;
@@ -145,50 +145,52 @@ function logout() {
   pvaProvider = null;
   pvaSigner = null;
   pvaAccount = null;
-  localStorage.removeItem("pva_account");
-  localStorage.removeItem("pva_signature");
-  localStorage.removeItem("pva_user");
-  logAuth("Logout perito");
+  localStorage.removeItem('pva_account');
+  localStorage.removeItem('pva_signature');
+  localStorage.removeItem('pva_user');
+  logAuth('Logout perito');
   updateUIDisconnected();
 }
 
 function getUser() {
   try {
-    return JSON.parse(localStorage.getItem("pva_user") || "null");
-  } catch { return null; }
+    return JSON.parse(localStorage.getItem('pva_user') || 'null');
+  } catch {
+    return null;
+  }
 }
 
 function isAuthenticated() {
-  return!!localStorage.getItem("pva_account");
+  return !!localStorage.getItem('pva_account');
 }
 
 function updateUIConnected() {
-  const btn = document.getElementById("btn-login");
-  const info = document.getElementById("user-info");
-  if (btn) btn.textContent = `✓ ${pvaAccount.slice(0,6)}...${pvaAccount.slice(-4)}`;
+  const btn = document.getElementById('btn-login');
+  const info = document.getElementById('user-info');
+  if (btn) btn.textContent = `✓ ${pvaAccount.slice(0, 6)}...${pvaAccount.slice(-4)}`;
   if (info) info.textContent = `Perito: ${PVA_AUTH_CONFIG.PERITO} | ${pvaAccount}`;
 }
 
 function updateUIDisconnected() {
-  const btn = document.getElementById("btn-login");
-  const info = document.getElementById("user-info");
-  if (btn) btn.textContent = "Login Perito";
-  if (info) info.textContent = "";
+  const btn = document.getElementById('btn-login');
+  const info = document.getElementById('user-info');
+  if (btn) btn.textContent = 'Login Perito';
+  if (info) info.textContent = '';
 }
 
 // Listeners wallet
-if (typeof window!== "undefined" && window.ethereum) {
-  window.ethereum.on("accountsChanged", (accounts) => {
+if (typeof window !== 'undefined' && window.ethereum) {
+  window.ethereum.on('accountsChanged', (accounts) => {
     logAuth(`accountsChanged ${accounts[0]}`);
     if (accounts.length === 0) logout();
     else {
       pvaAccount = accounts[0];
-      localStorage.setItem("pva_account", pvaAccount);
+      localStorage.setItem('pva_account', pvaAccount);
       updateUIConnected();
     }
   });
-  window.ethereum.on("chainChanged", () => {
-    logAuth("chainChanged reload");
+  window.ethereum.on('chainChanged', () => {
+    logAuth('chainChanged reload');
     window.location.reload();
   });
 }
@@ -202,7 +204,9 @@ window.PVAWeb3Auth = {
   logout,
   getUser,
   isAuthenticated,
-  hasWallet
+  hasWallet,
 };
 
-console.log(`PVA Web3Auth cargado | Folio ${PVA_AUTH_CONFIG.FOLIO} | Sello ${PVA_AUTH_CONFIG.SELLO}`);
+console.log(
+  `PVA Web3Auth cargado | Folio ${PVA_AUTH_CONFIG.FOLIO} | Sello ${PVA_AUTH_CONFIG.SELLO}`,
+);

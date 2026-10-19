@@ -1,4 +1,5 @@
 ◯_●
+
 # Aviso de Privacidad
 
 **Responsable:** Marco Antonio Rojas Valdovinos
@@ -9,6 +10,7 @@
 La API no recaba datos personales identificables.
 
 Datos técnicos automáticos (90 días):
+
 - Dirección IP (rate limiting)
 - Timestamp de petición
 - Código de respuesta HTTP
