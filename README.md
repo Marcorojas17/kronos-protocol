@@ -1,3 +1,4 @@
+```markdown
 <div align="center">
 
 # ○_● ARKHÉ ZERO
@@ -37,3 +38,55 @@ El sistema expone herramientas a través de un servidor local (`arkhe_server.py`
 [ Humano ] ───(51%)───┐
                       ├──▶ [ Servidor MCP: ARKHÉ ZERO ] ──▶ [ Hash SHA-256 ]
 [ IA ] ───────(49%)───┘
+```
+
+(Compatible con la NOM-151-SCFI-2016 y lista para integración con PSC acreditados).
+
+🚀 Prueba de Concepto (Demostración Real)
+
+El sistema ha sido validado empíricamente. Utilizando el SDK oficial de Google y OpenRouter, se demostró que agentes autónomos (Gemini y Llama 3) son capaces de leer las herramientas del protocolo, decidir usarlas y emitir un certificado de autoría sin intervención humana directa.
+
+```json
+{
+    "status": "Certificado Exitoso",
+    "protocolo": "ARKHÉ ZERO (PVA)",
+    "obra": "Tesis Doctoral",
+    "proporcion": "51% Humano / 49% IA",
+    "manifest_hash": "bfa5379629d72feb4faeafa454d20a1e36108ec690713e55043a222ea344bd4e",
+    "nota": "Listo para anclaje en Blockchain"
+}
+```
+
+💻 Instalación y Uso Local
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/Marcorojas17/kronos-protocol.git
+cd kronos-protocol
+
+# Crear entorno virtual
+python3 -m venv venv
+source venv/bin/activate
+
+# Instalar dependencias
+pip install mcp google-genai groq requests
+
+# Ejecutar servidor MCP
+python3 arkhe_server.py
+```
+
+🗺️ Roadmap (Futuras Líneas)
+
+☑ Prototipo funcional local (Proof of Concept).
+☑ Integración exitosa con LLMs (Google Gemini, Meta Llama).
+☐ Despliegue global en Cloud (SSE Server) y registro en directorios MCP.
+☐ Migración del anclaje a Ethereum Mainnet o Arbitrum (Capa 2).
+☐ Integración formal con Prestadores de Servicios de Certificación (PSC).
+
+---
+
+<div align="center">
+  <i>"El legado no se hereda. Se firma."</i><br>
+  <b>Investigación desarrollada por Marco Antonio Rojas Valdovinos</b>
+</div>
+```
