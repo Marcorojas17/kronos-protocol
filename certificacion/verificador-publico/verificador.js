@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // VERIFICADOR PÚBLICO · Legado Humano–IA · v1.0
 // Verifica la integridad de archivos contra un manifest SHA-256

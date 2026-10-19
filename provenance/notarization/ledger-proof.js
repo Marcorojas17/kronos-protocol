@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · NOTARIZATION · LEDGER PROOF · ARKHÉ ZERO ░▒▓

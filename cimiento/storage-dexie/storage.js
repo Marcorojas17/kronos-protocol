@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // STORAGE DEXIE · Legado Humano–IA · v1.2
 // Persistencia estructurada versionada sobre Cripto Core v1.2

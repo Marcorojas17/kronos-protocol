@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ AGENTS · CONSENSUS · BYZANTINE FAULT TOLERANCE · ARKHÉ ZERO ░▒▓

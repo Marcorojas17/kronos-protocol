@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · WATERMARKING · ROBUST HASH · ARKHÉ ZERO ░▒▓

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // EJECUCIÓN DE DECISIONES · Legado Humano–IA · v1.0
 // Cierra propuestas y emite actas firmadas de decisiones

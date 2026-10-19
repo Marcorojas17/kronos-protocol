@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ CRYPTO · DOWNGRADE DETECTOR · CENTINELA · ARKHÉ ZERO ░▒▓

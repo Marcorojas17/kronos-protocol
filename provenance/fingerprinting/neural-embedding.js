@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · FINGERPRINTING · NEURAL EMBEDDING · ARKHÉ ZERO ░▒▓

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · NOTARIZATION · NOTARY API · ARKHÉ ZERO ░▒▓

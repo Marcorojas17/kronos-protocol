@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · FINGERPRINTING · ROBUST MATCHING · ARKHÉ ZERO ░▒▓

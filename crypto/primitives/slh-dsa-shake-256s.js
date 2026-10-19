@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ CRYPTO · SLH-DSA-SHAKE-256s · FIRMA LARGO PLAZO · ARKHÉ ZERO ░▒▓

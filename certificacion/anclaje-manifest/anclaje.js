@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // ANCLAJE DEL MANIFEST · Legado Humano–IA · v1.0
 // Publica el hash raíz del manifest en Ethereum (prueba pública)

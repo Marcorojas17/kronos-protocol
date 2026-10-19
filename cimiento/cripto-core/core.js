@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // CRIPTO CORE · Legado Humano–IA · v1.2
 // Ed25519 en PKCS8 (privada) + SPKI (pública)

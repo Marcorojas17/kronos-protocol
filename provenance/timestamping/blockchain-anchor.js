@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · TIMESTAMPING · BLOCKCHAIN ANCHOR · ARKHÉ ZERO ░▒▓

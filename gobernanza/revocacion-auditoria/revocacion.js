@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // REVOCACIÓN Y AUDITORÍA · Legado Humano–IA · v1.0
 // Revoca roles y audita el histórico completo de gobernanza

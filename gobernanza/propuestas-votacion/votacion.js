@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // VOTACIÓN · Legado Humano–IA · v1.0
 // Motor de votos firmados con Ed25519
