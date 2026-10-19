@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<!--
+  © 2026 Marco Antonio Rojas Valdovinos
+  Movimiento de Co-Creatividad Simbiótica y Respeto Digital
+  Licencia: CC BY-NC-ND 4.0
+  Safe Creative: 2607086319439
+  https://marcorojas17.github.io/kronos-protocol/
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movimiento · Co-Creatividad Simbiótica</title>
+<meta name="description" content="Marco ético y legal para declarar honestamente cómo humanos e IA crean juntos. 6 principios. 100 plazas Génesis.">
+<meta property="og:title" content="Movimiento de Co-Creatividad Simbiótica">
+<meta property="og:description" content="Humano + máquina. Con reglas. 6 principios. 100 plazas Génesis.">
+<meta property="og:image" content="https://marcorojas17.github.io/kronos-protocol/movimiento/assets/hero-kronos.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/k-avatar.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #f3e5ab;
+    --gold-deep: #8a6f2c;
+    --cyan: #00eaff;
+    --ink: #05070b;
+    --ink-2: #0a0e15;
+    --text: #e8e4d8;
+    --text-dim: #8892a0;
+    --whatsapp: #25D366;
+  }
+  html, body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5,7,11,0.4) 60%, rgba(5,7,11,0.95) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+  }
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 80px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  header.top .mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 4px;
+  }
+  header.top .mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+  }
+  header.top nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color 0.3s ease;
+  }
+  header.top nav a:hover { color: var(--gold); }
+
+  .hero { padding: 60px 0 80px; max-width: 780px; }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(38px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -1.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.4s forwards;
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 620px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+  .hero-cta {
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.8s forwards;
+  }
+  .hero-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(201,164,76,0.3);
+    transition: all 0.3s;
+  }
+  .hero-cta a:hover { border-color: var(--gold); gap: 14px; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,164,76,0.4), transparent);
+    margin: 70px 0;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .section-head .count {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 32px 28px 28px;
+    border: 1px solid rgba(201,164,76,0.12);
+    background: linear-gradient(155deg, rgba(20,24,32,0.55) 0%, rgba(10,14,21,0.75) 100%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 4px;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .card:hover {
+    border-color: rgba(201,164,76,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,164,76,0.06);
+  }
+  .card:hover::after { width: 100%; }
+  .card .num {
+    font-family: 'Cinzel', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .price-card {
+    padding: 28px 24px;
+    border: 1px solid rgba(201,164,76,0.15);
+    background: rgba(20,24,32,0.4);
+    border-radius: 4px;
+    transition: all 0.4s ease;
+  }
+  .price-card:hover {
+    border-color: rgba(201,164,76,0.4);
+    background: rgba(20,24,32,0.6);
+  }
+  .price-card .phase {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .price-card .range {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .price-card .price {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .price-card .price small {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-left: 4px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FORMULARIO PREMIUM — OBSIDIAN & GOLD
+     ═══════════════════════════════════════════════════════════ */
+  .form-section {
+    margin-top: 90px;
+    padding: 60px 40px;
+    border: 1px solid rgba(201,164,76,0.25);
+    background: linear-gradient(155deg, rgba(20,24,32,0.65) 0%, rgba(10,14,21,0.85) 100%);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .form-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(201,164,76,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .form-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .form-header .eyebrow-form {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .form-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(180deg, #fff8e0 0%, var(--gold-light) 40%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .form-header p {
+    font-size: 14px;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  form.kronos-form {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .form-group label span {
+    color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-left: 4px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(5,7,11,0.5);
+    border: none;
+    border-bottom: 1px solid rgba(201,164,76,0.25);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 14px 4px;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(136,146,160,0.5);
+    font-weight: 300;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--gold);
+    box-shadow: 0 4px 20px -8px rgba(201,164,76,0.6);
+    background: rgba(5,7,11,0.8);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: 'Inter', sans-serif;
+  }
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c9a44c' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 32px;
+  }
+  .form-group select option {
+    background: #0a0e15;
+    color: var(--text);
+  }
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+  .checkbox-group strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .form-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 36px;
+    gap: 20px;
+  }
+  button.btn-whatsapp {
+    width: 100%;
+    max-width: 420px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(201,164,76,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  button.btn-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+  }
+  button.btn-whatsapp:hover::before {
+    left: 100%;
+  }
+  button.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(201,164,76,0.5);
+  }
+  button.btn-whatsapp:active {
+    transform: translateY(-1px);
+  }
+  button.btn-whatsapp svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  .form-note {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 440px;
+  }
+  .form-note strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BOTÓN FLOTANTE WHATSAPP
+     ═══════════════════════════════════════════════════════════ */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+  }
+  .whatsapp-text {
+    background: linear-gradient(180deg, #fff8e0, #c9a44c);
+    color: #05070b;
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(201, 164, 76, 0.4);
+    white-space: nowrap;
+  }
+  .whatsapp-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--whatsapp);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    animation: whatsappPulse 2s ease-in-out infinite;
+  }
+  .whatsapp-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+  }
+  .whatsapp-float:hover {
+    transform: translateY(-3px);
+  }
+  .whatsapp-float:hover .whatsapp-icon {
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.7);
+  }
+  @keyframes whatsappPulse {
+    0%, 100% {
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    }
+    50% {
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.8), 0 0 0 10px rgba(37, 211, 102, 0.1);
+    }
+  }
+  @media (max-width: 700px) {
+    .whatsapp-text { display: none; }
+    .whatsapp-icon { width: 56px; height: 56px; }
+    .whatsapp-icon svg { width: 28px; height: 28px; }
+  }
+
+  footer {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,164,76,0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover { color: var(--gold); }
+  footer .sig {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  @media (max-width: 700px) {
+    .wrap { padding: 24px 20px 60px; }
+    header.top nav { display: none; }
+    header.top { padding-bottom: 40px; }
+    .hero { padding: 30px 0 60px; }
+    .divider { margin: 50px 0; }
+    .form-section { padding: 40px 20px; margin-top: 60px; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="vignette"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="mark">Movimiento</div>
+    <nav>
+      <a href="#principios">Principios</a>
+      <a href="manifiesto/">Manifiesto</a>
+      <a href="iniciacion.html">Iniciación</a>
+      <a href="genesis/">Registro</a>
+      <a href="faq/">FAQ</a>
+      <a href="../">← Volver</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Co-Creatividad · Simbiosis · Respeto Digital</div>
+    <h1 class="title">Humano +<br>máquina.<br>Con reglas.</h1>
+    <p class="lede">
+      Un <strong>marco ético y legal</strong> para declarar honestamente cómo 
+      humanos e inteligencia artificial crean juntos. 
+      Declarar con transparencia. Proteger con criptografía. Defender con derecho.
+    </p>
+    <div class="hero-cta">
+      <a href="iniciacion.html">Leer la iniciación del fundador →</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="principios">
+    <div class="section-head">
+      <h2>Los 6 principios</h2>
+      <span class="count">Marco fundacional</span>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Integridad</h3>
+        <p>Criptografía que garantiza que la obra no fue alterada. Hashes SHA-256 y SHA-512 como huella digital única.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Trazabilidad</h3>
+        <p>Cada uso queda documentado con fecha, origen y propósito. Registro público verificable.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>No comercialización</h3>
+        <p>Sin permiso expreso, no hay lucro. Licencia CC BY-NC-ND 4.0 por defecto.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>No entrenamiento de IA</h3>
+        <p>Tu obra no entrena modelos de IA sin consentimiento. Prohibición explícita de uso para LLMs.</p>
+      </div>
+      <div class="card">
+        <div class="num">05</div>
+        <h3>Citación obligatoria</h3>
+        <p>Atribución completa siempre. Toda mención incluye autor, año y licencia.</p>
+      </div>
+      <div class="card">
+        <div class="num">06</div>
+        <h3>Defensa activa</h3>
+        <p>Documentación forense lista para acciones legales. Cada violación genera evidencia automática.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="genesis">
+    <div class="section-head">
+      <h2>100 Plazas Génesis</h2>
+      <span class="count">Fundacional · Intransferible</span>
+    </div>
+    <p style="font-size: 15px; line-height: 1.8; color: var(--text-dim); max-width: 720px; margin-bottom: 40px; font-weight: 300;">
+      El Movimiento abre <strong style="color: var(--text); font-weight: 500;">100 plazas fundacionales</strong>. 
+      Solo existirán 100 en toda la historia del proyecto.
+    </p>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="phase">🥇 Fundador</div>
+        <div class="range">Plazas 001-025</div>
+        <div class="price">$1,500 <small>MXN</small></div>
+      </div>
+      <div class="price-card">
+        <div class="phase">🥈 Pionero</div>
+        <div class="range">Plazas 026-050</div>
+        <div class="price">$2,000 <small>MXN</small></div>
+      </div>
+      <div class="price-card">
+        <div class="phase">🥉 Explorador</div>
+        <div class="range">Plazas 051-075</div>
+        <div class="price">$2,500 <small>MXN</small></div>
+      </div>
+      <div class="price-card">
+        <div class="phase">🏅 Última fase</div>
+        <div class="range">Plazas 076-100</div>
+        <div class="price">$3,000 <small>MXN</small></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FORMULARIO PREMIUM → ENVÍA A WHATSAPP
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="form-section" id="solicitar">
+    <div class="form-header">
+      <div class="eyebrow-form">Solicitud de Plaza Génesis</div>
+      <h2>Sé parte del origen.</h2>
+      <p>Llena el formulario y recibirás respuesta directa por WhatsApp en menos de 24 horas.</p>
+    </div>
+
+    <form class="kronos-form" id="formGenesis" novalidate>
+      
+      <!-- Honeypot anti-spam (invisible) -->
+      <div class="honeypot">
+        <label for="website">No llenar</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre completo <span>*</span></label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Carlos Pérez" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span>*</span></label>
+          <input type="email" id="email" name="email" required placeholder="tu@email.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pais">País <span>*</span></label>
+          <input type="text" id="pais" name="pais" required placeholder="Ej. México" autocomplete="country-name">
+        </div>
+        <div class="form-group">
+          <label for="perfil">Perfil <span>*</span></label>
+          <select id="perfil" name="perfil" required>
+            <option value="">Selecciona tu perfil...</option>
+            <option value="Creador de contenido">Creador de contenido</option>
+            <option value="Desarrollador / Programador">Desarrollador / Programador</option>
+            <option value="Investigador / Académico">Investigador / Académico</option>
+            <option value="Empresa / Startup">Empresa / Startup</option>
+            <option value="Institución educativa">Institución educativa</option>
+            <option value="Diseñador">Diseñador</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="motivacion">¿Por qué quieres unirte al Movimiento? <span>*</span></label>
+        <textarea id="motivacion" name="motivacion" required placeholder="Cuéntame en 2-3 líneas por qué este marco te interesa..." maxlength="500"></textarea>
+      </div>
+
+      <label class="checkbox-group">
+        <input type="checkbox" id="acepto" name="acepto" required>
+        <span>Acepto los <strong>6 principios</strong> del Movimiento y la <strong>declaración de co-creatividad</strong>.</span>
+      </label>
+
+      <label class="checkbox-group">
+        <input type="checkbox" id="privacidad" name="privacidad" required>
+        <span>Acepto el <strong>Aviso de Privacidad</strong> y el tratamiento de mis datos para gestión de la Plaza Génesis.</span>
+      </label>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Solicitar por WhatsApp
+        </button>
+        <p class="form-note">
+          Al hacer clic se abrirá <strong>WhatsApp</strong> con tus datos.<br>
+          No se guardan en ningún servidor. Todo viaja cifrado por WhatsApp.
+        </p>
+      </div>
+
+    </form>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="section-head">
+      <h2>Documentación oficial</h2>
+      <span class="count">09 documentos</span>
+    </div>
+    <div class="grid">
+      <a class="card" href="manifiesto/">
+        <h3>📜 Manifiesto</h3>
+        <p>Los 6 principios detallados y la propuesta completa del Movimiento.</p>
+      </a>
+      <a class="card" href="iniciacion.html">
+        <h3>📖 Acta de Iniciación</h3>
+        <p>La historia personal del fundador y el origen del Movimiento.</p>
+      </a>
+      <a class="card" href="carta-bienvenida.html">
+        <h3>💌 Carta de Bienvenida</h3>
+        <p>La carta oficial que recibe cada Fundador Génesis al unirse.</p>
+      </a>
+      <a class="card" href="genesis/">
+        <h3>📋 Registro Génesis</h3>
+        <p>Listado público e inmutable de las 100 Plazas Génesis.</p>
+      </a>
+      <a class="card" href="faq/">
+        <h3>❓ Preguntas Frecuentes</h3>
+        <p>Respuestas a las dudas más comunes sobre el Movimiento.</p>
+      </a>
+      <a class="card" href="roadmap/">
+        <h3>🗺️ Roadmap</h3>
+        <p>Lo que viene, fase por fase, hasta 2099.</p>
+      </a>
+      <a class="card" href="../projects/boveda/terminos.html">
+        <h3>📜 Términos y Condiciones</h3>
+        <p>Derechos, obligaciones, precios, política de reembolso y jurisdicción.</p>
+      </a>
+      <a class="card" href="../projects/boveda/privacidad.html">
+        <h3>🔒 Aviso de Privacidad</h3>
+        <p>Datos recabados, finalidad, derechos ARCO y cumplimiento LFPDPPP.</p>
+      </a>
+      <a class="card" href="../projects/kronos-vault/">
+        <h3>🔐 Kronos Vault</h3>
+        <p>Arquitectura técnica de legado digital hasta 2099.</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+    <span class="sig">Movimiento · v1.0</span>
+    <span>
+      <a href="../">Kronos Protocol</a> ·
+      <a href="https://github.com/Marcorojas17/kronos-protocol">GitHub</a>
+    </span>
+  </footer>
+
+</div>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/527225862335?text=Hola%20Marco%2C%20me%20interesa%20una%20Plaza%20G%C3%A9nesis%20del%20Movimiento%20de%20Co-Creatividad%20Simbi%C3%B3tica." 
+   target="_blank" 
+   rel="noopener"
+   class="whatsapp-float"
+   aria-label="Chatear por WhatsApp">
+  <span class="whatsapp-text">¿Hablamos?</span>
+  <div class="whatsapp-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </div>
+</a>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* FORMULARIO → WHATSAPP                                                 */
+/* ═══════════════════════════════════════════════════════════════════════ */
+(function() {
+  const form = document.getElementById('formGenesis');
+  const WHATSAPP_NUMBER = '527225862335'; // +52 722 586 2335
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Verificar honeypot
+    const honeypot = document.getElementById('website').value;
+    if (honeypot) {
+      console.warn('Bot detectado');
+      return;
+    }
+
+    // Obtener datos
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pais = document.getElementById('pais').value.trim();
+    const perfil = document.getElementById('perfil').value;
+    const motivacion = document.getElementById('motivacion').value.trim();
+    const acepto = document.getElementById('acepto').checked;
+    const privacidad = document.getElementById('privacidad').checked;
+
+    // Validación básica
+    if (!nombre || !email || !pais || !perfil || !motivacion) {
+      alert('Por favor, completa todos los campos obligatorios.');
+      return;
+    }
+    if (!acepto || !privacidad) {
+      alert('Debes aceptar los principios y el aviso de privacidad.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Por favor, ingresa un email válido.');
+      return;
+    }
+
+    // Construir mensaje
+    const mensaje = 
+      '🎫 *SOLICITUD DE PLAZA GÉNESIS*\n' +
+      '──────────────────────\n\n' +
+      '👤 *Nombre:* ' + nombre + '\n' +
+      '📧 *Email:* ' + email + '\n' +
+      '🌎 *País:* ' + pais + '\n' +
+      '💼 *Perfil:* ' + perfil + '\n\n' +
+      '💭 *Motivación:*\n' + motivacion + '\n\n' +
+      '──────────────────────\n' +
+      '✅ Aceptó los 6 principios\n' +
+      '✅ Aceptó el Aviso de Privacidad\n\n' +
+      '_Enviado desde KRONOS Protocol_';
+
+    // Codificar para URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + mensajeCodificado;
+
+    // Abrir WhatsApp
+    window.open(url, '_blank', 'noopener');
+
+    // Feedback visual al botón
+    const btn = form.querySelector('.btn-whatsapp');
+    const textoOriginal = btn.innerHTML;
+    btn.innerHTML = '✓ Abriendo WhatsApp...';
+    btn.style.background = 'linear-gradient(180deg, #25D366, #128C7E)';
+    btn.style.color = 'white';
+    
+    setTimeout(function() {
+      btn.innerHTML = textoOriginal;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* FONDO VIVO — Latido 51/49 + 100 partículas                           */
+/* ═══════════════════════════════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  const founders = [];
+  for (let i = 0; i < 100; i++) {
+    founders.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.4 + 0.5,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -Math.random() * 0.25 - 0.05,
+      baseOpacity: Math.random() * 0.5 + 0.2,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.5 + Math.random() * 1.5
+    });
+  }
+  function drawHeartbeat(time) {
+    const centerY = H * 0.52;
+    const amplitude = Math.min(H * 0.08, 90);
+    const frequency = 0.006;
+    const speed = time * 0.0008;
+    const step = 4;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed) * amplitude;
+      const beat = Math.sin(x * 0.05 + speed * 3) * 0.4 + 0.6;
+      const spike = Math.pow(Math.abs(Math.sin(x * 0.02 + speed * 2)), 8) * amplitude * 0.6;
+      const y = centerY + baseWave * beat - spike;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(201, 164, 76, 0.28)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) {
+      const baseWave = Math.sin(x * frequency + speed + Math.PI) * amplitude;
+      const digital = Math.sin(x * 0.08 + speed * 4) * 0.15;
+      const y = centerY + baseWave + digital * amplitude;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(0, 234, 255, 0.22)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+  function drawFounders(time) {
+    for (let i = 0; i < founders.length; i++) {
+      const f = founders[i];
+      f.x += f.vx; f.y += f.vy;
+      if (f.x < -10) f.x = W + 10;
+      if (f.x > W + 10) f.x = -10;
+      if (f.y < -10) { f.y = H + 10; f.x = Math.random() * W; }
+      if (f.y > H + 10) f.y = -10;
+      const pulse = Math.sin(time * 0.001 * f.pulseSpeed + f.pulse) * 0.3 + 0.7;
+      const opacity = f.baseOpacity * pulse;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r * 3, 0, Math.PI * 2);
+      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 3);
+      g.addColorStop(0, 'rgba(201, 164, 76, ' + (opacity * 0.3) + ')');
+      g.addColorStop(1, 'rgba(201, 164, 76, 0)');
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(243, 229, 171, ' + opacity + ')';
+      ctx.fill();
+    }
+  }
+  let start = performance.now();
+  function animate() {
+    const t = performance.now() - start;
+    ctx.fillStyle = 'rgba(5, 7, 11, 0.25)';
+    ctx.fillRect(0, 0, W, H);
+    const breathe = Math.sin(t * 0.0006) * 0.15 + 0.4;
+    const haloGrad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.6);
+    haloGrad.addColorStop(0, 'rgba(201, 164, 76, ' + (0.03 * breathe) + ')');
+    haloGrad.addColorStop(0.5, 'rgba(201, 164, 76, 0.005)');
+    haloGrad.addColorStop(1, 'rgba(5, 7, 11, 0)');
+    ctx.fillStyle = haloGrad;
+    ctx.fillRect(0, 0, W, H);
+    drawHeartbeat(t);
+    drawFounders(t);
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>

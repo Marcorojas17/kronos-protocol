@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Certificado Fundacional · KRONOS</title>
+<meta name="theme-color" content="#0a0014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  /* ══ Paleta billete ═══════════════════════════════ */
+  :root{
+    --gold:#c9a44c;
+    --gold-l:#f3e5ab;
+    --gold-d:#8a6f2b;
+    --cy:#00EAFF;
+    --cy-l:#7DF9FF;
+    --ink:#0a0014;
+    --text:#F5F0E6;
+    --dim:#9a8fb0;
+    --paper:#fdf6e3;      /* color billete en print */
+    --paper-ink:#1a1200;  /* tinta en print */
+  }
+
+  html,body{
+    background:#03000a;
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    -webkit-font-smoothing:antialiased;
+    padding:20px 12px;
+    min-height:100vh;
+  }
+
+  /* ══ Cargador ════════════════════════════════════ */
+  .loader{
+    max-width:700px;
+    margin:0 auto 24px;
+    padding:28px 24px;
+    border:1px solid rgba(201,164,76,.35);
+    background:linear-gradient(180deg,rgba(201,164,76,.05),rgba(0,0,0,0));
+    text-align:center;
+  }
+  .loader h1{
+    font-family:'Cinzel',serif;
+    font-size:16px;
+    letter-spacing:5px;
+    color:var(--gold-l);
+    margin-bottom:6px;
+  }
+  .loader p{
+    font-size:10px;
+    letter-spacing:3px;
+    color:var(--cy-l);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .upload-btn{
+    display:inline-block;
+    padding:14px 26px;
+    border:1px solid var(--cy);
+    background:rgba(0,234,255,.08);
+    color:var(--cy-l);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .3s;
+  }
+  .upload-btn:hover{
+    background:rgba(0,234,255,.14);
+    box-shadow:0 0 24px rgba(0,234,255,.35);
+  }
+  #file-input{display:none}
+
+  /* ══ Contenedor del billete ══════════════════════ */
+  .bill-wrap{
+    display:none;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .bill-wrap.on{display:block}
+
+  /* ══ BILLETE · layout Flexbox (funciona en iOS) ══ */
+  .bill{
+    position:relative;
+    width:100%;
+    min-height:420px;
+    background:
+      linear-gradient(135deg,#12071e 0%,#0a0410 50%,#100622 100%);
+    border:3px double var(--gold);
+    overflow:hidden;
+    box-shadow:
+      inset 0 0 60px rgba(201,164,76,.18),
+      0 15px 60px rgba(0,0,0,.7);
+    /* Patrón simple (sin repeating-radial que falla en Safari) */
+    background-image:
+      linear-gradient(135deg,#12071e 0%,#0a0410 50%,#100622 100%),
+      repeating-linear-gradient(45deg,transparent 0,transparent 6px,rgba(201,164,76,.04) 7px,transparent 8px);
+    background-blend-mode:normal,overlay;
+  }
+
+  /* Marco interior */
+  .bill-inner{
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(201,164,76,.4);
+    padding:16px 18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:12px;
+    z-index:2;
+  }
+
+  /* Microtexto superior */
+  .microtext{
+    position:absolute;
+    top:4px;left:0;right:0;
+    text-align:center;
+    font-size:5px;
+    letter-spacing:3px;
+    color:rgba(201,164,76,.5);
+    font-family:'JetBrains Mono',monospace;
+    white-space:nowrap;
+    overflow:hidden;
+    z-index:3;
+    padding:0 20px;
+  }
+
+  /* Sello "FIRMADO" */
+  .stamp{
+    position:absolute;
+    top:26px;right:24px;
+    border:2px solid var(--cy);
+    color:var(--cy-l);
+    padding:4px 10px;
+    font-size:8px;
+    letter-spacing:2px;
+    font-weight:700;
+    transform:rotate(-10deg);
+    background:rgba(0,234,255,.06);
+    z-index:5;
+    box-shadow:0 0 18px rgba(0,234,255,.35);
+    white-space:nowrap;
+  }
+
+  /* Encabezado */
+  .bill-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    padding-bottom:8px;
+    border-bottom:1px solid rgba(201,164,76,.25);
+    flex-wrap:wrap;
+  }
+  .bill-header .col{
+    font-size:8px;
+    letter-spacing:2px;
+    color:var(--gold);
+    text-transform:uppercase;
+    line-height:1.6;
+  }
+  .bill-header .col.center{
+    flex:1;
+    text-align:center;
+    min-width:140px;
+  }
+  .bill-header .col.right{text-align:right}
+  .bill-header .col b{color:var(--gold-l);font-weight:600}
+  .bill-header .serie{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:2px;
+    color:var(--cy-l);
+    font-weight:500;
+    word-break:break-all;
+  }
+
+  /* Cuerpo central */
+  .bill-body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    padding:8px 0;
+    flex-wrap:wrap;
+  }
+
+  /* Roseta (círculo simple sin gradientes complejos) */
+  .rosette{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border:1px solid rgba(201,164,76,.5);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle,rgba(201,164,76,.10) 0%,transparent 70%);
+    position:relative;
+    flex-shrink:0;
+  }
+  .rosette::before{
+    content:'';
+    position:absolute;inset:12px;
+    border:1px dashed rgba(0,234,255,.35);
+    border-radius:50%;
+  }
+  .rosette::after{
+    content:'';
+    position:absolute;inset:26px;
+    border:1px solid rgba(201,164,76,.4);
+    border-radius:50%;
+  }
+  .rosette .owl{
+    font-size:26px;
+    color:var(--gold-l);
+    letter-spacing:2px;
+    text-shadow:0 0 14px rgba(201,164,76,.6);
+    z-index:2;
+  }
+  .rosette .under{
+    font-size:6px;
+    letter-spacing:2px;
+    color:var(--cy-l);
+    margin-top:2px;
+    z-index:2;
+  }
+
+  /* Título central */
+  .bill-title{
+    text-align:center;
+    flex:1;
+    min-width:240px;
+  }
+  .bill-title .country{
+    font-family:'Cinzel',serif;
+    font-size:10px;
+    letter-spacing:6px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .bill-title h2{
+    font-family:'Cinzel',serif;
+    font-size:clamp(20px,4vw,34px);
+    letter-spacing:2px;
+    line-height:1.1;
+    background:linear-gradient(180deg,#fff8e0 0%,var(--gold-l) 45%,var(--cy-l) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin:4px 0;
+  }
+  .bill-title .sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:11px;
+    color:var(--gold);
+    margin-top:4px;
+  }
+  .bill-title .denom{
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:4px;
+    color:var(--cy-l);
+    margin-top:8px;
+    font-weight:600;
+  }
+
+  /* Caja QR (sin QR, solo referencia) */
+  .qr-box{
+    width:110px;
+    height:110px;
+    border:1px solid rgba(201,164,76,.4);
+    background:rgba(255,255,255,.02);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:8px;
+    text-align:center;
+    flex-shrink:0;
+  }
+  .qr-box .icon{
+    font-size:32px;
+    color:var(--gold-l);
+    letter-spacing:2px;
+  }
+  .qr-box .label{
+    font-size:6px;
+    letter-spacing:2px;
+    color:var(--cy-l);
+    text-transform:uppercase;
+    line-height:1.4;
+  }
+
+  /* Datos criptográficos */
+  .bill-data{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 18px;
+    padding-top:10px;
+    border-top:1px solid rgba(201,164,76,.25);
+    font-size:8px;
+  }
+  .bill-data .item{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+  }
+  .bill-data .k{
+    color:var(--cy-l);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:7px;
+  }
+  .bill-data .v{
+    color:var(--gold-l);
+    font-family:'JetBrains Mono',monospace;
+    font-size:8px;
+    word-break:break-all;
+    line-height:1.4;
+  }
+
+  /* Pie con firmas */
+  .bill-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:12px;
+    padding-top:8px;
+    border-top:1px solid rgba(201,164,76,.25);
+    flex-wrap:wrap;
+  }
+  .firma{
+    text-align:center;
+    font-size:8px;
+    color:var(--gold);
+    letter-spacing:1px;
+    flex:1;
+    min-width:120px;
+  }
+  .firma .linea{
+    border-bottom:1px solid rgba(201,164,76,.5);
+    padding-bottom:4px;
+    margin-bottom:4px;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--gold-l);
+    min-height:26px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    word-break:break-word;
+    line-height:1.2;
+  }
+  .firma .rol{
+    font-size:6px;
+    letter-spacing:2px;
+    color:var(--dim);
+    text-transform:uppercase;
+  }
+
+  /* Holograma central */
+  .hologram{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg,#c9a44c,#00EAFF,#a855f7,#c9a44c);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:#0a0014;
+    font-family:'Cinzel',serif;
+    font-weight:700;
+    box-shadow:0 0 24px rgba(201,164,76,.5),inset 0 0 16px rgba(255,255,255,.4);
+    flex-shrink:0;
+  }
+  .hologram .big{font-size:18px;line-height:1}
+  .hologram .small{font-size:5px;letter-spacing:1px;margin-top:2px}
+
+  /* ══ Acciones ════════════════════════════════════ */
+  .actions{
+    max-width:1000px;
+    margin:20px auto 0;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .actions button{
+    padding:16px 32px;
+    border:1px solid var(--cy);
+    background:linear-gradient(180deg,rgba(0,234,255,.14),rgba(0,234,255,.04));
+    color:var(--cy-l);
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .3s;
+    border-radius:3px;
+    min-width:220px;
+  }
+  .actions button:hover{
+    background:linear-gradient(180deg,rgba(0,234,255,.24),rgba(0,234,255,.08));
+    box-shadow:0 0 28px rgba(0,234,255,.4);
+    transform:translateY(-2px);
+  }
+  .actions button.gold{
+    border-color:var(--gold);
+    background:linear-gradient(180deg,rgba(201,164,76,.18),rgba(201,164,76,.05));
+    color:var(--gold-l);
+  }
+  .actions button.gold:hover{
+    box-shadow:0 0 28px rgba(201,164,76,.5);
+  }
+  .actions button:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+    transform:none;
+  }
+
+  /* ══ PRINT ═══════════════════════════════════════ */
+  @media print {
+    @page{
+      size: landscape;
+      margin: 0;
+    }
+    html,body{
+      background:#fff !important;
+      padding:0 !important;
+      color:#1a1200;
+    }
+    .loader,.actions,.stamp{display:none !important}
+    .bill-wrap{display:block !important; max-width:100%}
+    .bill{
+      box-shadow:none !important;
+      border:3px double #8a6f2b !important;
+      background:#fdf6e3 !important;
+      background-image:none !important;
+      min-height:100vh;
+      width:100%;
+    }
+    .bill-inner{border-color:#8a6f2b !important}
+    .bill-title h2{
+      background:none !important;
+      -webkit-text-fill-color:#8a6f2b !important;
+      color:#8a6f2b !important;
+    }
+    .bill-title .country,
+    .bill-title .denom,
+    .bill-header .col,
+    .bill-data .k,
+    .firma,
+    .rosette .under{color:#8a6f2b !important}
+    .bill-header .col b,
+    .bill-header .serie,
+    .bill-title .sub,
+    .bill-data .v,
+    .firma .linea,
+    .rosette .owl{color:#1a1200 !important;text-shadow:none !important}
+    .microtext{color:rgba(138,111,43,.6) !important}
+    .rosette{
+      background:radial-gradient(circle,rgba(201,164,76,.3),transparent 70%) !important;
+      border-color:#8a6f2b !important;
+    }
+    .rosette::before{border-color:#8a6f2b !important}
+    .rosette::after{border-color:#8a6f2b !important}
+    .qr-box{
+      border-color:#8a6f2b !important;
+      background:#fefbf0 !important;
+    }
+    .qr-box .icon,.qr-box .label{color:#8a6f2b !important}
+    .hologram{box-shadow:none !important}
+    .bill-data,.bill-foot,.bill-header{border-color:#8a6f2b !important}
+    .firma .linea{border-color:#8a6f2b !important}
+  }
+
+  /* Responsive móvil vertical */
+  @media (max-width:700px){
+    html,body{padding:12px 8px}
+    .bill-inner{padding:12px;inset:10px}
+    .bill-body{flex-direction:column;gap:12px}
+    .rosette{width:90px;height:90px}
+    .rosette .owl{font-size:22px}
+    .qr-box{width:90px;height:90px}
+    .bill-data{grid-template-columns:1fr;gap:6px}
+    .bill-foot{flex-direction:column;align-items:stretch}
+    .hologram{margin:8px auto}
+    .actions button{width:100%;min-width:unset}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ CARGADOR ═══════════════════════════════════════ -->
+<div class="loader" id="loader">
+  <h1>○_● CERTIFICADO FUNDACIONAL</h1>
+  <p>Cargá el acta JSON que firmaste</p>
+  <label class="upload-btn" for="file-input">⬆️ Subir acta JSON</label>
+  <input type="file" id="file-input" accept="application/json,.json">
+</div>
+
+<!-- ══ BILLETE ════════════════════════════════════════ -->
+<div class="bill-wrap" id="bill-wrap">
+  <div class="bill">
+    <div class="microtext">
+      LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_● · LEGADO·HUMANO·IA · ○_●
+    </div>
+    <div class="stamp">✓ FIRMADO</div>
+
+    <div class="bill-inner">
+
+      <!-- Encabezado -->
+      <div class="bill-header">
+        <div class="col">
+          <b>SERIE</b><br>
+          <span class="serie" id="serie">—</span><br>
+          <b>EMISIÓN</b><br>
+          <span id="fecha">—</span>
+        </div>
+        <div class="col center">
+          <div class="serie">KRONOS · LEGADO HUMANO-IA</div>
+        </div>
+        <div class="col right">
+          <b>PROTOCOLO</b><br>
+          v<span id="version">—</span><br>
+          <b>RED</b><br>
+          POLYGON
+        </div>
+      </div>
+
+      <!-- Cuerpo -->
+      <div class="bill-body">
+        <div class="rosette">
+          <div class="owl">○_●</div>
+          <div class="under">BUHO DORADO</div>
+        </div>
+
+        <div class="bill-title">
+          <div class="country">· CIUDAD DIGITAL KRONOS ·</div>
+          <h2>CERTIFICADO<br>FUNDACIONAL</h2>
+          <div class="sub">"El legado no se hereda. Se firma."</div>
+          <div class="denom">158 ARTÍCULOS · 7 DOCUMENTOS</div>
+        </div>
+
+        <div class="qr-box">
+          <div class="icon">◈</div>
+          <div class="label">Verificar<br>en GitHub</div>
+        </div>
+      </div>
+
+      <!-- Datos criptográficos -->
+      <div class="bill-data">
+        <div class="item">
+          <div class="k">Merkle Root · Artículos</div>
+          <div class="v" id="merkle-art">—</div>
+        </div>
+        <div class="item">
+          <div class="k">Merkle Root · Documentos</div>
+          <div class="v" id="merkle-doc">—</div>
+        </div>
+        <div class="item">
+          <div class="k">Clave Pública · Ed25519</div>
+          <div class="v" id="clave">—</div>
+        </div>
+        <div class="item">
+          <div class="k">Firma Ed25519</div>
+          <div class="v" id="firma">—</div>
+        </div>
+      </div>
+
+      <!-- Firmas -->
+      <div class="bill-foot">
+        <div class="firma">
+          <div class="linea">○_●</div>
+          <div class="rol">Sello Kintsugi</div>
+        </div>
+        <div class="hologram">
+          <div class="big">○_●</div>
+          <div class="small">51/49</div>
+        </div>
+        <div class="firma">
+          <div class="linea" id="nombre-firmante">—</div>
+          <div class="rol">Fundador · Plaza 000</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ ACCIONES ════════════════════════════════════ -->
+  <div class="actions">
+    <button onclick="descargarPDF()" class="gold" id="btn-pdf">⬇️ Descargar Certificado PDF</button>
+    <button onclick="location.reload()">↺ Cargar otra acta</button>
+  </div>
+
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  async function cargarActa(file) {
+    try {
+      const texto = await file.text();
+      const acta = JSON.parse(texto);
+
+      if (acta.meta !== 'KRONOS_ACTA_FUNDACIONAL') {
+        alert('El archivo no es un acta fundacional de KRONOS.');
+        return;
+      }
+
+      // Serial
+      const serie = acta.merkle.merkle_root_articulos.slice(0, 12).toUpperCase();
+      $('serie').textContent = serie;
+
+      // Fecha
+      const fecha = new Date(acta.timestamp).toISOString().slice(0, 10);
+      $('fecha').textContent = fecha;
+
+      // Versión
+      $('version').textContent = acta.version_protocolo;
+
+      // Datos
+      $('merkle-art').textContent = acta.merkle.merkle_root_articulos;
+      $('merkle-doc').textContent = acta.merkle.merkle_root_documentos;
+      $('clave').textContent = acta.fundador.clave_publica_hex;
+      $('firma').textContent = acta.firma.firma_ed25519;
+      $('nombre-firmante').textContent = acta.fundador.nombre;
+
+      // Mostrar
+      $('loader').style.display = 'none';
+      $('bill-wrap').classList.add('on');
+    } catch (e) {
+      alert('Error al leer el acta: ' + e.message);
+    }
+  }
+
+  function descargarPDF() {
+    // Disparar el diálogo de impresión nativo con @page landscape
+    // El usuario elige "Guardar como PDF"
+    window.print();
+  }
+
+  $('file-input').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) cargarActa(file);
+  });
+</script>
+</body>
+</html>
