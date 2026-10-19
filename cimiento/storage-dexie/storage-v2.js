@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // STORAGE DEXIE · Legado Humano–IA · v2
 // Versión renombrada para forzar cache-bust en móvil

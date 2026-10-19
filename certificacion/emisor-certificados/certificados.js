@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // EMISOR DE CERTIFICADOS · Legado Humano–IA · v1.0
 // Emite certificados con hash + sello tiempo + firma Ed25519

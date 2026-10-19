@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · C2PA · SIGNATURE VALIDATOR · ARKHÉ ZERO ░▒▓

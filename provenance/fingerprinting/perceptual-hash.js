@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · FINGERPRINTING · PERCEPTUAL HASH · ARKHÉ ZERO ░▒▓

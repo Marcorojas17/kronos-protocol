@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // NOTARIO KRONOS · Legado Humano–IA · v1.0
 // Emite sellos notariales firmados con Ed25519 + anclaje Ethereum

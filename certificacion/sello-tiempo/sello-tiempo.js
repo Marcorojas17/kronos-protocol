@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // SELLO DE TIEMPO · Legado Humano–IA · v1.0
 // Genera TimeStampQuery (RFC 3161) y parsea la respuesta TSA

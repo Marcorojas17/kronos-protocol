@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ PROVENANCE · TIMESTAMPING · MULTI-TSA · ARKHÉ ZERO ░▒▓

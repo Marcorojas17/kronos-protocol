@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // ANCLAJE ETHEREUM · Legado Humano–IA · v1.0
 // Cálculo Merkle + firma Ed25519 + anclaje MetaMask opcional

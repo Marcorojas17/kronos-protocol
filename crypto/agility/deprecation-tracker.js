@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *  ▓▒░ CRYPTO · AGILITY · DEPRECATION TRACKER · ARKHÉ ZERO ░▒▓

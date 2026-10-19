@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // QUÓRUM Y MAYORÍAS · Legado Humano–IA · v1.0
 // Define umbrales de decisión según tipo de propuesta

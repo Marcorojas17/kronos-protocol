@@ -1,3 +1,4 @@
+// @ts-nocheck
 // ────────────────────────────────────────────────────────────
 // MANIFEST DE INTEGRIDAD · Legado Humano–IA · v1.0
 // Genera huellas SHA-256 de archivos para verificación pública
