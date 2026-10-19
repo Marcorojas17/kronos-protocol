@@ -1,3 +1,4 @@
+◯_●
 # Aviso de Privacidad
 
 **Responsable:** Marco Antonio Rojas Valdovinos

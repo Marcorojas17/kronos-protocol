@@ -1,3 +1,4 @@
+◯_●
 # 🏺 KINTSUGI · 金継ぎ
 
 > *El arte de reparar con oro.*
