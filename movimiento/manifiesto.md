@@ -76,3 +76,14 @@ Nosotros verificamos hoy con lo que Google recien va a migrar.
 V. Protocolo Tink
 Usamos Tink - biblioteca de Google - para agilidad criptografica.
 El codigo que no puede rotar llaves, muere.
+IV. Axioma Poscuantico - STORE NOW DECRYPT LATER IS HERE
+Google (Walker/Neven feb 2026) confirma: el ataque ya empezo.
+No esperamos al CRQC. Nacemos post-CRQC.
+
+ML-KEM para encapsulacion
+ML-DSA para firma
+Tink para agilidad criptografica
+2029 no es meta, es pasado.
+
+En ARKHE ZERO, 2029 ya paso.
+
