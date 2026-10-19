@@ -1,7 +1,15 @@
 import json, pathlib
 
-BASE = pathlib.Path("/root/kronos-protocol")
-data = json.loads((BASE / "catalogo.json").read_text())
+# Detectar la ruta base dinámicamente (donde está el script)
+BASE = pathlib.Path(__file__).resolve().parent.parent
+catalogo_path = BASE / "catalogo.json"
+
+if not catalogo_path.exists():
+    print(f"❌ Error: No se encontró {catalogo_path}")
+    print("Asegúrate de haber ejecutado el indexador primero.")
+    exit(1)
+
+data = json.loads(catalogo_path.read_text(encoding='utf-8'))
 
 # Agrupar por carpeta principal
 groups = {}
@@ -46,6 +54,7 @@ for root_name in sorted(groups.keys()):
       <div class="folder-content">
     """
     for it in items:
+        # Asegurarnos de que el enlace sea relativo a docs/
         html += f"""<a class="item" href="../{it['path']}" target="_blank"><span class="path">{it['path']}</span><span class="hash">{it['hash']}</span></a>"""
     html += "</div></div>"
 
@@ -72,4 +81,5 @@ function filter() {
 out = BASE / "docs" / "catalogo" / "index.html"
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(html, encoding='utf-8')
-print(f"✅ Catálogo visual generado: {len(data)} archivos en {len(groups)} carpetas")
+print(f"✅ Catálogo visual generado exitosamente: {len(data)} archivos en {len(groups)} carpetas.")
+print(f"   Ruta: {out}")
