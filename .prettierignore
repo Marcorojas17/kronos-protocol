@@ -1,0 +1,9 @@
+docs/estado/
+infra/k8s/helm/
+pva/render.yaml
+gobernanza/
+index/
+docs/
+dist/
+node_modules
+marco.mcp/dist
