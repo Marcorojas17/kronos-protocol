@@ -1,0 +1,10 @@
+{
+    "status": "Certificado Exitoso",
+    "protocolo": "ARKH\u00c9 ZERO (PVA)",
+    "archivo_original": "TESIS.md",
+    "hash_archivo_sha256": "83e476dda4f8491881e061af81cdd7af226b156b11f9b45e31d055c34212d4cb",
+    "proporcion": "51% Humano / 49% IA",
+    "timestamp_utc": "2026-10-19T09:58:46.713544+00:00",
+    "manifest_hash": "85079ea9f033f25995ca8d3bb062585bcc7d93572c64fb2f0587631a15b745a4",
+    "nota": "Listo para anclaje en Blockchain (Mainnet/Arbitrum)"
+}
