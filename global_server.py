@@ -1,15 +1,17 @@
-# --- VERSIÓN GLOBAL (NUBE) ---
 import os
-from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer  # <-- Nombre nuevo
 
-mcp = FastMCP("ARKHE-ZERO-GLOBAL")
+mcp = MCPServer("ARKHE-ZERO-GLOBAL") # <-- Nombre nuevo
 
 @mcp.tool()
 def certify_authorship(work_name: str, human_percentage: int = 51) -> dict:
-    # (Aquí va tu lógica del hash SHA-256)
-    return {"status": "Certificado Exitoso en la Nube", "obra": work_name}
+    return {
+        "status": "Certificado Exitoso en la Nube",
+        "protocolo": "ARKHÉ ZERO (PVA)",
+        "obra": work_name,
+        "proporcion": f"{human_percentage}% Humano / {100 - human_percentage}% IA"
+    }
 
 if __name__ == "__main__":
-    # Render usa la variable de entorno PORT
     port = int(os.environ.get("PORT", 8000))
     mcp.run(transport="sse", host="0.0.0.0", port=port)
