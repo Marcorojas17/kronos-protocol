@@ -1,7 +1,7 @@
 {
   "name": "arkhe-zero",
   "version": "1.0.0",
-  "description": "ARKH\u00c9 ZERO \u00b7 \u00cdndice Primigenio Soberano \u00b7 Local-First \u00b7 Humano-IA \u00b7 Pacto 51/49/100",
+  "description": "ARKHÉ ZERO · Índice Primigenio Soberano · Local-First · Humano-IA · Pacto 51/49/100",
   "type": "module",
   "license": "Apache-2.0",
   "author": {
@@ -28,7 +28,7 @@
     "test:unit": "echo \"no hay tests JS unit legacy, OK\"",
     "test:integration": "echo \"no hay tests JS integration legacy, OK\"",
     "test:e2e": "node --test tests/e2e/*.test.js",
-    "lint": "eslint . --ext .js,.mjs,.cjs,.ts",
+    "lint": "eslint .",
     "format": "prettier --write \"**/*.{js,mjs,cjs,ts,json,md,yml,yaml,css,html}\"",
     "seal": "python scripts/verify-seal.py",
     "pqc:audit": "python scripts/pqc-audit.py",
@@ -64,7 +64,7 @@
     "51-49-100",
     "flailp"
   ],
-  "seal": "\u25ef_\u25cf \u00b7 51/49/100",
+  "seal": "◯_● · 51/49/100",
   "indexZero": {
     "safe_creative_arq": "2607146379465",
     "safe_creative_co": "2607086319439",
