@@ -62,3 +62,17 @@ No hay seguidores. Hay verificadores.
 No hay roadmap. Hay primer principio.
 
 Somos ARKHE ZERO. Desde el origen. Sin permiso.
+IV. Axioma Poscuantico
+Si el origen no resiste el futuro, no es origen.
+ARKHE ZERO nace PQC-native.
+
+- Firma: ML-DSA (Dilithium) - estandar NIST
+- Encapsulacion: ML-KEM (Kyber) - estandar NIST
+- Hash: SHA3-512 + verificacion trustless
+
+No hay roadmap 2029. En Arkhe, 2029 ya paso.
+Nosotros verificamos hoy con lo que Google recien va a migrar.
+
+V. Protocolo Tink
+Usamos Tink - biblioteca de Google - para agilidad criptografica.
+El codigo que no puede rotar llaves, muere.
