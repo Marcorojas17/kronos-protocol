@@ -1,6 +1,5 @@
-// ◯_● ARKHÉ ZERO · Barra de Navegación Universal
+// ◯_● ARKHÉ ZERO · Barra de Navegación Universal v2 (Accesos Directos)
 (function() {
-  // Evitar inyectar dos veces
   if (document.getElementById('arkhe-nav')) return;
 
   const style = document.createElement('style');
@@ -8,18 +7,18 @@
     #arkhe-nav {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(5, 5, 8, 0.95);
+      background: rgba(5, 5, 8, 0.98);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(212, 175, 55, 0.4);
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 8px 0;
+      padding: 6px 0;
       z-index: 9999;
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.9);
       font-family: 'Courier New', monospace;
     }
-    #arkhe-nav a, #arkhe-nav button {
+    #arkhe-nav a {
       background: transparent;
       border: none;
       color: #D4AF37;
@@ -30,71 +29,46 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
-      padding: 6px 12px;
+      gap: 2px;
+      padding: 5px 8px;
       cursor: pointer;
       transition: all 0.3s;
-      font-family: 'Courier New', monospace;
+      flex: 1;
     }
-    #arkhe-nav a:hover, #arkhe-nav button:hover {
+    #arkhe-nav a:hover, #arkhe-nav a:active {
       color: #FFF3A0;
       text-shadow: 0 0 10px #D4AF37;
+      background: rgba(212,175,55,0.1);
     }
-    #arkhe-nav a:active, #arkhe-nav button:active {
-      transform: scale(0.95);
-    }
-    #arkhe-nav .icon {
-      font-size: 18px;
-      line-height: 1;
-    }
-    #arkhe-nav .label {
-      font-size: 8px;
-      color: #6a8f6a;
-    }
-    #arkhe-nav a:hover .label, #arkhe-nav button:hover .label {
-      color: #D4AF37;
-    }
-    #arkhe-nav .home {
-      color: #FFF3A0;
-      font-weight: bold;
-    }
-    #arkhe-nav .home .icon {
-      font-size: 20px;
-      text-shadow: 0 0 10px #D4AF37;
-    }
-    body {
-      padding-bottom: 80px !important;
-    }
+    #arkhe-nav .icon { font-size: 18px; line-height: 1; margin-bottom: 2px; }
+    #arkhe-nav .label { font-size: 8px; color: #888; text-transform: uppercase; }
+    #arkhe-nav a:hover .label { color: #D4AF37; }
+    body { padding-bottom: 70px !important; }
   `;
   document.head.appendChild(style);
 
   const nav = document.createElement('nav');
   nav.id = 'arkhe-nav';
   
-  // Botón Atrás
-  const btnBack = document.createElement('button');
-  btnBack.innerHTML = '<span class="icon">←</span><span class="label">Atrás</span>';
-  btnBack.onclick = () => window.history.back();
-  nav.appendChild(btnBack);
+  const links = [
+    { href: '/kronos-protocol/index.html', icon: '◯_●', label: 'HUB', highlight: true },
+    { href: '/kronos-protocol/certificado.html', icon: '📜', label: 'Certificar' },
+    { href: '/kronos-protocol/verificar/index.html', icon: '🔐', label: 'Verificar' },
+    { href: '/kronos-protocol/comprar/index.html', icon: '💠', label: 'Licencias' },
+    { href: '/kronos-protocol/estado.html', icon: '📊', label: 'Nodo' }
+  ];
 
-  // Botón Inicio
-  const linkHome = document.createElement('a');
-  linkHome.href = '/kronos-protocol/index.html';
-  linkHome.className = 'home';
-  linkHome.innerHTML = '<span class="icon">◯_●</span><span class="label">HUB</span>';
-  nav.appendChild(linkHome);
-
-  // Botón Adelante
-  const btnForward = document.createElement('button');
-  btnForward.innerHTML = '<span class="icon">→</span><span class="label">Adelante</span>';
-  btnForward.onclick = () => window.history.forward();
-  nav.appendChild(btnForward);
-
-  // Botón Menú (Scroll al Top)
-  const btnMenu = document.createElement('button');
-  btnMenu.innerHTML = '<span class="icon">↑</span><span class="label">Arriba</span>';
-  btnMenu.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  nav.appendChild(btnMenu);
+  links.forEach(l => {
+    const a = document.createElement('a');
+    a.href = l.href;
+    a.innerHTML = `<span class="icon">${l.icon}</span><span class="label">${l.label}</span>`;
+    // Detectar si estamos en esta página para resaltarla
+    if (window.location.pathname.endsWith(l.href.split('/').pop())) {
+      a.style.color = '#FFF3A0';
+      a.style.background = 'rgba(212,175,55,0.15)';
+    }
+    nav.appendChild(a);
+  });
 
   document.body.appendChild(nav);
 })();
