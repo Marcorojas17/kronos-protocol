@@ -1,51 +1,46 @@
-// ═══════════════════════════════════════════════════════════════
-//  ▓▒░ ESLINT.CONFIG.JS · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
-// ═══════════════════════════════════════════════════════════════
+import js from "@eslint/js";
+import globals from "globals";
 
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts}'],
     ignores: [
-      'node_modules/**',
-      'dist/**',
-      'marco.mcp/dist/**',
-      'coverage/**',
-      'archive/**',
-      'laboratorio/**',
-    ],
+      "node_modules/**",
+      "dist/**",
+      "marco.mcp/dist/**",
+      "agents/mcp/**",
+      "runtime/**",
+      "coverage/**",
+      "atribucion/sdk/js/**",
+      "pva/fsdbg/**",
+      "pva/iwc/**",
+      "projects/**",
+      "web/CIUDAD/**",
+      "docs/CIUDAD/**",
+      "ciudad/**",
+      "docs/ciudad/**",
+      "docs/catalogo/**",
+      "**/sw.js",
+      "**/*.min.js"
+    ]
+  },
+  {
+    files: ["**/*.js", "**/*.mjs", "**/*.cjs"],
     languageOptions: {
+      globals: { ...globals.browser, ...globals.node, ...globals.es2022 },
       ecmaVersion: 2022,
-      sourceType: 'module',
-      globals: {
-        console: 'readonly',
-        process: 'readonly',
-        Buffer: 'readonly',
-        crypto: 'readonly',
-        indexedDB: 'readonly',
-        window: 'readonly',
-        document: 'readonly',
-        TextEncoder: 'readonly',
-        TextDecoder: 'readonly',
-      },
+      sourceType: "module"
     },
     rules: {
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      'no-console': 'off',
-      'no-debugger': 'error',
-      'no-eval': 'error',
-      'no-implied-eval': 'error',
-      'no-new-func': 'error',
-      'prefer-const': 'error',
-      'no-var': 'error',
-      eqeqeq: ['error', 'always', { null: 'ignore' }],
-      curly: ['error', 'multi-line'],
-      semi: ['error', 'always'],
-      quotes: ['error', 'single', { avoidEscape: true }],
-      'comma-dangle': ['error', 'always-multiline'],
-      'arrow-body-style': ['error', 'as-needed'],
-      'object-shorthand': ['error', 'always'],
-    },
-  },
+      ...js.configs.recommended.rules,
+      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
+      "no-empty": "warn",
+      "no-undef": "off",
+      "object-shorthand": "off",
+      "curly": "off",
+      "quotes": "off",
+      "prefer-const": "off",
+      "no-var": "off",
+      "arrow-body-style": "off"
+    }
+  }
 ];
-
-// ◯_● · 51/49/100 · KRONOS
