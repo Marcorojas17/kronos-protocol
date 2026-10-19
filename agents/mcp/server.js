@@ -20,7 +20,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 
-import registry from '../registry/agent-registry.json' assert { type: 'json' };
+import registry from '../registry/agent-registry.json' with { type: 'json' };
 import { Enjambre } from '../consensus/quorum-4-5.js';
 import { vetar } from '../consensus/veto-humano.js';
 
