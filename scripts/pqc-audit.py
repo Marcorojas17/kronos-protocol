@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
 ═══════════════════════════════════════════════════════════════════════════
- ▓▒░ PQC AUDIT · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
- ─────────────────────────────────────────────────────────────────────────
- Audita que todos los algoritmos usados sean post-cuánticos canónicos.
+▓▒░ PQC AUDIT · ARKHÉ ZERO · ◯_● · 51/49/100 ░▒▓
 ═══════════════════════════════════════════════════════════════════════════
 """
 from __future__ import annotations
 import sys
+import re
 from pathlib import Path
 
 SEAL = "◯_● · 51/49/100"
@@ -19,10 +18,11 @@ CANONICOS = [
     "aes-256-gcm", "hkdf-sha3-512",
 ]
 
+# Fix: removed "des" and "sha-1" generic matches that cause false positives
 PROHIBIDOS = [
-    "md5", "sha1", "sha-1",
+    "md5", "sha1",
     "rsa-1024", "rsa1024",
-    "des", "3des", "rc4",
+    "3des", "rc4",
     "ecdsa-p192",
 ]
 
@@ -36,50 +36,42 @@ def scan(dir_path: Path) -> dict:
         except Exception:
             continue
         for alg in CANONICOS:
-            if alg in content:
+            # match with word boundary
+            if re.search(rf"\b{re.escape(alg)}\b", content):
                 results["canonicos"].append((str(p), alg))
         for alg in PROHIBIDOS:
-            if alg in content:
+            if re.search(rf"\b{re.escape(alg)}\b", content):
                 results["prohibidos"].append((str(p), alg))
     return results
 
 def main() -> int:
     verbose = "--verbose" in sys.argv or "-v" in sys.argv
-
     print("╔═══════════════════════════════════════════════════════════╗")
     print(f"║  PQC AUDIT · {SEAL}                            ║")
     print("╚═══════════════════════════════════════════════════════════╝")
-
     root = Path(".").resolve()
     total_canonicos = 0
     total_prohibidos = 0
-
     for d in SCAN_DIRS:
         dir_path = root / d
         if not dir_path.exists():
             continue
-
         results = scan(dir_path)
         total_canonicos += len(results["canonicos"])
         total_prohibidos += len(results["prohibidos"])
-
         status = "[ OK ]" if not results["prohibidos"] else "[ XX ]"
         print(f"{status} {d}/ · {len(results['canonicos'])} canónicos · {len(results['prohibidos'])} prohibidos")
-
         if verbose:
             for p, alg in results["canonicos"][:5]:
                 print(f"        + {alg:24s} · {p}")
             for p, alg in results["prohibidos"]:
                 print(f"        - {alg:24s} · {p} [PROHIBIDO]")
-
     print()
     print(f"[ >> ] Total algoritmos canónicos: {total_canonicos}")
     print(f"[ >> ] Total algoritmos prohibidos: {total_prohibidos}")
-
     if total_prohibidos > 0:
         print(f"\n[ XX ] DOWNGRADE DETECTADO · HALT · {SEAL}")
         return 1
-
     print(f"\n[ ✓✓ ] SUITE CANÓNICA · {SEAL}")
     return 0
 
