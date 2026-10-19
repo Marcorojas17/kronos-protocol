@@ -23,7 +23,7 @@ export const SEAL = '◯_● · 51/49/100';
  * @param {number} length          - bytes a derivar (default 32)
  */
 export function derive(ikm, salt, info, length = 32) {
-  const ikmBytes  = typeof ikm === 'string'  ? utf8ToBytes(ikm)  : ikm;
+  const ikmBytes = typeof ikm === 'string' ? utf8ToBytes(ikm) : ikm;
   const saltBytes = typeof salt === 'string' ? utf8ToBytes(salt) : salt;
   const infoBytes = typeof info === 'string' ? utf8ToBytes(info) : info;
   return hkdf(sha3_512, ikmBytes, saltBytes, infoBytes, length);
@@ -34,7 +34,8 @@ export function deriveHex(ikm, salt, info, length = 32) {
 }
 
 export const meta = {
-  alg: ALG, rfc: RFC,
+  alg: ALG,
+  rfc: RFC,
   uso: 'Derivar claves desde secretos compartidos',
   seal: SEAL,
 };

@@ -13,14 +13,14 @@
 
 ## 🜂 Datos Canónicos
 
-| Campo               | Valor                                    |
-|---------------------|------------------------------------------|
-| **Número**          | `#001`                                   |
-| **Nombre**          | Marco Antonio Rojas Valdovinos           |
-| **Ubicación**       | Toluca, Estado de México, México         |
-| **Año de fundación**| 2026                                     |
-| **Rol**             | Fundador original                        |
-| **Nivel actual**    | 6 · Fundador                             |
+| Campo                | Valor                            |
+| -------------------- | -------------------------------- |
+| **Número**           | `#001`                           |
+| **Nombre**           | Marco Antonio Rojas Valdovinos   |
+| **Ubicación**        | Toluca, Estado de México, México |
+| **Año de fundación** | 2026                             |
+| **Rol**              | Fundador original                |
+| **Nivel actual**     | 6 · Fundador                     |
 
 ## 🜃 Firmas y Anclajes
 
@@ -34,10 +34,10 @@ eIDAS TSA             · Firmaprofesional QTSA
 
 ## 🜄 Declaración
 
-> *"Yo, Marco Antonio Rojas Valdovinos, fundo el Movimiento ARKHÉ en Toluca,
+> _"Yo, Marco Antonio Rojas Valdovinos, fundo el Movimiento ARKHÉ en Toluca,
 > México, el 1 de enero de 2026. Declaro que el Pacto 51/49/100 es
 > irrevocable. Que el Índice Cero es soberano. Que el legado no se hereda:
-> se firma. Y firmo."*
+> se firma. Y firmo."_
 
 ## 🜁 Firma
 

@@ -18,17 +18,26 @@
   --pva-green: #10b981;
   --pva-neon: #00ff88;
   --pva-red: #ef4444;
-  --pva-folio-maestro: "5204160405358537";
-  --pva-folio-pericial: "KRONOS-MT01JAAF";
-  --pva-sha: "a4ff808e";
-  --pva-sello: "KRONOS-TRACE-PVA-5204160405358537-MT01JAAF";
-  --pva-folio: "5204160405358537";
+  --pva-folio-maestro: '5204160405358537';
+  --pva-folio-pericial: 'KRONOS-MT01JAAF';
+  --pva-sha: 'a4ff808e';
+  --pva-sello: 'KRONOS-TRACE-PVA-5204160405358537-MT01JAAF';
+  --pva-folio: '5204160405358537';
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: 'Inter', 'JetBrains Mono', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    'JetBrains Mono',
+    system-ui,
+    -apple-system,
+    sans-serif;
   background: var(--pva-white);
   color: var(--pva-black);
   line-height: 1.6;
@@ -47,15 +56,24 @@ body {
   top: 0;
   z-index: 100;
 }
-.pva-header h1 { font-size: 14px; letter-spacing: 2px; font-weight: 700; }
+.pva-header h1 {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
 .pva-header h1::after {
-  content: " " var(--pva-folio-pericial) " " var(--pva-sha) " | MAESTRO " var(--pva-folio-maestro);
+  content: ' ' var(--pva-folio-pericial) ' ' var(--pva-sha) ' | MAESTRO '
+    var(--pva-folio-maestro);
   color: var(--pva-gold);
   font-family: monospace;
   font-size: 10px;
   margin-left: 12px;
 }
-.pva-header .perito { font-size: 10px; color: var(--pva-gray); font-family: monospace; }
+.pva-header .perito {
+  font-size: 10px;
+  color: var(--pva-gray);
+  font-family: monospace;
+}
 
 .pva-card {
   background: white;
@@ -64,16 +82,28 @@ body {
   border-radius: 8px;
   padding: 20px;
   margin: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   max-width: 720px;
 }
 .pva-card.pva-valid {
   border-left-color: var(--pva-neon);
   background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
 }
-.pva-card.pva-invalid { border-left-color: var(--pva-red); background: #fef2f2; }
-.pva-card h3 { font-size: 13px; letter-spacing: 1px; margin-bottom: 12px; font-weight: 700; }
-.pva-card p { font-size: 12px; margin: 6px 0; word-break: break-all; }
+.pva-card.pva-invalid {
+  border-left-color: var(--pva-red);
+  background: #fef2f2;
+}
+.pva-card h3 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.pva-card p {
+  font-size: 12px;
+  margin: 6px 0;
+  word-break: break-all;
+}
 .pva-card code {
   background: var(--pva-gray-light);
   padding: 2px 6px;
@@ -83,7 +113,8 @@ body {
   color: var(--pva-black);
 }
 
-#btn-login, .pva-btn {
+#btn-login,
+.pva-btn {
   background: var(--pva-black);
   color: var(--pva-white);
   border: 1px solid var(--pva-black);
@@ -96,10 +127,25 @@ body {
   transition: all 0.2s;
   font-family: monospace;
 }
-#btn-login:hover, .pva-btn:hover { background: var(--pva-white); color: var(--pva-black); }
-.pva-btn-gold { background: var(--pva-gold); color: var(--pva-black); border-color: var(--pva-gold); }
-.pva-btn-gold:hover { background: var(--pva-gold-light); }
-.pva-btn-neon { background: var(--pva-neon); color: #000; border-color: var(--pva-neon); box-shadow: 0 0 15px rgba(0,255,136,.4); }
+#btn-login:hover,
+.pva-btn:hover {
+  background: var(--pva-white);
+  color: var(--pva-black);
+}
+.pva-btn-gold {
+  background: var(--pva-gold);
+  color: var(--pva-black);
+  border-color: var(--pva-gold);
+}
+.pva-btn-gold:hover {
+  background: var(--pva-gold-light);
+}
+.pva-btn-neon {
+  background: var(--pva-neon);
+  color: #000;
+  border-color: var(--pva-neon);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
 
 .pva-qr {
   display: flex;
@@ -110,9 +156,15 @@ body {
   border-radius: 8px;
   margin: 16px;
 }
-.pva-qr img { width: 180px; height: 180px; image-rendering: pixelated; }
+.pva-qr img {
+  width: 180px;
+  height: 180px;
+  image-rendering: pixelated;
+}
 
-span[data-folio="5204160405358537"], .pva-folio-highlight, span[data-pericial="KRONOS-MT01JAAF"] {
+span[data-folio='5204160405358537'],
+.pva-folio-highlight,
+span[data-pericial='KRONOS-MT01JAAF'] {
   background: var(--pva-gold-light) !important;
   border: 1px solid var(--pva-gold) !important;
   padding: 1px 4px;
@@ -121,7 +173,14 @@ span[data-folio="5204160405358537"], .pva-folio-highlight, span[data-pericial="K
   font-weight: 700;
   cursor: help;
 }
-.pva-sha-highlight { background: #00ff88 !important; color:#000 !important; padding:1px 4px; border-radius:3px; font-family:monospace; font-weight:900; }
+.pva-sha-highlight {
+  background: #00ff88 !important;
+  color: #000 !important;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-weight: 900;
+}
 
 #verifica-status {
   font-family: monospace;
@@ -130,10 +189,27 @@ span[data-folio="5204160405358537"], .pva-folio-highlight, span[data-pericial="K
   padding: 8px 16px;
   min-height: 24px;
 }
-#verifica-status::before { content: "● MT01JAAF " var(--pva-sha) " "; color: var(--pva-neon); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+#verifica-status::before {
+  content: '● MT01JAAF ' var(--pva-sha) ' ';
+  color: var(--pva-neon);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
 
-.pva-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding: 16px; }
+.pva-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
 
 .pva-footer {
   margin-top: 40px;
@@ -145,21 +221,47 @@ span[data-folio="5204160405358537"], .pva-folio-highlight, span[data-pericial="K
   text-align: center;
   line-height: 1.8;
 }
-.pva-footer b { color: var(--pva-gold); }
+.pva-footer b {
+  color: var(--pva-gold);
+}
 
 @media (max-width: 640px) {
-  .pva-header { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .pva-header h1::after { display: block; margin-left: 0; margin-top: 4px; font-size:9px; }
-  .pva-card { margin: 12px; padding: 16px; }
-  .pva-grid { grid-template-columns: 1fr; }
+  .pva-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .pva-header h1::after {
+    display: block;
+    margin-left: 0;
+    margin-top: 4px;
+    font-size: 9px;
+  }
+  .pva-card {
+    margin: 12px;
+    padding: 16px;
+  }
+  .pva-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media print {
-  .pva-header { background: white !important; color: black !important; border-bottom: 2px solid black; }
-  #btn-login, .pva-btn { display: none; }
-  .pva-card { box-shadow: none; border: 1px solid black; }
+  .pva-header {
+    background: white !important;
+    color: black !important;
+    border-bottom: 2px solid black;
+  }
+  #btn-login,
+  .pva-btn {
+    display: none;
+  }
+  .pva-card {
+    box-shadow: none;
+    border: 1px solid black;
+  }
   body::after {
-    content: "FOLIO_MAESTRO:5204160405358537 | FOLIO_PERICIAL:KRONOS-MT01JAAF | SHA:a4ff808e | SELLO:KRONOS-TRACE-PVA-5204160405358537-MT01JAAF | PERITO:kronosproyecto@hotmail.com | GENESIS:41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3 | SC:2607146379465";
+    content: 'FOLIO_MAESTRO:5204160405358537 | FOLIO_PERICIAL:KRONOS-MT01JAAF | SHA:a4ff808e | SELLO:KRONOS-TRACE-PVA-5204160405358537-MT01JAAF | PERITO:kronosproyecto@hotmail.com | GENESIS:41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3 | SC:2607146379465';
     position: fixed;
     bottom: 0;
     font-size: 6px;

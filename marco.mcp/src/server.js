@@ -27,17 +27,14 @@ const SERVER_INFO = {
 
 export class MarcoMCPServer {
   constructor() {
-    this.server = new Server(
-      SERVER_INFO,
-      {
-        capabilities: {
-          tools: {},
-          resources: {},
-          prompts: {},
-          logging: {},
-        },
-      }
-    );
+    this.server = new Server(SERVER_INFO, {
+      capabilities: {
+        tools: {},
+        resources: {},
+        prompts: {},
+        logging: {},
+      },
+    });
 
     this.#wireHandlers();
   }

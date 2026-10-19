@@ -17,15 +17,16 @@
 
 # ✨ EVENTOS ESPECIALES
 
-### *Los hitos del movimiento*
+### _Los hitos del movimiento_
 
-### *"Lo especial no se repite. Se firma una vez."*
+### _"Lo especial no se repite. Se firma una vez."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E S P E C I A L E S  ·  ◯_●                         ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -51,6 +53,7 @@
 **Fecha:** 21 de diciembre de cada año
 **Duración:** 4 horas
 **Ritual:**
+
 1. Balance anual del movimiento
 2. Presentación de métricas públicas
 3. Renovación opcional del juramento
@@ -61,6 +64,7 @@
 **Fecha:** 1 de enero de cada año
 **Duración:** Todo el día
 **Ritual:**
+
 1. Lectura del acta fundacional
 2. Renovación del pacto 51/49/100
 3. Firma de nuevos iniciados
@@ -71,6 +75,7 @@
 **Fecha:** 7 de octubre de cada año
 **Duración:** 2 horas
 **Ritual:**
+
 1. Narrativa de la grieta curada
 2. Reparación simbólica de fracturas del año
 3. Actualización del sello `◯_●`
@@ -80,6 +85,7 @@
 **Fecha:** Única vez · cuando el fundador lo decida
 **Duración:** 24 horas
 **Ritual:**
+
 1. Aviso oficial
 2. Silencio digital
 3. Testamento visual

@@ -1,97 +1,270 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>ARKHÉ ZERO · Infografía</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#050507;color:#c8ffc8;font-family:'Courier New',monospace;padding:20px}
-.card{max-width:900px;margin:auto;border:2px solid #ffd700;padding:30px;background:radial-gradient(ellipse at top,rgba(255,215,0,.03),transparent)}
-h1{color:#ffd700;text-align:center;font-size:32px;letter-spacing:.25em;text-shadow:0 0 20px rgba(255,215,0,.5)}
-.sub{color:#00ff41;text-align:center;font-size:13px;letter-spacing:.15em;margin:10px 0 25px;padding-bottom:20px;border-bottom:1px solid rgba(0,255,65,.2)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:25px}
-.bloque{background:#0f0f18;border:1px solid rgba(0,255,65,.2);padding:20px;position:relative}
-.bloque:before{content:'';position:absolute;top:-1px;left:-1px;width:10px;height:10px;border-top:2px solid #ffd700;border-left:2px solid #ffd700}
-.bloque:after{content:'';position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-bottom:2px solid #ffd700;border-right:2px solid #ffd700}
-.icon{font-size:36px;text-align:center;margin-bottom:10px}
-.titulo{color:#ffd700;font-size:13px;letter-spacing:.1em;text-align:center;margin-bottom:10px}
-ul{list-style:none;font-size:11px;line-height:1.7}
-li:before{content:'▸ ';color:#00ff41}
-li{padding:2px 0;color:#c8ffc8}
-.tag{display:inline-block;background:rgba(0,255,65,.08);color:#00ff41;padding:3px 8px;font-size:9px;letter-spacing:.1em;margin-top:10px;border:1px solid rgba(0,255,65,.3)}
-.footer{border-top:1px solid rgba(0,255,65,.2);padding-top:20px;text-align:center}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-.stat{background:#000;border:1px solid rgba(0,255,65,.15);padding:15px;text-align:center}
-.stat .num{color:#ffd700;font-size:22px;font-weight:bold}
-.stat .lbl{color:#6a8f6a;font-size:9px;letter-spacing:.15em;margin-top:5px}
-.cita{color:#ffd700;font-style:italic;text-align:center;font-size:14px;margin:15px 0}
-@media(max-width:768px){.grid,.stats{grid-template-columns:1fr 1fr}h1{font-size:20px}}
-</style></head>
-<body>
-<div class="card">
-<h1>◯_● ARKHÉ ZERO</h1>
-<div class="sub">Preservación de Legado Digital · On-Device AI · LATAM · 2026</div>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ARKHÉ ZERO · Infografía</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #050507;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        padding: 20px;
+      }
+      .card {
+        max-width: 900px;
+        margin: auto;
+        border: 2px solid #ffd700;
+        padding: 30px;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(255, 215, 0, 0.03),
+          transparent
+        );
+      }
+      h1 {
+        color: #ffd700;
+        text-align: center;
+        font-size: 32px;
+        letter-spacing: 0.25em;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+      .sub {
+        color: #00ff41;
+        text-align: center;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        margin: 10px 0 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+      .bloque {
+        background: #0f0f18;
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 20px;
+        position: relative;
+      }
+      .bloque:before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #ffd700;
+        border-left: 2px solid #ffd700;
+      }
+      .bloque:after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid #ffd700;
+        border-right: 2px solid #ffd700;
+      }
+      .icon {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .titulo {
+        color: #ffd700;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      ul {
+        list-style: none;
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      li:before {
+        content: '▸ ';
+        color: #00ff41;
+      }
+      li {
+        padding: 2px 0;
+        color: #c8ffc8;
+      }
+      .tag {
+        display: inline-block;
+        background: rgba(0, 255, 65, 0.08);
+        color: #00ff41;
+        padding: 3px 8px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        margin-top: 10px;
+        border: 1px solid rgba(0, 255, 65, 0.3);
+      }
+      .footer {
+        border-top: 1px solid rgba(0, 255, 65, 0.2);
+        padding-top: 20px;
+        text-align: center;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .stat {
+        background: #000;
+        border: 1px solid rgba(0, 255, 65, 0.15);
+        padding: 15px;
+        text-align: center;
+      }
+      .stat .num {
+        color: #ffd700;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      .stat .lbl {
+        color: #6a8f6a;
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        margin-top: 5px;
+      }
+      .cita {
+        color: #ffd700;
+        font-style: italic;
+        text-align: center;
+        font-size: 14px;
+        margin: 15px 0;
+      }
+      @media (max-width: 768px) {
+        .grid,
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        h1 {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>◯_● ARKHÉ ZERO</h1>
+      <div class="sub">
+        Preservación de Legado Digital · On-Device AI · LATAM · 2026
+      </div>
 
-<div class="stats">
-<div class="stat"><div class="num">16</div><div class="lbl">Módulos Interactivos</div></div>
-<div class="stat"><div class="num">3B</div><div class="lbl">Parámetros Llama 3.2</div></div>
-<div class="stat"><div class="num">SHA-256</div><div class="lbl">Firma Criptográfica</div></div>
-<div class="stat"><div class="num">PQC</div><div class="lbl">Post-Cuántica NIST</div></div>
-</div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">16</div>
+          <div class="lbl">Módulos Interactivos</div>
+        </div>
+        <div class="stat">
+          <div class="num">3B</div>
+          <div class="lbl">Parámetros Llama 3.2</div>
+        </div>
+        <div class="stat">
+          <div class="num">SHA-256</div>
+          <div class="lbl">Firma Criptográfica</div>
+        </div>
+        <div class="stat">
+          <div class="num">PQC</div>
+          <div class="lbl">Post-Cuántica NIST</div>
+        </div>
+      </div>
 
-<div class="grid">
-<div class="bloque">
-<div class="icon">📱</div>
-<div class="titulo">IA LOCAL EN iPHONE</div>
-<ul>
-<li>Llama 3.2 vía llama.cpp</li>
-<li>100% procesamiento local</li>
-<li>Cero datos enviados a nube</li>
-<li>Optimizado para iOS</li>
-<li>Funciona offline</li>
-</ul>
-<div class="tag">ON-DEVICE · PRIVADO</div>
-</div>
+      <div class="grid">
+        <div class="bloque">
+          <div class="icon">📱</div>
+          <div class="titulo">IA LOCAL EN iPHONE</div>
+          <ul>
+            <li>Llama 3.2 vía llama.cpp</li>
+            <li>100% procesamiento local</li>
+            <li>Cero datos enviados a nube</li>
+            <li>Optimizado para iOS</li>
+            <li>Funciona offline</li>
+          </ul>
+          <div class="tag">ON-DEVICE · PRIVADO</div>
+        </div>
 
-<div class="bloque">
-<div class="icon">⚙</div>
-<div class="titulo">HERRAMIENTAS REALES</div>
-<ul>
-<li>Escáner de puertos TCP</li>
-<li>Auditoría forense MD-33</li>
-<li>Bóveda de voz con firma</li>
-<li>Mandalas firmados SHA-256</li>
-<li>Memoria persistente</li>
-</ul>
-<div class="tag">FUNCIONAL · VERIFICABLE</div>
-</div>
+        <div class="bloque">
+          <div class="icon">⚙</div>
+          <div class="titulo">HERRAMIENTAS REALES</div>
+          <ul>
+            <li>Escáner de puertos TCP</li>
+            <li>Auditoría forense MD-33</li>
+            <li>Bóveda de voz con firma</li>
+            <li>Mandalas firmados SHA-256</li>
+            <li>Memoria persistente</li>
+          </ul>
+          <div class="tag">FUNCIONAL · VERIFICABLE</div>
+        </div>
 
-<div class="bloque">
-<div class="icon">🔐</div>
-<div class="titulo">CRIPTOGRAFÍA PQC</div>
-<ul>
-<li>ML-KEM-1024 (FIPS 203)</li>
-<li>ML-DSA-87 (FIPS 204)</li>
-<li>SLH-DSA-SHAKE-256s (FIPS 205)</li>
-<li>SHA-256 para integridad</li>
-<li>Resistente a cuántica</li>
-</ul>
-<div class="tag">NIST · POST-CUÁNTICA</div>
-</div>
-</div>
+        <div class="bloque">
+          <div class="icon">🔐</div>
+          <div class="titulo">CRIPTOGRAFÍA PQC</div>
+          <ul>
+            <li>ML-KEM-1024 (FIPS 203)</li>
+            <li>ML-DSA-87 (FIPS 204)</li>
+            <li>SLH-DSA-SHAKE-256s (FIPS 205)</li>
+            <li>SHA-256 para integridad</li>
+            <li>Resistente a cuántica</li>
+          </ul>
+          <div class="tag">NIST · POST-CUÁNTICA</div>
+        </div>
+      </div>
 
-<div class="stats">
-<div class="stat"><div class="num">24/24</div><div class="lbl">Secciones Completas</div></div>
-<div class="stat"><div class="num">1079</div><div class="lbl">Archivos</div></div>
-<div class="stat"><div class="num">13</div><div class="lbl">Vistas Agentes</div></div>
-<div class="stat"><div class="num">100%</div><div class="lbl">Open Source</div></div>
-</div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">24/24</div>
+          <div class="lbl">Secciones Completas</div>
+        </div>
+        <div class="stat">
+          <div class="num">1079</div>
+          <div class="lbl">Archivos</div>
+        </div>
+        <div class="stat">
+          <div class="num">13</div>
+          <div class="lbl">Vistas Agentes</div>
+        </div>
+        <div class="stat">
+          <div class="num">100%</div>
+          <div class="lbl">Open Source</div>
+        </div>
+      </div>
 
-<div class="cita">"El legado no se hereda. Se firma."</div>
+      <div class="cita">"El legado no se hereda. Se firma."</div>
 
-<div class="footer">
-<div style="color:#ffd700;letter-spacing:.15em;font-size:11px;margin-bottom:8px">ARKHÉ ZERO · NODO YHDRYH-92CE · SCDR-001</div>
-<div style="color:#6a8f6a;font-size:10px">Marco Antonio Rojas Valdovinos · Toluca · México</div>
-<div style="color:#00ff41;font-size:10px;margin-top:8px">github.com/Marcorojas17/kronos-protocol</div>
-<div style="color:#ffd700;margin-top:12px;font-size:12px">◯_● · ■_□ · 51/49/100</div>
-</div>
-</div>
-</body></html>
+      <div class="footer">
+        <div
+          style="
+            color: #ffd700;
+            letter-spacing: 0.15em;
+            font-size: 11px;
+            margin-bottom: 8px;
+          "
+        >
+          ARKHÉ ZERO · NODO YHDRYH-92CE · SCDR-001
+        </div>
+        <div style="color: #6a8f6a; font-size: 10px">
+          Marco Antonio Rojas Valdovinos · Toluca · México
+        </div>
+        <div style="color: #00ff41; font-size: 10px; margin-top: 8px">
+          github.com/Marcorojas17/kronos-protocol
+        </div>
+        <div style="color: #ffd700; margin-top: 12px; font-size: 12px">
+          ◯_● · ■_□ · 51/49/100
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

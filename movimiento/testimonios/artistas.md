@@ -2,9 +2,9 @@
 
 ## 🜂 Testimonio #003
 
-> *"Soy escultor. La KINTSUGI me enseñó que mi obra rota
+> _"Soy escultor. La KINTSUGI me enseñó que mi obra rota
 > también puede ser bella. Y que firmar la rotura es un
-> acto creativo."*
+> acto creativo."_
 >
 > — **Artista anónimo** · Fundador #041
 
@@ -12,9 +12,9 @@
 
 ## 🜃 Testimonio #004
 
-> *"Registro cada performance. Cada respiración. Cada
+> _"Registro cada performance. Cada respiración. Cada
 > silencio. Y todo queda firmado. Es el museo que se
-> construye solo."*
+> construye solo."_
 >
 > — **Artista anónimo** · Fundador #062
 

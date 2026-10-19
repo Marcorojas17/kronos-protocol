@@ -10,17 +10,17 @@
 export const SEAL = '◯_● · 51/49/100';
 
 export const MEDALLAS = Object.freeze([
-  { id: 'primer-firma',      nombre: 'Primera Firma',         requisito: '1 obra firmada' },
-  { id: 'decima-obra',       nombre: 'Décima Obra',           requisito: '10 obras firmadas' },
-  { id: 'centesima-obra',    nombre: 'Centésima Obra',        requisito: '100 obras firmadas' },
-  { id: 'primer-ahijado',    nombre: 'Padrino',               requisito: '1 ahijado iniciado' },
-  { id: 'decimo-ahijado',    nombre: 'Mentor',                requisito: '10 ahijados' },
-  { id: 'primer-nodo',       nombre: 'Fundador de Nodo',      requisito: '1 nodo fundado' },
-  { id: 'kintsugi',          nombre: 'KINTSUGI',              requisito: 'Reparación ejemplar' },
-  { id: 'chispa',            nombre: 'Chispa',                requisito: 'Aporte técnico significativo' },
-  { id: 'cronista',          nombre: 'Cronista',              requisito: 'Documentación ejemplar' },
-  { id: 'auditor',           nombre: 'Auditor',               requisito: 'Detección de fraude' },
-  { id: 'conector',          nombre: 'Conector',              requisito: '5+ nuevos miembros traídos' },
+  { id: 'primer-firma', nombre: 'Primera Firma', requisito: '1 obra firmada' },
+  { id: 'decima-obra', nombre: 'Décima Obra', requisito: '10 obras firmadas' },
+  { id: 'centesima-obra', nombre: 'Centésima Obra', requisito: '100 obras firmadas' },
+  { id: 'primer-ahijado', nombre: 'Padrino', requisito: '1 ahijado iniciado' },
+  { id: 'decimo-ahijado', nombre: 'Mentor', requisito: '10 ahijados' },
+  { id: 'primer-nodo', nombre: 'Fundador de Nodo', requisito: '1 nodo fundado' },
+  { id: 'kintsugi', nombre: 'KINTSUGI', requisito: 'Reparación ejemplar' },
+  { id: 'chispa', nombre: 'Chispa', requisito: 'Aporte técnico significativo' },
+  { id: 'cronista', nombre: 'Cronista', requisito: 'Documentación ejemplar' },
+  { id: 'auditor', nombre: 'Auditor', requisito: 'Detección de fraude' },
+  { id: 'conector', nombre: 'Conector', requisito: '5+ nuevos miembros traídos' },
 ]);
 
 /**

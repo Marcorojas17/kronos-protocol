@@ -3,9 +3,11 @@
 Licencias emitidas bajo el Pacto 51/49/100.
 
 ## Estructura
+
 Cada licencia es un JSON firmado con Ed25519 (fundador-v3.key).
 
 Campos:
+
 - `folio` · identificador único
 - `obra` · qué se licencia
 - `titular` · a quién se licencia
@@ -18,6 +20,7 @@ Campos:
 - `pub_key_fingerprint` · fingerprint del firmante
 
 ## Verificación
+
 Cualquiera puede verificar con la llave pública en:
 07-LLAVES/FUNDADOR-V3/fundador-v3.pub
 

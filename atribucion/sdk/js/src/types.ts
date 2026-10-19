@@ -6,16 +6,10 @@
 // INPUTS
 // ─────────────────────────────────────────────────────────────
 
-export type AutonomyLevel = "supervisado" | "semi-autonomo" | "autonomo";
+export type AutonomyLevel = 'supervisado' | 'semi-autonomo' | 'autonomo';
 
 export type ProveedorModelo =
-  | "openai"
-  | "anthropic"
-  | "google"
-  | "meta"
-  | "mistral"
-  | "local"
-  | "otro";
+  'openai' | 'anthropic' | 'google' | 'meta' | 'mistral' | 'local' | 'otro';
 
 export interface RegisterAgentInput {
   name: string;

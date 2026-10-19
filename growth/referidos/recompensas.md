@@ -10,15 +10,16 @@
 
 # 🎁 RECOMPENSAS DEL PROGRAMA
 
-### *Cada testigo referido vale oro*
+### _Cada testigo referido vale oro_
 
-### *"La recompensa se firma. Nunca se promete."*
+### _"La recompensa se firma. Nunca se promete."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E C O M P E N S A S  ·  ◯_●                       ║
@@ -31,6 +32,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -39,13 +41,13 @@
 
 ## 🜂 Tabla de recompensas
 
-| Referidos | Insignia          | Presupuesto FLAILP | Voz gobernanza |
-|-----------|-------------------|--------------------|-----------------|
-| 1         | ◉ iniciador       | 0                  | ❌              |
-| 5         | ◉◉ conector       | 1x simbólico       | 🔸 parcial      |
-| 10        | ◉◉◉ influencer    | 5x simbólico       | 🔸 parcial      |
-| 25        | ◉◉◉◉ embajador-ref| 10x simbólico      | ✅ total        |
-| 51+       | ★ founder-ref     | Presupuesto amplio | ✅ total        |
+| Referidos | Insignia           | Presupuesto FLAILP | Voz gobernanza |
+| --------- | ------------------ | ------------------ | -------------- |
+| 1         | ◉ iniciador        | 0                  | ❌             |
+| 5         | ◉◉ conector        | 1x simbólico       | 🔸 parcial     |
+| 10        | ◉◉◉ influencer     | 5x simbólico       | 🔸 parcial     |
+| 25        | ◉◉◉◉ embajador-ref | 10x simbólico      | ✅ total       |
+| 51+       | ★ founder-ref      | Presupuesto amplio | ✅ total       |
 
 ## 🜃 Cómo se calcula el presupuesto
 
@@ -74,16 +76,16 @@ Donde multiplicador_nivel:
 ## 🜁 Formato de registro
 
 ```yaml
-- id: "REF-2026-001"
-  referente: "Miembro · Fundador #NNN"
-  referido: "Nuevo testigo · Fundador #NNN"
-  fecha_referencia: "2026-XX-XXT00:00:00Z"
-  fecha_verificacion: "2026-XX-XXT00:00:00Z"
-  hash_acta: "sha3-512:..."
+- id: 'REF-2026-001'
+  referente: 'Miembro · Fundador #NNN'
+  referido: 'Nuevo testigo · Fundador #NNN'
+  fecha_referencia: '2026-XX-XXT00:00:00Z'
+  fecha_verificacion: '2026-XX-XXT00:00:00Z'
+  hash_acta: 'sha3-512:...'
   recompensa:
-    tipo: "insignia | presupuesto | voz"
+    tipo: 'insignia | presupuesto | voz'
     valor: 0
-  sellado: "◯_● · 51/49/100"
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜆 Firma

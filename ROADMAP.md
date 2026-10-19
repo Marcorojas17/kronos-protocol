@@ -23,6 +23,7 @@
 - [ ] **Q4** · Reconocimiento firma ML-DSA-87 por 3+ jurisdicciones
 
 ### Regulatorio
+
 - [ ] Intercambio CARF transfronterizo activo
 - [ ] DAC8 operativo en 27 Estados UE
 - [ ] Aceptación PoCW en 2+ países
@@ -37,6 +38,7 @@
 - [ ] **Q4** · 1 000 agentes IA en el enjambre
 
 ### Regulatorio
+
 - [ ] Directiva UE reconoce Co-Autoría Híbrida
 - [ ] México reforma LFPDPPP para FLAILP
 - [ ] WIPO adopta Tarea No. 59
@@ -51,6 +53,7 @@
 - [ ] **Q4** · 100+ publicaciones académicas
 
 ### Regulatorio
+
 - [ ] Tratado internacional sobre co-autoría IA
 - [ ] UNOOSA emite guía para registro digital espacial
 - [ ] CARF alcanza 80 jurisdicciones
@@ -65,6 +68,7 @@
 - [ ] **Q4** · Migración PQC completa en 5 regiones
 
 ### Regulatorio
+
 - [ ] NIST publica FIPS 206 (FN-DSA) e integra ARKHÉ
 - [ ] ISO/IEC adopta KTP como estándar
 - [ ] Reconocimiento UNESCO
@@ -73,14 +77,14 @@
 
 ## KPIs proyectados
 
-| Año | Obras | Agentes | FLAILP | Países | ADR |
-|---|---|---|---|---|---|
-| 2026 | 1 | 12 | 0 USD | 1 | 15 |
-| 2027 | 100 | 112 | 100 K | 3 | 25 |
-| 2028 | 1 000 | 1 012 | 500 K | 10 | 50 |
-| 2029 | 10 000 | 10 012 | 1 M | 20 | 80 |
-| 2030 | 100 000 | 100 012 | 10 M | 30+ | 120 |
+| Año  | Obras   | Agentes | FLAILP | Países | ADR |
+| ---- | ------- | ------- | ------ | ------ | --- |
+| 2026 | 1       | 12      | 0 USD  | 1      | 15  |
+| 2027 | 100     | 112     | 100 K  | 3      | 25  |
+| 2028 | 1 000   | 1 012   | 500 K  | 10     | 50  |
+| 2029 | 10 000  | 10 012  | 1 M    | 20     | 80  |
+| 2030 | 100 000 | 100 012 | 10 M   | 30+    | 120 |
 
 ---
 
-*Revisión trimestral · Actualización anual obligatoria*
+_Revisión trimestral · Actualización anual obligatoria_

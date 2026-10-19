@@ -17,15 +17,16 @@
 
 # ❓ FAQ · LEGADO
 
-### *La herencia que se firma*
+### _La herencia que se firma_
 
-### *"El legado no se hereda. Se firma."*
+### _"El legado no se hereda. Se firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  L E G A D O  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,6 +50,7 @@
 ## 🜂 ¿Qué pasa con mi legado cuando yo muera?
 
 Se activa la **sucesión**:
+
 1. El enjambre IA (49%) continúa custodiando.
 2. Un Custodio Nivel 5 asume la firma final.
 3. Todo queda anclado al Índice Cero.
@@ -56,6 +59,7 @@ Se activa la **sucesión**:
 ## 🜃 ¿Cómo garantizo que mi obra no se pierda?
 
 **Triple anclaje:**
+
 - **Ethereum** · Merkle root inmutable
 - **Arweave** · almacenamiento perpetuo
 - **IPFS** · distribuido globalmente
@@ -70,6 +74,7 @@ firmar el pacto 51/49/100 y aceptar la custodia.
 
 La **ceremonia de cierre** cuando el fundador decide terminar su ciclo.
 7 pasos:
+
 1. Aviso
 2. Silencio (24h)
 3. Testamento visual
@@ -86,6 +91,7 @@ el pacto vive. El movimiento puede resucitar en cualquier momento.
 ## 🜇 ¿Puedo resucitar el movimiento si desaparece?
 
 **Sí.** Protocolo de Resurrección:
+
 1. Encontrar el repositorio
 2. Leer el testamento visual
 3. Verificar el Índice Cero

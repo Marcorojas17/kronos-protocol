@@ -14,6 +14,7 @@ para proteger claves compartidas en el sistema.
 Usar **ML-KEM-1024** (antes Kyber1024) según FIPS 203.
 
 Razones:
+
 - NIST lo estandarizó en 2024 (FIPS 203)
 - Nivel 5 de seguridad post-cuántica
 - ~256 bits clásicos, ~192 bits PQC
@@ -22,11 +23,13 @@ Razones:
 ## 🜄 Consecuencias
 
 **Positivas**:
+
 - Resistente a Shor
 - Estándar NIST
 - Librería mantenida
 
 **Negativas**:
+
 - Claves grandes (1568 bytes públicas)
 - Latencia mayor que X25519
 - Nuevo (poco auditado aún)

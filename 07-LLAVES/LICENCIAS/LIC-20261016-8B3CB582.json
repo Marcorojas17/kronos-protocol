@@ -1,1 +1,13 @@
-{"fecha_emision":"2026-10-16T21:06:16.493660+00:00","folio":"LIC-20261016-8B3CB582","monto":199.0,"mp_payment_id":"MP-DEMO-001","nodo":"YHDRYH-92CE","obra":"ARKHÉ ZERO · Nivel 3","pacto":"51/49/100","seal":"◯_●","titular":"demo@ejemplo.com","uso":"uso_comercial_ilimitado","vigencia":"2036-10-13T21:06:16.493660+00:00"}
+{
+  "fecha_emision": "2026-10-16T21:06:16.493660+00:00",
+  "folio": "LIC-20261016-8B3CB582",
+  "monto": 199.0,
+  "mp_payment_id": "MP-DEMO-001",
+  "nodo": "YHDRYH-92CE",
+  "obra": "ARKHÉ ZERO · Nivel 3",
+  "pacto": "51/49/100",
+  "seal": "◯_●",
+  "titular": "demo@ejemplo.com",
+  "uso": "uso_comercial_ilimitado",
+  "vigencia": "2036-10-13T21:06:16.493660+00:00"
+}

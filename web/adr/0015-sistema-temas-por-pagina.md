@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 **Temas por página** con CSS custom properties:
+
 - `terminal-amber` (default · hub)
 - `terminal-gold` (KINTSUGI · manifiesto)
 - `terminal-green` (verificar · éxito)
@@ -20,11 +21,11 @@
 ## 🜄 Implementación
 
 ```html
-<body data-page="verificar" data-theme="terminal-green">
+<body data-page="verificar" data-theme="terminal-green"></body>
 ```
 
 ```css
-[data-theme="terminal-green"] {
+[data-theme='terminal-green'] {
   --accent: #00ff9f;
   --accent-2: #00d4ff;
 }

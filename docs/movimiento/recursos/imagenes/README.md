@@ -17,15 +17,16 @@
 
 # 🖼️ IMÁGENES CANÓNICAS
 
-### *Visuales firmados del movimiento*
+### _Visuales firmados del movimiento_
 
-### *"Una imagen sin sello es solo píxeles."*
+### _"Una imagen sin sello es solo píxeles."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  I M Á G E N E S  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,24 +48,24 @@
 
 ## 🜂 Imágenes oficiales
 
-| Archivo                 | Uso                          |
-|-------------------------|------------------------------|
-| `sigilo-arkhe.svg`      | Marca principal              |
-| `sello-kintsugi.svg`    | Sello ceremonial             |
-| `og-manifiesto.svg`     | OpenGraph manifiesto         |
-| `og-kintsugi.svg`       | OpenGraph KINTSUGI           |
-| `twitter-card.svg`      | Twitter Card                 |
-| `favicon.svg`           | Favicon                      |
+| Archivo              | Uso                  |
+| -------------------- | -------------------- |
+| `sigilo-arkhe.svg`   | Marca principal      |
+| `sello-kintsugi.svg` | Sello ceremonial     |
+| `og-manifiesto.svg`  | OpenGraph manifiesto |
+| `og-kintsugi.svg`    | OpenGraph KINTSUGI   |
+| `twitter-card.svg`   | Twitter Card         |
+| `favicon.svg`        | Favicon              |
 
 ## 🜃 Paleta canónica
 
-| Color             | Hex       | Uso                  |
-|-------------------|-----------|----------------------|
-| Oro KINTSUGI      | `#d4af37` | Marca principal      |
-| Ámbar terminal    | `#ffb000` | Terminal             |
-| Negro profundo    | `#0a0a0a` | Fondo                |
-| Verde verificación| `#00ff9f` | Éxito                |
-| Cian firma        | `#00d4ff` | Novedad              |
+| Color              | Hex       | Uso             |
+| ------------------ | --------- | --------------- |
+| Oro KINTSUGI       | `#d4af37` | Marca principal |
+| Ámbar terminal     | `#ffb000` | Terminal        |
+| Negro profundo     | `#0a0a0a` | Fondo           |
+| Verde verificación | `#00ff9f` | Éxito           |
+| Cian firma         | `#00d4ff` | Novedad         |
 
 ## 🜄 Reglas
 

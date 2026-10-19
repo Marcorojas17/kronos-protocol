@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 Usar **KINTSUGI** como metáfora central:
+
 - Arte japonés de reparar con oro
 - La grieta no se oculta, se pule
 - Símbolo `◯_●` (círculo hueco + guion + círculo lleno)

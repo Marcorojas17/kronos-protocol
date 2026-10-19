@@ -9,12 +9,12 @@ las responsabilidades están claramente definidas.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-2.1 | Contrato firmado (agente + creador + operador) | Critical | ✅ |
-| KAF-2.2 | Colateral depositado en escrow | Critical | ✅ |
-| KAF-2.3 | Nivel de autonomía declarado | High | ✅ |
-| KAF-2.4 | Límite de daño configurado | High | ✅ |
+| ID      | Nombre                                         | Severidad | Auto |
+| ------- | ---------------------------------------------- | --------- | ---- |
+| KAF-2.1 | Contrato firmado (agente + creador + operador) | Critical  | ✅   |
+| KAF-2.2 | Colateral depositado en escrow                 | Critical  | ✅   |
+| KAF-2.3 | Nivel de autonomía declarado                   | High      | ✅   |
+| KAF-2.4 | Límite de daño configurado                     | High      | ✅   |
 
 ## Contrato de Atribución
 
@@ -30,11 +30,11 @@ Debe incluir:
 
 ## Niveles de autonomía y colateral
 
-| Nivel | Colateral mínimo | Límite de daño |
-|---|---|---|
-| Supervisado | 0 KRN | 5.000 KRN |
-| Semi-autónomo | 2.000 KRN | 10.000 KRN |
-| Autónomo | 10.000 KRN | 50.000 KRN |
+| Nivel         | Colateral mínimo | Límite de daño |
+| ------------- | ---------------- | -------------- |
+| Supervisado   | 0 KRN            | 5.000 KRN      |
+| Semi-autónomo | 2.000 KRN        | 10.000 KRN     |
+| Autónomo      | 10.000 KRN       | 50.000 KRN     |
 
 ## Evidencia
 

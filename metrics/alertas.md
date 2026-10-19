@@ -17,15 +17,16 @@
 
 # 🚨 SISTEMA DE ALERTAS
 
-### *Avisar cuando algo importa*
+### _Avisar cuando algo importa_
 
-### *"La alerta sin acción es ruido. Con acción, es protección."*
+### _"La alerta sin acción es ruido. Con acción, es protección."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A L E R T A S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,30 +50,35 @@
 ## 🜂 Niveles de alerta
 
 ### 🔴 CRITICAL · HALT
+
 - Firma inválida detectada
 - Downgrade criptográfico detectado
 - Índice Cero alterado
 - **Acción:** HALT inmediato + ceremonia
 
 ### 🟠 HIGH · < 1h
+
 - Fallo de anclaje Ethereum
 - TSA expirado
 - Enjambre comprometido
 - **Acción:** notificar + revisar
 
 ### 🟡 MEDIUM · < 24h
+
 - Conversión por debajo de meta
 - Suscriptores newsletter cayendo
 - Nodo con latencia alta
 - **Acción:** analizar + optimizar
 
 ### 🟢 LOW · < 1 semana
+
 - Nueva mención en prensa
 - Nueva obra firmada
 - Nuevo suscriptor
 - **Acción:** agregar a reporte semanal
 
 ### 🔵 INFO · Solo log
+
 - Visita normal
 - Uso normal de API
 - Evento esperado
@@ -79,23 +86,23 @@
 
 ## 🜃 Canales de alerta
 
-| Canal       | Niveles              |
-|-------------|----------------------|
-| Email       | CRITICAL, HIGH       |
-| SMS         | CRITICAL             |
-| Slack/Matrix| CRITICAL, HIGH, MEDIUM |
-| Log         | Todos                |
+| Canal        | Niveles                |
+| ------------ | ---------------------- |
+| Email        | CRITICAL, HIGH         |
+| SMS          | CRITICAL               |
+| Slack/Matrix | CRITICAL, HIGH, MEDIUM |
+| Log          | Todos                  |
 
 ## 🜄 Formato de alerta
 
 ```yaml
-- id: "ALT-2026-10-09-001"
-  nivel: "HIGH"
-  titulo: "Fallo de anclaje Ethereum"
-  descripcion: "La tx de Merkle root no se confirmó en 30min"
-  accion_requerida: "Revisar gas + reenviar"
-  timestamp: "2026-10-09T12:34:56Z"
-  sello: "◯_● · 51/49/100"
+- id: 'ALT-2026-10-09-001'
+  nivel: 'HIGH'
+  titulo: 'Fallo de anclaje Ethereum'
+  descripcion: 'La tx de Merkle root no se confirmó en 30min'
+  accion_requerida: 'Revisar gas + reenviar'
+  timestamp: '2026-10-09T12:34:56Z'
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Reglas

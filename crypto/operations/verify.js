@@ -29,13 +29,7 @@ export const SEAL = '◯_● · 51/49/100';
  * @param {string} [opciones.hashEsperado]
  * @returns {Promise<{valido, hash_ok, firma_ok, veredicto, sellado}>}
  */
-export async function verify({
-  contenido,
-  firma,
-  publicKey,
-  alg,
-  hashEsperado,
-}) {
+export async function verify({ contenido, firma, publicKey, alg, hashEsperado }) {
   const hashActual = sha3_512(contenido);
   const hashOk = !hashEsperado || hashActual === hashEsperado;
 

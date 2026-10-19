@@ -20,6 +20,7 @@ El cliente es redirigido a la pasarela de Mercado Pago,
 que sí cumple PCI DSS Nivel 1.
 
 **Modelo:** SAQ A (Self-Assessment Questionnaire A)
+
 - Merchant e-commerce que delega pagos a procesador PCI-compliant.
 - No almacenamos datos de tarjeta.
 - No procesamos datos de tarjeta.
@@ -29,15 +30,15 @@ que sí cumple PCI DSS Nivel 1.
 
 Aunque no aplica PCI DSS completo, el SAQ A exige:
 
-| Requisito | Estado |
-|---|---|
-| Redireccionamiento a pasarela PCI-compliant | ✅ |
-| No almacenar datos de tarjeta | ✅ |
-| No procesar datos de tarjeta | ✅ |
-| Aceptar solo canales seguros (TLS 1.3) | ✅ |
-| Mantener políticas de seguridad | ✅ |
-| Gestión de incidentes | 🟡 |
-| Capacitación anual de empleados | 🔴 |
+| Requisito                                   | Estado |
+| ------------------------------------------- | ------ |
+| Redireccionamiento a pasarela PCI-compliant | ✅     |
+| No almacenar datos de tarjeta               | ✅     |
+| No procesar datos de tarjeta                | ✅     |
+| Aceptar solo canales seguros (TLS 1.3)      | ✅     |
+| Mantener políticas de seguridad             | ✅     |
+| Gestión de incidentes                       | 🟡     |
+| Capacitación anual de empleados             | 🔴     |
 
 ## Si en el futuro procesamos pagos
 
@@ -75,11 +76,11 @@ Atribución almacena:
 
 ## Roadmap
 
-| Fase | Mes | Acción |
-|---|---|---|
-| Actual | — | SAQ A (delegación a Mercado Pago) |
-| Fase 2 | 12+ | Evaluar integración directa |
-| Fase 3 | 18+ | Obtener SAQ A-EP |
+| Fase   | Mes | Acción                            |
+| ------ | --- | --------------------------------- |
+| Actual | —   | SAQ A (delegación a Mercado Pago) |
+| Fase 2 | 12+ | Evaluar integración directa       |
+| Fase 3 | 18+ | Obtener SAQ A-EP                  |
 
 ## Referencias
 

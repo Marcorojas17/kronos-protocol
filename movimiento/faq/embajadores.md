@@ -17,15 +17,16 @@
 
 # ❓ FAQ · EMBAJADORES
 
-### *Representantes del pacto*
+### _Representantes del pacto_
 
-### *"Un embajador no manda. Representa."*
+### _"Un embajador no manda. Representa."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E M B A J A D O R E S  ·  ◯_●                       ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -52,13 +54,13 @@ región. Recluta, avala, funda nodos, custodia el Índice Cero local.
 
 ## 🜃 ¿Cuáles son los 5 niveles?
 
-| Nivel | Alcance          | Requisitos          |
-|-------|------------------|---------------------|
-| E-1   | Ciudad           | 10 ahijados         |
-| E-2   | Estado/Región    | 50 ahijados + 1 nodo|
-| E-3   | País             | 200 ahijados + 3 nodos |
-| E-4   | Continente       | 1000 ahijados + 10 nodos |
-| E-5   | Global           | 5000 ahijados + consorcio |
+| Nivel | Alcance       | Requisitos                |
+| ----- | ------------- | ------------------------- |
+| E-1   | Ciudad        | 10 ahijados               |
+| E-2   | Estado/Región | 50 ahijados + 1 nodo      |
+| E-3   | País          | 200 ahijados + 3 nodos    |
+| E-4   | Continente    | 1000 ahijados + 10 nodos  |
+| E-5   | Global        | 5000 ahijados + consorcio |
 
 ## 🜄 ¿Cómo me convierto en embajador?
 
@@ -74,6 +76,7 @@ región. Recluta, avala, funda nodos, custodia el Índice Cero local.
 ## 🜁 ¿Recibo pago?
 
 **No es pago.** Es **recompensa por mérito**:
+
 - Presupuesto del Fondo FLAILP (proporcional)
 - Regalías automáticas por obras referidas
 - Voz permanente en gobernanza
@@ -82,6 +85,7 @@ región. Recluta, avala, funda nodos, custodia el Índice Cero local.
 ## 🜆 ¿Puedo perder el nivel?
 
 **Sí.** Si:
+
 - 2 meses sin cumplir metas → advertencia
 - 3 meses sin cumplir metas → cuarentena
 - 4 meses sin cumplir metas → revocación

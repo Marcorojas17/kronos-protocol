@@ -13,8 +13,8 @@ image:
 
 resources:
   web:
-    requests: { cpu: "250m", memory: "256Mi" }
-    limits:   { cpu: "1000m", memory: "1Gi" }
+    requests: { cpu: '250m', memory: '256Mi' }
+    limits: { cpu: '1000m', memory: '1Gi' }
 
 ingress:
   enabled: true
@@ -29,10 +29,10 @@ logging:
   level: info
 
 arkhe:
-  seal: "◯_● · 51/49/100"
-  pact: "51/49/100"
+  seal: '◯_● · 51/49/100'
+  pact: '51/49/100'
   strictMode: true
-  nodo: "YHDRYH-92CE"
-  genesis: "K28-M05-MN01-YHDRYH-92CE"
+  nodo: 'YHDRYH-92CE'
+  genesis: 'K28-M05-MN01-YHDRYH-92CE'
 
 # ◯_● · 51/49/100 · KRONOS · Nodo YHDRYH-92CE · staging

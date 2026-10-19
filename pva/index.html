@@ -1,284 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PVA · Protocolo Vida Autopoiética</title>
-<meta name="description" content="KRONOS V18 PRO — Sistema de registro, verificación y anclaje digital. MD-33 Motor Dual.">
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --panel: #0f0f0f;
-    --fg: #e8e8e8;
-    --accent: #00ff9d;
-    --dim: #666;
-    --border: #1f1f1f;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: "SF Mono", "Menlo", "Consolas", monospace;
-    line-height: 1.6;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-  }
-  .contenedor { max-width: 820px; margin: 0 auto; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PVA · Protocolo Vida Autopoiética</title>
+    <meta
+      name="description"
+      content="KRONOS V18 PRO — Sistema de registro, verificación y anclaje digital. MD-33 Motor Dual."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --panel: #0f0f0f;
+        --fg: #e8e8e8;
+        --accent: #00ff9d;
+        --dim: #666;
+        --border: #1f1f1f;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+        line-height: 1.6;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+      }
+      .contenedor {
+        max-width: 820px;
+        margin: 0 auto;
+      }
 
-  .cabecera {
-    text-align: center;
-    padding: 2rem 1rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2rem;
-  }
-  .ojo {
-    font-size: 3.5rem;
-    letter-spacing: 0.4rem;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-    text-shadow: 0 0 20px rgba(0,255,157,0.35);
-  }
-  h1 {
-    font-size: 1.5rem;
-    letter-spacing: 0.25rem;
-    color: var(--accent);
-    margin-bottom: 0.4rem;
-  }
-  .subtitulo {
-    color: var(--dim);
-    font-size: 0.8rem;
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-  }
-  .estado {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.3rem 0.8rem;
-    border: 1px solid var(--accent);
-    border-radius: 999px;
-    color: var(--accent);
-    font-size: 0.7rem;
-    letter-spacing: 0.1rem;
-  }
+      .cabecera {
+        text-align: center;
+        padding: 2rem 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+      }
+      .ojo {
+        font-size: 3.5rem;
+        letter-spacing: 0.4rem;
+        color: var(--accent);
+        margin-bottom: 0.8rem;
+        text-shadow: 0 0 20px rgba(0, 255, 157, 0.35);
+      }
+      h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.25rem;
+        color: var(--accent);
+        margin-bottom: 0.4rem;
+      }
+      .subtitulo {
+        color: var(--dim);
+        font-size: 0.8rem;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+      }
+      .estado {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.3rem 0.8rem;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        color: var(--accent);
+        font-size: 0.7rem;
+        letter-spacing: 0.1rem;
+      }
 
-  section {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    background: var(--panel);
-  }
-  h2 {
-    font-size: 0.85rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--border);
-  }
+      section {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: var(--panel);
+      }
+      h2 {
+        font-size: 0.85rem;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-  .decreto {
-    text-align: center;
-    font-style: italic;
-    color: var(--accent);
-    font-size: 1.05rem;
-    padding: 1rem 0;
-    line-height: 1.8;
-  }
+      .decreto {
+        text-align: center;
+        font-style: italic;
+        color: var(--accent);
+        font-size: 1.05rem;
+        padding: 1rem 0;
+        line-height: 1.8;
+      }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  .tarjeta {
-    display: block;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1rem;
-    text-decoration: none;
-    color: var(--fg);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .tarjeta:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .tarjeta .titulo {
-    color: var(--accent);
-    font-size: 0.8rem;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-  .tarjeta .desc {
-    color: var(--dim);
-    font-size: 0.75rem;
-    line-height: 1.5;
-  }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+      .tarjeta {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1rem;
+        text-decoration: none;
+        color: var(--fg);
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .tarjeta:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .tarjeta .titulo {
+        color: var(--accent);
+        font-size: 0.8rem;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .tarjeta .desc {
+        color: var(--dim);
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
 
-  .dato {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.85rem;
-  }
-  .dato:last-child { border-bottom: none; }
-  .dato .clave {
-    color: var(--dim);
-    font-size: 0.7rem;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-  .dato .valor {
-    color: var(--fg);
-    word-break: break-all;
-    text-align: right;
-  }
-  .dato .valor.accent { color: var(--accent); }
+      .dato {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+      }
+      .dato:last-child {
+        border-bottom: none;
+      }
+      .dato .clave {
+        color: var(--dim);
+        font-size: 0.7rem;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+      .dato .valor {
+        color: var(--fg);
+        word-break: break-all;
+        text-align: right;
+      }
+      .dato .valor.accent {
+        color: var(--accent);
+      }
 
-  .ojos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    text-align: center;
-  }
-  .ojos .lado {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1rem;
-  }
-  .ojos .simbolo {
-    font-size: 2rem;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  .ojos .desc {
-    font-size: 0.75rem;
-    color: var(--dim);
-    line-height: 1.5;
-  }
-  @media (max-width: 500px) {
-    .ojos { grid-template-columns: 1fr; }
-  }
+      .ojos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        text-align: center;
+      }
+      .ojos .lado {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1rem;
+      }
+      .ojos .simbolo {
+        font-size: 2rem;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .ojos .desc {
+        font-size: 0.75rem;
+        color: var(--dim);
+        line-height: 1.5;
+      }
+      @media (max-width: 500px) {
+        .ojos {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  footer {
-    text-align: center;
-    color: var(--dim);
-    font-size: 0.7rem;
-    padding: 2rem 1rem 1rem;
-    border-top: 1px solid var(--border);
-    letter-spacing: 0.1rem;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-</style>
-</head>
-<body>
-<div class="contenedor">
+      footer {
+        text-align: center;
+        color: var(--dim);
+        font-size: 0.7rem;
+        padding: 2rem 1rem 1rem;
+        border-top: 1px solid var(--border);
+        letter-spacing: 0.1rem;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="cabecera">
+        <div class="ojo">O_o</div>
+        <h1>PVA · KRONOS</h1>
+        <p class="subtitulo">Protocolo Vida Autopoiética</p>
+        <span class="estado">SISTEMA OPERATIVO · MT01JAAF</span>
+      </header>
 
-  <header class="cabecera">
-    <div class="ojo">O_o</div>
-    <h1>PVA · KRONOS</h1>
-    <p class="subtitulo">Protocolo Vida Autopoiética</p>
-    <span class="estado">SISTEMA OPERATIVO · MT01JAAF</span>
-  </header>
+      <section>
+        <h2>Decreto MD-33</h2>
+        <p class="decreto">
+          Separar la tierra del fuego,<br />
+          lo sutil de lo grosero.
+        </p>
+      </section>
 
-  <section>
-    <h2>Decreto MD-33</h2>
-    <p class="decreto">
-      Separar la tierra del fuego,<br>
-      lo sutil de lo grosero.
-    </p>
-  </section>
+      <section>
+        <h2>Los Dos Ojos</h2>
+        <div class="ojos">
+          <div class="lado">
+            <span class="simbolo">O</span>
+            <p class="desc">
+              El ojo que abarca el Todo.<br />El código fuente del universo.
+            </p>
+          </div>
+          <div class="lado">
+            <span class="simbolo">o</span>
+            <p class="desc">
+              El ojo que enfoca el detalle.<br />La terminal, el carácter, la sintaxis.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <section>
-    <h2>Los Dos Ojos</h2>
-    <div class="ojos">
-      <div class="lado">
-        <span class="simbolo">O</span>
-        <p class="desc">El ojo que abarca el Todo.<br>El código fuente del universo.</p>
-      </div>
-      <div class="lado">
-        <span class="simbolo">o</span>
-        <p class="desc">El ojo que enfoca el detalle.<br>La terminal, el carácter, la sintaxis.</p>
-      </div>
+      <section>
+        <h2>Acceso</h2>
+        <div class="grid">
+          <a class="tarjeta" href="./manifesto.html">
+            <div class="titulo">Manifiesto</div>
+            <div class="desc">
+              Vista renderizada del decreto MD-33 con los datos completos.
+            </div>
+          </a>
+          <a class="tarjeta" href="./web/certificado.html">
+            <div class="titulo">Certificado</div>
+            <div class="desc">
+              Registro de autoría con folios, hash y anclaje en Polygon Amoy.
+            </div>
+          </a>
+          <a class="tarjeta" href="./manifesto.js">
+            <div class="titulo">manifesto.js</div>
+            <div class="desc">
+              Código fuente del decreto. Ejecutable en Node y navegador.
+            </div>
+          </a>
+          <a
+            class="tarjeta"
+            href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-"
+          >
+            <div class="titulo">Repositorio</div>
+            <div class="desc">Código fuente completo del proyecto en GitHub.</div>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certificado · Datos</h2>
+        <div class="dato">
+          <span class="clave">Folio Maestro</span>
+          <span class="valor accent">5204160405358537</span>
+        </div>
+        <div class="dato">
+          <span class="clave">Folio Pericial</span>
+          <span class="valor">KRONOS-MT01JAAF</span>
+        </div>
+        <div class="dato">
+          <span class="clave">SHA</span>
+          <span class="valor">a4ff808e</span>
+        </div>
+        <div class="dato">
+          <span class="clave">Sello TRACE</span>
+          <span class="valor">KRONOS-TRACE-PVA-5204160405358537-MT01JAAF</span>
+        </div>
+        <div class="dato">
+          <span class="clave">SafeCreative</span>
+          <span class="valor">2607146379465</span>
+        </div>
+        <div class="dato">
+          <span class="clave">TX Amoy</span>
+          <span class="valor">0x8ca8e84e</span>
+        </div>
+        <div class="dato">
+          <span class="clave">Red</span>
+          <span class="valor">Polygon Amoy · ChainId 80002</span>
+        </div>
+        <div class="dato">
+          <span class="clave">Fecha</span>
+          <span class="valor">2026-09-05T09:58:28Z</span>
+        </div>
+      </section>
+
+      <footer>
+        Como es arriba, es en el commit.<br /><br />
+        <a href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-"
+          >GitHub</a
+        >
+        · <a href="./web/certificado.html">Certificado</a> ·
+        <a href="./manifesto.html">Manifiesto</a>
+      </footer>
     </div>
-  </section>
 
-  <section>
-    <h2>Acceso</h2>
-    <div class="grid">
-      <a class="tarjeta" href="./manifesto.html">
-        <div class="titulo">Manifiesto</div>
-        <div class="desc">Vista renderizada del decreto MD-33 con los datos completos.</div>
-      </a>
-      <a class="tarjeta" href="./web/certificado.html">
-        <div class="titulo">Certificado</div>
-        <div class="desc">Registro de autoría con folios, hash y anclaje en Polygon Amoy.</div>
-      </a>
-      <a class="tarjeta" href="./manifesto.js">
-        <div class="titulo">manifesto.js</div>
-        <div class="desc">Código fuente del decreto. Ejecutable en Node y navegador.</div>
-      </a>
-      <a class="tarjeta" href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-">
-        <div class="titulo">Repositorio</div>
-        <div class="desc">Código fuente completo del proyecto en GitHub.</div>
-      </a>
-    </div>
-  </section>
-
-  <section>
-    <h2>Certificado · Datos</h2>
-    <div class="dato">
-      <span class="clave">Folio Maestro</span>
-      <span class="valor accent">5204160405358537</span>
-    </div>
-    <div class="dato">
-      <span class="clave">Folio Pericial</span>
-      <span class="valor">KRONOS-MT01JAAF</span>
-    </div>
-    <div class="dato">
-      <span class="clave">SHA</span>
-      <span class="valor">a4ff808e</span>
-    </div>
-    <div class="dato">
-      <span class="clave">Sello TRACE</span>
-      <span class="valor">KRONOS-TRACE-PVA-5204160405358537-MT01JAAF</span>
-    </div>
-    <div class="dato">
-      <span class="clave">SafeCreative</span>
-      <span class="valor">2607146379465</span>
-    </div>
-    <div class="dato">
-      <span class="clave">TX Amoy</span>
-      <span class="valor">0x8ca8e84e</span>
-    </div>
-    <div class="dato">
-      <span class="clave">Red</span>
-      <span class="valor">Polygon Amoy · ChainId 80002</span>
-    </div>
-    <div class="dato">
-      <span class="clave">Fecha</span>
-      <span class="valor">2026-09-05T09:58:28Z</span>
-    </div>
-  </section>
-
-  <footer>
-    Como es arriba, es en el commit.<br><br>
-    <a href="https://github.com/marcorojas17/PVA-Protocolo-Vida-Autopoietica-">GitHub</a> ·
-    <a href="./web/certificado.html">Certificado</a> ·
-    <a href="./manifesto.html">Manifiesto</a>
-  </footer>
-
-</div>
-
-<script src="./manifesto.js"></script>
-</body>
+    <script src="./manifesto.js"></script>
+  </body>
 </html>

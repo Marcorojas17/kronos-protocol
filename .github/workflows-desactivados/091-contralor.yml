@@ -1,7 +1,7 @@
 name: "091 Contralor"
 on:
   schedule:
-    - cron: '0 6 1 * *'
+    - cron: "0 6 1 * *"
   workflow_dispatch:
 jobs:
   auditar:
@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
+        with: { python-version: "3.11" }
       - run: python scripts/fiscal-report.py --contralor
       - uses: actions/upload-artifact@v4
         with:

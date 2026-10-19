@@ -17,15 +17,16 @@
 
 # 🌐 i18n · INTERNACIONALIZACIÓN
 
-### *El legado no se hereda. Se firma. Y se traduce.*
+### _El legado no se hereda. Se firma. Y se traduce._
 
-### *"Ninguna frontera impide el testimonio."*
+### _"Ninguna frontera impide el testimonio."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  i 1 8 n  ·  ◯_●                                     ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,12 +50,12 @@
 
 ## 🜂 Idiomas soportados
 
-| Código | Idioma    | Estado       | Directorio |
-|--------|-----------|--------------|------------|
-| `es`   | Español   | ✅ Canónico  | `es/`      |
-| `en`   | English   | ✅ Traducido | `en/`      |
-| `zh`   | 中文      | ⏳ En curso  | `zh/`      |
-| `nah`  | Náhuatl   | 🌽 Ancestral | `nah/`     |
+| Código | Idioma  | Estado       | Directorio |
+| ------ | ------- | ------------ | ---------- |
+| `es`   | Español | ✅ Canónico  | `es/`      |
+| `en`   | English | ✅ Traducido | `en/`      |
+| `zh`   | 中文    | ⏳ En curso  | `zh/`      |
+| `nah`  | Náhuatl | 🌽 Ancestral | `nah/`     |
 
 ## 🜃 Reglas
 

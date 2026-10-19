@@ -10,9 +10,7 @@
     {
       "name": "enjambre.deliberar-ceremonial",
       "description": "Inicia una deliberación ceremonial",
-      "arguments": [
-        { "name": "propuesta", "required": true }
-      ]
+      "arguments": [{ "name": "propuesta", "required": true }]
     },
     {
       "name": "enjambre.auditar",

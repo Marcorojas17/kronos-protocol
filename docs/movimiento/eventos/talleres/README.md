@@ -17,15 +17,16 @@
 
 # 🎓 TALLERES DE FORMACIÓN
 
-### *Enseñar es firmar el futuro.*
+### _Enseñar es firmar el futuro._
 
-### *"El que enseña, firma dos veces: su obra y la ajena."*
+### _"El que enseña, firma dos veces: su obra y la ajena."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  T A L L E R E S  ·  ◯_●                             ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -51,6 +53,7 @@
 
 **Nivel:** intermedio-avanzado
 **Contenido:**
+
 - FIPS 203 · ML-KEM-1024
 - FIPS 204 · ML-DSA-87
 - FIPS 205 · SLH-DSA-SHAKE-256s
@@ -62,6 +65,7 @@
 
 **Nivel:** intermedio
 **Contenido:**
+
 - Model Context Protocol (MCP)
 - Servidor `marco.mcp`
 - Enjambre de agentes
@@ -73,6 +77,7 @@
 
 **Nivel:** introductorio
 **Contenido:**
+
 - Filosofía Local-First
 - IndexedDB / Dexie
 - Sincronización sin nube
@@ -84,6 +89,7 @@
 
 **Nivel:** avanzado
 **Contenido:**
+
 - Solidity 0.8.24
 - Foundry + Hardhat
 - RegistroGenesis · Pacto5149
@@ -95,6 +101,7 @@
 
 **Nivel:** introductorio
 **Contenido:**
+
 - Filosofía KINTSUGI
 - Ética de la grieta curada
 - Aplicación al legado digital
@@ -104,19 +111,19 @@
 ## 🜃 Formato de taller
 
 ```yaml
-- id: "TAL-YYYY-XXX"
-  titulo: "Crypto PQC"
-  duracion: "4h"
-  nivel: "intermedio-avanzado"
-  instructor: "090-arquitecto + 092-auditor-externo"
-  modalidad: "presencial | remoto | híbrido"
+- id: 'TAL-YYYY-XXX'
+  titulo: 'Crypto PQC'
+  duracion: '4h'
+  nivel: 'intermedio-avanzado'
+  instructor: '090-arquitecto + 092-auditor-externo'
+  modalidad: 'presencial | remoto | híbrido'
   cupo_maximo: 20
   prerequisitos:
-    - "conocer hash SHA-256"
-    - "familiaridad con JS"
-  costo: "gratis para miembros activos"
-  certificado: "sí · firmado + anclado"
-  firma: "◯_● · 51/49/100"
+    - 'conocer hash SHA-256'
+    - 'familiaridad con JS'
+  costo: 'gratis para miembros activos'
+  certificado: 'sí · firmado + anclado'
+  firma: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Reglas

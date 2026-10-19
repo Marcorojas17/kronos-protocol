@@ -11,13 +11,13 @@
 
 ## 🜂 Eventos disponibles
 
-| Evento | Cuándo se dispara |
-|--------|-------------------|
-| `firma.creada` | Tras firmar una obra |
-| `documento.anclado` | Tras anclar a Ethereum |
-| `agente.activado` | Tras quórum 4/5 de reclutamiento |
+| Evento               | Cuándo se dispara                |
+| -------------------- | -------------------------------- |
+| `firma.creada`       | Tras firmar una obra             |
+| `documento.anclado`  | Tras anclar a Ethereum           |
+| `agente.activado`    | Tras quórum 4/5 de reclutamiento |
 | `consenso.alcanzado` | Tras quórum 4/5 de una propuesta |
-| `veto.aplicado` | Tras veto humano |
+| `veto.aplicado`      | Tras veto humano                 |
 
 ## 🜃 Formato del payload
 

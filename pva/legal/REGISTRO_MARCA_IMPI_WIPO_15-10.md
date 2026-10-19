@@ -1,4 +1,5 @@
 # VACÍO 9 - REGISTRO MARCA KRONOS V18 - PLAN PRESIDENCIAL
+
 - Marca: PVA KRONOS V18 + Logo Águila Presidencial estilizado (no oficial)
 - Clase: 9 Software, 41 Educación, 42 SaaS - Clasificación Niza
 - Ruta MX: IMPI - Marca mixta - Costo $3,126 MXN

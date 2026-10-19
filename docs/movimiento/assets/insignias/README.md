@@ -17,15 +17,16 @@
 
 # ⭐ INSIGNIAS POR NIVEL
 
-### *Símbolos de compromiso*
+### _Símbolos de compromiso_
 
-### *"La insignia no se pide. Se gana firmando."*
+### _"La insignia no se pide. Se gana firmando."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  I N S I G N I A S  ·  ◯_●                           ║
@@ -41,6 +42,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

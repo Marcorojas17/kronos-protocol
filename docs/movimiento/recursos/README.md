@@ -17,15 +17,16 @@
 
 # 📚 RECURSOS DEL MOVIMIENTO
 
-### *El kit completo del testigo*
+### _El kit completo del testigo_
 
-### *"Los recursos no adornan. Equipan."*
+### _"Los recursos no adornan. Equipan."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E C U R S O S  ·  ◯_●                             ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Subcarpetas
 
-| Carpeta             | Propósito                              |
-|---------------------|----------------------------------------|
-| `presentaciones/`   | Slides oficiales para eventos          |
-| `plantillas/`       | Plantillas de actas, juramentos        |
-| `imagenes/`         | Logos, insignias, gráficos             |
-| `videos/`           | Tutoriales, ceremonias grabadas        |
-| `guias/`            | Guías paso a paso del sistema          |
+| Carpeta           | Propósito                       |
+| ----------------- | ------------------------------- |
+| `presentaciones/` | Slides oficiales para eventos   |
+| `plantillas/`     | Plantillas de actas, juramentos |
+| `imagenes/`       | Logos, insignias, gráficos      |
+| `videos/`         | Tutoriales, ceremonias grabadas |
+| `guias/`          | Guías paso a paso del sistema   |
 
 ## 🜃 Uso
 

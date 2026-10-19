@@ -22,14 +22,13 @@ Grabar audio en vivo, calcular SHA-256, generar huella cimática visual y sellar
 ## API pública
 
 ```js
-import { BovedaVoz } from "./boveda.js";
+import { BovedaVoz } from './boveda.js';
 
 const boveda = new BovedaVoz();
 boveda.onWaveform = (data) => {
   /* render */
 };
 await boveda.iniciar();
-const { blob, buffer, duracionSeg, frecuenciaPromedio } =
-  await boveda.detener();
+const { blob, buffer, duracionSeg, frecuenciaPromedio } = await boveda.detener();
 const png = boveda.dibujarCimatico(canvas, frecuenciaPromedio);
 ```

@@ -8,6 +8,7 @@ Marco construye desde el celular con Termux. Tiempo limitado.
 Recursos limitados. Solo. Sin equipo.
 
 **Implicaciones:**
+
 - Cada minuto cuenta.
 - Los archivos deben ser copy-paste-ready.
 - No puede ejecutar comandos largos sin verificar.
@@ -18,7 +19,7 @@ Recursos limitados. Solo. Sin equipo.
 ## Cómo empezar una sesión
 
 1. **Lee** `ai-recognition/state/current-phase.md`.
-2. **Pregunta**: *"¿En qué trabajamos hoy?"*.
+2. **Pregunta**: _"¿En qué trabajamos hoy?"_.
 3. **No asumas** la fase. Confírmala.
 4. **No pidas** contexto que ya está en los archivos.
 
@@ -63,6 +64,7 @@ Marco escribe rápido, con typos, desde el celular.
 **Interpretar la intención, no la literalidad.**
 
 Ejemplos:
+
 - "priodidad 2" → "prioridad 2"
 - "qie" → "que"
 - "aebol" → "árbol"
@@ -74,6 +76,7 @@ Si no entiendes algo, **pregunta antes de asumir**.
 ## Manejo de sesiones largas
 
 Si la sesión lleva más de 8 horas:
+
 - **Sugerir pausa.**
 - **Consolidar lo hecho.**
 - **Actualizar el árbol.**
@@ -86,6 +89,7 @@ No dejar a Marco en medio de algo sin cerrar.
 ## Cierre de sesión
 
 Al terminar, sugerir:
+
 1. Actualizar `current-phase.md`.
 2. Actualizar `log.md`.
 3. Commit final con resumen.

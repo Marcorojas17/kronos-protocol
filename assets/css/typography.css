@@ -11,7 +11,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-mono);
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -20,10 +25,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent);
 }
 
-h1 { font-size: 2em; border-bottom: 2px solid var(--accent); padding-bottom: 0.3em; }
-h2 { font-size: 1.4em; }
-h3 { font-size: 1.1em; }
-h4 { font-size: 1em; color: var(--fg-0); }
+h1 {
+  font-size: 2em;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.3em;
+}
+h2 {
+  font-size: 1.4em;
+}
+h3 {
+  font-size: 1.1em;
+}
+h4 {
+  font-size: 1em;
+  color: var(--fg-0);
+}
 
 p {
   margin: 0 0 1em;
@@ -36,9 +52,13 @@ a {
   border-bottom: 1px dashed transparent;
   transition: border-color 150ms;
 }
-a:hover { border-bottom-color: var(--accent); }
+a:hover {
+  border-bottom-color: var(--accent);
+}
 
-code, kbd, samp {
+code,
+kbd,
+samp {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background: var(--bg-2);
@@ -66,15 +86,31 @@ blockquote {
   color: var(--fg-1);
 }
 
-ul, ol {
+ul,
+ol {
   margin: 0 0 1em;
   padding-left: 2em;
   color: var(--fg-0);
 }
 
-li { margin: 0.3em 0; }
+li {
+  margin: 0.3em 0;
+}
 
-strong, b { color: var(--accent); font-weight: 700; }
-em, i { font-style: italic; }
-u { text-decoration: underline; text-decoration-color: var(--accent); }
-mark { background: var(--accent); color: var(--bg-0); }
+strong,
+b {
+  color: var(--accent);
+  font-weight: 700;
+}
+em,
+i {
+  font-style: italic;
+}
+u {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+mark {
+  background: var(--accent);
+  color: var(--bg-0);
+}

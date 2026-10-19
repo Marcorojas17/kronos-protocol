@@ -17,15 +17,16 @@
 
 # 🏆 LEADERBOARD DE EMBAJADORES
 
-### *Ranking por reputación y méritos*
+### _Ranking por reputación y méritos_
 
-### *"El ranking es testimonio, no vanidad."*
+### _"El ranking es testimonio, no vanidad."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  L E A D E R B O A R D  ·  ◯_●                       ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,28 +50,28 @@
 
 ## 🜂 Métricas del Ranking
 
-| Métrica                | Peso |
-|------------------------|------|
-| Ahijados iniciados     | 30%  |
-| Obras firmadas         | 25%  |
-| Nodos fundados         | 20%  |
-| Asistencia a eventos   | 10%  |
-| Contenido publicado    | 10%  |
-| Auditorías limpias     | 5%   |
+| Métrica              | Peso |
+| -------------------- | ---- |
+| Ahijados iniciados   | 30%  |
+| Obras firmadas       | 25%  |
+| Nodos fundados       | 20%  |
+| Asistencia a eventos | 10%  |
+| Contenido publicado  | 10%  |
+| Auditorías limpias   | 5%   |
 
 ## 🜃 Formato de entrada
 
 ```yaml
 - posicion: 1
-  embajador: "Nombre del Embajador"
-  nivel: "E-1 | E-2 | E-3 | E-4 | E-5"
-  region: "Ciudad, País"
+  embajador: 'Nombre del Embajador'
+  nivel: 'E-1 | E-2 | E-3 | E-4 | E-5'
+  region: 'Ciudad, País'
   reputacion: 100
   ahijados: 10
   obras: 100
   nodos: 1
-  insignia: "◉ E-1"
-  hash_publico: "sha3-512:..."
+  insignia: '◉ E-1'
+  hash_publico: 'sha3-512:...'
 ```
 
 ## 🜄 Reglas del Leaderboard

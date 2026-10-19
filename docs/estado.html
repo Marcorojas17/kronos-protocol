@@ -1,106 +1,224 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>◯_● Estado del Nodo · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;padding:24px 16px;max-width:1000px;margin:auto;line-height:1.6;font-size:13px}
-.back{display:inline-block;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;border:1px solid rgba(255,215,0,.4);padding:6px 14px;margin-bottom:24px}
-h1{font-family:Georgia,serif;color:#ffd700;font-size:22px;letter-spacing:.15em;text-align:center;margin:20px 0}
-h2{color:#ffd700;font-size:13px;letter-spacing:.15em;margin:28px 0 12px;border-bottom:1px solid rgba(255,215,0,.3);padding-bottom:6px}
-.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}
-.card{background:rgba(15,15,24,.7);border:1px solid rgba(255,215,0,.25);padding:16px;text-align:center}
-.card .num{font-size:28px;color:#ffd700;font-family:Georgia,serif;display:block;margin-bottom:6px}
-.card .lbl{font-size:10px;color:#6a8f6a;letter-spacing:.15em}
-.item{padding:12px;border:1px solid rgba(255,215,0,.15);background:rgba(15,15,24,.5);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.item.ok{border-left:3px solid #00ff65}
-.item.fail{border-left:3px solid #ff4d6a}
-.item.pending{border-left:3px solid #ffd700}
-.item .name{color:#ffd700;font-size:12px;letter-spacing:.08em}
-.item .role{color:#6a8f6a;font-size:10px;margin-left:12px}
-.item .status{font-size:11px}
-.item .ts{color:#6a8f6a;font-size:10px}
-pre{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.2);padding:10px;font-size:10px;overflow:auto;word-break:break-all;max-height:120px}
-.footer{margin-top:40px;text-align:center;font-size:10px;color:#6a8f6a;letter-spacing:.2em}
-#ts{text-align:center;color:#6a8f6a;font-size:11px;margin-bottom:20px}
-</style>
-</head>
-<body>
-<a href="index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1>⚙ ESTADO DEL NODO YHDRYH-92CE</h1>
-<p id="ts">Cargando datos…</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>◯_● Estado del Nodo · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #030308;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        padding: 24px 16px;
+        max-width: 1000px;
+        margin: auto;
+        line-height: 1.6;
+        font-size: 13px;
+      }
+      .back {
+        display: inline-block;
+        color: #ffd700;
+        text-decoration: none;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        padding: 6px 14px;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        color: #ffd700;
+        font-size: 22px;
+        letter-spacing: 0.15em;
+        text-align: center;
+        margin: 20px 0;
+      }
+      h2 {
+        color: #ffd700;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        margin: 28px 0 12px;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        padding-bottom: 6px;
+      }
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .card {
+        background: rgba(15, 15, 24, 0.7);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        padding: 16px;
+        text-align: center;
+      }
+      .card .num {
+        font-size: 28px;
+        color: #ffd700;
+        font-family: Georgia, serif;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .card .lbl {
+        font-size: 10px;
+        color: #6a8f6a;
+        letter-spacing: 0.15em;
+      }
+      .item {
+        padding: 12px;
+        border: 1px solid rgba(255, 215, 0, 0.15);
+        background: rgba(15, 15, 24, 0.5);
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .item.ok {
+        border-left: 3px solid #00ff65;
+      }
+      .item.fail {
+        border-left: 3px solid #ff4d6a;
+      }
+      .item.pending {
+        border-left: 3px solid #ffd700;
+      }
+      .item .name {
+        color: #ffd700;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+      }
+      .item .role {
+        color: #6a8f6a;
+        font-size: 10px;
+        margin-left: 12px;
+      }
+      .item .status {
+        font-size: 11px;
+      }
+      .item .ts {
+        color: #6a8f6a;
+        font-size: 10px;
+      }
+      pre {
+        background: rgba(255, 215, 0, 0.04);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        padding: 10px;
+        font-size: 10px;
+        overflow: auto;
+        word-break: break-all;
+        max-height: 120px;
+      }
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 10px;
+        color: #6a8f6a;
+        letter-spacing: 0.2em;
+      }
+      #ts {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 11px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1>⚙ ESTADO DEL NODO YHDRYH-92CE</h1>
+    <p id="ts">Cargando datos…</p>
 
-<div class="summary" id="summary"></div>
+    <div class="summary" id="summary"></div>
 
-<h2>▓ AGENTES DEL ENJAMBRE</h2>
-<div id="agentes"></div>
+    <h2>▓ AGENTES DEL ENJAMBRE</h2>
+    <div id="agentes"></div>
 
-<h2>▓ GUARDIANS DEL SISTEMA</h2>
-<div id="guardians"></div>
+    <h2>▓ GUARDIANS DEL SISTEMA</h2>
+    <div id="guardians"></div>
 
-<h2>▓ ESTADO CRIPTOGRÁFICO</h2>
-<div id="crypto"></div>
+    <h2>▓ ESTADO CRIPTOGRÁFICO</h2>
+    <div id="crypto"></div>
 
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · Se actualiza cada 30s</div>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · Se actualiza cada 30s</div>
 
-<script>
-const ESTADO = 'estado/';
-async function cargar() {
-  try {
-    const [a, g] = await Promise.all([
-      fetch(ESTADO + 'agentes.json?' + Date.now()).then(r => r.ok ? r.json() : null),
-      fetch(ESTADO + 'guardians.json?' + Date.now()).then(r => r.ok ? r.json() : null),
-    ]);
-    render(a, g);
-    document.getElementById('ts').textContent = 'Última actualización: ' + new Date().toLocaleString('es-MX');
-  } catch (e) {
-    document.getElementById('ts').textContent = 'Error cargando estado: ' + e.message;
-  }
-}
+    <script>
+      const ESTADO = 'estado/';
+      async function cargar() {
+        try {
+          const [a, g] = await Promise.all([
+            fetch(ESTADO + 'agentes.json?' + Date.now()).then((r) =>
+              r.ok ? r.json() : null,
+            ),
+            fetch(ESTADO + 'guardians.json?' + Date.now()).then((r) =>
+              r.ok ? r.json() : null,
+            ),
+          ]);
+          render(a, g);
+          document.getElementById('ts').textContent =
+            'Última actualización: ' + new Date().toLocaleString('es-MX');
+        } catch (e) {
+          document.getElementById('ts').textContent =
+            'Error cargando estado: ' + e.message;
+        }
+      }
 
-function render(a, g) {
-  const okA = a ? a.ok : 0, totA = a ? a.total : 0;
-  const okG = g ? g.ok : 0, totG = g ? g.total : 0;
+      function render(a, g) {
+        const okA = a ? a.ok : 0,
+          totA = a ? a.total : 0;
+        const okG = g ? g.ok : 0,
+          totG = g ? g.total : 0;
 
-  document.getElementById('summary').innerHTML = `
+        document.getElementById('summary').innerHTML = `
     <div class="card"><span class="num">${okA}/${totA}</span><span class="lbl">AGENTES</span></div>
     <div class="card"><span class="num">${okG}/${totG}</span><span class="lbl">GUARDIANS</span></div>
     <div class="card"><span class="num">53</span><span class="lbl">SELLOS OTS</span></div>
     <div class="card"><span class="num">8</span><span class="lbl">FIRMAS</span></div>
   `;
 
-  if (a) {
-    document.getElementById('agentes').innerHTML = a.agentes.map(x =>
-      `<div class="item ${x.ok?'ok':'fail'}">
+        if (a) {
+          document.getElementById('agentes').innerHTML = a.agentes
+            .map(
+              (x) =>
+                `<div class="item ${x.ok ? 'ok' : 'fail'}">
         <span><span class="name">${x.id.toUpperCase()}</span><span class="role">${x.rol}</span></span>
-        <span class="status">${x.ok?'✅ OK':'❌ fallo'}</span>
-      </div>`
-    ).join('');
-  }
+        <span class="status">${x.ok ? '✅ OK' : '❌ fallo'}</span>
+      </div>`,
+            )
+            .join('');
+        }
 
-  if (g) {
-    document.getElementById('guardians').innerHTML = g.guardians.map(x =>
-      `<div class="item ${x.ok?'ok':'fail'}">
+        if (g) {
+          document.getElementById('guardians').innerHTML = g.guardians
+            .map(
+              (x) =>
+                `<div class="item ${x.ok ? 'ok' : 'fail'}">
         <span><span class="name">${x.nombre}</span><span class="role">${x.desc}</span></span>
-        <span class="status">${x.msg||''}</span>
-      </div>`
-    ).join('');
-  }
+        <span class="status">${x.msg || ''}</span>
+      </div>`,
+            )
+            .join('');
+        }
 
-  document.getElementById('crypto').innerHTML = `
+        document.getElementById('crypto').innerHTML = `
     <div class="item ok"><span class="name">Ed25519 · Pacto 51/49</span><span class="status">✅ verificado</span></div>
     <div class="item ok"><span class="name">ML-DSA-65 · Post-cuántico</span><span class="status">✅ firmado</span></div>
     <div class="item pending"><span class="name">Bitcoin OTS · Post-cuántico</span><span class="status">⏳ pendiente</span></div>
     <div class="item ok"><span class="name">llaves protegidas</span><span class="status">✅ 12 en .arkhe-private/</span></div>
   `;
-}
+      }
 
-cargar();
-setInterval(cargar, 30000);
-</script>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+      cargar();
+      setInterval(cargar, 30000);
+    </script>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

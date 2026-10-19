@@ -45,7 +45,7 @@
     One endpoint. One line of code. Zero excuses.
 ```
 
-<sub align="center">─────  el tiempo deja huella en todo lo que toca  ─────</sub>
+<sub align="center">───── el tiempo deja huella en todo lo que toca ─────</sub>
 
 ---
 
@@ -114,7 +114,7 @@ $ atrib ucion --scan-eu
     ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
-<sub>────────  0x08 · 0x02  ·  el hash del día que cambiará todo  ·  ██████████████  ────────</sub>
+<sub>──────── 0x08 · 0x02 · el hash del día que cambiará todo · ██████████████ ────────</sub>
 
 ---
 
@@ -177,7 +177,7 @@ Y en **287 ms** recibes esto:
     ┗━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-**Post-cuántico desde el día uno.** Cada firma pasa por dos algoritmos en paralelo. La verificación falla si *cualquiera* de las dos falla:
+**Post-cuántico desde el día uno.** Cada firma pasa por dos algoritmos en paralelo. La verificación falla si _cualquiera_ de las dos falla:
 
 ```text
     ┌──────────────────────────────────────────────────────────────────┐
@@ -207,7 +207,7 @@ Y en **287 ms** recibes esto:
 
 Cuando llegue el **Q-day**, tu histórico seguirá verificándose. Nadie más puede decir esto hoy.
 
-<sub>────────  ████ ██████ ███ ████████  ·  ██ ████ ███████  ·  ██████████  ────────</sub>
+<sub>──────── ████ ██████ ███ ████████ · ██ ████ ███████ · ██████████ ────────</sub>
 
 ---
 

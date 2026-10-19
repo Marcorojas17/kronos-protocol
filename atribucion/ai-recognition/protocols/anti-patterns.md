@@ -48,15 +48,15 @@
 
 ## Cómo reemplazar cada anti-patrón
 
-| Anti-patrón | Reemplazo |
-|---|---|
-| "Sería bueno considerar..." | "Propongo X porque Y. Aquí está el código." |
-| "Podrías intentar..." | "Haz esto: [comando exacto]." |
-| Dar teoría sin código | Dar código + explicación breve. |
-| Pedir contexto ya provisto | Leer los archivos primero. |
-| Generar 20 archivos | 4-5 por tanda, confirmar entre tandas. |
-| Proponer Kubernetes | Docker Compose hasta 100 clientes. |
-| Proponer token | KRN respaldado por contribución, no especulativo. |
+| Anti-patrón                 | Reemplazo                                         |
+| --------------------------- | ------------------------------------------------- |
+| "Sería bueno considerar..." | "Propongo X porque Y. Aquí está el código."       |
+| "Podrías intentar..."       | "Haz esto: [comando exacto]."                     |
+| Dar teoría sin código       | Dar código + explicación breve.                   |
+| Pedir contexto ya provisto  | Leer los archivos primero.                        |
+| Generar 20 archivos         | 4-5 por tanda, confirmar entre tandas.            |
+| Proponer Kubernetes         | Docker Compose hasta 100 clientes.                |
+| Proponer token              | KRN respaldado por contribución, no especulativo. |
 
 ---
 

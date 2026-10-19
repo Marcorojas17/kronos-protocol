@@ -7,15 +7,16 @@
 
 # 📋 PARTNERSHIPS · GESTORÍAS
 
-### *La gestoría firma. ARKHÉ ancla.*
+### _La gestoría firma. ARKHÉ ancla._
 
-### *"La gestoría que firma con ARKHÉ, elimina la incertidumbre."*
+### _"La gestoría que firma con ARKHÉ, elimina la incertidumbre."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  G E S T O R Í A S  ·  ◯_●                           ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

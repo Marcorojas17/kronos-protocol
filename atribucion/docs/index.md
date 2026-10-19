@@ -6,31 +6,31 @@
 
 ## Empezar
 
-| Guía | Tiempo | Descripción |
-|---|---|---|
-| [Quickstart](quickstart.md) | 5 min | Integra Atribución en 5 minutos |
-| [API Reference](api/reference.md) | 15 min | Referencia completa del API |
-| [Compliance EU AI Act](compliance/eu-ai-act.md) | 20 min | Cómo cumplir Art. 12, 14, 22 |
+| Guía                                            | Tiempo | Descripción                     |
+| ----------------------------------------------- | ------ | ------------------------------- |
+| [Quickstart](quickstart.md)                     | 5 min  | Integra Atribución en 5 minutos |
+| [API Reference](api/reference.md)               | 15 min | Referencia completa del API     |
+| [Compliance EU AI Act](compliance/eu-ai-act.md) | 20 min | Cómo cumplir Art. 12, 14, 22    |
 
 ---
 
 ## Producto
 
-| Documento | Descripción |
-|---|---|
+| Documento                                       | Descripción                  |
+| ----------------------------------------------- | ---------------------------- |
 | [Pagos — Mercado Pago](payments/mercadopago.md) | Integración con Mercado Pago |
-| [Pagos — MXN](payments/mxn.md) | Conversión y stablecoin MXNB |
-| [KAF](kaf/) | Estándar de certificación |
+| [Pagos — MXN](payments/mxn.md)                  | Conversión y stablecoin MXNB |
+| [KAF](kaf/)                                     | Estándar de certificación    |
 
 ---
 
 ## Técnico
 
-| Documento | Descripción |
-|---|---|
-| [Seguridad](security/) | Políticas y compliance |
-| [Mesh](mesh/) | Malla P2P sin servidores |
-| [Engine](engine/) | Motor de agentes + MADRE |
+| Documento              | Descripción              |
+| ---------------------- | ------------------------ |
+| [Seguridad](security/) | Políticas y compliance   |
+| [Mesh](mesh/)          | Malla P2P sin servidores |
+| [Engine](engine/)      | Motor de agentes + MADRE |
 
 ---
 

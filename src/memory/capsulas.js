@@ -25,8 +25,17 @@ export const SEAL = '◯_● · 51/49/100';
  * @param {string} [opciones.autor]
  * @returns {object}
  */
-export function crearCapsula({ contexto, decision, autor = 'Marco Antonio Rojas Valdovinos' }) {
-  const payload = JSON.stringify({ contexto, decision, autor, ts: new Date().toISOString() });
+export function crearCapsula({
+  contexto,
+  decision,
+  autor = 'Marco Antonio Rojas Valdovinos',
+}) {
+  const payload = JSON.stringify({
+    contexto,
+    decision,
+    autor,
+    ts: new Date().toISOString(),
+  });
   const hash = sha3_512(payload);
 
   return {

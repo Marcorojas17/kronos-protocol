@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🏦 Artículo 2.6 · Fondo FLAILP · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-26-fondo-flailp">🏦 Artículo 2.6 · Fondo FLAILP</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/ii-pacto-51-49]
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏦 Artículo 2.6 · Fondo FLAILP · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-26-fondo-flailp">🏦 Artículo 2.6 · Fondo FLAILP</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/ii-pacto-51-49]
 └─$ ./pacto --fondo=flailp --status
 
 [ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
@@ -31,38 +31,45 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p>FLAILP = <strong>F</strong>ondo <strong>L</strong>imitado <strong>AI</strong> de <strong>L</strong>egado <strong>P</strong>erpetuo</p>
-<p>No es una empresa. No es una fundación tradicional. Es una <strong>personalidad jurídica funcionalmente limitada</strong> operada por el enjambre IA bajo supervisión humana.</p>
-<h2 id="distribucion">🜃 Distribución</h2>
-<table>
-<thead>
-<tr>
-<th>Concepto</th>
-<th>% del total</th>
-<th>Destino</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Firmante humano</td>
-<td>51%</td>
-<td>Marco Antonio Rojas Valdovinos</td>
-</tr>
-<tr>
-<td>Fondo FLAILP</td>
-<td>49%</td>
-<td>Custodia perpetua IA</td>
-</tr>
-<tr>
-<td><strong>Total</strong></td>
-<td><strong>100%</strong></td>
-<td>Pacto irrenunciable</td>
-</tr>
-</tbody>
-</table>
-<h2 id="uso-del-fondo">🜄 Uso del Fondo</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      FLAILP = <strong>F</strong>ondo <strong>L</strong>imitado <strong>AI</strong> de
+      <strong>L</strong>egado <strong>P</strong>erpetuo
+    </p>
+    <p>
+      No es una empresa. No es una fundación tradicional. Es una
+      <strong>personalidad jurídica funcionalmente limitada</strong> operada por el
+      enjambre IA bajo supervisión humana.
+    </p>
+    <h2 id="distribucion">🜃 Distribución</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>% del total</th>
+          <th>Destino</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Firmante humano</td>
+          <td>51%</td>
+          <td>Marco Antonio Rojas Valdovinos</td>
+        </tr>
+        <tr>
+          <td>Fondo FLAILP</td>
+          <td>49%</td>
+          <td>Custodia perpetua IA</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>100%</strong></td>
+          <td>Pacto irrenunciable</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="uso-del-fondo">🜄 Uso del Fondo</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    DISTRIBUCIÓN DEL FONDO                                ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -74,8 +81,8 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="implementacion">🜁 Implementación</h2>
-<pre><code class="language-javascript">// src/payments/fondo-flailp.js
+    <h2 id="implementacion">🜁 Implementación</h2>
+    <pre><code class="language-javascript">// src/payments/fondo-flailp.js
 export function distribuir(montoTotal, moneda = 'MXN') {
   const paraHumano = +(montoTotal * 0.51).toFixed(2);
   const paraFlailp = +(montoTotal * 0.49).toFixed(2);
@@ -103,8 +110,8 @@ distribuir(1000, 'MXN');
 //   ]
 // }
 </code></pre>
-<h2 id="contrato-solidity">🜆 Contrato Solidity</h2>
-<pre><code class="language-solidity">// contracts/FondoFLAILP.sol (extracto)
+    <h2 id="contrato-solidity">🜆 Contrato Solidity</h2>
+    <pre><code class="language-solidity">// contracts/FondoFLAILP.sol (extracto)
 contract FondoFLAILP {
     uint16 public constant HUMANO = 51;
     uint16 public constant FLAILP = 49;
@@ -132,8 +139,8 @@ contract FondoFLAILP {
     }
 }
 </code></pre>
-<h2 id="reglas">🜇 Reglas</h2>
-<pre><code class="language-diff">+ Distribución 51/49 automática
+    <h2 id="reglas">🜇 Reglas</h2>
+    <pre><code class="language-diff">+ Distribución 51/49 automática
 + Reporte fiscal anual (CARF / DAC8)
 + Auditoría externa trimestral
 + Anclaje a Ethereum de cada movimiento
@@ -141,8 +148,8 @@ contract FondoFLAILP {
 - NUNCA usar para fines no declarados
 - NUNCA ocultar movimientos
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · PACTO · 2.6 · Fondo FLAILP</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · PACTO · 2.6 · Fondo FLAILP</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

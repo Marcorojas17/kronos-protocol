@@ -17,15 +17,16 @@
 
 # 📂 CATEGORÍAS DE NOTICIAS
 
-### *Cómo se organizan las noticias del movimiento*
+### _Cómo se organizan las noticias del movimiento_
 
-### *"Una noticia sin categoría es ruido. Con categoría, es crónica."*
+### _"Una noticia sin categoría es ruido. Con categoría, es crónica."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C A T E G O R Í A S  ·  ◯_●                         ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -49,21 +51,27 @@
 ## 🜂 Las 6 categorías canónicas
 
 ### 🧬 génesis
+
 Noticias sobre fundación, registros Safe Creative, anclajes iniciales.
 
 ### 🩹 kintsugi
+
 Noticias ceremoniales y filosóficas. El sello oficial.
 
 ### 👥 fundadores
+
 Hitos de miembros: primeros 100, primeros 1000, nuevos hitos.
 
 ### 🌐 consorcio
+
 Expansión territorial, nuevos nodos, partnerships internacionales.
 
 ### 🔐 cripto
+
 Actualizaciones de seguridad, PQC, nuevos algoritmos, auditorías.
 
 ### 📖 narrativa
+
 Mitología, simbolismo, nuevas historias del movimiento.
 
 ## 🜃 Estructura de archivo
@@ -90,6 +98,7 @@ noticias/
 ## 🜄 Formato RSS
 
 Cada categoría genera su propio feed RSS:
+
 ```
 https://arkhe.zero/movimiento/noticias/categorias/[categoria]/rss.xml
 ```

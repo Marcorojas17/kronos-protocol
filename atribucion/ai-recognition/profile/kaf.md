@@ -9,12 +9,12 @@ y preparación post-cuántica.
 
 ## Los 4 niveles
 
-| Nivel | Nombre | Requisitos |
-|---|---|---|
-| **KAF-1** | Verified | DID + firma + log inmutable |
+| Nivel     | Nombre    | Requisitos                               |
+| --------- | --------- | ---------------------------------------- |
+| **KAF-1** | Verified  | DID + firma + log inmutable              |
 | **KAF-2** | Compliant | + Contrato de Atribución + anclaje + TSA |
-| **KAF-3** | Assured | + ISO 27001 + SOC 2 + HSM |
-| **KAF-4** | Sovereign | + PQC completo + NOM-151 + ISO 42001 |
+| **KAF-3** | Assured   | + ISO 27001 + SOC 2 + HSM                |
+| **KAF-4** | Sovereign | + PQC completo + NOM-151 + ISO 42001     |
 
 ## Los 12 dominios de control
 

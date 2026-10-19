@@ -10,11 +10,12 @@
 
 # ⚙️ OPERACIÓN · RUTINA DEL SISTEMA
 
-### *Cada día se firma. Cada firma se ancla.*
+### _Cada día se firma. Cada firma se ancla._
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  O P E R A C I Ó N  ·  ◯_●                           ║
@@ -30,6 +31,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -38,13 +40,13 @@
 
 ## 🜂 Rutina Diaria
 
-| Hora  | Tarea                          | Módulo              |
-|-------|--------------------------------|---------------------|
-| 06:00 | Verificar Índice Cero          | `index-cero-verify` |
-| 08:00 | Auditoría PQC                  | `pqc-audit`         |
-| 12:00 | Backup local                   | `storage-dexie`     |
-| 18:00 | Sync Merkle roots              | `anclaje-ethereum`  |
-| 23:59 | Anclaje Ethereum (si cambios)  | `timestamping`      |
+| Hora  | Tarea                         | Módulo              |
+| ----- | ----------------------------- | ------------------- |
+| 06:00 | Verificar Índice Cero         | `index-cero-verify` |
+| 08:00 | Auditoría PQC                 | `pqc-audit`         |
+| 12:00 | Backup local                  | `storage-dexie`     |
+| 18:00 | Sync Merkle roots             | `anclaje-ethereum`  |
+| 23:59 | Anclaje Ethereum (si cambios) | `timestamping`      |
 
 ## 🜃 Rituales
 

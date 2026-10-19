@@ -1,89 +1,223 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>⚜ Códice Secreto · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
-#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
-.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
-h1{font-family:'Cinzel',serif;font-size:36px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
-.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
-.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.2);padding:22px;transition:all .3s;text-decoration:none;color:inherit}
-.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,215,0,.15)}
-.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px}
-.card .t{color:#00ff41;font-size:16px;font-weight:bold;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.1em}
-.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
-.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:22px;margin-bottom:18px;font-size:12px;line-height:1.9}
-footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
-footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
-@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:22px}}</style>
-</head>
-<body>
-<canvas id="bg"></canvas>
-<div class="wrap">
-<h1>Códice Secreto</h1>
-<div class="sub">ACCESO RESERVADO · NIVEL 5</div>
-<div class="cita">"Lo que no se muestra, se firma igual."</div>
-<div class="panel">
-<strong>⚜ Códice Secreto · Acceso Reservado</strong><br><br>
-Este documento constituye el núcleo reservado del legado ARKHÉ ZERO. Contiene decisiones, protocolos y rituales que no están destinados al público general.
-<br><br>
-Para acceder al contenido, se requiere:
-<br>▸ Firma criptográfica válida del titular
-<br>▸ Nivel de acceso 5 o superior
-<br>▸ Verificación del Índice Cero
-</div>
-<div class="grid">
-<a class="card" href="../DIARIO-DE-DECISIONES.md"><div class="n">RESERVADO</div><div class="t">📖 Diario de Decisiones</div><div class="d">Firmado SHA-256</div></a>
-<a class="card" href="../docs/ARQUITECTURA-VIVA.html"><div class="n">TÉCNICO</div><div class="t">🏗 Arquitectura Viva</div><div class="d">Tesis estructural</div></a>
-<a class="card" href="../legado/manifiesto/"><div class="n">NARRATIVA</div><div class="t">📜 Manifiesto</div><div class="d">Declaración fundacional</div></a>
-<a class="card" href="../verificar.html"><div class="n">VERIFICACIÓN</div><div class="t">🔍 Verificar Acceso</div><div class="d">Comprobante criptográfico</div></a>
-</div>
-<footer><span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca · 2026<br>NODO YHDRYH-92CE · SCDR-001</footer>
-</div>
-<script>
-const c=document.getElementById('bg'),ctx=c.getContext('2d');
-let W,H;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
-rs();addEventListener('resize',rs);
-const runas='ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ◯_●'.split('');
-const fl=Array.from({length:60},()=>({
-  x:Math.random()*W,
-  y:H+50,
-  vy:-(0.3+Math.random()*0.8),
-  vx:(Math.random()-0.5)*0.3,
-  size:14+Math.random()*18,
-  op:0.1+Math.random()*0.4,
-  runa:runas[Math.floor(Math.random()*runas.length)],
-  rot:(Math.random()-0.5)*0.02
-}));
-function draw(){
-  ctx.fillStyle='rgba(3,3,8,0.08)';
-  ctx.fillRect(0,0,W,H);
-  for(const f of fl){
-    f.y+=f.vy;
-    f.x+=f.vx;
-    f.rot+=0.0005;
-    ctx.save();
-    ctx.translate(f.x,f.y);
-    ctx.rotate(f.rot);
-    ctx.font=f.size+'px serif';
-    ctx.fillStyle=`rgba(255,215,0,${f.op})`;
-    ctx.shadowColor='#ffd700';ctx.shadowBlur=8;
-    ctx.fillText(f.runa,0,0);
-    ctx.restore();
-    if(f.y<-50){
-      f.y=H+50;
-      f.x=Math.random()*W;
-      f.runa=runas[Math.floor(Math.random()*runas.length)];
-    }
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>⚜ Códice Secreto · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #030308;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: auto;
+        padding: 60px 20px;
+        position: relative;
+        z-index: 1;
+      }
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-size: 36px;
+        letter-spacing: 0.25em;
+        color: #ffd700;
+        text-align: center;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        margin-bottom: 15px;
+      }
+      .sub {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        margin-bottom: 40px;
+      }
+      .cita {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-style: italic;
+        color: #ffd700;
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .card {
+        background: rgba(15, 15, 24, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        padding: 22px;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+      }
+      .card:hover {
+        border-color: #ffd700;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 40px rgba(255, 215, 0, 0.15);
+      }
+      .card .n {
+        color: #ffd700;
+        font-size: 9px;
+        letter-spacing: 0.3em;
+        margin-bottom: 8px;
+      }
+      .card .t {
+        color: #00ff41;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.1em;
+      }
+      .card .d {
+        color: #8ea88e;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .panel {
+        background: rgba(15, 15, 24, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 22px;
+        margin-bottom: 18px;
+        font-size: 12px;
+        line-height: 1.9;
+      }
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 215, 0, 0.15);
+      }
+      footer .s {
+        color: #ffd700;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.3em;
+      }
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="wrap">
+      <h1>Códice Secreto</h1>
+      <div class="sub">ACCESO RESERVADO · NIVEL 5</div>
+      <div class="cita">"Lo que no se muestra, se firma igual."</div>
+      <div class="panel">
+        <strong>⚜ Códice Secreto · Acceso Reservado</strong><br /><br />
+        Este documento constituye el núcleo reservado del legado ARKHÉ ZERO. Contiene
+        decisiones, protocolos y rituales que no están destinados al público general.
+        <br /><br />
+        Para acceder al contenido, se requiere:
+        <br />▸ Firma criptográfica válida del titular <br />▸ Nivel de acceso 5 o
+        superior <br />▸ Verificación del Índice Cero
+      </div>
+      <div class="grid">
+        <a class="card" href="../DIARIO-DE-DECISIONES.md"
+          ><div class="n">RESERVADO</div>
+          <div class="t">📖 Diario de Decisiones</div>
+          <div class="d">Firmado SHA-256</div></a
+        >
+        <a class="card" href="../docs/ARQUITECTURA-VIVA.html"
+          ><div class="n">TÉCNICO</div>
+          <div class="t">🏗 Arquitectura Viva</div>
+          <div class="d">Tesis estructural</div></a
+        >
+        <a class="card" href="../legado/manifiesto/"
+          ><div class="n">NARRATIVA</div>
+          <div class="t">📜 Manifiesto</div>
+          <div class="d">Declaración fundacional</div></a
+        >
+        <a class="card" href="../verificar.html"
+          ><div class="n">VERIFICACIÓN</div>
+          <div class="t">🔍 Verificar Acceso</div>
+          <div class="d">Comprobante criptográfico</div></a
+        >
+      </div>
+      <footer>
+        <span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca ·
+        2026<br />NODO YHDRYH-92CE · SCDR-001
+      </footer>
+    </div>
+    <script>
+      const c = document.getElementById('bg'),
+        ctx = c.getContext('2d');
+      let W, H;
+      function rs() {
+        W = c.width = innerWidth;
+        H = c.height = innerHeight;
+      }
+      rs();
+      addEventListener('resize', rs);
+      const runas = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ◯_●'.split('');
+      const fl = Array.from({ length: 60 }, () => ({
+        x: Math.random() * W,
+        y: H + 50,
+        vy: -(0.3 + Math.random() * 0.8),
+        vx: (Math.random() - 0.5) * 0.3,
+        size: 14 + Math.random() * 18,
+        op: 0.1 + Math.random() * 0.4,
+        runa: runas[Math.floor(Math.random() * runas.length)],
+        rot: (Math.random() - 0.5) * 0.02,
+      }));
+      function draw() {
+        ctx.fillStyle = 'rgba(3,3,8,0.08)';
+        ctx.fillRect(0, 0, W, H);
+        for (const f of fl) {
+          f.y += f.vy;
+          f.x += f.vx;
+          f.rot += 0.0005;
+          ctx.save();
+          ctx.translate(f.x, f.y);
+          ctx.rotate(f.rot);
+          ctx.font = f.size + 'px serif';
+          ctx.fillStyle = `rgba(255,215,0,${f.op})`;
+          ctx.shadowColor = '#ffd700';
+          ctx.shadowBlur = 8;
+          ctx.fillText(f.runa, 0, 0);
+          ctx.restore();
+          if (f.y < -50) {
+            f.y = H + 50;
+            f.x = Math.random() * W;
+            f.runa = runas[Math.floor(Math.random() * runas.length)];
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    </script>
+  </body>
 </html>

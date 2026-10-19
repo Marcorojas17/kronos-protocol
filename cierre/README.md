@@ -34,7 +34,7 @@
 [ ✓✓ ] CAPA 6 · CIERRE · OPERATIVA · ◯_● · 51/49/100
 ```
 
-> *"El cierre no es muerte. Es firma final."*
+> _"El cierre no es muerte. Es firma final."_
 
 ## 🜂 Flujo del Cierre
 

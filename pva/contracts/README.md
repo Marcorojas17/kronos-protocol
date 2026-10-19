@@ -11,10 +11,10 @@
 
 ## 📜 Contratos
 
-| Archivo | Red | Función | Folio |
-|---------|-----|---------|-------|
-| `KronosPVA.sol` | Sepolia | Registro folio + génesis + sello + perito | 5204160405358537 |
-| `KronosMarketplace.sol` | Sepolia | Venta $49 / $199 con folio en event | 5204160405358537 |
+| Archivo                 | Red     | Función                                   | Folio            |
+| ----------------------- | ------- | ----------------------------------------- | ---------------- |
+| `KronosPVA.sol`         | Sepolia | Registro folio + génesis + sello + perito | 5204160405358537 |
+| `KronosMarketplace.sol` | Sepolia | Venta $49 / $199 con folio en event       | 5204160405358537 |
 
 ## 🚀 Deploy - Orden pericial
 
@@ -78,3 +78,4 @@ Fecha cierta NOM-151 Art.8: block.timestamp de TX 0x8ca8e84e... = fecha cierta i
 TX maestra: https://sepolia.etherscan.io/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970eContrato: https://sepolia.etherscan.io/address/0x1234567890abcdef1234567890abcdef12345678API: https://api.kronos-legado.digital/v1/api/verifica/5204160405358537Web: https://kronos-legado.digital/v/5204160405358537FDV: https://verifica.fdv.mx/folio/5204160405358537Safe: https://www.safecreative.org/work/2607146379465🛡️ Seguridad ISO A8.3
 private_keys/ en .gitignore + KMSPRIVATE_KEY solo en .env no commiteadoPerito wallet = 0xPeritoFolio5204160405358537 - owner únicoEstado: DICTAMEN 10/10 - CONTRATO LISTO - Folio 5204160405358537 activo - 2026-09-04
 Perito: kronosproyecto@hotmail.com | Sello: KRONOS-TRACE-PVA-5204160405358537
+```

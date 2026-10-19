@@ -17,15 +17,16 @@
 
 # 🔨 CASO 3 · EL CONSTRUCTOR
 
-### *Aquel que contribuye al código del sistema*
+### _Aquel que contribuye al código del sistema_
 
-### *"El que construye no habla. Firma commits."*
+### _"El que construye no habla. Firma commits."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O N S T R U C T O R  ·  ◯_●                       ║
@@ -44,6 +45,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -60,15 +62,15 @@ que escribe queda anclada al repositorio y eventualmente al Índice Cero.
 
 ## 🜃 Áreas de contribución
 
-| Área            | Contribución                                    |
-|-----------------|-------------------------------------------------|
-| `crypto/`       | Implementación de primitivas PQC               |
-| `cimiento/`     | Anclaje Ethereum · storage local                |
-| `provenance/`   | C2PA · watermarking · timestamping              |
-| `agents/`       | Enjambre · consenso · protocolos                |
-| `apps/`         | Web · HTML · CSS · JS                           |
-| `docs/`         | Documentación · ADRs · guías                    |
-| `contracts/`    | Solidity · smart contracts                      |
+| Área          | Contribución                       |
+| ------------- | ---------------------------------- |
+| `crypto/`     | Implementación de primitivas PQC   |
+| `cimiento/`   | Anclaje Ethereum · storage local   |
+| `provenance/` | C2PA · watermarking · timestamping |
+| `agents/`     | Enjambre · consenso · protocolos   |
+| `apps/`       | Web · HTML · CSS · JS              |
+| `docs/`       | Documentación · ADRs · guías       |
+| `contracts/`  | Solidity · smart contracts         |
 
 ## 🜄 Requisitos técnicos
 
@@ -85,21 +87,21 @@ que escribe queda anclada al repositorio y eventualmente al Índice Cero.
 
 ## 🜁 Testimonio (placeholder)
 
-> *"No fundé el movimiento. No prediqué. Solo escribí código.
+> _"No fundé el movimiento. No prediqué. Solo escribí código.
 > Pero cada línea que escribí está firmada, anclada y verificable.
-> Ese es mi testimonio."*
+> Ese es mi testimonio."_
 >
-> — *[pendiente]*
+> — _[pendiente]_
 
 ## 🜆 Métricas del Constructor
 
-| Métrica                  | Meta E-3 |
-|--------------------------|----------|
-| Commits firmados         | ≥ 100    |
-| PRs merged               | ≥ 10     |
-| Módulos contribuidos     | ≥ 3      |
-| Auditorías de código     | ≥ 5      |
-| Reputación técnica       | ≥ 98     |
+| Métrica              | Meta E-3 |
+| -------------------- | -------- |
+| Commits firmados     | ≥ 100    |
+| PRs merged           | ≥ 10     |
+| Módulos contribuidos | ≥ 3      |
+| Auditorías de código | ≥ 5      |
+| Reputación técnica   | ≥ 98     |
 
 ## 🜇 Firma
 

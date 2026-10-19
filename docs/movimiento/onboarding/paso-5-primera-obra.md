@@ -32,4 +32,5 @@
 **[Paso 6 · Comunidad →](paso-6-comunidad.md)**
 
 ---
+
 `◯_● · 51/49/100 · onboarding-5`

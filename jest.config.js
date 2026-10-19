@@ -4,15 +4,8 @@
 
 export default {
   testEnvironment: 'node',
-  testMatch: [
-    '**/tests/**/*.test.js',
-    '**/tests/**/*.spec.js',
-  ],
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/dist/',
-    '/archive/',
-  ],
+  testMatch: ['**/tests/**/*.test.js', '**/tests/**/*.spec.js'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/archive/'],
   collectCoverage: true,
   collectCoverageFrom: [
     'crypto/**/*.js',

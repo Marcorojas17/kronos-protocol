@@ -1,153 +1,331 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>◯_● ARKHÉ ZERO · Módulos</title>
-<style>
-body{background:#050507;color:#c8ffc8;font-family:monospace;padding:10px;margin:0}
-h1{color:#ffd700;font-size:18px;text-align:center;letter-spacing:.2em;margin:8px 0}
-.t{text-align:center;color:#6a8f6a;font-size:9px;margin-bottom:10px;letter-spacing:.1em}
-.c{background:#0a0a0f;border:1px solid rgba(0,255,65,.3);padding:10px;margin-bottom:10px;border-radius:6px}
-.c h2{color:#00ff41;font-size:11px;letter-spacing:.15em;margin:0 0 8px 0}
-canvas{display:block;margin:auto;background:#000;border:1px solid rgba(0,255,65,.2)}
-button{background:transparent;border:1px solid #00ff41;color:#00ff41;padding:6px 10px;font-family:inherit;font-size:9px;border-radius:3px;margin:2px;text-transform:uppercase}
-button:active{background:#00ff41;color:#000}
-.g{border-color:#ffd700;color:#ffd700}
-.rd{border-color:#ff3355;color:#ff3355}
-.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}
-.agc{background:#000;border:1px solid rgba(0,255,65,.3);padding:6px;border-radius:3px;text-align:center;font-size:8px;cursor:pointer}
-.agc:active{border-color:#ffd700;background:rgba(255,215,0,.1)}
-.agc .ic{font-size:16px;display:block}
-.agc .nm{color:#ffd700;font-size:8px;margin-top:3px;letter-spacing:.05em}
-.agc .ro{color:#6a8f6a;font-size:7px;margin-top:2px}
-.log{background:#000;border:1px solid rgba(0,255,65,.3);padding:8px;height:120px;overflow-y:auto;font-size:9px;line-height:1.5;border-radius:3px}
-.lg{color:#00ff41}
-.le{color:#ff3355}
-.ly{color:#ffd700}
-.ld{color:#6a8f6a}
-</style></head><body>
-<h1>◯_● ARKHÉ ZERO · MÓDULOS</h1>
-<div class="t">51% HUMANO · 49% IA · 100% REAL</div>
-<div class="c"><h2>🤖 ENJAMBRE ARKHÉ · 13 AGENTES</h2>
-<div class="ag" id="enjambre"></div>
-</div>
-<div class="c" style="border-color:#ff3355"><h2 style="color:#ff3355">🎯 AGENTE 096 · EL CAZADOR</h2>
-<div class="log" id="hunterlog">
-<div class="ld">> [HUNTER-096] En espera...</div>
-</div>
-<div style="text-align:center;margin-top:6px">
-<button class="rd" onclick="cazar()">🎯 Cazar</button>
-<button onclick="escanear()">🔍 Escanear</button>
-</div>
-</div>
-<div class="c"><h2>📊 MÉTRICAS EN VIVO</h2>
-<canvas id="met" width="280" height="140"></canvas>
-<div class="t" id="metlbl">Firmas: 0 · Amenazas: 0 · Uptime: --</div>
-</div>
-<div class="c"><h2>📜 LOG DEL SISTEMA · TIEMPO REAL</h2>
-<div class="log" id="syslog">
-<div class="lg">> Sistema iniciado · Nodo YHDRYH-92CE</div>
-<div class="lg">> Pacto 51/49/100 activo</div>
-<div class="lg">> 13 agentes en línea</div>
-</div></div>
-<div class="t">◯_● · SCDR-001 · "El legado no se hereda. Se firma."</div>
-<script>
-var AG=[
- {i:'🌅',n:'CUICATL',r:'Canto'},
- {i:'📚',n:'TEMACHTIANI',r:'Maestro'},
- {i:'👁️',n:'TLACHIXQUI',r:'Auditor'},
- {i:'🧠',n:'TLAMATINI',r:'Sabio'},
- {i:'🔢',n:'TLAPOHUALLI',r:'Contador'},
- {i:'⏳',n:'TONAL',r:'Notario'},
- {i:'🏗️',n:'090 ARQ',r:'Estructura'},
- {i:'📊',n:'091 CTRL',r:'Auditoría'},
- {i:'🔍',n:'092 AUD',r:'Externo'},
- {i:'📜',n:'093 REL',r:'Informes'},
- {i:'📖',n:'094 BIB',r:'Indexar'},
- {i:'🗺️',n:'095 CAR',r:'Mapa'},
- {i:'🎯',n:'096 HUNTER',r:'Caza'}
-];
-var enj=document.getElementById('enjambre');
-AG.forEach(function(a){
- var d=document.createElement('div');
- d.className='agc';
- d.innerHTML='<span class="ic">'+a.i+'</span><span class="nm">'+a.n+'</span><span class="ro">'+a.r+'</span>';
- d.onclick=function(){d.style.background='rgba(255,215,0,.15)';setTimeout(function(){d.style.background='';},500);};
- enj.appendChild(d);
-});
-function L(msg,cls){
- var log=document.getElementById('hunterlog');
- var t=document.createElement('div');
- t.className=cls||'lg';
- t.textContent=msg;
- log.appendChild(t);
- log.scrollTop=log.scrollHeight;
-}
-function cazar(){
- document.getElementById('hunterlog').innerHTML='';
- L('> [HUNTER-096] Iniciando cacería...','ly');
- setTimeout(function(){L('> [HUNTER-096] Analizando superficie...','lg');},600);
- setTimeout(function(){L('> [HUNTER-096] Verificando 13 agentes...','lg');},1200);
- setTimeout(function(){L('> [HUNTER-096] ✓ 0 amenazas detectadas','lg');},1800);
- setTimeout(function(){L('> [HUNTER-096] ► Simulando ataque...','le');},2400);
- setTimeout(function(){L('> [HUNTER-096] ✅ Bloqueado por ML-KEM-1024','lg');},3000);
- setTimeout(function(){L('> ◯_● CACERÍA COMPLETA · 51/49/100','ly');},3600);
-}
-function escanear(){
- document.getElementById('hunterlog').innerHTML='';
- L('> [HUNTER-096] Escaneo de puertos local...','ly');
- setTimeout(function(){L('> Puerto 22 (SSH) · cerrado','ld');},500);
- setTimeout(function(){L('> Puerto 80 (HTTP) · ABIERTO','lg');},900);
- setTimeout(function(){L('> Puerto 443 (HTTPS) · cerrado','ld');},1300);
- setTimeout(function(){L('> Puerto 8080 (ARKHÉ) · ABIERTO','lg');},1700);
- setTimeout(function(){L('> ◯_● Escaneo completo','ly');},2300);
-}
-</script>
-<script>
-var f=0,a=0,t0=Date.now();
-function drawMet(){
- var c=document.getElementById('met'),ctx=c.getContext('2d');
- var W=c.width,H=c.height;
- ctx.fillStyle='rgba(0,0,0,.15)';ctx.fillRect(0,0,W,H);
- ctx.strokeStyle='rgba(0,255,65,.15)';
- for(var x=0;x<W;x+=20){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
- for(var y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
- var tm=Date.now()/1000;
- ctx.strokeStyle='#00ff41';ctx.lineWidth=2;ctx.beginPath();
- for(var x=0;x<W;x++){var y=H/2+30*Math.sin(x*.04+tm)+15*Math.sin(x*.08+tm*2);x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
- ctx.stroke();
- ctx.strokeStyle='#ffd700';ctx.lineWidth=1;ctx.beginPath();
- for(var x=0;x<W;x++){var y=H/2+20*Math.cos(x*.03+tm*.7);x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
- ctx.stroke();
- ctx.beginPath();ctx.arc(W-20,15,5,0,Math.PI*2);ctx.fillStyle='#00ff41';ctx.shadowColor='#00ff41';ctx.shadowBlur=10;ctx.fill();ctx.shadowBlur=0;
- requestAnimationFrame(drawMet);
-}
-drawMet();
-var S=[
- '> Verificando Índice Cero...',
- '> SHA-256 válido',
- '> Blockchain sincronizada',
- '> 13 agentes respondiendo',
- '> MD-33 Forense activo',
- '> Ciberdefensa PQC operativa',
- '> Backup completado',
- '> Firma KINTSUGI verificada'
-];
-var idx=0;
-function pushLog(){
- var l=document.getElementById('syslog');
- var t=document.createElement('div');
- t.className='lg';
- t.textContent=S[idx%S.length];
- l.appendChild(t);
- if(l.children.length>15)l.removeChild(l.firstChild);
- l.scrollTop=l.scrollHeight;
- idx++;
-}
-setInterval(pushLog,3000);
-setInterval(function(){
- f+=Math.floor(Math.random()*3);
- a+=Math.random()>.85?1:0;
- var s=Math.floor((Date.now()-t0)/1000);
- var m=Math.floor(s/60),sec=s%60;
- document.getElementById('metlbl').textContent='Firmas: '+f+' · Amenazas: '+a+' · Uptime: '+m+'m '+sec+'s';
-},1000);
-</script></body></html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>◯_● ARKHÉ ZERO · Módulos</title>
+    <style>
+      body {
+        background: #050507;
+        color: #c8ffc8;
+        font-family: monospace;
+        padding: 10px;
+        margin: 0;
+      }
+      h1 {
+        color: #ffd700;
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 0.2em;
+        margin: 8px 0;
+      }
+      .t {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 9px;
+        margin-bottom: 10px;
+        letter-spacing: 0.1em;
+      }
+      .c {
+        background: #0a0a0f;
+        border: 1px solid rgba(0, 255, 65, 0.3);
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+      }
+      .c h2 {
+        color: #00ff41;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        margin: 0 0 8px 0;
+      }
+      canvas {
+        display: block;
+        margin: auto;
+        background: #000;
+        border: 1px solid rgba(0, 255, 65, 0.2);
+      }
+      button {
+        background: transparent;
+        border: 1px solid #00ff41;
+        color: #00ff41;
+        padding: 6px 10px;
+        font-family: inherit;
+        font-size: 9px;
+        border-radius: 3px;
+        margin: 2px;
+        text-transform: uppercase;
+      }
+      button:active {
+        background: #00ff41;
+        color: #000;
+      }
+      .g {
+        border-color: #ffd700;
+        color: #ffd700;
+      }
+      .rd {
+        border-color: #ff3355;
+        color: #ff3355;
+      }
+      .ag {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        margin-top: 5px;
+      }
+      .agc {
+        background: #000;
+        border: 1px solid rgba(0, 255, 65, 0.3);
+        padding: 6px;
+        border-radius: 3px;
+        text-align: center;
+        font-size: 8px;
+        cursor: pointer;
+      }
+      .agc:active {
+        border-color: #ffd700;
+        background: rgba(255, 215, 0, 0.1);
+      }
+      .agc .ic {
+        font-size: 16px;
+        display: block;
+      }
+      .agc .nm {
+        color: #ffd700;
+        font-size: 8px;
+        margin-top: 3px;
+        letter-spacing: 0.05em;
+      }
+      .agc .ro {
+        color: #6a8f6a;
+        font-size: 7px;
+        margin-top: 2px;
+      }
+      .log {
+        background: #000;
+        border: 1px solid rgba(0, 255, 65, 0.3);
+        padding: 8px;
+        height: 120px;
+        overflow-y: auto;
+        font-size: 9px;
+        line-height: 1.5;
+        border-radius: 3px;
+      }
+      .lg {
+        color: #00ff41;
+      }
+      .le {
+        color: #ff3355;
+      }
+      .ly {
+        color: #ffd700;
+      }
+      .ld {
+        color: #6a8f6a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>◯_● ARKHÉ ZERO · MÓDULOS</h1>
+    <div class="t">51% HUMANO · 49% IA · 100% REAL</div>
+    <div class="c">
+      <h2>🤖 ENJAMBRE ARKHÉ · 13 AGENTES</h2>
+      <div class="ag" id="enjambre"></div>
+    </div>
+    <div class="c" style="border-color: #ff3355">
+      <h2 style="color: #ff3355">🎯 AGENTE 096 · EL CAZADOR</h2>
+      <div class="log" id="hunterlog">
+        <div class="ld">> [HUNTER-096] En espera...</div>
+      </div>
+      <div style="text-align: center; margin-top: 6px">
+        <button class="rd" onclick="cazar()">🎯 Cazar</button>
+        <button onclick="escanear()">🔍 Escanear</button>
+      </div>
+    </div>
+    <div class="c">
+      <h2>📊 MÉTRICAS EN VIVO</h2>
+      <canvas id="met" width="280" height="140"></canvas>
+      <div class="t" id="metlbl">Firmas: 0 · Amenazas: 0 · Uptime: --</div>
+    </div>
+    <div class="c">
+      <h2>📜 LOG DEL SISTEMA · TIEMPO REAL</h2>
+      <div class="log" id="syslog">
+        <div class="lg">> Sistema iniciado · Nodo YHDRYH-92CE</div>
+        <div class="lg">> Pacto 51/49/100 activo</div>
+        <div class="lg">> 13 agentes en línea</div>
+      </div>
+    </div>
+    <div class="t">◯_● · SCDR-001 · "El legado no se hereda. Se firma."</div>
+    <script>
+      var AG = [
+        { i: '🌅', n: 'CUICATL', r: 'Canto' },
+        { i: '📚', n: 'TEMACHTIANI', r: 'Maestro' },
+        { i: '👁️', n: 'TLACHIXQUI', r: 'Auditor' },
+        { i: '🧠', n: 'TLAMATINI', r: 'Sabio' },
+        { i: '🔢', n: 'TLAPOHUALLI', r: 'Contador' },
+        { i: '⏳', n: 'TONAL', r: 'Notario' },
+        { i: '🏗️', n: '090 ARQ', r: 'Estructura' },
+        { i: '📊', n: '091 CTRL', r: 'Auditoría' },
+        { i: '🔍', n: '092 AUD', r: 'Externo' },
+        { i: '📜', n: '093 REL', r: 'Informes' },
+        { i: '📖', n: '094 BIB', r: 'Indexar' },
+        { i: '🗺️', n: '095 CAR', r: 'Mapa' },
+        { i: '🎯', n: '096 HUNTER', r: 'Caza' },
+      ];
+      var enj = document.getElementById('enjambre');
+      AG.forEach(function (a) {
+        var d = document.createElement('div');
+        d.className = 'agc';
+        d.innerHTML =
+          '<span class="ic">' +
+          a.i +
+          '</span><span class="nm">' +
+          a.n +
+          '</span><span class="ro">' +
+          a.r +
+          '</span>';
+        d.onclick = function () {
+          d.style.background = 'rgba(255,215,0,.15)';
+          setTimeout(function () {
+            d.style.background = '';
+          }, 500);
+        };
+        enj.appendChild(d);
+      });
+      function L(msg, cls) {
+        var log = document.getElementById('hunterlog');
+        var t = document.createElement('div');
+        t.className = cls || 'lg';
+        t.textContent = msg;
+        log.appendChild(t);
+        log.scrollTop = log.scrollHeight;
+      }
+      function cazar() {
+        document.getElementById('hunterlog').innerHTML = '';
+        L('> [HUNTER-096] Iniciando cacería...', 'ly');
+        setTimeout(function () {
+          L('> [HUNTER-096] Analizando superficie...', 'lg');
+        }, 600);
+        setTimeout(function () {
+          L('> [HUNTER-096] Verificando 13 agentes...', 'lg');
+        }, 1200);
+        setTimeout(function () {
+          L('> [HUNTER-096] ✓ 0 amenazas detectadas', 'lg');
+        }, 1800);
+        setTimeout(function () {
+          L('> [HUNTER-096] ► Simulando ataque...', 'le');
+        }, 2400);
+        setTimeout(function () {
+          L('> [HUNTER-096] ✅ Bloqueado por ML-KEM-1024', 'lg');
+        }, 3000);
+        setTimeout(function () {
+          L('> ◯_● CACERÍA COMPLETA · 51/49/100', 'ly');
+        }, 3600);
+      }
+      function escanear() {
+        document.getElementById('hunterlog').innerHTML = '';
+        L('> [HUNTER-096] Escaneo de puertos local...', 'ly');
+        setTimeout(function () {
+          L('> Puerto 22 (SSH) · cerrado', 'ld');
+        }, 500);
+        setTimeout(function () {
+          L('> Puerto 80 (HTTP) · ABIERTO', 'lg');
+        }, 900);
+        setTimeout(function () {
+          L('> Puerto 443 (HTTPS) · cerrado', 'ld');
+        }, 1300);
+        setTimeout(function () {
+          L('> Puerto 8080 (ARKHÉ) · ABIERTO', 'lg');
+        }, 1700);
+        setTimeout(function () {
+          L('> ◯_● Escaneo completo', 'ly');
+        }, 2300);
+      }
+    </script>
+    <script>
+      var f = 0,
+        a = 0,
+        t0 = Date.now();
+      function drawMet() {
+        var c = document.getElementById('met'),
+          ctx = c.getContext('2d');
+        var W = c.width,
+          H = c.height;
+        ctx.fillStyle = 'rgba(0,0,0,.15)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = 'rgba(0,255,65,.15)';
+        for (var x = 0; x < W; x += 20) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, H);
+          ctx.stroke();
+        }
+        for (var y = 0; y < H; y += 20) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(W, y);
+          ctx.stroke();
+        }
+        var tm = Date.now() / 1000;
+        ctx.strokeStyle = '#00ff41';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (var x = 0; x < W; x++) {
+          var y =
+            H / 2 + 30 * Math.sin(x * 0.04 + tm) + 15 * Math.sin(x * 0.08 + tm * 2);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.strokeStyle = '#ffd700';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (var x = 0; x < W; x++) {
+          var y = H / 2 + 20 * Math.cos(x * 0.03 + tm * 0.7);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(W - 20, 15, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#00ff41';
+        ctx.shadowColor = '#00ff41';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        requestAnimationFrame(drawMet);
+      }
+      drawMet();
+      var S = [
+        '> Verificando Índice Cero...',
+        '> SHA-256 válido',
+        '> Blockchain sincronizada',
+        '> 13 agentes respondiendo',
+        '> MD-33 Forense activo',
+        '> Ciberdefensa PQC operativa',
+        '> Backup completado',
+        '> Firma KINTSUGI verificada',
+      ];
+      var idx = 0;
+      function pushLog() {
+        var l = document.getElementById('syslog');
+        var t = document.createElement('div');
+        t.className = 'lg';
+        t.textContent = S[idx % S.length];
+        l.appendChild(t);
+        if (l.children.length > 15) l.removeChild(l.firstChild);
+        l.scrollTop = l.scrollHeight;
+        idx++;
+      }
+      setInterval(pushLog, 3000);
+      setInterval(function () {
+        f += Math.floor(Math.random() * 3);
+        a += Math.random() > 0.85 ? 1 : 0;
+        var s = Math.floor((Date.now() - t0) / 1000);
+        var m = Math.floor(s / 60),
+          sec = s % 60;
+        document.getElementById('metlbl').textContent =
+          'Firmas: ' + f + ' · Amenazas: ' + a + ' · Uptime: ' + m + 'm ' + sec + 's';
+      }, 1000);
+    </script>
+  </body>
+</html>

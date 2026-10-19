@@ -14,6 +14,7 @@
 ## Archivos sin crear
 
 ### ai-recognition/
+
 - [ ] `mcp/server.py` (funcional)
 - [ ] `mcp/tools.py`
 - [ ] `mcp/resources.py`
@@ -21,6 +22,7 @@
 - [ ] `mcp/config.json`
 
 ### engine/
+
 - [ ] `inference/local/llama_cpp.py`
 - [ ] `inference/local/ollama.py`
 - [ ] `inference/local/mlx.py`
@@ -49,6 +51,7 @@
 - [ ] `orchestrator/context.py`
 
 ### mesh/
+
 - [ ] `transport/quic.py`
 - [ ] `transport/webrtc.py`
 - [ ] `transport/nostr.py`
@@ -67,10 +70,12 @@
 - [ ] `sync/merkle_sync.py`
 
 ### guards/
+
 - [ ] 9 `policies.yaml` (uno por guardián)
 - [ ] 9 carpetas `tests/`
 
 ### kaf/
+
 - [ ] 13 archivos `framework/KAF-XXX.md`
 - [ ] `controls/evidence.yaml`
 - [ ] 6 archivos `controls/mapping/*.yaml`
@@ -78,6 +83,7 @@
 - [ ] `certification/registry.py`
 
 ### robotics/
+
 - [ ] `drivers/ros2.py`
 - [ ] `drivers/mqtt.py`
 - [ ] `drivers/modbus.py`
@@ -89,12 +95,14 @@
 - [ ] `actuation/safety.py`
 
 ### contracts/
+
 - [ ] `PaymentSplitter.sol`
 - [ ] `KAFRegistry.sol`
 - [ ] `deploy/deploy_mainnet.py`
 - [ ] `deploy/config.json`
 
 ### docs/
+
 - [ ] `index.md`
 - [ ] `kaf/` (5 archivos)
 - [ ] `payments/mercadopago.md`
@@ -104,23 +112,28 @@
 - [ ] `engine/` (3 archivos)
 
 ### security/
+
 - [ ] 11 archivos (compliance + policies + audits + bug-bounty)
 
 ### payments/
+
 - [ ] 12 archivos (mercadopago, mxn, nom151)
 
 ### infra/
+
 - [ ] terraform/
 - [ ] k8s/
 - [ ] vault/
 
 ### tests/
+
 - [ ] unit/
 - [ ] integration/
 - [ ] e2e/
 - [ ] fixtures/
 
 ### scripts/
+
 - [ ] `seed_demo.py`
 - [ ] `generate_report.py`
 

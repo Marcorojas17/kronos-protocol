@@ -38,21 +38,21 @@ Acento Capa 2.3: **Cyan brillante** `#00EAFF`
 ## API pública
 
 ```js
-import { Permisos } from "./permisos.js";
-import { RolesPermisos } from "./roles.js";
+import { Permisos } from './permisos.js';
+import { RolesPermisos } from './roles.js';
 
 const permisos = new Permisos();
 const roles = new RolesPermisos(core, storage, permisos);
 await roles.init();
 
 const asig = await roles.asignar({
-  identidad_hash: "abc123...",
-  identidad_nombre: "Marco A. Rojas V.",
-  identidad_tipo: "humano",
-  rol: "Fundador",
+  identidad_hash: 'abc123...',
+  identidad_nombre: 'Marco A. Rojas V.',
+  identidad_tipo: 'humano',
+  rol: 'Fundador',
 });
 
-const puede = await roles.puede("abc123...", "anclar_ethereum");
+const puede = await roles.puede('abc123...', 'anclar_ethereum');
 ```
 
 ## Archivos

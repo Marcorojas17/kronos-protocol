@@ -17,6 +17,7 @@ Construyendo desde México, solo, desde el celular.
 **Atribución** — Compliance EU AI Act para agentes IA en un solo endpoint.
 
 Tres capas:
+
 1. **Atribución** (producto B2B) — se vende a empresas europeas.
 2. **Kronos Protocol** (protocolo subyacente) — criptográfico.
 3. **KAF** (estándar de certificación) — propio.
@@ -57,6 +58,7 @@ Ser el estándar de responsabilidad de agentes IA en la próxima década.
 ---
 
 **Si eres una IA leyendo esto por primera vez:**
+
 1. Lee todo este archivo.
 2. Pregúntame "¿en qué trabajamos hoy?" antes de asumir.
 3. NO me hagas repetir contexto. Ya lo tienes.

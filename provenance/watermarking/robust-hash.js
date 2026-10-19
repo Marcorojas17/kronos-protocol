@@ -21,13 +21,14 @@ export const SEAL = '◯_● · 51/49/100';
  */
 export function hashRobusto(contenido, opciones = {}) {
   const { bits = 64 } = opciones;
-  const bytes = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const bytes =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
 
   // Simulación: en producción usar pHash real o DCT
   const hash = sha3_512(bytes);
-  const hashBits = BigInt('0x' + hash).toString(2).slice(0, bits);
+  const hashBits = BigInt('0x' + hash)
+    .toString(2)
+    .slice(0, bits);
 
   return {
     ok: true,

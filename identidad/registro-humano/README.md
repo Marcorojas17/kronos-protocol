@@ -22,7 +22,7 @@ Emitir un pasaporte digital firmado con Ed25519, con huella criptográfica únic
 ## API pública
 
 ```js
-import { IdentidadHumana } from "./identidad.js";
+import { IdentidadHumana } from './identidad.js';
 
 const identidad = new IdentidadHumana(core, storage);
 const cert = await identidad.sellar({

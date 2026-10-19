@@ -1,608 +1,691 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Índice · atribucion/</title>
-<style>
-  :root {
-    --bg: #0d1117;
-    --bg-alt: #161b22;
-    --bg-hover: #1f242c;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --text-dim: #8b949e;
-    --accent: #58a6ff;
-    --ok: #3fb950;
-    --pending: #f85149;
-    --folder: #79c0ff;
-    --markdown: #a5d6ff;
-    --python: #ffa657;
-    --html: #ff7b72;
-    --config: #d2a8ff;
-    --solidity: #7ee787;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 2rem 1rem;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.8rem;
-    background: linear-gradient(90deg, #58a6ff, #a5d6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  header p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-  }
-  header a { color: var(--accent); text-decoration: none; }
-  header a:hover { text-decoration: underline; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Índice · atribucion/</title>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --bg-alt: #161b22;
+        --bg-hover: #1f242c;
+        --border: #30363d;
+        --text: #c9d1d9;
+        --text-dim: #8b949e;
+        --accent: #58a6ff;
+        --ok: #3fb950;
+        --pending: #f85149;
+        --folder: #79c0ff;
+        --markdown: #a5d6ff;
+        --python: #ffa657;
+        --html: #ff7b72;
+        --config: #d2a8ff;
+        --solidity: #7ee787;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 2rem 1rem;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.8rem;
+        background: linear-gradient(90deg, #58a6ff, #a5d6ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      header p {
+        margin: 0;
+        color: var(--text-dim);
+        font-size: 0.9rem;
+      }
+      header a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      header a:hover {
+        text-decoration: underline;
+      }
 
-  .search-box {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    margin: 1.5rem 0;
-    padding: 0.75rem 0;
-    background: var(--bg);
-  }
-  .search-box input {
-    width: 100%;
-    padding: 0.85rem 1.25rem;
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .search-box input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
-  }
-  .search-box input::placeholder { color: var(--text-dim); }
+      .search-box {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        margin: 1.5rem 0;
+        padding: 0.75rem 0;
+        background: var(--bg);
+      }
+      .search-box input {
+        width: 100%;
+        padding: 0.85rem 1.25rem;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 15px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .search-box input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+      }
+      .search-box input::placeholder {
+        color: var(--text-dim);
+      }
 
-  .stats {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-  .stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-  }
-  .stat strong { color: var(--text); }
+      .stats {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+      }
+      .stat strong {
+        color: var(--text);
+      }
 
-  .section {
-    margin-bottom: 1.5rem;
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .section:hover { border-color: #404650; }
-  .section-header {
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-    transition: background 0.15s;
-  }
-  .section-header:hover { background: var(--bg-hover); }
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-weight: 600;
-    color: var(--folder);
-    font-size: 1rem;
-  }
-  .section-title .icon { font-size: 1.1rem; }
-  .section-count {
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    font-weight: 400;
-    background: var(--bg);
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-  }
-  .chevron {
-    color: var(--text-dim);
-    transition: transform 0.2s;
-    font-size: 0.8rem;
-  }
-  .section.open .chevron { transform: rotate(90deg); }
+      .section {
+        margin-bottom: 1.5rem;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: border-color 0.2s;
+      }
+      .section:hover {
+        border-color: #404650;
+      }
+      .section-header {
+        padding: 1rem 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+        transition: background 0.15s;
+      }
+      .section-header:hover {
+        background: var(--bg-hover);
+      }
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 600;
+        color: var(--folder);
+        font-size: 1rem;
+      }
+      .section-title .icon {
+        font-size: 1.1rem;
+      }
+      .section-count {
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        font-weight: 400;
+        background: var(--bg);
+        padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+      }
+      .chevron {
+        color: var(--text-dim);
+        transition: transform 0.2s;
+        font-size: 0.8rem;
+      }
+      .section.open .chevron {
+        transform: rotate(90deg);
+      }
 
-  .section-body {
-    display: none;
-    padding: 0 1.25rem 1rem 1.25rem;
-    border-top: 1px solid var(--border);
-  }
-  .section.open .section-body { display: block; }
+      .section-body {
+        display: none;
+        padding: 0 1.25rem 1rem 1.25rem;
+        border-top: 1px solid var(--border);
+      }
+      .section.open .section-body {
+        display: block;
+      }
 
-  .file-list {
-    list-style: none;
-    padding: 0;
-    margin: 0.75rem 0 0 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 0.4rem;
-  }
-  .file-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    transition: background 0.15s;
-    font-size: 0.9rem;
-  }
-  .file-list li:hover { background: var(--bg-hover); }
-  .file-list a {
-    color: var(--text);
-    text-decoration: none;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .file-list a:hover { color: var(--accent); }
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot.md { background: var(--markdown); }
-  .dot.py { background: var(--python); }
-  .dot.html { background: var(--html); }
-  .dot.json, .dot.yml, .dot.yaml, .dot.toml { background: var(--config); }
-  .dot.sol { background: var(--solidity); }
-  .dot.ts, .dot.js { background: #f1e05a; }
-  .dot.other { background: var(--text-dim); }
+      .file-list {
+        list-style: none;
+        padding: 0;
+        margin: 0.75rem 0 0 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 0.4rem;
+      }
+      .file-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        transition: background 0.15s;
+        font-size: 0.9rem;
+      }
+      .file-list li:hover {
+        background: var(--bg-hover);
+      }
+      .file-list a {
+        color: var(--text);
+        text-decoration: none;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .file-list a:hover {
+        color: var(--accent);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .dot.md {
+        background: var(--markdown);
+      }
+      .dot.py {
+        background: var(--python);
+      }
+      .dot.html {
+        background: var(--html);
+      }
+      .dot.json,
+      .dot.yml,
+      .dot.yaml,
+      .dot.toml {
+        background: var(--config);
+      }
+      .dot.sol {
+        background: var(--solidity);
+      }
+      .dot.ts,
+      .dot.js {
+        background: #f1e05a;
+      }
+      .dot.other {
+        background: var(--text-dim);
+      }
 
-  .ext {
-    color: var(--text-dim);
-    font-size: 0.75rem;
-    font-family: monospace;
-    margin-left: auto;
-    padding-left: 0.5rem;
-  }
+      .ext {
+        color: var(--text-dim);
+        font-size: 0.75rem;
+        font-family: monospace;
+        margin-left: auto;
+        padding-left: 0.5rem;
+      }
 
-  .hidden { display: none !important; }
+      .hidden {
+        display: none !important;
+      }
 
-  .no-results {
-    text-align: center;
-    padding: 3rem;
-    color: var(--text-dim);
-    display: none;
-  }
-  .no-results.visible { display: block; }
+      .no-results {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-dim);
+        display: none;
+      }
+      .no-results.visible {
+        display: block;
+      }
 
-  footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
+      footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
 
-  .badge {
-    display: inline-block;
-    padding: 0.1rem 0.45rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-  }
-  .badge.ok { background: rgba(63, 185, 80, 0.15); color: var(--ok); }
-  .badge.pending { background: rgba(248, 81, 73, 0.15); color: var(--pending); }
-  .badge.new { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
-</style>
-</head>
-<body>
-<div class="container">
+      .badge {
+        display: inline-block;
+        padding: 0.1rem 0.45rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+      .badge.ok {
+        background: rgba(63, 185, 80, 0.15);
+        color: var(--ok);
+      }
+      .badge.pending {
+        background: rgba(248, 81, 73, 0.15);
+        color: var(--pending);
+      }
+      .badge.new {
+        background: rgba(88, 166, 255, 0.15);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📚 Índice del proyecto atribucion/</h1>
+        <p>
+          Repo:
+          <a href="https://github.com/Marcorojas17/atribucion" target="_blank"
+            >Marcorojas17/atribucion</a
+          >
+          ·
+          <a
+            href="https://github.com/Marcorojas17/atribucion/blob/main/arbol.html"
+            target="_blank"
+            >🌳 árbol del proyecto</a
+          >
+        </p>
+      </header>
 
-<header>
-  <h1>📚 Índice del proyecto atribucion/</h1>
-  <p>
-    Repo: <a href="https://github.com/Marcorojas17/atribucion" target="_blank">Marcorojas17/atribucion</a>
-    · <a href="https://github.com/Marcorojas17/atribucion/blob/main/arbol.html" target="_blank">🌳 árbol del proyecto</a>
-  </p>
-</header>
+      <div class="search-box">
+        <input
+          type="text"
+          id="search"
+          placeholder="🔍 Buscar archivo, módulo o ruta… (ej. kaf, mercadopago, test_)"
+          autocomplete="off"
+        />
+      </div>
 
-<div class="search-box">
-  <input type="text" id="search" placeholder="🔍 Buscar archivo, módulo o ruta… (ej. kaf, mercadopago, test_)" autocomplete="off">
-</div>
+      <div class="stats">
+        <div class="stat">📄 <strong id="totalCount">0</strong> archivos</div>
+        <div class="stat">✅ <strong id="okCount">0</strong> completados</div>
+        <div class="stat">🔴 <strong id="pendingCount">0</strong> pendientes</div>
+      </div>
 
-<div class="stats">
-  <div class="stat">📄 <strong id="totalCount">0</strong> archivos</div>
-  <div class="stat">✅ <strong id="okCount">0</strong> completados</div>
-  <div class="stat">🔴 <strong id="pendingCount">0</strong> pendientes</div>
-</div>
+      <div id="sections"></div>
 
-<div id="sections"></div>
+      <div class="no-results" id="noResults">🔍 No se encontraron resultados</div>
 
-<div class="no-results" id="noResults">
-  🔍 No se encontraron resultados
-</div>
+      <footer>
+        Generado para <strong>atribucion/</strong> · Los <code>.md</code> y
+        <code>.html</code> abren renderizados vía HTMLPreview
+      </footer>
+    </div>
 
-<footer>
-  Generado para <strong>atribucion/</strong> · Los <code>.md</code> y <code>.html</code> abren renderizados vía HTMLPreview
-</footer>
+    <script>
+      // ============================================
+      // CONFIGURACIÓN DEL REPO
+      // ============================================
+      const REPO_USER = 'Marcorojas17';
+      const REPO_NAME = 'atribucion';
+      const BRANCH = 'main';
+      const BASE = `https://github.com/${REPO_USER}/${REPO_NAME}/blob/${BRANCH}/`;
+      const PREVIEW = `https://htmlpreview.github.io/?https://github.com/${REPO_USER}/${REPO_NAME}/blob/${BRANCH}/`;
 
-</div>
+      // ============================================
+      // ESTRUCTURA DEL PROYECTO
+      // ============================================
+      const structure = [
+        {
+          name: 'Raíz del proyecto',
+          icon: '📦',
+          files: [
+            { name: 'README.md', status: 'ok' },
+            { name: 'AI-CONTEXT.md', status: 'ok' },
+            { name: 'AI-MANIFEST.json', status: 'ok' },
+            { name: 'AI-MCP-SERVER.md', status: 'ok' },
+            { name: 'AGENTS.md', status: 'ok' },
+            { name: 'PROMPT-MAESTRO.md', status: 'ok' },
+            { name: 'CLAUDE.md', status: 'ok' },
+            { name: 'GEMINI.md', status: 'ok' },
+            { name: 'CHANGELOG.md', status: 'ok' },
+            { name: 'CONTRIBUTING.md', status: 'ok' },
+            { name: 'SECURITY.md', status: 'ok' },
+            { name: 'arbol.html', status: 'ok' },
+            { name: 'LICENSE-MIT', status: 'ok' },
+            { name: 'LICENSE-APACHE', status: 'ok' },
+            { name: 'LICENSE-CC-BY-4.0', status: 'ok' },
+            { name: 'LICENSE-TRADEMARK', status: 'ok' },
+            { name: 'pyproject.toml', status: 'ok' },
+            { name: 'requirements.txt', status: 'ok' },
+            { name: 'docker-compose.yml', status: 'ok' },
+            { name: 'Dockerfile', status: 'ok' },
+            { name: 'Makefile', status: 'ok' },
+            { name: '.env.example', status: 'ok' },
+          ],
+        },
+        {
+          name: 'api/',
+          icon: '🔌',
+          files: [
+            { name: 'api/main.py', status: 'ok' },
+            { name: 'api/middleware/auth.py', status: 'ok' },
+            { name: 'api/middleware/rate_limit.py', status: 'ok' },
+            { name: 'api/middleware/audit.py', status: 'ok' },
+            { name: 'api/middleware/security_headers.py', status: 'ok' },
+            { name: 'api/routes/actions.py', status: 'ok' },
+            { name: 'api/routes/agents.py', status: 'ok' },
+            { name: 'api/routes/proofs.py', status: 'ok' },
+            { name: 'api/routes/reports.py', status: 'ok' },
+            { name: 'api/routes/payments.py', status: 'ok' },
+            { name: 'api/routes/kaf.py', status: 'ok' },
+            { name: 'api/schemas/action.py', status: 'ok' },
+            { name: 'api/schemas/agent.py', status: 'ok' },
+            { name: 'api/schemas/payment.py', status: 'ok' },
+            { name: 'api/schemas/kaf.py', status: 'pending' },
+          ],
+        },
+        {
+          name: 'core/src/atribucion/',
+          icon: '🧬',
+          files: [
+            { name: 'core/src/atribucion/did.py', status: 'ok' },
+            { name: 'core/src/atribucion/vc.py', status: 'ok' },
+            { name: 'core/src/atribucion/contract.py', status: 'ok' },
+            { name: 'core/src/atribucion/crypto.py', status: 'ok' },
+            { name: 'core/src/atribucion/anchor.py', status: 'ok' },
+            { name: 'core/src/atribucion/tsa.py', status: 'ok' },
+            { name: 'core/src/atribucion/merkle.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'tests/',
+          icon: '🧪',
+          files: [
+            { name: 'tests/test_crypto.py', status: 'ok' },
+            { name: 'tests/test_did.py', status: 'ok' },
+            { name: 'tests/test_contract.py', status: 'ok' },
+            { name: 'tests/test_vc.py', status: 'ok' },
+            { name: 'tests/test_merkle.py', status: 'ok' },
+            { name: 'tests/test_anchor.py', status: 'ok' },
+            { name: 'tests/test_tsa.py', status: 'ok' },
+            { name: 'tests/test_api.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'atribucion/ (módulo interno)',
+          icon: '📊',
+          files: [
+            { name: 'atribucion/billing/plans.py', status: 'ok' },
+            { name: 'atribucion/billing/mercadopago.py', status: 'ok' },
+            { name: 'atribucion/billing/invoices.py', status: 'ok' },
+            { name: 'atribucion/onboarding/flow.py', status: 'ok' },
+            { name: 'atribucion/dashboard/repository.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'sdk/',
+          icon: '🧰',
+          files: [
+            { name: 'sdk/python/pyproject.toml', status: 'ok' },
+            { name: 'sdk/python/src/atribucion_sdk/client.py', status: 'ok' },
+            { name: 'sdk/python/src/atribucion_sdk/crypto.py', status: 'ok' },
+            { name: 'sdk/python/src/atribucion_sdk/types.py', status: 'ok' },
+            { name: 'sdk/js/package.json', status: 'ok' },
+            { name: 'sdk/js/src/index.ts', status: 'ok' },
+            { name: 'sdk/js/src/client.ts', status: 'ok' },
+            { name: 'sdk/js/src/types.ts', status: 'ok' },
+          ],
+        },
+        {
+          name: 'guards/',
+          icon: '🛡️',
+          files: [
+            { name: 'guards/base.py', status: 'ok' },
+            { name: 'guards/runner.py', status: 'ok' },
+            { name: 'guards/sha/agent.py', status: 'ok' },
+            { name: 'guards/acta/agent.py', status: 'ok' },
+            { name: 'guards/tsa/agent.py', status: 'ok' },
+            { name: 'guards/phoenix/agent.py', status: 'ok' },
+            { name: 'guards/nexus/agent.py', status: 'ok' },
+            { name: 'guards/vault/agent.py', status: 'ok' },
+            { name: 'guards/mrr/agent.py', status: 'ok' },
+            { name: 'guards/oracle/agent.py', status: 'ok' },
+            { name: 'guards/sentinel/agent.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'engine/',
+          icon: '⚙️',
+          files: [
+            { name: 'engine/runtime/state_machine.py', status: 'ok' },
+            { name: 'engine/runtime/scheduler.py', status: 'ok' },
+            { name: 'engine/runtime/executor.py', status: 'ok' },
+            { name: 'engine/runtime/agent.py', status: 'ok' },
+            { name: 'engine/runtime/sandbox.py', status: 'ok', tag: 'new' },
+            { name: 'engine/inference/local/llama_cpp.py', status: 'ok' },
+            { name: 'engine/inference/local/ollama.py', status: 'ok' },
+            { name: 'engine/inference/local/mlx.py', status: 'ok' },
+            { name: 'engine/inference/local/vllm.py', status: 'ok' },
+            { name: 'engine/inference/fallback/openai.py', status: 'ok' },
+            { name: 'engine/inference/fallback/anthropic.py', status: 'ok' },
+            { name: 'engine/inference/fallback/gemini.py', status: 'ok' },
+            { name: 'engine/inference/router.py', status: 'ok' },
+            { name: 'engine/inference/quantize.py', status: 'ok' },
+            { name: 'engine/memory/episodic.py', status: 'ok' },
+            { name: 'engine/memory/semantic.py', status: 'ok' },
+            { name: 'engine/memory/procedural.py', status: 'ok' },
+            { name: 'engine/memory/vector_store.py', status: 'ok' },
+            { name: 'engine/memory/graph_store.py', status: 'ok' },
+            { name: 'engine/memory/consolidation.py', status: 'ok' },
+            { name: 'engine/reasoning/planner.py', status: 'ok' },
+            { name: 'engine/reasoning/chain_of_thought.py', status: 'ok' },
+            { name: 'engine/reasoning/tool_use.py', status: 'ok' },
+            { name: 'engine/reasoning/reflection.py', status: 'ok' },
+            { name: 'engine/reasoning/debate.py', status: 'ok' },
+            { name: 'engine/learning/local_rlhf.py', status: 'ok' },
+            { name: 'engine/learning/fine_tune.py', status: 'ok' },
+            { name: 'engine/learning/distill.py', status: 'ok' },
+            { name: 'engine/learning/experience.py', status: 'ok' },
+            { name: 'engine/orchestrator/canonical_memory.py', status: 'ok' },
+            { name: 'engine/orchestrator/handoff.py', status: 'ok' },
+            { name: 'engine/orchestrator/madre.py', status: 'ok' },
+            { name: 'engine/orchestrator/context.py', status: 'ok', tag: 'new' },
+          ],
+        },
+        {
+          name: 'mesh/',
+          icon: '🕸️',
+          files: [
+            { name: 'mesh/transport/libp2p.py', status: 'ok' },
+            { name: 'mesh/discovery/dht.py', status: 'ok' },
+            { name: 'mesh/consensus/crdt.py', status: 'ok' },
+            { name: 'mesh/storage/sqlite.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'kaf/',
+          icon: '📋',
+          files: [
+            { name: 'kaf/controls/controls.yaml', status: 'ok' },
+            { name: 'kaf/levels/level-1-verified.md', status: 'ok' },
+            { name: 'kaf/levels/level-2-compliant.md', status: 'ok' },
+            { name: 'kaf/levels/level-3-assured.md', status: 'ok' },
+            { name: 'kaf/levels/level-4-sovereign.md', status: 'ok' },
+            { name: 'kaf/certification/auditor.py', status: 'ok' },
+            { name: 'kaf/certification/certificate.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'robotics/',
+          icon: '🤖',
+          files: [
+            { name: 'robotics/identity/hardware_id.py', status: 'ok' },
+            { name: 'robotics/identity/did_robot.py', status: 'ok' },
+            { name: 'robotics/identity/proof_presence.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'contracts/',
+          icon: '⛓️',
+          files: [
+            { name: 'contracts/AttributionRegistry.sol', status: 'ok' },
+            { name: 'contracts/deploy/deploy_sepolia.py', status: 'ok' },
+          ],
+        },
+        {
+          name: 'apps/',
+          icon: '🖥️',
+          files: [
+            { name: 'apps/portal/index.html', status: 'ok' },
+            { name: 'apps/verifier/index.html', status: 'ok' },
+            { name: 'apps/dashboard/index.html', status: 'ok' },
+            { name: 'apps/checkout/index.html', status: 'ok' },
+          ],
+        },
+        {
+          name: 'docs/',
+          icon: '📖',
+          files: [
+            { name: 'docs/quickstart.md', status: 'ok' },
+            { name: 'docs/compliance/eu-ai-act.md', status: 'ok' },
+            { name: 'docs/api/reference.md', status: 'ok' },
+          ],
+        },
+        {
+          name: 'legal/',
+          icon: '⚖️',
+          files: [
+            { name: 'legal/terms.md', status: 'ok' },
+            { name: 'legal/privacy.md', status: 'ok' },
+          ],
+        },
+        {
+          name: 'security/',
+          icon: '🔐',
+          files: [
+            { name: 'security/bug-bounty/program.md', status: 'ok' },
+            { name: 'security/bug-bounty/scope.md', status: 'ok' },
+            { name: 'security/audits/internal/README.md', status: 'ok' },
+            { name: 'security/audits/external/README.md', status: 'ok' },
+          ],
+        },
+        {
+          name: 'payments/',
+          icon: '💳',
+          files: [
+            { name: 'payments/mercadopago/client.py', status: 'ok' },
+            { name: 'payments/mercadopago/preferences.py', status: 'ok' },
+            { name: 'payments/mercadopago/subscriptions.py', status: 'ok' },
+            { name: 'payments/mercadopago/webhooks.py', status: 'ok' },
+            { name: 'payments/mercadopago/verify.py', status: 'ok' },
+            { name: 'payments/mxn/conversion.py', status: 'ok' },
+            { name: 'payments/mxn/oracle.py', status: 'ok' },
+            { name: 'payments/mxn/stablecoin.py', status: 'ok' },
+            { name: 'payments/nom151/psc_client.py', status: 'ok' },
+            { name: 'payments/nom151/constancia.py', status: 'ok' },
+            { name: 'payments/nom151/sello.py', status: 'ok' },
+            { name: 'payments/models.py', status: 'ok' },
+          ],
+        },
+        {
+          name: '.github/',
+          icon: '🐙',
+          files: [
+            { name: '.github/workflows/ci.yml', status: 'ok' },
+            { name: '.github/workflows/deploy.yml', status: 'ok' },
+          ],
+        },
+        {
+          name: 'Pendientes por crear',
+          icon: '🚧',
+          files: [
+            { name: 'infra/', status: 'pending', isFolder: true },
+            { name: 'scripts/', status: 'pending', isFolder: true },
+            { name: 'tests/unit/', status: 'pending', isFolder: true },
+            { name: 'tests/integration/', status: 'pending', isFolder: true },
+            { name: 'tests/e2e/', status: 'pending', isFolder: true },
+            { name: '.editorconfig', status: 'pending' },
+            { name: '.github/CODEOWNERS', status: 'pending' },
+            { name: '.github/PULL_REQUEST_TEMPLATE.md', status: 'pending' },
+            { name: '.github/workflows/verify.yml', status: 'pending' },
+            { name: '.github/workflows/security.yml', status: 'pending' },
+          ],
+        },
+      ];
 
-<script>
-// ============================================
-// CONFIGURACIÓN DEL REPO
-// ============================================
-const REPO_USER = "Marcorojas17";
-const REPO_NAME = "atribucion";
-const BRANCH = "main";
-const BASE = `https://github.com/${REPO_USER}/${REPO_NAME}/blob/${BRANCH}/`;
-const PREVIEW = `https://htmlpreview.github.io/?https://github.com/${REPO_USER}/${REPO_NAME}/blob/${BRANCH}/`;
+      // ============================================
+      // UTILIDADES
+      // ============================================
+      function getExt(filename) {
+        const parts = filename.split('.');
+        if (parts.length < 2) return 'other';
+        return parts[parts.length - 1].toLowerCase();
+      }
 
-// ============================================
-// ESTRUCTURA DEL PROYECTO
-// ============================================
-const structure = [
-  {
-    name: "Raíz del proyecto",
-    icon: "📦",
-    files: [
-      { name: "README.md", status: "ok" },
-      { name: "AI-CONTEXT.md", status: "ok" },
-      { name: "AI-MANIFEST.json", status: "ok" },
-      { name: "AI-MCP-SERVER.md", status: "ok" },
-      { name: "AGENTS.md", status: "ok" },
-      { name: "PROMPT-MAESTRO.md", status: "ok" },
-      { name: "CLAUDE.md", status: "ok" },
-      { name: "GEMINI.md", status: "ok" },
-      { name: "CHANGELOG.md", status: "ok" },
-      { name: "CONTRIBUTING.md", status: "ok" },
-      { name: "SECURITY.md", status: "ok" },
-      { name: "arbol.html", status: "ok" },
-      { name: "LICENSE-MIT", status: "ok" },
-      { name: "LICENSE-APACHE", status: "ok" },
-      { name: "LICENSE-CC-BY-4.0", status: "ok" },
-      { name: "LICENSE-TRADEMARK", status: "ok" },
-      { name: "pyproject.toml", status: "ok" },
-      { name: "requirements.txt", status: "ok" },
-      { name: "docker-compose.yml", status: "ok" },
-      { name: "Dockerfile", status: "ok" },
-      { name: "Makefile", status: "ok" },
-      { name: ".env.example", status: "ok" },
-    ]
-  },
-  {
-    name: "api/",
-    icon: "🔌",
-    files: [
-      { name: "api/main.py", status: "ok" },
-      { name: "api/middleware/auth.py", status: "ok" },
-      { name: "api/middleware/rate_limit.py", status: "ok" },
-      { name: "api/middleware/audit.py", status: "ok" },
-      { name: "api/middleware/security_headers.py", status: "ok" },
-      { name: "api/routes/actions.py", status: "ok" },
-      { name: "api/routes/agents.py", status: "ok" },
-      { name: "api/routes/proofs.py", status: "ok" },
-      { name: "api/routes/reports.py", status: "ok" },
-      { name: "api/routes/payments.py", status: "ok" },
-      { name: "api/routes/kaf.py", status: "ok" },
-      { name: "api/schemas/action.py", status: "ok" },
-      { name: "api/schemas/agent.py", status: "ok" },
-      { name: "api/schemas/payment.py", status: "ok" },
-      { name: "api/schemas/kaf.py", status: "pending" },
-    ]
-  },
-  {
-    name: "core/src/atribucion/",
-    icon: "🧬",
-    files: [
-      { name: "core/src/atribucion/did.py", status: "ok" },
-      { name: "core/src/atribucion/vc.py", status: "ok" },
-      { name: "core/src/atribucion/contract.py", status: "ok" },
-      { name: "core/src/atribucion/crypto.py", status: "ok" },
-      { name: "core/src/atribucion/anchor.py", status: "ok" },
-      { name: "core/src/atribucion/tsa.py", status: "ok" },
-      { name: "core/src/atribucion/merkle.py", status: "ok" },
-    ]
-  },
-  {
-    name: "tests/",
-    icon: "🧪",
-    files: [
-      { name: "tests/test_crypto.py", status: "ok" },
-      { name: "tests/test_did.py", status: "ok" },
-      { name: "tests/test_contract.py", status: "ok" },
-      { name: "tests/test_vc.py", status: "ok" },
-      { name: "tests/test_merkle.py", status: "ok" },
-      { name: "tests/test_anchor.py", status: "ok" },
-      { name: "tests/test_tsa.py", status: "ok" },
-      { name: "tests/test_api.py", status: "ok" },
-    ]
-  },
-  {
-    name: "atribucion/ (módulo interno)",
-    icon: "📊",
-    files: [
-      { name: "atribucion/billing/plans.py", status: "ok" },
-      { name: "atribucion/billing/mercadopago.py", status: "ok" },
-      { name: "atribucion/billing/invoices.py", status: "ok" },
-      { name: "atribucion/onboarding/flow.py", status: "ok" },
-      { name: "atribucion/dashboard/repository.py", status: "ok" },
-    ]
-  },
-  {
-    name: "sdk/",
-    icon: "🧰",
-    files: [
-      { name: "sdk/python/pyproject.toml", status: "ok" },
-      { name: "sdk/python/src/atribucion_sdk/client.py", status: "ok" },
-      { name: "sdk/python/src/atribucion_sdk/crypto.py", status: "ok" },
-      { name: "sdk/python/src/atribucion_sdk/types.py", status: "ok" },
-      { name: "sdk/js/package.json", status: "ok" },
-      { name: "sdk/js/src/index.ts", status: "ok" },
-      { name: "sdk/js/src/client.ts", status: "ok" },
-      { name: "sdk/js/src/types.ts", status: "ok" },
-    ]
-  },
-  {
-    name: "guards/",
-    icon: "🛡️",
-    files: [
-      { name: "guards/base.py", status: "ok" },
-      { name: "guards/runner.py", status: "ok" },
-      { name: "guards/sha/agent.py", status: "ok" },
-      { name: "guards/acta/agent.py", status: "ok" },
-      { name: "guards/tsa/agent.py", status: "ok" },
-      { name: "guards/phoenix/agent.py", status: "ok" },
-      { name: "guards/nexus/agent.py", status: "ok" },
-      { name: "guards/vault/agent.py", status: "ok" },
-      { name: "guards/mrr/agent.py", status: "ok" },
-      { name: "guards/oracle/agent.py", status: "ok" },
-      { name: "guards/sentinel/agent.py", status: "ok" },
-    ]
-  },
-  {
-    name: "engine/",
-    icon: "⚙️",
-    files: [
-      { name: "engine/runtime/state_machine.py", status: "ok" },
-      { name: "engine/runtime/scheduler.py", status: "ok" },
-      { name: "engine/runtime/executor.py", status: "ok" },
-      { name: "engine/runtime/agent.py", status: "ok" },
-      { name: "engine/runtime/sandbox.py", status: "ok", tag: "new" },
-      { name: "engine/inference/local/llama_cpp.py", status: "ok" },
-      { name: "engine/inference/local/ollama.py", status: "ok" },
-      { name: "engine/inference/local/mlx.py", status: "ok" },
-      { name: "engine/inference/local/vllm.py", status: "ok" },
-      { name: "engine/inference/fallback/openai.py", status: "ok" },
-      { name: "engine/inference/fallback/anthropic.py", status: "ok" },
-      { name: "engine/inference/fallback/gemini.py", status: "ok" },
-      { name: "engine/inference/router.py", status: "ok" },
-      { name: "engine/inference/quantize.py", status: "ok" },
-      { name: "engine/memory/episodic.py", status: "ok" },
-      { name: "engine/memory/semantic.py", status: "ok" },
-      { name: "engine/memory/procedural.py", status: "ok" },
-      { name: "engine/memory/vector_store.py", status: "ok" },
-      { name: "engine/memory/graph_store.py", status: "ok" },
-      { name: "engine/memory/consolidation.py", status: "ok" },
-      { name: "engine/reasoning/planner.py", status: "ok" },
-      { name: "engine/reasoning/chain_of_thought.py", status: "ok" },
-      { name: "engine/reasoning/tool_use.py", status: "ok" },
-      { name: "engine/reasoning/reflection.py", status: "ok" },
-      { name: "engine/reasoning/debate.py", status: "ok" },
-      { name: "engine/learning/local_rlhf.py", status: "ok" },
-      { name: "engine/learning/fine_tune.py", status: "ok" },
-      { name: "engine/learning/distill.py", status: "ok" },
-      { name: "engine/learning/experience.py", status: "ok" },
-      { name: "engine/orchestrator/canonical_memory.py", status: "ok" },
-      { name: "engine/orchestrator/handoff.py", status: "ok" },
-      { name: "engine/orchestrator/madre.py", status: "ok" },
-      { name: "engine/orchestrator/context.py", status: "ok", tag: "new" },
-    ]
-  },
-  {
-    name: "mesh/",
-    icon: "🕸️",
-    files: [
-      { name: "mesh/transport/libp2p.py", status: "ok" },
-      { name: "mesh/discovery/dht.py", status: "ok" },
-      { name: "mesh/consensus/crdt.py", status: "ok" },
-      { name: "mesh/storage/sqlite.py", status: "ok" },
-    ]
-  },
-  {
-    name: "kaf/",
-    icon: "📋",
-    files: [
-      { name: "kaf/controls/controls.yaml", status: "ok" },
-      { name: "kaf/levels/level-1-verified.md", status: "ok" },
-      { name: "kaf/levels/level-2-compliant.md", status: "ok" },
-      { name: "kaf/levels/level-3-assured.md", status: "ok" },
-      { name: "kaf/levels/level-4-sovereign.md", status: "ok" },
-      { name: "kaf/certification/auditor.py", status: "ok" },
-      { name: "kaf/certification/certificate.py", status: "ok" },
-    ]
-  },
-  {
-    name: "robotics/",
-    icon: "🤖",
-    files: [
-      { name: "robotics/identity/hardware_id.py", status: "ok" },
-      { name: "robotics/identity/did_robot.py", status: "ok" },
-      { name: "robotics/identity/proof_presence.py", status: "ok" },
-    ]
-  },
-  {
-    name: "contracts/",
-    icon: "⛓️",
-    files: [
-      { name: "contracts/AttributionRegistry.sol", status: "ok" },
-      { name: "contracts/deploy/deploy_sepolia.py", status: "ok" },
-    ]
-  },
-  {
-    name: "apps/",
-    icon: "🖥️",
-    files: [
-      { name: "apps/portal/index.html", status: "ok" },
-      { name: "apps/verifier/index.html", status: "ok" },
-      { name: "apps/dashboard/index.html", status: "ok" },
-      { name: "apps/checkout/index.html", status: "ok" },
-    ]
-  },
-  {
-    name: "docs/",
-    icon: "📖",
-    files: [
-      { name: "docs/quickstart.md", status: "ok" },
-      { name: "docs/compliance/eu-ai-act.md", status: "ok" },
-      { name: "docs/api/reference.md", status: "ok" },
-    ]
-  },
-  {
-    name: "legal/",
-    icon: "⚖️",
-    files: [
-      { name: "legal/terms.md", status: "ok" },
-      { name: "legal/privacy.md", status: "ok" },
-    ]
-  },
-  {
-    name: "security/",
-    icon: "🔐",
-    files: [
-      { name: "security/bug-bounty/program.md", status: "ok" },
-      { name: "security/bug-bounty/scope.md", status: "ok" },
-      { name: "security/audits/internal/README.md", status: "ok" },
-      { name: "security/audits/external/README.md", status: "ok" },
-    ]
-  },
-  {
-    name: "payments/",
-    icon: "💳",
-    files: [
-      { name: "payments/mercadopago/client.py", status: "ok" },
-      { name: "payments/mercadopago/preferences.py", status: "ok" },
-      { name: "payments/mercadopago/subscriptions.py", status: "ok" },
-      { name: "payments/mercadopago/webhooks.py", status: "ok" },
-      { name: "payments/mercadopago/verify.py", status: "ok" },
-      { name: "payments/mxn/conversion.py", status: "ok" },
-      { name: "payments/mxn/oracle.py", status: "ok" },
-      { name: "payments/mxn/stablecoin.py", status: "ok" },
-      { name: "payments/nom151/psc_client.py", status: "ok" },
-      { name: "payments/nom151/constancia.py", status: "ok" },
-      { name: "payments/nom151/sello.py", status: "ok" },
-      { name: "payments/models.py", status: "ok" },
-    ]
-  },
-  {
-    name: ".github/",
-    icon: "🐙",
-    files: [
-      { name: ".github/workflows/ci.yml", status: "ok" },
-      { name: ".github/workflows/deploy.yml", status: "ok" },
-    ]
-  },
-  {
-    name: "Pendientes por crear",
-    icon: "🚧",
-    files: [
-      { name: "infra/", status: "pending", isFolder: true },
-      { name: "scripts/", status: "pending", isFolder: true },
-      { name: "tests/unit/", status: "pending", isFolder: true },
-      { name: "tests/integration/", status: "pending", isFolder: true },
-      { name: "tests/e2e/", status: "pending", isFolder: true },
-      { name: ".editorconfig", status: "pending" },
-      { name: ".github/CODEOWNERS", status: "pending" },
-      { name: ".github/PULL_REQUEST_TEMPLATE.md", status: "pending" },
-      { name: ".github/workflows/verify.yml", status: "pending" },
-      { name: ".github/workflows/security.yml", status: "pending" },
-    ]
-  },
-];
+      function isRenderable(filename) {
+        const ext = getExt(filename);
+        return ext === 'md' || ext === 'html' || ext === 'htm';
+      }
 
-// ============================================
-// UTILIDADES
-// ============================================
-function getExt(filename) {
-  const parts = filename.split('.');
-  if (parts.length < 2) return 'other';
-  return parts[parts.length - 1].toLowerCase();
-}
+      function getUrl(path) {
+        if (path.endsWith('/')) {
+          // Es una carpeta pendiente → link a GitHub tree
+          return `https://github.com/${REPO_USER}/${REPO_NAME}/tree/${BRANCH}/${path}`;
+        }
+        return isRenderable(path) ? PREVIEW + path : BASE + path;
+      }
 
-function isRenderable(filename) {
-  const ext = getExt(filename);
-  return ext === 'md' || ext === 'html' || ext === 'htm';
-}
+      function getIcon(ext) {
+        const map = {
+          md: '📝',
+          py: '🐍',
+          html: '🌐',
+          json: '📋',
+          yml: '⚙️',
+          yaml: '⚙️',
+          toml: '⚙️',
+          sol: '⛓️',
+          ts: '🔷',
+          js: '🟨',
+        };
+        return map[ext] || '📄';
+      }
 
-function getUrl(path) {
-  if (path.endsWith('/')) {
-    // Es una carpeta pendiente → link a GitHub tree
-    return `https://github.com/${REPO_USER}/${REPO_NAME}/tree/${BRANCH}/${path}`;
-  }
-  return isRenderable(path) ? PREVIEW + path : BASE + path;
-}
+      // ============================================
+      // RENDER
+      // ============================================
+      let totalFiles = 0;
+      let okFiles = 0;
+      let pendingFiles = 0;
+      const sectionsEl = document.getElementById('sections');
+      const noResultsEl = document.getElementById('noResults');
 
-function getIcon(ext) {
-  const map = { md: '📝', py: '🐍', html: '🌐', json: '📋', yml: '⚙️', yaml: '⚙️', toml: '⚙️', sol: '⛓️', ts: '🔷', js: '🟨' };
-  return map[ext] || '📄';
-}
+      structure.forEach((section, idx) => {
+        const sectionEl = document.createElement('div');
+        sectionEl.className = 'section';
+        sectionEl.dataset.section = section.name.toLowerCase();
 
-// ============================================
-// RENDER
-// ============================================
-let totalFiles = 0;
-let okFiles = 0;
-let pendingFiles = 0;
-const sectionsEl = document.getElementById('sections');
-const noResultsEl = document.getElementById('noResults');
-
-structure.forEach((section, idx) => {
-  const sectionEl = document.createElement('div');
-  sectionEl.className = 'section';
-  sectionEl.dataset.section = section.name.toLowerCase();
-
-  const header = document.createElement('div');
-  header.className = 'section-header';
-  header.innerHTML = `
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        header.innerHTML = `
     <div class="section-title">
       <span class="icon">${section.icon}</span>
       <span>${section.name}</span>
@@ -610,35 +693,40 @@ structure.forEach((section, idx) => {
     </div>
     <span class="chevron">▶</span>
   `;
-  header.addEventListener('click', () => sectionEl.classList.toggle('open'));
-  sectionEl.appendChild(header);
+        header.addEventListener('click', () => sectionEl.classList.toggle('open'));
+        sectionEl.appendChild(header);
 
-  const body = document.createElement('div');
-  body.className = 'section-body';
+        const body = document.createElement('div');
+        body.className = 'section-body';
 
-  const list = document.createElement('ul');
-  list.className = 'file-list';
+        const list = document.createElement('ul');
+        list.className = 'file-list';
 
-  section.files.forEach(file => {
-    totalFiles++;
-    if (file.status === 'ok') okFiles++;
-    if (file.status === 'pending') pendingFiles++;
+        section.files.forEach((file) => {
+          totalFiles++;
+          if (file.status === 'ok') okFiles++;
+          if (file.status === 'pending') pendingFiles++;
 
-    const li = document.createElement('li');
-    li.dataset.name = file.name.toLowerCase();
-    li.dataset.section = section.name.toLowerCase();
+          const li = document.createElement('li');
+          li.dataset.name = file.name.toLowerCase();
+          li.dataset.section = section.name.toLowerCase();
 
-    const ext = getExt(file.name);
-    const url = getUrl(file.name);
+          const ext = getExt(file.name);
+          const url = getUrl(file.name);
 
-    let badge = '';
-    if (file.tag === 'new') badge = '<span class="badge new">NUEVO</span>';
-    else if (file.status === 'pending') badge = '<span class="badge pending">PENDIENTE</span>';
+          let badge = '';
+          if (file.tag === 'new') badge = '<span class="badge new">NUEVO</span>';
+          else if (file.status === 'pending')
+            badge = '<span class="badge pending">PENDIENTE</span>';
 
-    const shortName = file.name.includes('/') ? file.name.split('/').pop() : file.name;
-    const pathPrefix = file.name.includes('/') ? file.name.substring(0, file.name.lastIndexOf('/') + 1) : '';
+          const shortName = file.name.includes('/')
+            ? file.name.split('/').pop()
+            : file.name;
+          const pathPrefix = file.name.includes('/')
+            ? file.name.substring(0, file.name.lastIndexOf('/') + 1)
+            : '';
 
-    li.innerHTML = `
+          li.innerHTML = `
       <a href="${url}" target="_blank" title="${file.name}">
         <span class="dot ${ext}"></span>
         <span style="overflow:hidden;text-overflow:ellipsis;">
@@ -648,55 +736,55 @@ structure.forEach((section, idx) => {
         <span class="ext">${getIcon(ext)} .${ext}</span>
       </a>
     `;
-    list.appendChild(li);
-  });
+          list.appendChild(li);
+        });
 
-  body.appendChild(list);
-  sectionEl.appendChild(body);
-  sectionsEl.appendChild(sectionEl);
+        body.appendChild(list);
+        sectionEl.appendChild(body);
+        sectionsEl.appendChild(sectionEl);
 
-  // Abrir las 3 primeras secciones por defecto
-  if (idx < 2) sectionEl.classList.add('open');
-});
+        // Abrir las 3 primeras secciones por defecto
+        if (idx < 2) sectionEl.classList.add('open');
+      });
 
-// Actualizar stats
-document.getElementById('totalCount').textContent = totalFiles;
-document.getElementById('okCount').textContent = okFiles;
-document.getElementById('pendingCount').textContent = pendingFiles;
+      // Actualizar stats
+      document.getElementById('totalCount').textContent = totalFiles;
+      document.getElementById('okCount').textContent = okFiles;
+      document.getElementById('pendingCount').textContent = pendingFiles;
 
-// ============================================
-// BÚSQUEDA
-// ============================================
-const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', (e) => {
-  const q = e.target.value.trim().toLowerCase();
-  let anyVisible = false;
+      // ============================================
+      // BÚSQUEDA
+      // ============================================
+      const searchInput = document.getElementById('search');
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        let anyVisible = false;
 
-  document.querySelectorAll('.section').forEach(section => {
-    let sectionHasMatch = false;
-    section.querySelectorAll('.file-list li').forEach(li => {
-      const match = !q || li.dataset.name.includes(q) || li.dataset.section.includes(q);
-      li.classList.toggle('hidden', !match);
-      if (match) sectionHasMatch = true;
-    });
-    section.classList.toggle('hidden', !sectionHasMatch);
-    if (sectionHasMatch) {
-      anyVisible = true;
-      if (q) section.classList.add('open');
-    }
-  });
+        document.querySelectorAll('.section').forEach((section) => {
+          let sectionHasMatch = false;
+          section.querySelectorAll('.file-list li').forEach((li) => {
+            const match =
+              !q || li.dataset.name.includes(q) || li.dataset.section.includes(q);
+            li.classList.toggle('hidden', !match);
+            if (match) sectionHasMatch = true;
+          });
+          section.classList.toggle('hidden', !sectionHasMatch);
+          if (sectionHasMatch) {
+            anyVisible = true;
+            if (q) section.classList.add('open');
+          }
+        });
 
-  noResultsEl.classList.toggle('visible', !anyVisible);
-});
+        noResultsEl.classList.toggle('visible', !anyVisible);
+      });
 
-// Atajo: presionar "/" para enfocar el buscador
-document.addEventListener('keydown', (e) => {
-  if (e.key === '/' && document.activeElement !== searchInput) {
-    e.preventDefault();
-    searchInput.focus();
-  }
-});
-</script>
-
-</body>
+      // Atajo: presionar "/" para enfocar el buscador
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -17,15 +17,16 @@
 
 # 🖼️ BANNERS OFICIALES
 
-### *Marca visual del movimiento*
+### _Marca visual del movimiento_
 
-### *"El banner es el sello a distancia."*
+### _"El banner es el sello a distancia."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  B A N N E R S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Los 5 banners
 
-| Archivo              | Dimensiones | Plataforma  |
-|----------------------|-------------|-------------|
-| `web-header.svg`     | 1920×300    | Web         |
-| `twitter-card.svg`   | 1200×675    | Twitter/X   |
-| `linkedin-cover.svg` | 1584×396    | LinkedIn    |
-| `og-default.svg`     | 1200×630    | OpenGraph   |
-| `email-footer.svg`   | 600×200     | Email       |
+| Archivo              | Dimensiones | Plataforma |
+| -------------------- | ----------- | ---------- |
+| `web-header.svg`     | 1920×300    | Web        |
+| `twitter-card.svg`   | 1200×675    | Twitter/X  |
+| `linkedin-cover.svg` | 1584×396    | LinkedIn   |
+| `og-default.svg`     | 1200×630    | OpenGraph  |
+| `email-footer.svg`   | 600×200     | Email      |
 
 ## 🜃 Paleta canónica
 

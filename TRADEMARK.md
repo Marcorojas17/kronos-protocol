@@ -2,14 +2,14 @@
 
 ## 🜂 Marcas registradas
 
-| Marca                | Estado      | Registro                     |
-|----------------------|-------------|------------------------------|
-| `ARKHÉ ZERO`         | reservada   | Safe Creative #2607146379465 |
-| `KRONOS`             | reservada   | Safe Creative #2607146379465 |
-| `KINTSUGI`           | reservada   | Safe Creative #2607086319439 |
-| `◯_●` (símbolo)      | reservada   | —                            |
-| `51/49/100`          | reservada   | —                            |
-| `FLAILP`             | reservada   | —                            |
+| Marca           | Estado    | Registro                     |
+| --------------- | --------- | ---------------------------- |
+| `ARKHÉ ZERO`    | reservada | Safe Creative #2607146379465 |
+| `KRONOS`        | reservada | Safe Creative #2607146379465 |
+| `KINTSUGI`      | reservada | Safe Creative #2607086319439 |
+| `◯_●` (símbolo) | reservada | —                            |
+| `51/49/100`     | reservada | —                            |
+| `FLAILP`        | reservada | —                            |
 
 ## 🜃 Usos permitidos
 
@@ -33,6 +33,7 @@
 ## 🜁 Atribución obligatoria
 
 Toda mención debe incluir:
+
 ```
 ARKHÉ ZERO™ · Marco Antonio Rojas Valdovinos · 2026
 ◯_● · 51/49/100

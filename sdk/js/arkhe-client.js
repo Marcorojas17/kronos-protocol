@@ -7,7 +7,8 @@
 import { sha3_512 } from '../../crypto/primitives/sha3-512.js';
 
 export const SEAL = '◯_● · 51/49/100';
-export const INDEX_ZERO_SHA256 = 'f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112';
+export const INDEX_ZERO_SHA256 =
+  'f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112';
 
 export class ArkheClient {
   constructor(baseUrl = 'https://arkhe.zero') {

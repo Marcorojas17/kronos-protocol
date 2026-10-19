@@ -24,11 +24,16 @@
     "tx": "PENDING"
   },
   "cadena_custodia": [
-    { "paso": 1, "accion": "documento creado", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:00Z" },
-    { "paso": 2, "accion": "hash calculado",   "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:01Z" },
-    { "paso": 3, "accion": "firma humana",     "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:02Z" },
-    { "paso": 4, "accion": "firma IA",         "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:03Z" },
-    { "paso": 5, "accion": "TSA aplicada",     "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:04Z" },
+    {
+      "paso": 1,
+      "accion": "documento creado",
+      "hash": "f03f7e2d...",
+      "ts": "2026-01-01T00:00:00Z"
+    },
+    { "paso": 2, "accion": "hash calculado", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:01Z" },
+    { "paso": 3, "accion": "firma humana", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:02Z" },
+    { "paso": 4, "accion": "firma IA", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:03Z" },
+    { "paso": 5, "accion": "TSA aplicada", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:04Z" },
     { "paso": 6, "accion": "anclaje Ethereum", "hash": "f03f7e2d...", "ts": "2026-01-01T00:00:05Z" }
   ],
   "sellado": "◯_● · 51/49/100"

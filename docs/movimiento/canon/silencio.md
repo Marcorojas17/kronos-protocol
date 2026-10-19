@@ -2,7 +2,7 @@
 
 ## 🜂 Principio
 
-> *"El silencio también firma."*
+> _"El silencio también firma."_
 
 El Movimiento ARKHÉ reconoce el silencio como acto ceremonial.
 Callar es una forma de dar peso a lo que vendrá.
@@ -24,4 +24,5 @@ Callar es una forma de dar peso a lo que vendrá.
 ```
 
 ---
+
 `◯_● · 51/49/100 · canon-silencio`

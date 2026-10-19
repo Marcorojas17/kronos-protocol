@@ -34,11 +34,13 @@ export async function reconstruirContexto({ capsula }) {
     decision_original: capsula.decision,
     autor: capsula.autor,
     hash_original: capsula.hash,
-    hash_verificado: sha3_512(JSON.stringify({
-      contexto: capsula.contexto,
-      decision: capsula.decision,
-      autor: capsula.autor,
-    })),
+    hash_verificado: sha3_512(
+      JSON.stringify({
+        contexto: capsula.contexto,
+        decision: capsula.decision,
+        autor: capsula.autor,
+      }),
+    ),
     planos_disponibles: planos,
     reconstruible: true,
     sellado: SEAL,
@@ -61,22 +63,16 @@ export async function reconstruirContexto({ capsula }) {
  * Verifica que una cápsula se puede reconstruir.
  */
 export function verificarReconstruibilidad(capsula) {
-  const requisitos = [
-    'id',
-    'contexto',
-    'decision',
-    'autor',
-    'hash',
-    'anclaje',
-  ];
+  const requisitos = ['id', 'contexto', 'decision', 'autor', 'hash', 'anclaje'];
   const faltantes = requisitos.filter((r) => !capsula[r]);
 
   return {
     reconstruible: faltantes.length === 0,
     faltantes,
-    veredicto: faltantes.length === 0
-      ? 'CÁPSULA RECONSTRUIBLE'
-      : `FALTAN CAMPOS: ${faltantes.join(', ')}`,
+    veredicto:
+      faltantes.length === 0
+        ? 'CÁPSULA RECONSTRUIBLE'
+        : `FALTAN CAMPOS: ${faltantes.join(', ')}`,
     sellado: SEAL,
   };
 }

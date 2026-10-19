@@ -24,4 +24,5 @@
 **[Paso 2 · Verificación →](paso-2-verificacion.md)**
 
 ---
+
 `◯_● · 51/49/100 · onboarding-1`

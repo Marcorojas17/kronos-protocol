@@ -14,48 +14,53 @@ compromiso.
 
 ## 2. Frecuencia de rotación
 
-| Tipo de clave | Frecuencia | Justificación |
-|---|---|---|
-| API keys (producción) | 90 días | Estándar industria |
-| API keys (test) | 180 días | Menor riesgo |
-| Claves de firma ECDSA | 90 días | NIST 800-57 |
-| Claves ML-DSA (PQC) | 365 días | Menor presión PQC |
-| TLS certificates | 90 días | Let's Encrypt |
-| mTLS certificates | 90 días | Zero Trust |
-| Claves simétricas AES | 90 días | NIST 800-57 |
-| Claves de backup | 365 días | Mayor retención |
-| JWT secrets | 30 días | Alta exposición |
-| Webhook secrets | 180 días | Por proveedor |
-| HSM master keys | 365 días | Rotación compleja |
-| Root CA | 5-10 años | Inmutabilidad requerida |
+| Tipo de clave         | Frecuencia | Justificación           |
+| --------------------- | ---------- | ----------------------- |
+| API keys (producción) | 90 días    | Estándar industria      |
+| API keys (test)       | 180 días   | Menor riesgo            |
+| Claves de firma ECDSA | 90 días    | NIST 800-57             |
+| Claves ML-DSA (PQC)   | 365 días   | Menor presión PQC       |
+| TLS certificates      | 90 días    | Let's Encrypt           |
+| mTLS certificates     | 90 días    | Zero Trust              |
+| Claves simétricas AES | 90 días    | NIST 800-57             |
+| Claves de backup      | 365 días   | Mayor retención         |
+| JWT secrets           | 30 días    | Alta exposición         |
+| Webhook secrets       | 180 días   | Por proveedor           |
+| HSM master keys       | 365 días   | Rotación compleja       |
+| Root CA               | 5-10 años  | Inmutabilidad requerida |
 
 ## 3. Proceso de rotación
 
 ### 3.1 Fase 1 — Preparación (D-7)
+
 - Notificar a afectados.
 - Generar nuevas claves.
 - Almacenar de forma segura.
 - Preparar plan de rollback.
 
 ### 3.2 Fase 2 — Publicación (D-3)
+
 - Publicar nuevas claves públicas.
 - Actualizar DID Documents.
 - Añadir nueva clave a keyring.
 - **Mantener** clave vieja activa.
 
 ### 3.3 Fase 3 — Transición (D-0 a D+30)
+
 - Nuevas firmas usan clave nueva.
 - Verificación acepta ambas claves.
 - Logs indican qué clave se usó.
 - Detección de uso de clave vieja.
 
 ### 3.4 Fase 4 — Retiro (D+30)
+
 - Retirar clave vieja del keyring.
 - Marcar como "revoked" en DID Document.
 - Publicar aviso.
 - Archivar clave vieja (sin uso).
 
 ### 3.5 Fase 5 — Destrucción (D+90)
+
 - Sobrescritura segura de la clave vieja.
 - Registro de destrucción.
 - Audit log actualizado.
@@ -63,6 +68,7 @@ compromiso.
 ## 4. Rotación automática
 
 ### 4.1 Alcance
+
 - ✅ API keys
 - ✅ TLS certificates
 - ✅ JWT secrets
@@ -71,6 +77,7 @@ compromiso.
 - 🔴 HSM master keys (manual)
 
 ### 4.2 Implementación
+
 ```python
 # Cron job diario
 if key.age_days >= key.rotation_days - 7:
@@ -172,7 +179,7 @@ Cualquier excepción (saltarse rotación) debe:
 3. Tener fecha de expiración (máximo 30 días).
 4. Incluir plan de mitigación.
 
-10. Herramientas
+5. Herramientas
 
 Herramienta Uso Estado
 HashiCorp Vault Gestión + rotación Roadmap mes 6
@@ -188,5 +195,7 @@ GitHub Actions Cron de rotación ✅ Activo
 · ISO 27001 A.10.1.2
 · PCI DSS 3.5-3.7 (Key management, si aplica)
 · Mercado Pago: webhook secret rotation
+
+```
 
 ```

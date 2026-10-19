@@ -8,11 +8,11 @@ Garantizar cumplimiento legal en México.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-11.1 | NOM-151-SCFI-2016 | High | ❌ |
-| KAF-11.2 | PSC acreditado por SE | High | ❌ |
-| KAF-11.3 | Mapeo a CNBV | Medium | ❌ |
+| ID       | Nombre                | Severidad | Auto |
+| -------- | --------------------- | --------- | ---- |
+| KAF-11.1 | NOM-151-SCFI-2016     | High      | ❌   |
+| KAF-11.2 | PSC acreditado por SE | High      | ❌   |
+| KAF-11.3 | Mapeo a CNBV          | Medium    | ❌   |
 
 ## Requisitos
 

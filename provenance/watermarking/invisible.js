@@ -27,7 +27,9 @@ export function generarMarcaInvisible({ contenido_hash, autor, secreto }) {
   const info = new TextEncoder().encode('arkhe-watermark-invisible-v1');
 
   const derivado = hkdf(sha3_512, ikm, salt, info, 32);
-  const marca = Array.from(derivado).map((b) => b.toString(16).padStart(2, '0')).join('');
+  const marca = Array.from(derivado)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 
   return {
     ok: true,
@@ -48,9 +50,10 @@ export function detectarMarca({ contenido_hash, autor, secreto, marca }) {
   const regenerada = generarMarcaInvisible({ contenido_hash, autor, secreto });
   return {
     ok: regenerada.marca === marca,
-    veredicto: regenerada.marca === marca
-      ? 'MARCA INVISIBLE DETECTADA'
-      : 'MARCA INVISIBLE AUSENTE',
+    veredicto:
+      regenerada.marca === marca
+        ? 'MARCA INVISIBLE DETECTADA'
+        : 'MARCA INVISIBLE AUSENTE',
     sellado: SEAL,
   };
 }

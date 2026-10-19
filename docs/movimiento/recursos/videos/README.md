@@ -17,15 +17,16 @@
 
 # 🎬 VIDEOS OFICIALES
 
-### *Tutoriales y ceremonias grabadas*
+### _Tutoriales y ceremonias grabadas_
 
-### *"Un video firmado es una prueba eterna."*
+### _"Un video firmado es una prueba eterna."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I D E O S  ·  ◯_●                                 ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,12 +48,12 @@
 
 ## 🜂 Videos oficiales
 
-| Video                       | Duración | Uso                       |
-|-----------------------------|----------|---------------------------|
-| `intro-arkhe.mp4`           | 3:33     | Intro ceremonial          |
-| `tutorial-firmar.mp4`       | 5:00     | Cómo firmar obras         |
-| `tutorial-verificar.mp4`    | 4:20     | Cómo verificar hashes     |
-| `ceremonia-juramento.mp4`   | 12:00    | Juramento KINTSUGI        |
+| Video                     | Duración | Uso                   |
+| ------------------------- | -------- | --------------------- |
+| `intro-arkhe.mp4`         | 3:33     | Intro ceremonial      |
+| `tutorial-firmar.mp4`     | 5:00     | Cómo firmar obras     |
+| `tutorial-verificar.mp4`  | 4:20     | Cómo verificar hashes |
+| `ceremonia-juramento.mp4` | 12:00    | Juramento KINTSUGI    |
 
 ## 🜃 Especificaciones técnicas
 

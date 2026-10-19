@@ -29,25 +29,9 @@
   "ai_instructions": {
     "language": "es",
     "tone": "técnico, sin adornos",
-    "response_format": [
-      "diagnóstico",
-      "diseño",
-      "implementación",
-      "riesgos",
-      "siguiente_paso"
-    ],
-    "never": [
-      "inventar",
-      "teoría sin código",
-      "pedir contexto ya provisto",
-      "duplicar conceptos"
-    ],
-    "always": [
-      "código copy-paste-ready",
-      "tablas y árboles",
-      "marcar deuda 🔴",
-      "marcar logro 🟢"
-    ]
+    "response_format": ["diagnóstico", "diseño", "implementación", "riesgos", "siguiente_paso"],
+    "never": ["inventar", "teoría sin código", "pedir contexto ya provisto", "duplicar conceptos"],
+    "always": ["código copy-paste-ready", "tablas y árboles", "marcar deuda 🔴", "marcar logro 🟢"]
   },
   "entry_points": {
     "human_readable": "AI-CONTEXT.md",

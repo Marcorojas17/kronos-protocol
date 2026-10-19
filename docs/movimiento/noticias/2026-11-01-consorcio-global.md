@@ -17,15 +17,16 @@
 
 # 📰 CONSORCIO GLOBAL INICIADO
 
-### *1 de noviembre de 2026*
+### _1 de noviembre de 2026_
 
-### *"Un nodo es un punto. Un consorcio es un horizonte."*
+### _"Un nodo es un punto. Un consorcio es un horizonte."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  0 1 · N O V · 2 0 2 6  ·  ◯_●                       ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -53,18 +55,18 @@ en múltiples jurisdicciones.
 
 ## 🜃 Nodos proyectados
 
-| Nodo     | Región      | Estado       | ETA        |
-|----------|-------------|--------------|------------|
-| Nodo 0   | Toluca, MX  | ✅ Activo    | 2026-Q1    |
-| Nodo 1   | Madrid, UE  | 🚧 En curso  | 2027-Q1    |
-| Nodo 2   | CDMX, MX    | 📅 Planeado  | 2027-Q2    |
-| Nodo 3   | Buenos Aires| 📅 Planeado  | 2028-Q1    |
+| Nodo   | Región       | Estado      | ETA     |
+| ------ | ------------ | ----------- | ------- |
+| Nodo 0 | Toluca, MX   | ✅ Activo   | 2026-Q1 |
+| Nodo 1 | Madrid, UE   | 🚧 En curso | 2027-Q1 |
+| Nodo 2 | CDMX, MX     | 📅 Planeado | 2027-Q2 |
+| Nodo 3 | Buenos Aires | 📅 Planeado | 2028-Q1 |
 
 ## 🜄 Cita
 
-> *"Un solo nodo no es un movimiento. Es un punto. Un consorcio
+> _"Un solo nodo no es un movimiento. Es un punto. Un consorcio
 > de nodos es una constelación. Y las constelaciones no se
-> apagan."*
+> apagan."_
 
 ## 🜁 Firma
 

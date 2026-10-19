@@ -21,7 +21,7 @@ Mostrar estado en vivo: módulos registrados, registros persistidos, eventos, ev
 ## API pública
 
 ```js
-import { DashboardSalud } from "./dashboard.js";
+import { DashboardSalud } from './dashboard.js';
 
 const dashboard = new DashboardSalud(core, storage, bus, router);
 const reporte = await dashboard.generar(humano);

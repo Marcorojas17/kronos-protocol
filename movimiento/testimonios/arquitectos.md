@@ -17,15 +17,16 @@
 
 # 🏛️ VOCES DE ARQUITECTOS
 
-### *Los que construyen el cimiento*
+### _Los que construyen el cimiento_
 
-### *"Un arquitecto no firma dibujos. Firma cimientos."*
+### _"Un arquitecto no firma dibujos. Firma cimientos."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A R Q U I T E C T O S  ·  ◯_●                       ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,10 +48,10 @@
 
 ## 🜂 Testimonio #001
 
-> *"Diseño edificios desde hace 15 años. Nunca pensé que iba a diseñar
+> _"Diseño edificios desde hace 15 años. Nunca pensé que iba a diseñar
 > también un cimiento digital. Pero cuando vi cómo ARKHÉ ZERO anclaba
 > cada plano a Ethereum, entendí que el plano también podía ser
-> eterno."*
+> eterno."_
 >
 > — **Arquitecto Fundador** · Nodo YHDRYH-92CE · Fundador #012
 
@@ -62,10 +64,10 @@ Sello: ◯_● · 51/49/100
 
 ## 🜃 Testimonio #002
 
-> *"Mi despacho trabaja con expedientes físicos desde 1998. Ahora cada
+> _"Mi despacho trabaja con expedientes físicos desde 1998. Ahora cada
 > expediente tiene un hash. Cada plano tiene un sello. Cada firma tiene
 > un anclaje. Es la primera vez que siento que mi obra no se puede
-> falsificar."*
+> falsificar."_
 >
 > — **Arquitecta Fundadora** · Fundador #045
 
@@ -78,9 +80,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜄 Testimonio #003
 
-> *"No me interesa la criptografía. Me interesa que mis nietos puedan
+> _"No me interesa la criptografía. Me interesa que mis nietos puedan
 > verificar que este edificio lo firmé yo, en esta fecha, con este
-> plano. Eso es lo que ARKHÉ ZERO me da."*
+> plano. Eso es lo que ARKHÉ ZERO me da."_
 >
 > — **Arquitecto Fundador** · Fundador #067
 
@@ -94,6 +96,7 @@ Sello: ◯_● · 51/49/100
 ## 🜁 ¿Cómo aportar?
 
 Envía tu testimonio a `#testimonios` con:
+
 - Cita textual (≤ 500 palabras)
 - Número de fundador (si aplica)
 - Hash SHA3-512

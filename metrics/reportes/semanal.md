@@ -7,21 +7,21 @@
 
 # 🗓️ REPORTE SEMANAL
 
-### *Semana 40 · 2026 (30 sep → 6 oct)*
+### _Semana 40 · 2026 (30 sep → 6 oct)_
 
-### *"Lo que se mide, se firma."*
+### _"Lo que se mide, se firma."_
 
 </div>
 
 ## 🜂 Métricas de la semana
 
-| Métrica                  | Esta semana | Semana anterior | Δ    |
-|--------------------------|-------------|-----------------|------|
-| Visitantes únicos        | 0           | 0               | —    |
-| Firmas nuevas            | 0           | 0               | —    |
-| Suscriptores newsletter  | 0           | 0               | —    |
-| Shares en redes          | 0           | 0               | —    |
-| Menciones                | 0           | 0               | —    |
+| Métrica                 | Esta semana | Semana anterior | Δ   |
+| ----------------------- | ----------- | --------------- | --- |
+| Visitantes únicos       | 0           | 0               | —   |
+| Firmas nuevas           | 0           | 0               | —   |
+| Suscriptores newsletter | 0           | 0               | —   |
+| Shares en redes         | 0           | 0               | —   |
+| Menciones               | 0           | 0               | —   |
 
 ## 🜃 Fuentes
 

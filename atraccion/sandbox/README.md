@@ -17,15 +17,16 @@
 
 # 🧪 SANDBOX
 
-### *Probar antes de firmar*
+### _Probar antes de firmar_
 
-### *"Nadie firma a ciegas. Primero juega."*
+### _"Nadie firma a ciegas. Primero juega."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  S A N D B O X  ·  ◯_●                               ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,22 +49,29 @@
 ## 🜂 Componentes
 
 ### 🎮 demo-publica/
+
 Demo interactiva en el navegador (sin login):
+
 - Verificar un hash de ejemplo
 - Firmar un texto de prueba
 - Ver el flujo de anclaje (simulado)
 
 ### 🌐 api-publica/
+
 API REST gratuita:
+
 - `GET /v1/verify?hash=...` · verificar hash
 - `GET /v1/index-zero` · Índice Cero público
 - Rate limit: 100 req/hora por IP
 
 ### 🔌 mcp-publico/
+
 Servidor MCP abierto para pruebas con Claude, Gemini, etc.
 
 ### 💎 free-tier/
+
 Plan gratuito permanente:
+
 - 10 obras firmadas/mes
 - Verificación ilimitada
 - 1 GB storage local
@@ -70,15 +79,15 @@ Plan gratuito permanente:
 
 ## 🜃 Comparativa de planes
 
-| Feature              | Free  | Miembro | Embajador | Corporativo |
-|----------------------|-------|---------|-----------|-------------|
-| Obras firmadas/mes   | 10    | ∞       | ∞         | ∞           |
-| Verificación         | ∞     | ∞       | ∞         | ∞           |
-| Anclaje Ethereum     | 1/mes | ∞       | ∞         | ∞           |
-| Storage local        | 1 GB  | ∞       | ∞         | ∞           |
-| Presupuesto FLAILP   | ❌    | ❌      | ✅        | ✅          |
-| API key              | ❌    | ✅      | ✅        | ✅          |
-| Costo                | Gratis| Gratis  | Gratis    | LGU         |
+| Feature            | Free   | Miembro | Embajador | Corporativo |
+| ------------------ | ------ | ------- | --------- | ----------- |
+| Obras firmadas/mes | 10     | ∞       | ∞         | ∞           |
+| Verificación       | ∞      | ∞       | ∞         | ∞           |
+| Anclaje Ethereum   | 1/mes  | ∞       | ∞         | ∞           |
+| Storage local      | 1 GB   | ∞       | ∞         | ∞           |
+| Presupuesto FLAILP | ❌     | ❌      | ✅        | ✅          |
+| API key            | ❌     | ✅      | ✅        | ✅          |
+| Costo              | Gratis | Gratis  | Gratis    | LGU         |
 
 ## 🜄 Reglas
 

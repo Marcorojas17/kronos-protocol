@@ -2,14 +2,14 @@
  * Atribución SDK — Entry point.
  */
 
-export { AtribucionClient } from "./client.js";
+export { AtribucionClient } from './client.js';
 export {
   canonicalJson,
   canonicalBytes,
   signPayload,
   verifySignature,
   signHybridPqcPlaceholder,
-} from "./crypto.js";
+} from './crypto.js';
 
 export type {
   ActionResponse,
@@ -22,6 +22,6 @@ export type {
   ProveedorModelo,
   RecordActionInput,
   RegisterAgentInput,
-} from "./types.js";
+} from './types.js';
 
-export const VERSION = "0.1.0";
+export const VERSION = '0.1.0';

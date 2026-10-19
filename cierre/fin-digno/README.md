@@ -22,14 +22,10 @@ Definir el cierre digno del legado: carta final, criterios de fin, motivo y clá
 ## API pública
 
 ```js
-import { FinDigno } from "./fin.js";
+import { FinDigno } from './fin.js';
 
 const fin = new FinDigno(core, storage);
-const cert = await fin.sellar(
-  { carta, motivo, sucesor, cartaFirmada },
-  humano,
-  pactoIA,
-);
+const cert = await fin.sellar({ carta, motivo, sucesor, cartaFirmada }, humano, pactoIA);
 const ok = await fin.verificar(cert, humano, pactoIA);
 const resurreccionOk = await fin.verificarResurreccion(cert, humano, pactoIA);
 const cierre = await fin.recuperar();

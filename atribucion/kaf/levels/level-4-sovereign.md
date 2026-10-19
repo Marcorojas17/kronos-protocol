@@ -8,15 +8,15 @@
 
 KAF-4 = KAF-3 + los siguientes controles:
 
-| Control | Descripción |
-|---|---|
-| **KAF-9.2** | PQC completo (ML-KEM + ML-DSA + SLH-DSA) |
-| **KAF-11.1** | NOM-151 vigente |
-| **KAF-11.2** | Sellado con PSC acreditado por SE |
-| **KAF-11.3** | Mapeo a CNBV |
-| **KAF-12.1** | ISO 42001 (Sistema de Gestión de IA) |
-| **KAF-12.2** | NIST AI RMF documentado |
-| **KAF-12.4** | Auditoría externa anual |
+| Control      | Descripción                              |
+| ------------ | ---------------------------------------- |
+| **KAF-9.2**  | PQC completo (ML-KEM + ML-DSA + SLH-DSA) |
+| **KAF-11.1** | NOM-151 vigente                          |
+| **KAF-11.2** | Sellado con PSC acreditado por SE        |
+| **KAF-11.3** | Mapeo a CNBV                             |
+| **KAF-12.1** | ISO 42001 (Sistema de Gestión de IA)     |
+| **KAF-12.2** | NIST AI RMF documentado                  |
+| **KAF-12.4** | Auditoría externa anual                  |
 
 **Total: 36 controles acumulados.**
 

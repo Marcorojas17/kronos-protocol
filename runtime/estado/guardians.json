@@ -16,9 +16,7 @@
     {
       "ok": true,
       "msg": "1 tokens TSA RFC 3161 encontrados",
-      "tokens": [
-        "tsr-2026-01-01.tsr"
-      ],
+      "tokens": ["tsr-2026-01-01.tsr"],
       "nombre": "GUARDIAN-TSA",
       "desc": "Tokens RFC 3161"
     },

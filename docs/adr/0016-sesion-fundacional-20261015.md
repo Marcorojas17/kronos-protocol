@@ -24,28 +24,33 @@ Ejecutar una sesión fundacional que:
 ## 🜄 Ejecución
 
 ### Fase 1 · Criptografía
+
 - Generación de `fundador-v3.key` (Ed25519)
 - Firma del Pacto 51/49: `pacto-5149-canonico.sig` (64 bytes)
 - Verificación con OpenSSL: `Signature Verified Successfully`
 
 ### Fase 2 · Anclaje Bitcoin
+
 - Génesis K28 · tx `8ecf89d2...`
 - Pacto 51/49 · tx `34842cc1...` + `ae0ce809...`
 - Manifiesto maestro 2026-10-15 · `Success! Timestamp complete`
 
 ### Fase 3 · Atestaciones de agentes
+
 - 8 atestaciones firmadas: génesis + 7 agentes
 - 7 pares de llaves Ed25519 generados
 - Llaves privadas movidas a `~/.arkhe-private/agentes/`
 - Todas las firmas verificadas con `openssl pkeyutl -verify`
 
 ### Fase 4 · Publicación web
+
 - 448 archivos HTML generados desde markdown
 - Portada ceremonial con contador Bitcoin en vivo
 - Fondo KINTSUGI GOLD DUST (partículas doradas + constelaciones)
 - Publicado en `https://marcorojas17.github.io/kronos-protocol/`
 
 ### Fase 5 · Gestión de llaves
+
 - Detección de llaves privadas en historial de git
 - Limpieza con `git filter-repo` (2 pasadas)
 - Rotación: `fundador-v2` → `fundador-v3` (activa)
@@ -61,12 +66,14 @@ Ejecutar una sesión fundacional que:
 ## 🜀 Consecuencias
 
 ### Positivas
+
 - El Pacto 51/49 es criptográficamente verificable por terceros
 - Los sellos Bitcoin son inmutables e independientes de servidores
 - El sistema es navegable públicamente
 - Existe política formal de gestión de llaves
 
 ### Pendientes
+
 - Integración post-cuántica real (ML-DSA-65 / Dilithium)
 - Nodo Bitcoin propio para verificación 100% soberana
 - Publicación en IPFS / dominios descentralizados

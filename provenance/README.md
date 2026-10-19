@@ -70,13 +70,13 @@
 
 ## 🜃 Módulos
 
-| Módulo                    | Rol                                          |
-|---------------------------|----------------------------------------------|
-| `c2pa/`                   | Manifiesto C2PA + claims + validación firma  |
-| `watermarking/`           | Marca de agua robusta (invisible + visible)  |
-| `fingerprinting/`         | Huella perceptual (pHash + neural)           |
-| `timestamping/`           | Sello de tiempo RFC 3161 + anclaje on-chain  |
-| `notarization/`           | Notario KRONOS + ledger proof                |
+| Módulo            | Rol                                         |
+| ----------------- | ------------------------------------------- |
+| `c2pa/`           | Manifiesto C2PA + claims + validación firma |
+| `watermarking/`   | Marca de agua robusta (invisible + visible) |
+| `fingerprinting/` | Huella perceptual (pHash + neural)          |
+| `timestamping/`   | Sello de tiempo RFC 3161 + anclaje on-chain |
+| `notarization/`   | Notario KRONOS + ledger proof               |
 
 ## 🜄 Ejemplo
 

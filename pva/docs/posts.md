@@ -50,6 +50,7 @@ Comparto un análisis técnico sobre el subsistema de almacenamiento de un S9+ (
 Los contadores ECC (Error Correction Code) y TMO (Timeout) provienen del propio controlador UFS y persisten entre reinicios. Son un registro silencioso del estado del chip que Samsung no expone en ninguna interfaz pública.
 
 **Verificación de integridad:**
+
 - SHA-256 m0_history_1: `262ca27a74599d81065ba6c4e143703e4d7fef66ca38bf2cd30985a337e1a964`
 - SHA-256 m0_history_2: `1ebab25874c594a19d440bc7b3569db2a21f656820a5d179fa8058df9d43e519`
 

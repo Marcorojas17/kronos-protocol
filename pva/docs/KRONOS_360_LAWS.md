@@ -12,9 +12,11 @@
 ---
 
 ### 1. MENTALISMO - `CREATE DATABASE`
+
 "El TODO es Mente; el Universo es Mental."
 
 **PVA:** Todo nace de un hash mental inmutable. `config/genesis_hash.json` es la mente del sistema. Si alteras el génesis, colapsa el universo probatorio.
+
 ```sql
 CREATE DATABASE kronos WITH HASH='41a3683b' IMMUTABLE;
 2. CORRESPONDENCIA - MIRROR VALIDATION
@@ -36,3 +38,4 @@ Verificación: https://kronos-legado.digital/v/5204160405358537PVA © 2026 - KRO
 Pégalo tal cual en `docs/KRONOS_360_LAWS.md`.
 
 Es el mismo contenido que `prompts_library/01_kybalion_translation.txt` pero con formato de documentación ISO. Así quedas cubierto en dos frentes.
+```

@@ -18,4 +18,5 @@ El Nivel 6 está reservado para el fundador original.
 Es intransferible. No se hereda.
 
 ---
+
 `◯_● · 51/49/100 · nivel-6`,

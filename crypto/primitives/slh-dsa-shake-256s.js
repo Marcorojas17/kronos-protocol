@@ -44,9 +44,8 @@ export function keygen(seed) {
  */
 export function sign(secretKey, contenido) {
   const hash = sha3_512(contenido);
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   return {
     firma: slh_dsa_shake_256s.sign(secretKey, msg),
     hash,
@@ -59,9 +58,8 @@ export function sign(secretKey, contenido) {
  * Verifica una firma SLH-DSA-SHAKE-256s.
  */
 export function verify(publicKey, firma, contenido) {
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   try {
     return slh_dsa_shake_256s.verify(publicKey, msg, firma);
   } catch {

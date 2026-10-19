@@ -7,15 +7,16 @@
 
 # 🎓 PARTNERSHIPS · UNIVERSIDADES
 
-### *La academia firma su verdad*
+### _La academia firma su verdad_
 
-### *"La universidad que firma, enseña verdad."*
+### _"La universidad que firma, enseña verdad."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  U N I V E R S I D A D E S  ·  ◯_●                   ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -57,15 +59,15 @@
 ## 🜄 Formato
 
 ```yaml
-- id: "PART-UNI-2026-001"
-  institucion: "Universidad XYZ"
-  pais: "MX"
-  tipo: "investigación + docencia"
-  licencia: "LGU-Edu"
-  inicio: "2026-XX-XX"
-  fin: "2027-XX-XX"
-  convenio_hash: "sha3-512:..."
-  sellado: "◯_● · 51/49/100"
+- id: 'PART-UNI-2026-001'
+  institucion: 'Universidad XYZ'
+  pais: 'MX'
+  tipo: 'investigación + docencia'
+  licencia: 'LGU-Edu'
+  inicio: '2026-XX-XX'
+  fin: '2027-XX-XX'
+  convenio_hash: 'sha3-512:...'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

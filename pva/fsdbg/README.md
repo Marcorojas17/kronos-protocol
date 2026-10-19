@@ -4,27 +4,30 @@ Herramienta de diagnóstico para logs `fsdbg` del subsistema de almacenamiento (
 
 ## Formatos soportados
 
-| Formato | Detección | Contenido |
-|---------|-----------|-----------|
-| `m0_history` | `type : err` en el texto | Errores de storage con contadores GE/CC/ECC/WP/OOR/CRC/TMO/HALT/CQEN/RPMB |
-| `u_history`  | `"OPERR"` presente | UIC errors |
-| `us_history` | `"MEDIUM"` presente | US / hardware errors |
-| `ulc_history`| Header + línea numérica | Contador ULC |
-| `raw` (fsdbg*.txt) | Prefijo `H4sIAAAAAAAAA` | Dump gzip+base64 (no parseado aún) |
+| Formato            | Detección                | Contenido                                                                 |
+| ------------------ | ------------------------ | ------------------------------------------------------------------------- |
+| `m0_history`       | `type : err` en el texto | Errores de storage con contadores GE/CC/ECC/WP/OOR/CRC/TMO/HALT/CQEN/RPMB |
+| `u_history`        | `"OPERR"` presente       | UIC errors                                                                |
+| `us_history`       | `"MEDIUM"` presente      | US / hardware errors                                                      |
+| `ulc_history`      | Header + línea numérica  | Contador ULC                                                              |
+| `raw` (fsdbg*.txt) | Prefijo `H4sIAAAAAAAAA`  | Dump gzip+base64 (no parseado aún)                                        |
 
 ## ¿Qué hace?
 
 `parser.js` detecta el tipo de cada archivo, divide por entradas `[N] - fsdbg : TIMESTAMP`, y extrae:
+
 - **m0**: cada línea de error (sbc, cmd, data, stop, busy) y los contadores acumulados al final.
 - **u / us**: pares clave-valor entre comillas.
 - **ulc**: valor numérico único por entrada.
 
 Expone:
+
 - `window.FSDBG.detectType(text)`
 - `window.FSDBG.parse(text)`
 - `window.FSDBG.summarize(parsed)`
 
 `index.html` es un dashboard multi-archivo:
+
 - Carga múltiple de `.txt`
 - Detecta tipo por archivo
 - Tarjetas resumen (archivos, entradas, anomalías, contadores)
@@ -45,4 +48,5 @@ Expone:
 - El dashboard funciona 100% en el navegador, sin backend.
 
 ---
-*PVA · Protocolo Vida Autopoiética*
+
+_PVA · Protocolo Vida Autopoiética_

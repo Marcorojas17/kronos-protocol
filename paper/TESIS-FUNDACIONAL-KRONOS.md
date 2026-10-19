@@ -26,7 +26,7 @@
 
 # 📜 TESIS FUNDACIONAL DE KRONOS
 
-> *"El legado no se hereda. Se firma."*
+> _"El legado no se hereda. Se firma."_
 
 ---
 
@@ -252,6 +252,7 @@ Cada obra certificada en KRONOS pasa por:
 6. **Certificado** · PDF con sello y firma criptográfica
 
 **Estándares cumplidos:**
+
 - NOM-151-SCFI-2016 (México)
 - ISO 27037:2012 (Forensia digital)
 - eIDAS (Unión Europea)
@@ -356,13 +357,13 @@ Este modelo está diseñado para alinearse con la **EU AI Act** y futuras regula
 
 **Proyección 5 años:**
 
-| Año | Certificaciones | Ingreso | Margen |
-|---|---|---|---|
-| 2027 | 50,000 | $2.5M | $2.1M |
-| 2028 | 250,000 | $12M | $10M |
-| 2029 | 1,000,000 | $49M | $42M |
-| 2030 | 3,000,000 | $147M | $127M |
-| 2031 | 10,000,000 | $490M | $425M |
+| Año  | Certificaciones | Ingreso | Margen |
+| ---- | --------------- | ------- | ------ |
+| 2027 | 50,000          | $2.5M   | $2.1M  |
+| 2028 | 250,000         | $12M    | $10M   |
+| 2029 | 1,000,000       | $49M    | $42M   |
+| 2030 | 3,000,000       | $147M   | $127M  |
+| 2031 | 10,000,000      | $490M   | $425M  |
 
 ### 6.3 · Distribución de Ingresos
 
@@ -439,15 +440,15 @@ Este modelo está diseñado para alinearse con la **EU AI Act** y futuras regula
 
 ### 8.2 · Estado Actual (Octubre 2026)
 
-| KPI | Valor | Estado |
-|---|---|---|
-| Certificaciones | 1,247 | ✅ |
-| Autores Activos | 482 | ✅ |
-| Coef. Viral | 1.24 | ✅ |
-| Open Rate | 42% | ✅ |
-| Churn | 1.4% | ✅ |
-| NPS | 62 | ✅ |
-| Uptime | 99.98% | ✅ |
+| KPI             | Valor  | Estado |
+| --------------- | ------ | ------ |
+| Certificaciones | 1,247  | ✅     |
+| Autores Activos | 482    | ✅     |
+| Coef. Viral     | 1.24   | ✅     |
+| Open Rate       | 42%    | ✅     |
+| Churn           | 1.4%   | ✅     |
+| NPS             | 62     | ✅     |
+| Uptime          | 99.98% | ✅     |
 
 ---
 
@@ -492,15 +493,15 @@ Este modelo está diseñado para alinearse con la **EU AI Act** y futuras regula
 
 ### 9.2 · Hitos Técnicos
 
-| Año | Hito Técnico |
-|---|---|
-| 2027 | Mainnet en Polygon |
-| 2027 | SDK en 5 lenguajes |
-| 2028 | Integración con C2PA oficial |
-| 2028 | API pública certificada |
-| 2029 | Nodo descentralizado |
+| Año  | Hito Técnico                        |
+| ---- | ----------------------------------- |
+| 2027 | Mainnet en Polygon                  |
+| 2027 | SDK en 5 lenguajes                  |
+| 2028 | Integración con C2PA oficial        |
+| 2028 | API pública certificada             |
+| 2029 | Nodo descentralizado                |
 | 2030 | Verificación post-cuántica completa |
-| 2031 | Sistema autónomo con DAO |
+| 2031 | Sistema autónomo con DAO            |
 
 ---
 
@@ -521,25 +522,28 @@ El sistema resuelve simultáneamente:
 ### 10.2 · Implicaciones
 
 **Para creadores:**
+
 - Protección real de autoría.
 - Reconocimiento de co-autoría IA.
 - Acceso a un marketplace global.
 - Legado certificado para herederos.
 
 **Para empresas:**
+
 - Cumplimiento legal verificable.
 - Auditoría forense digital.
 - Trazabilidad de PI crítica.
 - Partnerships estratégicos.
 
 **Para la sociedad:**
+
 - Un estándar global de verdad digital.
 - Resistencia a deepfakes y manipulación.
 - Un legado cultural preservado.
 
 ### 10.3 · Visión Final
 
-> *"En 2031, un niño podrá mirar una obra de arte digital y saber, con certeza criptográfica, quién la creó, cuándo, con qué IA colaboró, y qué pasó con ella desde su nacimiento. Y esa certeza no dependerá de ninguna corporación, gobierno o plataforma. Dependerá de las matemáticas."*
+> _"En 2031, un niño podrá mirar una obra de arte digital y saber, con certeza criptográfica, quién la creó, cuándo, con qué IA colaboró, y qué pasó con ella desde su nacimiento. Y esa certeza no dependerá de ninguna corporación, gobierno o plataforma. Dependerá de las matemáticas."_
 
 **Ese es el mundo que KRONOS construye.**
 
@@ -565,17 +569,17 @@ El sistema resuelve simultáneamente:
 
 ### Filosofía
 
-11. Maturana & Varela · *Autopoiesis and Cognition* (1980)
-12. *Kybalion* (1908)
-13. *Book of Enoch* · Tradición apócrifa
-14. *Kintsugi* · Arte japonés tradicional
+11. Maturana & Varela · _Autopoiesis and Cognition_ (1980)
+12. _Kybalion_ (1908)
+13. _Book of Enoch_ · Tradición apócrifa
+14. _Kintsugi_ · Arte japonés tradicional
 
 ### Técnicas
 
-15. Satoshi Nakamoto · *Bitcoin Whitepaper* (2008)
-16. Vitalik Buterin · *Ethereum Whitepaper* (2014)
-17. IPFS · *InterPlanetary File System*
-18. Arweave · *Permaweb Protocol*
+15. Satoshi Nakamoto · _Bitcoin Whitepaper_ (2008)
+16. Vitalik Buterin · _Ethereum Whitepaper_ (2014)
+17. IPFS · _InterPlanetary File System_
+18. Arweave · _Permaweb Protocol_
 
 ---
 
@@ -620,5 +624,5 @@ Contrato: AttributionRegistry.sol
 
 ---
 
-◯_● · 51/49/100 · KRONOS · SCDR-001
-◯_● · Nodo YHDRYH-92CE · Genesis K28-M05-MN01
+◯*● · 51/49/100 · KRONOS · SCDR-001
+◯*● · Nodo YHDRYH-92CE · Genesis K28-M05-MN01

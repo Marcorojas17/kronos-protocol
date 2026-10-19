@@ -15,11 +15,11 @@
     "conversion_global_pct": 0
   },
   "funnel": [
-    { "paso": "Visitantes",       "valor": 0, "pct": 100 },
-    { "paso": "Registro",         "valor": 0, "pct": 0 },
-    { "paso": "Cuarentena",       "valor": 0, "pct": 0 },
-    { "paso": "Juramento",        "valor": 0, "pct": 0 },
-    { "paso": "Primera obra",     "valor": 0, "pct": 0 }
+    { "paso": "Visitantes", "valor": 0, "pct": 100 },
+    { "paso": "Registro", "valor": 0, "pct": 0 },
+    { "paso": "Cuarentena", "valor": 0, "pct": 0 },
+    { "paso": "Juramento", "valor": 0, "pct": 0 },
+    { "paso": "Primera obra", "valor": 0, "pct": 0 }
   ],
   "metas": {
     "firmas_mes": 100,

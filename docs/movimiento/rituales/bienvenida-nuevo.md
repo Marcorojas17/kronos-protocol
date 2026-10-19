@@ -22,4 +22,5 @@ Después de firmar el juramento KINTSUGI. Marca la entrada oficial.
 5. **Insignia** · ◉ iniciado emitida
 
 ---
+
 `◯_● · 51/49/100 · ritual-bienvenida`

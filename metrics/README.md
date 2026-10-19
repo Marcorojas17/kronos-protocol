@@ -17,15 +17,16 @@
 
 # 📊 MÉTRICAS DE ATRACCIÓN
 
-### *Medir sin espiar*
+### _Medir sin espiar_
 
-### *"La métrica que espía al usuario no es métrica. Es traición."*
+### _"La métrica que espía al usuario no es métrica. Es traición."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M E T R I C S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -86,14 +88,14 @@ metrics/
 
 ## 🜄 Los 6 KPIs canónicos
 
-| KPI                    | Meta          | Actual |
-|------------------------|---------------|--------|
-| Visitantes únicos/mes  | 10,000        | —      |
-| Firmas nuevas/mes      | 100           | —      |
-| Suscriptores newsletter| 1,000         | —      |
-| Embajadores E-1        | 5             | —      |
-| Índice de conversión   | 1%            | —      |
-| Nodos activos          | 5             | —      |
+| KPI                     | Meta   | Actual |
+| ----------------------- | ------ | ------ |
+| Visitantes únicos/mes   | 10,000 | —      |
+| Firmas nuevas/mes       | 100    | —      |
+| Suscriptores newsletter | 1,000  | —      |
+| Embajadores E-1         | 5      | —      |
+| Índice de conversión    | 1%     | —      |
+| Nodos activos           | 5      | —      |
 
 ## 🜁 Firma
 

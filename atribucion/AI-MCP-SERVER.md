@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # AI-MCP-SERVER.md
 
 **Servidor MCP (Model Context Protocol) de reconocimiento IA.**
@@ -11,15 +11,15 @@ sin que tengas que explicarlo cada vez.
 
 ## Qué expone
 
-| Tool | Función |
-|---|---|
-| `whoami` | Devuelve el perfil del owner |
-| `get_state` | Estado actual del proyecto |
-| `get_roadmap` | Hoja de ruta |
-| `get_decisions` | Decisiones arquitectónicas |
-| `get_pending` | Deuda abierta |
-| `log_session` | Registra una sesión |
-| `search_context` | Busca en todo el contexto |
+| Tool             | Función                      |
+| ---------------- | ---------------------------- |
+| `whoami`         | Devuelve el perfil del owner |
+| `get_state`      | Estado actual del proyecto   |
+| `get_roadmap`    | Hoja de ruta                 |
+| `get_decisions`  | Decisiones arquitectónicas   |
+| `get_pending`    | Deuda abierta                |
+| `log_session`    | Registra una sesión          |
+| `search_context` | Busca en todo el contexto    |
 
 ---
 
@@ -28,6 +28,7 @@ sin que tengas que explicarlo cada vez.
 ```bash
 pip install mcp
 ```
+````
 
 ---
 
@@ -106,5 +107,7 @@ ai-recognition/mcp/server.py.
 ---
 
 Marco Antonio Rojas Valdovinos
+
+```
 
 ```

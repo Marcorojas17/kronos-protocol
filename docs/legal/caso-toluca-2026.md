@@ -47,8 +47,8 @@ El caso establece 3 precedentes:
 
 ## 🜁 Cita Canónica
 
-> *"El legado no se hereda. Se firma.*
-> *Y hoy, yo firmo por primera vez en nombre de todos los que vendrán."*
+> _"El legado no se hereda. Se firma._
+> _Y hoy, yo firmo por primera vez en nombre de todos los que vendrán."_
 > — Marco Antonio Rojas Valdovinos
 
 ---

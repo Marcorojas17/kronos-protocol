@@ -16,4 +16,5 @@ Cada luna nueva del mes.
 1 hora · silencio digital durante la reflexión.
 
 ---
+
 `◯_● · 51/49/100 · ritual-luna-nueva`

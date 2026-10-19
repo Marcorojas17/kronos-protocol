@@ -15,7 +15,7 @@ para mantener calidad y coherencia.
 
 ## Setup local
 
-```bash
+````bash
 # Clonar
 git clone https://github.com/Marcorojas17/atribucion.git
 cd atribucion
@@ -79,7 +79,7 @@ fix: 🐛 corregir validación de DID
 docs: 📚 actualizar quickstart
 test: 🧪 añadir test de handoff
 chore: 🔧 actualizar dependencias
-```
+````
 
 ---
 

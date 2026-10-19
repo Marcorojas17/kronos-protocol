@@ -2,12 +2,12 @@
 
 ## 🜂 Registro oficial
 
-| #   | Hash corto      | Fecha       | Estado     |
-|-----|-----------------|-------------|------------|
-| 001 | f03f7e2d8526... | 2026-01-01  | ✅ activo  |
-| 002 | —               | —           | 🕐 libre   |
-| ... | —               | —           | 🕐 libre   |
-| 100 | —               | —           | 🕐 libre   |
+| #   | Hash corto      | Fecha      | Estado    |
+| --- | --------------- | ---------- | --------- |
+| 001 | f03f7e2d8526... | 2026-01-01 | ✅ activo |
+| 002 | —               | —          | 🕐 libre  |
+| ... | —               | —          | 🕐 libre  |
+| 100 | —               | —          | 🕐 libre  |
 
 ## 🜃 Cómo aplicar
 

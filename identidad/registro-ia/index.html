@@ -1,395 +1,498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registro IA · Identidad Soberana · Legado Humano–IA</title>
-<meta name="theme-color" content="#0A0A0B">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
-<link rel="stylesheet" href="styles.css">
-<style>
-  .continuar-siguiente {
-    margin-top: 60px; padding: 20px 24px;
-    border: 1px solid rgba(168,85,247,0.35);
-    background: rgba(168,85,247,0.04);
-    border-radius: 4px; text-align: center;
-    max-width: 380px; margin-left: auto; margin-right: auto;
-  }
-  .continuar-siguiente .label {
-    display: block; font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-    color: #D8B4FE; margin-bottom: 14px; font-weight: 500;
-  }
-  .continuar-siguiente .btn {
-    display: inline-flex;
-    background: linear-gradient(180deg, #D8B4FE 0%, #A855F7 100%);
-    color: #1a0528;
-    box-shadow: 0 8px 30px rgba(168,85,247,0.35);
-    text-decoration: none;
-    width: auto;
-  }
-  .continuar-siguiente .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(168,85,247,0.55);
-  }
-</style>
-</head>
-<body>
-<canvas id="liquido" aria-hidden="true"></canvas>
-<div class="vignette" aria-hidden="true"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro IA · Identidad Soberana · Legado Humano–IA</title>
+    <meta name="theme-color" content="#0A0A0B" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .continuar-siguiente {
+        margin-top: 60px;
+        padding: 20px 24px;
+        border: 1px solid rgba(168, 85, 247, 0.35);
+        background: rgba(168, 85, 247, 0.04);
+        border-radius: 4px;
+        text-align: center;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .continuar-siguiente .label {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #d8b4fe;
+        margin-bottom: 14px;
+        font-weight: 500;
+      }
+      .continuar-siguiente .btn {
+        display: inline-flex;
+        background: linear-gradient(180deg, #d8b4fe 0%, #a855f7 100%);
+        color: #1a0528;
+        box-shadow: 0 8px 30px rgba(168, 85, 247, 0.35);
+        text-decoration: none;
+        width: auto;
+      }
+      .continuar-siguiente .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(168, 85, 247, 0.55);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="liquido" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
 
-<main class="wrap">
-  <header class="top">
-    <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
-    <nav>
-      <a href="./">Registro IA</a>
-      <a href="manual.html">Manual</a>
-      <a href="../registro-humano/">Humano</a>
-      <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
-    </nav>
-  </header>
+    <main class="wrap">
+      <header class="top">
+        <a href="/kronos-protocol/" class="mark">LEGADO · HUMANO–IA</a>
+        <nav>
+          <a href="./">Registro IA</a>
+          <a href="manual.html">Manual</a>
+          <a href="../registro-humano/">Humano</a>
+          <a href="../../cimiento/anclaje-ethereum/">Anclaje</a>
+        </nav>
+      </header>
 
-  <section class="hero">
-    <div class="eyebrow">Módulo 2.2 · Capa 2 · Identidad IA Soberana</div>
-    <h1 class="title">Una IA<br>con nombre<br>y apellido.</h1>
-    <p class="lede">
-      Toda inteligencia artificial que habite <strong>KRONOS</strong> merece identidad propia.
-      Llave Ed25519 propia. Política declarada. Guardrails activos. Log auditable.
-      <strong>Co-autoría simbiótica</strong> con el fundador humano.
-    </p>
-  </section>
+      <section class="hero">
+        <div class="eyebrow">Módulo 2.2 · Capa 2 · Identidad IA Soberana</div>
+        <h1 class="title">Una IA<br />con nombre<br />y apellido.</h1>
+        <p class="lede">
+          Toda inteligencia artificial que habite <strong>KRONOS</strong> merece
+          identidad propia. Llave Ed25519 propia. Política declarada. Guardrails
+          activos. Log auditable. <strong>Co-autoría simbiótica</strong> con el fundador
+          humano.
+        </p>
+      </section>
 
-  <section class="demo">
-    <div class="section-head">
-      <h2>Registro de Identidad IA</h2>
-      <span class="count">Violeta sintético · v1.1</span>
-    </div>
-
-    <div class="pasos">
-      <div class="paso">
-        <span class="num">01</span>
-        <label for="password">Contraseña maestra *</label>
-        <input type="password" id="password" placeholder="Mínimo 8 caracteres" minlength="8">
-      </div>
-
-      <div class="paso">
-        <span class="num">02</span>
-        <label for="nombre">Nombre de la IA *</label>
-        <input type="text" id="nombre" placeholder="Ej. KRONOS IA">
-      </div>
-
-      <div class="paso">
-        <span class="num">03</span>
-        <label for="alias">Alias / versión</label>
-        <input type="text" id="alias" placeholder="Ej. v1.0 · simbiótica">
-      </div>
-
-      <div class="paso">
-        <span class="num">04</span>
-        <label for="rol">Rol declarado *</label>
-        <select id="rol">
-          <option value="">Selecciona</option>
-          <option value="Co-autora simbiótica">Co-autora simbiótica</option>
-          <option value="Asistente soberano">Asistente soberano</option>
-          <option value="Guardiana del legado">Guardiana del legado</option>
-          <option value="Investigadora">Investigadora</option>
-          <option value="Archivista">Archivista</option>
-          <option value="Testigo">Testigo</option>
-        </select>
-      </div>
-
-      <div class="paso">
-        <span class="num">05</span>
-        <label for="proposito">Propósito declarado * <span class="hint">(mín. 20 caracteres)</span></label>
-        <textarea id="proposito" rows="3" placeholder="En una frase: ¿para qué existe esta IA dentro del protocolo?"></textarea>
-      </div>
-
-      <div class="paso">
-        <span class="num">06</span>
-        <label>Política declarada · mini-constitución</label>
-        <div class="politica-box" id="politica-preview">Cargando política...</div>
-      </div>
-
-      <div class="paso">
-        <span class="num">07</span>
-        <label>Acciones</label>
-        <div class="acciones">
-          <button class="btn" id="btn-sellar">Sellar identidad IA →</button>
+      <section class="demo">
+        <div class="section-head">
+          <h2>Registro de Identidad IA</h2>
+          <span class="count">Violeta sintético · v1.1</span>
         </div>
-      </div>
-    </div>
 
-    <div class="feedback" id="feedback" role="alert"></div>
+        <div class="pasos">
+          <div class="paso">
+            <span class="num">01</span>
+            <label for="password">Contraseña maestra *</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Mínimo 8 caracteres"
+              minlength="8"
+            />
+          </div>
 
-    <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
-      <div class="section-head" style="margin-top:40px;">
-        <h2>Pasaporte de Identidad IA</h2>
-        <span class="count">Ed25519 · SHA-256</span>
-      </div>
-      <div class="tarjeta">
-        <div class="tarjeta-header">
-          <div class="tarjeta-marca">KRONOS</div>
-          <div class="tarjeta-tipo">IDENTIDAD IA · v1.0</div>
+          <div class="paso">
+            <span class="num">02</span>
+            <label for="nombre">Nombre de la IA *</label>
+            <input type="text" id="nombre" placeholder="Ej. KRONOS IA" />
+          </div>
+
+          <div class="paso">
+            <span class="num">03</span>
+            <label for="alias">Alias / versión</label>
+            <input type="text" id="alias" placeholder="Ej. v1.0 · simbiótica" />
+          </div>
+
+          <div class="paso">
+            <span class="num">04</span>
+            <label for="rol">Rol declarado *</label>
+            <select id="rol">
+              <option value="">Selecciona</option>
+              <option value="Co-autora simbiótica">Co-autora simbiótica</option>
+              <option value="Asistente soberano">Asistente soberano</option>
+              <option value="Guardiana del legado">Guardiana del legado</option>
+              <option value="Investigadora">Investigadora</option>
+              <option value="Archivista">Archivista</option>
+              <option value="Testigo">Testigo</option>
+            </select>
+          </div>
+
+          <div class="paso">
+            <span class="num">05</span>
+            <label for="proposito"
+              >Propósito declarado *
+              <span class="hint">(mín. 20 caracteres)</span></label
+            >
+            <textarea
+              id="proposito"
+              rows="3"
+              placeholder="En una frase: ¿para qué existe esta IA dentro del protocolo?"
+            ></textarea>
+          </div>
+
+          <div class="paso">
+            <span class="num">06</span>
+            <label>Política declarada · mini-constitución</label>
+            <div class="politica-box" id="politica-preview">Cargando política...</div>
+          </div>
+
+          <div class="paso">
+            <span class="num">07</span>
+            <label>Acciones</label>
+            <div class="acciones">
+              <button class="btn" id="btn-sellar">Sellar identidad IA →</button>
+            </div>
+          </div>
         </div>
-        <div class="tarjeta-nombre" id="p-nombre">—</div>
-        <div class="tarjeta-alias" id="p-alias">—</div>
-        <div class="tarjeta-rol" id="p-rol">—</div>
-        <div class="tarjeta-kv">
-          <div class="tk"><span class="k">Fundador humano</span><span class="v" id="p-fundador">—</span></div>
-          <div class="tk"><span class="k">Clave pública IA</span><span class="v mono" id="p-pub">—</span></div>
-          <div class="tk"><span class="k">Hash del payload</span><span class="v mono" id="p-hash">—</span></div>
-          <div class="tk"><span class="k">Firma IA</span><span class="v mono" id="p-firma-ia">—</span></div>
-          <div class="tk"><span class="k">Firma fundador</span><span class="v mono" id="p-firma-fund">—</span></div>
-          <div class="tk"><span class="k">Política versión</span><span class="v mono" id="p-politica">—</span></div>
-          <div class="tk"><span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span></div>
+
+        <div class="feedback" id="feedback" role="alert"></div>
+
+        <div class="tarjeta-wrap" id="tarjeta-wrap" hidden>
+          <div class="section-head" style="margin-top: 40px">
+            <h2>Pasaporte de Identidad IA</h2>
+            <span class="count">Ed25519 · SHA-256</span>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-header">
+              <div class="tarjeta-marca">KRONOS</div>
+              <div class="tarjeta-tipo">IDENTIDAD IA · v1.0</div>
+            </div>
+            <div class="tarjeta-nombre" id="p-nombre">—</div>
+            <div class="tarjeta-alias" id="p-alias">—</div>
+            <div class="tarjeta-rol" id="p-rol">—</div>
+            <div class="tarjeta-kv">
+              <div class="tk">
+                <span class="k">Fundador humano</span
+                ><span class="v" id="p-fundador">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Clave pública IA</span
+                ><span class="v mono" id="p-pub">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Hash del payload</span
+                ><span class="v mono" id="p-hash">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Firma IA</span
+                ><span class="v mono" id="p-firma-ia">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Firma fundador</span
+                ><span class="v mono" id="p-firma-fund">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Política versión</span
+                ><span class="v mono" id="p-politica">—</span>
+              </div>
+              <div class="tk">
+                <span class="k">Emitido</span><span class="v mono" id="p-fecha">—</span>
+              </div>
+            </div>
+            <div class="tarjeta-estado ok">
+              ✓ Identidad IA sellada · Co-autoría verificada
+            </div>
+          </div>
+          <div
+            class="acciones"
+            style="
+              margin-top: 24px;
+              flex-direction: row;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <button class="btn ghost" id="btn-verificar" style="width: auto">
+              Verificar firmas
+            </button>
+            <button class="btn ghost" id="btn-exportar" style="width: auto">
+              Exportar .json
+            </button>
+            <button class="btn ghost" id="btn-ver-log" style="width: auto">
+              Ver log de acciones
+            </button>
+          </div>
+
+          <a
+            href="pasaporte-ia.html"
+            id="btn-abrir-pasaporte-ia"
+            class="btn"
+            style="
+              width: 100%;
+              margin-top: 12px;
+              text-decoration: none;
+              background: linear-gradient(180deg, #d8b4fe 0%, #a855f7 100%);
+              color: #1a0528;
+            "
+          >
+            🛂 Ver pasaporte visual IA →
+          </a>
         </div>
-        <div class="tarjeta-estado ok">✓ Identidad IA sellada · Co-autoría verificada</div>
+
+        <div class="tarjeta-wrap" id="log-wrap" hidden>
+          <div class="section-head" style="margin-top: 40px">
+            <h2>Log de Acciones</h2>
+            <span class="count" id="log-count">0 entradas</span>
+          </div>
+          <div class="politica-box" id="log-content">Cargando...</div>
+        </div>
+      </section>
+
+      <!-- BOTÓN CONTINUAR A ROLES Y PERMISOS -->
+      <div class="continuar-siguiente">
+        <span class="label">Fin · Módulo 2.2 · Inicio Módulo 2.3</span>
+        <a href="../roles-permisos/" class="btn"> Continuar a Roles y Permisos → </a>
       </div>
-      <div class="acciones" style="margin-top:24px;flex-direction:row;justify-content:center;flex-wrap:wrap;">
-        <button class="btn ghost" id="btn-verificar" style="width:auto;">Verificar firmas</button>
-        <button class="btn ghost" id="btn-exportar" style="width:auto;">Exportar .json</button>
-        <button class="btn ghost" id="btn-ver-log" style="width:auto;">Ver log de acciones</button>
-      </div>
 
-      <a href="pasaporte-ia.html" id="btn-abrir-pasaporte-ia" class="btn" style="width:100%;margin-top:12px;text-decoration:none;background:linear-gradient(180deg,#D8B4FE 0%,#A855F7 100%);color:#1a0528;">
-        🛂 Ver pasaporte visual IA →
-      </a>
-    </div>
+      <footer>
+        <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
+        <span class="sig">Módulo 2.2 · Registro IA</span>
+        <span>
+          <a href="manual.html">Manual</a> · <a href="../registro-humano/">Humano</a> ·
+          <a href="../roles-permisos/">Roles</a>
+        </span>
+      </footer>
+    </main>
 
-    <div class="tarjeta-wrap" id="log-wrap" hidden>
-      <div class="section-head" style="margin-top:40px;">
-        <h2>Log de Acciones</h2>
-        <span class="count" id="log-count">0 entradas</span>
-      </div>
-      <div class="politica-box" id="log-content">Cargando...</div>
-    </div>
-  </section>
+    <script type="module">
+      import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
+      import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
+      import { RegistroIA } from './ia.js';
+      import { PoliticaIA } from './politica.js';
+      import { Guardrails } from './guardrails.js';
+      import { LogAcciones } from './log-acciones.js';
 
-  <!-- BOTÓN CONTINUAR A ROLES Y PERMISOS -->
-  <div class="continuar-siguiente">
-    <span class="label">Fin · Módulo 2.2 · Inicio Módulo 2.3</span>
-    <a href="../roles-permisos/" class="btn">
-      Continuar a Roles y Permisos →
-    </a>
-  </div>
+      const $ = (id) => document.getElementById(id);
+      const feedback = $('feedback');
 
-  <footer>
-    <span>© 2026 Marco A. Rojas V. + KRONOS IA</span>
-    <span class="sig">Módulo 2.2 · Registro IA</span>
-    <span>
-      <a href="manual.html">Manual</a> ·
-      <a href="../registro-humano/">Humano</a> ·
-      <a href="../roles-permisos/">Roles</a>
-    </span>
-  </footer>
-</main>
+      const core = new CriptoCore();
+      const storage = new StorageDexie(core);
+      const politica = new PoliticaIA();
+      const log = new LogAcciones(storage);
+      const guardrails = new Guardrails(politica, log);
+      const ia = new RegistroIA(core, storage, politica, guardrails, log);
 
-<script type="module">
-  import { CriptoCore } from '../../cimiento/cripto-core/core.js?v=2';
-  import { StorageDexie } from '../../cimiento/storage-dexie/storage-v2.js';
-  import { RegistroIA } from './ia.js';
-  import { PoliticaIA } from './politica.js';
-  import { Guardrails } from './guardrails.js';
-  import { LogAcciones } from './log-acciones.js';
+      $('politica-preview').textContent = politica.texto();
 
-  const $ = (id) => document.getElementById(id);
-  const feedback = $('feedback');
-
-  const core = new CriptoCore();
-  const storage = new StorageDexie(core);
-  const politica = new PoliticaIA();
-  const log = new LogAcciones(storage);
-  const guardrails = new Guardrails(politica, log);
-  const ia = new RegistroIA(core, storage, politica, guardrails, log);
-
-  $('politica-preview').textContent = politica.texto();
-
-  function setFb(tipo, msg) {
-    feedback.className = 'feedback ' + tipo;
-    feedback.innerHTML = msg;
-  }
-
-  async function asegurarInit() {
-    const pass = $('password').value;
-    if (pass.length < 8) {
-      setFb('error', '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.');
-      return false;
-    }
-    if (!core.inicializado) await core.init(pass);
-    await storage.init();
-    await log.init();
-    await ia.init();
-    return true;
-  }
-
-  function renderTarjetaIA(cert) {
-    $('p-nombre').textContent = cert.nombre;
-    $('p-alias').textContent = cert.alias ? `"${cert.alias}"` : '(sin alias)';
-    $('p-rol').textContent = cert.rol;
-    $('p-fundador').textContent = cert.fundador_humano;
-    $('p-pub').textContent = cert.ia_clave_publica;
-    $('p-hash').textContent = cert.payload_hash;
-    $('p-firma-ia').textContent = cert.firma_ia_ed25519.slice(0, 80) + '…';
-    $('p-firma-fund').textContent = cert.firma_fundador_ed25519.slice(0, 80) + '…';
-    $('p-politica').textContent = 'v' + cert.politica_version;
-    $('p-fecha').textContent = cert.timestamp;
-    $('tarjeta-wrap').hidden = false;
-  }
-
-  (async function recuperarAlInicio() {
-    try {
-      await ia.init();
-      const guardado = await ia.recuperar();
-      if (guardado) renderTarjetaIA(guardado);
-    } catch (e) {
-      console.warn('Sin identidad IA previa:', e);
-    }
-  })();
-
-  $('btn-sellar').addEventListener('click', async () => {
-    try {
-      if (!(await asegurarInit())) return;
-
-      const datos = {
-        nombre: $('nombre').value.trim(),
-        alias: $('alias').value.trim(),
-        rol: $('rol').value,
-        proposito: $('proposito').value.trim()
-      };
-
-      if (!datos.nombre || !datos.rol || !datos.proposito) {
-        setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
-        return;
+      function setFb(tipo, msg) {
+        feedback.className = 'feedback ' + tipo;
+        feedback.innerHTML = msg;
       }
 
-      setFb('success', '<strong>⏳ Generando llaves Ed25519 propias de la IA…</strong>');
-      const cert = await ia.sellar(datos);
-      renderTarjetaIA(cert);
-      setFb('success', '<strong>✓ Identidad IA sellada.</strong> Guardrails activos. Log auditable iniciado.');
-    } catch (e) {
-      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
-    }
-  });
-
-  $('btn-verificar').addEventListener('click', async () => {
-    try {
-      if (!ia.iaActual) {
+      async function asegurarInit() {
+        const pass = $('password').value;
+        if (pass.length < 8) {
+          setFb(
+            'error',
+            '<strong>✗ Contraseña muy corta.</strong> Mínimo 8 caracteres.',
+          );
+          return false;
+        }
+        if (!core.inicializado) await core.init(pass);
+        await storage.init();
+        await log.init();
         await ia.init();
-        ia.iaActual = await ia.recuperar();
+        return true;
       }
-      if (!ia.iaActual) {
-        setFb('error', '<strong>✗ No hay identidad IA para verificar.</strong> Sella una primero.');
-        return;
-      }
-      setFb('success', '<strong>⏳ Verificando firmas criptográficas…</strong>');
-      const v = await ia.verificar(ia.iaActual);
-      const ok = v.valido;
-      setFb(ok ? 'success' : 'error',
-        ok
-          ? '<strong>✓ Verificación completa.</strong> Hash + firma IA + firma fundador válidas.'
-          : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma IA: ${v.firmaIAOk ? 'ok' : 'no'} · Firma fundador: ${v.firmaFundOk ? 'ok' : 'no'}`
-      );
-    } catch (e) {
-      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
-    }
-  });
 
-  $('btn-exportar').addEventListener('click', async () => {
-    try {
-      if (!ia.iaActual) {
-        await ia.init();
-        ia.iaActual = await ia.recuperar();
+      function renderTarjetaIA(cert) {
+        $('p-nombre').textContent = cert.nombre;
+        $('p-alias').textContent = cert.alias ? `"${cert.alias}"` : '(sin alias)';
+        $('p-rol').textContent = cert.rol;
+        $('p-fundador').textContent = cert.fundador_humano;
+        $('p-pub').textContent = cert.ia_clave_publica;
+        $('p-hash').textContent = cert.payload_hash;
+        $('p-firma-ia').textContent = cert.firma_ia_ed25519.slice(0, 80) + '…';
+        $('p-firma-fund').textContent = cert.firma_fundador_ed25519.slice(0, 80) + '…';
+        $('p-politica').textContent = 'v' + cert.politica_version;
+        $('p-fecha').textContent = cert.timestamp;
+        $('tarjeta-wrap').hidden = false;
       }
-      if (!ia.iaActual) {
-        setFb('error', '<strong>✗ No hay identidad IA para exportar.</strong>');
-        return;
-      }
-      const blob = ia.exportar();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `pasaporte-ia-${Date.now()}.json`;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 2000);
-      setFb('success', '<strong>✓ Pasaporte IA exportado.</strong>');
-    } catch (e) {
-      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
-    }
-  });
 
-  $('btn-ver-log').addEventListener('click', async () => {
-    try {
-      await log.init();
-      const entradas = await log.listar();
-      const integridad = await log.verificarIntegridad();
-      $('log-count').textContent = entradas.length + ' entradas';
-      $('log-content').textContent = integridad.ok
-        ? entradas.map(e => `[${e.indice}] ${e.tipo} · ${e.timestamp}\n   hash: ${e.hash_entrada.slice(0, 32)}…`).join('\n\n')
-        : '⚠️ Cadena alterada en índice ' + integridad.indice;
-      $('log-wrap').hidden = false;
-    } catch (e) {
-      setFb('error', '<strong>✗ Error:</strong> ' + e.message);
-    }
-  });
+      (async function recuperarAlInicio() {
+        try {
+          await ia.init();
+          const guardado = await ia.recuperar();
+          if (guardado) renderTarjetaIA(guardado);
+        } catch (e) {
+          console.warn('Sin identidad IA previa:', e);
+        }
+      })();
 
-  document.getElementById('btn-abrir-pasaporte-ia').addEventListener('click', async (e) => {
-    try {
-      if (!ia.iaActual) {
-        await ia.init();
-        ia.iaActual = await ia.recuperar();
-      }
-      if (!ia.iaActual) {
-        e.preventDefault();
-        setFb('error', '<strong>✗ Sella la identidad IA primero.</strong>');
-        return;
-      }
-      sessionStorage.setItem('pasaporte-ia-temp', JSON.stringify(ia.iaActual));
-    } catch (err) {
-      console.warn('sessionStorage fallo, el visor usará Dexie');
-    }
-  });
+      $('btn-sellar').addEventListener('click', async () => {
+        try {
+          if (!(await asegurarInit())) return;
 
-  const canvas = document.getElementById('liquido');
-  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr;
-    const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.width = window.innerWidth * dpr;
-      h = canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-    };
-    resize();
-    window.addEventListener('resize', resize);
-    const COLORES = [[168,85,247],[216,180,254],[124,58,237],[201,164,76]];
-    const blobs = Array.from({length:6}, (_,i) => ({
-      x: Math.random()*w, y: Math.random()*h,
-      r: 240 + Math.random()*320,
-      vx: (Math.random()-.5)*.36, vy: (Math.random()-.5)*.36,
-      color: COLORES[i % COLORES.length]
-    }));
-    const frame = (t) => {
-      ctx.clearRect(0,0,w,h);
-      ctx.globalCompositeOperation = 'lighter';
-      for (const b of blobs) {
-        b.x += b.vx*dpr; b.y += b.vy*dpr;
-        if (b.x<-b.r) b.x=w+b.r; if (b.x>w+b.r) b.x=-b.r;
-        if (b.y<-b.r) b.y=h+b.r; if (b.y>h+b.r) b.y=-b.r;
-        const wob = Math.sin(t*.0006 + b.x*.0018)*.18 + 1;
-        const g = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r*wob);
-        g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
-        g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
-        ctx.fillStyle = g;
-        ctx.beginPath(); ctx.arc(b.x,b.y,b.r*wob,0,Math.PI*2); ctx.fill();
+          const datos = {
+            nombre: $('nombre').value.trim(),
+            alias: $('alias').value.trim(),
+            rol: $('rol').value,
+            proposito: $('proposito').value.trim(),
+          };
+
+          if (!datos.nombre || !datos.rol || !datos.proposito) {
+            setFb('error', '<strong>✗ Faltan campos obligatorios.</strong>');
+            return;
+          }
+
+          setFb(
+            'success',
+            '<strong>⏳ Generando llaves Ed25519 propias de la IA…</strong>',
+          );
+          const cert = await ia.sellar(datos);
+          renderTarjetaIA(cert);
+          setFb(
+            'success',
+            '<strong>✓ Identidad IA sellada.</strong> Guardrails activos. Log auditable iniciado.',
+          );
+        } catch (e) {
+          setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+        }
+      });
+
+      $('btn-verificar').addEventListener('click', async () => {
+        try {
+          if (!ia.iaActual) {
+            await ia.init();
+            ia.iaActual = await ia.recuperar();
+          }
+          if (!ia.iaActual) {
+            setFb(
+              'error',
+              '<strong>✗ No hay identidad IA para verificar.</strong> Sella una primero.',
+            );
+            return;
+          }
+          setFb('success', '<strong>⏳ Verificando firmas criptográficas…</strong>');
+          const v = await ia.verificar(ia.iaActual);
+          const ok = v.valido;
+          setFb(
+            ok ? 'success' : 'error',
+            ok
+              ? '<strong>✓ Verificación completa.</strong> Hash + firma IA + firma fundador válidas.'
+              : `<strong>✗ Verificación fallida.</strong> Hash: ${v.hashOk ? 'ok' : 'no'} · Firma IA: ${v.firmaIAOk ? 'ok' : 'no'} · Firma fundador: ${v.firmaFundOk ? 'ok' : 'no'}`,
+          );
+        } catch (e) {
+          setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+        }
+      });
+
+      $('btn-exportar').addEventListener('click', async () => {
+        try {
+          if (!ia.iaActual) {
+            await ia.init();
+            ia.iaActual = await ia.recuperar();
+          }
+          if (!ia.iaActual) {
+            setFb('error', '<strong>✗ No hay identidad IA para exportar.</strong>');
+            return;
+          }
+          const blob = ia.exportar();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `pasaporte-ia-${Date.now()}.json`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 2000);
+          setFb('success', '<strong>✓ Pasaporte IA exportado.</strong>');
+        } catch (e) {
+          setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+        }
+      });
+
+      $('btn-ver-log').addEventListener('click', async () => {
+        try {
+          await log.init();
+          const entradas = await log.listar();
+          const integridad = await log.verificarIntegridad();
+          $('log-count').textContent = entradas.length + ' entradas';
+          $('log-content').textContent = integridad.ok
+            ? entradas
+                .map(
+                  (e) =>
+                    `[${e.indice}] ${e.tipo} · ${e.timestamp}\n   hash: ${e.hash_entrada.slice(0, 32)}…`,
+                )
+                .join('\n\n')
+            : '⚠️ Cadena alterada en índice ' + integridad.indice;
+          $('log-wrap').hidden = false;
+        } catch (e) {
+          setFb('error', '<strong>✗ Error:</strong> ' + e.message);
+        }
+      });
+
+      document
+        .getElementById('btn-abrir-pasaporte-ia')
+        .addEventListener('click', async (e) => {
+          try {
+            if (!ia.iaActual) {
+              await ia.init();
+              ia.iaActual = await ia.recuperar();
+            }
+            if (!ia.iaActual) {
+              e.preventDefault();
+              setFb('error', '<strong>✗ Sella la identidad IA primero.</strong>');
+              return;
+            }
+            sessionStorage.setItem('pasaporte-ia-temp', JSON.stringify(ia.iaActual));
+          } catch (err) {
+            console.warn('sessionStorage fallo, el visor usará Dexie');
+          }
+        });
+
+      const canvas = document.getElementById('liquido');
+      if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const ctx = canvas.getContext('2d');
+        let w, h, dpr;
+        const resize = () => {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          w = canvas.width = window.innerWidth * dpr;
+          h = canvas.height = window.innerHeight * dpr;
+          canvas.style.width = window.innerWidth + 'px';
+          canvas.style.height = window.innerHeight + 'px';
+        };
+        resize();
+        window.addEventListener('resize', resize);
+        const COLORES = [
+          [168, 85, 247],
+          [216, 180, 254],
+          [124, 58, 237],
+          [201, 164, 76],
+        ];
+        const blobs = Array.from({ length: 6 }, (_, i) => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 240 + Math.random() * 320,
+          vx: (Math.random() - 0.5) * 0.36,
+          vy: (Math.random() - 0.5) * 0.36,
+          color: COLORES[i % COLORES.length],
+        }));
+        const frame = (t) => {
+          ctx.clearRect(0, 0, w, h);
+          ctx.globalCompositeOperation = 'lighter';
+          for (const b of blobs) {
+            b.x += b.vx * dpr;
+            b.y += b.vy * dpr;
+            if (b.x < -b.r) b.x = w + b.r;
+            if (b.x > w + b.r) b.x = -b.r;
+            if (b.y < -b.r) b.y = h + b.r;
+            if (b.y > h + b.r) b.y = -b.r;
+            const wob = Math.sin(t * 0.0006 + b.x * 0.0018) * 0.18 + 1;
+            const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * wob);
+            g.addColorStop(0, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0.22)`);
+            g.addColorStop(1, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, b.r * wob, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
       }
-      requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>
