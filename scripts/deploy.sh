@@ -38,8 +38,8 @@ npm test
 step "6/6 · Desplegando a $ENV..."
 case "$ENV" in
   local)    docker compose up -d ;;
-  staging)  docker compose -f docker compose.yml -f docker compose.staging.yml up -d ;;
-  prod)     docker compose -f docker compose.yml -f docker compose.prod.yml up -d ;;
+  staging)  docker compose -f docker-compose.yml -f docker-compose.staging.yml up -d ;;
+  prod)     docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d ;;
   *)        echo "Ambiente desconocido: $ENV"; exit 1 ;;
 esac
 
