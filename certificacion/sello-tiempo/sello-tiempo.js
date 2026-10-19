@@ -6,17 +6,17 @@
 
 export class SelloTiempo {
   constructor() {
-    this.version = "1.0";
+    this.version = '1.0';
     this.ultimoHash = null;
     this.ultimoTSQ = null;
     this.ultimoTSR = null;
   }
 
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   static hexToBytes(hex) {
@@ -43,14 +43,8 @@ export class SelloTiempo {
   _derLength(len) {
     if (len < 0x80) return new Uint8Array([len]);
     if (len < 0x100) return new Uint8Array([0x81, len]);
-    if (len < 0x10000)
-      return new Uint8Array([0x82, (len >> 8) & 0xff, len & 0xff]);
-    return new Uint8Array([
-      0x83,
-      (len >> 16) & 0xff,
-      (len >> 8) & 0xff,
-      len & 0xff,
-    ]);
+    if (len < 0x10000) return new Uint8Array([0x82, (len >> 8) & 0xff, len & 0xff]);
+    return new Uint8Array([0x83, (len >> 16) & 0xff, (len >> 8) & 0xff, len & 0xff]);
   }
 
   _derWrap(tag, content) {
@@ -142,8 +136,8 @@ export class SelloTiempo {
 
   // ── Exportar .tsq como Blob descargable ────────────────────
   exportarTSQ() {
-    if (!this.ultimoTSQ) throw new Error("No hay TSQ construido.");
-    return new Blob([this.ultimoTSQ], { type: "application/timestamp-query" });
+    if (!this.ultimoTSQ) throw new Error('No hay TSQ construido.');
+    return new Blob([this.ultimoTSQ], { type: 'application/timestamp-query' });
   }
 
   // ── Parsear respuesta .tsr (extracción básica) ─────────────
@@ -189,8 +183,7 @@ export class SelloTiempo {
           const str = String.fromCharCode(...bytes.slice(i + 2, i + 15));
           if (/^\d{12}Z$/.test(str)) {
             const yy = parseInt(str.slice(0, 2));
-            const y =
-              yy >= 50 ? `19${str.slice(0, 2)}` : `20${str.slice(0, 2)}`;
+            const y = yy >= 50 ? `19${str.slice(0, 2)}` : `20${str.slice(0, 2)}`;
             const mo = str.slice(2, 4),
               d = str.slice(4, 6);
             const h = str.slice(6, 8),
@@ -207,14 +200,14 @@ export class SelloTiempo {
       ok: pareceTSR,
       bytes: totalBytes,
       fechaDetectada,
-      nota: "Verificación criptográfica completa requiere validar la cadena de la TSA, fuera del alcance de este cliente.",
+      nota: 'Verificación criptográfica completa requiere validar la cadena de la TSA, fuera del alcance de este cliente.',
     };
   }
 
   // ── Exportar TSR recibido ──────────────────────────────────
   exportarTSR() {
-    if (!this.ultimoTSR) throw new Error("No hay TSR cargado.");
-    return new Blob([this.ultimoTSR], { type: "application/timestamp-reply" });
+    if (!this.ultimoTSR) throw new Error('No hay TSR cargado.');
+    return new Blob([this.ultimoTSR], { type: 'application/timestamp-reply' });
   }
 
   limpiar() {

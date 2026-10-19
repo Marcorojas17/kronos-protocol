@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # Referencia del API
 
 **Base URL:** `https://api.atribucion.io`
@@ -15,6 +14,7 @@ Todos los endpoints (excepto `/v1/proofs/*` y `/v1/health`) requieren:
 ```http
 Authorization: Bearer ak_live_<64_hex>
 ```
+````
 
 ---
 
@@ -94,8 +94,8 @@ Body:
 ```json
 {
   "action": "trade_executed",
-  "input": {"symbol": "AAPL", "quantity": 100},
-  "output": {"order_id": "ord_1", "status": "filled"},
+  "input": { "symbol": "AAPL", "quantity": 100 },
+  "output": { "order_id": "ord_1", "status": "filled" },
   "reasoning": "Señal alcista confirmada.",
   "autonomy_level": "semi-autonomo",
   "human_approval": null
@@ -379,5 +379,7 @@ Soporte
 · Docs: docs.atribucion.io
 · Email: marco.a.rojas.v@hotmail.com
 · GitHub: github.com/Marcorojas17/atribucion
+
+```
 
 ```

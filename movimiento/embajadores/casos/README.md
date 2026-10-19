@@ -17,15 +17,16 @@
 
 # 📚 CASOS DE EMBAJADORES
 
-### *Testimonios de campo*
+### _Testimonios de campo_
 
-### *"El mejor caso de estudio es un testigo."*
+### _"El mejor caso de estudio es un testigo."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C A S O S  ·  ◯_●                                   ║
@@ -37,6 +38,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,17 +48,21 @@
 ## 🜂 Los 3 casos
 
 ### Embajador 1 · El Pionero
+
 Primer embajador en activo. Fundó el primer nodo regional.
 
 ### Embajador 2 · El Mentor
+
 Embajador que ha apadrinado a más de 10 iniciados.
 
 ### Embajador 3 · El Constructor
+
 Embajador técnico que ha contribuido al código del sistema.
 
 ## 🜃 Formato
 
 Cada caso incluye:
+
 - Nombre (o seudónimo)
 - Nivel (E-1 → E-5)
 - Región

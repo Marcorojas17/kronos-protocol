@@ -24,13 +24,15 @@ export const SEAL = '◯_● · 51/49/100';
  */
 export function generarHuella({ agente_id, modelo, capacidades, secreto }) {
   const ikm = new TextEncoder().encode(
-    JSON.stringify({ agente_id, modelo, capacidades })
+    JSON.stringify({ agente_id, modelo, capacidades }),
   );
   const salt = new TextEncoder().encode(secreto);
   const info = new TextEncoder().encode('arkhe-cognitive-fingerprint-v1');
 
   const huella = hkdf(sha3_512, ikm, salt, info, 32);
-  const huellaHex = Array.from(huella).map((b) => b.toString(16).padStart(2, '0')).join('');
+  const huellaHex = Array.from(huella)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 
   return {
     ok: true,
@@ -49,9 +51,10 @@ export function verificarHuella({ agente_id, modelo, capacidades, secreto, huell
   const regenerada = generarHuella({ agente_id, modelo, capacidades, secreto });
   return {
     ok: regenerada.huella_cognitiva === huella,
-    veredicto: regenerada.huella_cognitiva === huella
-      ? 'HUELLA COGNITIVA VÁLIDA'
-      : 'HUELLA COGNITIVA INVÁLIDA · HALT',
+    veredicto:
+      regenerada.huella_cognitiva === huella
+        ? 'HUELLA COGNITIVA VÁLIDA'
+        : 'HUELLA COGNITIVA INVÁLIDA · HALT',
     sellado: SEAL,
   };
 }

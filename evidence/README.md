@@ -42,10 +42,10 @@
 
 ## 🜂 Estructura
 
-| Archivo/Carpeta   | Propósito                                            |
-|-------------------|------------------------------------------------------|
-| `manifest.json`   | Índice completo de la evidencia                      |
-| `proofs/`         | Pruebas criptográficas individuales                  |
+| Archivo/Carpeta | Propósito                           |
+| --------------- | ----------------------------------- |
+| `manifest.json` | Índice completo de la evidencia     |
+| `proofs/`       | Pruebas criptográficas individuales |
 
 ## 🜃 Cadena de Custodia
 

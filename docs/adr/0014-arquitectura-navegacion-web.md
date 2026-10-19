@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 **Nav system auto-inyectable** por JavaScript:
+
 - Un solo `nav-system.js`
 - Detecta página activa
 - Inyecta HTML consistente

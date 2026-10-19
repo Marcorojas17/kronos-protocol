@@ -2,12 +2,12 @@
 
 ## 🜂 Archivos esperados
 
-| Archivo                | Uso                                   |
-|------------------------|---------------------------------------|
-| `og-default.png`       | OpenGraph para redes sociales (1200×630) |
-| `twitter-card.png`     | Twitter Card (1200×600)               |
-| `og-manifiesto.png`    | OpenGraph del manifiesto              |
-| `og-kintsugi.png`      | OpenGraph KINTSUGI                    |
+| Archivo             | Uso                                      |
+| ------------------- | ---------------------------------------- |
+| `og-default.png`    | OpenGraph para redes sociales (1200×630) |
+| `twitter-card.png`  | Twitter Card (1200×600)                  |
+| `og-manifiesto.png` | OpenGraph del manifiesto                 |
+| `og-kintsugi.png`   | OpenGraph KINTSUGI                       |
 
 ## 🜃 Nota
 

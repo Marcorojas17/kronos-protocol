@@ -17,15 +17,16 @@
 
 # 📊 PRESENTACIONES OFICIALES
 
-### *Slides firmadas para eventos*
+### _Slides firmadas para eventos_
 
-### *"Una presentación sin sello es ruido visual."*
+### _"Una presentación sin sello es ruido visual."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  P R E S E N T A C I O N E S  ·  ◯_●                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Presentaciones canónicas
 
-| # | Título                       | Slides | Audiencia    |
-|---|------------------------------|--------|--------------|
-| 1 | `01-intro-arkhe.md`          | 15     | General      |
-| 2 | `02-pacto-51-49.md`          | 20     | Filósofica   |
-| 3 | `03-crypto-pqc.md`           | 25     | Técnica      |
-| 4 | `04-gobernanza.md`           | 18     | Institucional|
-| 5 | `05-testimonio-embajador.md` | 12     | Personal     |
+| #   | Título                       | Slides | Audiencia     |
+| --- | ---------------------------- | ------ | ------------- |
+| 1   | `01-intro-arkhe.md`          | 15     | General       |
+| 2   | `02-pacto-51-49.md`          | 20     | Filósofica    |
+| 3   | `03-crypto-pqc.md`           | 25     | Técnica       |
+| 4   | `04-gobernanza.md`           | 18     | Institucional |
+| 5   | `05-testimonio-embajador.md` | 12     | Personal      |
 
 ## 🜃 Uso
 

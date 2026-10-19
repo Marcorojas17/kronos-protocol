@@ -1,11 +1,13 @@
 # Sucesión de Llaves Fundacionales · ARKHÉ ZERO
 
 ## fundador-v1
+
 - Estado: Desconocido
 - Ubicación: —
 - Nota: probablemente nunca existió
 
 ## fundador-v2
+
 - Creada: 2026-10-13
 - Uso: Firma del Pacto 51/49, Génesis K28, 7 atestaciones de agentes
 - Estado: 🟡 HISTÓRICA
@@ -17,6 +19,7 @@
   (Bitcoin no se puede reescribir; las firmas ya son inmutables)
 
 ## fundador-v3
+
 - Creada: 2026-10-15
 - Uso: Firmas futuras a partir del 2026-10-15
 - Estado: ✅ ACTIVA
@@ -24,10 +27,12 @@
 - Ubicación pública: 07-LLAVES/FUNDADOR-V3/fundador-v3.pub
 
 ## Política de uso
+
 Toda nueva firma debe usar fundador-v3. Las firmas con fundador-v2
 son válidas históricamente pero no se usarán para nuevos documentos.
 
 ## Reglas de protección
+
 1. Toda llave privada vive en ~/.arkhe-private/ (nunca en repo)
 2. .gitignore excluye *.key, *.pem, firmas privadas
 3. Antes de cada commit: git status --short | grep -E "\.key$|\.pem$|privada"
@@ -38,6 +43,7 @@ Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE · 2026-10-15
 ## Llaves Post-Cuánticas (NIST FIPS 204)
 
 ### fundador-mldsa65
+
 - Creada: 2026-10-15
 - Algoritmo: ML-DSA-65 (Dilithium3, NIST FIPS 204)
 - Tamaño clave pública: 1952 bytes
@@ -49,11 +55,13 @@ Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE · 2026-10-15
 - Ubicación pública: 07-LLAVES/POST-QUANTUM/fundador-mldsa65.pub
 
 ### Uso
+
 - Firma híbrida: Ed25519 + ML-DSA-65 sobre el mismo documento
 - Doble blindaje: compatibilidad universal + resistencia cuántica
 - Documentado en: 07-LLAVES/ATESTACIONES/HIBRIDA-pacto-5149.md
 
 ### Verificación
+
     python3 -c "
     from dilithium_py.ml_dsa import ML_DSA_65
     pk = open('fundador-mldsa65.pub','rb').read()
@@ -61,4 +69,3 @@ Autor: Marco Antonio Rojas Valdovinos · Nodo YHDRYH-92CE · 2026-10-15
     sig = open('pacto-5149-canonico.mldsa65.sig','rb').read()
     print('OK' if ML_DSA_65.verify(pk, msg, sig) else 'FALLO')
     "
-

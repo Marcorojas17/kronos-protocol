@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Pagos en MXN y MXNB
 
 ---
@@ -24,6 +24,7 @@ from payments.mxn.oracle import get_eur_mxn_rate
 rate = await get_eur_mxn_rate()
 # → 20.1 (actualizado cada 6h)
 ```
+````
 
 Fuente: Banxico API (serie SF43718).
 Cache: 6 horas.
@@ -151,5 +152,7 @@ Recursos
 · Bitso MXNB
 · XRPL
 · SAT CFDI 4.0
+
+```
 
 ```

@@ -17,15 +17,16 @@
 
 # 🔐 KRONOS360 · CRYPTO
 
-### *Suite criptográfica del módulo 360*
+### _Suite criptográfica del módulo 360_
 
-### *"La matemática es el único testigo que nunca miente."*
+### _"La matemática es el único testigo que nunca miente."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C R Y P T O  ·  3 6 0  ·  ◯_●                       ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

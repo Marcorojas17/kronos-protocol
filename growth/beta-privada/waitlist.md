@@ -7,15 +7,16 @@
 
 # ⏳ WAITLIST DE BETA
 
-### *Esperar es parte del pacto*
+### _Esperar es parte del pacto_
 
-### *"El que espera firma con paciencia."*
+### _"El que espera firma con paciencia."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  W A I T L I S T  ·  ◯_●                             ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,14 +48,14 @@
 ## 🜃 Formato de entrada
 
 ```yaml
-- id: "WAIT-2026-001"
-  miembro: "Fundador #NNN"
+- id: 'WAIT-2026-001'
+  miembro: 'Fundador #NNN'
   nivel: 3
   referidos: 12
-  ingreso_waitlist: "2026-XX-XXT00:00:00Z"
+  ingreso_waitlist: '2026-XX-XXT00:00:00Z'
   posicion: 1
-  estado: "esperando | invitado | activo | expirado"
-  sellado: "◯_● · 51/49/100"
+  estado: 'esperando | invitado | activo | expirado'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Firma

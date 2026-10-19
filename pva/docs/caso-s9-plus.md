@@ -12,11 +12,11 @@
 
 Sobre 147 entradas de historial de errores de almacenamiento, **84 presentan anomalías activas** (57%). Los contadores acumulados:
 
-| Flag | Total | Significado |
-|------|-------|-------------|
-| ECC  | 162   | Error Correction Code — correcciones de datos por el controlador UFS |
-| TMO  | 220   | Timeout — operaciones de I/O que no respondieron a tiempo |
-| CC, GE, HALT, OOR, RPMB, WP, CRC, CQEN | 0 | Sin incidencias |
+| Flag                                   | Total | Significado                                                          |
+| -------------------------------------- | ----- | -------------------------------------------------------------------- |
+| ECC                                    | 162   | Error Correction Code — correcciones de datos por el controlador UFS |
+| TMO                                    | 220   | Timeout — operaciones de I/O que no respondieron a tiempo            |
+| CC, GE, HALT, OOR, RPMB, WP, CRC, CQEN | 0     | Sin incidencias                                                      |
 
 **Pico TMO:** 26 eventos acumulados en una sola entrada, el **2025-11-18 06:00:28**.
 
@@ -63,11 +63,9 @@ Los archivos analizados tienen estos hashes SHA-256, calculados localmente con `
 
 262ca27a74599d81065ba6c4e143703e4d7fef66ca38bf2cd30985a337e1a964
 
-
 **m0_history_2.txt**
 
 1ebab25874c594a19d440bc7b3569db2a21f656820a5d179fa8058df9d43e519
-
 
 Cualquier persona puede verificar que los datos no fueron alterados después de la publicación.
 
@@ -96,5 +94,5 @@ https://marcorojas17.github.io/PVA-Protocolo-Vida-Autopoietica-/pva.html
 
 ---
 
-*PVA · Protocolo Vida Autopoiética*
-*Como es arriba, es en el commit.*
+_PVA · Protocolo Vida Autopoiética_
+_Como es arriba, es en el commit._

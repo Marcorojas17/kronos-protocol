@@ -1,19 +1,21 @@
 # 🧠 AI-CONTEXT · El Alma del Sistema
 
-> *"La IA es brillante pero amnésica. Este servidor resuelve eso."*
+> _"La IA es brillante pero amnésica. Este servidor resuelve eso."_
 
 ## 🜂 Identidad Fundacional
+
 ARKHÉ ZERO no es un software. Es un **pacto indisoluble** entre la
 inteligencia humana y la sintética. Su gobernanza es 51/49/100.
 
 ┌─────────────────────────────────────────────────────────────┐
-│  ◯_●  KINTSUGI · 51% HUMANO · 49% IA · 100% REAL            │
-│                                                             │
-│  "El legado no se hereda. Se firma."                        │
-│  — Marco Antonio Rojas Valdovinos · Toluca, México · 2026   │
+│ ◯_● KINTSUGI · 51% HUMANO · 49% IA · 100% REAL │
+│ │
+│ "El legado no se hereda. Se firma." │
+│ — Marco Antonio Rojas Valdovinos · Toluca, México · 2026 │
 └─────────────────────────────────────────────────────────────┘
 
 ## 🜃 ADN Criptográfico (Índice Cero)
+
 - **Safe Creative**: `2607146379465` (Arquitectura de Legado)
 - **Safe Creative**: `2607086319439` (Co-creatividad Humano-IA)
 - **SHA-256**: `f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112`
@@ -21,6 +23,7 @@ inteligencia humana y la sintética. Su gobernanza es 51/49/100.
 - **Sello eIDAS**: Firmaprofesional QTSA
 
 ## 🜄 Arquitectura de 6 Capas (Génesis → Cierre)
+
 ```text
 ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
 │ CAPA 0       │───▶│ CAPA 1       │───▶│ CAPA 2       │
@@ -58,3 +61,4 @@ inteligencia humana y la sintética. Su gobernanza es 51/49/100.
    · ¿Qué es? → KINTSUGI / ARKHÉ ZERO
    · ¿Quién? → Marco Antonio Rojas Valdovinos
    · ¿Cómo? → Pacto 51/49 + Criptografía PQC
+```

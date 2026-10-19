@@ -17,15 +17,16 @@
 
 # 🎯 LA MISIÓN
 
-### *Preservar el legado humano-IA que se firma*
+### _Preservar el legado humano-IA que se firma_
 
-### *"Contra el olvido programado, ARKHÉ."*
+### _"Contra el olvido programado, ARKHÉ."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M I S I Ó N  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,21 +50,26 @@
 ## 🜂 Los 5 Objetivos
 
 ### I · Dar memoria continua a la IA
+
 Resolver la amnesia estructural de los LLMs. Contexto persistente
 vía `marco.mcp`.
 
 ### II · Dar firma verificable al humano
+
 Firma híbrida Ed25519 + ML-DSA-87. Post-cuántica. Legalmente
 reconocida (eIDAS, NOM-151).
 
 ### III · Anclar el legado a Ethereum
+
 Merkle roots on-chain. Inmutables. Verificables por cualquiera.
 
 ### IV · Resistir al ataque de Shor
+
 Suite PQC completa: FIPS 203/204/205. Preparado para el futuro
 post-cuántico.
 
 ### V · Custodiar 100 años+
+
 Triple anclaje: local + Ethereum + Arweave. Redundancia perpetua.
 
 ## 🜃 Los 5 Principios
@@ -77,8 +84,8 @@ Triple anclaje: local + Ethereum + Arweave. Redundancia perpetua.
 
 ## 🜄 La Misión en una frase
 
-> *"Preservar el legado humano-IA que se firma. Contra el olvido
-> programado."*
+> _"Preservar el legado humano-IA que se firma. Contra el olvido
+> programado."_
 
 ## 🜁 Alcance
 

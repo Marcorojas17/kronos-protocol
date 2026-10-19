@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Atribución — El Producto
 
 ## Qué es
@@ -6,30 +6,31 @@
 **Atribución** es el producto B2B que vende compliance EU AI Act
 como servicio. Es la cara visible de Kronos. El caballo de Troya.
 
-**Promesa:** *"Cumple Art. 12, 14 y 22 del EU AI Act con una
-línea de código. Sin abogados. Sin infraestructura."*
+**Promesa:** _"Cumple Art. 12, 14 y 22 del EU AI Act con una
+línea de código. Sin abogados. Sin infraestructura."_
 
 ## Precio
 
-| Plan | Precio | Agentes | Acciones | SLA |
-|---|---|---|---|---|
-| **Free** | €0/mes | 1 | 1.000/mes | Sin SLA |
-| **Pro** | €990/mes | 10 | Ilimitadas | 99.5% |
-| **Bank** | €9.900/mes | Ilimitados | Ilimitadas | 99.99% |
+| Plan     | Precio     | Agentes    | Acciones   | SLA     |
+| -------- | ---------- | ---------- | ---------- | ------- |
+| **Free** | €0/mes     | 1          | 1.000/mes  | Sin SLA |
+| **Pro**  | €990/mes   | 10         | Ilimitadas | 99.5%   |
+| **Bank** | €9.900/mes | Ilimitados | Ilimitadas | 99.99%  |
 
 ## El endpoint único
 
 ```http
 POST https://api.atribucion.io/v1/agents/{agent_id}/actions
 ```
+````
 
 Request:
 
 ```json
 {
   "action": "trade_executed",
-  "input": {"symbol": "AAPL", "quantity": 100},
-  "output": {"order_id": "ord_abc123", "status": "filled"},
+  "input": { "symbol": "AAPL", "quantity": 100 },
+  "output": { "order_id": "ord_abc123", "status": "filled" },
   "reasoning": "Señal alcista confirmada por 3 indicadores.",
   "autonomy_level": "semi-autonomo"
 }

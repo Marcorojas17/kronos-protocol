@@ -17,15 +17,16 @@
 
 # 📧 NEWSLETTER
 
-### *Cartas firmadas al movimiento*
+### _Cartas firmadas al movimiento_
 
-### *"El correo no molesta cuando trae verdad."*
+### _"El correo no molesta cuando trae verdad."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  N E W S L E T T E R  ·  ◯_●                         ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,15 +49,19 @@
 ## 🜂 Componentes
 
 ### 👥 suscriptores/
+
 Gestión de lista. Sin tracking invasivo. Solo email + opt-in.
 
 ### 📰 ediciones/
+
 Números publicados (quincenal).
 
 ### ⚙️ automatizacion/
+
 Workflows de bienvenida, seguimiento, reactivación.
 
 ### 🔧 plataforma.md
+
 Configuración del servicio (Buttondown, Listmonk, o similar).
 
 ## 🜃 Frecuencia
@@ -70,17 +76,17 @@ Configuración del servicio (Buttondown, Listmonk, o similar).
 ## 🜄 Formato de edición
 
 ```yaml
-- numero: "001"
-  fecha: "2026-01-15"
-  titulo: "Luna Nueva · Génesis"
+- numero: '001'
+  fecha: '2026-01-15'
+  titulo: 'Luna Nueva · Génesis'
   secciones:
-    - "nota-fundador"
-    - "hito-del-mes"
-    - "nuevas-obras"
-    - "proxima-ceremonia"
-  hash_sha3_512: "..."
+    - 'nota-fundador'
+    - 'hito-del-mes'
+    - 'nuevas-obras'
+    - 'proxima-ceremonia'
+  hash_sha3_512: '...'
   destinatarios: 0
-  sellado: "◯_● · 51/49/100"
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Reglas

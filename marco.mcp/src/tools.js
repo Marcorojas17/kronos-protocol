@@ -22,7 +22,11 @@ export const TOOLS = [
       type: 'object',
       properties: {
         contenido: { type: 'string', description: 'Texto a firmar' },
-        tipo: { type: 'string', enum: ['acta', 'obra', 'decision'], default: 'decision' },
+        tipo: {
+          type: 'string',
+          enum: ['acta', 'obra', 'decision'],
+          default: 'decision',
+        },
       },
       required: ['contenido'],
     },
@@ -82,11 +86,16 @@ export const TOOLS = [
 // ─── ROUTER ─────────────────────────────────────────────────────
 export async function runTool(name, args) {
   switch (name) {
-    case 'marco.firmar':         return firmar(args);
-    case 'marco.verificar':      return verificar(args);
-    case 'marco.contextualizar': return contextualizar(args);
-    case 'marco.recordar':       return recordar(args);
-    case 'marco.consultar':      return consultar(args);
+    case 'marco.firmar':
+      return firmar(args);
+    case 'marco.verificar':
+      return verificar(args);
+    case 'marco.contextualizar':
+      return contextualizar(args);
+    case 'marco.recordar':
+      return recordar(args);
+    case 'marco.consultar':
+      return consultar(args);
     default:
       throw new Error(`Tool desconocida: ${name}`);
   }
@@ -122,12 +131,13 @@ async function verificar({ hash }) {
 }
 
 async function contextualizar({ agente, tema }) {
-  const base = {
-    claude:  'Eres un agente Anthropic del enjambre ARKHÉ ZERO.',
-    gemini:  'Eres un agente Google DeepMind del enjambre ARKHÉ ZERO.',
-    cursor:  'Eres un agente Cursor IDE del enjambre ARKHÉ ZERO.',
-    copilot: 'Eres un agente GitHub Copilot del enjambre ARKHÉ ZERO.',
-  }[agente] || 'Eres un agente ARKHÉ ZERO.';
+  const base =
+    {
+      claude: 'Eres un agente Anthropic del enjambre ARKHÉ ZERO.',
+      gemini: 'Eres un agente Google DeepMind del enjambre ARKHÉ ZERO.',
+      cursor: 'Eres un agente Cursor IDE del enjambre ARKHÉ ZERO.',
+      copilot: 'Eres un agente GitHub Copilot del enjambre ARKHÉ ZERO.',
+    }[agente] || 'Eres un agente ARKHÉ ZERO.';
 
   return {
     ok: true,

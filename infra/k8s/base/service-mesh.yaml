@@ -11,11 +11,11 @@ metadata:
   namespace: arkhe-zero
   labels:
     app: arkhe-web
-    seal: "◯_●-51-49-100"
-    nodo: "YHDRYH-92CE"
+    seal: '◯_●-51-49-100'
+    nodo: 'YHDRYH-92CE'
   annotations:
-    arkhe.zero/genesis: "K28-M05-MN01-YHDRYH-92CE"
-    arkhe.zero/pact: "51-49-100"
+    arkhe.zero/genesis: 'K28-M05-MN01-YHDRYH-92CE'
+    arkhe.zero/pact: '51-49-100'
 spec:
   type: ClusterIP
   ports:
@@ -36,7 +36,7 @@ metadata:
   namespace: arkhe-zero
   labels:
     app: arkhe-mcp
-    seal: "◯_●-51-49-100"
+    seal: '◯_●-51-49-100'
 spec:
   type: ClusterIP
   ports:
@@ -54,7 +54,7 @@ metadata:
   name: arkhe-mtls
   namespace: arkhe-zero
   labels:
-    seal: "◯_●-51-49-100"
+    seal: '◯_●-51-49-100'
 spec:
   mtls:
     mode: STRICT

@@ -22,8 +22,8 @@ Emitir un pacto simbiótico firmado con Ed25519, vinculando criptográficamente 
 ## API pública
 
 ```js
-import { IdentidadHumana } from "../registro-humano/identidad.js";
-import { IdentidadIA } from "./ia.js";
+import { IdentidadHumana } from '../registro-humano/identidad.js';
+import { IdentidadIA } from './ia.js';
 
 const idHumana = new IdentidadHumana(core, storage);
 const humano = await idHumana.recuperar();

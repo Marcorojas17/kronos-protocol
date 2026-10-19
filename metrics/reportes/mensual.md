@@ -7,22 +7,22 @@
 
 # 📅 REPORTE MENSUAL
 
-### *Octubre 2026*
+### _Octubre 2026_
 
-### *"El mes no se resume. Se firma."*
+### _"El mes no se resume. Se firma."_
 
 </div>
 
 ## 🜂 KPIs del mes
 
-| KPI                       | Meta    | Real | %    |
-|---------------------------|---------|------|------|
-| Visitantes únicos         | 10,000  | 0    | 0%   |
-| Firmas nuevas             | 100     | 0    | 0%   |
-| Suscriptores newsletter   | 1,000   | 0    | 0%   |
-| Embajadores E-1           | 5       | 0    | 0%   |
-| Índice de conversión      | 1%      | —    | —    |
-| Nodos activos             | 5       | 1    | 20%  |
+| KPI                     | Meta   | Real | %   |
+| ----------------------- | ------ | ---- | --- |
+| Visitantes únicos       | 10,000 | 0    | 0%  |
+| Firmas nuevas           | 100    | 0    | 0%  |
+| Suscriptores newsletter | 1,000  | 0    | 0%  |
+| Embajadores E-1         | 5      | 0    | 0%  |
+| Índice de conversión    | 1%     | —    | —   |
+| Nodos activos           | 5      | 1    | 20% |
 
 ## 🜃 Hitos del mes
 

@@ -5,6 +5,7 @@ Repo Base: PVA-Protocolo-Vida-Autopoietica-
 Fuerza Total: 1000 nodos
 
 Estructura:
+
 - comando/presidente.py -> Ordena todo
 - inteligencia/scraper.py -> Espía y analiza
 - defensa/muralla.py -> 5 capas blindadas

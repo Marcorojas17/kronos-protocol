@@ -17,9 +17,13 @@
   },
   "architecture": {
     "layers": [
-      "0-génesis", "1-cimiento", "2-identidad",
-      "3-módulos-operativos", "4-orquestación",
-      "5-operación", "6-cierre"
+      "0-génesis",
+      "1-cimiento",
+      "2-identidad",
+      "3-módulos-operativos",
+      "4-orquestación",
+      "5-operación",
+      "6-cierre"
     ],
     "crypto": {
       "kem": "ML-KEM-1024",
@@ -29,8 +33,21 @@
   },
   "agents": {
     "cultural": ["cuicatl", "temachtiani", "tlachixqui", "tlamatini", "tlapohualli", "tonal"],
-    "oficios": ["090-arquitecto", "091-contralor", "092-auditor", "093-relator", "094-bibliotecario", "095-cartografo"],
-    "protocols": ["10.6-autonomia", "10.7-reclutamiento", "10.8-mejora", "10.9-consenso", "10.10-expansion"]
+    "oficios": [
+      "090-arquitecto",
+      "091-contralor",
+      "092-auditor",
+      "093-relator",
+      "094-bibliotecario",
+      "095-cartografo"
+    ],
+    "protocols": [
+      "10.6-autonomia",
+      "10.7-reclutamiento",
+      "10.8-mejora",
+      "10.9-consenso",
+      "10.10-expansion"
+    ]
   },
   "projects": [
     "kronos-protocol",

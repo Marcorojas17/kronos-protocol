@@ -8,18 +8,18 @@
 
 KAF-2 = KAF-1 + los siguientes controles:
 
-| Control | Descripción |
-|---|---|
-| **KAF-2.1** | Contrato de Atribución firmado |
-| **KAF-2.2** | Colateral depositado en escrow |
-| **KAF-2.3** | Nivel de autonomía declarado |
-| **KAF-2.4** | Límite de daño configurado |
-| **KAF-3.3** | Anclaje a Ethereum cada ≤6h |
-| **KAF-3.4** | Hash doble (SHA-256 + SHA-3) |
+| Control     | Descripción                                  |
+| ----------- | -------------------------------------------- |
+| **KAF-2.1** | Contrato de Atribución firmado               |
+| **KAF-2.2** | Colateral depositado en escrow               |
+| **KAF-2.3** | Nivel de autonomía declarado                 |
+| **KAF-2.4** | Límite de daño configurado                   |
+| **KAF-3.3** | Anclaje a Ethereum cada ≤6h                  |
+| **KAF-3.4** | Hash doble (SHA-256 + SHA-3)                 |
 | **KAF-4.1** | Aprobación humana para acciones supervisadas |
-| **KAF-5.1** | Reasoning documentado en acciones autónomas |
-| **KAF-5.2** | Razonamiento hasheado y anclado |
-| **KAF-7.3** | Datos personales fuera de cadena |
+| **KAF-5.1** | Reasoning documentado en acciones autónomas  |
+| **KAF-5.2** | Razonamiento hasheado y anclado              |
+| **KAF-7.3** | Datos personales fuera de cadena             |
 
 **Total: 15 controles acumulados.**
 
@@ -63,3 +63,4 @@ KAF-2 = KAF-1 + los siguientes controles:
 
 ```bash
 curl https://api.atribucion.io/v1/kaf/verify/{certificate_id}
+```

@@ -1,55 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🪝 Webhooks · ARKHÉ ZERO · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="webhooks-arkhe-zero">🪝 Webhooks · ARKHÉ ZERO</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/api]
+  <head>
+    <meta charset="UTF-8" />
+    <title>🪝 Webhooks · ARKHÉ ZERO · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="webhooks-arkhe-zero">🪝 Webhooks · ARKHÉ ZERO</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/api]
 └─$ ./webhooks --listar
 
 [ OK ] 5 webhooks canónicos
 [ OK ] Todos firmados con ◯_●
 [ ✓✓ ] WEBHOOKS OPERATIVOS · ◯_● · 51/49/100
 </code></pre>
-<h2 id="eventos-disponibles">🜂 Eventos disponibles</h2>
-<table>
-<thead>
-<tr>
-<th>Evento</th>
-<th>Cuándo se dispara</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>firma.creada</code></td>
-<td>Tras firmar una obra</td>
-</tr>
-<tr>
-<td><code>documento.anclado</code></td>
-<td>Tras anclar a Ethereum</td>
-</tr>
-<tr>
-<td><code>agente.activado</code></td>
-<td>Tras quórum 4/5 de reclutamiento</td>
-</tr>
-<tr>
-<td><code>consenso.alcanzado</code></td>
-<td>Tras quórum 4/5 de una propuesta</td>
-</tr>
-<tr>
-<td><code>veto.aplicado</code></td>
-<td>Tras veto humano</td>
-</tr>
-</tbody>
-</table>
-<h2 id="formato-del-payload">🜃 Formato del payload</h2>
-<pre><code class="language-json">{
+    <h2 id="eventos-disponibles">🜂 Eventos disponibles</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Cuándo se dispara</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>firma.creada</code></td>
+          <td>Tras firmar una obra</td>
+        </tr>
+        <tr>
+          <td><code>documento.anclado</code></td>
+          <td>Tras anclar a Ethereum</td>
+        </tr>
+        <tr>
+          <td><code>agente.activado</code></td>
+          <td>Tras quórum 4/5 de reclutamiento</td>
+        </tr>
+        <tr>
+          <td><code>consenso.alcanzado</code></td>
+          <td>Tras quórum 4/5 de una propuesta</td>
+        </tr>
+        <tr>
+          <td><code>veto.aplicado</code></td>
+          <td>Tras veto humano</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="formato-del-payload">🜃 Formato del payload</h2>
+    <pre><code class="language-json">{
   &quot;event&quot;: &quot;firma.creada&quot;,
   &quot;timestamp&quot;: &quot;2026-01-01T00:00:00Z&quot;,
   &quot;data&quot;: {
@@ -62,18 +62,21 @@
   &quot;seal&quot;: &quot;◯_● · 51/49/100&quot;
 }
 </code></pre>
-<h2 id="verificacion">🜄 Verificación</h2>
-<p>Toda webhook incluye firma ML-DSA-87. El receptor puede verificar contra la clave pública en <code>.well-known/did.json</code>.</p>
-<h2 id="registro">🜁 Registro</h2>
-<pre><code class="language-bash">POST /api/v1/webhooks/register
+    <h2 id="verificacion">🜄 Verificación</h2>
+    <p>
+      Toda webhook incluye firma ML-DSA-87. El receptor puede verificar contra la clave
+      pública en <code>.well-known/did.json</code>.
+    </p>
+    <h2 id="registro">🜁 Registro</h2>
+    <pre><code class="language-bash">POST /api/v1/webhooks/register
 {
   &quot;url&quot;: &quot;https://tu-servicio.com/arkhe&quot;,
   &quot;events&quot;: [&quot;firma.creada&quot;, &quot;consenso.alcanzado&quot;],
   &quot;secret&quot;: &quot;tu-secreto-hmac&quot;
 }
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · API · Webhooks</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · API · Webhooks</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

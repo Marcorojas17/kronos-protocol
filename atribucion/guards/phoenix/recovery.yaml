@@ -24,7 +24,7 @@ health_checks:
     method: GET
     timeout_seconds: 5
     expected_status: 200
-    expected_body_contains: "ok"
+    expected_body_contains: 'ok'
     severity: critical
     retry_max: 3
     retry_delay_seconds: 10
@@ -124,7 +124,7 @@ health_checks:
 
 recovery:
   auto_restart: true
-  restart_command: "systemctl restart atribucion-api"
+  restart_command: 'systemctl restart atribucion-api'
   restart_timeout_seconds: 30
   max_restarts_per_hour: 3
   escalate_after_restarts: 3
@@ -143,7 +143,7 @@ recovery:
 
 batching:
   enabled: true
-  interval_seconds: 21600  # 6 horas
+  interval_seconds: 21600 # 6 horas
   force_batch_on_threshold: 1000
   force_batch_on_backlog_age_hours: 12
 
@@ -170,11 +170,11 @@ escalation:
   contacts:
     - level: 3
       email: oncall@atribucion.io
-      slack: "@oncall"
+      slack: '@oncall'
     - level: 4
       email: marco@atribucion.io
       phone: ${EMERGENCY_PHONE}
-      slack: "@marco @oncall"
+      slack: '@marco @oncall'
 
 # ─── NOTIFICACIONES ──────────────────────────────────────────
 

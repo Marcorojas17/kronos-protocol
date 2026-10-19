@@ -2,14 +2,14 @@
 
 ## 🜂 KPIs principales
 
-| KPI                          | Meta mensual | Peso |
-|------------------------------|--------------|------|
-| Nuevos iniciados             | 5            | 30%  |
-| Obras registradas por ahijados | 20          | 25%  |
-| Asistencia a eventos         | 2            | 15%  |
-| Nodos fundados (anual)       | 1            | 15%  |
-| Contenido publicado          | 4            | 10%  |
-| Auditorías limpias           | 1            | 5%   |
+| KPI                            | Meta mensual | Peso |
+| ------------------------------ | ------------ | ---- |
+| Nuevos iniciados               | 5            | 30%  |
+| Obras registradas por ahijados | 20           | 25%  |
+| Asistencia a eventos           | 2            | 15%  |
+| Nodos fundados (anual)         | 1            | 15%  |
+| Contenido publicado            | 4            | 10%  |
+| Auditorías limpias             | 1            | 5%   |
 
 ## 🜃 Bonos
 

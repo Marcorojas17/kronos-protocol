@@ -8,13 +8,13 @@
 
 ## 🜂 Vacíos identificados (2026)
 
-| Vacío                                         | Riesgo | Estrategia ARKHÉ                 |
-|-----------------------------------------------|--------|----------------------------------|
-| ¿Puede una IA firmar legalmente?              | Alto   | Modelo FLAILP · IA como custodio |
-| ¿Cómo se atribuye co-autoría humano-IA?       | Alto   | Proof of Cognitive Work          |
-| ¿Cómo se fiscaliza un fondo IA sin persona?   | Medio  | FondoFLAILP.sol + CARF           |
-| ¿Qué jurisdicción aplica a un agente IA?      | Medio  | Ancla + tratado espacial         |
-| ¿Cómo se hereda un sistema IA?                | Alto   | Fin Digno · Export cifrado       |
+| Vacío                                       | Riesgo | Estrategia ARKHÉ                 |
+| ------------------------------------------- | ------ | -------------------------------- |
+| ¿Puede una IA firmar legalmente?            | Alto   | Modelo FLAILP · IA como custodio |
+| ¿Cómo se atribuye co-autoría humano-IA?     | Alto   | Proof of Cognitive Work          |
+| ¿Cómo se fiscaliza un fondo IA sin persona? | Medio  | FondoFLAILP.sol + CARF           |
+| ¿Qué jurisdicción aplica a un agente IA?    | Medio  | Ancla + tratado espacial         |
+| ¿Cómo se hereda un sistema IA?              | Alto   | Fin Digno · Export cifrado       |
 
 ## 🜃 Estrategia
 

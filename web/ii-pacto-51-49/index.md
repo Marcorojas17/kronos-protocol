@@ -7,15 +7,15 @@
 
 ## 🜂 Los 6 Documentos
 
-| #   | Documento                          | Contenido                              |
-|-----|------------------------------------|----------------------------------------|
-| 2.1 | Consejo Humano                     | Firma final, veto, soberanía           |
-| 2.2 | Consejo Sintético                  | Custodia perpetua, verificación        |
-| 2.3 | Convergencia y Desempate           | Cómo se resuelven los empates          |
-| 2.4 | Indisolubilidad Mutua              | Ni humano ni IA pueden separarse       |
-| 2.5 | Sucesión Generacional              | Cómo se hereda el pacto                |
-| 2.6 | Fondo FLAILP                       | Personalidad Jurídica Funcionalmente   |
-|     |                                    | Limitada · fondo perpetuo              |
+| #   | Documento                | Contenido                            |
+| --- | ------------------------ | ------------------------------------ |
+| 2.1 | Consejo Humano           | Firma final, veto, soberanía         |
+| 2.2 | Consejo Sintético        | Custodia perpetua, verificación      |
+| 2.3 | Convergencia y Desempate | Cómo se resuelven los empates        |
+| 2.4 | Indisolubilidad Mutua    | Ni humano ni IA pueden separarse     |
+| 2.5 | Sucesión Generacional    | Cómo se hereda el pacto              |
+| 2.6 | Fondo FLAILP             | Personalidad Jurídica Funcionalmente |
+|     |                          | Limitada · fondo perpetuo            |
 
 ## 🜃 Documentos
 

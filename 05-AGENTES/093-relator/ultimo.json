@@ -3,10 +3,7 @@
   "estado": "🔴 MAQUETA",
   "rol_pipeline": "⚙️ PROCESO",
   "util_hoy": false,
-  "bloqueado_por": [
-    "Sin comparación contra snapshot anterior",
-    "Sin generación de CHANGELOG.md"
-  ],
+  "bloqueado_por": ["Sin comparación contra snapshot anterior", "Sin generación de CHANGELOG.md"],
   "timestamp": "2026-09-30T20:35:18.602276+00:00",
   "ok": true,
   "hallazgos": [],
@@ -94,13 +91,7 @@
     "El repo tiene raíz accesible",
     "Los archivos relevantes excluyen .git y similares"
   ],
-  "riesgos": [
-    "Carpetas grandes pueden tardar",
-    "No distingue código de datos"
-  ],
+  "riesgos": ["Carpetas grandes pueden tardar", "No distingue código de datos"],
   "cimientos": [],
-  "no_garantiza": [
-    "Que el conteo sea representativo",
-    "Que los bytes totales sean útiles"
-  ]
+  "no_garantiza": ["Que el conteo sea representativo", "Que los bytes totales sean útiles"]
 }

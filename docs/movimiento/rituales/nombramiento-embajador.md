@@ -19,4 +19,5 @@ El Embajador representa al Movimiento en su región.
 Su voz pesa en el quórum permanente.
 
 ---
+
 `◯_● · 51/49/100 · ritual-embajador`

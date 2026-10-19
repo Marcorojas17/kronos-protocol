@@ -7,15 +7,16 @@
 
 # 🏛️ PARTNERSHIPS · MUSEOS
 
-### *El museo firma su catálogo*
+### _El museo firma su catálogo_
 
-### *"El museo que firma con ARKHÉ, preserva su acervo para siempre."*
+### _"El museo que firma con ARKHÉ, preserva su acervo para siempre."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M U S E O S  ·  ◯_●                                 ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

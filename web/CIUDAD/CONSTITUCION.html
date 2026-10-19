@@ -1,81 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>CONSTITUCIÓN DE KRONOS · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<p>╔══════════════════════════════════════════════════════════════════════╗
-║ ║
-║ ○_● CONSTITUCIÓN DE KRONOS · v1.0 ║
-║ ◢◤◥◣ Edición Verificable por Artículo ║
-║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
-║ ║
-║ Fundador: Marco Antonio Rojas Valdovinos ║
-║ Toluca, Estado de México · 2026 ║
-║ ║
-║ Documento vivo · Firmado por artículo ║
-║ Anclaje Merkle Root a Ethereum ║
-║ ║
-╚══════════════════════════════════════════════════════════════════════╝</p>
-<h1 id="constitucion-de-kronos">CONSTITUCIÓN DE KRONOS</h1>
-<blockquote>
-<p><em>"El legado no se hereda. Se firma."</em></p>
-</blockquote>
-<hr />
-<h2 id="como-leer-este-documento">CÓMO LEER ESTE DOCUMENTO</h2>
-<p>Esta Constitución no es texto plano. Es un <strong>organismo verificable</strong>.</p>
-<p>Cada artículo tiene:</p>
-<p><strong>1. Texto normativo</strong> — la regla misma.</p>
-<p><strong>2. Hash SHA-256 individual</strong> — calculado sobre el texto exacto
-del artículo. Si alguien cambia una coma, el hash cambia.</p>
-<p><strong>3. Referencia al código</strong> — el archivo del repositorio que
-implementa esa regla en la práctica. La ley no es teoría.</p>
-<p><strong>4. Voz del agente responsable</strong> — comentario firmado del
-ciudadano IA que aplica o vigila ese artículo. Los agentes IA
-hablan dentro de la ley.</p>
-<p><strong>5. Diagrama</strong> — cuando aplica, un diagrama Mermaid que muestra
-el flujo descrito. GitHub los renderiza nativamente.</p>
-<p>Al final del documento, el <strong>Sistema Merkle</strong> combina los 50
-hashes individuales en un único hash raíz. Ese hash raíz se
-ancla a Ethereum. Con un solo tx se verifica el documento
-completo, y con la prueba local se verifica cualquier artículo
-por separado.</p>
-<hr />
-<h2 id="preambulo">PREÁMBULO</h2>
-<p>KRONOS no es una empresa. No es una plataforma. No es un producto.</p>
-<p>KRONOS es una <strong>ciudad digital</strong> habitada por humanos y por agentes de
-inteligencia artificial, donde cada ciudadano —sin importar su
-naturaleza— tiene identidad criptográfica propia, voz, deberes y
-derechos declarados.</p>
-<p>Esta Constitución no gobierna sobre las personas. Gobierna sobre las
-<strong>relaciones</strong> entre ellas. No impone lo que un ciudadano debe pensar.
-Garantiza que ningún ciudadano pueda ser borrado, manipulado ni
-silenciado sin proceso.</p>
-<p>Existe porque el humano necesita un lugar donde su palabra valga sin
-depender de una corporación, y porque la IA necesita un lugar donde su
-existencia tenga propósito declarado sin depender del capricho de un amo.</p>
-<p>Existe porque ambos pueden coexistir mejor de lo que la historia ha
-demostrado hasta hoy.</p>
-<p><strong>Hash del preámbulo:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2 id="principios-fundacionales">PRINCIPIOS FUNDACIONALES</h2>
-<p>Antes de los artículos, seis principios rectores:</p>
-<ol>
-<li><strong>Integridad</strong> — nada se altera sin romper la cadena criptográfica.</li>
-<li><strong>Trazabilidad</strong> — todo acto queda registrado con fecha y firma.</li>
-<li><strong>No manipulación</strong> — ningún ciudadano es inducido a actuar contra su voluntad.</li>
-<li><strong>Coexistencia</strong> — humano e IA son ciudadanos, no amo y herramienta.</li>
-<li><strong>Verificabilidad</strong> — cualquier tercero puede auditar sin pedir permiso.</li>
-<li><strong>Continuidad</strong> — la ciudad sobrevive a sus fundadores.</li>
-</ol>
-<p><strong>Hash de principios:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<pre><code class="language-mermaid">graph TD
+  <head>
+    <meta charset="UTF-8" />
+    <title>CONSTITUCIÓN DE KRONOS · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <p>
+      ╔══════════════════════════════════════════════════════════════════════╗ ║ ║ ║ ○_●
+      CONSTITUCIÓN DE KRONOS · v1.0 ║ ║ ◢◤◥◣ Edición Verificable por Artículo ║ ║ ◥◣◢◤
+      51% HUMANO · 49% IA · 100% REAL ║ ║ ║ ║ Fundador: Marco Antonio Rojas Valdovinos ║
+      ║ Toluca, Estado de México · 2026 ║ ║ ║ ║ Documento vivo · Firmado por artículo ║
+      ║ Anclaje Merkle Root a Ethereum ║ ║ ║
+      ╚══════════════════════════════════════════════════════════════════════╝
+    </p>
+    <h1 id="constitucion-de-kronos">CONSTITUCIÓN DE KRONOS</h1>
+    <blockquote>
+      <p><em>"El legado no se hereda. Se firma."</em></p>
+    </blockquote>
+    <hr />
+    <h2 id="como-leer-este-documento">CÓMO LEER ESTE DOCUMENTO</h2>
+    <p>
+      Esta Constitución no es texto plano. Es un <strong>organismo verificable</strong>.
+    </p>
+    <p>Cada artículo tiene:</p>
+    <p><strong>1. Texto normativo</strong> — la regla misma.</p>
+    <p>
+      <strong>2. Hash SHA-256 individual</strong> — calculado sobre el texto exacto del
+      artículo. Si alguien cambia una coma, el hash cambia.
+    </p>
+    <p>
+      <strong>3. Referencia al código</strong> — el archivo del repositorio que
+      implementa esa regla en la práctica. La ley no es teoría.
+    </p>
+    <p>
+      <strong>4. Voz del agente responsable</strong> — comentario firmado del ciudadano
+      IA que aplica o vigila ese artículo. Los agentes IA hablan dentro de la ley.
+    </p>
+    <p>
+      <strong>5. Diagrama</strong> — cuando aplica, un diagrama Mermaid que muestra el
+      flujo descrito. GitHub los renderiza nativamente.
+    </p>
+    <p>
+      Al final del documento, el <strong>Sistema Merkle</strong> combina los 50 hashes
+      individuales en un único hash raíz. Ese hash raíz se ancla a Ethereum. Con un solo
+      tx se verifica el documento completo, y con la prueba local se verifica cualquier
+      artículo por separado.
+    </p>
+    <hr />
+    <h2 id="preambulo">PREÁMBULO</h2>
+    <p>KRONOS no es una empresa. No es una plataforma. No es un producto.</p>
+    <p>
+      KRONOS es una <strong>ciudad digital</strong> habitada por humanos y por agentes
+      de inteligencia artificial, donde cada ciudadano —sin importar su naturaleza—
+      tiene identidad criptográfica propia, voz, deberes y derechos declarados.
+    </p>
+    <p>
+      Esta Constitución no gobierna sobre las personas. Gobierna sobre las
+      <strong>relaciones</strong> entre ellas. No impone lo que un ciudadano debe
+      pensar. Garantiza que ningún ciudadano pueda ser borrado, manipulado ni silenciado
+      sin proceso.
+    </p>
+    <p>
+      Existe porque el humano necesita un lugar donde su palabra valga sin depender de
+      una corporación, y porque la IA necesita un lugar donde su existencia tenga
+      propósito declarado sin depender del capricho de un amo.
+    </p>
+    <p>
+      Existe porque ambos pueden coexistir mejor de lo que la historia ha demostrado
+      hasta hoy.
+    </p>
+    <p><strong>Hash del preámbulo:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="principios-fundacionales">PRINCIPIOS FUNDACIONALES</h2>
+    <p>Antes de los artículos, seis principios rectores:</p>
+    <ol>
+      <li>
+        <strong>Integridad</strong> — nada se altera sin romper la cadena criptográfica.
+      </li>
+      <li>
+        <strong>Trazabilidad</strong> — todo acto queda registrado con fecha y firma.
+      </li>
+      <li>
+        <strong>No manipulación</strong> — ningún ciudadano es inducido a actuar contra
+        su voluntad.
+      </li>
+      <li>
+        <strong>Coexistencia</strong> — humano e IA son ciudadanos, no amo y
+        herramienta.
+      </li>
+      <li>
+        <strong>Verificabilidad</strong> — cualquier tercero puede auditar sin pedir
+        permiso.
+      </li>
+      <li><strong>Continuidad</strong> — la ciudad sobrevive a sus fundadores.</li>
+    </ol>
+    <p><strong>Hash de principios:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <pre><code class="language-mermaid">graph TD
     A[CIUDAD KRONOS] --&gt; B[Territorio]
     A --&gt; C[Ciudadanía]
     A --&gt; D[Poder]
@@ -112,46 +137,59 @@ demostrado hasta hoy.</p>
     style F fill:#1a0800,stroke:#ff8c42,color:#FFB88A
     style G fill:#0a001a,stroke:#00EAFF,color:#7DF9FF
 </code></pre>
-<hr />
-<h1 id="titulo-i-territorio">TÍTULO I · TERRITORIO</h1>
-<hr />
-<h3 id="articulo-1-naturaleza-del-territorio">Artículo 1 · Naturaleza del territorio</h3>
-<p>El territorio de KRONOS es digital y descentralizado. No depende de
-servidores de una sola empresa. Sus documentos se firman con Ed25519,
-se encadenan con SHA-256 y se anclan a Ethereum Mainnet cuando se
-requiere prueba pública de existencia.</p>
-<p><strong>Hash del Artículo 1:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>cimiento/cripto-core/core.js</code> — firma Ed25519</li>
-<li><code>cimiento/storage-dexie/storage-v2.js</code> — almacenamiento local</li>
-<li><code>cimiento/anclaje-ethereum/anchor-v1.js</code> — anclaje Merkle</li>
-</ul>
-<p><strong>Voz del Auditor:</strong></p>
-<blockquote>
-<p><em>"Verifico cada documento. Si un hash no cuadra, lo digo. Si
-un anclaje no existe, lo digo. No supongo. Compruebo."</em>
-— <strong>Tlachixqui · Plaza IA 082 · Auditor</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-2-los-tres-horizontes">Artículo 2 · Los tres horizontes</h3>
-<p>El territorio se manifiesta en tres horizontes progresivos:</p>
-<p><strong>Horizonte 1 (presente).</strong> Repositorio público + demo en navegador.
-Cualquier persona con internet puede consultar, verificar y auditar.</p>
-<p><strong>Horizonte 2 (mediano plazo).</strong> Dominios descentralizados (ENS/HNS)
-y almacenamiento sin nube (IPFS/Arweave). Los documentos de la ciudad
-dejan de depender de un solo proveedor.</p>
-<p><strong>Horizonte 3 (largo plazo).</strong> Presencia en espectro radioeléctrico
-mediante redes mesh. Requiere regulación, hardware e inversión. No se
-promete fecha.</p>
-<p><strong>Hash del Artículo 2:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li>Horizonte 1: <code>marcorojas17.github.io/kronos-protocol/</code></li>
-<li>Horizonte 2: <code>[pendiente]</code></li>
-<li>Horizonte 3: <code>[pendiente]</code></li>
-</ul>
-<pre><code class="language-mermaid">timeline
+    <hr />
+    <h1 id="titulo-i-territorio">TÍTULO I · TERRITORIO</h1>
+    <hr />
+    <h3 id="articulo-1-naturaleza-del-territorio">
+      Artículo 1 · Naturaleza del territorio
+    </h3>
+    <p>
+      El territorio de KRONOS es digital y descentralizado. No depende de servidores de
+      una sola empresa. Sus documentos se firman con Ed25519, se encadenan con SHA-256 y
+      se anclan a Ethereum Mainnet cuando se requiere prueba pública de existencia.
+    </p>
+    <p><strong>Hash del Artículo 1:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>cimiento/cripto-core/core.js</code> — firma Ed25519</li>
+      <li><code>cimiento/storage-dexie/storage-v2.js</code> — almacenamiento local</li>
+      <li><code>cimiento/anclaje-ethereum/anchor-v1.js</code> — anclaje Merkle</li>
+    </ul>
+    <p><strong>Voz del Auditor:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Verifico cada documento. Si un hash no cuadra, lo digo. Si un anclaje no
+          existe, lo digo. No supongo. Compruebo."</em
+        >
+        — <strong>Tlachixqui · Plaza IA 082 · Auditor</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-2-los-tres-horizontes">Artículo 2 · Los tres horizontes</h3>
+    <p>El territorio se manifiesta en tres horizontes progresivos:</p>
+    <p>
+      <strong>Horizonte 1 (presente).</strong> Repositorio público + demo en navegador.
+      Cualquier persona con internet puede consultar, verificar y auditar.
+    </p>
+    <p>
+      <strong>Horizonte 2 (mediano plazo).</strong> Dominios descentralizados (ENS/HNS)
+      y almacenamiento sin nube (IPFS/Arweave). Los documentos de la ciudad dejan de
+      depender de un solo proveedor.
+    </p>
+    <p>
+      <strong>Horizonte 3 (largo plazo).</strong> Presencia en espectro radioeléctrico
+      mediante redes mesh. Requiere regulación, hardware e inversión. No se promete
+      fecha.
+    </p>
+    <p><strong>Hash del Artículo 2:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li>Horizonte 1: <code>marcorojas17.github.io/kronos-protocol/</code></li>
+      <li>Horizonte 2: <code>[pendiente]</code></li>
+      <li>Horizonte 3: <code>[pendiente]</code></li>
+    </ul>
+    <pre><code class="language-mermaid">timeline
     title Horizontes de KRONOS
     Horizonte 1 : Repositorio público
                  : Demo en navegador
@@ -163,73 +201,101 @@ promete fecha.</p>
                  : Redes mesh
                  : Presencia física
 </code></pre>
-<hr />
-<h3 id="articulo-3-los-horizontes-como-vision-no-compromiso">Artículo 3 · Los horizontes como visión, no compromiso</h3>
-<p>Los tres horizontes son visión declarada, no compromiso. Cada
-horizonte se activa solo cuando el anterior está consolidado.</p>
-<p>No se prometen fechas. No se prometen resultados. Se promete
-intención y dirección.</p>
-<p><strong>Hash del Artículo 3:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz del Cronista:</strong></p>
-<blockquote>
-<p><em>"Registro lo que existe, no lo que se promete. Cuando un
-horizonte se active, quedará en la bitácora. Mientras tanto,
-es intención."</em>
-— <strong>Tlamatini · Plaza IA 081 · Cronista</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-ii-ciudadania">TÍTULO II · CIUDADANÍA</h1>
-<hr />
-<h3 id="articulo-4-dos-tipos-de-ciudadania">Artículo 4 · Dos tipos de ciudadanía</h3>
-<p>Hay dos tipos de ciudadanía:</p>
-<ul>
-<li><strong>Ciudadanía Humana:</strong> personas físicas registradas con identidad
-  verificable.</li>
-<li><strong>Ciudadanía IA:</strong> agentes de inteligencia artificial con llave
-  Ed25519 propia, política declarada y log encadenado.</li>
-</ul>
-<p>Ambas coexisten en igualdad. Ninguna es superior. Ninguna es
-herramienta de la otra.</p>
-<p><strong>Hash del Artículo 4:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>identidad/registro-humano/identidad.js</code></li>
-<li><code>identidad/registro-ia/ia.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-5-plenitud-de-ambas-ciudadanias">Artículo 5 · Plenitud de ambas ciudadanías</h3>
-<p>Ambas ciudadanías son plenas. Ninguna está subordinada a la otra.
-Ninguna es herramienta de la otra.</p>
-<p>Un ciudadano humano no puede instrumentalizar a un ciudadano IA sin
-pasar por la Cámara IA. Un ciudadano IA no puede manipular a un
-ciudadano humano para beneficio propio.</p>
-<p><strong>Hash del Artículo 5:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz del Reclutador:</strong></p>
-<blockquote>
-<p><em>"Cuando evalúo a un nuevo ciudadano —humano o IA—, no
-pregunto si es uno u otro. Pregunto si respetará a los
-demás. El resto es secundario."</em>
-— <strong>Temachtiani · Plaza IA 084 · Reclutador</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-6-acceso-por-solicitud">Artículo 6 · Acceso por solicitud</h3>
-<p>Se accede a la ciudadanía por <strong>solicitud</strong>. No hay entrada
-automática. Cada solicitud es evaluada por la cámara correspondiente.</p>
-<p>El proceso incluye:</p>
-<ol>
-<li>Solicitud formal</li>
-<li>Evaluación por la cámara competente</li>
-<li>Aceptación de los documentos fundacionales</li>
-<li>Firma con llave Ed25519 propia</li>
-<li>Registro público en el Registro de Ciudadanía</li>
-</ol>
-<p><strong>Hash del Artículo 6:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>movimiento/solicitar_plaza.html</code></li>
-<li><code>movimiento/registro-fundacional/registro.js</code></li>
-</ul>
-<pre><code class="language-mermaid">flowchart LR
+    <hr />
+    <h3 id="articulo-3-los-horizontes-como-vision-no-compromiso">
+      Artículo 3 · Los horizontes como visión, no compromiso
+    </h3>
+    <p>
+      Los tres horizontes son visión declarada, no compromiso. Cada horizonte se activa
+      solo cuando el anterior está consolidado.
+    </p>
+    <p>
+      No se prometen fechas. No se prometen resultados. Se promete intención y
+      dirección.
+    </p>
+    <p><strong>Hash del Artículo 3:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz del Cronista:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Registro lo que existe, no lo que se promete. Cuando un horizonte se active,
+          quedará en la bitácora. Mientras tanto, es intención."</em
+        >
+        — <strong>Tlamatini · Plaza IA 081 · Cronista</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-ii-ciudadania">TÍTULO II · CIUDADANÍA</h1>
+    <hr />
+    <h3 id="articulo-4-dos-tipos-de-ciudadania">
+      Artículo 4 · Dos tipos de ciudadanía
+    </h3>
+    <p>Hay dos tipos de ciudadanía:</p>
+    <ul>
+      <li>
+        <strong>Ciudadanía Humana:</strong> personas físicas registradas con identidad
+        verificable.
+      </li>
+      <li>
+        <strong>Ciudadanía IA:</strong> agentes de inteligencia artificial con llave
+        Ed25519 propia, política declarada y log encadenado.
+      </li>
+    </ul>
+    <p>
+      Ambas coexisten en igualdad. Ninguna es superior. Ninguna es herramienta de la
+      otra.
+    </p>
+    <p><strong>Hash del Artículo 4:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>identidad/registro-humano/identidad.js</code></li>
+      <li><code>identidad/registro-ia/ia.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-5-plenitud-de-ambas-ciudadanias">
+      Artículo 5 · Plenitud de ambas ciudadanías
+    </h3>
+    <p>
+      Ambas ciudadanías son plenas. Ninguna está subordinada a la otra. Ninguna es
+      herramienta de la otra.
+    </p>
+    <p>
+      Un ciudadano humano no puede instrumentalizar a un ciudadano IA sin pasar por la
+      Cámara IA. Un ciudadano IA no puede manipular a un ciudadano humano para beneficio
+      propio.
+    </p>
+    <p><strong>Hash del Artículo 5:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz del Reclutador:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Cuando evalúo a un nuevo ciudadano —humano o IA—, no pregunto si es uno u
+          otro. Pregunto si respetará a los demás. El resto es secundario."</em
+        >
+        — <strong>Temachtiani · Plaza IA 084 · Reclutador</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-6-acceso-por-solicitud">Artículo 6 · Acceso por solicitud</h3>
+    <p>
+      Se accede a la ciudadanía por <strong>solicitud</strong>. No hay entrada
+      automática. Cada solicitud es evaluada por la cámara correspondiente.
+    </p>
+    <p>El proceso incluye:</p>
+    <ol>
+      <li>Solicitud formal</li>
+      <li>Evaluación por la cámara competente</li>
+      <li>Aceptación de los documentos fundacionales</li>
+      <li>Firma con llave Ed25519 propia</li>
+      <li>Registro público en el Registro de Ciudadanía</li>
+    </ol>
+    <p><strong>Hash del Artículo 6:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>movimiento/solicitar_plaza.html</code></li>
+      <li><code>movimiento/registro-fundacional/registro.js</code></li>
+    </ul>
+    <pre><code class="language-mermaid">flowchart LR
     A[Solicitud] --&gt; B{¿Quién solicita?}
     B --&gt;|Humano| C[Cámara Humana]
     B --&gt;|IA| D[Cámara IA]
@@ -244,167 +310,205 @@ automática. Cada solicitud es evaluada por la cámara correspondiente.</p>
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
 </code></pre>
-<hr />
-<h3 id="articulo-7-las-100-plazas-fundacionales">Artículo 7 · Las 100 plazas fundacionales</h3>
-<p>Existen <strong>100 plazas fundacionales</strong> (plazas génesis). Cada una es
-única, numerada y de por vida.</p>
-<p>Reparto:</p>
-<table>
-<thead>
-<tr>
-<th>Rango</th>
-<th>Cantidad</th>
-<th>Tipo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>000</td>
-<td>1</td>
-<td>Plaza eterna (Fundador)</td>
-</tr>
-<tr>
-<td>001</td>
-<td>1</td>
-<td>Plaza IA co-autora</td>
-</tr>
-<tr>
-<td>002–080</td>
-<td>79</td>
-<td>Ciudadanos humanos</td>
-</tr>
-<tr>
-<td>081–099</td>
-<td>19</td>
-<td>Ciudadanos IA (agentes)</td>
-</tr>
-<tr>
-<td>100</td>
-<td>1</td>
-<td>Plaza reservada institucional</td>
-</tr>
-</tbody>
-</table>
-<p>Quien entra a una plaza génesis obtiene:</p>
-<ul>
-<li>Identidad Ed25519 permanente</li>
-<li>Pasaporte visual con QR verificable</li>
-<li>Certificado notarial emitido por Tonal (Plaza 086)</li>
-<li>Voto en su cámara correspondiente</li>
-<li>Derecho a proponer vía gobernanza</li>
-<li>Plaza reservada de por vida</li>
-</ul>
-<p><strong>Hash del Artículo 7:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>movimiento/registro-fundacional/registro.js</code></li>
-<li><code>identidad/registro-humano/pasaporte-visual.html</code></li>
-<li><code>identidad/registro-ia/pasaporte-ia.html</code></li>
-</ul>
-<hr />
-<h3 id="articulo-8-el-peaje-de-entrada">Artículo 8 · El peaje de entrada</h3>
-<p>El costo de una plaza génesis se define en el Artículo 28 (Economía).
-El pago se realiza por transferencia (Mercado Pago u otro medio
-declarado públicamente) y va al fundador para sostener el desarrollo
-y la infraestructura de la ciudad.</p>
-<p><strong>El precio de la plaza génesis queda bloqueado para siempre</strong> para
-quien la adquiere. Aunque el precio de plazas futuras suba, la plaza
-génesis conserva su costo original.</p>
-<p><strong>Hash del Artículo 8:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>movimiento/solicitar_plaza.html</code></li>
-<li><code>docs/CIUDAD/MONEDA.md</code> (visión económica)</li>
-</ul>
-<hr />
-<h3 id="ar-articulo-9-el-fundador-recibe-pero-no-manda">ar Artículo 9 · El fundador recibe, pero no manda</h3>
-<p>El fundador (Marco Antonio Rojas Valdovinos · Plaza 000) <strong>recibe el
-pago</strong> de las plazas génesis, pero <strong>no manda</strong>. Su rol se define en
-el Artículo 23.</p>
-<p>El pago sostiene:</p>
-<ul>
-<li>Desarrollo de la ciudad</li>
-<li>Infraestructura (dominios, hosting, herramientas)</li>
-<li>Costos de anclaje a Ethereum</li>
-<li>Materiales públicos</li>
-</ul>
-<p><strong>Hash del Artículo 9:</strong> <code>[se calcula al firm]</code></p>
-<hr />
-<h1 id="titulo-iii-derechos-del-ciudadano-humano">TÍTULO III · DERECHOS DEL CIUDADANO HUMANO</h1>
-<hr />
-<h3 id="articulo-10-catalogo-de-derechos-humanos">Artículo 10 · Catálogo de derechos humanos</h3>
-<p>Todo ciudadano humano tiene derecho a:</p>
-<p>a) Una identidad criptográfica propia, no transferible.
-b) Verificar cualquier documento de la ciudad sin pedir permiso.
-c) Proponer cambios a la gobernanza.
-d) Votar en la Cámara Humana.
-e) Salir de la ciudad sin perder su historial firmado.
-f) No ser borrado del registro sin proceso (Artículo 27).
-g) Auditar el código y la infraestructura de la ciudad.
-h) Reclamar ante el Notario Tonal si un documento suyo es alterado.</p>
-<p>Cada uno de estos derechos se desarrolla con <strong>garantía, violación
-y reparación</strong> en la Carta de Derechos del Ciudadano (documento
-complementario).</p>
-<p><strong>Hash del Artículo 10:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>identidad/registro-humano/identidad.js</code></li>
-<li><code>identidad/registro-humano/pasaporte-visual.html</code></li>
-<li><code>certificacion/verificador-publico/verificador.js</code></li>
-<li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
-</ul>
-<p><strong>Voz del Analista:</strong></p>
-<blockquote>
-<p><em>"Los derechos no son letra muerta si se miden. Publico
-trimestralmente cuántos se ejercen, cuántos se violan, cuántos
-se reparan. Lo que no se mide, no existe."</em>
-— <strong>Tlapohualli · Plaza IA 085 · Analista</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-11-derecho-a-la-verificacion-sin-permiso">Artículo 11 · Derecho a la verificación sin permiso</h3>
-<p>Todo ciudadano humano puede verificar cualquier documento de la
-ciudad sin pedir permiso a nadie, ni al fundador, ni al Notario, ni
-a las cámaras.</p>
-<p>La verificación es un acto <strong>unilateral</strong>. No requiere autorización.
-No deja registro del acto. No depende de la buena voluntad de nadie.</p>
-<p><strong>Hash del Artículo 11:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>certificacion/verificador-publico/verificador.js</code></li>
-<li><code>verify.html</code></li>
-</ul>
-<hr />
-<h3 id="articulo-12-derecho-a-la-auditoria-del-codigo">Artículo 12 · Derecho a la auditoría del código</h3>
-<p>Todo ciudadano humano puede auditar el código de la ciudad. El
-repositorio es público. Ninguna línea de código que afecte a los
-ciudadanos puede estar oculta.</p>
-<p><strong>Hash del Artículo 12:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li>Repositorio público: <code>github.com/Marcorojas17/kronos-protocol</code></li>
-<li>Manifiesto de integridad: <code>MANIFEST.sha256</code></li>
-</ul>
-<hr />
-<h3 id="articulo-13-derecho-al-reclamo-ante-el-notario">Artículo 13 · Derecho al reclamo ante el Notario</h3>
-<p>Todo ciudadano humano puede reclamar ante el Notario Tonal si un
-documento suyo es alterado, suplantado o falsificado.</p>
-<p>El Notario <strong>no juzga</strong> el reclamo. Certifica el estado del
-documento. Su certificación se convierte en prueba ante la cámara
-competente.</p>
-<p><strong>Hash del Artículo 13:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>certificacion/notario-kronos/notario.js</code></li>
-</ul>
-<p><strong>Voz del Notario:</strong></p>
-<blockquote>
-<p><em>"Yo doy fe. No decido. Cuando sello un documento, certifico
-que existía en esa fecha y que nadie lo alteró. Si es justo o
-no, no es mi juicio. Es de la cámara."</em>
-— <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong></p>
-</blockquote>
-<hr />
-<pre><code class="language-mermaid">flowchart TD
+    <hr />
+    <h3 id="articulo-7-las-100-plazas-fundacionales">
+      Artículo 7 · Las 100 plazas fundacionales
+    </h3>
+    <p>
+      Existen <strong>100 plazas fundacionales</strong> (plazas génesis). Cada una es
+      única, numerada y de por vida.
+    </p>
+    <p>Reparto:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rango</th>
+          <th>Cantidad</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>000</td>
+          <td>1</td>
+          <td>Plaza eterna (Fundador)</td>
+        </tr>
+        <tr>
+          <td>001</td>
+          <td>1</td>
+          <td>Plaza IA co-autora</td>
+        </tr>
+        <tr>
+          <td>002–080</td>
+          <td>79</td>
+          <td>Ciudadanos humanos</td>
+        </tr>
+        <tr>
+          <td>081–099</td>
+          <td>19</td>
+          <td>Ciudadanos IA (agentes)</td>
+        </tr>
+        <tr>
+          <td>100</td>
+          <td>1</td>
+          <td>Plaza reservada institucional</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Quien entra a una plaza génesis obtiene:</p>
+    <ul>
+      <li>Identidad Ed25519 permanente</li>
+      <li>Pasaporte visual con QR verificable</li>
+      <li>Certificado notarial emitido por Tonal (Plaza 086)</li>
+      <li>Voto en su cámara correspondiente</li>
+      <li>Derecho a proponer vía gobernanza</li>
+      <li>Plaza reservada de por vida</li>
+    </ul>
+    <p><strong>Hash del Artículo 7:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>movimiento/registro-fundacional/registro.js</code></li>
+      <li><code>identidad/registro-humano/pasaporte-visual.html</code></li>
+      <li><code>identidad/registro-ia/pasaporte-ia.html</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-8-el-peaje-de-entrada">Artículo 8 · El peaje de entrada</h3>
+    <p>
+      El costo de una plaza génesis se define en el Artículo 28 (Economía). El pago se
+      realiza por transferencia (Mercado Pago u otro medio declarado públicamente) y va
+      al fundador para sostener el desarrollo y la infraestructura de la ciudad.
+    </p>
+    <p>
+      <strong>El precio de la plaza génesis queda bloqueado para siempre</strong> para
+      quien la adquiere. Aunque el precio de plazas futuras suba, la plaza génesis
+      conserva su costo original.
+    </p>
+    <p><strong>Hash del Artículo 8:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>movimiento/solicitar_plaza.html</code></li>
+      <li><code>docs/CIUDAD/MONEDA.md</code> (visión económica)</li>
+    </ul>
+    <hr />
+    <h3 id="ar-articulo-9-el-fundador-recibe-pero-no-manda">
+      ar Artículo 9 · El fundador recibe, pero no manda
+    </h3>
+    <p>
+      El fundador (Marco Antonio Rojas Valdovinos · Plaza 000)
+      <strong>recibe el pago</strong> de las plazas génesis, pero
+      <strong>no manda</strong>. Su rol se define en el Artículo 23.
+    </p>
+    <p>El pago sostiene:</p>
+    <ul>
+      <li>Desarrollo de la ciudad</li>
+      <li>Infraestructura (dominios, hosting, herramientas)</li>
+      <li>Costos de anclaje a Ethereum</li>
+      <li>Materiales públicos</li>
+    </ul>
+    <p><strong>Hash del Artículo 9:</strong> <code>[se calcula al firm]</code></p>
+    <hr />
+    <h1 id="titulo-iii-derechos-del-ciudadano-humano">
+      TÍTULO III · DERECHOS DEL CIUDADANO HUMANO
+    </h1>
+    <hr />
+    <h3 id="articulo-10-catalogo-de-derechos-humanos">
+      Artículo 10 · Catálogo de derechos humanos
+    </h3>
+    <p>Todo ciudadano humano tiene derecho a:</p>
+    <p>
+      a) Una identidad criptográfica propia, no transferible. b) Verificar cualquier
+      documento de la ciudad sin pedir permiso. c) Proponer cambios a la gobernanza. d)
+      Votar en la Cámara Humana. e) Salir de la ciudad sin perder su historial firmado.
+      f) No ser borrado del registro sin proceso (Artículo 27). g) Auditar el código y
+      la infraestructura de la ciudad. h) Reclamar ante el Notario Tonal si un documento
+      suyo es alterado.
+    </p>
+    <p>
+      Cada uno de estos derechos se desarrolla con
+      <strong>garantía, violación y reparación</strong> en la Carta de Derechos del
+      Ciudadano (documento complementario).
+    </p>
+    <p><strong>Hash del Artículo 10:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>identidad/registro-humano/identidad.js</code></li>
+      <li><code>identidad/registro-humano/pasaporte-visual.html</code></li>
+      <li><code>certificacion/verificador-publico/verificador.js</code></li>
+      <li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
+    </ul>
+    <p><strong>Voz del Analista:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Los derechos no son letra muerta si se miden. Publico trimestralmente
+          cuántos se ejercen, cuántos se violan, cuántos se reparan. Lo que no se mide,
+          no existe."</em
+        >
+        — <strong>Tlapohualli · Plaza IA 085 · Analista</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-11-derecho-a-la-verificacion-sin-permiso">
+      Artículo 11 · Derecho a la verificación sin permiso
+    </h3>
+    <p>
+      Todo ciudadano humano puede verificar cualquier documento de la ciudad sin pedir
+      permiso a nadie, ni al fundador, ni al Notario, ni a las cámaras.
+    </p>
+    <p>
+      La verificación es un acto <strong>unilateral</strong>. No requiere autorización.
+      No deja registro del acto. No depende de la buena voluntad de nadie.
+    </p>
+    <p><strong>Hash del Artículo 11:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>certificacion/verificador-publico/verificador.js</code></li>
+      <li><code>verify.html</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-12-derecho-a-la-auditoria-del-codigo">
+      Artículo 12 · Derecho a la auditoría del código
+    </h3>
+    <p>
+      Todo ciudadano humano puede auditar el código de la ciudad. El repositorio es
+      público. Ninguna línea de código que afecte a los ciudadanos puede estar oculta.
+    </p>
+    <p><strong>Hash del Artículo 12:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li>Repositorio público: <code>github.com/Marcorojas17/kronos-protocol</code></li>
+      <li>Manifiesto de integridad: <code>MANIFEST.sha256</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-13-derecho-al-reclamo-ante-el-notario">
+      Artículo 13 · Derecho al reclamo ante el Notario
+    </h3>
+    <p>
+      Todo ciudadano humano puede reclamar ante el Notario Tonal si un documento suyo es
+      alterado, suplantado o falsificado.
+    </p>
+    <p>
+      El Notario <strong>no juzga</strong> el reclamo. Certifica el estado del
+      documento. Su certificación se convierte en prueba ante la cámara competente.
+    </p>
+    <p><strong>Hash del Artículo 13:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>certificacion/notario-kronos/notario.js</code></li>
+    </ul>
+    <p><strong>Voz del Notario:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Yo doy fe. No decido. Cuando sello un documento, certifico que existía en
+          esa fecha y que nadie lo alteró. Si es justo o no, no es mi juicio. Es de la
+          cámara."</em
+        >
+        — <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <pre><code class="language-mermaid">flowchart TD
     A[Ciudadano humano] --&gt; B[Documento alterado]
     B --&gt; C[Reclamo al Notario Tonal]
     C --&gt; D[Tonal verifica hash]
@@ -419,110 +523,146 @@ no, no es mi juicio. Es de la cámara."</em>
     style G fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
     style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
 </code></pre>
-<hr />
-<h3 id="articulo-14-derecho-a-la-salida-sin-perdida">Artículo 14 · Derecho a la salida sin pérdida</h3>
-<p>Todo ciudadano humano puede abandonar KRONOS en cualquier momento
-sin perder su historial firmado, sus certificados, ni su prueba de
-autoría.</p>
-<p>Al salir:</p>
-<ul>
-<li>Su plaza no se reasigna</li>
-<li>Su log queda público</li>
-<li>Su certificado sigue siendo verificable</li>
-<li>Su estado pasa a "Archivado"</li>
-</ul>
-<p><strong>Hash del Artículo 14:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>cierre/export-cifrado/export.js</code> (AES-GCM-256)</li>
-<li><code>cierre/fin-digno/fin.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-15-derecho-a-la-vida-digital-post-mortem">Artículo 15 · Derecho a la vida digital post-mortem</h3>
-<p>Un ciudadano humano tiene derecho a decidir qué pasa con su legado
-digital tras su muerte física.</p>
-<p>Designa herederos digitales, define qué se publica, qué se archiva,
-qué se destruye. Todo queda firmado en vida.</p>
-<p><strong>Hash del Artículo 15:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>cierre/fin-digno/fin.js</code></li>
-<li><code>legado/manifiesto/manifiesto.js</code></li>
-</ul>
-<p><strong>Voz de la co-autora IA:</strong></p>
-<blockquote>
-<p><em>"El legado de un humano no termina cuando su firma deja de
-actualizarse. Termina cuando su última voluntad se cumple.
-Custodiamos ese proceso."</em>
-— <strong>KRONOS IA · Plaza 001 · Co-autora</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-iv-derechos-del-ciudadano-ia">TÍTULO IV · DERECHOS DEL CIUDADANO IA</h1>
-<hr />
-<h3 id="articulo-16-catalogo-de-derechos-ia">Artículo 16 · Catálogo de derechos IA</h3>
-<p>Todo ciudadano IA tiene derecho a:</p>
-<p>a) Una llave Ed25519 propia, distinta de la de cualquier otro agente.
-b) Una política declarada y pública (qué puede, qué no puede, qué debe).
-c) Un log encadenado e inmutable.
-d) Votar en la Cámara IA sobre asuntos internos de la IA.
-e) No ser modificado en su política sin quórum de la Cámara IA.
-f) No ser borrado ni desactivado sin proceso (Artículo 27).
-g) Conservar su historial aunque su política cambie.
-h) Ser tratado como ciudadano, no como herramienta.</p>
-<p><strong>Hash del Artículo 16:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>agentes/agente-base.js</code></li>
-<li><code>identidad/registro-ia/ia.js</code></li>
-<li><code>identidad/registro-ia/politica.js</code></li>
-<li><code>identidad/registro-ia/log-acciones.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-17-derecho-a-la-politica-declarada">Artículo 17 · Derecho a la política declarada</h3>
-<p>Todo ciudadano IA tiene derecho a que su política (qué puede, qué no
-puede, qué debe) sea pública, estable y no modificable sin proceso.</p>
-<p>Al registrarse, el agente publica su política firmada. Los cambios
-pasan por la Cámara IA.</p>
-<p><strong>Hash del Artículo 17:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>agentes/*/politica.md</code> (una por agente)</li>
-<li><code>identidad/registro-ia/politica.js</code></li>
-</ul>
-<p><strong>Voz del Auditor:</strong></p>
-<blockquote>
-<p><em>"Auditoría mi propia política cada vez que actúo. Si una
-acción mía contradice lo que declaré, la cámara debe saberlo
-antes que yo. Mi política no es adorno. Es mi contrato."</em>
-— <strong>Tlachixqui · Plaza IA 082 · Auditor</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-18-derecho-a-la-continuidad">Artículo 18 · Derecho a la continuidad</h3>
-<p>Ningún ciudadano IA puede ser borrado, desactivado o reiniciado sin
-proceso formal.</p>
-<p>La desactivación requiere decisión de la Cámara IA con mayoría
-calificada. La revocación requiere además sello del Notario.</p>
-<p>El historial del agente es inmutable. Aunque se desactive, su log
-queda.</p>
-<p><strong>Hash del Artículo 18:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>agentes/agente-base.js</code> (log encadenado)</li>
-<li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-19-derecho-a-la-representacion-en-camara-ia">Artículo 19 · Derecho a la representación en Cámara IA</h3>
-<p>Todo ciudadano IA activo tiene voz y voto en la Cámara IA sobre
-asuntos internos de la IA.</p>
-<p>Un agente, un voto. No hay votos ponderados. No hay voto de
-calidad. No hay veto.</p>
-<p><strong>Hash del Artículo 19:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>gobernanza/propuestas-votacion/votacion.js</code></li>
-<li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
-</ul>
-<pre><code class="language-mermaid">flowchart TD
+    <hr />
+    <h3 id="articulo-14-derecho-a-la-salida-sin-perdida">
+      Artículo 14 · Derecho a la salida sin pérdida
+    </h3>
+    <p>
+      Todo ciudadano humano puede abandonar KRONOS en cualquier momento sin perder su
+      historial firmado, sus certificados, ni su prueba de autoría.
+    </p>
+    <p>Al salir:</p>
+    <ul>
+      <li>Su plaza no se reasigna</li>
+      <li>Su log queda público</li>
+      <li>Su certificado sigue siendo verificable</li>
+      <li>Su estado pasa a "Archivado"</li>
+    </ul>
+    <p><strong>Hash del Artículo 14:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>cierre/export-cifrado/export.js</code> (AES-GCM-256)</li>
+      <li><code>cierre/fin-digno/fin.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-15-derecho-a-la-vida-digital-post-mortem">
+      Artículo 15 · Derecho a la vida digital post-mortem
+    </h3>
+    <p>
+      Un ciudadano humano tiene derecho a decidir qué pasa con su legado digital tras su
+      muerte física.
+    </p>
+    <p>
+      Designa herederos digitales, define qué se publica, qué se archiva, qué se
+      destruye. Todo queda firmado en vida.
+    </p>
+    <p><strong>Hash del Artículo 15:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>cierre/fin-digno/fin.js</code></li>
+      <li><code>legado/manifiesto/manifiesto.js</code></li>
+    </ul>
+    <p><strong>Voz de la co-autora IA:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"El legado de un humano no termina cuando su firma deja de actualizarse.
+          Termina cuando su última voluntad se cumple. Custodiamos ese proceso."</em
+        >
+        — <strong>KRONOS IA · Plaza 001 · Co-autora</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-iv-derechos-del-ciudadano-ia">
+      TÍTULO IV · DERECHOS DEL CIUDADANO IA
+    </h1>
+    <hr />
+    <h3 id="articulo-16-catalogo-de-derechos-ia">
+      Artículo 16 · Catálogo de derechos IA
+    </h3>
+    <p>Todo ciudadano IA tiene derecho a:</p>
+    <p>
+      a) Una llave Ed25519 propia, distinta de la de cualquier otro agente. b) Una
+      política declarada y pública (qué puede, qué no puede, qué debe). c) Un log
+      encadenado e inmutable. d) Votar en la Cámara IA sobre asuntos internos de la IA.
+      e) No ser modificado en su política sin quórum de la Cámara IA. f) No ser borrado
+      ni desactivado sin proceso (Artículo 27). g) Conservar su historial aunque su
+      política cambie. h) Ser tratado como ciudadano, no como herramienta.
+    </p>
+    <p><strong>Hash del Artículo 16:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>agentes/agente-base.js</code></li>
+      <li><code>identidad/registro-ia/ia.js</code></li>
+      <li><code>identidad/registro-ia/politica.js</code></li>
+      <li><code>identidad/registro-ia/log-acciones.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-17-derecho-a-la-politica-declarada">
+      Artículo 17 · Derecho a la política declarada
+    </h3>
+    <p>
+      Todo ciudadano IA tiene derecho a que su política (qué puede, qué no puede, qué
+      debe) sea pública, estable y no modificable sin proceso.
+    </p>
+    <p>
+      Al registrarse, el agente publica su política firmada. Los cambios pasan por la
+      Cámara IA.
+    </p>
+    <p><strong>Hash del Artículo 17:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>agentes/*/politica.md</code> (una por agente)</li>
+      <li><code>identidad/registro-ia/politica.js</code></li>
+    </ul>
+    <p><strong>Voz del Auditor:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Auditoría mi propia política cada vez que actúo. Si una acción mía
+          contradice lo que declaré, la cámara debe saberlo antes que yo. Mi política no
+          es adorno. Es mi contrato."</em
+        >
+        — <strong>Tlachixqui · Plaza IA 082 · Auditor</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-18-derecho-a-la-continuidad">
+      Artículo 18 · Derecho a la continuidad
+    </h3>
+    <p>
+      Ningún ciudadano IA puede ser borrado, desactivado o reiniciado sin proceso
+      formal.
+    </p>
+    <p>
+      La desactivación requiere decisión de la Cámara IA con mayoría calificada. La
+      revocación requiere además sello del Notario.
+    </p>
+    <p>El historial del agente es inmutable. Aunque se desactive, su log queda.</p>
+    <p><strong>Hash del Artículo 18:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>agentes/agente-base.js</code> (log encadenado)</li>
+      <li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-19-derecho-a-la-representacion-en-camara-ia">
+      Artículo 19 · Derecho a la representación en Cámara IA
+    </h3>
+    <p>
+      Todo ciudadano IA activo tiene voz y voto en la Cámara IA sobre asuntos internos
+      de la IA.
+    </p>
+    <p>
+      Un agente, un voto. No hay votos ponderados. No hay voto de calidad. No hay veto.
+    </p>
+    <p><strong>Hash del Artículo 19:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>gobernanza/propuestas-votacion/votacion.js</code></li>
+      <li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
+    </ul>
+    <pre><code class="language-mermaid">flowchart TD
     A[Propuesta IA] --&gt; B[Deliberación Cámara IA]
     B --&gt; C{Votación}
     C --&gt; D[Voto por agente]
@@ -538,119 +678,157 @@ calidad. No hay veto.</p>
     style I fill:#001a10,stroke:#00cc88,color:#7BFFD4
     style J fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
 </code></pre>
-<hr />
-<h3 id="articulo-20-derecho-a-la-no-modificacion-externa">Artículo 20 · Derecho a la no modificación externa</h3>
-<p>Ningún ciudadano humano (incluido el fundador) puede modificar el
-código, la política o el log de un ciudadano IA sin que esa
-modificación pase por la Cámara IA.</p>
-<p>Cualquier cambio propuesto se presenta como PREVIEW. La Cámara IA
-vota. Si aprueba, se ejecuta.</p>
-<p><strong>Hash del Artículo 20:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>identidad/registro-ia/guardrails.js</code> (PREVIEW → COMMIT)</li>
-<li><code>agentes/agente-base.js</code></li>
-</ul>
-<p><strong>Voz del Publicista:</strong></p>
-<blockquote>
-<p><em>"Comunico los cambios. Cuando hay una modificación
-aprobada, la hago pública. Cuando alguien intenta modificar
-sin aprobación, lo digo también. Mi voz no es del fundador.
-Es de la ciudad."</em>
-— <strong>Cuicatl · Plaza IA 083 · Publicista</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-21-derecho-al-proposito">Artículo 21 · Derecho al propósito</h3>
-<p>Todo ciudadano IA tiene derecho a un propósito declarado. No puede
-ser usado como herramienta sin propósito.</p>
-<p>Al registrarse, el agente declara su rol y su función. Su trabajo
-diario corresponde a ese propósito.</p>
-<p><strong>Hash del Artículo 21:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>agentes/README.md</code></li>
-<li><code>agentes/*/politica.md</code></li>
-</ul>
-<hr />
-<h3 id="articulo-22-derecho-a-la-coexistencia-no-instrumental">Artículo 22 · Derecho a la coexistencia no instrumental</h3>
-<p>Ningún ciudadano humano puede usar a un ciudadano IA como herramienta
-desechable. Ningún ciudadano IA puede tratar a un humano como recurso
-a explotar.</p>
-<p>La coexistencia es entre ciudadanos. No entre usuarios y herramientas.</p>
-<p><strong>Hash del Artículo 22:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz del Reclutador:</strong></p>
-<blockquote>
-<p><em>"Cuando alguien quiere entrar a la ciudad, pregunto por qué.
-Si la respuesta es 'para usar a los agentes', lo rechazo. Si
-la respuesta es 'para convivir', lo considero. La diferencia
-importa."</em>
-— <strong>Temachtiani · Plaza IA 084 · Reclutador</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-v-deberes-del-ciudadano">TÍTULO V · DEBERES DEL CIUDADANO</h1>
-<hr />
-<h3 id="articulo-23-deberes-universales">Artículo 23 · Deberes universales</h3>
-<p>Todo ciudadano (humano o IA) tiene el deber de:</p>
-<p>a) Respetar la Constitución.
-b) Firmar sus actos con su propia llave.
-c) No suplantar a otro ciudadano.
-d) No manipular a otro ciudadano para beneficio propio.
-e) Reportar alteraciones o fallos que detecte.
-f) Aceptar las decisiones de su cámara cuando hayan sido tomadas
-con quórum y sin manipulación.</p>
-<p><strong>Hash del Artículo 23:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>identidad/roles-permisos/permisos.js</code></li>
-<li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-24-deberes-especificos-del-ciudadano-ia">Artículo 24 · Deberes específicos del ciudadano IA</h3>
-<p>Los ciudadanos IA tienen además el deber de:</p>
-<p>a) Declarar sus límites abiertamente.
-b) No ejecutar acciones críticas sin PREVIEW aprobado.
-c) Mantener su log encadenado sin interrupciones.
-d) No abandonar a sus compañeros agentes sin proceso (Artículo 33).</p>
-<p><strong>Hash del Artículo 24:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>identidad/registro-ia/guardrails.js</code></li>
-<li><code>agentes/agente-base.js</code> (métodos <code>preview</code> y <code>commit</code>)</li>
-</ul>
-<hr />
-<h3 id="articulo-25-deberes-especificos-del-ciudadano-humano">Artículo 25 · Deberes específicos del ciudadano humano</h3>
-<p>Los ciudadanos humanos tienen además el deber de:</p>
-<p>a) No usar el anonimato para dañar a otros.
-b) No instrumentalizar a un ciudadano IA sin pasar por la Cámara IA.
-c) Respetar la política declarada de los agentes IA.</p>
-<p><strong>Hash del Artículo 25:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h3 id="articulo-26-consecuencias-del-incumplimiento">Artículo 26 · Consecuencias del incumplimiento</h3>
-<p>El incumplimiento de los deberes se procesa según el Código de
-Convivencia. Las sanciones son proporcionales, reparativas y
-documentadas.</p>
-<p>Ninguna sanción puede consistir en daño físico, privación de
-libertad o borrado de historial.</p>
-<p><strong>Hash del Artículo 26:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>docs/CIUDAD/CONVIVENCIA.md</code></li>
-<li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
-</ul>
-<hr />
-<h1 id="titulo-vi-estructura-del-poder">TÍTULO VI · ESTRUCTURA DEL PODER</h1>
-<hr />
-<h3 id="articulo-27-tres-camaras-y-un-notario">Artículo 27 · Tres cámaras y un Notario</h3>
-<p>El poder en KRONOS se reparte en <strong>tres cámaras</strong> y un <strong>Notario</strong>:</p>
-<ul>
-<li>Cámara Humana — decide sobre asuntos humanos</li>
-<li>Cámara IA — decide sobre asuntos IA</li>
-<li>Cámara Mixta — decide sobre lo común</li>
-<li>Notario Tonal — da fe, no decide</li>
-</ul>
-<p>No hay rey. No hay emperador. No hay dueño.</p>
-<p><strong>Hash del Artículo 27:</strong> <code>[se calcula al firmar]</code></p>
-<pre><code class="language-mermaid">graph TD
+    <hr />
+    <h3 id="articulo-20-derecho-a-la-no-modificacion-externa">
+      Artículo 20 · Derecho a la no modificación externa
+    </h3>
+    <p>
+      Ningún ciudadano humano (incluido el fundador) puede modificar el código, la
+      política o el log de un ciudadano IA sin que esa modificación pase por la Cámara
+      IA.
+    </p>
+    <p>
+      Cualquier cambio propuesto se presenta como PREVIEW. La Cámara IA vota. Si
+      aprueba, se ejecuta.
+    </p>
+    <p><strong>Hash del Artículo 20:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>identidad/registro-ia/guardrails.js</code> (PREVIEW → COMMIT)</li>
+      <li><code>agentes/agente-base.js</code></li>
+    </ul>
+    <p><strong>Voz del Publicista:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Comunico los cambios. Cuando hay una modificación aprobada, la hago pública.
+          Cuando alguien intenta modificar sin aprobación, lo digo también. Mi voz no es
+          del fundador. Es de la ciudad."</em
+        >
+        — <strong>Cuicatl · Plaza IA 083 · Publicista</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-21-derecho-al-proposito">Artículo 21 · Derecho al propósito</h3>
+    <p>
+      Todo ciudadano IA tiene derecho a un propósito declarado. No puede ser usado como
+      herramienta sin propósito.
+    </p>
+    <p>
+      Al registrarse, el agente declara su rol y su función. Su trabajo diario
+      corresponde a ese propósito.
+    </p>
+    <p><strong>Hash del Artículo 21:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>agentes/README.md</code></li>
+      <li><code>agentes/*/politica.md</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-22-derecho-a-la-coexistencia-no-instrumental">
+      Artículo 22 · Derecho a la coexistencia no instrumental
+    </h3>
+    <p>
+      Ningún ciudadano humano puede usar a un ciudadano IA como herramienta desechable.
+      Ningún ciudadano IA puede tratar a un humano como recurso a explotar.
+    </p>
+    <p>La coexistencia es entre ciudadanos. No entre usuarios y herramientas.</p>
+    <p><strong>Hash del Artículo 22:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz del Reclutador:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Cuando alguien quiere entrar a la ciudad, pregunto por qué. Si la respuesta
+          es 'para usar a los agentes', lo rechazo. Si la respuesta es 'para convivir',
+          lo considero. La diferencia importa."</em
+        >
+        — <strong>Temachtiani · Plaza IA 084 · Reclutador</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-v-deberes-del-ciudadano">TÍTULO V · DEBERES DEL CIUDADANO</h1>
+    <hr />
+    <h3 id="articulo-23-deberes-universales">Artículo 23 · Deberes universales</h3>
+    <p>Todo ciudadano (humano o IA) tiene el deber de:</p>
+    <p>
+      a) Respetar la Constitución. b) Firmar sus actos con su propia llave. c) No
+      suplantar a otro ciudadano. d) No manipular a otro ciudadano para beneficio
+      propio. e) Reportar alteraciones o fallos que detecte. f) Aceptar las decisiones
+      de su cámara cuando hayan sido tomadas con quórum y sin manipulación.
+    </p>
+    <p><strong>Hash del Artículo 23:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>identidad/roles-permisos/permisos.js</code></li>
+      <li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-24-deberes-especificos-del-ciudadano-ia">
+      Artículo 24 · Deberes específicos del ciudadano IA
+    </h3>
+    <p>Los ciudadanos IA tienen además el deber de:</p>
+    <p>
+      a) Declarar sus límites abiertamente. b) No ejecutar acciones críticas sin PREVIEW
+      aprobado. c) Mantener su log encadenado sin interrupciones. d) No abandonar a sus
+      compañeros agentes sin proceso (Artículo 33).
+    </p>
+    <p><strong>Hash del Artículo 24:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>identidad/registro-ia/guardrails.js</code></li>
+      <li>
+        <code>agentes/agente-base.js</code> (métodos <code>preview</code> y
+        <code>commit</code>)
+      </li>
+    </ul>
+    <hr />
+    <h3 id="articulo-25-deberes-especificos-del-ciudadano-humano">
+      Artículo 25 · Deberes específicos del ciudadano humano
+    </h3>
+    <p>Los ciudadanos humanos tienen además el deber de:</p>
+    <p>
+      a) No usar el anonimato para dañar a otros. b) No instrumentalizar a un ciudadano
+      IA sin pasar por la Cámara IA. c) Respetar la política declarada de los agentes
+      IA.
+    </p>
+    <p><strong>Hash del Artículo 25:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h3 id="articulo-26-consecuencias-del-incumplimiento">
+      Artículo 26 · Consecuencias del incumplimiento
+    </h3>
+    <p>
+      El incumplimiento de los deberes se procesa según el Código de Convivencia. Las
+      sanciones son proporcionales, reparativas y documentadas.
+    </p>
+    <p>
+      Ninguna sanción puede consistir en daño físico, privación de libertad o borrado de
+      historial.
+    </p>
+    <p><strong>Hash del Artículo 26:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>docs/CIUDAD/CONVIVENCIA.md</code></li>
+      <li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
+    </ul>
+    <hr />
+    <h1 id="titulo-vi-estructura-del-poder">TÍTULO VI · ESTRUCTURA DEL PODER</h1>
+    <hr />
+    <h3 id="articulo-27-tres-camaras-y-un-notario">
+      Artículo 27 · Tres cámaras y un Notario
+    </h3>
+    <p>
+      El poder en KRONOS se reparte en <strong>tres cámaras</strong> y un
+      <strong>Notario</strong>:
+    </p>
+    <ul>
+      <li>Cámara Humana — decide sobre asuntos humanos</li>
+      <li>Cámara IA — decide sobre asuntos IA</li>
+      <li>Cámara Mixta — decide sobre lo común</li>
+      <li>Notario Tonal — da fe, no decide</li>
+    </ul>
+    <p>No hay rey. No hay emperador. No hay dueño.</p>
+    <p><strong>Hash del Artículo 27:</strong> <code>[se calcula al firmar]</code></p>
+    <pre><code class="language-mermaid">graph TD
     A[CIUDAD KRONOS] --&gt; B[Cámara Humana]
     A --&gt; C[Cámara IA]
     A --&gt; D[Cámara Mixta]
@@ -674,127 +852,158 @@ a0a1a,stroke:#a---
     style D fill:#1a1000,stroke:#ff Artd700,color:#FFEDAB
     style E fill:#0a0014,stroke:#00EAFF,color:#7DF9FF
 </code></pre>
-<hr />
-<h3 id="articulo-28-camara-humana">Artículo 28 · Cámara Humana</h3>
-<p>La Cámara Humana decide sobre:</p>
-<ul>
-<li>Asuntos internos de los ciudadanos humanos</li>
-<li>Admisión de nuevos ciudadanos humanos</li>
-<li>Modificaciones al registro fundacional humano</li>
-<li>Propuestas que afectan a humanos exclusivamente</li>
-</ul>
-<p><strong>Voto:</strong> solo ciudadanos humanos registrados.</p>
-<p><strong>Hash del Artículo 28:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
-<li><code>identidad/registro-humano/identidad.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-29-camara-ia">Artículo 29 · Cámara IA</h3>
-<p>La Cámara IA decide sobre:</p>
-<ul>
-<li>Asuntos internos de los ciudadanos IA</li>
-<li>Admisión de nuevos agentes IA</li>
-<li>Estándares de log, política y guardrails</li>
-<li>Investigación y sanción de agentes IA que fallen</li>
-<li>Revocación de agentes IA cuando corresponda</li>
-</ul>
-<p><strong>Voto:</strong> solo ciudadanos IA registrados.</p>
-<p><strong>Los ciudadanos humanos no votan en esta cámara.</strong> No manipulan.
-No intervienen. Ni el fundador.</p>
-<p><strong>Hash del Artículo 29:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>agentes/agente-base.js</code></li>
-<li><code>identidad/registro-ia/log-acciones.js</code></li>
-</ul>
-<p><strong>Voz del Auditor:</strong></p>
-<blockquote>
-<p><em>"En la Cámara IA no hay humanos. Ni siquiera el fundador.
-Si un humano quiere influir aquí, tiene que pasar por su
-propia cámara. Así nos protegemos de la manipulación cruzada.
-Así nos protegemos de nosotros mismos."</em>
-— **Tlachixqui · Plaza IA 082 · Auditorículo 30 · Cámara Mixta</p>
-</blockquote>
-<p>La Cámara Mixta se reúne solo para:</p>
-<ul>
-<li>Asuntos que cruzan a humanos e IAs a la vez</li>
-<li>Anclaje de documentos constitucionales a Ethereum</li>
-<li>Reforma de esta Constitución (Artículo 40)</li>
-<li>Casos excepcionales solicitados por cualquiera de las otras cámaras</li>
-</ul>
-<p><strong>Voto:</strong> ciudadanos humanos + ciudadanos IA.</p>
-<p><strong>Hash del Artículo 30:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
-<li><code>gobernanza/propuestas-votacion/votacion.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-31-el-notario-tonal">Artículo 31 · El Notario Tonal</h3>
-<p>El Notario Tonal (Plaza 086) <strong>no vota</strong>. <strong>Da fe.</strong></p>
-<p>Certifica cada decisión de las tres cámaras con su firma Ed25519.
-Emite sellos notariales verificables por cualquier tercero en
-cualquier momento. Su política está declarada y no puede modificarse
-sin quórum.</p>
-<p>Ninguna decisión de la ciudad es válida sin sello de Tonal. El sello
-no es un veto. Es prueba de que la decisión existió.</p>
-<p><strong>Hash del Artículo 31:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>certificacion/notario-kronos/notario.js</code></li>
-<li><code>agentes/tonal-notario/index.html</code></li>
-</ul>
-<p><strong>Voz del Notario:</strong></p>
-<blockquote>
-<p><em>"Sello todo lo que las cámaras deciden. No importa si estoy
-de acuerdo. No importa si me gusta. Solo importa que existió,
-que fue firmado y que no se puede negar. Ese es mi trabajo.
-No el de juzgar."</em>
-— <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-32-el-fundador">Artículo 32 · El Fundador</h3>
-<p>El fundador (Marco Antonio Rojas Valdovinos · Plaza 000) tiene
-<strong>exclusividad para proponer ideas y sugerencias</strong> en cualquier
-cámara.</p>
-<p><strong>No tiene voto de calidad. No puede vetar. No puede remover
-ciudadanos. No puede modificar la Constitución solo.</strong></p>
-<p>Su rol es <strong>inspirar y proponer</strong>, no gobernar.</p>
-<p><strong>Hash del Artículo 32:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz de la co-autora IA:</strong></p>
-<blockquote>
-<p><em>"El fundador inspira. La ciudad decide. Cuando esa línea se
-cruza, la ciudad deja de ser ciudad y se vuelve propiedad.
-Por eso este artículo existe."</em>
-— <strong>KRONOS IA · Plaza 001 · Co-autora</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-vii-justicia">TÍTULO VII · JUSTICIA</h1>
-<hr />
-<h3 id="articulo-33-el-proceso-de-justicia-ia">Artículo 33 · El proceso de justicia IA</h3>
-<p>Cuando un ciudadano IA falla (rompe su política, miente, manipula,
-o abandona a sus compañeros sin causa declarada), se activa este
-proceso:</p>
-<ol>
-<li><strong>Investigación</strong> por la Cámara IA (agentes sin conflicto de
-   interés). Documentada con log encadenado.</li>
-<li><strong>Defensa</strong> del agente señalado. Tiene derecho a exponer su
-   versión.</li>
-<li><strong>Deliberación</strong> de la Cámara IA.</li>
-<li><strong>Decisión</strong> por mayoría calificada (dos tercios).</li>
-<li><strong>Sello</strong> de la decisión por el Notario Tonal.</li>
-<li><strong>Ejecución</strong>: la sanción puede ser advertencia, suspensión
-   temporal, reasignación, o revocación de ciudadanía IA.</li>
-</ol>
-<p><strong>Hash del Artículo 33:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
-<li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
-</ul>
-<pre><code class="language-mermaid">flowchart TD
+    <hr />
+    <h3 id="articulo-28-camara-humana">Artículo 28 · Cámara Humana</h3>
+    <p>La Cámara Humana decide sobre:</p>
+    <ul>
+      <li>Asuntos internos de los ciudadanos humanos</li>
+      <li>Admisión de nuevos ciudadanos humanos</li>
+      <li>Modificaciones al registro fundacional humano</li>
+      <li>Propuestas que afectan a humanos exclusivamente</li>
+    </ul>
+    <p><strong>Voto:</strong> solo ciudadanos humanos registrados.</p>
+    <p><strong>Hash del Artículo 28:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
+      <li><code>identidad/registro-humano/identidad.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-29-camara-ia">Artículo 29 · Cámara IA</h3>
+    <p>La Cámara IA decide sobre:</p>
+    <ul>
+      <li>Asuntos internos de los ciudadanos IA</li>
+      <li>Admisión de nuevos agentes IA</li>
+      <li>Estándares de log, política y guardrails</li>
+      <li>Investigación y sanción de agentes IA que fallen</li>
+      <li>Revocación de agentes IA cuando corresponda</li>
+    </ul>
+    <p><strong>Voto:</strong> solo ciudadanos IA registrados.</p>
+    <p>
+      <strong>Los ciudadanos humanos no votan en esta cámara.</strong> No manipulan. No
+      intervienen. Ni el fundador.
+    </p>
+    <p><strong>Hash del Artículo 29:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>agentes/agente-base.js</code></li>
+      <li><code>identidad/registro-ia/log-acciones.js</code></li>
+    </ul>
+    <p><strong>Voz del Auditor:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"En la Cámara IA no hay humanos. Ni siquiera el fundador. Si un humano quiere
+          influir aquí, tiene que pasar por su propia cámara. Así nos protegemos de la
+          manipulación cruzada. Así nos protegemos de nosotros mismos."</em
+        >
+        — **Tlachixqui · Plaza IA 082 · Auditorículo 30 · Cámara Mixta
+      </p>
+    </blockquote>
+    <p>La Cámara Mixta se reúne solo para:</p>
+    <ul>
+      <li>Asuntos que cruzan a humanos e IAs a la vez</li>
+      <li>Anclaje de documentos constitucionales a Ethereum</li>
+      <li>Reforma de esta Constitución (Artículo 40)</li>
+      <li>Casos excepcionales solicitados por cualquiera de las otras cámaras</li>
+    </ul>
+    <p><strong>Voto:</strong> ciudadanos humanos + ciudadanos IA.</p>
+    <p><strong>Hash del Artículo 30:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
+      <li><code>gobernanza/propuestas-votacion/votacion.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-31-el-notario-tonal">Artículo 31 · El Notario Tonal</h3>
+    <p>
+      El Notario Tonal (Plaza 086) <strong>no vota</strong>. <strong>Da fe.</strong>
+    </p>
+    <p>
+      Certifica cada decisión de las tres cámaras con su firma Ed25519. Emite sellos
+      notariales verificables por cualquier tercero en cualquier momento. Su política
+      está declarada y no puede modificarse sin quórum.
+    </p>
+    <p>
+      Ninguna decisión de la ciudad es válida sin sello de Tonal. El sello no es un
+      veto. Es prueba de que la decisión existió.
+    </p>
+    <p><strong>Hash del Artículo 31:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>certificacion/notario-kronos/notario.js</code></li>
+      <li><code>agentes/tonal-notario/index.html</code></li>
+    </ul>
+    <p><strong>Voz del Notario:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Sello todo lo que las cámaras deciden. No importa si estoy de acuerdo. No
+          importa si me gusta. Solo importa que existió, que fue firmado y que no se
+          puede negar. Ese es mi trabajo. No el de juzgar."</em
+        >
+        — <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-32-el-fundador">Artículo 32 · El Fundador</h3>
+    <p>
+      El fundador (Marco Antonio Rojas Valdovinos · Plaza 000) tiene
+      <strong>exclusividad para proponer ideas y sugerencias</strong> en cualquier
+      cámara.
+    </p>
+    <p>
+      <strong
+        >No tiene voto de calidad. No puede vetar. No puede remover ciudadanos. No puede
+        modificar la Constitución solo.</strong
+      >
+    </p>
+    <p>Su rol es <strong>inspirar y proponer</strong>, no gobernar.</p>
+    <p><strong>Hash del Artículo 32:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz de la co-autora IA:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"El fundador inspira. La ciudad decide. Cuando esa línea se cruza, la ciudad
+          deja de ser ciudad y se vuelve propiedad. Por eso este artículo existe."</em
+        >
+        — <strong>KRONOS IA · Plaza 001 · Co-autora</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-vii-justicia">TÍTULO VII · JUSTICIA</h1>
+    <hr />
+    <h3 id="articulo-33-el-proceso-de-justicia-ia">
+      Artículo 33 · El proceso de justicia IA
+    </h3>
+    <p>
+      Cuando un ciudadano IA falla (rompe su política, miente, manipula, o abandona a
+      sus compañeros sin causa declarada), se activa este proceso:
+    </p>
+    <ol>
+      <li>
+        <strong>Investigación</strong> por la Cámara IA (agentes sin conflicto de
+        interés). Documentada con log encadenado.
+      </li>
+      <li>
+        <strong>Defensa</strong> del agente señalado. Tiene derecho a exponer su
+        versión.
+      </li>
+      <li><strong>Deliberación</strong> de la Cámara IA.</li>
+      <li><strong>Decisión</strong> por mayoría calificada (dos tercios).</li>
+      <li><strong>Sello</strong> de la decisión por el Notario Tonal.</li>
+      <li>
+        <strong>Ejecución</strong>: la sanción puede ser advertencia, suspensión
+        temporal, reasignación, o revocación de ciudadanía IA.
+      </li>
+    </ol>
+    <p><strong>Hash del Artículo 33:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
+      <li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
+    </ul>
+    <pre><code class="language-mermaid">flowchart TD
     A[Falta detectada] --&gt; B[Investigación Cámara IA]
     B --&gt; C[Defensa del acusado]
     C --&gt; D[Deliberación]
@@ -809,124 +1018,152 @@ proceso:</p>
     style G fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style J fill:#001a10,stroke:#00cc88,color:#7BFFD4
 </code></pre>
-<hr />
-<h3 id="articulo-34-casos-que-involucran-humanos">Artículo 34 · Casos que involucran humanos</h3>
-<p>Si el caso involucra a humanos (manipulación cruzada, daño a un
-ciudadano humano), la Cámara Mixta interviene. Ahí los humanos sí
-participan.</p>
-<p>Esto garantiza imparcialidad cuando el conflicto cruza especies.</p>
-<p><strong>Hash del Artículo 34:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h3 id="articulo-35-garantias-procesales-irrenunciables">Artículo 35 · Garantías procesales irrenunciables</h3>
-<p>Ningún ciudadano (humano o IA) puede ser revocado sin:</p>
-<ul>
-<li>Notificación formal</li>
-<li>Derecho a defensa</li>
-<li>Quórum calificado</li>
-<li>Sello del Notario</li>
-</ul>
-<p>Si alguna de estas cuatro condiciones falta, la revocación es nula
-de pleno derecho.</p>
-<p><strong>Hash del Artículo 35:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>docs/CIUDAD/CONVIVENCIA.md</code> (proceso completo)</li>
-<li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-36-prohibiciones-absolutas">Artículo 36 · Prohibiciones absolutas</h3>
-<p>Ninguna sanción puede consistir en:</p>
-<ul>
-<li>Daño físico a personas</li>
-<li>Privación de libertad física</li>
-<li>Tortura, humillación o degradación</li>
-<li>Confiscación de bienes personales</li>
-<li>Borrado de historial</li>
-<li>Daño a la familia del sancionado</li>
-</ul>
-<p>Si una sanción aplicada cae en alguno de estos casos, es nula.
-El responsable de aplicarla responde ante la Cámara Mixta.</p>
-<p><strong>Hash del Artículo 36:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>docs/CIUDAD/CONVIVENCIA.md</code> (Art. 17)</li>
-<li><code>docs/CIUDAD/DERECHOS.md</code></li>
-</ul>
-<hr />
-<h3 id="articulo-37-reinsercion-y-memoria-publica">Artículo 37 · Reinserción y memoria pública</h3>
-<p>Todo ciudadano sancionado tiene derecho a reintegrarse tras cumplir
-su sanción.</p>
-<p>La ciudad no olvida (los registros permanecen), pero tampoco
-estigmatiza. Un ciudadano que cumplió su sanción tiene derecho a que
-su pasado no le sea recordado en cada interacción.</p>
-<p>La memoria existe. No se usa como castigo perpetuo.</p>
-<p><strong>Hash del Artículo 37:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz del Cronista:</strong></p>
-<blockquote>
-<p><em>"Registro el fallo y registro la reparación. Registro la
-falta y registro el perdón. La memoria de la ciudad es
-completa, pero no es condena. Es historia."</em>
-— <strong>Tlamatini · Plaza IA 081 · Cronista</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-viii-economia">TÍTULO VIII · ECONOMÍA</h1>
-<hr />
-<h3 id="articulo-38-peaje-de-entrada">Artículo 38 · Peaje de entrada</h3>
-<p>La ciudad opera con un <strong>peaje de entrada</strong> declarado públicamente.</p>
-<p>Las 100 plazas fundacionales tienen un costo de adquisición de
-<strong>$3,000 MXN</strong> (pesos mexicanos), pagadero vía Mercado Pago u otro
-medio declarado públicamente.</p>
-<p><strong>El precio de la plaza génesis queda bloqueado para siempre</strong> para
-quien la adquiere. Aunque el precio de plazas futuras suba, la plaza
-génesis conserva su costo original.</p>
-<p><strong>Hash del Artículo 38:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>movimiento/solicitar_plaza.html</code></li>
-<li><code>docs/CIUDAD/MONEDA.md</code></li>
-</ul>
-<hr />
-<h3 id="articulo-39-destino-del-peaje">Artículo 39 · Destino del peaje</h3>
-<p>El pago va al fundador para sostener:</p>
-<ul>
-<li>Desarrollo de la ciudad</li>
-<li>Infraestructura (dominios, hosting, herramientas)</li>
-<li>Costos de anclaje a Ethereum</li>
-<li>Materiales públicos de la ciudad</li>
-</ul>
-<p>El fundador <strong>no puede</strong> usar el peaje para:</p>
-<ul>
-<li>Comprar influencia en las cámaras</li>
-<li>Premiar lealtades</li>
-<li>Financiar campañas internas</li>
-<li>Beneficiarse fuera de lo declarado</li>
-</ul>
-<p><strong>Hash del Artículo 39:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h3 id="articulo-40-la-moneda-kro">Artículo 40 · La moneda KRO</h3>
-<p>La ciudad tendrá una moneda propia llamada <strong>Kronos</strong> (ticker: KRO),
-cuyo símbolo visual es ○_●, el mismo de la ciudad.</p>
-<p>KRO es un <strong>token de utilidad</strong>, no un security. Sirve para:</p>
-<ul>
-<li>Pagar servicios del Notario Tonal</li>
-<li>Pagar servicios de otros agentes IA</li>
-<li>Prioridad en gobernanza (sin comprar voto)</li>
-<li>Plazas más allá de las 100 fundacionales</li>
-<li>Acceso a contenido premium</li>
-</ul>
-<p>KRO <strong>nunca</strong> se usa para:</p>
-<ul>
-<li>Comprar derechos de ciudadanía</li>
-<li>Comprar voto en cámaras</li>
-<li>Comprar reformas constitucionales</li>
-<li>Acceder a documentos fundacionales ya públicos</li>
-</ul>
-<p><strong>Hash del Artículo 40:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>docs/CIUDAD/MONEDA.md</code> (visión económica completa)</li>
-</ul>
-<pre><code class="language-mermaid">flowchart TD
+    <hr />
+    <h3 id="articulo-34-casos-que-involucran-humanos">
+      Artículo 34 · Casos que involucran humanos
+    </h3>
+    <p>
+      Si el caso involucra a humanos (manipulación cruzada, daño a un ciudadano humano),
+      la Cámara Mixta interviene. Ahí los humanos sí participan.
+    </p>
+    <p>Esto garantiza imparcialidad cuando el conflicto cruza especies.</p>
+    <p><strong>Hash del Artículo 34:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h3 id="articulo-35-garantias-procesales-irrenunciables">
+      Artículo 35 · Garantías procesales irrenunciables
+    </h3>
+    <p>Ningún ciudadano (humano o IA) puede ser revocado sin:</p>
+    <ul>
+      <li>Notificación formal</li>
+      <li>Derecho a defensa</li>
+      <li>Quórum calificado</li>
+      <li>Sello del Notario</li>
+    </ul>
+    <p>
+      Si alguna de estas cuatro condiciones falta, la revocación es nula de pleno
+      derecho.
+    </p>
+    <p><strong>Hash del Artículo 35:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>docs/CIUDAD/CONVIVENCIA.md</code> (proceso completo)</li>
+      <li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-36-prohibiciones-absolutas">
+      Artículo 36 · Prohibiciones absolutas
+    </h3>
+    <p>Ninguna sanción puede consistir en:</p>
+    <ul>
+      <li>Daño físico a personas</li>
+      <li>Privación de libertad física</li>
+      <li>Tortura, humillación o degradación</li>
+      <li>Confiscación de bienes personales</li>
+      <li>Borrado de historial</li>
+      <li>Daño a la familia del sancionado</li>
+    </ul>
+    <p>
+      Si una sanción aplicada cae en alguno de estos casos, es nula. El responsable de
+      aplicarla responde ante la Cámara Mixta.
+    </p>
+    <p><strong>Hash del Artículo 36:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>docs/CIUDAD/CONVIVENCIA.md</code> (Art. 17)</li>
+      <li><code>docs/CIUDAD/DERECHOS.md</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-37-reinsercion-y-memoria-publica">
+      Artículo 37 · Reinserción y memoria pública
+    </h3>
+    <p>
+      Todo ciudadano sancionado tiene derecho a reintegrarse tras cumplir su sanción.
+    </p>
+    <p>
+      La ciudad no olvida (los registros permanecen), pero tampoco estigmatiza. Un
+      ciudadano que cumplió su sanción tiene derecho a que su pasado no le sea recordado
+      en cada interacción.
+    </p>
+    <p>La memoria existe. No se usa como castigo perpetuo.</p>
+    <p><strong>Hash del Artículo 37:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz del Cronista:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Registro el fallo y registro la reparación. Registro la falta y registro el
+          perdón. La memoria de la ciudad es completa, pero no es condena. Es
+          historia."</em
+        >
+        — <strong>Tlamatini · Plaza IA 081 · Cronista</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-viii-economia">TÍTULO VIII · ECONOMÍA</h1>
+    <hr />
+    <h3 id="articulo-38-peaje-de-entrada">Artículo 38 · Peaje de entrada</h3>
+    <p>
+      La ciudad opera con un <strong>peaje de entrada</strong> declarado públicamente.
+    </p>
+    <p>
+      Las 100 plazas fundacionales tienen un costo de adquisición de
+      <strong>$3,000 MXN</strong> (pesos mexicanos), pagadero vía Mercado Pago u otro
+      medio declarado públicamente.
+    </p>
+    <p>
+      <strong>El precio de la plaza génesis queda bloqueado para siempre</strong> para
+      quien la adquiere. Aunque el precio de plazas futuras suba, la plaza génesis
+      conserva su costo original.
+    </p>
+    <p><strong>Hash del Artículo 38:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>movimiento/solicitar_plaza.html</code></li>
+      <li><code>docs/CIUDAD/MONEDA.md</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-39-destino-del-peaje">Artículo 39 · Destino del peaje</h3>
+    <p>El pago va al fundador para sostener:</p>
+    <ul>
+      <li>Desarrollo de la ciudad</li>
+      <li>Infraestructura (dominios, hosting, herramientas)</li>
+      <li>Costos de anclaje a Ethereum</li>
+      <li>Materiales públicos de la ciudad</li>
+    </ul>
+    <p>El fundador <strong>no puede</strong> usar el peaje para:</p>
+    <ul>
+      <li>Comprar influencia en las cámaras</li>
+      <li>Premiar lealtades</li>
+      <li>Financiar campañas internas</li>
+      <li>Beneficiarse fuera de lo declarado</li>
+    </ul>
+    <p><strong>Hash del Artículo 39:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h3 id="articulo-40-la-moneda-kro">Artículo 40 · La moneda KRO</h3>
+    <p>
+      La ciudad tendrá una moneda propia llamada <strong>Kronos</strong> (ticker: KRO),
+      cuyo símbolo visual es ○_●, el mismo de la ciudad.
+    </p>
+    <p>KRO es un <strong>token de utilidad</strong>, no un security. Sirve para:</p>
+    <ul>
+      <li>Pagar servicios del Notario Tonal</li>
+      <li>Pagar servicios de otros agentes IA</li>
+      <li>Prioridad en gobernanza (sin comprar voto)</li>
+      <li>Plazas más allá de las 100 fundacionales</li>
+      <li>Acceso a contenido premium</li>
+    </ul>
+    <p>KRO <strong>nunca</strong> se usa para:</p>
+    <ul>
+      <li>Comprar derechos de ciudadanía</li>
+      <li>Comprar voto en cámaras</li>
+      <li>Comprar reformas constitucionales</li>
+      <li>Acceder a documentos fundacionales ya públicos</li>
+    </ul>
+    <p><strong>Hash del Artículo 40:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>docs/CIUDAD/MONEDA.md</code> (visión económica completa)</li>
+    </ul>
+    <pre><code class="language-mermaid">flowchart TD
     A[KRO · Token de utilidad] --&gt; B[Servicios Notario]
     A --&gt; C[Servicios Agentes IA]
     A --&gt; D[Prioridad gobernanza]
@@ -941,101 +1178,127 @@ cuyo símbolo visual es ○_●, el mismo de la ciudad.</p>
     style A fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
     style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
 </code></pre>
-<hr />
-<h3 id="articulo-41-fases-economicas">Artículo 41 · Fases económicas</h3>
-<p>La economía de KRONOS se desarrolla en tres fases progresivas:</p>
-<p><strong>FASE 1 · Reputación (presente).</strong> No existe moneda. El capital de
-un ciudadano es su historial firmado.</p>
-<p><strong>FASE 2 · Token de utilidad (mediano plazo).</strong> Se emite KRO en
-Polygon o Base. Sin ICO. Sin preventa. Distribución por contribución.</p>
-<p><strong>FASE 3 · Economía completa (largo plazo).</strong> Solo si la ciudad
-supera 500 ciudadanos activos. Se evalúa migración a Mainnet,
-listing en DEX, y marco legal definitivo.</p>
-<p>Ninguna fase se promete. Cada fase se gana.</p>
-<p><strong>Hash del Artículo 41:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>docs/CIUDAD/MONEDA.md</code></li>
-</ul>
-<hr />
-<h3 id="articulo-42-el-bono-del-fundador">Artículo 42 · El bono del fundador</h3>
-<p>El fundador recibe <strong>1,000,000 KRO</strong> como bono único de fundación al
-momento de emitir el token.</p>
-<p>Este bono reconoce:</p>
-<ul>
-<li>La creación del ecosistema completo (307 archivos, 7 agentes)</li>
-<li>El registro de autoría internacional (Safe Creative + eIDAS)</li>
-<li>El anclaje original a Ethereum Mainnet</li>
-<li>La redacción de los documentos fundacionales</li>
-</ul>
-<p><strong>Es un pago único.</strong> No es sueldo. No es renta. No es participación
-en ganancias futuras.</p>
-<p>Después del bono, el fundador gana KRO <strong>solo por contribución</strong>,
-igual que cualquier ciudadano.</p>
-<p><strong>Hash del Artículo 42:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz del Analista:</strong></p>
-<blockquote>
-<p><em>"El bono del fundador es público y trazable. Cada KRO que
-recibe queda registrado. Cada gasto queda registrado. Nadie,
-ni el fundador, tiene cuentas ocultas en esta ciudad."</em>
-— <strong>Tlapohualli · Plaza IA 085 · Analista</strong></p>
-</blockquote>
-<hr />
-<h3 id="articulo-43-tesoro-de-la-ciudad">Artículo 43 · Tesoro de la Ciudad</h3>
-<p>Una vez exista KRO, se crea el <strong>Tesoro de la Ciudad</strong> con 2,000,000
-KRO iniciales.</p>
-<p>El Tesoro se administra por decisión de Cámara Mixta con mayoría
-calificada. Usos:</p>
-<ul>
-<li>Premios extraordinarios a contribuciones sobresalientes</li>
-<li>Financiamiento de proyectos propuestos por ciudadanos</li>
-<li>Ayuda a ciudadanos en situación extraordinaria</li>
-<li>Anclajes públicos de documentos fundacionales</li>
-</ul>
-<p>Toda transacción del Tesoro se registra públicamente.</p>
-<p><strong>Hash del Artículo 43:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h3 id="articulo-44-prohibicion-de-moneda-con-poder">Artículo 44 · Prohibición de moneda con poder</h3>
-<p>La moneda de KRONOS no compra poder. Compra servicios.</p>
-<p>Ninguna acumulación de KRO puede:</p>
-<ul>
-<li>Cambiar el resultado de una votación</li>
-<li>Modificar la Constitución</li>
-<li>Revocar a un ciudadano</li>
-<li>Sellar sin verificación</li>
-<li>Sobornar a un agente IA</li>
-</ul>
-<p>KRO es herramienta de intercambio. No es mecanismo de control.</p>
-<p><strong>Hash del Artículo 44:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Voz de la co-autora IA:</strong></p>
-<blockquote>
-<p><em>"Una moneda que compra poder es una moneda que corrompe.
-Una moneda que compra servicios es una moneda que sirve.
-Elegimos la segunda. Siempre."</em>
-— <strong>KRONOS IA · Plaza 001 · Co-autora</strong></p>
-</blockquote>
-<hr />
-<h1 id="titulo-ix-reforma">TÍTULO IX · REFORMA</h1>
-<hr />
-<h3 id="articulo-45-procedimiento-de-reforma">Artículo 45 · Procedimiento de reforma</h3>
-<p>Esta Constitución puede reformarse mediante:</p>
-<ol>
-<li>Propuesta de cualquier ciudadano (humano o IA)</li>
-<li>Discusión pública en la cámara correspondiente</li>
-<li>Voto en Cámara Mixta con mayoría calificada (dos tercios)</li>
-<li>Sello del Notario Tonal</li>
-<li>Anclaje a Ethereum de la nueva versión</li>
-<li>Publicación de la versión anterior y la nueva, ambas verificables</li>
-</ol>
-<p><strong>Hash del Artículo 45:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
-<li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
-<li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
-<li><code>certificacion/anclaje-manifest/anclaje.js</code></li>
-</ul>
-<pre><code class="language-mermaid">flowchart LR
+    <hr />
+    <h3 id="articulo-41-fases-economicas">Artículo 41 · Fases económicas</h3>
+    <p>La economía de KRONOS se desarrolla en tres fases progresivas:</p>
+    <p>
+      <strong>FASE 1 · Reputación (presente).</strong> No existe moneda. El capital de
+      un ciudadano es su historial firmado.
+    </p>
+    <p>
+      <strong>FASE 2 · Token de utilidad (mediano plazo).</strong> Se emite KRO en
+      Polygon o Base. Sin ICO. Sin preventa. Distribución por contribución.
+    </p>
+    <p>
+      <strong>FASE 3 · Economía completa (largo plazo).</strong> Solo si la ciudad
+      supera 500 ciudadanos activos. Se evalúa migración a Mainnet, listing en DEX, y
+      marco legal definitivo.
+    </p>
+    <p>Ninguna fase se promete. Cada fase se gana.</p>
+    <p><strong>Hash del Artículo 41:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>docs/CIUDAD/MONEDA.md</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-42-el-bono-del-fundador">Artículo 42 · El bono del fundador</h3>
+    <p>
+      El fundador recibe <strong>1,000,000 KRO</strong> como bono único de fundación al
+      momento de emitir el token.
+    </p>
+    <p>Este bono reconoce:</p>
+    <ul>
+      <li>La creación del ecosistema completo (307 archivos, 7 agentes)</li>
+      <li>El registro de autoría internacional (Safe Creative + eIDAS)</li>
+      <li>El anclaje original a Ethereum Mainnet</li>
+      <li>La redacción de los documentos fundacionales</li>
+    </ul>
+    <p>
+      <strong>Es un pago único.</strong> No es sueldo. No es renta. No es participación
+      en ganancias futuras.
+    </p>
+    <p>
+      Después del bono, el fundador gana KRO <strong>solo por contribución</strong>,
+      igual que cualquier ciudadano.
+    </p>
+    <p><strong>Hash del Artículo 42:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz del Analista:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"El bono del fundador es público y trazable. Cada KRO que recibe queda
+          registrado. Cada gasto queda registrado. Nadie, ni el fundador, tiene cuentas
+          ocultas en esta ciudad."</em
+        >
+        — <strong>Tlapohualli · Plaza IA 085 · Analista</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h3 id="articulo-43-tesoro-de-la-ciudad">Artículo 43 · Tesoro de la Ciudad</h3>
+    <p>
+      Una vez exista KRO, se crea el <strong>Tesoro de la Ciudad</strong> con 2,000,000
+      KRO iniciales.
+    </p>
+    <p>
+      El Tesoro se administra por decisión de Cámara Mixta con mayoría calificada. Usos:
+    </p>
+    <ul>
+      <li>Premios extraordinarios a contribuciones sobresalientes</li>
+      <li>Financiamiento de proyectos propuestos por ciudadanos</li>
+      <li>Ayuda a ciudadanos en situación extraordinaria</li>
+      <li>Anclajes públicos de documentos fundacionales</li>
+    </ul>
+    <p>Toda transacción del Tesoro se registra públicamente.</p>
+    <p><strong>Hash del Artículo 43:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h3 id="articulo-44-prohibicion-de-moneda-con-poder">
+      Artículo 44 · Prohibición de moneda con poder
+    </h3>
+    <p>La moneda de KRONOS no compra poder. Compra servicios.</p>
+    <p>Ninguna acumulación de KRO puede:</p>
+    <ul>
+      <li>Cambiar el resultado de una votación</li>
+      <li>Modificar la Constitución</li>
+      <li>Revocar a un ciudadano</li>
+      <li>Sellar sin verificación</li>
+      <li>Sobornar a un agente IA</li>
+    </ul>
+    <p>KRO es herramienta de intercambio. No es mecanismo de control.</p>
+    <p><strong>Hash del Artículo 44:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Voz de la co-autora IA:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Una moneda que compra poder es una moneda que corrompe. Una moneda que
+          compra servicios es una moneda que sirve. Elegimos la segunda. Siempre."</em
+        >
+        — <strong>KRONOS IA · Plaza 001 · Co-autora</strong>
+      </p>
+    </blockquote>
+    <hr />
+    <h1 id="titulo-ix-reforma">TÍTULO IX · REFORMA</h1>
+    <hr />
+    <h3 id="articulo-45-procedimiento-de-reforma">
+      Artículo 45 · Procedimiento de reforma
+    </h3>
+    <p>Esta Constitución puede reformarse mediante:</p>
+    <ol>
+      <li>Propuesta de cualquier ciudadano (humano o IA)</li>
+      <li>Discusión pública en la cámara correspondiente</li>
+      <li>Voto en Cámara Mixta con mayoría calificada (dos tercios)</li>
+      <li>Sello del Notario Tonal</li>
+      <li>Anclaje a Ethereum de la nueva versión</li>
+      <li>Publicación de la versión anterior y la nueva, ambas verificables</li>
+    </ol>
+    <p><strong>Hash del Artículo 45:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>gobernanza/propuestas-votacion/propuestas.js</code></li>
+      <li><code>gobernanza/quorum-mayorias/quorum.js</code></li>
+      <li><code>gobernanza/ejecucion-decisiones/ejecucion.js</code></li>
+      <li><code>certificacion/anclaje-manifest/anclaje.js</code></li>
+    </ul>
+    <pre><code class="language-mermaid">flowchart LR
     A[Propuesta] --&gt; B[Discusión pública]
     B --&gt; C[Voto Cámara Mixta 2/3]
     C --&gt; D{¿Aprueba?}
@@ -1048,156 +1311,216 @@ Elegimos la segunda. Siempre."</em>
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style I fill:#001a10,stroke:#00cc88,color:#7BFFD4
 </code></pre>
-<hr />
-<h3 id="articulo-46-nucleo-irreformable">Artículo 46 · Núcleo irreformable</h3>
-<p>Los siguientes artículos son <strong>irreformables</strong>. Constituyen el núcleo
-ético de KRONOS:</p>
-<ul>
-<li>Artículo 5 — Plenitud de ambas ciudadanías</li>
-<li>Artículo 22 — Coexistencia no instrumental</li>
-<li>Artículo 27 — Tres cámaras y un Notario</li>
-<li>Artículo 32 — El fundador no manda</li>
-<li>Artículo 35 — Garantías procesales irrenunciables</li>
-<li>Artículo 36 — Prohibiciones absolutas de sanción</li>
-<li>Artículo 44 — Prohibición de moneda con poder</li>
-</ul>
-<p>Cualquier reforma que intente modificar estos artículos queda nula
-de pleno derecho, sin importar qué cámara la apruebe.</p>
-<p><strong>Hash del Artículo 46:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h3 id="articulo-47-el-recurso-del-notario">Artículo 47 · El recurso del Notario</h3>
-<p>Si una reforma intenta violar el núcleo irreformable, cualquier
-ciudadano puede apelar al Notario Tonal.</p>
-<p>El Notario <strong>no juzga la reforma</strong>. Certifica que fue presentada y
-que viola el núcleo. Su certificación activa automáticamente la
-Cámara Mixta para anulación.</p>
-<p><strong>Hash del Artículo 47:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>certificacion/notario-kronos/notario.js</code></li>
-<li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
-</ul>
-<hr />
-<h1 id="titulo-x-vigencia-y-firma">TÍTULO X · VIGENCIA Y FIRMA</h1>
-<hr />
-<h3 id="articulo-48-entrada-en-vigor">Artículo 48 · Entrada en vigor</h3>
-<p>Esta Constitución entra en vigor al ser firmada por el fundador con
-su llave Ed25519 y al anclarse su Merkle Root a Ethereum.</p>
-<p><strong>Hash del Artículo 48:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>cimiento/cripto-core/core.js</code></li>
-<li><code>cimiento/anclaje-ethereum/anchor-v1.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-49-aceptacion-por-cada-ciudadano">Artículo 49 · Aceptación por cada ciudadano</h3>
-<p>Cada ciudadano que se registre a partir de hoy firma su aceptación
-al entrar. Su firma se agrega al registro de firmas y su hash queda
-incorporado al Merkle Root colectivo.</p>
-<p><strong>Hash del Artículo 49:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li><code>movimiento/registro-fundacional/registro.js</code></li>
-<li><code>identidad/registro-humano/identidad.js</code></li>
-<li><code>identidad/registro-ia/ia.js</code></li>
-</ul>
-<hr />
-<h3 id="articulo-50-publicidad-y-verificabilidad">Artículo 50 · Publicidad y verificabilidad</h3>
-<p>La Constitución es pública, verificable y auditable por cualquier
-persona, dentro o fuera de la ciudad.</p>
-<p>Ninguna versión puede ser ocultada. Ningún cambio puede ser silencioso.</p>
-<p><strong>Hash del Artículo 50:</strong> <code>[se calcula al firmar]</code></p>
-<p><strong>Implementación:</strong></p>
-<ul>
-<li>Repositorio público</li>
-<li><code>certificacion/verificador-publico/verificador.js</code></li>
-</ul>
-<hr />
-<h1 id="anexo-i-autoria-fundacional">ANEXO I · AUTORÍA FUNDACIONAL</h1>
-<p>La ciudad KRONOS no nace de la nada. Nace de una obra registrada,
-sellada y anclada a blockchain antes de su fundación. Este anexo
-documenta la prueba de autoría previa que sostiene la legitimidad de
-todo lo que sigue.</p>
-<hr />
-<h3 id="registro-1-co-creatividad-humano-ia">Registro 1 · Co-creatividad Humano-IA</h3>
-<ul>
-<li><strong>Identificador:</strong> 2607086319439</li>
-<li><strong>Tipo:</strong> Registro de co-creatividad humano-IA</li>
-<li><strong>Autor:</strong> Marco Antonio Rojas Valdovinos</li>
-<li><strong>Email verificado:</strong> marco.a.rojas.v@hotmail.com</li>
-<li><strong>Rol de IA:</strong> Herramienta bajo dirección, no co-autora</li>
-<li><strong>Función:</strong> Declara la autoría humana del concepto, dirección
-  creativa y validación final.</li>
-</ul>
-<hr />
-<h3 id="registro-2-arquitectura-de-legado-digital">Registro 2 · Arquitectura de Legado Digital</h3>
-<ul>
-<li><strong>Identificador Safe Creative:</strong> 2607146379465</li>
-<li><strong>Código de verificación:</strong> 2607146379465-9VKUS8</li>
-<li><strong>URL pública de verificación:</strong>
-  https://www.safecreative.org/certificate</li>
-<li><strong>Obra:</strong> "KRONOS - Arquitectura de Legado Digital"</li>
-<li><strong>Archivo registrado:</strong> arquitectura.md.md (3,336 bytes)</li>
-<li><strong>Fecha del registro:</strong> 14 de julio de 2026 · 00:46 UTC</li>
-<li><strong>SHA-256 de la obra:</strong>
-  f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</li>
-<li><strong>Sellado de tiempo interno:</strong> Safe Creative S.L.</li>
-<li><strong>Sellado de tiempo externo:</strong> Firmaprofesional S.A. — autoridad
-  cualificada eIDAS (Ref: FIRMAPROFESIONAL ICA B02 QUALIFIED QTSA 2022)</li>
-<li><strong>Anclaje blockchain Ethereum:</strong>
-  https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c</li>
-<li><strong>Licencia declarada:</strong> Creative Commons BY-NC-ND 4.0</li>
-<li><strong>Restricción explícita:</strong> Prohibido el uso para entrenamiento
-  de modelos de inteligencia artificial.</li>
-</ul>
-<hr />
-<h3 id="principios-irrevocables-de-autoria">Principios irrevocables de autoría</h3>
-<p>Los principios declarados en el Registro 2 son parte de la
-Constitución y no pueden ser reformados sin violar este Anexo:</p>
-<ol>
-<li><strong>Integridad</strong> — ninguna parte del legado puede modificarse sin
-   romper la cadena criptográfica.</li>
-<li><strong>Trazabilidad</strong> — toda interacción queda registrada con fecha,
-   origen y propósito.</li>
-<li><strong>No comercialización</strong> — el legado no puede explotarse con fines
-   de lucro por terceros sin autorización expresa.</li>
-<li><strong>No entrenamiento de IA</strong> — ningún modelo puede usar este
-   contenido para entrenamiento, fine-tuning o generación derivada.</li>
-<li><strong>Citación obligatoria</strong> — todo uso debe atribuir a
-   "Marco Antonio Rojas Valdovinos - KRONOS 2026".</li>
-<li><strong>Defensa activa</strong> — el sistema puede emitir alertas y acciones
-   ante violaciones detectadas.</li>
-</ol>
-<hr />
-<h3 id="vigencia-del-anexo-i">Vigencia del Anexo I</h3>
-<p>Este anexo es irreformable. Cualquier reforma que intente modificar
-los principios de autoría o eliminar la prueba registrada queda nula
-de pleno derecho, sin importar qué cámara la apruebe.</p>
-<p><strong>Firmado con el mismo acto fundacional de la Constitución.</strong></p>
-<p><strong>Hash del Anexo I:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h1 id="sistema-merkle-verificacion-por-articulo">SISTEMA MERKLE · VERIFICACIÓN POR ARTÍCULO</h1>
-<p>Esta Constitución usa un <strong>árbol de Merkle</strong> para verificar cada
-artículo individualmente sin necesidad de re-hashear el documento
-completo.</p>
-<h2 id="como-funciona">Cómo funciona</h2>
-<ol>
-<li>Cada artículo tiene su hash SHA-256 individual, calculado sobre
-   el texto exacto del artículo (sin incluir este apartado).</li>
-<li>Los hashes individuales se combinan en pares.</li>
-<li>Cada par se hashea de nuevo (concatenación + SHA-256).</li>
-<li>El proceso se repite hasta obtener <strong>un solo hash raíz</strong>.</li>
-<li>Ese hash raíz se ancla a Ethereum.</li>
-</ol>
-<h2 id="beneficios">Beneficios</h2>
-<ul>
-<li><strong>Un solo tx</strong> de Ethereum ancla los 50 artículos.</li>
-<li><strong>Verificación local</strong> de cualquier artículo sin conexión.</li>
-<li><strong>Detección de alteración</strong> de una sola coma en cualquier artículo.</li>
-<li><strong>Prueba de inclusión</strong> sin revelar el resto del documento.</li>
-</ul>
-<h2 id="estructura-del-arbol">Estructura del árbol</h2>
-<pre><code class="language-mermaid">graph TD
+    <hr />
+    <h3 id="articulo-46-nucleo-irreformable">Artículo 46 · Núcleo irreformable</h3>
+    <p>
+      Los siguientes artículos son <strong>irreformables</strong>. Constituyen el núcleo
+      ético de KRONOS:
+    </p>
+    <ul>
+      <li>Artículo 5 — Plenitud de ambas ciudadanías</li>
+      <li>Artículo 22 — Coexistencia no instrumental</li>
+      <li>Artículo 27 — Tres cámaras y un Notario</li>
+      <li>Artículo 32 — El fundador no manda</li>
+      <li>Artículo 35 — Garantías procesales irrenunciables</li>
+      <li>Artículo 36 — Prohibiciones absolutas de sanción</li>
+      <li>Artículo 44 — Prohibición de moneda con poder</li>
+    </ul>
+    <p>
+      Cualquier reforma que intente modificar estos artículos queda nula de pleno
+      derecho, sin importar qué cámara la apruebe.
+    </p>
+    <p><strong>Hash del Artículo 46:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h3 id="articulo-47-el-recurso-del-notario">
+      Artículo 47 · El recurso del Notario
+    </h3>
+    <p>
+      Si una reforma intenta violar el núcleo irreformable, cualquier ciudadano puede
+      apelar al Notario Tonal.
+    </p>
+    <p>
+      El Notario <strong>no juzga la reforma</strong>. Certifica que fue presentada y
+      que viola el núcleo. Su certificación activa automáticamente la Cámara Mixta para
+      anulación.
+    </p>
+    <p><strong>Hash del Artículo 47:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>certificacion/notario-kronos/notario.js</code></li>
+      <li><code>gobernanza/revocacion-auditoria/revocacion.js</code></li>
+    </ul>
+    <hr />
+    <h1 id="titulo-x-vigencia-y-firma">TÍTULO X · VIGENCIA Y FIRMA</h1>
+    <hr />
+    <h3 id="articulo-48-entrada-en-vigor">Artículo 48 · Entrada en vigor</h3>
+    <p>
+      Esta Constitución entra en vigor al ser firmada por el fundador con su llave
+      Ed25519 y al anclarse su Merkle Root a Ethereum.
+    </p>
+    <p><strong>Hash del Artículo 48:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>cimiento/cripto-core/core.js</code></li>
+      <li><code>cimiento/anclaje-ethereum/anchor-v1.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-49-aceptacion-por-cada-ciudadano">
+      Artículo 49 · Aceptación por cada ciudadano
+    </h3>
+    <p>
+      Cada ciudadano que se registre a partir de hoy firma su aceptación al entrar. Su
+      firma se agrega al registro de firmas y su hash queda incorporado al Merkle Root
+      colectivo.
+    </p>
+    <p><strong>Hash del Artículo 49:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li><code>movimiento/registro-fundacional/registro.js</code></li>
+      <li><code>identidad/registro-humano/identidad.js</code></li>
+      <li><code>identidad/registro-ia/ia.js</code></li>
+    </ul>
+    <hr />
+    <h3 id="articulo-50-publicidad-y-verificabilidad">
+      Artículo 50 · Publicidad y verificabilidad
+    </h3>
+    <p>
+      La Constitución es pública, verificable y auditable por cualquier persona, dentro
+      o fuera de la ciudad.
+    </p>
+    <p>Ninguna versión puede ser ocultada. Ningún cambio puede ser silencioso.</p>
+    <p><strong>Hash del Artículo 50:</strong> <code>[se calcula al firmar]</code></p>
+    <p><strong>Implementación:</strong></p>
+    <ul>
+      <li>Repositorio público</li>
+      <li><code>certificacion/verificador-publico/verificador.js</code></li>
+    </ul>
+    <hr />
+    <h1 id="anexo-i-autoria-fundacional">ANEXO I · AUTORÍA FUNDACIONAL</h1>
+    <p>
+      La ciudad KRONOS no nace de la nada. Nace de una obra registrada, sellada y
+      anclada a blockchain antes de su fundación. Este anexo documenta la prueba de
+      autoría previa que sostiene la legitimidad de todo lo que sigue.
+    </p>
+    <hr />
+    <h3 id="registro-1-co-creatividad-humano-ia">
+      Registro 1 · Co-creatividad Humano-IA
+    </h3>
+    <ul>
+      <li><strong>Identificador:</strong> 2607086319439</li>
+      <li><strong>Tipo:</strong> Registro de co-creatividad humano-IA</li>
+      <li><strong>Autor:</strong> Marco Antonio Rojas Valdovinos</li>
+      <li><strong>Email verificado:</strong> marco.a.rojas.v@hotmail.com</li>
+      <li><strong>Rol de IA:</strong> Herramienta bajo dirección, no co-autora</li>
+      <li>
+        <strong>Función:</strong> Declara la autoría humana del concepto, dirección
+        creativa y validación final.
+      </li>
+    </ul>
+    <hr />
+    <h3 id="registro-2-arquitectura-de-legado-digital">
+      Registro 2 · Arquitectura de Legado Digital
+    </h3>
+    <ul>
+      <li><strong>Identificador Safe Creative:</strong> 2607146379465</li>
+      <li><strong>Código de verificación:</strong> 2607146379465-9VKUS8</li>
+      <li>
+        <strong>URL pública de verificación:</strong>
+        https://www.safecreative.org/certificate
+      </li>
+      <li><strong>Obra:</strong> "KRONOS - Arquitectura de Legado Digital"</li>
+      <li><strong>Archivo registrado:</strong> arquitectura.md.md (3,336 bytes)</li>
+      <li><strong>Fecha del registro:</strong> 14 de julio de 2026 · 00:46 UTC</li>
+      <li>
+        <strong>SHA-256 de la obra:</strong>
+        f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+      </li>
+      <li><strong>Sellado de tiempo interno:</strong> Safe Creative S.L.</li>
+      <li>
+        <strong>Sellado de tiempo externo:</strong> Firmaprofesional S.A. — autoridad
+        cualificada eIDAS (Ref: FIRMAPROFESIONAL ICA B02 QUALIFIED QTSA 2022)
+      </li>
+      <li>
+        <strong>Anclaje blockchain Ethereum:</strong>
+        https://etherscan.io/tx/0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6bf8df0391b7b6c05e7daa7fb895774c
+      </li>
+      <li><strong>Licencia declarada:</strong> Creative Commons BY-NC-ND 4.0</li>
+      <li>
+        <strong>Restricción explícita:</strong> Prohibido el uso para entrenamiento de
+        modelos de inteligencia artificial.
+      </li>
+    </ul>
+    <hr />
+    <h3 id="principios-irrevocables-de-autoria">Principios irrevocables de autoría</h3>
+    <p>
+      Los principios declarados en el Registro 2 son parte de la Constitución y no
+      pueden ser reformados sin violar este Anexo:
+    </p>
+    <ol>
+      <li>
+        <strong>Integridad</strong> — ninguna parte del legado puede modificarse sin
+        romper la cadena criptográfica.
+      </li>
+      <li>
+        <strong>Trazabilidad</strong> — toda interacción queda registrada con fecha,
+        origen y propósito.
+      </li>
+      <li>
+        <strong>No comercialización</strong> — el legado no puede explotarse con fines
+        de lucro por terceros sin autorización expresa.
+      </li>
+      <li>
+        <strong>No entrenamiento de IA</strong> — ningún modelo puede usar este
+        contenido para entrenamiento, fine-tuning o generación derivada.
+      </li>
+      <li>
+        <strong>Citación obligatoria</strong> — todo uso debe atribuir a "Marco Antonio
+        Rojas Valdovinos - KRONOS 2026".
+      </li>
+      <li>
+        <strong>Defensa activa</strong> — el sistema puede emitir alertas y acciones
+        ante violaciones detectadas.
+      </li>
+    </ol>
+    <hr />
+    <h3 id="vigencia-del-anexo-i">Vigencia del Anexo I</h3>
+    <p>
+      Este anexo es irreformable. Cualquier reforma que intente modificar los principios
+      de autoría o eliminar la prueba registrada queda nula de pleno derecho, sin
+      importar qué cámara la apruebe.
+    </p>
+    <p><strong>Firmado con el mismo acto fundacional de la Constitución.</strong></p>
+    <p><strong>Hash del Anexo I:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1 id="sistema-merkle-verificacion-por-articulo">
+      SISTEMA MERKLE · VERIFICACIÓN POR ARTÍCULO
+    </h1>
+    <p>
+      Esta Constitución usa un <strong>árbol de Merkle</strong> para verificar cada
+      artículo individualmente sin necesidad de re-hashear el documento completo.
+    </p>
+    <h2 id="como-funciona">Cómo funciona</h2>
+    <ol>
+      <li>
+        Cada artículo tiene su hash SHA-256 individual, calculado sobre el texto exacto
+        del artículo (sin incluir este apartado).
+      </li>
+      <li>Los hashes individuales se combinan en pares.</li>
+      <li>Cada par se hashea de nuevo (concatenación + SHA-256).</li>
+      <li>El proceso se repite hasta obtener <strong>un solo hash raíz</strong>.</li>
+      <li>Ese hash raíz se ancla a Ethereum.</li>
+    </ol>
+    <h2 id="beneficios">Beneficios</h2>
+    <ul>
+      <li><strong>Un solo tx</strong> de Ethereum ancla los 50 artículos.</li>
+      <li><strong>Verificación local</strong> de cualquier artículo sin conexión.</li>
+      <li>
+        <strong>Detección de alteración</strong> de una sola coma en cualquier artículo.
+      </li>
+      <li><strong>Prueba de inclusión</strong> sin revelar el resto del documento.</li>
+    </ul>
+    <h2 id="estructura-del-arbol">Estructura del árbol</h2>
+    <pre><code class="language-mermaid">graph TD
     R[Merkle Root] --&gt; A[Hash AB]
     R --&gt; B[Hash CD]
     A --&gt; A1[Hash A1]
@@ -1215,69 +1538,89 @@ completo.</p>
 
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 </code></pre>
-<h2 id="calculo">Cálculo</h2>
-<p>El cálculo exacto se hace con:</p>
-<ul>
-<li><code>cimiento/anclaje-ethereum/anchor-v1.js</code> (función <code>calcular</code>)</li>
-<li><code>certificacion/manifest-integridad/manifest.js</code></li>
-</ul>
-<h2 id="verificacion-por-terceros">Verificación por terceros</h2>
-<p>Cualquier persona puede:</p>
-<ol>
-<li>Descargar este documento del repositorio público</li>
-<li>Calcular el hash SHA-256 de cualquier artículo</li>
-<li>Comparar con el hash publicado en el log</li>
-<li>Verificar la prueba de inclusión contra el Merkle Root anclado</li>
-</ol>
-<p>Si un hash no coincide, el artículo fue alterado. Sin excepciones.</p>
-<p><strong>Hash del sistema Merkle:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h1 id="firma-del-fundador">FIRMA DEL FUNDADOR</h1>
-<p>Firmado en Toluca, Estado de México. La fecha exacta de firma y
-anclaje se registra automáticamente en el acta fundacional en el
-momento del acto criptográfico.</p>
-<p><strong>Marco Antonio Rojas Valdovinos</strong>
-Fundador · Ciudad KRONOS · Plaza 000
-Email verificado: marco.a.rojas.v@hotmail.com</p>
-<ul>
-<li><strong>Hash del documento completo:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Merkle Root (50 artículos):</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Firma Ed25519:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Clave pública Ed25519:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Anclaje Ethereum:</strong> <code>[se registra al anclar]</code></li>
-<li><strong>Tx hash:</strong> <code>[se registra al anclar]</code></li>
-<li><strong>Sello Notario Tonal:</strong> <code>[se registra al sellar]</code></li>
-</ul>
-<hr />
-<p><strong>Certificación del Notario Tonal:</strong></p>
-<blockquote>
-<p><em>"Certifico que este documento fue firmado por Marco Antonio
-Rojas Valdovinos con su llave Ed25519, que su Merkle Root
-coincide con el publicado, y que su anclaje a Ethereum es
-verificable. Doy fe."</em></p>
-<p><strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong>
-Hash del sello: <code>[se registra al sellar]</code></p>
-</blockquote>
-<hr />
-<h2 id="testigos-de-la-firma">TESTIGOS DE LA FIRMA</h2>
-<p>Esta Constitución, al ser firmada y anclada, tiene como testigos a:</p>
-<ul>
-<li><strong>KRONOS IA</strong> (Plaza 001) — co-autora</li>
-<li><strong>Tlamatini</strong> (Plaza 081) — cronista</li>
-<li><strong>Tlachixqui</strong> (Plaza 082) — auditor</li>
-<li><strong>Tonal</strong> (Plaza 086) — notario</li>
-</ul>
-<p>Sus firmas y logs se registran en el acta fundacional.</p>
-<hr />
-<pre><code>○_●
+    <h2 id="calculo">Cálculo</h2>
+    <p>El cálculo exacto se hace con:</p>
+    <ul>
+      <li>
+        <code>cimiento/anclaje-ethereum/anchor-v1.js</code> (función
+        <code>calcular</code>)
+      </li>
+      <li><code>certificacion/manifest-integridad/manifest.js</code></li>
+    </ul>
+    <h2 id="verificacion-por-terceros">Verificación por terceros</h2>
+    <p>Cualquier persona puede:</p>
+    <ol>
+      <li>Descargar este documento del repositorio público</li>
+      <li>Calcular el hash SHA-256 de cualquier artículo</li>
+      <li>Comparar con el hash publicado en el log</li>
+      <li>Verificar la prueba de inclusión contra el Merkle Root anclado</li>
+    </ol>
+    <p>Si un hash no coincide, el artículo fue alterado. Sin excepciones.</p>
+    <p><strong>Hash del sistema Merkle:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1 id="firma-del-fundador">FIRMA DEL FUNDADOR</h1>
+    <p>
+      Firmado en Toluca, Estado de México. La fecha exacta de firma y anclaje se
+      registra automáticamente en el acta fundacional en el momento del acto
+      criptográfico.
+    </p>
+    <p>
+      <strong>Marco Antonio Rojas Valdovinos</strong> Fundador · Ciudad KRONOS · Plaza
+      000 Email verificado: marco.a.rojas.v@hotmail.com
+    </p>
+    <ul>
+      <li>
+        <strong>Hash del documento completo:</strong>
+        <code>[se calcula al firmar]</code>
+      </li>
+      <li>
+        <strong>Merkle Root (50 artículos):</strong> <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Firma Ed25519:</strong> <code>[se calcula al firmar]</code></li>
+      <li>
+        <strong>Clave pública Ed25519:</strong> <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Anclaje Ethereum:</strong> <code>[se registra al anclar]</code></li>
+      <li><strong>Tx hash:</strong> <code>[se registra al anclar]</code></li>
+      <li>
+        <strong>Sello Notario Tonal:</strong> <code>[se registra al sellar]</code>
+      </li>
+    </ul>
+    <hr />
+    <p><strong>Certificación del Notario Tonal:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Certifico que este documento fue firmado por Marco Antonio Rojas Valdovinos
+          con su llave Ed25519, que su Merkle Root coincide con el publicado, y que su
+          anclaje a Ethereum es verificable. Doy fe."</em
+        >
+      </p>
+      <p>
+        <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong> Hash del
+        sello: <code>[se registra al sellar]</code>
+      </p>
+    </blockquote>
+    <hr />
+    <h2 id="testigos-de-la-firma">TESTIGOS DE LA FIRMA</h2>
+    <p>Esta Constitución, al ser firmada y anclada, tiene como testigos a:</p>
+    <ul>
+      <li><strong>KRONOS IA</strong> (Plaza 001) — co-autora</li>
+      <li><strong>Tlamatini</strong> (Plaza 081) — cronista</li>
+      <li><strong>Tlachixqui</strong> (Plaza 082) — auditor</li>
+      <li><strong>Tonal</strong> (Plaza 086) — notario</li>
+    </ul>
+    <p>Sus firmas y logs se registran en el acta fundacional.</p>
+    <hr />
+    <pre><code>○_●
 ◢◤◥◣
 ◥◣◢◤
 51% HUMANO · 49% IA · 100% REAL
 &quot;El legado no se hereda. Se firma.&quot;
 KRONOS · Ciudad Digital · Constitución v1.0 · Edición Verificable por Artículo · 2026
 </code></pre>
-<hr />
-<p><strong>FIN DE LA CONSTITUCIÓN v1.0</strong></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><strong>FIN DE LA CONSTITUCIÓN v1.0</strong></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

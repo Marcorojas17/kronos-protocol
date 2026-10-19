@@ -50,7 +50,9 @@ export function similitudCoseno(emb1, emb2) {
   if (emb1.length !== emb2.length) {
     return { similitud: 0, razon: 'Dimensiones distintas' };
   }
-  let dot = 0, mag1 = 0, mag2 = 0;
+  let dot = 0,
+    mag1 = 0,
+    mag2 = 0;
   for (let i = 0; i < emb1.length; i++) {
     dot += emb1[i] * emb2[i];
     mag1 += emb1[i] ** 2;

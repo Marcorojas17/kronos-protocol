@@ -43,7 +43,7 @@
 [ ✓✓ ] MOVIMIENTO OPERATIVO · ◯_● · 51/49/100
 ```
 
-> *"El movimiento no convoca. Firma. Y quien firma, se convierte en testigo."*
+> _"El movimiento no convoca. Firma. Y quien firma, se convierte en testigo."_
 
 ## 🜂 Principio
 
@@ -87,22 +87,22 @@ Cada miembro firma con el mismo sello: `◯_● · 51/49/100`.
 
 ## 🜄 Módulos
 
-| Módulo                | Propósito                                        |
-|-----------------------|--------------------------------------------------|
-| `onboarding/`         | 7 pasos + emails de bienvenida                   |
-| `niveles/`            | 7 niveles · privilegios · insignias · progresión |
-| `rituales/`           | 10 ceremonias (juramento, luna nueva, fin digno) |
-| `embajadores/`        | Programa · requisitos · beneficios · material    |
-| `comunidad/`          | Canales · reglas · moderación · etiqueta         |
-| `eventos/`            | Calendarios + recurrentes + especiales           |
-| `testimonios/`        | Voces del movimiento                             |
-| `historia/`           | Cronología + hitos + fundadores                  |
-| `recursos/`           | Presentaciones + plantillas + guías              |
-| `faq/`                | Preguntas frecuentes (13 archivos)               |
-| `registro-fundacional/` | Los primeros 100 · certificado firmado         |
-| `canon/`              | Textos fundacionales + frases irmovibles         |
-| `noticias/`           | RSS + publicaciones oficiales                    |
-| `legado/`             | Testamento visual + sucesión + fin digno         |
+| Módulo                  | Propósito                                        |
+| ----------------------- | ------------------------------------------------ |
+| `onboarding/`           | 7 pasos + emails de bienvenida                   |
+| `niveles/`              | 7 niveles · privilegios · insignias · progresión |
+| `rituales/`             | 10 ceremonias (juramento, luna nueva, fin digno) |
+| `embajadores/`          | Programa · requisitos · beneficios · material    |
+| `comunidad/`            | Canales · reglas · moderación · etiqueta         |
+| `eventos/`              | Calendarios + recurrentes + especiales           |
+| `testimonios/`          | Voces del movimiento                             |
+| `historia/`             | Cronología + hitos + fundadores                  |
+| `recursos/`             | Presentaciones + plantillas + guías              |
+| `faq/`                  | Preguntas frecuentes (13 archivos)               |
+| `registro-fundacional/` | Los primeros 100 · certificado firmado           |
+| `canon/`                | Textos fundacionales + frases irmovibles         |
+| `noticias/`             | RSS + publicaciones oficiales                    |
+| `legado/`               | Testamento visual + sucesión + fin digno         |
 
 ## 🜁 Ejemplo de Flujo
 

@@ -17,15 +17,16 @@
 
 # ✨ IMÁGENES Y BANNERS
 
-### *Visuales para difusión*
+### _Visuales para difusión_
 
-### *"Una imagen sin sello es píxel. Con sello, es testigo."*
+### _"Una imagen sin sello es píxel. Con sello, es testigo."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  I M G  ·  ◯_●                                       ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

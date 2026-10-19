@@ -62,14 +62,16 @@ export class EnjambreMCPServer {
   constructor() {
     this.server = new Server(
       { name: 'enjambre-arkhe', version: '1.0.0', seal: SEAL },
-      { capabilities: { tools: {} } }
+      { capabilities: { tools: {} } },
     );
     this.enjambre = new Enjambre({ humanos: 1, ia: 12 });
     this.#wire();
   }
 
   #wire() {
-    this.server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: TOOLS }));
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => ({
+      tools: TOOLS,
+    }));
 
     this.server.setRequestHandler(CallToolRequestSchema, async (req) => {
       const { name, arguments: args } = req.params;

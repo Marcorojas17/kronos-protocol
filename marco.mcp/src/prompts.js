@@ -17,9 +17,7 @@ export const PROMPTS = [
   {
     name: 'ceremonial-firma',
     description: 'Acto ceremonial de firma de una decisión',
-    arguments: [
-      { name: 'decision', description: 'Decisión a firmar', required: true },
-    ],
+    arguments: [{ name: 'decision', description: 'Decisión a firmar', required: true }],
   },
   {
     name: 'verificador-index-cero',

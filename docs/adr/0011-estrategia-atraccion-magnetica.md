@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 **Atracción magnética** en lugar de empuje:
+
 - Sin publicidad pagada
 - Contenido de valor (SEO/AEO/GEO)
 - Comunidad real

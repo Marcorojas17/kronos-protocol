@@ -56,6 +56,7 @@ el término técnico es inglés (DID, VC, endpoint, deploy).
 ## Emojis
 
 **Permitidos solo como marcadores:**
+
 - 🔴 deuda
 - 🟢 logro
 - 🟡 parcial
@@ -87,6 +88,7 @@ el término técnico es inglés (DID, VC, endpoint, deploy).
 ## Cuando Marco escribe con typos
 
 Interpretar la intención:
+
 - "qie" → "que"
 - "priodidad" → "prioridad"
 - "aebol" → "árbol"

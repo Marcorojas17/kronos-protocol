@@ -7,15 +7,16 @@
 
 # ⚖️ PARTNERSHIPS · ABOGADOS
 
-### *El abogado firma. ARKHÉ prueba.*
+### _El abogado firma. ARKHÉ prueba._
 
-### *"El abogado que firma con ARKHÉ, gana con prueba criptográfica."*
+### _"El abogado que firma con ARKHÉ, gana con prueba criptográfica."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A B O G A D O S  ·  ◯_●                             ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

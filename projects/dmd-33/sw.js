@@ -3,10 +3,10 @@
 /* SHA obra: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738 */
 /* TX: 0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466 */
 
-var CACHE = "dmd33-v1";
-var ASSETS = ["./orb.html", "./manifest.json", "./"];
+var CACHE = 'dmd33-v1';
+var ASSETS = ['./orb.html', './manifest.json', './'];
 
-self.addEventListener("install", function (e) {
+self.addEventListener('install', function (e) {
   self.skipWaiting();
   e.waitUntil(
     caches
@@ -18,7 +18,7 @@ self.addEventListener("install", function (e) {
   );
 });
 
-self.addEventListener("activate", function (e) {
+self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches
       .keys()
@@ -35,8 +35,8 @@ self.addEventListener("activate", function (e) {
   );
 });
 
-self.addEventListener("fetch", function (e) {
-  if (e.request.method !== "GET") return;
+self.addEventListener('fetch', function (e) {
+  if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
   e.respondWith(
@@ -44,7 +44,7 @@ self.addEventListener("fetch", function (e) {
       if (cached) return cached;
       return fetch(e.request)
         .then(function (res) {
-          if (!res || res.status !== 200 || res.type === "opaque") return res;
+          if (!res || res.status !== 200 || res.type === 'opaque') return res;
           var copy = res.clone();
           caches.open(CACHE).then(function (c) {
             c.put(e.request, copy);
@@ -52,7 +52,7 @@ self.addEventListener("fetch", function (e) {
           return res;
         })
         .catch(function () {
-          return caches.match("./orb.html");
+          return caches.match('./orb.html');
         });
     }),
   );

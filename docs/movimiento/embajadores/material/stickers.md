@@ -17,15 +17,16 @@
 
 # 🏷️ STICKERS OFICIALES
 
-### *El sello que viaja contigo*
+### _El sello que viaja contigo_
 
-### *"Un sticker bien puesto vale más que mil palabras."*
+### _"Un sticker bien puesto vale más que mil palabras."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  S T I C K E R S  ·  ◯_●                             ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 Los 5 stickers
 
-| Archivo                 | Uso                          |
-|-------------------------|------------------------------|
-| `sello-kintsugi.png`    | Marca principal              |
-| `sello-nodo.png`        | Nodo local del embajador     |
-| `sello-embajador.png`   | Insignia del nivel           |
-| `sello-enjambre.png`    | Enjambre 12 agentes          |
-| `sello-51-49.png`       | Pacto 51/49/100              |
+| Archivo               | Uso                      |
+| --------------------- | ------------------------ |
+| `sello-kintsugi.png`  | Marca principal          |
+| `sello-nodo.png`      | Nodo local del embajador |
+| `sello-embajador.png` | Insignia del nivel       |
+| `sello-enjambre.png`  | Enjambre 12 agentes      |
+| `sello-51-49.png`     | Pacto 51/49/100          |
 
 ## 🜃 Formatos
 

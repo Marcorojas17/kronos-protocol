@@ -14,13 +14,13 @@
 
 Solo lo mínimo necesario para emitir tu dictamen pericial PVA:
 
-| Dato | Para qué | Base legal |
-| --- | --- | --- |
-| Correo electrónico | Envío de `dictamen_PVA_5204160405358537.pdf` y factura SAT | Ejecución de contrato |
-| Dirección de wallet (0x...) | Registro en `PVAContract.sol` y trazabilidad blockchain | Ejecución de contrato |
-| Hash de transacción (txHash) | Verificación con `core/blockchain_verifier.py` | Interés legítimo (NOM-151) |
-| IP + User Agent | Log `audit/cadena_custodia.log` - fecha cierta | Obligación legal NOM-151 |
-| Datos de pago (Stripe) | Cobro niveles $9/$49/$199 | Ejecución de contrato |
+| Dato                         | Para qué                                                   | Base legal                 |
+| ---------------------------- | ---------------------------------------------------------- | -------------------------- |
+| Correo electrónico           | Envío de `dictamen_PVA_5204160405358537.pdf` y factura SAT | Ejecución de contrato      |
+| Dirección de wallet (0x...)  | Registro en `PVAContract.sol` y trazabilidad blockchain    | Ejecución de contrato      |
+| Hash de transacción (txHash) | Verificación con `core/blockchain_verifier.py`             | Interés legítimo (NOM-151) |
+| IP + User Agent              | Log `audit/cadena_custodia.log` - fecha cierta             | Obligación legal NOM-151   |
+| Datos de pago (Stripe)       | Cobro niveles $9/$49/$199                                  | Ejecución de contrato      |
 
 **NO recopilamos:** Nombre completo, CURP, domicilio, llaves privadas, seed phrase, biometría.
 
@@ -101,4 +101,5 @@ Sello: KRONOS-TRACE-PVA-5204160405358537
 Si tienes duda, escribe. Contestamos en 24h.
 
 ---
+
 PVA © 2026 - KRONOS 360 - Cumplimiento RGPD + LFPDPPP + NOM-151 + eIDAS

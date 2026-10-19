@@ -17,15 +17,16 @@
 
 # 📝 LOREM ARKHÉ
 
-### *Texto ceremonial de relleno*
+### _Texto ceremonial de relleno_
 
-### *"El lorem clásico es ruido. El nuestro firma."*
+### _"El lorem clásico es ruido. El nuestro firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  L O R E M  ·  ◯_●                                   ║
@@ -37,6 +38,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

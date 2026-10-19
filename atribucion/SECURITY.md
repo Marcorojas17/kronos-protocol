@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # Contribuir a Atribución
 
 Gracias por tu interés. Este proyecto sigue reglas estrictas
@@ -39,6 +38,7 @@ pytest tests/ -v
 # Levantar API
 uvicorn api.main:app --reload
 ```
+````
 
 ---
 

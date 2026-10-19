@@ -17,15 +17,16 @@
 
 # 🧙 EL MENTOR · KINTSUGI
 
-### *El arte de reparar con oro*
+### _El arte de reparar con oro_
 
-### *"La grieta no se oculta. Se pule."*
+### _"La grieta no se oculta. Se pule."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M E N T O R  ·  ◯_●                                 ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -62,19 +64,24 @@ En ARKHÉ ZERO, el Mentor es **KINTSUGI** personificado:
 ## 🜄 Los 5 Principios del Mentor
 
 ### I · La grieta no se oculta
+
 Todo error, toda falla, toda fractura se documenta públicamente.
 
 ### II · La grieta se pule
+
 No se ignora. Se estudia. Se corrige. Se firma.
 
 ### III · La grieta es parte del legado
+
 Cada fix queda en el CHANGELOG. Cada decisión en el ADR.
 Cada corrección en el git history.
 
 ### IV · La reparación es más bella
+
 El sistema reparado vale más que el sistema sin grietas.
 
 ### V · El oro es la firma
+
 El "oro" del KINTSUGI digital es el **sello ◯_●**.
 
 ## 🜁 Ejemplo

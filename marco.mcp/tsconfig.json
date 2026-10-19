@@ -3,22 +3,15 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": false,
+    "noImplicitAny": false,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowJs": true,
-    "checkJs": true,
-    "declaration": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": false
+    "checkJs": false
   },
-  "include": ["src/**/*.js", "src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "tests"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -9,22 +9,22 @@
 
 ## 🜂 Los 5 temas canónicos
 
-| Tema | Uso | Color principal |
-|------|-----|-----------------|
-| `terminal-amber` | Hub default | #ffb000 |
-| `terminal-gold` | KINTSUGI · manifiesto | #d4af37 |
-| `terminal-green` | Verificar · éxito | #00ff9f |
-| `terminal-cyan` | Firmar · nuevo | #00d4ff |
-| `terminal-red` | 404 · HALT | #ff3b3b |
+| Tema             | Uso                   | Color principal |
+| ---------------- | --------------------- | --------------- |
+| `terminal-amber` | Hub default           | #ffb000         |
+| `terminal-gold`  | KINTSUGI · manifiesto | #d4af37         |
+| `terminal-green` | Verificar · éxito     | #00ff9f         |
+| `terminal-cyan`  | Firmar · nuevo        | #00d4ff         |
+| `terminal-red`   | 404 · HALT            | #ff3b3b         |
 
 ## 🜃 Uso
 
 ```html
-<body data-page="verificar" data-theme="terminal-green">
+<body data-page="verificar" data-theme="terminal-green"></body>
 ```
 
 ```css
-[data-theme="terminal-green"] {
+[data-theme='terminal-green'] {
   --accent: #00ff9f;
   --accent-2: #00d4ff;
 }
@@ -35,11 +35,11 @@
 ```css
 :root {
   /* Paleta base */
-  --gold:   #d4af37;
-  --amber:  #ffb000;
-  --green:  #00ff9f;
-  --cyan:   #00d4ff;
-  --red:    #ff3b3b;
+  --gold: #d4af37;
+  --amber: #ffb000;
+  --green: #00ff9f;
+  --cyan: #00d4ff;
+  --red: #ff3b3b;
   --purple: #b47aff;
 
   /* Fondo */

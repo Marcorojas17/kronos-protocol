@@ -25,6 +25,7 @@
 ### 2 · Propuesta + quórum
 
 Se necesita:
+
 - Quórum 4/5 del enjambre
 - Firma de 2 Embajadores existentes
 - No-veto del fundador

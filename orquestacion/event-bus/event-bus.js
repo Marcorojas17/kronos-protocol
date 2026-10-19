@@ -43,7 +43,7 @@ export class EventBus {
     const lista = this.suscriptores.get(topico) || [];
     this.suscriptores.set(
       topico,
-      lista.filter((h) => h !== handler)
+      lista.filter((h) => h !== handler),
     );
   }
 

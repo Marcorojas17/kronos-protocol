@@ -1,37 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>📦 Deployment Guide · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="deployment-guide">📦 Deployment Guide</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/architecture]
+  <head>
+    <meta charset="UTF-8" />
+    <title>📦 Deployment Guide · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="deployment-guide">📦 Deployment Guide</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/architecture]
 └─$ ./architecture --deploy
 
 [ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
 </code></pre>
-<h2 id="opciones-de-deploy">🜂 Opciones de deploy</h2>
-<h3 id="1-docker-recomendado">1 · Docker (recomendado)</h3>
-<pre><code class="language-bash">docker-compose up -d
+    <h2 id="opciones-de-deploy">🜂 Opciones de deploy</h2>
+    <h3 id="1-docker-recomendado">1 · Docker (recomendado)</h3>
+    <pre><code class="language-bash">docker-compose up -d
 docker-compose logs -f
 </code></pre>
-<h3 id="2-github-pages">2 · GitHub Pages</h3>
-<pre><code class="language-bash">git push origin main
+    <h3 id="2-github-pages">2 · GitHub Pages</h3>
+    <pre><code class="language-bash">git push origin main
 # Activa GitHub Pages en Settings
 </code></pre>
-<h3 id="3-netlify">3 · Netlify</h3>
-<pre><code class="language-bash">netlify deploy --prod
+    <h3 id="3-netlify">3 · Netlify</h3>
+    <pre><code class="language-bash">netlify deploy --prod
 </code></pre>
-<h3 id="4-railway">4 · Railway</h3>
-<pre><code class="language-bash">railway up
+    <h3 id="4-railway">4 · Railway</h3>
+    <pre><code class="language-bash">railway up
 </code></pre>
-<h2 id="estructura-de-deploy">🜃 Estructura de deploy</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="estructura-de-deploy">🜃 Estructura de deploy</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    ARQUITECTURA DE DEPLOY                                ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -45,40 +45,40 @@ docker-compose logs -f
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="ambientes">🜄 Ambientes</h2>
-<table>
-<thead>
-<tr>
-<th>Ambiente</th>
-<th>URL</th>
-<th>Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Producción</td>
-<td>arkhe.zero</td>
-<td>Público</td>
-</tr>
-<tr>
-<td>Staging</td>
-<td>staging.arkhe.zero</td>
-<td>Pre-deploy</td>
-</tr>
-<tr>
-<td>Desarrollo</td>
-<td>localhost:8080</td>
-<td>Local</td>
-</tr>
-<tr>
-<td>Testnet</td>
-<td>sepolia.etherscan.io</td>
-<td>Ethereum test</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><code>◯_● · 51/49/100 · ARCH · Deploy</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <h2 id="ambientes">🜄 Ambientes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ambiente</th>
+          <th>URL</th>
+          <th>Uso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Producción</td>
+          <td>arkhe.zero</td>
+          <td>Público</td>
+        </tr>
+        <tr>
+          <td>Staging</td>
+          <td>staging.arkhe.zero</td>
+          <td>Pre-deploy</td>
+        </tr>
+        <tr>
+          <td>Desarrollo</td>
+          <td>localhost:8080</td>
+          <td>Local</td>
+        </tr>
+        <tr>
+          <td>Testnet</td>
+          <td>sepolia.etherscan.io</td>
+          <td>Ethereum test</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ARCH · Deploy</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

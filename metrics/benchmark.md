@@ -17,15 +17,16 @@
 
 # ⚖️ BENCHMARK vs OTROS SISTEMAS
 
-### *Cómo se compara ARKHÉ ZERO*
+### _Cómo se compara ARKHÉ ZERO_
 
-### *"Ninguna métrica vale sin contexto."*
+### _"Ninguna métrica vale sin contexto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  B E N C H M A R K  ·  ◯_●                           ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,16 +50,16 @@
 
 ## 🜂 Tabla comparativa
 
-| Sistema              | Local-First | PQC | Anclaje | Gobernanza | Costo |
-|----------------------|-------------|-----|---------|------------|-------|
-| **ARKHÉ ZERO**       | ✅          | ✅  | ✅      | 51/49      | Libre |
-| Google Drive         | ❌          | ❌  | ❌      | ❌         | Free/$$$ |
-| Dropbox              | ❌          | ❌  | ❌      | ❌         | Free/$$ |
-| IPFS solo            | ✅          | ❌  | ✅      | ❌         | Libre |
-| Ethereum solo        | ❌          | ❌  | ✅      | ❌         | Gas    |
-| Notaría tradicional  | N/A         | ❌  | ❌      | ❌         | $$$    |
-| Google Analytics     | ❌          | ❌  | ❌      | ❌         | Free   |
-| Plausible            | ✅          | ❌  | ❌      | ❌         | Free/$$ |
+| Sistema             | Local-First | PQC | Anclaje | Gobernanza | Costo    |
+| ------------------- | ----------- | --- | ------- | ---------- | -------- |
+| **ARKHÉ ZERO**      | ✅          | ✅  | ✅      | 51/49      | Libre    |
+| Google Drive        | ❌          | ❌  | ❌      | ❌         | Free/$$$ |
+| Dropbox             | ❌          | ❌  | ❌      | ❌         | Free/$$  |
+| IPFS solo           | ✅          | ❌  | ✅      | ❌         | Libre    |
+| Ethereum solo       | ❌          | ❌  | ✅      | ❌         | Gas      |
+| Notaría tradicional | N/A         | ❌  | ❌      | ❌         | $$$      |
+| Google Analytics    | ❌          | ❌  | ❌      | ❌         | Free     |
+| Plausible           | ✅          | ❌  | ❌      | ❌         | Free/$$  |
 
 ## 🜃 Diferenciadores únicos
 
@@ -74,14 +76,14 @@
 
 ## 🜄 Métricas comparadas
 
-| Métrica                | ARKHÉ ZERO | Google | IPFS  |
-|------------------------|------------|--------|-------|
-| Latencia firma (p99)   | 42ms       | N/A    | N/A   |
-| Ancho de banda/mes     | < 1GB      | 100GB+ | 10GB+ |
-| Datos vendidos         | 0          | 100%   | 0%    |
-| Costo por 1000 firmas  | $0         | $0     | $0    |
-| Resistencia cuántica   | ✅         | ❌     | ❌    |
-| Verificable sin login  | ✅         | ❌     | ✅    |
+| Métrica               | ARKHÉ ZERO | Google | IPFS  |
+| --------------------- | ---------- | ------ | ----- |
+| Latencia firma (p99)  | 42ms       | N/A    | N/A   |
+| Ancho de banda/mes    | < 1GB      | 100GB+ | 10GB+ |
+| Datos vendidos        | 0          | 100%   | 0%    |
+| Costo por 1000 firmas | $0         | $0     | $0    |
+| Resistencia cuántica  | ✅         | ❌     | ❌    |
+| Verificable sin login | ✅         | ❌     | ✅    |
 
 ## 🜁 Firma
 

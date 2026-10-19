@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Mesh — Malla P2P
 
 **Soberanía de red: sin servidores centrales.**
@@ -15,24 +15,24 @@ No hay punto único de fallo.
 
 ## Componentes
 
-| Componente | Propósito |
-|---|---|
-| **transport/** | Transporte P2P (libp2p, QUIC, WebRTC) |
-| **discovery/** | Descubrimiento (mDNS, DHT, rendezvous) |
-| **consensus/** | Consenso (Raft, BFT, CRDT, gossip) |
-| **storage/** | Almacenamiento (SQLite, IPFS, Arweave) |
-| **sync/** | Sincronización (delta, conflict, merkle) |
+| Componente     | Propósito                                |
+| -------------- | ---------------------------------------- |
+| **transport/** | Transporte P2P (libp2p, QUIC, WebRTC)    |
+| **discovery/** | Descubrimiento (mDNS, DHT, rendezvous)   |
+| **consensus/** | Consenso (Raft, BFT, CRDT, gossip)       |
+| **storage/**   | Almacenamiento (SQLite, IPFS, Arweave)   |
+| **sync/**      | Sincronización (delta, conflict, merkle) |
 
 ---
 
 ## Implementación actual
 
-| Archivo | Estado | Descripción |
-|---|---|---|
-| `transport/libp2p.py` | ✅ | Nodo P2P con framing JSON |
-| `discovery/dht.py` | ✅ | DHT Kademlia simplificada |
-| `consensus/crdt.py` | ✅ | LWWRegister + GCounter + ORSet |
-| `storage/sqlite.py` | ✅ | Persistencia local |
+| Archivo               | Estado | Descripción                    |
+| --------------------- | ------ | ------------------------------ |
+| `transport/libp2p.py` | ✅     | Nodo P2P con framing JSON      |
+| `discovery/dht.py`    | ✅     | DHT Kademlia simplificada      |
+| `consensus/crdt.py`   | ✅     | LWWRegister + GCounter + ORSet |
+| `storage/sqlite.py`   | ✅     | Persistencia local             |
 
 **Roadmap:** QUIC, WebRTC, Nostr, Raft, BFT, IPFS, Arweave.
 
@@ -49,6 +49,7 @@ node = LibP2PNode(port=7777)
 node.register_handler("ping", lambda p: {"pong": True})
 await node.start()
 ```
+````
 
 Añadir peers
 
@@ -109,5 +110,7 @@ No usar:
 · Antes de tener 10+ clientes.
 
 Regla: Mesh es para el año 2+, no para hoy.
+
+```
 
 ```

@@ -16,4 +16,5 @@ indican un **legado en formación**, no un experimento.
 - Reconocimiento público en la comunidad
 
 ---
+
 `◯_● · 51/49/100 · ritual-decima-obra`

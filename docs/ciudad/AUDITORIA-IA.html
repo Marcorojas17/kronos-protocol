@@ -1,102 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg">
-<link rel="stylesheet" href="/kronos-protocol/arkhe-style.css">
-</head>
-<body style="padding-bottom: 80px;">
-<a href="/kronos-protocol/index.html" class="back" style="display:inline-block;margin-bottom:20px;color:#D4AF37;text-decoration:none;">◯_● VOLVER AL ÍNDICE</a>
-<p>╔══════════════════════════════════════════════════════════════════════╗
-║ ║
-║ ○_● AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · v1.0 ║
-║ ◢◤◥◣ Ciudad Digital KRONOS ║
-║ ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║
-║ ║
-║ Documento complementario a la Constitución v1.0 ║
-║ Fundador: Marco Antonio Rojas Valdovinos ║
-║ Toluca, Estado de México · 2026 ║
-║ ║
-╚══════════════════════════════════════════════════════════════════════╝</p>
-<h1>AUDITORÍA Y GOBERNANZA DE IA EN KRONOS</h1>
-<blockquote>
-<p><em>"No podemos auditar la mente de un modelo.
-Podemos auditar el perímetro de su actuación."</em></p>
-</blockquote>
-<hr />
-<h2>PREÁMBULO</h2>
-<p>Este documento define qué <strong>sí</strong> y qué <strong>no</strong> puede probar KRONOS
-cuando se trata de auditar sistemas de inteligencia artificial.</p>
-<p>Existe porque hay demasiado ruido en el mercado: proyectos que
-prometen "auditar la IA" sin aclarar qué significa eso. KRONOS no
-hace esa promesa vaga. Declara su alcance con precisión.</p>
-<p>El principio que rige este documento es la <strong>honestidad radical</strong>:
-declarar los límites antes de declarar las capacidades.</p>
-<p><strong>Hash del preámbulo:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>1 · EL PROBLEMA FUNDAMENTAL</h2>
-<p>Auditar un sistema de inteligencia artificial —especialmente
-modelos comerciales cerrados como GPT-4, Claude o Gemini— no
-significa auditar la "mente" del modelo.</p>
-<p>Los LLMs son <strong>sistemas estocásticos</strong>: la misma pregunta puede
-producir respuestas con redacciones distintas. No existe un
-"por qué" matemático verificable que explique cada token generado.
-Ese tipo de auditoría es <strong>computacionalmente imposible</strong> hoy.</p>
-<p>Lo que sí es auditable es el <strong>perímetro operativo</strong> del sistema:</p>
-<ul>
-<li>Qué datos de entrada recibió</li>
-<li>Quién autorizó la ejecución</li>
-<li>Cuándo se ejecutó</li>
-<li>Qué salida produjo</li>
-<li>Si el registro fue alterado después</li>
-</ul>
-<p>KRONOS audita ese perímetro. No la mente del modelo.</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>2 · LO QUE KRONOS SÍ PRUEBA</h2>
-<h3>2.1 · Integridad de los registros</h3>
-<p>Mediante <strong>hash chaining</strong> (cada entrada encadenada con el SHA-256
-de la anterior), cualquier alteración posterior se detecta
-matemáticamente.</p>
-<p>Si alguien modifica una entrada del log, el hash de la siguiente
-deja de coincidir. No es cuestión de confianza. Es aritmética.</p>
-<p><strong>Implementación:</strong> <code>agentes/agente-base.js</code> · función
-<code>verificarLog()</code></p>
-<h3>2.2 · Autorización explícita</h3>
-<p>Mediante el flujo <strong>PREVIEW → COMMIT</strong>, cada acción crítica
-requiere firma del usuario humano con su llave Ed25519 antes de
-ejecutarse.</p>
-<p>El sistema no prueba que la IA "quiso" producir una salida. Prueba
-que un humano <strong>autorizó</strong> el resultado.</p>
-<p><strong>Implementación:</strong> <code>identidad/registro-ia/guardrails.js</code> ·
-métodos <code>preview()</code> y <code>commit()</code> de <code>agente-base.js</code></p>
-<h3>2.3 · Prueba de inclusión sin exposición</h3>
-<p>Mediante <strong>Árboles de Merkle</strong>, se puede certificar que un
-conjunto de datos fue considerado sin exponer su contenido.</p>
-<p>El auditor recibe:</p>
-<ul>
-<li>La Merkle Root (raíz del árbol)</li>
-<li>Una prueba de inclusión para el documento específico</li>
-</ul>
-<p>Y verifica matemáticamente que el documento estaba en el conjunto.
-Sin ver una sola palabra del contenido original.</p>
-<p><strong>Implementación:</strong> <code>cimiento/anclaje-ethereum/anchor-v1.js</code> ·
-<code>certificacion/manifest-integridad/manifest.js</code></p>
-<h3>2.4 · Anclaje público e inmutable</h3>
-<p>Mediante el anclaje del Merkle Root a Ethereum, se obtiene una
-prueba pública de existencia verificable por cualquier tercero, en
-cualquier momento, sin depender de KRONOS ni de su fundador.</p>
-<p><strong>Implementación:</strong> <code>cimiento/anclaje-ethereum/</code></p>
-<h3>2.5 · Sellado de tiempo cualificado</h3>
-<p>Mediante TSA (Time Stamp Authority) bajo RFC 3161 con
-cualificación eIDAS, se obtiene prueba de fecha reconocida en
-toda la Unión Europea y en jurisdicciones que reconocen eIDAS
-vía tratados internacionales.</p>
-<p><strong>Implementación:</strong> <code>certificacion/sello-tiempo/</code></p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<pre><code class="language-mermaid">graph TD
+  <head>
+    <meta charset="UTF-8" />
+    <title>AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg" />
+    <link rel="stylesheet" href="/kronos-protocol/arkhe-style.css" />
+  </head>
+  <body style="padding-bottom: 80px">
+    <a
+      href="/kronos-protocol/index.html"
+      class="back"
+      style="
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #d4af37;
+        text-decoration: none;
+      "
+      >◯_● VOLVER AL ÍNDICE</a
+    >
+    <p>
+      ╔══════════════════════════════════════════════════════════════════════╗ ║ ║ ║ ○_●
+      AUDITORÍA Y GOBERNANZA DE IA EN KRONOS · v1.0 ║ ║ ◢◤◥◣ Ciudad Digital KRONOS ║ ║
+      ◥◣◢◤ 51% HUMANO · 49% IA · 100% REAL ║ ║ ║ ║ Documento complementario a la
+      Constitución v1.0 ║ ║ Fundador: Marco Antonio Rojas Valdovinos ║ ║ Toluca, Estado
+      de México · 2026 ║ ║ ║
+      ╚══════════════════════════════════════════════════════════════════════╝
+    </p>
+    <h1>AUDITORÍA Y GOBERNANZA DE IA EN KRONOS</h1>
+    <blockquote>
+      <p>
+        <em
+          >"No podemos auditar la mente de un modelo. Podemos auditar el perímetro de su
+          actuación."</em
+        >
+      </p>
+    </blockquote>
+    <hr />
+    <h2>PREÁMBULO</h2>
+    <p>
+      Este documento define qué <strong>sí</strong> y qué <strong>no</strong> puede
+      probar KRONOS cuando se trata de auditar sistemas de inteligencia artificial.
+    </p>
+    <p>
+      Existe porque hay demasiado ruido en el mercado: proyectos que prometen "auditar
+      la IA" sin aclarar qué significa eso. KRONOS no hace esa promesa vaga. Declara su
+      alcance con precisión.
+    </p>
+    <p>
+      El principio que rige este documento es la <strong>honestidad radical</strong>:
+      declarar los límites antes de declarar las capacidades.
+    </p>
+    <p><strong>Hash del preámbulo:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>1 · EL PROBLEMA FUNDAMENTAL</h2>
+    <p>
+      Auditar un sistema de inteligencia artificial —especialmente modelos comerciales
+      cerrados como GPT-4, Claude o Gemini— no significa auditar la "mente" del modelo.
+    </p>
+    <p>
+      Los LLMs son <strong>sistemas estocásticos</strong>: la misma pregunta puede
+      producir respuestas con redacciones distintas. No existe un "por qué" matemático
+      verificable que explique cada token generado. Ese tipo de auditoría es
+      <strong>computacionalmente imposible</strong> hoy.
+    </p>
+    <p>
+      Lo que sí es auditable es el <strong>perímetro operativo</strong> del sistema:
+    </p>
+    <ul>
+      <li>Qué datos de entrada recibió</li>
+      <li>Quién autorizó la ejecución</li>
+      <li>Cuándo se ejecutó</li>
+      <li>Qué salida produjo</li>
+      <li>Si el registro fue alterado después</li>
+    </ul>
+    <p>KRONOS audita ese perímetro. No la mente del modelo.</p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>2 · LO QUE KRONOS SÍ PRUEBA</h2>
+    <h3>2.1 · Integridad de los registros</h3>
+    <p>
+      Mediante <strong>hash chaining</strong> (cada entrada encadenada con el SHA-256 de
+      la anterior), cualquier alteración posterior se detecta matemáticamente.
+    </p>
+    <p>
+      Si alguien modifica una entrada del log, el hash de la siguiente deja de
+      coincidir. No es cuestión de confianza. Es aritmética.
+    </p>
+    <p>
+      <strong>Implementación:</strong> <code>agentes/agente-base.js</code> · función
+      <code>verificarLog()</code>
+    </p>
+    <h3>2.2 · Autorización explícita</h3>
+    <p>
+      Mediante el flujo <strong>PREVIEW → COMMIT</strong>, cada acción crítica requiere
+      firma del usuario humano con su llave Ed25519 antes de ejecutarse.
+    </p>
+    <p>
+      El sistema no prueba que la IA "quiso" producir una salida. Prueba que un humano
+      <strong>autorizó</strong> el resultado.
+    </p>
+    <p>
+      <strong>Implementación:</strong>
+      <code>identidad/registro-ia/guardrails.js</code> · métodos
+      <code>preview()</code> y <code>commit()</code> de <code>agente-base.js</code>
+    </p>
+    <h3>2.3 · Prueba de inclusión sin exposición</h3>
+    <p>
+      Mediante <strong>Árboles de Merkle</strong>, se puede certificar que un conjunto
+      de datos fue considerado sin exponer su contenido.
+    </p>
+    <p>El auditor recibe:</p>
+    <ul>
+      <li>La Merkle Root (raíz del árbol)</li>
+      <li>Una prueba de inclusión para el documento específico</li>
+    </ul>
+    <p>
+      Y verifica matemáticamente que el documento estaba en el conjunto. Sin ver una
+      sola palabra del contenido original.
+    </p>
+    <p>
+      <strong>Implementación:</strong>
+      <code>cimiento/anclaje-ethereum/anchor-v1.js</code> ·
+      <code>certificacion/manifest-integridad/manifest.js</code>
+    </p>
+    <h3>2.4 · Anclaje público e inmutable</h3>
+    <p>
+      Mediante el anclaje del Merkle Root a Ethereum, se obtiene una prueba pública de
+      existencia verificable por cualquier tercero, en cualquier momento, sin depender
+      de KRONOS ni de su fundador.
+    </p>
+    <p><strong>Implementación:</strong> <code>cimiento/anclaje-ethereum/</code></p>
+    <h3>2.5 · Sellado de tiempo cualificado</h3>
+    <p>
+      Mediante TSA (Time Stamp Authority) bajo RFC 3161 con cualificación eIDAS, se
+      obtiene prueba de fecha reconocida en toda la Unión Europea y en jurisdicciones
+      que reconocen eIDAS vía tratados internacionales.
+    </p>
+    <p><strong>Implementación:</strong> <code>certificacion/sello-tiempo/</code></p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <pre><code class="language-mermaid">graph TD
     A[AUDITORÍA KRONOS] --&gt; B[Integridad]
     A --&gt; C[Autorización]
     A --&gt; D[Inclusión]
@@ -125,74 +168,107 @@ vía tratados internacionales.</p>
     style E fill:#1a1000,stroke:#ffd700,color:#FFEDAB
     style F fill:#1a0800,stroke:#ff8c42,color:#FFB88A
 </code></pre>
-<hr />
-<h2>3 · LO QUE KRONOS NO PRUEBA</h2>
-<p>Aquí está la honestidad radical. Estos son los límites declarados
-explícitamente.</p>
-<h3>3.1 · No prueba causalidad en modelos cerrados</h3>
-<p>KRONOS <strong>no puede probar</strong> por qué OpenAI, Anthropic o Google
-generaron un token específico. Los pesos del modelo no son
-públicos, la temperatura no es verificable, y la arquitectura
-interna no es auditable.</p>
-<p><strong>Consecuencia:</strong> KRONOS puede probar que el output existió, que
-un humano lo autorizó y que nadie lo alteró después. No puede
-probar que el output fue el resultado inevitable de una directriz
-específica.</p>
-<h3>3.2 · No prueba veracidad del contenido</h3>
-<p>La cadena criptográfica asegura que <strong>nadie alteró el log</strong>. No
-asegura que el contenido original estuviera libre de sesgos,
-errores fácticos o alucinaciones.</p>
-<p><strong>Distinción clave:</strong></p>
-<ul>
-<li><strong>Integridad</strong> = "nadie lo cambió después"</li>
-<li><strong>Veracidad</strong> = "lo que dice es cierto"</li>
-</ul>
-<p>KRONOS garantiza lo primero. Lo segundo depende del emisor del
-contenido original.</p>
-<h3>3.3 · No prueba model attestation</h3>
-<p>Sin attestation firmada por el proveedor del modelo (OpenAI,
-Anthropic, etc.), KRONOS <strong>no puede probar</strong> que el modelo
-ejecutado fue realmente el que se declara.</p>
-<p>Puede registrar un hash declarado del modelo. Puede registrar un
-nombre ("GPT-4"). Pero no puede verificar que el binario
-efectivamente ejecutado sea GPT-4.</p>
-<p><strong>Mitigación parcial:</strong> para modelos de pesos abiertos (Llama,
-Mistral), el hash del modelo se puede calcular y verificar. Para
-modelos cerrados, esto es imposible hoy.</p>
-<h3>3.4 · No prueba cadena de custodia del dato original</h3>
-<p>La prueba de Merkle verifica <strong>inclusión</strong> del dato en un
-conjunto. No verifica el <strong>origen</strong> del dato.</p>
-<p>Si alguien inserta un dato falso ANTES de construir el árbol, el
-árbol será íntegro y matemáticamente correcto — pero contendrá un
-dato falso.</p>
-<p><strong>Distinción clave:</strong></p>
-<ul>
-<li><strong>Dato declarado</strong> = aquel que entra al sistema sin verificación externa</li>
-<li><strong>Dato verificado</strong> = aquel que viene firmado por una fuente autorizada reconocida</li>
-</ul>
-<p>KRONOS audita el primero. El segundo requiere que la fuente firme
-los datos en origen.</p>
-<h3>3.5 · No resiste entornos comprometidos sin hardware seguro</h3>
-<p>Si el navegador del usuario está infectado con malware, todas las
-operaciones criptográficas son vulnerables. Los hashes, las firmas
-y los logs se pueden falsificar si el entorno de ejecución está
-envenenado.</p>
-<p><strong>Mitigación:</strong> WebAuthn / Passkeys / Secure Enclave / TPM. La
-criptografía se ejecuta dentro del chip seguro del dispositivo,
-fuera del alcance del sistema operativo.</p>
-<p><strong>Estado en KRONOS:</strong> pendiente de implementación. Ver sección 6.</p>
-<h3>3.6 · No previene prompt injection</h3>
-<p>Si un atacante manipula el contexto de entrada que la IA va a leer
-(por ejemplo, inyectando instrucciones ocultas en un documento
-aparentemente legítimo), el Merkle proof de ese conjunto seguirá
-siendo válido e íntegro — pero el contenido estará envenenado.</p>
-<p><strong>Consecuencia:</strong> KRONOS detecta alteraciones <strong>posteriores</strong> al
-registro. No detecta manipulaciones <strong>anteriores</strong> al registro.</p>
-<p><strong>Mitigación parcial:</strong> comparación contra fuente externa firmada
-por autoridad reconocida. Sin esto, el prompt injection es un
-vector abierto.</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<pre><code class="language-mermaid">graph TD
+    <hr />
+    <h2>3 · LO QUE KRONOS NO PRUEBA</h2>
+    <p>
+      Aquí está la honestidad radical. Estos son los límites declarados explícitamente.
+    </p>
+    <h3>3.1 · No prueba causalidad en modelos cerrados</h3>
+    <p>
+      KRONOS <strong>no puede probar</strong> por qué OpenAI, Anthropic o Google
+      generaron un token específico. Los pesos del modelo no son públicos, la
+      temperatura no es verificable, y la arquitectura interna no es auditable.
+    </p>
+    <p>
+      <strong>Consecuencia:</strong> KRONOS puede probar que el output existió, que un
+      humano lo autorizó y que nadie lo alteró después. No puede probar que el output
+      fue el resultado inevitable de una directriz específica.
+    </p>
+    <h3>3.2 · No prueba veracidad del contenido</h3>
+    <p>
+      La cadena criptográfica asegura que <strong>nadie alteró el log</strong>. No
+      asegura que el contenido original estuviera libre de sesgos, errores fácticos o
+      alucinaciones.
+    </p>
+    <p><strong>Distinción clave:</strong></p>
+    <ul>
+      <li><strong>Integridad</strong> = "nadie lo cambió después"</li>
+      <li><strong>Veracidad</strong> = "lo que dice es cierto"</li>
+    </ul>
+    <p>
+      KRONOS garantiza lo primero. Lo segundo depende del emisor del contenido original.
+    </p>
+    <h3>3.3 · No prueba model attestation</h3>
+    <p>
+      Sin attestation firmada por el proveedor del modelo (OpenAI, Anthropic, etc.),
+      KRONOS <strong>no puede probar</strong> que el modelo ejecutado fue realmente el
+      que se declara.
+    </p>
+    <p>
+      Puede registrar un hash declarado del modelo. Puede registrar un nombre ("GPT-4").
+      Pero no puede verificar que el binario efectivamente ejecutado sea GPT-4.
+    </p>
+    <p>
+      <strong>Mitigación parcial:</strong> para modelos de pesos abiertos (Llama,
+      Mistral), el hash del modelo se puede calcular y verificar. Para modelos cerrados,
+      esto es imposible hoy.
+    </p>
+    <h3>3.4 · No prueba cadena de custodia del dato original</h3>
+    <p>
+      La prueba de Merkle verifica <strong>inclusión</strong> del dato en un conjunto.
+      No verifica el <strong>origen</strong> del dato.
+    </p>
+    <p>
+      Si alguien inserta un dato falso ANTES de construir el árbol, el árbol será
+      íntegro y matemáticamente correcto — pero contendrá un dato falso.
+    </p>
+    <p><strong>Distinción clave:</strong></p>
+    <ul>
+      <li>
+        <strong>Dato declarado</strong> = aquel que entra al sistema sin verificación
+        externa
+      </li>
+      <li>
+        <strong>Dato verificado</strong> = aquel que viene firmado por una fuente
+        autorizada reconocida
+      </li>
+    </ul>
+    <p>
+      KRONOS audita el primero. El segundo requiere que la fuente firme los datos en
+      origen.
+    </p>
+    <h3>3.5 · No resiste entornos comprometidos sin hardware seguro</h3>
+    <p>
+      Si el navegador del usuario está infectado con malware, todas las operaciones
+      criptográficas son vulnerables. Los hashes, las firmas y los logs se pueden
+      falsificar si el entorno de ejecución está envenenado.
+    </p>
+    <p>
+      <strong>Mitigación:</strong> WebAuthn / Passkeys / Secure Enclave / TPM. La
+      criptografía se ejecuta dentro del chip seguro del dispositivo, fuera del alcance
+      del sistema operativo.
+    </p>
+    <p>
+      <strong>Estado en KRONOS:</strong> pendiente de implementación. Ver sección 6.
+    </p>
+    <h3>3.6 · No previene prompt injection</h3>
+    <p>
+      Si un atacante manipula el contexto de entrada que la IA va a leer (por ejemplo,
+      inyectando instrucciones ocultas en un documento aparentemente legítimo), el
+      Merkle proof de ese conjunto seguirá siendo válido e íntegro — pero el contenido
+      estará envenenado.
+    </p>
+    <p>
+      <strong>Consecuencia:</strong> KRONOS detecta alteraciones
+      <strong>posteriores</strong> al registro. No detecta manipulaciones
+      <strong>anteriores</strong> al registro.
+    </p>
+    <p>
+      <strong>Mitigación parcial:</strong> comparación contra fuente externa firmada por
+      autoridad reconocida. Sin esto, el prompt injection es un vector abierto.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <pre><code class="language-mermaid">graph TD
     A[LO QUE NO PRUEBA] --&gt; B[Causalidad]
     A --&gt; C[Veracidad]
     A --&gt; D[Model attestation]
@@ -202,97 +278,112 @@ vector abierto.</p>
 
     style A fill:#1a0000,stroke:#ff4d6a,stroke-width:2px,color:#FF8FA5
 </code></pre>
-<hr />
-<h2>4 · ALINEACIÓN CON MARCOS DE CUMPLIMIENTO</h2>
-<h3>4.1 · ISO/IEC 42001 (Sistemas de Gestión de IA)</h3>
-<p><strong>Qué exige:</strong> políticas documentadas, roles definidos, análisis
-de riesgos, ciclo de mejora continua, documentación de decisiones.</p>
-<p><strong>Qué aporta KRONOS:</strong></p>
-<ul>
-<li>Los 7 documentos fundacionales (Constitución, Carta, Código,
-  Registro, Visión Económica, Auditoría IA, Guía Auditor) como
-  sistema documental</li>
-<li>El Registro de Ciudadanía como definición de roles</li>
-<li>Los logs encadenados como evidencia de decisiones</li>
-</ul>
-<p><strong>Qué NO aporta KRONOS a ISO 42001:</strong> la norma es de <strong>gestión</strong>,
-no de criptografía. Un auditor de ISO 42001 pedirá manuales de
-política, no Merkle Roots. Son capas complementarias, no
-sustitutivas.</p>
-<h3>4.2 · EU AI Act</h3>
-<p><strong>Qué exige:</strong> clasificación de riesgo, evaluación de conformidad,
-transparencia, supervisión humana, registro de logs.</p>
-<p><strong>Qué aporta KRONOS:</strong></p>
-<ul>
-<li>Clasificación de riesgo por política declarada de cada agente</li>
-<li>Registro de logs firmados con cadena de hashes</li>
-<li>Supervisión humana demostrable (PREVIEW → COMMIT)</li>
-<li>Transparencia vía repositorio público y verificador público</li>
-</ul>
-<p><strong>Qué NO aporta:</strong> evaluación de sesgos del modelo. Eso requiere
-análisis estadístico que excede el alcance de KRONOS.</p>
-<h3>4.3 · NOM-024 (México, sector salud)</h3>
-<p><strong>Qué exige:</strong> trazabilidad de acceso a información clínica,
-autenticación de usuarios, integridad de registros.</p>
-<p><strong>Qué aporta KRONOS:</strong></p>
-<ul>
-<li>Autenticación con llave Ed25519 única por usuario</li>
-<li>Cadena de hashes para integridad</li>
-<li>Anclaje opcional para prueba pública</li>
-</ul>
-<p><strong>Nota:</strong> la aplicación al sector salud requiere cumplimiento
-adicional específico (LFPDPPP, NOM-004). KRONOS aporta la capa
-criptográfica. El resto es gestión documental.</p>
-<h3>4.4 · Distinción cumplimiento vs. técnica</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Aspecto</th>
-<th style="text-align: left;">Cumplimiento</th>
-<th style="text-align: left;">Técnica</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Qué exige</strong></td>
-<td style="text-align: left;">Procesos, roles, políticas</td>
-<td style="text-align: left;">Firmas, hashes, verificación</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Quién audita</strong></td>
-<td style="text-align: left;">Auditor de gestión</td>
-<td style="text-align: left;">Auditor técnico</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Qué entrega KRONOS</strong></td>
-<td style="text-align: left;">Los 7 documentos fundacionales</td>
-<td style="text-align: left;">Los logs, certificados, anclajes</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Frecuencia</strong></td>
-<td style="text-align: left;">Anual / por cambio</td>
-<td style="text-align: left;">Permanente / por acto</td>
-</tr>
-</tbody>
-</table>
-<p>Ambos son necesarios. Ninguno sustituye al otro.</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>5 · CASO DE USO CONCRETO</h2>
-<h3>Escenario: auditar uso de IA comercial en empresa regulada</h3>
-<p><strong>Contexto:</strong> empresa del sector salud en México. Empleados usan
-ChatGPT, Copilot y Claude para asistir decisiones administrativas
-y clínicas.</p>
-<p><strong>Problema:</strong> ante un auditor externo o regulatorio, la empresa
-no puede probar:</p>
-<ul>
-<li>Qué empleado usó IA</li>
-<li>Para qué decisión específica</li>
-<li>Cuándo exactamente</li>
-<li>Si los registros fueron alterados después</li>
-</ul>
-<p><strong>Cómo KRONOS resuelve esto:</strong></p>
-<pre><code class="language-mermaid">flowchart TD
+    <hr />
+    <h2>4 · ALINEACIÓN CON MARCOS DE CUMPLIMIENTO</h2>
+    <h3>4.1 · ISO/IEC 42001 (Sistemas de Gestión de IA)</h3>
+    <p>
+      <strong>Qué exige:</strong> políticas documentadas, roles definidos, análisis de
+      riesgos, ciclo de mejora continua, documentación de decisiones.
+    </p>
+    <p><strong>Qué aporta KRONOS:</strong></p>
+    <ul>
+      <li>
+        Los 7 documentos fundacionales (Constitución, Carta, Código, Registro, Visión
+        Económica, Auditoría IA, Guía Auditor) como sistema documental
+      </li>
+      <li>El Registro de Ciudadanía como definición de roles</li>
+      <li>Los logs encadenados como evidencia de decisiones</li>
+    </ul>
+    <p>
+      <strong>Qué NO aporta KRONOS a ISO 42001:</strong> la norma es de
+      <strong>gestión</strong>, no de criptografía. Un auditor de ISO 42001 pedirá
+      manuales de política, no Merkle Roots. Son capas complementarias, no sustitutivas.
+    </p>
+    <h3>4.2 · EU AI Act</h3>
+    <p>
+      <strong>Qué exige:</strong> clasificación de riesgo, evaluación de conformidad,
+      transparencia, supervisión humana, registro de logs.
+    </p>
+    <p><strong>Qué aporta KRONOS:</strong></p>
+    <ul>
+      <li>Clasificación de riesgo por política declarada de cada agente</li>
+      <li>Registro de logs firmados con cadena de hashes</li>
+      <li>Supervisión humana demostrable (PREVIEW → COMMIT)</li>
+      <li>Transparencia vía repositorio público y verificador público</li>
+    </ul>
+    <p>
+      <strong>Qué NO aporta:</strong> evaluación de sesgos del modelo. Eso requiere
+      análisis estadístico que excede el alcance de KRONOS.
+    </p>
+    <h3>4.3 · NOM-024 (México, sector salud)</h3>
+    <p>
+      <strong>Qué exige:</strong> trazabilidad de acceso a información clínica,
+      autenticación de usuarios, integridad de registros.
+    </p>
+    <p><strong>Qué aporta KRONOS:</strong></p>
+    <ul>
+      <li>Autenticación con llave Ed25519 única por usuario</li>
+      <li>Cadena de hashes para integridad</li>
+      <li>Anclaje opcional para prueba pública</li>
+    </ul>
+    <p>
+      <strong>Nota:</strong> la aplicación al sector salud requiere cumplimiento
+      adicional específico (LFPDPPP, NOM-004). KRONOS aporta la capa criptográfica. El
+      resto es gestión documental.
+    </p>
+    <h3>4.4 · Distinción cumplimiento vs. técnica</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Aspecto</th>
+          <th style="text-align: left">Cumplimiento</th>
+          <th style="text-align: left">Técnica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><strong>Qué exige</strong></td>
+          <td style="text-align: left">Procesos, roles, políticas</td>
+          <td style="text-align: left">Firmas, hashes, verificación</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>Quién audita</strong></td>
+          <td style="text-align: left">Auditor de gestión</td>
+          <td style="text-align: left">Auditor técnico</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>Qué entrega KRONOS</strong></td>
+          <td style="text-align: left">Los 7 documentos fundacionales</td>
+          <td style="text-align: left">Los logs, certificados, anclajes</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>Frecuencia</strong></td>
+          <td style="text-align: left">Anual / por cambio</td>
+          <td style="text-align: left">Permanente / por acto</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Ambos son necesarios. Ninguno sustituye al otro.</p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>5 · CASO DE USO CONCRETO</h2>
+    <h3>Escenario: auditar uso de IA comercial en empresa regulada</h3>
+    <p>
+      <strong>Contexto:</strong> empresa del sector salud en México. Empleados usan
+      ChatGPT, Copilot y Claude para asistir decisiones administrativas y clínicas.
+    </p>
+    <p>
+      <strong>Problema:</strong> ante un auditor externo o regulatorio, la empresa no
+      puede probar:
+    </p>
+    <ul>
+      <li>Qué empleado usó IA</li>
+      <li>Para qué decisión específica</li>
+      <li>Cuándo exactamente</li>
+      <li>Si los registros fueron alterados después</li>
+    </ul>
+    <p><strong>Cómo KRONOS resuelve esto:</strong></p>
+    <pre><code class="language-mermaid">flowchart TD
     A[Empleado usa IA] --&gt;|1| B[Documento o decisión resultante]
     B --&gt;|2| C[Empleado firma con su llave Ed25519]
     C --&gt;|3| D[Frase firmada: '28 sept 2026 14:30 · usé IA para D-42 · hash: a3f9...']
@@ -303,154 +394,199 @@ no puede probar:</p>
     style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
     style G fill:#001a10,stroke:#00cc88,color:#7BFFD4
 </code></pre>
-<p><strong>Lo que el auditor obtiene:</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Verificación</th>
-<th style="text-align: left;">Resultado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">¿Existió la decisión D-42?</td>
-<td style="text-align: left;">✅ Sí, con fecha y hash</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Quién la autorizó?</td>
-<td style="text-align: left;">✅ Empleado X, con llave pública verificable</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Cuándo?</td>
-<td style="text-align: left;">✅ Timestamp ISO 8601 + Unix</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Con qué herramienta?</td>
-<td style="text-align: left;">✅ Declarado por el empleado</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Alguien lo alteró?</td>
-<td style="text-align: left;">✅ No (cadena intacta)</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Qué preguntó a la IA?</td>
-<td style="text-align: left;">🔴 NO — privacidad preservada</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Qué respondió la IA?</td>
-<td style="text-align: left;">🔴 NO — privacidad preservada</td>
-</tr>
-<tr>
-<td style="text-align: left;">¿Fue correcta la respuesta?</td>
-<td style="text-align: left;">🔴 NO — fuera del alcance</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Lo que el auditor NO obtiene (por diseño):</strong></p>
-<ul>
-<li>El prompt original</li>
-<li>La respuesta del modelo</li>
-<li>Los datos del paciente asociados a la consulta</li>
-</ul>
-<p><strong>Privacidad por diseño:</strong> KRONOS prueba que el acto existió sin
-exponer el contenido.</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>6 · MEJORAS PENDIENTES</h2>
-<p>Estas son las áreas que requieren desarrollo futuro para ampliar
-el alcance de auditoría de KRONOS:</p>
-<h3>6.1 · Hardware attestation (WebAuthn / Passkeys)</h3>
-<p><strong>Objetivo:</strong> custodia de la llave privada dentro del chip seguro
-del dispositivo (Secure Enclave, TPM, YubiKey) en lugar de en
-memoria del navegador.</p>
-<p><strong>Beneficio:</strong> resiste entornos comprometidos.</p>
-<p><strong>Estado:</strong> pendiente de implementación.</p>
-<p><strong>Complejidad:</strong> alta. WebAuthn requiere configuración de RP ID y
-dominio propio. <code>github.io</code> no es viable para esto.</p>
-<h3>6.2 · Registro de hash del modelo</h3>
-<p><strong>Objetivo:</strong> registrar el hash del modelo ejecutado cuando sea
-posible (modelos de pesos abiertos).</p>
-<p><strong>Beneficio:</strong> para Llama, Mistral y otros modelos abiertos, se
-puede verificar el binario ejecutado.</p>
-<p><strong>Estado:</strong> pendiente de implementación.</p>
-<h3>6.3 · Cadena de custodia de datos de entrada</h3>
-<p><strong>Objetivo:</strong> verificar que el dato original viene firmado por
-una fuente autorizada, antes de su entrada al árbol de Merkle.</p>
-<p><strong>Beneficio:</strong> cierra el hueco del prompt injection cuando la
-fuente firma.</p>
-<p><strong>Estado:</strong> pendiente de diseño.</p>
-<h3>6.4 · Cola de anclajes pendientes</h3>
-<p><strong>Objetivo:</strong> si Ethereum está congestionado, la transacción se
-encola y se reintenta automáticamente cuando la red se
-descongestiona.</p>
-<p><strong>Beneficio:</strong> resiliencia operativa sin perder registros.</p>
-<p><strong>Estado:</strong> pendiente de implementación.</p>
-<h3>6.5 · Suite de tests automatizados</h3>
-<p><strong>Objetivo:</strong> validar rutinas de hashing, encadenamiento,
-verificación de firmas y guardrails en escenarios límite.</p>
-<p><strong>Beneficio:</strong> garantiza que el código hace lo que dice hacer.</p>
-<p><strong>Estado:</strong> pendiente de implementación (crítico).</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>7 · LO QUE UN AUDITOR DEBE PEDIR</h2>
-<p>Si alguien audita KRONOS —o un sistema construido sobre KRONOS—,
-estas son las preguntas correctas:</p>
-<h3>Preguntas técnicas</h3>
-<ol>
-<li>¿Se puede recalcular el hash de este documento y comparar?</li>
-<li>¿La firma Ed25519 se verifica contra la llave pública registrada?</li>
-<li>¿El log encadenado está intacto desde el bloque génesis?</li>
-<li>¿El anclaje a Ethereum existe y coincide con el hash publicado?</li>
-<li>¿El sellado de tiempo cualificado está activo?</li>
-</ol>
-<h3>Preguntas de gobernanza</h3>
-<ol>
-<li>¿Quién tiene autoridad para modificar la política de un agente?</li>
-<li>¿Qué acciones requieren PREVIEW firmado?</li>
-<li>¿Cómo se revoca a un agente que falla?</li>
-<li>¿Existe registro público de las decisiones tomadas?</li>
-</ol>
-<h3>Preguntas de límites</h3>
-<ol>
-<li>¿Qué NO prueba el sistema?</li>
-<li>¿Cómo se mitiga el prompt injection?</li>
-<li>¿Qué pasa si el navegador está comprometido?</li>
-<li>¿Cómo se verifica que el modelo declarado es el ejecutado?</li>
-</ol>
-<p><strong>Un sistema que no puede responder honestamente las preguntas de
-límites no es apto para auditoría seria.</strong></p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h2>8 · GLOSARIO</h2>
-<p><strong>Anclaje (Anchor):</strong> registro de un hash en una blockchain
-pública para prueba de existencia independiente.</p>
-<p><strong>Cadena de hashes (Hash Chain):</strong> secuencia donde cada entrada
-incluye el hash de la anterior. Detecta cualquier alteración.</p>
-<p><strong>Ed25519:</strong> algoritmo de firma digital de clave pública. Rápido,
-seguro y estándar.</p>
-<p><strong>Merkle Root:</strong> hash raíz de un árbol binario de hashes. Resume
-N documentos en un solo valor verificable.</p>
-<p><strong>Merkle Proof:</strong> prueba matemática de que un dato específico
-está incluido en un árbol de Merkle, sin revelar los demás.</p>
-<p><strong>PREVIEW → COMMIT:</strong> patrón donde una acción crítica requiere
-aprobación explícita antes de ejecutarse.</p>
-<p><strong>Prompt Injection:</strong> ataque donde se manipula el contexto de
-entrada de una IA para alterar su comportamiento.</p>
-<p><strong>SHA-256:</strong> función hash criptográfica. Produce una huella única
-de 256 bits para cualquier entrada.</p>
-<p><strong>TSA (Time Stamp Authority):</strong> servicio que certifica la
-existencia de un documento en una fecha específica.</p>
-<p><strong>eIDAS:</strong> reglamento europeo sobre identificación electrónica y
-servicios de confianza. Da validez transfronteriza a firmas y
-sellados.</p>
-<p><strong>Zero-Knowledge:</strong> propiedad donde se puede probar algo sin
-revelar la información subyacente.</p>
-<p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h1>SISTEMA MERKLE · VERIFICACIÓN</h1>
-<p>Este documento usa <strong>hash SHA-256 individual</strong> por sección.</p>
-<h2>Estructura</h2>
-<pre><code class="language-mermaid">graph TD
+    <p><strong>Lo que el auditor obtiene:</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Verificación</th>
+          <th style="text-align: left">Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">¿Existió la decisión D-42?</td>
+          <td style="text-align: left">✅ Sí, con fecha y hash</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Quién la autorizó?</td>
+          <td style="text-align: left">✅ Empleado X, con llave pública verificable</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Cuándo?</td>
+          <td style="text-align: left">✅ Timestamp ISO 8601 + Unix</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Con qué herramienta?</td>
+          <td style="text-align: left">✅ Declarado por el empleado</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Alguien lo alteró?</td>
+          <td style="text-align: left">✅ No (cadena intacta)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Qué preguntó a la IA?</td>
+          <td style="text-align: left">🔴 NO — privacidad preservada</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Qué respondió la IA?</td>
+          <td style="text-align: left">🔴 NO — privacidad preservada</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">¿Fue correcta la respuesta?</td>
+          <td style="text-align: left">🔴 NO — fuera del alcance</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Lo que el auditor NO obtiene (por diseño):</strong></p>
+    <ul>
+      <li>El prompt original</li>
+      <li>La respuesta del modelo</li>
+      <li>Los datos del paciente asociados a la consulta</li>
+    </ul>
+    <p>
+      <strong>Privacidad por diseño:</strong> KRONOS prueba que el acto existió sin
+      exponer el contenido.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>6 · MEJORAS PENDIENTES</h2>
+    <p>
+      Estas son las áreas que requieren desarrollo futuro para ampliar el alcance de
+      auditoría de KRONOS:
+    </p>
+    <h3>6.1 · Hardware attestation (WebAuthn / Passkeys)</h3>
+    <p>
+      <strong>Objetivo:</strong> custodia de la llave privada dentro del chip seguro del
+      dispositivo (Secure Enclave, TPM, YubiKey) en lugar de en memoria del navegador.
+    </p>
+    <p><strong>Beneficio:</strong> resiste entornos comprometidos.</p>
+    <p><strong>Estado:</strong> pendiente de implementación.</p>
+    <p>
+      <strong>Complejidad:</strong> alta. WebAuthn requiere configuración de RP ID y
+      dominio propio. <code>github.io</code> no es viable para esto.
+    </p>
+    <h3>6.2 · Registro de hash del modelo</h3>
+    <p>
+      <strong>Objetivo:</strong> registrar el hash del modelo ejecutado cuando sea
+      posible (modelos de pesos abiertos).
+    </p>
+    <p>
+      <strong>Beneficio:</strong> para Llama, Mistral y otros modelos abiertos, se puede
+      verificar el binario ejecutado.
+    </p>
+    <p><strong>Estado:</strong> pendiente de implementación.</p>
+    <h3>6.3 · Cadena de custodia de datos de entrada</h3>
+    <p>
+      <strong>Objetivo:</strong> verificar que el dato original viene firmado por una
+      fuente autorizada, antes de su entrada al árbol de Merkle.
+    </p>
+    <p>
+      <strong>Beneficio:</strong> cierra el hueco del prompt injection cuando la fuente
+      firma.
+    </p>
+    <p><strong>Estado:</strong> pendiente de diseño.</p>
+    <h3>6.4 · Cola de anclajes pendientes</h3>
+    <p>
+      <strong>Objetivo:</strong> si Ethereum está congestionado, la transacción se
+      encola y se reintenta automáticamente cuando la red se descongestiona.
+    </p>
+    <p><strong>Beneficio:</strong> resiliencia operativa sin perder registros.</p>
+    <p><strong>Estado:</strong> pendiente de implementación.</p>
+    <h3>6.5 · Suite de tests automatizados</h3>
+    <p>
+      <strong>Objetivo:</strong> validar rutinas de hashing, encadenamiento,
+      verificación de firmas y guardrails en escenarios límite.
+    </p>
+    <p><strong>Beneficio:</strong> garantiza que el código hace lo que dice hacer.</p>
+    <p><strong>Estado:</strong> pendiente de implementación (crítico).</p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>7 · LO QUE UN AUDITOR DEBE PEDIR</h2>
+    <p>
+      Si alguien audita KRONOS —o un sistema construido sobre KRONOS—, estas son las
+      preguntas correctas:
+    </p>
+    <h3>Preguntas técnicas</h3>
+    <ol>
+      <li>¿Se puede recalcular el hash de este documento y comparar?</li>
+      <li>¿La firma Ed25519 se verifica contra la llave pública registrada?</li>
+      <li>¿El log encadenado está intacto desde el bloque génesis?</li>
+      <li>¿El anclaje a Ethereum existe y coincide con el hash publicado?</li>
+      <li>¿El sellado de tiempo cualificado está activo?</li>
+    </ol>
+    <h3>Preguntas de gobernanza</h3>
+    <ol>
+      <li>¿Quién tiene autoridad para modificar la política de un agente?</li>
+      <li>¿Qué acciones requieren PREVIEW firmado?</li>
+      <li>¿Cómo se revoca a un agente que falla?</li>
+      <li>¿Existe registro público de las decisiones tomadas?</li>
+    </ol>
+    <h3>Preguntas de límites</h3>
+    <ol>
+      <li>¿Qué NO prueba el sistema?</li>
+      <li>¿Cómo se mitiga el prompt injection?</li>
+      <li>¿Qué pasa si el navegador está comprometido?</li>
+      <li>¿Cómo se verifica que el modelo declarado es el ejecutado?</li>
+    </ol>
+    <p>
+      <strong
+        >Un sistema que no puede responder honestamente las preguntas de límites no es
+        apto para auditoría seria.</strong
+      >
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2>8 · GLOSARIO</h2>
+    <p>
+      <strong>Anclaje (Anchor):</strong> registro de un hash en una blockchain pública
+      para prueba de existencia independiente.
+    </p>
+    <p>
+      <strong>Cadena de hashes (Hash Chain):</strong> secuencia donde cada entrada
+      incluye el hash de la anterior. Detecta cualquier alteración.
+    </p>
+    <p>
+      <strong>Ed25519:</strong> algoritmo de firma digital de clave pública. Rápido,
+      seguro y estándar.
+    </p>
+    <p>
+      <strong>Merkle Root:</strong> hash raíz de un árbol binario de hashes. Resume N
+      documentos en un solo valor verificable.
+    </p>
+    <p>
+      <strong>Merkle Proof:</strong> prueba matemática de que un dato específico está
+      incluido en un árbol de Merkle, sin revelar los demás.
+    </p>
+    <p>
+      <strong>PREVIEW → COMMIT:</strong> patrón donde una acción crítica requiere
+      aprobación explícita antes de ejecutarse.
+    </p>
+    <p>
+      <strong>Prompt Injection:</strong> ataque donde se manipula el contexto de entrada
+      de una IA para alterar su comportamiento.
+    </p>
+    <p>
+      <strong>SHA-256:</strong> función hash criptográfica. Produce una huella única de
+      256 bits para cualquier entrada.
+    </p>
+    <p>
+      <strong>TSA (Time Stamp Authority):</strong> servicio que certifica la existencia
+      de un documento en una fecha específica.
+    </p>
+    <p>
+      <strong>eIDAS:</strong> reglamento europeo sobre identificación electrónica y
+      servicios de confianza. Da validez transfronteriza a firmas y sellados.
+    </p>
+    <p>
+      <strong>Zero-Knowledge:</strong> propiedad donde se puede probar algo sin revelar
+      la información subyacente.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1>SISTEMA MERKLE · VERIFICACIÓN</h1>
+    <p>Este documento usa <strong>hash SHA-256 individual</strong> por sección.</p>
+    <h2>Estructura</h2>
+    <pre><code class="language-mermaid">graph TD
     R[Merkle Root Auditoría IA] --&gt; A[Secciones 1-3]
     R --&gt; B[Secciones 4-5]
     R --&gt; C[Secciones 6-8]
@@ -464,57 +600,76 @@ revelar la información subyacente.</p>
 
     style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
 </code></pre>
-<p><strong>Hash del sistema Merkle:</strong> <code>[se calcula al firmar]</code></p>
-<hr />
-<h1>FIRMA DEL FUNDADOR</h1>
-<p>Firmado en Toluca, Estado de México. La fecha exacta de firma y
-anclaje se registra automáticamente en el acta fundacional en el
-momento del acto criptográfico.</p>
-<p><strong>Marco Antonio Rojas Valdovinos</strong>
-Fundador · Ciudad KRONOS · Plaza 000
-Email verificado: marco.a.rojas.v@hotmail.com</p>
-<ul>
-<li><strong>Hash del documento completo:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Merkle Root:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Firma Ed25519:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Clave pública Ed25519:</strong> <code>[se calcula al firmar]</code></li>
-<li><strong>Anclaje Ethereum:</strong> <code>[se registra al anclar]</code></li>
-<li><strong>Tx hash:</strong> <code>[se registra al anclar]</code></li>
-<li><strong>Sello Notario Tonal:</strong> <code>[se registra al sellar]</code></li>
-</ul>
-<hr />
-<p><strong>Certificación del Notario Tonal:</strong></p>
-<blockquote>
-<p><em>"Certifico que este documento declara sus límites antes que
-sus capacidades. Un sistema que reconoce lo que no puede
-probar es más confiable que uno que promete todo."</em></p>
-<p><strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong>
-Hash del sello: <code>[se registra al sellar]</code></p>
-</blockquote>
-<hr />
-<h2>RELACIÓN CON OTROS DOCUMENTOS</h2>
-<p>Este documento de Auditoría es el sexto de los siete documentos
-fundacionales:</p>
-<ol>
-<li><strong>Constitución de KRONOS</strong> v1.0 — estructura del poder</li>
-<li><strong>Carta de Derechos del Ciudadano</strong> v1.0 — derechos y garantías</li>
-<li><strong>Código de Convivencia</strong> v1.0 — proceso y sanciones</li>
-<li><strong>Registro de Ciudadanía</strong> v1.0 — quién es quién</li>
-<li><strong>Visión Económica (KRO)</strong> v1.0 — economía de servicios</li>
-<li><strong>Auditoría y Gobernanza de IA</strong> v1.0 — este documento</li>
-<li><strong>Guía para Auditores</strong> v1.0 — verificación de paquetes</li>
-</ol>
-<p>Los siete se firman juntos, se anclan juntos y se respetan juntos.</p>
-<hr />
-<pre><code>○_●
+    <p><strong>Hash del sistema Merkle:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1>FIRMA DEL FUNDADOR</h1>
+    <p>
+      Firmado en Toluca, Estado de México. La fecha exacta de firma y anclaje se
+      registra automáticamente en el acta fundacional en el momento del acto
+      criptográfico.
+    </p>
+    <p>
+      <strong>Marco Antonio Rojas Valdovinos</strong> Fundador · Ciudad KRONOS · Plaza
+      000 Email verificado: marco.a.rojas.v@hotmail.com
+    </p>
+    <ul>
+      <li>
+        <strong>Hash del documento completo:</strong>
+        <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Merkle Root:</strong> <code>[se calcula al firmar]</code></li>
+      <li><strong>Firma Ed25519:</strong> <code>[se calcula al firmar]</code></li>
+      <li>
+        <strong>Clave pública Ed25519:</strong> <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Anclaje Ethereum:</strong> <code>[se registra al anclar]</code></li>
+      <li><strong>Tx hash:</strong> <code>[se registra al anclar]</code></li>
+      <li>
+        <strong>Sello Notario Tonal:</strong> <code>[se registra al sellar]</code>
+      </li>
+    </ul>
+    <hr />
+    <p><strong>Certificación del Notario Tonal:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Certifico que este documento declara sus límites antes que sus capacidades.
+          Un sistema que reconoce lo que no puede probar es más confiable que uno que
+          promete todo."</em
+        >
+      </p>
+      <p>
+        <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong> Hash del
+        sello: <code>[se registra al sellar]</code>
+      </p>
+    </blockquote>
+    <hr />
+    <h2>RELACIÓN CON OTROS DOCUMENTOS</h2>
+    <p>
+      Este documento de Auditoría es el sexto de los siete documentos fundacionales:
+    </p>
+    <ol>
+      <li><strong>Constitución de KRONOS</strong> v1.0 — estructura del poder</li>
+      <li>
+        <strong>Carta de Derechos del Ciudadano</strong> v1.0 — derechos y garantías
+      </li>
+      <li><strong>Código de Convivencia</strong> v1.0 — proceso y sanciones</li>
+      <li><strong>Registro de Ciudadanía</strong> v1.0 — quién es quién</li>
+      <li><strong>Visión Económica (KRO)</strong> v1.0 — economía de servicios</li>
+      <li><strong>Auditoría y Gobernanza de IA</strong> v1.0 — este documento</li>
+      <li><strong>Guía para Auditores</strong> v1.0 — verificación de paquetes</li>
+    </ol>
+    <p>Los siete se firman juntos, se anclan juntos y se respetan juntos.</p>
+    <hr />
+    <pre><code>○_●
 ◢◤◥◣
 ◥◣◢◤
 51% HUMANO · 49% IA · 100% REAL
 &quot;El legado no se hereda. Se firma.&quot;
 KRONOS · Ciudad Digital · Auditoría y Gobernanza de IA · v1.0 · 2026
 </code></pre>
-<hr />
-<p><strong>FIN DEL DOCUMENTO DE AUDITORÍA v1.0</strong></p>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+    <hr />
+    <p><strong>FIN DEL DOCUMENTO DE AUDITORÍA v1.0</strong></p>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

@@ -7,15 +7,16 @@
 
 # 💰 COMISIONES DEL PROGRAMA
 
-### *51% humano · 49% FLAILP*
+### _51% humano · 49% FLAILP_
 
-### *"Toda comisión respeta el pacto."*
+### _"Toda comisión respeta el pacto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O M I S I O N E S  ·  ◯_●                         ║
@@ -29,6 +30,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -60,16 +62,16 @@ Distribución:
 ## 🜄 Formato de pago
 
 ```yaml
-- id: "PAY-2026-10-001"
-  afiliado: "Empresa XYZ"
-  periodo: "2026-10"
+- id: 'PAY-2026-10-001'
+  afiliado: 'Empresa XYZ'
+  periodo: '2026-10'
   venta_total: 100000
-  moneda: "MXN"
+  moneda: 'MXN'
   distribucion:
     afiliado: 51000
     flailp: 49000
-  tx_hash: "0x..."
-  sellado: "◯_● · 51/49/100"
+  tx_hash: '0x...'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

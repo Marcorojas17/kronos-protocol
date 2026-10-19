@@ -23,15 +23,16 @@ de los Particulares (LFPDPPP, México).
 
 ## 3. Datos procesados
 
-| Categoría | Ejemplos | Finalidad |
-|---|---|---|
-| Identificativos | Email, nombre, país | Cuenta |
-| De contacto | Email, teléfono | Comunicación |
-| De facturación | RFC, dirección fiscal | Facturación |
-| De uso | IP, user agent, endpoints | Seguridad |
-| De agentes | DID, contratos, acciones | Servicio |
+| Categoría       | Ejemplos                  | Finalidad    |
+| --------------- | ------------------------- | ------------ |
+| Identificativos | Email, nombre, país       | Cuenta       |
+| De contacto     | Email, teléfono           | Comunicación |
+| De facturación  | RFC, dirección fiscal     | Facturación  |
+| De uso          | IP, user agent, endpoints | Seguridad    |
+| De agentes      | DID, contratos, acciones  | Servicio     |
 
 **NO se procesan:**
+
 - Datos de salud
 - Datos biométricos
 - Datos de menores
@@ -59,15 +60,15 @@ Atribución se compromete a:
 
 Atribución usa los siguientes subencargados:
 
-| Subencargado | País | Servicio |
-|---|---|---|
-| Railway | USA | Hosting |
-| Cloudflare | USA | CDN + DDoS |
-| GitHub | USA | Repositorio |
-| Ethereum Foundation | Global | Blockchain |
-| Arweave | Global | Almacenamiento |
-| Mercado Pago | México | Pagos |
-| DigiCert | USA | TSA |
+| Subencargado        | País   | Servicio       |
+| ------------------- | ------ | -------------- |
+| Railway             | USA    | Hosting        |
+| Cloudflare          | USA    | CDN + DDoS     |
+| GitHub              | USA    | Repositorio    |
+| Ethereum Foundation | Global | Blockchain     |
+| Arweave             | Global | Almacenamiento |
+| Mercado Pago        | México | Pagos          |
+| DigiCert            | USA    | TSA            |
 
 Todos cumplen GDPR o tienen SCCs firmadas.
 
@@ -127,6 +128,7 @@ En caso de brecha, Atribución notifica al Responsable:
   - Recomendaciones.
 
 El Responsable notifica a las autoridades si aplica:
+
 - **GDPR:** 72 horas.
 - **LFPDPPP:** 72 horas.
 
@@ -137,6 +139,7 @@ El Responsable notifica a las autoridades si aplica:
 Este DPA es efectivo desde la firma del contrato principal.
 
 Termina cuando:
+
 - El contrato principal termina.
 - El Responsable solicita cancelación.
 
@@ -172,6 +175,7 @@ Atribución responde por daños derivados de:
 ## 13. Ley aplicable
 
 Este DPA se rige por:
+
 - **GDPR** (si el Responsable está en la UE).
 - **LFPDPPP** (si el Responsable está en México).
 - **Leyes del Estado de México** (para disputas).
@@ -182,26 +186,26 @@ Este DPA se rige por:
 
 ### Ubicación de datos
 
-| Dato | Ubicación | Cifrado |
-|---|---|---|
-| Cuenta | Postgres (Railway) | AES-256-GCM |
-| Contraseñas | Argon2id hash | — |
-| API keys | SHA-256 hash | — |
-| Logs | Railway + IPFS | AES-256-GCM |
-| Certificados | IPFS + Arweave | Firma + hash |
-| Blockchain | Ethereum | Público (solo hash) |
+| Dato         | Ubicación          | Cifrado             |
+| ------------ | ------------------ | ------------------- |
+| Cuenta       | Postgres (Railway) | AES-256-GCM         |
+| Contraseñas  | Argon2id hash      | —                   |
+| API keys     | SHA-256 hash       | —                   |
+| Logs         | Railway + IPFS     | AES-256-GCM         |
+| Certificados | IPFS + Arweave     | Firma + hash        |
+| Blockchain   | Ethereum           | Público (solo hash) |
 
 ### Retención
 
-| Dato | Retención |
-|---|---|
-| Cuenta activa | Mientras dure |
-| Post-cancelación | 30 días |
-| Facturación | 10 años (legal) |
-| Logs de acceso | 365 días |
-| Logs admin | 5 años |
-| Certificados | Permanente |
-| Blockchain | Permanente |
+| Dato             | Retención       |
+| ---------------- | --------------- |
+| Cuenta activa    | Mientras dure   |
+| Post-cancelación | 30 días         |
+| Facturación      | 10 años (legal) |
+| Logs de acceso   | 365 días        |
+| Logs admin       | 5 años          |
+| Certificados     | Permanente      |
+| Blockchain       | Permanente      |
 
 ---
 

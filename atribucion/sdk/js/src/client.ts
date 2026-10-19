@@ -25,10 +25,7 @@
  *   });
  */
 
-import {
-  signHybridPqcPlaceholder,
-  signPayload,
-} from "./crypto.js";
+import { signHybridPqcPlaceholder, signPayload } from './crypto.js';
 
 import type {
   ActionResponse,
@@ -38,9 +35,9 @@ import type {
   ProofResponse,
   RecordActionInput,
   RegisterAgentInput,
-} from "./types.js";
+} from './types.js';
 
-const DEFAULT_BASE_URL = "https://api.atribucion.io";
+const DEFAULT_BASE_URL = 'https://api.atribucion.io';
 const DEFAULT_TIMEOUT = 30_000;
 
 export class AtribucionClient {
@@ -50,19 +47,17 @@ export class AtribucionClient {
 
   constructor(options: ClientOptions) {
     if (!options.apiKey) {
-      throw new Error("apiKey es obligatorio");
+      throw new Error('apiKey es obligatorio');
     }
     this.apiKey = options.apiKey;
-    this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, "");
+    this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, '');
     this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT;
   }
 
   // ─── AGENTES ─────────────────────────────────────────────────
 
-  async registerAgent(
-    input: RegisterAgentInput
-  ): Promise<AgentRegistrationResponse> {
-    const response = await this.request("POST", "/v1/agents", {
+  async registerAgent(input: RegisterAgentInput): Promise<AgentRegistrationResponse> {
+    const response = await this.request('POST', '/v1/agents', {
       name: input.name,
       autonomy_level: input.autonomyLevel,
       proveedor_modelo: input.proveedorModelo,
@@ -75,7 +70,7 @@ export class AtribucionClient {
   }
 
   async getAgent(agentId: string): Promise<AgentInfo> {
-    return (await this.request("GET", `/v1/agents/${agentId}`)) as AgentInfo;
+    return (await this.request('GET', `/v1/agents/${agentId}`)) as AgentInfo;
   }
 
   // ─── ACCIONES ────────────────────────────────────────────────
@@ -93,27 +88,19 @@ export class AtribucionClient {
     const sigClassic = signPayload(input.privateKeyPem, payload);
     const sigPqc = signHybridPqcPlaceholder(payload);
 
-    return (await this.request(
-      "POST",
-      `/v1/agents/${input.agentId}/actions`,
-      payload,
-      {
-        "X-Agent-Signature": sigClassic,
-        "X-Agent-Signature-PQC": sigPqc,
-      }
-    )) as ActionResponse;
+    return (await this.request('POST', `/v1/agents/${input.agentId}/actions`, payload, {
+      'X-Agent-Signature': sigClassic,
+      'X-Agent-Signature-PQC': sigPqc,
+    })) as ActionResponse;
   }
 
   // ─── VERIFICACIÓN ────────────────────────────────────────────
 
   async verifyCertificate(certificateId: string): Promise<ProofResponse> {
-    const response = await fetch(
-      `${this.baseUrl}/v1/proofs/${certificateId}`,
-      {
-        method: "GET",
-        signal: AbortSignal.timeout(this.timeoutMs),
-      }
-    );
+    const response = await fetch(`${this.baseUrl}/v1/proofs/${certificateId}`, {
+      method: 'GET',
+      signal: AbortSignal.timeout(this.timeoutMs),
+    });
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
@@ -126,21 +113,18 @@ export class AtribucionClient {
   // ─── REPORTES ────────────────────────────────────────────────
 
   async getMonthlyReport(period: string): Promise<Record<string, unknown>> {
-    return (await this.request(
-      "GET",
-      `/v1/reports/${period}`
-    )) as Record<string, unknown>;
+    return (await this.request('GET', `/v1/reports/${period}`)) as Record<
+      string,
+      unknown
+    >;
   }
 
   async downloadMonthlyReportPdf(period: string): Promise<Uint8Array> {
-    const response = await fetch(
-      `${this.baseUrl}/v1/reports/${period}.pdf`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${this.apiKey}` },
-        signal: AbortSignal.timeout(this.timeoutMs),
-      }
-    );
+    const response = await fetch(`${this.baseUrl}/v1/reports/${period}.pdf`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${this.apiKey}` },
+      signal: AbortSignal.timeout(this.timeoutMs),
+    });
 
     if (!response.ok) {
       throw new Error(`Error HTTP ${response.status}`);
@@ -155,14 +139,14 @@ export class AtribucionClient {
     method: string,
     path: string,
     body?: unknown,
-    extraHeaders?: Record<string, string>
+    extraHeaders?: Record<string, string>,
   ): Promise<unknown> {
     const response = await fetch(`${this.baseUrl}${path}`, {
       method,
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
-        "Content-Type": "application/json",
-        "User-Agent": "atribucion-sdk-js/0.1.0",
+        'Content-Type': 'application/json',
+        'User-Agent': 'atribucion-sdk-js/0.1.0',
         ...extraHeaders,
       },
       body: body ? JSON.stringify(body) : undefined,
@@ -172,7 +156,7 @@ export class AtribucionClient {
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
       throw new Error(
-        error.detail ?? `Error HTTP ${response.status} en ${method} ${path}`
+        error.detail ?? `Error HTTP ${response.status} en ${method} ${path}`,
       );
     }
 
@@ -180,22 +164,22 @@ export class AtribucionClient {
   }
 }
 
-RUTA 
+RUTA;
 
-sdk/js/src/index.ts
+sdk / js / src / index.ts;
 
 /**
  * Atribución SDK — Entry point.
  */
 
-export { AtribucionClient } from "./client.js";
+export { AtribucionClient } from './client.js';
 export {
   canonicalJson,
   canonicalBytes,
   signPayload,
   verifySignature,
   signHybridPqcPlaceholder,
-} from "./crypto.js";
+} from './crypto.js';
 
 export type {
   ActionResponse,
@@ -208,6 +192,6 @@ export type {
   ProveedorModelo,
   RecordActionInput,
   RegisterAgentInput,
-} from "./types.js";
+} from './types.js';
 
-export const VERSION = "0.1.0";
+export const VERSION = '0.1.0';

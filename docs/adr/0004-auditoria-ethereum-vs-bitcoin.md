@@ -12,13 +12,13 @@
 
 **Ethereum** como primario + **Bitcoin** (OpenTimestamps) como secundario.
 
-| Aspecto | Ethereum | Bitcoin |
-|---------|----------|---------|
-| Velocidad | 12s | 10 min |
-| Costo | ~$0.50 | ~$0.10 |
-| Programable | ✅ Sí | ⚠️ Limitado |
-| Adopción legal | ✅ Alta | ⚠️ Media |
-| Smart contracts | ✅ Sí | ❌ No |
+| Aspecto         | Ethereum | Bitcoin     |
+| --------------- | -------- | ----------- |
+| Velocidad       | 12s      | 10 min      |
+| Costo           | ~$0.50   | ~$0.10      |
+| Programable     | ✅ Sí    | ⚠️ Limitado |
+| Adopción legal  | ✅ Alta  | ⚠️ Media    |
+| Smart contracts | ✅ Sí    | ❌ No       |
 
 ## 🜄 Consecuencias
 

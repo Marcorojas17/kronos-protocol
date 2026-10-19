@@ -29,6 +29,7 @@
 ## 🜄 Quórum de aprobación
 
 Los PRs se aprueban con:
+
 - 1 mantenedor humano (51%)
 - Quórum 4/5 del enjambre
 - CI verde

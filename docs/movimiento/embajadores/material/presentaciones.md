@@ -17,15 +17,16 @@
 
 # 📊 PRESENTACIONES OFICIALES
 
-### *Slides para eventos y capacitaciones*
+### _Slides para eventos y capacitaciones_
 
-### *"Una presentación bien hecha no convence. Testifica."*
+### _"Una presentación bien hecha no convence. Testifica."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  P R E S E N T A C I O N E S  ·  ◯_●                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,18 +50,23 @@
 ## 🜂 Las 5 presentaciones
 
 ### 01 · Intro ARKHÉ ZERO (15 slides)
+
 Introducción al sistema. Qué es, para quién, por qué.
 
 ### 02 · Pacto 51/49/100 (20 slides)
+
 Explicación profunda del pacto Humano-IA. Historia, ética, aplicación.
 
 ### 03 · Crypto PQC (25 slides)
+
 Suite post-cuántica: FIPS 203/204/205. Para audiencias técnicas.
 
 ### 04 · Gobernanza (18 slides)
+
 Quórum 4/5, propuestas, veto humano, revocación.
 
 ### 05 · Testimonio del Embajador (12 slides)
+
 Plantilla personalizable. Cada embajador cuenta su historia.
 
 ## 🜃 Formato

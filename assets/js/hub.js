@@ -9,30 +9,35 @@
   // ── Reveal on scroll ─────────────────────────────────────────
   function initReveal() {
     if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.world, .capa-card, .portal-card')
-        .forEach(el => el.classList.add('on'));
+      document
+        .querySelectorAll('.world, .capa-card, .portal-card')
+        .forEach((el) => el.classList.add('on'));
       return;
     }
 
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          en.target.classList.add('on');
-          io.unobserve(en.target);
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -60px 0px'
-    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('on');
+            io.unobserve(en.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -60px 0px',
+      },
+    );
 
-    document.querySelectorAll('.world, .capa-card, .portal-card')
-      .forEach(el => io.observe(el));
+    document
+      .querySelectorAll('.world, .capa-card, .portal-card')
+      .forEach((el) => io.observe(el));
   }
 
   // ── Stagger de cards ─────────────────────────────────────────
   function initStagger() {
-    document.querySelectorAll('.capas-grid').forEach(grid => {
+    document.querySelectorAll('.capas-grid').forEach((grid) => {
       grid.querySelectorAll('.capa-card').forEach((card, i) => {
         card.style.transitionDelay = `${i * 40}ms`;
       });

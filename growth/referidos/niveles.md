@@ -7,15 +7,16 @@
 
 # 🪜 NIVELES DE REFERIDOR
 
-### *De iniciador a founder-referidor*
+### _De iniciador a founder-referidor_
 
-### *"El nivel no se pide. Se refiere."*
+### _"El nivel no se pide. Se refiere."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  N I V E L E S  ·  ◯_●                               ║
@@ -29,6 +30,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -38,18 +40,23 @@
 ## 🜂 Los 5 niveles
 
 ### ◉ iniciador (1-5 referidos)
+
 Primer nivel. Reconocimiento público básico.
 
 ### ◉◉ conector (6-20 referidos)
+
 Presupuesto simbólico. Voz parcial en gobernanza.
 
 ### ◉◉◉ influencer (21-50 referidos)
+
 Presupuesto ampliado. Liderazgo de referidos.
 
 ### ◉◉◉◉ embajador-ref (51-100 referidos)
+
 Candidato natural a Embajador E-1+. Voz total.
 
 ### ★ founder-ref (101+ referidos)
+
 Reconocimiento especial. Posible embajador global.
 
 ## 🜃 Progresión

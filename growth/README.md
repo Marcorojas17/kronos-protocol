@@ -17,15 +17,16 @@
 
 # 🌱 PROGRAMAS DE CRECIMIENTO
 
-### *Crecer sin corromperse*
+### _Crecer sin corromperse_
 
-### *"El crecimiento no se fuerza. Se atrae."*
+### _"El crecimiento no se fuerza. Se atrae."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  G R O W T H  ·  ◯_●                                 ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -64,15 +66,19 @@ expandir el movimiento **sin comprometer el pacto 51/49/100**.
 ## 🜃 Los 4 programas
 
 ### 🔗 Referidos
+
 Cada miembro puede referir nuevos testigos. Recompensas por referidos verificados.
 
 ### 🔒 Beta Privada
+
 Acceso anticipado a nuevas funcionalidades. Invitación por referidos o mérito.
 
 ### 💼 Afiliados
+
 Programa comercial para quienes quieran usar ARKHÉ ZERO con licencia LGU.
 
 ### 🤝 Partnerships
+
 Alianzas con universidades, notarías, gestorías, abogados, museos, archivos nacionales.
 
 ## 🜄 Reglas

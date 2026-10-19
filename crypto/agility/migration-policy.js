@@ -12,13 +12,13 @@ import { REGISTRY, STATUS } from './algorithm-registry.js';
 export const SEAL = '◯_● · 51/49/100';
 
 export const MIGRACIONES = Object.freeze({
-  'rsa-2048':   'ml-dsa-87',
-  'rsa-4096':   'ml-dsa-87',
+  'rsa-2048': 'ml-dsa-87',
+  'rsa-4096': 'ml-dsa-87',
   'ecdsa-p256': 'ml-dsa-65',
   'ecdsa-p384': 'ml-dsa-87',
-  'sha256':     'sha3-512',
-  'md5':        'sha3-512',
-  'sha1':       'sha3-512',
+  sha256: 'sha3-512',
+  md5: 'sha3-512',
+  sha1: 'sha3-512',
 });
 
 export const POLITICA = Object.freeze({
@@ -52,7 +52,8 @@ export function planMigracion(algoritmo) {
 
 export function listarMigraciones() {
   return Object.entries(MIGRACIONES).map(([from, to]) => ({
-    from, to,
+    from,
+    to,
     estado: REGISTRY[from]?.status || 'desconocido',
   }));
 }

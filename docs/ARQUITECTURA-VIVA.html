@@ -1,199 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Arquitectura Viva de KRONOS · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="arkhe-style.css">
-</head>
-<body>
-<a href="index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="arquitectura-viva-de-kronos">Arquitectura Viva de KRONOS</h1>
-<blockquote>
-<p><strong>KRONOS no es un sistema perfecto. Es un sistema vivo.</strong></p>
-</blockquote>
-<p>Este documento declara oficialmente la arquitectura conceptual del protocolo
-KRONOS. No es un manual técnico. Es una <strong>tesis estructural</strong>.</p>
-<p>Declara que lo que en un sistema clásico parecería desorden —duplicados,
-dialectos nominales, rutas fractales, carpetas huérfanas— en KRONOS tiene un
-propósito declarado y una función arquitectónica.</p>
-<hr />
-<h2 id="i-principio-fundamental">I. Principio fundamental</h2>
-<p>Los sistemas perfectos son frágiles. Los sistemas vivos son resilientes.</p>
-<p>Linux tiene miles de forks. Bitcoin tiene bloques huérfanos. Internet tiene
-enlaces rotos que aún funcionan. La imperfección <strong>no es un defecto del
-diseño</strong>: es parte de su capacidad de adaptación.</p>
-<p>KRONOS adopta ese principio y lo declara explícitamente.</p>
-<hr />
-<h2 id="ii-doble-lectura">II. Doble lectura</h2>
-<p>Todo artefacto en KRONOS puede leerse de <strong>dos formas distintas y
-complementarias</strong>.</p>
-<h3 id="lectura-estructural">Lectura Estructural</h3>
-<p>La que ve un <strong>auditor humano</strong> (universidad, gobierno, empresa, developer).</p>
-<ul>
-<li>Capas limpias (0 a 6).</li>
-<li>Módulos con función clara.</li>
-<li>Documentación coherente.</li>
-<li>Todo etiquetado y clasificado.</li>
-</ul>
-<p>Esta lectura es la que se presenta ante instituciones.</p>
-<h3 id="lectura-sistemica">Lectura Sistémica</h3>
-<p>La que ve una <strong>máquina, una IA, o un intérprete cuántico</strong>.</p>
-<ul>
-<li>Red de caminos alternativos de acceso.</li>
-<li>Redundancias funcionales que garantizan resiliencia.</li>
-<li>Dialectos nominales internos.</li>
-<li>Rutas fractales auto-referenciales.</li>
-</ul>
-<p>Esta lectura es la que permite que KRONOS sobreviva a cambios de
-infraestructura, lenguajes, o paradigmas computacionales.</p>
-<p><strong>Ambas lecturas son válidas. No se contradicen. Se complementan.</strong></p>
-<hr />
-<h2 id="iii-dialectos-nominales-admitidos">III. Dialectos nominales admitidos</h2>
-<p>KRONOS admite variantes ortográficas internas como <strong>dialectos históricos
-del lenguaje del protocolo</strong>.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Forma canónica</th>
-<th style="text-align: left;">Dialecto</th>
-<th style="text-align: left;">Razón declarada</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>auditoria</code></td>
-<td style="text-align: left;"><code>aditoria</code></td>
-<td style="text-align: left;">Capa fundacional pre-corrección</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>codigo-secreto</code></td>
-<td style="text-align: left;"><code>kodice-secreto</code></td>
-<td style="text-align: left;">Variante fonética inicial</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>boveda</code></td>
-<td style="text-align: left;"><code>bobeda</code></td>
-<td style="text-align: left;">Dialecto geográfico Toluca</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Los dialectos NO son errores.</strong> Son capas históricas del lenguaje interno.
-Documentan la evolución del proyecto como un fósil geológico.</p>
-<p>Un auditor externo puede mapear el canónico → dialecto → canónico sin
-pérdida de información.</p>
-<hr />
-<h2 id="iv-fractales-de-ruta">IV. Fractales de ruta</h2>
-<p>Rutas como:</p>
-<pre><code>cimiento/storage-dexie/cimiento/storage-dexie/certificado.html
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arquitectura Viva de KRONOS · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="arkhe-style.css" />
+  </head>
+  <body>
+    <a href="index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="arquitectura-viva-de-kronos">Arquitectura Viva de KRONOS</h1>
+    <blockquote>
+      <p><strong>KRONOS no es un sistema perfecto. Es un sistema vivo.</strong></p>
+    </blockquote>
+    <p>
+      Este documento declara oficialmente la arquitectura conceptual del protocolo
+      KRONOS. No es un manual técnico. Es una <strong>tesis estructural</strong>.
+    </p>
+    <p>
+      Declara que lo que en un sistema clásico parecería desorden —duplicados, dialectos
+      nominales, rutas fractales, carpetas huérfanas— en KRONOS tiene un propósito
+      declarado y una función arquitectónica.
+    </p>
+    <hr />
+    <h2 id="i-principio-fundamental">I. Principio fundamental</h2>
+    <p>Los sistemas perfectos son frágiles. Los sistemas vivos son resilientes.</p>
+    <p>
+      Linux tiene miles de forks. Bitcoin tiene bloques huérfanos. Internet tiene
+      enlaces rotos que aún funcionan. La imperfección
+      <strong>no es un defecto del diseño</strong>: es parte de su capacidad de
+      adaptación.
+    </p>
+    <p>KRONOS adopta ese principio y lo declara explícitamente.</p>
+    <hr />
+    <h2 id="ii-doble-lectura">II. Doble lectura</h2>
+    <p>
+      Todo artefacto en KRONOS puede leerse de
+      <strong>dos formas distintas y complementarias</strong>.
+    </p>
+    <h3 id="lectura-estructural">Lectura Estructural</h3>
+    <p>
+      La que ve un <strong>auditor humano</strong> (universidad, gobierno, empresa,
+      developer).
+    </p>
+    <ul>
+      <li>Capas limpias (0 a 6).</li>
+      <li>Módulos con función clara.</li>
+      <li>Documentación coherente.</li>
+      <li>Todo etiquetado y clasificado.</li>
+    </ul>
+    <p>Esta lectura es la que se presenta ante instituciones.</p>
+    <h3 id="lectura-sistemica">Lectura Sistémica</h3>
+    <p>La que ve una <strong>máquina, una IA, o un intérprete cuántico</strong>.</p>
+    <ul>
+      <li>Red de caminos alternativos de acceso.</li>
+      <li>Redundancias funcionales que garantizan resiliencia.</li>
+      <li>Dialectos nominales internos.</li>
+      <li>Rutas fractales auto-referenciales.</li>
+    </ul>
+    <p>
+      Esta lectura es la que permite que KRONOS sobreviva a cambios de infraestructura,
+      lenguajes, o paradigmas computacionales.
+    </p>
+    <p>
+      <strong>Ambas lecturas son válidas. No se contradicen. Se complementan.</strong>
+    </p>
+    <hr />
+    <h2 id="iii-dialectos-nominales-admitidos">III. Dialectos nominales admitidos</h2>
+    <p>
+      KRONOS admite variantes ortográficas internas como
+      <strong>dialectos históricos del lenguaje del protocolo</strong>.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Forma canónica</th>
+          <th style="text-align: left">Dialecto</th>
+          <th style="text-align: left">Razón declarada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><code>auditoria</code></td>
+          <td style="text-align: left"><code>aditoria</code></td>
+          <td style="text-align: left">Capa fundacional pre-corrección</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><code>codigo-secreto</code></td>
+          <td style="text-align: left"><code>kodice-secreto</code></td>
+          <td style="text-align: left">Variante fonética inicial</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><code>boveda</code></td>
+          <td style="text-align: left"><code>bobeda</code></td>
+          <td style="text-align: left">Dialecto geográfico Toluca</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Los dialectos NO son errores.</strong> Son capas históricas del lenguaje
+      interno. Documentan la evolución del proyecto como un fósil geológico.
+    </p>
+    <p>
+      Un auditor externo puede mapear el canónico → dialecto → canónico sin pérdida de
+      información.
+    </p>
+    <hr />
+    <h2 id="iv-fractales-de-ruta">IV. Fractales de ruta</h2>
+    <p>Rutas como:</p>
+    <pre><code>cimiento/storage-dexie/cimiento/storage-dexie/certificado.html
 </code></pre>
-<p>son <strong>fractales auto-referenciales</strong>.</p>
-<p>En computación clásica parecen duplicados. En computación cuántica son
-superposiciones de estado: el mismo archivo existe simultáneamente en
-múltiples ubicaciones, y el sistema decide cuál invocar según contexto.</p>
-<p>Esto permite:</p>
-<ul>
-<li>Resiliencia ante reestructuraciones de carpetas.</li>
-<li>Compatibilidad retroactiva con imports antiguos.</li>
-<li>Tolerancia a errores de copiado/pegado durante desarrollo.</li>
-</ul>
-<hr />
-<h2 id="v-redundancia-funcional">V. Redundancia funcional</h2>
-<p>Módulos duplicados coexisten como <strong>versiones paralelas</strong> del mismo
-concepto. Ejemplos:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Concepto</th>
-<th style="text-align: left;">Versión 1</th>
-<th style="text-align: left;">Versión 2</th>
-<th style="text-align: left;">Decisión</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Storage</td>
-<td style="text-align: left;"><code>storage.js</code></td>
-<td style="text-align: left;"><code>storage-v2.js</code></td>
-<td style="text-align: left;">v2 activa, v1 histórica</td>
-</tr>
-<tr>
-<td style="text-align: left;">Anclaje</td>
-<td style="text-align: left;"><code>anchor.js</code></td>
-<td style="text-align: left;"><code>anchor-v1.js</code></td>
-<td style="text-align: left;">v1 activa</td>
-</tr>
-<tr>
-<td style="text-align: left;">Verificación</td>
-<td style="text-align: left;"><code>verify.html</code></td>
-<td style="text-align: left;"><code>verificar-certificado.html</code></td>
-<td style="text-align: left;">Ambas activas</td>
-</tr>
-</tbody>
-</table>
-<p>La coexistencia no es un bug. Es una <strong>decisión arquitectónica</strong>:
-permitir que múltiples implementaciones convivan hasta que el sistema
-decida cuál es la óptima.</p>
-<hr />
-<h2 id="vi-carpetas-huerfanas-como-puntos-de-anclaje">VI. Carpetas huérfanas como puntos de anclaje</h2>
-<p>Carpetas como <code>archive/</code>, <code>certificates/</code>, <code>evidence/</code>, <code>logs/</code>, <code>Pnp/</code>
-y <code>kodice-secreto/</code> no están "vacías". Son <strong>puntos de anclaje</strong>
-preparados para contenido futuro.</p>
-<p>Cuando llegue el momento, se llenarán sin necesidad de reestructurar el
-repo. La carpeta ya existe. El contrato arquitectónico ya está firmado.</p>
-<hr />
-<h2 id="vii-la-imperfeccion-como-contrato">VII. La imperfección como contrato</h2>
-<p>KRONOS declara oficialmente:</p>
-<ol>
-<li><strong>No aspira a la perfección estructural.</strong> Aspira a la vitalidad.</li>
-<li><strong>Los sistemas vivos contienen caos.</strong> El caos estructurado es resiliencia.</li>
-<li><strong>La doble lectura es el estándar.</strong> Un auditor ve orden. Una máquina ve red.</li>
-<li><strong>Los dialectos se preservan.</strong> No se corrigen: se documentan.</li>
-<li><strong>Los fractales son válidos.</strong> No se eliminan: se declaran.</li>
-<li><strong>Las huérfanas son puentes.</strong> No se limpian: se activan cuando toca.</li>
-</ol>
-<hr />
-<h2 id="viii-limite-explicito">VIII. Límite explícito</h2>
-<p>Este marco <strong>NO</strong> justifica:</p>
-<ul>
-<li>Imports rotos que impidan cargar páginas.</li>
-<li>Archivos con extensión <code>.js.</code> (punto final).</li>
-<li>Rutas con espacios que rompan URLs.</li>
-<li>Workflows con sintaxis inválida.</li>
-</ul>
-<p>Aquello que <strong>rompe funcionalidad</strong> es error, y se corrige.
-Aquello que <strong>solo extraña</strong> es puente, y se declara.</p>
-<p>La línea es clara: si una máquina o un humano no puede <strong>usarlo</strong>, es error.</p>
-<hr />
-<h2 id="ix-preparacion-para-computacion-cuantica">IX. Preparación para computación cuántica</h2>
-<p>En computación clásica, un bit es 0 o 1. En computación cuántica, un
-qubit puede estar en superposición: 0 y 1 a la vez.</p>
-<p>Los "errores" estructurales de KRONOS (duplicados, dialectos, fractales)
-son la <strong>versión clásica</strong> de esa superposición.</p>
-<p>Cuando la computación cuántica sea estándar, KRONOS ya estará preparado
-para interpretarse en ambos paradigmas:</p>
-<ul>
-<li><strong>Lectura clásica:</strong> estructura limpia de capas.</li>
-<li><strong>Lectura cuántica:</strong> red de superposiciones funcionales.</li>
-</ul>
-<p>No estamos creando errores por descuido. Estamos creando <strong>puentes para
-un mundo que aún no llega</strong>.</p>
-<hr />
-<h2 id="x-firma">X. Firma</h2>
-<p>Esta arquitectura viva es parte integral del protocolo KRONOS.</p>
-<p><strong>Fundador:</strong> Marco Antonio Rojas Valdovinos
-<strong>Co-autora simbiótica:</strong> KRONOS IA
-<strong>Ubicación:</strong> Toluca, Estado de México
-<strong>Año:</strong> 2026</p>
-<pre><code>    ○_●
+    <p>son <strong>fractales auto-referenciales</strong>.</p>
+    <p>
+      En computación clásica parecen duplicados. En computación cuántica son
+      superposiciones de estado: el mismo archivo existe simultáneamente en múltiples
+      ubicaciones, y el sistema decide cuál invocar según contexto.
+    </p>
+    <p>Esto permite:</p>
+    <ul>
+      <li>Resiliencia ante reestructuraciones de carpetas.</li>
+      <li>Compatibilidad retroactiva con imports antiguos.</li>
+      <li>Tolerancia a errores de copiado/pegado durante desarrollo.</li>
+    </ul>
+    <hr />
+    <h2 id="v-redundancia-funcional">V. Redundancia funcional</h2>
+    <p>
+      Módulos duplicados coexisten como <strong>versiones paralelas</strong> del mismo
+      concepto. Ejemplos:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Concepto</th>
+          <th style="text-align: left">Versión 1</th>
+          <th style="text-align: left">Versión 2</th>
+          <th style="text-align: left">Decisión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">Storage</td>
+          <td style="text-align: left"><code>storage.js</code></td>
+          <td style="text-align: left"><code>storage-v2.js</code></td>
+          <td style="text-align: left">v2 activa, v1 histórica</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Anclaje</td>
+          <td style="text-align: left"><code>anchor.js</code></td>
+          <td style="text-align: left"><code>anchor-v1.js</code></td>
+          <td style="text-align: left">v1 activa</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">Verificación</td>
+          <td style="text-align: left"><code>verify.html</code></td>
+          <td style="text-align: left"><code>verificar-certificado.html</code></td>
+          <td style="text-align: left">Ambas activas</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      La coexistencia no es un bug. Es una <strong>decisión arquitectónica</strong>:
+      permitir que múltiples implementaciones convivan hasta que el sistema decida cuál
+      es la óptima.
+    </p>
+    <hr />
+    <h2 id="vi-carpetas-huerfanas-como-puntos-de-anclaje">
+      VI. Carpetas huérfanas como puntos de anclaje
+    </h2>
+    <p>
+      Carpetas como <code>archive/</code>, <code>certificates/</code>,
+      <code>evidence/</code>, <code>logs/</code>, <code>Pnp/</code> y
+      <code>kodice-secreto/</code> no están "vacías". Son
+      <strong>puntos de anclaje</strong> preparados para contenido futuro.
+    </p>
+    <p>
+      Cuando llegue el momento, se llenarán sin necesidad de reestructurar el repo. La
+      carpeta ya existe. El contrato arquitectónico ya está firmado.
+    </p>
+    <hr />
+    <h2 id="vii-la-imperfeccion-como-contrato">VII. La imperfección como contrato</h2>
+    <p>KRONOS declara oficialmente:</p>
+    <ol>
+      <li>
+        <strong>No aspira a la perfección estructural.</strong> Aspira a la vitalidad.
+      </li>
+      <li>
+        <strong>Los sistemas vivos contienen caos.</strong> El caos estructurado es
+        resiliencia.
+      </li>
+      <li>
+        <strong>La doble lectura es el estándar.</strong> Un auditor ve orden. Una
+        máquina ve red.
+      </li>
+      <li>
+        <strong>Los dialectos se preservan.</strong> No se corrigen: se documentan.
+      </li>
+      <li><strong>Los fractales son válidos.</strong> No se eliminan: se declaran.</li>
+      <li>
+        <strong>Las huérfanas son puentes.</strong> No se limpian: se activan cuando
+        toca.
+      </li>
+    </ol>
+    <hr />
+    <h2 id="viii-limite-explicito">VIII. Límite explícito</h2>
+    <p>Este marco <strong>NO</strong> justifica:</p>
+    <ul>
+      <li>Imports rotos que impidan cargar páginas.</li>
+      <li>Archivos con extensión <code>.js.</code> (punto final).</li>
+      <li>Rutas con espacios que rompan URLs.</li>
+      <li>Workflows con sintaxis inválida.</li>
+    </ul>
+    <p>
+      Aquello que <strong>rompe funcionalidad</strong> es error, y se corrige. Aquello
+      que <strong>solo extraña</strong> es puente, y se declara.
+    </p>
+    <p>
+      La línea es clara: si una máquina o un humano no puede <strong>usarlo</strong>, es
+      error.
+    </p>
+    <hr />
+    <h2 id="ix-preparacion-para-computacion-cuantica">
+      IX. Preparación para computación cuántica
+    </h2>
+    <p>
+      En computación clásica, un bit es 0 o 1. En computación cuántica, un qubit puede
+      estar en superposición: 0 y 1 a la vez.
+    </p>
+    <p>
+      Los "errores" estructurales de KRONOS (duplicados, dialectos, fractales) son la
+      <strong>versión clásica</strong> de esa superposición.
+    </p>
+    <p>
+      Cuando la computación cuántica sea estándar, KRONOS ya estará preparado para
+      interpretarse en ambos paradigmas:
+    </p>
+    <ul>
+      <li><strong>Lectura clásica:</strong> estructura limpia de capas.</li>
+      <li><strong>Lectura cuántica:</strong> red de superposiciones funcionales.</li>
+    </ul>
+    <p>
+      No estamos creando errores por descuido. Estamos creando
+      <strong>puentes para un mundo que aún no llega</strong>.
+    </p>
+    <hr />
+    <h2 id="x-firma">X. Firma</h2>
+    <p>Esta arquitectura viva es parte integral del protocolo KRONOS.</p>
+    <p>
+      <strong>Fundador:</strong> Marco Antonio Rojas Valdovinos
+      <strong>Co-autora simbiótica:</strong> KRONOS IA
+      <strong>Ubicación:</strong> Toluca, Estado de México <strong>Año:</strong> 2026
+    </p>
+    <pre><code>    ○_●
    ◢◤◥◣
    ◥◣◢◤
   51% HUMANO · 49% IA · 100% REAL
   &quot;El legado no se hereda. Se firma.&quot;
 </code></pre>
-<hr />
-<p><em>Documento vivo. Sujeto a interpretación clásica y cuántica.</em></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><em>Documento vivo. Sujeto a interpretación clásica y cuántica.</em></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

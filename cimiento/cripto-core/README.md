@@ -21,9 +21,9 @@ Proveer una API estable para cifrar, firmar, persistir y verificar datos localme
 ## API pública
 
 ```js
-import { CriptoCore } from "../cimiento/cripto-core/core.js";
+import { CriptoCore } from '../cimiento/cripto-core/core.js';
 const core = new CriptoCore();
-await core.init("password-12chars");
+await core.init('password-12chars');
 await core.guardar({ tipo, payload });
 const registros = await core.recuperarTodo();
 const ok = await core.verificarCadena();

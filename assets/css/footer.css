@@ -2,7 +2,8 @@
  *  ▓▒░ FOOTER.CSS · ARKHÉ ZERO · ◯_● ░▒▓
  * ═══════════════════════════════════════════════════════════════ */
 
-.hub-footer, .doc-footer {
+.hub-footer,
+.doc-footer {
   margin-top: 48px;
   padding-top: 24px;
   border-top: 1px dashed var(--border);
@@ -12,7 +13,10 @@
   line-height: 1.8;
 }
 
-.hub-footer p, .doc-footer p { margin: 4px 0; }
+.hub-footer p,
+.doc-footer p {
+  margin: 4px 0;
+}
 
 .seal-line {
   color: var(--accent);
@@ -35,4 +39,6 @@
   letter-spacing: 0.1em;
 }
 
-.footer-links a:hover { color: var(--accent); }
+.footer-links a:hover {
+  color: var(--accent);
+}

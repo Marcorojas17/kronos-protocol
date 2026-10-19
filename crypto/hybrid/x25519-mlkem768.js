@@ -38,7 +38,8 @@ export function encapsulate(publicKey) {
   return {
     ciphertext: { x25519: ephPk, ml_kem_768: cipherText },
     sharedSecret: new TextEncoder().encode(combined),
-    alg: ALG, seal: SEAL,
+    alg: ALG,
+    seal: SEAL,
   };
 }
 

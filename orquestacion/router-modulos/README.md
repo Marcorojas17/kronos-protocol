@@ -17,18 +17,18 @@
 
 ## 🜂 Rutas Registradas
 
-| Acción       | Módulo destino                                    |
-|--------------|---------------------------------------------------|
-| `sign`       | `crypto/operations/sign.js`                       |
-| `verify`     | `crypto/operations/verify.js`                     |
-| `sha3_512`   | `crypto/primitives/sha3-512.js`                   |
-| `anclar`     | `cimiento/anclaje-ethereum/anchor.js`             |
-| `persistir`  | `cimiento/storage-dexie/storage.js`               |
-| `certificar` | `certificacion/manifest-integridad/manifest.js`   |
-| `notarizar`  | `certificacion/notario-kronos/notario.js`         |
-| `proponer`   | `gobernanza/propuestas-votacion/proponer.js`      |
-| `votar`      | `gobernanza/propuestas-votacion/votar.js`         |
-| `quorum`     | `gobernanza/quorum-mayorias/quorum.js`            |
+| Acción       | Módulo destino                                  |
+| ------------ | ----------------------------------------------- |
+| `sign`       | `crypto/operations/sign.js`                     |
+| `verify`     | `crypto/operations/verify.js`                   |
+| `sha3_512`   | `crypto/primitives/sha3-512.js`                 |
+| `anclar`     | `cimiento/anclaje-ethereum/anchor.js`           |
+| `persistir`  | `cimiento/storage-dexie/storage.js`             |
+| `certificar` | `certificacion/manifest-integridad/manifest.js` |
+| `notarizar`  | `certificacion/notario-kronos/notario.js`       |
+| `proponer`   | `gobernanza/propuestas-votacion/proponer.js`    |
+| `votar`      | `gobernanza/propuestas-votacion/votar.js`       |
+| `quorum`     | `gobernanza/quorum-mayorias/quorum.js`          |
 
 ## 🜃 Uso
 

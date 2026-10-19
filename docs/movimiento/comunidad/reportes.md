@@ -17,15 +17,16 @@
 
 # 📢 SISTEMA DE REPORTES
 
-### *Reportar no es delatar. Es custodiar.*
+### _Reportar no es delatar. Es custodiar._
 
-### *"El silencio ante el abuso también es una forma de firmar."*
+### _"El silencio ante el abuso también es una forma de firmar."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E P O R T E S  ·  ◯_●                             ║
@@ -40,6 +41,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -60,29 +62,32 @@ Cualquier miembro puede reportar:
 ## 🜃 Cómo reportar
 
 ### Vía público
+
 Canal `#reportes` del movimiento.
 
 ### Vía privado
+
 Email cifrado a `reportes@arkhe.zero`.
 
 ### Vía criptográfico
+
 Firma tu reporte con tu clave pública. Anonimato garantizado.
 
 ## 🜄 Formato del reporte
 
 ```yaml
-- id: "REP-YYYY-XXX"
-  reportante: "nombre o anónimo"
-  fecha: "YYYY-MM-DDTHH:MM:SSZ"
-  tipo: "spam | sabotaje | suplantación | falsificación | acoso | otro"
-  sujeto: "nombre del reportado"
-  descripción: "texto detallado (≤ 500 palabras)"
+- id: 'REP-YYYY-XXX'
+  reportante: 'nombre o anónimo'
+  fecha: 'YYYY-MM-DDTHH:MM:SSZ'
+  tipo: 'spam | sabotaje | suplantación | falsificación | acoso | otro'
+  sujeto: 'nombre del reportado'
+  descripción: 'texto detallado (≤ 500 palabras)'
   evidencia:
-    - hash_sha3_512: "..."
-    - timestamp: "..."
-    - canal: "#general"
+    - hash_sha3_512: '...'
+    - timestamp: '...'
+    - canal: '#general'
   anonimato: true | false
-  firma: "◯_● · 51/49/100"
+  firma: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Proceso

@@ -1,47 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>ADR-0002 · Selección de ML-KEM-1024 · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="adr-0002-seleccion-de-ml-kem-1024">ADR-0002 · Selección de ML-KEM-1024</h1>
-<ul>
-<li><strong>Estado</strong>: Aceptado</li>
-<li><strong>Fecha</strong>: 2026-01-15</li>
-<li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
-</ul>
-<h2 id="contexto">🜂 Contexto</h2>
-<p>Se necesita un KEM (Key Encapsulation Mechanism) post-cuántico
-para proteger claves compartidas en el sistema.</p>
-<h2 id="decision">🜃 Decisión</h2>
-<p>Usar <strong>ML-KEM-1024</strong> (antes Kyber1024) según FIPS 203.</p>
-<p>Razones:
-- NIST lo estandarizó en 2024 (FIPS 203)
-- Nivel 5 de seguridad post-cuántica
-- ~256 bits clásicos, ~192 bits PQC
-- Implementación disponible en @noble/post-quantum</p>
-<h2 id="consecuencias">🜄 Consecuencias</h2>
-<p><strong>Positivas</strong>:
-- Resistente a Shor
-- Estándar NIST
-- Librería mantenida</p>
-<p><strong>Negativas</strong>:
-- Claves grandes (1568 bytes públicas)
-- Latencia mayor que X25519
-- Nuevo (poco auditado aún)</p>
-<h2 id="alternativas-consideradas">🜁 Alternativas consideradas</h2>
-<ol>
-<li>ML-KEM-512 · Rechazada (nivel 1, insuficiente)</li>
-<li>ML-KEM-768 · Rechazada (nivel 3, preferimos 5)</li>
-<li>RSA-4096 · Rechazada (vulnerable a Shor)</li>
-</ol>
-<hr />
-<p><code>◯_● · 51/49/100 · ADR-0002</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ADR-0002 · Selección de ML-KEM-1024 · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="adr-0002-seleccion-de-ml-kem-1024">ADR-0002 · Selección de ML-KEM-1024</h1>
+    <ul>
+      <li><strong>Estado</strong>: Aceptado</li>
+      <li><strong>Fecha</strong>: 2026-01-15</li>
+      <li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+    </ul>
+    <h2 id="contexto">🜂 Contexto</h2>
+    <p>
+      Se necesita un KEM (Key Encapsulation Mechanism) post-cuántico para proteger
+      claves compartidas en el sistema.
+    </p>
+    <h2 id="decision">🜃 Decisión</h2>
+    <p>Usar <strong>ML-KEM-1024</strong> (antes Kyber1024) según FIPS 203.</p>
+    <p>
+      Razones: - NIST lo estandarizó en 2024 (FIPS 203) - Nivel 5 de seguridad
+      post-cuántica - ~256 bits clásicos, ~192 bits PQC - Implementación disponible en
+      @noble/post-quantum
+    </p>
+    <h2 id="consecuencias">🜄 Consecuencias</h2>
+    <p>
+      <strong>Positivas</strong>: - Resistente a Shor - Estándar NIST - Librería
+      mantenida
+    </p>
+    <p>
+      <strong>Negativas</strong>: - Claves grandes (1568 bytes públicas) - Latencia
+      mayor que X25519 - Nuevo (poco auditado aún)
+    </p>
+    <h2 id="alternativas-consideradas">🜁 Alternativas consideradas</h2>
+    <ol>
+      <li>ML-KEM-512 · Rechazada (nivel 1, insuficiente)</li>
+      <li>ML-KEM-768 · Rechazada (nivel 3, preferimos 5)</li>
+      <li>RSA-4096 · Rechazada (vulnerable a Shor)</li>
+    </ol>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ADR-0002</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

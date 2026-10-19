@@ -17,7 +17,7 @@ Mientras tanto, te dejo el juramento KINTSUGI para que lo leas:
 
 Y una frase para meditar:
 
-> *"El legado no se hereda. Se firma."*
+> _"El legado no se hereda. Se firma."_
 
 Con respeto,
 **Marco Antonio Rojas Valdovinos**
@@ -26,4 +26,5 @@ Fundador · ARKHÉ ZERO
 `◯_● · 51/49/100`
 
 ---
+
 `◯_● · 51/49/100 · email-00`

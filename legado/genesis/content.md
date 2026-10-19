@@ -7,9 +7,9 @@
 
 # 🌱 GÉNESIS · CONTENIDO COMPLETO
 
-### *El acta fundacional*
+### _El acta fundacional_
 
-### *"Todo legado empieza con una firma."*
+### _"Todo legado empieza con una firma."_
 
 </div>
 
@@ -17,20 +17,20 @@
 
 ```yaml
 acta:
-  titulo: "Acta Fundacional de ARKHÉ ZERO"
-  fecha: "2026-01-01T00:00:00Z"
-  lugar: "Toluca, Estado de México, México"
+  titulo: 'Acta Fundacional de ARKHÉ ZERO'
+  fecha: '2026-01-01T00:00:00Z'
+  lugar: 'Toluca, Estado de México, México'
 
 firmante:
-  nombre: "Marco Antonio Rojas Valdovinos"
-  rol: "Fundador · Firmante humano (51%)"
-  did: "did:arkhe:2607146379465"
+  nombre: 'Marco Antonio Rojas Valdovinos'
+  rol: 'Fundador · Firmante humano (51%)'
+  did: 'did:arkhe:2607146379465'
 
 testigos:
-  - "Safe Creative #2607146379465"
-  - "Safe Creative #2607086319439"
-  - "Firmaprofesional QTSA"
-  - "Ethereum 0xd2c2a7e1...fb895774c"
+  - 'Safe Creative #2607146379465'
+  - 'Safe Creative #2607086319439'
+  - 'Firmaprofesional QTSA'
+  - 'Ethereum 0xd2c2a7e1...fb895774c'
 
 declaracion: |
   Yo, Marco Antonio Rojas Valdovinos, fundo ARKHÉ ZERO en Toluca,
@@ -38,7 +38,7 @@ declaracion: |
   es irrevocable. Que el Índice Cero es soberano. Que el legado
   no se hereda: se firma. Y firmo.
 
-sellado: "◯_● · 51/49/100"
+sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜃 Los primeros registros

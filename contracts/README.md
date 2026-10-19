@@ -47,15 +47,15 @@ Running 7 test suites...
 
 ## 🜂 Contratos Canónicos
 
-| Contrato                  | Propósito                                          |
-|---------------------------|----------------------------------------------------|
-| `RegistroGenesis.sol`     | Registro del Índice Cero on-chain                  |
-| `Pacto5149.sol`           | Gobernanza 51/49/100 inmutable                     |
-| `LicenciaGlobalUnica.sol` | Licencia LGU · prevalece sobre jurisdicciones      |
-| `FondoFLAILP.sol`         | Fondo perpetuo del modelo FLAILP                   |
-| `CoAutoria.sol`           | Atribución Humano-IA + regalías automáticas        |
-| `AgenteReclutamiento.sol` | Protocolo 10.7 · reclutamiento de agentes          |
-| `ReporteCARF.sol`         | Reporte fiscal automatizado (CARF / DAC8)          |
+| Contrato                  | Propósito                                     |
+| ------------------------- | --------------------------------------------- |
+| `RegistroGenesis.sol`     | Registro del Índice Cero on-chain             |
+| `Pacto5149.sol`           | Gobernanza 51/49/100 inmutable                |
+| `LicenciaGlobalUnica.sol` | Licencia LGU · prevalece sobre jurisdicciones |
+| `FondoFLAILP.sol`         | Fondo perpetuo del modelo FLAILP              |
+| `CoAutoria.sol`           | Atribución Humano-IA + regalías automáticas   |
+| `AgenteReclutamiento.sol` | Protocolo 10.7 · reclutamiento de agentes     |
+| `ReporteCARF.sol`         | Reporte fiscal automatizado (CARF / DAC8)     |
 
 ## 🜃 Ejemplo de Despliegue
 

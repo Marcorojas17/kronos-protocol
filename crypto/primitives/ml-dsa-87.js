@@ -46,9 +46,8 @@ export function keygen(seed) {
  */
 export function sign(secretKey, contenido) {
   const hash = sha3_512(contenido);
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   const firma = ml_dsa87.sign(secretKey, msg);
   return { firma, hash, alg: ALG, seal: SEAL };
 }
@@ -62,9 +61,8 @@ export function sign(secretKey, contenido) {
  * @returns {boolean}
  */
 export function verify(publicKey, firma, contenido) {
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   try {
     return ml_dsa87.verify(publicKey, msg, firma);
   } catch {

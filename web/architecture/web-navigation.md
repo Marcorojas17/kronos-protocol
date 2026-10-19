@@ -30,15 +30,15 @@
 
 ```javascript
 const LINKS = [
-  { id: 'hub',         label: 'HUB',       href: '../index.html' },
-  { id: 'kintsugi',    label: 'KINTSUGI',  href: 'kintsugi.html' },
-  { id: 'manifiesto',  label: 'MANIFIESTO',href: 'manifiesto.html' },
-  { id: 'verificar',   label: 'VERIFICAR', href: 'verificar.html' },
-  { id: 'registrar',   label: 'REGISTRAR', href: 'registrar.html' },
-  { id: 'governance',  label: 'GOBIERNO',  href: 'governance.html' },
-  { id: 'agentes',     label: 'AGENTES',   href: 'agentes.html' },
-  { id: 'crypto',      label: 'CRYPTO',    href: 'crypto.html' },
-  { id: 'provenance',  label: 'PROVENANCE',href: 'provenance.html' },
+  { id: 'hub', label: 'HUB', href: '../index.html' },
+  { id: 'kintsugi', label: 'KINTSUGI', href: 'kintsugi.html' },
+  { id: 'manifiesto', label: 'MANIFIESTO', href: 'manifiesto.html' },
+  { id: 'verificar', label: 'VERIFICAR', href: 'verificar.html' },
+  { id: 'registrar', label: 'REGISTRAR', href: 'registrar.html' },
+  { id: 'governance', label: 'GOBIERNO', href: 'governance.html' },
+  { id: 'agentes', label: 'AGENTES', href: 'agentes.html' },
+  { id: 'crypto', label: 'CRYPTO', href: 'crypto.html' },
+  { id: 'provenance', label: 'PROVENANCE', href: 'provenance.html' },
 ];
 ```
 

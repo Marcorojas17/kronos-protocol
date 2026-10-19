@@ -55,12 +55,12 @@ railway up
 
 ## 🜄 Ambientes
 
-| Ambiente | URL | Uso |
-|----------|-----|-----|
-| Producción | arkhe.zero | Público |
-| Staging | staging.arkhe.zero | Pre-deploy |
-| Desarrollo | localhost:8080 | Local |
-| Testnet | sepolia.etherscan.io | Ethereum test |
+| Ambiente   | URL                  | Uso           |
+| ---------- | -------------------- | ------------- |
+| Producción | arkhe.zero           | Público       |
+| Staging    | staging.arkhe.zero   | Pre-deploy    |
+| Desarrollo | localhost:8080       | Local         |
+| Testnet    | sepolia.etherscan.io | Ethereum test |
 
 ---
 

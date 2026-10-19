@@ -5,7 +5,7 @@
 (function (global) {
   'use strict';
 
-  var FLAGS = ['GE','CC','ECC','WP','OOR','CRC','TMO','HALT','CQEN','RPMB'];
+  var FLAGS = ['GE', 'CC', 'ECC', 'WP', 'OOR', 'CRC', 'TMO', 'HALT', 'CQEN', 'RPMB'];
 
   function detectType(text) {
     var t = String(text || '').trim();
@@ -23,7 +23,9 @@
     var blocks = [];
     var cur = null;
     for (var i = 0; i < lines.length; i++) {
-      var m = lines[i].match(/^\[(\d+)\]\s*-\s*fsdbg\s*:\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/);
+      var m = lines[i].match(
+        /^\[(\d+)\]\s*-\s*fsdbg\s*:\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/,
+      );
       if (m) {
         if (cur) blocks.push(cur);
         cur = { index: parseInt(m[1], 10), timestamp: m[2], lines: [] };
@@ -36,9 +38,16 @@
   }
 
   function parseM0(block) {
-    var ev = { index: block.index, timestamp: block.timestamp, type: 'm0', flags: {}, errors: [] };
+    var ev = {
+      index: block.index,
+      timestamp: block.timestamp,
+      type: 'm0',
+      flags: {},
+      errors: [],
+    };
     var text = block.lines.join('\n');
-    var reData = /^\s*(\w+)\s*:?\s*(-?\d+)\s+(0x[0-9a-fA-F]+)\s+(\d+),\s+(\d+),\s+(\d+)/gm;
+    var reData =
+      /^\s*(\w+)\s*:?\s*(-?\d+)\s+(0x[0-9a-fA-F]+)\s+(\d+),\s+(\d+),\s+(\d+)/gm;
     var m;
     while ((m = reData.exec(text)) !== null) {
       var count = parseInt(m[6], 10);
@@ -49,13 +58,17 @@
           status: m[3],
           first: parseInt(m[4], 10),
           last: parseInt(m[5], 10),
-          count: count
+          count: count,
         });
       }
     }
-    var fm = /^GE:(\d+),CC:(\d+),ECC:(\d+),WP:(\d+),OOR:(\d+),CRC:(\d+),TMO:(\d+),HALT:(\d+),CQEN:(\d+),RPMB:(\d+)/m.exec(text);
+    var fm =
+      /^GE:(\d+),CC:(\d+),ECC:(\d+),WP:(\d+),OOR:(\d+),CRC:(\d+),TMO:(\d+),HALT:(\d+),CQEN:(\d+),RPMB:(\d+)/m.exec(
+        text,
+      );
     if (fm) {
-      for (var i = 0; i < FLAGS.length; i++) ev.flags[FLAGS[i]] = parseInt(fm[i + 1], 10);
+      for (var i = 0; i < FLAGS.length; i++)
+        ev.flags[FLAGS[i]] = parseInt(fm[i + 1], 10);
     }
     return ev;
   }
@@ -70,10 +83,18 @@
   }
 
   function parseULC(block) {
-    var ev = { index: block.index, timestamp: block.timestamp, type: 'ulc', value: null };
+    var ev = {
+      index: block.index,
+      timestamp: block.timestamp,
+      type: 'ulc',
+      value: null,
+    };
     for (var i = 0; i < block.lines.length; i++) {
       var v = block.lines[i].trim();
-      if (/^-?\d+$/.test(v)) { ev.value = parseInt(v, 10); break; }
+      if (/^-?\d+$/.test(v)) {
+        ev.value = parseInt(v, 10);
+        break;
+      }
     }
     return ev;
   }
@@ -94,7 +115,14 @@
   }
 
   function summarize(parsed) {
-    var s = { type: parsed.type, total: parsed.events.length, anomalous: 0, flagTotals: {}, first: null, last: null };
+    var s = {
+      type: parsed.type,
+      total: parsed.events.length,
+      anomalous: 0,
+      flagTotals: {},
+      first: null,
+      last: null,
+    };
     for (var i = 0; i < parsed.events.length; i++) {
       var e = parsed.events[i];
       if (!s.first) s.first = e.timestamp;
@@ -120,6 +148,6 @@
     parse: parse,
     summarize: summarize,
     detectType: detectType,
-    FLAGS: FLAGS
+    FLAGS: FLAGS,
   };
 })(typeof window !== 'undefined' ? window : this);

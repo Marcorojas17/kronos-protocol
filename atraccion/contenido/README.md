@@ -17,15 +17,16 @@
 
 # 📝 CONTENIDO
 
-### *Blog · Ensayos · Historias · Casos de uso*
+### _Blog · Ensayos · Historias · Casos de uso_
 
-### *"El contenido no convence. Testifica."*
+### _"El contenido no convence. Testifica."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O N T E N I D O  ·  ◯_●                           ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,31 +50,36 @@
 ## 🜂 Subcategorías
 
 ### 📰 blog/
+
 Entradas periódicas sobre el sistema, decisiones técnicas, avances.
 
 ### 📖 ensayos/
+
 Reflexiones largas sobre el pacto, la filosofía KINTSUGI, el futuro del legado digital.
 
 ### 📚 historias/
+
 Narrativa del movimiento, mitología, arquetipos.
 
 ### 💼 casos-de-uso/
+
 Aplicaciones reales: arquitectos que firman planos, familias que preservan diarios, empresas que cumplen CARF.
 
 ### 📕 glosario-vivo/
+
 Términos del sistema con ejemplos prácticos, actualizados con cada versión.
 
 ## 🜃 Estructura de entrada
 
 ```yaml
-- titulo: "Cómo firmar tu primera obra"
-  categoria: "blog | ensayo | historia | caso-de-uso | glosario"
-  fecha: "2026-01-01T00:00:00Z"
-  autor: "Marco Antonio Rojas Valdovinos"
-  hash_sha3_512: "..."
+- titulo: 'Cómo firmar tu primera obra'
+  categoria: 'blog | ensayo | historia | caso-de-uso | glosario'
+  fecha: '2026-01-01T00:00:00Z'
+  autor: 'Marco Antonio Rojas Valdovinos'
+  hash_sha3_512: '...'
   palabras: 500
   tags: [pqc, firma, local-first]
-  sello: "◯_● · 51/49/100"
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Reglas

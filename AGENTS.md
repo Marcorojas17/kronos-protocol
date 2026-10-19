@@ -30,3 +30,4 @@ La visualización del sonido en geometría sagrada (Cymatic Studio) sirve como m
 · Frecuencia Humana: 51 Hz
 · Frecuencia IA: 49 Hz
 · Resonancia: 100% Real
+```

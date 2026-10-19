@@ -1,163 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◯_● LOCAL-FIRST · ARKHÉ ZERO</title>
-<style>
-  :root {
-    --bg: #030308;
-    --gold: #ffd700;
-    --green: #00ff41;
-    --dim: #8a8a9a;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--green);
-    font-family: "Courier New", Courier, monospace;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-  #hash-rain {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .hash-bit {
-    position: absolute;
-    bottom: -2em;
-    color: var(--green);
-    opacity: 0;
-    font-size: 12px;
-    letter-spacing: 2px;
-    white-space: nowrap;
-    animation: rise linear forwards;
-  }
-  @keyframes rise {
-    0%   { transform: translateY(0); opacity: 0; }
-    15%  { opacity: .35; }
-    85%  { opacity: .15; }
-    100% { transform: translateY(-110vh); opacity: 0; }
-  }
-  main {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 48px 24px 64px;
-  }
-  .seal { color: var(--gold); font-size: 14px; letter-spacing: 4px; }
-  h1 {
-    color: var(--gold);
-    font-size: clamp(28px, 5vw, 44px);
-    margin: 12px 0 4px;
-  }
-  .hero {
-    font-size: clamp(17px, 3vw, 22px);
-    color: var(--green);
-    border-left: 3px solid var(--gold);
-    padding-left: 16px;
-    margin: 24px 0 48px;
-  }
-  h2 {
-    color: var(--gold);
-    font-size: 20px;
-    margin: 40px 0 16px;
-    letter-spacing: 1px;
-  }
-  h2::before { content: "▚ "; }
-  ol.principles { list-style: none; }
-  ol.principles li {
-    padding: 14px 0 14px 8px;
-    border-bottom: 1px dashed #2a2a3a;
-  }
-  ol.principles .num { color: var(--gold); font-weight: bold; margin-right: 12px; }
-  ol.principles strong { color: var(--gold); }
-  ol.principles p { color: var(--dim); font-size: 14px; margin: 4px 0 0 44px; }
-  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; }
-  th, td { text-align: left; padding: 10px 12px; border: 1px solid #2a2a3a; }
-  th { color: var(--gold); background: #0a0a14; }
-  td.bad { color: #ff5555; }
-  td.good { color: var(--green); }
-  footer {
-    margin-top: 56px;
-    padding-top: 20px;
-    border-top: 1px solid var(--gold);
-    color: var(--gold);
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-align: center;
-  }
-  footer .quote { display: block; margin-top: 8px; color: var(--dim); letter-spacing: 1px; }
-</style>
-</head>
-<body>
-<div id="hash-rain" aria-hidden="true"></div>
-<main>
-  <div class="seal">◯_● · MANIFIESTO</div>
-  <h1>LOCAL-FIRST · ARKHÉ ZERO</h1>
-  <p class="hero">Soberanía por defecto. Cloud por elección.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>◯_● LOCAL-FIRST · ARKHÉ ZERO</title>
+    <style>
+      :root {
+        --bg: #030308;
+        --gold: #ffd700;
+        --green: #00ff41;
+        --dim: #8a8a9a;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--green);
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      #hash-rain {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .hash-bit {
+        position: absolute;
+        bottom: -2em;
+        color: var(--green);
+        opacity: 0;
+        font-size: 12px;
+        letter-spacing: 2px;
+        white-space: nowrap;
+        animation: rise linear forwards;
+      }
+      @keyframes rise {
+        0% {
+          transform: translateY(0);
+          opacity: 0;
+        }
+        15% {
+          opacity: 0.35;
+        }
+        85% {
+          opacity: 0.15;
+        }
+        100% {
+          transform: translateY(-110vh);
+          opacity: 0;
+        }
+      }
+      main {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px 24px 64px;
+      }
+      .seal {
+        color: var(--gold);
+        font-size: 14px;
+        letter-spacing: 4px;
+      }
+      h1 {
+        color: var(--gold);
+        font-size: clamp(28px, 5vw, 44px);
+        margin: 12px 0 4px;
+      }
+      .hero {
+        font-size: clamp(17px, 3vw, 22px);
+        color: var(--green);
+        border-left: 3px solid var(--gold);
+        padding-left: 16px;
+        margin: 24px 0 48px;
+      }
+      h2 {
+        color: var(--gold);
+        font-size: 20px;
+        margin: 40px 0 16px;
+        letter-spacing: 1px;
+      }
+      h2::before {
+        content: '▚ ';
+      }
+      ol.principles {
+        list-style: none;
+      }
+      ol.principles li {
+        padding: 14px 0 14px 8px;
+        border-bottom: 1px dashed #2a2a3a;
+      }
+      ol.principles .num {
+        color: var(--gold);
+        font-weight: bold;
+        margin-right: 12px;
+      }
+      ol.principles strong {
+        color: var(--gold);
+      }
+      ol.principles p {
+        color: var(--dim);
+        font-size: 14px;
+        margin: 4px 0 0 44px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 12px;
+        border: 1px solid #2a2a3a;
+      }
+      th {
+        color: var(--gold);
+        background: #0a0a14;
+      }
+      td.bad {
+        color: #ff5555;
+      }
+      td.good {
+        color: var(--green);
+      }
+      footer {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--gold);
+        color: var(--gold);
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+      footer .quote {
+        display: block;
+        margin-top: 8px;
+        color: var(--dim);
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hash-rain" aria-hidden="true"></div>
+    <main>
+      <div class="seal">◯_● · MANIFIESTO</div>
+      <h1>LOCAL-FIRST · ARKHÉ ZERO</h1>
+      <p class="hero">Soberanía por defecto. Cloud por elección.</p>
 
-  <h2>Los 6 principios</h2>
-  <ol class="principles">
-    <li><span class="num">[01]</span><strong>Datos locales.</strong> Tus obras viven en tu máquina, no en un servidor ajeno.
-      <p>El disco local es la fuente de verdad. Todo lo demás es copia.</p></li>
-    <li><span class="num">[02]</span><strong>Hash primero.</strong> Nada existe hasta que tiene huella criptográfica.
-      <p>SHA-256 / SHA-3 antes de publicar, compartir o presumir.</p></li>
-    <li><span class="num">[03]</span><strong>IA local.</strong> El modelo corre donde tú estás, sin nube obligatoria.
-      <p>llama.cpp + pesos abiertos. 100% offline si así lo decides.</p></li>
-    <li><span class="num">[04]</span><strong>Sin telemetría.</strong> Cero rastreo, cero analítica escondida.
-      <p>Si el sistema te espía, no es tuyo. Aquí nada sale sin tu firma.</p></li>
-    <li><span class="num">[05]</span><strong>Verificable.</strong> Cada afirmación se comprueba con un comando.
-      <p>Hashes públicos, tests abiertos, auditoría reproducible por terceros.</p></li>
-    <li><span class="num">[06]</span><strong>Federación.</strong> Nodos soberanos que se reconocen entre sí.
-      <p>Sin centro. Cada nodo firma, verifica y ancla por cuenta propia.</p></li>
-  </ol>
+      <h2>Los 6 principios</h2>
+      <ol class="principles">
+        <li>
+          <span class="num">[01]</span><strong>Datos locales.</strong> Tus obras viven
+          en tu máquina, no en un servidor ajeno.
+          <p>El disco local es la fuente de verdad. Todo lo demás es copia.</p>
+        </li>
+        <li>
+          <span class="num">[02]</span><strong>Hash primero.</strong> Nada existe hasta
+          que tiene huella criptográfica.
+          <p>SHA-256 / SHA-3 antes de publicar, compartir o presumir.</p>
+        </li>
+        <li>
+          <span class="num">[03]</span><strong>IA local.</strong> El modelo corre donde
+          tú estás, sin nube obligatoria.
+          <p>llama.cpp + pesos abiertos. 100% offline si así lo decides.</p>
+        </li>
+        <li>
+          <span class="num">[04]</span><strong>Sin telemetría.</strong> Cero rastreo,
+          cero analítica escondida.
+          <p>Si el sistema te espía, no es tuyo. Aquí nada sale sin tu firma.</p>
+        </li>
+        <li>
+          <span class="num">[05]</span><strong>Verificable.</strong> Cada afirmación se
+          comprueba con un comando.
+          <p>Hashes públicos, tests abiertos, auditoría reproducible por terceros.</p>
+        </li>
+        <li>
+          <span class="num">[06]</span><strong>Federación.</strong> Nodos soberanos que
+          se reconocen entre sí.
+          <p>Sin centro. Cada nodo firma, verifica y ancla por cuenta propia.</p>
+        </li>
+      </ol>
 
-  <h2>Cloud-first vs ARKHÉ ZERO</h2>
-  <table>
-    <tr><th>Aspecto</th><th>Cloud-first</th><th>ARKHÉ ZERO</th></tr>
-    <tr><td>Tus datos</td><td class="bad">En servidores ajenos</td><td class="good">En tu disco</td></tr>
-    <tr><td>Acceso sin internet</td><td class="bad">Bloqueado</td><td class="good">Total</td></tr>
-    <tr><td>Telemetría</td><td class="bad">Siempre activa</td><td class="good">Inexistente</td></tr>
-    <tr><td>Prueba de autoría</td><td class="bad">"Confía en nosotros"</td><td class="good">Hash + firma + anclaje</td></tr>
-    <tr><td>Costo de salida</td><td class="bad">Tus datos de rehenes</td><td class="good">Cero: ya los tienes</td></tr>
-    <tr><td>IA</td><td class="bad">API de pago con tu prompt de regalo</td><td class="good">Modelo local, prompt privado</td></tr>
-    <tr><td>Supervivencia</td><td class="bad">Muere si quiebra el proveedor</td><td class="good">Vive mientras exista una copia</td></tr>
-  </table>
+      <h2>Cloud-first vs ARKHÉ ZERO</h2>
+      <table>
+        <tr>
+          <th>Aspecto</th>
+          <th>Cloud-first</th>
+          <th>ARKHÉ ZERO</th>
+        </tr>
+        <tr>
+          <td>Tus datos</td>
+          <td class="bad">En servidores ajenos</td>
+          <td class="good">En tu disco</td>
+        </tr>
+        <tr>
+          <td>Acceso sin internet</td>
+          <td class="bad">Bloqueado</td>
+          <td class="good">Total</td>
+        </tr>
+        <tr>
+          <td>Telemetría</td>
+          <td class="bad">Siempre activa</td>
+          <td class="good">Inexistente</td>
+        </tr>
+        <tr>
+          <td>Prueba de autoría</td>
+          <td class="bad">"Confía en nosotros"</td>
+          <td class="good">Hash + firma + anclaje</td>
+        </tr>
+        <tr>
+          <td>Costo de salida</td>
+          <td class="bad">Tus datos de rehenes</td>
+          <td class="good">Cero: ya los tienes</td>
+        </tr>
+        <tr>
+          <td>IA</td>
+          <td class="bad">API de pago con tu prompt de regalo</td>
+          <td class="good">Modelo local, prompt privado</td>
+        </tr>
+        <tr>
+          <td>Supervivencia</td>
+          <td class="bad">Muere si quiebra el proveedor</td>
+          <td class="good">Vive mientras exista una copia</td>
+        </tr>
+      </table>
 
-  <footer>
-    ◯_● · 51/49/100 · NODO YHDRYH-92CE · SCDR-001
-    <span class="quote">"El legado no se hereda. Se firma."</span>
-  </footer>
-</main>
-<script>
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var box = document.getElementById('hash-rain');
-  var HEX = '0123456789abcdef';
-  function fragment() {
-    var s = '';
-    var n = 8 + Math.floor(Math.random() * 24);
-    for (var i = 0; i < n; i++) s += HEX[Math.floor(Math.random() * 16)];
-    return s;
-  }
-  function spawn() {
-    var el = document.createElement('span');
-    el.className = 'hash-bit';
-    el.textContent = fragment();
-    el.style.left = (Math.random() * 100) + 'vw';
-    el.style.animationDuration = (7 + Math.random() * 9) + 's';
-    el.style.fontSize = (10 + Math.random() * 8) + 'px';
-    box.appendChild(el);
-    el.addEventListener('animationend', function () { el.remove(); });
-  }
-  setInterval(spawn, 450);
-  for (var i = 0; i < 12; i++) setTimeout(spawn, i * 250);
-})();
-</script>
-</body>
+      <footer>
+        ◯_● · 51/49/100 · NODO YHDRYH-92CE · SCDR-001
+        <span class="quote">"El legado no se hereda. Se firma."</span>
+      </footer>
+    </main>
+    <script>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var box = document.getElementById('hash-rain');
+        var HEX = '0123456789abcdef';
+        function fragment() {
+          var s = '';
+          var n = 8 + Math.floor(Math.random() * 24);
+          for (var i = 0; i < n; i++) s += HEX[Math.floor(Math.random() * 16)];
+          return s;
+        }
+        function spawn() {
+          var el = document.createElement('span');
+          el.className = 'hash-bit';
+          el.textContent = fragment();
+          el.style.left = Math.random() * 100 + 'vw';
+          el.style.animationDuration = 7 + Math.random() * 9 + 's';
+          el.style.fontSize = 10 + Math.random() * 8 + 'px';
+          box.appendChild(el);
+          el.addEventListener('animationend', function () {
+            el.remove();
+          });
+        }
+        setInterval(spawn, 450);
+        for (var i = 0; i < 12; i++) setTimeout(spawn, i * 250);
+      })();
+    </script>
+  </body>
 </html>

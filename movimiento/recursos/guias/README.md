@@ -17,15 +17,16 @@
 
 # 📚 GUÍAS OFICIALES
 
-### *Documentación paso a paso*
+### _Documentación paso a paso_
 
-### *"Una guía sin sello es un rumor. Con sello, es ley."*
+### _"Una guía sin sello es un rumor. Con sello, es ley."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  G U Í A S  ·  ◯_●                                   ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,7 +50,7 @@
 ## 🜂 Guías oficiales
 
 | Guía                          | Propósito                         |
-|-------------------------------|-----------------------------------|
+| ----------------------------- | --------------------------------- |
 | `01-primeros-pasos.md`        | Instalación y verificación básica |
 | `02-registrar-obra.md`        | Cómo firmar tu primera obra       |
 | `03-verificar-certificado.md` | Cómo verificar un certificado     |
@@ -58,12 +60,12 @@
 ## 🜃 Formato
 
 ```yaml
-- titulo: "Nombre de la guía"
-  audiencia: "principiante | intermedio | avanzado"
-  duracion_estimada: "15min | 30min | 1h"
+- titulo: 'Nombre de la guía'
+  audiencia: 'principiante | intermedio | avanzado'
+  duracion_estimada: '15min | 30min | 1h'
   prerequisitos: []
   secciones: []
-  sello: "◯_● · 51/49/100"
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Reglas

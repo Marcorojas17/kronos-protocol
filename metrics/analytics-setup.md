@@ -10,15 +10,16 @@
 
 # ⚙️ ANALYTICS SETUP
 
-### *Configurar métricas sin espiar*
+### _Configurar métricas sin espiar_
 
-### *"El mejor analytics es el que no necesita cookies."*
+### _"El mejor analytics es el que no necesita cookies."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  S E T U P  ·  ◯_●                                   ║
@@ -32,6 +33,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -52,6 +54,7 @@ docker run -d \
 ```
 
 **Ventajas:**
+
 - Open source (AGPL)
 - Privacy-first por diseño
 - Sin cookies
@@ -68,6 +71,7 @@ docker run -d \
 ```
 
 **Ventajas:**
+
 - Open source (MIT)
 - Self-hosted
 - Sin cookies
@@ -105,6 +109,7 @@ Content-Type: application/json
 ```
 
 **Reglas:**
+
 ```diff
 + Anonimizar IP antes de guardar
 + Agregar por hora/día/mes

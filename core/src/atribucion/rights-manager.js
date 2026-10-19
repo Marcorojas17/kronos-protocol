@@ -9,9 +9,14 @@
 export const SEAL = '◯_● · 51/49/100';
 
 export const LICENCIAS = [
-  { id: 'LGU',      nombre: 'Licencia Global Única',   uso: 'comercial', requiere_permiso: true },
-  { id: 'LGU-EDU',  nombre: 'LGU Educativa',           uso: 'educativo', requiere_permiso: false },
-  { id: 'LGU-PERS', nombre: 'LGU Personal',            uso: 'personal',  requiere_permiso: false },
+  {
+    id: 'LGU',
+    nombre: 'Licencia Global Única',
+    uso: 'comercial',
+    requiere_permiso: true,
+  },
+  { id: 'LGU-EDU', nombre: 'LGU Educativa', uso: 'educativo', requiere_permiso: false },
+  { id: 'LGU-PERS', nombre: 'LGU Personal', uso: 'personal', requiere_permiso: false },
 ];
 
 /**

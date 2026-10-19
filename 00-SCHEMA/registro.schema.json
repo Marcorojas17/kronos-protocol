@@ -168,13 +168,7 @@
       "properties": {
         "tipo": {
           "type": "string",
-          "enum": [
-            "gratuito",
-            "pago-unico",
-            "suscripcion",
-            "licencia",
-            "seguro"
-          ]
+          "enum": ["gratuito", "pago-unico", "suscripcion", "licencia", "seguro"]
         },
         "emisor_id": { "type": "string" },
         "receptor_id": { "type": "string" },

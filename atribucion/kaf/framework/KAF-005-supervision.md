@@ -8,11 +8,11 @@ Garantizar supervisión humana efectiva (EU AI Act Art. 14).
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-4.1 | Aprobación humana documentada | Critical | ✅ |
-| KAF-4.2 | Alertas automáticas | High | ✅ |
-| KAF-4.3 | Kill switch | High | ❌ |
+| ID      | Nombre                        | Severidad | Auto |
+| ------- | ----------------------------- | --------- | ---- |
+| KAF-4.1 | Aprobación humana documentada | Critical  | ✅   |
+| KAF-4.2 | Alertas automáticas           | High      | ✅   |
+| KAF-4.3 | Kill switch                   | High      | ❌   |
 
 ## Requisitos
 

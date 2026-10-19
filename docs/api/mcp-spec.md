@@ -18,13 +18,13 @@
 
 ## 🜂 Tools
 
-| Tool | Input | Output |
-|------|-------|--------|
-| `marco.firmar` | contenido · tipo | firma · hash |
-| `marco.verificar` | hash | veredicto |
-| `marco.contextualizar` | agente · tema | prompt sistema |
-| `marco.recordar` | decisión | id · hash |
-| `marco.consultar` | campo | índice cero |
+| Tool                   | Input            | Output         |
+| ---------------------- | ---------------- | -------------- |
+| `marco.firmar`         | contenido · tipo | firma · hash   |
+| `marco.verificar`      | hash             | veredicto      |
+| `marco.contextualizar` | agente · tema    | prompt sistema |
+| `marco.recordar`       | decisión         | id · hash      |
+| `marco.consultar`      | campo            | índice cero    |
 
 ## 🜃 Resources
 

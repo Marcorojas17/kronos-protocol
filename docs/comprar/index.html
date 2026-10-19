@@ -1,106 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>◯_● Licencias · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;padding:24px 16px;max-width:1100px;margin:auto;line-height:1.6}
-.back{display:inline-block;color:#ffd700;text-decoration:none;font-size:11px;letter-spacing:.2em;border:1px solid rgba(255,215,0,.4);padding:6px 14px;margin-bottom:20px}
-h1{font-family:Georgia,serif;color:#ffd700;font-size:26px;letter-spacing:.15em;text-align:center;margin:20px 0}
-.sub{color:#6a8f6a;font-size:11px;text-align:center;margin-bottom:30px;letter-spacing:.05em}
-.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:20px}
-.level{background:rgba(15,15,24,.7);border:1px solid rgba(255,215,0,.25);padding:28px 24px;text-align:center;display:flex;flex-direction:column}
-.level.destacado{border:2px solid #ffd700;background:rgba(255,215,0,.06);box-shadow:0 0 40px rgba(255,215,0,.15);position:relative}
-.level .icono{font-size:36px;margin-bottom:8px;display:block}
-.level h2{color:#ffd700;font-size:16px;letter-spacing:.25em;margin-bottom:6px;font-family:Georgia,serif}
-.level .desc{color:#6a8f6a;font-size:10px;letter-spacing:.1em;margin-bottom:16px}
-.level .precio{font-size:40px;color:#ffd700;font-family:Georgia,serif;margin:14px 0 4px}
-.level .precio small{font-size:14px;color:#6a8f6a;letter-spacing:.1em}
-.level .moneda{color:#6a8f6a;font-size:10px;letter-spacing:.2em;margin-bottom:20px}
-.level ul{list-style:none;text-align:left;font-size:11px;color:#c8ffc8;margin:20px 0;flex-grow:1}
-.level li{padding:7px 0;border-bottom:1px solid rgba(255,215,0,.08)}
-.level li:before{content:"✓ ";color:#ffd700;font-weight:bold}
-.btn{display:inline-block;margin-top:auto;padding:14px 28px;border:1px solid #ffd700;color:#ffd700;text-decoration:none;font-size:12px;letter-spacing:.2em;transition:all .3s}
-.btn:hover{background:#ffd700;color:#030308}
-.btn.destacado{background:#ffd700;color:#030308}
-.btn.destacado:hover{background:transparent;color:#ffd700}
-.badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#030308;border:2px solid #ffd700;color:#ffd700;font-size:9px;letter-spacing:.2em;padding:4px 14px}
-.footer{margin-top:50px;text-align:center;font-size:10px;color:#6a8f6a;letter-spacing:.2em;border-top:1px solid rgba(255,215,0,.15);padding-top:20px}
-.info{margin-top:30px;padding:20px;border:1px solid rgba(255,215,0,.2);background:rgba(255,215,0,.03);font-size:11px;text-align:center}
-.info strong{color:#ffd700}
-</style>
-</head>
-<body>
-<a href="../" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1>⚜ LICENCIAS ARKHÉ ZERO</h1>
-<p class="sub">Certificados criptográficos · Ed25519 + ML-DSA-65 · verificación pública</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>◯_● Licencias · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #030308;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        padding: 24px 16px;
+        max-width: 1100px;
+        margin: auto;
+        line-height: 1.6;
+      }
+      .back {
+        display: inline-block;
+        color: #ffd700;
+        text-decoration: none;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        padding: 6px 14px;
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        color: #ffd700;
+        font-size: 26px;
+        letter-spacing: 0.15em;
+        text-align: center;
+        margin: 20px 0;
+      }
+      .sub {
+        color: #6a8f6a;
+        font-size: 11px;
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 0.05em;
+      }
+      .levels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+      }
+      .level {
+        background: rgba(15, 15, 24, 0.7);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        padding: 28px 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .level.destacado {
+        border: 2px solid #ffd700;
+        background: rgba(255, 215, 0, 0.06);
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+        position: relative;
+      }
+      .level .icono {
+        font-size: 36px;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .level h2 {
+        color: #ffd700;
+        font-size: 16px;
+        letter-spacing: 0.25em;
+        margin-bottom: 6px;
+        font-family: Georgia, serif;
+      }
+      .level .desc {
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .level .precio {
+        font-size: 40px;
+        color: #ffd700;
+        font-family: Georgia, serif;
+        margin: 14px 0 4px;
+      }
+      .level .precio small {
+        font-size: 14px;
+        color: #6a8f6a;
+        letter-spacing: 0.1em;
+      }
+      .level .moneda {
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        margin-bottom: 20px;
+      }
+      .level ul {
+        list-style: none;
+        text-align: left;
+        font-size: 11px;
+        color: #c8ffc8;
+        margin: 20px 0;
+        flex-grow: 1;
+      }
+      .level li {
+        padding: 7px 0;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+      }
+      .level li:before {
+        content: '✓ ';
+        color: #ffd700;
+        font-weight: bold;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: auto;
+        padding: 14px 28px;
+        border: 1px solid #ffd700;
+        color: #ffd700;
+        text-decoration: none;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        transition: all 0.3s;
+      }
+      .btn:hover {
+        background: #ffd700;
+        color: #030308;
+      }
+      .btn.destacado {
+        background: #ffd700;
+        color: #030308;
+      }
+      .btn.destacado:hover {
+        background: transparent;
+        color: #ffd700;
+      }
+      .badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #030308;
+        border: 2px solid #ffd700;
+        color: #ffd700;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        padding: 4px 14px;
+      }
+      .footer {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 10px;
+        color: #6a8f6a;
+        letter-spacing: 0.2em;
+        border-top: 1px solid rgba(255, 215, 0, 0.15);
+        padding-top: 20px;
+      }
+      .info {
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        background: rgba(255, 215, 0, 0.03);
+        font-size: 11px;
+        text-align: center;
+      }
+      .info strong {
+        color: #ffd700;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1>⚜ LICENCIAS ARKHÉ ZERO</h1>
+    <p class="sub">
+      Certificados criptográficos · Ed25519 + ML-DSA-65 · verificación pública
+    </p>
 
-<div class="levels">
+    <div class="levels">
+      <div class="level">
+        <span class="icono">🌍</span>
+        <h2>TESTIGO</h2>
+        <div class="desc">Ver · Atestiguar</div>
+        <div class="precio">$99<small> MXN</small></div>
+        <div class="moneda">PAGO ÚNICO · 1 AÑO</div>
+        <ul>
+          <li>Firma Ed25519 del documento</li>
+          <li>Anclaje Bitcoin (OpenTimestamps)</li>
+          <li>Certificado JSON verificable</li>
+          <li>Hash SHA-256 público</li>
+          <li>1 obra registrada</li>
+        </ul>
+        <a href="https://mpago.la/1iq5Vc9" target="_blank" class="btn"
+          >▶ ADQUIRIR TESTIGO</a
+        >
+      </div>
 
-  <div class="level">
-    <span class="icono">🌍</span>
-    <h2>TESTIGO</h2>
-    <div class="desc">Ver · Atestiguar</div>
-    <div class="precio">$99<small> MXN</small></div>
-    <div class="moneda">PAGO ÚNICO · 1 AÑO</div>
-    <ul>
-      <li>Firma Ed25519 del documento</li>
-      <li>Anclaje Bitcoin (OpenTimestamps)</li>
-      <li>Certificado JSON verificable</li>
-      <li>Hash SHA-256 público</li>
-      <li>1 obra registrada</li>
-    </ul>
-    <a href="https://mpago.la/1iq5Vc9" target="_blank" class="btn">▶ ADQUIRIR TESTIGO</a>
-  </div>
+      <div class="level destacado">
+        <span class="badge">MÁS ELEGIDO</span>
+        <span class="icono">🧭</span>
+        <h2>GUARDIÁN</h2>
+        <div class="desc">Proteger · Custodiar</div>
+        <div class="precio">$499<small> MXN</small></div>
+        <div class="moneda">PAGO ÚNICO · 1 AÑO</div>
+        <ul>
+          <li>Todo lo del nivel TESTIGO</li>
+          <li>Firma post-cuántica ML-DSA-65</li>
+          <li>QR nominativo dinámico</li>
+          <li>Certificado visual imprimible</li>
+          <li>Registro en LICENCIAS/</li>
+          <li>Hasta 10 obras registradas</li>
+        </ul>
+        <a href="https://mpago.la/1oWJYgK" target="_blank" class="btn destacado"
+          >▶ ADQUIRIR GUARDIÁN</a
+        >
+      </div>
 
-  <div class="level destacado">
-    <span class="badge">MÁS ELEGIDO</span>
-    <span class="icono">🧭</span>
-    <h2>GUARDIÁN</h2>
-    <div class="desc">Proteger · Custodiar</div>
-    <div class="precio">$499<small> MXN</small></div>
-    <div class="moneda">PAGO ÚNICO · 1 AÑO</div>
-    <ul>
-      <li>Todo lo del nivel TESTIGO</li>
-      <li>Firma post-cuántica ML-DSA-65</li>
-      <li>QR nominativo dinámico</li>
-      <li>Certificado visual imprimible</li>
-      <li>Registro en LICENCIAS/</li>
-      <li>Hasta 10 obras registradas</li>
-    </ul>
-    <a href="https://mpago.la/1oWJYgK" target="_blank" class="btn destacado">▶ ADQUIRIR GUARDIÁN</a>
-  </div>
+      <div class="level">
+        <span class="icono">🏛</span>
+        <h2>LEGADO</h2>
+        <div class="desc">Perpetuar · Trascender</div>
+        <div class="precio">$1,999<small> MXN</small></div>
+        <div class="moneda">PAGO ÚNICO · 10 AÑOS</div>
+        <ul>
+          <li>Todo lo del nivel GUARDIÁN</li>
+          <li>Obras ilimitadas</li>
+          <li>Acceso a API ARKHÉ ZERO</li>
+          <li>Verificación programática</li>
+          <li>Soporte prioritario</li>
+          <li>Vigencia 10 años</li>
+        </ul>
+        <a href="https://mpago.la/1CSxvDE" target="_blank" class="btn"
+          >▶ ADQUIRIR LEGADO</a
+        >
+      </div>
+    </div>
 
-  <div class="level">
-    <span class="icono">🏛</span>
-    <h2>LEGADO</h2>
-    <div class="desc">Perpetuar · Trascender</div>
-    <div class="precio">$1,999<small> MXN</small></div>
-    <div class="moneda">PAGO ÚNICO · 10 AÑOS</div>
-    <ul>
-      <li>Todo lo del nivel GUARDIÁN</li>
-      <li>Obras ilimitadas</li>
-      <li>Acceso a API ARKHÉ ZERO</li>
-      <li>Verificación programática</li>
-      <li>Soporte prioritario</li>
-      <li>Vigencia 10 años</li>
-    </ul>
-    <a href="https://mpago.la/1CSxvDE" target="_blank" class="btn">▶ ADQUIRIR LEGADO</a>
-  </div>
+    <div
+      style="
+        text-align: center;
+        margin: 20px 0;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+      "
+    >
+      🛡️ VERIFICACIÓN SOBERANA · Validadas por un nodo Bitcoin propio · Sin dependencias
+      externas
+    </div>
+    <div class="info">
+      <strong>¿Cómo funciona?</strong><br />
+      Al confirmar tu pago, tu licencia se firma criptográficamente con
+      <strong>Ed25519</strong> (y <strong>ML-DSA-65</strong> en GUARDIÁN y LEGADO).<br />
+      Recibes un certificado JSON que cualquier persona puede verificar en
+      <a href="../licencias/verify.html" style="color: #ffd700"
+        >el verificador público</a
+      >.<br />
+      Sin intermediarios. Sin servidores de terceros. Sin caducidad oculta.
+    </div>
 
-</div>
-
-<div style="text-align:center;margin:20px 0;color:#6a8f6a;font-size:10px;letter-spacing:.15em">🛡️ VERIFICACIÓN SOBERANA · Validadas por un nodo Bitcoin propio · Sin dependencias externas</div><div class="info">
-  <strong>¿Cómo funciona?</strong><br>
-  Al confirmar tu pago, tu licencia se firma criptográficamente con <strong>Ed25519</strong> (y <strong>ML-DSA-65</strong> en GUARDIÁN y LEGADO).<br>
-  Recibes un certificado JSON que cualquier persona puede verificar en <a href="../licencias/verify.html" style="color:#ffd700">el verificador público</a>.<br>
-  Sin intermediarios. Sin servidores de terceros. Sin caducidad oculta.
-</div>
-
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-<script src="/kronos-protocol/arkhe-nav.js"></script>
-</body>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
 </html>

@@ -6,9 +6,9 @@
 export class LogAcciones {
   constructor(storage) {
     this.storage = storage;
-    this.db = new Dexie("kronos-log-ia");
+    this.db = new Dexie('kronos-log-ia');
     this.db.version(1).stores({
-      entradas: "++id, tipo, timestamp, hash_entrada",
+      entradas: '++id, tipo, timestamp, hash_entrada',
     });
     this.entradas = [];
     this.inicializado = false;
@@ -23,10 +23,10 @@ export class LogAcciones {
 
   static async _sha256Hex(texto) {
     const data = new TextEncoder().encode(texto);
-    const buf = await crypto.subtle.digest("SHA-256", data);
+    const buf = await crypto.subtle.digest('SHA-256', data);
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   async registrar(tipo, datos) {
@@ -36,7 +36,7 @@ export class LogAcciones {
     const hashPrevio =
       this.entradas.length > 0
         ? this.entradas[this.entradas.length - 1].hash_entrada
-        : "0000000000000000000000000000000000000000000000000000000000000000";
+        : '0000000000000000000000000000000000000000000000000000000000000000';
 
     const contenido = {
       indice: this.entradas.length,
@@ -85,7 +85,7 @@ export class LogAcciones {
 
   exportar() {
     return new Blob([JSON.stringify(this.entradas, null, 2)], {
-      type: "application/json",
+      type: 'application/json',
     });
   }
 }

@@ -17,15 +17,16 @@
 
 # 🔌 API DE MÉTRICAS
 
-### *Métricas públicas, sin auth, sin tracking*
+### _Métricas públicas, sin auth, sin tracking_
 
-### *"La transparencia se expone. No se pide."*
+### _"La transparencia se expone. No se pide."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A P I  ·  ◯_●                                       ║
@@ -41,6 +42,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -65,12 +67,12 @@
 ```json
 {
   "kpis": [
-    { "id": "visitantes_unicos",   "meta": 10000, "actual": 12453 },
-    { "id": "firmas_mes",          "meta": 100,   "actual": 87 },
-    { "id": "suscriptores",        "meta": 1000,  "actual": 892 },
-    { "id": "embajadores_e1",      "meta": 5,     "actual": 0 },
-    { "id": "indice_conversion",   "meta": 1.0,   "actual": 0.7 },
-    { "id": "nodos_activos",       "meta": 5,     "actual": 1 }
+    { "id": "visitantes_unicos", "meta": 10000, "actual": 12453 },
+    { "id": "firmas_mes", "meta": 100, "actual": 87 },
+    { "id": "suscriptores", "meta": 1000, "actual": 892 },
+    { "id": "embajadores_e1", "meta": 5, "actual": 0 },
+    { "id": "indice_conversion", "meta": 1.0, "actual": 0.7 },
+    { "id": "nodos_activos", "meta": 5, "actual": 1 }
   ],
   "sellado": "◯_● · 51/49/100"
 }

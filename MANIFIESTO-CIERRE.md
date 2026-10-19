@@ -1,7 +1,7 @@
-```markdown
+````markdown
 # 🔱 MANIFIESTO DE CIERRE · ARKHÉ ZERO
 
-> *"El legado no se hereda. Se firma."*
+> _"El legado no se hereda. Se firma."_
 > — Marco Antonio Rojas Valdovinos · Toluca, México · 2026
 
 ---
@@ -21,6 +21,7 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
+````
 
 ---
 
@@ -191,7 +192,7 @@ Nodo YHDRYH-92CE · Genesis K28-M05-MN01-YHDRYH-92CE
 FIN DEL MANIFIESTO DE CIERRE
 ```
 
-```
+````
 
 ---
 
@@ -199,4 +200,4 @@ FIN DEL MANIFIESTO DE CIERRE
 ████████████████████████████████████████████████████████████████████████████
 █  ARCHIVO 02 · SCRIPT DE DESPLIEGUE FINAL                                 █
 ████████████████████████████████████████████████████████████████████████████
-```
+````

@@ -37,14 +37,24 @@
     "cuicatl": {
       "rol": "Publicista",
       "acciones_permitidas": ["generar_contenido", "leer_sistema"],
-      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando", "publicar_externo"],
+      "acciones_prohibidas": [
+        "firmar_archivo",
+        "borrar_archivo",
+        "ejecutar_comando",
+        "publicar_externo"
+      ],
       "requiere_aprobacion_humana": true,
       "nivel_autonomia": 0
     },
     "hunter": {
       "rol": "Cazador",
       "acciones_permitidas": ["leer_logs", "escanear_localhost", "reportar_amenazas"],
-      "acciones_prohibidas": ["firmar_archivo", "borrar_archivo", "ejecutar_comando", "escanear_externo"],
+      "acciones_prohibidas": [
+        "firmar_archivo",
+        "borrar_archivo",
+        "ejecutar_comando",
+        "escanear_externo"
+      ],
       "requiere_aprobacion_humana": false,
       "nivel_autonomia": 1
     }

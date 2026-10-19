@@ -62,14 +62,14 @@ Email: privacy@atribucion.io
 
 ## 4. Cómo usamos los datos
 
-| Uso | Base legal | Retención |
-|---|---|---|
-| Prestar el servicio | Contrato | Mientras la cuenta esté activa |
-| Cumplir obligaciones legales | Obligación legal | 10 años (registros fiscales) |
-| Prevenir fraude | Interés legítimo | 2 años |
-| Mejorar el servicio | Interés legítimo | 2 años |
-| Enviar emails transaccionales | Contrato | Mientras la cuenta esté activa |
-| Enviar emails de marketing | Consentimiento | Hasta revocación |
+| Uso                           | Base legal       | Retención                      |
+| ----------------------------- | ---------------- | ------------------------------ |
+| Prestar el servicio           | Contrato         | Mientras la cuenta esté activa |
+| Cumplir obligaciones legales  | Obligación legal | 10 años (registros fiscales)   |
+| Prevenir fraude               | Interés legítimo | 2 años                         |
+| Mejorar el servicio           | Interés legítimo | 2 años                         |
+| Enviar emails transaccionales | Contrato         | Mientras la cuenta esté activa |
+| Enviar emails de marketing    | Consentimiento   | Hasta revocación               |
 
 ---
 
@@ -98,14 +98,14 @@ posibilidades técnicas de una blockchain.
 
 Compartimos datos con:
 
-| Tercero | Qué | Por qué |
-|---|---|---|
-| Ethereum | Hashes | Anclaje inmutable |
-| IPFS/Arweave | Contenido cifrado | Almacenamiento permanente |
-| DigiCert | Hashes | Sellado de tiempo RFC 3161 |
-| Mercado Pago | Datos de pago | Procesar pagos |
-| Railway | Datos de aplicación | Hosting del API |
-| Cloudflare | Datos de tráfico | DDoS + CDN |
+| Tercero      | Qué                 | Por qué                    |
+| ------------ | ------------------- | -------------------------- |
+| Ethereum     | Hashes              | Anclaje inmutable          |
+| IPFS/Arweave | Contenido cifrado   | Almacenamiento permanente  |
+| DigiCert     | Hashes              | Sellado de tiempo RFC 3161 |
+| Mercado Pago | Datos de pago       | Procesar pagos             |
+| Railway      | Datos de aplicación | Hosting del API            |
+| Cloudflare   | Datos de tráfico    | DDoS + CDN                 |
 
 Todos los terceros cumplen con GDPR y tienen acuerdos de
 procesamiento de datos firmados.

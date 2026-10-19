@@ -10,26 +10,26 @@
 
 # 📖 GLOSARIO DE MÉTRICAS
 
-### *Términos canónicos*
+### _Términos canónicos_
 
-### *"Nombrar bien es medir bien."*
+### _"Nombrar bien es medir bien."_
 
 </div>
 
 ## 🜂 Términos
 
-| Término              | Definición                                        |
-|----------------------|---------------------------------------------------|
-| **Visitante único**  | Sesión sin identificar · deduplicado por día      |
-| **Firma**            | Obra registrada con sello ◯_●                     |
-| **Suscriptor**       | Email activo en newsletter                        |
-| **Embajador E-1**    | Representante nivel 1 del movimiento              |
-| **Nodo**             | Instancia regional operativa                      |
-| **Conversión**       | Firmas / visitantes × 100                         |
-| **Cohorte**          | Grupo de usuarios por mes de ingreso              |
-| **Funnel**           | Secuencia de pasos hacia firma                    |
-| **Privacidad First** | Sin cookies, sin tracking, sin fingerprinting     |
-| **Sellado**          | Toda métrica incluye hash + sello ◯_●             |
+| Término              | Definición                                    |
+| -------------------- | --------------------------------------------- |
+| **Visitante único**  | Sesión sin identificar · deduplicado por día  |
+| **Firma**            | Obra registrada con sello ◯_●                 |
+| **Suscriptor**       | Email activo en newsletter                    |
+| **Embajador E-1**    | Representante nivel 1 del movimiento          |
+| **Nodo**             | Instancia regional operativa                  |
+| **Conversión**       | Firmas / visitantes × 100                     |
+| **Cohorte**          | Grupo de usuarios por mes de ingreso          |
+| **Funnel**           | Secuencia de pasos hacia firma                |
+| **Privacidad First** | Sin cookies, sin tracking, sin fingerprinting |
+| **Sellado**          | Toda métrica incluye hash + sello ◯_●         |
 
 ## 🜃 Reglas de uso
 

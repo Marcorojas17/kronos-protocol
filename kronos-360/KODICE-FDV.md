@@ -1,4 +1,3 @@
-
 SISTEMA KRONOS 360 b
 DICE b
 ash: FDV: not found
@@ -23,36 +22,36 @@ C
 NDICE
 
 1. PORTADA
-USULA NOAI
-3. RESUMEN EJECUTIVO
-4. MARCO EPISTEMOLCGICO
+   USULA NOAI
+2. RESUMEN EJECUTIVO
+3. MARCO EPISTEMOLCGICO
+4. CAPC
+   TULO 1 b2. ash: LC: not found
+   NEA DE TIEMPO SOBERANA
 5. CAPC
-TULO 1 b2. ash: LC: not found
-NEA DE TIEMPO SOBERANA
+   TULO 2 bDECLARACICN ash: MARCO: not found
 6. CAPC
-TULO 2 bDECLARACICN ash: MARCO: not found
+   TULO 3 bDE ash: DESARROLLO: not found
 7. CAPC
-TULO 3 bDE ash: DESARROLLO: not found
+   TULO 4 bORIGINALIDAD ash: RESULTADOS: not found
 8. CAPC
-TULO 4 bORIGINALIDAD ash: RESULTADOS: not found
+   TULO 5 bY MICO Y PATENTE
 9. CAPC
-TULO 5 bY MICO Y PATENTE
+   TULO 6 bCLC
+   ash: VACC: not found
+   OS LEGALES Y PROPUESTA DE 5 ARTC
+   CULOS
 10. CAPC
-TULO 6 bCLC
-ash: VACC: not found
-OS LEGALES Y PROPUESTA DE 5 ARTC
-CULOS
+    TULO 7 b
+    ash: N: not found
 11. CAPC
-TULO 7 b
-ash: N: not found
-12. CAPC
-TULO 8 b
-ash: BLINDAJE: not found
-13. CONCLUSIONES Y TRABAJO FUTURO
-14. ANEXOS A-S
-15. BIOGRAFC
-A DEL AUTOR
-16. FIRMA FINAL
+    TULO 8 b
+    ash: BLINDAJE: not found
+12. CONCLUSIONES Y TRABAJO FUTURO
+13. ANEXOS A-S
+14. BIOGRAFC
+    A DEL AUTOR
+15. FIRMA FINAL
 
 ---
 
@@ -82,5 +81,5 @@ RESUMEN EJECUTIVO
 
 Entre 2024 y 2026 se detectC3 un vacC-o crC-tico en MC)xico: no existe una prueba de tiempo con milisegundos para fotografC-as de obra, arte y activos piezoelC)ctricos. El resultado es la clonaciC3n y la pC)rdida de hasta 27,000 millones de pesos en la economC-a creativa. Se desarrollC3 KRONOS 360, un sistema de cinco capas que incluye captura con folio PK, sellado offline con SHA-256 e interaction_id, registro inmutable en Supabase con restricciones UNIQUE, verificaciC3n mediante API pC:blica y presentaciC3n fC-sica mediante QR.
 
-El hallazgo forense principal fue la colisiC3n de folios 00001258 y 00001259, con el mismo hash y el mismo segundo, lo que confirmC3 la clonaciC3n. El sistema bloquea automC!ticamente los duplicados. El modelo econC3mico propone licencia empresarial 
+El hallazgo forense principal fue la colisiC3n de folios 00001258 y 00001259, con el mismo hash y el mismo segundo, lo que confirmC3 la clonaciC3n. El sistema bloquea automC!ticamente los duplicados. El modelo econC3mico propone licencia empresarial
 ORIGINALIDAD Y CLC

@@ -17,15 +17,16 @@
 
 # ❓ FAQ · ONBOARDING
 
-### *Preguntas del iniciado*
+### _Preguntas del iniciado_
 
-### *"El camino es largo. Las dudas también."*
+### _"El camino es largo. Las dudas también."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  F A Q · O N B O A R D I N G  ·  ◯_●                 ║
@@ -36,6 +37,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -69,6 +71,7 @@ al Índice Cero como prueba de tu paso.
 ## 🜇 ¿Cómo subo de nivel?
 
 Cada nivel requiere méritos verificables:
+
 - Nivel 1 → 2: 5 obras + 1 auditoría
 - Nivel 2 → 3: 3 ahijados + 20 obras
 - Nivel 3 → 4: 10 ahijados + 1 nodo

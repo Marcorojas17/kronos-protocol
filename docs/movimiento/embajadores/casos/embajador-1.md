@@ -17,15 +17,16 @@
 
 # 👤 CASO 1 · EL PIONERO
 
-### *Primer embajador · primer nodo*
+### _Primer embajador · primer nodo_
 
-### *"El primero abre la puerta. Los demás la cruzan."*
+### _"El primero abre la puerta. Los demás la cruzan."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  P I O N E R O  ·  ◯_●                               ║
@@ -42,6 +43,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -56,21 +58,21 @@ como el **Pionero del Movimiento ARKHÉ**.
 
 ## 🜃 Testimonio (placeholder)
 
-> *"Firmé cuando nadie más firmaba. Abrí el primer nodo cuando
+> _"Firmé cuando nadie más firmaba. Abrí el primer nodo cuando
 > nadie más lo abría. No por valentía, sino porque entendí que
-> el legado se construye firma por firma."*
+> el legado se construye firma por firma."_
 >
-> — *[pendiente]*
+> — _[pendiente]_
 
 ## 🜄 Métricas
 
-| Métrica          | Valor |
-|------------------|-------|
-| Ahijados         | —     |
-| Obras firmadas   | —     |
-| Nodos fundados   | —     |
-| Reputación       | —     |
-| Meses activo     | —     |
+| Métrica        | Valor |
+| -------------- | ----- |
+| Ahijados       | —     |
+| Obras firmadas | —     |
+| Nodos fundados | —     |
+| Reputación     | —     |
+| Meses activo   | —     |
 
 ## 🜁 Firma
 

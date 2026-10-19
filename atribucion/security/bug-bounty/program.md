@@ -15,13 +15,13 @@ en Atribución antes de que sean explotadas.
 
 ## Rango de recompensas
 
-| Severidad | CVSS | Recompensa | Ejemplos |
-|---|---|---|---|
-| **Crítica** | 9.0-10.0 | $5.000 | RCE, robo de claves, bypass auth |
-| **Alta** | 7.0-8.9 | $1.500 | SQLi, SSRF crítico, IDOR |
-| **Media** | 4.0-6.9 | $500 | XSS almacenado, CSRF |
-| **Baja** | 0.1-3.9 | $100 | XSS reflejado, info disclosure menor |
-| **Informativa** | 0.0 | Crédito | Mejoras, sin vulnerabilidad |
+| Severidad       | CVSS     | Recompensa | Ejemplos                             |
+| --------------- | -------- | ---------- | ------------------------------------ |
+| **Crítica**     | 9.0-10.0 | $5.000     | RCE, robo de claves, bypass auth     |
+| **Alta**        | 7.0-8.9  | $1.500     | SQLi, SSRF crítico, IDOR             |
+| **Media**       | 4.0-6.9  | $500       | XSS almacenado, CSRF                 |
+| **Baja**        | 0.1-3.9  | $100       | XSS reflejado, info disclosure menor |
+| **Informativa** | 0.0      | Crédito    | Mejoras, sin vulnerabilidad          |
 
 **Máximo por reporte:** $5.000
 **Máximo por investigador/año:** $25.000
@@ -31,26 +31,31 @@ en Atribución antes de que sean explotadas.
 ## Proceso de reporte
 
 ### 1. Envío
+
 - Plataforma: HackerOne (preferido) o bugcrowd
 - Formato: título, severidad, pasos, PoC, impacto
 - Cifrado: PGP opcional para reportes sensibles
 
 ### 2. Confirmación (24h)
+
 - Recibimos el reporte.
 - Confirmamos recepción.
 - Asignamos ID de caso.
 
 ### 3. Triaje (72h)
+
 - Evaluamos severidad real.
 - Validamos reproducible.
 - Notificamos al investigador.
 
 ### 4. Fix (7-30 días)
+
 - Desarrollamos el parche.
 - Desplegamos a staging.
 - Verificamos que soluciona.
 
 ### 5. Recompensa (15 días post-fix)
+
 - Pagamos vía transferencia bancaria o cripto.
 - Publicamos crédito (si autoriza).
 - Cerramos caso.
@@ -60,12 +65,14 @@ en Atribución antes de que sean explotadas.
 ## Reglas de participación
 
 ### ✅ Permitido
+
 - Reportar vulnerabilidades en scope.
 - Usar PoC mínimos.
 - Coordinar divulgación con nosotros.
 - Múltiples reportes del mismo investigador.
 
 ### ❌ Prohibido
+
 - Dañar el sistema o datos.
 - Acceder a datos de otros usuarios.
 - Realizar DoS/DDoS.
@@ -91,16 +98,19 @@ en Atribución antes de que sean explotadas.
 ## Divulgación
 
 ### Coordinada
+
 - Por defecto: 90 días desde fix.
 - Extensible por acuerdo mutuo.
 - Publicamos post-mortem.
 
 ### Inmediata
+
 - Solo si la vulnerabilidad ya es pública.
 - Solo si hay riesgo activo para usuarios.
 - Solo con notificación previa al investigador.
 
 ### Nunca
+
 - Detalles técnicos explotables antes del fix.
 - Información personal del investigador sin permiso.
 
@@ -109,7 +119,9 @@ en Atribución antes de que sean explotadas.
 ## Reconocimiento
 
 ### Hall of Fame
+
 Publicamos (con permiso) en:
+
 ```text
 atribucion.io/security/hall-of-fame
 
@@ -142,3 +154,4 @@ Tiempo medio de fix <30d
 Tiempo medio de pago <15d post-fix
 Reputación del programa Top 50% en plataforma
 
+```

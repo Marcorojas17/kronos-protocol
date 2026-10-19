@@ -17,15 +17,16 @@
 
 # 🔥 MANIFIESTO VIRAL
 
-### *100 palabras. Sin adornos. Firma o sal.*
+### _100 palabras. Sin adornos. Firma o sal._
 
-### *"El manifiesto corto no se lee. Se firma."*
+### _"El manifiesto corto no se lee. Se firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I R A L  ·  ◯_●                                   ║
@@ -37,6 +38,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```

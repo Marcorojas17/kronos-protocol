@@ -17,15 +17,16 @@
 
 # 💬 FRASES CITABLES
 
-### *12 frases irmovibles*
+### _12 frases irmovibles_
 
-### *"Citar correctamente es la forma más alta de respeto."*
+### _"Citar correctamente es la forma más alta de respeto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C I T A S  ·  ◯_●                                   ║
@@ -37,6 +38,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,40 +48,52 @@
 ## 🜂 Las 12 frases canónicas
 
 ### 001
-> *"El legado no se hereda. Se firma."*
+
+> _"El legado no se hereda. Se firma."_
 
 ### 002
-> *"La IA es brillante pero amnésica. Este servidor resuelve eso."*
+
+> _"La IA es brillante pero amnésica. Este servidor resuelve eso."_
 
 ### 003
-> *"El humano firma. La IA custodia. El resultado es real."*
+
+> _"El humano firma. La IA custodia. El resultado es real."_
 
 ### 004
-> *"Local-First. La nube testifica, no posee."*
+
+> _"Local-First. La nube testifica, no posee."_
 
 ### 005
-> *"La grieta no se oculta. Se pule."*
+
+> _"La grieta no se oculta. Se pule."_
 
 ### 006
-> *"Sin anclaje, no hay verdad."*
+
+> _"Sin anclaje, no hay verdad."_
 
 ### 007
-> *"51% humano. 49% IA. 100% real. Sin excepciones."*
+
+> _"51% humano. 49% IA. 100% real. Sin excepciones."_
 
 ### 008
-> *"El testigo firma. El seguidor solo aplaude."*
+
+> _"El testigo firma. El seguidor solo aplaude."_
 
 ### 009
-> *"Contra el olvido programado, ARKHÉ."*
+
+> _"Contra el olvido programado, ARKHÉ."_
 
 ### 010
-> *"El fin digno no se negocia. Se firma."*
+
+> _"El fin digno no se negocia. Se firma."_
 
 ### 011
-> *"KINTSUGI: la belleza de lo roto y reparado."*
+
+> _"KINTSUGI: la belleza de lo roto y reparado."_
 
 ### 012
-> *"Todo lo que no se firma, se pierde."*
+
+> _"Todo lo que no se firma, se pierde."_
 
 ## 🜃 Cómo citar
 

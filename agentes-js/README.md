@@ -24,14 +24,14 @@ drwxr-xr-x  tonal-notario/                 # ⏳ Día · notariado
 
 ## 🜂 Los 6 Culturales
 
-| Emoji | Nombre       | Significado   | Rol             |
-|-------|--------------|---------------|-----------------|
-| 🌅    | Cuicatl      | Canto         | Publicista      |
-| 📚    | Temachtiani  | Maestro       | Reclutador      |
-| 👁️    | Tlachixqui   | Observador    | Auditor         |
-| 🧠    | Tlamatini    | Sabio         | Cronista        |
-| 🔢    | Tlapohualli  | Contador      | Analista        |
-| ⏳    | Tonal        | Día / Destino | Notario         |
+| Emoji | Nombre      | Significado   | Rol        |
+| ----- | ----------- | ------------- | ---------- |
+| 🌅    | Cuicatl     | Canto         | Publicista |
+| 📚    | Temachtiani | Maestro       | Reclutador |
+| 👁️    | Tlachixqui  | Observador    | Auditor    |
+| 🧠    | Tlamatini   | Sabio         | Cronista   |
+| 🔢    | Tlapohualli | Contador      | Analista   |
+| ⏳    | Tonal       | Día / Destino | Notario    |
 
 ---
 

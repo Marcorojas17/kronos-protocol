@@ -17,15 +17,16 @@
 
 # 🏆 AUTORIDAD
 
-### *La autoridad no se proclama. Se verifica.*
+### _La autoridad no se proclama. Se verifica._
 
-### *"Ninguna prensa vale más que un hash verificable."*
+### _"Ninguna prensa vale más que un hash verificable."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A U T O R I D A D  ·  ◯_●                           ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,32 +50,37 @@
 ## 🜂 Componentes
 
 ### ✅ prueba-social/
+
 Testimonios verificables de usuarios reales. Cada uno con hash.
 
 ### 📰 prensa/
+
 Cobertura mediática verificada. Enlaces + hashes.
 
 ### 📖 papers/
+
 Publicaciones académicas sobre el sistema.
 
 ### 🎤 conferencias/
+
 Charlas, ponencias, eventos donde se presentó ARKHÉ ZERO.
 
 ### 🎖️ certificaciones/
+
 Avales externos: Safe Creative, eIDAS, WIPO (en curso).
 
 ## 🜃 Formato
 
 ```yaml
-- tipo: "autoridad"
-  categoria: "prensa | paper | conferencia | certificacion"
-  titulo: "..."
-  medio: "..."
-  fecha: "YYYY-MM-DD"
-  url: "https://..."
-  hash_sha3_512: "..."
-  cita_destacada: "..."
-  sello: "◯_● · 51/49/100"
+- tipo: 'autoridad'
+  categoria: 'prensa | paper | conferencia | certificacion'
+  titulo: '...'
+  medio: '...'
+  fecha: 'YYYY-MM-DD'
+  url: 'https://...'
+  hash_sha3_512: '...'
+  cita_destacada: '...'
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Reglas
