@@ -17,15 +17,16 @@
 
 # 🏢 VOCES DE EMPRESAS
 
-### *El compliance que se firma*
+### _El compliance que se firma_
 
-### *"Una empresa que firma, permanece."*
+### _"Una empresa que firma, permanece."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E M P R E S A S  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,9 +48,9 @@
 
 ## 🜂 Testimonio #001
 
-> *"Nuestra empresa maneja 15 000 facturas al año. Cada una firmada
+> _"Nuestra empresa maneja 15 000 facturas al año. Cada una firmada
 > con ARKHÉ ZERO. El SAT ya no puede cuestionar la integridad de
-> nuestros documentos."*
+> nuestros documentos."_
 >
 > — **CFO · Empresa mediana** · Fundador #018
 
@@ -61,9 +63,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜃 Testimonio #002
 
-> *"El compliance del CARF nos tenía preocupados. Con ARKHÉ ZERO,
+> _"El compliance del CARF nos tenía preocupados. Con ARKHÉ ZERO,
 > cada transacción cripto tiene hash, firma y anclaje. El reporte
-> anual es trivial."*
+> anual es trivial."_
 >
 > — **Directora de Compliance** · Fundador #037
 
@@ -76,9 +78,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜄 Testimonio #003
 
-> *"Nuestros contratos con proveedores ahora incluyen hash SHA3-512.
+> _"Nuestros contratos con proveedores ahora incluyen hash SHA3-512.
 > Cualquier disputa legal se resuelve con un click de verificación.
-> Es un antes y un después."*
+> Es un antes y un después."_
 >
 > — **Director jurídico** · Fundador #062
 

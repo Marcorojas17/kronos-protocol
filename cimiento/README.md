@@ -37,11 +37,11 @@
 
 ## 🜂 Componentes
 
-| Componente           | Rol                                                |
-|----------------------|----------------------------------------------------|
-| `anclaje-ethereum/`  | Merkle root → transacción on-chain (permanencia)   |
-| `cripto-core/`       | Núcleo de primitivas PQC + hash                    |
-| `storage-dexie/`     | Persistencia local (IndexedDB) · Local-First       |
+| Componente          | Rol                                              |
+| ------------------- | ------------------------------------------------ |
+| `anclaje-ethereum/` | Merkle root → transacción on-chain (permanencia) |
+| `cripto-core/`      | Núcleo de primitivas PQC + hash                  |
+| `storage-dexie/`    | Persistencia local (IndexedDB) · Local-First     |
 
 ## 🜃 Flujo Canónico
 

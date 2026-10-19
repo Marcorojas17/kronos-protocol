@@ -17,15 +17,16 @@
 
 # ❓ FAQ · TECNOLOGÍA
 
-### *El stack que sostiene el legado*
+### _El stack que sostiene el legado_
 
-### *"La tecnología no es magia. Es matemática aplicada con ceremonia."*
+### _"La tecnología no es magia. Es matemática aplicada con ceremonia."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  T E C N O L O G Í A  ·  ◯_●                         ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,13 +49,13 @@
 
 ## 🜂 ¿Qué lenguajes usa ARKHÉ ZERO?
 
-| Lenguaje | Uso |
-|----------|-----|
+| Lenguaje             | Uso                            |
+| -------------------- | ------------------------------ |
 | **JavaScript (ESM)** | Core crypto · web · MCP server |
-| **TypeScript** | Tipado del sistema |
-| **Python 3.11** | Scripts · tests · herramientas |
-| **Solidity 0.8.24** | Smart contracts |
-| **Bash** | Automatización · deploy |
+| **TypeScript**       | Tipado del sistema             |
+| **Python 3.11**      | Scripts · tests · herramientas |
+| **Solidity 0.8.24**  | Smart contracts                |
+| **Bash**             | Automatización · deploy        |
 
 ## 🜃 ¿Qué algoritmos criptográficos usa?
 

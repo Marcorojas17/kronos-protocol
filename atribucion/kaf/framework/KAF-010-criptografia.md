@@ -8,12 +8,12 @@ Garantizar criptografía resistente a computación cuántica.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-9.1 | Firmas híbridas (ECDSA + ML-DSA) | Critical | ✅ |
-| KAF-9.2 | PQC completo (ML-KEM + ML-DSA + SLH-DSA) | Critical | ✅ |
-| KAF-9.3 | Rotación de claves ≤90 días | High | ✅ |
-| KAF-9.4 | TLS 1.3 obligatorio | High | ✅ |
+| ID      | Nombre                                   | Severidad | Auto |
+| ------- | ---------------------------------------- | --------- | ---- |
+| KAF-9.1 | Firmas híbridas (ECDSA + ML-DSA)         | Critical  | ✅   |
+| KAF-9.2 | PQC completo (ML-KEM + ML-DSA + SLH-DSA) | Critical  | ✅   |
+| KAF-9.3 | Rotación de claves ≤90 días              | High      | ✅   |
+| KAF-9.4 | TLS 1.3 obligatorio                      | High      | ✅   |
 
 ## Algoritmos obligatorios
 

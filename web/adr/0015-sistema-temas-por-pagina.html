@@ -1,45 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>ADR-0015 · Sistema Temas por Página · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="adr-0015-sistema-temas-por-pagina">ADR-0015 · Sistema Temas por Página</h1>
-<ul>
-<li><strong>Estado</strong>: Aceptado</li>
-<li><strong>Fecha</strong>: 2026-06-15</li>
-<li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
-</ul>
-<h2 id="contexto">🜂 Contexto</h2>
-<p>¿Cómo diferenciar visualmente las páginas sin perder consistencia?</p>
-<h2 id="decision">🜃 Decisión</h2>
-<p><strong>Temas por página</strong> con CSS custom properties:
-- <code>terminal-amber</code> (default · hub)
-- <code>terminal-gold</code> (KINTSUGI · manifiesto)
-- <code>terminal-green</code> (verificar · éxito)
-- <code>terminal-cyan</code> (firmar · nuevo)
-- <code>terminal-red</code> (404 · HALT)</p>
-<h2 id="implementacion">🜄 Implementación</h2>
-<pre><code class="language-html">&lt;body data-page=&quot;verificar&quot; data-theme=&quot;terminal-green&quot;&gt;
+  <head>
+    <meta charset="UTF-8" />
+    <title>ADR-0015 · Sistema Temas por Página · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="adr-0015-sistema-temas-por-pagina">ADR-0015 · Sistema Temas por Página</h1>
+    <ul>
+      <li><strong>Estado</strong>: Aceptado</li>
+      <li><strong>Fecha</strong>: 2026-06-15</li>
+      <li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+    </ul>
+    <h2 id="contexto">🜂 Contexto</h2>
+    <p>¿Cómo diferenciar visualmente las páginas sin perder consistencia?</p>
+    <h2 id="decision">🜃 Decisión</h2>
+    <p>
+      <strong>Temas por página</strong> con CSS custom properties: -
+      <code>terminal-amber</code> (default · hub) - <code>terminal-gold</code> (KINTSUGI
+      · manifiesto) - <code>terminal-green</code> (verificar · éxito) -
+      <code>terminal-cyan</code> (firmar · nuevo) - <code>terminal-red</code> (404 ·
+      HALT)
+    </p>
+    <h2 id="implementacion">🜄 Implementación</h2>
+    <pre><code class="language-html">&lt;body data-page=&quot;verificar&quot; data-theme=&quot;terminal-green&quot;&gt;
 </code></pre>
-<pre><code class="language-css">[data-theme=&quot;terminal-green&quot;] {
+    <pre><code class="language-css">[data-theme=&quot;terminal-green&quot;] {
   --accent: #00ff9f;
   --accent-2: #00d4ff;
 }
 </code></pre>
-<h2 id="alternativas">🜁 Alternativas</h2>
-<ol>
-<li>Un solo tema · Rechazada (monótono)</li>
-<li>Temas aleatorios · Rechazada (confuso)</li>
-<li>Temas por página · ✅ Aceptada</li>
-</ol>
-<hr />
-<p><code>◯_● · 51/49/100 · ADR-0015</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <h2 id="alternativas">🜁 Alternativas</h2>
+    <ol>
+      <li>Un solo tema · Rechazada (monótono)</li>
+      <li>Temas aleatorios · Rechazada (confuso)</li>
+      <li>Temas por página · ✅ Aceptada</li>
+    </ol>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ADR-0015</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

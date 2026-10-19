@@ -18,6 +18,7 @@ Genera el manifiesto autopoietico a partir de un hash.
 **Headers:**Content-Type: application/json
 X-Folio: 5204160405358537javascript
 **Body:**
+
 ```json
 {
   "genesis_hash": "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3",
@@ -92,3 +93,4 @@ const FOLIO = "5204160405358537";
 await payForDictamen(priceInWei);Contacto API: kronosproyecto@hotmail.com
 Sello: KRONOS-TRACE-PVA-5204160405358537
 Docs: https://kronos-legado.digital/docs
+```

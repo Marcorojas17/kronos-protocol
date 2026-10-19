@@ -17,15 +17,16 @@
 
 # 📤 EXPORTACIÓN DE MÉTRICAS
 
-### *Tus datos son tuyos*
+### _Tus datos son tuyos_
 
-### *"Exportar es devolver. No es condescendencia, es derecho."*
+### _"Exportar es devolver. No es condescendencia, es derecho."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E X P O R T  ·  ◯_●                                 ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,6 +49,7 @@
 ## 🜂 Formatos de export
 
 ### 📊 CSV
+
 ```csv
 fecha,visitantes,firmas,suscriptores,shares
 2026-10-01,0,0,0,0
@@ -55,6 +58,7 @@ fecha,visitantes,firmas,suscriptores,shares
 ```
 
 ### 📦 JSON
+
 ```json
 {
   "version": "1.0.0",
@@ -64,9 +68,11 @@ fecha,visitantes,firmas,suscriptores,shares
 ```
 
 ### 📄 PDF
+
 Reporte formateado con sello, gráficas y análisis.
 
 ### 📖 Markdown
+
 Reportes en texto plano con estructura legible.
 
 ## 🜃 Endpoint de export

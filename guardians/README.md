@@ -39,13 +39,13 @@
 
 ## 🜂 Los 5 Guardianes
 
-| Guardián       | Dominio                    | Mandato                              |
-|----------------|----------------------------|--------------------------------------|
-| `ACTA`         | Actas notariales           | Custodia cada acta con firma         |
-| `MRR`          | Merkle Roots               | Reconstruye raíces on-chain          |
-| `SHA`          | Hashes SHA3-512            | Vigila integridad de todos los hash  |
-| `TSA`          | Sellos RFC 3161            | Verifica timestamps QTSA             |
-| `VAULT`        | Bóvedas criptográficas     | Protege claves y secretos            |
+| Guardián | Dominio                | Mandato                             |
+| -------- | ---------------------- | ----------------------------------- |
+| `ACTA`   | Actas notariales       | Custodia cada acta con firma        |
+| `MRR`    | Merkle Roots           | Reconstruye raíces on-chain         |
+| `SHA`    | Hashes SHA3-512        | Vigila integridad de todos los hash |
+| `TSA`    | Sellos RFC 3161        | Verifica timestamps QTSA            |
+| `VAULT`  | Bóvedas criptográficas | Protege claves y secretos           |
 
 ---
 

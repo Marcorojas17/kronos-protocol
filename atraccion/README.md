@@ -25,15 +25,16 @@
 
 # 🧲 ATRACCIÓN MAGNÉTICA
 
-### *El movimiento no se promociona. Se atrae.*
+### _El movimiento no se promociona. Se atrae._
 
-### *"El que firma, atrae. El que solo mira, pasa."*
+### _"El que firma, atrae. El que solo mira, pasa."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A T R A C C I Ó N  ·  ◯_●                           ║
@@ -52,6 +53,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -76,16 +78,16 @@ de **firmar tan bien** que el propio sistema se vuelve imán.
 
 ## 🜃 Las 8 capas
 
-| Capa                | Propósito                                       |
-|---------------------|-------------------------------------------------|
-| `descubrimiento/`   | SEO · AEO · GEO · schema.org                    |
-| `contenido/`        | Blog · ensayos · historias · casos de uso       |
-| `viral/`            | Share engine · momentos virales · medallas      |
-| `autoridad/`        | Prensa · papers · conferencias · certificaciones|
-| `comunidad/`        | Plataforma · mentorship · reconocimiento        |
-| `newsletter/`       | Suscriptores · ediciones · automatización       |
-| `educacion/`        | Cursos · tutoriales · libros · podcast          |
-| `sandbox/`          | Demo pública · API · MCP · free tier            |
+| Capa              | Propósito                                        |
+| ----------------- | ------------------------------------------------ |
+| `descubrimiento/` | SEO · AEO · GEO · schema.org                     |
+| `contenido/`      | Blog · ensayos · historias · casos de uso        |
+| `viral/`          | Share engine · momentos virales · medallas       |
+| `autoridad/`      | Prensa · papers · conferencias · certificaciones |
+| `comunidad/`      | Plataforma · mentorship · reconocimiento         |
+| `newsletter/`     | Suscriptores · ediciones · automatización        |
+| `educacion/`      | Cursos · tutoriales · libros · podcast           |
+| `sandbox/`        | Demo pública · API · MCP · free tier             |
 
 ## 🜄 Flujo de atracción
 

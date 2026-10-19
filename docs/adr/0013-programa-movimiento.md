@@ -11,6 +11,7 @@
 ## 🜃 Decisión
 
 Crear **Movimiento ARKHÉ** con:
+
 - 7 niveles de iniciación
 - 10 rituales ceremoniales
 - Programa de embajadores

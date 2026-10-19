@@ -20,7 +20,11 @@ export class YubiHSMAdapter {
   }
 
   async open() {
-    this.session = { connector: this.connectorUrl, authKey: this.authKeyId, abierta: true };
+    this.session = {
+      connector: this.connectorUrl,
+      authKey: this.authKeyId,
+      abierta: true,
+    };
     return { ok: true, provider: PROVIDER, sellado: SEAL };
   }
 

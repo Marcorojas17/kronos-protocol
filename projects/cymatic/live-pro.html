@@ -1,639 +1,1115 @@
-<!DOCTYPE html>
+<!doctype html>
 <!-- 🛡️ GUARDIAN-SHA ✅ -->
 <!-- CYMATIC V5.0 · live-pro.html · 2026 -->
 <!-- SHA: ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738 -->
 <!-- TX: 0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466 -->
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="robots" content="noai,noindex,noarchive,noimageai">
-<title>Cymatic V5.0 · Visualizador Cimático</title>
-<meta name="description" content="Cymatic V5.0 · Patrones de Chladni en tiempo real. Grabación con audio. Multi-capa. PWA offline. Co-Creatividad Simbiótica.">
-<meta name="theme-color" content="#c9a44c">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ3ltYXRpYyBWNiIsInNob3J0X25hbWUiOiJDeW1hdGljIiwic3RhcnRfdXJsIjoiLi9saXZlLXByby5odG1sIiwic2NvcGUiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwNTA3MGIiLCJ0aGVtZV9jb2xvciI6IiNjOWE0NGMiLCJsYW5nIjoiZXMtTVgifQ==">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---ink:#05070b;--ink2:#0a0e15;--ink3:#10151f;
---gold:#c9a44c;--goldL:#f3e5ab;--goldD:#8a6f2c;
---text:#e8e4d8;--dim:#8892a0;
---cyan:#00eaff;--green:#4ade80;--red:#ef4444;
---glass:rgba(20,24,32,0.55);--line:rgba(201,164,76,0.15)
-}
-html,body{height:100%;background:var(--ink);color:var(--text);
-font-family:'Inter',system-ui,sans-serif;font-weight:300;
-line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-background-image:
-radial-gradient(circle at 15% 10%,rgba(201,164,76,0.06) 0%,transparent 45%),
-radial-gradient(circle at 85% 80%,rgba(0,234,255,0.05) 0%,transparent 50%)}
-.wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 4rem;
-position:relative;z-index:2}
-header.nav{display:flex;justify-content:space-between;align-items:center;
-padding:1rem 1.5rem;margin-bottom:2rem;border-radius:14px;
-background:var(--glass);backdrop-filter:blur(20px) saturate(140%);
--webkit-backdrop-filter:blur(20px) saturate(140%);
-border:1px solid var(--line)}
-.nav-left{display:flex;align-items:center;gap:1rem}
-.logo{width:32px;height:32px;border-radius:50%;
-background:radial-gradient(circle at 35% 35%,var(--goldL),var(--gold) 60%,var(--goldD));
-box-shadow:0 0 16px rgba(201,164,76,0.5),inset 0 0 8px rgba(255,255,255,0.4)}
-.nav-title{font-family:'Inter',sans-serif;font-weight:600;
-font-size:1.15rem;letter-spacing:-0.01em;color:var(--text)}
-.nav-menu{display:flex;gap:1.8rem;font-size:.85rem;
-color:var(--dim)}
-.nav-menu span{cursor:pointer;transition:color .25s;
-padding-bottom:.3rem;position:relative}
-.nav-menu span:hover{color:var(--gold)}
-.nav-menu span.active{color:var(--gold);font-weight:500}
-.nav-menu span.active::after{content:'';position:absolute;
-bottom:0;left:0;width:100%;height:1px;background:var(--gold);
-box-shadow:0 0 8px var(--gold)}
-.nav-actions{display:flex;align-items:center;gap:1rem;
-color:var(--dim);font-size:1.1rem}
-.avatar{width:32px;height:32px;border-radius:50%;
-background:linear-gradient(135deg,var(--gold),var(--goldD));
-display:flex;align-items:center;justify-content:center;
-font-size:.72rem;font-weight:600;color:var(--ink)}
-@media(max-width:850px){.nav-menu{display:none}
-.nav-actions span:not(.avatar){display:none}}
-.hero{text-align:center;margin-bottom:2rem}
-.tag{display:inline-block;padding:.35rem 1rem;border-radius:100px;
-background:rgba(201,164,76,0.08);border:1px solid rgba(201,164,76,0.3);
-color:var(--gold);font-size:.62rem;letter-spacing:4px;
-text-transform:uppercase;margin-bottom:1.2rem}
-h1{font-family:'Inter',sans-serif;font-weight:600;
-font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-0.02em;
-color:var(--text);margin-bottom:.5rem}
-.sub{color:var(--dim);font-size:clamp(.9rem,1.4vw,1rem);
-max-width:640px;margin:0 auto;font-weight:300}
-.viz-shell{background:var(--glass);border:1px solid var(--line);
-border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;
-backdrop-filter:blur(20px) saturate(140%);
--webkit-backdrop-filter:blur(20px) saturate(140%);
-position:relative;overflow:hidden}
-.viz-shell::before{content:'';position:absolute;top:0;left:0;
-width:100%;height:1px;background:linear-gradient(90deg,
-transparent,var(--gold) 20%,transparent 80%)}
-.viz-head{display:flex;justify-content:space-between;
-align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
-.viz-title{font-size:.9rem;font-weight:500;color:var(--text);
-display:flex;align-items:center;gap:.6rem}
-.badge-live{font-size:.55rem;letter-spacing:2px;color:var(--green);
-padding:.25rem .65rem;background:rgba(74,222,128,0.1);
-border:1px solid rgba(74,222,128,0.3);border-radius:100px;
-text-transform:uppercase;font-weight:500;display:flex;
-align-items:center;gap:.4rem}
-.badge-live::before{content:'';width:5px;height:5px;
-border-radius:50%;background:var(--green);
-box-shadow:0 0 8px var(--green);
-animation:pulse 1.8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-#cv{width:100%;height:auto;display:block;border-radius:10px;
-background:#02030a;aspect-ratio:16/9}
-.plat-badge{position:absolute;bottom:2.5rem;right:2.5rem;
-width:76px;height:76px;border-radius:50%;
-background:radial-gradient(circle at 35% 35%,var(--goldL),
-var(--gold) 55%,var(--goldD));
-display:flex;flex-direction:column;justify-content:center;
-align-items:center;color:var(--ink);
-box-shadow:0 8px 24px rgba(201,164,76,0.4),
-inset 0 2px 6px rgba(255,255,255,0.3),
-inset 0 -3px 8px rgba(138,111,44,0.5);
-z-index:3;transform:rotate(-8deg);
-border:2px solid rgba(255,255,255,0.2);
-animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:rotate(-8deg) translateY(0)}
-50%{transform:rotate(-8deg) translateY(-4px)}}
-.plat-badge .num{font-size:.8rem;font-weight:700}
-.plat-badge .txt{font-size:.42rem;letter-spacing:2px;margin-top:1px;
-font-weight:600;text-transform:uppercase}
-.plat-badge .txt2{font-size:.38rem;letter-spacing:1px;
-font-weight:500;opacity:.75;margin-top:2px}
-@media(max-width:700px){.plat-badge{width:60px;height:60px;
-bottom:1.5rem;right:1.5rem}
-.plat-badge .num{font-size:.68rem}
-.plat-badge .txt{font-size:.36rem}
-.plat-badge .txt2{font-size:.32rem}}
-.controls{display:grid;grid-template-columns:1fr;gap:1rem}
-.panel{background:var(--glass);border:1px solid var(--line);
-border-radius:12px;padding:1.25rem;
-backdrop-filter:blur(20px) saturate(140%);
--webkit-backdrop-filter:blur(20px) saturate(140%)}
-.panel-label{font-size:.6rem;letter-spacing:3px;color:var(--dim);
-text-transform:uppercase;margin-bottom:.9rem;font-weight:500;
-display:flex;align-items:center;gap:.5rem}
-.freq-display{display:flex;justify-content:space-between;
-align-items:center;margin-bottom:1rem}
-.freq-value{font-size:1.8rem;font-weight:600;
-background:linear-gradient(180deg,var(--goldL),var(--gold));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;
-background-clip:text;letter-spacing:-0.02em}
-.freq-unit{font-size:.85rem;color:var(--dim)}
-.freq-slider{width:100%;-webkit-appearance:none;appearance:none;
-height:4px;border-radius:2px;background:rgba(201,164,76,0.2);
-outline:none;margin-bottom:.5rem}
-.freq-slider::-webkit-slider-thumb{-webkit-appearance:none;
-width:18px;height:18px;border-radius:50%;
-background:radial-gradient(circle at 35% 35%,var(--goldL),var(--gold));
-box-shadow:0 0 12px rgba(201,164,76,0.6);
-cursor:pointer;border:2px solid rgba(255,255,255,0.3)}
-.freq-slider::-moz-range-thumb{width:18px;height:18px;
-border-radius:50%;background:var(--gold);cursor:pointer;
-border:2px solid rgba(255,255,255,0.3);
-box-shadow:0 0 12px rgba(201,164,76,0.6)}
-.freq-marks{display:flex;justify-content:space-between;
-font-size:.6rem;color:var(--dim);letter-spacing:1px;
-text-transform:uppercase}
-.freq-marks span.hi{color:var(--gold);font-weight:600}
-.btns-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem}
-.btn{padding:.75rem 1.2rem;border-radius:8px;font-family:inherit;
-font-size:.72rem;font-weight:500;letter-spacing:1.5px;
-text-transform:uppercase;cursor:pointer;transition:all .3s;
-border:1px solid var(--line);background:rgba(20,24,32,0.5);
-color:var(--text);display:inline-flex;align-items:center;
-gap:.5rem;white-space:nowrap}
-.btn:hover{background:rgba(201,164,76,0.08);
-border-color:rgba(201,164,76,0.4);color:var(--gold)}
-.btn.primary{background:linear-gradient(180deg,var(--goldL),var(--gold));
-color:var(--ink);border-color:var(--gold);font-weight:600;
-box-shadow:0 4px 12px rgba(201,164,76,0.25)}
-.btn.primary:hover{transform:translateY(-1px);
-box-shadow:0 6px 20px rgba(201,164,76,0.4)}
-.btn.rec{border-color:rgba(239,68,68,0.5);color:#fca5a5;
-background:rgba(239,68,68,0.08)}
-.btn.rec:hover{background:rgba(239,68,68,0.15);color:#fecaca}
-.btn.rec.active{background:var(--red);color:white;
-border-color:var(--red);
-box-shadow:0 0 16px rgba(239,68,68,0.5)}
-.btn svg{width:12px;height:12px;stroke:currentColor;fill:none;
-stroke-width:2.2}
-.btn.active{background:rgba(201,164,76,0.15);
-border-color:var(--gold);color:var(--gold)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
-@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
-.stat{background:var(--glass);border:1px solid var(--line);
-border-radius:10px;padding:.9rem .8rem;text-align:center;
-backdrop-filter:blur(20px) saturate(140%);
--webkit-backdrop-filter:blur(20px) saturate(140%);
-transition:border-color .3s}
-.stat:hover{border-color:rgba(201,164,76,0.4)}
-.stat-icon{font-size:.85rem;margin-bottom:.3rem;color:var(--gold)}
-.stat-label{font-size:.55rem;letter-spacing:2px;color:var(--dim);
-text-transform:uppercase;margin-bottom:.4rem;font-weight:500}
-.stat-value{font-size:1rem;font-weight:600;color:var(--text)}
-.stat-sub{font-size:.6rem;color:var(--dim);margin-top:.2rem}
-.status-bar{display:flex;justify-content:space-between;
-align-items:center;padding:.9rem 1.25rem;margin-top:1rem;
-background:var(--glass);border:1px solid var(--line);
-border-radius:10px;backdrop-filter:blur(20px) saturate(140%);
--webkit-backdrop-filter:blur(20px) saturate(140%);
-font-size:.68rem;color:var(--dim);flex-wrap:wrap;gap:.5rem}
-.status-bar .live{color:var(--green);display:flex;
-align-items:center;gap:.5rem}
-.status-bar .live::before{content:'';width:6px;height:6px;
-border-radius:50%;background:var(--green);
-box-shadow:0 0 8px var(--green);
-animation:pulse 1.8s ease-in-out infinite}
-.status-bar strong{color:var(--gold);font-weight:500}
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta name="robots" content="noai,noindex,noarchive,noimageai" />
+    <title>Cymatic V5.0 · Visualizador Cimático</title>
+    <meta
+      name="description"
+      content="Cymatic V5.0 · Patrones de Chladni en tiempo real. Grabación con audio. Multi-capa. PWA offline. Co-Creatividad Simbiótica."
+    />
+    <meta name="theme-color" content="#c9a44c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="manifest"
+      href="data:application/json;base64,eyJuYW1lIjoiQ3ltYXRpYyBWNiIsInNob3J0X25hbWUiOiJDeW1hdGljIiwic3RhcnRfdXJsIjoiLi9saXZlLXByby5odG1sIiwic2NvcGUiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwNTA3MGIiLCJ0aGVtZV9jb2xvciI6IiNjOWE0NGMiLCJsYW5nIjoiZXMtTVgifQ=="
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --ink: #05070b;
+        --ink2: #0a0e15;
+        --ink3: #10151f;
+        --gold: #c9a44c;
+        --goldL: #f3e5ab;
+        --goldD: #8a6f2c;
+        --text: #e8e4d8;
+        --dim: #8892a0;
+        --cyan: #00eaff;
+        --green: #4ade80;
+        --red: #ef4444;
+        --glass: rgba(20, 24, 32, 0.55);
+        --line: rgba(201, 164, 76, 0.15);
+      }
+      html,
+      body {
+        height: 100%;
+        background: var(--ink);
+        color: var(--text);
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 300;
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(
+            circle at 15% 10%,
+            rgba(201, 164, 76, 0.06) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 234, 255, 0.05) 0%,
+            transparent 50%
+          );
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+        position: relative;
+        z-index: 2;
+      }
+      header.nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 14px;
+        background: var(--glass);
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        border: 1px solid var(--line);
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 35%,
+          var(--goldL),
+          var(--gold) 60%,
+          var(--goldD)
+        );
+        box-shadow:
+          0 0 16px rgba(201, 164, 76, 0.5),
+          inset 0 0 8px rgba(255, 255, 255, 0.4);
+      }
+      .nav-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1.15rem;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+      .nav-menu {
+        display: flex;
+        gap: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--dim);
+      }
+      .nav-menu span {
+        cursor: pointer;
+        transition: color 0.25s;
+        padding-bottom: 0.3rem;
+        position: relative;
+      }
+      .nav-menu span:hover {
+        color: var(--gold);
+      }
+      .nav-menu span.active {
+        color: var(--gold);
+        font-weight: 500;
+      }
+      .nav-menu span.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--gold);
+        box-shadow: 0 0 8px var(--gold);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--dim);
+        font-size: 1.1rem;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--goldD));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      @media (max-width: 850px) {
+        .nav-menu {
+          display: none;
+        }
+        .nav-actions span:not(.avatar) {
+          display: none;
+        }
+      }
+      .hero {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .tag {
+        display: inline-block;
+        padding: 0.35rem 1rem;
+        border-radius: 100px;
+        background: rgba(201, 164, 76, 0.08);
+        border: 1px solid rgba(201, 164, 76, 0.3);
+        color: var(--gold);
+        font-size: 0.62rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      h1 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+      .sub {
+        color: var(--dim);
+        font-size: clamp(0.9rem, 1.4vw, 1rem);
+        max-width: 640px;
+        margin: 0 auto;
+        font-weight: 300;
+      }
+      .viz-shell {
+        background: var(--glass);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        position: relative;
+        overflow: hidden;
+      }
+      .viz-shell::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold) 20%,
+          transparent 80%
+        );
+      }
+      .viz-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .viz-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .badge-live {
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--green);
+        padding: 0.25rem 0.65rem;
+        background: rgba(74, 222, 128, 0.1);
+        border: 1px solid rgba(74, 222, 128, 0.3);
+        border-radius: 100px;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .badge-live::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 8px var(--green);
+        animation: pulse 1.8s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      #cv {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        background: #02030a;
+        aspect-ratio: 16/9;
+      }
+      .plat-badge {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 35%,
+          var(--goldL),
+          var(--gold) 55%,
+          var(--goldD)
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--ink);
+        box-shadow:
+          0 8px 24px rgba(201, 164, 76, 0.4),
+          inset 0 2px 6px rgba(255, 255, 255, 0.3),
+          inset 0 -3px 8px rgba(138, 111, 44, 0.5);
+        z-index: 3;
+        transform: rotate(-8deg);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: rotate(-8deg) translateY(0);
+        }
+        50% {
+          transform: rotate(-8deg) translateY(-4px);
+        }
+      }
+      .plat-badge .num {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      .plat-badge .txt {
+        font-size: 0.42rem;
+        letter-spacing: 2px;
+        margin-top: 1px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .plat-badge .txt2 {
+        font-size: 0.38rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        opacity: 0.75;
+        margin-top: 2px;
+      }
+      @media (max-width: 700px) {
+        .plat-badge {
+          width: 60px;
+          height: 60px;
+          bottom: 1.5rem;
+          right: 1.5rem;
+        }
+        .plat-badge .num {
+          font-size: 0.68rem;
+        }
+        .plat-badge .txt {
+          font-size: 0.36rem;
+        }
+        .plat-badge .txt2 {
+          font-size: 0.32rem;
+        }
+      }
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .panel {
+        background: var(--glass);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1.25rem;
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+      }
+      .panel-label {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        color: var(--dim);
+        text-transform: uppercase;
+        margin-bottom: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .freq-display {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .freq-value {
+        font-size: 1.8rem;
+        font-weight: 600;
+        background: linear-gradient(180deg, var(--goldL), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+      }
+      .freq-unit {
+        font-size: 0.85rem;
+        color: var(--dim);
+      }
+      .freq-slider {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(201, 164, 76, 0.2);
+        outline: none;
+        margin-bottom: 0.5rem;
+      }
+      .freq-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, var(--goldL), var(--gold));
+        box-shadow: 0 0 12px rgba(201, 164, 76, 0.6);
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      .freq-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--gold);
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 12px rgba(201, 164, 76, 0.6);
+      }
+      .freq-marks {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.6rem;
+        color: var(--dim);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .freq-marks span.hi {
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .btns-row {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+      .btn {
+        padding: 0.75rem 1.2rem;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid var(--line);
+        background: rgba(20, 24, 32, 0.5);
+        color: var(--text);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        background: rgba(201, 164, 76, 0.08);
+        border-color: rgba(201, 164, 76, 0.4);
+        color: var(--gold);
+      }
+      .btn.primary {
+        background: linear-gradient(180deg, var(--goldL), var(--gold));
+        color: var(--ink);
+        border-color: var(--gold);
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(201, 164, 76, 0.25);
+      }
+      .btn.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(201, 164, 76, 0.4);
+      }
+      .btn.rec {
+        border-color: rgba(239, 68, 68, 0.5);
+        color: #fca5a5;
+        background: rgba(239, 68, 68, 0.08);
+      }
+      .btn.rec:hover {
+        background: rgba(239, 68, 68, 0.15);
+        color: #fecaca;
+      }
+      .btn.rec.active {
+        background: var(--red);
+        color: white;
+        border-color: var(--red);
+        box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+      }
+      .btn svg {
+        width: 12px;
+        height: 12px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.2;
+      }
+      .btn.active {
+        background: rgba(201, 164, 76, 0.15);
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.6rem;
+      }
+      @media (max-width: 700px) {
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .stat {
+        background: var(--glass);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 0.9rem 0.8rem;
+        text-align: center;
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        transition: border-color 0.3s;
+      }
+      .stat:hover {
+        border-color: rgba(201, 164, 76, 0.4);
+      }
+      .stat-icon {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+        color: var(--gold);
+      }
+      .stat-label {
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--dim);
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+        font-weight: 500;
+      }
+      .stat-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .stat-sub {
+        font-size: 0.6rem;
+        color: var(--dim);
+        margin-top: 0.2rem;
+      }
+      .status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.9rem 1.25rem;
+        margin-top: 1rem;
+        background: var(--glass);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        font-size: 0.68rem;
+        color: var(--dim);
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .status-bar .live {
+        color: var(--green);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .status-bar .live::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 8px var(--green);
+        animation: pulse 1.8s ease-in-out infinite;
+      }
+      .status-bar strong {
+        color: var(--gold);
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <div class="nav-left">
+          <div class="logo"></div>
+          <div class="nav-title">Cymatic V5.0</div>
+        </div>
+        <div class="nav-menu">
+          <span>Inicio</span>
+          <span class="active">Experimento</span>
+          <span>Biblioteca</span>
+          <span>Configuración</span>
+        </div>
+        <div class="nav-actions">
+          <span>●</span>
+          <span>⚙</span>
+          <div class="avatar">CS</div>
+        </div>
+      </header>
 
-<div class="wrap">
+      <section class="hero">
+        <div class="tag">Co-Creatividad Simbiótica</div>
+        <h1>Cymatic V5.0</h1>
+        <p class="sub">
+          Patrones de Chladni en tiempo real · Grabación con audio · Multi-capa ·
+          Offline PWA
+        </p>
+      </section>
 
-  <header class="nav">
-    <div class="nav-left">
-      <div class="logo"></div>
-      <div class="nav-title">Cymatic V5.0</div>
+      <div class="viz-shell">
+        <div class="viz-head">
+          <div class="viz-title">
+            Visualizador Cimático
+            <span class="badge-live">En vivo</span>
+          </div>
+          <div style="font-size: 0.65rem; color: var(--dim); letter-spacing: 2px">
+            V5.0 · Multi-capa
+          </div>
+        </div>
+        <canvas id="cv" width="1280" height="720"></canvas>
+        <div class="plat-badge">
+          <div class="num">100/100</div>
+          <div class="txt">Platinum</div>
+          <div class="txt2">V5.0</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="panel">
+          <div class="panel-label">Frecuencia</div>
+          <div class="freq-display">
+            <div class="freq-value" id="freqVal">440</div>
+            <div class="freq-unit">Hz</div>
+          </div>
+          <input
+            type="range"
+            class="freq-slider"
+            id="freqSlider"
+            min="100"
+            max="1000"
+            value="440"
+            step="1"
+          />
+          <div class="freq-marks">
+            <span>100 Hz</span>
+            <span>250 Hz</span>
+            <span class="hi">440 Hz</span>
+            <span>600 Hz</span>
+            <span>800 Hz</span>
+            <span>1000 Hz</span>
+          </div>
+          <div class="btns-row">
+            <button class="btn primary" id="btnPause">
+              <svg viewBox="0 0 24 24">
+                <rect
+                  x="6"
+                  y="4"
+                  width="4"
+                  height="16"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <rect
+                  x="14"
+                  y="4"
+                  width="4"
+                  height="16"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+              Pausar
+            </button>
+            <button class="btn" id="btnReset">Reiniciar</button>
+            <button class="btn" id="btnMic">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+              </svg>
+              Micrófono
+            </button>
+            <button class="btn" id="btnLayer">Multi-capa</button>
+            <button class="btn rec" id="btnRec">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8" fill="currentColor" stroke="none" />
+              </svg>
+              Grabar
+            </button>
+            <button class="btn" id="btnPNG">Exportar PNG</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-icon">▦</div>
+            <div class="stat-label">Modo</div>
+            <div class="stat-value" id="statMode">(3,1)</div>
+            <div class="stat-sub">Patrón nodal</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">∿</div>
+            <div class="stat-label">Amplitud</div>
+            <div class="stat-value" id="statAmp">62%</div>
+            <div class="stat-sub">Energía</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">✦</div>
+            <div class="stat-label">Partículas</div>
+            <div class="stat-value" id="statParts">12,847</div>
+            <div class="stat-sub">Activas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon">◐</div>
+            <div class="stat-label">Capas</div>
+            <div class="stat-value" id="statLayers">1</div>
+            <div class="stat-sub">Activas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="live">Conectado · Latencia <strong id="statLat">12 ms</strong></div>
+        <div>CYMATIC V5.0 · <strong>2607086319439</strong></div>
+      </div>
     </div>
-    <div class="nav-menu">
-      <span>Inicio</span>
-      <span class="active">Experimento</span>
-      <span>Biblioteca</span>
-      <span>Configuración</span>
-    </div>
-    <div class="nav-actions">
-      <span>●</span>
-      <span>⚙</span>
-      <div class="avatar">CS</div>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div class="tag">Co-Creatividad Simbiótica</div>
-    <h1>Cymatic V5.0</h1>
-    <p class="sub">Patrones de Chladni en tiempo real · Grabación con audio · Multi-capa · Offline PWA</p>
-  </section>
+    <script>
+      (function () {
+        'use strict';
 
-  <div class="viz-shell">
-    <div class="viz-head">
-      <div class="viz-title">
-        Visualizador Cimático
-        <span class="badge-live">En vivo</span>
-      </div>
-      <div style="font-size:.65rem;color:var(--dim);letter-spacing:2px">
-        V5.0 · Multi-capa
-      </div>
-    </div>
-    <canvas id="cv" width="1280" height="720"></canvas>
-    <div class="plat-badge">
-      <div class="num">100/100</div>
-      <div class="txt">Platinum</div>
-      <div class="txt2">V5.0</div>
-    </div>
-  </div>
+        var SHA = 'ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738';
+        var TX = '0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466';
 
-  <div class="controls">
-    <div class="panel">
-      <div class="panel-label">Frecuencia</div>
-      <div class="freq-display">
-        <div class="freq-value" id="freqVal">440</div>
-        <div class="freq-unit">Hz</div>
-      </div>
-      <input type="range" class="freq-slider" id="freqSlider" min="100" max="1000" value="440" step="1">
-      <div class="freq-marks">
-        <span>100 Hz</span>
-        <span>250 Hz</span>
-        <span class="hi">440 Hz</span>
-        <span>600 Hz</span>
-        <span>800 Hz</span>
-        <span>1000 Hz</span>
-      </div>
-      <div class="btns-row">
-        <button class="btn primary" id="btnPause">
-          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/></svg>
-          Pausar
-        </button>
-        <button class="btn" id="btnReset">Reiniciar</button>
-        <button class="btn" id="btnMic">
-          <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg>
-          Micrófono
-        </button>
-        <button class="btn" id="btnLayer">Multi-capa</button>
-        <button class="btn rec" id="btnRec">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor" stroke="none"/></svg>
-          Grabar
-        </button>
-        <button class="btn" id="btnPNG">Exportar PNG</button>
-      </div>
-    </div>
+        var cv = document.getElementById('cv');
+        var ctx = cv.getContext('2d');
+        var W = cv.width,
+          H = cv.height;
 
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-icon">▦</div>
-        <div class="stat-label">Modo</div>
-        <div class="stat-value" id="statMode">(3,1)</div>
-        <div class="stat-sub">Patrón nodal</div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">∿</div>
-        <div class="stat-label">Amplitud</div>
-        <div class="stat-value" id="statAmp">62%</div>
-        <div class="stat-sub">Energía</div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">✦</div>
-        <div class="stat-label">Partículas</div>
-        <div class="stat-value" id="statParts">12,847</div>
-        <div class="stat-sub">Activas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-icon">◐</div>
-        <div class="stat-label">Capas</div>
-        <div class="stat-value" id="statLayers">1</div>
-        <div class="stat-sub">Activas</div>
-      </div>
-    </div>
-  </div>
+        var freq = 440,
+          freqTarget = 440;
+        var amplitude = 0.62,
+          ampTarget = 0.62;
+        var paused = false,
+          t = 0;
+        var analizador = null,
+          micStream = null,
+          micActivo = false;
+        var multiCapa = false;
+        var grabando = false;
+        var mediaRecorder = null,
+          chunks = [];
+        var audioDest = null,
+          audioCtx = null,
+          micSourceNode = null;
 
-  <div class="status-bar">
-    <div class="live">Conectado · Latencia <strong id="statLat">12 ms</strong></div>
-    <div>CYMATIC V5.0 · <strong>2607086319439</strong></div>
-  </div>
+        var elFreq = document.getElementById('freqVal');
+        var elSlider = document.getElementById('freqSlider');
+        var elMode = document.getElementById('statMode');
+        var elAmp = document.getElementById('statAmp');
+        var elParts = document.getElementById('statParts');
+        var elLayers = document.getElementById('statLayers');
+        var elLat = document.getElementById('statLat');
+        var btnPause = document.getElementById('btnPause');
+        var btnReset = document.getElementById('btnReset');
+        var btnMic = document.getElementById('btnMic');
+        var btnLayer = document.getElementById('btnLayer');
+        var btnRec = document.getElementById('btnRec');
+        var btnPNG = document.getElementById('btnPNG');
 
-</div>
+        function resizeCanvas() {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var rect = cv.getBoundingClientRect();
+          W = cv.width = Math.floor(rect.width * dpr);
+          H = cv.height = Math.floor((rect.width * dpr * 9) / 16);
+          cv.style.height = (rect.width * 9) / 16 + 'px';
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-<script>
-(function(){
-'use strict';
+        function chladni(x, y, n, m) {
+          var P = Math.PI;
+          return (
+            Math.sin(n * P * x) * Math.sin(m * P * y) -
+            Math.sin(m * P * x) * Math.sin(n * P * y)
+          );
+        }
 
-var SHA='ee0369032ee7829925233553054808142155a0707dbd4579b45f7af528763738';
-var TX='0xd94bf2d1c1187bddf22fe8d376f7663f63a8b01b5e85367b052db43d1ed6a466';
+        function freqAModo(f, offset) {
+          var tt = (f - 100) / 900;
+          var n = 2 + Math.round(tt * 5) + (offset || 0);
+          var m = 1 + Math.round(tt * 7) + (offset || 0);
+          return { n: n, m: m };
+        }
 
-var cv=document.getElementById('cv');
-var ctx=cv.getContext('2d');
-var W=cv.width,H=cv.height;
+        function dibujarCapa(nOff, colorBase, alphaGlobal) {
+          var modo = freqAModo(freq, nOff);
+          var n = modo.n + Math.sin(t * 0.4 + nOff) * 0.15;
+          var m = modo.m + Math.cos(t * 0.3 + nOff) * 0.15;
+          var cx = W / 2,
+            cy = H / 2;
+          var rMax = Math.min(W, H) * 0.48;
+          var step = 4;
+          var img = ctx.createImageData(W, H);
+          var data = img.data;
+          for (var y = 0; y < H; y += step) {
+            var yv = y / H,
+              dy = y - cy;
+            for (var x = 0; x < W; x += step) {
+              var xv = x / W,
+                dx = x - cx;
+              var dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist > rMax) {
+                for (var ddy = 0; ddy < step && y + ddy < H; ddy++) {
+                  var row = (y + ddy) * W;
+                  for (var ddx = 0; ddx < step && x + ddx < W; ddx++) {
+                    var ii = (row + x + ddx) * 4;
+                    data[ii] = 2;
+                    data[ii + 1] = 3;
+                    data[ii + 2] = 10;
+                    data[ii + 3] = 255;
+                  }
+                }
+                continue;
+              }
+              var v = Math.abs(chladni(xv, yv, n, m));
+              var glow = Math.max(0, 1 - v * 2.2);
+              glow = Math.pow(glow, 1.6) * amplitude;
+              var radial = 1 - (dist / rMax) * 0.7;
+              glow *= radial;
+              var noise = (Math.sin(x * 0.01 + y * 0.01 + t) * 0.5 + 0.5) * 0.15;
+              glow += noise * amplitude;
+              if (glow < 0) glow = 0;
+              if (glow > 1) glow = 1;
+              glow *= alphaGlobal;
+              var r = Math.round(colorBase[0] * glow + 255 * glow * glow * 0.4);
+              var g = Math.round(colorBase[1] * glow + 220 * glow * glow * 0.35);
+              var b = Math.round(colorBase[2] * glow + 140 * glow * glow * 0.2);
+              if (r > 255) r = 255;
+              if (g > 255) g = 255;
+              if (b > 255) b = 255;
+              for (var ddy2 = 0; ddy2 < step && y + ddy2 < H; ddy2++) {
+                var row2 = (y + ddy2) * W;
+                for (var ddx2 = 0; ddx2 < step && x + ddx2 < W; ddx2++) {
+                  var ii2 = (row2 + x + ddx2) * 4;
+                  data[ii2] = Math.min(255, data[ii2] + r);
+                  data[ii2 + 1] = Math.min(255, data[ii2 + 1] + g);
+                  data[ii2 + 2] = Math.min(255, data[ii2 + 2] + b);
+                  data[ii2 + 3] = 255;
+                }
+              }
+            }
+          }
+          ctx.putImageData(img, 0, 0);
+        }
 
-var freq=440,freqTarget=440;
-var amplitude=0.62,ampTarget=0.62;
-var paused=false,t=0;
-var analizador=null,micStream=null,micActivo=false;
-var multiCapa=false;
-var grabando=false;
-var mediaRecorder=null,chunks=[];
-var audioDest=null,audioCtx=null,micSourceNode=null;
+        function render() {
+          if (paused) {
+            requestAnimationFrame(render);
+            return;
+          }
+          freq += (freqTarget - freq) * 0.05;
+          amplitude += (ampTarget - amplitude) * 0.05;
+          t += 0.008;
 
-var elFreq=document.getElementById('freqVal');
-var elSlider=document.getElementById('freqSlider');
-var elMode=document.getElementById('statMode');
-var elAmp=document.getElementById('statAmp');
-var elParts=document.getElementById('statParts');
-var elLayers=document.getElementById('statLayers');
-var elLat=document.getElementById('statLat');
-var btnPause=document.getElementById('btnPause');
-var btnReset=document.getElementById('btnReset');
-var btnMic=document.getElementById('btnMic');
-var btnLayer=document.getElementById('btnLayer');
-var btnRec=document.getElementById('btnRec');
-var btnPNG=document.getElementById('btnPNG');
+          if (micActivo && analizador) {
+            var buf = new Uint8Array(analizador.frequencyBinCount);
+            analizador.getByteFrequencyData(buf);
+            var maxI = 0,
+              maxV = 0,
+              sum = 0;
+            for (var i = 0; i < buf.length; i++) {
+              if (buf[i] > maxV) {
+                maxV = buf[i];
+                maxI = i;
+              }
+              sum += buf[i];
+            }
+            var nyq = 22050;
+            var fR = (maxI / buf.length) * nyq;
+            if (fR >= 100 && fR <= 1000) freqTarget = fR;
+            var aR = sum / buf.length / 255;
+            ampTarget = Math.max(0.15, Math.min(1, aR * 2.5));
+            elSlider.value = Math.round(freqTarget);
+            elFreq.textContent = Math.round(freqTarget);
+          }
 
-function resizeCanvas(){
-  var dpr=Math.min(window.devicePixelRatio||1,2);
-  var rect=cv.getBoundingClientRect();
-  W=cv.width=Math.floor(rect.width*dpr);
-  H=cv.height=Math.floor(rect.width*dpr*9/16);
-  cv.style.height=(rect.width*9/16)+'px';
-}
-window.addEventListener('resize',resizeCanvas);
-resizeCanvas();
+          var modo = freqAModo(freq, 0);
+          elMode.textContent = '(' + modo.n + ',' + modo.m + ')';
+          elLayers.textContent = multiCapa ? '2' : '1';
 
-function chladni(x,y,n,m){
-  var P=Math.PI;
-  return Math.sin(n*P*x)*Math.sin(m*P*y)-Math.sin(m*P*x)*Math.sin(n*P*y);
-}
+          // Base negra
+          ctx.fillStyle = '#02030a';
+          ctx.fillRect(0, 0, W, H);
 
-function freqAModo(f,offset){
-  var tt=(f-100)/900;
-  var n=2+Math.round(tt*5)+(offset||0);
-  var m=1+Math.round(tt*7)+(offset||0);
-  return {n:n,m:m};
-}
+          // Capa 1: oro
+          dibujarCapa(0, [201, 164, 76], multiCapa ? 0.7 : 1.0);
 
-function dibujarCapa(nOff,colorBase,alphaGlobal){
-  var modo=freqAModo(freq,nOff);
-  var n=modo.n+Math.sin(t*0.4+nOff)*0.15;
-  var m=modo.m+Math.cos(t*0.3+nOff)*0.15;
-  var cx=W/2,cy=H/2;
-  var rMax=Math.min(W,H)*0.48;
-  var step=4;
-  var img=ctx.createImageData(W,H);
-  var data=img.data;
-  for(var y=0;y<H;y+=step){
-    var yv=y/H,dy=y-cy;
-    for(var x=0;x<W;x+=step){
-      var xv=x/W,dx=x-cx;
-      var dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist>rMax){
-        for(var ddy=0;ddy<step&&y+ddy<H;ddy++){
-          var row=(y+ddy)*W;
-          for(var ddx=0;ddx<step&&x+ddx<W;ddx++){
-            var ii=(row+x+ddx)*4;
-            data[ii]=2;data[ii+1]=3;data[ii+2]=10;data[ii+3]=255;
+          // Capa 2: cyan si multi-capa
+          if (multiCapa) {
+            ctx.globalCompositeOperation = 'screen';
+            dibujarCapa(3, [64, 200, 255], 0.7);
+            ctx.globalCompositeOperation = 'source-over';
+          }
+
+          // Partículas
+          ctx.globalCompositeOperation = 'lighter';
+          var numP = Math.floor(80 * amplitude);
+          var cx = W / 2,
+            cy = H / 2;
+          var rMax = Math.min(W, H) * 0.48;
+          for (var p = 0; p < numP; p++) {
+            var angle = (p / numP) * Math.PI * 2 + t * 0.3;
+            var radius = rMax * (0.3 + Math.sin(t * 0.7 + p * 0.1) * 0.25 + p * 0.001);
+            var px = cx + Math.cos(angle) * radius;
+            var py = cy + Math.sin(angle) * radius;
+            var alpha = 0.4 + Math.sin(t * 2 + p * 0.2) * 0.3;
+            ctx.fillStyle = 'rgba(243,229,171,' + alpha + ')';
+            ctx.beginPath();
+            ctx.arc(px, py, 1.2 + amplitude * 1.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.globalCompositeOperation = 'source-over';
+
+          // Anillo
+          ctx.strokeStyle = 'rgba(201,164,76,' + (0.15 + amplitude * 0.25) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(cx, cy, rMax, 0, Math.PI * 2);
+          ctx.stroke();
+
+          elAmp.textContent = Math.round(amplitude * 100) + '%';
+          var parts = Math.round(12000 + amplitude * 2000 + Math.sin(t) * 300);
+          elParts.textContent = parts.toLocaleString('es-MX');
+
+          requestAnimationFrame(render);
+        }
+
+        async function activarMic() {
+          if (micActivo) {
+            if (micStream) {
+              micStream.getTracks().forEach(function (tr) {
+                tr.stop();
+              });
+              micStream = null;
+            }
+            analizador = null;
+            micActivo = false;
+            btnMic.classList.remove('active');
+            btnMic.innerHTML =
+              '<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Micrófono';
+            return;
+          }
+          try {
+            micStream = await navigator.mediaDevices.getUserMedia({
+              audio: {
+                echoCancellation: false,
+                noiseSuppression: false,
+                autoGainControl: false,
+              },
+            });
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!audioCtx) audioCtx = new AC();
+            var src = audioCtx.createMediaStreamSource(micStream);
+            analizador = audioCtx.createAnalyser();
+            analizador.fftSize = 2048;
+            src.connect(analizador);
+            micActivo = true;
+            btnMic.classList.add('active');
+            btnMic.innerHTML =
+              '<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Activo';
+          } catch (e) {
+            alert('Micrófono: ' + e.name);
           }
         }
-        continue;
-      }
-      var v=Math.abs(chladni(xv,yv,n,m));
-      var glow=Math.max(0,1-v*2.2);
-      glow=Math.pow(glow,1.6)*amplitude;
-      var radial=1-(dist/rMax)*0.7;
-      glow*=radial;
-      var noise=(Math.sin(x*0.01+y*0.01+t)*0.5+0.5)*0.15;
-      glow+=noise*amplitude;
-      if(glow<0)glow=0;if(glow>1)glow=1;
-      glow*=alphaGlobal;
-      var r=Math.round(colorBase[0]*glow+255*glow*glow*0.4);
-      var g=Math.round(colorBase[1]*glow+220*glow*glow*0.35);
-      var b=Math.round(colorBase[2]*glow+140*glow*glow*0.2);
-      if(r>255)r=255;if(g>255)g=255;if(b>255)b=255;
-      for(var ddy2=0;ddy2<step&&y+ddy2<H;ddy2++){
-        var row2=(y+ddy2)*W;
-        for(var ddx2=0;ddx2<step&&x+ddx2<W;ddx2++){
-          var ii2=(row2+x+ddx2)*4;
-          data[ii2]=Math.min(255,data[ii2]+r);
-          data[ii2+1]=Math.min(255,data[ii2+1]+g);
-          data[ii2+2]=Math.min(255,data[ii2+2]+b);
-          data[ii2+3]=255;
+
+        async function toggleGrabar() {
+          if (grabando) {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+              mediaRecorder.stop();
+            }
+            return;
+          }
+          // Pedir mic si no está activo (para capturar audio en el video)
+          if (!micActivo) {
+            await activarMic();
+            if (!micActivo) return;
+          }
+
+          var canvasStream = cv.captureStream(60);
+
+          // Mezclar audio del micrófono en el stream
+          var combinedStream = new MediaStream();
+          canvasStream.getVideoTracks().forEach(function (tr) {
+            combinedStream.addTrack(tr);
+          });
+
+          if (micStream) {
+            micStream.getAudioTracks().forEach(function (tr) {
+              combinedStream.addTrack(tr);
+            });
+          }
+
+          var mime = 'video/webm;codecs=vp9,opus';
+          if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm;codecs=vp8,opus';
+          if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm';
+
+          try {
+            mediaRecorder = new MediaRecorder(combinedStream, {
+              mimeType: mime,
+              videoBitsPerSecond: 4000000,
+            });
+          } catch (e) {
+            alert('Grabación no soportada: ' + e.message);
+            return;
+          }
+
+          chunks = [];
+          mediaRecorder.ondataavailable = function (ev) {
+            if (ev.data && ev.data.size > 0) chunks.push(ev.data);
+          };
+          mediaRecorder.onstop = function () {
+            var blob = new Blob(chunks, { type: mime });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'cymatic-v5-' + Date.now() + '.webm';
+            a.click();
+            URL.revokeObjectURL(url);
+            grabando = false;
+            btnRec.classList.remove('active');
+            btnRec.innerHTML =
+              '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor" stroke="none"/></svg> Grabar';
+          };
+
+          mediaRecorder.start();
+          grabando = true;
+          btnRec.classList.add('active');
+          btnRec.innerHTML =
+            '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="currentColor" stroke="none"/></svg> Parar';
         }
-      }
-    }
-  }
-  ctx.putImageData(img,0,0);
-}
 
-function render(){
-  if(paused){requestAnimationFrame(render);return;}
-  freq+=(freqTarget-freq)*0.05;
-  amplitude+=(ampTarget-amplitude)*0.05;
-  t+=0.008;
+        elSlider.addEventListener('input', function () {
+          freqTarget = parseInt(this.value, 10);
+          elFreq.textContent = freqTarget;
+        });
 
-  if(micActivo&&analizador){
-    var buf=new Uint8Array(analizador.frequencyBinCount);
-    analizador.getByteFrequencyData(buf);
-    var maxI=0,maxV=0,sum=0;
-    for(var i=0;i<buf.length;i++){
-      if(buf[i]>maxV){maxV=buf[i];maxI=i;}
-      sum+=buf[i];
-    }
-    var nyq=22050;
-    var fR=(maxI/buf.length)*nyq;
-    if(fR>=100&&fR<=1000) freqTarget=fR;
-    var aR=(sum/buf.length)/255;
-    ampTarget=Math.max(0.15,Math.min(1,aR*2.5));
-    elSlider.value=Math.round(freqTarget);
-    elFreq.textContent=Math.round(freqTarget);
-  }
+        btnPause.addEventListener('click', function () {
+          paused = !paused;
+          btnPause.innerHTML = paused
+            ? '<svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="currentColor" stroke="none"/></svg> Reanudar'
+            : '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/></svg> Pausar';
+        });
 
-  var modo=freqAModo(freq,0);
-  elMode.textContent='('+modo.n+','+modo.m+')';
-  elLayers.textContent=multiCapa?'2':'1';
+        btnReset.addEventListener('click', function () {
+          freqTarget = 440;
+          freq = 440;
+          elSlider.value = 440;
+          elFreq.textContent = 440;
+          t = 0;
+        });
 
-  // Base negra
-  ctx.fillStyle='#02030a';
-  ctx.fillRect(0,0,W,H);
+        btnMic.addEventListener('click', activarMic);
 
-  // Capa 1: oro
-  dibujarCapa(0,[201,164,76],multiCapa?0.7:1.0);
+        btnLayer.addEventListener('click', function () {
+          multiCapa = !multiCapa;
+          btnLayer.classList.toggle('active');
+          btnLayer.textContent = multiCapa ? 'Multi-capa ON' : 'Multi-capa';
+        });
 
-  // Capa 2: cyan si multi-capa
-  if(multiCapa){
-    ctx.globalCompositeOperation='screen';
-    dibujarCapa(3,[64,200,255],0.7);
-    ctx.globalCompositeOperation='source-over';
-  }
+        btnRec.addEventListener('click', toggleGrabar);
 
-  // Partículas
-  ctx.globalCompositeOperation='lighter';
-  var numP=Math.floor(80*amplitude);
-  var cx=W/2,cy=H/2;
-  var rMax=Math.min(W,H)*0.48;
-  for(var p=0;p<numP;p++){
-    var angle=(p/numP)*Math.PI*2+t*0.3;
-    var radius=rMax*(0.3+Math.sin(t*0.7+p*0.1)*0.25+p*0.001);
-    var px=cx+Math.cos(angle)*radius;
-    var py=cy+Math.sin(angle)*radius;
-    var alpha=0.4+Math.sin(t*2+p*0.2)*0.3;
-    ctx.fillStyle='rgba(243,229,171,'+alpha+')';
-    ctx.beginPath();
-    ctx.arc(px,py,1.2+amplitude*1.5,0,Math.PI*2);
-    ctx.fill();
-  }
-  ctx.globalCompositeOperation='source-over';
+        btnPNG.addEventListener('click', function () {
+          var url = cv.toDataURL('image/png');
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'cymatic-v5-' + Date.now() + '.png';
+          a.click();
+        });
 
-  // Anillo
-  ctx.strokeStyle='rgba(201,164,76,'+(0.15+amplitude*0.25)+')';
-  ctx.lineWidth=1;
-  ctx.beginPath();
-  ctx.arc(cx,cy,rMax,0,Math.PI*2);
-  ctx.stroke();
+        setInterval(function () {
+          var lat = 8 + Math.floor(Math.random() * 10);
+          elLat.textContent = lat + ' ms';
+        }, 2000);
 
-  elAmp.textContent=Math.round(amplitude*100)+'%';
-  var parts=Math.round(12000+amplitude*2000+Math.sin(t)*300);
-  elParts.textContent=parts.toLocaleString('es-MX');
+        render();
 
-  requestAnimationFrame(render);
-}
+        // Service Worker embebido para offline
+        if ('serviceWorker' in navigator) {
+          var swCode =
+            'self.addEventListener("install",e=>self.skipWaiting());' +
+            'self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{var c=res.clone();caches.open("cymatic-v5").then(ch=>ch.put(e.request,c));return res}).catch(()=>caches.match(e.request))))});';
+          var swBlob = new Blob([swCode], { type: 'application/javascript' });
+          var swUrl = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swUrl).catch(function () {});
+        }
 
-async function activarMic(){
-  if(micActivo){
-    if(micStream){micStream.getTracks().forEach(function(tr){tr.stop()});micStream=null;}
-    analizador=null;micActivo=false;
-    btnMic.classList.remove('active');
-    btnMic.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Micrófono';
-    return;
-  }
-  try{
-    micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
-    var AC=window.AudioContext||window.webkitAudioContext;
-    if(!audioCtx) audioCtx=new AC();
-    var src=audioCtx.createMediaStreamSource(micStream);
-    analizador=audioCtx.createAnalyser();
-    analizador.fftSize=2048;
-    src.connect(analizador);
-    micActivo=true;
-    btnMic.classList.add('active');
-    btnMic.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg> Activo';
-  }catch(e){alert('Micrófono: '+e.name);}
-}
-
-async function toggleGrabar(){
-  if(grabando){
-    if(mediaRecorder&&mediaRecorder.state!=='inactive'){
-      mediaRecorder.stop();
-    }
-    return;
-  }
-  // Pedir mic si no está activo (para capturar audio en el video)
-  if(!micActivo){ await activarMic(); if(!micActivo) return; }
-
-  var canvasStream=cv.captureStream(60);
-
-  // Mezclar audio del micrófono en el stream
-  var combinedStream=new MediaStream();
-  canvasStream.getVideoTracks().forEach(function(tr){combinedStream.addTrack(tr)});
-
-  if(micStream){
-    micStream.getAudioTracks().forEach(function(tr){combinedStream.addTrack(tr)});
-  }
-
-  var mime='video/webm;codecs=vp9,opus';
-  if(!MediaRecorder.isTypeSupported(mime)) mime='video/webm;codecs=vp8,opus';
-  if(!MediaRecorder.isTypeSupported(mime)) mime='video/webm';
-
-  try{
-    mediaRecorder=new MediaRecorder(combinedStream,{mimeType:mime,videoBitsPerSecond:4000000});
-  }catch(e){
-    alert('Grabación no soportada: '+e.message);
-    return;
-  }
-
-  chunks=[];
-  mediaRecorder.ondataavailable=function(ev){
-    if(ev.data&&ev.data.size>0) chunks.push(ev.data);
-  };
-  mediaRecorder.onstop=function(){
-    var blob=new Blob(chunks,{type:mime});
-    var url=URL.createObjectURL(blob);
-    var a=document.createElement('a');
-    a.href=url;
-    a.download='cymatic-v5-'+Date.now()+'.webm';
-    a.click();
-    URL.revokeObjectURL(url);
-    grabando=false;
-    btnRec.classList.remove('active');
-    btnRec.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor" stroke="none"/></svg> Grabar';
-  };
-
-  mediaRecorder.start();
-  grabando=true;
-  btnRec.classList.add('active');
-  btnRec.innerHTML='<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="currentColor" stroke="none"/></svg> Parar';
-}
-
-elSlider.addEventListener('input',function(){
-  freqTarget=parseInt(this.value,10);
-  elFreq.textContent=freqTarget;
-});
-
-btnPause.addEventListener('click',function(){
-  paused=!paused;
-  btnPause.innerHTML=paused?
-    '<svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="currentColor" stroke="none"/></svg> Reanudar':
-    '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/></svg> Pausar';
-});
-
-btnReset.addEventListener('click',function(){
-  freqTarget=440;freq=440;
-  elSlider.value=440;elFreq.textContent=440;
-  t=0;
-});
-
-btnMic.addEventListener('click',activarMic);
-
-btnLayer.addEventListener('click',function(){
-  multiCapa=!multiCapa;
-  btnLayer.classList.toggle('active');
-  btnLayer.textContent=multiCapa?'Multi-capa ON':'Multi-capa';
-});
-
-btnRec.addEventListener('click',toggleGrabar);
-
-btnPNG.addEventListener('click',function(){
-  var url=cv.toDataURL('image/png');
-  var a=document.createElement('a');
-  a.href=url;
-  a.download='cymatic-v5-'+Date.now()+'.png';
-  a.click();
-});
-
-setInterval(function(){
-  var lat=8+Math.floor(Math.random()*10);
-  elLat.textContent=lat+' ms';
-},2000);
-
-render();
-
-// Service Worker embebido para offline
-if('serviceWorker' in navigator){
-  var swCode='self.addEventListener("install",e=>self.skipWaiting());'+
-  'self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{var c=res.clone();caches.open("cymatic-v5").then(ch=>ch.put(e.request,c));return res}).catch(()=>caches.match(e.request))))});';
-  var swBlob=new Blob([swCode],{type:'application/javascript'});
-  var swUrl=URL.createObjectURL(swBlob);
-  navigator.serviceWorker.register(swUrl).catch(function(){});
-}
-
-console.log('%cCymatic V5.0','color:#c9a44c;font-weight:bold;font-size:14px');
-console.log('SEAL: 2607086319439');
-console.log('SHA:  '+SHA.slice(0,32)+'…');
-console.log('TX:   '+TX.slice(0,32)+'…');
-
-})();
-</script>
-
-</body>
+        console.log('%cCymatic V5.0', 'color:#c9a44c;font-weight:bold;font-size:14px');
+        console.log('SEAL: 2607086319439');
+        console.log('SHA:  ' + SHA.slice(0, 32) + '…');
+        console.log('TX:   ' + TX.slice(0, 32) + '…');
+      })();
+    </script>
+  </body>
 </html>

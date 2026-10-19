@@ -12,7 +12,7 @@ ARKHÉ ZERO. El acto marca la transición de diseño a operación.
 
 ## 🜃 Cita del fundador
 
-> *"Hoy dejó de ser idea. Hoy es hash."*
+> _"Hoy dejó de ser idea. Hoy es hash."_
 
 ---
 

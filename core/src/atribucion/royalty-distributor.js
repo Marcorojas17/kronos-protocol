@@ -26,8 +26,12 @@ export function distribuirRegalias(monto, moneda = 'MXN') {
     monto_total: monto,
     moneda,
     distribucion: [
-      { destino: 'Marco Antonio Rojas Valdovinos', monto: paraHumano, peso: HUMANO_PCT },
-      { destino: 'Fondo FLAILP',                    monto: paraFlailp, peso: FLAILP_PCT },
+      {
+        destino: 'Marco Antonio Rojas Valdovinos',
+        monto: paraHumano,
+        peso: HUMANO_PCT,
+      },
+      { destino: 'Fondo FLAILP', monto: paraFlailp, peso: FLAILP_PCT },
     ],
     veredicto: 'DISTRIBUCIÓN 51/49 APLICADA',
     sellado: SEAL,

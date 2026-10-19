@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Pagos con Mercado Pago
 
 ---
@@ -14,6 +14,7 @@
 MERCADOPAGO_ACCESS_TOKEN=APP_USR-...
 MERCADOPAGO_WEBHOOK_SECRET=tu_secret
 ```
+````
 
 ---
 
@@ -46,9 +47,7 @@ Respuesta:
 Redirigir al cliente
 
 ```html
-<a href="https://www.mercadopago.com.mx/checkout/...">
-  Pagar con Mercado Pago
-</a>
+<a href="https://www.mercadopago.com.mx/checkout/..."> Pagar con Mercado Pago </a>
 ```
 
 ---
@@ -160,5 +159,7 @@ Recursos
 · Docs oficiales
 · Panel de aplicaciones
 · Sandbox
+
+```
 
 ```

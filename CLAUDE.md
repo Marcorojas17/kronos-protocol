@@ -9,7 +9,7 @@
 
 # ▓▒░ CLAUDE.md · Anthropic Context Adapter ░▒▓
 
-```bash
+````bash
 [root@arkhe-zero ~]$ ./load-context --agent=claude --seal=kintsugi
 [ OK ] Índice Cero verificado · SHA-256 match
 [ OK ] Pacto 51/49 operativo · veto humano activo
@@ -35,7 +35,7 @@ Safe Creative (Co-creatividad): 2607086319439
 SHA-256                       : f03f7e2d852617309457e0fe207f8f8bd2...
 Ethereum                      : 0xd2c2a7e1...fb895774c
 eIDAS                         : Firmaprofesional QTSA
-```
+````
 
 🜄 LECTURA OBLIGATORIA (ORDEN DE CARGA)
 
@@ -89,5 +89,7 @@ mcp_server:
 ```
 
 Firma: ◯_● · 51/49/100 · Marco Antonio Rojas Valdovinos ✦ Claude
+
+```
 
 ```

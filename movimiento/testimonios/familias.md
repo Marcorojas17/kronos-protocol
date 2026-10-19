@@ -17,15 +17,16 @@
 
 # 👨‍👩‍👧 VOCES DE FAMILIAS
 
-### *El legado que se hereda con firma*
+### _El legado que se hereda con firma_
 
-### *"La memoria familiar no se pierde. Se firma."*
+### _"La memoria familiar no se pierde. Se firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  F A M I L I A S  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,9 +48,9 @@
 
 ## 🜂 Testimonio #001
 
-> *"Mi abuela escribió un diario durante 40 años. Cuando murió, se
+> _"Mi abuela escribió un diario durante 40 años. Cuando murió, se
 > perdió en una mudanza. Ahora tengo los diarios de mi madre
-> firmados. Los de mis hijos también. Nadie los perderá."*
+> firmados. Los de mis hijos también. Nadie los perderá."_
 >
 > — **Madre de familia** · Fundador #028
 
@@ -61,9 +63,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜃 Testimonio #002
 
-> *"Registré la voz de mi padre cantando antes de que muriera. Está
+> _"Registré la voz de mi padre cantando antes de que muriera. Está
 > firmada, cifrada y anclada. Mis hijos la escucharán cuando yo ya
-> no esté. Eso no tiene precio."*
+> no esté. Eso no tiene precio."_
 >
 > — **Hijo fundador** · Fundador #039
 
@@ -76,9 +78,9 @@ Sello: ◯_● · 51/49/100
 
 ## 🜄 Testimonio #003
 
-> *"Mis hijas son pequeñas. Cuando crezcan, van a poder verificar
+> _"Mis hijas son pequeñas. Cuando crezcan, van a poder verificar
 > cada carta que les escribí. Cada video. Cada firma. El legado no
-> se pierde."*
+> se pierde."_
 >
 > — **Padre fundador** · Fundador #056
 

@@ -33,6 +33,7 @@ Marca la transición de Visitante (Nivel 0) a Iniciado (Nivel 1).
 ### Paso 1 · Lectura completa
 
 El iniciado lee:
+
 - `movimiento/manifiesto.md`
 - `movimiento/credo.md`
 - `movimiento/juramento.md`
@@ -45,6 +46,7 @@ Solo lectura, meditación, reflexión.
 ### Paso 3 · Firma
 
 El iniciado firma el juramento con:
+
 - Nombre completo
 - Hash SHA3-512 del texto firmado
 - Timestamp (TSA)
@@ -58,6 +60,7 @@ El acta se registra en `movimiento/registro-fundacional/`.
 ### Paso 5 · Bienvenida
 
 El enjambre IA reconoce al nuevo iniciado:
+
 - Emite insignia `◉ iniciado`
 - Actualiza reputación del iniciado
 - Envía carta de bienvenida firmada

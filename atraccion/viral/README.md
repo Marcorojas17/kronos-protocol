@@ -17,15 +17,16 @@
 
 # 📣 VIRAL · SHARE ENGINE
 
-### *Lo que se firma se comparte*
+### _Lo que se firma se comparte_
 
-### *"El mejor marketing es un hash verificable."*
+### _"El mejor marketing es un hash verificable."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I R A L  ·  ◯_●                                   ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,10 +49,13 @@
 ## 🜂 Componentes
 
 ### 🔗 share-engine/
+
 Sistema de compartir cualquier contenido con sello `◯_●` incluido automáticamente.
 
 ### 🌟 momentos-virales/
+
 Momentos clave compartibles:
+
 - Primera obra firmada
 - Décima obra
 - Centésima obra
@@ -58,7 +63,9 @@ Momentos clave compartibles:
 - Solsticio
 
 ### 🏅 medallas/
+
 Logros verificables (compartibles):
+
 - 🥇 **Pionero** · Fundador #001-#100
 - 🥈 **Guardián** · Nivel 2 alcanzado
 - 🥉 **Maestro** · Nivel 3 alcanzado
@@ -66,17 +73,18 @@ Logros verificables (compartibles):
 - ⭐ **Custodio** · Nivel 5 alcanzado
 
 ### 🌐 embajadores/
+
 La red de embajadores como sistema de difusión orgánica.
 
 ## 🜃 Formato de share
 
 ```yaml
-- tipo: "share"
-  contenido_hash: "sha3-512:..."
-  plataforma: "twitter | linkedin | mastodon | bluesky"
-  mensaje: "texto + ◯_● · 51/49/100"
-  verificación: "link al Índice Cero"
-  medalla: "opcional"
+- tipo: 'share'
+  contenido_hash: 'sha3-512:...'
+  plataforma: 'twitter | linkedin | mastodon | bluesky'
+  mensaje: 'texto + ◯_● · 51/49/100'
+  verificación: 'link al Índice Cero'
+  medalla: 'opcional'
 ```
 
 ## 🜄 Reglas

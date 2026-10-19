@@ -7,15 +7,16 @@
 
 # 📜 TÉRMINOS DE AFILIACIÓN
 
-### *El contrato firmado*
+### _El contrato firmado_
 
-### *"Nada sin firma. Nada sin pacto."*
+### _"Nada sin firma. Nada sin pacto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  T E R M S  ·  ◯_●                                   ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -37,21 +39,27 @@
 ## 🜂 Cláusulas canónicas
 
 ### I · Pacto 51/49/100
+
 El afiliado acepta el pacto en su totalidad. No hay excepciones.
 
 ### II · Licencia LGU
+
 El afiliado obtiene licencia LGU durante el periodo. No puede revender.
 
 ### III · Reporte CARF/DAC8
+
 El afiliado reporta anualmente. Prohibido ocultar transacciones.
 
 ### IV · Confidencialidad
+
 No revelar hashes internos, llaves privadas ni código fuente cerrado.
 
 ### V · Terminación
+
 Cualquiera puede terminar el contrato con 30 días de aviso.
 
 ### VI · Ley aplicable
+
 México (primario) + eIDAS (secundario). Arbitraje: quórum 4/5 + humano.
 
 ## 🜃 Prohibiciones

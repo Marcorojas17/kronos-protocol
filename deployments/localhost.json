@@ -12,8 +12,5 @@
     "ReporteCARF": null
   },
   "deployed_at": null,
-  "notas": [
-    "Entorno de desarrollo local.",
-    "Comando: anvil + forge script"
-  ]
+  "notas": ["Entorno de desarrollo local.", "Comando: anvil + forge script"]
 }

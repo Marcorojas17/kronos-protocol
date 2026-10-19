@@ -66,25 +66,30 @@ components:
     Health:
       type: object
       properties:
-        status:     { type: string, enum: [ok] }
-        seal:       { type: string, enum: ["◯_● · 51/49/100"] }
+        status: { type: string, enum: [ok] }
+        seal: { type: string, enum: ['◯_● · 51/49/100'] }
         index_zero_sha256: { type: string }
-        timestamp:  { type: string, format: date-time }
+        timestamp: { type: string, format: date-time }
 
     FirmaRequest:
       type: object
       required: [contenido]
       properties:
         contenido: { type: string, minLength: 1 }
-        tipo:      { type: string, enum: [acta, obra, decision], default: decision }
-        algoritmo: { type: string, enum: [ML-DSA-87, SLH-DSA-SHAKE-256s, Ed25519+ML-DSA-87], default: ML-DSA-87 }
+        tipo: { type: string, enum: [acta, obra, decision], default: decision }
+        algoritmo:
+          {
+            type: string,
+            enum: [ML-DSA-87, SLH-DSA-SHAKE-256s, Ed25519+ML-DSA-87],
+            default: ML-DSA-87,
+          }
 
     FirmaResponse:
       type: object
       properties:
-        ok:             { type: boolean }
-        hash_sha3_512:  { type: string }
-        firma:          { type: string }
-        alg:            { type: string }
-        sellado:        { type: string, enum: ["◯_● · 51/49/100"] }
-        timestamp:      { type: string, format: date-time }
+        ok: { type: boolean }
+        hash_sha3_512: { type: string }
+        firma: { type: string }
+        alg: { type: string }
+        sellado: { type: string, enum: ['◯_● · 51/49/100'] }
+        timestamp: { type: string, format: date-time }

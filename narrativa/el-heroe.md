@@ -17,15 +17,16 @@
 
 # ⚔️ EL HÉROE · EL TESTIGO
 
-### *No es un genio. No es un gurú. Es quien firma.*
+### _No es un genio. No es un gurú. Es quien firma._
 
-### *"El héroe no busca seguidores. Busca testigos."*
+### _"El héroe no busca seguidores. Busca testigos."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  H É R O E  ·  ◯_●                                   ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -56,22 +58,27 @@ Su hash está anclado. Su sello está público.
 ## 🜃 Los 5 Atributos
 
 ### I · Firma
+
 Deja huella criptográfica de su paso. Cada obra, cada decisión,
 cada testimonio queda marcado con su hash.
 
 ### II · Verifica
+
 No cree nada sin prueba. Verifica el Índice Cero. Verifica las
 firmas. Verifica el sello. Todo.
 
 ### III · Custodia
+
 Protege lo que firma. Guarda copia local. Distribuye shards.
 Nunca confía en una sola nube.
 
 ### IV · Enseña
+
 Ayuda a otros a firmar. No predica. Enseña con ejemplo.
 Apadrina iniciados. Forma testigos.
 
 ### V · Acepta el Fin Digno
+
 Cuando llega el momento, acepta el cierre. Confía en el enjambre.
 Nada se pierde.
 

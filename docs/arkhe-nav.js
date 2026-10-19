@@ -1,5 +1,5 @@
 // ◯_● ARKHÉ ZERO · Barra de Navegación Universal v2 (Accesos Directos)
-(function() {
+(function () {
   if (document.getElementById('arkhe-nav')) return;
 
   const style = document.createElement('style');
@@ -49,16 +49,16 @@
 
   const nav = document.createElement('nav');
   nav.id = 'arkhe-nav';
-  
+
   const links = [
     { href: '/kronos-protocol/index.html', icon: '◯_●', label: 'HUB', highlight: true },
     { href: '/kronos-protocol/certificado.html', icon: '📜', label: 'Certificar' },
     { href: '/kronos-protocol/verificar/index.html', icon: '🔐', label: 'Verificar' },
     { href: '/kronos-protocol/comprar/index.html', icon: '💠', label: 'Licencias' },
-    { href: '/kronos-protocol/estado.html', icon: '📊', label: 'Nodo' }
+    { href: '/kronos-protocol/estado.html', icon: '📊', label: 'Nodo' },
   ];
 
-  links.forEach(l => {
+  links.forEach((l) => {
     const a = document.createElement('a');
     a.href = l.href;
     a.innerHTML = `<span class="icon">${l.icon}</span><span class="label">${l.label}</span>`;

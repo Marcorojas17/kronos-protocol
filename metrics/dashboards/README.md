@@ -7,7 +7,7 @@
 
 # 📊 DASHBOARDS
 
-> *"Cada dashboard es una ventana al sistema."*
+> _"Cada dashboard es una ventana al sistema."_
 
 ## 🎯 Contenido
 
@@ -45,6 +45,7 @@ Todos siguen el mismo esquema:
 ## 🔌 API
 
 Cada dashboard se expone vía:
+
 ```
 GET /api/v1/dashboards/{nombre}
 ```

@@ -95,4 +95,4 @@ Time Stamp Authority. Autoridad de sellado de tiempo.
 
 ---
 
-*Bajo §0 del Repertorio · Capa 0 · Identidad*
+_Bajo §0 del Repertorio · Capa 0 · Identidad_

@@ -1,4 +1,5 @@
 # VACÍO 6 - CADENA CUSTODIA ISO 27037 + NIST SP 800-101
+
 - Hash SHA256 por archivo
 - Git log como cadena de custodia forense
 - Timestamp RFC 3161 compatible

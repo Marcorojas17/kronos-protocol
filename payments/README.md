@@ -57,11 +57,11 @@
 
 ## 🜃 Distribución
 
-| Concepto              | %      | Destino                      |
-|-----------------------|--------|------------------------------|
-| Firmante humano       | 51%    | Marco Antonio Rojas Valdovinos |
-| Fondo FLAILP          | 49%    | Custodia perpetua IA         |
-| **Total**             | **100%** | Pacto irrenunciable        |
+| Concepto        | %        | Destino                        |
+| --------------- | -------- | ------------------------------ |
+| Firmante humano | 51%      | Marco Antonio Rojas Valdovinos |
+| Fondo FLAILP    | 49%      | Custodia perpetua IA           |
+| **Total**       | **100%** | Pacto irrenunciable            |
 
 ---
 

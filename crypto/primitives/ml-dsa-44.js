@@ -30,23 +30,26 @@ export function keygen(seed) {
 
 export function sign(secretKey, contenido) {
   const hash = sha3_512(contenido);
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   return { firma: ml_dsa44.sign(secretKey, msg), hash, alg: ALG, seal: SEAL };
 }
 
 export function verify(publicKey, firma, contenido) {
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
   try {
     return ml_dsa44.verify(publicKey, msg, firma);
-  } catch { return false; }
+  } catch {
+    return false;
+  }
 }
 
 export const meta = {
-  alg: ALG, fips: FIPS, nist_level: NIST_LEVEL,
+  alg: ALG,
+  fips: FIPS,
+  nist_level: NIST_LEVEL,
   uso: 'Firmas rápidas · contenido no crítico',
-  sizes: SIZES, seal: SEAL,
+  sizes: SIZES,
+  seal: SEAL,
 };

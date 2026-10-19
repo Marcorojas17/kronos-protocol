@@ -12,7 +12,6 @@ Perito: kronosproyecto@hotmail.com
 Certificado: https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-KRONOS-MT01JAAF
 Explorer: https://amoy.polygonscan.com/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e
 
-
 Este Aviso Legal rige PVA Protocolo Vida Autopoietica KRONOS 360 MT01JAAF.
 
 1. Titular: Marco Antonio Rojas Valdovinos - Perito Informatico 5204160405358537/KRONOS-MT01JAAF a4ff808e

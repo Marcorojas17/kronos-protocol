@@ -51,9 +51,7 @@ export function verificarDobleFirma(firma) {
   const valida = firma.humano?.peso === 51 && firma.ia?.peso === 49;
   return {
     valida,
-    veredicto: valida
-      ? 'FIRMA DOBLE VÁLIDA · 51/49'
-      : 'FIRMA DOBLE INVÁLIDA · HALT',
+    veredicto: valida ? 'FIRMA DOBLE VÁLIDA · 51/49' : 'FIRMA DOBLE INVÁLIDA · HALT',
     sellado: SEAL,
   };
 }

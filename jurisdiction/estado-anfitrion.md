@@ -12,6 +12,7 @@ México, y específicamente **Toluca, Estado de México**, es el ancla
 física y legal del legado ARKHÉ ZERO.
 
 Razones:
+
 - Origen del firmante humano (Marco Antonio Rojas Valdovinos).
 - Despacho Contable & Fiscal operando en Xonacatlán.
 - Safe Creative MX como registro primario.
@@ -19,13 +20,13 @@ Razones:
 
 ## 🜃 Marco Legal Aplicable
 
-| Ley                                 | Aplicación                           |
-|-------------------------------------|--------------------------------------|
-| Código Civil Federal                | Firma y contratos                    |
-| Código de Comercio                  | Firma electrónica avanzada           |
-| NOM-151-SCFI-2016                   | Conservación de mensajes de datos    |
-| Ley Federal de Protección de Datos  | Tratamiento de datos personales      |
-| LFPDPPP                             | Derechos ARCO                        |
+| Ley                                | Aplicación                        |
+| ---------------------------------- | --------------------------------- |
+| Código Civil Federal               | Firma y contratos                 |
+| Código de Comercio                 | Firma electrónica avanzada        |
+| NOM-151-SCFI-2016                  | Conservación de mensajes de datos |
+| Ley Federal de Protección de Datos | Tratamiento de datos personales   |
+| LFPDPPP                            | Derechos ARCO                     |
 
 ## 🜄 Contacto Institucional
 

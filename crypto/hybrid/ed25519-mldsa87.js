@@ -42,9 +42,8 @@ export function keygen() {
  */
 export function sign(secretKey, contenido) {
   const hash = sha3_512(contenido);
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
 
   const firmaEd = ed25519.sign(secretKey.ed25519, msg);
   const firmaMl = mldsa.sign(secretKey.ml_dsa_87, contenido).firma;
@@ -67,9 +66,8 @@ export function sign(secretKey, contenido) {
  * @returns {{ valida: boolean, ed25519: boolean, ml_dsa_87: boolean, veredicto: string }}
  */
 export function verify(publicKey, firma, contenido) {
-  const msg = typeof contenido === 'string'
-    ? new TextEncoder().encode(contenido)
-    : contenido;
+  const msg =
+    typeof contenido === 'string' ? new TextEncoder().encode(contenido) : contenido;
 
   const okEd = ed25519.verify(firma.ed25519, msg, publicKey.ed25519);
   const okMl = mldsa.verify(publicKey.ml_dsa_87, firma.ml_dsa_87, contenido);

@@ -43,15 +43,15 @@
 
 ## 🜄 Hitos
 
-| Hito                              | Fecha        | Estado    |
-|-----------------------------------|--------------|-----------|
-| Fundación                         | 2026-01-01   | ✅ hecho  |
-| Safe Creative (Arq.)              | 2026-07-14   | ✅ hecho  |
-| Safe Creative (Co.)               | 2026-07-14   | ✅ hecho  |
-| KINTSUGI oficial                  | 2026-10-07   | ✅ hecho  |
-| Primeros 100                      | 2026-09-01   | ⏳ en curso|
-| Nodo UE                           | 2027-Q1      | 📅 futura |
-| 1000 firmas                       | 2027-Q3      | 📅 futura |
+| Hito                 | Fecha      | Estado      |
+| -------------------- | ---------- | ----------- |
+| Fundación            | 2026-01-01 | ✅ hecho    |
+| Safe Creative (Arq.) | 2026-07-14 | ✅ hecho    |
+| Safe Creative (Co.)  | 2026-07-14 | ✅ hecho    |
+| KINTSUGI oficial     | 2026-10-07 | ✅ hecho    |
+| Primeros 100         | 2026-09-01 | ⏳ en curso |
+| Nodo UE              | 2027-Q1    | 📅 futura   |
+| 1000 firmas          | 2027-Q3    | 📅 futura   |
 
 ---
 

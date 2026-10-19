@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>⚠️ Artículo 4.6 · Downgrade Detection · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-46-downgrade-detection">⚠️ Artículo 4.6 · Downgrade Detection</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+  <head>
+    <meta charset="UTF-8" />
+    <title>⚠️ Artículo 4.6 · Downgrade Detection · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-46-downgrade-detection">⚠️ Artículo 4.6 · Downgrade Detection</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
 └─$ ./guardian --downgrade --test
 
 [ Test ] Intento: forzar SHA-1
@@ -18,18 +18,21 @@
 [ Acción ] BLOQUEADO + ALERTA
 [ ✓✓ ] DETECTOR OPERATIVO · ◯_● · 51/49/100
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p>Un <strong>ataque de downgrade</strong> intenta convencer al sistema de usar algoritmos débiles. El centinela lo detecta y bloquea.</p>
-<h2 id="algoritmos-prohibidos">🜃 Algoritmos Prohibidos</h2>
-<pre><code class="language-javascript">export const ALGORITMOS_PROHIBIDOS = [
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      Un <strong>ataque de downgrade</strong> intenta convencer al sistema de usar
+      algoritmos débiles. El centinela lo detecta y bloquea.
+    </p>
+    <h2 id="algoritmos-prohibidos">🜃 Algoritmos Prohibidos</h2>
+    <pre><code class="language-javascript">export const ALGORITMOS_PROHIBIDOS = [
   'md5', 'sha1', 'sha-1',
   'rsa-1024', 'rsa1024',
   'des', '3des', 'rc4',
   'ecdsa-p192',
 ];
 </code></pre>
-<h2 id="deteccion">🜄 Detección</h2>
-<pre><code class="language-javascript">import { auditarSuite } from './crypto/downgrade-detector.js';
+    <h2 id="deteccion">🜄 Detección</h2>
+    <pre><code class="language-javascript">import { auditarSuite } from './crypto/downgrade-detector.js';
 
 auditarSuite(['sha3-512', 'md5', 'ml-dsa-87']);
 // {
@@ -49,8 +52,8 @@ auditarSuite(['sha3-512', 'ml-dsa-87', 'ml-kem-1024']);
 //   veredicto: 'SUITE CANÓNICA · 100% REAL',
 // }
 </code></pre>
-<h2 id="flujo-de-alerta">🜁 Flujo de Alerta</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="flujo-de-alerta">🜁 Flujo de Alerta</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    FLUJO DE DOWNGRADE DETECTION                          ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -71,8 +74,8 @@ auditarSuite(['sha3-512', 'ml-dsa-87', 'ml-kem-1024']);
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="casos-historicos">🜆 Casos Históricos</h2>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+    <h2 id="casos-historicos">🜆 Casos Históricos</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
 └─$ ./downgrade --historial
 
 [ 2026-03-20 ] Intento: SHA-1 en logs
@@ -81,8 +84,8 @@ auditarSuite(['sha3-512', 'ml-dsa-87', 'ml-kem-1024']);
 [ &gt;&gt; ] Todos bloqueados
 [ ✓✓ ] 3/3 · ◯_● · 51/49/100
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · GUARDIÁN · 4.6 · Downgrade</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · GUARDIÁN · 4.6 · Downgrade</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

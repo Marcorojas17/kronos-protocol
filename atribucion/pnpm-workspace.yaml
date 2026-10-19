@@ -1,4 +1,4 @@
 packages:
-  - "sdk/js"
-  - "sdk/cli"
-  - "apps/*"
+  - 'sdk/js'
+  - 'sdk/cli'
+  - 'apps/*'

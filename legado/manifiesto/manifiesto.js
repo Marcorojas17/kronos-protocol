@@ -5,20 +5,20 @@
 
 // ─── FONDO LÍQUIDO ───────────────────────────────────────────
 (function fondoLiquido() {
-  const canvas = document.getElementById("liquido");
+  const canvas = document.getElementById('liquido');
   if (!canvas) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const ctx = canvas.getContext("2d");
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
   let w, h, dpr;
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = canvas.width = window.innerWidth * dpr;
     h = canvas.height = window.innerHeight * dpr;
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
   }
   resize();
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
   const COLORES = [
     [6, 182, 212],
     [103, 232, 249],
@@ -38,7 +38,7 @@
   }
   function frame(t) {
     ctx.clearRect(0, 0, w, h);
-    ctx.globalCompositeOperation = "lighter";
+    ctx.globalCompositeOperation = 'lighter';
     for (const b of blobs) {
       b.x += b.vx * dpr;
       b.y += b.vy * dpr;
@@ -63,29 +63,22 @@
 // ─── CRIPTOGRAFÍA ────────────────────────────────────────────
 async function sha256Hex(texto) {
   const data = new TextEncoder().encode(texto);
-  const buf = await crypto.subtle.digest("SHA-256", data);
-  return [...new Uint8Array(buf)]
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 async function firmar(privKey, mensaje) {
   const data = new TextEncoder().encode(mensaje);
-  const firma = await crypto.subtle.sign("Ed25519", privKey, data);
+  const firma = await crypto.subtle.sign('Ed25519', privKey, data);
   return [...new Uint8Array(firma)]
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 async function exportarPubKey(pubKey) {
-  const raw = await crypto.subtle.exportKey("raw", pubKey);
-  return [...new Uint8Array(raw)]
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+  const raw = await crypto.subtle.exportKey('raw', pubKey);
+  return [...new Uint8Array(raw)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 async function generarParEd25519() {
-  return await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
-    "sign",
-    "verify",
-  ]);
+  return await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify']);
 }
 
 // ─── HUELLA VISUAL CYAN ─────────────────────────────────────
@@ -94,8 +87,8 @@ function dibujarHuellaVisual(canvas, hashHex) {
     scale = 8;
   canvas.width = size * scale;
   canvas.height = size * scale;
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#04131A";
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#04131A';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   const bytes = [];
   for (let i = 0; i < hashHex.length; i += 2)
@@ -105,27 +98,27 @@ function dibujarHuellaVisual(canvas, hashHex) {
     for (let x = 0; x < mitad; x++) {
       const idx = (y * mitad + x) % bytes.length;
       const activo = bytes[idx] > 127;
-      ctx.fillStyle = activo ? "#67E8F9" : "rgba(103,232,249,0.15)";
+      ctx.fillStyle = activo ? '#67E8F9' : 'rgba(103,232,249,0.15)';
       ctx.fillRect(x * scale, y * scale, scale - 1, scale - 1);
       ctx.fillRect((size - 1 - x) * scale, y * scale, scale - 1, scale - 1);
     }
   }
-  return canvas.toDataURL("image/png");
+  return canvas.toDataURL('image/png');
 }
 
 // ─── ABRIR CONTENIDO EN PESTAÑA NUEVA (móvil-friendly) ──────
 function abrirEnPestana(contenido, tipoMime) {
   const blob = new Blob([contenido], { type: tipoMime });
   const url = URL.createObjectURL(blob);
-  const win = window.open(url, "_blank");
+  const win = window.open(url, '_blank');
   if (!win) {
     // Popup bloqueado · intentamos con data URL
     const reader = new FileReader();
     reader.onload = () => {
-      const win2 = window.open(reader.result, "_blank");
+      const win2 = window.open(reader.result, '_blank');
       if (!win2) {
         alert(
-          "Tu navegador bloquea ventanas emergentes. Activa popups para este sitio y vuelve a intentar.",
+          'Tu navegador bloquea ventanas emergentes. Activa popups para este sitio y vuelve a intentar.',
         );
       }
     };
@@ -137,11 +130,11 @@ function abrirEnPestana(contenido, tipoMime) {
 
 // ─── TERMINAL HTML CON COLORES ──────────────────────────────
 function generarTerminalHTML(cert) {
-  const fecha = new Date(cert.timestamp).toLocaleString("es-MX", {
-    dateStyle: "long",
-    timeStyle: "short",
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
+    dateStyle: 'long',
+    timeStyle: 'short',
   });
-  const idCorto = "KRMV-MAN-" + cert.payload_hash.slice(0, 10).toUpperCase();
+  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -305,7 +298,7 @@ function generarTerminalHTML(cert) {
 <span class="bright">${cert.firma_ed25519}</span>
 
 <span class="cyan">CLAVE PUBLICA:</span>
-<span class="bright">${cert.clave_publica || "—"}</span>
+<span class="bright">${cert.clave_publica || '—'}</span>
 </div>
 
 <span class="prompt">$</span> <span class="white">help --verify</span>
@@ -331,11 +324,11 @@ function generarTerminalHTML(cert) {
 
 // ─── BLACK CARD CYAN ────────────────────────────────────────
 function generarBlackCardHTML(cert, huellaDataUrl) {
-  const fecha = new Date(cert.timestamp).toLocaleString("es-MX", {
-    dateStyle: "long",
-    timeStyle: "short",
+  const fecha = new Date(cert.timestamp).toLocaleString('es-MX', {
+    dateStyle: 'long',
+    timeStyle: 'short',
   });
-  const idCorto = "KRMV-MAN-" + cert.payload_hash.slice(0, 10).toUpperCase();
+  const idCorto = 'KRMV-MAN-' + cert.payload_hash.slice(0, 10).toUpperCase();
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -399,7 +392,7 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
   <div class="data-label">Firma Ed25519</div>
   <div class="data-value small">${cert.firma_ed25519}</div>
   <div class="data-label">Clave pública</div>
-  <div class="data-value small">${cert.clave_publica || "—"}</div>
+  <div class="data-value small">${cert.clave_publica || '—'}</div>
   <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
   <div class="footer-tx">Verificación: SHA-256(payload) = hash declarado · Ed25519(clave_pública) = firma<br>© 2026 · Documento generado localmente</div>
 </div>
@@ -409,9 +402,9 @@ function generarBlackCardHTML(cert, huellaDataUrl) {
 
 // ─── EXPORTAR MANIFIESTO BASE (sin firma · solo contenido) ──
 function exportarManifiestoBase() {
-  const fecha = new Date().toLocaleString("es-MX", {
-    dateStyle: "long",
-    timeStyle: "short",
+  const fecha = new Date().toLocaleString('es-MX', {
+    dateStyle: 'long',
+    timeStyle: 'short',
   });
   const terminalHTML = `<!DOCTYPE html>
 <html lang="es">
@@ -470,37 +463,37 @@ Exportado: <span class="white">${fecha}</span>
 </div>
 </body>
 </html>`;
-  abrirEnPestana(terminalHTML, "text/html;charset=utf-8");
+  abrirEnPestana(terminalHTML, 'text/html;charset=utf-8');
 }
 
 // ─── PERSISTENCIA ───────────────────────────────────────────
-const DB_NAME = "KronosProtocol";
+const DB_NAME = 'KronosProtocol';
 const DB_VERSION = 1;
 async function abrirDB() {
-  if (typeof Dexie === "undefined") throw new Error("Dexie no cargado");
+  if (typeof Dexie === 'undefined') throw new Error('Dexie no cargado');
   const db = new Dexie(DB_NAME);
-  db.version(DB_VERSION).stores({ registros: "++id, tipo, hash, timestamp" });
+  db.version(DB_VERSION).stores({ registros: '++id, tipo, hash, timestamp' });
   await db.open();
   return db;
 }
 
 // ─── UI ──────────────────────────────────────────────────────
-const form = document.getElementById("form-testigo");
-const btn = document.getElementById("btn-firmar");
-const feedback = document.getElementById("feedback");
-const resultado = document.getElementById("resultado");
-const hashOut = document.getElementById("hash-out");
-const firmaOut = document.getElementById("firma-out");
-const pubOut = document.getElementById("pub-out");
-const descargar = document.getElementById("descargar");
-const descargarJSONBtn = document.getElementById("descargar-json");
-const descargarMDBtn = document.getElementById("descargar-md");
-const exportarMDBtn = document.getElementById("exportar-md");
+const form = document.getElementById('form-testigo');
+const btn = document.getElementById('btn-firmar');
+const feedback = document.getElementById('feedback');
+const resultado = document.getElementById('resultado');
+const hashOut = document.getElementById('hash-out');
+const firmaOut = document.getElementById('firma-out');
+const pubOut = document.getElementById('pub-out');
+const descargar = document.getElementById('descargar');
+const descargarJSONBtn = document.getElementById('descargar-json');
+const descargarMDBtn = document.getElementById('descargar-md');
+const exportarMDBtn = document.getElementById('exportar-md');
 
 let certificadoActual = null;
 
 if (exportarMDBtn) {
-  exportarMDBtn.addEventListener("click", (e) => {
+  exportarMDBtn.addEventListener('click', (e) => {
     e.preventDefault();
     exportarManifiestoBase();
   });
@@ -508,11 +501,11 @@ if (exportarMDBtn) {
 
 (async function initLimpio() {
   if (resultado) resultado.hidden = true;
-  if (hashOut) hashOut.textContent = "—";
-  if (firmaOut) firmaOut.textContent = "—";
-  if (pubOut) pubOut.textContent = "—";
+  if (hashOut) hashOut.textContent = '—';
+  if (firmaOut) firmaOut.textContent = '—';
+  if (pubOut) pubOut.textContent = '—';
   try {
-    const raw = localStorage.getItem("legado_manifiesto_last");
+    const raw = localStorage.getItem('legado_manifiesto_last');
     if (raw) {
       const cert = JSON.parse(raw);
       if (cert && cert.payload_hash) certificadoActual = cert;
@@ -521,25 +514,25 @@ if (exportarMDBtn) {
 })();
 
 if (form) {
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    const testigo = document.getElementById("nombre").value.trim();
-    const mensaje = document.getElementById("mensaje").value.trim();
-    const acepta = document.getElementById("acepta").checked;
+    const testigo = document.getElementById('nombre').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    const acepta = document.getElementById('acepta').checked;
     if (!acepta) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = "<strong>✗ Debes aceptar los términos.</strong>";
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Debes aceptar los términos.</strong>';
       return;
     }
 
     btn.disabled = true;
-    btn.querySelector("span").textContent = "Firmando…";
-    feedback.className = "feedback";
+    btn.querySelector('span').textContent = 'Firmando…';
+    feedback.className = 'feedback';
 
     try {
       const timestamp = new Date().toISOString();
@@ -550,39 +543,39 @@ if (form) {
       const pub = await exportarPubKey(publicKey);
 
       certificadoActual = {
-        protocolo: "LEGADO-HUMANO-IA",
-        version: "manifiesto-testigo-1.0",
+        protocolo: 'LEGADO-HUMANO-IA',
+        version: 'manifiesto-testigo-1.0',
         timestamp,
         testigo,
         mensaje,
-        manifiesto_version: "v1.0",
-        fundador_humano: "Marco Antonio Rojas Valdovinos",
-        coautora_ia: "KRONOS IA",
+        manifiesto_version: 'v1.0',
+        fundador_humano: 'Marco Antonio Rojas Valdovinos',
+        coautora_ia: 'KRONOS IA',
         proyectos_reforzados: [49, 51],
         payload_hash: hash,
         firma_ed25519: firma,
         clave_publica: pub,
-        algoritmo_firma: "Ed25519",
-        algoritmo_hash: "SHA-256",
+        algoritmo_firma: 'Ed25519',
+        algoritmo_hash: 'SHA-256',
         verificable_por_tercero: true,
       };
 
       try {
         localStorage.setItem(
-          "legado_manifiesto_last",
+          'legado_manifiesto_last',
           JSON.stringify(certificadoActual),
         );
       } catch (e) {}
       try {
         const db = await abrirDB();
         await db.registros.add({
-          tipo: "manifiesto",
+          tipo: 'manifiesto',
           hash,
           timestamp,
           payload: certificadoActual,
         });
       } catch (errPersist) {
-        console.warn("[manifiesto]", errPersist.message);
+        console.warn('[manifiesto]', errPersist.message);
       }
 
       if (hashOut) hashOut.textContent = hash;
@@ -590,66 +583,57 @@ if (form) {
       if (pubOut) pubOut.textContent = pub;
       if (resultado) resultado.hidden = false;
 
-      feedback.className = "feedback success";
+      feedback.className = 'feedback success';
       feedback.innerHTML =
-        "<strong>✓ Firma registrada.</strong> Toca los botones para abrir en pestaña nueva.";
+        '<strong>✓ Firma registrada.</strong> Toca los botones para abrir en pestaña nueva.';
     } catch (err) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = "<strong>✗ Error:</strong> " + err.message;
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '<strong>✗ Error:</strong> ' + err.message;
     } finally {
       btn.disabled = false;
-      btn.querySelector("span").textContent = "Firmar como testigo";
+      btn.querySelector('span').textContent = 'Firmar como testigo';
     }
   });
 }
 
 if (descargar) {
-  descargar.addEventListener("click", (e) => {
+  descargar.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
-      const canvas = document.createElement("canvas");
-      const huellaUrl = dibujarHuellaVisual(
-        canvas,
-        certificadoActual.payload_hash,
-      );
+      const canvas = document.createElement('canvas');
+      const huellaUrl = dibujarHuellaVisual(canvas, certificadoActual.payload_hash);
       abrirEnPestana(
         generarBlackCardHTML(certificadoActual, huellaUrl),
-        "text/html;charset=utf-8",
+        'text/html;charset=utf-8',
       );
     } catch (err) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = "✗ " + err.message;
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '✗ ' + err.message;
     }
   });
 }
 if (descargarJSONBtn) {
-  descargarJSONBtn.addEventListener("click", (e) => {
+  descargarJSONBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
-      abrirEnPestana(
-        JSON.stringify(certificadoActual, null, 2),
-        "application/json",
-      );
+      abrirEnPestana(JSON.stringify(certificadoActual, null, 2), 'application/json');
     } catch (err) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = "✗ " + err.message;
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '✗ ' + err.message;
     }
   });
 }
 if (descargarMDBtn) {
-  descargarMDBtn.addEventListener("click", (e) => {
+  descargarMDBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!certificadoActual) return;
     try {
-      abrirEnPestana(
-        generarTerminalHTML(certificadoActual),
-        "text/html;charset=utf-8",
-      );
+      abrirEnPestana(generarTerminalHTML(certificadoActual), 'text/html;charset=utf-8');
     } catch (err) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = "✗ " + err.message;
+      feedback.className = 'feedback error';
+      feedback.innerHTML = '✗ ' + err.message;
     }
   });
 }

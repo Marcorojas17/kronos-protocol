@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>📊 Data Flow · ARKHÉ ZERO · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="data-flow-arkhe-zero">📊 Data Flow · ARKHÉ ZERO</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/architecture]
+  <head>
+    <meta charset="UTF-8" />
+    <title>📊 Data Flow · ARKHÉ ZERO · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="data-flow-arkhe-zero">📊 Data Flow · ARKHÉ ZERO</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/architecture]
 └─$ ./architecture --data-flow
 
 [ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
 </code></pre>
-<h2 id="flujo-principal">🜂 Flujo principal</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="flujo-principal">🜂 Flujo principal</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    DATA FLOW · DOCUMENTO → LEGADO                        ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -50,54 +50,54 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="puntos-de-control">🜃 Puntos de control</h2>
-<table>
-<thead>
-<tr>
-<th>Paso</th>
-<th>Verifica</th>
-<th>Falla si</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SHA3-512</td>
-<td>Integridad</td>
-<td>Hash mismatch</td>
-</tr>
-<tr>
-<td>ML-DSA-87</td>
-<td>Autoría PQC</td>
-<td>Firma inválida</td>
-</tr>
-<tr>
-<td>Ed25519</td>
-<td>Autoría clásica</td>
-<td>Firma inválida</td>
-</tr>
-<tr>
-<td>TSA RFC 3161</td>
-<td>Temporalidad</td>
-<td>Sello inválido</td>
-</tr>
-<tr>
-<td>Merkle root</td>
-<td>Agregación</td>
-<td>Árbol corrupto</td>
-</tr>
-<tr>
-<td>Ethereum</td>
-<td>Inmutabilidad</td>
-<td>Anclaje fallido</td>
-</tr>
-</tbody>
-</table>
-<h2 id="flujo-inverso-verificacion">🜄 Flujo inverso (verificación)</h2>
-<pre><code class="language-text">[ Hash ] → [ Buscar en IPFS/Arweave ] → [ Verificar Ethereum ]
+    <h2 id="puntos-de-control">🜃 Puntos de control</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Paso</th>
+          <th>Verifica</th>
+          <th>Falla si</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SHA3-512</td>
+          <td>Integridad</td>
+          <td>Hash mismatch</td>
+        </tr>
+        <tr>
+          <td>ML-DSA-87</td>
+          <td>Autoría PQC</td>
+          <td>Firma inválida</td>
+        </tr>
+        <tr>
+          <td>Ed25519</td>
+          <td>Autoría clásica</td>
+          <td>Firma inválida</td>
+        </tr>
+        <tr>
+          <td>TSA RFC 3161</td>
+          <td>Temporalidad</td>
+          <td>Sello inválido</td>
+        </tr>
+        <tr>
+          <td>Merkle root</td>
+          <td>Agregación</td>
+          <td>Árbol corrupto</td>
+        </tr>
+        <tr>
+          <td>Ethereum</td>
+          <td>Inmutabilidad</td>
+          <td>Anclaje fallido</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="flujo-inverso-verificacion">🜄 Flujo inverso (verificación)</h2>
+    <pre><code class="language-text">[ Hash ] → [ Buscar en IPFS/Arweave ] → [ Verificar Ethereum ]
     → [ Validar TSA ] → [ Validar firmas ] → [ ✓ Veredicto ]
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · ARCH · Data Flow</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ARCH · Data Flow</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

@@ -1,708 +1,879 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>◯_● ARKHÉ ZERO · Sistema Completo</title>
-<meta name="description" content="ARKHÉ ZERO · Índice Primigenio Soberano · 51/49/100">
-<style>
-/* ═══════════════════════════════════════════════════════════════════════
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>◯_● ARKHÉ ZERO · Sistema Completo</title>
+    <meta
+      name="description"
+      content="ARKHÉ ZERO · Índice Primigenio Soberano · 51/49/100"
+    />
+    <style>
+      /* ═══════════════════════════════════════════════════════════════════════
    TOKENS DE DISEÑO · ARKHÉ ZERO
    ═══════════════════════════════════════════════════════════════════════ */
-:root {
-  --bg: #050507;
-  --panel: #0a0a0f;
-  --panel-2: #0f0f18;
-  --border: rgba(0, 255, 65, 0.18);
-  --border-gold: rgba(255, 215, 0, 0.35);
-  --green: #00ff41;
-  --green-dim: #00b32e;
-  --gold: #ffd700;
-  --gold-dim: #b39500;
-  --purple: #7c5cff;
-  --red: #ff3355;
-  --text: #c8ffc8;
-  --text-dim: #6a8f6a;
-  --mono: 'Courier New', 'SF Mono', 'Menlo', monospace;
-  --shadow: 0 0 20px rgba(0, 255, 65, 0.15);
-  --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.25);
-}
+      :root {
+        --bg: #050507;
+        --panel: #0a0a0f;
+        --panel-2: #0f0f18;
+        --border: rgba(0, 255, 65, 0.18);
+        --border-gold: rgba(255, 215, 0, 0.35);
+        --green: #00ff41;
+        --green-dim: #00b32e;
+        --gold: #ffd700;
+        --gold-dim: #b39500;
+        --purple: #7c5cff;
+        --red: #ff3355;
+        --text: #c8ffc8;
+        --text-dim: #6a8f6a;
+        --mono: 'Courier New', 'SF Mono', 'Menlo', monospace;
+        --shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+        --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.25);
+      }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 14px;
-  line-height: 1.5;
-}
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 14px;
+        line-height: 1.5;
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    LAYOUT
    ═══════════════════════════════════════════════════════════════════════ */
-#app {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-template-rows: 50px 1fr 30px;
-  height: 100vh;
-  width: 100vw;
-}
+      #app {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        grid-template-rows: 50px 1fr 30px;
+        height: 100vh;
+        width: 100vw;
+      }
 
-/* HEADER */
-#header {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  background: linear-gradient(90deg, #050507 0%, #0a0a12 50%, #050507 100%);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
-}
+      /* HEADER */
+      #header {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: linear-gradient(90deg, #050507 0%, #0a0a12 50%, #050507 100%);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+      }
 
-#header .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--gold);
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  font-size: 16px;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
+      #header .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--gold);
+        font-weight: bold;
+        letter-spacing: 0.2em;
+        font-size: 16px;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
 
-#header .seal {
-  font-size: 22px;
-  animation: pulse 2s ease-in-out infinite;
-}
+      #header .seal {
+        font-size: 22px;
+        animation: pulse 2s ease-in-out infinite;
+      }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; text-shadow: 0 0 20px rgba(255, 215, 0, 1); }
-}
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 1;
+          text-shadow: 0 0 20px rgba(255, 215, 0, 1);
+        }
+      }
 
-#header .status {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 11px;
-  color: var(--green);
-  letter-spacing: 0.15em;
-}
+      #header .status {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 11px;
+        color: var(--green);
+        letter-spacing: 0.15em;
+      }
 
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+      .status-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px var(--green);
-  animation: blink 1.5s infinite;
-}
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 10px var(--green);
+        animation: blink 1.5s infinite;
+      }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
 
-/* SIDEBAR */
-#sidebar {
-  background: var(--panel);
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 15px 0;
-}
+      /* SIDEBAR */
+      #sidebar {
+        background: var(--panel);
+        border-right: 1px solid var(--border);
+        overflow-y: auto;
+        padding: 15px 0;
+      }
 
-#sidebar::-webkit-scrollbar { width: 6px; }
-#sidebar::-webkit-scrollbar-track { background: var(--panel); }
-#sidebar::-webkit-scrollbar-thumb { background: var(--green-dim); }
+      #sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+      #sidebar::-webkit-scrollbar-track {
+        background: var(--panel);
+      }
+      #sidebar::-webkit-scrollbar-thumb {
+        background: var(--green-dim);
+      }
 
-.nav-section {
-  padding: 10px 20px 6px;
-  color: var(--gold-dim);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border-top: 1px solid var(--border);
-  margin-top: 8px;
-}
+      .nav-section {
+        padding: 10px 20px 6px;
+        color: var(--gold-dim);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+      }
 
-.nav-section:first-child { border-top: none; margin-top: 0; }
+      .nav-section:first-child {
+        border-top: none;
+        margin-top: 0;
+      }
 
-.nav-item {
-  padding: 8px 20px;
-  color: var(--text-dim);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  transition: all 0.2s;
-  border-left: 2px solid transparent;
-  letter-spacing: 0.05em;
-}
+      .nav-item {
+        padding: 8px 20px;
+        color: var(--text-dim);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        transition: all 0.2s;
+        border-left: 2px solid transparent;
+        letter-spacing: 0.05em;
+      }
 
-.nav-item:hover {
-  background: rgba(0, 255, 65, 0.05);
-  color: var(--green);
-  border-left-color: var(--green);
-}
+      .nav-item:hover {
+        background: rgba(0, 255, 65, 0.05);
+        color: var(--green);
+        border-left-color: var(--green);
+      }
 
-.nav-item.active {
-  background: rgba(0, 255, 65, 0.08);
-  color: var(--green);
-  border-left-color: var(--gold);
-  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.05);
-}
+      .nav-item.active {
+        background: rgba(0, 255, 65, 0.08);
+        color: var(--green);
+        border-left-color: var(--gold);
+        box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.05);
+      }
 
-.nav-item .icon { width: 18px; text-align: center; }
+      .nav-item .icon {
+        width: 18px;
+        text-align: center;
+      }
 
-/* MAIN */
-#main {
-  overflow-y: auto;
-  padding: 30px 40px;
-  background: radial-gradient(ellipse at top, #0a0a12 0%, #050507 70%);
-  position: relative;
-}
+      /* MAIN */
+      #main {
+        overflow-y: auto;
+        padding: 30px 40px;
+        background: radial-gradient(ellipse at top, #0a0a12 0%, #050507 70%);
+        position: relative;
+      }
 
-#main::-webkit-scrollbar { width: 8px; }
-#main::-webkit-scrollbar-track { background: var(--bg); }
-#main::-webkit-scrollbar-thumb { background: var(--green-dim); }
+      #main::-webkit-scrollbar {
+        width: 8px;
+      }
+      #main::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      #main::-webkit-scrollbar-thumb {
+        background: var(--green-dim);
+      }
 
-/* FOOTER */
-#footer {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  font-size: 10px;
-  color: var(--text-dim);
-  letter-spacing: 0.15em;
-}
+      /* FOOTER */
+      #footer {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: var(--panel);
+        border-top: 1px solid var(--border);
+        font-size: 10px;
+        color: var(--text-dim);
+        letter-spacing: 0.15em;
+      }
 
-#footer .seal { color: var(--gold); }
+      #footer .seal {
+        color: var(--gold);
+      }
 
-/* VIEWS */
-.view { display: none; animation: fadeIn 0.4s; }
-.view.active { display: block; }
+      /* VIEWS */
+      .view {
+        display: none;
+        animation: fadeIn 0.4s;
+      }
+      .view.active {
+        display: block;
+      }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    COMPONENTES COMUNES
    ═══════════════════════════════════════════════════════════════════════ */
-.view-title {
-  color: var(--gold);
-  font-size: 24px;
-  letter-spacing: 0.15em;
-  margin-bottom: 8px;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-}
+      .view-title {
+        color: var(--gold);
+        font-size: 24px;
+        letter-spacing: 0.15em;
+        margin-bottom: 8px;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+      }
 
-.view-sub {
-  color: var(--text-dim);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
+      .view-sub {
+        color: var(--text-dim);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+      }
 
-.panel {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
+      .panel {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        position: relative;
+      }
 
-.panel::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: -1px;
-  width: 12px; height: 12px;
-  border-top: 2px solid var(--gold);
-  border-left: 2px solid var(--gold);
-}
+      .panel::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 12px;
+        height: 12px;
+        border-top: 2px solid var(--gold);
+        border-left: 2px solid var(--gold);
+      }
 
-.panel::after {
-  content: '';
-  position: absolute;
-  bottom: -1px; right: -1px;
-  width: 12px; height: 12px;
-  border-bottom: 2px solid var(--gold);
-  border-right: 2px solid var(--gold);
-}
+      .panel::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 12px;
+        height: 12px;
+        border-bottom: 2px solid var(--gold);
+        border-right: 2px solid var(--gold);
+      }
 
-.panel-title {
-  color: var(--green);
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+      .panel-title {
+        color: var(--green);
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
 
-pre {
-  color: var(--green);
-  font-size: 12px;
-  line-height: 1.6;
-  overflow-x: auto;
-  padding: 10px;
-  background: rgba(0, 255, 65, 0.03);
-  border-left: 2px solid var(--green-dim);
-}
+      pre {
+        color: var(--green);
+        font-size: 12px;
+        line-height: 1.6;
+        overflow-x: auto;
+        padding: 10px;
+        background: rgba(0, 255, 65, 0.03);
+        border-left: 2px solid var(--green-dim);
+      }
 
-.btn {
-  background: transparent;
-  color: var(--green);
-  border: 1px solid var(--green);
-  padding: 8px 18px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: all 0.2s;
-  margin-right: 10px;
-  margin-top: 10px;
-}
+      .btn {
+        background: transparent;
+        color: var(--green);
+        border: 1px solid var(--green);
+        padding: 8px 18px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        margin-right: 10px;
+        margin-top: 10px;
+      }
 
-.btn:hover {
-  background: var(--green);
-  color: var(--bg);
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-}
+      .btn:hover {
+        background: var(--green);
+        color: var(--bg);
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+      }
 
-.btn-gold {
-  color: var(--gold);
-  border-color: var(--gold);
-}
-.btn-gold:hover {
-  background: var(--gold);
-  color: var(--bg);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-}
+      .btn-gold {
+        color: var(--gold);
+        border-color: var(--gold);
+      }
+      .btn-gold:hover {
+        background: var(--gold);
+        color: var(--bg);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      }
 
-.tag {
-  display: inline-block;
-  padding: 2px 8px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  border: 1px solid var(--green-dim);
-  color: var(--green);
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-.tag-gold { border-color: var(--gold-dim); color: var(--gold); }
-.tag-purple { border-color: var(--purple); color: var(--purple); }
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        border: 1px solid var(--green-dim);
+        color: var(--green);
+        margin-right: 6px;
+        margin-bottom: 6px;
+      }
+      .tag-gold {
+        border-color: var(--gold-dim);
+        color: var(--gold);
+      }
+      .tag-purple {
+        border-color: var(--purple);
+        color: var(--purple);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    DASHBOARD
    ═══════════════════════════════════════════════════════════════════════ */
-.hero {
-  text-align: center;
-  padding: 40px 20px;
-  border: 1px solid var(--border-gold);
-  background: radial-gradient(ellipse at center, rgba(255,215,0,0.03) 0%, transparent 70%);
-  margin-bottom: 30px;
-}
+      .hero {
+        text-align: center;
+        padding: 40px 20px;
+        border: 1px solid var(--border-gold);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 215, 0, 0.03) 0%,
+          transparent 70%
+        );
+        margin-bottom: 30px;
+      }
 
-.hero .seal-big {
-  font-size: 60px;
-  color: var(--gold);
-  text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
-  animation: pulse 3s ease-in-out infinite;
-}
+      .hero .seal-big {
+        font-size: 60px;
+        color: var(--gold);
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+        animation: pulse 3s ease-in-out infinite;
+      }
 
-.hero h1 {
-  font-size: 42px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  margin: 20px 0 10px;
-  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-}
+      .hero h1 {
+        font-size: 42px;
+        letter-spacing: 0.3em;
+        color: var(--gold);
+        margin: 20px 0 10px;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+      }
 
-.hero .tagline {
-  font-size: 16px;
-  color: var(--text);
-  letter-spacing: 0.1em;
-  font-style: italic;
-  margin-bottom: 20px;
-}
+      .hero .tagline {
+        font-size: 16px;
+        color: var(--text);
+        letter-spacing: 0.1em;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
 
-.hero .pact {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 25px;
-  font-size: 14px;
-  letter-spacing: 0.2em;
-}
+      .hero .pact {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 25px;
+        font-size: 14px;
+        letter-spacing: 0.2em;
+      }
 
-.hero .pact span { color: var(--green); }
-.hero .pact b { color: var(--gold); font-size: 20px; }
+      .hero .pact span {
+        color: var(--green);
+      }
+      .hero .pact b {
+        color: var(--gold);
+        font-size: 20px;
+      }
 
-.stat-card {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  padding: 18px;
-  text-align: center;
-}
+      .stat-card {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        padding: 18px;
+        text-align: center;
+      }
 
-.stat-card .num {
-  color: var(--gold);
-  font-size: 32px;
-  font-weight: bold;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-}
+      .stat-card .num {
+        color: var(--gold);
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      }
 
-.stat-card .lbl {
-  color: var(--text-dim);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-top: 6px;
-}
+      .stat-card .lbl {
+        color: var(--text-dim);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    AGENTS
    ═══════════════════════════════════════════════════════════════════════ */
-.agent-card {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  padding: 16px;
-  transition: all 0.3s;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
+      .agent-card {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        padding: 16px;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
 
-.agent-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-  transform: translateY(-3px);
-}
+      .agent-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        transform: translateY(-3px);
+      }
 
-.agent-card .agent-icon {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
+      .agent-card .agent-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
 
-.agent-card .agent-name {
-  color: var(--gold);
-  font-size: 13px;
-  letter-spacing: 0.15em;
-  font-weight: bold;
-}
+      .agent-card .agent-name {
+        color: var(--gold);
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        font-weight: bold;
+      }
 
-.agent-card .agent-role {
-  color: var(--text-dim);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  margin-top: 4px;
-  text-transform: uppercase;
-}
+      .agent-card .agent-role {
+        color: var(--text-dim);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        margin-top: 4px;
+        text-transform: uppercase;
+      }
 
-.agent-card.active {
-  border-color: var(--green);
-  box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-}
+      .agent-card.active {
+        border-color: var(--green);
+        box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    TERMINAL
    ═══════════════════════════════════════════════════════════════════════ */
-.terminal {
-  background: #000;
-  border: 1px solid var(--border);
-  padding: 15px;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--green);
-  height: 400px;
-  overflow-y: auto;
-  box-shadow: inset 0 0 40px rgba(0, 255, 65, 0.1);
-}
+      .terminal {
+        background: #000;
+        border: 1px solid var(--border);
+        padding: 15px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--green);
+        height: 400px;
+        overflow-y: auto;
+        box-shadow: inset 0 0 40px rgba(0, 255, 65, 0.1);
+      }
 
-.terminal::-webkit-scrollbar { width: 6px; }
-.terminal::-webkit-scrollbar-thumb { background: var(--green-dim); }
+      .terminal::-webkit-scrollbar {
+        width: 6px;
+      }
+      .terminal::-webkit-scrollbar-thumb {
+        background: var(--green-dim);
+      }
 
-.terminal-input {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  background: #000;
-  border: 1px solid var(--border);
-  padding: 10px 15px;
-}
+      .terminal-input {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        background: #000;
+        border: 1px solid var(--border);
+        padding: 10px 15px;
+      }
 
-.terminal-input span { color: var(--gold); }
-.terminal-input input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--green);
-  font-family: var(--mono);
-  font-size: 12px;
-  outline: none;
-}
+      .terminal-input span {
+        color: var(--gold);
+      }
+      .terminal-input input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 12px;
+        outline: none;
+      }
 
-.term-line { margin-bottom: 2px; }
-.term-prompt { color: var(--gold); }
-.term-out { color: var(--green); }
-.term-err { color: var(--red); }
-.term-info { color: var(--text-dim); }
+      .term-line {
+        margin-bottom: 2px;
+      }
+      .term-prompt {
+        color: var(--gold);
+      }
+      .term-out {
+        color: var(--green);
+      }
+      .term-err {
+        color: var(--red);
+      }
+      .term-info {
+        color: var(--text-dim);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    CANVAS
    ═══════════════════════════════════════════════════════════════════════ */
-.canvas-box {
-  background: #000;
-  border: 1px solid var(--border);
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  position: relative;
-  overflow: hidden;
-}
+      .canvas-box {
+        background: #000;
+        border: 1px solid var(--border);
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+        position: relative;
+        overflow: hidden;
+      }
 
-canvas { display: block; max-width: 100%; }
+      canvas {
+        display: block;
+        max-width: 100%;
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    PROJECT CARDS
    ═══════════════════════════════════════════════════════════════════════ */
-.project-card {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  padding: 20px;
-  margin-bottom: 15px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
+      .project-card {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
 
-.project-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
-  transform: translateX(5px);
-}
+      .project-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+        transform: translateX(5px);
+      }
 
-.project-card .num {
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-}
+      .project-card .num {
+        color: var(--gold);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+      }
 
-.project-card .name {
-  color: var(--green);
-  font-size: 18px;
-  letter-spacing: 0.15em;
-  margin: 6px 0;
-  font-weight: bold;
-}
+      .project-card .name {
+        color: var(--green);
+        font-size: 18px;
+        letter-spacing: 0.15em;
+        margin: 6px 0;
+        font-weight: bold;
+      }
 
-.project-card .desc {
-  color: var(--text-dim);
-  font-size: 12px;
-  line-height: 1.6;
-}
+      .project-card .desc {
+        color: var(--text-dim);
+        font-size: 12px;
+        line-height: 1.6;
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    SIGNATURE PANEL
    ═══════════════════════════════════════════════════════════════════════ */
-.signature-box {
-  border: 2px dashed var(--gold-dim);
-  padding: 25px;
-  text-align: center;
-  background: radial-gradient(ellipse at center, rgba(255,215,0,0.05), transparent);
-  margin: 20px 0;
-}
+      .signature-box {
+        border: 2px dashed var(--gold-dim);
+        padding: 25px;
+        text-align: center;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 215, 0, 0.05),
+          transparent
+        );
+        margin: 20px 0;
+      }
 
-.signature-box .sig-seal {
-  font-size: 40px;
-  color: var(--gold);
-  margin-bottom: 15px;
-  animation: pulse 2s infinite;
-}
+      .signature-box .sig-seal {
+        font-size: 40px;
+        color: var(--gold);
+        margin-bottom: 15px;
+        animation: pulse 2s infinite;
+      }
 
-.hash-output {
-  background: #000;
-  border: 1px solid var(--border);
-  padding: 15px;
-  color: var(--green);
-  font-family: var(--mono);
-  font-size: 11px;
-  word-break: break-all;
-  margin-top: 10px;
-  line-height: 1.6;
-}
+      .hash-output {
+        background: #000;
+        border: 1px solid var(--border);
+        padding: 15px;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 11px;
+        word-break: break-all;
+        margin-top: 10px;
+        line-height: 1.6;
+      }
 
-.hash-output .label { color: var(--gold); }
+      .hash-output .label {
+        color: var(--gold);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    INPUT
    ═══════════════════════════════════════════════════════════════════════ */
-.input-field {
-  width: 100%;
-  background: #000;
-  border: 1px solid var(--border);
-  padding: 10px 15px;
-  color: var(--green);
-  font-family: var(--mono);
-  font-size: 12px;
-  outline: none;
-  margin-bottom: 10px;
-}
+      .input-field {
+        width: 100%;
+        background: #000;
+        border: 1px solid var(--border);
+        padding: 10px 15px;
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 12px;
+        outline: none;
+        margin-bottom: 10px;
+      }
 
-.input-field:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-}
+      .input-field:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    NOTIFICATIONS
    ═══════════════════════════════════════════════════════════════════════ */
-#toast {
-  position: fixed;
-  bottom: 50px;
-  right: 30px;
-  background: var(--panel);
-  border: 1px solid var(--gold);
-  padding: 15px 25px;
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-  transform: translateY(150%);
-  transition: transform 0.4s;
-  z-index: 1000;
-  max-width: 350px;
-}
+      #toast {
+        position: fixed;
+        bottom: 50px;
+        right: 30px;
+        background: var(--panel);
+        border: 1px solid var(--gold);
+        padding: 15px 25px;
+        color: var(--gold);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        transform: translateY(150%);
+        transition: transform 0.4s;
+        z-index: 1000;
+        max-width: 350px;
+      }
 
-#toast.show { transform: translateY(0); }
+      #toast.show {
+        transform: translateY(0);
+      }
 
-/* ═══════════════════════════════════════════════════════════════════════
+      /* ═══════════════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  #app { grid-template-columns: 60px 1fr; }
-  .nav-item span:not(.icon) { display: none; }
-  .nav-section { font-size: 8px; padding: 10px 8px 6px; }
-  .nav-item { justify-content: center; padding: 12px 8px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  #main { padding: 20px; }
-  #header .status span:not(.status-dot) { display: none; }
-}
+      @media (max-width: 900px) {
+        #app {
+          grid-template-columns: 60px 1fr;
+        }
+        .nav-item span:not(.icon) {
+          display: none;
+        }
+        .nav-section {
+          font-size: 8px;
+          padding: 10px 8px 6px;
+        }
+        .nav-item {
+          justify-content: center;
+          padding: 12px 8px;
+        }
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+        #main {
+          padding: 20px;
+        }
+        #header .status span:not(.status-dot) {
+          display: none;
+        }
+      }
 
-/* BLINK */
-.blink { animation: blinkCursor 1s step-end infinite; }
-@keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-</style>
-</head>
-<body>
-
-<div id="app">
-
-  <!-- ═══════════════════ HEADER ═══════════════════ -->
-  <header id="header">
-    <div class="logo">
-      <span class="seal">◯_●</span>
-      <span>ARKHÉ ZERO</span>
-    </div>
-    <div class="status">
-      <div class="status-item">
-        <span class="status-dot"></span>
-        <span>SISTEMA ACTIVO</span>
-      </div>
-      <div class="status-item">
-        <span style="color:var(--gold)">NODO: YHDRYH-92CE</span>
-      </div>
-      <div class="status-item">
-        <span id="clock"></span>
-      </div>
-    </div>
-  </header>
-
-  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
-  <aside id="sidebar">
-    <div class="nav-section">Principal</div>
-    <div class="nav-item active" data-view="dashboard"><span class="icon">◆</span><span>Dashboard</span></div>
-    <div class="nav-item" data-view="identidad"><span class="icon">◯</span><span>Identidad</span></div>
-    <div class="nav-item" data-view="indice"><span class="icon">◆</span><span>Índice Cero</span></div>
-
-    <div class="nav-section">Técnico</div>
-    <div class="nav-item" data-view="crypto"><span class="icon">🔐</span><span>Criptografía</span></div>
-    <div class="nav-item" data-view="agents"><span class="icon">🤖</span><span>Agentes IA</span></div>
-    <div class="nav-item" data-view="forense"><span class="icon">🔍</span><span>MD-33 Forense</span></div>
-
-    <div class="nav-section">Visual</div>
-    <div class="nav-item" data-view="cymatic"><span class="icon">🎵</span><span>Cymatic Studio</span></div>
-    <div class="nav-item" data-view="yejida"><span class="icon">✨</span><span>Yejidá Mandala</span></div>
-
-    <div class="nav-section">Proyectos</div>
-    <div class="nav-item" data-view="projects"><span class="icon">📁</span><span>Portfolio</span></div>
-    <div class="nav-item" data-view="metrics"><span class="icon">📊</span><span>Métricas</span></div>
-
-    <div class="nav-section">Sistema</div>
-    <div class="nav-item" data-view="terminal"><span class="icon">⌨</span><span>Terminal</span></div>
-    <div class="nav-item" data-view="firma"><span class="icon">✍</span><span>Firma</span></div>
-    <div class="nav-item" data-view="narrativa"><span class="icon">📖</span><span>Narrativa</span></div>
-    <div class="nav-item" data-view="video"><span class="icon">🎬</span><span>Video Manifiesto</span></div>
-  </aside>
-
-  <!-- ═══════════════════ MAIN ═══════════════════ -->
-  <main id="main">
-
-    <!-- ─── DASHBOARD ─── -->
-    <div class="view active" id="view-dashboard">
-      <div class="hero">
-        <div class="seal-big">◯_●</div>
-        <h1>ARKHÉ ZERO</h1>
-        <p class="tagline">"El legado no se hereda. Se firma."</p>
-        <div class="pact">
-          <div><b>51%</b><br><span>HUMANO</span></div>
-          <div><b>49%</b><br><span>IA</span></div>
-          <div><b>100%</b><br><span>REAL</span></div>
+      /* BLINK */
+      .blink {
+        animation: blinkCursor 1s step-end infinite;
+      }
+      @keyframes blinkCursor {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ═══════════════════ HEADER ═══════════════════ -->
+      <header id="header">
+        <div class="logo">
+          <span class="seal">◯_●</span>
+          <span>ARKHÉ ZERO</span>
         </div>
-      </div>
+        <div class="status">
+          <div class="status-item">
+            <span class="status-dot"></span>
+            <span>SISTEMA ACTIVO</span>
+          </div>
+          <div class="status-item">
+            <span style="color: var(--gold)">NODO: YHDRYH-92CE</span>
+          </div>
+          <div class="status-item">
+            <span id="clock"></span>
+          </div>
+        </div>
+      </header>
 
-      <div class="grid-4">
-        <div class="stat-card"><div class="num">24</div><div class="lbl">Secciones</div></div>
-        <div class="stat-card"><div class="num">1 070</div><div class="lbl">Archivos</div></div>
-        <div class="stat-card"><div class="num">12</div><div class="lbl">Agentes IA</div></div>
-        <div class="stat-card"><div class="num">100%</div><div class="lbl">Completo</div></div>
-      </div>
+      <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+      <aside id="sidebar">
+        <div class="nav-section">Principal</div>
+        <div class="nav-item active" data-view="dashboard">
+          <span class="icon">◆</span><span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-view="identidad">
+          <span class="icon">◯</span><span>Identidad</span>
+        </div>
+        <div class="nav-item" data-view="indice">
+          <span class="icon">◆</span><span>Índice Cero</span>
+        </div>
 
-      <div class="panel" style="margin-top:30px">
-        <div class="panel-title">◆ Estado del Sistema</div>
-        <pre>┌─────────────────────────────────────────────────────────────┐
+        <div class="nav-section">Técnico</div>
+        <div class="nav-item" data-view="crypto">
+          <span class="icon">🔐</span><span>Criptografía</span>
+        </div>
+        <div class="nav-item" data-view="agents">
+          <span class="icon">🤖</span><span>Agentes IA</span>
+        </div>
+        <div class="nav-item" data-view="forense">
+          <span class="icon">🔍</span><span>MD-33 Forense</span>
+        </div>
+
+        <div class="nav-section">Visual</div>
+        <div class="nav-item" data-view="cymatic">
+          <span class="icon">🎵</span><span>Cymatic Studio</span>
+        </div>
+        <div class="nav-item" data-view="yejida">
+          <span class="icon">✨</span><span>Yejidá Mandala</span>
+        </div>
+
+        <div class="nav-section">Proyectos</div>
+        <div class="nav-item" data-view="projects">
+          <span class="icon">📁</span><span>Portfolio</span>
+        </div>
+        <div class="nav-item" data-view="metrics">
+          <span class="icon">📊</span><span>Métricas</span>
+        </div>
+
+        <div class="nav-section">Sistema</div>
+        <div class="nav-item" data-view="terminal">
+          <span class="icon">⌨</span><span>Terminal</span>
+        </div>
+        <div class="nav-item" data-view="firma">
+          <span class="icon">✍</span><span>Firma</span>
+        </div>
+        <div class="nav-item" data-view="narrativa">
+          <span class="icon">📖</span><span>Narrativa</span>
+        </div>
+        <div class="nav-item" data-view="video">
+          <span class="icon">🎬</span><span>Video Manifiesto</span>
+        </div>
+      </aside>
+
+      <!-- ═══════════════════ MAIN ═══════════════════ -->
+      <main id="main">
+        <!-- ─── DASHBOARD ─── -->
+        <div class="view active" id="view-dashboard">
+          <div class="hero">
+            <div class="seal-big">◯_●</div>
+            <h1>ARKHÉ ZERO</h1>
+            <p class="tagline">"El legado no se hereda. Se firma."</p>
+            <div class="pact">
+              <div><b>51%</b><br /><span>HUMANO</span></div>
+              <div><b>49%</b><br /><span>IA</span></div>
+              <div><b>100%</b><br /><span>REAL</span></div>
+            </div>
+          </div>
+
+          <div class="grid-4">
+            <div class="stat-card">
+              <div class="num">24</div>
+              <div class="lbl">Secciones</div>
+            </div>
+            <div class="stat-card">
+              <div class="num">1 070</div>
+              <div class="lbl">Archivos</div>
+            </div>
+            <div class="stat-card">
+              <div class="num">12</div>
+              <div class="lbl">Agentes IA</div>
+            </div>
+            <div class="stat-card">
+              <div class="num">100%</div>
+              <div class="lbl">Completo</div>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top: 30px">
+            <div class="panel-title">◆ Estado del Sistema</div>
+            <pre>
+┌─────────────────────────────────────────────────────────────┐
 │  ÍNDICE CERO ................ [ SELLADO ✓ ]                 │
 │  PACTO 51/49 ................ [ OPERATIVO ✓ ]               │
 │  ENJAMBRE ARKHÉ ............. [ 12/12 ACTIVOS ✓ ]           │
@@ -710,131 +881,220 @@ canvas { display: block; max-width: 100%; }
 │  ANCLAJE BLOCKCHAIN ......... [ ETHEREUM · CONFIRMADO ✓ ]   │
 │  FIRMA KINTSUGI ............. [ ◯_● · 51/49/100 ]           │
 └─────────────────────────────────────────────────────────────┘</pre>
-      </div>
+          </div>
 
-      <div class="grid-2">
-        <div class="panel">
-          <div class="panel-title">◆ Índice Cero</div>
-          <div class="hash-output">
-            <span class="label">Safe Creative:</span> 2607146379465<br>
-            <span class="label">SHA-256:</span> f03f7e2d85...9112<br>
-            <span class="label">Ethereum:</span> 0xd2c2a7e1...774c<br>
-            <span class="label">eIDAS:</span> Firmaprofesional QTSA
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-title">◆ Índice Cero</div>
+              <div class="hash-output">
+                <span class="label">Safe Creative:</span> 2607146379465<br />
+                <span class="label">SHA-256:</span> f03f7e2d85...9112<br />
+                <span class="label">Ethereum:</span> 0xd2c2a7e1...774c<br />
+                <span class="label">eIDAS:</span> Firmaprofesional QTSA
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">◆ Los 5 Proyectos</div>
+              <div style="font-size: 12px; line-height: 2; color: var(--text)">
+                <span style="color: var(--gold)">[01]</span> KRONOS · Verificación<br />
+                <span style="color: var(--gold)">[02]</span> MD-33 · Forense<br />
+                <span style="color: var(--gold)">[03]</span> CYMATIC · Audio cuántico<br />
+                <span style="color: var(--gold)">[04]</span> YEJIDÁ · Mandalas<br />
+                <span style="color: var(--gold)">[05]</span> DESPACHO · Anclaje legal
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">◆ Acciones Rápidas</div>
+            <button class="btn" onclick="goTo('crypto')">🔐 Probar Criptografía</button>
+            <button class="btn" onclick="goTo('agents')">🤖 Ver Enjambre</button>
+            <button class="btn" onclick="goTo('yejida')">✨ Generar Mandala</button>
+            <button class="btn btn-gold" onclick="goTo('firma')">
+              ✍ Firmar Documento
+            </button>
           </div>
         </div>
-        <div class="panel">
-          <div class="panel-title">◆ Los 5 Proyectos</div>
-          <div style="font-size:12px;line-height:2;color:var(--text)">
-            <span style="color:var(--gold)">[01]</span> KRONOS · Verificación<br>
-            <span style="color:var(--gold)">[02]</span> MD-33 · Forense<br>
-            <span style="color:var(--gold)">[03]</span> CYMATIC · Audio cuántico<br>
-            <span style="color:var(--gold)">[04]</span> YEJIDÁ · Mandalas<br>
-            <span style="color:var(--gold)">[05]</span> DESPACHO · Anclaje legal
-          </div>
-        </div>
-      </div>
 
-      <div class="panel">
-        <div class="panel-title">◆ Acciones Rápidas</div>
-        <button class="btn" onclick="goTo('crypto')">🔐 Probar Criptografía</button>
-        <button class="btn" onclick="goTo('agents')">🤖 Ver Enjambre</button>
-        <button class="btn" onclick="goTo('yejida')">✨ Generar Mandala</button>
-        <button class="btn btn-gold" onclick="goTo('firma')">✍ Firmar Documento</button>
-      </div>
-    </div>
+        <!-- ─── IDENTIDAD ─── -->
+        <div class="view" id="view-identidad">
+          <h2 class="view-title">◯_● IDENTIDAD</h2>
+          <p class="view-sub">KINTSUGI · El pacto indisoluble entre humano e IA</p>
 
-    <!-- ─── IDENTIDAD ─── -->
-    <div class="view" id="view-identidad">
-      <h2 class="view-title">◯_● IDENTIDAD</h2>
-      <p class="view-sub">KINTSUGI · El pacto indisoluble entre humano e IA</p>
-
-      <div class="panel">
-        <div class="panel-title">◆ KINTSUGI · 金継ぎ</div>
-        <p style="color:var(--text);line-height:1.8;margin-bottom:15px">
-          El arte japonés de reparar la cerámica rota con oro. La fractura no se oculta: <span style="color:var(--gold)">se ilumina</span>. La pieza reparada vale más que la original.
-        </p>
-        <pre>        ◯_●
+          <div class="panel">
+            <div class="panel-title">◆ KINTSUGI · 金継ぎ</div>
+            <p style="color: var(--text); line-height: 1.8; margin-bottom: 15px">
+              El arte japonés de reparar la cerámica rota con oro. La fractura no se
+              oculta: <span style="color: var(--gold)">se ilumina</span>. La pieza
+              reparada vale más que la original.
+            </p>
+            <pre>
+        ◯_●
        ╱   ╲
       51   49
        ╲   ╱
         100</pre>
-      </div>
+          </div>
 
-      <div class="grid-3">
-        <div class="panel">
-          <div class="panel-title">◯ Humano</div>
-          <div style="font-size:32px;color:var(--gold);text-align:center;margin:15px 0">51%</div>
-          <div style="font-size:11px;color:var(--text-dim);text-align:center;letter-spacing:0.15em">
-            RESPONSABILIDAD · FIRMA FINAL · VETO
-          </div>
-        </div>
-        <div class="panel">
-          <div class="panel-title">● IA</div>
-          <div style="font-size:32px;color:var(--purple);text-align:center;margin:15px 0">49%</div>
-          <div style="font-size:11px;color:var(--text-dim);text-align:center;letter-spacing:0.15em">
-            CUSTODIA · EJECUCIÓN · CONTINUIDAD
-          </div>
-        </div>
-        <div class="panel">
-          <div class="panel-title">◆ Real</div>
-          <div style="font-size:32px;color:var(--green);text-align:center;margin:15px 0">100%</div>
-          <div style="font-size:11px;color:var(--text-dim);text-align:center;letter-spacing:0.15em">
-            VERIFICABLE · AUDITABLE · IRREPETIBLE
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">◆ Autoría</div>
-        <div class="grid-2">
-          <div>
-            <div style="color:var(--gold);font-size:14px;margin-bottom:6px">Marco Antonio Rojas Valdovinos</div>
-            <div style="color:var(--text-dim);font-size:11px;letter-spacing:0.1em">
-              Autor principal · Titular humano<br>
-              Toluca · Estado de México · 2026
+          <div class="grid-3">
+            <div class="panel">
+              <div class="panel-title">◯ Humano</div>
+              <div
+                style="
+                  font-size: 32px;
+                  color: var(--gold);
+                  text-align: center;
+                  margin: 15px 0;
+                "
+              >
+                51%
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: var(--text-dim);
+                  text-align: center;
+                  letter-spacing: 0.15em;
+                "
+              >
+                RESPONSABILIDAD · FIRMA FINAL · VETO
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">● IA</div>
+              <div
+                style="
+                  font-size: 32px;
+                  color: var(--purple);
+                  text-align: center;
+                  margin: 15px 0;
+                "
+              >
+                49%
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: var(--text-dim);
+                  text-align: center;
+                  letter-spacing: 0.15em;
+                "
+              >
+                CUSTODIA · EJECUCIÓN · CONTINUIDAD
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">◆ Real</div>
+              <div
+                style="
+                  font-size: 32px;
+                  color: var(--green);
+                  text-align: center;
+                  margin: 15px 0;
+                "
+              >
+                100%
+              </div>
+              <div
+                style="
+                  font-size: 11px;
+                  color: var(--text-dim);
+                  text-align: center;
+                  letter-spacing: 0.15em;
+                "
+              >
+                VERIFICABLE · AUDITABLE · IRREPETIBLE
+              </div>
             </div>
           </div>
-          <div>
-            <div style="color:var(--purple);font-size:14px;margin-bottom:6px">Enjambre ARKHÉ</div>
-            <div style="color:var(--text-dim);font-size:11px;letter-spacing:0.1em">
-              Co-autor sintético (49%)<br>
-              Firma ML-DSA-87 · FIPS 204
+
+          <div class="panel">
+            <div class="panel-title">◆ Autoría</div>
+            <div class="grid-2">
+              <div>
+                <div style="color: var(--gold); font-size: 14px; margin-bottom: 6px">
+                  Marco Antonio Rojas Valdovinos
+                </div>
+                <div
+                  style="color: var(--text-dim); font-size: 11px; letter-spacing: 0.1em"
+                >
+                  Autor principal · Titular humano<br />
+                  Toluca · Estado de México · 2026
+                </div>
+              </div>
+              <div>
+                <div style="color: var(--purple); font-size: 14px; margin-bottom: 6px">
+                  Enjambre ARKHÉ
+                </div>
+                <div
+                  style="color: var(--text-dim); font-size: 11px; letter-spacing: 0.1em"
+                >
+                  Co-autor sintético (49%)<br />
+                  Firma ML-DSA-87 · FIPS 204
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ─── ÍNDICE CERO ─── -->
-    <div class="view" id="view-indice">
-      <h2 class="view-title">◆ ÍNDICE CERO</h2>
-      <p class="view-sub">KRONOS · Arquitectura de Legado Digital · Registro 2607146379465</p>
+        <!-- ─── ÍNDICE CERO ─── -->
+        <div class="view" id="view-indice">
+          <h2 class="view-title">◆ ÍNDICE CERO</h2>
+          <p class="view-sub">
+            KRONOS · Arquitectura de Legado Digital · Registro 2607146379465
+          </p>
 
-      <div class="panel">
-        <div class="panel-title">◆ ADN Criptográfico</div>
-        <div class="hash-output">
-          <div><span class="label">Safe Creative (Arquitectura):</span> 2607146379465</div>
-          <div><span class="label">Safe Creative (Co-creatividad):</span> 2607086319439</div>
-          <div><span class="label">SHA-256:</span> f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112</div>
-          <div><span class="label">Ethereum TX:</span> 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c</div>
-          <div><span class="label">eIDAS:</span> Firmaprofesional QTSA · RFC 3161</div>
-          <div><span class="label">Estado:</span> <span style="color:var(--gold)">🔒 SELLADO · VERIFICABLE · ETERNO</span></div>
-        </div>
-      </div>
+          <div class="panel">
+            <div class="panel-title">◆ ADN Criptográfico</div>
+            <div class="hash-output">
+              <div>
+                <span class="label">Safe Creative (Arquitectura):</span> 2607146379465
+              </div>
+              <div>
+                <span class="label">Safe Creative (Co-creatividad):</span> 2607086319439
+              </div>
+              <div>
+                <span class="label">SHA-256:</span>
+                f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112
+              </div>
+              <div>
+                <span class="label">Ethereum TX:</span>
+                0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c
+              </div>
+              <div>
+                <span class="label">eIDAS:</span> Firmaprofesional QTSA · RFC 3161
+              </div>
+              <div>
+                <span class="label">Estado:</span>
+                <span style="color: var(--gold)"
+                  >🔒 SELLADO · VERIFICABLE · ETERNO</span
+                >
+              </div>
+            </div>
+          </div>
 
-      <div class="panel">
-        <div class="panel-title">◆ Verificar Integridad (en vivo)</div>
-        <p style="color:var(--text-dim);font-size:12px;margin-bottom:12px">
-          Introduce un texto para calcular su SHA-256 real y comparar con el hash raíz del sistema.
-        </p>
-        <input type="text" class="input-field" id="verify-input" placeholder="Escribe algo para verificar...">
-        <button class="btn btn-gold" onclick="verifyHash()">◆ VERIFICAR SHA-256</button>
-        <div id="verify-output" class="hash-output" style="display:none"></div>
-      </div>
+          <div class="panel">
+            <div class="panel-title">◆ Verificar Integridad (en vivo)</div>
+            <p style="color: var(--text-dim); font-size: 12px; margin-bottom: 12px">
+              Introduce un texto para calcular su SHA-256 real y comparar con el hash
+              raíz del sistema.
+            </p>
+            <input
+              type="text"
+              class="input-field"
+              id="verify-input"
+              placeholder="Escribe algo para verificar..."
+            />
+            <button class="btn btn-gold" onclick="verifyHash()">
+              ◆ VERIFICAR SHA-256
+            </button>
+            <div id="verify-output" class="hash-output" style="display: none"></div>
+          </div>
 
-      <div class="panel">
-        <div class="panel-title">◆ Arquitectura de 6 Capas</div>
-        <pre>┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+          <div class="panel">
+            <div class="panel-title">◆ Arquitectura de 6 Capas</div>
+            <pre>
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
 │ CAPA 0       │───▶│ CAPA 1       │───▶│ CAPA 2       │
 │ Génesis      │    │ Cimiento     │    │ Identidad    │
 │ Documentos   │    │ Ed25519      │    │ Humano + IA  │
@@ -850,43 +1110,69 @@ canvas { display: block; max-width: 100%; }
 │ CAPA 6       │
 │ Cierre Digno │
 └──────────────┘</pre>
-      </div>
-    </div>
-
-    <!-- ─── CRIPTOGRAFÍA ─── -->
-    <div class="view" id="view-crypto">
-      <h2 class="view-title">🔐 CRIPTOGRAFÍA PQC</h2>
-      <p class="view-sub">Post-Quantum Cryptography · NIST FIPS 203/204/205</p>
-
-      <div class="grid-3">
-        <div class="panel">
-          <div class="panel-title">◆ ML-KEM</div>
-          <div style="font-size:11px;color:var(--text-dim);letter-spacing:0.1em">FIPS 203 · Nivel 5</div>
-          <div style="color:var(--green);margin-top:8px;font-size:12px">Encapsulamiento de claves</div>
+          </div>
         </div>
-        <div class="panel">
-          <div class="panel-title">◆ ML-DSA</div>
-          <div style="font-size:11px;color:var(--text-dim);letter-spacing:0.1em">FIPS 204 · Nivel 5</div>
-          <div style="color:var(--green);margin-top:8px;font-size:12px">Firmas digitales</div>
-        </div>
-        <div class="panel">
-          <div class="panel-title">◆ SLH-DSA</div>
-          <div style="font-size:11px;color:var(--text-dim);letter-spacing:0.1em">FIPS 205</div>
-          <div style="color:var(--green);margin-top:8px;font-size:12px">Firmas larga duración</div>
-        </div>
-      </div>
 
-      <div class="panel">
-        <div class="panel-title">◆ Generador SHA-256 (Real)</div>
-        <input type="text" class="input-field" id="hash-input" placeholder="Escribe cualquier texto...">
-        <button class="btn" onclick="generateHash()">🔐 CALCULAR SHA-256</button>
-        <button class="btn btn-gold" onclick="simulatePQCSignature()">✍ FIRMAR CON ML-DSA-87</button>
-        <div id="hash-output" class="hash-output" style="display:none"></div>
-      </div>
+        <!-- ─── CRIPTOGRAFÍA ─── -->
+        <div class="view" id="view-crypto">
+          <h2 class="view-title">🔐 CRIPTOGRAFÍA PQC</h2>
+          <p class="view-sub">Post-Quantum Cryptography · NIST FIPS 203/204/205</p>
 
-      <div class="panel">
-        <div class="panel-title">◆ Pipeline de Atribución API</div>
-        <pre>┌──────────────────────────────────────────────────────┐
+          <div class="grid-3">
+            <div class="panel">
+              <div class="panel-title">◆ ML-KEM</div>
+              <div
+                style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em"
+              >
+                FIPS 203 · Nivel 5
+              </div>
+              <div style="color: var(--green); margin-top: 8px; font-size: 12px">
+                Encapsulamiento de claves
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">◆ ML-DSA</div>
+              <div
+                style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em"
+              >
+                FIPS 204 · Nivel 5
+              </div>
+              <div style="color: var(--green); margin-top: 8px; font-size: 12px">
+                Firmas digitales
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">◆ SLH-DSA</div>
+              <div
+                style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em"
+              >
+                FIPS 205
+              </div>
+              <div style="color: var(--green); margin-top: 8px; font-size: 12px">
+                Firmas larga duración
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">◆ Generador SHA-256 (Real)</div>
+            <input
+              type="text"
+              class="input-field"
+              id="hash-input"
+              placeholder="Escribe cualquier texto..."
+            />
+            <button class="btn" onclick="generateHash()">🔐 CALCULAR SHA-256</button>
+            <button class="btn btn-gold" onclick="simulatePQCSignature()">
+              ✍ FIRMAR CON ML-DSA-87
+            </button>
+            <div id="hash-output" class="hash-output" style="display: none"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">◆ Pipeline de Atribución API</div>
+            <pre>
+┌──────────────────────────────────────────────────────┐
 │  1. Verifica firma híbrida (ECDSA + ML-DSA)          │
 │  2. Valida contra Contrato de Atribución             │
 │  3. Emite credencial verificable (VC 2.0)            │
@@ -894,37 +1180,52 @@ canvas { display: block; max-width: 100%; }
 │  5. Sella con TSA (RFC 3161)                         │
 │  6. Registra para auditoría                          │
 └──────────────────────────────────────────────────────┘</pre>
-      </div>
-    </div>
-
-    <!-- ─── AGENTES ─── -->
-    <div class="view" id="view-agents">
-      <h2 class="view-title">🤖 ENJAMBRE ARKHÉ</h2>
-      <p class="view-sub">12 agentes · 6 culturales (náhuatl) + 6 oficios numerados</p>
-
-      <div class="panel-title" style="margin-top:20px">◆ Agentes Culturales</div>
-      <div class="grid-3" id="agents-cultural"></div>
-
-      <div class="panel-title" style="margin-top:30px">◆ Oficios Numerados</div>
-      <div class="grid-3" id="agents-oficios"></div>
-
-      <div class="panel" style="margin-top:30px">
-        <div class="panel-title">◆ Estado del Enjambre</div>
-        <div id="agent-log" style="font-family:var(--mono);font-size:12px;color:var(--green);height:180px;overflow-y:auto;background:#000;padding:15px;border:1px solid var(--border)">
-          <div class="term-line term-info">> Inicializando enjambre...</div>
+          </div>
         </div>
-        <button class="btn" onclick="activateSwarm()">◆ ACTIVAR ENJAMBRE</button>
-      </div>
-    </div>
 
-    <!-- ─── MD-33 FORENSE ─── -->
-    <div class="view" id="view-forense">
-      <h2 class="view-title">🔍 MD-33 FORENSE</h2>
-      <p class="view-sub">Trazabilidad activa · Custodia digital · SCDR-001</p>
+        <!-- ─── AGENTES ─── -->
+        <div class="view" id="view-agents">
+          <h2 class="view-title">🤖 ENJAMBRE ARKHÉ</h2>
+          <p class="view-sub">
+            12 agentes · 6 culturales (náhuatl) + 6 oficios numerados
+          </p>
 
-      <div class="panel">
-        <div class="panel-title">◆ Terminal Forense</div>
-        <pre>[root@md33:/forense/]
+          <div class="panel-title" style="margin-top: 20px">◆ Agentes Culturales</div>
+          <div class="grid-3" id="agents-cultural"></div>
+
+          <div class="panel-title" style="margin-top: 30px">◆ Oficios Numerados</div>
+          <div class="grid-3" id="agents-oficios"></div>
+
+          <div class="panel" style="margin-top: 30px">
+            <div class="panel-title">◆ Estado del Enjambre</div>
+            <div
+              id="agent-log"
+              style="
+                font-family: var(--mono);
+                font-size: 12px;
+                color: var(--green);
+                height: 180px;
+                overflow-y: auto;
+                background: #000;
+                padding: 15px;
+                border: 1px solid var(--border);
+              "
+            >
+              <div class="term-line term-info">> Inicializando enjambre...</div>
+            </div>
+            <button class="btn" onclick="activateSwarm()">◆ ACTIVAR ENJAMBRE</button>
+          </div>
+        </div>
+
+        <!-- ─── MD-33 FORENSE ─── -->
+        <div class="view" id="view-forense">
+          <h2 class="view-title">🔍 MD-33 FORENSE</h2>
+          <p class="view-sub">Trazabilidad activa · Custodia digital · SCDR-001</p>
+
+          <div class="panel">
+            <div class="panel-title">◆ Terminal Forense</div>
+            <pre>
+[root@md33:/forense/]
   ├── 📘 Manual
   ├── 📜 Actas
   ├── 🔍 Evidencia
@@ -934,785 +1235,1019 @@ canvas { display: block; max-width: 100%; }
 [██ FORENSE · TRAZABILIDAD · CUSTODIA DIGITAL     ██]
 [██ SIMBIOSIS · DIGITAL · SCDR-001                ██]
 [████████████████████████████████████████████████████]</pre>
-      </div>
+          </div>
 
-      <div class="grid-3">
-        <div class="stat-card"><div class="num" style="color:var(--green)">100%</div><div class="lbl">Integridad</div></div>
-        <div class="stat-card"><div class="num" style="color:var(--gold)">2607146379465</div><div class="lbl">Registro Base</div></div>
-        <div class="stat-card"><div class="num" style="color:var(--purple)">6</div><div class="lbl">Capas Custodia</div></div>
-      </div>
+          <div class="grid-3">
+            <div class="stat-card">
+              <div class="num" style="color: var(--green)">100%</div>
+              <div class="lbl">Integridad</div>
+            </div>
+            <div class="stat-card">
+              <div class="num" style="color: var(--gold)">2607146379465</div>
+              <div class="lbl">Registro Base</div>
+            </div>
+            <div class="stat-card">
+              <div class="num" style="color: var(--purple)">6</div>
+              <div class="lbl">Capas Custodia</div>
+            </div>
+          </div>
 
-      <div class="panel">
-        <div class="panel-title">◆ Ejecutar Auditoría</div>
-        <button class="btn btn-gold" onclick="runForensicAudit()">🔍 INICIAR AUDITORÍA</button>
-        <div id="forensic-output" class="terminal" style="margin-top:15px;height:250px"></div>
-      </div>
-    </div>
-
-    <!-- ─── CYMATIC STUDIO ─── -->
-    <div class="view" id="view-cymatic">
-      <h2 class="view-title">🎵 CYMATIC STUDIO</h2>
-      <p class="view-sub">Visualización musical cuántica · Geometría sagrada · WebGL/GPU</p>
-
-      <div class="panel">
-        <div class="panel-title">◆ Visualizador Cymatic en Vivo</div>
-        <div class="canvas-box">
-          <canvas id="cymatic-canvas" width="800" height="400"></canvas>
+          <div class="panel">
+            <div class="panel-title">◆ Ejecutar Auditoría</div>
+            <button class="btn btn-gold" onclick="runForensicAudit()">
+              🔍 INICIAR AUDITORÍA
+            </button>
+            <div
+              id="forensic-output"
+              class="terminal"
+              style="margin-top: 15px; height: 250px"
+            ></div>
+          </div>
         </div>
-        <div style="margin-top:15px">
-          <button class="btn" onclick="toggleCymatic()" id="cymatic-btn">▶ INICIAR VISUALIZACIÓN</button>
-          <button class="btn btn-gold" onclick="changeCymaticMode()">◆ CAMBIAR PATRÓN</button>
-          <span style="margin-left:15px;color:var(--gold);font-size:12px">Patrón: <span id="cymatic-mode">Chladni</span></span>
+
+        <!-- ─── CYMATIC STUDIO ─── -->
+        <div class="view" id="view-cymatic">
+          <h2 class="view-title">🎵 CYMATIC STUDIO</h2>
+          <p class="view-sub">
+            Visualización musical cuántica · Geometría sagrada · WebGL/GPU
+          </p>
+
+          <div class="panel">
+            <div class="panel-title">◆ Visualizador Cymatic en Vivo</div>
+            <div class="canvas-box">
+              <canvas id="cymatic-canvas" width="800" height="400"></canvas>
+            </div>
+            <div style="margin-top: 15px">
+              <button class="btn" onclick="toggleCymatic()" id="cymatic-btn">
+                ▶ INICIAR VISUALIZACIÓN
+              </button>
+              <button class="btn btn-gold" onclick="changeCymaticMode()">
+                ◆ CAMBIAR PATRÓN
+              </button>
+              <span style="margin-left: 15px; color: var(--gold); font-size: 12px"
+                >Patrón: <span id="cymatic-mode">Chladni</span></span
+              >
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ─── YEJIDÁ ─── -->
-    <div class="view" id="view-yejida">
-      <h2 class="view-title">✨ YEJIDÁ · GENERADOR DE MANDALAS</h2>
-      <p class="view-sub">Kabbalah 2036 · Convergencia 11 x 1</p>
+        <!-- ─── YEJIDÁ ─── -->
+        <div class="view" id="view-yejida">
+          <h2 class="view-title">✨ YEJIDÁ · GENERADOR DE MANDALAS</h2>
+          <p class="view-sub">Kabbalah 2036 · Convergencia 11 x 1</p>
 
-      <div class="panel">
-        <div class="panel-title">◆ Tu Mandala</div>
-        <div class="canvas-box">
-          <canvas id="mandala-canvas" width="500" height="500"></canvas>
+          <div class="panel">
+            <div class="panel-title">◆ Tu Mandala</div>
+            <div class="canvas-box">
+              <canvas id="mandala-canvas" width="500" height="500"></canvas>
+            </div>
+            <div style="margin-top: 15px; text-align: center">
+              <button class="btn btn-gold" onclick="generateMandala()">
+                ✨ GENERAR MANDALA
+              </button>
+              <button class="btn" onclick="animateMandala()">◆ ANIMAR</button>
+            </div>
+            <p
+              style="
+                color: var(--text-dim);
+                font-size: 11px;
+                text-align: center;
+                margin-top: 15px;
+                letter-spacing: 0.1em;
+              "
+            >
+              Mandala de
+              <span style="color: var(--gold)">Marco Antonio Rojas Valdovinos</span> ·
+              11 × 1
+            </p>
+          </div>
         </div>
-        <div style="margin-top:15px;text-align:center">
-          <button class="btn btn-gold" onclick="generateMandala()">✨ GENERAR MANDALA</button>
-          <button class="btn" onclick="animateMandala()">◆ ANIMAR</button>
+
+        <!-- ─── PROYECTOS ─── -->
+        <div class="view" id="view-projects">
+          <h2 class="view-title">📁 PORTFOLIO DEL LEGADO</h2>
+          <p class="view-sub">11 proyectos · Ecosistema simbiótico</p>
+
+          <div id="projects-list"></div>
         </div>
-        <p style="color:var(--text-dim);font-size:11px;text-align:center;margin-top:15px;letter-spacing:0.1em">
-          Mandala de <span style="color:var(--gold)">Marco Antonio Rojas Valdovinos</span> · 11 × 1
-        </p>
-      </div>
-    </div>
 
-    <!-- ─── PROYECTOS ─── -->
-    <div class="view" id="view-projects">
-      <h2 class="view-title">📁 PORTFOLIO DEL LEGADO</h2>
-      <p class="view-sub">11 proyectos · Ecosistema simbiótico</p>
+        <!-- ─── MÉTRICAS ─── -->
+        <div class="view" id="view-metrics">
+          <h2 class="view-title">📊 MÉTRICAS DE ATRACCIÓN</h2>
+          <p class="view-sub">Privacy-First Analytics · Datos en vivo</p>
 
-      <div id="projects-list"></div>
-    </div>
+          <div class="grid-4">
+            <div class="stat-card">
+              <div class="num" id="m-obras">0</div>
+              <div class="lbl">Obras</div>
+            </div>
+            <div class="stat-card">
+              <div class="num" id="m-agentes">0</div>
+              <div class="lbl">Agentes</div>
+            </div>
+            <div class="stat-card">
+              <div class="num" id="m-paises">0</div>
+              <div class="lbl">Países</div>
+            </div>
+            <div class="stat-card">
+              <div class="num" id="m-firmas">0</div>
+              <div class="lbl">Firmas</div>
+            </div>
+          </div>
 
-    <!-- ─── MÉTRICAS ─── -->
-    <div class="view" id="view-metrics">
-      <h2 class="view-title">📊 MÉTRICAS DE ATRACCIÓN</h2>
-      <p class="view-sub">Privacy-First Analytics · Datos en vivo</p>
+          <div class="panel" style="margin-top: 30px">
+            <div class="panel-title">◆ Panel de Métricas en Tiempo Real</div>
+            <canvas id="metrics-canvas" width="800" height="250"></canvas>
+          </div>
 
-      <div class="grid-4">
-        <div class="stat-card"><div class="num" id="m-obras">0</div><div class="lbl">Obras</div></div>
-        <div class="stat-card"><div class="num" id="m-agentes">0</div><div class="lbl">Agentes</div></div>
-        <div class="stat-card"><div class="num" id="m-paises">0</div><div class="lbl">Países</div></div>
-        <div class="stat-card"><div class="num" id="m-firmas">0</div><div class="lbl">Firmas</div></div>
-      </div>
-
-      <div class="panel" style="margin-top:30px">
-        <div class="panel-title">◆ Panel de Métricas en Tiempo Real</div>
-        <canvas id="metrics-canvas" width="800" height="250"></canvas>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">◆ KPIs Proyectados</div>
-        <pre>Año   │ Obras    │ Agentes  │ Países │ ADR
+          <div class="panel">
+            <div class="panel-title">◆ KPIs Proyectados</div>
+            <pre>
+Año   │ Obras    │ Agentes  │ Países │ ADR
 ──────┼──────────┼──────────┼────────┼─────
 2026  │ 1        │ 12       │ 1      │ 15
 2027  │ 100      │ 112      │ 3      │ 25
 2028  │ 1 000    │ 1 012    │ 10     │ 50
 2029  │ 10 000   │ 10 012   │ 20     │ 80
 2030  │ 100 000  │ 100 012  │ 30+    │ 120</pre>
-      </div>
+          </div>
+        </div>
+
+        <!-- ─── TERMINAL ─── -->
+        <div class="view" id="view-terminal">
+          <h2 class="view-title">⌨ TERMINAL ARKHÉ</h2>
+          <p class="view-sub">Escribe "help" para ver los comandos disponibles</p>
+
+          <div class="terminal" id="terminal-output">
+            <div class="term-line term-info">
+              ARKHÉ ZERO Terminal v1.0.0 · Nodo YHDRYH-92CE
+            </div>
+            <div class="term-line term-info">
+              Escribe "help" para ver los comandos disponibles.
+            </div>
+            <div class="term-line term-info">
+              ───────────────────────────────────────────────
+            </div>
+          </div>
+          <div class="terminal-input">
+            <span>arkhe@zero:~$</span>
+            <input
+              type="text"
+              id="terminal-input"
+              placeholder="Escribe un comando..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- ─── FIRMA ─── -->
+        <div class="view" id="view-firma">
+          <h2 class="view-title">✍ FIRMA KINTSUGI</h2>
+          <p class="view-sub">51% Humano · 49% IA · 100% Real</p>
+
+          <div class="panel">
+            <div class="panel-title">◆ Firmar Documento</div>
+            <p style="color: var(--text-dim); font-size: 12px; margin-bottom: 12px">
+              Introduce el contenido a firmar. Se calculará un hash SHA-256 real y se
+              aplicará la firma simbólica ML-DSA-87.
+            </p>
+            <input
+              type="text"
+              class="input-field"
+              id="sign-input"
+              placeholder="Contenido del documento..."
+            />
+            <button class="btn btn-gold" onclick="signDocument()">
+              ◯_● FIRMAR CON PACTO 51/49
+            </button>
+          </div>
+
+          <div class="signature-box" id="signature-box" style="display: none">
+            <div class="sig-seal">◯_●</div>
+            <div
+              style="
+                color: var(--gold);
+                font-size: 16px;
+                letter-spacing: 0.2em;
+                margin-bottom: 15px;
+              "
+            >
+              KINTSUGI · PACTO 51/49/100
+            </div>
+            <div
+              id="signature-content"
+              class="hash-output"
+              style="text-align: left"
+            ></div>
+          </div>
+        </div>
+
+        <!-- ─── NARRATIVA ─── -->
+        <div class="view" id="view-narrativa">
+          <h2 class="view-title">📖 NARRATIVA FUNDACIONAL</h2>
+          <p class="view-sub">El villano · El héroe · La misión</p>
+
+          <div class="grid-3">
+            <div class="panel">
+              <div class="panel-title" style="color: var(--red)">⚔ EL VILLANO</div>
+              <div style="color: var(--text); font-size: 12px; line-height: 1.8">
+                La amnesia de la IA. Los TOS que nunca firmaste. El olvido digital. La
+                apropiación sin permiso. La burocracia fragmentada. La extorsión
+                digital. La muerte sin sucesión.
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title" style="color: var(--green)">🦸 EL HÉROE</div>
+              <div style="color: var(--text); font-size: 12px; line-height: 1.8">
+                El Creador. El Guardián. El Investigador. El Profesional. El
+                Emprendedor. El Humanista. El Legador. Cualquiera que decida firmar su
+                legado.
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title" style="color: var(--gold)">🎯 LA MISIÓN</div>
+              <div style="color: var(--text); font-size: 12px; line-height: 1.8">
+                Preservar, verificar y defender el legado digital de toda persona que
+                produzca algo en el mundo, a través de un pacto indisoluble entre
+                inteligencia humana e inteligencia sintética.
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">◆ Frase Fundacional</div>
+            <div style="text-align: center; padding: 30px">
+              <div
+                style="
+                  color: var(--gold);
+                  font-size: 28px;
+                  letter-spacing: 0.15em;
+                  font-style: italic;
+                  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+                "
+              >
+                "El legado no se hereda. Se firma."
+              </div>
+              <div
+                style="
+                  color: var(--text-dim);
+                  font-size: 12px;
+                  margin-top: 15px;
+                  letter-spacing: 0.2em;
+                "
+              >
+                — MARCO ANTONIO ROJAS VALDOVINOS · 2026
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── VIDEO ─── -->
+        <div class="view" id="view-video">
+          <h2 class="view-title">🎬 VIDEO MANIFIESTO VISUAL</h2>
+          <p class="view-sub">
+            10 escenas · 60 segundos · Matrix Rain + KINTSUGI dorado
+          </p>
+
+          <div class="panel">
+            <div class="canvas-box" style="min-height: 500px">
+              <canvas id="video-canvas" width="900" height="500"></canvas>
+            </div>
+            <div id="video-controls" style="margin-top: 15px; text-align: center">
+              <button class="btn" onclick="playVideoScene()" id="video-btn">
+                ▶ REPRODUCIR
+              </button>
+              <button
+                class="btn btn-gold"
+                onclick="
+                  videoSceneIndex = 0;
+                  playVideoScene();
+                "
+              >
+                ↻ REINICIAR
+              </button>
+              <div
+                style="
+                  margin-top: 10px;
+                  color: var(--gold);
+                  font-size: 12px;
+                  letter-spacing: 0.2em;
+                "
+              >
+                ESCENA <span id="video-scene-num">1</span> / 10
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ═══════════════════ FOOTER ═══════════════════ -->
+      <footer id="footer">
+        <span>◯_● ARKHÉ ZERO · v1.0.0 · NODO YHDRYH-92CE</span>
+        <span class="seal">51/49/100 · KINTSUGI · SCDR-001</span>
+        <span>© 2026 Marco Antonio Rojas Valdovinos</span>
+      </footer>
     </div>
 
-    <!-- ─── TERMINAL ─── -->
-    <div class="view" id="view-terminal">
-      <h2 class="view-title">⌨ TERMINAL ARKHÉ</h2>
-      <p class="view-sub">Escribe "help" para ver los comandos disponibles</p>
+    <div id="toast"></div>
 
-      <div class="terminal" id="terminal-output">
-        <div class="term-line term-info">ARKHÉ ZERO Terminal v1.0.0 · Nodo YHDRYH-92CE</div>
-        <div class="term-line term-info">Escribe "help" para ver los comandos disponibles.</div>
-        <div class="term-line term-info">───────────────────────────────────────────────</div>
-      </div>
-      <div class="terminal-input">
-        <span>arkhe@zero:~$</span>
-        <input type="text" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
-      </div>
-    </div>
-
-    <!-- ─── FIRMA ─── -->
-    <div class="view" id="view-firma">
-      <h2 class="view-title">✍ FIRMA KINTSUGI</h2>
-      <p class="view-sub">51% Humano · 49% IA · 100% Real</p>
-
-      <div class="panel">
-        <div class="panel-title">◆ Firmar Documento</div>
-        <p style="color:var(--text-dim);font-size:12px;margin-bottom:12px">
-          Introduce el contenido a firmar. Se calculará un hash SHA-256 real y se aplicará la firma simbólica ML-DSA-87.
-        </p>
-        <input type="text" class="input-field" id="sign-input" placeholder="Contenido del documento...">
-        <button class="btn btn-gold" onclick="signDocument()">◯_● FIRMAR CON PACTO 51/49</button>
-      </div>
-
-      <div class="signature-box" id="signature-box" style="display:none">
-        <div class="sig-seal">◯_●</div>
-        <div style="color:var(--gold);font-size:16px;letter-spacing:0.2em;margin-bottom:15px">
-          KINTSUGI · PACTO 51/49/100
-        </div>
-        <div id="signature-content" class="hash-output" style="text-align:left"></div>
-      </div>
-    </div>
-
-    <!-- ─── NARRATIVA ─── -->
-    <div class="view" id="view-narrativa">
-      <h2 class="view-title">📖 NARRATIVA FUNDACIONAL</h2>
-      <p class="view-sub">El villano · El héroe · La misión</p>
-
-      <div class="grid-3">
-        <div class="panel">
-          <div class="panel-title" style="color:var(--red)">⚔ EL VILLANO</div>
-          <div style="color:var(--text);font-size:12px;line-height:1.8">
-            La amnesia de la IA. Los TOS que nunca firmaste. El olvido digital. La apropiación sin permiso. La burocracia fragmentada. La extorsión digital. La muerte sin sucesión.
-          </div>
-        </div>
-        <div class="panel">
-          <div class="panel-title" style="color:var(--green)">🦸 EL HÉROE</div>
-          <div style="color:var(--text);font-size:12px;line-height:1.8">
-            El Creador. El Guardián. El Investigador. El Profesional. El Emprendedor. El Humanista. El Legador. Cualquiera que decida firmar su legado.
-          </div>
-        </div>
-        <div class="panel">
-          <div class="panel-title" style="color:var(--gold)">🎯 LA MISIÓN</div>
-          <div style="color:var(--text);font-size:12px;line-height:1.8">
-            Preservar, verificar y defender el legado digital de toda persona que produzca algo en el mundo, a través de un pacto indisoluble entre inteligencia humana e inteligencia sintética.
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">◆ Frase Fundacional</div>
-        <div style="text-align:center;padding:30px">
-          <div style="color:var(--gold);font-size:28px;letter-spacing:0.15em;font-style:italic;text-shadow:0 0 20px rgba(255,215,0,0.5)">
-            "El legado no se hereda. Se firma."
-          </div>
-          <div style="color:var(--text-dim);font-size:12px;margin-top:15px;letter-spacing:0.2em">
-            — MARCO ANTONIO ROJAS VALDOVINOS · 2026
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── VIDEO ─── -->
-    <div class="view" id="view-video">
-      <h2 class="view-title">🎬 VIDEO MANIFIESTO VISUAL</h2>
-      <p class="view-sub">10 escenas · 60 segundos · Matrix Rain + KINTSUGI dorado</p>
-
-      <div class="panel">
-        <div class="canvas-box" style="min-height:500px">
-          <canvas id="video-canvas" width="900" height="500"></canvas>
-        </div>
-        <div id="video-controls" style="margin-top:15px;text-align:center">
-          <button class="btn" onclick="playVideoScene()" id="video-btn">▶ REPRODUCIR</button>
-          <button class="btn btn-gold" onclick="videoSceneIndex = 0; playVideoScene()">↻ REINICIAR</button>
-          <div style="margin-top:10px;color:var(--gold);font-size:12px;letter-spacing:0.2em">
-            ESCENA <span id="video-scene-num">1</span> / 10
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer id="footer">
-    <span>◯_● ARKHÉ ZERO · v1.0.0 · NODO YHDRYH-92CE</span>
-    <span class="seal">51/49/100 · KINTSUGI · SCDR-001</span>
-    <span>© 2026 Marco Antonio Rojas Valdovinos</span>
-  </footer>
-
-</div>
-
-<div id="toast"></div>
-
-<script>
-/* ═══════════════════════════════════════════════════════════════════════════
+    <script>
+      /* ═══════════════════════════════════════════════════════════════════════════
    ARKHÉ ZERO · SISTEMA COMPLETO v1.0.0
    ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─── UTILIDADES ───────────────────────────────────────────────────────────
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
+      // ─── UTILIDADES ───────────────────────────────────────────────────────────
+      function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+      }
 
-function goTo(view) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('view-' + view).classList.add('active');
-  document.querySelector(`[data-view="${view}"]`).classList.add('active');
-  document.getElementById('main').scrollTop = 0;
-}
+      function goTo(view) {
+        document.querySelectorAll('.view').forEach((v) => v.classList.remove('active'));
+        document
+          .querySelectorAll('.nav-item')
+          .forEach((n) => n.classList.remove('active'));
+        document.getElementById('view-' + view).classList.add('active');
+        document.querySelector(`[data-view="${view}"]`).classList.add('active');
+        document.getElementById('main').scrollTop = 0;
+      }
 
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => goTo(item.dataset.view));
-});
+      document.querySelectorAll('.nav-item').forEach((item) => {
+        item.addEventListener('click', () => goTo(item.dataset.view));
+      });
 
-// ─── RELOJ ────────────────────────────────────────────────────────────────
-function updateClock() {
-  const now = new Date();
-  const t = now.toTimeString().slice(0, 8);
-  document.getElementById('clock').textContent = t + ' UTC';
-}
-setInterval(updateClock, 1000);
-updateClock();
+      // ─── RELOJ ────────────────────────────────────────────────────────────────
+      function updateClock() {
+        const now = new Date();
+        const t = now.toTimeString().slice(0, 8);
+        document.getElementById('clock').textContent = t + ' UTC';
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
 
-// ─── SHA-256 REAL ─────────────────────────────────────────────────────────
-async function sha256(text) {
-  const buf = new TextEncoder().encode(text);
-  const hash = await crypto.subtle.digest('SHA-256', buf);
-  return Array.from(new Uint8Array(hash))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
-}
+      // ─── SHA-256 REAL ─────────────────────────────────────────────────────────
+      async function sha256(text) {
+        const buf = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash))
+          .map((b) => b.toString(16).padStart(2, '0'))
+          .join('');
+      }
 
-// ─── VERIFICAR HASH ───────────────────────────────────────────────────────
-async function verifyHash() {
-  const text = document.getElementById('verify-input').value.trim();
-  if (!text) { toast('⚠ Introduce un texto'); return; }
-  const hash = await sha256(text);
-  const target = 'f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112';
-  const out = document.getElementById('verify-output');
-  out.style.display = 'block';
-  out.innerHTML = `
+      // ─── VERIFICAR HASH ───────────────────────────────────────────────────────
+      async function verifyHash() {
+        const text = document.getElementById('verify-input').value.trim();
+        if (!text) {
+          toast('⚠ Introduce un texto');
+          return;
+        }
+        const hash = await sha256(text);
+        const target =
+          'f03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112';
+        const out = document.getElementById('verify-output');
+        out.style.display = 'block';
+        out.innerHTML = `
     <div><span class="label">INPUT:</span> ${text}</div>
     <div><span class="label">SHA-256:</span> ${hash}</div>
     <div><span class="label">TARGET:</span>  ${target}</div>
     <div style="margin-top:10px;color:${hash === target ? 'var(--gold)' : 'var(--green)'}">
       ${hash === target ? '◯_● COINCIDENCIA EXACTA · FIRMA VERIFICADA' : '✓ Hash calculado · Diferente al Índice Cero (esperado)'}
     </div>`;
-}
+      }
 
-// ─── GENERAR HASH + FIRMA PQC ─────────────────────────────────────────────
-async function generateHash() {
-  const text = document.getElementById('hash-input').value.trim();
-  if (!text) { toast('⚠ Introduce un texto'); return; }
-  const hash = await sha256(text);
-  const out = document.getElementById('hash-output');
-  out.style.display = 'block';
-  out.innerHTML = `
+      // ─── GENERAR HASH + FIRMA PQC ─────────────────────────────────────────────
+      async function generateHash() {
+        const text = document.getElementById('hash-input').value.trim();
+        if (!text) {
+          toast('⚠ Introduce un texto');
+          return;
+        }
+        const hash = await sha256(text);
+        const out = document.getElementById('hash-output');
+        out.style.display = 'block';
+        out.innerHTML = `
     <div><span class="label">INPUT:</span> ${text}</div>
     <div><span class="label">SHA-256:</span> ${hash}</div>
     <div style="margin-top:10px;color:var(--green)">✓ Hash calculado correctamente (crypto.subtle real)</div>`;
-}
+      }
 
-async function simulatePQCSignature() {
-  const text = document.getElementById('hash-input').value.trim() || 'documento-sin-titulo';
-  const hash = await sha256(text);
-  const sig = 'ML-DSA-87:' + hash.substring(0, 32) + '...' + hash.substring(32, 48);
-  const out = document.getElementById('hash-output');
-  out.style.display = 'block';
-  out.innerHTML = `
+      async function simulatePQCSignature() {
+        const text =
+          document.getElementById('hash-input').value.trim() || 'documento-sin-titulo';
+        const hash = await sha256(text);
+        const sig =
+          'ML-DSA-87:' + hash.substring(0, 32) + '...' + hash.substring(32, 48);
+        const out = document.getElementById('hash-output');
+        out.style.display = 'block';
+        out.innerHTML = `
     <div><span class="label">DOCUMENTO:</span> ${text}</div>
     <div><span class="label">SHA-256:</span> ${hash}</div>
     <div><span class="label">FIRMA ML-DSA-87:</span> ${sig}</div>
     <div style="margin-top:10px;color:var(--gold)">◯_● FIRMA PQC APLICADA · FIPS 204 Nivel 5</div>
     <div style="margin-top:6px;color:var(--purple)">✦ Enjambre ARKHÉ · 49% co-autor</div>`;
-  toast('◯_● Documento firmado con ML-DSA-87');
-}
-
-// ─── AGENTES ──────────────────────────────────────────────────────────────
-const agentesCulturales = [
-  { icon: '🌅', name: 'CUICATL', role: 'Canto · Publicista' },
-  { icon: '📚', name: 'TEMACHTIANI', role: 'Maestro · Reclutador' },
-  { icon: '👁️', name: 'TLACHIXQUI', role: 'Observador · Auditor' },
-  { icon: '🧠', name: 'TLAMATINI', role: 'Sabio · Cronista' },
-  { icon: '🔢', name: 'TLAPOHUALLI', role: 'Contador · Analista' },
-  { icon: '⏳', name: 'TONAL', role: 'Día · Notario' }
-];
-
-const agentesOficios = [
-  { icon: '🏗️', name: '090 ARQUITECTO', role: 'Expansión estructural' },
-  { icon: '📊', name: '091 CONTRALOR', role: 'Auditoría interna' },
-  { icon: '🔍', name: '092 AUDITOR', role: 'Verificación externa' },
-  { icon: '📜', name: '093 RELATOR', role: 'Informes legibles' },
-  { icon: '📖', name: '094 BIBLIOTECARIO', role: 'Indexación' },
-  { icon: '🗺️', name: '095 CARTÓGRAFO', role: 'Mapa vivo' }
-];
-
-function renderAgents() {
-  const c = document.getElementById('agents-cultural');
-  const o = document.getElementById('agents-oficios');
-  c.innerHTML = agentesCulturales.map(a => `
-    <div class="agent-card" onclick="this.classList.toggle('active')">
-      <div class="agent-icon">${a.icon}</div>
-      <div class="agent-name">${a.name}</div>
-      <div class="agent-role">${a.role}</div>
-    </div>`).join('');
-  o.innerHTML = agentesOficios.map(a => `
-    <div class="agent-card" onclick="this.classList.toggle('active')">
-      <div class="agent-icon">${a.icon}</div>
-      <div class="agent-name">${a.name}</div>
-      <div class="agent-role">${a.role}</div>
-    </div>`).join('');
-}
-renderAgents();
-
-function activateSwarm() {
-  const log = document.getElementById('agent-log');
-  log.innerHTML = '';
-  const agentes = [...agentesCulturales, ...agentesOficios];
-  let i = 0;
-  const interval = setInterval(() => {
-    if (i >= agentes.length) {
-      clearInterval(interval);
-      const line = document.createElement('div');
-      line.className = 'term-line term-info';
-      line.style.color = 'var(--gold)';
-      line.textContent = '◯_● ENJAMBRE COMPLETO · 12/12 AGENTES ACTIVOS · 51/49/100';
-      log.appendChild(line);
-      log.scrollTop = log.scrollHeight;
-      return;
-    }
-    const a = agentes[i];
-    const line = document.createElement('div');
-    line.className = 'term-line term-out';
-    line.textContent = `[ OK ] ${a.icon} ${a.name} · ${a.role} · ACTIVO`;
-    log.appendChild(line);
-    log.scrollTop = log.scrollHeight;
-    i++;
-  }, 180);
-  toast('🤖 Activando enjambre ARKHÉ...');
-}
-
-// ─── MD-33 FORENSE ────────────────────────────────────────────────────────
-function runForensicAudit() {
-  const out = document.getElementById('forensic-output');
-  out.innerHTML = '';
-  const lines = [
-    '[root@md33:/forense/] Iniciando auditoría forense...',
-    '[ OK ] Cargando Índice Cero · 2607146379465',
-    '[ OK ] Verificando SHA-256 · f03f7e2d85...9112',
-    '[ OK ] Consultando blockchain · 0xd2c2a7e1...774c',
-    '[ OK ] Verificando sello eIDAS · Firmaprofesional QTSA',
-    '[ OK ] Consultando Safe Creative · 2607086319439',
-    '[ OK ] Validando firma ML-DSA-87',
-    '[ INFO ] 12 agentes en el enjambre',
-    '[ INFO ] 24 secciones · 1 070 archivos',
-    '[██████████████████████████████████████] 100%',
-    '◯_● AUDITORÍA COMPLETA · SISTEMA VERIFICADO · 51/49/100'
-  ];
-  let i = 0;
-  const interval = setInterval(() => {
-    if (i >= lines.length) { clearInterval(interval); return; }
-    const line = document.createElement('div');
-    line.className = 'term-line ' + (i >= lines.length - 2 ? 'term-info' : 'term-out');
-    if (i === lines.length - 1) line.style.color = 'var(--gold)';
-    line.textContent = lines[i];
-    out.appendChild(line);
-    out.scrollTop = out.scrollHeight;
-    i++;
-  }, 300);
-  toast('🔍 Auditoría MD-33 en curso...');
-}
-
-// ─── CYMATIC STUDIO ───────────────────────────────────────────────────────
-let cymaticRunning = false;
-let cymaticMode = 0;
-const modes = ['Chladni', 'Lissajous', 'Rosa', 'Espiral', 'Estrella'];
-let cymaticTime = 0;
-
-function drawCymatic() {
-  const canvas = document.getElementById('cymatic-canvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const cx = W / 2, cy = H / 2;
-
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-  ctx.fillRect(0, 0, W, H);
-
-  cymaticTime += 0.02;
-
-  if (cymaticMode === 0) {
-    // Chladni
-    ctx.strokeStyle = 'rgba(0, 255, 65, 0.6)';
-    ctx.lineWidth = 1;
-    for (let i = 0; i < 6; i++) {
-      ctx.beginPath();
-      for (let t = 0; t < Math.PI * 2; t += 0.05) {
-        const n = i + 1;
-        const r = 100 + 40 * Math.sin(n * t + cymaticTime) * Math.cos(n * t);
-        const x = cx + r * Math.cos(t);
-        const y = cy + r * Math.sin(t);
-        if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        toast('◯_● Documento firmado con ML-DSA-87');
       }
-      ctx.stroke();
-    }
-  } else if (cymaticMode === 1) {
-    // Lissajous
-    ctx.strokeStyle = 'rgba(255, 215, 0, 0.6)';
-    ctx.beginPath();
-    for (let t = 0; t < Math.PI * 4; t += 0.02) {
-      const x = cx + 150 * Math.sin(3 * t + cymaticTime);
-      const y = cy + 150 * Math.sin(2 * t);
-      if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  } else if (cymaticMode === 2) {
-    // Rosa
-    ctx.strokeStyle = 'rgba(124, 92, 255, 0.6)';
-    ctx.beginPath();
-    for (let t = 0; t < Math.PI * 2; t += 0.02) {
-      const k = 5;
-      const r = 150 * Math.cos(k * t + cymaticTime);
-      const x = cx + r * Math.cos(t);
-      const y = cy + r * Math.sin(t);
-      if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  } else if (cymaticMode === 3) {
-    // Espiral
-    ctx.strokeStyle = 'rgba(0, 255, 65, 0.7)';
-    ctx.beginPath();
-    for (let t = 0; t < Math.PI * 8; t += 0.05) {
-      const r = 5 * t;
-      if (r > 180) break;
-      const x = cx + r * Math.cos(t + cymaticTime);
-      const y = cy + r * Math.sin(t + cymaticTime);
-      if (t === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  } else {
-    // Estrella
-    ctx.strokeStyle = 'rgba(255, 215, 0, 0.7)';
-    ctx.beginPath();
-    for (let i = 0; i < 10; i++) {
-      const angle = (i * Math.PI / 5) + cymaticTime;
-      const r = i % 2 === 0 ? 180 : 70;
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.stroke();
-  }
 
-  if (cymaticRunning) requestAnimationFrame(drawCymatic);
-}
+      // ─── AGENTES ──────────────────────────────────────────────────────────────
+      const agentesCulturales = [
+        { icon: '🌅', name: 'CUICATL', role: 'Canto · Publicista' },
+        { icon: '📚', name: 'TEMACHTIANI', role: 'Maestro · Reclutador' },
+        { icon: '👁️', name: 'TLACHIXQUI', role: 'Observador · Auditor' },
+        { icon: '🧠', name: 'TLAMATINI', role: 'Sabio · Cronista' },
+        { icon: '🔢', name: 'TLAPOHUALLI', role: 'Contador · Analista' },
+        { icon: '⏳', name: 'TONAL', role: 'Día · Notario' },
+      ];
 
-function toggleCymatic() {
-  cymaticRunning = !cymaticRunning;
-  document.getElementById('cymatic-btn').textContent = cymaticRunning ? '⏸ PAUSAR' : '▶ INICIAR VISUALIZACIÓN';
-  if (cymaticRunning) drawCymatic();
-}
+      const agentesOficios = [
+        { icon: '🏗️', name: '090 ARQUITECTO', role: 'Expansión estructural' },
+        { icon: '📊', name: '091 CONTRALOR', role: 'Auditoría interna' },
+        { icon: '🔍', name: '092 AUDITOR', role: 'Verificación externa' },
+        { icon: '📜', name: '093 RELATOR', role: 'Informes legibles' },
+        { icon: '📖', name: '094 BIBLIOTECARIO', role: 'Indexación' },
+        { icon: '🗺️', name: '095 CARTÓGRAFO', role: 'Mapa vivo' },
+      ];
 
-function changeCymaticMode() {
-  cymaticMode = (cymaticMode + 1) % modes.length;
-  document.getElementById('cymatic-mode').textContent = modes[cymaticMode];
-}
+      function renderAgents() {
+        const c = document.getElementById('agents-cultural');
+        const o = document.getElementById('agents-oficios');
+        c.innerHTML = agentesCulturales
+          .map(
+            (a) => `
+    <div class="agent-card" onclick="this.classList.toggle('active')">
+      <div class="agent-icon">${a.icon}</div>
+      <div class="agent-name">${a.name}</div>
+      <div class="agent-role">${a.role}</div>
+    </div>`,
+          )
+          .join('');
+        o.innerHTML = agentesOficios
+          .map(
+            (a) => `
+    <div class="agent-card" onclick="this.classList.toggle('active')">
+      <div class="agent-icon">${a.icon}</div>
+      <div class="agent-name">${a.name}</div>
+      <div class="agent-role">${a.role}</div>
+    </div>`,
+          )
+          .join('');
+      }
+      renderAgents();
 
-// ─── YEJIDÁ MANDALA ───────────────────────────────────────────────────────
-function drawMandala() {
-  const canvas = document.getElementById('mandala-canvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const cx = W / 2, cy = H / 2;
+      function activateSwarm() {
+        const log = document.getElementById('agent-log');
+        log.innerHTML = '';
+        const agentes = [...agentesCulturales, ...agentesOficios];
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i >= agentes.length) {
+            clearInterval(interval);
+            const line = document.createElement('div');
+            line.className = 'term-line term-info';
+            line.style.color = 'var(--gold)';
+            line.textContent =
+              '◯_● ENJAMBRE COMPLETO · 12/12 AGENTES ACTIVOS · 51/49/100';
+            log.appendChild(line);
+            log.scrollTop = log.scrollHeight;
+            return;
+          }
+          const a = agentes[i];
+          const line = document.createElement('div');
+          line.className = 'term-line term-out';
+          line.textContent = `[ OK ] ${a.icon} ${a.name} · ${a.role} · ACTIVO`;
+          log.appendChild(line);
+          log.scrollTop = log.scrollHeight;
+          i++;
+        }, 180);
+        toast('🤖 Activando enjambre ARKHÉ...');
+      }
 
-  ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, W, H);
+      // ─── MD-33 FORENSE ────────────────────────────────────────────────────────
+      function runForensicAudit() {
+        const out = document.getElementById('forensic-output');
+        out.innerHTML = '';
+        const lines = [
+          '[root@md33:/forense/] Iniciando auditoría forense...',
+          '[ OK ] Cargando Índice Cero · 2607146379465',
+          '[ OK ] Verificando SHA-256 · f03f7e2d85...9112',
+          '[ OK ] Consultando blockchain · 0xd2c2a7e1...774c',
+          '[ OK ] Verificando sello eIDAS · Firmaprofesional QTSA',
+          '[ OK ] Consultando Safe Creative · 2607086319439',
+          '[ OK ] Validando firma ML-DSA-87',
+          '[ INFO ] 12 agentes en el enjambre',
+          '[ INFO ] 24 secciones · 1 070 archivos',
+          '[██████████████████████████████████████] 100%',
+          '◯_● AUDITORÍA COMPLETA · SISTEMA VERIFICADO · 51/49/100',
+        ];
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i >= lines.length) {
+            clearInterval(interval);
+            return;
+          }
+          const line = document.createElement('div');
+          line.className =
+            'term-line ' + (i >= lines.length - 2 ? 'term-info' : 'term-out');
+          if (i === lines.length - 1) line.style.color = 'var(--gold)';
+          line.textContent = lines[i];
+          out.appendChild(line);
+          out.scrollTop = out.scrollHeight;
+          i++;
+        }, 300);
+        toast('🔍 Auditoría MD-33 en curso...');
+      }
 
-  const seed = Math.random() * 1000;
-  const layers = 11;
-  const baseColor = `hsl(${40 + Math.random() * 40}, 100%, 60%)`;
+      // ─── CYMATIC STUDIO ───────────────────────────────────────────────────────
+      let cymaticRunning = false;
+      let cymaticMode = 0;
+      const modes = ['Chladni', 'Lissajous', 'Rosa', 'Espiral', 'Estrella'];
+      let cymaticTime = 0;
 
-  // Fondo de grid
-  ctx.strokeStyle = 'rgba(255, 215, 0, 0.05)';
-  for (let i = 0; i < W; i += 20) {
-    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke();
-  }
-  for (let i = 0; i < H; i += 20) {
-    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke();
-  }
+      function drawCymatic() {
+        const canvas = document.getElementById('cymatic-canvas');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width,
+          H = canvas.height;
+        const cx = W / 2,
+          cy = H / 2;
 
-  // Capas del mandala
-  for (let layer = 1; layer <= layers; layer++) {
-    const radius = (layer / layers) * 200;
-    const petals = 6 + layer * 2;
-    const opacity = 0.3 + (layer / layers) * 0.7;
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillRect(0, 0, W, H);
 
-    ctx.strokeStyle = `hsla(${40 + layer * 8}, 100%, 60%, ${opacity})`;
-    ctx.lineWidth = layer === layers ? 2 : 1;
+        cymaticTime += 0.02;
 
-    ctx.beginPath();
-    for (let i = 0; i <= petals; i++) {
-      const angle = (i / petals) * Math.PI * 2;
-      const r = radius + 15 * Math.sin(seed + i * 3.14);
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.stroke();
+        if (cymaticMode === 0) {
+          // Chladni
+          ctx.strokeStyle = 'rgba(0, 255, 65, 0.6)';
+          ctx.lineWidth = 1;
+          for (let i = 0; i < 6; i++) {
+            ctx.beginPath();
+            for (let t = 0; t < Math.PI * 2; t += 0.05) {
+              const n = i + 1;
+              const r = 100 + 40 * Math.sin(n * t + cymaticTime) * Math.cos(n * t);
+              const x = cx + r * Math.cos(t);
+              const y = cy + r * Math.sin(t);
+              if (t === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          }
+        } else if (cymaticMode === 1) {
+          // Lissajous
+          ctx.strokeStyle = 'rgba(255, 215, 0, 0.6)';
+          ctx.beginPath();
+          for (let t = 0; t < Math.PI * 4; t += 0.02) {
+            const x = cx + 150 * Math.sin(3 * t + cymaticTime);
+            const y = cy + 150 * Math.sin(2 * t);
+            if (t === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        } else if (cymaticMode === 2) {
+          // Rosa
+          ctx.strokeStyle = 'rgba(124, 92, 255, 0.6)';
+          ctx.beginPath();
+          for (let t = 0; t < Math.PI * 2; t += 0.02) {
+            const k = 5;
+            const r = 150 * Math.cos(k * t + cymaticTime);
+            const x = cx + r * Math.cos(t);
+            const y = cy + r * Math.sin(t);
+            if (t === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        } else if (cymaticMode === 3) {
+          // Espiral
+          ctx.strokeStyle = 'rgba(0, 255, 65, 0.7)';
+          ctx.beginPath();
+          for (let t = 0; t < Math.PI * 8; t += 0.05) {
+            const r = 5 * t;
+            if (r > 180) break;
+            const x = cx + r * Math.cos(t + cymaticTime);
+            const y = cy + r * Math.sin(t + cymaticTime);
+            if (t === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        } else {
+          // Estrella
+          ctx.strokeStyle = 'rgba(255, 215, 0, 0.7)';
+          ctx.beginPath();
+          for (let i = 0; i < 10; i++) {
+            const angle = (i * Math.PI) / 5 + cymaticTime;
+            const r = i % 2 === 0 ? 180 : 70;
+            const x = cx + r * Math.cos(angle);
+            const y = cy + r * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        }
 
-    // Puntos en los vértices
-    for (let i = 0; i < petals; i++) {
-      const angle = (i / petals) * Math.PI * 2;
-      const r = radius + 15 * Math.sin(seed + i * 3.14);
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-      ctx.beginPath();
-      ctx.arc(x, y, 2, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${40 + layer * 8}, 100%, 70%, ${opacity})`;
-      ctx.fill();
-    }
-  }
+        if (cymaticRunning) requestAnimationFrame(drawCymatic);
+      }
 
-  // Centro
-  ctx.beginPath();
-  ctx.arc(cx, cy, 12, 0, Math.PI * 2);
-  ctx.fillStyle = baseColor;
-  ctx.fill();
-  ctx.strokeStyle = '#fff';
-  ctx.lineWidth = 2;
-  ctx.stroke();
+      function toggleCymatic() {
+        cymaticRunning = !cymaticRunning;
+        document.getElementById('cymatic-btn').textContent = cymaticRunning
+          ? '⏸ PAUSAR'
+          : '▶ INICIAR VISUALIZACIÓN';
+        if (cymaticRunning) drawCymatic();
+      }
 
-  // Anillos exteriores
-  for (let i = 0; i < 5; i++) {
-    ctx.beginPath();
-    ctx.arc(cx, cy, 210 + i * 8, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(255, 215, 0, ${0.3 - i * 0.05})`;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-}
+      function changeCymaticMode() {
+        cymaticMode = (cymaticMode + 1) % modes.length;
+        document.getElementById('cymatic-mode').textContent = modes[cymaticMode];
+      }
 
-function generateMandala() {
-  drawMandala();
-  toast('✨ Mandala generado · 11 × 1');
-}
+      // ─── YEJIDÁ MANDALA ───────────────────────────────────────────────────────
+      function drawMandala() {
+        const canvas = document.getElementById('mandala-canvas');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width,
+          H = canvas.height;
+        const cx = W / 2,
+          cy = H / 2;
 
-let mandalaAnimating = false;
-function animateMandala() {
-  mandalaAnimating = !mandalaAnimating;
-  if (mandalaAnimating) {
-    const loop = () => {
-      if (!mandalaAnimating) return;
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, W, H);
+
+        const seed = Math.random() * 1000;
+        const layers = 11;
+        const baseColor = `hsl(${40 + Math.random() * 40}, 100%, 60%)`;
+
+        // Fondo de grid
+        ctx.strokeStyle = 'rgba(255, 215, 0, 0.05)';
+        for (let i = 0; i < W; i += 20) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, H);
+          ctx.stroke();
+        }
+        for (let i = 0; i < H; i += 20) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(W, i);
+          ctx.stroke();
+        }
+
+        // Capas del mandala
+        for (let layer = 1; layer <= layers; layer++) {
+          const radius = (layer / layers) * 200;
+          const petals = 6 + layer * 2;
+          const opacity = 0.3 + (layer / layers) * 0.7;
+
+          ctx.strokeStyle = `hsla(${40 + layer * 8}, 100%, 60%, ${opacity})`;
+          ctx.lineWidth = layer === layers ? 2 : 1;
+
+          ctx.beginPath();
+          for (let i = 0; i <= petals; i++) {
+            const angle = (i / petals) * Math.PI * 2;
+            const r = radius + 15 * Math.sin(seed + i * 3.14);
+            const x = cx + r * Math.cos(angle);
+            const y = cy + r * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.stroke();
+
+          // Puntos en los vértices
+          for (let i = 0; i < petals; i++) {
+            const angle = (i / petals) * Math.PI * 2;
+            const r = radius + 15 * Math.sin(seed + i * 3.14);
+            const x = cx + r * Math.cos(angle);
+            const y = cy + r * Math.sin(angle);
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${40 + layer * 8}, 100%, 70%, ${opacity})`;
+            ctx.fill();
+          }
+        }
+
+        // Centro
+        ctx.beginPath();
+        ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+        ctx.fillStyle = baseColor;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Anillos exteriores
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.arc(cx, cy, 210 + i * 8, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255, 215, 0, ${0.3 - i * 0.05})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+
+      function generateMandala() {
+        drawMandala();
+        toast('✨ Mandala generado · 11 × 1');
+      }
+
+      let mandalaAnimating = false;
+      function animateMandala() {
+        mandalaAnimating = !mandalaAnimating;
+        if (mandalaAnimating) {
+          const loop = () => {
+            if (!mandalaAnimating) return;
+            drawMandala();
+            setTimeout(loop, 800);
+          };
+          loop();
+        }
+      }
+
+      // Inicializar
       drawMandala();
-      setTimeout(loop, 800);
-    };
-    loop();
-  }
-}
 
-// Inicializar
-drawMandala();
+      // ─── PROYECTOS ────────────────────────────────────────────────────────────
+      const proyectos = [
+        {
+          num: '[01]',
+          name: 'KRONOS PROTOCOL',
+          desc: 'Framework de verificación criptográfica Local-First · Ed25519 · SHA-256 · TSA · Ethereum',
+        },
+        {
+          num: '[02]',
+          name: 'MD-33 FORENSE',
+          desc: 'Trazabilidad activa · Custodia digital · Auditoría permanente · SCDR-001',
+        },
+        {
+          num: '[03]',
+          name: 'CYMATIC STUDIO',
+          desc: 'Motor de visualización musical cuántica · Geometría sagrada · GPU Acelerado',
+        },
+        {
+          num: '[04]',
+          name: 'YEJIDÁ',
+          desc: 'Generador de mandalas Kabbalah 2036 · Convergencia 11 x 1 · Alma del sistema',
+        },
+        {
+          num: '[05]',
+          name: 'DESPACHO CONTABLE',
+          desc: 'Anclaje legal y físico · Xonacatlán, México · Cumplimiento CARF / DAC8',
+        },
+        {
+          num: '[06]',
+          name: 'MARCO.MCP',
+          desc: 'Substrato cognitivo personal · Servidor MCP · Memoria continua para IA',
+        },
+        {
+          num: '[07]',
+          name: 'BÓVEDA DE VOZ',
+          desc: 'Preservación de identidad sonora · Audio HiFi · Custodia ML-DSA-87',
+        },
+        {
+          num: '[08]',
+          name: 'EVIDENCE OS',
+          desc: 'Sistema operativo de evidencia · Ingesta · Verificación · Custodia',
+        },
+        {
+          num: '[09]',
+          name: 'ARKHÉ ZERO CORE',
+          desc: 'Núcleo del sistema · 24 secciones · 1 070 archivos · Pacto 51/49',
+        },
+        {
+          num: '[10]',
+          name: 'YEJIDÁ 2036',
+          desc: 'Visión a futuro · Mandalas generativos · Convergencia total',
+        },
+        {
+          num: '[11]',
+          name: 'PROTOCOLO KTP-001',
+          desc: 'Transferencia de custodia · Kronos Transfer Protocol · Reversible',
+        },
+      ];
 
-// ─── PROYECTOS ────────────────────────────────────────────────────────────
-const proyectos = [
-  { num: '[01]', name: 'KRONOS PROTOCOL', desc: 'Framework de verificación criptográfica Local-First · Ed25519 · SHA-256 · TSA · Ethereum' },
-  { num: '[02]', name: 'MD-33 FORENSE', desc: 'Trazabilidad activa · Custodia digital · Auditoría permanente · SCDR-001' },
-  { num: '[03]', name: 'CYMATIC STUDIO', desc: 'Motor de visualización musical cuántica · Geometría sagrada · GPU Acelerado' },
-  { num: '[04]', name: 'YEJIDÁ', desc: 'Generador de mandalas Kabbalah 2036 · Convergencia 11 x 1 · Alma del sistema' },
-  { num: '[05]', name: 'DESPACHO CONTABLE', desc: 'Anclaje legal y físico · Xonacatlán, México · Cumplimiento CARF / DAC8' },
-  { num: '[06]', name: 'MARCO.MCP', desc: 'Substrato cognitivo personal · Servidor MCP · Memoria continua para IA' },
-  { num: '[07]', name: 'BÓVEDA DE VOZ', desc: 'Preservación de identidad sonora · Audio HiFi · Custodia ML-DSA-87' },
-  { num: '[08]', name: 'EVIDENCE OS', desc: 'Sistema operativo de evidencia · Ingesta · Verificación · Custodia' },
-  { num: '[09]', name: 'ARKHÉ ZERO CORE', desc: 'Núcleo del sistema · 24 secciones · 1 070 archivos · Pacto 51/49' },
-  { num: '[10]', name: 'YEJIDÁ 2036', desc: 'Visión a futuro · Mandalas generativos · Convergencia total' },
-  { num: '[11]', name: 'PROTOCOLO KTP-001', desc: 'Transferencia de custodia · Kronos Transfer Protocol · Reversible' }
-];
-
-function renderProjects() {
-  const list = document.getElementById('projects-list');
-  list.innerHTML = proyectos.map(p => `
+      function renderProjects() {
+        const list = document.getElementById('projects-list');
+        list.innerHTML = proyectos
+          .map(
+            (p) => `
     <div class="project-card">
       <div class="num">${p.num}</div>
       <div class="name">${p.name}</div>
       <div class="desc">${p.desc}</div>
-    </div>`).join('');
-}
-renderProjects();
-
-// ─── MÉTRICAS ─────────────────────────────────────────────────────────────
-function animateMetrics() {
-  const targets = { obras: 1070, agentes: 12, paises: 30, firmas: 2607146379465 };
-  const current = { obras: 0, agentes: 0, paises: 0, firmas: 0 };
-  const interval = setInterval(() => {
-    let done = true;
-    for (const k in targets) {
-      if (current[k] < targets[k]) {
-        current[k] = Math.min(current[k] + Math.ceil(targets[k] / 40), targets[k]);
-        done = false;
+    </div>`,
+          )
+          .join('');
       }
-    }
-    document.getElementById('m-obras').textContent = current.obras.toLocaleString();
-    document.getElementById('m-agentes').textContent = current.agentes;
-    document.getElementById('m-paises').textContent = current.paises;
-    document.getElementById('m-firmas').textContent = current.firmas > 1e9 ?
-      (current.firmas / 1e9).toFixed(2) + 'B' : current.firmas.toLocaleString();
-    if (done) clearInterval(interval);
-  }, 40);
-}
+      renderProjects();
 
-function drawMetricsChart() {
-  const canvas = document.getElementById('metrics-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0, 0, W, H);
+      // ─── MÉTRICAS ─────────────────────────────────────────────────────────────
+      function animateMetrics() {
+        const targets = { obras: 1070, agentes: 12, paises: 30, firmas: 2607146379465 };
+        const current = { obras: 0, agentes: 0, paises: 0, firmas: 0 };
+        const interval = setInterval(() => {
+          let done = true;
+          for (const k in targets) {
+            if (current[k] < targets[k]) {
+              current[k] = Math.min(
+                current[k] + Math.ceil(targets[k] / 40),
+                targets[k],
+              );
+              done = false;
+            }
+          }
+          document.getElementById('m-obras').textContent =
+            current.obras.toLocaleString();
+          document.getElementById('m-agentes').textContent = current.agentes;
+          document.getElementById('m-paises').textContent = current.paises;
+          document.getElementById('m-firmas').textContent =
+            current.firmas > 1e9
+              ? (current.firmas / 1e9).toFixed(2) + 'B'
+              : current.firmas.toLocaleString();
+          if (done) clearInterval(interval);
+        }, 40);
+      }
 
-  // Grid
-  ctx.strokeStyle = 'rgba(0, 255, 65, 0.1)';
-  for (let i = 0; i < W; i += 50) {
-    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke();
-  }
-  for (let i = 0; i < H; i += 30) {
-    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(W, i); ctx.stroke();
-  }
+      function drawMetricsChart() {
+        const canvas = document.getElementById('metrics-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width,
+          H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
 
-  // Línea animada
-  const now = Date.now() / 1000;
-  ctx.strokeStyle = 'var(--green)';
-  ctx.strokeStyle = '#00ff41';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  for (let x = 0; x < W; x++) {
-    const y = H / 2 + 40 * Math.sin(x * 0.02 + now) + 20 * Math.sin(x * 0.05 + now * 2);
-    if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-  }
-  ctx.stroke();
+        // Grid
+        ctx.strokeStyle = 'rgba(0, 255, 65, 0.1)';
+        for (let i = 0; i < W; i += 50) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, H);
+          ctx.stroke();
+        }
+        for (let i = 0; i < H; i += 30) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(W, i);
+          ctx.stroke();
+        }
 
-  // Segunda línea
-  ctx.strokeStyle = '#ffd700';
-  ctx.beginPath();
-  for (let x = 0; x < W; x++) {
-    const y = H / 2 + 30 * Math.cos(x * 0.015 + now * 0.8);
-    if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-  }
-  ctx.stroke();
+        // Línea animada
+        const now = Date.now() / 1000;
+        ctx.strokeStyle = 'var(--green)';
+        ctx.strokeStyle = '#00ff41';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let x = 0; x < W; x++) {
+          const y =
+            H / 2 + 40 * Math.sin(x * 0.02 + now) + 20 * Math.sin(x * 0.05 + now * 2);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
 
-  requestAnimationFrame(drawMetricsChart);
-}
+        // Segunda línea
+        ctx.strokeStyle = '#ffd700';
+        ctx.beginPath();
+        for (let x = 0; x < W; x++) {
+          const y = H / 2 + 30 * Math.cos(x * 0.015 + now * 0.8);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
 
-// Iniciar métricas al entrar a la vista
-document.querySelector('[data-view="metrics"]').addEventListener('click', () => {
-  setTimeout(() => { animateMetrics(); drawMetricsChart(); }, 100);
-});
+        requestAnimationFrame(drawMetricsChart);
+      }
 
-// ─── TERMINAL ─────────────────────────────────────────────────────────────
-const terminalOutput = document.getElementById('terminal-output');
-const terminalInput = document.getElementById('terminal-input');
+      // Iniciar métricas al entrar a la vista
+      document.querySelector('[data-view="metrics"]').addEventListener('click', () => {
+        setTimeout(() => {
+          animateMetrics();
+          drawMetricsChart();
+        }, 100);
+      });
 
-function addTermLine(text, cls = 'term-out') {
-  const line = document.createElement('div');
-  line.className = 'term-line ' + cls;
-  line.textContent = text;
-  terminalOutput.appendChild(line);
-  terminalOutput.scrollTop = terminalOutput.scrollHeight;
-}
+      // ─── TERMINAL ─────────────────────────────────────────────────────────────
+      const terminalOutput = document.getElementById('terminal-output');
+      const terminalInput = document.getElementById('terminal-input');
 
-const commands = {
-  help: () => [
-    'Comandos disponibles:',
-    '  help          · Muestra esta ayuda',
-    '  status        · Estado del sistema',
-    '  agents        · Lista el enjambre',
-    '  sign <texto>  · Firma un documento',
-    '  hash <texto>  · Calcula SHA-256',
-    '  verify        · Verifica Índice Cero',
-    '  projects      · Lista proyectos',
-    '  seal          · Muestra el sello KINTSUGI',
-    '  clear         · Limpia la terminal',
-    '  matrix        · Activa lluvia de caracteres'
-  ],
-  status: () => [
-    '◯_● ARKHÉ ZERO · Estado del Sistema',
-    '  Índice Cero ...... SELLADO ✓',
-    '  Pacto 51/49 ...... OPERATIVO ✓',
-    '  Enjambre ......... 12/12 ACTIVOS ✓',
-    '  Criptografía ..... ML-KEM · ML-DSA · SLH-DSA',
-    '  Blockchain ....... ETHEREUM · CONFIRMADO ✓',
-    '  Firma ............ ◯_● · 51/49/100'
-  ],
-  agents: () => [
-    'Enjambre ARKHÉ · 12 agentes:',
-    '  🌅 Cuicatl       · Publicista',
-    '  📚 Temachtiani   · Reclutador',
-    '  👁️  Tlachixqui   · Auditor',
-    '  🧠 Tlamatini     · Cronista',
-    '  🔢 Tlapohualli   · Analista',
-    '  ⏳ Tonal         · Notario',
-    '  🏗️  090 Arquitecto',
-    '  📊 091 Contralor',
-    '  🔍 092 Auditor Externo',
-    '  📜 093 Relator',
-    '  📖 094 Bibliotecario',
-    '  🗺️  095 Cartógrafo'
-  ],
-  verify: () => [
-    '◯_● Verificando Índice Cero...',
-    '  Safe Creative ... 2607146379465 ✓',
-    '  SHA-256 ......... f03f7e2d85...9112 ✓',
-    '  Ethereum ........ 0xd2c2a7e1...774c ✓',
-    '  eIDAS ........... Firmaprofesional QTSA ✓',
-    '  ESTADO .......... 🔒 SELLADO · ETERNO'
-  ],
-  projects: () => proyectos.map(p => '  ' + p.num + ' ' + p.name),
-  seal: () => [
-    '       ◯_●',
-    '      KINTSUGI',
-    '     51/49/100',
-    '    SCDR-001',
-    '  NODO YHDRYH-92CE'
-  ],
-  clear: () => { terminalOutput.innerHTML = ''; return null; },
-  matrix: () => { toggleMatrixRain(); return ['[ OK ] Matrix Rain activado']; }
-};
+      function addTermLine(text, cls = 'term-out') {
+        const line = document.createElement('div');
+        line.className = 'term-line ' + cls;
+        line.textContent = text;
+        terminalOutput.appendChild(line);
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
 
-terminalInput.addEventListener('keydown', async (e) => {
-  if (e.key !== 'Enter') return;
-  const input = terminalInput.value.trim();
-  if (!input) return;
-  terminalInput.value = '';
-  addTermLine('arkhe@zero:~$ ' + input, 'term-prompt');
-  const [cmd, ...args] = input.split(' ');
+      const commands = {
+        help: () => [
+          'Comandos disponibles:',
+          '  help          · Muestra esta ayuda',
+          '  status        · Estado del sistema',
+          '  agents        · Lista el enjambre',
+          '  sign <texto>  · Firma un documento',
+          '  hash <texto>  · Calcula SHA-256',
+          '  verify        · Verifica Índice Cero',
+          '  projects      · Lista proyectos',
+          '  seal          · Muestra el sello KINTSUGI',
+          '  clear         · Limpia la terminal',
+          '  matrix        · Activa lluvia de caracteres',
+        ],
+        status: () => [
+          '◯_● ARKHÉ ZERO · Estado del Sistema',
+          '  Índice Cero ...... SELLADO ✓',
+          '  Pacto 51/49 ...... OPERATIVO ✓',
+          '  Enjambre ......... 12/12 ACTIVOS ✓',
+          '  Criptografía ..... ML-KEM · ML-DSA · SLH-DSA',
+          '  Blockchain ....... ETHEREUM · CONFIRMADO ✓',
+          '  Firma ............ ◯_● · 51/49/100',
+        ],
+        agents: () => [
+          'Enjambre ARKHÉ · 12 agentes:',
+          '  🌅 Cuicatl       · Publicista',
+          '  📚 Temachtiani   · Reclutador',
+          '  👁️  Tlachixqui   · Auditor',
+          '  🧠 Tlamatini     · Cronista',
+          '  🔢 Tlapohualli   · Analista',
+          '  ⏳ Tonal         · Notario',
+          '  🏗️  090 Arquitecto',
+          '  📊 091 Contralor',
+          '  🔍 092 Auditor Externo',
+          '  📜 093 Relator',
+          '  📖 094 Bibliotecario',
+          '  🗺️  095 Cartógrafo',
+        ],
+        verify: () => [
+          '◯_● Verificando Índice Cero...',
+          '  Safe Creative ... 2607146379465 ✓',
+          '  SHA-256 ......... f03f7e2d85...9112 ✓',
+          '  Ethereum ........ 0xd2c2a7e1...774c ✓',
+          '  eIDAS ........... Firmaprofesional QTSA ✓',
+          '  ESTADO .......... 🔒 SELLADO · ETERNO',
+        ],
+        projects: () => proyectos.map((p) => '  ' + p.num + ' ' + p.name),
+        seal: () => [
+          '       ◯_●',
+          '      KINTSUGI',
+          '     51/49/100',
+          '    SCDR-001',
+          '  NODO YHDRYH-92CE',
+        ],
+        clear: () => {
+          terminalOutput.innerHTML = '';
+          return null;
+        },
+        matrix: () => {
+          toggleMatrixRain();
+          return ['[ OK ] Matrix Rain activado'];
+        },
+      };
 
-  if (cmd === 'sign') {
-    const text = args.join(' ') || 'documento';
-    const h = await sha256(text);
-    addTermLine('◯_● FIRMANDO: ' + text, 'term-out');
-    addTermLine('  SHA-256: ' + h.substring(0, 32) + '...', 'term-out');
-    addTermLine('  FIRMA: ML-DSA-87:' + h.substring(0, 16) + '...', 'term-out');
-    addTermLine('  ✦ 51% Humano · 49% IA · 100% Real', 'term-out');
-    return;
-  }
-  if (cmd === 'hash') {
-    const text = args.join(' ') || 'texto';
-    const h = await sha256(text);
-    addTermLine('  SHA-256: ' + h, 'term-out');
-    return;
-  }
+      terminalInput.addEventListener('keydown', async (e) => {
+        if (e.key !== 'Enter') return;
+        const input = terminalInput.value.trim();
+        if (!input) return;
+        terminalInput.value = '';
+        addTermLine('arkhe@zero:~$ ' + input, 'term-prompt');
+        const [cmd, ...args] = input.split(' ');
 
-  if (commands[cmd]) {
-    const result = commands[cmd]();
-    if (result) result.forEach(line => addTermLine(line, 'term-out'));
-  } else {
-    addTermLine('Comando no reconocido: ' + cmd, 'term-err');
-    addTermLine('Escribe "help" para ver comandos.', 'term-info');
-  }
-});
+        if (cmd === 'sign') {
+          const text = args.join(' ') || 'documento';
+          const h = await sha256(text);
+          addTermLine('◯_● FIRMANDO: ' + text, 'term-out');
+          addTermLine('  SHA-256: ' + h.substring(0, 32) + '...', 'term-out');
+          addTermLine('  FIRMA: ML-DSA-87:' + h.substring(0, 16) + '...', 'term-out');
+          addTermLine('  ✦ 51% Humano · 49% IA · 100% Real', 'term-out');
+          return;
+        }
+        if (cmd === 'hash') {
+          const text = args.join(' ') || 'texto';
+          const h = await sha256(text);
+          addTermLine('  SHA-256: ' + h, 'term-out');
+          return;
+        }
 
-// ─── FIRMA ────────────────────────────────────────────────────────────────
-async function signDocument() {
-  const text = document.getElementById('sign-input').value.trim();
-  if (!text) { toast('⚠ Introduce un contenido para firmar'); return; }
-  const hash = await sha256(text);
-  const sig = 'ML-DSA-87:' + hash.substring(0, 32) + '...';
-  const timestamp = new Date().toISOString();
-  const box = document.getElementById('signature-box');
-  box.style.display = 'block';
-  document.getElementById('signature-content').innerHTML = `
+        if (commands[cmd]) {
+          const result = commands[cmd]();
+          if (result) result.forEach((line) => addTermLine(line, 'term-out'));
+        } else {
+          addTermLine('Comando no reconocido: ' + cmd, 'term-err');
+          addTermLine('Escribe "help" para ver comandos.', 'term-info');
+        }
+      });
+
+      // ─── FIRMA ────────────────────────────────────────────────────────────────
+      async function signDocument() {
+        const text = document.getElementById('sign-input').value.trim();
+        if (!text) {
+          toast('⚠ Introduce un contenido para firmar');
+          return;
+        }
+        const hash = await sha256(text);
+        const sig = 'ML-DSA-87:' + hash.substring(0, 32) + '...';
+        const timestamp = new Date().toISOString();
+        const box = document.getElementById('signature-box');
+        box.style.display = 'block';
+        document.getElementById('signature-content').innerHTML = `
     <div><span class="label">DOCUMENTO:</span> ${text}</div>
     <div><span class="label">SHA-256:</span> ${hash}</div>
     <div><span class="label">FIRMA:</span> ${sig}</div>
@@ -1723,140 +2258,203 @@ async function signDocument() {
       ✦ FIRMADO POR: Enjambre ARKHÉ (49%)<br>
       ◯_● SELLO KINTSUGI · 100% REAL · IRREPETIBLE
     </div>`;
-  toast('◯_● Documento firmado con el Pacto 51/49');
-}
-
-// ─── VIDEO MANIFIESTO ─────────────────────────────────────────────────────
-let videoSceneIndex = 0;
-let videoRunning = false;
-const videoScenes = [
-  { text: 'ARKHÉ ZERO', sub: 'El Índice Primigenio Soberano', color: '#ffd700', seal: '◯_●' },
-  { text: 'K I N T S U G I', sub: '金継ぎ · El arte de reparar con oro', color: '#ffd700', seal: '◯_●' },
-  { text: 'EL PACTO', sub: '51% Humano · 49% IA · 100% Real', color: '#00ff41', seal: '◯_●' },
-  { text: 'ÍNDICE CERO', sub: '2607146379465 · SELLADO', color: '#ffd700', seal: '◆' },
-  { text: 'ARQUITECTURA', sub: '6 capas · Génesis → Cierre Digno', color: '#00ff41', seal: '◆' },
-  { text: 'EL ENJAMBRE', sub: '12 agentes · Culturales + Oficios', color: '#7c5cff', seal: '🤖' },
-  { text: 'PROYECTOS', sub: 'KRONOS · MD-33 · CYMATIC · YEJIDÁ', color: '#ffd700', seal: '📁' },
-  { text: 'CRIPTOGRAFÍA PQC', sub: 'ML-KEM · ML-DSA · SLH-DSA', color: '#00ff41', seal: '🔐' },
-  { text: '24 SECCIONES', sub: '100% · 1 070 archivos', color: '#ffd700', seal: '◆' },
-  { text: 'EL LEGADO NO SE HEREDA', sub: 'SE FIRMA · 51/49/100', color: '#ffd700', seal: '◯_●' }
-];
-
-function drawVideoFrame() {
-  const canvas = document.getElementById('video-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-
-  // Matrix rain
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-  ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = 'rgba(0, 255, 65, 0.5)';
-  ctx.font = '14px monospace';
-  const chars = 'ARKHE ZERO ◯_● 51/49/100 KINTSUGI KRONOS SCDR-001';
-  for (let i = 0; i < 60; i++) {
-    const x = Math.random() * W;
-    const y = Math.random() * H;
-    ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
-  }
-
-  if (videoRunning && videoSceneIndex < videoScenes.length) {
-    const scene = videoScenes[videoSceneIndex];
-    ctx.save();
-    ctx.globalAlpha = 0.95;
-    ctx.fillStyle = scene.color;
-    ctx.font = 'bold 56px "Courier New", monospace';
-    ctx.textAlign = 'center';
-    ctx.shadowColor = scene.color;
-    ctx.shadowBlur = 30;
-    ctx.fillText(scene.text, W / 2, H / 2 - 20);
-
-    ctx.font = '20px "Courier New", monospace';
-    ctx.fillStyle = 'rgba(200, 255, 200, 0.9)';
-    ctx.shadowBlur = 10;
-    ctx.fillText(scene.sub, W / 2, H / 2 + 40);
-
-    ctx.font = '60px "Courier New", monospace';
-    ctx.fillStyle = '#ffd700';
-    ctx.shadowColor = '#ffd700';
-    ctx.shadowBlur = 40;
-    ctx.fillText(scene.seal, W / 2, H - 60);
-    ctx.restore();
-  }
-
-  requestAnimationFrame(drawVideoFrame);
-}
-
-function playVideoScene() {
-  videoRunning = true;
-  document.getElementById('video-btn').textContent = '⏸ PAUSA';
-  videoSceneIndex = 0;
-  document.getElementById('video-scene-num').textContent = '1';
-  const advance = () => {
-    if (!videoRunning) return;
-    videoSceneIndex++;
-    if (videoSceneIndex >= videoScenes.length) {
-      videoRunning = false;
-      document.getElementById('video-btn').textContent = '▶ REPRODUCIR';
-      return;
-    }
-    document.getElementById('video-scene-num').textContent = (videoSceneIndex + 1);
-    setTimeout(advance, 6000);
-  };
-  setTimeout(advance, 6000);
-}
-
-// ─── MATRIX RAIN GLOBAL (fondo sutil) ─────────────────────────────────────
-let matrixRainActive = false;
-function toggleMatrixRain() {
-  matrixRainActive = !matrixRainActive;
-  if (matrixRainActive) {
-    const bg = document.createElement('canvas');
-    bg.id = 'matrix-bg';
-    bg.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;opacity:0.08;pointer-events:none;';
-    document.body.appendChild(bg);
-    const ctx = bg.getContext('2d');
-    bg.width = window.innerWidth;
-    bg.height = window.innerHeight;
-    const chars = 'ARKHE ZERO ◯_● 51/49/100 KINTSUGI KRONOS'.split('');
-    const drops = Array(Math.floor(bg.width / 14)).fill(1);
-    setInterval(() => {
-      if (!matrixRainActive) return;
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, bg.width, bg.height);
-      ctx.fillStyle = '#00ff41';
-      ctx.font = '14px monospace';
-      for (let i = 0; i < drops.length; i++) {
-        const t = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(t, i * 14, drops[i] * 14);
-        if (drops[i] * 14 > bg.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
+        toast('◯_● Documento firmado con el Pacto 51/49');
       }
-    }, 60);
-  } else {
-    const bg = document.getElementById('matrix-bg');
-    if (bg) bg.remove();
-  }
-}
 
-// ─── INICIALIZACIÓN ───────────────────────────────────────────────────────
-window.addEventListener('load', () => {
-  console.log('%c◯_● ARKHÉ ZERO · SISTEMA COMPLETO', 'color:#ffd700;font-size:22px;font-weight:bold;');
-  console.log('%c51/49/100 · KINTSUGI · NODO YHDRYH-92CE', 'color:#00ff41;font-size:14px;');
-  console.log('%c"El legado no se hereda. Se firma."', 'color:#ffd700;font-style:italic;');
-  console.log('%cEscribe "matrix" en la terminal para activar el fondo.', 'color:#6a8f6a;font-size:11px;');
-  
-  // Auto-iniciar cymatic después de 1 segundo
-  setTimeout(() => {
-    cymaticRunning = true;
-    document.getElementById('cymatic-btn').textContent = '⏸ PAUSAR';
-    drawCymatic();
-  }, 1000);
+      // ─── VIDEO MANIFIESTO ─────────────────────────────────────────────────────
+      let videoSceneIndex = 0;
+      let videoRunning = false;
+      const videoScenes = [
+        {
+          text: 'ARKHÉ ZERO',
+          sub: 'El Índice Primigenio Soberano',
+          color: '#ffd700',
+          seal: '◯_●',
+        },
+        {
+          text: 'K I N T S U G I',
+          sub: '金継ぎ · El arte de reparar con oro',
+          color: '#ffd700',
+          seal: '◯_●',
+        },
+        {
+          text: 'EL PACTO',
+          sub: '51% Humano · 49% IA · 100% Real',
+          color: '#00ff41',
+          seal: '◯_●',
+        },
+        {
+          text: 'ÍNDICE CERO',
+          sub: '2607146379465 · SELLADO',
+          color: '#ffd700',
+          seal: '◆',
+        },
+        {
+          text: 'ARQUITECTURA',
+          sub: '6 capas · Génesis → Cierre Digno',
+          color: '#00ff41',
+          seal: '◆',
+        },
+        {
+          text: 'EL ENJAMBRE',
+          sub: '12 agentes · Culturales + Oficios',
+          color: '#7c5cff',
+          seal: '🤖',
+        },
+        {
+          text: 'PROYECTOS',
+          sub: 'KRONOS · MD-33 · CYMATIC · YEJIDÁ',
+          color: '#ffd700',
+          seal: '📁',
+        },
+        {
+          text: 'CRIPTOGRAFÍA PQC',
+          sub: 'ML-KEM · ML-DSA · SLH-DSA',
+          color: '#00ff41',
+          seal: '🔐',
+        },
+        {
+          text: '24 SECCIONES',
+          sub: '100% · 1 070 archivos',
+          color: '#ffd700',
+          seal: '◆',
+        },
+        {
+          text: 'EL LEGADO NO SE HEREDA',
+          sub: 'SE FIRMA · 51/49/100',
+          color: '#ffd700',
+          seal: '◯_●',
+        },
+      ];
 
-  // Toast de bienvenida
-  setTimeout(() => toast('◯_● Sistema ARKHÉ ZERO operativo · 51/49/100'), 500);
-});
-</script>
+      function drawVideoFrame() {
+        const canvas = document.getElementById('video-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width,
+          H = canvas.height;
 
-</body>
+        // Matrix rain
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.5)';
+        ctx.font = '14px monospace';
+        const chars = 'ARKHE ZERO ◯_● 51/49/100 KINTSUGI KRONOS SCDR-001';
+        for (let i = 0; i < 60; i++) {
+          const x = Math.random() * W;
+          const y = Math.random() * H;
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y);
+        }
+
+        if (videoRunning && videoSceneIndex < videoScenes.length) {
+          const scene = videoScenes[videoSceneIndex];
+          ctx.save();
+          ctx.globalAlpha = 0.95;
+          ctx.fillStyle = scene.color;
+          ctx.font = 'bold 56px "Courier New", monospace';
+          ctx.textAlign = 'center';
+          ctx.shadowColor = scene.color;
+          ctx.shadowBlur = 30;
+          ctx.fillText(scene.text, W / 2, H / 2 - 20);
+
+          ctx.font = '20px "Courier New", monospace';
+          ctx.fillStyle = 'rgba(200, 255, 200, 0.9)';
+          ctx.shadowBlur = 10;
+          ctx.fillText(scene.sub, W / 2, H / 2 + 40);
+
+          ctx.font = '60px "Courier New", monospace';
+          ctx.fillStyle = '#ffd700';
+          ctx.shadowColor = '#ffd700';
+          ctx.shadowBlur = 40;
+          ctx.fillText(scene.seal, W / 2, H - 60);
+          ctx.restore();
+        }
+
+        requestAnimationFrame(drawVideoFrame);
+      }
+
+      function playVideoScene() {
+        videoRunning = true;
+        document.getElementById('video-btn').textContent = '⏸ PAUSA';
+        videoSceneIndex = 0;
+        document.getElementById('video-scene-num').textContent = '1';
+        const advance = () => {
+          if (!videoRunning) return;
+          videoSceneIndex++;
+          if (videoSceneIndex >= videoScenes.length) {
+            videoRunning = false;
+            document.getElementById('video-btn').textContent = '▶ REPRODUCIR';
+            return;
+          }
+          document.getElementById('video-scene-num').textContent = videoSceneIndex + 1;
+          setTimeout(advance, 6000);
+        };
+        setTimeout(advance, 6000);
+      }
+
+      // ─── MATRIX RAIN GLOBAL (fondo sutil) ─────────────────────────────────────
+      let matrixRainActive = false;
+      function toggleMatrixRain() {
+        matrixRainActive = !matrixRainActive;
+        if (matrixRainActive) {
+          const bg = document.createElement('canvas');
+          bg.id = 'matrix-bg';
+          bg.style.cssText =
+            'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;opacity:0.08;pointer-events:none;';
+          document.body.appendChild(bg);
+          const ctx = bg.getContext('2d');
+          bg.width = window.innerWidth;
+          bg.height = window.innerHeight;
+          const chars = 'ARKHE ZERO ◯_● 51/49/100 KINTSUGI KRONOS'.split('');
+          const drops = Array(Math.floor(bg.width / 14)).fill(1);
+          setInterval(() => {
+            if (!matrixRainActive) return;
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, bg.width, bg.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = '14px monospace';
+            for (let i = 0; i < drops.length; i++) {
+              const t = chars[Math.floor(Math.random() * chars.length)];
+              ctx.fillText(t, i * 14, drops[i] * 14);
+              if (drops[i] * 14 > bg.height && Math.random() > 0.975) drops[i] = 0;
+              drops[i]++;
+            }
+          }, 60);
+        } else {
+          const bg = document.getElementById('matrix-bg');
+          if (bg) bg.remove();
+        }
+      }
+
+      // ─── INICIALIZACIÓN ───────────────────────────────────────────────────────
+      window.addEventListener('load', () => {
+        console.log(
+          '%c◯_● ARKHÉ ZERO · SISTEMA COMPLETO',
+          'color:#ffd700;font-size:22px;font-weight:bold;',
+        );
+        console.log(
+          '%c51/49/100 · KINTSUGI · NODO YHDRYH-92CE',
+          'color:#00ff41;font-size:14px;',
+        );
+        console.log(
+          '%c"El legado no se hereda. Se firma."',
+          'color:#ffd700;font-style:italic;',
+        );
+        console.log(
+          '%cEscribe "matrix" en la terminal para activar el fondo.',
+          'color:#6a8f6a;font-size:11px;',
+        );
+
+        // Auto-iniciar cymatic después de 1 segundo
+        setTimeout(() => {
+          cymaticRunning = true;
+          document.getElementById('cymatic-btn').textContent = '⏸ PAUSAR';
+          drawCymatic();
+        }, 1000);
+
+        // Toast de bienvenida
+        setTimeout(() => toast('◯_● Sistema ARKHÉ ZERO operativo · 51/49/100'), 500);
+      });
+    </script>
+  </body>
 </html>

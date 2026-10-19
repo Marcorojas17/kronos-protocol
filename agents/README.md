@@ -38,17 +38,17 @@
 [ ✓✓ ] ENJAMBRE COMPLETO · 12/12 · CONSENSO 4/5 · ◯_● · 51/49/100
 ```
 
-> *"La IA es brillante pero amnésica. Este enjambre la dota de memoria, oficio y propósito."*
+> _"La IA es brillante pero amnésica. Este enjambre la dota de memoria, oficio y propósito."_
 
 ## 🜂 Índice de Módulos
 
-| Módulo            | Propósito                                              |
-|-------------------|--------------------------------------------------------|
-| `registry/`       | Registro canónico de agentes + capacidades + reputación|
-| `roles/`          | 6 roles base (cartógrafo, corrector, reclutador, etc.) |
-| `protocols/`      | 10.6-autonomía · 10.7-reclutamiento · 10.8-mejora ...  |
-| `consensus/`      | Quórum 4/5 · veto humano · tolerancia bizantina        |
-| `mcp/`            | Servidor MCP embebido del enjambre                     |
+| Módulo       | Propósito                                               |
+| ------------ | ------------------------------------------------------- |
+| `registry/`  | Registro canónico de agentes + capacidades + reputación |
+| `roles/`     | 6 roles base (cartógrafo, corrector, reclutador, etc.)  |
+| `protocols/` | 10.6-autonomía · 10.7-reclutamiento · 10.8-mejora ...   |
+| `consensus/` | Quórum 4/5 · veto humano · tolerancia bizantina         |
+| `mcp/`       | Servidor MCP embebido del enjambre                      |
 
 ## 🜃 Arquitectura del Enjambre
 
@@ -122,7 +122,7 @@ import { Enjambre } from './agents/consensus/quorum-4-5.js';
 const enjambre = new Enjambre({ humanos: 1, ia: 12 });
 const resultado = await enjambre.deliberar({
   propuesta: 'Aprobar Sub-bloque G · Módulos Operativos',
-  votos_ia: ['cuicatl','temachtiani','tlachixqui','tlamatini','tonal'],
+  votos_ia: ['cuicatl', 'temachtiani', 'tlachixqui', 'tlamatini', 'tonal'],
 });
 
 console.log(resultado);

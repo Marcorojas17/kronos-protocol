@@ -17,15 +17,16 @@
 
 # 📅 EVENTOS DEL MOVIMIENTO
 
-### *El movimiento se reúne. Y reunirse es firmar.*
+### _El movimiento se reúne. Y reunirse es firmar._
 
-### *"Cada evento es un acto. Cada acto deja huella."*
+### _"Cada evento es un acto. Cada acto deja huella."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E V E N T O S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,11 +49,11 @@
 
 ## 🜂 Categorías de eventos
 
-| Categoría    | Descripción                                    | Frecuencia |
-|--------------|------------------------------------------------|------------|
-| Recurrentes  | Luna Nueva · Auditoría Abierta · Q&A           | Mensual    |
-| Especiales   | Solsticio · Cierre anual · Fundación           | Anual      |
-| Talleres     | Capacitación técnica · Cripto · IA · Local-First | Variable |
+| Categoría   | Descripción                                      | Frecuencia |
+| ----------- | ------------------------------------------------ | ---------- |
+| Recurrentes | Luna Nueva · Auditoría Abierta · Q&A             | Mensual    |
+| Especiales  | Solsticio · Cierre anual · Fundación             | Anual      |
+| Talleres    | Capacitación técnica · Cripto · IA · Local-First | Variable   |
 
 ## 🜃 Calendario oficial
 

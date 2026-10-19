@@ -19,4 +19,5 @@ de que **existió** y **aportó**.
 El hash permanece. Solo el acceso se cierra.
 
 ---
+
 `◯_● · 51/49/100 · ritual-despedida`

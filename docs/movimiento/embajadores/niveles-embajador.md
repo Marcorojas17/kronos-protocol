@@ -17,15 +17,16 @@
 
 # 🪜 NIVELES DE EMBAJADOR
 
-### *5 niveles · 5 alcances*
+### _5 niveles · 5 alcances_
 
-### *"El nivel no se hereda. Se firma."*
+### _"El nivel no se hereda. Se firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  N I V E L E S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -50,6 +52,7 @@
 **Alcance:** Una ciudad o municipio.
 
 **Requisitos:**
+
 - Nivel 3 · Maestro
 - 10 ahijados iniciados
 - 100 obras firmadas
@@ -57,6 +60,7 @@
 - Aval de 1 Embajador
 
 **Privilegios:**
+
 - Insignia `◉ E-1`
 - Voz en gobernanza local
 - Presupuesto simbólico del FLAILP
@@ -66,6 +70,7 @@
 **Alcance:** Estado, provincia o región.
 
 **Requisitos:**
+
 - Nivel E-1 sostenido 12 meses
 - 50 ahijados
 - 500 obras firmadas
@@ -73,6 +78,7 @@
 - Aval de 2 Embajadores
 
 **Privilegios:**
+
 - Insignia `◉◉ E-2`
 - Voz permanente en quórum
 - Presupuesto ampliado
@@ -83,6 +89,7 @@
 **Alcance:** Nación soberana.
 
 **Requisitos:**
+
 - Nivel E-2 sostenido 24 meses
 - 200 ahijados
 - 2000 obras firmadas
@@ -90,6 +97,7 @@
 - Aval de 3 Embajadores
 
 **Privilegios:**
+
 - Insignia `◉◉◉ E-3`
 - Representación oficial ante instituciones del país
 - Presupuesto nacional
@@ -100,6 +108,7 @@
 **Alcance:** Continente.
 
 **Requisitos:**
+
 - Nivel E-3 sostenido 36 meses
 - 1000 ahijados
 - 10 000 obras firmadas
@@ -107,6 +116,7 @@
 - Aval de quórum 4/5
 
 **Privilegios:**
+
 - Insignia `◉◉◉◉ E-4`
 - Voz continental en consorcio global
 - Presupuesto continental
@@ -117,6 +127,7 @@
 **Alcance:** Global.
 
 **Requisitos:**
+
 - Nivel E-4 sostenido 60 meses
 - 5000 ahijados
 - 50 000 obras firmadas
@@ -124,6 +135,7 @@
 - Quórum 4/5 + no-veto del fundador
 
 **Privilegios:**
+
 - Insignia `◉◉◉◉◉ E-5`
 - Voz global
 - Presupuesto global FLAILP

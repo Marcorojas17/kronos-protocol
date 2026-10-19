@@ -3,6 +3,7 @@
 **Tamaño Total:** 35.87 MB
 
 ## Python (Motores/Agentes) (348)
+
 - `05-AGENTES/090-arquitecto/arquitecto.py`
 - `05-AGENTES/090-arquitecto/arquitecto_activo.py`
 - `05-AGENTES/091-contralor/contralor.py`
@@ -353,6 +354,7 @@
 - `verifier.py`
 
 ## HTML (Web/Certificados) (703)
+
 - `02-VERIFICADOR/verificador.html`
 - `404.html`
 - `DIARIO-DE-DECISIONES.html`
@@ -1058,6 +1060,7 @@
 - `web/x-agentes-arquitectura/index.html`
 
 ## Markdown (Documentación/Constitución) (1006)
+
 - `.github/ISSUE_TEMPLATE/agent_proposal.md`
 - `.github/ISSUE_TEMPLATE/bug_report.md`
 - `.github/ISSUE_TEMPLATE/feature_request.md`
@@ -2066,6 +2069,7 @@
 - `web/x-agentes-arquitectura/index.md`
 
 ## Solidity (Smart Contracts) (20)
+
 - `atribucion/contracts/AttributionRegistry.sol`
 - `atribucion/contracts/KAFRegistry.sol`
 - `atribucion/contracts/PaymentSplitter.sol`
@@ -2088,6 +2092,7 @@
 - `pva/contracts/PVAContract.sol`
 
 ## JSON (Configuración/Estados) (115)
+
 - `.vscode/extensions.json`
 - `.vscode/settings.json`
 - `00-SCHEMA/agente.schema.json`
@@ -2205,6 +2210,7 @@
 - `web/i18n/languages.json`
 
 ## Bash (Scripts de Arranque) (11)
+
 - `.arkhe-sigilo.sh`
 - `auto-backup.sh`
 - `autostart.sh`
@@ -2218,6 +2224,7 @@
 - `start-services.sh`
 
 ## Firmas Criptográficas (14)
+
 - `07-LLAVES/ATESTACIONES/082-tlachixqui.json.sig`
 - `07-LLAVES/ATESTACIONES/091-contralor.json.sig`
 - `07-LLAVES/ATESTACIONES/092-auditor-externo.json.sig`
@@ -2234,6 +2241,7 @@
 - `runtime/estado/prueba-tonal.txt.sig`
 
 ## Sellos Bitcoin (OTS) (39)
+
 - `07-LLAVES/ATESTACIONES/pacto-5149-canonico.mldsa65.sig.ots`
 - `07-LLAVES/ATESTACIONES/pacto-5149-canonico.sig.ots`
 - `07-LLAVES/ATESTACIONES/pacto-5149-canonico.txt.ots`
@@ -2275,6 +2283,7 @@
 - `web/tesis-visual.html.ots`
 
 ## Llaves Públicas (11)
+
 - `05-AGENTES/082-tlachixqui/llaves/tlachixqui.pub`
 - `05-AGENTES/091-contralor/llaves/contralor.pub`
 - `05-AGENTES/092-auditor-externo/llaves/auditor.pub`
@@ -2286,4 +2295,3 @@
 - `07-LLAVES/POST-QUANTUM/fundador-mldsa65.pub`
 - `07-LLAVES/respaldo-minisign-20261015/arkhe.pub`
 - `llaves/arkhe.pub`
-

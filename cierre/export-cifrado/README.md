@@ -22,12 +22,12 @@ Empaquetar todo el ecosistema en un archivo `.legado` cifrado (AES-GCM-256), fir
 ## API pública
 
 ```js
-import { ExportCifrado } from "./export.js";
+import { ExportCifrado } from './export.js';
 
 const exp = new ExportCifrado(core, storage);
 
 const inv = await exp.inventario();
 const { blob, manifiesto } = await exp.exportar(humano);
 const manifiestoBlob = await exp.exportarManifiesto(humano);
-const res = await exp.restaurar(paquete, "fusionar");
+const res = await exp.restaurar(paquete, 'fusionar');
 ```

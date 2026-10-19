@@ -22,4 +22,5 @@ Pero el 51% humano **sigue siendo la firma final**. Solo se
 ejecuta automáticamente.
 
 ---
+
 `◯_● · 51/49/100 · ritual-fin-digno`

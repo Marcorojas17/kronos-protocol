@@ -9,12 +9,12 @@ verificable, ligada a un creador humano u organización.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-1.1 | DID registrado | Critical | ✅ |
-| KAF-1.2 | VC vigente | Critical | ✅ |
-| KAF-1.3 | Claves rotadas ≤90 días | High | ✅ |
-| KAF-1.4 | DID Document público | Medium | ✅ |
+| ID      | Nombre                  | Severidad | Auto |
+| ------- | ----------------------- | --------- | ---- |
+| KAF-1.1 | DID registrado          | Critical  | ✅   |
+| KAF-1.2 | VC vigente              | Critical  | ✅   |
+| KAF-1.3 | Claves rotadas ≤90 días | High      | ✅   |
+| KAF-1.4 | DID Document público    | Medium    | ✅   |
 
 ## Requisitos técnicos
 

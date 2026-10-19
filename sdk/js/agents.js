@@ -6,9 +6,22 @@
 
 export const SEAL = '◯_● · 51/49/100';
 
-export const CULTURALES = ['cuicatl', 'temachtiani', 'tlachixqui', 'tlamatini', 'tlapohualli', 'tonal'];
-export const OFICIOS = ['090-arquitecto', '091-contralor', '092-auditor-externo',
-                        '093-relator', '094-bibliotecario', '095-cartografo'];
+export const CULTURALES = [
+  'cuicatl',
+  'temachtiani',
+  'tlachixqui',
+  'tlamatini',
+  'tlapohualli',
+  'tonal',
+];
+export const OFICIOS = [
+  '090-arquitecto',
+  '091-contralor',
+  '092-auditor-externo',
+  '093-relator',
+  '094-bibliotecario',
+  '095-cartografo',
+];
 
 export function listarAgentes() {
   return {

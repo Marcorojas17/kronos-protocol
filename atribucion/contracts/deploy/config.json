@@ -59,9 +59,5 @@
     "etherscan_api_key_env": "ETHERSCAN_API_KEY",
     "polygonscan_api_key_env": "POLYGONSCAN_API_KEY"
   },
-  "deployment_order": [
-    "AttributionRegistry",
-    "KAFRegistry",
-    "PaymentSplitter"
-  ]
+  "deployment_order": ["AttributionRegistry", "KAFRegistry", "PaymentSplitter"]
 }

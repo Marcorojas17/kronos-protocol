@@ -17,15 +17,16 @@
 
 # 🔗 PROGRAMA DE REFERIDOS
 
-### *Cada testigo trae testigos*
+### _Cada testigo trae testigos_
 
-### *"El testigo no predica. Invita."*
+### _"El testigo no predica. Invita."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E F E R I D O S  ·  ◯_●                           ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -65,18 +67,19 @@ https://arkhe.zero/movimiento/solicitar_plaza.html?ref=◯_●-F0001-A3F2
 ```
 
 Donde:
+
 - `F0001` = número del miembro referente
 - `A3F2` = hash corto del referente
 - Todo verificable on-chain
 
 ## 🜄 Recompensas
 
-| Referidos verificados | Insignia                | Beneficio                      |
-|-----------------------|-------------------------|--------------------------------|
-| 1-5                   | ◉ iniciador             | Mención en historia            |
-| 6-20                  | ◉◉ conector             | Presupuesto FLAILP simbólico   |
-| 21-50                 | ◉◉◉ influencer          | Presupuesto + liderazgo         |
-| 51+                   | ◉◉◉◉ embajador-ref      | Presupuesto ampliado            |
+| Referidos verificados | Insignia           | Beneficio                    |
+| --------------------- | ------------------ | ---------------------------- |
+| 1-5                   | ◉ iniciador        | Mención en historia          |
+| 6-20                  | ◉◉ conector        | Presupuesto FLAILP simbólico |
+| 21-50                 | ◉◉◉ influencer     | Presupuesto + liderazgo      |
+| 51+                   | ◉◉◉◉ embajador-ref | Presupuesto ampliado         |
 
 ## 🜁 Reglas
 

@@ -17,15 +17,16 @@
 
 # ❓ FAQ · COMUNIDAD
 
-### *La convivencia firmada*
+### _La convivencia firmada_
 
-### *"Comunidad no es multitud. Es pacto."*
+### _"Comunidad no es multitud. Es pacto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O M U N I D A D  ·  ◯_●                           ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,6 +50,7 @@
 ## 🜂 ¿Dónde se reúne la comunidad?
 
 En canales oficiales del movimiento:
+
 - `#general` · anuncios
 - `#dudas` · preguntas
 - `#obras` · registros
@@ -84,6 +87,7 @@ se confirma.
 ## 🜇 ¿Hay jerarquía?
 
 No jerarquía, sino **niveles de compromiso**:
+
 - Nivel 0 · Visitante
 - Nivel 1 · Iniciado
 - Nivel 2 · Guardián

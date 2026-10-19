@@ -15,13 +15,13 @@
 
 ## 🜂 Tópicos Canónicos
 
-| Tópico                          | Emisor                       |
-|---------------------------------|------------------------------|
-| `arkhe.firma.creada`            | Notario · crypto-core        |
-| `arkhe.documento.anclado`       | Anclaje Ethereum             |
-| `arkhe.agente.activado`         | Reclutador · protocolo 10.7  |
-| `arkhe.consenso.alcanzado`      | Quórum 4/5                   |
-| `arkhe.veto.aplicado`           | Veto humano (51%)            |
+| Tópico                     | Emisor                      |
+| -------------------------- | --------------------------- |
+| `arkhe.firma.creada`       | Notario · crypto-core       |
+| `arkhe.documento.anclado`  | Anclaje Ethereum            |
+| `arkhe.agente.activado`    | Reclutador · protocolo 10.7 |
+| `arkhe.consenso.alcanzado` | Quórum 4/5                  |
+| `arkhe.veto.aplicado`      | Veto humano (51%)           |
 
 ## 🜃 Uso
 

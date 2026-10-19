@@ -10,37 +10,18 @@
     {
       "tipo": "sospechosos-contextuales",
       "cantidad": 3,
-      "rutas": [
-        "kronos-protocol/i",
-        "kronos-protocol/Pnp",
-        "kronos-protocol/403"
-      ],
+      "rutas": ["kronos-protocol/i", "kronos-protocol/Pnp", "kronos-protocol/403"],
       "nota": "revisar manualmente antes de borrar"
     },
     {
       "tipo": "duplicados-nombre",
       "cantidad": 185,
       "ejemplos": [
-        [
-          "aditoria",
-          [
-            "aditoria",
-            "kronos-protocol/aditoria"
-          ]
-        ],
-        [
-          "LICENSE-CC-BY-NC-ND",
-          [
-            "LICENSE-CC-BY-NC-ND",
-            "kronos-protocol/LICENSE-CC-BY-NC-ND"
-          ]
-        ],
+        ["aditoria", ["aditoria", "kronos-protocol/aditoria"]],
+        ["LICENSE-CC-BY-NC-ND", ["LICENSE-CC-BY-NC-ND", "kronos-protocol/LICENSE-CC-BY-NC-ND"]],
         [
           "curriculum-terminal.txt",
-          [
-            "curriculum-terminal.txt",
-            "kronos-protocol/curriculum-terminal.txt"
-          ]
+          ["curriculum-terminal.txt", "kronos-protocol/curriculum-terminal.txt"]
         ],
         [
           "index.html",
@@ -147,74 +128,23 @@
             "gobernanza/quorum-mayorias/index.html"
           ]
         ],
-        [
-          "GOVERNANCE.md",
-          [
-            "GOVERNANCE.md",
-            "kronos-protocol/GOVERNANCE.md"
-          ]
-        ],
-        [
-          "luxury.html",
-          [
-            "luxury.html",
-            "kronos-protocol/luxury.html"
-          ]
-        ],
-        [
-          "admin.html",
-          [
-            "admin.html",
-            "kronos-protocol/admin.html"
-          ]
-        ],
-        [
-          "pyproject.toml",
-          [
-            "pyproject.toml",
-            "kronos-protocol/pyproject.toml"
-          ]
-        ],
-        [
-          "COPYRIGHT.md",
-          [
-            "COPYRIGHT.md",
-            "kronos-protocol/COPYRIGHT.md"
-          ]
-        ],
-        [
-          "404.html",
-          [
-            "404.html",
-            "kronos-protocol/404.html"
-          ]
-        ]
+        ["GOVERNANCE.md", ["GOVERNANCE.md", "kronos-protocol/GOVERNANCE.md"]],
+        ["luxury.html", ["luxury.html", "kronos-protocol/luxury.html"]],
+        ["admin.html", ["admin.html", "kronos-protocol/admin.html"]],
+        ["pyproject.toml", ["pyproject.toml", "kronos-protocol/pyproject.toml"]],
+        ["COPYRIGHT.md", ["COPYRIGHT.md", "kronos-protocol/COPYRIGHT.md"]],
+        ["404.html", ["404.html", "kronos-protocol/404.html"]]
       ]
     },
     {
       "tipo": "duplicados-contenido",
       "cantidad": 341,
       "ejemplos": [
-        [
-          "aditoria",
-          "kronos-protocol/aditoria"
-        ],
-        [
-          "LICENSE-CC-BY-NC-ND",
-          "kronos-protocol/LICENSE-CC-BY-NC-ND"
-        ],
-        [
-          "curriculum-terminal.txt",
-          "kronos-protocol/curriculum-terminal.txt"
-        ],
-        [
-          "index.html",
-          "kronos-protocol/index.html"
-        ],
-        [
-          "GOVERNANCE.md",
-          "kronos-protocol/GOVERNANCE.md"
-        ]
+        ["aditoria", "kronos-protocol/aditoria"],
+        ["LICENSE-CC-BY-NC-ND", "kronos-protocol/LICENSE-CC-BY-NC-ND"],
+        ["curriculum-terminal.txt", "kronos-protocol/curriculum-terminal.txt"],
+        ["index.html", "kronos-protocol/index.html"],
+        ["GOVERNANCE.md", "kronos-protocol/GOVERNANCE.md"]
       ]
     }
   ],

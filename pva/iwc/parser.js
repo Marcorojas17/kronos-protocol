@@ -30,7 +30,10 @@
       if (!line) continue;
 
       var ts = line.match(TS_RE);
-      if (ts) { currentTs = ts[2]; continue; }
+      if (ts) {
+        currentTs = ts[2];
+        continue;
+      }
 
       var low = line.toLowerCase();
       var kind = 'other';
@@ -58,7 +61,8 @@
       s.byKind[e.kind] = (s.byKind[e.kind] || 0) + 1;
       if (e.data.rssi !== undefined) {
         var bssid = e.data.bssid || 'desconocido';
-        if (!rssiMap[bssid]) rssiMap[bssid] = { bssid: bssid, samples: [], min: Infinity, max: -Infinity };
+        if (!rssiMap[bssid])
+          rssiMap[bssid] = { bssid: bssid, samples: [], min: Infinity, max: -Infinity };
         rssiMap[bssid].samples.push(e.data.rssi);
         if (e.data.rssi < rssiMap[bssid].min) rssiMap[bssid].min = e.data.rssi;
         if (e.data.rssi > rssiMap[bssid].max) rssiMap[bssid].max = e.data.rssi;
@@ -73,13 +77,23 @@
     }
     Object.keys(rssiMap).forEach(function (b) {
       var a = rssiMap[b];
-      var avg = a.samples.reduce(function (x, y) { return x + y; }, 0) / a.samples.length;
-      s.aps.push({ bssid: a.bssid, avg: Math.round(avg * 10) / 10, min: a.min, max: a.max, samples: a.samples.length });
+      var avg =
+        a.samples.reduce(function (x, y) {
+          return x + y;
+        }, 0) / a.samples.length;
+      s.aps.push({
+        bssid: a.bssid,
+        avg: Math.round(avg * 10) / 10,
+        min: a.min,
+        max: a.max,
+        samples: a.samples.length,
+      });
     });
-    s.aps.sort(function (a, b) { return b.avg - a.avg; });
+    s.aps.sort(function (a, b) {
+      return b.avg - a.avg;
+    });
     return s;
   }
 
   global.IWC = { parseLog: parseLog, summarize: summarize };
-
 })(typeof window !== 'undefined' ? window : this);

@@ -1,19 +1,21 @@
-```markdown
+````markdown
 # 🔌 AI-MCP-SERVER · Substrato Cognitivo Personal
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue)]()
-[![Node](https://img.shields.io/badge/Node-%3E%3D20-green)]()
-[![MCP](https://img.shields.io/badge/Protocol-MCP-purple)]()
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
-[![Visibility](https://img.shields.io/badge/Visibility-Private-red)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue)](<>)
+[![Node](https://img.shields.io/badge/Node-%3E%3D20-green)](<>)
+[![MCP](https://img.shields.io/badge/Protocol-MCP-purple)](<>)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](<>)
+[![Visibility](https://img.shields.io/badge/Visibility-Private-red)](<>)
 
 🔒 Repositorio privado · © 2026 Marco Antonio Rojas Valdovinos
 
 ## 🧠 ¿Qué es `marco.mcp`?
+
 Es un servidor local que expone tu identidad, proyectos, decisiones
 y voz a cualquier IA compatible con **Model Context Protocol**.
 
 ### Flujo de Atribución API
+
 ```text
 ┌──────────────────────────────────────────────────────┐
 │                 TU AGENTE IA                         │
@@ -38,6 +40,7 @@ y voz a cualquier IA compatible con **Model Context Protocol**.
 │ - reconocido legalmente (eIDAS, NOM-151)             │
 └──────────────────────────────────────────────────────┘
 ```
+````
 
 🛠️ Herramientas del Servidor
 
@@ -52,8 +55,10 @@ marco.consultar Consulta el Índice Cero (Safe Creative + Ethereum)
 
 Metáfora de los códigos secretos de Android como llaves maestras del sistema:
 
-· *#*#4636#*#* → Información del teléfono (Telemetría)
-· *#*#8255#*#* → GTalk Monitoring (Sincronización de agentes)
-· *#*#7780#*#* → Factory Reset (Cierre Digno)
+· _#_#4636#_#_ → Información del teléfono (Telemetría)
+· _#_#8255#_#_ → GTalk Monitoring (Sincronización de agentes)
+· _#_#7780#_#_ → Factory Reset (Cierre Digno)
+
+```
 
 ```

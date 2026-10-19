@@ -40,7 +40,13 @@ export function validarFirma(manifiesto, publicKey) {
   if (firma && publicKey) {
     firmaOk = mldsa.verify(publicKey.ml_dsa_87, firma.ml_dsa_87, hashCalculado);
     if (publicKey.ed25519 && firma.ed25519) {
-      firmaOk = firmaOk && ed25519.verify(firma.ed25519, new TextEncoder().encode(hashCalculado), publicKey.ed25519);
+      firmaOk =
+        firmaOk &&
+        ed25519.verify(
+          firma.ed25519,
+          new TextEncoder().encode(hashCalculado),
+          publicKey.ed25519,
+        );
     }
   }
 
@@ -50,9 +56,7 @@ export function validarFirma(manifiesto, publicKey) {
     valida,
     hash_ok: hashOk,
     firma_ok: firmaOk,
-    veredicto: valida
-      ? 'MANIFIESTO C2PA VÁLIDO'
-      : 'MANIFIESTO C2PA INVÁLIDO · HALT',
+    veredicto: valida ? 'MANIFIESTO C2PA VÁLIDO' : 'MANIFIESTO C2PA INVÁLIDO · HALT',
     sellado: SEAL,
   };
 }

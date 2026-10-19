@@ -37,7 +37,10 @@ export function decapsulate(cipherText, secretKey) {
 }
 
 export const meta = {
-  alg: ALG, fips: FIPS, nist_level: NIST_LEVEL,
+  alg: ALG,
+  fips: FIPS,
+  nist_level: NIST_LEVEL,
   uso: 'Balance óptimo · default',
-  sizes: SIZES, seal: SEAL,
+  sizes: SIZES,
+  seal: SEAL,
 };

@@ -1,6 +1,6 @@
 # 🔥 MANIFIESTO VIRAL
 
-> *El texto que se comparte solo.*
+> _El texto que se comparte solo._
 
 ---
 
@@ -167,14 +167,19 @@ Se ilumina con oro.
 
 ---
 
-*Bajo §0 del Repertorio · Capa 0 · Identidad*
-*Comparte. Multiplica. Firma.*
+_Bajo §0 del Repertorio · Capa 0 · Identidad_
+_Comparte. Multiplica. Firma._
+
 ```
 
 ---
 
 ```
+
 ╔══════════════════════════════════════════════════════════════════════════╗
-║   SUB-BLOQUE B · GOBERNANZA Y ESTRUCTURA · 6 ARCHIVOS                    ║
+║ SUB-BLOQUE B · GOBERNANZA Y ESTRUCTURA · 6 ARCHIVOS ║
 ╚══════════════════════════════════════════════════════════════════════════╝
+
+```
+
 ```

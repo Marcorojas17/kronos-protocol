@@ -22,7 +22,7 @@ Calcular la raíz Merkle de la cadena local, firmarla con Ed25519 y publicarla e
 ## API pública
 
 ```js
-import { AnchorEthereum } from "./anchor-v1.js";
+import { AnchorEthereum } from './anchor-v1.js';
 
 const anchor = new AnchorEthereum(core, storage);
 const paquete = await anchor.calcular();

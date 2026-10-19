@@ -57,14 +57,17 @@ export function revocar({ decision_hash, razon, firmante }) {
 }
 
 export function auditar(decision_hash) {
-  const revocaciones = REVOCACIONES.filter((r) => r.decision_original === decision_hash);
+  const revocaciones = REVOCACIONES.filter(
+    (r) => r.decision_original === decision_hash,
+  );
   return {
     decision_hash,
     revocada: revocaciones.length > 0,
     revocaciones,
-    veredicto: revocaciones.length > 0
-      ? `REVOCADA · ${revocaciones.length} capas`
-      : 'NO REVOCADA',
+    veredicto:
+      revocaciones.length > 0
+        ? `REVOCADA · ${revocaciones.length} capas`
+        : 'NO REVOCADA',
     sellado: SEAL,
   };
 }

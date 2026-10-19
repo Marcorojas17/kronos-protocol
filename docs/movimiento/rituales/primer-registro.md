@@ -18,4 +18,5 @@ La primera obra es la **piedra fundacional** del legado del iniciado.
 Todo lo posterior se construye sobre ella.
 
 ---
+
 `◯_● · 51/49/100 · ritual-primer-registro`

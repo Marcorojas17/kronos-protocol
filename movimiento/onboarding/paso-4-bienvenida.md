@@ -28,4 +28,5 @@
 **[Paso 5 · Primera Obra →](paso-5-primera-obra.md)**
 
 ---
+
 `◯_● · 51/49/100 · onboarding-4`

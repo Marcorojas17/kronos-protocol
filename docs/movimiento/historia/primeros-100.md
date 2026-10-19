@@ -13,12 +13,12 @@
 
 ## 🜃 Lista
 
-| #   | Nombre                            | Fecha       |
-|-----|-----------------------------------|-------------|
-| 001 | Marco Antonio Rojas Valdovinos    | 2026-01-01  |
-| 002 | — en asignación —                 | —           |
-| ... | ...                               | ...         |
-| 100 | — en asignación —                 | —           |
+| #   | Nombre                         | Fecha      |
+| --- | ------------------------------ | ---------- |
+| 001 | Marco Antonio Rojas Valdovinos | 2026-01-01 |
+| 002 | — en asignación —              | —          |
+| ... | ...                            | ...        |
+| 100 | — en asignación —              | —          |
 
 ## 🜄 Privilegios
 

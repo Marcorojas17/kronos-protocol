@@ -5,7 +5,7 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(4px);
   display: none;
   align-items: center;
@@ -13,7 +13,9 @@
   z-index: 2000;
 }
 
-.modal-backdrop.open { display: flex; }
+.modal-backdrop.open {
+  display: flex;
+}
 
 .modal {
   background: var(--bg-1);
@@ -43,11 +45,14 @@
 
 .modal-close {
   position: absolute;
-  top: 12px; right: 12px;
+  top: 12px;
+  right: 12px;
   background: none;
   border: none;
   color: var(--fg-2);
   font-size: 20px;
   cursor: pointer;
 }
-.modal-close:hover { color: var(--red); }
+.modal-close:hover {
+  color: var(--red);
+}

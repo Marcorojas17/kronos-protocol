@@ -2,8 +2,8 @@
 
 ## 🜂 Volumen I · 2026
 
-> *"En el año 2026, en Toluca, un hombre firmó por primera vez
-> en nombre de todos los que vendrían después."*
+> _"En el año 2026, en Toluca, un hombre firmó por primera vez
+> en nombre de todos los que vendrían después."_
 
 ### Capítulos
 
@@ -14,4 +14,5 @@
 5. La expansión
 
 ---
+
 `◯_● · 51/49/100 · historia-memorias`

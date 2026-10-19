@@ -9,16 +9,16 @@
 
 ## 🜂 Tabla Comparativa
 
-| País/Región | Firma electrónica | IA puede firmar | Protección datos | Aplica a ARKHÉ |
-|-------------|-------------------|-----------------|------------------|----------------|
-| **México** | ✅ NOM-151 | ❌ No | LFPDPPP | ✅ Ancla primaria |
-| **UE** | ✅ eIDAS QES | ❌ No | GDPR | ✅ Ancla secundaria |
-| **EEUU** | ⚠️ Varía | ❌ No | CCPA | ⚠️ Parcial |
-| **Suiza** | ✅ ZertES | ❌ No | nFADP | ⚠️ Futuro |
-| **Singapur** | ✅ ETA | ⚠️ Parcial | PDPA | ⚠️ Futuro |
-| **Estonia** | ✅ eID | ⚠️ Parcial | GDPR | ⚠️ Futuro |
-| **Chile** | ✅ Ley 19.799 | ❌ No | Ley 19.628 | ⚠️ Futuro |
-| **Argentina** | ✅ Ley 25.506 | ❌ No | Ley 25.326 | ⚠️ Futuro |
+| País/Región   | Firma electrónica | IA puede firmar | Protección datos | Aplica a ARKHÉ      |
+| ------------- | ----------------- | --------------- | ---------------- | ------------------- |
+| **México**    | ✅ NOM-151        | ❌ No           | LFPDPPP          | ✅ Ancla primaria   |
+| **UE**        | ✅ eIDAS QES      | ❌ No           | GDPR             | ✅ Ancla secundaria |
+| **EEUU**      | ⚠️ Varía          | ❌ No           | CCPA             | ⚠️ Parcial          |
+| **Suiza**     | ✅ ZertES         | ❌ No           | nFADP            | ⚠️ Futuro           |
+| **Singapur**  | ✅ ETA            | ⚠️ Parcial      | PDPA             | ⚠️ Futuro           |
+| **Estonia**   | ✅ eID            | ⚠️ Parcial      | GDPR             | ⚠️ Futuro           |
+| **Chile**     | ✅ Ley 19.799     | ❌ No           | Ley 19.628       | ⚠️ Futuro           |
+| **Argentina** | ✅ Ley 25.506     | ❌ No           | Ley 25.326       | ⚠️ Futuro           |
 
 ## 🜃 Criterios de Selección
 

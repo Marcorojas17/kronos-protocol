@@ -17,15 +17,16 @@
 
 # 🎯 FUNNEL DE CONVERSIÓN
 
-### *Del visitante al testigo*
+### _Del visitante al testigo_
 
-### *"El funnel no empuja. Guía."*
+### _"El funnel no empuja. Guía."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  F U N N E L  ·  ◯_●                                 ║
@@ -42,6 +43,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -51,27 +53,35 @@
 ## 🜂 Los 8 pasos del funnel
 
 ### Paso 1 · Visitante (100%)
+
 Llega a la web pública. Sin registro. Sin compromiso.
 
 ### Paso 2 · Lectura del pacto (25%)
+
 Lee `KINTSUGI.md` o `MANIFESTO.md`. Entiende el 51/49.
 
 ### Paso 3 · Registro (20%)
+
 Solicita plaza en `solicitar_plaza.html`. Firma con nombre real.
 
 ### Paso 4 · Cuarentena (80%)
+
 Espera 72h. El enjambre observa. El candidato reflexiona.
 
 ### Paso 5 · Aval (87%)
+
 2 fundadores activos avalan. Se firma el aval.
 
 ### Paso 6 · Juramento (86%)
+
 Firma el juramento KINTSUGI. Ceremonia oficial.
 
 ### Paso 7 · Primera obra (83%)
+
 Registra su primera obra. Recibe insignia `◉ iniciado`.
 
 ### Paso 8 · Testigo activo (80%)
+
 Continúa firmando. Nivel 1+ consolidado.
 
 ## 🜃 Conversión total

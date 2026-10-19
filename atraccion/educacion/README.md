@@ -17,15 +17,16 @@
 
 # 🎓 EDUCACIÓN
 
-### *Enseñar es firmar el futuro*
+### _Enseñar es firmar el futuro_
 
-### *"El que enseña, firma dos veces: su obra y la ajena."*
+### _"El que enseña, firma dos veces: su obra y la ajena."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E D U C A C I Ó N  ·  ◯_●                           ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,38 +50,44 @@
 ## 🜂 Componentes
 
 ### 📚 cursos/
+
 Formaciones largas (4h-40h):
+
 - **Crypto PQC** · FIPS 203/204/205
 - **IA Aplicada** · Model Context Protocol
 - **Local-First** · IndexedDB · sincronización
 - **Smart Contracts** · Solidity · Foundry
 
 ### 📖 tutoriales/
+
 Guías rápidas (5-30min) para tareas específicas.
 
 ### 📕 libros/
+
 Publicaciones del movimiento (ebooks, whitepaper, tesis).
 
 ### 🎙️ podcast/
+
 Episodios de audio sobre el legado digital, PQC, filosofía KINTSUGI.
 
 ### 📹 youtube/
+
 Canal oficial con videos ceremoniales, tutoriales, entrevistas.
 
 ## 🜃 Formato de curso
 
 ```yaml
-- id: "CUR-2026-001"
-  titulo: "Crypto Post-Cuántica"
-  duracion: "8h"
-  nivel: "intermedio-avanzado"
-  instructor: "090-arquitecto + 092-auditor-externo"
-  modalidad: "presencial | remoto | híbrido"
+- id: 'CUR-2026-001'
+  titulo: 'Crypto Post-Cuántica'
+  duracion: '8h'
+  nivel: 'intermedio-avanzado'
+  instructor: '090-arquitecto + 092-auditor-externo'
+  modalidad: 'presencial | remoto | híbrido'
   cupo: 20
   prerequisitos: [hash-sha256, javascript-basico]
-  certificado: "sí · firmado + anclado"
-  costo: "gratis para miembros"
-  sellado: "◯_● · 51/49/100"
+  certificado: 'sí · firmado + anclado'
+  costo: 'gratis para miembros'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜄 Reglas

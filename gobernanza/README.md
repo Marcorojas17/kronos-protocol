@@ -36,7 +36,7 @@
 [ ✓✓ ] GOBERNANZA OPERATIVA · 4/4 módulos · ◯_● · 51/49/100
 ```
 
-> *"La gobernanza no se improvisa. Se firma."*
+> _"La gobernanza no se improvisa. Se firma."_
 
 ## 🜂 Arquitectura de Gobernanza
 
@@ -76,12 +76,12 @@
 
 ## 🜃 Los 4 Módulos
 
-| Módulo                     | Función                                          |
-|----------------------------|--------------------------------------------------|
-| `ejecucion-decisiones/`    | Ejecuta acuerdos con doble firma humano + IA     |
-| `propuestas-votacion/`     | Recibe propuestas, distribuye votos              |
-| `quorum-mayorias/`         | Valida quórum 4/5 + veto humano                  |
-| `revocacion-auditoria/`    | Revoca decisiones y audita históricos            |
+| Módulo                  | Función                                      |
+| ----------------------- | -------------------------------------------- |
+| `ejecucion-decisiones/` | Ejecuta acuerdos con doble firma humano + IA |
+| `propuestas-votacion/`  | Recibe propuestas, distribuye votos          |
+| `quorum-mayorias/`      | Valida quórum 4/5 + veto humano              |
+| `revocacion-auditoria/` | Revoca decisiones y audita históricos        |
 
 ## 🜄 Ejemplo
 

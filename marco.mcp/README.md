@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!--
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  ▓▒░ MARCO.MCP · SUBSTRATO COGNITIVO PERSONAL · ARKHÉ ZERO ░▒▓       ║
@@ -9,15 +9,15 @@
 
 # 🔌 marco.mcp · Substrato Cognitivo Personal
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue)]()
-[![Node](https://img.shields.io/badge/Node-%3E%3D20-green)]()
-[![MCP](https://img.shields.io/badge/Protocol-MCP-purple)]()
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
-[![Visibility](https://img.shields.io/badge/Visibility-Private-red)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue)](<>)
+[![Node](https://img.shields.io/badge/Node-%3E%3D20-green)](<>)
+[![MCP](https://img.shields.io/badge/Protocol-MCP-purple)](<>)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](<>)
+[![Visibility](https://img.shields.io/badge/Visibility-Private-red)](<>)
 
 🔒 Repositorio privado · © 2026 Marco Antonio Rojas Valdovinos
 
-> *"La IA es brillante pero amnésica. Este servidor resuelve eso."*
+> _"La IA es brillante pero amnésica. Este servidor resuelve eso."_
 
 ## 🧠 ¿Qué es `marco.mcp`?
 
@@ -34,6 +34,7 @@ cp .env.example .env
 npm run build
 node dist/index.js
 ```
+````
 
 🛠️ Herramientas expuestas
 
@@ -56,10 +57,10 @@ marco://legado
 
 🖥️ Adaptadores
 
-· claude.js     · Anthropic
-· gemini.js     · Google DeepMind
-· cursor.js     · Cursor IDE
-· copilot.js   · GitHub Copilot
+· claude.js · Anthropic
+· gemini.js · Google DeepMind
+· cursor.js · Cursor IDE
+· copilot.js · GitHub Copilot
 
 📚 Documentación
 

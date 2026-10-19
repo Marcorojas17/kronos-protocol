@@ -7,9 +7,9 @@
 
 # 📖 FILOSOFÍA · CONTENIDO COMPLETO
 
-### *El corpus filosófico del legado*
+### _El corpus filosófico del legado_
 
-### *"La filosofía no se predica. Se firma."*
+### _"La filosofía no se predica. Se firma."_
 
 </div>
 

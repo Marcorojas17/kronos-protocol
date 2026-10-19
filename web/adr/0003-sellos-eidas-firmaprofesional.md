@@ -13,6 +13,7 @@ Se necesita TSA (Time Stamping Authority) cualificada para sellar documentos con
 Usar **Firmaprofesional QTSA** bajo el marco **eIDAS**.
 
 Razones:
+
 - QTSA acreditada en la EU Trust List
 - RFC 3161 estándar
 - Reconocimiento en los 27 países UE
@@ -21,11 +22,13 @@ Razones:
 ## 🜄 Consecuencias
 
 **Positivas**:
+
 - Sellos con validez legal internacional
 - Reconocimiento ante tribunales UE
 - Cumplimiento de estándar europeo
 
 **Negativas**:
+
 - Costo por sello
 - Dependencia de proveedor UE
 - Requiere conectividad

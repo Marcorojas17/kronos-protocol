@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Engine — Motor de agentes
 
 **Soberanía computacional: el motor corre en tu nodo.**
@@ -14,14 +14,14 @@ El motor corre local, con fallback remoto solo si se autoriza.
 
 ## Componentes
 
-| Componente | Propósito |
-|---|---|
-| **runtime/** | Ciclo de vida, scheduler, executor, sandbox |
-| **inference/** | LLMs locales + fallbacks remotos |
-| **memory/** | Episódica, semántica, procedural, vectorial |
-| **reasoning/** | Planner, CoT, tools, reflexión, debate |
-| **learning/** | RLHF, fine-tuning, distill, experience |
-| **orchestrator/** | MADRE (multi-agente) |
+| Componente        | Propósito                                   |
+| ----------------- | ------------------------------------------- |
+| **runtime/**      | Ciclo de vida, scheduler, executor, sandbox |
+| **inference/**    | LLMs locales + fallbacks remotos            |
+| **memory/**       | Episódica, semántica, procedural, vectorial |
+| **reasoning/**    | Planner, CoT, tools, reflexión, debate      |
+| **learning/**     | RLHF, fine-tuning, distill, experience      |
+| **orchestrator/** | MADRE (multi-agente)                        |
 
 ---
 
@@ -29,20 +29,20 @@ El motor corre local, con fallback remoto solo si se autoriza.
 
 ### Backends locales
 
-| Backend | Requisito | Cuándo usar |
-|---|---|---|
-| **llama.cpp** | Ninguno | CPU, Termux, móvil |
-| **Ollama** | Ollama instalado | Desktop, fácil setup |
-| **MLX** | Apple Silicon | Mac optimizado |
-| **vLLM** | GPU NVIDIA | Producción alta perf |
+| Backend       | Requisito        | Cuándo usar          |
+| ------------- | ---------------- | -------------------- |
+| **llama.cpp** | Ninguno          | CPU, Termux, móvil   |
+| **Ollama**    | Ollama instalado | Desktop, fácil setup |
+| **MLX**       | Apple Silicon    | Mac optimizado       |
+| **vLLM**      | GPU NVIDIA       | Producción alta perf |
 
 ### Fallbacks remotos
 
-| Backend | Requisito | Cuándo usar |
-|---|---|---|
-| **OpenAI** | API key + autorización | Tareas complejas |
-| **Anthropic** | API key + autorización | Razonamiento |
-| **Gemini** | API key + autorización | Multimodal |
+| Backend       | Requisito              | Cuándo usar      |
+| ------------- | ---------------------- | ---------------- |
+| **OpenAI**    | API key + autorización | Tareas complejas |
+| **Anthropic** | API key + autorización | Razonamiento     |
+| **Gemini**    | API key + autorización | Multimodal       |
 
 **NUNCA** se activan sin autorización explícita.
 
@@ -61,6 +61,7 @@ router.register(OllamaBackend(...), priority=2)
 
 response = router.generate("Hola")
 ```
+````
 
 ---
 
@@ -204,5 +205,7 @@ Fase Mes Componentes
 
 Regla: el engine es opcional. Atribución funciona sin él.
 Se usa cuando el cliente quiere soberanía computacional.
+
+```
 
 ```

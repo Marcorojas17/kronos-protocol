@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>🌍 Artículo 3.2 · Capa Transfronteriza · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="stylesheet" href="../arkhe-style.css">
-</head>
-<body>
-<a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
-<h1 id="articulo-32-capa-transfronteriza">🌍 Artículo 3.2 · Capa Transfronteriza</h1>
-<pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iii-lgu]
+  <head>
+    <meta charset="UTF-8" />
+    <title>🌍 Artículo 3.2 · Capa Transfronteriza · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-32-capa-transfronteriza">
+      🌍 Artículo 3.2 · Capa Transfronteriza
+    </h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iii-lgu]
 └─$ ./lgu --capa=transfronteriza --verify
 
 [ OK ] México ↔ UE · reconocimiento mutuo
@@ -18,10 +20,13 @@
 [ OK ] Protocolo de arbitraje · quórum 4/5
 [ ✓✓ ] CAPA TRANSFRONTERIZA · ◯_● · 51/49/100
 </code></pre>
-<h2 id="concepto">🜂 Concepto</h2>
-<p>Cuando una firma cruza fronteras, <strong>¿cuál jurisdicción aplica?</strong> La LGU define un protocolo claro.</p>
-<h2 id="protocolo-transfronterizo">🜃 Protocolo Transfronterizo</h2>
-<pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      Cuando una firma cruza fronteras, <strong>¿cuál jurisdicción aplica?</strong> La
+      LGU define un protocolo claro.
+    </p>
+    <h2 id="protocolo-transfronterizo">🜃 Protocolo Transfronterizo</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
 ║                    RESOLUCIÓN TRANSFRONTERIZA                            ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
@@ -40,45 +45,45 @@
 ║                                                                          ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 </code></pre>
-<h2 id="reconocimientos">🜄 Reconocimientos</h2>
-<table>
-<thead>
-<tr>
-<th>Acuerdo</th>
-<th>Cobertura</th>
-<th>Estado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>eIDAS (UE)</td>
-<td>27 países</td>
-<td>✅ Activo</td>
-</tr>
-<tr>
-<td>NOM-151 (MX)</td>
-<td>México</td>
-<td>✅ Activo</td>
-</tr>
-<tr>
-<td>Tratado de La Haya</td>
-<td>90+ países</td>
-<td>⚠️ Aplicable</td>
-</tr>
-<tr>
-<td>Convenio de Berna</td>
-<td>180+ países</td>
-<td>⚠️ Copyright</td>
-</tr>
-<tr>
-<td>WIPO</td>
-<td>Global</td>
-<td>✅ Registro</td>
-</tr>
-</tbody>
-</table>
-<h2 id="implementacion">🜁 Implementación</h2>
-<pre><code class="language-javascript">// Resolución de jurisdicción para firma
+    <h2 id="reconocimientos">🜄 Reconocimientos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Acuerdo</th>
+          <th>Cobertura</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>eIDAS (UE)</td>
+          <td>27 países</td>
+          <td>✅ Activo</td>
+        </tr>
+        <tr>
+          <td>NOM-151 (MX)</td>
+          <td>México</td>
+          <td>✅ Activo</td>
+        </tr>
+        <tr>
+          <td>Tratado de La Haya</td>
+          <td>90+ países</td>
+          <td>⚠️ Aplicable</td>
+        </tr>
+        <tr>
+          <td>Convenio de Berna</td>
+          <td>180+ países</td>
+          <td>⚠️ Copyright</td>
+        </tr>
+        <tr>
+          <td>WIPO</td>
+          <td>Global</td>
+          <td>✅ Registro</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="implementacion">🜁 Implementación</h2>
+    <pre><code class="language-javascript">// Resolución de jurisdicción para firma
 function resolverJurisdiccion({ firmante, receptor }) {
   const jFirmante = jurisdiccionPrimaria(firmante);
   const jReceptor = jurisdiccionPrimaria(receptor);
@@ -96,8 +101,8 @@ function resolverJurisdiccion({ firmante, receptor }) {
   };
 }
 </code></pre>
-<hr />
-<p><code>◯_● · 51/49/100 · LGU · 3.2 · Transfronteriza</code></p>
-<div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
-</body>
+    <hr />
+    <p><code>◯_● · 51/49/100 · LGU · 3.2 · Transfronteriza</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
 </html>

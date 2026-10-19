@@ -10,9 +10,24 @@
 export const SEAL = '◯_● · 51/49/100';
 
 export const TSAS = [
-  { id: 'firmaprofesional', endpoint: 'http://timestamp.firmaprofesional.com', region: 'UE', status: 'activo' },
-  { id: 'digicert',         endpoint: 'http://timestamp.digicert.com',         region: 'US', status: 'backup' },
-  { id: 'sectigo',          endpoint: 'http://timestamp.sectigo.com',          region: 'US', status: 'backup' },
+  {
+    id: 'firmaprofesional',
+    endpoint: 'http://timestamp.firmaprofesional.com',
+    region: 'UE',
+    status: 'activo',
+  },
+  {
+    id: 'digicert',
+    endpoint: 'http://timestamp.digicert.com',
+    region: 'US',
+    status: 'backup',
+  },
+  {
+    id: 'sectigo',
+    endpoint: 'http://timestamp.sectigo.com',
+    region: 'US',
+    status: 'backup',
+  },
 ];
 
 /**

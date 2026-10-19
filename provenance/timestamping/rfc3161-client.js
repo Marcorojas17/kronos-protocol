@@ -25,9 +25,8 @@ export const SEAL = '◯_● · 51/49/100';
  * @returns {Promise<object>}
  */
 export async function sellarTiempo({ contenido, hash, manifiesto }) {
-  const hashFinal = hash
-    || (contenido && sha3_512(contenido))
-    || (manifiesto && manifiesto.hash);
+  const hashFinal =
+    hash || (contenido && sha3_512(contenido)) || (manifiesto && manifiesto.hash);
 
   if (!hashFinal) throw new Error('[ XX ] Se requiere contenido, hash o manifiesto');
 

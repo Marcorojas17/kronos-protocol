@@ -17,15 +17,16 @@
 
 # 🎥 VIDEOS DE TESTIMONIOS
 
-### *La voz firmada*
+### _La voz firmada_
 
-### *"Un video sin sello es anécdota. Con sello, es testimonio."*
+### _"Un video sin sello es anécdota. Con sello, es testimonio."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  V I D E O S  ·  ◯_●                                 ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -66,13 +68,13 @@
 ## 🜄 Cómo aportar
 
 ```yaml
-- id: "VID-TEST-YYYY-XXX"
-  autor: "Nombre · Fundador #NNN"
-  duracion: "03:00"
-  formato: "MP4 · 1920×1080"
-  hash_sha3_512: "..."
-  anclaje_ethereum: "0x..."
-  sello: "◯_● · 51/49/100"
+- id: 'VID-TEST-YYYY-XXX'
+  autor: 'Nombre · Fundador #NNN'
+  duracion: '03:00'
+  formato: 'MP4 · 1920×1080'
+  hash_sha3_512: '...'
+  anclaje_ethereum: '0x...'
+  sello: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

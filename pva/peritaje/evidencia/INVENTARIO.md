@@ -10,6 +10,6 @@
 - peritaje/ este paquete
 
 Total archivos: $(find . -type f | wc -l)
-Total líneas código: $(find . -name "*.py" -o -name "*.html" | xargs wc -l | tail -1)
+Total líneas código: $(find . -name "_.py" -o -name "_.html" | xargs wc -l | tail -1)
 
 Folio evidencia: EVID-KRONOS-2025-001

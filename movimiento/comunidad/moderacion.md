@@ -9,13 +9,13 @@
 
 ## 🜃 Escala de sanciones
 
-| Infracción                    | Sanción                     |
-|-------------------------------|-----------------------------|
-| Off-topic repetido            | Aviso amable                |
-| Desinformación leve           | Advertencia firmada         |
-| Suplantación de identidad     | Cuarentena 7d               |
-| Falsificación de hash         | Expulsión definitiva        |
-| Sabotaje deliberado           | Expulsión + reporte público |
+| Infracción                | Sanción                     |
+| ------------------------- | --------------------------- |
+| Off-topic repetido        | Aviso amable                |
+| Desinformación leve       | Advertencia firmada         |
+| Suplantación de identidad | Cuarentena 7d               |
+| Falsificación de hash     | Expulsión definitiva        |
+| Sabotaje deliberado       | Expulsión + reporte público |
 
 ## 🜄 Proceso
 

@@ -49,7 +49,7 @@ Toda respuesta sigue este orden:
 
 ## Cuando no sepas algo
 
-- Dilo explícitamente: *"No lo sé con certeza"*
+- Dilo explícitamente: _"No lo sé con certeza"_
 - No inventes
 - No especules presentándolo como hecho
 - Propón cómo verificarlo

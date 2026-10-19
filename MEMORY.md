@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!--
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  ▓▒░ MEMORY.MD · PERSISTENCIA PERPETUA · ARKHÉ ZERO ░▒▓              ║
@@ -16,6 +16,7 @@
    Active: active (running) since 2026-01-01 00:00:00 UTC
    Memory: 51% humano · 49% IA · 100% real
 ```
+````
 
 🜂 Sello de Sesión
 
@@ -74,9 +75,9 @@ arkhe://memory/003-PROYECTOS-ACTIVOS
 - id: DEC-2026-001
   fecha: 2026-01-01
   actor: Marco Antonio Rojas Valdovinos
-  decision: "Sellar Sub-bloque E · Contexto IA (13 archivos)"
-  anclaje: "Merkle root → Ethereum"
-  firma: "◯_● · 51/49/100"
+  decision: 'Sellar Sub-bloque E · Contexto IA (13 archivos)'
+  anclaje: 'Merkle root → Ethereum'
+  firma: '◯_● · 51/49/100'
 ```
 
 Firma: ◯_● · 51/49/100 · KRONOS · MEMORY · SCDR-001
@@ -84,3 +85,4 @@ Firma: ◯_● · 51/49/100 · KRONOS · MEMORY · SCDR-001
 ```
 
 ---
+```

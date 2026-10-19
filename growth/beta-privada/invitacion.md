@@ -10,15 +10,16 @@
 
 # 🎟️ BETA PRIVADA · INVITACIÓN
 
-### *Acceso anticipado a nuevas funcionalidades*
+### _Acceso anticipado a nuevas funcionalidades_
 
-### *"La beta no se pide. Se gana."*
+### _"La beta no se pide. Se gana."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  B E T A  ·  ◯_●                                     ║
@@ -31,6 +32,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -61,15 +63,15 @@
 ## 🜄 Formato de invitación
 
 ```yaml
-- id: "BETA-2026-001"
-  invitado: "Miembro · Fundador #NNN"
+- id: 'BETA-2026-001'
+  invitado: 'Miembro · Fundador #NNN'
   nivel: 3
   referidos: 12
-  emitida: "2026-XX-XXT00:00:00Z"
-  valida_hasta: "2026-XX-XXT00:00:00Z"
-  nda_hash: "sha3-512:..."
-  insignia: "🔒 beta"
-  sellado: "◯_● · 51/49/100"
+  emitida: '2026-XX-XXT00:00:00Z'
+  valida_hasta: '2026-XX-XXT00:00:00Z'
+  nda_hash: 'sha3-512:...'
+  insignia: '🔒 beta'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

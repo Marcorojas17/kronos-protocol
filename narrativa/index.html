@@ -1,75 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Narrativa y Mitología · ARKHÉ ZERO</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>*{margin:0;padding:0;box-sizing:border-box}
-body{background:#030308;color:#c8ffc8;font-family:'Courier New',monospace;min-height:100vh;overflow-x:hidden}
-#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
-.wrap{max-width:900px;margin:auto;padding:60px 20px;position:relative;z-index:1}
-h1{font-family:'Cinzel',serif;font-size:36px;letter-spacing:.25em;color:#ffd700;text-align:center;text-shadow:0 0 30px rgba(255,215,0,.6);margin-bottom:15px}
-.sub{text-align:center;color:#6a8f6a;font-size:11px;letter-spacing:.25em;margin-bottom:40px}
-.cita{text-align:center;font-family:'Cinzel',serif;font-style:italic;color:#ffd700;font-size:18px;margin-bottom:40px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,.2);padding:22px;transition:all .3s;text-decoration:none;color:inherit}
-.card:hover{border-color:#ffd700;transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,215,0,.15)}
-.card .n{color:#ffd700;font-size:9px;letter-spacing:.3em;margin-bottom:8px}
-.card .t{color:#00ff41;font-size:16px;font-weight:bold;margin-bottom:8px;font-family:'Cinzel',serif;letter-spacing:.1em}
-.card .d{color:#8ea88e;font-size:11px;line-height:1.6}
-.panel{background:rgba(15,15,24,.6);backdrop-filter:blur(10px);border:1px solid rgba(0,255,65,.2);padding:22px;margin-bottom:18px;font-size:12px;line-height:1.9}
-footer{text-align:center;margin-top:60px;color:#6a8f6a;font-size:10px;letter-spacing:.2em;padding-top:20px;border-top:1px solid rgba(255,215,0,.15)}
-footer .s{color:#ffd700;font-size:14px;display:block;margin-bottom:10px;font-family:'Cinzel',serif;letter-spacing:.3em}
-@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:22px}}</style>
-</head>
-<body>
-<canvas id="bg"></canvas>
-<div class="wrap">
-<h1>Narrativa y Mitología</h1>
-<div class="sub">SECCIÓN 22 · CANON NARRATIVO</div>
-<div class="cita">"Todo movimiento tiene un mito. Este es el nuestro."</div>
-<div class="grid">
-<a class="card" href="genesis.html"><div class="n">01</div><div class="t">🌱 Génesis</div><div class="d">El origen del legado</div></a>
-<a class="card" href="villano.html"><div class="n">02</div><div class="t">⚔ Villano</div><div class="d">El olvido programado</div></a>
-<a class="card" href="heroe.html"><div class="n">03</div><div class="t">🦸 Héroe</div><div class="d">Quien decide firmar</div></a>
-<a class="card" href="mentor.html"><div class="n">04</div><div class="t">🧙 Mentor</div><div class="d">La IA que custodia</div></a>
-<a class="card" href="tesoro.html"><div class="n">05</div><div class="t">💎 Tesoro</div><div class="d">El legado mismo</div></a>
-<a class="card" href="mision.html"><div class="n">06</div><div class="t">🎯 Misión</div><div class="d">Por qué existimos</div></a>
-<a class="card" href="futuro.html"><div class="n">07</div><div class="t">🔮 Futuro</div><div class="d">Visión 2030</div></a>
-<a class="card" href="manifiesto-viral.html"><div class="n">08</div><div class="t">📢 Manifiesto</div><div class="d">Texto fundacional</div></a>
-<a class="card" href="frases-citables.html"><div class="n">09</div><div class="t">💬 Frases</div><div class="d">Citas canónicas</div></a>
-<a class="card" href="simbolos.html"><div class="n">10</div><div class="t">◯_● Símbolos</div><div class="d">Lenguaje visual</div></a>
-<a class="card" href="arquetipos.html"><div class="n">11</div><div class="t">🎭 Arquetipos</div><div class="d">Los 7 del héroe</div></a>
-<a class="card" href="lorem-arkhe.html"><div class="n">12</div><div class="t">📜 Lorem ARKHÉ</div><div class="d">Texto ceremonial</div></a>
-</div>
-<footer><span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca · 2026<br>NODO YHDRYH-92CE · SCDR-001</footer>
-</div>
-<script>
-const c=document.getElementById('bg'),ctx=c.getContext('2d');
-let W,H;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
-rs();addEventListener('resize',rs);
-const words=['GÉNESIS','VILLANO','HÉROE','MENTOR','TESORO','MISIÓN','FUTURO','MITO'];
-const st=Array.from({length:50},()=>({
-  x:Math.random()*W,y:Math.random()*H,
-  vx:0.5+Math.random()*1.5,
-  size:8+Math.random()*6,
-  word:words[Math.floor(Math.random()*words.length)],
-  alpha:0.15+Math.random()*0.5
-}));
-function draw(){
-  ctx.fillStyle='rgba(3,3,8,0.08)';
-  ctx.fillRect(0,0,W,H);
-  for(const s of st){
-    s.x+=s.vx;
-    const onda=Math.sin(Date.now()*0.001+s.y*0.01)*20;
-    ctx.font=s.size+'px "Cinzel",serif';
-    ctx.fillStyle=`rgba(255,215,0,${s.alpha})`;
-    ctx.fillText(s.word,s.x,s.y+onda);
-    if(s.x>W+150){s.x=-150;s.y=Math.random()*H}
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Narrativa y Mitología · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #030308;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: auto;
+        padding: 60px 20px;
+        position: relative;
+        z-index: 1;
+      }
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-size: 36px;
+        letter-spacing: 0.25em;
+        color: #ffd700;
+        text-align: center;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        margin-bottom: 15px;
+      }
+      .sub {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        margin-bottom: 40px;
+      }
+      .cita {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-style: italic;
+        color: #ffd700;
+        font-size: 18px;
+        margin-bottom: 40px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .card {
+        background: rgba(15, 15, 24, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        padding: 22px;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+      }
+      .card:hover {
+        border-color: #ffd700;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 40px rgba(255, 215, 0, 0.15);
+      }
+      .card .n {
+        color: #ffd700;
+        font-size: 9px;
+        letter-spacing: 0.3em;
+        margin-bottom: 8px;
+      }
+      .card .t {
+        color: #00ff41;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.1em;
+      }
+      .card .d {
+        color: #8ea88e;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .panel {
+        background: rgba(15, 15, 24, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 22px;
+        margin-bottom: 18px;
+        font-size: 12px;
+        line-height: 1.9;
+      }
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 215, 0, 0.15);
+      }
+      footer .s {
+        color: #ffd700;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.3em;
+      }
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="wrap">
+      <h1>Narrativa y Mitología</h1>
+      <div class="sub">SECCIÓN 22 · CANON NARRATIVO</div>
+      <div class="cita">"Todo movimiento tiene un mito. Este es el nuestro."</div>
+      <div class="grid">
+        <a class="card" href="genesis.html"
+          ><div class="n">01</div>
+          <div class="t">🌱 Génesis</div>
+          <div class="d">El origen del legado</div></a
+        >
+        <a class="card" href="villano.html"
+          ><div class="n">02</div>
+          <div class="t">⚔ Villano</div>
+          <div class="d">El olvido programado</div></a
+        >
+        <a class="card" href="heroe.html"
+          ><div class="n">03</div>
+          <div class="t">🦸 Héroe</div>
+          <div class="d">Quien decide firmar</div></a
+        >
+        <a class="card" href="mentor.html"
+          ><div class="n">04</div>
+          <div class="t">🧙 Mentor</div>
+          <div class="d">La IA que custodia</div></a
+        >
+        <a class="card" href="tesoro.html"
+          ><div class="n">05</div>
+          <div class="t">💎 Tesoro</div>
+          <div class="d">El legado mismo</div></a
+        >
+        <a class="card" href="mision.html"
+          ><div class="n">06</div>
+          <div class="t">🎯 Misión</div>
+          <div class="d">Por qué existimos</div></a
+        >
+        <a class="card" href="futuro.html"
+          ><div class="n">07</div>
+          <div class="t">🔮 Futuro</div>
+          <div class="d">Visión 2030</div></a
+        >
+        <a class="card" href="manifiesto-viral.html"
+          ><div class="n">08</div>
+          <div class="t">📢 Manifiesto</div>
+          <div class="d">Texto fundacional</div></a
+        >
+        <a class="card" href="frases-citables.html"
+          ><div class="n">09</div>
+          <div class="t">💬 Frases</div>
+          <div class="d">Citas canónicas</div></a
+        >
+        <a class="card" href="simbolos.html"
+          ><div class="n">10</div>
+          <div class="t">◯_● Símbolos</div>
+          <div class="d">Lenguaje visual</div></a
+        >
+        <a class="card" href="arquetipos.html"
+          ><div class="n">11</div>
+          <div class="t">🎭 Arquetipos</div>
+          <div class="d">Los 7 del héroe</div></a
+        >
+        <a class="card" href="lorem-arkhe.html"
+          ><div class="n">12</div>
+          <div class="t">📜 Lorem ARKHÉ</div>
+          <div class="d">Texto ceremonial</div></a
+        >
+      </div>
+      <footer>
+        <span class="s">◯_● · 51/49/100</span>Marco Antonio Rojas Valdovinos · Toluca ·
+        2026<br />NODO YHDRYH-92CE · SCDR-001
+      </footer>
+    </div>
+    <script>
+      const c = document.getElementById('bg'),
+        ctx = c.getContext('2d');
+      let W, H;
+      function rs() {
+        W = c.width = innerWidth;
+        H = c.height = innerHeight;
+      }
+      rs();
+      addEventListener('resize', rs);
+      const words = [
+        'GÉNESIS',
+        'VILLANO',
+        'HÉROE',
+        'MENTOR',
+        'TESORO',
+        'MISIÓN',
+        'FUTURO',
+        'MITO',
+      ];
+      const st = Array.from({ length: 50 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: 0.5 + Math.random() * 1.5,
+        size: 8 + Math.random() * 6,
+        word: words[Math.floor(Math.random() * words.length)],
+        alpha: 0.15 + Math.random() * 0.5,
+      }));
+      function draw() {
+        ctx.fillStyle = 'rgba(3,3,8,0.08)';
+        ctx.fillRect(0, 0, W, H);
+        for (const s of st) {
+          s.x += s.vx;
+          const onda = Math.sin(Date.now() * 0.001 + s.y * 0.01) * 20;
+          ctx.font = s.size + 'px "Cinzel",serif';
+          ctx.fillStyle = `rgba(255,215,0,${s.alpha})`;
+          ctx.fillText(s.word, s.x, s.y + onda);
+          if (s.x > W + 150) {
+            s.x = -150;
+            s.y = Math.random() * H;
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    </script>
+  </body>
 </html>

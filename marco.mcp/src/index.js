@@ -30,7 +30,9 @@ async function main() {
 
   // 1. Verificar Índice Cero antes de arrancar
   const index = await loadIndexZero();
-  process.stderr.write(`[ OK ] Índice Cero cargado · SHA-256 ${index.sha256.slice(0, 16)}...\n`);
+  process.stderr.write(
+    `[ OK ] Índice Cero cargado · SHA-256 ${index.sha256.slice(0, 16)}...\n`,
+  );
   process.stderr.write(`[ OK ] Pacto operativo · 51% humano · 49% IA · 100% real\n`);
 
   // 2. Arrancar servidor MCP

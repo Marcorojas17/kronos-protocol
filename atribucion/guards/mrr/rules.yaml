@@ -52,7 +52,7 @@ business_metrics:
   - id: mrr-004
     name: churn_rate_30d
     description: Tasa de cancelación en últimos 30 días
-    formula: "cancellations_30d / active_subscriptions * 100"
+    formula: 'cancellations_30d / active_subscriptions * 100'
     threshold_warning: 10
     threshold_critical: 25
     severity: critical
@@ -78,7 +78,7 @@ business_metrics:
   - id: mrr-006
     name: avg_revenue_per_user
     description: ARPU (Average Revenue Per User)
-    formula: "mrr / active_subscriptions"
+    formula: 'mrr / active_subscriptions'
     threshold_warning: 500
     threshold_critical: 100
     severity: medium
@@ -90,7 +90,7 @@ product_metrics:
     name: active_agents_total
     description: Total de agentes registrados y activos
     source: atribucion_db
-    query: "SELECT COUNT(*) FROM agents WHERE active=true"
+    query: 'SELECT COUNT(*) FROM agents WHERE active=true'
     threshold_warning: 1
     threshold_critical: 0
     severity: high
@@ -123,7 +123,7 @@ product_metrics:
   - id: mrr-010
     name: free_to_pro_conversion_rate
     description: Tasa de conversión de Free a Pro
-    formula: "conversions_30d / free_tenants * 100"
+    formula: 'conversions_30d / free_tenants * 100'
     threshold_warning: 2
     threshold_critical: 0.5
     severity: medium
@@ -132,7 +132,7 @@ product_metrics:
     name: time_to_first_action
     description: Tiempo medio desde registro hasta primera acción
     source: analytics_db
-    query: "SELECT AVG(EXTRACT(EPOCH FROM first_action_at - created_at)/3600) FROM tenants"
+    query: 'SELECT AVG(EXTRACT(EPOCH FROM first_action_at - created_at)/3600) FROM tenants'
     threshold_warning: 48
     threshold_critical: 168
     severity: medium
@@ -145,7 +145,7 @@ reputation_metrics:
     name: agent_reputation_avg
     description: Reputación promedio de todos los agentes
     source: atribucion_db
-    query: "SELECT AVG(reputation) FROM agents"
+    query: 'SELECT AVG(reputation) FROM agents'
     threshold_warning: 500
     threshold_critical: 100
     severity: high

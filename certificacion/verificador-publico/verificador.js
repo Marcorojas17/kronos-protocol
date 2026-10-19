@@ -6,16 +6,16 @@
 
 export class VerificadorManifest {
   constructor() {
-    this.version = "1.0";
+    this.version = '1.0';
     this.manifest = null;
     this.resultados = [];
   }
 
   static async _sha256Hex(bytes) {
-    const buf = await crypto.subtle.digest("SHA-256", bytes);
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
     return [...new Uint8Array(buf)]
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   // ── Cargar manifest desde JSON string ─────────────────────
@@ -23,10 +23,10 @@ export class VerificadorManifest {
     try {
       const m = JSON.parse(jsonString);
       if (!m.archivos || !Array.isArray(m.archivos)) {
-        throw new Error("El manifest no tiene la estructura esperada.");
+        throw new Error('El manifest no tiene la estructura esperada.');
       }
       if (!m.hash_raiz) {
-        throw new Error("El manifest no tiene hash_raiz.");
+        throw new Error('El manifest no tiene hash_raiz.');
       }
       this.manifest = m;
       return { ok: true, total: m.archivos.length, hash_raiz: m.hash_raiz };
@@ -38,7 +38,7 @@ export class VerificadorManifest {
   // ── Verificar un archivo ──────────────────────────────────
   async verificarArchivo(file) {
     if (!this.manifest) {
-      throw new Error("No hay manifest cargado.");
+      throw new Error('No hay manifest cargado.');
     }
 
     const arrayBuffer = await file.arrayBuffer();
@@ -49,8 +49,8 @@ export class VerificadorManifest {
     if (!entrada) {
       const r = {
         archivo: file.name,
-        estado: "desconocido",
-        razon: "Archivo no está en el manifest",
+        estado: 'desconocido',
+        razon: 'Archivo no está en el manifest',
         hash_actual: hashActual,
       };
       this.resultados.push(r);
@@ -60,7 +60,7 @@ export class VerificadorManifest {
     const ok = hashActual === entrada.hash;
     const r = {
       archivo: file.name,
-      estado: ok ? "verificado" : "alterado",
+      estado: ok ? 'verificado' : 'alterado',
       hash_esperado: entrada.hash,
       hash_actual: hashActual,
       bytes: file.size,
@@ -80,14 +80,10 @@ export class VerificadorManifest {
 
   // ── Resumen de la verificación ────────────────────────────
   resumen() {
-    const verificados = this.resultados.filter(
-      (r) => r.estado === "verificado",
-    ).length;
-    const alterados = this.resultados.filter(
-      (r) => r.estado === "alterado",
-    ).length;
+    const verificados = this.resultados.filter((r) => r.estado === 'verificado').length;
+    const alterados = this.resultados.filter((r) => r.estado === 'alterado').length;
     const desconocidos = this.resultados.filter(
-      (r) => r.estado === "desconocido",
+      (r) => r.estado === 'desconocido',
     ).length;
     const total = this.resultados.length;
 
@@ -103,13 +99,13 @@ export class VerificadorManifest {
 
   // ── Verificar integridad del manifest en sí ───────────────
   async verificarHashRaiz() {
-    if (!this.manifest) throw new Error("No hay manifest cargado.");
+    if (!this.manifest) throw new Error('No hay manifest cargado.');
 
     const concatenado = this.manifest.archivos
       .slice()
       .sort((a, b) => a.archivo.localeCompare(b.archivo))
       .map((e) => `${e.archivo}:${e.hash}`)
-      .join("\n");
+      .join('\n');
 
     const hashRecalculado = await VerificadorManifest._sha256Hex(
       new TextEncoder().encode(concatenado),

@@ -29,12 +29,12 @@ KAF los unifica en un marco ejecutable por API.
 
 ## Los 4 niveles
 
-| Nivel | Nombre | Audiencia | Costo |
-|---|---|---|---|
-| **KAF-1** | Verified | Startups | Incluido en Free |
-| **KAF-2** | Compliant | Scaleups EU | Incluido en Pro |
-| **KAF-3** | Assured | Enterprise | €4.900 + €1.900/año |
-| **KAF-4** | Sovereign | Bancos/Gobiernos | €19.900/año |
+| Nivel     | Nombre    | Audiencia        | Costo               |
+| --------- | --------- | ---------------- | ------------------- |
+| **KAF-1** | Verified  | Startups         | Incluido en Free    |
+| **KAF-2** | Compliant | Scaleups EU      | Incluido en Pro     |
+| **KAF-3** | Assured   | Enterprise       | €4.900 + €1.900/año |
+| **KAF-4** | Sovereign | Bancos/Gobiernos | €19.900/año         |
 
 ---
 
@@ -73,3 +73,4 @@ Cada control es auditable automáticamente o requiere evidencia.
 ```bash
 curl -X POST https://api.atribucion.io/v1/kaf/assess/agt_abc123 \
   -H "Authorization: Bearer $API_KEY"
+```

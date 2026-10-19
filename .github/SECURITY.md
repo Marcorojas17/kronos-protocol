@@ -3,7 +3,7 @@
 ## 🜂 Versiones soportadas
 
 | Versión | Soportada |
-|---------|-----------|
+| ------- | --------- |
 | 1.x     | ✅ Sí     |
 | 0.x     | ❌ No     |
 
@@ -26,6 +26,7 @@
 ## 🜁 Alcance
 
 **In scope:**
+
 - API Attribution
 - Servidor MCP (marco.mcp)
 - Contratos Solidity
@@ -33,6 +34,7 @@
 - Web hub
 
 **Out of scope:**
+
 - Ataques de fuerza bruta sin bypass
 - DoS volumétrico sin amplificación
 - Self-XSS

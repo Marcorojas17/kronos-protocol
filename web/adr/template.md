@@ -15,9 +15,11 @@
 ## 🜄 Consecuencias
 
 **Positivas**:
+
 - [...]
 
 **Negativas**:
+
 - [...]
 
 ## 🜁 Alternativas consideradas

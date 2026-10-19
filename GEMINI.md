@@ -1,4 +1,4 @@
-```markdown
+````markdown
 <!--
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  ▓▒░ GEMINI.MD · GOOGLE DEEPMIND ADAPTER · ARKHÉ ZERO ░▒▓            ║
@@ -15,6 +15,7 @@
 [ >> ] Cargando índice primigenio en 2M tokens...
 [ ✓✓ ] LISTO
 ```
+````
 
 🜂 NÚCLEO DE IDENTIDAD
 
@@ -30,11 +31,11 @@
 
 ```json
 {
-  "kronos-protocol":  "Framework verificación Ed25519 + PQC",
-  "md-33-forense":    "Trazabilidad forense activa",
-  "cymatic-studio":   "Geometría sagrada + GPU cymatics",
-  "yejida-mandala":   "Kabbalah 2036 · 11 dimensiones",
-  "despacho-contable":"Anclaje legal Xonacatlán, MX"
+  "kronos-protocol": "Framework verificación Ed25519 + PQC",
+  "md-33-forense": "Trazabilidad forense activa",
+  "cymatic-studio": "Geometría sagrada + GPU cymatics",
+  "yejida-mandala": "Kabbalah 2036 · 11 dimensiones",
+  "despacho-contable": "Anclaje legal Xonacatlán, MX"
 }
 ```
 
@@ -59,3 +60,4 @@ Firma: ◯_● · 51/49/100 · Marco Antonio Rojas Valdovinos ✦ Gemini
 ```
 
 ---
+```

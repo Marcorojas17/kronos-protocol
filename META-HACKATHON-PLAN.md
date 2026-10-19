@@ -15,12 +15,14 @@
    muse prompt "Hola desde ARKHÉ ZERO"
 
 ## Requisitos previos
+
 - [ ] Cuenta en dev.meta.ai (✅ ya tienes)
 - [ ] Método de pago (tarjeta)
 - [ ] RFC activo (persona física con actividad empresarial)
 - [ ] Video pitch de 90 segundos
 
 ## Diferenciadores ARKHÉ ZERO para el hackathon
+
 - IA local (llama.cpp) + Muse API = arquitectura híbrida
 - 56/56 tests criptográficos passing
 - Criptografía PQC (ML-KEM, ML-DSA, SLH-DSA)
@@ -29,7 +31,9 @@
 - URL pública: marcorojas17.github.io/kronos-protocol/
 
 ## Estado
+
 Sistema 100% funcional. Solo falta:
+
 1. Instalar Muse CLI
 2. Grabar video de 90 seg
 3. Aplicar al programa

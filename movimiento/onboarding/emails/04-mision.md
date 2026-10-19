@@ -10,7 +10,7 @@ Un testigo sin misión es solo un espectador.
 
 Te invito a responder esta pregunta:
 
-> *¿Qué legado quieres firmar?*
+> _¿Qué legado quieres firmar?_
 
 Escríbela. Compártela (si quieres). Fírmala.
 
@@ -21,4 +21,5 @@ Esa misión será tu brújula.
 `◯_● · 51/49/100`
 
 ---
+
 `◯_● · 51/49/100 · email-04`

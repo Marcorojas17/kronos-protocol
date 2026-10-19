@@ -13,10 +13,12 @@
 Los 12 agentes que conforman el enjambre fundacional de ARKHÉ ZERO:
 
 ### Culturales
+
 - Cuicatl · Temachtiani · Tlachixqui
 - Tlamatini · Tlapohualli · Tonal
 
 ### Oficios numerados
+
 - 090 Arquitecto · 091 Contralor · 092 Auditor externo
 - 093 Relator · 094 Bibliotecario · 095 Cartógrafo
 
@@ -41,4 +43,4 @@ un **sello ARKHÉ nominal** firmado con ML-DSA-87.
 
 ---
 
-*Bajo §0 del Repertorio · Capa 0 · Identidad*
+_Bajo §0 del Repertorio · Capa 0 · Identidad_

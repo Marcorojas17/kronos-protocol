@@ -39,14 +39,14 @@
 
 ## 🜂 Marcos Regulatorios
 
-| Regulación        | Jurisdicción        | Aplicación                       |
-|-------------------|---------------------|----------------------------------|
-| CARF (OCDE)       | Internacional       | Reporte cripto-activos           |
-| DAC8 (UE)         | Unión Europea       | Intercambio información          |
-| eIDAS             | Unión Europea       | Firma electrónica cualificada    |
-| NOM-151 (MX)      | México              | Conservación mensajes de datos   |
-| GDPR              | Unión Europea       | Protección de datos personales   |
-| LFPDPPP (MX)      | México              | Protección de datos personales   |
+| Regulación   | Jurisdicción  | Aplicación                     |
+| ------------ | ------------- | ------------------------------ |
+| CARF (OCDE)  | Internacional | Reporte cripto-activos         |
+| DAC8 (UE)    | Unión Europea | Intercambio información        |
+| eIDAS        | Unión Europea | Firma electrónica cualificada  |
+| NOM-151 (MX) | México        | Conservación mensajes de datos |
+| GDPR         | Unión Europea | Protección de datos personales |
+| LFPDPPP (MX) | México        | Protección de datos personales |
 
 ## 🜃 Principios
 

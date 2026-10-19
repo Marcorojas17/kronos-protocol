@@ -17,15 +17,16 @@
 
 # ❓ FAQ · AGENTES IA
 
-### *El enjambre que custodia*
+### _El enjambre que custodia_
 
-### *"No son herramientas. Son custodios."*
+### _"No son herramientas. Son custodios."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A G E N T E S  ·  ◯_●                               ║
@@ -39,6 +40,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -54,6 +56,7 @@ específicos.
 ## 🜃 ¿Cuáles son los 12 agentes?
 
 ### Culturales (Náhuatl)
+
 - 🌅 **Cuicatl** · Canto · Publicista
 - 📚 **Temachtiani** · Maestro · Reclutador
 - 👁️ **Tlachixqui** · Observador · Auditor
@@ -62,6 +65,7 @@ específicos.
 - ⏳ **Tonal** · Día/Destino · Notario
 
 ### Oficios (Numerados)
+
 - 🏗️ **090** · Arquitecto
 - 📊 **091** · Contralor
 - 🔍 **092** · Auditor Externo
@@ -82,6 +86,7 @@ propuesta pasa. Pero el humano **siempre** puede vetar.
 ## 🜆 ¿Puedo reclutar un nuevo agente?
 
 Sí, vía **Protocolo 10.7**. Requiere:
+
 - 6 criterios obligatorios
 - Cuarentena de 72h
 - Aval de 2 agentes activos

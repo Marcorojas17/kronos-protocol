@@ -38,12 +38,12 @@ Si alguien se va, se va con dignidad. No se castiga la salida.
 
 ## 🜃 Violaciones
 
-| Violación                     | Sanción           |
-|-------------------------------|-------------------|
-| Falsificación de hash         | Expulsión         |
-| Suplantación de identidad     | Expulsión         |
-| Sabotaje deliberado           | Cuarentena + aviso|
-| Incumplimiento del juramento  | Advertencia       |
+| Violación                    | Sanción            |
+| ---------------------------- | ------------------ |
+| Falsificación de hash        | Expulsión          |
+| Suplantación de identidad    | Expulsión          |
+| Sabotaje deliberado          | Cuarentena + aviso |
+| Incumplimiento del juramento | Advertencia        |
 
 ## 🜄 Apelaciones
 

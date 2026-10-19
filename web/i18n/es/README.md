@@ -17,15 +17,16 @@
 
 # 🇪🇸 ESPAÑOL · CANÓNICO
 
-### *Idioma fuente de ARKHÉ ZERO*
+### _Idioma fuente de ARKHÉ ZERO_
 
-### *"El legado no se hereda. Se firma."*
+### _"El legado no se hereda. Se firma."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  E S P A Ñ O L  ·  ◯_●                               ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -59,7 +61,7 @@ traducciones parten de esta versión.
 
 ## 🜄 Frase canónica
 
-> *"El legado no se hereda. Se firma."*
+> _"El legado no se hereda. Se firma."_
 > — Marco Antonio Rojas Valdovinos · Toluca, México · 2026
 
 ## 🜁 Firma

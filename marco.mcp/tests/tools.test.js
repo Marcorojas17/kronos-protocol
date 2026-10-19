@@ -10,13 +10,16 @@ import { runTool, TOOLS } from '../src/tools.js';
 
 test('TOOLS · expone las 5 herramientas canónicas', () => {
   const names = TOOLS.map((t) => t.name);
-  assert.deepEqual(names.sort(), [
-    'marco.consultar',
-    'marco.contextualizar',
-    'marco.firmar',
-    'marco.recordar',
-    'marco.verificar',
-  ].sort());
+  assert.deepEqual(
+    names.sort(),
+    [
+      'marco.consultar',
+      'marco.contextualizar',
+      'marco.firmar',
+      'marco.recordar',
+      'marco.verificar',
+    ].sort(),
+  );
 });
 
 test('marco.firmar · devuelve hash SHA3-512 y sello', async () => {

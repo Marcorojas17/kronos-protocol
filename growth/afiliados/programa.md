@@ -7,15 +7,16 @@
 
 # 💼 PROGRAMA DE AFILIADOS
 
-### *Uso comercial con licencia LGU*
+### _Uso comercial con licencia LGU_
 
-### *"El pacto no se vende. La licencia sí."*
+### _"El pacto no se vende. La licencia sí."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A F I L I A D O S  ·  ◯_●                           ║
@@ -27,6 +28,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -48,25 +50,25 @@
 
 ## 🜃 Comisiones
 
-| Plan                  | Comisión afiliado | Fondo FLAILP |
-|-----------------------|-------------------|--------------|
-| Basic (10 obras)      | 51%               | 49%          |
-| Pro (100 obras)       | 51%               | 49%          |
-| Enterprise (∞)        | 51%               | 49%          |
+| Plan             | Comisión afiliado | Fondo FLAILP |
+| ---------------- | ----------------- | ------------ |
+| Basic (10 obras) | 51%               | 49%          |
+| Pro (100 obras)  | 51%               | 49%          |
+| Enterprise (∞)   | 51%               | 49%          |
 
 **El Pacto 51/49/100 aplica sin excepción.**
 
 ## 🜄 Formato de contrato
 
 ```yaml
-- id: "AFF-2026-001"
-  afiliado: "Empresa XYZ"
-  licencia: "LGU-Pro"
-  inicio: "2026-XX-XX"
-  fin: "2027-XX-XX"
-  contrato_hash: "sha3-512:..."
-  firmado_por: "Marco Antonio Rojas Valdovinos"
-  sellado: "◯_● · 51/49/100"
+- id: 'AFF-2026-001'
+  afiliado: 'Empresa XYZ'
+  licencia: 'LGU-Pro'
+  inicio: '2026-XX-XX'
+  fin: '2027-XX-XX'
+  contrato_hash: 'sha3-512:...'
+  firmado_por: 'Marco Antonio Rojas Valdovinos'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

@@ -18,22 +18,23 @@ el propio equipo (o Marco, en MVP).
 
 ## Alcance
 
-| Área | Qué se audita | Frecuencia |
-|---|---|---|
-| **Acceso** | Usuarios activos, permisos, MFA | Trimestral |
-| **Criptografía** | Algoritmos, rotación de claves, TLS | Trimestral |
-| **Logs** | Integridad, retención, redacción | Trimestral |
-| **Backups** | Frecuencia, restauración, cifrado | Mensual |
-| **Incidentes** | Tiempo de respuesta, post-mortems | Trimestral |
-| **Compliance** | GDPR, LFPDPPP, EU AI Act | Semestral |
-| **Dependencias** | Vulnerabilidades, actualizaciones | Mensual |
-| **Infraestructura** | Configuración, accesos, secretos | Trimestral |
+| Área                | Qué se audita                       | Frecuencia |
+| ------------------- | ----------------------------------- | ---------- |
+| **Acceso**          | Usuarios activos, permisos, MFA     | Trimestral |
+| **Criptografía**    | Algoritmos, rotación de claves, TLS | Trimestral |
+| **Logs**            | Integridad, retención, redacción    | Trimestral |
+| **Backups**         | Frecuencia, restauración, cifrado   | Mensual    |
+| **Incidentes**      | Tiempo de respuesta, post-mortems   | Trimestral |
+| **Compliance**      | GDPR, LFPDPPP, EU AI Act            | Semestral  |
+| **Dependencias**    | Vulnerabilidades, actualizaciones   | Mensual    |
+| **Infraestructura** | Configuración, accesos, secretos    | Trimestral |
 
 ---
 
 ## Checklist Trimestral
 
 ### 1. Acceso
+
 - [ ] Listar todos los usuarios activos
 - [ ] Verificar que cada uno tiene MFA activo
 - [ ] Revisar permisos: ¿alguien tiene más de lo necesario?
@@ -41,6 +42,7 @@ el propio equipo (o Marco, en MVP).
 - [ ] Revisar últimos cambios de permisos en audit log
 
 ### 2. Criptografía
+
 - [ ] Verificar que TLS 1.3 está forzado
 - [ ] Revisar certificados vigentes (>30 días)
 - [ ] Verificar rotación de claves al día
@@ -48,36 +50,42 @@ el propio equipo (o Marco, en MVP).
 - [ ] Verificar que firmas híbridas están activas
 
 ### 3. Logs
+
 - [ ] Verificar integridad de logs (hash chain)
 - [ ] Revisar que no hay gaps >1h
 - [ ] Verificar que datos sensibles están redactados
 - [ ] Confirmar retención según política (365d mínimo)
 
 ### 4. Backups
+
 - [ ] Verificar último backup completado
 - [ ] Probar restauración de un backup aleatorio
 - [ ] Verificar cifrado de backups
 - [ ] Confirmar ubicación geográfica separada
 
 ### 5. Incidentes
+
 - [ ] Revisar incidentes del trimestre
 - [ ] Verificar post-mortems completados
 - [ ] Revisar acciones correctivas cerradas
 - [ ] Actualizar runbook si aplica
 
 ### 6. Dependencias
+
 - [ ] Correr `pip-audit` (Python)
 - [ ] Correr `npm audit` (Node)
 - [ ] Revisar CVEs recientes en dependencias
 - [ ] Actualizar dependencias con vulnerabilidades
 
 ### 7. Infraestructura
+
 - [ ] Revisar accesos a Railway / GitHub
 - [ ] Verificar que no hay secretos en repos
 - [ ] Revisar configuración de firewall
 - [ ] Verificar backups de configuración
 
 ### 8. Compliance
+
 - [ ] Verificar aviso de privacidad actualizado
 - [ ] Revisar registros de tratamiento (GDPR)
 - [ ] Verificar consentimientos recolectados
@@ -134,3 +142,4 @@ Beta 4-6 Scripts de automatización
 Producción 7-12 Auditorías automáticas semanales
 Enterprise 13+ SOC 2 + ISO 27001 internos
 
+```

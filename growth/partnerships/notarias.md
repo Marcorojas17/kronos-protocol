@@ -7,15 +7,16 @@
 
 # ⚖️ PARTNERSHIPS · NOTARÍAS
 
-### *El notario firma. ARKHÉ custodia.*
+### _El notario firma. ARKHÉ custodia._
 
-### *"La notaría que firma con ARKHÉ, firma para siempre."*
+### _"La notaría que firma con ARKHÉ, firma para siempre."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  N O T A R Í A S  ·  ◯_●                             ║
@@ -28,6 +29,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -55,15 +57,15 @@
 ## 🜄 Formato
 
 ```yaml
-- id: "PART-NOT-2026-001"
-  notaria: "Notaría N° XX"
-  pais: "MX"
-  ciudad: "Toluca"
-  tipo: "actas + anclaje"
-  licencia: "LGU-Pro"
-  inicio: "2026-XX-XX"
-  convenio_hash: "sha3-512:..."
-  sellado: "◯_● · 51/49/100"
+- id: 'PART-NOT-2026-001'
+  notaria: 'Notaría N° XX'
+  pais: 'MX'
+  ciudad: 'Toluca'
+  tipo: 'actas + anclaje'
+  licencia: 'LGU-Pro'
+  inicio: '2026-XX-XX'
+  convenio_hash: 'sha3-512:...'
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜁 Firma

@@ -10,15 +10,16 @@
 
 # 🔗 ATTRIBUTION
 
-### *Saber de dónde viene sin invadir*
+### _Saber de dónde viene sin invadir_
 
-### *"La atribución respeta. El tracking viola."*
+### _"La atribución respeta. El tracking viola."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  A T T R I B U T I O N  ·  ◯_●                       ║
@@ -32,6 +33,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -43,21 +45,19 @@
 La atribución usa **solo el header `Referrer`** (público, sin cookies):
 
 ```javascript
-const referrer = document.referrer
-  ? new URL(document.referrer).hostname
-  : 'direct';
+const referrer = document.referrer ? new URL(document.referrer).hostname : 'direct';
 ```
 
 ## 🜃 Categorías canónicas
 
-| Categoría         | Fuente                            |
-|-------------------|-----------------------------------|
-| `organic-search`  | google.com · bing.com · ddg.gg    |
-| `ai-search`       | perplexity.ai · chatgpt.com · claude.ai |
-| `social`          | twitter.com · linkedin.com · mastodon |
-| `direct`          | (sin referrer)                    |
-| `internal`        | arkhe.zero                        |
-| `referral`        | cualquier otro dominio            |
+| Categoría        | Fuente                                  |
+| ---------------- | --------------------------------------- |
+| `organic-search` | google.com · bing.com · ddg.gg          |
+| `ai-search`      | perplexity.ai · chatgpt.com · claude.ai |
+| `social`         | twitter.com · linkedin.com · mastodon   |
+| `direct`         | (sin referrer)                          |
+| `internal`       | arkhe.zero                              |
+| `referral`       | cualquier otro dominio                  |
 
 ## 🜄 Reglas
 

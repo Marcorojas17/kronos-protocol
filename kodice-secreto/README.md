@@ -10,13 +10,13 @@
 Los códigos secretos de Android funcionan como llaves maestras
 del sistema ARKHÉ:
 
-| Código              | Función                        | Equivalente ARKHÉ        |
-|---------------------|--------------------------------|--------------------------|
-| `*#*#4636#*#*`      | Info del teléfono              | Telemetría del sistema   |
-| `*#*#8255#*#*`      | GTalk Monitoring               | Sync de agentes          |
-| `*#*#7780#*#*`      | Factory Reset                  | Cierre Digno             |
-| `*#*#759#*#*`       | Configuración RLZ              | Config del sistema       |
-| `*#*#225#*#*`       | Eventos del calendario         | Eventos del movimiento   |
+| Código         | Función                | Equivalente ARKHÉ      |
+| -------------- | ---------------------- | ---------------------- |
+| `*#*#4636#*#*` | Info del teléfono      | Telemetría del sistema |
+| `*#*#8255#*#*` | GTalk Monitoring       | Sync de agentes        |
+| `*#*#7780#*#*` | Factory Reset          | Cierre Digno           |
+| `*#*#759#*#*`  | Configuración RLZ      | Config del sistema     |
+| `*#*#225#*#*`  | Eventos del calendario | Eventos del movimiento |
 
 ## 🜃 Uso simbólico
 

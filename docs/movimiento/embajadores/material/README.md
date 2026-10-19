@@ -17,15 +17,16 @@
 
 # 📦 MATERIAL OFICIAL DEL EMBAJADOR
 
-### *Kit completo para representar al movimiento*
+### _Kit completo para representar al movimiento_
 
-### *"El material es testigo. No adorno."*
+### _"El material es testigo. No adorno."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  M A T E R I A L  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,12 +48,12 @@
 
 ## 🜂 Contenido del kit
 
-| Recurso         | Formato        | Uso                        |
-|-----------------|----------------|----------------------------|
-| Stickers        | PNG + SVG      | Redes sociales · merch     |
-| Presentaciones  | Markdown + PDF | Eventos · capacitaciones   |
-| Videos          | MP4            | Tutoriales · ceremonias    |
-| Banners         | SVG + PNG      | Web · impresos             |
+| Recurso        | Formato        | Uso                      |
+| -------------- | -------------- | ------------------------ |
+| Stickers       | PNG + SVG      | Redes sociales · merch   |
+| Presentaciones | Markdown + PDF | Eventos · capacitaciones |
+| Videos         | MP4            | Tutoriales · ceremonias  |
+| Banners        | SVG + PNG      | Web · impresos           |
 
 ## 🜃 Licencia de uso
 

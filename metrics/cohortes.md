@@ -17,15 +17,16 @@
 
 # 👥 ANÁLISIS DE COHORTES
 
-### *Cómo se comportan los grupos de usuarios*
+### _Cómo se comportan los grupos de usuarios_
 
-### *"El individuo importa. La cohorte revela."*
+### _"El individuo importa. La cohorte revela."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C O H O R T E S  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -73,25 +75,25 @@
 ## 🜆 Métricas de cohorte
 
 ```yaml
-- cohorte: "A"
-  mes_ingreso: "2026-01"
+- cohorte: 'A'
+  mes_ingreso: '2026-01'
   tamano: 1
   retencion_m1: 100
   retencion_m3: 100
   retencion_m6: 100
   obras_promedio: 1
   nivel_promedio: 6
-  sellado: "◯_● · 51/49/100"
+  sellado: '◯_● · 51/49/100'
 
-- cohorte: "B"
-  mes_ingreso: "2026-09"
+- cohorte: 'B'
+  mes_ingreso: '2026-09'
   tamano: 0
   retencion_m1: null
   retencion_m3: null
   retencion_m6: null
   obras_promedio: null
   nivel_promedio: null
-  sellado: "◯_● · 51/49/100"
+  sellado: '◯_● · 51/49/100'
 ```
 
 ## 🜇 Reglas

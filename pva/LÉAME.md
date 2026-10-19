@@ -10,20 +10,23 @@ GitHub Pages: https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/
 Certificado: https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-MT01JAAF
 
 ## Estado 100/10 luz prendida
+
 - NOM-151 + ISO 27001 + Amoy 80002
 - QR audit/qr_folio_5204160405358537_KRONOS-MT01JAAF.png
 - PDF audit/dictamen_PVA_5204160405358537_KRONOS-MT01JAAF.pdf
 
 ## Estructura MT01JAAF
+
 - core/: hash_to_semantic + perito_seal + genesis_breather (SHA a4ff808e)
 - scripts/: vault_setup + qr_generator + pdf_dictamen + manifiesto_generator + desplegar_contrato + generar_links + auditoria_borrado (100/10)
-- robots/: __init__ + ejecutar + robot_auditor + robot_kronos + robot_matriz
+- robots/: **init** + ejecutar + robot_auditor + robot_kronos + robot_matriz
 - tests/: conftest + test_*mt01jaaf (32 passed)
 - web/: certificado.html + links.json TRACE completo
 - audit/: sello_kronos.json + primer_manifiesto.txt + cadena_custodia.log
 - docs/: 01_kybalion_translation.txt (Kybalion -> logica PVA)
 
 ## Instalacion
+
 pip install -r requirements.txt
 python scripts/vault_setup.py
 python scripts/manifiesto_generator.py --breathe

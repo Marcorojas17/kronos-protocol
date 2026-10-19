@@ -8,13 +8,13 @@ Garantizar seguridad de nivel enterprise.
 
 ## Controles
 
-| ID | Nombre | Severidad | Auto |
-|---|---|---|---|
-| KAF-6.1 | ISO 27001 vigente | Critical | ❌ |
-| KAF-6.2 | SOC 2 Type II | High | ❌ |
-| KAF-6.3 | Pentesting anual | High | ❌ |
-| KAF-6.4 | HSM para claves privadas | Critical | ❌ |
-| KAF-6.5 | Zero Trust | High | ✅ |
+| ID      | Nombre                   | Severidad | Auto |
+| ------- | ------------------------ | --------- | ---- |
+| KAF-6.1 | ISO 27001 vigente        | Critical  | ❌   |
+| KAF-6.2 | SOC 2 Type II            | High      | ❌   |
+| KAF-6.3 | Pentesting anual         | High      | ❌   |
+| KAF-6.4 | HSM para claves privadas | Critical  | ❌   |
+| KAF-6.5 | Zero Trust               | High      | ✅   |
 
 ## Requisitos
 

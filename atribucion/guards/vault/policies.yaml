@@ -18,7 +18,7 @@ secret_patterns:
   - id: vault-001
     name: ethereum_private_key
     description: Clave privada Ethereum (64 hex)
-    regex: "0x[a-fA-F0-9]{64}"
+    regex: '0x[a-fA-F0-9]{64}'
     severity: critical
     tags: [blockchain, private_key]
     action:
@@ -41,7 +41,7 @@ secret_patterns:
   - id: vault-003
     name: stripe_live_key
     description: Stripe live secret key
-    regex: "sk_live_[a-zA-Z0-9]{24,}"
+    regex: 'sk_live_[a-zA-Z0-9]{24,}'
     severity: critical
     tags: [payments, stripe]
     action:
@@ -52,14 +52,14 @@ secret_patterns:
   - id: vault-004
     name: stripe_restricted_key
     description: Stripe restricted key
-    regex: "rk_live_[a-zA-Z0-9]{24,}"
+    regex: 'rk_live_[a-zA-Z0-9]{24,}'
     severity: high
     tags: [payments, stripe]
 
   - id: vault-005
     name: aws_access_key
     description: AWS Access Key ID
-    regex: "AKIA[0-9A-Z]{16}"
+    regex: 'AKIA[0-9A-Z]{16}'
     severity: critical
     tags: [aws]
     action:
@@ -77,7 +77,7 @@ secret_patterns:
   - id: vault-007
     name: github_pat
     description: GitHub Personal Access Token
-    regex: "ghp_[a-zA-Z0-9]{36}"
+    regex: 'ghp_[a-zA-Z0-9]{36}'
     severity: critical
     tags: [github]
     action:
@@ -88,28 +88,28 @@ secret_patterns:
   - id: vault-008
     name: github_oauth
     description: GitHub OAuth token
-    regex: "gho_[a-zA-Z0-9]{36}"
+    regex: 'gho_[a-zA-Z0-9]{36}'
     severity: critical
     tags: [github]
 
   - id: vault-009
     name: openai_api_key
     description: OpenAI API key
-    regex: "sk-[a-zA-Z0-9]{48}"
+    regex: 'sk-[a-zA-Z0-9]{48}'
     severity: high
     tags: [openai, ai]
 
   - id: vault-010
     name: anthropic_api_key
     description: Anthropic API key
-    regex: "sk-ant-[a-zA-Z0-9_-]{95,}"
+    regex: 'sk-ant-[a-zA-Z0-9_-]{95,}'
     severity: high
     tags: [anthropic, ai]
 
   - id: vault-011
     name: google_api_key
     description: Google API key
-    regex: "AIza[0-9A-Za-z_-]{35}"
+    regex: 'AIza[0-9A-Za-z_-]{35}'
     severity: high
     tags: [google]
 
@@ -130,7 +130,7 @@ secret_patterns:
   - id: vault-014
     name: pagerduty_key
     description: PagerDuty integration key
-    regex: "(?i)pagerduty.*[a-zA-Z0-9]{32}"
+    regex: '(?i)pagerduty.*[a-zA-Z0-9]{32}'
     severity: high
     tags: [pagerduty]
 
@@ -158,21 +158,21 @@ secret_patterns:
   - id: vault-018
     name: rsa_private_key
     description: RSA private key PEM
-    regex: "-----BEGIN RSA PRIVATE KEY-----"
+    regex: '-----BEGIN RSA PRIVATE KEY-----'
     severity: critical
     tags: [private_key, rsa]
 
   - id: vault-019
     name: ec_private_key
     description: EC private key PEM
-    regex: "-----BEGIN EC PRIVATE KEY-----"
+    regex: '-----BEGIN EC PRIVATE KEY-----'
     severity: critical
     tags: [private_key, ecdsa]
 
   - id: vault-020
     name: openssh_private_key
     description: OpenSSH private key
-    regex: "-----BEGIN OPENSSH PRIVATE KEY-----"
+    regex: '-----BEGIN OPENSSH PRIVATE KEY-----'
     severity: critical
     tags: [private_key, ssh]
 
@@ -184,20 +184,20 @@ scan_targets:
     recursive: true
     extensions: [.json, .yaml, .yml, .env, .txt, .md]
     exclude:
-      - "*.log"
-      - "cache/*"
-      - "backups/*"
+      - '*.log'
+      - 'cache/*'
+      - 'backups/*'
 
   - id: project_root
     path: ~/atribucion/
     recursive: true
     extensions: [.py, .js, .ts, .json, .yaml, .yml, .md, .env]
     exclude:
-      - ".venv/*"
-      - "node_modules/*"
-      - "__pycache__/*"
-      - ".git/*"
-      - "dist/*"
+      - '.venv/*'
+      - 'node_modules/*'
+      - '__pycache__/*'
+      - '.git/*'
+      - 'dist/*'
 
   - id: public_directories
     paths:
@@ -216,37 +216,37 @@ scan_targets:
     recursive: false
     extensions: [.env, .key, .pem, .p12]
     exclude:
-      - ".cache/*"
-      - ".npm/*"
-      - ".venv/*"
+      - '.cache/*'
+      - '.npm/*'
+      - '.venv/*'
 
 # ─── VERIFICACIÓN DE PERMISOS ────────────────────────────────
 
 permissions_check:
   - path: ~/.atribucion/.env
-    max_mode: "0600"
+    max_mode: '0600'
     owner_required: true
     severity: critical
 
   - path: ~/.atribucion/
-    max_mode: "0700"
+    max_mode: '0700'
     owner_required: true
     severity: high
 
   - path: ~/.ssh/
-    max_mode: "0700"
+    max_mode: '0700'
     severity: high
 
   - path: ~/.ssh/id_rsa
-    max_mode: "0600"
+    max_mode: '0600'
     severity: critical
 
   - path: ~/.ssh/id_ed25519
-    max_mode: "0600"
+    max_mode: '0600'
     severity: critical
 
   - path: ~/atribucion/.env
-    max_mode: "0600"
+    max_mode: '0600'
     severity: critical
 
 # ─── GIT HISTORY ─────────────────────────────────────────────
@@ -262,10 +262,10 @@ git_history_check:
     que hayan sido commiteados por error.
 
   ignore_paths:
-    - "*.example"
-    - "*.template"
-    - ".env.example"
-    - "docs/*"
+    - '*.example'
+    - '*.template'
+    - '.env.example'
+    - 'docs/*'
 
 # ─── ROTACIÓN DE CLAVES ──────────────────────────────────────
 

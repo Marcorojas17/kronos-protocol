@@ -33,24 +33,11 @@
         "umbral_k": 51,
         "esquema": "Shamir"
       },
-      "destinos": [
-        "local",
-        "arweave",
-        "ipfs",
-        "ethereum",
-        "testigos-shamir"
-      ]
+      "destinos": ["local", "arweave", "ipfs", "ethereum", "testigos-shamir"]
     },
     "fin-digno": {
       "path": "cierre/fin-digno/",
-      "archivos": [
-        "README.md",
-        "AUTORIA",
-        "fin.js",
-        "index.html",
-        "manual.html",
-        "styles.css"
-      ],
+      "archivos": ["README.md", "AUTORIA", "fin.js", "index.html", "manual.html", "styles.css"],
       "pasos": [
         "aviso",
         "silencio-24h",

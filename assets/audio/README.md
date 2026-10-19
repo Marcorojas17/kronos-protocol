@@ -2,10 +2,10 @@
 
 ## 🜂 Archivos esperados
 
-| Archivo                | Duración | Uso                       |
-|------------------------|----------|---------------------------|
-| `kintsugi-theme.mp3`   | 3:33     | Tema oficial              |
-| `silence-3s.mp3`       | 0:03     | Silencio ceremonial       |
+| Archivo              | Duración | Uso                 |
+| -------------------- | -------- | ------------------- |
+| `kintsugi-theme.mp3` | 3:33     | Tema oficial        |
+| `silence-3s.mp3`     | 0:03     | Silencio ceremonial |
 
 ## 🜃 Frecuencias canónicas
 

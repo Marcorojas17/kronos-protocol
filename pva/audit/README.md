@@ -11,14 +11,14 @@
 
 ## 📁 Contenido del Audit - Dictamen 10/10
 
-| Archivo | Descripción | Norma | Precio |
-|---------|-------------|-------|--------|
-| `primer_manifiesto.txt` | Manifiesto originario 51/49 con génesis | NOM-151 Art.8 | Incluido $49 |
-| `sello_kronos.json` | Fuente de verdad trazable | ISO A5.9 | Incluido $49 |
-| `qr_folio_5204160405358537.png` | QR verificación | NOM-151 Art.10 | Incluido $49 |
-| `dictamen_PVA_5204160405358537.pdf` | PDF pericial A4 + QR + metadata | eIDAS + NOM | **$49 Nivel 1** |
-| `AUDITORIA_ISO_NOM_PVA_5204160405358537.md` | Auditoría ISO 27001 + NOM-151 | ISO 27001 A8.24 A8.28 | **$199 Nivel 3** |
-| `cadena_custodia.log` | Log cadena custodia Art.38 | NOM-151 Art.38 | **$199 Nivel 3** |
+| Archivo                                     | Descripción                             | Norma                 | Precio           |
+| ------------------------------------------- | --------------------------------------- | --------------------- | ---------------- |
+| `primer_manifiesto.txt`                     | Manifiesto originario 51/49 con génesis | NOM-151 Art.8         | Incluido $49     |
+| `sello_kronos.json`                         | Fuente de verdad trazable               | ISO A5.9              | Incluido $49     |
+| `qr_folio_5204160405358537.png`             | QR verificación                         | NOM-151 Art.10        | Incluido $49     |
+| `dictamen_PVA_5204160405358537.pdf`         | PDF pericial A4 + QR + metadata         | eIDAS + NOM           | **$49 Nivel 1**  |
+| `AUDITORIA_ISO_NOM_PVA_5204160405358537.md` | Auditoría ISO 27001 + NOM-151           | ISO 27001 A8.24 A8.28 | **$199 Nivel 3** |
+| `cadena_custodia.log`                       | Log cadena custodia Art.38              | NOM-151 Art.38        | **$199 Nivel 3** |
 
 ## 🔍 Verificación - 4 Fuentes - Confianza 4/4
 
@@ -69,3 +69,4 @@ SELLO:KRONOS-TRACE-PVA-5204160405358537Estado: DICTAMEN 10/10 - LISTO PARA TRIBU
 - Regex ISO A8.28 documentado
 - Orden de generación correcto
 - Uso pericial MP/SAT/Tribunal
+```

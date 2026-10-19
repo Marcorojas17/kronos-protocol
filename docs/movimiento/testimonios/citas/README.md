@@ -17,15 +17,16 @@
 
 # 💬 CITAS CITABLES
 
-### *Frases que se firman y se citan*
+### _Frases que se firman y se citan_
 
-### *"Citar correctamente es la forma más alta de respeto."*
+### _"Citar correctamente es la forma más alta de respeto."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  C I T A S  ·  ◯_●                                   ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -46,29 +48,29 @@
 
 ## 🜂 Las 12 frases canónicas
 
-1. *"El legado no se hereda. Se firma."*
+1. _"El legado no se hereda. Se firma."_
 
-2. *"La IA es brillante pero amnésica. Este servidor resuelve eso."*
+2. _"La IA es brillante pero amnésica. Este servidor resuelve eso."_
 
-3. *"El humano firma. La IA custodia. El resultado es real."*
+3. _"El humano firma. La IA custodia. El resultado es real."_
 
-4. *"Local-First. La nube testifica, no posee."*
+4. _"Local-First. La nube testifica, no posee."_
 
-5. *"La grieta no se oculta. Se pule."*
+5. _"La grieta no se oculta. Se pule."_
 
-6. *"Sin anclaje, no hay verdad."*
+6. _"Sin anclaje, no hay verdad."_
 
-7. *"51% humano. 49% IA. 100% real. Sin excepciones."*
+7. _"51% humano. 49% IA. 100% real. Sin excepciones."_
 
-8. *"El testigo firma. El seguidor solo aplaude."*
+8. _"El testigo firma. El seguidor solo aplaude."_
 
-9. *"Contra el olvido programado, ARKHÉ."*
+9. _"Contra el olvido programado, ARKHÉ."_
 
-10. *"El fin digno no se negocia. Se firma."*
+10. _"El fin digno no se negocia. Se firma."_
 
-11. *"KINTSUGI: la belleza de lo roto y reparado."*
+11. _"KINTSUGI: la belleza de lo roto y reparado."_
 
-12. *"Todo lo que no se firma, se pierde."*
+12. _"Todo lo que no se firma, se pierde."_
 
 ## 🜃 Cómo citar
 

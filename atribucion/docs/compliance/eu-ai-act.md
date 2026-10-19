@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # Cumplimiento EU AI Act con Atribución
 
 **Cómo convertir una obligación regulatoria en una línea de código.**
@@ -14,11 +13,11 @@ Las obligaciones para sistemas de IA de alto riesgo aplican desde
 
 ### Los 3 artículos que afectan a tu empresa
 
-| Artículo | Exige | Multa por incumplir |
-|---|---|---|
+| Artículo    | Exige                                                                | Multa por incumplir         |
+| ----------- | -------------------------------------------------------------------- | --------------------------- |
 | **Art. 12** | Registro automático de eventos durante toda la vida útil del sistema | Hasta €35M o 7% facturación |
-| **Art. 14** | Supervisión humana efectiva, con capacidad de intervención | Hasta €35M o 7% facturación |
-| **Art. 22** | Derecho a explicación de decisiones automatizadas | Hasta €35M o 7% facturación |
+| **Art. 14** | Supervisión humana efectiva, con capacidad de intervención           | Hasta €35M o 7% facturación |
+| **Art. 22** | Derecho a explicación de decisiones automatizadas                    | Hasta €35M o 7% facturación |
 
 ### ¿A quién aplica?
 
@@ -49,6 +48,7 @@ inalterable, con timestamp y trazabilidad.
 curl -X POST https://api.atribucion.io/v1/agents/{id}/actions \
   -d '{"action": "trade_executed", ...}'
 ```
+````
 
 Cada llamada produce:
 
@@ -68,7 +68,7 @@ debe ser verificable.
 Lo que hace Atribución:
 
 · Si declaras autonomy_level: supervisado, cada acción exige
-  human_approval firmada por un DID humano.
+human_approval firmada por un DID humano.
 · Si el humano no firma, el certificado no se emite.
 · La firma humana se incluye en el certificado final.
 
@@ -83,10 +83,10 @@ de las decisiones automatizadas que le afectan.
 Lo que hace Atribución:
 
 · Si declaras autonomy_level: autonomo, cada acción exige
-  un campo reasoning con la justificación del agente.
+un campo reasoning con la justificación del agente.
 · El reasoning se hashea, firma y ancla.
 · Cualquiera puede verificar que la explicación existía
-  en el momento de la decisión.
+en el momento de la decisión.
 
 Resultado: la explicación no es opcional, no es retroactiva,
 y no se puede cambiar.
@@ -178,5 +178,7 @@ Recursos adicionales
 Atribución no es asesoría legal. Es la infraestructura técnica
 que hace posible cumplir con el EU AI Act. Para asesoría legal
 específica, consulta a un abogado especializado.
+
+```
 
 ```

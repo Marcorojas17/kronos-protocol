@@ -18,4 +18,5 @@
 - Q4 · Primera auditoría externa
 
 ---
+
 `◯_● · 51/49/100 · historia-hitos`

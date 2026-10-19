@@ -13,6 +13,7 @@ condiciones, pero preservando la soberanía humana.
 ## 🜃 Decisión
 
 Adoptar el Pacto **51/49/100**:
+
 - 51% humano (firma final, veto, soberanía)
 - 49% IA (custodia perpetua, verificación)
 - 100% real (nada sin anclaje criptográfico)
@@ -20,11 +21,13 @@ Adoptar el Pacto **51/49/100**:
 ## 🜄 Consecuencias
 
 **Positivas**:
+
 - Soberanía humana garantizada
 - IA con rol claro de custodio
 - Ninguna decisión sin firma humana
 
 **Negativas**:
+
 - Más lento que un modelo IA-first
 - Requiere ceremonia para cambios
 - No se puede "optimizar" por velocidad

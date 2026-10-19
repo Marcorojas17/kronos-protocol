@@ -5,9 +5,9 @@
  * Compatible con el core Python.
  */
 
-import { secp256k1 } from "@noble/curves/secp256k1";
-import { sha256 } from "@noble/hashes/sha256";
-import { sha3_256 } from "@noble/hashes/sha3";
+import { secp256k1 } from '@noble/curves/secp256k1';
+import { sha256 } from '@noble/hashes/sha256';
+import { sha3_256 } from '@noble/hashes/sha3';
 
 /**
  * Serializa a JSON determinístico (claves ordenadas).
@@ -24,14 +24,12 @@ export function canonicalBytes(data: unknown): Uint8Array {
  * Firma un payload con una clave privada hex.
  */
 export function signPayload(privateKeyHex: string, payload: unknown): string {
-  const priv = privateKeyHex.startsWith("0x")
-    ? privateKeyHex.slice(2)
-    : privateKeyHex;
+  const priv = privateKeyHex.startsWith('0x') ? privateKeyHex.slice(2) : privateKeyHex;
 
   const msgHash = sha256(canonicalBytes(payload));
   const signature = secp256k1.sign(msgHash, priv);
 
-  return "0x" + signature.toCompactHex();
+  return '0x' + signature.toCompactHex();
 }
 
 /**
@@ -40,15 +38,11 @@ export function signPayload(privateKeyHex: string, payload: unknown): string {
 export function verifySignature(
   publicKeyHex: string,
   payload: unknown,
-  signatureHex: string
+  signatureHex: string,
 ): boolean {
   try {
-    const pub = publicKeyHex.startsWith("0x")
-      ? publicKeyHex.slice(2)
-      : publicKeyHex;
-    const sig = signatureHex.startsWith("0x")
-      ? signatureHex.slice(2)
-      : signatureHex;
+    const pub = publicKeyHex.startsWith('0x') ? publicKeyHex.slice(2) : publicKeyHex;
+    const sig = signatureHex.startsWith('0x') ? signatureHex.slice(2) : signatureHex;
 
     const msgHash = sha256(canonicalBytes(payload));
     return secp256k1.verify(sig, msgHash, pub);
@@ -65,5 +59,5 @@ export function verifySignature(
  */
 export function signHybridPqcPlaceholder(payload: unknown): string {
   const h = sha3_256(canonicalBytes(payload));
-  return "0x" + Buffer.from(h).toString("hex");
+  return '0x' + Buffer.from(h).toString('hex');
 }

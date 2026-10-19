@@ -23,7 +23,7 @@ Empaquetar evidencias digitales verificables en archivos `.evidence` con SHA-256
 ## API pública
 
 ```js
-import { EvidenceOS } from "./evidence.js";
+import { EvidenceOS } from './evidence.js';
 
 const evidence = new EvidenceOS(core, storage);
 const paquete = await evidence.sellar({
@@ -41,5 +41,5 @@ const ok = await evidence.verificar(paquete);
 const ok2 = await evidence.verificarConContenido(paquete, bytes);
 const blob = evidence.exportarEvidence(paquete);
 const lista = await evidence.listar();
-const uno = await evidence.recuperar("EV-XXXXXXXX");
+const uno = await evidence.recuperar('EV-XXXXXXXX');
 ```

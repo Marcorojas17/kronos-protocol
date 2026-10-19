@@ -17,15 +17,16 @@
 
 # ❓ FAQ · REGISTRO
 
-### *Cómo entrar al movimiento*
+### _Cómo entrar al movimiento_
 
-### *"El registro no es burocracia. Es ceremonia."*
+### _"El registro no es burocracia. Es ceremonia."_
 
 ---
 
 ```
 
 ```
+
         ╔═══════════════════════════════════════════════════════════════╗
         ║                                                               ║
         ║   ◯_●  ·  R E G I S T R O  ·  ◯_●                             ║
@@ -38,6 +39,7 @@
         ║   └───────────────────────────────────────────────────────┘   ║
         ║                                                               ║
         ╚═══════════════════════════════════════════════════════════════╝
+
 ```
 
 ```
@@ -47,6 +49,7 @@
 ## 🜂 ¿Cuánto tiempo toma el registro?
 
 El proceso completo toma **7 días**:
+
 - Día 1-3 · Cuarentena (72h)
 - Día 4-5 · Verificación de avales
 - Día 6-7 · Juramento + bienvenida
