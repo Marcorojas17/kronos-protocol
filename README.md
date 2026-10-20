@@ -10,7 +10,7 @@
                                                     
         [ PROTOCOLO DE VIDA AUTOPOIÉTICA - V2 ]
 ```
-
+[![ARKHÉ ZERO: Human-AI Attribution Protocol MCP server – quality and maintenance score on Glama](https://glama.ai/mcp/servers/Marcorojas17/kronos-protocol/badges/score.svg)](https://glama.ai/mcp/servers/Marcorojas17/kronos-protocol)
 https://img.shields.io/badge/Python-3.10+-00f3ff?style=for-the-badge&logo=python&logoColor=white
 https://img.shields.io/badge/MCP-ACTIVE-ff00ff?style=for-the-badge&logo=protocols.io&logoColor=white
 https://img.shields.io/badge/STATUS-LIVE-00ff00?style=for-the-badge&logo=statuspage&logoColor=black
