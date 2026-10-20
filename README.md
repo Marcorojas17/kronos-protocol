@@ -79,7 +79,7 @@ python3 arkhe_server.py
 
 ☑ Prototipo funcional local (Proof of Concept).
 ☑ Integración exitosa con LLMs (Google Gemini, Meta Llama).
-☐ Despliegue global en Cloud (SSE Server) y registro en directorios MCP.
+- [x] Despliegue global en Cloud completado (MCP Endpoint: https://TU_URL_DE_RENDER.onrender.com/mcp)
 ☐ Migración del anclaje a Ethereum Mainnet o Arbitrum (Capa 2).
 ☐ Integración formal con Prestadores de Servicios de Certificación (PSC).
 
