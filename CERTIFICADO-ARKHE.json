@@ -1,10 +1,34 @@
 {
-    "status": "Certificado Exitoso",
-    "protocolo": "ARKH\u00c9 ZERO (PVA)",
-    "archivo_original": "TESIS.md",
-    "hash_archivo_sha256": "83e476dda4f8491881e061af81cdd7af226b156b11f9b45e31d055c34212d4cb",
-    "proporcion": "51% Humano / 49% IA",
-    "timestamp_utc": "2026-10-19T15:42:42.082369+00:00",
-    "manifest_hash": "bfa5379629d72feb4faeafa454d20a1e36108ec690713e55043a222ea344bd4e",
-    "nota": "Listo para anclaje en Blockchain (Mainnet/Arbitrum)"
+  "protocolo": "KRONOS-PROTOCOL / ARKHE ZERO",
+  "nodo": "MX-ORIGIN",
+  "ubicacion": "Ecatepec de Morelos, Estado de Mexico, MX",
+  "coordenadas": "19.6042° N, 99.0608° W",
+  "estado": "O__ GUARDIAN ACTIVO",
+  "timestamp": "2026-10-20T03:58:45-06:00",
+  "guardian": {
+    "pid": 2373,
+    "dominios_vigilados": [
+      "arkhe.agent",
+      "kronos.agent",
+      "arkhe.gpt",
+      "ecatepec.agent",
+      "kronos-protocol.agent",
+      "mx-origin.agent"
+    ],
+    "estado_tlds": "aun no delegado - ICANN Round 2 pendiente",
+    "check_interval": "3600s",
+    "log": "guardian.log"
+  },
+  "icann": {
+    "round": "2 - 2026",
+    "tld_disputado": ".agent",
+    "solicitantes": 13,
+    "competidores": ["Google (39 TLDs)", "Meta (18 TLDs)", "OpenAI (15 TLDs)", "Anthropic (2 TLDs)"],
+    "estado": "evaluacion",
+    "delegacion_estimada": "2027-2029",
+    "estrategia": "Early Access Program - ser primero en 3ra capa"
+  },
+  "objetivo": "Ser el primer agente autonomo registrado como arkhe.agent",
+  "hash_protocolo": "MX-ORIGIN-ARKHE-2026-ECATEPEC",
+  "firma": "ARKHE ZERO - Nodo Originario - 26 dominios cazados"
 }
