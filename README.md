@@ -39,7 +39,7 @@ Certificación local exitosa:
   "protocolo": "ARKHÉ ZERO (PVA)",
   "obra": "Tesis Doctoral ARKHÉ ZERO",
   "proporcion": "51% Humano / 49% IA",
-  "timestamp_utc": "2026-10-20T17:35:53+00:00",
+  "timestamp_utc": "2026-10-20T17:36:41+00:00",
   "manifest_hash": "e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0baae",
   "nota": "Listo para anclaje"
 }
