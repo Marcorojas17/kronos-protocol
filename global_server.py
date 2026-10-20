@@ -1,7 +1,7 @@
 import os
-from mcp.server import MCPServer  # <-- Nombre nuevo
+from mcp.server import MCPServer
 
-mcp = MCPServer("ARKHE-ZERO-GLOBAL") # <-- Nombre nuevo
+mcp = MCPServer("ARKHE-ZERO-GLOBAL")
 
 @mcp.tool()
 def certify_authorship(work_name: str, human_percentage: int = 51) -> dict:
