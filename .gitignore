@@ -1,68 +1,10 @@
-backups/
-*.tar.gz
-*.sha256
-logs/*.log
-logs/*.log.*
-node_modules/
-.DS_Store
-*.tmp
-*.cache
-modelos/
-*.gguf
-__pycache__/
-*.pyc
-*.bak-*
-*.log
-modelos/*.gguf
-_duplicados/
-coverage/
-
-# SEGURIDAD · NUNCA subir claves privadas
-*.priv
-*.key
-*.pem
-*.p12
-*.pfx
-testimonio/claves/
-
-# Backups locales
-*.bak
-*.bak-*
-*.old
-*.backup
-
-# Archivos sensibles
-.env
-.env.*
-*.secret
-MANIFEST-*.txt
-07-LLAVES/FUNDADOR-V2/
-backup/
-.arkhe-private/
+# Entornos y secretos
 venv/
-firma/privada.pem
-
-# Llaves privadas
-firma/privada.pem
-firma/*.pem.secret
-*.priv.pem
-firma/*.OLD-*
-
-# Llaves privadas (nunca al repo)
-firma/privada.pem
-firma/*.OLD-*
-firma/*.key
-firma/*.secret
-
-# La pública SÍ va al repo (para verificación)
-!firma/publica.pem
-!firma/*.pub
-docs-deploy/
-_duplicados/
-www/
-www/
-.coverage
-.pytest_cache
+.env
+*.log
 __pycache__/
-runtime/
-runtime/
+node_modules/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
