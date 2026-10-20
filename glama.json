@@ -1,0 +1,6 @@
+{
+  "name": "ARKHÉ ZERO: Human-AI Attribution Protocol",
+  "description": "Autopoietic digital protocol for verifying human-AI authorship. Implements the 51/49 functional convention via SHA-256 hashing and MCP tools (certify_authorship).",
+  "repository": "https://github.com/Marcorojas17/kronos-protocol",
+  "keywords": ["legaltech", "blockchain", "ai-authorship", "cryptography", "mcp"]
+}
