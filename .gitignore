@@ -7,3 +7,9 @@ ARKHE-BACKUP-PART-*
 ARKHE-PART-*
 ARKHE-RESTAURADO.tar.gz
 /sdcard/
+
+__pycache__/
+*.pyc
+*.pyo
+_ERRORES_TEMP/
+
