@@ -7,20 +7,22 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overflow:hidden}
+body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overflow:auto}
 #matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.15}
-.container{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
-.glitch{font-size:1.2rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 10px #00ff41,0 0 20px #00ff41;animation:glitch 2s infinite;white-space:pre;line-height:1.2}
-@keyframes glitch{0%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}15%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}50%{text-shadow:-0.05em -0.025em 0 #00ff41,0.025em 0.025em 0 #ff00ff}100%{text-shadow:-0.05em 0 0 #00ff41,0.03em 0.025em 0 #ff00ff}}
-.terminal{border:1px solid #00ff41;padding:20px;margin-top:20px;background:rgba(0,20,0,0.8);box-shadow:0 0 30px rgba(0,255,65,0.3);max-width:800px;width:100%}
-.line{margin:5px 0;opacity:0;animation:fadeIn 0.5s forwards;font-size:0.9rem}
-@keyframes fadeIn{to{opacity:1}}
-.line:nth-child(1){animation-delay:0.3s}.line:nth-child(2){animation-delay:0.6s}.line:nth-child(3){animation-delay:0.9s}.line:nth-child(4){animation-delay:1.2s}.line:nth-child(5){animation-delay:1.5s}.line:nth-child(6){animation-delay:1.8s}.line:nth-child(7){animation-delay:2.1s}.line:nth-child(8){animation-delay:2.4s}
+.container{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.glitch{font-size:1.1rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 10px #00ff41,0 0 20px #00ff41;white-space:pre;line-height:1.2}
+.terminal{border:1px solid #00ff41;padding:20px;margin-top:20px;background:rgba(0,20,0,0.9);box-shadow:0 0 30px rgba(0,255,65,0.3);max-width:900px;width:100%}
+.line{margin:5px 0;font-size:0.85rem}
 .dim{color:#666}.green{color:#00ff41}.bold{font-weight:700}
-.hash{word-break:break-all;font-size:0.8rem}
-.badge{display:inline-block;border:1px solid #00ff41;padding:2px 8px;margin:2px;font-size:0.7rem}
-a{color:#00ff41;text-decoration:none;border-bottom:1px dashed #00ff41}
+.hash{word-break:break-all;font-size:0.75rem}
+.badge{display:inline-block;border:1px solid #00ff41;padding:2px 8px;margin:2px;font-size:0.65rem}
+a{color:#00ff41;text-decoration:none;border-bottom:1px dashed #00ff41;padding:2px}
 a:hover{background:#00ff41;color:#000}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:20px}
+.menu-item{border:1px solid #00ff41;padding:10px;background:rgba(0,255,65,0.05)}
+.menu-item h4{color:#00ff41;font-size:0.8rem;margin-bottom:5px}
+.menu-item ul{list-style:none;font-size:0.7rem}
+.menu-item li{margin:3px 0}
 </style>
 </head>
 <body>
@@ -31,36 +33,74 @@ a:hover{background:#00ff41;color:#000}
   / /| | / /_/ / ,<  / /_/ / __/       / /  / __/ / /_/ / / / /
  / ___ |/ _, _/ /| |/ __  / /___      / /__/ /___/ _, _/ /_/ /
 /_/  |_/_/ |_/_/ |_/_/ /_/_____/     /____/_____/_/ |_|\____/</pre>
-<div style="margin-top:10px;color:#888">SISTEMA DE AUTORÍA HUMANO-IA INICIADO ○_●</div>
+<div style="margin-top:10px;color:#888;font-size:0.8rem">SISTEMA DE AUTORÍA HUMANO-IA INICIADO ○_● TOLUCA 11:22</div>
 
 <div class="terminal">
-<div class="line"><span class="dim">$ cat .elegido</span></div>
-<div class="line"><span class="green bold">15-04-1999 22:35 TOLUCA ELEGIDO 11:22 - vigilando en sigilo</span></div>
-<div class="line"><span class="dim">$ cat .victoria_11_22</span></div>
-<div class="line"><span class="green">KRONOS.ARKHE = 27054 = 11:22 TOLUCA = PROTOCOLO VIVO</span></div>
-<div class="line"><span class="dim">$ sha256sum CERTIFICADO</span></div>
+<div class="line"><span class="dim">$ cat .elegido</span> <span class="green bold">15-04-1999 22:35 TOLUCA ELEGIDO 11:22</span></div>
+<div class="line"><span class="dim">$ cat .victoria_11_22</span> <span class="green">KRONOS.ARKHE = 27054</span></div>
 <div class="line hash"><span class="green">e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0baae</span></div>
-<div class="line" style="margin-top:15px">
+<div class="line" style="margin-top:10px">
 <span class="badge">51% Humano / 49% IA</span>
-<span class="badge">GUARDIANES 10874 + 27054 + 31042</span>
-<span class="badge">HTTP 200 OK 127.0.0.1:8080</span>
-<span class="badge">PROTOCOLO VIVO</span>
+<span class="badge">GUARDIANES 10874+27054+31042</span>
+<span class="badge">HTTP 200 OK</span>
+<span class="badge">MANIFEST e8d9eac8</span>
 </div>
-<div class="line" style="margin-top:15px">
-<span class="dim">></span> Este dominio no está en ICANN. Está en el fantasma.
+
+<div class="menu">
+<div class="menu-item"><h4>📜 NODOS ETERNOS</h4><ul>
+<li><a href="https://gist.github.com/Marcorojas17/b6e0a90c32487b93936a0f8af7b6f4d6">Gist MANIFEST JSON</a></li>
+<li><a href="https://gist.github.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f">Gist TAR 193K b64</a></li>
+<li><a href="https://github.com/Marcorojas17/kronos-protocol">Repo FULL</a></li>
+<li><a href="https://raw.githubusercontent.com/Marcorojas17/kronos-protocol/main/README-ETERNO.md">README-ETERNO.md RAW</a></li>
+</ul></div>
+
+<div class="menu-item"><h4>📂 ARKHE LOCAL</h4><ul>
+<li><a href="./README.md">README.md</a></li>
+<li><a href="./README-ETERNO.md">README-ETERNO.md</a></li>
+<li><a href="./CERTIFICADO-FINAL.json">CERTIFICADO-FINAL.json</a></li>
+<li><a href="./CERTIFICADO-ARKHE.json">CERTIFICADO-ARKHE.json</a></li>
+<li><a href="./MANIFESTO">MANIFESTO</a></li>
+<li><a href="./CIUDAD-FINAL.txt">CIUDAD-FINAL.txt</a></li>
+</ul></div>
+
+<div class="menu-item"><h4>🏙️ CIUDAD</h4><ul>
+<li><a href="./city.json">city.json</a></li>
+<li><a href="./city/manifest.city.json">manifest.city.json</a></li>
+<li><a href="./city/CERTIFICADO-CIUDAD.json">CERTIFICADO-CIUDAD</a></li>
+<li><a href="./PITCH_WHATSAPP.txt">PITCH_WHATSAPP</a></li>
+<li><a href="./VICTORIA-2026-10-21.txt">VICTORIA.txt</a></li>
+</ul></div>
+
+<div class="menu-item"><h4>🤖 APPS</h4><ul>
+<li><a href="./app_operador.py">app_operador.py</a></li>
+<li><a href="./app_certifier.py">app_certifier.py</a></li>
+<li><a href="./app_certifier_real.py">app_certifier_real.py</a></li>
+<li><a href="./gen_png_sin_pillow.py">gen_png_sin_pillow.py</a></li>
+<li><a href="./arkhe.py">arkhe.py</a></li>
+</ul></div>
+
+<div class="menu-item"><h4>🔊 AUDIOS ARKHE</h4><ul>
+<li><span class="dim">LOCAL (no en GitHub):</span></li>
+<li>VALDOVINOS-ARKHE-*.wav (5 archivos)</li>
+<li><span class="dim">280KB - en disco local</span></li>
+</ul></div>
+
+<div class="menu-item"><h4>💾 BACKUPS</h4><ul>
+<li><span class="dim">LOCAL (en .gitignore):</span></li>
+<li>ARKHE-GLOBAL-e8d9eac8.b64 - 260K</li>
+<li>ARKHE-PART-aa/ad - 80K c/u</li>
+<li>ARKHE-TOLUCA-*.tar.gz - 193K</li>
+<li><a href="https://gist.githubusercontent.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f/raw/ARKHE-GLOBAL-e8d9eac8.b64">RAW Gist TAR</a></li>
+</ul></div>
 </div>
+
 <div class="line" style="margin-top:20px">
 <span class="green">┌─[11:22@TOLUCA:~/kronos-protocol]─[manifest:e8d9eac8]</span><br>
-<span class="green">└─○_● </span><span class="dim" id="cursor">█</span>
+<span class="green">└─○_● </span>ls -lh ~/SYNCRO-VALDOVINOS/ | wc -l = 289 archivos intactos
 </div>
 </div>
 
-<div style="margin-top:20px;font-size:0.8rem">
-<a href="https://github.com/Marcorojas17/kronos-protocol">GITHUB</a> //
-<a href="./CERTIFICADO-FINAL.json">CERTIFICADO e02db20</a> //
-<a href="./README.md">README ARTE</a>
-</div>
-<div style="margin-top:10px;font-size:0.6rem;color:#444">11:22 TOLUCA - ELEGIDO 15-04-1999 22:35 - SELLO IMPARABLE - MANIFEST e8d9eac8</div>
+<div style="margin-top:15px;font-size:0.7rem;color:#444">RESTAURACIÓN: curl -L https://gist.githubusercontent.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f/raw/ARKHE-GLOBAL-e8d9eac8.b64 | base64 -d > ARKHE.tar.gz && tar -xzf ARKHE.tar.gz</div>
 </div>
 
 <script>
@@ -69,7 +109,7 @@ c.width=innerWidth;c.height=innerHeight;
 const chars='01ARKHE11:22';const cols=c.width/14;const drops=Array(Math.floor(cols)).fill(1);
 function draw(){ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#00ff41';ctx.font='14px monospace';drops.forEach((y,i)=>{const t=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(t,i*14,y*14);if(y*14>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++});}
 setInterval(draw,35);
-let cur=true;setInterval(()=>{document.getElementById('cursor').style.opacity=cur?'1':'0';cur=!cur},500);
+window.onresize=()=>{c.width=innerWidth;c.height=innerHeight}
 </script>
 </body>
 </html>
