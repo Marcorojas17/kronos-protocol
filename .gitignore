@@ -1,15 +1,9 @@
-# Entornos y secretos
-venv/
-.env
-*.log
-__pycache__/
-node_modules/
-
-# Archivos de sistema
-.DS_Store
-Thumbs.db
-.env
-# ARKHE permitido
-.env
-*.env
-Pinata_Download/
+# ARKHE - no subir binarios gigantes de nuevo
+*.b64
+*.tar.gz
+/tmp/
+*.wav
+ARKHE-BACKUP-PART-*
+ARKHE-PART-*
+ARKHE-RESTAURADO.tar.gz
+/sdcard/
