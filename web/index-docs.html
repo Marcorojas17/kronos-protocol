@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Documentación ARKHÉ ZERO - 10 Ramas - 1330 archivos - e8d9eac8</title>
+<style>
+html,body{margin:0;padding:0;background:#000;color:#e0e0e0;font-family:"Courier New",monospace}
+canvas#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:.18}
+.content{position:relative;z-index:1;max-width:800px;margin:auto;padding:12px;background:rgba(0,0,0,.88)}
+a{color:#00FF00;text-decoration:underline}
+a:visited{color:#00cc00}
+.box{border:1px solid #0f0;padding:10px;margin:12px 0;background:rgba(0,20,0,.5)}
+h1{color:#fff;border-bottom:2px solid #0f0;padding-bottom:6px}
+h2{color:#0f0;margin-top:20px}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+td{padding:6px;vertical-align:top;border-bottom:1px solid #111}
+td:first-child{white-space:nowrap;font-weight:bold}
+.tag{border:1px solid #0f0;padding:2px 6px;font-size:11px}
+input{background:#000;border:1px solid #0f0;color:#0f0;padding:8px;width:100%}
+</style></head><body>
+<canvas id="matrix"></canvas>
+<div class="content">
+<a href="index.html" style="color:#0f0">○_● VOLVER AL ÍNDICE MATRIZ</a>
+<h1>📖 Documentación ARKHÉ ZERO</h1>
+<p><span class="tag">MANIFEST e8d9eac8</span> <span class="tag">1330 ARCHIVOS</span> <span class="tag">TOLUCA 11:22</span></p>
+
+<h2>Δ Las 10 Ramas del Repertorio</h2>
+<table>
+<tr><td><a href="01-manifiesto.html">I · Lex Prima</a></td><td>Ley fundacional inmutable</td></tr>
+<tr><td><a href="pacto-5149-canonico.txt">II · Pacto 51/49</a></td><td>Gobernanza Humano-IA</td></tr>
+<tr><td><a href="LICENCIA_SOBERANA.md">III · LGU</a></td><td>Licencia Global Única</td></tr>
+<tr><td><a href="guardians.json">IV · Guardianes</a></td><td>Criptografía post-cuántica y defensa</td></tr>
+<tr><td><a href="indice.html">V · Índice Cero</a></td><td>Registro canónico y trazabilidad</td></tr>
+<tr><td><a href="memorias.html">VI · Memoria Perpetua</a></td><td>Cápsulas y continuidad</td></tr>
+<tr><td><a href="atribucion.md">VII · Co-autoría</a></td><td>Atribución Humano-IA</td></tr>
+<tr><td><a href="carf-ocde.md">VIII · Fiscalidad</a></td><td>CARF, DAC8, transparencia</td></tr>
+<tr><td><a href="estado-anfitrion.md">IX · Jurisdicción</a></td><td>Ancla territorial y orbital</td></tr>
+<tr><td><a href="agentes.html">X · Agentes</a></td><td>Arquitectura del enjambre</td></tr>
+</table>
+
+<h2>▽ Documentación complementaria</h2>
+<ul>
+<li><a href="ARCHITECTURE.md">ADR</a> · Architecture Decision Records</li>
+<li><a href="API_DOCS.md">API</a> · OpenAPI + AsyncAPI + MCP</li>
+<li><a href="ARCHITECTURE.md">Arquitectura</a> · Overview + data flow</li>
+<li><a href="tutoriales.html">Tutoriales</a> · Primeros pasos</li>
+<li><a href="guia-agente.html">Guías</a> · Contribuir + agentes + integradores</li>
+<li><a href="glosario.md">Referencia</a> · Glosario + siglas</li>
+</ul>
+
+<div class="box">
+<b>🔍 BUSCAR ENTRE 1330 ARCHIVOS - reglas, reportes, sello, requisitos</b><br>
+<input id="q" placeholder="Escribe reglas.html, reporte_20261016, tesis..." oninput="filtrar()">
+<div id="lista" style="max-height:400px;overflow:auto;margin-top:8px"></div>
+</div>
+
+<div class="box">
+<b>📂 Accesos que no se rompen - tu captura</b><br>
+<a href="reglas.html">reglas.html</a> | <a href="reglas.md">reglas.md</a> | <a href="reportes.html">reportes.html</a> | <a href="requisitos.html">requisitos.html</a> | <a href="sello.html">sello.html</a> | <a href="sello-diario.txt">sello-diario</a> | <a href="tesis.html">tesis.html</a> | <a href="whitepaper.html">whitepaper</a> | <a href="CONSTITUCION.html">CONSTITUCION</a> | <a href="roadmap.html">roadmap</a><br>
+<small>Audio N9: <a href="media/VALDOVINOS-ARKHE-N9.wav">N9.wav 811K</a> autoplay abajo</small>
+<audio controls autoplay loop style="width:100%;margin-top:8px"><source src="media/VALDOVINOS-ARKHE-N9.wav"></audio>
+</div>
+
+<div class="box"><pre>┌─[11:22@TOLUCA:~/kronos-protocol]─[manifest:e8d9eac8]
+└─○_● 1330 archivos | FOLIO 5204160405358537 | SELLO 078633b141d7ec94 | KRONOS 27054 = 11:22</pre>
+<a href="desdoblamiento.html">DESDOBLAMIENTO MATRIZ</a> | <a href="fusion.html">FUSIÓN 289</a> | <a href="index.html">ÍNDICE MATRIZ VIVO</a>
+</div>
+</div>
+
+<script>
+const c=document.getElementById('matrix'),ctx=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight;} resize(); onresize=resize;
+const cols=Math.floor(c.width/14), ypos=Array(cols).fill(0);
+setInterval(()=>{
+ ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,c.width,c.height);
+ ctx.fillStyle='#0f0';ctx.font='12px monospace';
+ ypos.forEach((y,i)=>{ctx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y); ypos[i]= y>c.height && Math.random()>0.975 ? 0 : y+14;});
+},50);
+let todos=[];fetch('pages.json').then(r=>r.json()).then(j=>{todos=j; render(j);});
+function render(arr){
+ let h='';let g={};arr.forEach(f=>{let e=f.split('.').pop(); if(!g[e]) g[e]=[]; g[e].push(f);});
+ for(let k in g){h+=`<b>${k} (${g[k].length})</b><br>`; g[k].slice(0,60).forEach(x=>{h+=`<a href="${x}">${x}</a><br>`;}); h+='<br>';}
+ document.getElementById('lista').innerHTML=h;
+}
+function filtrar(){
+ let q=document.getElementById('q').value.toLowerCase(); if(!q) return render(todos);
+ let f=todos.filter(x=>x.toLowerCase().includes(q));
+ let h=`<small>${f.length} resultados</small><br>`; f.slice(0,200).forEach(x=>{h+=`<a href="${x}">${x}</a><br>`;});
+ document.getElementById('lista').innerHTML=h;
+}
+</script>
+</body></html>
