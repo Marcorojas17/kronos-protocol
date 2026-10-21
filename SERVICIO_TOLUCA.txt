@@ -1,0 +1,12 @@
+SERVICIO ARKHE ZERO - TOLUCA
+
+"Certifico que tu tesis/documento es tuyo y no IA, con sello Bitcoin"
+
+Entregables que ya sabes hacer:
+- CERTIFICADO-FINAL.json
+- MANIFEST-2026-10-15.sha256.ots (840 bytes)
+- Verificación: ots verify
+
+Precio: $199 MXN por documento
+Pago: Transferencia / MercadoPago / PayPal
+Entrega en 10 min por WhatsApp
