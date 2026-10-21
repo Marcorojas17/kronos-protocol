@@ -10,3 +10,6 @@ node_modules/
 Thumbs.db
 .env
 # ARKHE permitido
+.env
+*.env
+Pinata_Download/
