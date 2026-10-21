@@ -1,6 +1,7 @@
 import sys, datetime
+
 print("○_● ARKHE ZERO CERTIFIER")
-pdf = sys.argv[1] if len(sys.argv)>1 else "test.pdf"
+pdf = sys.argv[1] if len(sys.argv) > 1 else "test.pdf"
 print(f"1. SHA256({pdf}) -> {pdf}.sha256")
 print(f"2. opentimestamps-client stamp {pdf}.sha256 -> {pdf}.ots")
 print(f"3. Generando CERTIFICADO_MATRIX.png")
