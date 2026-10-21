@@ -1,0 +1,10 @@
+{
+  "sello_id": "af85c76160ee691e",
+  "compromiso": "af85c76160ee691e78e81fbe24f5ecb594fa598d4736c4443526ffec4f132c82",
+  "salt_hex": "93e3332d908108382fd854bae11323db48f473ebda0fce37edf8c70140807b3c",
+  "hash_contenido": "10b94f3b8b320b6e22a6541dae9ce6bebc017798b69d5779a1bbdacd512a0375",
+  "nodo": "YHDRYH-92CE",
+  "autor": "MARCO_ROJAS_5204160405358537",
+  "version": "ARKHE-SELLO-v1",
+  "timestamp_utc": "2026-10-21T20:33:18.236524+00:00"
+}
