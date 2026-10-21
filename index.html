@@ -20,9 +20,9 @@ body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overfl
 .hash{word-break:break-all;font-size:0.8rem}
 .badge{display:inline-block;border:1px solid #00ff41;padding:2px 8px;margin:2px;font-size:0.7rem}
 
-/* ESTILOS DEL EXPLORADOR DE ARCHIVOS */
-.file-link { color: #00ff41; text-decoration: none; border-bottom: 1px dashed #00ff41; transition: all 0.2s; display: block; padding: 2px 0; font-size: 0.85rem; }
-.file-link:hover { background: #00ff41; color: #000; text-shadow: none; padding-left: 5px; }
+/* ESTILOS DE ENLACES Y CARPETAS */
+a.file-link { color: #00ff41; text-decoration: none; border-bottom: 1px dashed #00ff41; transition: all 0.2s; display: block; padding: 3px 0; font-size: 0.85rem; }
+a.file-link:hover { background: #00ff41; color: #000; text-shadow: none; padding-left: 5px; }
 .section-title { font-weight: bold; margin-top: 15px; margin-bottom: 5px; display: block; color: #fff; text-transform: uppercase; border-bottom: 1px solid #00ff41; padding-bottom: 5px;}
 .folder-title { color: #ffcc00; font-weight: bold; margin-top: 10px; font-size: 0.9rem;}
 </style>
@@ -50,11 +50,35 @@ body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overfl
 </div>
 </div>
 
+<!-- ENLACES MAESTROS AL ECOSISTEMA -->
+<div class="terminal">
+    <span class="section-title">🏛️ NÚCLEO Y TESIS</span>
+    <a href="./TESIS.md" class="file-link">📜 TESIS.md (Investigación Doctoral)</a>
+    <a href="./ECOSYSTEM.md" class="file-link">🧬 ECOSYSTEM.md (Arquitectura Hub & Spoke)</a>
+    <a href="./README.md" class="file-link">📘 README.md (Portada Principal)</a>
+    <a href="./PAGO.md" class="file-link">💰 PAGO.md (Pasarela de Venta)</a>
+
+    <span class="section-title">⚙️ INFRAESTRUCTURA Y CÓDIGO</span>
+    <a href="./arkhe_server.py" class="file-link">🐍 arkhe_server.py (Servidor Local)</a>
+    <a href="./global_server.py" class="file-link">☁️ global_server.py (Servidor Render)</a>
+    <a href="./contracts/" class="file-link">⛓️ contracts/ (Smart Contracts Solidity)</a>
+    <a href="./docs/" class="file-link">📚 docs/ (Documentación Técnica)</a>
+    <a href="./web/" class="file-link">🌐 web/ (La Ciudad y Gobernanza)</a>
+    <a href="./pva/" class="file-link">🏛️ pva/ (Protocolo de Vida Autopoiética)</a>
+    <a href="./atribucion/" class="file-link">🧩 atribucion/ (Sistema de Identidad DID)</a>
+
+    <span class="section-title">🔒 EVIDENCIA CRIPTOGRÁFICA</span>
+    <a href="./CERTIFICADO-FINAL.json" class="file-link">📋 CERTIFICADO-FINAL.json (Manifiesto)</a>
+    <a href="./CERTIFICADO-FINAL.json.ots" class="file-link">🔏 CERTIFICADO-FINAL.json.ots (Sello Bitcoin)</a>
+    <a href="./glama.json" class="file-link">🤖 glama.json (Registro en Directorio de IAs)</a>
+</div>
+
 <!-- EXPLORADOR DINÁMICO DE ARCHIVOS -->
 <div class="terminal">
     <span class="section-title">🌐 EXPLORADOR DEL REPOSITORIO (VÍA GITHUB API)</span>
+    <p style="color:#888; font-size:0.8rem; margin-bottom:10px;">Cargando los 3000+ archivos desde GitHub...</p>
     <div id="file-explorer">
-        <p style="color:#888;">Cargando archivos desde GitHub... (esto puede tardar unos segundos si hay miles de archivos)</p>
+        <p style="color:#888;">Cargando...</p>
     </div>
 </div>
 
@@ -77,19 +101,16 @@ async function loadRepoFiles() {
     const repo = "Marcorojas17/kronos-protocol";
     const branch = "main";
     const url = `https://api.github.com/repos/${repo}/git/trees/${branch}?recursive=1`;
-    
+
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error al conectar con GitHub");
         const data = await response.json();
-        
+
         const explorer = document.getElementById('file-explorer');
         explorer.innerHTML = ''; // Limpiar mensaje de carga
 
-        // Filtrar solo archivos (blobs), ignorar carpetas
         const files = data.tree.filter(item => item.type === 'blob');
-        
-        // Ordenar alfabéticamente
         files.sort((a, b) => a.path.localeCompare(b.path));
 
         let currentFolder = "";
@@ -98,29 +119,24 @@ async function loadRepoFiles() {
         files.forEach(file => {
             const parts = file.path.split('/');
             const folder = parts.length > 1 ? parts.slice(0, -1).join('/') : "Raíz del Proyecto";
-            
-            // Si cambiamos de carpeta, imprimir el título
+
             if (folder !== currentFolder) {
-                if (currentFolder !== "") htmlContent += `<br>`; // Espacio entre carpetas
+                if (currentFolder !== "") htmlContent += `<br>`;
                 htmlContent += `<div class="folder-title">📂 ${folder}</div>`;
                 currentFolder = folder;
             }
 
             const fileName = parts[parts.length - 1];
-            // Crear el enlace a GitHub (usando /blob/ para ver el código, o /raw/ para descargar)
             const fileUrl = `https://github.com/${repo}/blob/${branch}/${file.path}`;
-            
             htmlContent += `<a href="${fileUrl}" target="_blank" class="file-link">└─ ${fileName}</a>`;
         });
 
         explorer.innerHTML = htmlContent;
 
     } catch (error) {
-        document.getElementById('file-explorer').innerHTML = `<p style="color:red;">Error al cargar archivos: ${error.message}</p>`;
+        document.getElementById('file-explorer').innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
     }
 }
-
-// Iniciar carga
 loadRepoFiles();
 </script>
 </body>
