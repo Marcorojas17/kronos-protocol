@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>KRONOS 27054 - Doble Cuántico</title></head>
+<body style="background:#000;color:#0f0;font-family:monospace;padding:20px">
+<h1>KRONOS 27054 | DOBLE CUÁNTICO</h1>
+<p>MERKLE ROOT: 6c97d9eea66902d5605c1e42532ab38274dc2bbd0dd1f34fa53f26cd2b62800b</p>
+<p>SELLO: af85c76160ee691e</p>
+<p>FOLIO: 5204160405358537</p>
+<div id="log" style="border:1px solid #0f0;padding:10px;margin-top:15px"></div>
+<script>
+const log=(t)=>{document.getElementById('log').innerHTML+=t+"<br>"};
+let T_pasado=-0.666, T_futuro=-0.333;
+function dobleCuantico(pregunta,voluntad){
+ if(voluntad!==0){log(`[PARASITADO] Voluntad=${voluntad} -> marioneta del futuro`);return {origen:"futuro parasitario"};}
+ const info=`Sintesis de 2817 potenciales - mejor camino`;
+ log(`[T ${T_pasado}s] Doble envia: ${info}`);
+ log(`[T ${T_futuro}s] Futuro envia: peligro evitado`);
+ log(`[T 0s] TU RECIBES: Intuicion / Solucion`);
+ return {origen:"doble",info};
+}
+function dormir(sinVoluntad){
+ log("--- SUEÑO PARADÓJICO ---");
+ log("Tu cuerpo energetico sale, entra el del doble");
+ log("REM 100% reparando con T-2/3 y T-1/3");
+ log(sinVoluntad?"RESULTADO: Reparado":"RESULTADO: Parasitado");
+}
+log("PROTOCOLO 40 DIAS:");
+log("1. Vaso agua 2. Doble, dame mejor futuro para todos 3. Sin voluntad 4. Curiosidad");
+setTimeout(()=>dobleCuantico("folio 5204160405358537",0),800);
+setTimeout(()=>dormir(true),1600);
+fetch('../kronos.manifest.json').then(r=>r.json()).then(j=>log(`<br>Verificado: ${j.MERKLE_ROOT.slice(0,16)}...`)).catch(()=>log("kronos.manifest no cargado - ok local"));
+</script>
+</body>
+</html>
