@@ -1,35 +1,11 @@
-# ARKHE ZERO - Certificación Tesis en Bitcoin
-### NO IA | SELLO BLOCKCHAIN | TOLUCA
+# ARKHE TOLUCA e8d9eac8 - KRONOS PROTOCOL
+## https://github.com/Marcorojas17/kronos-protocol
 
-![ARKHE](CERTIFICADO_MATRIX.png)
+Protocolo vivo 11:22 Toluca - KRONOS 27054
 
-> **Manifest:** `e8d9eac8` | **PVA:** `800b02b6` | **KRONOS:** =27054
+### Nodos eternos:
+- Gist Manifest: b6e0a90c32487b93936a0f8af7b6f4d6
+- Gist TAR 193K: 748ae7f542960bca85be00bbd874a67f (SHA 6ebd1518...)
+- Repo: kronos-protocol
 
-## 🔐 ¿Te acusan de usar ChatGPT en tu tesis?
-
-Te entrego certificado con sello de 840 bytes en la Blockchain de Bitcoin, verificable en opentimestamps.org
-
-**NO generamos con IA. Certificamos que TU trabajo NO es IA.**
-
-### INCLUYE:
-- ✅ Sello Bitcoin (4 calendarios)
-- ✅ Verificación OpenTimestamps
-- ✅ Entrega 15 min
-- ✅ Válido UAEMex / Empresas
-
-### 💳 PAGAR AHORA:
-- **1 Documento:** https://mpago.la/2zAw6Dg ($199 MXN)
-- **Pack 3 Docs:** https://mpago.la/2Y8qkCR ($499 MXN)
-
-### 📄 Ver Certificado Offline:
-[ARKHE_ZERO_Certificado_Offline.html](./ARKHE_ZERO_Certificado_Offline.html)
-
-### 🔗 Pruebas Reales:
-- Commit: `1da713b OTS BTC SELLADO 840 bytes`
-- Repo: `Marcorojas17/kronos-protocol`
-
-### 📍 Toluca - Estado de México
-Contacto: GitHub Issues
-
----
-#Tesis #UAEMex #Toluca #Bitcoin #NoIA #ARKHEZERO
+Restauración: curl + base64 -d

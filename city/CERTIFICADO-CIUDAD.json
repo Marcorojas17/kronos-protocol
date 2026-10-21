@@ -1,0 +1,11 @@
+{
+  "ciudad": "VALDOVINOS-ARKHE",
+  "archivo": "city/manifest.city.json",
+  "sha256": "23c221280b764ccc0b366c6c212da39b123a6c93d313095e6aa170b06b9b5557",
+  "fecha": "2026-10-21T01:11:45.120715",
+  "loc": "TOLUCA",
+  "agente_genesis": "VALDOVINOS-01",
+  "consenso": "51/49",
+  "piel": "Pillow-offline-fallback",
+  "estado": "CERTIFICADO-OK"
+}
