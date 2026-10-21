@@ -136,7 +136,7 @@ https://img.shields.io/badge/GitHub_Pages-LIVE-00ff41?style=for-the-badge&logo=g
 """
 
 with open("README.md", "w", encoding="utf-8") as f:
-f.write(readme)
+    f.write(readme)
 
 print(f"✅ README.md generado con {len(tree_lines)} elementos del repositorio.")
 print(f"📄 Tamaño del archivo: {len(readme)/1024:.1f} KB")

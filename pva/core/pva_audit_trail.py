@@ -47,13 +47,11 @@ class PVAAuditTrail:
         self.log_path = self.audit_dir / "cadena_custodia.log"
         self.sello_path = self.audit_dir / "sello_kronos.json"
 
-<<<<<<< HEAD
     def sha256(self, data: str) -> str:
         return hashlib.sha256(data.encode()).hexdigest()
 
     def valida(self, tipo: str, valor: str) -> bool:
         return bool(REGEX[tipo].match(valor)) if tipo in REGEX else False
-=======
 def create_log_entry(event_description, prev_hash):
     timestamp = int(time.time())
     timestamp_iso = datetime.fromtimestamp(timestamp, datetime.UTC).isoformat()
@@ -79,7 +77,6 @@ def upload_to_ipfs(file_path):
         print(f"⚠️  No se pudo subir a IPFS ({ipfs_url}): {e}")
         print("   Se continuará sin respaldo IPFS. Puedes configurar IPFS_URL en el entorno.")
         return None
->>>>>>> 14ee8a8 (feat: implementación PVA 10/10 - peritaje digital con NOM-151 y ISO 27001)
 
     def valida_paquete(self) -> dict:
         return {

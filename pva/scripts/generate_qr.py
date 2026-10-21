@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-<<<<<<< HEAD
 """
 PVA QR Generator - KRONOS 360
 Folio: 5204160405358537
@@ -129,7 +128,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
 import qrcode
 
 FOLIO = "5204160405358537"
@@ -143,4 +141,3 @@ img_qr = qr.make_image(fill_color="#0a0a0a", back_color="#ffffff")
 img_qr.save(f"audit/qr_folio_{FOLIO}.png")
 print(f"✅ QR generado: audit/qr_folio_{FOLIO}.png")
 print(f"🔗 Enlace codificado: {URL}")
->>>>>>> 14ee8a8 (feat: implementación PVA 10/10 - peritaje digital con NOM-151 y ISO 27001)
