@@ -8,3 +8,5 @@ node_modules/
 # Archivos de sistema
 .DS_Store
 Thumbs.db
+.env
+# ARKHE permitido
