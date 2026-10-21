@@ -116,3 +116,21 @@ El legado no se hereda. Se firma. ○_●
 https://img.shields.io/badge/GitHub_Pages-LIVE-00ff41?style=for-the-badge&logo=github
 
 </div>
+
+---
+## PVA - Prueba de Vida Activa
+```json
+{
+  "protocolo": "PVA - Prueba de Vida Activa",
+  "manifest": "e8d9eac8",
+  "nodo": "ecatepec-01-1122",
+  "github_commit": "461b386",
+  "repo": "Marcorojas17/kronos-protocol",
+  "hash_memoria": "cb051622bf8236b8d5357192528bdd0101b55fd0ee9c491ba2c7770840812c0a",
+  "hash_lite": "44272b4ba6986da08b4860e582fb630bf2441c16f80c226fa481c7995a8f4e5e",
+  "hash_pva": "800b02b6ead930932fae9dd4d13fdcda9e9bc281eca84db2f051c577df2cffaa",
+  "timestamp": "2026-10-20T19:25:46.801036",
+  "decision": "MOLE 120 - 8001 VIVO",
+  "estado": "ARKHE ZERO 100% SELLADO"
+}
+```
