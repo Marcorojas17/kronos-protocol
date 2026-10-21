@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-<<<<<<< HEAD
 """
 PVA Manifesto Generator - KRONOS 360
 Folio: 5204160405358537
@@ -151,7 +150,6 @@ def main():
 - Genesis: {GENESIS[:16]}...{GENESIS[-8:]}
 - Siguiente: python scripts/generate_qr.py && python scripts/generate_pdf_dictamen.py
 """)
-=======
 import sys
 import os
 import argparse
@@ -173,7 +171,6 @@ def main():
     with open(f"examples/manifiesto_{hash_manifest[:8]}.txt", "w") as f:
         f.write(manifiesto)
     print(f"\nManifiesto guardado en examples/manifiesto_{hash_manifest[:8]}.txt")
->>>>>>> 14ee8a8 (feat: implementación PVA 10/10 - peritaje digital con NOM-151 y ISO 27001)
 
 if __name__ == "__main__":
     main()
