@@ -2,24 +2,12 @@
   "KRONOS": "27054",
   "MANIFESTO": "e8d9eac8",
   "FOLIO_MAESTRO": "5204160405358537",
-  "MERKLE_ROOT": "6c97d9eea66902d5605c1e42532ab38274dc2bbd0dd1f34fa53f26cd2b62800b",
-  "MERKLE_ARCHIVOS": 311,
-  "SELLO_ID": "af85c76160ee691e",
-  "SELLO_COMMIT": "af85c76160ee691e78e81fbe24f5ecb594fa598d4736c4443526ffec4f132c82",
-  "SELLO_JSON": "testimonio/sellos/af85c76160ee691e.json",
-  "SELLO_COMMIT_FILE": "testimonio/sellos/af85c76160ee691e.commit",
-  "GENESIS_MERKLE_FILE": "genesis-K28-merkle.json",
-  "TIMESTAMP": "2026-10-21T11:22:00Z",
-  "TOTAL_REPO_FILES": 2817,
-  "CAPAS": {
-    "1_GENESIS": "pva/config/genesis_hash.json",
-    "2_SELLO": "pva/core/perito_seal.py + testimonio/sellar.py",
-    "3_CADENA": "pva/audit/ + protocol/KTP-002.md",
-    "4_VERIFICACION": "verificar-certificado.html",
-    "5_TRIBU": "movimiento/manifiesto.md",
-    "6_ECONOMIA": "pva/contracts/PVAContract.sol",
-    "7_LEGADO": "src/memory/capsulas.js"
-  },
-  "VINCULO_EXPLICITO": "Este MERKLE_ROOT contiene el hash SHA256 de los 311 archivos de web/ (tesis completa). El archivo testimonio/sellos/af85c76160ee691e.commit es el compromiso OpenTimestamps que ancla ese root a Bitcoin.",
-  "VERIFICACION": "cat genesis-K28-merkle.json | sha256sum -> debe dar af85c76160ee691e78e81fbe24f5ecb594fa598d4736c4443526ffec4f132c82"
+  "MERKLE_ROOT_V1": "6c97d9eea66902d5605c1e42532ab38274dc2bbd0dd1f34fa53f26cd2b62800b",
+  "SELLO_V1": "af85c76160ee691e",
+  "SELLO_V2_DOBLE": "078633b141d7ec94",
+  "SELLO_V2_COMMIT": "078633b141d7ec948f9d0953949c2d50dbac03be46b8d941fa13b055afa8da9f",
+  "ARCHIVO": "web/desdoblamiento.html + pva/core/doble.py",
+  "TIMESTAMP": "2026-10-21T20:35:00Z",
+  "TEORIA": "Garnier Malet - 3 tiempos, T-2/3 pasado, T-1/3 futuro, T0 presente",
+  "LEY": "No voluntad + No hacer daño + Curiosidad"
 }
