@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KRONOS 27054 - README ARTE</title>
-<style>
-body{background:#000;color:#0f0;font-family:monospace;padding:12px;white-space:pre-wrap;word-break:break-word}
-pre{text-shadow:none !important;line-height:12px;letter-spacing:0;white-space:pre;overflow:hidden}
-.box{border:1px solid #0f0;padding:12px;margin:12px 0}
-a{color:#0f0}
-</style></head><body>
-<pre>
- ___  _  _  ___   _  _  ____
-|_ _|| |/ |/ _ \| |/ || __ )
- | | | ' /| | | | ' / | _ \
- | | | . \| |_| | . \ | |_) |
-|___||_|\_\\___/|_|\_\|____/
-KRONOS.ARKHE = 27054 = 11:22
-</pre>
-<div class="box"># ARKHE TOLUCA e8d9eac8 - KRONOS PROTOCOL
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARKHÉ ZERO - KRONOS 27054 e8d9eac8</title>
+<link rel="stylesheet" href="arkhe-style.css">
+<style>pre{text-shadow:none!important}</style>
+</head>
+<body>
+<a href="desdoblamiento.html" class="back" style="background:#0f0;color:#000;padding:4px 8px">◯_● IR AL DESDOBLAMIENTO 11:22 - e8d9eac8</a>
+<h1>📖 Documentación ARKHÉ ZERO</h1>
+<p><b>MANIFEST e8d9eac8 | MERKLE 6c97d9ee | SELLO V2 078633b141d7ec94 | FOLIO 5204160405358537 | 11:22 TOLUCA</b></p>
+<pre style="border:1px solid #0f0;padding:8px;max-width:600px;overflow:auto"># ARKHE TOLUCA e8d9eac8 - KRONOS PROTOCOL
 ## https://github.com/Marcorojas17/kronos-protocol
 
 Protocolo vivo 11:22 Toluca - KRONOS 27054
@@ -26,8 +20,8 @@ Protocolo vivo 11:22 Toluca - KRONOS 27054
 - Repo: kronos-protocol
 
 Restauración: curl + base64 -d
-</div>
-<div class="box"><pre>{
+
+{
   "KRONOS": "27054",
   "MANIFESTO": "e8d9eac8",
   "FOLIO_MAESTRO": "5204160405358537",
@@ -40,10 +34,73 @@ Restauración: curl + base64 -d
   "TEORIA": "Garnier Malet - 3 tiempos, T-2/3 pasado, T-1/3 futuro, T0 presente",
   "LEY": "No voluntad + No hacer daño + Curiosidad"
 }
-</pre></div>
-<div class="box" style="font-size:10px">
-GITHUB // CERTIFICADO 078633b141d7ec94 // README ARTE<br>
-11:22 TOLUCA - ELEGIDO 15-04-1999 22:35<br>
-FOLIO 5204160405358537 - MERKLE 6c97d9ee - MANIFEST e8d9eac8
-</div>
+</pre>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ARKHÉ ZERO</title>
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        color: #d4af37;
+        font-family: monospace;
+        overflow: hidden;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      #c {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        margin-top: 25vh;
+        font-size: 28px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div id="c">
+      ◯_● ARKHÉ ZERO<br />YHDRYH-92CE · SCDR-001<br />51/49/100<br /><br /><span
+        style="font-size: 14px"
+        >El legado no se hereda. Se firma. — KINTSUGI 2026</span
+      >
+    </div>
+    <script>
+      const C = document.getElementById('bg'),
+        X = C.getContext('2d');
+      C.width = innerWidth;
+      C.height = innerHeight;
+      let P = [];
+      for (let i = 0; i < 150; i++)
+        P.push({
+          x: Math.random() * C.width,
+          y: Math.random() * C.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+        });
+      (function L() {
+        X.clearRect(0, 0, C.width, C.height);
+        X.fillStyle = '#D4AF37';
+        P.forEach((o) => {
+          o.x += o.vx;
+          o.y += o.vy;
+          if (o.x < 0 || o.x > C.width) o.vx *= -1;
+          if (o.y < 0 || o.y > C.height) o.vy *= -1;
+          X.fillRect(o.x, o.y, 1.5, 1.5);
+        });
+        requestAnimationFrame(L);
+      })();
+    </script>
+  </body>
+</html>
+
+<hr>
+<p>QR OFFLINE: /sdcard/Download/ARKHE-QR-IMPRESION-OFFLINE.html | TAR GLOBAL: ARKHE-TOLUCA-GLOBAL-e8d9eac8.tar.gz (193K)</p>
+<p>Gist Manifest: b6e0a90c32487b93936a0f8af7b6f4d6 | Gist TAR: 748ae7f542960bca85be00bbd874a67f</p>
 </body></html>
