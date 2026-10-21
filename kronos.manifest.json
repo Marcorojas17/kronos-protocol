@@ -1,0 +1,122 @@
+{
+  "KRONOS": "27054",
+  "VERSION": "MT01JAAF_a4ff808e",
+  "FOLIO_MAESTRO": "5204160405358537",
+  "GENESIS_HASH": "41a3683bfe3ec2a0b4c9d6a9b9c8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a3b2c1d0e9f",
+  "TIMESTAMP": "2026-10-21T11:22:00Z",
+  "CAPAS": {
+    "1_GENESIS": {
+      "config": "pva/config/genesis_hash.json",
+      "miner": "projects/genesis-miner/merkle_export.py",
+      "narrativa": "movimiento/genesis.md",
+      "hash_file": [
+        "pva/config/genesis_hash.json"
+      ]
+    },
+    "2_SELLO": {
+      "core_perito": "pva/core/perito_seal.py",
+      "crypto": [
+        "src/kronos360/crypto/audit_log.py",
+        "src/kronos360/crypto/signatures.py",
+        "src/kronos360/crypto/hashing.py"
+      ],
+      "testimonio": [
+        "testimonio/sellar.py",
+        "testimonio/firmar.py",
+        "testimonio/ots-http.py"
+      ],
+      "sellos_existentes": [
+        "pva/evidencia/evidencia_5204160405358537_KRONOS-MT01JAAF_a4ff808e.json",
+        "pva/pagos/pago_5204160405358537_a4ff808e_20260905101624.json",
+        "pva/web/links_pago.json",
+        "testimonio/sellos/12c5df4e2d250f43.commit",
+        "testimonio/sellos/4111c23efa24f4ee.commit",
+        "testimonio/sellos/5e752f861bfd54cb.commit",
+        "testimonio/sellos/69bc22811dc55980.commit",
+        "testimonio/sellos/7bcbdbb42d63c802.commit",
+        "testimonio/sellos/ba515393ecc7b8d7.commit",
+        "testimonio/sellos/ff15b14071d337c6.commit"
+      ],
+      "ots": [
+        "MANIFEST-2026-10-15.sha256.ots",
+        "CERTIFICADO-FINAL.json.ots",
+        "test.txt.ots",
+        "docs/ARQUITECTURA-VIVA.html.ots",
+        "docs/ARQUITECTURA-VIVA.md.ots",
+        "docs/EXPLICACION-UNIVERSAL.html.ots",
+        "docs/EXPLICACION-UNIVERSAL.md.ots",
+        "docs/MAPA.md.ots",
+        "docs/PLANTILLA-TERMINAL.md.ots",
+        "docs/README.md.ots"
+      ]
+    },
+    "3_CADENA": {
+      "auditoria": "pva/audit/AUDITORIA_ISO_NOM_PVA_5204160405358537.md",
+      "cadena_custodia": "pva/peritaje/tecnico/CADENA_CUSTODIA_ISO27037_15-10.md",
+      "protocolo": [
+        "protocol/KTP-001.md",
+        "protocol/KTP-002.md"
+      ],
+      "legal": "pva/legal/",
+      "ejercito": "pva/ejercito/"
+    },
+    "4_VERIFICACION": {
+      "htmls": [
+        "verificar.html",
+        "verify.html",
+        "verificar-certificado.html",
+        "02-VERIFICADOR/verificador.html",
+        "atribucion/verifier.html",
+        "ciudad/verificar.html",
+        "pva/web/verificacion.html",
+        "pva/web/verification.html",
+        "web/CIUDAD/verificar.html",
+        "web/tutorials/03-verificar-certificado.html",
+        "web/v-indice-cero/5.6-hashes-verificables.html",
+        "web/CIUDAD/_demo/verificar.html",
+        "docs/CIUDAD/verificar.html",
+        "docs/ciudad/verificar.html",
+        "docs/licencias/verify.html",
+        "docs/tutorials/03-verificar-certificado.html",
+        "docs/v-indice-cero/5.6-hashes-verificables.html",
+        "docs/movimiento/onboarding/paso-2-verificacion.html",
+        "docs/ciudad/_demo/verificar.html",
+        "docs/CIUDAD/_demo/verificar.html",
+        "ciudad/_demo/verificar.html"
+      ],
+      "principal": "verificar-certificado.html",
+      "certificado_fundacional": "movimiento/registro-fundacional/certificado-fundacional.html"
+    },
+    "5_TRIBU": {
+      "manifiesto": "movimiento/manifiesto.md",
+      "niveles": "movimiento/niveles/",
+      "embajadores": "movimiento/embajadores/programa.md",
+      "comunidad": "movimiento/comunidad/reglas.md",
+      "rituales": "movimiento/rituales/"
+    },
+    "6_ECONOMIA": {
+      "contrato": "pva/contracts/PVAContract.sol",
+      "pagos": "pva/pagos/pagos_mt01jaaf.py",
+      "emisor_licencias": "runtime/emisor_licencias.py",
+      "evidencia_pago": [
+        "pva/pagos/pago_5204160405358537_a4ff808e_20260905101624.json"
+      ]
+    },
+    "7_LEGADO": {
+      "memoria": "src/memory/capsulas.js",
+      "boveda_voz": "modulos/boveda-voz/index.html",
+      "evidence_os": "modulos/evidence-os/index.html",
+      "dashboard": "operacion/dashboard-salud/index.html"
+    }
+  },
+  "VINCULOS_EXPLICITOS": {
+    "folio->sello": "pva/audit/sello_kronos.json lee pva/config/genesis_hash.json",
+    "sello->ots": "testimonio/sellar.py genera .ots -> testimonio/sellos/",
+    "ots->verificacion": "verificar-certificado.html debe leer testimonio/sellos/*.json + *.ots",
+    "verificacion->pago": "pva/web/marketplace.html -> pva/pagos/pagos_mt01jaaf.py -> runtime/emisor_licencias.py",
+    "pago->tribu": "pago confirmado -> movimiento/onboarding/paso-1-registro.md"
+  },
+  "TOTAL_ARCHIVOS_ESCANEADOS": 2572,
+  "ARCHIVOS_CORE_REALES": 49,
+  "ARCHIVOS_LORE": 2100
+}
