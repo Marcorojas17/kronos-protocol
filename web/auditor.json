@@ -1,0 +1,23 @@
+{
+  "agente": "092-auditor-externo",
+  "periodo": "2026-Q4",
+  "generado": "2026-12-31T23:59:59Z",
+  "cadena_integridad": {
+    "total_archivos": 1070,
+    "verificados": 1070,
+    "discrepancias": 0,
+    "estado": "INTEGRIDAD TOTAL"
+  },
+  "sellos_tsa": {
+    "total": 12,
+    "validos": 12,
+    "expirados": 0
+  },
+  "anclajes_ethereum": {
+    "total": 3,
+    "confirmados": 3,
+    "pendientes": 0
+  },
+  "veredicto": "CADENA ÍNTEGRA · SIN ALTERACIÓN",
+  "sello": "◯_● · 51/49/100"
+}

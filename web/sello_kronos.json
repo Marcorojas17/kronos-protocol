@@ -1,0 +1,39 @@
+{
+  "folio_maestro": "5204160405358537",
+  "folio_pericial": "KRONOS-MT01JAAF",
+  "sha": "a4ff808e",
+  "perito": "kronosproyecto@hotmail.com",
+  "genesis_hash": "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3",
+  "sello": "KRONOS-TRACE-PVA-5204160405358537-MT01JAAF",
+  "sc": "2607146379465",
+  "tx": "0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "chain_id": 80002,
+  "chain": "Polygon Amoy",
+  "qr_path": "/workspaces/PVA-Protocolo-Vida-Autopoietica-/audit/qr_folio_5204160405358537_KRONOS-MT01JAAF.png",
+  "qr_data": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-MT01JAAF&genesis=41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3&perito=kronosproyecto@hotmail.com&sha=a4ff808e&sc=2607146379465&tx=0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "payload": {
+    "f_maestro": "5204160405358537",
+    "f_pericial": "KRONOS-MT01JAAF",
+    "sha": "a4ff808e",
+    "p": "kronosproyecto@hotmail.com",
+    "g": "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3",
+    "g_short": "41a3683bbf83296e...bc39f4c3",
+    "s": "KRONOS-TRACE-PVA-5204160405358537-MT01JAAF",
+    "sc": "2607146379465",
+    "tx": "0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+    "chain_id": 80002,
+    "v": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-MT01JAAF",
+    "explorer": "https://amoy.polygonscan.com/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+    "github": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/",
+    "t": "2026-09-05T09:53:11.635994Z"
+  },
+  "urls": {
+    "github_pages": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/",
+    "verifica_kronos": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-MT01JAAF",
+    "verifica_fdv": "https://verifica.fdv.mx/folio/5204160405358537",
+    "api": "https://api.kronos-legado.digital/v1/api/verifica/KRONOS-TRACE-PVA-5204160405358537-MT01JAAF",
+    "polygonscan_amoy": "https://amoy.polygonscan.com/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e"
+  },
+  "created": "2026-09-05T09:53:12.088541Z",
+  "norma": "NOM-151 Art.10 + MT01JAAF + SHA a4ff808e"
+}

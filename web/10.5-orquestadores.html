@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎼 Artículo 10.5 · Orquestadores · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-105-orquestadores">🎼 Artículo 10.5 · Orquestadores</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/x-agentes-arquitectura]
+└─$ ./agentes --rol=orquestador --info
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  ROL · ORQUESTADOR                                                       ║
+║  Función · Event bus + router de módulos                                ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="topicos-canonicos">🜂 Tópicos canónicos</h2>
+    <pre><code class="language-javascript">export const TOPICOS = [
+  'arkhe.firma.creada',
+  'arkhe.documento.anclado',
+  'arkhe.agente.activado',
+  'arkhe.consenso.alcanzado',
+  'arkhe.veto.aplicado',
+];
+</code></pre>
+    <h2 id="uso">🜃 Uso</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./orquestador --status
+
+╔══════════════════════════════════════════════════════════════╗
+║  EVENTOS     · 5 tópicos canónicos                           ║
+║  SUSCRIPT.   · 12 agentes conectados                         ║
+║  LATENCIA    · &lt;100ms p99                                    ║
+╚══════════════════════════════════════════════════════════════╝
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · AGENTES · 10.5 · Orquestadores</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

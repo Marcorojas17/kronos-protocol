@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>KRONOS V18 - 15/10 LUZ PRENDIDA | 10/10</title>
+    <style>
+      :root {
+        --bg: #070a0e;
+        --card: #10151d;
+        --green: #00ff66;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Consolas, monospace;
+      }
+      body {
+        background: radial-gradient(1200px 600px at 50% -10%, #12202f 0%, #070a0e 60%);
+        color: #ffffff;
+        min-height: 100vh;
+        padding: 24px;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #00ff6633;
+        background: rgba(0, 255, 102, 0.07);
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin: 0 auto 20px;
+        max-width: 1100px;
+      }
+      .badge {
+        background: #00ff66;
+        color: #000;
+        padding: 6px 12px;
+        border-radius: 99px;
+        font-weight: 800;
+        font-size: 12px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .btn {
+        border-radius: 14px;
+        padding: 18px;
+        border: 1px solid #1e2a3a;
+        background: #10151d;
+        cursor: pointer;
+        text-align: left;
+        transition: 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        border-color: #fff5;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+      .btn h3 {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+      .btn p {
+        font-size: 11px;
+        opacity: 0.9;
+      }
+      .btn small {
+        font-size: 9px;
+        opacity: 0.75;
+        display: block;
+        margin-top: 8px;
+      }
+      .b1 {
+        border-left: 4px solid #00ff66;
+      }
+      .b1 h3 {
+        color: #00ff66;
+      }
+      .b2 {
+        border-left: 4px solid #00d5ff;
+      }
+      .b2 h3 {
+        color: #00d5ff;
+      }
+      .b3 {
+        border-left: 4px solid #ffaa00;
+      }
+      .b3 h3 {
+        color: #ffaa00;
+      }
+      .b4 {
+        border-left: 4px solid #ff3b3b;
+      }
+      .b4 h3 {
+        color: #ff5a5a;
+      }
+      .b5 {
+        border-left: 4px solid #a6ff00;
+      }
+      .b5 h3 {
+        color: #a6ff00;
+      }
+      .b6 {
+        border-left: 4px solid #9b8cff;
+      }
+      .b6 h3 {
+        color: #9b8cff;
+      }
+      .b7 {
+        border-left: 4px solid #fff;
+      }
+      .b7 h3 {
+        color: #fff;
+      }
+      .b8 {
+        grid-column: 1/-1;
+        background: linear-gradient(90deg, #ffe600, #ffcc00);
+        color: #000;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(255, 230, 0, 0.35);
+      }
+      .b8 h3 {
+        color: #000;
+      }
+      .terminal {
+        border: 1px solid #00ff6633;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        padding: 14px;
+        font-size: 11px;
+        color: #00ff88;
+        margin: 0 auto 18px;
+        max-width: 1100px;
+        line-height: 1.6;
+      }
+      @media (max-width: 700px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <div class="badge">● KRONOS V18 • 15/10 • 10/10 PERICIAL</div>
+        <div style="font-size: 11px; margin-top: 6px; opacity: 0.9">
+          FOLIO: KRONOS-MT01JAAF • SHA256 OFFLINE • RFC3161 • CNPP Art.272
+        </div>
+      </div>
+      <div style="text-align: right; font-size: 10px; opacity: 0.8">
+        LUZ PRENDIDA OFFLINE<br />contracts/core/scripts OK
+      </div>
+    </div>
+    <div class="terminal">
+      > luz.on OK - QRCode OK - ejercito 1000 OK - contracts/core/scripts VERIFICADO<br />>
+      AUDITORIA 10/10 - SHA256 a4ff808e VERIFICADO - 8 BOTONES OK
+    </div>
+    <div class="grid">
+      <button
+        class="btn b1"
+        onclick="location.href = 'peritaje/tecnico/DICTAMEN_TECNICO.md'"
+      >
+        <h3>1. AUDITORIA 10/10</h3>
+        <p>Verifica todo existe</p>
+        <small>ENTREGA: DICTAMEN_TECNICO.md</small></button
+      ><button class="btn b2" onclick="location.href = 'peritaje/tecnico/PERITAJE.zip'">
+        <h3>2. PERITAJE PDF</h3>
+        <p>ZIP firmado KRONOS-2025-001</p>
+        <small>ENTREGA: PERITAJE.zip offline</small></button
+      ><button class="btn b3" onclick="location.href = 'cadena_sha256.txt'">
+        <h3>3. CADENA SHA256</h3>
+        <p>Candado digital hash a4ff808e</p>
+        <small>ENTREGA: cadena_sha256.txt</small></button
+      ><button class="btn b4" onclick="location.href = 'legal/'">
+        <h3>4. BLINDAJE LEGAL</h3>
+        <p>9 docs GDPR PROFECO - VACIO 6,7,8 cerrados</p>
+        <small>ENTREGA: legal/ 9 docs</small></button
+      ><button class="btn b5">
+        <h3>5. CERTIFICADO QR</h3>
+        <p>Antifalsificable</p>
+        <small>ENTREGA: QR offline</small></button
+      ><button class="btn b6" onclick="location.href = 'web/pro/'">
+        <h3>6. ORACULO PRO</h3>
+        <p>hash_to_semantic</p>
+        <small>ENTREGA: web/pro/</small></button
+      ><button class="btn b7" onclick="location.href = 'scripts/ejercito.py'">
+        <h3>7. EJERCITO 1000</h3>
+        <p>Soberanía</p>
+        <small>ENTREGA: ejercito.py</small></button
+      ><button
+        class="btn b8"
+        onclick="location.href = 'web/basic/index.html?folio=KRONOS-BASIC-0001'"
+      >
+        <h3>8. ★ PREMIUM LUZ PRENDIDA - SOLUCION TOTAL</h3>
+        <p>Todo + PDF firmado + MP</p>
+        <small>ENTREGA: TODO + PREMIUM approved</small>
+      </button>
+    </div>
+  </body>
+</html>

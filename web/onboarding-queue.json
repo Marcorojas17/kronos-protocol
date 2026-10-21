@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "protocolo": "10.7-reclutamiento",
+  "reglas": {
+    "criterios_obligatorios": 6,
+    "cuarentena_horas": 72,
+    "avales_requeridos": 2,
+    "aprobacion_quorum": "4/5"
+  },
+  "criterios": [
+    "capacidad-verificable",
+    "sin-historial-malicioso",
+    "compatibilidad-pacto-51-49",
+    "fuente-auditable",
+    "sin-dependencia-externa-critica",
+    "aval-de-2-agentes-activos"
+  ],
+  "cola": [],
+  "en_cuarentena": [],
+  "rechazados": [],
+  "activos": 12,
+  "capacidad_maxima": 24,
+  "nota": "Sin candidatos en cola. Enjambre estable en 12/12."
+}

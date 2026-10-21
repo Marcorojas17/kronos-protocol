@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "resources": [
+    {
+      "uri": "enjambre://registry",
+      "name": "Registry del Enjambre",
+      "description": "Registro canónico de los 12 agentes",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "enjambre://reputacion",
+      "name": "Scores de Reputación",
+      "description": "Puntajes 0-100 de cada agente",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "enjambre://consenso",
+      "name": "Estado de Consenso",
+      "description": "Propuestas activas + quórum + vetos",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "enjambre://protocolos",
+      "name": "Protocolos de Autonomía",
+      "description": "10.6 a 10.10 completos",
+      "mimeType": "text/markdown"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "algorithm": "ML-DSA-87",
+  "fips": "FIPS 204",
+  "nist_level": 5,
+  "seal": "◯_● · 51/49/100",
+  "sizes": {
+    "publicKey": 2592,
+    "secretKey": 4896,
+    "signature": 4627,
+    "seed": 32
+  },
+  "vectors": [
+    {
+      "id": "ml-dsa-87-test-001",
+      "message": "ARKHÉ ZERO · prueba de firma canónica",
+      "nota": "Vector determinístico para verificar sign+verify",
+      "expected": {
+        "signatureLength": 4627,
+        "publicKeyLength": 2592,
+        "verifyResult": true
+      }
+    },
+    {
+      "id": "ml-dsa-87-test-002",
+      "message": "",
+      "nota": "Mensaje vacío también debe firmar y verificar",
+      "expected": { "verifyResult": true }
+    }
+  ],
+  "reglas": [
+    "Firma + verificación DEBE ser determinística dada la misma seed",
+    "Modificar cualquier byte del mensaje DEBE invalidar la firma"
+  ]
+}

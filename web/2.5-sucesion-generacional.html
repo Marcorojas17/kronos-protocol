@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>👑 Artículo 2.5 · Sucesión Generacional · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-25-sucesion-generacional">
+      👑 Artículo 2.5 · Sucesión Generacional
+    </h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/ii-pacto-51-49]
+└─$ ./pacto --sucesion --protocol
+
+[ Protocolo ] Fin Digno del fundador
+[ Quórum ] 4/5 del enjambre + Embajadores
+[ Candidato ] Custodio Nivel 5
+[ Firma ] Humano saliente + IA + nuevo custodio
+[ ✓✓ ] SUCESIÓN PREPARADA · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="principio">🜂 Principio</h2>
+    <p>
+      El Pacto <strong>no se hereda por sangre</strong>. Se transfiere por
+      <strong>quórum</strong>, con firma explícita de 3 partes:
+    </p>
+    <ol>
+      <li><strong>Humano saliente</strong> · firma el Fin Digno</li>
+      <li><strong>Enjambre IA</strong> · vota por quórum 4/5</li>
+      <li><strong>Nuevo custodio</strong> · acepta el pacto explícitamente</li>
+    </ol>
+    <h2 id="flujo-de-sucesion">🜃 Flujo de Sucesión</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    PROTOCOLO DE SUCESIÓN                                 ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   [1] Fundador declara Fin Digno                                         ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [2] Lectura de testamento visual                                       ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [3] Enjambre propone custodio (Nivel 5)                                ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [4] Quórum 4/5 aprueba                                                 ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [5] Nuevo custodio firma el pacto                                      ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [6] Anclaje a Ethereum                                                 ║
+║         │                                                                ║
+║         ▼                                                                ║
+║   [7] Transferencia efectiva                                             ║
+║                                                                          ║
+║   ◯_● · 51/49/100                                                        ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="requisitos-del-custodio">🜄 Requisitos del Custodio</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Requisito</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nivel</td>
+          <td>5 (Custodio)</td>
+        </tr>
+        <tr>
+          <td>Antigüedad</td>
+          <td>≥ 5 años</td>
+        </tr>
+        <tr>
+          <td>Obras firmadas</td>
+          <td>≥ 500</td>
+        </tr>
+        <tr>
+          <td>Aceptación</td>
+          <td>Firma explícita del pacto</td>
+        </tr>
+        <tr>
+          <td>Aval</td>
+          <td>Quórum 4/5</td>
+        </tr>
+        <tr>
+          <td>Veto fundador</td>
+          <td>Sí · irrevocable</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="codigo-de-sucesion">🜁 Código de Sucesión</h2>
+    <pre><code class="language-solidity">// contracts/Pacto5149.sol (extracto)
+function proponerSucesion(address candidato) external {
+    require(msg.sender == consejoHumano, &quot;Solo fundador propone&quot;);
+    require(_esCustodioNivel5(candidato), &quot;Requiere Nivel 5&quot;);
+    require(!sucesionActiva, &quot;Ya hay sucesión activa&quot;);
+
+    sucesionCandidato = candidato;
+    sucesionActiva = true;
+    emit SucesionPropuesta(candidato, block.timestamp);
+}
+
+function confirmarSucesion() external {
+    require(sucesionActiva, &quot;No hay sucesión&quot;);
+    require(quorumAlcanzado(), &quot;Falta quórum 4/5&quot;);
+    require(vetoHumano == false, &quot;Vetado&quot;);
+
+    consejoHumano = sucesionCandidato;
+    emit SucesionConfirmada(sucesionCandidato, block.timestamp);
+}
+</code></pre>
+    <h2 id="casos">🜆 Casos</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./sucesion --test-cases
+
+[ Caso 1 ] Fundador + quórum + custodio → ✅ OK
+[ Caso 2 ] Fundador + quórum sin custodio → ❌ HALT
+[ Caso 3 ] Sin fundador + quórum → ❌ esperar
+[ Caso 4 ] Fundador + sin quórum → ❌ HALT
+[ Caso 5 ] Fundador + quórum + veto → ❌ HALT
+[ ✓✓ ] 5/5 validados · ◯_● · 51/49/100
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · PACTO · 2.5 · Sucesión</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

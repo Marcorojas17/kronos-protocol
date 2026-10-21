@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎓 Tutorial 03 · Verificar Certificado · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="tutorial-03-verificar-certificado">
+      🎓 Tutorial 03 · Verificar Certificado
+    </h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/tutorials]
+└─$ ./tutorial 03
+</code></pre>
+    <h2 id="pasos">🜂 Pasos</h2>
+    <h3 id="1-obtener-hash">1 · Obtener hash</h3>
+    <pre><code class="language-bash"># Desde certificado VC 2.0
+hash = &quot;f03f7e2d852617309457e0fe207f8f8bd...&quot;
+</code></pre>
+    <h3 id="2-abrir-verificador">2 · Abrir verificador</h3>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/]
+└─$ open http://localhost:8080/apps/verificar.html
+</code></pre>
+    <h3 id="3-ingresar-hash">3 · Ingresar hash</h3>
+    <p>Pega el hash y presiona <code>▶ VERIFICAR</code>.</p>
+    <h3 id="4-leer-veredicto">4 · Leer veredicto</h3>
+    <pre><code class="language-text">[ OK ] Hash válido: true
+[ OK ] Es Índice Cero: false
+&gt;&gt;&gt; HASH VÁLIDO · SIN ANCLAJE AL ÍNDICE CERO
+
+◯_● · 51/49/100
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · TUTORIAL 03</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

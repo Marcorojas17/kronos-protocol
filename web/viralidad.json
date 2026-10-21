@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "viralidad",
+  "titulo": "Viralidad",
+  "periodo": "2026-10",
+  "datos": {
+    "shares_totales": 0,
+    "shares_por_plataforma": {
+      "twitter": 0,
+      "linkedin": 0,
+      "mastodon": 0,
+      "bluesky": 0
+    },
+    "menciones": 0,
+    "medallas_otorgadas": 0,
+    "momentos_virales": []
+  },
+  "metas": {
+    "shares_mes": 500,
+    "menciones_mes": 100
+  },
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}

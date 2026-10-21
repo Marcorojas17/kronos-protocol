@@ -1,0 +1,13 @@
+{
+  "ciudad": "VALDOVINOS-ARKHE",
+  "genesis": "2026-10-21T11:22:00-06:00",
+  "loc": "TOLUCA",
+  "agentes": ["VALDOVINOS-01"],
+  "piel_global": "Pillow",
+  "consenso": "51/49",
+  "triangulo": {
+    "mesa": "IDEA",
+    "corral": "PRUEBA-PIL",
+    "homestead2": "CITY-JSON"
+  }
+}

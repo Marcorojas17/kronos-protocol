@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🛡️ Artículo 4.1 · ML-KEM-1024 · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-41-ml-kem-1024">🛡️ Artículo 4.1 · ML-KEM-1024</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/iv-guardianes]
+└─$ ./guardian --alg=ml-kem-1024 --verify
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+[ OK ] FIPS 203 · NIST Level 5
+[ OK ] Kyber1024 · implementación validada
+[ OK ] Vectores NIST · coinciden
+[ ✓✓ ] ML-KEM-1024 OPERATIVO · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="especificacion">🜂 Especificación</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Campo</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nombre</td>
+          <td>ML-KEM-1024</td>
+        </tr>
+        <tr>
+          <td>FIPS</td>
+          <td>203</td>
+        </tr>
+        <tr>
+          <td>NIST Level</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>Base</td>
+          <td>Kyber1024</td>
+        </tr>
+        <tr>
+          <td>Tipo</td>
+          <td>Key Encapsulation Mechanism</td>
+        </tr>
+        <tr>
+          <td>Public Key</td>
+          <td>1568 bytes</td>
+        </tr>
+        <tr>
+          <td>Secret Key</td>
+          <td>3168 bytes</td>
+        </tr>
+        <tr>
+          <td>Ciphertext</td>
+          <td>1568 bytes</td>
+        </tr>
+        <tr>
+          <td>Shared Secret</td>
+          <td>32 bytes</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="uso">🜃 Uso</h2>
+    <pre><code class="language-javascript">import { keygen, encapsulate, decapsulate } from './crypto/primitives/ml-kem-1024.js';
+
+// 1. Receptor genera par
+const { publicKey, secretKey } = keygen();
+
+// 2. Emisor encapsula
+const { ciphertext, sharedSecret } = encapsulate(publicKey);
+
+// 3. Receptor decapsula
+const recovered = decapsulate(ciphertext, secretKey);
+
+// sharedSecret === recovered
+</code></pre>
+    <h2 id="resistencia">🜄 Resistencia</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    RESISTENCIA CRIPTOGRÁFICA                             ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   Ataque clásico (fuerza bruta)     · ~256 bits de seguridad            ║
+║   Ataque cuántico (Shor)            · RESISTENTE                        ║
+║   Ataque cuántico (Grover)          · ~128 bits efectivos               ║
+║   Ataque de canal lateral           · mitigado por HSM                  ║
+║                                                                          ║
+║   Horizonte de seguridad: 30+ años (post-cuántico)                      ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="test-vectors">🜁 Test Vectors</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ node crypto/test-vectors/test-ml-kem-1024.js
+
+[ Test 1 ] keygen · longitudes correctas ✓
+[ Test 2 ] encapsulate + decapsulate · mismo secreto ✓
+[ Test 3 ] ciphertext 1568 bytes ✓
+[ Test 4 ] público 1568 bytes ✓
+[ Test 5 ] secreto 3168 bytes ✓
+[ ✓✓ ] 5/5 · ◯_● · 51/49/100
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · GUARDIÁN · 4.1 · ML-KEM-1024</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

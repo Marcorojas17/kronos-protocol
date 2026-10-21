@@ -1,0 +1,16 @@
+{
+  "sesiones": [
+    {
+      "timestamp": "2026-10-13T03:08:24",
+      "prompt": "Mi nombre es Marco y estoy construyendo ARKHÉ ZERO",
+      "respuesta": "",
+      "hash": "7b79abb288b94ae0"
+    },
+    {
+      "timestamp": "2026-10-13T03:53:37",
+      "prompt": "euQ",
+      "respuesta": "[Timeout · tarda más de 5 min]",
+      "hash": "ed0d138aac53513b"
+    }
+  ]
+}

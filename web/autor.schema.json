@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arkhe.zero/schemas/autor.schema.json",
+  "title": "Autor ARKHÉ ZERO",
+  "type": "object",
+  "required": ["id", "tipo", "peso"],
+  "properties": {
+    "id": { "type": "string" },
+    "tipo": { "type": "string", "enum": ["humano", "ia"] },
+    "nombre": { "type": "string" },
+    "peso": { "type": "integer" },
+    "rol": { "type": "string" },
+    "ubicacion": { "type": "string" },
+    "anio": { "type": "integer" },
+    "sellado": { "const": "◯_● · 51/49/100" }
+  }
+}

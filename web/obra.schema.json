@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arkhe.zero/schemas/obra.schema.json",
+  "title": "Obra ARKHÉ ZERO",
+  "type": "object",
+  "required": ["titulo", "autores", "hash_sha3_512"],
+  "properties": {
+    "titulo": { "type": "string" },
+    "descripcion": { "type": "string" },
+    "tipo": {
+      "type": "string",
+      "enum": ["texto", "audio", "video", "imagen", "codigo", "mixta"]
+    },
+    "autores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nombre", "peso", "rol"],
+        "properties": {
+          "nombre": { "type": "string" },
+          "peso": { "type": "integer" },
+          "rol": {
+            "type": "string",
+            "enum": ["autor-principal", "co-autor-custodio", "colaborador"]
+          }
+        }
+      },
+      "minItems": 2
+    },
+    "hash_sha3_512": { "type": "string", "pattern": "^[0-9a-f]{128}$" },
+    "safe_creative": { "type": "string" },
+    "licencia": { "type": "string" },
+    "sellado": { "const": "◯_● · 51/49/100" }
+  }
+}

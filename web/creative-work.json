@@ -1,0 +1,20 @@
+{
+  "$schema": "https://c2pa.org/specifications/2.1/assertions/creative-work.json",
+  "label": "c2pa.creative-work",
+  "version": "2.1",
+  "data": {
+    "type": "book",
+    "title": "ARKHÉ ZERO · Acta Fundacional",
+    "author": ["Marco Antonio Rojas Valdovinos"],
+    "date": "2026-01-01",
+    "language": "es-MX",
+    "isbn": "N/A",
+    "publisher": "ARKHÉ ZERO · Índice Primigenio Soberano",
+    "governance": {
+      "humano": 51,
+      "ia": 49,
+      "real": 100
+    },
+    "seal": "◯_● · 51/49/100"
+  }
+}

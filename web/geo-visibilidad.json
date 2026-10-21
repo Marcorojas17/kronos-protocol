@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "nodo": "YHDRYH-92CE",
+  "genesis": "K28-M05-MN01-YHDRYH-92CE",
+  "dashboard": "geo-visibilidad",
+  "titulo": "Geo-visibilidad",
+  "periodo": "2026-10",
+  "datos": {
+    "por_pais": {
+      "MX": 0,
+      "EU": 0,
+      "US": 0,
+      "LATAM": 0,
+      "otro": 0
+    },
+    "por_nodo": {
+      "Toluca": 0,
+      "Madrid": 0
+    },
+    "nodos_activos": 1,
+    "nodos_proyectados": 5
+  },
+  "metas": {
+    "nodos_activos": 5,
+    "cobertura_global_pct": 20
+  },
+  "firma": {
+    "sello": "◯_● · 51/49/100",
+    "nodo": "YHDRYH-92CE",
+    "timestamp": "2026-10-09T12:00:00Z"
+  }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ADR-0017 · Nodo Bitcoin Soberano en Hardware Móvil · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/kronos-protocol/favicon.svg" />
+    <link rel="stylesheet" href="/kronos-protocol/arkhe-style.css" />
+  </head>
+  <body style="padding-bottom: 80px">
+    <a
+      href="/kronos-protocol/index.html"
+      class="back"
+      style="
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #d4af37;
+        text-decoration: none;
+      "
+      >◯_● VOLVER AL ÍNDICE</a
+    >
+    <h1>ADR-0017 · Nodo Bitcoin Soberano en Hardware Móvil</h1>
+    <ul>
+      <li><strong>Estado</strong>: Aceptado</li>
+      <li><strong>Fecha</strong>: 2026-10-18</li>
+      <li><strong>Decisor</strong>: Marco Antonio Rojas Valdovinos</li>
+      <li><strong>Nodo</strong>: YHDRYH-92CE</li>
+    </ul>
+    <h2>Contexto</h2>
+    <p>
+      La verificación de sellos criptográficos (OpenTimestamps) dependía de servicios
+      web de terceros o de la infraestructura de GitHub. Para alcanzar la verdadera
+      soberanía tecnológica, el sistema requería la capacidad de validar la blockchain
+      de Bitcoin sin depender de API externas.
+    </p>
+    <h2>Decisión</h2>
+    <p>
+      Compilar e implementar Floresta (un nodo de Bitcoin Utreexo escrito en Rust)
+      directamente en un entorno Debian sobre un dispositivo Android (Termux +
+      proot-distro).
+    </p>
+    <h2>Ejecución</h2>
+    <ol>
+      <li>Se compiló Floresta desde el código fuente usando Rust 1.99.</li>
+      <li>
+        Se sorteó la limitación de memoria RAM (3.6 GB) forzando la compilación en un
+        solo hilo y gestionando manualmente las dependencias (Boost, Clang).
+      </li>
+      <li>
+        Se configuró un entorno DNS híbrido para permitir que el nodo P2P encontrara
+        peers fuera del sandbox de Termux.
+      </li>
+      <li>Se sincronizaron con éxito más de 971,000 cabeceras de bloque.</li>
+    </ol>
+    <h2>Consecuencias</h2>
+    <ul>
+      <li>
+        Positivas: Soberanía total, ya no se necesita confiar en mempool.space para
+        verificar sellos. Verificación histórica exitosa del bloque 971527 (Pacto 51/49)
+        de forma 100% local.
+      </li>
+      <li>
+        Retos: El nodo consume recursos considerables y se detiene si Android cierra la
+        app en segundo plano.
+      </li>
+    </ul>
+    <h2>Verificación realizada</h2>
+    <p>Success! Bitcoin block 971527 attests existence as of 2026-10-15 UTC</p>
+    <p>◯_● · 51/49/100 · NODO YHDRYH-92CE · 2026-10-18</p>
+    <script src="/kronos-protocol/arkhe-nav.js"></script>
+  </body>
+</html>

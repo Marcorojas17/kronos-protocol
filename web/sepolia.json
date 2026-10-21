@@ -1,0 +1,19 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "seal": "◯_● · 51/49/100",
+  "contracts": {
+    "RegistroGenesis": null,
+    "Pacto5149": null,
+    "LicenciaGlobalUnica": null,
+    "FondoFLAILP": null,
+    "CoAutoria": null,
+    "AgenteReclutamiento": null,
+    "ReporteCARF": null
+  },
+  "deployed_at": null,
+  "notas": [
+    "Testnet para pruebas pre-mainnet.",
+    "Desplegar con: forge script script/Deploy.s.sol --rpc-url sepolia --broadcast"
+  ]
+}

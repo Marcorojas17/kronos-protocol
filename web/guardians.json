@@ -1,0 +1,63 @@
+{
+  "ts": "2026-10-18T21:35:30.513187+00:00",
+  "total": 4,
+  "ok": 3,
+  "guardians": [
+    {
+      "ok": false,
+      "msg": "152 OK · 1 fallidos · 47 no encontrados (muestra 200 de 2879)",
+      "verificados": 152,
+      "fallidos": 1,
+      "no_encontrados": 47,
+      "total": 2879,
+      "nombre": "GUARDIAN-SHA",
+      "desc": "Manifiesto íntegro"
+    },
+    {
+      "ok": true,
+      "msg": "1 tokens TSA RFC 3161 encontrados",
+      "tokens": ["tsr-2026-01-01.tsr"],
+      "nombre": "GUARDIAN-TSA",
+      "desc": "Tokens RFC 3161"
+    },
+    {
+      "ok": true,
+      "msg": "12 llaves privadas protegidas · 0 peligros en repo",
+      "protegidas": 12,
+      "peligros": [],
+      "nombre": "GUARDIAN-VAULT",
+      "desc": "Llaves protegidas"
+    },
+    {
+      "ok": true,
+      "msg": "4/5 críticos anclados · 39 OTS totales",
+      "confirmados": 4,
+      "pendientes": 1,
+      "total_ots": 39,
+      "detalles": [
+        {
+          "ots": "genesis-K28.txt.ots",
+          "estado": "✅ Bitcoin"
+        },
+        {
+          "ots": "pacto-5149-canonico.txt.ots",
+          "estado": "✅ Bitcoin"
+        },
+        {
+          "ots": "pacto-5149-canonico.sig.ots",
+          "estado": "✅ Bitcoin"
+        },
+        {
+          "ots": "pacto-5149-canonico.mldsa65.sig.ots",
+          "estado": "✅ Bitcoin"
+        },
+        {
+          "ots": "MANIFEST-2026-10-15.sha256.ots",
+          "estado": "⏳ pendiente"
+        }
+      ],
+      "nombre": "GUARDIAN-MRR",
+      "desc": "OTS Bitcoin"
+    }
+  ]
+}

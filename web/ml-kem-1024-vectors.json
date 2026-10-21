@@ -1,0 +1,30 @@
+{
+  "algorithm": "ML-KEM-1024",
+  "fips": "FIPS 203",
+  "nist_level": 5,
+  "seal": "◯_● · 51/49/100",
+  "sizes": {
+    "publicKey": 1568,
+    "secretKey": 3168,
+    "cipherText": 1568,
+    "sharedSecret": 32,
+    "seed": 64
+  },
+  "vectors": [
+    {
+      "id": "ml-kem-1024-test-001",
+      "seed": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nota": "Vector determinístico con seed todo-ceros (usar solo en tests)",
+      "expected": {
+        "publicKeyLength": 1568,
+        "secretKeyLength": 3168,
+        "sharedSecretLength": 32
+      }
+    }
+  ],
+  "reglas": [
+    "Todo encapsulate → decapsulate DEBE producir el mismo sharedSecret",
+    "Toda longitud DEBE coincidir con los tamaños declarados",
+    "Ningún vector DEBE usar valores aleatorios en tests determinísticos"
+  ]
+}

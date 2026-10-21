@@ -1,0 +1,21 @@
+{
+  "folio_maestro": "5204160405358537",
+  "folio_pericial": "KRONOS-MT01JAAF",
+  "sha": "a4ff808e",
+  "sello": "KRONOS-TRACE-PVA-5204160405358537-KRONOS-MT01JAAF",
+  "genesis": "41a3683bbf83296eeb45da9b0e0ea5a7c095e78b493772e79520a92dbc39f4c3",
+  "sc": "2607146379465",
+  "tx": "0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "chain_id": 80002,
+  "chain": "Polygon Amoy",
+  "evidencia": [
+    "audit/sello_kronos.json MT01JAAF a4ff808e",
+    "audit/primer_manifiesto.txt 51/49",
+    "audit/qr_folio_5204160405358537_KRONOS-MT01JAAF.png",
+    "audit/dictamen_PVA_5204160405358537_KRONOS-MT01JAAF.pdf",
+    "web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-KRONOS-MT01JAAF",
+    "docs/01_kybalion_translation.txt"
+  ],
+  "verificacion": "https://amoy.polygonscan.com/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "created": "2026-09-05T10:07:15.770870Z"
+}

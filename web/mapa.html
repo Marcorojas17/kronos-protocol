@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>◯_● Mapa · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #050507;
+        color: #c8ffc8;
+        font-family: 'Courier New', monospace;
+        padding: 30px 20px;
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: auto;
+      }
+      h1 {
+        color: #ffd700;
+        text-align: center;
+        letter-spacing: 0.25em;
+        font-size: 32px;
+        margin-bottom: 10px;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+      .sub {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        margin-bottom: 30px;
+      }
+      .info {
+        background: #0f0f18;
+        border: 1px solid rgba(255, 215, 0, 0.25);
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 12px;
+      }
+      .info b {
+        color: #ffd700;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      .capa {
+        background: #0f0f18;
+        border: 1px solid rgba(0, 255, 65, 0.2);
+        padding: 15px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s;
+        position: relative;
+      }
+      .capa.activa {
+        border-color: #00ff41;
+        background: linear-gradient(135deg, #0f0f18, #0a1a0f);
+      }
+      .capa.pendiente {
+        opacity: 0.5;
+        border-color: rgba(255, 51, 85, 0.3);
+      }
+      .capa:hover {
+        border-color: #ffd700;
+        transform: translateX(4px);
+      }
+      .capa .n {
+        color: #ffd700;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+      }
+      .capa .t {
+        color: #00ff41;
+        font-size: 13px;
+        margin: 5px 0;
+        font-weight: bold;
+      }
+      .capa .d {
+        color: #6a8f6a;
+        font-size: 10px;
+      }
+      .capa .s {
+        margin-top: 8px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+      .activa .s {
+        color: #00ff41;
+      }
+      .pendiente .s {
+        color: #ff3355;
+      }
+      .criticas {
+        background: #000;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        padding: 20px;
+        font-size: 11px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+      .criticas h3 {
+        color: #ffd700;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        margin-bottom: 12px;
+      }
+      .criticas code {
+        color: #00ff41;
+      }
+      footer {
+        text-align: center;
+        color: #6a8f6a;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 255, 65, 0.1);
+      }
+      footer .s2 {
+        color: #ffd700;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>🗺 MAPA · ARKHÉ ZERO</h1>
+      <div class="sub">24 capas · 10 ramas · NODO YHDRYH-92CE</div>
+
+      <div class="info">
+        <b>15 capas activas</b> · 9 capas en desarrollo · Sistema al
+        <b>62%</b> operativo
+      </div>
+
+      <div class="grid">
+        <a class="capa activa" href="arkhe-zero.html">
+          <div class="n">CAPA 0</div>
+          <div class="t">IDENTIDAD Y MANIFIESTO</div>
+          <div class="d">Manifiesto · KINTSUGI · gobernanza</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="verificar.html">
+          <div class="n">CAPA 0 · ESPECIAL</div>
+          <div class="t">VERIFICAR ÍNDICE CERO</div>
+          <div class="d">Safe Creative · Ethereum · eIDAS</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#hu">
+          <div class="n">CAPA 3</div>
+          <div class="t">APLICACIONES WEB</div>
+          <div class="d">5 HTMLs funcionales · assets</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#md33">
+          <div class="n">CAPA 6</div>
+          <div class="t">CRIPTOGRAFÍA</div>
+          <div class="d">SHA-256 real · PQC definida</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="sello.html">
+          <div class="n">CAPA 7</div>
+          <div class="t">PROVENANCE</div>
+          <div class="d">ARKHÉ SELLO · certificados</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#chat">
+          <div class="n">CAPA 9</div>
+          <div class="t">AGENTES IA</div>
+          <div class="d">15 scripts Python · Llama 3.2 local</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#cd">
+          <div class="n">CAPA 10</div>
+          <div class="t">GOBERNANZA Y CUMPLIMIENTO</div>
+          <div class="d">Ciberdefensa · auditoría</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#fr">
+          <div class="n">CAPA 11</div>
+          <div class="t">IDENTIDAD</div>
+          <div class="d">Registro humano/IA · firma</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#tr">
+          <div class="n">CAPA 12</div>
+          <div class="t">API Y SDK</div>
+          <div class="d">api_ia.py · api_scan.py</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 13</div>
+          <div class="t">SMART CONTRACTS</div>
+          <div class="d">Solidity · EVM</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 14</div>
+          <div class="t">INFRAESTRUCTURA</div>
+          <div class="d">K8s · Terraform</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#cy">
+          <div class="n">CAPA 15</div>
+          <div class="t">SCRIPTS</div>
+          <div class="d">auto-backup · start-services</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 16</div>
+          <div class="t">TESTS</div>
+          <div class="d">Unit · integration · e2e</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 17</div>
+          <div class="t">MOVIMIENTO</div>
+          <div class="d">Comunidad · rituales</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 18</div>
+          <div class="t">CICLO DE VIDA</div>
+          <div class="d">Export · fin digno</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#yj">
+          <div class="n">CAPA 19</div>
+          <div class="t">PORTFOLIO</div>
+          <div class="d">11 proyectos del legado</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa">
+          <div class="n">CAPA 20</div>
+          <div class="t">ARCHIVO Y OUTPUT</div>
+          <div class="d">Reportes quantum audit</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 21</div>
+          <div class="t">ATRACCIÓN MAGNÉTICA</div>
+          <div class="d">SEO · GEO · sandbox</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#narrativa">
+          <div class="n">CAPA 22</div>
+          <div class="t">NARRATIVA</div>
+          <div class="d">Villano · héroe · mito</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa activa" href="arkhe-zero.html#metrics">
+          <div class="n">CAPA 23</div>
+          <div class="t">MÉTRICAS</div>
+          <div class="d">KPIs · dashboards</div>
+          <div class="s">✓ ACTIVA</div>
+        </a>
+
+        <a class="capa pendiente">
+          <div class="n">CAPA 24</div>
+          <div class="t">PROGRAMAS DE CRECIMIENTO</div>
+          <div class="d">Referidos · embajadores</div>
+          <div class="s">⏳ EN DESARROLLO</div>
+        </a>
+      </div>
+
+      <div class="criticas">
+        <h3>◆ RUTAS CRÍTICAS</h3>
+        <code>arkhe://genesis/000-INDICE-CERO-KRONOS</code><br />
+        → <code>safe-creative/2607146379465</code><br />
+        → <code>SHA256:f03f7e2d85...</code><br />
+        → <code>ethereum/0xd2c2a7e1...774c</code><br />
+        → <code>sello/ARKHE-ZERO-KRONOS-IRREPETIBLE</code>
+      </div>
+
+      <footer>
+        <span class="s2">◯_● · ■_□ · 51/49/100</span>
+        Marco Antonio Rojas Valdovinos · Toluca · México · 2026<br />
+        NODO YHDRYH-92CE · SCDR-001 ·
+        <a href="https://github.com/Marcorojas17/kronos-protocol" style="color: #00ff41"
+          >github</a
+        >
+      </footer>
+    </div>
+  </body>
+</html>

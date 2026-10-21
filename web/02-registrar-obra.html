@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎓 Tutorial 02 · Registrar Obra · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="tutorial-02-registrar-obra">🎓 Tutorial 02 · Registrar Obra</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/tutorials]
+└─$ ./tutorial 02
+</code></pre>
+    <h2 id="requisitos">🜂 Requisitos</h2>
+    <ul>
+      <li>Navegador moderno</li>
+      <li>Acceso a <code>apps/registrar.html</code></li>
+      <li>Contenido a firmar</li>
+    </ul>
+    <h2 id="pasos">🜃 Pasos</h2>
+    <h3 id="1-abrir-el-formulario">1 · Abrir el formulario</h3>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/]
+└─$ open http://localhost:8080/apps/registrar.html
+</code></pre>
+    <h3 id="2-completar-datos">2 · Completar datos</h3>
+    <ul>
+      <li><strong>Título</strong>: nombre de la obra</li>
+      <li><strong>Tipo</strong>: acta · obra · decisión</li>
+      <li><strong>Contenido</strong>: texto a firmar</li>
+      <li><strong>Algoritmo</strong>: ML-DSA-87 (recomendado)</li>
+    </ul>
+    <h3 id="3-firmar">3 · Firmar</h3>
+    <p>Presiona <code>▶ FIRMAR Y REGISTRAR</code>. El sistema:</p>
+    <ol>
+      <li>Calcula SHA3-512</li>
+      <li>Prepara firma ML-DSA-87</li>
+      <li>Genera certificado VC 2.0</li>
+      <li>Prepara anclaje a Ethereum</li>
+    </ol>
+    <h3 id="4-verificar">4 · Verificar</h3>
+    <p>Copia el hash y verifícalo en <code>apps/verificar.html</code>.</p>
+    <hr />
+    <p><code>◯_● · 51/49/100 · TUTORIAL 02</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "agente_id": "091-contralor",
+  "public_key_hex": "bb4fed7bfd66890c8499508a30fa3b99a084fcfe80af186007a9ceaa49ee4236",
+  "algoritmo": "Ed25519",
+  "rol": "contralor",
+  "descripcion": "Control interno de operaciones y fondos",
+  "valido_desde": "2026-09-30T00:00:00Z",
+  "valido_hasta": "2027-09-30T00:00:00Z",
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente."
+}
