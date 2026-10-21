@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arkhe.zero/schemas/agente.schema.json",
+  "title": "Agente IA ARKHÉ ZERO",
+  "type": "object",
+  "required": ["id", "nombre", "rol", "estado"],
+  "properties": {
+    "id": { "type": "string" },
+    "nombre": { "type": "string" },
+    "significado": { "type": "string" },
+    "rol": { "type": "string" },
+    "estado": { "type": "string", "enum": ["activo", "cuarentena", "inactivo"] },
+    "reputacion": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "capacidades": { "type": "array", "items": { "type": "string" } },
+    "protocolos": { "type": "array", "items": { "type": "string" } },
+    "sellado": { "const": "◯_● · 51/49/100" }
+  }
+}

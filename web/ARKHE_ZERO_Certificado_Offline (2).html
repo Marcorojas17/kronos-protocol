@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>◯_● ARKHÉ ZERO - CERTIFICADO DIGITAL</title>
+
+<!-- Librería para capturar el HTML como imagen -->
+
+<style>
+  :root {
+    --gold: #E8D08B; --gold-dark: #A67C00; --gold-light: #FFF3A0;
+    --green: #00FF41; --green-glow: rgba(0, 255, 65, 0.4);
+    --cyan: #00E5FF;
+    --bg: #050505; --panel: #0a0a0c;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body { 
+    background: #000; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 15px; 
+    font-family: 'JetBrains Mono', monospace; 
+  }
+  
+  .perspective { width: 100%; max-width: 480px; }
+
+  /* CONTENEDOR PRINCIPAL */
+  .cert {
+    width: 100%; background-color: var(--bg); border-radius: 4px; position: relative;
+    padding: 30px 20px; border: 1px solid #333;
+    box-shadow: 0 0 0 1px #000, 0 0 0 3px var(--gold-dark), 0 20px 50px rgba(0,0,0,0.9);
+    overflow: hidden;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(232, 208, 139, 0.05) 0%, transparent 60%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  }
+
+  /* KINTSUGI GRIETAS SVG */
+  .kintsugi { position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.6;}
+  .kintsugi path { stroke: url(#goldGrad); stroke-width: 1.5; fill: none; filter: drop-shadow(0 0 3px var(--gold-dark)); }
+
+  .content { position: relative; z-index: 2; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 20px; }
+  .header .symbol { font-family: 'Cinzel', serif; font-size: 32px; color: var(--gold); letter-spacing: 5px; text-shadow: 0 0 10px rgba(232, 208, 139, 0.5); }
+  .header h1 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold); letter-spacing: 2px; margin: 5px 0; font-weight: 800;}
+  .header h2 { font-family: 'Cinzel', serif; font-size: 14px; color: #ddd; letter-spacing: 3px; font-weight: 600; }
+
+  /* BADGE CUÁNTICO */
+  .badge-container { text-align: center; margin: 20px 0; }
+  .badge {
+    display: inline-flex; align-items: center; background: rgba(0, 255, 65, 0.05);
+    border: 1px solid var(--green); color: var(--green); padding: 8px 16px; border-radius: 20px;
+    font-size: 10px; font-weight: bold; letter-spacing: 1px;
+    box-shadow: 0 0 15px var(--green-glow), inset 0 0 10px var(--green-glow);
+    text-shadow: 0 0 5px var(--green);
+  }
+  .badge span { margin-right: 5px; }
+
+  /* SECCIÓN DE DATOS */
+  .section-title { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 15px; font-weight: 600;}
+  
+  .data-list { margin-bottom: 20px; }
+  .data-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; font-size: 11px; }
+  .data-item .label { color: #fff; font-weight: bold; letter-spacing: 1px; }
+  .data-item .dots { flex-grow: 1; border-bottom: 1px dotted #555; margin: 0 10px; position: relative; top: -4px; }
+  .data-item .value { color: var(--gold-light); font-weight: bold; letter-spacing: 1px; }
+
+  /* CAJA DE HASH */
+  .hash-box {
+    border: 1px solid rgba(232, 208, 139, 0.4); border-radius: 4px; margin-bottom: 20px;
+    background: linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
+    background-size: 10px 10px;
+    position: relative; padding: 15px;
+  }
+  .hash-title { text-align: center; font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
+  .hash-text { font-size: 11px; color: #fff; word-break: break-all; text-align: center; line-height: 1.5; letter-spacing: 0.5px; }
+  .hash-box::before, .hash-box::after { content: ''; position: absolute; width: 10px; height: 10px; border: 2px solid var(--gold); }
+  .hash-box::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .hash-box::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  /* FIRMA POST-CUANTICA Y BITCOIN */
+  .pqc-status { display: flex; align-items: center; margin-bottom: 5px; font-size: 11px; color: var(--gold-light); font-weight: bold; letter-spacing: 1px;}
+  .check-icon { display: inline-block; width: 14px; height: 14px; border: 1px solid var(--green); color: var(--green); text-align: center; line-height: 12px; margin-right: 8px; font-size: 10px; }
+  
+  .btc-status { margin-left: 22px; font-size: 10px; color: #aaa; margin-bottom: 25px; }
+  .btc-status strong { color: var(--gold); display: block; margin-bottom: 2px; font-size: 11px;}
+
+  /* ZONA INFERIOR: CYPHERPUNK + FIRMA */
+  .bottom-section { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; }
+  
+  /* Cypherpunk Matrix Box */
+  .matrix-box {
+    width: 55%; height: 85px; border: 1px solid #333; background: #000; padding: 5px; 
+    position: relative; box-shadow: inset 0 0 15px rgba(0,255,65,0.15); overflow: hidden;
+  }
+  .matrix-title { position: absolute; top: 5px; left: 5px; font-size: 8px; color: #fff; font-weight: bold; letter-spacing: 1px; z-index: 2; text-shadow: 0 0 3px #000, 0 0 3px #000; }
+  #matrix-canvas { display: block; width: 100%; height: 100%; }
+  
+  /* Firma manuscrita */
+  .signature-box { text-align: center; width: 40%; }
+  .signature-name { font-family: 'Great Vibes', cursive; font-size: 28px; color: var(--gold-light); line-height: 1; transform: rotate(-5deg); margin-bottom: 5px;}
+  .signature-line { font-size: 8px; color: #888; letter-spacing: 1px; }
+  .signature-role { font-size: 9px; color: var(--gold); font-weight: bold; margin-top: 3px; letter-spacing: 1px;}
+
+  /* FOOTER: QR Y SELLO */
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px; padding-top: 15px; border-top: 1px solid #222; }
+  
+  .qr-box { text-align: left; }
+  #qr-canvas { width: 70px; height: 70px; background: #fff; padding: 3px; border-radius: 2px; }
+  .qr-text { font-size: 8px; color: #aaa; margin-top: 5px; }
+  .qr-text strong { color: #fff; display: block; font-size: 9px; margin-bottom: 2px;}
+
+  /* Sello de Cera Bitcoin (Efecto 3D) */
+  .seal-wax {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fceabb 0%, #d4af37 40%, #8b6914 80%, #4a3600 100%);
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 3px 5px 15px rgba(0,0,0,0.8), inset -3px -5px 10px rgba(0,0,0,0.5), inset 3px 3px 10px rgba(255,255,255,0.6);
+    border: 1px solid #6b4d00; position: relative;
+  }
+  .seal-wax::before { content: ''; position: absolute; inset: -3px; border-radius: 45% 55% 48% 52% / 50% 45% 55% 50%; border: 1px solid rgba(139,105,20,0.5); }
+  .seal-wax::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px dashed rgba(0,0,0,0.4); }
+  .seal-wax span { font-size: 38px; font-weight: bold; color: #331e00; text-shadow: 1px 1px 2px rgba(255,255,255,0.5), -1px -1px 2px rgba(0,0,0,0.8); font-family: sans-serif; z-index: 2; transform: translateY(-2px);}
+  
+  .seal-text { font-size: 7px; color: #888; text-align: center; margin-top: 8px; letter-spacing: 1px; line-height: 1.3;}
+  .seal-text strong { color: var(--gold); }
+
+  /* AVISO FINAL */
+  .legal-footer { margin-top: 25px; text-align: center; font-size: 7px; color: #666; letter-spacing: 1px; line-height: 1.5; text-transform: uppercase;}
+
+  /* BOTONES */
+  .btns { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 480px; }
+  button, a.btn { padding: 12px 5px; border: none; font-family: 'JetBrains Mono'; font-weight: bold; font-size: 9px; cursor: pointer; border-radius: 4px; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;}
+  
+  button.primary { background: var(--gold); color: #000; }
+  button.primary:hover { background: var(--gold-light); box-shadow: 0 0 15px var(--gold); }
+  
+  button.secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+  button.secondary:hover { background: rgba(232, 208, 139, 0.1); }
+
+  @media print { 
+    body { background: #fff; padding: 0; }
+    .btns { display: none; }
+    .perspective { max-width: 100%; height: 100vh; }
+    .cert { 
+      box-shadow: none; border-radius: 0; border: none; height: 100vh; 
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: #050505 !important;
+    }
+    @page { size: portrait; margin: 0; }
+  }
+</style>
+<style>
+    #arkhe-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(5, 5, 8, 0.98);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 6px 0;
+      z-index: 9999;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.9);
+      font-family: 'Courier New', monospace;
+    }
+    #arkhe-nav a {
+      background: transparent;
+      border: none;
+      color: #D4AF37;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 5px 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      flex: 1;
+    }
+    #arkhe-nav a:hover, #arkhe-nav a:active {
+      color: #FFF3A0;
+      text-shadow: 0 0 10px #D4AF37;
+      background: rgba(212,175,55,0.1);
+    }
+    #arkhe-nav .icon { font-size: 18px; line-height: 1; margin-bottom: 2px; }
+    #arkhe-nav .label { font-size: 8px; color: #888; text-transform: uppercase; }
+    #arkhe-nav a:hover .label { color: #D4AF37; }
+    body { padding-bottom: 70px !important; }
+  </style></head>
+<body>
+
+  <div class="perspective">
+    <div class="cert" id="certificado-node">
+      
+      <svg class="kintsugi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 850">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B6914"></stop>
+            <stop offset="50%" stop-color="#FFF3A0"></stop>
+            <stop offset="100%" stop-color="#D4AF37"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M-10,50 Q100,150 150,100 T300,250 T450,150 T510,200"></path>
+        <path d="M-10,800 Q150,700 200,750 T400,600 T510,650"></path>
+        <path d="M50,-10 Q100,200 150,300 T250,500 T150,850"></path>
+        <path d="M450,-10 Q400,150 350,200 T450,400 T500,850"></path>
+      </svg>
+
+      <div class="content">
+        <div class="header">
+          <div class="symbol">O_●</div>
+          <h1>ARKHE ZERO</h1>
+          <h2>CERTIFICADO DIGITAL</h2>
+        </div>
+
+        <div class="badge-container">
+          <div class="badge">
+            <span>⚡</span> QUANTUM-SAFE · ML-DSA-65
+          </div>
+        </div>
+
+        <div class="section-title">DATOS DEL CERTIFICADO</div>
+        
+        <div class="data-list">
+          <div class="data-item">
+            <span class="label">NODO</span><span class="dots"></span><span class="value">YHDRYH-92CE</span>
+          </div>
+          <div class="data-item">
+            <span class="label">FECHA</span><span class="dots"></span><span class="value">2026-10-15</span>
+          </div>
+          <div class="data-item">
+            <span class="label">PIEZA</span><span class="dots"></span><span class="value">PAQUETERIA-001</span>
+          </div>
+          <div class="data-item">
+            <span class="label">SELLO</span><span class="dots"></span><span class="value">SCDR-001</span>
+          </div>
+          <div class="data-item">
+            <span class="label">PACTO</span><span class="dots"></span><span class="value">51/49/100</span>
+          </div>
+        </div>
+
+        <div class="hash-box">
+          <div class="hash-title">HASH SHA-256</div>
+          <div class="hash-text">
+            ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92
+          </div>
+        </div>
+
+        <div class="pqc-status">
+          <span class="check-icon">✓</span> FIRMA POST-CUANTICA ML-DSA-65 — Verificado 3309 bytes
+        </div>
+        <div class="btc-status">
+          <strong>BLOQUE BITCOIN 971527 —</strong>
+          Success attests existence as of 2026-10-15 UTC
+        </div>
+
+        <div class="bottom-section">
+          <div class="matrix-box">
+            <div class="matrix-title">FIRMA CYPHERPUNK</div>
+            <canvas id="matrix-canvas" width="160" height="74"></canvas>
+          </div>
+          
+          <div class="signature-box">
+            <div class="signature-name">Arkhe // kintsugi</div>
+            <div class="signature-line">Firmado — 2026-10-15</div>
+            <div class="signature-role">KINTSUGI AUTH</div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="qr-box">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEo0lEQVR4AeyagU4cMQxE7/H//0yhOgF+qWKlySYrzlVPMBp77J3hfKro2+PxeN/5etcfzxbdQNcbu8H83fFnIB871t+7OFCB3CWJ5x4VyNOIu3xpAvm4wY+VLz8o8IDvl/kMezfXw7c2MPws1jP2/Fls/SYQFxTe60AFstfvdFoFklq0tyANBOJNhj7O1s9urvshzjN/GkPcD/o42zcNJBMofq0D1wSydseXUqtAbhb38UAg3tzV/kBfHyLvz7jV+2R6xwPJFnw1vgK5WeIVyKsHAvFm2w+IvG869HnXj+q7fjeud8hux5N5FUhi0G66AtnteDIvDcQ3OcPJvIbO9ODrM+Pv71FcD5H3ANebN4a+nuutn2H3G6eBuKHwtQ5UINf6O6xegQxbdm1DEwjEGwpz2Ov7xkLUd/0shqifzTfv+RD1YA5bvwnEBYX3OlCB7PU7nVaBpBbtLXjzzTTO1snqzUO8udaHMd761jMPff2s33qj9Vl/vUPs6GFcgRwOwOMrEDtyGDeBQP/GZjfQPKzVy/yCOA8idv/ovtDXgzHe85tAvHDhvQ5UIHv9TqdVIKlFewuWBwLxhvpGGq9+3EzfPPT3Hd0v07cexPnLA/HAwmMOVCBjfl1eXYFcbvHYgDeIN2ysva3ObijEeRCx+z3BPMT+rN58huG/9L9kve8X8fzGfL1Dnsbc5UsFcpcknntUIE8j7vKlCcQ3LVsU4o2FiDM98xD7PR/W8p7vebMY4r7ZvCaQ2QWqf86BCmTOv+XdFchyS+cEpwPJbiL0byj0+dHH8z4Q9a0HkYeIXT+Ks30gzpsOZHTBqu87UIH0/dnOdgPZvk0NfDT/L8ueZDcwq3e/6zMM8ca6PtO/mvc+EPeFiF3v/eodYocO4wrkcAAeX4HYkcM4/X0I9G8gjPEQ631DV/sBe+dlz2Me4n71Dln9EzCpV4FMGri6vQJZ7eikXvrvkEw/u4nmrQfxhkLErh/Fng9RHyJ2veeZh9if1Zs3PvAO8QqFfzpQgfx04wbfVyA3COHnCk0gMHcTV99Y6/1c/l/fQ9wfInaP9aFfD2t5z28C8cKF9zpQgez1O51WgaQW7S1YHgjEG+sbabz6cTN989Dfd3S/TN96EOcvD8QDC485UIGM+XV59a8J5HKnNg1Ifx/iPSDePIh4tB76/dbzjTYP1+p5vrH3Mc7q6x1ixw7jCuRwAB5fgdiRw7gJxDduFmfPl+m7H+Y+I6DfD2t5Px/09ZtAbEDhvQ5UIHv9TqdVIKlFewvSQCDePOjj2fUh6ltv9CaP9lvf2HqjONNLAxkd+Lvq9z9NBbLf8+7ECqRrz35yeyC+oRA/M8zbEoj15t0PsR4idj9EHiJ2vbHnm4e+3vZAvGDh6EAFEv04jiqQ4xHEBY4HMnpzXW8cH69Fs/VZP/Q/I7yR9Y4H4gVfHVcgN/sJqEAOBNIbmQbiG5fh3rBPDvo3Ftby3hf6+p879l7Q75+dlwbSW6649Q5UIOs9nVKsQKbsW9/cBALxRsIc9srZjTVvbL1RnOmZh/j85j0fYr1590OsbwKxQOG9DlQge/1Op1UgqUV7C/4AAAD//87JfaQAAAAGSURBVAMAZ/GEVnlyFL0AAAAASUVORK5CYII=" style="width: 70px; height: 70px; background: rgb(255, 255, 255); padding: 3px; border-radius: 2px;">
+            <div class="qr-text">
+              <strong>VERIFICAR →</strong>
+              arkhe.zero/verify/<br>YHDRYH-92CE
+            </div>
+          </div>
+          
+          <div>
+            <div class="seal-wax"><span>₿</span></div>
+            <div class="seal-text">
+              <strong>SELLO BITCOIN · PRUEBA DE</strong><br>EXISTENCIA · 971527
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-footer">
+          CERTIFICADO INFALSIFICABLE · PAPEL MONEDA · ANTIFALSIFICACIÓN · IMPRESO EN SUSTRATO<br>
+          DE SEGURIDAD 24K KINTSUGI · SOLO VÁLIDO CON VERIFICACIÓN POST-CUÁNTICA
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="btns">
+    <button class="primary" onclick="descargarPNG()">DESCARGAR PNG</button>
+    <button class="primary" onclick="window.print()">GUARDAR PDF</button>
+    <button class="secondary" onclick="descargarHTML()">ARCHIVO HTML</button>
+    <a href="verificar/index.html" class="secondary">VERIFICADOR</a>
+  </div>
+
+  <script>
+    // 1. GENERAR QR OFFLINE (Protegido contra errores si el canvas no existe)
+    function generateQR() {
+      const canvas = document.getElementById('qr-canvas');
+      if (!canvas) return; // Si ya se convirtió en imagen, no hacer nada
+      
+      const ctx = canvas.getContext('2d');
+      const size = 100, modules = 25, cellSize = size / modules;
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, size, size);
+      const hash = "ad5a225488ddf177b6ccad7c1434d19307b92c2d834e2061b550b35d57b7da92";
+      let hashIndex = 0;
+      ctx.fillStyle = "#000000";
+      for (let y = 0; y < modules; y++) {
+        for (let x = 0; x < modules; x++) {
+          const isTopLeft = (x < 7 && y < 7);
+          const isTopRight = (x >= modules - 7 && y < 7);
+          const isBottomLeft = (x < 7 && y >= modules - 7);
+          if (isTopLeft || isTopRight || isBottomLeft) {
+            const localX = isTopRight ? x - (modules - 7) : x;
+            const localY = isBottomLeft ? y - (modules - 7) : y;
+            if (localX === 0 || localX === 6 || localY === 0 || localY === 6) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+            else if (localX >= 2 && localX <= 4 && localY >= 2 && localY <= 4) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          } else if (x === 6 || y === 6) {
+            if ((x + y) % 2 === 0) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          } else {
+            if (hashIndex >= hash.length) hashIndex = 0;
+            if (hash.charCodeAt(hashIndex++) % 2 === 0) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+    }
+
+    // 2. LA MATRIX RAIN (Lluvia de código)
+    function startMatrixRain() {
+      const canvas = document.getElementById('matrix-canvas');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+      resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+      
+      const chars = "01◯●ΔΩΣ█▓▒░".split("");
+      const fontSize = 10;
+      let columns = canvas.width / fontSize;
+      let drops = [];
+      for (let x = 0; x < columns; x++) drops[x] = 1; 
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSize + "px 'JetBrains Mono'";
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          const colorRand = Math.random();
+          if (colorRand > 0.9) ctx.fillStyle = "#00E5FF"; // Cian
+          else if (colorRand > 0.8) ctx.fillStyle = "#E8D08B"; // Dorado
+          else ctx.fillStyle = "#00FF41"; // Verde Matrix
+          
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 33); 
+    }
+
+    // 3. DESCARGAR COMO PNG
+    function descargarPNG() {
+      const botones = document.querySelector('.btns');
+      const originalDisplay = botones.style.display;
+      botones.style.display = 'none';
+      
+      const nodo = document.getElementById('certificado-node');
+      
+      html2canvas(nodo, { scale: 2, backgroundColor: "#050505", useCORS: true }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ARKHE_ZERO_Certificado.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        botones.style.display = originalDisplay; 
+      });
+    }
+
+    // 4. DESCARGAR COMO HTML OFFLINE (CORREGIDO)
+    function descargarHTML() {
+        // 1. Convertir el QR a una imagen estática (Base64)
+        const qrCanvas = document.getElementById('qr-canvas');
+        let qrDataUrl = "";
+        if (qrCanvas) {
+            qrDataUrl = qrCanvas.toDataURL('image/png');
+        }
+
+        // 2. Clonar el documento completo
+        const clone = document.documentElement.cloneNode(true);
+
+        // 3. Reemplazar el Canvas del QR por la imagen generada en el clon
+        const clonedQrCanvas = clone.querySelector('#qr-canvas');
+        if (clonedQrCanvas && qrDataUrl) {
+            const qrImg = document.createElement('img');
+            qrImg.src = qrDataUrl;
+            qrImg.style.width = '70px';
+            qrImg.style.height = '70px';
+            qrImg.style.background = '#fff';
+            qrImg.style.padding = '3px';
+            qrImg.style.borderRadius = '2px';
+            clonedQrCanvas.parentNode.replaceChild(qrImg, clonedQrCanvas);
+        }
+
+        // 4. Eliminar scripts externos (html2canvas y google fonts) del clon para que no den error offline
+        const externalScripts = clone.querySelectorAll('script[src]');
+        externalScripts.forEach(s => s.remove());
+        
+        const externalLinks = clone.querySelectorAll('link[href]');
+        externalLinks.forEach(l => l.remove());
+
+        // 5. Generar el archivo
+        const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
+        const blob = new Blob([htmlContent], {type: 'text/html'});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'ARKHE_ZERO_Certificado_Offline.html';
+        link.click();
+        URL.revokeObjectURL(url);
+    }
+
+    window.onload = function() {
+      generateQR();
+      startMatrixRain();
+    };
+  </script>
+<nav id="arkhe-nav"><a href="/kronos-protocol/index.html"><span class="icon">◯_●</span><span class="label">HUB</span></a><a href="/kronos-protocol/certificado.html" style="color: rgb(255, 243, 160); background: rgba(212, 175, 55, 0.15);"><span class="icon">📜</span><span class="label">Certificar</span></a><a href="/kronos-protocol/verificar/index.html"><span class="icon">🔐</span><span class="label">Verificar</span></a><a href="/kronos-protocol/comprar/index.html"><span class="icon">💠</span><span class="label">Licencias</span></a><a href="/kronos-protocol/estado.html"><span class="icon">📊</span><span class="label">Nodo</span></a></nav>
+
+
+</body></html>

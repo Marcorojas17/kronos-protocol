@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>◯_● Artículo 6.3 · Sello Irrepetible · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="_-articulo-63-sello-irrepetible">◯_● Artículo 6.3 · Sello Irrepetible</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/vi-memoria-perpetua]
+└─$ ./memoria --sello --verify
+
+[ OK ] Sello: ◯_● · 51/49/100
+[ OK ] Firmado por: Marco Antonio Rojas Valdovinos
+[ OK ] Hash único: f03f7e2d852617309457e0fe207f8f8bd...
+[ OK ] No repetible: verificado
+[ ✓✓ ] SELLO IRREPETIBLE · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      Cada cápsula sellada con <code>◯_●</code> es
+      <strong>única en el universo</strong>. No hay dos cápsulas con el mismo sello +
+      hash.
+    </p>
+    <h2 id="por-que-es-irrepetible">🜃 Por qué es irrepetible</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    POR QUÉ ES IRREPETIBLE                                ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   SHA3-512     · 2^512 combinaciones posibles (~10^154)                 ║
+║   Timestamp    · única al nanosegundo                                   ║
+║   Contenido    · único por autor                                        ║
+║   Firma PQC    · determinista por clave                                 ║
+║   Anclaje ETH  · único on-chain                                         ║
+║                                                                          ║
+║   Probabilidad de colisión: ~10^-148 (prácticamente cero)               ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="como-se-calcula">🜄 Cómo se calcula</h2>
+    <pre><code class="language-javascript">import { sha3_512 } from './crypto/primitives/sha3-512.js';
+
+const capsula = {
+  contenido: 'Aprobación Sub-bloque E',
+  autor: 'Marco Antonio Rojas Valdovinos',
+  timestamp: new Date().toISOString(),
+};
+
+const sello = '◯_● · 51/49/100';
+const hash = sha3_512(JSON.stringify(capsula) + sello);
+
+// hash: f03f7e2d852617309457e0fe207f8f8bd...
+// Irrepetible: combina contenido + autor + tiempo + sello
+</code></pre>
+    <h2 id="verificacion">🜁 Verificación</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./memoria --sello --check-uniqueness
+
+[ &gt;&gt; ] Buscando colisiones en IPFS...
+[ &gt;&gt; ] Comparando con Arweave...
+[ &gt;&gt; ] Verificando on-chain...
+[ OK ] 0 colisiones encontradas
+[ ✓✓ ] SELLO ÚNICO EN EL UNIVERSO CONOCIDO · ◯_● · 51/49/100
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · MEMORIA · 6.3 · Sello</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

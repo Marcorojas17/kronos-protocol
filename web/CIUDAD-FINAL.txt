@@ -1,0 +1,4 @@
+-rw-rw----. 1 u0_a283 media_rw 2.2K Oct 21 09:07 /sdcard/Download/VALDOVINOS-ARKHE-CERTIFICADO-FINAL.html
+-rw-rw----. 1 u0_a283 media_rw  736 Oct 21 09:07 /sdcard/Download/VALDOVINOS-ARKHE-COMPLETA.json
+-rw-rw----. 1 u0_a283 media_rw 406K Oct 21 09:11 /sdcard/Download/VALDOVINOS-ARKHE-SONIDO-RAPIDO.wav
+-rw-rw----. 1 u0_a283 media_rw 798K Oct 21 09:10 /sdcard/Download/VALDOVINOS-ARKHE-SONIDO.wav

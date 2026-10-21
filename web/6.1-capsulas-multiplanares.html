@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>💊 Artículo 6.1 · Cápsulas Multiplanares · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-61-capsulas-multiplanares">
+      💊 Artículo 6.1 · Cápsulas Multiplanares
+    </h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/vi-memoria-perpetua]
+└─$ ./memoria --capsulas --status
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  PLANO       · TIPO           · PERSISTENCIA                             ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  Local       · IndexedDB      · hasta borrar navegador                   ║
+║  IPFS        · DHT distribuido· mientras haya nodos                      ║
+║  Arweave     · Blockchain     · 200+ años                                ║
+║  Ethereum    · Merkle root    · perpetuo                                 ║
+║  Shamir      · 51/100 shards  · perpetuo                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+[ ✓✓ ] CAPSULAS MULTIPLANARES · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="concepto">🜂 Concepto</h2>
+    <p>
+      Una <strong>cápsula de memoria</strong> es un paquete autocontenido que puede
+      reconstruirse en el futuro sin depender de ARKHÉ ZERO.
+    </p>
+    <h2 id="estructura-de-una-capsula">🜃 Estructura de una cápsula</h2>
+    <pre><code class="language-javascript">{
+  id: &quot;cap-f03f7e2d8526&quot;,
+  contexto: &quot;Aprobación del Sub-bloque E · Contexto IA&quot;,
+  decision: &quot;Sellar 13 archivos con hash SHA3-512&quot;,
+  autor: &quot;Marco Antonio Rojas Valdovinos&quot;,
+  hash: &quot;f03f7e2d852617309457e0fe207f8f8bd...&quot;,
+  anclaje: &quot;arkhe://genesis/000-INDICE-CERO-KRONOS&quot;,
+  reconstruible: true,
+  sellado: &quot;◯_● · 51/49/100&quot;,
+  timestamp: &quot;2026-01-01T00:00:00Z&quot;
+}
+</code></pre>
+    <h2 id="uso">🜄 Uso</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ node -e &quot;
+  import('./src/memory/capsulas.js').then(m =&gt; {
+    const cap = m.crearCapsula({
+      contexto: 'Sub-bloque E completado',
+      decision: 'Firmar 13 archivos de contexto IA'
+    });
+    console.log(cap);
+  })
+&quot;
+
+[ OK ] Cápsula creada · cap-f03f7e2d8526
+[ OK ] Hash: f03f7e2d852617309457e0fe207f8f8bd...
+[ OK ] Reconstruible: true
+[ ✓✓ ] ◯_● · 51/49/100
+</code></pre>
+    <h2 id="verificacion-a-100-anos">🜁 Verificación a 100 años</h2>
+    <pre><code class="language-diff">+ Toda cápsula incluye el hash original
++ Toda cápsula incluye cómo reconstruir el contenido
++ Toda cápsula tiene anclaje blockchain
++ Toda cápsula se puede verificar sin el software original
+- No depende de servidores
+- No depende de empresas
+- No depende de gobiernos
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · MEMORIA · 6.1 · Cápsulas</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

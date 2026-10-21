@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Certificado ARKHÉ ZERO · 69bc22811dc55980</title>
+    <style>
+      body {
+        font-family: ui-monospace, Menlo, monospace;
+        color: #111;
+        max-width: 780px;
+        margin: 40px auto;
+        padding: 28px;
+        background: #fff;
+      }
+      header {
+        border-bottom: 3px solid #000;
+        padding-bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      h1 {
+        margin: 0;
+        letter-spacing: 3px;
+        font-size: 22px;
+      }
+      .sub {
+        font-size: 10px;
+        color: #666;
+        letter-spacing: 2px;
+        margin-top: 4px;
+      }
+      img.qr {
+        width: 140px;
+        height: 140px;
+      }
+      .campo {
+        margin: 20px 0;
+      }
+      .label {
+        font-size: 10px;
+        color: #888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .valor {
+        font-size: 12px;
+        word-break: break-all;
+        line-height: 1.5;
+      }
+      .mono {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 11px;
+      }
+      .pruebas {
+        display: flex;
+        gap: 12px;
+        margin: 28px 0;
+      }
+      .prueba {
+        flex: 1;
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 4px;
+      }
+      .prueba .t {
+        font-size: 10px;
+        color: #888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .prueba .v {
+        font-size: 13px;
+        margin-top: 4px;
+        font-weight: bold;
+      }
+      .ok {
+        color: #0a7a3d;
+      }
+      .pend {
+        color: #b8860b;
+      }
+      footer {
+        margin-top: 42px;
+        border-top: 3px solid #000;
+        padding-top: 16px;
+        font-size: 10px;
+        color: #444;
+        line-height: 1.6;
+      }
+      @media print {
+        body {
+          margin: 0;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>ARKHÉ ZERO</h1>
+        <div class="sub">CERTIFICADO DE SELLO CRIPTOGRÁFICO</div>
+        <div class="sub">nodo YHDRYH-92CE · ARKHE-SELLO-v1</div>
+      </div>
+      <img
+        class="qr"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=69bc22811dc55980018a3119bc1bb648944bd41416bae557454482c993a42bee"
+        alt="QR verificación"
+      />
+    </header>
+
+    <div class="pruebas">
+      <div class="prueba">
+        <div class="t">Integridad</div>
+        <div class="v ok">SHA-3-256</div>
+      </div>
+      <div class="prueba">
+        <div class="t">Anterioridad</div>
+        <div class="v pend">Bitcoin · pending (6–24h)</div>
+      </div>
+      <div class="prueba">
+        <div class="t">Autoría</div>
+        <div class="v ok">ML-DSA-87</div>
+      </div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Sello ID</div>
+      <div class="valor"><b>69bc22811dc55980</b></div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Compromiso (SHA-3-256)</div>
+      <div class="valor mono">
+        69bc22811dc55980018a3119bc1bb648944bd41416bae557454482c993a42bee
+      </div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Hash del contenido</div>
+      <div class="valor mono">
+        8bb04878bf31ea5a7b87d3602ba0b3215a732ac93733a043f138cf5b4d3ab665
+      </div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Autor</div>
+      <div class="valor">Arkhe</div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Timestamp UTC</div>
+      <div class="valor">2026-10-12T07:24:51.569231+00:00</div>
+    </div>
+
+    <div class="campo">
+      <div class="label">Firma post-cuántica</div>
+      <div class="valor">ML-DSA-87 · FIPS 204</div>
+    </div>
+    <div class="campo">
+      <div class="label">Firma (hex, primeros 128)</div>
+      <div class="valor mono">
+        e201ecb9aa94f4b6f461c9b8ee326901d395e129c96694da0c7a30db9634f89a54ca2ad179d8388f471d6dc7ae97b687612867a7a018a75d73f43d28aea39d6d…
+      </div>
+    </div>
+
+    <footer>
+      ◯_● · 51/49/100 · KINTSUGI<br />
+      <b>Integridad:</b> el contenido no cambió desde que fue sellado.<br />
+      <b>Anterioridad:</b> el hash fue enviado a OpenTimestamps; la red Bitcoin confirma
+      la fecha del bloque en 6–24 horas.<br />
+      <b>Autoría:</b> la firma ML-DSA-87 (FIPS 204, NIST) prueba que el autor declarado
+      posee la clave privada correspondiente.<br />
+      Verificable sin confiar en el emisor.
+    </footer>
+  </body>
+</html>

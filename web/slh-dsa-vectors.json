@@ -1,0 +1,29 @@
+{
+  "algorithm": "SLH-DSA-SHAKE-256s",
+  "fips": "FIPS 205",
+  "nist_level": 5,
+  "variant": "small",
+  "seal": "◯_● · 51/49/100",
+  "sizes": {
+    "publicKey": 64,
+    "secretKey": 128,
+    "signature": 29792,
+    "seed": 48
+  },
+  "vectors": [
+    {
+      "id": "slh-dsa-test-001",
+      "message": "ARKHÉ ZERO · prueba de firma de largo plazo",
+      "nota": "Firma hash-based · resistente a Shor sin supuestos de curvas",
+      "expected": {
+        "signatureLength": 29792,
+        "verifyResult": true
+      }
+    }
+  ],
+  "reglas": [
+    "Firma lenta (>1s) · aceptable para archivo",
+    "Verificación rápida (<100ms)",
+    "Sin estado · se puede firmar múltiples veces con la misma clave"
+  ]
+}

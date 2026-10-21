@@ -1,0 +1,10 @@
+{
+  "sello_id": "ff15b14071d337c6",
+  "compromiso": "ff15b14071d337c66e3ee9112cf1219dbe43ba516638f3ca7f8b93294ee9d58e",
+  "salt_hex": "b7b2d3aad904ef7773170cdfef60287b22fc47e9efb17a11258b6d7ab4fc7e8e",
+  "hash_contenido": "8bb04878bf31ea5a7b87d3602ba0b3215a732ac93733a043f138cf5b4d3ab665",
+  "nodo": "YHDRYH-92CE",
+  "autor": "Arkhe",
+  "version": "ARKHE-SELLO-v1",
+  "timestamp_utc": "2026-10-12T07:23:30.466560+00:00"
+}

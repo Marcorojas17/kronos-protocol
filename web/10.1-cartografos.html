@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🧭 Artículo 10.1 · Cartógrafos · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-101-cartografos">🧭 Artículo 10.1 · Cartógrafos</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/x-agentes-arquitectura]
+└─$ ./agentes --rol=cartografo --info
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  ROL · CARTÓGRAFO                                                        ║
+║  ID  · 095-cartografo                                                    ║
+║  Función · Mapa del sistema + grafo de dependencias                      ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="responsabilidades">🜂 Responsabilidades</h2>
+    <ul>
+      <li>Mantener el mapa canónico del sistema</li>
+      <li>Grafo de dependencias entre módulos</li>
+      <li>Alertar sobre acoplamientos indebidos</li>
+      <li>Generar diagramas de capas 0-6</li>
+    </ul>
+    <h2 id="capacidades">🜃 Capacidades</h2>
+    <pre><code class="language-javascript">export const capacidades = [
+  'mapa-sistema',
+  'grafo-dependencias',
+  'navegación',
+  'alertas-acople',
+];
+</code></pre>
+    <h2 id="uso">🜄 Uso</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./cartografo --mapa
+
+[ &gt;&gt; ] Analizando 1070 archivos...
+[ &gt;&gt; ] Construyendo grafo...
+[ OK ] Grafo generado · 7 capas
+[ ✓✓ ] ◯_● · 51/49/100
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · AGENTES · 10.1 · Cartógrafos</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

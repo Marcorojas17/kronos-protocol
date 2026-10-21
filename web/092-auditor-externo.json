@@ -1,0 +1,11 @@
+{
+  "agente_id": "092-auditor-externo",
+  "public_key_hex": "ec69e318b84338a01587344cc4ea60efa0d88df472be5c7db18c8a42fdccc1a8",
+  "algoritmo": "Ed25519",
+  "rol": "auditor",
+  "descripcion": "Auditoría externa independiente",
+  "valido_desde": "2026-09-30T00:00:00Z",
+  "valido_hasta": "2027-09-30T00:00:00Z",
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente."
+}

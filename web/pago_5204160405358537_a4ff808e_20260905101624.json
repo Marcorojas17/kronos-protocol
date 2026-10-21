@@ -1,0 +1,15 @@
+{
+  "folio_maestro": "5204160405358537",
+  "folio_pericial": "KRONOS-MT01JAAF",
+  "sha": "a4ff808e",
+  "sello": "KRONOS-TRACE-PVA-5204160405358537-KRONOS-MT01JAAF",
+  "sc": "2607146379465",
+  "tx": "0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "concepto": "Peritaje KRONOS V18 MT01JAAF",
+  "monto": 0,
+  "metodo": "blockchain",
+  "timestamp": "2026-09-05T10:16:24.037167Z",
+  "certificado": "https://jas17.github.io/PVA-Protocolo-Vida-Autopoietica-/web/certificado.html?folio=KRONOS-TRACE-PVA-5204160405358537-KRONOS-MT01JAAF",
+  "explorer": "https://amoy.polygonscan.com/tx/0x8ca8e84e1258abac9acb29d14d25114e4775d782ecfda51ae29933247ed2970e",
+  "status": "100/10 pagado y sellado"
+}

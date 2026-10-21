@@ -1,0 +1,22 @@
+{
+  "agente": "091-contralor",
+  "periodo": "2026-Q4",
+  "generado": "2026-12-31T23:59:59Z",
+  "fondo_flailp": {
+    "saldo": "0.00 MXN",
+    "distribucion_51_49": "habilitada",
+    "movimientos_periodo": 0
+  },
+  "regalias": {
+    "total_mes": "0.00 MXN",
+    "humano": "0.00 MXN",
+    "flailp": "0.00 MXN"
+  },
+  "reportes_fiscales": {
+    "CARF": "preparado",
+    "DAC8": "preparado",
+    "NOM-151": "cumplido"
+  },
+  "veredicto": "SIN MOVIMIENTOS · FONDO EN CUSTODIA",
+  "sello": "◯_● · 51/49/100"
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔗 Artículo 5.4 · Auditoría Ethereum · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-54-auditoria-ethereum">🔗 Artículo 5.4 · Auditoría Ethereum</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/v-indice-cero]
+└─$ ./ethereum --audit
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+[ OK ] Merkle root · verificado
+[ OK ] Transacción · confirmada
+[ OK ] Bloque · incluido
+[ OK ] Confirmaciones · 12+
+[ ✓✓ ] AUDITORÍA ETHEREUM · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="anclaje-principal">🜂 Anclaje Principal</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    ANCLAJE ETHEREUM                                      ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   Dirección: 0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7...  ║
+║   Red:       Ethereum Mainnet (Chain ID 1)                               ║
+║   Tipo:      Data-only transaction                                      ║
+║   Payload:   Merkle root (32 bytes)                                     ║
+║   Costo:     ~45,000 gas                                                ║
+║   Confirmaciones requeridas: 12                                          ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="estructura-de-la-transaccion">🜃 Estructura de la Transacción</h2>
+    <pre><code class="language-json">{
+  &quot;from&quot;: &quot;0x...&quot;,
+  &quot;to&quot;: &quot;0xd2c2a7e128e6c81b689b3b0d9e1b31a4f6f8df0391b7b6c05e7daa7fb895774c&quot;,
+  &quot;value&quot;: &quot;0x0&quot;,
+  &quot;data&quot;: &quot;0xf03f7e2d852617309457e0fe207f8f8bd2627d0b723de02f3b0ce05767219112...&quot;,
+  &quot;chainId&quot;: 1,
+  &quot;meta&quot;: {
+    &quot;tipo&quot;: &quot;anclaje-merkle-root&quot;,
+    &quot;red&quot;: &quot;ethereum-mainnet&quot;,
+    &quot;sello&quot;: &quot;◯_● · 51/49/100&quot;,
+    &quot;timestamp&quot;: &quot;2026-01-01T00:00:00Z&quot;
+  }
+}
+</code></pre>
+    <h2 id="verificacion-on-chain">🜄 Verificación On-Chain</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ cast receipt &lt;tx_hash&gt; --rpc-url $ETHEREUM_RPC
+
+blockHash:            0x...
+blockNumber:          21,000,000
+from:                 0x...
+to:                   0xd2c2a7e1...
+gasUsed:              45,123
+status:               1 (success)
+transactionHash:      0x...
+</code></pre>
+    <h2 id="auditoria-completa">🜁 Auditoría Completa</h2>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs]
+└─$ ./ethereum --audit --chain=full
+
+[ 1 ] Recuperar Merkle root on-chain
+[ 2 ] Reconstruir árbol desde hojas
+[ 3 ] Comparar root calculado vs root anclado
+[ 4 ] Verificar timestamp del bloque
+[ 5 ] Verificar firma del remitente
+
+[ ✓✓ ] CADENA ÍNTEGRA · SIN ALTERACIÓN
+[ &gt;&gt; ] Sello: ◯_● · 51/49/100
+</code></pre>
+    <h2 id="costos">🜆 Costos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Gas</th>
+          <th>USD (aprox 2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 documento</td>
+          <td>~45,000</td>
+          <td>~$0.50</td>
+        </tr>
+        <tr>
+          <td>100 documentos</td>
+          <td>~45,000</td>
+          <td>~$0.50 (Merkle)</td>
+        </tr>
+        <tr>
+          <td>1000 documentos</td>
+          <td>~45,000</td>
+          <td>~$0.50 (Merkle)</td>
+        </tr>
+        <tr>
+          <td><strong>Ventaja</strong></td>
+          <td><strong>Merkle batching</strong></td>
+          <td><strong>Costo constante</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ÍNDICE CERO · 5.4 · Ethereum</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

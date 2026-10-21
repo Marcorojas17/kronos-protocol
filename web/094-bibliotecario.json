@@ -1,0 +1,11 @@
+{
+  "agente_id": "094-bibliotecario",
+  "public_key_hex": "ca6bce570201af87ed893322413045c5548e1173df56c8c079d1e92abf9087e9",
+  "algoritmo": "Ed25519",
+  "rol": "bibliotecario",
+  "descripcion": "Custodia de acervo documental",
+  "valido_desde": "2026-09-30T00:00:00Z",
+  "valido_hasta": "2027-09-30T00:00:00Z",
+  "firma_fundador": "PENDIENTE_FIRMA",
+  "nota": "Atestacion regenerada 2026-10-15 con llave Ed25519 real del agente."
+}

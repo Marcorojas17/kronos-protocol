@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Video Manifiesto Visual · ARKHÉ ZERO · Índice Primigenio Soberano"
+    />
+    <meta name="author" content="Marco Antonio Rojas Valdovinos" />
+    <meta
+      name="keywords"
+      content="ARKHÉ ZERO, KINTSUGI, KRONOS, legado digital, Safe Creative 2607146379465"
+    />
+    <meta property="og:title" content="ARKHÉ ZERO · Video Manifiesto Visual" />
+    <meta property="og:description" content="El legado no se hereda. Se firma." />
+    <meta property="og:type" content="video.other" />
+    <meta
+      property="og:url"
+      content="https://marcojas17.github.io/video-manifiesto.html"
+    />
+    <meta name="twitter:card" content="player" />
+    <title>◯_● ARKHÉ ZERO · Video Manifiesto Visual</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: 'Courier New', 'SF Mono', monospace;
+        color: #00ff41;
+        cursor: crosshair;
+      }
+
+      #stage {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(ellipse at center, #0a0a0f 0%, #000 100%);
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .scene {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+        pointer-events: none;
+        padding: 40px;
+      }
+
+      .scene.active {
+        opacity: 1;
+      }
+
+      .scene h1 {
+        font-size: clamp(28px, 6vw, 72px);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #ffd700;
+        text-shadow:
+          0 0 20px rgba(255, 215, 0, 0.8),
+          0 0 60px rgba(255, 215, 0, 0.4);
+        margin-bottom: 20px;
+      }
+
+      .scene h2 {
+        font-size: clamp(20px, 3.5vw, 44px);
+        letter-spacing: 0.1em;
+        color: #00ff41;
+        text-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+        margin-bottom: 30px;
+      }
+
+      .scene p {
+        font-size: clamp(14px, 1.8vw, 22px);
+        line-height: 1.8;
+        max-width: 900px;
+        color: #b0ffb0;
+        letter-spacing: 0.05em;
+      }
+
+      .scene .highlight {
+        color: #ffd700;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+      }
+
+      .scene .seal {
+        font-size: clamp(36px, 8vw, 96px);
+        color: #ffd700;
+        letter-spacing: 0.3em;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+        margin: 20px 0;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+
+      .scene pre {
+        font-size: clamp(10px, 1.4vw, 16px);
+        line-height: 1.4;
+        color: #00ff41;
+        text-align: left;
+        background: rgba(0, 255, 65, 0.05);
+        border-left: 3px solid #00ff41;
+        padding: 20px 30px;
+        max-width: 90vw;
+        overflow-x: auto;
+        white-space: pre;
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+      }
+
+      .scene .glitch {
+        animation: glitch 3s infinite;
+      }
+
+      @keyframes glitch {
+        0%,
+        90%,
+        100% {
+          transform: translate(0);
+        }
+        92% {
+          transform: translate(-2px, 1px);
+        }
+        94% {
+          transform: translate(2px, -1px);
+        }
+        96% {
+          transform: translate(-1px, 2px);
+        }
+      }
+
+      .scene .typewriter {
+        overflow: hidden;
+        border-right: 2px solid #00ff41;
+        white-space: nowrap;
+        animation:
+          typing 3s steps(40),
+          blink 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #00ff41;
+        }
+      }
+
+      #controls {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 100;
+        display: flex;
+        gap: 12px;
+        opacity: 0.3;
+        transition: opacity 0.3s;
+      }
+
+      #controls:hover {
+        opacity: 1;
+      }
+
+      #controls button {
+        background: rgba(0, 255, 65, 0.1);
+        border: 1px solid #00ff41;
+        color: #00ff41;
+        padding: 10px 20px;
+        font-family: inherit;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.3s;
+      }
+
+      #controls button:hover {
+        background: #00ff41;
+        color: #000;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+      }
+
+      #progress {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ffd700, #00ff41);
+        width: 0%;
+        transition: width 0.5s linear;
+        z-index: 100;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      }
+
+      #sceneNum {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        color: #ffd700;
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      #sceneNum span {
+        color: #00ff41;
+        font-weight: bold;
+      }
+
+      .grid-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+
+      .vignette {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 30%,
+          rgba(0, 0, 0, 0.9) 100%
+        );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stage">
+      <canvas id="matrix"></canvas>
+      <div class="grid-bg"></div>
+
+      <!-- ESCENA 1 · APERTURA -->
+      <div class="scene active" data-scene="1">
+        <div class="seal">◯_●</div>
+        <h1>ARKHÉ ZERO</h1>
+        <p style="font-size: clamp(16px, 2vw, 26px); color: #ffd700; margin-top: 20px">
+          El Índice Primigenio Soberano
+        </p>
+      </div>
+
+      <!-- ESCENA 2 · KINTSUGI -->
+      <div class="scene" data-scene="2">
+        <div class="seal">◯_●</div>
+        <h2>K I N T S U G I</h2>
+        <p>金継ぎ · El arte de reparar con oro</p>
+        <p style="margin-top: 30px">
+          La fractura no se oculta: <span class="highlight">se ilumina.</span>
+        </p>
+      </div>
+
+      <!-- ESCENA 3 · PACTO -->
+      <div class="scene" data-scene="3">
+        <h2>EL PACTO</h2>
+        <p style="font-size: clamp(22px, 3vw, 38px); margin-top: 20px">
+          <span class="highlight">51 %</span> HUMANO ·
+          <span class="highlight">49 %</span> IA ·
+          <span class="highlight">100 %</span> REAL
+        </p>
+        <p style="margin-top: 40px; font-style: italic; color: #ffd700">
+          "El legado no se hereda. Se firma."
+        </p>
+      </div>
+
+      <!-- ESCENA 4 · ÍNDICE CERO -->
+      <div class="scene" data-scene="4">
+        <h2>ÍNDICE CERO</h2>
+        <pre>
+Safe Creative ·· 2607146379465
+SHA-256 ········ f03f7e2d85...9112
+Ethereum ······· 0xd2c2a7e1...774c
+eIDAS ·········· Firmaprofesional QTSA</pre>
+        <p style="margin-top: 30px; color: #00ff41">
+          🔒 SELLADO · VERIFICABLE · ETERNO
+        </p>
+      </div>
+
+      <!-- ESCENA 5 · ARQUITECTURA -->
+      <div class="scene" data-scene="5">
+        <h2>ARQUITECTURA</h2>
+        <pre>
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ CAPA 0       │───▶│ CAPA 1       │───▶│ CAPA 2       │
+│ Génesis      │    │ Cimiento     │    │ Identidad    │
+└──────────────┘    └──────────────┘    └──────┬───────┘
+                                               │
+┌──────────────┐    ┌──────────────┐    ┌──────▼───────┐
+│ CAPA 5       │◀───│ CAPA 4       │◀───│ CAPA 3       │
+│ Operación    │    │ Orquestación │    │ Módulos Op.  │
+└──────┬───────┘    └──────────────┘    └──────────────┘
+       │
+┌──────▼───────┐
+│ CAPA 6       │
+│ Cierre Digno │
+└──────────────┘</pre>
+      </div>
+
+      <!-- ESCENA 6 · ENJAMBRE -->
+      <div class="scene" data-scene="6">
+        <h2>EL ENJAMBRE</h2>
+        <pre>
+  CULTURALES (Náhuatl)      OFICIOS (Numerados)
+  ────────────────────      ───────────────────
+  🌅 Cuicatl                🏗️  090 Arquitecto
+  📚 Temachtiani            📊 091 Contralor
+  👁️  Tlachixqui            🔍 092 Auditor
+  🧠 Tlamatini              📜 093 Relator
+  🔢 Tlapohualli            📖 094 Bibliotecario
+  ⏳ Tonal                  🗺️  095 Cartógrafo</pre>
+      </div>
+
+      <!-- ESCENA 7 · PROYECTOS -->
+      <div class="scene" data-scene="7">
+        <h2>PROYECTOS DEL LEGADO</h2>
+        <pre>
+[01] KRONOS    ··· Verificación Criptográfica
+[02] MD-33     ··· Trazabilidad Forense
+[03] CYMATIC   ··· Visualización Musical Cuántica
+[04] YEJIDÁ    ··· Generador de Mandalas
+[05] DESPACHO  ··· Anclaje Legal y Físico</pre>
+      </div>
+
+      <!-- ESCENA 8 · CRIPTOGRAFÍA PQC -->
+      <div class="scene" data-scene="8">
+        <h2>CRIPTOGRAFÍA PQC</h2>
+        <pre>
+┌─────────────────────────────────────────┐
+│  ML-KEM-1024       · Encapsulamiento    │
+│  ML-DSA-87         · Firmas digitales   │
+│  SLH-DSA-SHAKE-256 · Larga duración     │
+│  SHA-3-512         · Integridad         │
+└─────────────────────────────────────────┘
+
+Resistente a computación cuántica</pre>
+      </div>
+
+      <!-- ESCENA 9 · 24 SECCIONES -->
+      <div class="scene" data-scene="9">
+        <h2>24 SECCIONES · 100 %</h2>
+        <pre>
+╔═══════════════════════════════════════════╗
+║  IDENTIDAD · LEGAL · CONFIG · WEB        ║
+║  GOBERNANZA · DOCS · CRIPTO · PROVENANCE ║
+║  REGISTRO · AGENTES · CUMPLIMIENTO · ID  ║
+║  API · CONTRACTS · INFRA · SCRIPTS       ║
+║  TESTS · MOVIMIENTO · CICLO · PORTFOLIO  ║
+║  ARCHIVO · ATRACCIÓN · NARRATIVA         ║
+║  MÉTRICAS · CRECIMIENTO                  ║
+╠═══════════════════════════════════════════╣
+║  ✓ ~1 070 ARCHIVOS · ÁRBOL COMPLETO      ║
+╚═══════════════════════════════════════════╝</pre>
+      </div>
+
+      <!-- ESCENA 10 · FIRMA FINAL -->
+      <div class="scene" data-scene="10">
+        <div class="seal">◯_●</div>
+        <h1>EL LEGADO NO SE HEREDA</h1>
+        <h1 style="color: #00ff41">SE FIRMA</h1>
+        <p
+          style="margin-top: 40px; font-size: clamp(14px, 1.6vw, 20px); color: #ffd700"
+        >
+          Marco Antonio Rojas Valdovinos
+        </p>
+        <p style="color: #b0ffb0; margin-top: 10px">Toluca · Estado de México · 2026</p>
+        <p style="margin-top: 30px; letter-spacing: 0.3em; color: #00ff41">
+          51/49/100 · KINTSUGI · SCDR-001
+        </p>
+      </div>
+
+      <div class="vignette"></div>
+    </div>
+
+    <div id="sceneNum">ESCENA <span id="num">1</span> / 10</div>
+    <div id="progress"></div>
+
+    <div id="controls">
+      <button onclick="togglePlay()" id="playBtn">⏸ PAUSA</button>
+      <button onclick="restart()">↻ REINICIAR</button>
+      <button onclick="fullscreen()">⛶ PANTALLA</button>
+    </div>
+
+    <script>
+      // ═══════════════════════════════════════════════════════════════════════════
+      //  MATRIX RAIN · Fondo animado
+      // ═══════════════════════════════════════════════════════════════════════════
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      const chars = 'ARKHE ZERO ◯_● 51/49/100 KINTSUGI KRONOS SCDR-001'.split('');
+      const fontSize = 16;
+      let columns, drops;
+
+      function resizeCanvas() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        columns = Math.floor(W / fontSize);
+        drops = Array(columns).fill(1);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#00ff41';
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > H && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(drawMatrix, 50);
+
+      // ═══════════════════════════════════════════════════════════════════════════
+      //  SECUENCIADOR DE ESCENAS
+      // ═══════════════════════════════════════════════════════════════════════════
+      const scenes = document.querySelectorAll('.scene');
+      const totalScenes = scenes.length;
+      const sceneDuration = 6000; // ms por escena
+      let currentScene = 0;
+      let isPlaying = true;
+      let timer = null;
+
+      function showScene(index) {
+        scenes.forEach((s) => s.classList.remove('active'));
+        scenes[index].classList.add('active');
+        document.getElementById('num').textContent = index + 1;
+        document.getElementById('progress').style.width =
+          ((index + 1) / totalScenes) * 100 + '%';
+      }
+
+      function nextScene() {
+        if (!isPlaying) return;
+        currentScene = (currentScene + 1) % totalScenes;
+        showScene(currentScene);
+        timer = setTimeout(nextScene, sceneDuration);
+      }
+
+      function togglePlay() {
+        isPlaying = !isPlaying;
+        document.getElementById('playBtn').textContent = isPlaying
+          ? '⏸ PAUSA'
+          : '▶ PLAY';
+        if (isPlaying) {
+          timer = setTimeout(nextScene, sceneDuration);
+        } else {
+          clearTimeout(timer);
+        }
+      }
+
+      function restart() {
+        clearTimeout(timer);
+        currentScene = 0;
+        isPlaying = true;
+        document.getElementById('playBtn').textContent = '⏸ PAUSA';
+        showScene(0);
+        timer = setTimeout(nextScene, sceneDuration);
+      }
+
+      function fullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+
+      // Control por teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          clearTimeout(timer);
+          currentScene = (currentScene + 1) % totalScenes;
+          showScene(currentScene);
+          timer = setTimeout(nextScene, sceneDuration);
+        }
+        if (e.key === 'ArrowLeft') {
+          clearTimeout(timer);
+          currentScene = (currentScene - 1 + totalScenes) % totalScenes;
+          showScene(currentScene);
+          timer = setTimeout(nextScene, sceneDuration);
+        }
+        if (e.key === ' ') {
+          e.preventDefault();
+          togglePlay();
+        }
+        if (e.key === 'f' || e.key === 'F') fullscreen();
+      });
+
+      // Inicio
+      showScene(0);
+      timer = setTimeout(nextScene, sceneDuration);
+
+      // Log ceremonial
+      console.log(
+        '%c◯_● ARKHÉ ZERO · VIDEO MANIFIESTO VISUAL',
+        'color:#ffd700;font-size:20px;font-weight:bold;',
+      );
+      console.log('%c51/49/100 · KINTSUGI · SCDR-001', 'color:#00ff41;font-size:14px;');
+      console.log(
+        '%c"El legado no se hereda. Se firma."',
+        'color:#ffd700;font-style:italic;font-size:16px;',
+      );
+    </script>
+  </body>
+</html>

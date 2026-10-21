@@ -1,0 +1,17 @@
+╔═══════════════════════════════════════════════════════════════╗
+║  ◯_●  A R K H É   Z E R O  ·  51/49/100  ·  ◯_●              ║
+╚═══════════════════════════════════════════════════════════════╝
+
+  NODO     YHDRYH-92CE
+  GENESIS  K28-M05-MN01-YHDRYH-92CE
+  SELLO    SCDR-001
+
+  LLAVE PUBLICA MAESTRA (Ed25519):
+  RWQGbhKkHon+KMcaZe7j1h+GkfRs27xEQBYFERgKC0pTDbLAM9MUnUBY
+
+  HASH SHA-256 DEL GENESIS:
+  abee47b2c6cd3207bb2f233a5facbe6855060e4c84e486cea5e9627dee9e61f6
+
+  "El legado no se hereda. Se firma."
+                                    — KINTSUGI 2026
+

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔌 MCP Server Spec · ARKHÉ ZERO · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="mcp-server-spec-arkhe-zero">🔌 MCP Server Spec · ARKHÉ ZERO</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/api]
+└─$ ./mcp --spec
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  MCP SERVER · marco.mcp                                                  ║
+║  Protocolo · Model Context Protocol v1                                   ║
+║  Transporte · stdio                                                      ║
+║  Tools · 5                                                               ║
+║  Resources · 5                                                           ║
+║  Prompts · 3                                                             ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="tools">🜂 Tools</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Input</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>marco.firmar</code></td>
+          <td>contenido · tipo</td>
+          <td>firma · hash</td>
+        </tr>
+        <tr>
+          <td><code>marco.verificar</code></td>
+          <td>hash</td>
+          <td>veredicto</td>
+        </tr>
+        <tr>
+          <td><code>marco.contextualizar</code></td>
+          <td>agente · tema</td>
+          <td>prompt sistema</td>
+        </tr>
+        <tr>
+          <td><code>marco.recordar</code></td>
+          <td>decisión</td>
+          <td>id · hash</td>
+        </tr>
+        <tr>
+          <td><code>marco.consultar</code></td>
+          <td>campo</td>
+          <td>índice cero</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="resources">🜃 Resources</h2>
+    <ul>
+      <li><code>marco://identidad</code></li>
+      <li><code>marco://proyectos</code></li>
+      <li><code>marco://decisiones</code></li>
+      <li><code>marco://voz</code></li>
+      <li><code>marco://legado</code></li>
+    </ul>
+    <h2 id="prompts">🜄 Prompts</h2>
+    <ul>
+      <li><code>prompt-maestro</code></li>
+      <li><code>ceremonial-firma</code></li>
+      <li><code>verificador-index-cero</code></li>
+    </ul>
+    <h2 id="configuracion-claude">🜁 Configuración Claude</h2>
+    <pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;marco-mcp&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;/path/to/marco.mcp/dist/index.js&quot;]
+    }
+  }
+}
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · API · MCP Spec</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

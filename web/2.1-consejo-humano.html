@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>👤 Artículo 2.1 · Consejo Humano · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="articulo-21-consejo-humano">👤 Artículo 2.1 · Consejo Humano</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/ii-pacto-51-49]
+└─$ ./pacto --consejo=humano --status
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+[ OK ] Miembros activos: 1
+[ OK ] Peso: 51%
+[ OK ] Veto: permanente
+[ ✓✓ ] CONSEJO HUMANO · ◯_● · 51/49/100
+</code></pre>
+    <h2 id="composicion">🜂 Composición</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rol</th>
+          <th>Ocupante</th>
+          <th>Peso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fundador</td>
+          <td>Marco Antonio Rojas Valdovinos</td>
+          <td>51%</td>
+        </tr>
+        <tr>
+          <td>Custodios (delegados)</td>
+          <td>Por nombramiento</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Embajadores (voz)</td>
+          <td>Nivel 4+</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="poderes">🜃 Poderes</h2>
+    <pre><code class="language-diff">+ Firmar el génesis
++ Vetar cualquier propuesta
++ Aprobar cambios a la Lex Prima
++ Nombrar custodios
++ Autorizar el Fin Digno
+- NO puede modificar el Índice Cero
+- NO puede borrar actas (solo superponer)
+- NO puede delegar el veto a la IA
+</code></pre>
+    <h2 id="mecanismo-de-veto">🜄 Mecanismo de Veto</h2>
+    <pre><code class="language-text">╔══════════════════════════════════════════════════════════════════════════╗
+║                    FLUJO DE VETO · 51% SOBERANO                          ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║                                                                          ║
+║   [ Propuesta ] ──▶ [ Deliberación IA ] ──▶ [ ¿Veto? ]                   ║
+║                                                    │                     ║
+║                                                    ▼                     ║
+║                                          ┌──────────────────┐            ║
+║                                          │  Humano decide   │            ║
+║                                          └────┬─────────────┘            ║
+║                                               │                          ║
+║                              ┌────────────────┴──────────────┐           ║
+║                              ▼                               ▼           ║
+║                       [ VETO · HALT ]                  [ FIRMA ✓ ]       ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="ejemplo-de-firma">🜁 Ejemplo de Firma</h2>
+    <pre><code class="language-javascript">import { vetar } from './src/consensus/veto-humano.js';
+
+const resultado = vetar({
+  propuesta: 'Deploy módulo experimental',
+  razon: 'Riesgo no evaluado',
+});
+
+console.log(resultado);
+// {
+//   ok: true,
+//   firmante: 'Marco Antonio Rojas Valdovinos',
+//   peso: '51%',
+//   irrevocable: true,
+//   veredicto: 'VETO HUMANO REGISTRADO · SOBERANÍA 51%',
+//   sellado: '◯_● · 51/49/100'
+// }
+</code></pre>
+    <hr />
+    <p><code>◯_● · 51/49/100 · PACTO · 2.1 · Consejo Humano</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

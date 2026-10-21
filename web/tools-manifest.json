@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "server": "enjambre-arkhe",
+  "transport": "stdio",
+  "tools": [
+    {
+      "name": "enjambre.listar",
+      "description": "Lista los 12 agentes del enjambre ARKHÉ",
+      "inputSchema": { "type": "object", "properties": {} }
+    },
+    {
+      "name": "enjambre.deliberar",
+      "description": "Inicia deliberación con quórum 4/5",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "propuesta": { "type": "string" },
+          "votos_ia": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["propuesta"]
+      }
+    },
+    {
+      "name": "enjambre.vetar",
+      "description": "Aplica veto humano (51% soberano)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "propuesta": { "type": "string" },
+          "razon": { "type": "string" }
+        },
+        "required": ["propuesta", "razon"]
+      }
+    },
+    {
+      "name": "enjambre.reputacion",
+      "description": "Devuelve el score de reputación de un agente",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "agente": { "type": "string" } },
+        "required": ["agente"]
+      }
+    }
+  ]
+}

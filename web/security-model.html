@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🔐 Security Model · ARKHÉ ZERO · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <h1 id="security-model-arkhe-zero">🔐 Security Model · ARKHÉ ZERO</h1>
+    <pre><code class="language-bash">┌─(kali㉿arkhe-zero)-[~/docs/architecture]
+└─$ ./architecture --security
+
+[ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  MODELO DE SEGURIDAD · 6 PILARES                                         ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  [1] Zero-Trust                                                          ║
+║  [2] Post-Quantum                                                        ║
+║  [3] HSM-First                                                           ║
+║  [4] Local-First                                                         ║
+║  [5] Fail-Safe                                                           ║
+║  [6] Separación de poderes                                               ║
+╚══════════════════════════════════════════════════════════════════════════╝
+</code></pre>
+    <h2 id="los-6-pilares">🜂 Los 6 pilares</h2>
+    <h3 id="1-zero-trust">1 · Zero-Trust</h3>
+    <p>Nada es confiable por defecto. Todo se verifica.</p>
+    <h3 id="2-post-quantum">2 · Post-Quantum</h3>
+    <p>FIPS 203/204/205 como base. Resistencia al ataque de Shor.</p>
+    <h3 id="3-hsm-first">3 · HSM-First</h3>
+    <p>Las claves privadas nunca salen del hardware. PKCS#11 · CloudHSM · YubiHSM.</p>
+    <h3 id="4-local-first">4 · Local-First</h3>
+    <p>Los datos viven primero con el humano. La nube testifica, no posee.</p>
+    <h3 id="5-fail-safe">5 · Fail-Safe</h3>
+    <p>En duda: HALT. Sin firma humana, no hay acción.</p>
+    <h3 id="6-separacion-de-poderes">6 · Separación de poderes</h3>
+    <p>Quien implementa no audita. Quien firma no verifica.</p>
+    <h2 id="amenazas-cubiertas">🜃 Amenazas cubiertas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Amenaza</th>
+          <th>Mitigación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ataque de Shor</td>
+          <td>PQC FIPS 203/204/205</td>
+        </tr>
+        <tr>
+          <td>Downgrade</td>
+          <td>Centinela anti-downgrade</td>
+        </tr>
+        <tr>
+          <td>Man-in-the-middle</td>
+          <td>Firma híbrida Ed25519+ML-DSA-87</td>
+        </tr>
+        <tr>
+          <td>Corrupción de datos</td>
+          <td>SHA3-512 + Merkle root</td>
+        </tr>
+        <tr>
+          <td>Borrado no autorizado</td>
+          <td>Lex Prima 1.3 · superposición</td>
+        </tr>
+        <tr>
+          <td>Suplantación</td>
+          <td>Firma PQC + fingerprint</td>
+        </tr>
+        <tr>
+          <td>Fuga de claves</td>
+          <td>HSM (claves nunca salen)</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <p><code>◯_● · 51/49/100 · ARCH · Security</code></p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

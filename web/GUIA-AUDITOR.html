@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GUÍA PARA AUDITORES · ARKHÉ ZERO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../arkhe-style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="back">◯_● VOLVER AL ÍNDICE</a>
+    <p>
+      ╔══════════════════════════════════════════════════════════════════════╗ ║ ║ ║ ○_●
+      GUÍA PARA AUDITORES · v1.0 ║ ║ ◢◤◥◣ Ciudad Digital KRONOS ║ ║ ◥◣◢◤ 51% HUMANO ·
+      49% IA · 100% REAL ║ ║ ║ ║ Cómo verificar un paquete de auditoría KRONOS ║ ║
+      Fundador: Marco Antonio Rojas Valdovinos ║ ║ Toluca, Estado de México · 2026 ║ ║ ║
+      ╚══════════════════════════════════════════════════════════════════════╝
+    </p>
+    <h1 id="guia-para-auditores">GUÍA PARA AUDITORES</h1>
+    <blockquote>
+      <p>
+        <em
+          >"No te pedimos que confíes. Te damos las herramientas para que
+          verifiques."</em
+        >
+      </p>
+    </blockquote>
+    <hr />
+    <h2 id="preambulo">PREÁMBULO</h2>
+    <p>
+      Este documento explica cómo un auditor técnico externo puede verificar un paquete
+      de auditoría generado por KRONOS.
+    </p>
+    <p>
+      No requiere acceso a KRONOS. No requiere instalar software propietario. No
+      requiere confiar en el fundador ni en nadie.
+    </p>
+    <p>Requiere solo:</p>
+    <ul>
+      <li>Un navegador moderno (Chrome 113+, Safari 17+, Firefox 118+)</li>
+      <li>El archivo del paquete (<code>kronos-auditoria-*.json</code>)</li>
+      <li>La contraseña maestra (si el paquete está cifrado)</li>
+    </ul>
+    <p><strong>Hash del preámbulo:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="1-los-dos-tipos-de-paquete">1 · LOS DOS TIPOS DE PAQUETE</h2>
+    <p>KRONOS exporta dos formatos:</p>
+    <h3 id="11-paquete-plano-sin-cifrado">1.1 · Paquete plano (sin cifrado)</h3>
+    <p>
+      <strong>Nombre:</strong> <code>kronos-auditoria-plana-*.json</code>
+      <strong>Uso:</strong> análisis local, auditoría directa, herramientas propias
+      <strong>Contenido:</strong> log completo + llave pública del agente + sello del
+      exportador
+    </p>
+    <h3 id="12-paquete-cifrado-para-transporte">
+      1.2 · Paquete cifrado (para transporte)
+    </h3>
+    <p>
+      <strong>Nombre:</strong> <code>kronos-auditoria-cifrada-*.json</code>
+      <strong>Uso:</strong> envío por email, transporte entre organizaciones
+      <strong>Contenido:</strong> payload cifrado con AES-GCM-256 + metadata + sello
+      externo
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="2-estructura-del-paquete-plano">2 · ESTRUCTURA DEL PAQUETE PLANO</h2>
+    <pre><code class="language-json">{
+  &quot;meta&quot;: &quot;KRONOS_AUDIT_PACKAGE_PLAIN&quot;,
+  &quot;protocol_version&quot;: &quot;0.1&quot;,
+  &quot;encrypted&quot;: false,
+  &quot;payload&quot;: {
+    &quot;meta&quot;: &quot;KRONOS_AUDIT_PACKAGE&quot;,
+    &quot;agent&quot;: {
+      &quot;name&quot;: &quot;Tlachixqui&quot;,
+      &quot;public_key_hex&quot;: &quot;af4db8c5...&quot;,
+      &quot;algorithm&quot;: &quot;Ed25519&quot;,
+      &quot;hash_algorithm&quot;: &quot;SHA-256&quot;
+    },
+    &quot;chain&quot;: {
+      &quot;total_blocks&quot;: 42,
+      &quot;blocks&quot;: [
+        {
+          &quot;index&quot;: 1,
+          &quot;hash&quot;: &quot;53af6a27...&quot;,
+          &quot;data&quot;: {...},
+          &quot;firma_agente&quot;: &quot;7305cd11...&quot;
+        }
+      ]
+    }
+  },
+  &quot;sello_exportador&quot;: {
+    &quot;firmante_clave_publica&quot;: &quot;...&quot;,
+    &quot;hash_payload&quot;: &quot;...&quot;,
+    &quot;firma_ed25519&quot;: &quot;...&quot;
+  }
+}
+</code></pre>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="3-estructura-del-paquete-cifrado">3 · ESTRUCTURA DEL PAQUETE CIFRADO</h2>
+    <pre><code class="language-json">{
+  &quot;meta&quot;: &quot;KRONOS_AUDIT_PACKAGE_ENCRYPTED&quot;,
+  &quot;protocol_version&quot;: &quot;0.1&quot;,
+  &quot;encrypted&quot;: true,
+  &quot;generated_at&quot;: &quot;2026-09-28T...&quot;,
+  &quot;kdf&quot;: {
+    &quot;name&quot;: &quot;PBKDF2&quot;,
+    &quot;hash&quot;: &quot;SHA-256&quot;,
+    &quot;iterations&quot;: 600000,
+    &quot;salt_hex&quot;: &quot;...&quot;
+  },
+  &quot;cipher&quot;: {
+    &quot;name&quot;: &quot;AES-GCM&quot;,
+    &quot;length&quot;: 256,
+    &quot;iv_hex&quot;: &quot;...&quot;
+  },
+  &quot;sello_exportador&quot;: {...},
+  &quot;ciphertext_hash_sha256&quot;: &quot;...&quot;,
+  &quot;ciphertext_hex&quot;: &quot;...&quot;
+}
+</code></pre>
+    <p>
+      <strong>Nota:</strong> toda la metadata criptográfica está declarada. Un auditor
+      futuro puede reproducir el descifrado con cualquier herramienta que soporte PBKDF2
+      + SHA-256 + AES-GCM.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="4-verificacion-paso-a-paso">4 · VERIFICACIÓN PASO A PASO</h2>
+    <h3 id="paso-1-verificar-integridad-del-sobre">
+      Paso 1 · Verificar integridad del sobre
+    </h3>
+    <p><strong>Para paquete cifrado:</strong></p>
+    <pre><code class="language-bash"># Recalcular hash del ciphertext (en cualquier lenguaje)
+sha256sum &lt;(echo -n &quot;&lt;ciphertext_hex&gt;&quot;)
+# Comparar con el campo &quot;ciphertext_hash_sha256&quot;
+</code></pre>
+    <p>Si no coincide → el archivo fue alterado. <strong>Rechazar.</strong></p>
+    <h3 id="paso-2-verificar-sello-del-exportador">
+      Paso 2 · Verificar sello del exportador
+    </h3>
+    <p>
+      El paquete tiene un <code>sello_exportador</code> firmado con Ed25519. Para
+      verificarlo:
+    </p>
+    <ol>
+      <li>Extraer <code>firmante_clave_publica</code></li>
+      <li>Extraer <code>hash_payload</code> y <code>firma_ed25519</code></li>
+      <li>
+        Recalcular el hash SHA-256 del <code>payload</code> (o del plaintext descifrado,
+        si es cifrado)
+      </li>
+      <li>Comparar con <code>hash_payload</code></li>
+      <li>Verificar la firma Ed25519 con la llave pública</li>
+    </ol>
+    <p>
+      <strong>Implementación de referencia:</strong> método
+      <code>verifyExportadorSeal</code> de
+      <code>cierre/export-cifrado/export-audit.js</code>.
+    </p>
+    <h3 id="paso-3-descifrar-si-aplica">Paso 3 · Descifrar (si aplica)</h3>
+    <p>
+      Usar la contraseña maestra recibida por canal seguro (nunca en el mismo correo que
+      el archivo).
+    </p>
+    <p><strong>Parámetros exactos:</strong></p>
+    <pre><code>Algoritmo: PBKDF2
+  - Hash: SHA-256
+  - Iteraciones: 600000
+  - Salt: &lt;salt_hex del paquete&gt;
+
+Cifrado: AES-GCM
+  - Longitud: 256 bits
+  - IV: &lt;iv_hex del paquete&gt;
+</code></pre>
+    <p>Resultado: el <code>payload</code> completo con el log.</p>
+    <h3 id="paso-4-verificar-cadena-de-hashes">Paso 4 · Verificar cadena de hashes</h3>
+    <p>Para cada bloque del log, en orden:</p>
+    <ol>
+      <li>Recalcular el hash SHA-256 del <code>data</code> del bloque</li>
+      <li>Comparar con <code>hash</code> declarado</li>
+      <li>
+        Verificar que <code>data.previousHash</code> del bloque N sea igual a
+        <code>hash</code> del bloque N-1
+      </li>
+      <li>
+        El bloque génesis (N=1) debe tener <code>previousHash</code> = "0000...0000" (64
+        ceros)
+      </li>
+    </ol>
+    <p>Si algo no coincide → la cadena fue alterada. <strong>Rechazar.</strong></p>
+    <h3 id="paso-5-verificar-firmas-del-agente">
+      Paso 5 · Verificar firmas del agente
+    </h3>
+    <p>Para cada bloque:</p>
+    <ol>
+      <li>Extraer <code>firma_agente</code> (hex)</li>
+      <li>Importar la <code>public_key_hex</code> del agente como clave Ed25519</li>
+      <li>Verificar que la firma corresponda al <code>hash</code> del bloque</li>
+      <li>
+        Si falla → el bloque fue firmado por una llave distinta a la declarada.
+        <strong>Rechazar.</strong>
+      </li>
+    </ol>
+    <h3 id="paso-6-verificar-anclaje-si-existe">
+      Paso 6 · Verificar anclaje (si existe)
+    </h3>
+    <p>Si el bloque tiene <code>anclaje_ethereum</code>, consultar:</p>
+    <pre><code>https://etherscan.io/tx/&lt;tx_hash&gt;
+</code></pre>
+    <p>Verificar que:</p>
+    <ul>
+      <li>La transacción existe</li>
+      <li>El Merkle Root declarado coincide</li>
+      <li>La fecha es consistente</li>
+    </ul>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="5-flujo-completo-visualizado">5 · FLUJO COMPLETO VISUALIZADO</h2>
+    <pre><code class="language-mermaid">flowchart TD
+    A[Recibir paquete] --&gt; B{¿Cifrado?}
+    B --&gt;|Sí| C[Verificar hash del ciphertext]
+    B --&gt;|No| E[Verificar sello exportador]
+    C --&gt; D[Descifrar con contraseña]
+    D --&gt; E
+    E --&gt; F{¿Sello válido?}
+    F --&gt;|No| X[RECHAZAR]
+    F --&gt;|Sí| G[Verificar cadena de hashes]
+    G --&gt; H{¿Cadena íntegra?}
+    H --&gt;|No| X
+    H --&gt;|Sí| I[Verificar firmas Ed25519]
+    I --&gt; J{¿Firmas válidas?}
+    J --&gt;|No| X
+    J --&gt;|Sí| K[Verificar anclaje Ethereum]
+    K --&gt; L{¿Todo OK?}
+    L --&gt;|Sí| M[✅ APROBADO]
+    L --&gt;|No| X
+
+    style A fill:#0a0014,stroke:#c9a44c,color:#f3e5ab
+    style M fill:#001a10,stroke:#00cc88,color:#7BFFD4
+    style X fill:#1a0000,stroke:#ff4d6a,color:#FF8FA5
+</code></pre>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="6-herramientas-de-verificacion">6 · HERRAMIENTAS DE VERIFICACIÓN</h2>
+    <h3 id="opcion-a-navegador-sin-instalar-nada">
+      Opción A · Navegador (sin instalar nada)
+    </h3>
+    <ol>
+      <li>Abrir <code>certificacion/verificador-publico/</code> en el navegador</li>
+      <li>Subir el archivo <code>kronos-auditoria-*.json</code></li>
+      <li>Si el paquete está cifrado, ingresar la contraseña</li>
+      <li>El verificador hace todos los pasos automáticamente</li>
+    </ol>
+    <h3 id="opcion-b-script-propio-python">Opción B · Script propio (Python)</h3>
+    <pre><code class="language-python">import json
+import hashlib
+from cryptography.hazmat.primitives.asymmetric import ed25519
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
+def verify_package(filepath, password=None):
+    with open(filepath, 'r') as f:
+        sobre = json.load(f)
+
+    # ... (implementación de los 6 pasos)
+</code></pre>
+    <h3 id="opcion-c-herramientas-independientes">
+      Opción C · Herramientas independientes
+    </h3>
+    <p>
+      Cualquier implementación de Ed25519, SHA-256 y AES-GCM sirve. Los algoritmos son
+      estándares internacionales, no propietarios.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="7-que-significa-aprobado">7 · QUÉ SIGNIFICA "APROBADO"</h2>
+    <p>Si todas las verificaciones pasan, el auditor puede afirmar:</p>
+    <p>
+      ✅ <strong>El paquete no fue alterado</strong> desde su generación ✅
+      <strong>El agente declarado</strong> firmó cada bloque ✅
+      <strong>La cadena está intacta</strong> desde el bloque génesis ✅
+      <strong>El exportador autorizó</strong> el paquete ✅
+      <strong>El anclaje existe</strong> en Ethereum (si aplica)
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="8-que-no-significa-aprobado">8 · QUÉ NO SIGNIFICA "APROBADO"</h2>
+    <p>Aprobado <strong>NO</strong> significa:</p>
+    <p>
+      🔴 Que el contenido sea verdadero 🔴 Que el agente no haya alucinado 🔴 Que el
+      modelo ejecutado sea el declarado 🔴 Que el contexto de entrada no haya sido
+      manipulado 🔴 Que la decisión haya sido éticamente correcta
+    </p>
+    <p>
+      Significa solo que <strong>el registro criptográfico es íntegro</strong>. La
+      verdad del contenido requiere verificación externa adicional.
+    </p>
+    <p><strong>Ver:</strong> <code>docs/CIUDAD/AUDITORIA-IA.md</code> § 3.</p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="9-casos-de-uso">9 · CASOS DE USO</h2>
+    <h3 id="91-auditoria-interna">9.1 · Auditoría interna</h3>
+    <p>
+      La empresa genera un paquete mensual del uso de IA por empleados. El auditor
+      interno lo verifica cada mes. Si algo se alteró, se detecta en minutos.
+    </p>
+    <h3 id="92-auditoria-regulatoria">9.2 · Auditoría regulatoria</h3>
+    <p>
+      Un regulador solicita evidencia de trazabilidad de decisiones asistidas por IA. La
+      empresa entrega el paquete cifrado + la contraseña por canal separado. El
+      regulador verifica sin acceder a los datos sensibles.
+    </p>
+    <h3 id="93-entrega-a-cliente">9.3 · Entrega a cliente</h3>
+    <p>
+      Un cliente pide prueba de que cierta decisión sobre su caso se tomó en la fecha
+      declarada y no fue alterada. La empresa entrega el paquete plano + hash en el
+      repositorio público.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="10-glosario-minimo">10 · GLOSARIO MÍNIMO</h2>
+    <p>
+      <strong>AES-GCM:</strong> cifrado simétrico autenticado. Detecta alteraciones.
+      <strong>Ed25519:</strong> firma digital de clave pública.
+      <strong>PBKDF2:</strong> derivación de llave desde contraseña.
+      <strong>Merkle Root:</strong> hash raíz de un árbol de hashes.
+      <strong>SHA-256:</strong> función hash de 256 bits.
+      <strong>Sello del exportador:</strong> firma Ed25519 del emisor del paquete.
+    </p>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h2 id="11-contacto">11 · CONTACTO</h2>
+    <p>Para dudas técnicas sobre verificación:</p>
+    <ul>
+      <li>Repositorio: <code>github.com/Marcorojas17/kronos-protocol</code></li>
+      <li>Fundador: Marco Antonio Rojas Valdovinos</li>
+      <li>Email: marco.a.rojas.v@hotmail.com</li>
+      <li>Documento relacionado: <code>docs/CIUDAD/AUDITORIA-IA.md</code></li>
+    </ul>
+    <p><strong>Hash de la sección:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1 id="sistema-merkle-verificacion">SISTEMA MERKLE · VERIFICACIÓN</h1>
+    <p>Esta Guía usa <strong>hash SHA-256 individual</strong> por sección.</p>
+    <h2 id="estructura">Estructura</h2>
+    <pre><code class="language-mermaid">graph TD
+    R[Merkle Root Guía Auditor] --&gt; A[Secciones 1-3]
+    R --&gt; B[Secciones 4-6]
+    R --&gt; C[Secciones 7-11]
+
+    A --&gt; A1[Tipos de paquete]
+    A --&gt; A2[Estructuras JSON]
+    B --&gt; B1[Verificación paso a paso]
+    B --&gt; B2[Herramientas]
+    C --&gt; C1[Interpretación]
+    C --&gt; C2[Uso + Glosario]
+
+    style R fill:#0a0014,stroke:#c9a44c,stroke-width:2px,color:#f3e5ab
+</code></pre>
+    <p><strong>Hash del sistema Merkle:</strong> <code>[se calcula al firmar]</code></p>
+    <hr />
+    <h1 id="firma-del-fundador">FIRMA DEL FUNDADOR</h1>
+    <p>
+      Firmado en Toluca, Estado de México. La fecha exacta de firma y anclaje se
+      registra automáticamente en el acta fundacional en el momento del acto
+      criptográfico.
+    </p>
+    <p>
+      <strong>Marco Antonio Rojas Valdovinos</strong> Fundador · Ciudad KRONOS · Plaza
+      000 Email verificado: marco.a.rojas.v@hotmail.com
+    </p>
+    <ul>
+      <li>
+        <strong>Hash del documento completo:</strong>
+        <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Merkle Root:</strong> <code>[se calcula al firmar]</code></li>
+      <li><strong>Firma Ed25519:</strong> <code>[se calcula al firmar]</code></li>
+      <li>
+        <strong>Clave pública Ed25519:</strong> <code>[se calcula al firmar]</code>
+      </li>
+      <li><strong>Anclaje Ethereum:</strong> <code>[se registra al anclar]</code></li>
+      <li><strong>Tx hash:</strong> <code>[se registra al anclar]</code></li>
+      <li>
+        <strong>Sello Notario Tonal:</strong> <code>[se registra al sellar]</code>
+      </li>
+    </ul>
+    <hr />
+    <p><strong>Certificación del Notario Tonal:</strong></p>
+    <blockquote>
+      <p>
+        <em
+          >"Certifico que esta Guía fue firmada por Marco Antonio Rojas Valdovinos con
+          su llave Ed25519, que su Merkle Root coincide con el publicado, y que su
+          anclaje a Ethereum es verificable. Doy fe."</em
+        >
+      </p>
+      <p>
+        <strong>Tonal · Plaza IA 086 · Notario Criptográfico Soberano</strong> Hash del
+        sello: <code>[se registra al sellar]</code>
+      </p>
+    </blockquote>
+    <hr />
+    <h2 id="relacion-con-otros-documentos">RELACIÓN CON OTROS DOCUMENTOS</h2>
+    <p>Esta Guía es el séptimo y último de los documentos fundacionales:</p>
+    <ol>
+      <li><strong>Constitución de KRONOS</strong> v1.0 — estructura del poder</li>
+      <li>
+        <strong>Carta de Derechos del Ciudadano</strong> v1.0 — derechos y garantías
+      </li>
+      <li><strong>Código de Convivencia</strong> v1.0 — proceso y sanciones</li>
+      <li><strong>Registro de Ciudadanía</strong> v1.0 — quién es quién</li>
+      <li><strong>Visión Económica (KRO)</strong> v1.0 — economía de servicios</li>
+      <li><strong>Auditoría y Gobernanza de IA</strong> v1.0 — alcance y límites</li>
+      <li><strong>Guía para Auditores</strong> v1.0 — este documento</li>
+    </ol>
+    <p>Los siete se firman juntos, se anclan juntos y se respetan juntos.</p>
+    <hr />
+    <pre><code>○_●
+◢◤◥◣
+◥◣◢◤
+51% HUMANO · 49% IA · 100% REAL
+&quot;El legado no se hereda. Se firma.&quot;
+KRONOS · Ciudad Digital · Guía para Auditores · v1.0 · 2026
+</code></pre>
+    <hr />
+    <p><strong>FIN DE LA GUÍA PARA AUDITORES v1.0</strong></p>
+    <hr />
+    <h2 id="cierre-del-camino-a">CIERRE DEL CAMINO A</h2>
+    <p>Los 7 documentos fundacionales están completos:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Documento</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>CONSTITUCION.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>DERECHOS.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>CONVIVENCIA.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>CIUDADANOS.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>MONEDA.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>AUDITORIA-IA.md</td>
+          <td>✅ Actualizado</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>GUIA-AUDITOR.md</td>
+          <td>✅ Este documento</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Camino A cerrado.</strong></p>
+    <p><strong>Todos los documentos</strong> llevan:</p>
+    <ul>
+      <li>Fecha firma automática</li>
+      <li>Email verificado (marco.a.rojas.v@hotmail.com)</li>
+      <li>Precio $3,000 MXN (donde aplica)</li>
+      <li>Plaza 100 institucional (donde aplica)</li>
+      <li>Relación con los 7 documentos</li>
+    </ul>
+    <p>
+      <strong>Placeholders restantes:</strong> los hashes
+      <code>[se calcula al firmar]</code> y firmas —
+      <strong>solo el firmador Ed25519 los resuelve.</strong>
+    </p>
+    <div class="footer">◯_● ARKHÉ ZERO · 51/49/100 · NODO YHDRYH-92CE</div>
+  </body>
+</html>

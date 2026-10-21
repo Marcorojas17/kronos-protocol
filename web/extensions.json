@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "rust-lang.rust-analyzer",
+    "ms-python.python",
+    "juanblanco.solidity",
+    "bradlc.vscode-tailwindcss",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "yzhang.markdown-all-in-one"
+  ]
+}

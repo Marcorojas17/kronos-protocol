@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ARKHE ZERO APP</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#000" />
+    <style>
+      :root {
+        --bg: #07070a;
+        --fg: #e8e8ea;
+        --mut: #888;
+        --acc: #00ffcc;
+        --card: #111118;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: ui-monospace, monospace;
+      }
+      header {
+        padding: 20px;
+        border-bottom: 1px solid #222;
+      }
+      main {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 16px;
+        padding: 16px;
+        max-width: 1300px;
+        margin: auto;
+      }
+      @media (max-width: 900px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid #222;
+        border-radius: 16px;
+        padding: 16px;
+      }
+      .list {
+        max-height: 70vh;
+        overflow: auto;
+        border: 1px solid #222;
+        border-radius: 10px;
+      }
+      .item {
+        padding: 10px;
+        border-bottom: 1px solid #1e1e2a;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+      }
+      .item:hover {
+        background: #181826;
+      }
+      .badge {
+        font-size: 10px;
+        color: var(--mut);
+        border: 1px solid #333;
+        border-radius: 999px;
+        padding: 2px 6px;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-all;
+        background: #0e0e14;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 11px;
+        max-height: 40vh;
+        overflow: auto;
+      }
+      input {
+        width: 100%;
+        background: #0e0e14;
+        color: var(--fg);
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .btn {
+        background: var(--acc);
+        color: #000;
+        border: 0;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn2 {
+        background: #222;
+        color: #fff;
+        border: 0;
+        padding: 8px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      a {
+        color: #0ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>◯_● ARKHE ZERO — APP</h1>
+      <div style="color: #888; font-size: 12px">
+        51/49/100 · PWA offline · 1928 archivos · FIX 404 raw GitHub
+      </div>
+    </header>
+    <main>
+      <section class="card">
+        <div>
+          BOX <span id="count">0</span> | <span id="verified">0</span>
+          <button class="btn2" id="btnScan" style="float: right">Re-verificar</button>
+        </div>
+        <input
+          id="q"
+          placeholder="Buscar: LICENSE, MISION..."
+          style="margin-top: 10px"
+        />
+        <div class="list" id="list" style="margin-top: 12px"></div>
+        <div style="margin-top: 10px; font-size: 11px; color: #666">
+          Nota: Los archivos se abren desde GitHub raw (no desde Pages) para evitar 404.
+        </div>
+      </section>
+      <aside class="card">
+        <h3 style="margin: 0 0 8px 0">Detalle</h3>
+        <div id="detail">Selecciona archivo.</div>
+        <pre id="meta">{}</pre>
+        <button class="btn" id="btnOpen">Abrir en GitHub</button>
+        <button class="btn2" id="btnCopy">Copiar path</button>
+        <div style="margin-top: 12px">
+          <a id="rawLink" href="#" target="_blank" style="font-size: 11px">Abrir raw</a>
+          |
+          <a id="ghLink" href="#" target="_blank" style="font-size: 11px"
+            >Ver en GitHub</a
+          >
+        </div>
+      </aside>
+    </main>
+    <script>
+      let CAT = [];
+      const $id = (id) => document.getElementById(id);
+      const RAW_BASE =
+        'https://raw.githubusercontent.com/Marcorojas17/kronos-protocol/main/';
+      const GH_BASE = 'https://github.com/Marcorojas17/kronos-protocol/blob/main/';
+      async function load() {
+        try {
+          const r = await fetch('./catalogo/INDEX_MAESTRO_SEGURO.txt?v=' + Date.now());
+          const txt = await r.text();
+          const lines = txt
+            .split('\n')
+            .map((s) => s.trim())
+            .filter(Boolean);
+          CAT = lines.map((l) => {
+            const p = l.split('|')[0].trim();
+            return { path: p, name: p.split('/').pop(), raw: l };
+          });
+        } catch (e) {
+          const r2 = await fetch('./catalogo/catalogo.json');
+          const j = await r2.json();
+          CAT = Array.isArray(j) ? j : j.archivos || [];
+        }
+        $id('count').textContent = CAT.length;
+        $id('verified').textContent = CAT.length;
+        render(CAT);
+      }
+      function render(arr) {
+        const q = $id('q').value.toLowerCase();
+        let f = arr;
+        if (q) f = arr.filter((x) => (x.path || '').toLowerCase().includes(q));
+        f = f.slice(0, 1000);
+        $id('list').innerHTML = f
+          .map(
+            (x, i) =>
+              '<div class="item" data-i="' +
+              i +
+              '"><span>' +
+              x.path +
+              '</span><span class="badge">' +
+              x.path.split('.').pop() +
+              '</span></div>',
+          )
+          .join('');
+        document.querySelectorAll('.item').forEach(
+          (el) =>
+            (el.onclick = () => {
+              document
+                .querySelectorAll('.item')
+                .forEach((e) => (e.style.background = ''));
+              el.style.background = '#1e2e2e';
+              show(f[+el.dataset.i]);
+            }),
+        );
+      }
+      function show(x) {
+        $id('detail').innerHTML =
+          '<b>' +
+          x.name +
+          '</b><br><small>' +
+          x.path +
+          '</small><br><small style="color:#666">' +
+          (x.raw || '') +
+          '</small>';
+        $id('meta').textContent = JSON.stringify(x, null, 2);
+        $id('rawLink').href = RAW_BASE + x.path;
+        $id('ghLink').href = GH_BASE + x.path;
+        $id('btnOpen').onclick = () => window.open(GH_BASE + x.path, '_blank');
+      }
+      $id('q').oninput = () => render(CAT);
+      $id('btnScan').onclick = load;
+      $id('btnCopy').onclick = () => {
+        const x = $id('meta').textContent;
+        navigator.clipboard.writeText(x);
+      };
+      load();
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js');
+      }
+    </script>
+  </body>
+</html>

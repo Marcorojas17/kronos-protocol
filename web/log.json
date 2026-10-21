@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "seal": "◯_● · 51/49/100",
+  "entries": [
+    {
+      "ts": "2026-01-01T00:00:00Z",
+      "level": "INFO",
+      "event": "system.boot",
+      "msg": "ARKHÉ ZERO iniciado",
+      "seal": "◯_● · 51/49/100"
+    },
+    {
+      "ts": "2026-01-01T00:00:01Z",
+      "level": "INFO",
+      "event": "index-zero.loaded",
+      "msg": "Índice Cero verificado · SHA-256 f03f7e2d..."
+    },
+    {
+      "ts": "2026-01-01T00:00:02Z",
+      "level": "INFO",
+      "event": "pact.verified",
+      "msg": "Pacto 51/49/100 operativo"
+    },
+    {
+      "ts": "2026-01-01T00:00:03Z",
+      "level": "INFO",
+      "event": "enjambre.activated",
+      "msg": "12 agentes activos"
+    }
+  ]
+}
