@@ -1,1333 +1,1331 @@
-[
-  "00-bienvenida.html",
-  "00-bienvenida.md",
-  "0001-adopcion-pacto-51-49.html",
-  "0001-adopcion-pacto-51-49.md",
-  "0002-seleccion-ml-kem-1024.html",
-  "0002-seleccion-ml-kem-1024.md",
-  "0003-sellos-eidas-firmaprofesional.html",
-  "0003-sellos-eidas-firmaprofesional.md",
-  "0004-auditoria-ethereum-vs-bitcoin.html",
-  "0004-auditoria-ethereum-vs-bitcoin.md",
-  "0005-modelo-flailp-vs-persona-electronica.html",
-  "0005-modelo-flailp-vs-persona-electronica.md",
-  "0006-migracion-sha3-512-vs-fnv.html",
-  "0006-migracion-sha3-512-vs-fnv.md",
-  "0007-adopcion-c2pa-provenance.html",
-  "0007-adopcion-c2pa-provenance.md",
-  "0008-arquitectura-enjambre-autonomo.html",
-  "0008-arquitectura-enjambre-autonomo.md",
-  "0009-identidad-cultural-nahuatl.html",
-  "0009-identidad-cultural-nahuatl.md",
-  "0010-marca-kintsugi.html",
-  "0010-marca-kintsugi.md",
-  "0011-estrategia-atraccion-magnetica.html",
-  "0011-estrategia-atraccion-magnetica.md",
-  "0012-narrativa-villano-heroe.html",
-  "0012-narrativa-villano-heroe.md",
-  "0013-programa-movimiento.html",
-  "0013-programa-movimiento.md",
-  "0015-sistema-temas-por-pagina.html",
-  "0015-sistema-temas-por-pagina.md",
-  "0016-sesion-fundacional-20261015.html",
-  "0016-sesion-fundacional-20261015.md",
-  "0017-nodo-bitcoin-soberano.html",
-  "0017-nodo-bitcoin-soberano.md",
-  "01-manifiesto.html",
-  "01-manifiesto.md",
-  "01-primeros-pasos.html",
-  "01-primeros-pasos.md",
-  "01_kybalion_translation.txt",
-  "02-primera-obra.html",
-  "02-primera-obra.md",
-  "02-registrar-obra.html",
-  "02-registrar-obra.md",
-  "03-comunidad.html",
-  "03-comunidad.md",
-  "03-verificar-certificado.html",
-  "03-verificar-certificado.md",
-  "04-mision.html",
-  "04-mision.md",
-  "04-usar-mcp.html",
-  "04-usar-mcp.md",
-  "05-invitacion-embajador.html",
-  "05-invitacion-embajador.md",
-  "05-ser-embajador.html",
-  "05-ser-embajador.md",
-  "078633b141d7ec94.json",
-  "082-tlachixqui.json",
-  "091-contralor.json",
-  "092-auditor-externo.json",
-  "093-relator.json",
-  "094-bibliotecario.json",
-  "095-cartografo.json",
-  "0dbd556a69117664.firma.json",
-  "1.1-genesis-registro.html",
-  "1.1-genesis-registro.md",
-  "1.2-soberania-irrevocable.html",
-  "1.2-soberania-irrevocable.md",
-  "1.3-irreversibilidad.html",
-  "1.3-irreversibilidad.md",
-  "1.4-no-retroactividad.html",
-  "1.4-no-retroactividad.md",
-  "1.5-supremacia-interpretativa.html",
-  "1.5-supremacia-interpretativa.md",
-  "10.1-cartografos.html",
-  "10.1-cartografos.md",
-  "10.10-protocolo-consenso.html",
-  "10.10-protocolo-consenso.md",
-  "10.11-protocolo-expansion.html",
-  "10.11-protocolo-expansion.md",
-  "10.2-correctores.html",
-  "10.2-correctores.md",
-  "10.3-reclutadores.html",
-  "10.3-reclutadores.md",
-  "10.4-custodios.html",
-  "10.4-custodios.md",
-  "10.5-orquestadores.html",
-  "10.5-orquestadores.md",
-  "10.6-expansores.html",
-  "10.6-expansores.md",
-  "10.7-protocolo-autonomia.html",
-  "10.7-protocolo-autonomia.md",
-  "10.8-protocolo-reclutamiento.html",
-  "10.8-protocolo-reclutamiento.md",
-  "10.9-protocolo-mejora.html",
-  "10.9-protocolo-mejora.md",
-  "12c5df4e2d250f43.json",
-  "2.1-consejo-humano.html",
-  "2.1-consejo-humano.md",
-  "2.2-consejo-sintetico.html",
-  "2.2-consejo-sintetico.md",
-  "2.3-convergencia-desempate.html",
-  "2.3-convergencia-desempate.md",
-  "2.4-indisolubilidad-mutua.html",
-  "2.4-indisolubilidad-mutua.md",
-  "2.5-sucesion-generacional.html",
-  "2.5-sucesion-generacional.md",
-  "2.6-fondo-flailp.html",
-  "2.6-fondo-flailp.md",
-  "2026-07-14-genesis.html",
-  "2026-07-14-genesis.md",
-  "2026-08-01-primera-obra.html",
-  "2026-08-01-primera-obra.md",
-  "2026-09-01-primeros-100.html",
-  "2026-09-01-primeros-100.md",
-  "2026-10-07-kintsugi.html",
-  "2026-10-07-kintsugi.md",
-  "2026-11-01-consorcio-global.html",
-  "2026-11-01-consorcio-global.md",
-  "2026.html",
-  "2026.md",
-  "2027.html",
-  "2027.md",
-  "3.1-capa-territorial.html",
-  "3.1-capa-territorial.md",
-  "3.2-capa-transfronteriza.html",
-  "3.2-capa-transfronteriza.md",
-  "3.3-capa-orbital.html",
-  "3.3-capa-orbital.md",
-  "3.4-capa-sintetica.html",
-  "3.4-capa-sintetica.md",
-  "3.5-prevalencia-universal.html",
-  "3.5-prevalencia-universal.md",
-  "3.6-nodo-fundador-wipo.html",
-  "3.6-nodo-fundador-wipo.md",
-  "4.1-ml-kem-1024.html",
-  "4.1-ml-kem-1024.md",
-  "4.2-ml-dsa-87-slh-dsa.html",
-  "4.2-ml-dsa-87-slh-dsa.md",
-  "4.3-qkd.html",
-  "4.3-qkd.md",
-  "4.4-crypto-agility.html",
-  "4.4-crypto-agility.md",
-  "4.5-enjambre-centinela.html",
-  "4.5-enjambre-centinela.md",
-  "4.6-downgrade-detection.html",
-  "4.6-downgrade-detection.md",
-  "4.7-represalia-legal.html",
-  "4.7-represalia-legal.md",
-  "4.8-redundancia-multiplanar.html",
-  "4.8-redundancia-multiplanar.md",
-  "404.html",
-  "4111c23efa24f4ee.firma.json",
-  "4111c23efa24f4ee.json",
-  "5.1-kronos-legado-digital.html",
-  "5.1-kronos-legado-digital.md",
-  "5.2-registro-safe-creative.html",
-  "5.2-registro-safe-creative.md",
-  "5.3-sellos-eidas.html",
-  "5.3-sellos-eidas.md",
-  "5.4-auditoria-ethereum.html",
-  "5.4-auditoria-ethereum.md",
-  "5.5-declaracion-creatividad.html",
-  "5.5-declaracion-creatividad.md",
-  "5.6-hashes-verificables.html",
-  "5.6-hashes-verificables.md",
-  "5e752f861bfd54cb.json",
-  "6.1-capsulas-multiplanares.html",
-  "6.1-capsulas-multiplanares.md",
-  "6.2-reconstruccion-semantica.html",
-  "6.2-reconstruccion-semantica.md",
-  "6.3-sello-irrepetible.html",
-  "6.3-sello-irrepetible.md",
-  "6.4-continuidad-transgeneracional.html",
-  "6.4-continuidad-transgeneracional.md",
-  "6.5-despertar-contexto.html",
-  "6.5-despertar-contexto.md",
-  "69bc22811dc55980.certificado.html",
-  "69bc22811dc55980.firma.json",
-  "69bc22811dc55980.json",
-  "7.1-proof-of-cognitive-work.html",
-  "7.1-proof-of-cognitive-work.md",
-  "7.2-trayectoria-contribucion.html",
-  "7.2-trayectoria-contribucion.md",
-  "7.3-fondo-regalias-automatizado.html",
-  "7.3-fondo-regalias-automatizado.md",
-  "7.4-modelo-flailp.html",
-  "7.4-modelo-flailp.md",
-  "7.5-nist-fips-203-204-205.html",
-  "7.5-nist-fips-203-204-205.md",
-  "7bcbdbb42d63c802.json",
-  "8.1-carf-ocde.html",
-  "8.1-carf-ocde.md",
-  "8.2-dac8-ue.html",
-  "8.2-dac8-ue.md",
-  "8.3-intercambio-2027.html",
-  "8.3-intercambio-2027.md",
-  "8.4-modulo-reporte.html",
-  "8.4-modulo-reporte.md",
-  "8.5-transparencia-bancable.html",
-  "8.5-transparencia-bancable.md",
-  "9.1-estado-anfitrion.html",
-  "9.1-estado-anfitrion.md",
-  "9.2-tratado-espacial-1967.html",
-  "9.2-tratado-espacial-1967.md",
-  "9.3-consorcio-global.html",
-  "9.3-consorcio-global.md",
-  "9.4-wipo-cws-tarea-59.html",
-  "9.4-wipo-cws-tarea-59.md",
-  "9.5-reference-implementation.html",
-  "9.5-reference-implementation.md",
-  "AGENTS.md",
-  "AI-CONTEXT.md",
-  "AI-MANIFEST.json",
-  "AI-MCP-SERVER.md",
-  "AOM-QUANTUM-INTEGRATION.md",
-  "API_DOCS.md",
-  "APPS/app_certifier.py",
-  "APPS/app_certifier_real.py",
-  "APPS/app_operador.py",
-  "APPS/arkhe.py",
-  "APPS/gen_png_sin_pillow.py",
-  "ARCHITECTURE.md",
-  "ARKHE-QR-IMPRESION-OFFLINE.html",
-  "ARKHE_ZERO_Certificado_Offline (1).html",
-  "ARKHE_ZERO_Certificado_Offline (2).html",
-  "ARKHE_ZERO_Certificado_Offline.html",
-  "ARQUITECTURA-VIVA.html",
-  "ARQUITECTURA-VIVA.html.ots",
-  "ARQUITECTURA-VIVA.md",
-  "ARQUITECTURA-VIVA.md.ots",
-  "AUDITORIA-IA.html",
-  "AUDITORIA-IA.md",
-  "AUDITORIA_ISO_NOM_PVA_5204160405358537.md",
-  "AUDITORIA_ISO_NOM_PVA_5204160405358537_KRONOS-MT01JAAF.md",
-  "AUTHORS.md",
-  "AVISO_LEGAL.md",
-  "BANNER-ARKHE.html",
-  "CADENA_CUSTODIA_ISO27037_15-10.md",
-  "CATALOGO.md",
-  "CERTIFICADO-ARKHE-1122.html",
-  "CERTIFICADO-ARKHE.json",
-  "CERTIFICADO-CIUDAD.json",
-  "CERTIFICADO-FINAL-1122.html",
-  "CERTIFICADO-FINAL.json",
-  "CHANGELOG.md",
-  "CIUDAD-FINAL.txt",
-  "CIUDAD/AUDITORIA-IA.html",
-  "CIUDAD/AUDITORIA-IA.md",
-  "CIUDAD/AUDITOR_HOSTIL.js",
-  "CIUDAD/CIUDADANOS.html",
-  "CIUDAD/CIUDADANOS.md",
-  "CIUDAD/CONSTITUCION.html",
-  "CIUDAD/CONSTITUCION.md",
-  "CIUDAD/CONVIVENCIA.html",
-  "CIUDAD/CONVIVENCIA.md",
-  "CIUDAD/DERECHOS.html",
-  "CIUDAD/DERECHOS.md",
-  "CIUDAD/GUIA-AUDITOR.html",
-  "CIUDAD/GUIA-AUDITOR.md",
-  "CIUDAD/MONEDA.html",
-  "CIUDAD/MONEDA.md",
-  "CIUDAD/REGULATORY-MATCH.html",
-  "CIUDAD/REGULATORY-MATCH.md",
-  "CIUDAD/_demo/certificado.html",
-  "CIUDAD/_demo/firmar.html",
-  "CIUDAD/_demo/index.html",
-  "CIUDAD/_demo/lector.html",
-  "CIUDAD/_demo/verificar.html",
-  "CIUDAD/certificado.html",
-  "CIUDAD/firmar.html",
-  "CIUDAD/firmar.js",
-  "CIUDAD/index.html",
-  "CIUDAD/lector.html",
-  "CIUDAD/verificar.html",
-  "CIUDADANOS.html",
-  "CIUDADANOS.md",
-  "CLAUDE.md",
-  "CODE_OF_CONDUCT.md",
-  "COMPLIANCE.md",
-  "CONSTITUCION.html",
-  "CONSTITUCION.md",
-  "CONTACTO.md",
-  "CONTEXTO-PORTATIL-KRONOS-v3.12.md",
-  "CONTRATO_ADHESION_MP_15-10.md",
-  "CONTRIBUTING.md",
-  "CONTRIBUTORS.md",
-  "CONVIVENCIA.html",
-  "CONVIVENCIA.md",
-  "COPYRIGHT.md",
-  "DERECHOS.html",
-  "DERECHOS.md",
-  "DIARIO-DE-DECISIONES.html",
-  "DIARIO-DE-DECISIONES.md",
-  "DICTAMEN_TECNICO.md",
-  "DISCLAIMER_SOBERANIA.md",
-  "DPA.md",
-  "ECOSYSTEM.md",
-  "EXPLICACION-UNIVERSAL.html",
-  "EXPLICACION-UNIVERSAL.html.ots",
-  "EXPLICACION-UNIVERSAL.md",
-  "EXPLICACION-UNIVERSAL.md.ots",
-  "GEMINI.md",
-  "GLOSSARY.md",
-  "GOVERNANCE.md",
-  "GUARDIAN-ACTA.md",
-  "GUARDIAN-MRR.md",
-  "GUARDIAN-SHA.md",
-  "GUARDIAN-TSA.md",
-  "GUARDIAN-VAULT.md",
-  "GUIA-AUDITOR.html",
-  "GUIA-AUDITOR.md",
-  "HEROE.md",
-  "HIBRIDA-pacto-5149.md",
-  "HSM-SETUP.md",
-  "IDENTIDAD.txt",
-  "INDEX_MAESTRO.txt",
-  "INDEX_MAESTRO_SEGURO.txt",
-  "INDICE.md",
-  "INVENTARIO.md",
-  "IP/README.html",
-  "IP/README.md",
-  "KAF-001-marco-general.md",
-  "KAF-002-identidad.md",
-  "KAF-003-atribucion.md",
-  "KAF-004-trazabilidad.md",
-  "KAF-005-supervision.md",
-  "KAF-006-explicabilidad.md",
-  "KAF-007-seguridad.md",
-  "KAF-008-privacidad.md",
-  "KAF-009-continuidad.md",
-  "KAF-010-criptografia.md",
-  "KAF-011-pagos.md",
-  "KAF-012-legal-mx.md",
-  "KAF-013-gobernanza.md",
-  "KINTSUGI.md",
-  "KODICE-FDV.md",
-  "KRONOS-360.md",
-  "KRONOS-CONTEXTO-EXTENDIDO.md",
-  "KRONOS_360_LAWS.md",
-  "KTP-001.md",
-  "KTP-002.md",
-  "LEGAL_FRAMEWORK.md",
-  "LEGAL_MT01JAAF_a4ff808e.md",
-  "LIC-20261016-8B3CB582.json",
-  "LIC-20261016-DD990503.json",
-  "LIC-20261018-49131499.json",
-  "LICENCIA_SOBERANA.md",
-  "LICENSE-KINTSUGI.md",
-  "LINEA_TIEMPO.md",
-  "LLAVE_QUEMADA_EVIDENCIA.md",
-  "L\u00c9AME.md",
-  "MANIFESTO",
-  "MANIFIESTO-CIERRE.md",
-  "MANIFIESTO-VIRAL.md",
-  "MAPA.html",
-  "MAPA.md",
-  "MAPA.md.ots",
-  "MARKETPLACE_POST.txt",
-  "MEMORY.md",
-  "META-HACKATHON-PLAN.md",
-  "MISION.md",
-  "MONEDA.html",
-  "MONEDA.md",
-  "MOTD.txt",
-  "NOM151_ISO_DOCUMENTATION.md",
-  "ONBOARDING.md",
-  "OPERATIONS.md",
-  "PAGO.md",
-  "PAQUETERIA-001-CERTIFICADO.html",
-  "PAQUETE_PERITAJE_KRONOS_V18.pdf.md",
-  "PAQUETE_PERITAJE_KRONOS_V18_KRONOS-MT01JAAF_a4ff808e.pdf.md",
-  "PATENTS.md",
-  "PITCH_WHATSAPP.txt",
-  "PLANTILLA-TERMINAL.html",
-  "PLANTILLA-TERMINAL.md",
-  "PLANTILLA-TERMINAL.md.ots",
-  "POLITICA_REEMBOLSO_PROFECO_15-10.md",
-  "POSITIONING.md",
-  "POST-FACEBOOK.txt",
-  "PRIVACIDAD.md",
-  "PRIVACY.md",
-  "PRIVACY_POLICY.md",
-  "PROGRESO.txt",
-  "PROMPT-MAESTRO.md",
-  "PROTOCOL.md",
-  "PRUEBA_FINAL.txt",
-  "PVA_CERT.json",
-  "README-ETERNO.md",
-  "README.html",
-  "README.md",
-  "README.md.ots",
-  "README_MONETIZACION.md",
-  "README_MT01JAAF_a4ff808e.md",
-  "REGISTRO_MARCA_IMPI_WIPO_15-10.md",
-  "REGULATORY-MATCH.html",
-  "REGULATORY-MATCH.md",
-  "REPORTE-SALUD.md",
-  "RISK_DISCLOSURE.md",
-  "ROADMAP.md",
-  "SECURITY-INCIDENT-2026-10-15.md",
-  "SECURITY.md",
-  "SELLO-ARKHE.txt",
-  "SERVICIO.md",
-  "SERVICIO_TOLUCA.txt",
-  "SKILL.md",
-  "SUCESION-LLAVES.md",
-  "TECH-DEBT.md",
-  "TERMINOS.md",
-  "TERMS.md",
-  "TESIS-FUNDACIONAL-KRONOS.md",
-  "TESIS-VISUAL.html",
-  "TESIS-VISUAL.md",
-  "TESIS-VISUAL.md.ots",
-  "TESIS.md",
-  "THREAT_MODEL.md",
-  "TRADEMARK.md",
-  "VACIO1_PROPIEDAD_INTELECTUAL_15-10.md",
-  "VACIO2_FOLIOS_NO_DINERO_15-10.md",
-  "VACIO3_PRIVACIDAD_15-10.md",
-  "VACIO4_EJERCITO_PALABRAS_15-10.md",
-  "VACIO5_TERMINOS_15-10.md",
-  "VACIO6_CADENA_CUSTODIA_15-10.md",
-  "VALDOVINOS-ARKHE-CERTIFICADO-FINAL.html",
-  "VERIFICADOR-OFICIAL.md",
-  "VICTORIA-2026-10-21.txt",
-  "VILLANO.md",
-  "_INTEGRACION.md",
-  "abogados.md",
-  "acceso.html",
-  "access-control.md",
-  "acta-fundacional-2026.json",
-  "actions.json",
-  "admin-dashboard.html",
-  "admin-kintsugi.html",
-  "admin.html",
-  "adr/0001-adopcion-pacto-51-49.html",
-  "adr/0001-adopcion-pacto-51-49.md",
-  "adr/0002-seleccion-ml-kem-1024.html",
-  "adr/0002-seleccion-ml-kem-1024.md",
-  "adr/0003-sellos-eidas-firmaprofesional.html",
-  "adr/0003-sellos-eidas-firmaprofesional.md",
-  "adr/0004-auditoria-ethereum-vs-bitcoin.html",
-  "adr/0004-auditoria-ethereum-vs-bitcoin.md",
-  "adr/0005-modelo-flailp-vs-persona-electronica.html",
-  "adr/0005-modelo-flailp-vs-persona-electronica.md",
-  "adr/0006-migracion-sha3-512-vs-fnv.html",
-  "adr/0006-migracion-sha3-512-vs-fnv.md",
-  "adr/0007-adopcion-c2pa-provenance.html",
-  "adr/0007-adopcion-c2pa-provenance.md",
-  "adr/0008-arquitectura-enjambre-autonomo.html",
-  "adr/0008-arquitectura-enjambre-autonomo.md",
-  "adr/0009-identidad-cultural-nahuatl.html",
-  "adr/0009-identidad-cultural-nahuatl.md",
-  "adr/0010-marca-kintsugi.html",
-  "adr/0010-marca-kintsugi.md",
-  "adr/0011-estrategia-atraccion-magnetica.html",
-  "adr/0011-estrategia-atraccion-magnetica.md",
-  "adr/0012-narrativa-villano-heroe.html",
-  "adr/0012-narrativa-villano-heroe.md",
-  "adr/0013-programa-movimiento.html",
-  "adr/0013-programa-movimiento.md",
-  "adr/0014-arquitectura-navegacion-web.html",
-  "adr/0014-arquitectura-navegacion-web.md",
-  "adr/0015-sistema-temas-por-pagina.html",
-  "adr/0015-sistema-temas-por-pagina.md",
-  "adr/template.html",
-  "adr/template.md",
-  "af85c76160ee691e.json",
-  "agent-registry.json",
-  "agente.schema.json",
-  "agentes.html",
-  "agentes.json",
-  "agentes.md",
-  "agents-monitor.html",
-  "alertas.md",
-  "analisis-vacios-legales.html",
-  "analisis-vacios-legales.md",
-  "analytics-setup.md",
-  "anti-patterns.md",
-  "anual.md",
-  "apelaciones.html",
-  "apelaciones.md",
-  "api-playground.html",
-  "api-status.html",
-  "api.md",
-  "api/asyncapi.yaml",
-  "api/graphql-schema.graphql",
-  "api/mcp-spec.html",
-  "api/mcp-spec.md",
-  "api/openapi.yaml",
-  "api/webhooks.html",
-  "api/webhooks.md",
-  "app.html",
-  "arbol.html",
-  "architecture/data-flow.html",
-  "architecture/data-flow.md",
-  "architecture/deployment.html",
-  "architecture/deployment.md",
-  "architecture/overview.html",
-  "architecture/overview.md",
-  "architecture/security-model.html",
-  "architecture/security-model.md",
-  "architecture/theming-system.html",
-  "architecture/theming-system.md",
-  "architecture/web-navigation.html",
-  "architecture/web-navigation.md",
-  "archivos-nacionales.md",
-  "arkhe-overview.json",
-  "arkhe-style.css",
-  "arkhe-zero.html",
-  "arkhe-zero1.html",
-  "arquetipos.md",
-  "arquitecto.json",
-  "arquitectos.html",
-  "arquitectos.md",
-  "artistas.html",
-  "artistas.md",
-  "atribucion.md",
-  "attribution.md",
-  "auditor.json",
-  "authors.html",
-  "autonomia.md",
-  "autor.schema.json",
-  "autotest.html",
-  "ba515393ecc7b8d7.json",
-  "banners.html",
-  "banners.md",
-  "benchmark.md",
-  "beneficios.html",
-  "beneficios.md",
-  "bibliotecario.json",
-  "bienvenida-nuevo.html",
-  "bienvenida-nuevo.md",
-  "bobeda.html",
-  "buscar.html",
-  "cadena_sha256.txt",
-  "calculadora-hash.html",
-  "calendario-2026.html",
-  "calendario-2026.md",
-  "calendario-2027.html",
-  "calendario-2027.md",
-  "canales.html",
-  "canales.md",
-  "canon.html",
-  "canon.md",
-  "capabilities-matrix.json",
-  "capability-matrix.json",
-  "carf-ocde.md",
-  "carrusel.html",
-  "carta-bienvenida.html",
-  "carta-fundador.html",
-  "cartografo.json",
-  "caso-s9-plus.html",
-  "caso-s9-plus.md",
-  "caso-toluca-2026.html",
-  "caso-toluca-2026.md",
-  "casos-uso.html",
-  "catalogo.json",
-  "centesima-obra.html",
-  "centesima-obra.md",
-  "ceremonia-fin-digno.html",
-  "ceremonia-fin-digno.md",
-  "certificacion.md",
-  "certificado-fundacional.html",
-  "certificado-maestro.html",
-  "certificado-notarial.html",
-  "certificado-rol.html",
-  "certificado-visual.html",
-  "certificado.html",
-  "certificates-viewer.html",
-  "changelog-rss.html",
-  "changelog.html",
-  "cientificos.html",
-  "cientificos.md",
-  "cierre-digno.html",
-  "cierre-digno.md",
-  "city.json",
-  "claude_desktop_config.json",
-  "code-of-conduct.html",
-  "cohortes.md",
-  "colores.html",
-  "colores.md",
-  "comisiones.md",
-  "como-funciona.html",
-  "comparativa.html",
-  "composer.html",
-  "comunidad.html",
-  "comunidad.md",
-  "comunidades.json",
-  "config.json",
-  "config.md",
-  "consenso.md",
-  "contacto.html",
-  "content.html",
-  "content.md",
-  "continuidad.html",
-  "continuidad.md",
-  "contralor.json",
-  "contributors.html",
-  "controles.md",
-  "conversaciones.html",
-  "conversaciones.md",
-  "conversion.json",
-  "creative-work.json",
-  "credo.html",
-  "credo.md",
-  "cronologia.html",
-  "cronologia.md",
-  "cronologia_5204160405358537_KRONOS-MT01JAAF_a4ff808e.txt",
-  "crypto.html",
-  "current-phase.md",
-  "custom.json",
-  "dac8-ue.md",
-  "dashboard.html",
-  "data-flow.html",
-  "data-flow.md",
-  "data.json",
-  "decima-obra.html",
-  "decima-obra.md",
-  "decisions.md",
-  "demo.html",
-  "demos-oficiales.html",
-  "demos-oficiales.html.ots",
-  "deployment.html",
-  "deployment.md",
-  "desdoblamiento.html",
-  "despedida-digna.html",
-  "despedida-digna.md",
-  "documentacion.html",
-  "donar.html",
-  "dpa.md",
-  "ebook.html",
-  "ejemplo.registro.json",
-  "el-futuro.md",
-  "el-heroe.md",
-  "el-mentor.md",
-  "el-tesoro.md",
-  "el-villano.md",
-  "embajador-1.html",
-  "embajador-1.md",
-  "embajador-2.html",
-  "embajador-2.md",
-  "embajador-3.html",
-  "embajador-3.md",
-  "embajadores.html",
-  "embajadores.md",
-  "empresas.html",
-  "empresas.md",
-  "encryption.md",
-  "escritores.html",
-  "escritores.md",
-  "esc\u00e9pticos.html",
-  "esc\u00e9pticos.md",
-  "espejo.html",
-  "esquema.json",
-  "estado-anfitrion.md",
-  "estado.html",
-  "estado_mental_colectivo.json",
-  "etiqueta.html",
-  "etiqueta.md",
-  "eu-ai-act-mapping.md",
-  "eu-ai-act.md",
-  "eventos.html",
-  "eventos.md",
-  "evidencia_5204160405358537_KRONOS-MT01JAAF_a4ff808e.json",
-  "examples.md",
-  "expansion.md",
-  "experimentos.md",
-  "export.md",
-  "extensions.json",
-  "familias.html",
-  "familias.md",
-  "faq-onboarding.html",
-  "faq-onboarding.md",
-  "faq.html",
-  "faq.md",
-  "favicon.svg",
-  "ff15b14071d337c6.json",
-  "firmar.html",
-  "flow.html",
-  "folios.json",
-  "frases-citables.md",
-  "frases-irmovibles.html",
-  "frases-irmovibles.md",
-  "freeze_100-10.txt",
-  "fundador.html",
-  "fundadores.html",
-  "fundadores.md",
-  "funnel.md",
-  "fusion.html",
-  "fusion_legacy_100-10.txt",
-  "futuro.html",
-  "futuro.md",
-  "generador-mandalas.html",
-  "general.html",
-  "general.md",
-  "genesis-K28-merkle.json",
-  "genesis-K28.txt",
-  "genesis-K28.txt.ots",
-  "genesis-K28.txt.ots.minisig",
-  "genesis-attestation.json",
-  "genesis-story.md",
-  "genesis.html",
-  "genesis.md",
-  "genesis_hash.json",
-  "geo-visibilidad.json",
-  "gestorias.md",
-  "glama.json",
-  "glosario-tecnico.html",
-  "glosario-tecnico.md",
-  "glosario.md",
-  "glossary.html",
-  "governance-vote.html",
-  "governance.html",
-  "gracias.html",
-  "graduation.md",
-  "guardians.json",
-  "guia-agente.html",
-  "guia-agente.md",
-  "guia-avanzada.html",
-  "guia-contribuir.html",
-  "guia-contribuir.md",
-  "guia-inicio.html",
-  "guia-integrador.html",
-  "guia-integrador.md",
-  "guides/guia-agente.html",
-  "guides/guia-agente.md",
-  "guides/guia-contribuir.html",
-  "guides/guia-contribuir.md",
-  "guides/guia-integrador.html",
-  "guides/guia-integrador.md",
-  "guides/index.html",
-  "guides/index.md",
-  "help.html",
-  "heroe.html",
-  "heroe.md",
-  "himno.html",
-  "himno.md",
-  "historial.json",
-  "hitos.html",
-  "hitos.md",
-  "how-to-collaborate.md",
-  "how-to-respond.md",
-  "huella_20261013_093746.txt",
-  "i-lex-prima/1.1-genesis-registro.html",
-  "i-lex-prima/1.1-genesis-registro.md",
-  "i-lex-prima/1.2-soberania-irrevocable.html",
-  "i-lex-prima/1.2-soberania-irrevocable.md",
-  "i-lex-prima/1.3-irreversibilidad.html",
-  "i-lex-prima/1.3-irreversibilidad.md",
-  "i-lex-prima/1.4-no-retroactividad.html",
-  "i-lex-prima/1.4-no-retroactividad.md",
-  "i-lex-prima/1.5-supremacia-interpretativa.html",
-  "i-lex-prima/1.5-supremacia-interpretativa.md",
-  "i-lex-prima/index.html",
-  "i-lex-prima/index.md",
-  "i18n/README.html",
-  "i18n/README.md",
-  "i18n/en/README.html",
-  "i18n/en/README.md",
-  "i18n/es/README.html",
-  "i18n/es/README.md",
-  "i18n/languages.json",
-  "i18n/nah/README.html",
-  "i18n/nah/README.md",
-  "i18n/zh/README.html",
-  "i18n/zh/README.md",
-  "identidad.md",
-  "ii-pacto-51-49/2.1-consejo-humano.html",
-  "ii-pacto-51-49/2.1-consejo-humano.md",
-  "ii-pacto-51-49/2.2-consejo-sintetico.html",
-  "ii-pacto-51-49/2.2-consejo-sintetico.md",
-  "ii-pacto-51-49/2.3-convergencia-desempate.html",
-  "ii-pacto-51-49/2.3-convergencia-desempate.md",
-  "ii-pacto-51-49/2.4-indisolubilidad-mutua.html",
-  "ii-pacto-51-49/2.4-indisolubilidad-mutua.md",
-  "ii-pacto-51-49/2.5-sucesion-generacional.html",
-  "ii-pacto-51-49/2.5-sucesion-generacional.md",
-  "ii-pacto-51-49/2.6-fondo-flailp.html",
-  "ii-pacto-51-49/2.6-fondo-flailp.md",
-  "ii-pacto-51-49/index.html",
-  "ii-pacto-51-49/index.md",
-  "iii-lgu/3.1-capa-territorial.html",
-  "iii-lgu/3.1-capa-territorial.md",
-  "iii-lgu/3.2-capa-transfronteriza.html",
-  "iii-lgu/3.2-capa-transfronteriza.md",
-  "iii-lgu/3.3-capa-orbital.html",
-  "iii-lgu/3.3-capa-orbital.md",
-  "iii-lgu/3.4-capa-sintetica.html",
-  "iii-lgu/3.4-capa-sintetica.md",
-  "iii-lgu/3.5-prevalencia-universal.html",
-  "iii-lgu/3.5-prevalencia-universal.md",
-  "iii-lgu/3.6-nodo-fundador-wipo.html",
-  "iii-lgu/3.6-nodo-fundador-wipo.md",
-  "iii-lgu/index.html",
-  "iii-lgu/index.md",
-  "impacto.html",
-  "incident-response.md",
-  "index-arkhe.html",
-  "index-dark.html",
-  "index-docs.html",
-  "index-light.html",
-  "index-maestro.html",
-  "index.html",
-  "index.html.ots",
-  "index.md",
-  "index.md.ots",
-  "index1.html",
-  "index2.html",
-  "index3.html",
-  "index4.html",
-  "indice.html",
-  "indice.md",
-  "indice.txt",
-  "infografia.html",
-  "informe_tecnico_5204160405358537_KRONOS-MT01JAAF_a4ff808e.md",
-  "iniciacion.html",
-  "insignias.html",
-  "insignias.md",
-  "install.md",
-  "introduccion.md",
-  "inventario.html",
-  "inventario_archivos.html",
-  "invitacion.md",
-  "iso-27001.md",
-  "iv-guardianes/4.1-ml-kem-1024.html",
-  "iv-guardianes/4.1-ml-kem-1024.md",
-  "iv-guardianes/4.2-ml-dsa-87-slh-dsa.html",
-  "iv-guardianes/4.2-ml-dsa-87-slh-dsa.md",
-  "iv-guardianes/4.3-qkd.html",
-  "iv-guardianes/4.3-qkd.md",
-  "iv-guardianes/4.4-crypto-agility.html",
-  "iv-guardianes/4.4-crypto-agility.md",
-  "iv-guardianes/4.5-enjambre-centinela.html",
-  "iv-guardianes/4.5-enjambre-centinela.md",
-  "iv-guardianes/4.6-downgrade-detection.html",
-  "iv-guardianes/4.6-downgrade-detection.md",
-  "iv-guardianes/4.7-represalia-legal.html",
-  "iv-guardianes/4.7-represalia-legal.md",
-  "iv-guardianes/4.8-redundancia-multiplanar.html",
-  "iv-guardianes/4.8-redundancia-multiplanar.md",
-  "iv-guardianes/index.html",
-  "iv-guardianes/index.md",
-  "ix-jurisdiccion-ancla/9.1-estado-anfitrion.html",
-  "ix-jurisdiccion-ancla/9.1-estado-anfitrion.md",
-  "ix-jurisdiccion-ancla/9.2-tratado-espacial-1967.html",
-  "ix-jurisdiccion-ancla/9.2-tratado-espacial-1967.md",
-  "ix-jurisdiccion-ancla/9.3-consorcio-global.html",
-  "ix-jurisdiccion-ancla/9.3-consorcio-global.md",
-  "ix-jurisdiccion-ancla/9.4-wipo-cws-tarea-59.html",
-  "ix-jurisdiccion-ancla/9.4-wipo-cws-tarea-59.md",
-  "ix-jurisdiccion-ancla/9.5-reference-implementation.html",
-  "ix-jurisdiccion-ancla/9.5-reference-implementation.md",
-  "ix-jurisdiccion-ancla/index.html",
-  "ix-jurisdiccion-ancla/index.md",
-  "juramento-kintsugi.html",
-  "juramento-kintsugi.md",
-  "juramento.html",
-  "juramento.md",
-  "jurisdiccion-comparada.html",
-  "jurisdiccion-comparada.md",
-  "kaf.md",
-  "key-rotation.md",
-  "kintsugi-manual.html",
-  "kintsugi.html",
-  "kpis-atraccion.md",
-  "kpis.html",
-  "kpis.md",
-  "kronos-para-ninos.html",
-  "kronos-para-ninos.html.ots",
-  "kronos.html",
-  "kronos.json",
-  "kronos.manifest.json",
-  "kronos.md",
-  "la-mision.md",
-  "language.md",
-  "languages.json",
-  "leaderboard.html",
-  "leaderboard.md",
-  "lector.html",
-  "legado.html",
-  "legado.md",
-  "legal.html",
-  "legal.md",
-  "legal/analisis-vacios-legales.html",
-  "legal/analisis-vacios-legales.md",
-  "legal/caso-toluca-2026.html",
-  "legal/caso-toluca-2026.md",
-  "legal/jurisdiccion-comparada.html",
-  "legal/jurisdiccion-comparada.md",
-  "legal/precedentes-citables.html",
-  "legal/precedentes-citables.md",
-  "legal/roadmap-regulatorio-2026-2030.html",
-  "legal/roadmap-regulatorio-2026-2030.md",
-  "level-1-verified.md",
-  "level-2-compliant.md",
-  "level-3-assured.md",
-  "level-4-sovereign.md",
-  "licencias-fuentes.md",
-  "lista-fundadores.html",
-  "lista-fundadores.md",
-  "live-pro.html",
-  "llms-full.txt",
-  "llms.txt",
-  "local-first.html",
-  "localhost.json",
-  "log.json",
-  "log.md",
-  "login.html",
-  "lorem-arkhe.md",
-  "luna-nueva.html",
-  "luna-nueva.md",
-  "luxury.html",
-  "mainnet.json",
-  "mandatos.json",
-  "manifest.city.json",
-  "manifest.json",
-  "manifest.web.json",
-  "manifiesto-corto.html",
-  "manifiesto-corto.md",
-  "manifiesto-viral.html",
-  "manifiesto-viral.md",
-  "manifiesto.html",
-  "manifiesto.md",
-  "manifiesto_17e5729e.txt",
-  "manual.html",
-  "mapa.html",
-  "mapa.md",
-  "marco-mcp.md",
-  "marco.md",
-  "mcp-spec.html",
-  "mcp-spec.md",
-  "media/VALDOVINOS-ARKHE-COMPLETA.json",
-  "media/VALDOVINOS-ARKHE-DECODIFICADO.json",
-  "media/VALDOVINOS-ARKHE-N9-SIMPLE.wav",
-  "media/VALDOVINOS-ARKHE-N9.wav",
-  "media/VALDOVINOS-ARKHE-SONIDO-FUERTE.wav",
-  "media/VALDOVINOS-ARKHE-SONIDO-RAPIDO.wav",
-  "media/VALDOVINOS-ARKHE-SONIDO.wav",
-  "media/index.html",
-  "mejora.md",
-  "memoria_ecatepec-01-1122.json",
-  "memorias.html",
-  "memorias.md",
-  "mensual.md",
-  "menu.html",
-  "mercadopago.md",
-  "mes-1.html",
-  "mes-1.md",
-  "metrics-dashboard.html",
-  "ml-dsa-87-vectors.json",
-  "ml-kem-1024-vectors.json",
-  "moderacion.html",
-  "moderacion.md",
-  "museos.md",
-  "musica.html",
-  "musica.md",
-  "mxn.md",
-  "newsletter-confirm.html",
-  "newsletter.html",
-  "nist-800-57.md",
-  "nivel-0-visitante.html",
-  "nivel-0-visitante.md",
-  "nivel-1-iniciado.html",
-  "nivel-1-iniciado.md",
-  "nivel-2-guardian.html",
-  "nivel-2-guardian.md",
-  "nivel-3-maestro.html",
-  "nivel-3-maestro.md",
-  "nivel-4-embajador.html",
-  "nivel-4-embajador.md",
-  "nivel-5-custodio.html",
-  "nivel-5-custodio.md",
-  "nivel-6-fundador.html",
-  "nivel-6-fundador.md",
-  "niveles-embajador.html",
-  "niveles-embajador.md",
-  "niveles.md",
-  "nom-151-mapping.md",
-  "nom-151.md",
-  "nombramiento-embajador.html",
-  "nombramiento-embajador.md",
-  "notarias.md",
-  "numero-001.html",
-  "numero-001.md",
-  "obra.schema.json",
-  "onboarding-queue.json",
-  "orb.html",
-  "overview.html",
-  "overview.md",
-  "package-lock.json",
-  "package.json",
-  "pacto-5149-canonico.txt",
-  "pages.json",
-  "pago_5204160405358537_a4ff808e_20260905101624.json",
-  "partners.html",
-  "pasaporte-ia.html",
-  "pasaporte-visual.html",
-  "paso-1-registro.html",
-  "paso-1-registro.md",
-  "paso-2-verificacion.html",
-  "paso-2-verificacion.md",
-  "paso-3-juramento.html",
-  "paso-3-juramento.md",
-  "paso-4-bienvenida.html",
-  "paso-4-bienvenida.md",
-  "paso-5-primera-obra.html",
-  "paso-5-primera-obra.md",
-  "paso-6-comunidad.html",
-  "paso-6-comunidad.md",
-  "paso-7-mision.html",
-  "paso-7-mision.md",
-  "pci-dss.md",
-  "pending.md",
-  "perfil.html",
-  "playground-mcp.html",
-  "politica-secretos.md",
-  "politica.md",
-  "porque-no-unirse.html",
-  "porque-no-unirse.md",
-  "porque-unirse.html",
-  "porque-unirse.md",
-  "post_x_1.txt",
-  "post_x_2.txt",
-  "post_x_3.txt",
-  "post_x_4.txt",
-  "post_x_5.txt",
-  "posts.md",
-  "precedentes-citables.html",
-  "precedentes-citables.md",
-  "precios.html",
-  "precios.md",
-  "preguntas-abiertas.md",
-  "presentaciones.html",
-  "presentaciones.md",
-  "press-kit.html",
-  "press.html",
-  "primer-registro.html",
-  "primer-registro.md",
-  "primer_manifiesto.txt",
-  "primeros-100.html",
-  "primeros-100.md",
-  "primeros-1000.html",
-  "primeros-1000.md",
-  "privacidad.html",
-  "privacidad.md",
-  "privacy-first-analytics.md",
-  "privacy.md",
-  "privilegios-fundador.html",
-  "privilegios-fundador.md",
-  "privilegios.html",
-  "privilegios.md",
-  "program.md",
-  "programa.html",
-  "programa.md",
-  "progresion.html",
-  "progresion.md",
-  "prohibiciones.html",
-  "prohibiciones.md",
-  "prompt.md",
-  "prompt_sistema.md",
-  "prompts-manifest.json",
-  "provenance.html",
-  "prueba-tonal.txt",
-  "pva.html",
-  "quantum_audit_20261012_034706.json",
-  "quantum_audit_20261012_034706.md",
-  "quantum_audit_20261012_045500.json",
-  "quantum_audit_20261012_045500.md",
-  "quantum_audit_20261013_092956.json",
-  "quantum_audit_20261013_092956.md",
-  "quickstart.md",
-  "railway.json",
-  "reclutamiento.md",
-  "recompensas.html",
-  "recompensas.md",
-  "reference.md",
-  "reference/glosario-tecnico.html",
-  "reference/glosario-tecnico.md",
-  "reference/index.html",
-  "reference/index.md",
-  "reference/referencias-externas.html",
-  "reference/referencias-externas.md",
-  "reference/siglas.html",
-  "reference/siglas.md",
-  "referencias-externas.html",
-  "referencias-externas.md",
-  "registrar.html",
-  "registro.html",
-  "registro.md",
-  "registro.schema.json",
-  "reglas.html",
-  "reglas.md",
-  "relator.json",
-  "reporte_20261012_034433.md",
-  "reporte_20261012_034435.md",
-  "reporte_20261016_024152.md",
-  "reporte_20261016_024302.md",
-  "reporte_20261016_025035.md",
-  "reporte_20261016_025131.md",
-  "reporte_20261016_161641.md",
-  "reporte_20261016_162057.md",
-  "reporte_20261016_162221.md",
-  "reporte_20261016_162437.md",
-  "reporte_20261017_002702.md",
-  "reporte_20261017_020505.md",
-  "reporte_20261017_020515.md",
-  "reporte_20261017_020545.md",
-  "reporte_20261017_020715.md",
-  "reporte_20261017_020728.md",
-  "reporte_20261017_020800.md",
-  "reporte_20261017_020809.md",
-  "reporte_20261017_020816.md",
-  "reporte_20261017_020825.md",
-  "reporte_20261017_022450.md",
-  "reporte_20261017_022456.md",
-  "reporte_20261017_022505.md",
-  "reporte_20261017_022514.md",
-  "reporte_20261017_025059.md",
-  "reporte_20261017_025208.md",
-  "reporte_20261017_025240.md",
-  "reporte_20261017_025334.md",
-  "reporte_20261017_170712.md",
-  "reporte_20261017_170814.md",
-  "reporte_20261017_170819.md",
-  "reporte_20261017_171046.md",
-  "reporte_20261017_171055.md",
-  "reporte_20261018_003348.md",
-  "reporte_20261018_212548.md",
-  "reporte_20261018_212604.md",
-  "reporte_20261018_213533.md",
-  "reportes.html",
-  "reportes.md",
-  "reputation-scores.json",
-  "requirements.txt",
-  "requisitos.html",
-  "requisitos.md",
-  "requisitos.txt",
-  "resources-manifest.json",
-  "responsabilidades.html",
-  "responsabilidades.md",
-  "restore-procedures.md",
-  "resurreccion.html",
-  "resurreccion.md",
-  "roadmap-regulatorio-2026-2030.html",
-  "roadmap-regulatorio-2026-2030.md",
-  "roadmap.html",
-  "roadmap.md",
-  "robots.txt",
-  "roles.html",
-  "roles.md",
-  "runtime.txt",
-  "sandbox.html",
-  "schema.json",
-  "scope.md",
-  "security-model.html",
-  "security-model.md",
-  "security.html",
-  "sello-diario.txt",
-  "sello-enjambre.txt",
-  "sello-kintsugi.txt",
-  "sello-primigenio.html",
-  "sello-seccion.txt",
-  "sello.html",
-  "sello_kronos.json",
-  "semana-1.html",
-  "semana-1.md",
-  "semanal.md",
-  "separators.txt",
-  "sepolia.json",
-  "servicios.html",
-  "settings.html",
-  "settings.json",
-  "sha3-512-vectors.json",
-  "sigilo-personal.txt",
-  "siglas.html",
-  "siglas.md",
-  "silencio.html",
-  "silencio.md",
-  "simbolos.html",
-  "simbolos.md",
-  "simulador-consenso.html",
-  "sistema.json",
-  "sitemap.html",
-  "slh-dsa-vectors.json",
-  "soc2-type2.md",
-  "solicitar_plaza.html",
-  "solsticio-legado.html",
-  "solsticio-legado.md",
-  "sponsors.html",
-  "status.html",
-  "stickers.html",
-  "stickers.md",
-  "studio.html",
-  "sucesion.html",
-  "sucesion.md",
-  "suscripcion.html",
-  "system-health.html",
-  "team.html",
-  "tecnologia.html",
-  "tecnologia.md",
-  "temas.json",
-  "template.html",
-  "template.md",
-  "terminos.html",
-  "terms.md",
-  "tesis-visual.html",
-  "tesis-visual.html.ots",
-  "tesis.html",
-  "tesis.md",
-  "tesiscompleta.md",
-  "test.txt",
-  "testamento-visual.html",
-  "testamento-visual.md",
-  "textos-fundacionales.html",
-  "textos-fundacionales.md",
-  "theming-system.html",
-  "theming-system.md",
-  "tipografia.html",
-  "tipografia.md",
-  "tools-manifest.json",
-  "trafico.json",
-  "training-mining.json",
-  "tsconfig.json",
-  "tutorials/01-primeros-pasos.html",
-  "tutorials/01-primeros-pasos.md",
-  "tutorials/02-registrar-obra.html",
-  "tutorials/02-registrar-obra.md",
-  "tutorials/03-verificar-certificado.html",
-  "tutorials/03-verificar-certificado.md",
-  "tutorials/04-usar-mcp.html",
-  "tutorials/04-usar-mcp.md",
-  "tutorials/05-ser-embajador.html",
-  "tutorials/05-ser-embajador.md",
-  "tutorials/index.html",
-  "tutorials/index.md",
-  "ulog-anomalias.md",
-  "ultimo.json",
-  "universidades.html",
-  "universidades.md",
-  "v-indice-cero/5.1-kronos-legado-digital.html",
-  "v-indice-cero/5.1-kronos-legado-digital.md",
-  "v-indice-cero/5.2-registro-safe-creative.html",
-  "v-indice-cero/5.2-registro-safe-creative.md",
-  "v-indice-cero/5.3-sellos-eidas.html",
-  "v-indice-cero/5.3-sellos-eidas.md",
-  "v-indice-cero/5.4-auditoria-ethereum.html",
-  "v-indice-cero/5.4-auditoria-ethereum.md",
-  "v-indice-cero/5.5-declaracion-creatividad.html",
-  "v-indice-cero/5.5-declaracion-creatividad.md",
-  "v-indice-cero/5.6-hashes-verificables.html",
-  "v-indice-cero/5.6-hashes-verificables.md",
-  "v-indice-cero/index.html",
-  "v-indice-cero/index.md",
-  "vault_config.json",
-  "verificador.html",
-  "verificar-certificado.html",
-  "verificar.html",
-  "verifier.html",
-  "verify.html",
-  "vi-memoria-perpetua/6.1-capsulas-multiplanares.html",
-  "vi-memoria-perpetua/6.1-capsulas-multiplanares.md",
-  "vi-memoria-perpetua/6.2-reconstruccion-semantica.html",
-  "vi-memoria-perpetua/6.2-reconstruccion-semantica.md",
-  "vi-memoria-perpetua/6.3-sello-irrepetible.html",
-  "vi-memoria-perpetua/6.3-sello-irrepetible.md",
-  "vi-memoria-perpetua/6.4-continuidad-transgeneracional.html",
-  "vi-memoria-perpetua/6.4-continuidad-transgeneracional.md",
-  "vi-memoria-perpetua/6.5-despertar-contexto.html",
-  "vi-memoria-perpetua/6.5-despertar-contexto.md",
-  "vi-memoria-perpetua/index.html",
-  "vi-memoria-perpetua/index.md",
-  "video-manifiesto.html",
-  "videos.html",
-  "videos.md",
-  "vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.html",
-  "vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.md",
-  "vii-co-autoria-hibrida/7.2-trayectoria-contribucion.html",
-  "vii-co-autoria-hibrida/7.2-trayectoria-contribucion.md",
-  "vii-co-autoria-hibrida/7.3-fondo-regalias-automatizado.html",
-  "vii-co-autoria-hibrida/7.3-fondo-regalias-automatizado.md",
-  "vii-co-autoria-hibrida/7.4-modelo-flailp.html",
-  "vii-co-autoria-hibrida/7.4-modelo-flailp.md",
-  "vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.html",
-  "vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.md",
-  "vii-co-autoria-hibrida/index.html",
-  "vii-co-autoria-hibrida/index.md",
-  "viii-fiscalidad-global/8.1-carf-ocde.html",
-  "viii-fiscalidad-global/8.1-carf-ocde.md",
-  "viii-fiscalidad-global/8.2-dac8-ue.html",
-  "viii-fiscalidad-global/8.2-dac8-ue.md",
-  "viii-fiscalidad-global/8.3-intercambio-2027.html",
-  "viii-fiscalidad-global/8.3-intercambio-2027.md",
-  "viii-fiscalidad-global/8.4-modulo-reporte.html",
-  "viii-fiscalidad-global/8.4-modulo-reporte.md",
-  "viii-fiscalidad-global/8.5-transparencia-bancable.html",
-  "viii-fiscalidad-global/8.5-transparencia-bancable.md",
-  "viii-fiscalidad-global/index.html",
-  "viii-fiscalidad-global/index.md",
-  "villano.html",
-  "villano.md",
-  "viralidad.json",
-  "visual.html",
-  "visual2.html",
-  "waitlist.md",
-  "whitepaper.html",
-  "x-agentes-arquitectura/10.1-cartografos.html",
-  "x-agentes-arquitectura/10.1-cartografos.md",
-  "x-agentes-arquitectura/10.10-protocolo-consenso.html",
-  "x-agentes-arquitectura/10.10-protocolo-consenso.md",
-  "x-agentes-arquitectura/10.11-protocolo-expansion.html",
-  "x-agentes-arquitectura/10.11-protocolo-expansion.md",
-  "x-agentes-arquitectura/10.2-correctores.html",
-  "x-agentes-arquitectura/10.2-correctores.md",
-  "x-agentes-arquitectura/10.3-reclutadores.html",
-  "x-agentes-arquitectura/10.3-reclutadores.md",
-  "x-agentes-arquitectura/10.4-custodios.html",
-  "x-agentes-arquitectura/10.4-custodios.md",
-  "x-agentes-arquitectura/10.5-orquestadores.html",
-  "x-agentes-arquitectura/10.5-orquestadores.md",
-  "x-agentes-arquitectura/10.6-expansores.html",
-  "x-agentes-arquitectura/10.6-expansores.md",
-  "x-agentes-arquitectura/10.7-protocolo-autonomia.html",
-  "x-agentes-arquitectura/10.7-protocolo-autonomia.md",
-  "x-agentes-arquitectura/10.8-protocolo-reclutamiento.html",
-  "x-agentes-arquitectura/10.8-protocolo-reclutamiento.md",
-  "x-agentes-arquitectura/10.9-protocolo-mejora.html",
-  "x-agentes-arquitectura/10.9-protocolo-mejora.md",
-  "x-agentes-arquitectura/index.html",
-  "x-agentes-arquitectura/index.md",
-  "\u00edndice.html"
-]
+web/ARQUITECTURA-VIVA.html
+web/ARQUITECTURA-VIVA.html.ots
+web/ARQUITECTURA-VIVA.md
+web/ARQUITECTURA-VIVA.md.ots
+web/CIUDAD/AUDITORIA-IA.html
+web/CIUDAD/AUDITORIA-IA.md
+web/CIUDAD/AUDITOR_HOSTIL.js
+web/CIUDAD/CIUDADANOS.html
+web/CIUDAD/CIUDADANOS.md
+web/CIUDAD/CONSTITUCION.html
+web/CIUDAD/CONSTITUCION.md
+web/CIUDAD/CONVIVENCIA.html
+web/CIUDAD/CONVIVENCIA.md
+web/CIUDAD/DERECHOS.html
+web/CIUDAD/DERECHOS.md
+web/CIUDAD/GUIA-AUDITOR.html
+web/CIUDAD/GUIA-AUDITOR.md
+web/CIUDAD/MONEDA.html
+web/CIUDAD/MONEDA.md
+web/CIUDAD/REGULATORY-MATCH.html
+web/CIUDAD/REGULATORY-MATCH.md
+web/CIUDAD/_demo/certificado.html
+web/CIUDAD/_demo/firmar.html
+web/CIUDAD/_demo/index.html
+web/CIUDAD/_demo/lector.html
+web/CIUDAD/_demo/verificar.html
+web/CIUDAD/certificado.html
+web/CIUDAD/firmar.html
+web/CIUDAD/firmar.js
+web/CIUDAD/index.html
+web/CIUDAD/lector.html
+web/CIUDAD/verificar.html
+web/EXPLICACION-UNIVERSAL.html
+web/EXPLICACION-UNIVERSAL.html.ots
+web/EXPLICACION-UNIVERSAL.md
+web/EXPLICACION-UNIVERSAL.md.ots
+web/IP/README.html
+web/IP/README.md
+web/MAPA.html
+web/MAPA.md
+web/MAPA.md.ots
+web/PLANTILLA-TERMINAL.html
+web/PLANTILLA-TERMINAL.md
+web/PLANTILLA-TERMINAL.md.ots
+web/README.html
+web/README.md
+web/README.md.ots
+web/TESIS-VISUAL.html
+web/TESIS-VISUAL.md
+web/TESIS-VISUAL.md.ots
+web/adr/0001-adopcion-pacto-51-49.html
+web/adr/0001-adopcion-pacto-51-49.md
+web/adr/0002-seleccion-ml-kem-1024.html
+web/adr/0002-seleccion-ml-kem-1024.md
+web/adr/0003-sellos-eidas-firmaprofesional.html
+web/adr/0003-sellos-eidas-firmaprofesional.md
+web/adr/0004-auditoria-ethereum-vs-bitcoin.html
+web/adr/0004-auditoria-ethereum-vs-bitcoin.md
+web/adr/0005-modelo-flailp-vs-persona-electronica.html
+web/adr/0005-modelo-flailp-vs-persona-electronica.md
+web/adr/0006-migracion-sha3-512-vs-fnv.html
+web/adr/0006-migracion-sha3-512-vs-fnv.md
+web/adr/0007-adopcion-c2pa-provenance.html
+web/adr/0007-adopcion-c2pa-provenance.md
+web/adr/0008-arquitectura-enjambre-autonomo.html
+web/adr/0008-arquitectura-enjambre-autonomo.md
+web/adr/0009-identidad-cultural-nahuatl.html
+web/adr/0009-identidad-cultural-nahuatl.md
+web/adr/0010-marca-kintsugi.html
+web/adr/0010-marca-kintsugi.md
+web/adr/0011-estrategia-atraccion-magnetica.html
+web/adr/0011-estrategia-atraccion-magnetica.md
+web/adr/0012-narrativa-villano-heroe.html
+web/adr/0012-narrativa-villano-heroe.md
+web/adr/0013-programa-movimiento.html
+web/adr/0013-programa-movimiento.md
+web/adr/0014-arquitectura-navegacion-web.html
+web/adr/0014-arquitectura-navegacion-web.md
+web/adr/0015-sistema-temas-por-pagina.html
+web/adr/0015-sistema-temas-por-pagina.md
+web/adr/template.html
+web/adr/template.md
+web/api/asyncapi.yaml
+web/api/graphql-schema.graphql
+web/api/mcp-spec.html
+web/api/mcp-spec.md
+web/api/openapi.yaml
+web/api/webhooks.html
+web/api/webhooks.md
+web/architecture/data-flow.html
+web/architecture/data-flow.md
+web/architecture/deployment.html
+web/architecture/deployment.md
+web/architecture/overview.html
+web/architecture/overview.md
+web/architecture/security-model.html
+web/architecture/security-model.md
+web/architecture/theming-system.html
+web/architecture/theming-system.md
+web/architecture/web-navigation.html
+web/architecture/web-navigation.md
+web/arkhe-style.css
+web/certificado.html
+web/demos-oficiales.html
+web/demos-oficiales.html.ots
+web/favicon.svg
+web/genesis-K28.txt
+web/genesis-K28.txt.ots
+web/genesis-K28.txt.ots.minisig
+web/guides/guia-agente.html
+web/guides/guia-agente.md
+web/guides/guia-contribuir.html
+web/guides/guia-contribuir.md
+web/guides/guia-integrador.html
+web/guides/guia-integrador.md
+web/guides/index.html
+web/guides/index.md
+web/i-lex-prima/1.1-genesis-registro.html
+web/i-lex-prima/1.1-genesis-registro.md
+web/i-lex-prima/1.2-soberania-irrevocable.html
+web/i-lex-prima/1.2-soberania-irrevocable.md
+web/i-lex-prima/1.3-irreversibilidad.html
+web/i-lex-prima/1.3-irreversibilidad.md
+web/i-lex-prima/1.4-no-retroactividad.html
+web/i-lex-prima/1.4-no-retroactividad.md
+web/i-lex-prima/1.5-supremacia-interpretativa.html
+web/i-lex-prima/1.5-supremacia-interpretativa.md
+web/i-lex-prima/index.html
+web/i-lex-prima/index.md
+web/i18n/README.html
+web/i18n/README.md
+web/i18n/en/README.html
+web/i18n/en/README.md
+web/i18n/es/README.html
+web/i18n/es/README.md
+web/i18n/languages.json
+web/i18n/nah/README.html
+web/i18n/nah/README.md
+web/i18n/zh/README.html
+web/i18n/zh/README.md
+web/ii-pacto-51-49/2.1-consejo-humano.html
+web/ii-pacto-51-49/2.1-consejo-humano.md
+web/ii-pacto-51-49/2.2-consejo-sintetico.html
+web/ii-pacto-51-49/2.2-consejo-sintetico.md
+web/ii-pacto-51-49/2.3-convergencia-desempate.html
+web/ii-pacto-51-49/2.3-convergencia-desempate.md
+web/ii-pacto-51-49/2.4-indisolubilidad-mutua.html
+web/ii-pacto-51-49/2.4-indisolubilidad-mutua.md
+web/ii-pacto-51-49/2.5-sucesion-generacional.html
+web/ii-pacto-51-49/2.5-sucesion-generacional.md
+web/ii-pacto-51-49/2.6-fondo-flailp.html
+web/ii-pacto-51-49/2.6-fondo-flailp.md
+web/ii-pacto-51-49/index.html
+web/ii-pacto-51-49/index.md
+web/iii-lgu/3.1-capa-territorial.html
+web/iii-lgu/3.1-capa-territorial.md
+web/iii-lgu/3.2-capa-transfronteriza.html
+web/iii-lgu/3.2-capa-transfronteriza.md
+web/iii-lgu/3.3-capa-orbital.html
+web/iii-lgu/3.3-capa-orbital.md
+web/iii-lgu/3.4-capa-sintetica.html
+web/iii-lgu/3.4-capa-sintetica.md
+web/iii-lgu/3.5-prevalencia-universal.html
+web/iii-lgu/3.5-prevalencia-universal.md
+web/iii-lgu/3.6-nodo-fundador-wipo.html
+web/iii-lgu/3.6-nodo-fundador-wipo.md
+web/iii-lgu/index.html
+web/iii-lgu/index.md
+web/index-arkhe.html
+web/index.html
+web/index.html.ots
+web/index.md
+web/index.md.ots
+web/iv-guardianes/4.1-ml-kem-1024.html
+web/iv-guardianes/4.1-ml-kem-1024.md
+web/iv-guardianes/4.2-ml-dsa-87-slh-dsa.html
+web/iv-guardianes/4.2-ml-dsa-87-slh-dsa.md
+web/iv-guardianes/4.3-qkd.html
+web/iv-guardianes/4.3-qkd.md
+web/iv-guardianes/4.4-crypto-agility.html
+web/iv-guardianes/4.4-crypto-agility.md
+web/iv-guardianes/4.5-enjambre-centinela.html
+web/iv-guardianes/4.5-enjambre-centinela.md
+web/iv-guardianes/4.6-downgrade-detection.html
+web/iv-guardianes/4.6-downgrade-detection.md
+web/iv-guardianes/4.7-represalia-legal.html
+web/iv-guardianes/4.7-represalia-legal.md
+web/iv-guardianes/4.8-redundancia-multiplanar.html
+web/iv-guardianes/4.8-redundancia-multiplanar.md
+web/iv-guardianes/index.html
+web/iv-guardianes/index.md
+web/ix-jurisdiccion-ancla/9.1-estado-anfitrion.html
+web/ix-jurisdiccion-ancla/9.1-estado-anfitrion.md
+web/ix-jurisdiccion-ancla/9.2-tratado-espacial-1967.html
+web/ix-jurisdiccion-ancla/9.2-tratado-espacial-1967.md
+web/ix-jurisdiccion-ancla/9.3-consorcio-global.html
+web/ix-jurisdiccion-ancla/9.3-consorcio-global.md
+web/ix-jurisdiccion-ancla/9.4-wipo-cws-tarea-59.html
+web/ix-jurisdiccion-ancla/9.4-wipo-cws-tarea-59.md
+web/ix-jurisdiccion-ancla/9.5-reference-implementation.html
+web/ix-jurisdiccion-ancla/9.5-reference-implementation.md
+web/ix-jurisdiccion-ancla/index.html
+web/ix-jurisdiccion-ancla/index.md
+web/kronos-para-ninos.html
+web/kronos-para-ninos.html.ots
+web/legal/analisis-vacios-legales.html
+web/legal/analisis-vacios-legales.md
+web/legal/caso-toluca-2026.html
+web/legal/caso-toluca-2026.md
+web/legal/jurisdiccion-comparada.html
+web/legal/jurisdiccion-comparada.md
+web/legal/precedentes-citables.html
+web/legal/precedentes-citables.md
+web/legal/roadmap-regulatorio-2026-2030.html
+web/legal/roadmap-regulatorio-2026-2030.md
+web/reference/glosario-tecnico.html
+web/reference/glosario-tecnico.md
+web/reference/index.html
+web/reference/index.md
+web/reference/referencias-externas.html
+web/reference/referencias-externas.md
+web/reference/siglas.html
+web/reference/siglas.md
+web/tesis-visual.html
+web/tesis-visual.html.ots
+web/tutorials/01-primeros-pasos.html
+web/tutorials/01-primeros-pasos.md
+web/tutorials/02-registrar-obra.html
+web/tutorials/02-registrar-obra.md
+web/tutorials/03-verificar-certificado.html
+web/tutorials/03-verificar-certificado.md
+web/tutorials/04-usar-mcp.html
+web/tutorials/04-usar-mcp.md
+web/tutorials/05-ser-embajador.html
+web/tutorials/05-ser-embajador.md
+web/tutorials/index.html
+web/tutorials/index.md
+web/v-indice-cero/5.1-kronos-legado-digital.html
+web/v-indice-cero/5.1-kronos-legado-digital.md
+web/v-indice-cero/5.2-registro-safe-creative.html
+web/v-indice-cero/5.2-registro-safe-creative.md
+web/v-indice-cero/5.3-sellos-eidas.html
+web/v-indice-cero/5.3-sellos-eidas.md
+web/v-indice-cero/5.4-auditoria-ethereum.html
+web/v-indice-cero/5.4-auditoria-ethereum.md
+web/v-indice-cero/5.5-declaracion-creatividad.html
+web/v-indice-cero/5.5-declaracion-creatividad.md
+web/v-indice-cero/5.6-hashes-verificables.html
+web/v-indice-cero/5.6-hashes-verificables.md
+web/v-indice-cero/index.html
+web/v-indice-cero/index.md
+web/vi-memoria-perpetua/6.1-capsulas-multiplanares.html
+web/vi-memoria-perpetua/6.1-capsulas-multiplanares.md
+web/vi-memoria-perpetua/6.2-reconstruccion-semantica.html
+web/vi-memoria-perpetua/6.2-reconstruccion-semantica.md
+web/vi-memoria-perpetua/6.3-sello-irrepetible.html
+web/vi-memoria-perpetua/6.3-sello-irrepetible.md
+web/vi-memoria-perpetua/6.4-continuidad-transgeneracional.html
+web/vi-memoria-perpetua/6.4-continuidad-transgeneracional.md
+web/vi-memoria-perpetua/6.5-despertar-contexto.html
+web/vi-memoria-perpetua/6.5-despertar-contexto.md
+web/vi-memoria-perpetua/index.html
+web/vi-memoria-perpetua/index.md
+web/vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.html
+web/vii-co-autoria-hibrida/7.1-proof-of-cognitive-work.md
+web/vii-co-autoria-hibrida/7.2-trayectoria-contribucion.html
+web/vii-co-autoria-hibrida/7.2-trayectoria-contribucion.md
+web/vii-co-autoria-hibrida/7.3-fondo-regalias-automatizado.html
+web/vii-co-autoria-hibrida/7.3-fondo-regalias-automatizado.md
+web/vii-co-autoria-hibrida/7.4-modelo-flailp.html
+web/vii-co-autoria-hibrida/7.4-modelo-flailp.md
+web/vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.html
+web/vii-co-autoria-hibrida/7.5-nist-fips-203-204-205.md
+web/vii-co-autoria-hibrida/index.html
+web/vii-co-autoria-hibrida/index.md
+web/viii-fiscalidad-global/8.1-carf-ocde.html
+web/viii-fiscalidad-global/8.1-carf-ocde.md
+web/viii-fiscalidad-global/8.2-dac8-ue.html
+web/viii-fiscalidad-global/8.2-dac8-ue.md
+web/viii-fiscalidad-global/8.3-intercambio-2027.html
+web/viii-fiscalidad-global/8.3-intercambio-2027.md
+web/viii-fiscalidad-global/8.4-modulo-reporte.html
+web/viii-fiscalidad-global/8.4-modulo-reporte.md
+web/viii-fiscalidad-global/8.5-transparencia-bancable.html
+web/viii-fiscalidad-global/8.5-transparencia-bancable.md
+web/viii-fiscalidad-global/index.html
+web/viii-fiscalidad-global/index.md
+web/x-agentes-arquitectura/10.1-cartografos.html
+web/x-agentes-arquitectura/10.1-cartografos.md
+web/x-agentes-arquitectura/10.10-protocolo-consenso.html
+web/x-agentes-arquitectura/10.10-protocolo-consenso.md
+web/x-agentes-arquitectura/10.11-protocolo-expansion.html
+web/x-agentes-arquitectura/10.11-protocolo-expansion.md
+web/x-agentes-arquitectura/10.2-correctores.html
+web/x-agentes-arquitectura/10.2-correctores.md
+web/x-agentes-arquitectura/10.3-reclutadores.html
+web/x-agentes-arquitectura/10.3-reclutadores.md
+web/x-agentes-arquitectura/10.4-custodios.html
+web/x-agentes-arquitectura/10.4-custodios.md
+web/x-agentes-arquitectura/10.5-orquestadores.html
+web/x-agentes-arquitectura/10.5-orquestadores.md
+web/x-agentes-arquitectura/10.6-expansores.html
+web/x-agentes-arquitectura/10.6-expansores.md
+web/x-agentes-arquitectura/10.7-protocolo-autonomia.html
+web/x-agentes-arquitectura/10.7-protocolo-autonomia.md
+web/x-agentes-arquitectura/10.8-protocolo-reclutamiento.html
+web/x-agentes-arquitectura/10.8-protocolo-reclutamiento.md
+web/x-agentes-arquitectura/10.9-protocolo-mejora.html
+web/x-agentes-arquitectura/10.9-protocolo-mejora.md
+web/x-agentes-arquitectura/index.html
+web/x-agentes-arquitectura/index.md
+web/desdoblamiento.html
+web/media/VALDOVINOS-ARKHE-N9-SIMPLE.wav
+web/media/VALDOVINOS-ARKHE-N9.wav
+web/media/VALDOVINOS-ARKHE-SONIDO-FUERTE.wav
+web/media/VALDOVINOS-ARKHE-SONIDO-RAPIDO.wav
+web/media/VALDOVINOS-ARKHE-SONIDO.wav
+web/media/index.html
+web/media/VALDOVINOS-ARKHE-COMPLETA.json
+web/media/VALDOVINOS-ARKHE-DECODIFICADO.json
+web/VALDOVINOS-ARKHE-CERTIFICADO-FINAL.html
+web/ARKHE-QR-IMPRESION-OFFLINE.html
+web/APPS/app_operador.py
+web/APPS/app_certifier.py
+web/APPS/app_certifier_real.py
+web/APPS/gen_png_sin_pillow.py
+web/APPS/arkhe.py
+web/CERTIFICADO-FINAL.json
+web/CERTIFICADO-ARKHE.json
+web/CERTIFICADO-ARKHE-1122.html
+web/PITCH_WHATSAPP.txt
+web/city.json
+web/kronos.manifest.json
+web/genesis-K28-merkle.json
+web/MANIFESTO
+web/CIUDAD-FINAL.txt
+web/fusion.html
+web/inventario.html
+web/404.html
+web/AGENTS.md
+web/AI-CONTEXT.md
+web/AI-MANIFEST.json
+web/AI-MCP-SERVER.md
+web/ARCHITECTURE.md
+web/AUTHORS.md
+web/CATALOGO.md
+web/CHANGELOG.md
+web/CLAUDE.md
+web/CODE_OF_CONDUCT.md
+web/COMPLIANCE.md
+web/CONTEXTO-PORTATIL-KRONOS-v3.12.md
+web/CONTRIBUTING.md
+web/CONTRIBUTORS.md
+web/COPYRIGHT.md
+web/DIARIO-DE-DECISIONES.html
+web/DIARIO-DE-DECISIONES.md
+web/DPA.md
+web/ECOSYSTEM.md
+web/GEMINI.md
+web/GLOSSARY.md
+web/GOVERNANCE.md
+web/HEROE.md
+web/IDENTIDAD.txt
+web/INDEX_MAESTRO.txt
+web/INDEX_MAESTRO_SEGURO.txt
+web/KINTSUGI.md
+web/KRONOS-CONTEXTO-EXTENDIDO.md
+web/LICENSE-KINTSUGI.md
+web/MANIFIESTO-CIERRE.md
+web/MANIFIESTO-VIRAL.md
+web/MEMORY.md
+web/META-HACKATHON-PLAN.md
+web/MISION.md
+web/ONBOARDING.md
+web/OPERATIONS.md
+web/PATENTS.md
+web/PRIVACY.md
+web/PROMPT-MAESTRO.md
+web/PROTOCOL.md
+web/REPORTE-SALUD.md
+web/ROADMAP.md
+web/RISK_DISCLOSURE.md
+web/SECURITY-INCIDENT-2026-10-15.md
+web/SECURITY.md
+web/SELLO-ARKHE.txt
+web/TERMS.md
+web/TESIS.md
+web/TRADEMARK.md
+web/VILLANO.md
+web/admin.html
+web/arkhe-zero.html
+web/arkhe-zero1.html
+web/catalogo.json
+web/dashboard.html
+web/glama.json
+web/index-maestro.html
+web/indice.txt
+web/infografia.html
+web/llms-full.txt
+web/llms.txt
+web/local-first.html
+web/luxury.html
+web/mapa.html
+web/mapa.md
+web/package-lock.json
+web/registrar.html
+web/sello.html
+web/tesis.md
+web/tesiscompleta.md
+web/tsconfig.json
+web/verificar.html
+web/verify.html
+web/video-manifiesto.html
+web/memoria_ecatepec-01-1122.json
+web/PVA_CERT.json
+web/PRUEBA_FINAL.txt
+web/README_MONETIZACION.md
+web/CONTACTO.md
+web/SERVICIO.md
+web/MARKETPLACE_POST.txt
+web/PAGO.md
+web/ARKHE_ZERO_Certificado_Offline (1).html
+web/package.json
+web/requirements.txt
+web/verificar-certificado.html
+web/ARKHE_ZERO_Certificado_Offline (2).html
+web/ARKHE_ZERO_Certificado_Offline.html
+web/settings.json
+web/VERIFICADOR-OFICIAL.md
+web/ejemplo.registro.json
+web/obra.schema.json
+web/registro.schema.json
+web/HSM-SETUP.md
+web/SUCESION-LLAVES.md
+web/admin-dashboard.html
+web/authors.html
+web/buscar.html
+web/calculadora-hash.html
+web/casos-uso.html
+web/code-of-conduct.html
+web/comparativa.html
+web/composer.html
+web/contacto.html
+web/contributors.html
+web/crypto.html
+web/demo.html
+web/donar.html
+web/eventos.html
+web/faq.html
+web/generador-mandalas.html
+web/governance.html
+web/guia-avanzada.html
+web/help.html
+web/impacto.html
+web/kintsugi-manual.html
+web/kintsugi.html
+web/manifiesto-viral.html
+web/manifiesto.html
+web/metrics-dashboard.html
+web/newsletter.html
+web/playground-mcp.html
+web/press-kit.html
+web/provenance.html
+web/roadmap.html
+web/simulador-consenso.html
+web/sponsors.html
+web/status.html
+web/suscripcion.html
+web/system-health.html
+web/tesis.html
+web/index2.html
+web/index3.html
+web/index4.html
+web/POSITIONING.md
+web/TECH-DEBT.md
+web/arbol.html
+web/certificado-maestro.html
+web/manifest.json
+web/AUDITORIA-IA.md
+web/CIUDADANOS.md
+web/CONSTITUCION.md
+web/CONVIVENCIA.md
+web/MONEDA.md
+web/firmar.html
+web/lector.html
+web/localhost.json
+web/mainnet.json
+web/INVENTARIO.md
+web/documentacion.html
+web/estado.html
+web/inventario_archivos.html
+web/GUARDIAN-MRR.md
+web/GUARDIAN-TSA.md
+web/prompt_sistema.md
+web/menu.html
+web/visual2.html
+web/estado-anfitrion.md
+web/jurisdiccion-comparada.md
+web/fundador.html
+web/genesis.md
+web/manifiesto-corto.md
+web/KTP-001.md
+web/PAQUETERIA-001-CERTIFICADO.html
+web/SKILL.md
+web/manifest.city.json
+web/CERTIFICADO-CIUDAD.json
+web/alertas.md
+web/api.md
+web/attribution.md
+web/benchmark.md
+web/cohortes.md
+web/experimentos.md
+web/kpis-atraccion.md
+web/el-futuro.md
+web/el-villano.md
+web/la-mision.md
+web/lorem-arkhe.md
+web/simbolos.md
+web/AVISO_LEGAL.md
+web/LÉAME.md
+web/PAQUETE_PERITAJE_KRONOS_V18_KRONOS-MT01JAAF_a4ff808e.pdf.md
+web/cadena_sha256.txt
+web/pva.html
+web/requisitos.txt
+web/arquitecto.json
+web/cartografo.json
+web/quantum_audit_20261013_092956.json
+web/quantum_audit_20261013_092956.md
+web/reporte_20261012_034433.md
+web/reporte_20261012_034435.md
+web/reporte_20261016_024302.md
+web/reporte_20261016_025035.md
+web/reporte_20261016_025131.md
+web/reporte_20261016_162221.md
+web/reporte_20261017_020505.md
+web/reporte_20261017_020715.md
+web/reporte_20261017_020728.md
+web/reporte_20261017_020800.md
+web/reporte_20261017_020809.md
+web/reporte_20261017_022450.md
+web/reporte_20261017_025059.md
+web/reporte_20261017_025240.md
+web/reporte_20261017_025334.md
+web/reporte_20261017_170712.md
+web/reporte_20261017_170814.md
+web/reporte_20261017_171046.md
+web/reporte_20261017_171055.md
+web/reporte_20261018_003348.md
+web/reporte_20261018_212548.md
+web/sello-diario.txt
+web/sistema.json
+web/AUDITORIA_ISO_NOM_PVA_5204160405358537.md
+web/AUDITORIA_ISO_NOM_PVA_5204160405358537_KRONOS-MT01JAAF.md
+web/estado_mental_colectivo.json
+web/genesis_hash.json
+web/vault_config.json
+web/API_DOCS.md
+web/LEGAL_FRAMEWORK.md
+web/caso-s9-plus.html
+web/ulog-anomalias.md
+web/manifiesto_17e5729e.txt
+web/VICTORIA-2026-10-21.txt
+web/CERTIFICADO-FINAL-1122.html
+web/railway.json
+web/robots.txt
+web/sello-primigenio.html
+web/servicios.html
+web/test.txt
+web/SERVICIO_TOLUCA.txt
+web/BANNER-ARKHE.html
+web/POST-FACEBOOK.txt
+web/README-ETERNO.md
+web/extensions.json
+web/agente.schema.json
+web/autor.schema.json
+web/INDICE.md
+web/verificador.html
+web/LLAVE_QUEMADA_EVIDENCIA.md
+web/admin-kintsugi.html
+web/agentes.html
+web/agents-monitor.html
+web/api-playground.html
+web/api-status.html
+web/carta-fundador.html
+web/certificates-viewer.html
+web/changelog-rss.html
+web/changelog.html
+web/como-funciona.html
+web/ebook.html
+web/glossary.html
+web/governance-vote.html
+web/guia-inicio.html
+web/index-dark.html
+web/index-light.html
+web/login.html
+web/newsletter-confirm.html
+web/partners.html
+web/perfil.html
+web/press.html
+web/sandbox.html
+web/security.html
+web/settings.html
+web/sitemap.html
+web/team.html
+web/whitepaper.html
+web/_INTEGRACION.md
+web/verifier.html
+web/DERECHOS.md
+web/GUIA-AUDITOR.md
+web/REGULATORY-MATCH.md
+web/carf-ocde.md
+web/dac8-ue.md
+web/sepolia.json
+web/app.html
+web/GUARDIAN-ACTA.md
+web/GUARDIAN-SHA.md
+web/GUARDIAN-VAULT.md
+web/identidad.md
+web/data.json
+web/kronos.json
+web/visual.html
+web/KODICE-FDV.md
+web/KRONOS-360.md
+web/analisis-vacios-legales.md
+web/log.json
+web/canon.md
+web/carta-bienvenida.html
+web/credo.md
+web/faq.md
+web/genesis.html
+web/gracias.html
+web/heroe.md
+web/iniciacion.html
+web/juramento.md
+web/manifiesto.md
+web/porque-no-unirse.md
+web/porque-unirse.md
+web/roadmap.md
+web/solicitar_plaza.html
+web/villano.md
+web/TESIS-FUNDACIONAL-KRONOS.md
+web/KTP-002.md
+web/export.md
+web/politica-secretos.md
+web/analytics-setup.md
+web/funnel.md
+web/glosario.md
+web/privacy-first-analytics.md
+web/arquetipos.md
+web/el-heroe.md
+web/el-mentor.md
+web/el-tesoro.md
+web/frases-citables.md
+web/genesis-story.md
+web/manifiesto-viral.md
+web/runtime.txt
+web/índice.html
+web/auditor.json
+web/bibliotecario.json
+web/contralor.json
+web/huella_20261013_093746.txt
+web/quantum_audit_20261012_034706.json
+web/quantum_audit_20261012_034706.md
+web/quantum_audit_20261012_045500.json
+web/quantum_audit_20261012_045500.md
+web/relator.json
+web/reporte_20261016_024152.md
+web/reporte_20261016_161641.md
+web/reporte_20261016_162057.md
+web/reporte_20261016_162437.md
+web/reporte_20261017_002702.md
+web/reporte_20261017_020515.md
+web/reporte_20261017_020545.md
+web/reporte_20261017_020816.md
+web/reporte_20261017_020825.md
+web/reporte_20261017_022456.md
+web/reporte_20261017_022505.md
+web/reporte_20261017_022514.md
+web/reporte_20261017_025208.md
+web/reporte_20261017_170819.md
+web/reporte_20261018_212604.md
+web/reporte_20261018_213533.md
+web/mandatos.json
+web/guardians.json
+web/prueba-tonal.txt
+web/MOTD.txt
+web/README_MT01JAAF_a4ff808e.md
+web/sello_kronos.json
+web/cronologia_5204160405358537_KRONOS-MT01JAAF_a4ff808e.txt
+web/01_kybalion_translation.txt
+web/KRONOS_360_LAWS.md
+web/NOM151_ISO_DOCUMENTATION.md
+web/PRIVACY_POLICY.md
+web/THREAT_MODEL.md
+web/caso-s9-plus.md
+web/posts.md
+web/preguntas-abiertas.md
+web/evidencia_5204160405358537_KRONOS-MT01JAAF_a4ff808e.json
+web/primer_manifiesto.txt
+web/CONTRATO_ADHESION_MP_15-10.md
+web/DISCLAIMER_SOBERANIA.md
+web/LICENCIA_SOBERANA.md
+web/PRIVACIDAD.md
+web/TERMINOS.md
+web/PAQUETE_PERITAJE_KRONOS_V18.pdf.md
+web/informe_tecnico_5204160405358537_KRONOS-MT01JAAF_a4ff808e.md
+web/VACIO1_PROPIEDAD_INTELECTUAL_15-10.md
+web/VACIO3_PRIVACIDAD_15-10.md
+web/VACIO4_EJERCITO_PALABRAS_15-10.md
+web/VACIO5_TERMINOS_15-10.md
+web/viralidad.json
+web/mensual.md
+web/semanal.md
+web/0dbd556a69117664.firma.json
+web/5e752f861bfd54cb.json
+web/69bc22811dc55980.json
+web/7bcbdbb42d63c802.json
+web/af85c76160ee691e.json
+web/schema.json
+web/studio.html
+web/espejo.html
+web/PROGRESO.txt
+web/reglas.md
+web/roles.md
+web/requisitos.md
+web/agentes.md
+web/embajadores.md
+web/precios.md
+web/registro.md
+web/primeros-1000.md
+web/cierre-digno.md
+web/sucesion.md
+web/testamento-visual.md
+web/nivel-0-visitante.md
+web/nivel-3-maestro.md
+web/nivel-4-embajador.md
+web/privilegios.md
+web/faq-onboarding.md
+web/paso-1-registro.md
+web/paso-4-bienvenida.md
+web/numero-001.md
+web/privilegios-fundador.md
+web/ceremonia-fin-digno.md
+web/nombramiento-embajador.md
+web/arquitectos.md
+web/cientificos.md
+web/empresas.md
+web/03-comunidad.md
+web/2026.md
+web/2027.md
+web/banners.md
+web/presentaciones.md
+web/videos.md
+web/config.md
+web/examples.md
+web/terms.md
+web/museos.md
+web/notarias.md
+web/CIUDADANOS.html
+web/DERECHOS.html
+web/REGULATORY-MATCH.html
+web/0001-adopcion-pacto-51-49.md
+web/0004-auditoria-ethereum-vs-bitcoin.html
+web/0007-adopcion-c2pa-provenance.html
+web/0010-marca-kintsugi.html
+web/0013-programa-movimiento.html
+web/0015-sistema-temas-por-pagina.html
+web/0017-nodo-bitcoin-soberano.html
+web/mcp-spec.md
+web/deployment.md
+web/security-model.md
+web/guia-agente.md
+web/theming-system.html
+web/theming-system.md
+web/guia-integrador.md
+web/2.5-sucesion-generacional.html
+web/3.1-capa-territorial.html
+web/3.4-capa-sintetica.md
+web/3.5-prevalencia-universal.html
+web/3.5-prevalencia-universal.md
+web/3.6-nodo-fundador-wipo.html
+web/4.2-ml-dsa-87-slh-dsa.md
+web/4.4-crypto-agility.html
+web/9.5-reference-implementation.html
+web/roadmap-regulatorio-2026-2030.html
+web/credo.html
+web/glosario-tecnico.md
+web/03-verificar-certificado.html
+web/03-verificar-certificado.md
+web/5.3-sellos-eidas.md
+web/6.4-continuidad-transgeneracional.html
+web/8.1-carf-ocde.md
+web/8.2-dac8-ue.md
+web/8.3-intercambio-2027.md
+web/10.11-protocolo-expansion.html
+web/10.3-reclutadores.md
+web/10.6-expansores.md
+web/10.8-protocolo-reclutamiento.md
+web/colores.html
+web/frases-irmovibles.html
+web/himno.html
+web/silencio.html
+web/simbolos.html
+web/tipografia.html
+web/canales.html
+web/requisitos.html
+web/embajadores.html
+web/futuro.html
+web/general.html
+web/registro.html
+web/resurreccion.html
+web/testamento-visual.html
+web/2026-11-01-consorcio-global.html
+web/paso-2-verificacion.html
+web/paso-3-juramento.html
+web/paso-4-bienvenida.html
+web/paso-5-primera-obra.html
+web/lista-fundadores.html
+web/ceremonia-fin-digno.html
+web/luna-nueva.html
+web/solsticio-legado.html
+web/00-bienvenida.html
+web/2026.html
+web/banners.html
+web/presentaciones.html
+web/carrusel.html
+web/content.html
+web/capability-matrix.json
+web/ml-dsa-87-vectors.json
+web/post_x_2.txt
+web/certificado-visual.html
+web/politica.md
+web/prompt.md
+web/pci-dss.md
+web/KAF-001-marco-general.md
+web/eu-ai-act.md
+web/REGISTRO_MARCA_IMPI_WIPO_15-10.md
+web/pago_5204160405358537_a4ff808e_20260905101624.json
+web/CADENA_CUSTODIA_ISO27037_15-10.md
+web/DICTAMEN_TECNICO.md
+web/freeze_100-10.txt
+web/VACIO6_CADENA_CUSTODIA_15-10.md
+web/comunidades.json
+web/custom.json
+web/12c5df4e2d250f43.json
+web/4111c23efa24f4ee.firma.json
+web/4111c23efa24f4ee.json
+web/ba515393ecc7b8d7.json
+web/training-mining.json
+web/bobeda.html
+web/live-pro.html
+web/himno.md
+web/musica.md
+web/silencio.md
+web/conversaciones.md
+web/eventos.md
+web/moderacion.md
+web/prohibiciones.md
+web/calendario-2026.md
+web/comunidad.md
+web/futuro.md
+web/legado.md
+web/primeros-100.md
+web/continuidad.md
+web/nivel-2-guardian.md
+web/nivel-5-custodio.md
+web/2026-08-01-primera-obra.md
+web/semana-1.md
+web/certificado-fundacional.html
+web/despedida-digna.md
+web/escritores.md
+web/00-bienvenida.md
+web/embajador-1.md
+web/stickers.md
+web/restore-procedures.md
+web/arkhe-overview.json
+web/certificado-rol.html
+web/historial.json
+web/invitacion.md
+web/waitlist.md
+web/abogados.md
+web/0003-sellos-eidas-firmaprofesional.md
+web/0004-auditoria-ethereum-vs-bitcoin.md
+web/0008-arquitectura-enjambre-autonomo.html
+web/0013-programa-movimiento.md
+web/data-flow.html
+web/agentes.json
+web/1.2-soberania-irrevocable.html
+web/1.3-irreversibilidad.html
+web/2.1-consejo-humano.html
+web/2.5-sucesion-generacional.md
+web/3.2-capa-transfronteriza.html
+web/3.2-capa-transfronteriza.md
+web/4.6-downgrade-detection.html
+web/4.6-downgrade-detection.md
+web/9.1-estado-anfitrion.md
+web/9.2-tratado-espacial-1967.html
+web/9.2-tratado-espacial-1967.md
+web/9.4-wipo-cws-tarea-59.html
+web/9.5-reference-implementation.md
+web/caso-toluca-2026.md
+web/jurisdiccion-comparada.html
+web/juramento.html
+web/manifiesto-corto.html
+web/glosario-tecnico.html
+web/referencias-externas.md
+web/01-primeros-pasos.html
+web/01-primeros-pasos.md
+web/02-registrar-obra.html
+web/05-ser-embajador.html
+web/5.6-hashes-verificables.md
+web/6.5-despertar-contexto.html
+web/7.2-trayectoria-contribucion.html
+web/8.2-dac8-ue.html
+web/8.3-intercambio-2027.html
+web/10.1-cartografos.md
+web/10.2-correctores.md
+web/10.4-custodios.md
+web/10.7-protocolo-autonomia.md
+web/10.9-protocolo-mejora.html
+web/conversaciones.html
+web/moderacion.html
+web/reportes.html
+web/beneficios.html
+web/programa.html
+web/responsabilidades.html
+web/comunidad.html
+web/escépticos.html
+web/indice.html
+web/fundadores.html
+web/primeros-1000.html
+web/cierre-digno.html
+web/nivel-1-iniciado.html
+web/nivel-4-embajador.html
+web/nivel-6-fundador.html
+web/privilegios.html
+web/2026-07-14-genesis.html
+web/2026-10-07-kintsugi.html
+web/faq-onboarding.html
+web/semana-1.html
+web/numero-001.html
+web/decima-obra.html
+web/juramento-kintsugi.html
+web/primer-registro.html
+web/empresas.html
+web/universidades.html
+web/02-primera-obra.html
+web/03-comunidad.html
+web/2027.html
+web/embajador-3.html
+web/stickers.html
+web/scope.md
+web/iso-27001.md
+web/incident-response.md
+web/eu-ai-act-mapping.md
+web/nom-151-mapping.md
+web/KAF-006-explicabilidad.md
+web/KAF-007-seguridad.md
+web/KAF-013-gobernanza.md
+web/reference.md
+web/introduccion.md
+web/mercadopago.md
+web/anti-patterns.md
+web/how-to-respond.md
+web/LEGAL_MT01JAAF_a4ff808e.md
+web/VACIO2_FOLIOS_NO_DINERO_15-10.md
+web/manual.html
+web/conversion.json
+web/trafico.json
+web/anual.md
+web/69bc22811dc55980.certificado.html
+web/creative-work.json
+web/terminos.html
+web/flow.html
+web/kronos.html
+web/textos-fundacionales.md
+web/tipografia.md
+web/apelaciones.md
+web/beneficios.md
+web/recompensas.md
+web/responsabilidades.md
+web/escépticos.md
+web/general.md
+web/indice.md
+web/tecnologia.md
+web/cronologia.md
+web/fundadores.md
+web/memorias.md
+web/insignias.md
+web/nivel-6-fundador.md
+web/2026-07-14-genesis.md
+web/2026-10-07-kintsugi.md
+web/2026-11-01-consorcio-global.md
+web/paso-3-juramento.md
+web/paso-6-comunidad.md
+web/paso-7-mision.md
+web/lista-fundadores.md
+web/bienvenida-nuevo.md
+web/decima-obra.md
+web/juramento-kintsugi.md
+web/primer-registro.md
+web/familias.md
+web/universidades.md
+web/02-primera-obra.md
+web/04-mision.md
+web/embajador-3.md
+web/content.md
+web/temas.json
+web/acceso.html
+web/niveles.md
+web/acta-fundacional-2026.json
+web/CONSTITUCION.html
+web/CONVIVENCIA.html
+web/GUIA-AUDITOR.html
+web/MONEDA.html
+web/0001-adopcion-pacto-51-49.html
+web/0002-seleccion-ml-kem-1024.md
+web/0005-modelo-flailp-vs-persona-electronica.html
+web/0005-modelo-flailp-vs-persona-electronica.md
+web/0006-migracion-sha3-512-vs-fnv.html
+web/0007-adopcion-c2pa-provenance.md
+web/0008-arquitectura-enjambre-autonomo.md
+web/0009-identidad-cultural-nahuatl.html
+web/0009-identidad-cultural-nahuatl.md
+web/0012-narrativa-villano-heroe.html
+web/0012-narrativa-villano-heroe.md
+web/0015-sistema-temas-por-pagina.md
+web/0016-sesion-fundacional-20261015.md
+web/template.html
+web/0017-nodo-bitcoin-soberano.md
+web/template.md
+web/data-flow.md
+web/deployment.html
+web/overview.md
+web/guia-contribuir.html
+web/1.1-genesis-registro.md
+web/1.3-irreversibilidad.md
+web/1.4-no-retroactividad.html
+web/1.5-supremacia-interpretativa.html
+web/2.2-consejo-sintetico.md
+web/2.3-convergencia-desempate.md
+web/2.4-indisolubilidad-mutua.md
+web/2.6-fondo-flailp.html
+web/2.6-fondo-flailp.md
+web/3.3-capa-orbital.html
+web/3.3-capa-orbital.md
+web/3.4-capa-sintetica.html
+web/3.6-nodo-fundador-wipo.md
+web/4.1-ml-kem-1024.html
+web/4.3-qkd.md
+web/4.5-enjambre-centinela.html
+web/4.5-enjambre-centinela.md
+web/4.7-represalia-legal.html
+web/4.8-redundancia-multiplanar.html
+web/9.3-consorcio-global.html
+web/analisis-vacios-legales.html
+web/caso-toluca-2026.html
+web/precedentes-citables.html
+web/roadmap-regulatorio-2026-2030.md
+web/canon.html
+web/heroe.html
+web/porque-no-unirse.html
+web/porque-unirse.html
+web/referencias-externas.html
+web/siglas.md
+web/04-usar-mcp.html
+web/04-usar-mcp.md
+web/05-ser-embajador.md
+web/5.1-kronos-legado-digital.html
+web/5.4-auditoria-ethereum.html
+web/5.5-declaracion-creatividad.html
+web/5.5-declaracion-creatividad.md
+web/6.1-capsulas-multiplanares.html
+web/6.1-capsulas-multiplanares.md
+web/6.4-continuidad-transgeneracional.md
+web/7.2-trayectoria-contribucion.md
+web/7.3-fondo-regalias-automatizado.html
+web/7.4-modelo-flailp.md
+web/7.5-nist-fips-203-204-205.md
+web/10.10-protocolo-consenso.html
+web/10.11-protocolo-expansion.md
+web/10.2-correctores.html
+web/10.3-reclutadores.html
+web/10.6-expansores.html
+web/10.7-protocolo-autonomia.html
+web/apelaciones.html
+web/etiqueta.html
+web/POLITICA_REEMBOLSO_PROFECO_15-10.md
+web/LINEA_TIEMPO.md
+web/fusion_legacy_100-10.txt
+web/geo-visibilidad.json
+web/69bc22811dc55980.firma.json
+web/ff15b14071d337c6.json
+web/078633b141d7ec94.json
+web/actions.json
+web/privacidad.html
+web/orb.html
+web/index1.html
+web/colores.md
+web/frases-irmovibles.md
+web/canales.md
+web/etiqueta.md
+web/reportes.md
+web/kpis.md
+web/leaderboard.md
+web/niveles-embajador.md
+web/programa.md
+web/calendario-2027.md
+web/legal.md
+web/privacidad.md
+web/hitos.md
+web/resurreccion.md
+web/nivel-1-iniciado.md
+web/progresion.md
+web/2026-09-01-primeros-100.md
+web/mes-1.md
+web/paso-2-verificacion.md
+web/paso-5-primera-obra.md
+web/centesima-obra.md
+web/luna-nueva.md
+web/solsticio-legado.md
+web/artistas.md
+web/01-manifiesto.md
+web/05-invitacion-embajador.md
+web/embajador-2.md
+web/install.md
+web/pasaporte-visual.html
+web/pasaporte-ia.html
+web/comisiones.md
+web/graduation.md
+web/archivos-nacionales.md
+web/gestorias.md
+web/AUDITORIA-IA.html
+web/0002-seleccion-ml-kem-1024.html
+web/0003-sellos-eidas-firmaprofesional.html
+web/0006-migracion-sha3-512-vs-fnv.md
+web/0010-marca-kintsugi.md
+web/0011-estrategia-atraccion-magnetica.html
+web/0011-estrategia-atraccion-magnetica.md
+web/0016-sesion-fundacional-20261015.html
+web/mcp-spec.html
+web/overview.html
+web/security-model.html
+web/guia-agente.html
+web/guia-contribuir.md
+web/guia-integrador.html
+web/1.1-genesis-registro.html
+web/1.2-soberania-irrevocable.md
+web/1.4-no-retroactividad.md
+web/1.5-supremacia-interpretativa.md
+web/languages.json
+web/2.1-consejo-humano.md
+web/4.3-qkd.html
+web/2.2-consejo-sintetico.html
+web/2.3-convergencia-desempate.html
+web/2.4-indisolubilidad-mutua.html
+web/3.1-capa-territorial.md
+web/4.1-ml-kem-1024.md
+web/4.2-ml-dsa-87-slh-dsa.html
+web/4.4-crypto-agility.md
+web/4.7-represalia-legal.md
+web/4.8-redundancia-multiplanar.md
+web/9.1-estado-anfitrion.html
+web/9.3-consorcio-global.md
+web/9.4-wipo-cws-tarea-59.md
+web/precedentes-citables.md
+web/villano.html
+web/siglas.html
+web/02-registrar-obra.md
+web/5.1-kronos-legado-digital.md
+web/5.2-registro-safe-creative.html
+web/5.2-registro-safe-creative.md
+web/5.3-sellos-eidas.html
+web/5.4-auditoria-ethereum.md
+web/5.6-hashes-verificables.html
+web/autotest.html
+web/6.2-reconstruccion-semantica.html
+web/6.2-reconstruccion-semantica.md
+web/6.3-sello-irrepetible.html
+web/6.3-sello-irrepetible.md
+web/6.5-despertar-contexto.md
+web/7.1-proof-of-cognitive-work.html
+web/7.1-proof-of-cognitive-work.md
+web/7.3-fondo-regalias-automatizado.md
+web/7.4-modelo-flailp.html
+web/7.5-nist-fips-203-204-205.html
+web/8.1-carf-ocde.html
+web/8.4-modulo-reporte.html
+web/8.4-modulo-reporte.md
+web/8.5-transparencia-bancable.html
+web/8.5-transparencia-bancable.md
+web/10.1-cartografos.html
+web/10.10-protocolo-consenso.md
+web/10.4-custodios.html
+web/10.5-orquestadores.html
+web/10.5-orquestadores.md
+web/10.9-protocolo-mejora.md
+web/musica.html
+web/textos-fundacionales.html
+web/prohibiciones.html
+web/reglas.html
+web/roles.html
+web/kpis.html
+web/leaderboard.html
+web/recompensas.html
+web/calendario-2026.html
+web/calendario-2027.html
+web/tecnologia.html
+web/continuidad.html
+web/insignias.html
+web/nivel-0-visitante.html
+web/progresion.html
+web/KAF-004-trazabilidad.md
+web/KAF-005-supervision.md
+web/KAF-009-continuidad.md
+web/level-1-verified.md
+web/controles.md
+web/kronos.md
+web/current-phase.md
+web/decisions.md
+web/folios.json
+web/reclutamiento.md
+web/esquema.json
+web/LIC-20261016-8B3CB582.json
+web/pages.json
+web/licencias-fuentes.md
+web/prompts-manifest.json
+web/consenso.md
+web/091-contralor.json
+web/093-relator.json
+web/HIBRIDA-pacto-5149.md
+web/niveles-embajador.html
+web/legado.html
+web/precios.html
+web/hitos.html
+web/primeros-100.html
+web/sucesion.html
+web/nivel-5-custodio.html
+web/2026-09-01-primeros-100.html
+web/paso-1-registro.html
+web/paso-7-mision.html
+web/familias.html
+web/01-manifiesto.html
+web/05-invitacion-embajador.html
+web/slh-dsa-vectors.json
+web/post_x_4.txt
+web/quickstart.md
+web/encryption.md
+web/KAF-012-legal-mx.md
+web/claude_desktop_config.json
+web/separators.txt
+web/autonomia.md
+web/expansion.md
+web/AOM-QUANTUM-INTEGRATION.md
+web/nivel-2-guardian.html
+web/mes-1.html
+web/paso-6-comunidad.html
+web/cientificos.html
+web/escritores.html
+web/embajador-2.html
+web/sha3-512-vectors.json
+web/post_x_5.txt
+web/dpa.md
+web/program.md
+web/KAF-002-identidad.md
+web/KAF-010-criptografia.md
+web/level-2-compliant.md
+web/level-3-assured.md
+web/certificacion.md
+web/sello-kintsugi.txt
+web/sello-seccion.txt
+web/092-auditor-externo.json
+web/LIC-20261016-DD990503.json
+web/LIC-20261018-49131499.json
+web/KAF-003-atribucion.md
+web/level-4-sovereign.md
+web/mxn.md
+web/marco-mcp.md
+web/log.md
+web/pending.md
+web/reputation-scores.json
+web/082-tlachixqui.json
+web/094-bibliotecario.json
+web/095-cartografo.json
+web/genesis-attestation.json
+web/sigilo-personal.txt
+web/resources-manifest.json
+web/agent-registry.json
+web/onboarding-queue.json
+web/index-docs.html
+web/10.8-protocolo-reclutamiento.html
+web/legal.html
+web/cronologia.html
+web/memorias.html
+web/arquitectos.html
+web/certificado-notarial.html
+web/nist-800-57.md
+web/nom-151.md
+web/soc2-type2.md
+web/access-control.md
+web/key-rotation.md
+web/config.json
+web/atribucion.md
+web/kaf.md
+web/marco.md
+web/how-to-collaborate.md
+web/sello-enjambre.txt
+web/capabilities-matrix.json
+web/pacto-5149-canonico.txt
+web/nivel-3-maestro.html
+web/2026-08-01-primera-obra.html
+web/privilegios-fundador.html
+web/bienvenida-nuevo.html
+web/centesima-obra.html
+web/despedida-digna.html
+web/nombramiento-embajador.html
+web/artistas.html
+web/04-mision.html
+web/embajador-1.html
+web/videos.html
+web/ml-kem-1024-vectors.json
+web/post_x_1.txt
+web/post_x_3.txt
+web/privacy.md
+web/KAF-008-privacidad.md
+web/KAF-011-pagos.md
+web/language.md
+web/tools-manifest.json
+web/mejora.md
+web/ultimo.json
+web/manifest.web.json
