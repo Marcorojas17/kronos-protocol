@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: arkhe-zero-global
+    env: python
+    region: ohio
+    plan: free
+    buildCommand: "pip install -r core_system/requirements.txt && pip install mcp google-genai"
+    startCommand: "python core_system/global_server.py"
+    envVars:
+      - key: PORT
+        value: 8000
