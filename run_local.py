@@ -7,7 +7,7 @@ async def main():
     # Configuramos el servidor para que corra localmente
     server_params = StdioServerParameters(
         command="python3",
-        args=["arkhe_server.py"]
+        args=["core_system/arkhe_server.py"]
     )
 
     async with stdio_client(server_params) as (read, write):
