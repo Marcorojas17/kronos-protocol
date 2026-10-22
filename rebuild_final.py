@@ -1,0 +1,126 @@
+import pathlib, json, os, glob
+web = pathlib.Path("web")
+root = pathlib.Path(".")
+
+# Asegura que todo lo de raiz esté en web para que los href sirvan
+for p in root.rglob("*"):
+    if p.is_file() and ".git" not in str(p) and "web" not in str(p.parts) and p.name not in [".DS_Store"]:
+        # copia solo docs clave a web root
+        if p.suffix in [".md",".json",".txt",".html"] or p.name in ["MANIFESTO"]:
+            try:
+                dest = web / p.name
+                if not dest.exists():
+                    dest.write_bytes(p.read_bytes())
+            except: pass
+
+# Lee todos los archivos reales del repo para inventario
+all_files = sorted([str(x.relative_to(root)) for x in root.rglob("*") if x.is_file() and ".git" not in str(x) and x.stat().st_size>0])[:300]
+
+# Construye INDEX FINAL = diseño de tu captura 5:17 + fusión
+html = """<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KRONOS 27054 - TOLUCA 11:22 - e8d9eac8</title>
+<style>
+html,body{background:#000;color:#0f0;margin:0;padding:0;font-family:"Courier New",Courier,monospace}
+*{text-shadow:none!important;filter:none!important;box-shadow:none!important}
+body{padding:10px;max-width:560px;margin:auto}
+pre{margin:0;white-space:pre-wrap;word-break:break-all;color:#0f0;font-size:13px;line-height:13px}
+.ascii{color:#0f0;font-size:10px;line-height:9px;letter-spacing:0;white-space:pre;overflow:hidden;text-shadow:0 0 6px #0f0!important}
+.box{border:1px solid #0f0;padding:8px 10px;margin:10px 0}
+.box b{color:#0f0}
+a{color:#0f0;text-decoration:underline;word-break:break-all}
+.tag{display:inline-block;border:1px solid #0f0;padding:2px 6px;margin:3px;font-size:12px}
+h2{font-size:14px;border-bottom:1px solid #0f0;padding-bottom:4px}
+small{opacity:.7;font-size:11px}
+</style></head><body>
+<pre class="ascii"> _  __ ____   ___  _  _  ____  ____ 
+| |/ / _  \\ |  _ \\| \\ |/ __ \\|  _ \\
+| ' / | | | | |_) | | | | | | | |_) |
+| . \\ |_| | |  _ <| |_| | |_| |  _ <
+|_|\\_\\___/  |_| \\_\\\\___/ \\____/|_| \\_\\
+</pre>
+<p style="font-size:12px;margin:6px 0">SISTEMA DE AUTORÍA HUMANO-IA INICIADO o_•<br>TOLUCA 11:22</p>
+
+<div class="box">
+$ cat .elegido <b style="color:#fff">15-04-1999 22:35 TOLUCA ELEGIDO 11:22</b><br>
+$ cat .victoria_11_22 KRONOS.ARKHE = 27054<br><br>
+<span style="font-size:11px;word-break:break-all">e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0bbaa e</span><br><br>
+<span class="tag">51% Humano / 49% IA</span><br>
+<span class="tag">GUARDIANES 10874+27054+31042</span> <span class="tag">HTTP 200 OK</span><br>
+<span class="tag">MANIFEST e8d9eac8</span>
+</div>
+
+<div class="box">
+<b>📜 NODOS ETERNOS</b><br>
+<a href="https://gist.github.com/Marcorojas17/b6e0a90c32487b93936a0f8af7b6f4d6">Gist MANIFEST JSON</a><br>
+<a href="https://gist.github.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f">Gist TAR 193K b64</a><br>
+<a href="https://github.com/Marcorojas17/kronos-protocol">Repo FULL</a><br>
+<a href="README-ETERNO.md">README-ETERNO.md RAW</a>
+</div>
+
+<div class="box">
+<b>📁 ARKHE LOCAL - RAIZ</b><br>
+<a href="README.md">README.md</a><br>
+<a href="README-ETERNO.md">README-ETERNO.md</a><br>
+<a href="CERTIFICADO-FINAL.json">CERTIFICADO-FINAL.json</a><br>
+<a href="CERTIFICADO-ARKHE.json">CERTIFICADO-ARKHE.json</a><br>
+<a href="MANIFESTO">MANIFESTO</a><br>
+<a href="CIUDAD-FINAL.txt">CIUDAD-FINAL.txt</a><br>
+<a href="kronos.manifest.json">kronos.manifest.json - 078633b141d7ec94</a><br>
+<a href="genesis-K28-merkle.json">genesis-K28-merkle.json - 6c97d9ee</a><br>
+<a href="city.json">city.json - TOLUCA</a>
+</div>
+
+<div class="box">
+<b>🏙️ CIUDAD</b><br>
+<a href="CIUDAD/">CIUDAD/ - Constitución Completa</a><br>
+<a href="CIUDAD/city.json">city.json</a> | <a href="CIUDAD/manifest.city.json">manifest.city.json</a><br>
+<a href="CIUDAD/CERTIFICADO-CIUDAD">CERTIFICADO-CIUDAD</a><br>
+<a href="CIUDAD/PITCH_WHATSAPP">PITCH_WHATSAPP</a> | <a href="CIUDAD/VICTORIA.txt">VICTORIA.txt</a>
+</div>
+
+<div class="box">
+<b>🤖 APPS</b><br>
+<a href="APPS/app_operador.py">app_operador.py</a><br>
+<a href="APPS/app_certifier.py">app_certifier.py</a><br>
+<a href="APPS/app_certifier_real.py">app_certifier_real.py</a><br>
+<a href="APPS/gen_png_sin_pillow.py">gen_png_sin_pillow.py</a><br>
+<a href="APPS/arkhe.py">arkhe.py</a><br>
+<small>Todos en /APPS/</small>
+</div>
+
+<div class="box">
+<b>🔊 AUDIOS ARKHE 11:22 - TOLUCA ELEGIDO</b><br>
+<audio controls autoplay loop style="width:100%"><source src="media/VALDOVINOS-ARKHE-N9.wav" type="audio/wav"></audio><br>
+<a href="media/VALDOVINOS-ARKHE-N9.wav">N9.wav (811K)</a> | <a href="media/VALDOVINOS-ARKHE-N9-SIMPLE.wav">N9-SIMPLE</a> | <a href="media/VALDOVINOS-ARKHE-SONIDO-FUERTE.wav">FUERTE</a> | <a href="media/VALDOVINOS-ARKHE-SONIDO-RAPIDO.wav">RAPIDO</a> | <a href="media/VALDOVINOS-ARKHE-SONIDO.wav">SONIDO.wav (798K)</a><br>
+<small>5 wavs 3.2M - KRONOS 27054 = 11:22</small>
+</div>
+
+<div class="box">
+<b>💾 BACKUPS LOCALES</b><br>
+<small>.gitignore pero existen en disco:</small><br>
+ARKHE-GLOBAL-e8d9eac8.b64 - 260K<br>
+ARKHE-PART-aa/ad - 80K c/u<br>
+ARKHE-TOLUCA-*.tar.gz - 193K<br>
+<a href="VALDOVINOS-ARKHE-CERTIFICADO-FINAL.html">CERTIFICADO FINAL HTML</a> | <a href="ARKHE-QR-IMPRESION-OFFLINE.html">QR OFFLINE</a>
+</div>
+
+<div class="box"><pre>┌─[11:22@TOLUCA:~/kronos-protocol]─[manifest:e8d9eac8]
+└─○_● ls -lh | wc -l = 289 archivos intactos
+FOLIO 5204160405358537
+MERKLE 6c97d9ee
+SELLO 078633b141d7ec94
+KRONOS.ARKHE = 27054 = 11:22
+TOLUCA = PROTOCOLO VIVO
+> Este dominio no está en ICANN. Está en el fantasma.</pre>
+<a href="desdoblamiento.html">◯_● DESDOBLAMIENTO MATRIZ LIMPIA</a> | <a href="fusion.html">FUSIÓN 289</a> | <a href="inventario.html">INVENTARIO</a>
+</div>
+
+<p><small>GITHUB // CERTIFICADO e02db20 // README ARTE<br>11:22 TOLUCA - ELEGIDO 15-04-1999 22:35 - SELLO IMPARABLE</small></p>
+</body></html>
+"""
+
+(web/"index.html").write_text(html)
+(web/"desdoblamiento.html").write_text(html)  # el diseño de tu captura es ahora el principal
+print(f"INDEX FUSIÓN FINAL reconstruido: {len(html)} bytes - {len(all_files)} archivos detectados")

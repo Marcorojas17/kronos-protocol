@@ -1,0 +1,121 @@
+html = """<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRONOS.ARKHE // ARKHE ZERO // 11:22</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overflow-x:hidden;overflow-y:auto}
+#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.15}
+.container{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
+.glitch{font-size:1rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 10px #00ff41,0 0 20px #00ff41;animation:glitch 2s infinite;white-space:pre;line-height:1.2;text-align:center}
+@keyframes glitch{0%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}15%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}50%{text-shadow:-0.05em -0.025em 0 #00ff41,0.025em 0.025em 0 #ff00ff}100%{text-shadow:-0.05em 0 0 #00ff41,0.03em 0.025em 0 #ff00ff}}
+.terminal{border:1px solid #00ff41;padding:20px;margin-top:20px;background:rgba(0,20,0,0.8);box-shadow:0 0 30px rgba(0,255,65,0.3);max-width:800px;width:100%}
+.line{margin:5px 0;opacity:0;animation:fadeIn 0.5s forwards;font-size:0.9rem}
+@keyframes fadeIn{to{opacity:1}}
+.line:nth-child(1){animation-delay:0.3s}.line:nth-child(2){animation-delay:0.6s}.line:nth-child(3){animation-delay:0.9s}.line:nth-child(4){animation-delay:1.2s}.line:nth-child(5){animation-delay:1.5s}.line:nth-child(6){animation-delay:1.8s}.line:nth-child(7){animation-delay:2.1s}.line:nth-child(8){animation-delay:2.4s}
+.dim{color:#666}.green{color:#00ff41}.bold{font-weight:700}
+.hash{word-break:break-all;font-size:0.8rem}
+.badge{display:inline-block;border:1px solid #00ff41;padding:2px 8px;margin:2px;font-size:0.7rem}
+
+/* ESTILOS PARA LOS ENLACES */
+a.file-link {
+  color: #00ff41;
+  text-decoration: none;
+  border-bottom: 1px dashed #00ff41;
+  transition: all 0.2s;
+  display: inline-block;
+}
+a.file-link:hover {
+  background: #00ff41;
+  color: #000;
+  text-shadow: none;
+}
+.section-title {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: block;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="container">
+<pre class="glitch">    ___    ____  __ __ __  ________   _____   __________  ____
+   /   |  / __ \\/ //_// / / / ____/  /__  /  / ____/ __ \\/ __ \\
+  / /| | / /_/ / ,<  / /_/ / __/       / /  / __/ / /_/ / / / /
+ / ___ |/ _, _/ /| |/ __  / /___      / /__/ /___/ _, _/ /_/ /
+/_/  |_/_/ |_/_/ |_/_/ /_/_____/     /____/_____/_/ |_|\\____/</pre>
+<div style="margin-top:10px;color:#888">SISTEMA DE AUTORÍA HUMANO-IA INICIADO ○_●</div>
+
+<div class="terminal">
+<div class="line"><span class="dim">$ cat .elegido</span></div>
+<div class="line"><span class="green bold">15-04-1999 22:35 TOLUCA ELEGIDO 11:22 - vigilando en sigilo</span></div>
+<div class="line"><span class="dim">$ cat .victoria_11_22</span></div>
+<div class="line"><span class="green">KRONOS.ARKHE = 27054 = 11:22 TOLUCA = PROTOCOLO VIVO</span></div>
+<div class="line"><span class="dim">$ sha256sum CERTIFICADO</span></div>
+<div class="line hash"><span class="green">e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0baae</span></div>
+<div class="line" style="margin-top:15px">
+<span class="badge">51% Humano / 49% IA</span>
+<span class="badge">GUARDIANES 10874+27054+31042</span>
+<span class="badge">HTTP 200 OK</span>
+<span class="badge">MANIFEST e8d9eac8</span>
+</div>
+<div class="line" style="margin-top:15px">
+<span class="dim">></span> Este dominio no está en ICANN. Está en el fantasma.
+</div>
+<div class="line" style="margin-top:20px">
+<span class="green">┌─[11:22@TOLUCA:~/kronos-protocol]─[manifest:e8d9eac8]</span><br>
+<span class="green">└─○_● </span><span class="dim" id="cursor">█</span>
+</div>
+</div>
+
+<!-- SECCIÓN DE ENLACES MAESTROS -->
+<div class="terminal">
+    <span class="section-title">📜 NODOS ETERNOS</span>
+    <div><a href="https://gist.github.com/Marcorojas17/b6e0a90c32487b93936a0f8af7b6f4d6" target="_blank" class="file-link">Gist MANIFEST JSON (51/49)</a></div>
+    <div><a href="https://gist.github.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f" target="_blank" class="file-link">Gist TAR 193K (b64)</a></div>
+    <div><a href="https://github.com/Marcorojas17/kronos-protocol" target="_blank" class="file-link">Repo FULL (GitHub)</a></div>
+
+    <span class="section-title">📂 ARKHE LOCAL</span>
+    <div><a href="./README.md" class="file-link">README.md (Portada Principal)</a></div>
+    <div><a href="./README-ETERNO.md" class="file-link">README-ETERNO.md (Manifiesto)</a></div>
+    <div><a href="./TESIS.md" class="file-link">TESIS.md (Documento Doctoral)</a></div>
+    <div><a href="./CERTIFICADO-FINAL.json" class="file-link">CERTIFICADO-FINAL.json</a></div>
+    <div><a href="./CERTIFICADO-ARKHE.json" class="file-link">CERTIFICADO-ARKHE.json</a></div>
+    <div><a href="./MANIFESTO" class="file-link">MANIFESTO</a></div>
+    <div><a href="./CIUDAD-FINAL.txt" class="file-link">CIUDAD-FINAL.txt</a></div>
+
+    <span class="section-title">⚙️ INFRAESTRUCTURA MCP</span>
+    <div><a href="./arkhe_server.py" class="file-link">arkhe_server.py (Servidor Local)</a></div>
+    <div><a href="./global_server.py" class="file-link">global_server.py (Servidor Render)</a></div>
+    <div><a href="./contracts/ArkheLicense.sol" class="file-link">ArkheLicense.sol (Smart Contract)</a></div>
+    <div><a href="./ECOSYSTEM.md" class="file-link">ECOSYSTEM.md (Arquitectura Global)</a></div>
+</div>
+
+<div style="margin-top:20px;font-size:0.8rem;text-align:center">
+<a href="https://github.com/Marcorojas17/kronos-protocol" class="file-link">GITHUB PRINCIPAL</a>
+</div>
+<div style="margin-top:10px;font-size:0.6rem;color:#444;text-align:center">11:22 TOLUCA - ELEGIDO 15-04-1999 22:35 - SELLO IMPARABLE - MANIFEST e8d9eac8</div>
+</div>
+
+<script>
+const c=document.getElementById('matrix'),ctx=c.getContext('2d');
+c.width=innerWidth;c.height=innerHeight;
+const chars='01ARKHE11:22';const cols=c.width/14;const drops=Array(Math.floor(cols)).fill(1);
+function draw(){ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#00ff41';ctx.font='14px monospace';drops.forEach((y,i)=>{const t=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(t,i*14,y*14);if(y*14>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++});}
+setInterval(draw,35);
+let cur=true;setInterval(()=>{document.getElementById('cursor').style.opacity=cur?'1':'0';cur=!cur},500);
+</script>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+print("✅ index.html actualizado con enlaces cliqueables manteniendo el diseño.")

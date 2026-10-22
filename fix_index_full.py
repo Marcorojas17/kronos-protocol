@@ -1,149 +1,107 @@
-html_content = """<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KRONOS.ARKHE // ARKHE ZERO // 11:22</title>
+import pathlib, json, os
+web = pathlib.Path("web")
+root = pathlib.Path(".")
+
+# 1. Genera catálogo real de todo lo que hay en web/
+files = []
+for p in sorted(web.rglob("*")):
+    if p.is_file() and p.stat().st_size>0:
+        rel = str(p.relative_to(web))
+        if "__pycache__" not in rel and ".pyc" not in rel:
+            files.append(rel)
+
+# 2. Guarda catálogo como JSON para que el front lo lea
+(web/"pages.json").write_text(json.dumps(sorted(files), indent=2), encoding="utf-8")
+(web/"manifest.web.json").write_text(json.dumps({"count": len(files), "manifest": "e8d9eac8", "sello":"078633b141d7ec94"}, indent=2))
+
+print(f"Catalogados {len(files)} archivos en web/")
+
+# 3. INDEX con lógica que NO SE ROMPE - carga dinámico + secciones fijas
+html = f"""<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KRONOS 27054 - {len(files)} ARCHIVOS - TOLUCA 11:22 - e8d9eac8</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#00ff41;font-family:'JetBrains Mono',monospace;overflow-x:hidden;overflow-y:auto}
-#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.15}
-.container{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
-.glitch{font-size:1rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 10px #00ff41,0 0 20px #00ff41;animation:glitch 2s infinite;white-space:pre;line-height:1.2;text-align:center}
-@keyframes glitch{0%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}15%{text-shadow:0.05em 0 0 #00ff41,-0.03em -0.025em 0 #ff00ff}50%{text-shadow:-0.05em -0.025em 0 #00ff41,0.025em 0.025em 0 #ff00ff}100%{text-shadow:-0.05em 0 0 #00ff41,0.03em 0.025em 0 #ff00ff}}
-.terminal{border:1px solid #00ff41;padding:20px;margin-top:20px;background:rgba(0,20,0,0.85);box-shadow:0 0 30px rgba(0,255,65,0.3);max-width:800px;width:100%;max-height: 60vh; overflow-y: auto;}
-.line{margin:5px 0;opacity:0;animation:fadeIn 0.5s forwards;font-size:0.9rem}
-@keyframes fadeIn{to{opacity:1}}
-.line:nth-child(1){animation-delay:0.3s}.line:nth-child(2){animation-delay:0.6s}.line:nth-child(3){animation-delay:0.9s}.line:nth-child(4){animation-delay:1.2s}.line:nth-child(5){animation-delay:1.5s}.line:nth-child(6){animation-delay:1.8s}.line:nth-child(7){animation-delay:2.1s}.line:nth-child(8){animation-delay:2.4s}
-.dim{color:#666}.green{color:#00ff41}.bold{font-weight:700}
-.hash{word-break:break-all;font-size:0.8rem}
-.badge{display:inline-block;border:1px solid #00ff41;padding:2px 8px;margin:2px;font-size:0.7rem}
+html,body{{background:#000;color:#0f0;margin:0;padding:10px;font-family:"Courier New",monospace;max-width:720px;margin:auto}}
+*{{text-shadow:none!important;filter:none!important;box-shadow:none!important}}
+.box{{border:1px solid #0f0;padding:10px;margin:12px 0}}
+a{{color:#0f0;word-break:break-all}}
+.tag{{border:1px solid #0f0;padding:2px 6px;margin:2px;display:inline-block;font-size:11px}}
+input{{background:#000;border:1px solid #0f0;color:#0f0;padding:6px;width:100%;box-sizing:border-box}}
+.ascii{{font-size:9px;line-height:9px;white-space:pre;color:#0f0;text-shadow:0 0 5px #0f0!important}}
+</style></head><body>
+<pre class="ascii"> _  __ ____   ___  _  _  ____  ____
+| |/ / _  \\ |  _ \\| \\ |/ __ \\|  _ \\
+| ' / | | | | |_) | | | | | | | |_) |
+| . \\ |_| | |  _ <| |_| | |_| |  _ <
+|_|\\_\\___/  |_| \\_\\\\___/ \\____/|_| \\_\\</pre>
+SISTEMA DE AUTORÍA HUMANO-IA INICIADO o_• TOLUCA 11:22<br>
+MANIFEST e8d9eac8 | SELLO 078633b141d7ec94 | {len(files)} ARCHIVOS
 
-/* ESTILOS DE ENLACES Y CARPETAS */
-a.file-link { color: #00ff41; text-decoration: none; border-bottom: 1px dashed #00ff41; transition: all 0.2s; display: block; padding: 3px 0; font-size: 0.85rem; }
-a.file-link:hover { background: #00ff41; color: #000; text-shadow: none; padding-left: 5px; }
-.section-title { font-weight: bold; margin-top: 15px; margin-bottom: 5px; display: block; color: #fff; text-transform: uppercase; border-bottom: 1px solid #00ff41; padding-bottom: 5px;}
-.folder-title { color: #ffcc00; font-weight: bold; margin-top: 10px; font-size: 0.9rem;}
-</style>
-</head>
-<body>
-<canvas id="matrix"></canvas>
-<div class="container">
-<pre class="glitch">    ___    ____  __ __ __  ________   _____   __________  ____
-   /   |  / __ \\\\/ //_// / / / ____/  /__  /  / ____/ __ \\\\/ __ \\\\
-  / /| | / /_/ / ,<  / /_/ / __/       / /  / __/ / /_/ / / / /
- / ___ |/ _, _/ /| |/ __  / /___      / /__/ /___/ _, _/ /_/ /
-/_/  |_/_/ |_/_/ |_/_/ /_/_____/     /____/_____/_/ |_|\\\\____/</pre>
-<div style="margin-top:10px;color:#888">SISTEMA DE AUTORÍA HUMANO-IA INICIADO ○_●</div>
-
-<div class="terminal" style="max-height: 30vh;">
-<div class="line"><span class="dim">$ cat .elegido</span></div>
-<div class="line"><span class="green bold">15-04-1999 22:35 TOLUCA ELEGIDO 11:22 - vigilando en sigilo</span></div>
-<div class="line"><span class="dim">$ cat .victoria_11_22</span></div>
-<div class="line"><span class="green">KRONOS.ARKHE = 27054 = 11:22 TOLUCA = PROTOCOLO VIVO</span></div>
-<div class="line hash"><span class="dim">$ sha256sum CERTIFICADO</span><br><span class="green">e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0baae</span></div>
-<div class="line" style="margin-top:15px">
-<span class="badge">51% Humano / 49% IA</span>
-<span class="badge">MANIFEST e8d9eac8</span>
-<span class="badge">HTTP 200 OK</span>
-</div>
+<div class="box">
+$ cat .elegido <b>15-04-1999 22:35 TOLUCA ELEGIDO 11:22</b><br>
+KRONOS.ARKHE = 27054<br>
+<span style="font-size:10px;word-break:break-all">e8d9eac8edc3e7f05f99e20b87d1824663822797ad195bbc14ce88c3b4c0bbaa e</span><br>
+<span class="tag">51% Humano / 49% IA</span> <span class="tag">GUARDIANES 10874+27054+31042</span> <span class="tag">HTTP 200 OK</span>
 </div>
 
-<!-- ENLACES MAESTROS AL ECOSISTEMA -->
-<div class="terminal">
-    <span class="section-title">🏛️ NÚCLEO Y TESIS</span>
-    <a href="./TESIS.md" class="file-link">📜 TESIS.md (Investigación Doctoral)</a>
-    <a href="./ECOSYSTEM.md" class="file-link">🧬 ECOSYSTEM.md (Arquitectura Hub & Spoke)</a>
-    <a href="./README.md" class="file-link">📘 README.md (Portada Principal)</a>
-    <a href="./PAGO.md" class="file-link">💰 PAGO.md (Pasarela de Venta)</a>
-
-    <span class="section-title">⚙️ INFRAESTRUCTURA Y CÓDIGO</span>
-    <a href="./arkhe_server.py" class="file-link">🐍 arkhe_server.py (Servidor Local)</a>
-    <a href="./global_server.py" class="file-link">☁️ global_server.py (Servidor Render)</a>
-    <a href="./contracts/" class="file-link">⛓️ contracts/ (Smart Contracts Solidity)</a>
-    <a href="./docs/" class="file-link">📚 docs/ (Documentación Técnica)</a>
-    <a href="./web/" class="file-link">🌐 web/ (La Ciudad y Gobernanza)</a>
-    <a href="./pva/" class="file-link">🏛️ pva/ (Protocolo de Vida Autopoiética)</a>
-    <a href="./atribucion/" class="file-link">🧩 atribucion/ (Sistema de Identidad DID)</a>
-
-    <span class="section-title">🔒 EVIDENCIA CRIPTOGRÁFICA</span>
-    <a href="./CERTIFICADO-FINAL.json" class="file-link">📋 CERTIFICADO-FINAL.json (Manifiesto)</a>
-    <a href="./CERTIFICADO-FINAL.json.ots" class="file-link">🔏 CERTIFICADO-FINAL.json.ots (Sello Bitcoin)</a>
-    <a href="./glama.json" class="file-link">🤖 glama.json (Registro en Directorio de IAs)</a>
+<div class="box">
+<b>🔊 AUDIO N9 11:22</b><br>
+<audio controls autoplay loop style="width:100%"><source src="media/VALDOVINOS-ARKHE-N9.wav"></audio><br>
+<a href="media/VALDOVINOS-ARKHE-N9.wav">N9.wav</a> | <a href="media/VALDOVINOS-ARKHE-N9-SIMPLE.wav">SIMPLE</a> | <a href="media/VALDOVINOS-ARKHE-SONIDO-FUERTE.wav">FUERTE</a> | <a href="media/VALDOVINOS-ARKHE-SONIDO-RAPIDO.wav">RAPIDO</a>
 </div>
 
-<!-- EXPLORADOR DINÁMICO DE ARCHIVOS -->
-<div class="terminal">
-    <span class="section-title">🌐 EXPLORADOR DEL REPOSITORIO (VÍA GITHUB API)</span>
-    <p style="color:#888; font-size:0.8rem; margin-bottom:10px;">Cargando los 3000+ archivos desde GitHub...</p>
-    <div id="file-explorer">
-        <p style="color:#888;">Cargando...</p>
-    </div>
+<div class="box">
+<b>📜 NODOS ETERNOS</b><br>
+<a href="https://gist.github.com/Marcorojas17/b6e0a90c32487b93936a0f8af7b6f4d6">Gist MANIFEST</a> | <a href="https://gist.github.com/Marcorojas17/748ae7f542960bca85be00bbd874a67f">Gist TAR 193K</a> | <a href="https://github.com/Marcorojas17/kronos-protocol">Repo FULL</a>
 </div>
 
-<div style="margin-top:20px;font-size:0.8rem;text-align:center">
-<a href="https://github.com/Marcorojas17/kronos-protocol" class="file-link">ABRIR REPOSITORIO COMPLETO EN GITHUB</a>
+<div class="box">
+<b>🔍 BUSCAR ARCHIVO - {len(files)} archivos</b><br>
+<input id="q" placeholder="Escribe reglas, reporte, sello, tesis, ciudad..." oninput="filtrar()">
+<div id="lista" style="max-height:400px;overflow:auto;margin-top:8px"></div>
 </div>
-<div style="margin-top:10px;font-size:0.6rem;color:#444;text-align:center">11:22 TOLUCA - ELEGIDO 15-04-1999 22:35 - SELLO IMPARABLE - MANIFEST e8d9eac8</div>
+
+<div class="box">
+<b>📂 SECCIONES FIJAS QUE NO SE ROMPEN</b><br>
+<a href="reglas.html">reglas.html</a> | <a href="reportes.html">reportes.html</a> | <a href="requisitos.html">requisitos.html</a> | <a href="sello.html">sello.html</a> | <a href="tesis.html">tesis.html</a> | <a href="roadmap.html">roadmap.html</a> | <a href="verificador.html">verificador.html</a> | <a href="whitepaper.html">whitepaper.html</a> | <a href="desdoblamiento.html">desdoblamiento.html</a> | <a href="fusion.html">fusion.html</a><br>
+<small>Todas las reglas, reportes, sellos y requisitos están en pages.json</small>
 </div>
 
 <script>
-// 1. EFECTO MATRIX
-const c=document.getElementById('matrix'),ctx=c.getContext('2d');
-c.width=innerWidth;c.height=innerHeight;
-const chars='01ARKHE11:22';const cols=c.width/14;const drops=Array(Math.floor(cols)).fill(1);
-function draw(){ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#00ff41';ctx.font='14px monospace';drops.forEach((y,i)=>{const t=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(t,i*14,y*14);if(y*14>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++});}
-setInterval(draw,35);
-
-// 2. EXPLORADOR DE ARCHIVOS GITHUB
-async function loadRepoFiles() {
-    const repo = "Marcorojas17/kronos-protocol";
-    const branch = "main";
-    const url = `https://api.github.com/repos/${repo}/git/trees/${branch}?recursive=1`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Error al conectar con GitHub");
-        const data = await response.json();
-
-        const explorer = document.getElementById('file-explorer');
-        explorer.innerHTML = ''; // Limpiar mensaje de carga
-
-        const files = data.tree.filter(item => item.type === 'blob');
-        files.sort((a, b) => a.path.localeCompare(b.path));
-
-        let currentFolder = "";
-        let htmlContent = "";
-
-        files.forEach(file => {
-            const parts = file.path.split('/');
-            const folder = parts.length > 1 ? parts.slice(0, -1).join('/') : "Raíz del Proyecto";
-
-            if (folder !== currentFolder) {
-                if (currentFolder !== "") htmlContent += `<br>`;
-                htmlContent += `<div class="folder-title">📂 ${folder}</div>`;
-                currentFolder = folder;
-            }
-
-            const fileName = parts[parts.length - 1];
-            const fileUrl = `https://github.com/${repo}/blob/${branch}/${file.path}`;
-            htmlContent += `<a href="${fileUrl}" target="_blank" class="file-link">└─ ${fileName}</a>`;
-        });
-
-        explorer.innerHTML = htmlContent;
-
-    } catch (error) {
-        document.getElementById('file-explorer').innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-    }
-}
-loadRepoFiles();
+let todos=[];
+fetch('pages.json').then(r=>r.json()).then(j=>{{todos=j; render(j);}});
+function render(arr){{
+  let h='';
+  // Agrupa por tipo
+  let grupos={{}};
+  arr.forEach(f=>{{
+    let ext=f.split('.').pop();
+    if(!grupos[ext]) grupos[ext]=[];
+    grupos[ext].push(f);
+  }});
+  for(let ext in grupos){{
+    h+=`<b>${{ext}} (${{grupos[ext].length}})</b><br>`;
+    grupos[ext].slice(0,100).forEach(f=>{{ h+=`<a href="${{f}}">${{f}}</a><br>`; }});
+    if(grupos[ext].length>100) h+=`<small>+ ${{grupos[ext].length-100}} más...</small><br>`;
+    h+='<br>';
+  }}
+  document.getElementById('lista').innerHTML=h;
+}}
+function filtrar(){{
+  let q=document.getElementById('q').value.toLowerCase();
+  if(!q) return render(todos);
+  let f=todos.filter(x=>x.toLowerCase().includes(q));
+  let h=`<small>${{f.length}} resultados para "${{q}}"</small><br>`;
+  f.slice(0,200).forEach(file=>{{ h+=`<a href="${{file}}">${{file}}</a><br>`; }});
+  document.getElementById('lista').innerHTML=h;
+}}
 </script>
-</body>
-</html>
+
+<div class="box"><pre>┌─[11:22@TOLUCA]─[manifest:e8d9eac8]
+└─○_● {len(files)} archivos intactos | FOLIO 5204160405358537 | MERKLE 6c97d9ee | SELLO 078633b141d7ec94</pre></div>
+</body></html>
 """
-
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("✅ index.html actualizado con enlaces a todo el ecosistema y explorador dinámico.")
+(web/"index.html").write_text(html)
+(web/"desdoblamiento.html").write_text(html)
+print(f"INDEX FINAL con {len(files)} archivos escrito")

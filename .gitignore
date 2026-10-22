@@ -13,3 +13,7 @@ __pycache__/
 *.pyo
 _ERRORES_TEMP/
 
+__pycache__/
+*.pyc
+*.b64
+*.tar.gz

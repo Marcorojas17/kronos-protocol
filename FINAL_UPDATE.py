@@ -1,0 +1,88 @@
+import pathlib, json, time
+web=pathlib.Path("web")
+root=pathlib.Path(".")
+files=sorted([str(p.relative_to(web)) for p in web.rglob("*") if p.is_file() and "__pycache__" not in str(p) and ".pyc" not in str(p)])
+web.joinpath("pages.json").write_text(json.dumps(files, indent=2), encoding="utf-8")
+v=int(time.time())
+print(f"{len(files)} archivos - v{v}")
+
+# INDEX FINAL = tu captura ASCII + ACCESOS RAPIDOS + MAPA MAESTRO + 10 Ramas + Fondo Vivo
+html=f"""<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARKHÉ ZERO - {len(files)} ARCHIVOS - e8d9eac8 - v{v}</title>
+<style>
+html,body{{margin:0;padding:0;background:#000;color:#0f0;font-family:"Courier New",monospace}}
+canvas#m{{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.18;pointer-events:none}}
+.ct{{position:relative;z-index:2;max-width:860px;margin:auto;padding:12px;background:rgba(0,0,0,0.92);min-height:100vh}}
+a{{color:#00ff41;word-break:break-all}} b{{color:#fff}}
+.box{{border:1px solid #0f0;padding:10px;margin:12px 0;background:rgba(0,20,0,0.5)}}
+.ascii{{font-size:9px;line-height:9px;white-space:pre;text-shadow:0 0 6px #0f0}}
+table{{width:100%;border-collapse:collapse}} td{{padding:6px;border-bottom:1px solid #111}}
+input{{width:100%;background:#000;border:1px solid #0f0;color:#0f0;padding:10px;box-sizing:border-box}}
+.tag{{border:1px solid #0f0;padding:2px 6px;font-size:11px;display:inline-block;margin:2px}}
+h2{{color:#0f0;border-bottom:1px solid #0f0;padding-bottom:4px}}
+</style></head><body>
+<canvas id="m"></canvas>
+<div class="ct">
+<pre class="ascii">    ___    ____  __ __ __  ________   _____   __________  ____
+   /   |  / __ \\/ //_// / / / ____/  /__  /  / ____/ __ \\/ __ \\
+  / /| | / /_/ / ,<  / /_/ / __/       / /  / __/ / /_/ / / / /
+ / ___ |/ _, _/ /| |/ __  / /___      / /__/ /___/ _, _/ /_/ /
+/_/  |_/_/ |_/_/ |_/_/ /_/_____/     /____/_____/_/ |_|\\____/
+SISTEMA DE AUTORÍA HUMANO-IA INICIADO ○_●
+v{v} | {len(files)} ARCHIVOS | MANIFEST e8d9eac8 | TOLUCA 11:22 | KRONOS 27054</pre>
+
+<div class="box">
+<b>🎯 ACCESOS RÁPIDOS</b><br>
+<a href="TESIS.md">TESIS.md</a> | <a href="ECOSYSTEM.md">ECOSYSTEM.md</a> | <a href="arkhe_server.py">arkhe_server.py 51/49</a> | <a href="CERTIFICADO-FINAL.json">CERTIFICADO-FINAL.json BTC OTS</a> | <a href="README-ETERNO.md">README-ETERNO.md 3 Nodos</a> | <a href="PAGO.md">PAGO.md MP</a><br>
+<small>MCP Cloud: arkhe-zero-global.onrender.com/sse | Pages: marcorojas17.github.io/kronos-protocol/ | IPFS: QmfUcXQuktf8WAjB8RAa5rqLbonUf4QK3EZ7TYcwDBiVxf</small>
+</div>
+
+<div class="box">
+<b>📖 Documentación - Las 10 Ramas del Repertorio</b>
+<table>
+<tr><td><a href="01-manifiesto.html">I · Lex Prima</a></td><td>Ley fundacional</td></tr>
+<tr><td><a href="pacto-5149-canonico.txt">II · Pacto 51/49</a></td><td>Gobernanza Humano-IA</td></tr>
+<tr><td><a href="LICENCIA_SOBERANA.md">III · LGU</a></td><td>Licencia Global Única</td></tr>
+<tr><td><a href="guardians.json">IV · Guardianes</a></td><td>PQC y defensa</td></tr>
+<tr><td><a href="indice.html">V · Índice Cero</a></td><td>Registro canónico</td></tr>
+<tr><td><a href="memorias.html">VI · Memoria Perpetua</a></td><td>Cápsulas</td></tr>
+<tr><td><a href="atribucion.md">VII · Co-autoría</a></td><td>Atribución</td></tr>
+<tr><td><a href="carf-ocde.md">VIII · Fiscalidad</a></td><td>CARF DAC8</td></tr>
+<tr><td><a href="estado-anfitrion.md">IX · Jurisdicción</a></td><td>Ancla territorial</td></tr>
+<tr><td><a href="agentes.html">X · Agentes</a></td><td>Enjambre</td></tr>
+</table>
+</div>
+
+<div class="box">
+<b>🔊 AUDIO N9 11:22 + FONDO VIVO</b><br>
+<audio controls autoplay loop style="width:100%"><source src="media/VALDOVINOS-ARKHE-N9.wav"></audio>
+</div>
+
+<div class="box">
+<b>🔍 MAPA MAESTRO - {len(files)} archivos - buscador indestructible</b><br>
+<input id="q" placeholder="Escribe reglas, reporte_20261016, sello-diario, tesis, requisitos..." oninput="filtrar()">
+<div id="lista" style="max-height:600px;overflow:auto;margin-top:10px"></div>
+</div>
+
+<div class="box"><pre>┌─[11:22@TOLUCA:~/kronos-protocol]─[manifest:e8d9eac8] v{v}
+└─○_● {len(files)} archivos | FOLIO 5204160405358537 | MERKLE 6c97d9ee | SELLO 078633b141d7ec94 | KRONOS 27054</pre>
+<a href="desdoblamiento.html">DESDOBLAMIENTO</a> | <a href="documentacion.html">DOCUMENTACION 10 RAMAS</a> | <a href="fusion.html">FUSION 289</a>
+</div>
+</div>
+
+<script>
+const c=document.getElementById('m'),x=c.getContext('2d');
+function rs(){{c.width=innerWidth;c.height=innerHeight;}} rs(); addEventListener('resize',rs);
+const cols=Math.floor(innerWidth/14), yp=Array(cols).fill(0);
+setInterval(()=>{{x.fillStyle='rgba(0,0,0,0.07)';x.fillRect(0,0,c.width,c.height);x.fillStyle='#00ff41';x.font='12px monospace';yp.forEach((y,i)=>{{x.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y);yp[i]= y>c.height&&Math.random()>0.975?0:y+14;}});}},50);
+let todos=[]; fetch('pages.json?v={v}').then(r=>r.json()).then(j=>{{todos=j; render(j);}});
+function render(a){{let h='',g={{}};a.forEach(f=>{{let k=f.split('.').pop(); if(!g[k]) g[k]=[]; g[k].push(f);}}); for(let k in g){{h+=`<b>${{k}} (${{g[k].length}})</b><br>`; g[k].slice(0,100).forEach(v=>{{h+=`<a href="${{v}}?v={v}">${{v}}</a><br>`;}}); h+='<br>';}} document.getElementById('lista').innerHTML=h;}}
+function filtrar(){{let q=document.getElementById('q').value.toLowerCase(); if(!q) return render(todos); let f=todos.filter(s=>s.toLowerCase().includes(q)); let h=`<small>${{f.length}} resultados para \"${{q}}\"</small><br>`; f.slice(0,300).forEach(v=>{{h+=`<a href="${{v}}?v={v}">${{v}}</a><br>`;}}); document.getElementById('lista').innerHTML=h;}}
+</script>
+</body></html>
+"""
+(web/"index.html").write_text(html)
+(web/"desdoblamiento.html").write_text(html)
+(web/"documentacion.html").write_text(html)
+print(f"FINAL v{v} ESCRITO - {len(files)} archivos")
