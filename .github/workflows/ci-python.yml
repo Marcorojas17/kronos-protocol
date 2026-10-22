@@ -1,4 +1,4 @@
-name: CI - Python & HTML Validation
+name: CI - Core System Validation
 
 on:
   push:
@@ -21,13 +21,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f core_system/requirements.txt ]; then pip install -r core_system/requirements.txt; fi
         pip install mcp google-genai requests
 
-    - name: Check Python syntax
+    - name: Check Python syntax in Core System
       run: |
-        python -m py_compile arkhe_server.py global_server.py app_certifier.py || echo "No hay errores en Python"
+        python -m py_compile core_system/arkhe_server.py core_system/global_server.py || echo "Revisar errores de sintaxis"
 
-    - name: Check HTML
+    - name: Run Reproducible Test
       run: |
-        if [ -f index.html ]; then echo "index.html existe y está listo."; fi
+        cd core_system
+        python test_reproducible.py
