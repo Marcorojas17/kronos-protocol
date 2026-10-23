@@ -1,9 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/bash
-echo "🔐 Calculando hashes de la Tesis Fundacional..."
-mkdir -p academic_thesis/tesis_fundacional/crypto
-for file in $(find academic_thesis/tesis_fundacional -name "*.md"); do
+set -eu
+cd "$(dirname "$0")/.."
+echo "🔨 Anclando archivos..."
+mkdir -p crypto
+LOG=crypto/anclajes.log
+: > "$LOG"
+for file in $(find docs -name '*.md' | sort); do
     HASH=$(sha256sum "$file" | awk '{print $1}')
-    echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) | $HASH | $file" >> academic_thesis/tesis_fundacional/crypto/anclajes.log
-    echo "✅ $file -> $HASH"
+    STAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    printf '%s  %s  %s\n' "$STAMP" "$HASH" "$file" | tee -a "$LOG"
 done
-echo "Anclaje guardado en crypto/anclajes.log"
+echo "✅ Anclaje completado en $LOG"
