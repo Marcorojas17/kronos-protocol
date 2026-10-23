@@ -1,36 +1,40 @@
-from fastapi import FastAPI, HTTPException, Security, Depends
-from fastapi.security import APIKeyHeader
+from fastapi import FastAPI, Header, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional
 import hashlib
 import uuid
 from datetime import datetime, timezone
 
-app = FastAPI(title="ARKHÉ ZERO MVP", description="Sistema de procedencia, memoria y control humano-IA")
+app = FastAPI(
+    title="ARKHÉ ZERO MVP - SECURE", 
+    description="Sistema de procedencia con Ciberdefensa 51/49"
+)
 
 # ==========================================
-# CONFIGURACIÓN DE LA LLAVE (API KEY)
+# 1. BÓVEDA DE LLAVES Y VERIFICACIÓN DE IDENTIDAD
 # ==========================================
-# Esta es la llave que le darás a la IA o al cliente
-API_KEY_SECRET = "arkhe-secreto-123"
-API_KEY_NAME = "X-API-Key"
+VALID_API_KEYS = {
+    "arkhe-secreto-123": "marcorojas17", 
+    "arkhe-prod-YHDRYH-92CE": "marcorojas17"
+}
 
-# Le decimos a FastAPI que busque la llave en los Headers de la petición
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-
-# Función que verifica si la llave es correcta
-def verificar_llave(api_key: str = Security(api_key_header)):
-    if api_key == API_KEY_SECRET:
-        return api_key
-    raise HTTPException(
-        status_code=403, 
-        detail="Acceso denegado. Llave de API (API Key) inválida o ausente."
-    )
+def verify_api_key(x_api_key: str = Header(...)) -> str:
+    if x_api_key not in VALID_API_KEYS:
+        # 401 Unauthorized: La llave no es válida
+        raise HTTPException(status_code=401, detail="401 UNAUTHORIZED - API Key inválida. Pacto 51/49 violado.")
+    return VALID_API_KEYS[x_api_key]
 
 # ==========================================
-# LÓGICA DEL NEGOCIO
+# 2. MODELOS DE DATOS
 # ==========================================
 db_artifacts = {}
+
+class ArtifactCreate(BaseModel):
+    owner: str
+    content: str
+    human_author: str
+    ai_agent: Optional[str] = "Enjambre-ARKHE"
+    timestamp: Optional[str] = None
 
 class Artifact(BaseModel):
     id: str
@@ -40,48 +44,73 @@ class Artifact(BaseModel):
     timestamp: str
     human_author: str
     ai_agent: Optional[str] = None
-    status: str = "draft"
+    status: str
     approved_by: Optional[str] = None
 
-class ArtifactCreate(BaseModel):
-    owner: str
-    content: str
-    human_author: str
-    ai_agent: Optional[str] = None
-
+# ==========================================
+# 3. ENDPOINTS
+# ==========================================
 @app.get("/")
 def read_root():
-    return {"status": "ARKHÉ ZERO MVP Online", "version": "0.1.0"}
+    return {"status": "ARKHÉ ZERO MVP SECURE Online", "version": "0.2.0"}
 
-# AQUÍ APLICAMOS LA LLAVE: Añadimos "dependencies=[Depends(verificar_llave)]"
-@app.post("/artifacts", dependencies=[Depends(verificar_llave)])
-def create_artifact(payload: ArtifactCreate):
-    file_hash = hashlib.sha256(payload.content.encode()).hexdigest()
+@app.post("/artifacts")
+def create_artifact_secure(
+    data: ArtifactCreate, 
+    verified_owner: str = Depends(verify_api_key),
+    x_api_key: str = Header(...)
+):
+    # VALIDACIÓN 51/49 (Prevención de Suplantación)
+    if data.owner != verified_owner:
+        raise HTTPException(
+            status_code=403, 
+            detail=f"403 FORBIDDEN - Owner '{data.owner}' no coincide con identidad verificada '{verified_owner}'. Suplantación detectada."
+        )
+    
+    if data.human_author != verified_owner and data.human_author != "Marco Antonio Rojas Valdovinos":
+        raise HTTPException(
+            status_code=403, 
+            detail=f"403 - human_author debe ser '{verified_owner}', no '{data.human_author}'"
+        )
+
+    # Cálculo del Hash Determinista
+    ts = data.timestamp or datetime.now(timezone.utc).isoformat()
+    payload = f"{data.content}|{ts}|{data.human_author}|51/49"
+    hash_sha = hashlib.sha256(payload.encode()).hexdigest()
+    
     artifact_id = str(uuid.uuid4())
-    new_artifact = Artifact(
-        id=artifact_id,
-        owner=payload.owner,
-        version=1,
-        hash=file_hash,
-        timestamp=datetime.now(timezone.utc).isoformat(),
-        human_author=payload.human_author,
-        ai_agent=payload.ai_agent,
-        status="draft"
-    )
-    db_artifacts[artifact_id] = new_artifact
-    return {"message": "Artefacto creado", "artifact": new_artifact}
+    artifact = {
+        "id": artifact_id,
+        "owner": verified_owner, # Forzado al verificado, no al que manda el cliente
+        "version": 1,
+        "hash": hash_sha,
+        "timestamp": ts,
+        "human_author": data.human_author,
+        "ai_agent": data.ai_agent,
+        "status": "draft",
+        "api_key_used": x_api_key[:8] + "***", # Registro de auditoría
+        "pact_verified": "51/49/100"
+    }
+    db_artifacts[artifact_id] = artifact
+    return {"message": "Artefacto creado - Identidad verificada", "artifact": artifact}
 
-@app.get("/artifacts/{artifact_id}/provenance", dependencies=[Depends(verificar_llave)])
+@app.get("/artifacts/{artifact_id}/provenance")
 def get_provenance(artifact_id: str):
     if artifact_id not in db_artifacts:
         raise HTTPException(status_code=404, detail="Artefacto no encontrado")
     return db_artifacts[artifact_id]
 
-@app.post("/artifacts/{artifact_id}/approve", dependencies=[Depends(verificar_llave)])
-def approve_artifact(artifact_id: str, approver_name: str):
+@app.post("/artifacts/{artifact_id}/approve")
+def approve_artifact(artifact_id: str, verified_owner: str = Depends(verify_api_key)):
     if artifact_id not in db_artifacts:
         raise HTTPException(status_code=404, detail="Artefacto no encontrado")
+    
     artifact = db_artifacts[artifact_id]
-    artifact.status = "approved"
-    artifact.approved_by = approver_name
-    return {"message": f"Artefacto aprobado por {approver_name}", "artifact": artifact}
+    
+    # Solo el dueño del artefacto puede aprobarlo
+    if artifact["owner"] != verified_owner:
+        raise HTTPException(status_code=403, detail="403 - Solo el creador puede aprobar este artefacto.")
+        
+    artifact["status"] = "approved"
+    artifact["approved_by"] = verified_owner
+    return {"message": f"Artefacto aprobado exitosamente por {verified_owner}", "artifact": artifact}
