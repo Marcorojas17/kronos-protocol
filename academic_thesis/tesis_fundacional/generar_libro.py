@@ -1,4 +1,7 @@
 import os
+import hashlib
+from datetime import datetime, timezone
+import markdown
 
 base_dir = "academic_thesis/tesis_fundacional"
 docs_dir = os.path.join(base_dir, "docs")
@@ -22,11 +25,13 @@ html_template = """<!DOCTYPE html>
     body { background: #fff; color: #1a1a1a; font-family: 'Georgia', serif; line-height: 1.8; padding: 40px; max-width: 800px; margin: auto; }
     h1 { font-size: 2.5rem; text-align: center; color: #000; border-bottom: 2px solid #d4af37; padding-bottom: 10px;}
     h2 { color: #8b6508; margin-top: 40px; font-size: 1.8rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;}
-    h3 { color: #333; margin-top: 30px; }
+    h3 { color: #333; margin-top: 30px; font-size: 1.4rem; }
     p { text-align: justify; font-size: 1.1rem; margin-bottom: 15px;}
+    ul { font-size: 1.1rem; margin-bottom: 20px; }
+    li { margin-bottom: 8px; }
     .portada { text-align: center; padding: 100px 0; border: 5px double #d4af37; margin-bottom: 50px;}
     .portada h1 { border: none; font-size: 3.5rem; margin-bottom: 10px;}
-    .portada p { font-size: 1.2rem; color: #555; }
+    .portada p { font-size: 1.2rem; color: #555; text-align: center;}
     .metadata { text-align: center; margin-top: 50px; font-size: 0.9rem; color: #777; }
     hr { border: 0; border-top: 1px solid #eee; margin: 40px 0; }
     @media print {
@@ -59,14 +64,9 @@ for archivo in archivos:
     if os.path.exists(ruta):
         with open(ruta, "r", encoding="utf-8") as f:
             contenido_md += f.read() + "\n\n---\n\n"
-    else:
-        print(f"⚠️ No se encontró: {archivo}")
 
-# Convertir Markdown simple a HTML (solo títulos y negritas básicas)
-import re
-contenido_html = re.sub(r'^# (.*?)$', r'<h2>\1</h2>', contenido_md, flags=re.M)
-contenido_html = re.sub(r'^## (.*?)$', r'<h3>\1</h3>', contenido_html, flags=re.M)
-contenido_html = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', contenido_html)
+# Convertir a HTML usando la librería oficial
+contenido_html = markdown.markdown(contenido_md, extensions=['extra', 'nl2br'])
 
 # Cierre del HTML
 cierre_html = """
@@ -85,5 +85,14 @@ ruta_salida = os.path.join(base_dir, "tesis_completa_libro.html")
 with open(ruta_salida, "w", encoding="utf-8") as f:
     f.write(html_template + contenido_html + cierre_html)
 
-print(f"✅ Libro generado exitosamente en: {ruta_salida}")
-print("👉 Abre este archivo en tu navegador y usa 'Imprimir -> Guardar como PDF'.")
+# Calcular hash del libro final y anclarlo (La mejora de Kiitos AI)
+with open(ruta_salida, 'rb') as f:
+    hash_html = hashlib.sha256(f.read()).hexdigest()
+
+log_path = os.path.join(base_dir, "crypto", "anclajes.log")
+with open(log_path, "a", encoding="utf-8") as log:
+    stamp = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    log.write(f'{stamp}  {hash_html}  tesis_completa_libro.html\n')
+
+print(f"✅ Libro generado: {ruta_salida}")
+print(f"🔐 Hash del libro anclado en el log: {hash_html}")
