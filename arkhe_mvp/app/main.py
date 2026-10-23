@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 
 app = FastAPI(
     title="ARKHÉ ZERO MVP - SECURE", 
-    description="Sistema de procedencia con Ciberdefensa 51/49"
+    description="Sistema de procedencia con Ciberdefensa 51/49 y Estados Binarios"
 )
 
 # ==========================================
@@ -20,8 +20,7 @@ VALID_API_KEYS = {
 
 def verify_api_key(x_api_key: str = Header(...)) -> str:
     if x_api_key not in VALID_API_KEYS:
-        # 401 Unauthorized: La llave no es válida
-        raise HTTPException(status_code=401, detail="401 UNAUTHORIZED - API Key inválida. Pacto 51/49 violado.")
+        raise HTTPException(status_code=401, detail="401 UNAUTHORIZED - API Key inválida.")
     return VALID_API_KEYS[x_api_key]
 
 # ==========================================
@@ -36,23 +35,12 @@ class ArtifactCreate(BaseModel):
     ai_agent: Optional[str] = "Enjambre-ARKHE"
     timestamp: Optional[str] = None
 
-class Artifact(BaseModel):
-    id: str
-    owner: str
-    version: int
-    hash: str
-    timestamp: str
-    human_author: str
-    ai_agent: Optional[str] = None
-    status: str
-    approved_by: Optional[str] = None
-
 # ==========================================
 # 3. ENDPOINTS
 # ==========================================
 @app.get("/")
 def read_root():
-    return {"status": "ARKHÉ ZERO MVP SECURE Online", "version": "0.2.0"}
+    return {"status": "ARKHÉ ZERO MVP SECURE Online", "version": "0.3.0"}
 
 @app.post("/artifacts")
 def create_artifact_secure(
@@ -60,20 +48,12 @@ def create_artifact_secure(
     verified_owner: str = Depends(verify_api_key),
     x_api_key: str = Header(...)
 ):
-    # VALIDACIÓN 51/49 (Prevención de Suplantación)
     if data.owner != verified_owner:
-        raise HTTPException(
-            status_code=403, 
-            detail=f"403 FORBIDDEN - Owner '{data.owner}' no coincide con identidad verificada '{verified_owner}'. Suplantación detectada."
-        )
+        raise HTTPException(status_code=403, detail="403 FORBIDDEN - Suplantación detectada.")
     
     if data.human_author != verified_owner and data.human_author != "Marco Antonio Rojas Valdovinos":
-        raise HTTPException(
-            status_code=403, 
-            detail=f"403 - human_author debe ser '{verified_owner}', no '{data.human_author}'"
-        )
+        raise HTTPException(status_code=403, detail="403 - human_author inválido.")
 
-    # Cálculo del Hash Determinista
     ts = data.timestamp or datetime.now(timezone.utc).isoformat()
     payload = f"{data.content}|{ts}|{data.human_author}|51/49"
     hash_sha = hashlib.sha256(payload.encode()).hexdigest()
@@ -81,18 +61,18 @@ def create_artifact_secure(
     artifact_id = str(uuid.uuid4())
     artifact = {
         "id": artifact_id,
-        "owner": verified_owner, # Forzado al verificado, no al que manda el cliente
+        "owner": verified_owner,
         "version": 1,
         "hash": hash_sha,
         "timestamp": ts,
         "human_author": data.human_author,
         "ai_agent": data.ai_agent,
-        "status": "draft",
-        "api_key_used": x_api_key[:8] + "***", # Registro de auditoría
+        "status": "VERDE_0", # Estado inicial según la cláusula 4
+        "api_key_used": x_api_key[:8] + "***",
         "pact_verified": "51/49/100"
     }
     db_artifacts[artifact_id] = artifact
-    return {"message": "Artefacto creado - Identidad verificada", "artifact": artifact}
+    return {"message": "Artefacto creado - Estado VERDE_0", "artifact": artifact}
 
 @app.get("/artifacts/{artifact_id}/provenance")
 def get_provenance(artifact_id: str):
@@ -100,17 +80,20 @@ def get_provenance(artifact_id: str):
         raise HTTPException(status_code=404, detail="Artefacto no encontrado")
     return db_artifacts[artifact_id]
 
-@app.post("/artifacts/{artifact_id}/approve")
-def approve_artifact(artifact_id: str, verified_owner: str = Depends(verify_api_key)):
+# NUEVO ENDPOINT: Estado Rojo 1 (Revocación irreversible)
+@app.post("/artifacts/{artifact_id}/revoke")
+def revoke_artifact(artifact_id: str, verified_owner: str = Depends(verify_api_key)):
     if artifact_id not in db_artifacts:
         raise HTTPException(status_code=404, detail="Artefacto no encontrado")
     
     artifact = db_artifacts[artifact_id]
     
-    # Solo el dueño del artefacto puede aprobarlo
     if artifact["owner"] != verified_owner:
-        raise HTTPException(status_code=403, detail="403 - Solo el creador puede aprobar este artefacto.")
+        raise HTTPException(status_code=403, detail="403 - Solo el dueño puede revocar este artefacto.")
         
-    artifact["status"] = "approved"
-    artifact["approved_by"] = verified_owner
-    return {"message": f"Artefacto aprobado exitosamente por {verified_owner}", "artifact": artifact}
+    # La cláusula 4 exige un cambio permanente e irreversible
+    artifact["status"] = "ROJO_1" 
+    artifact["revoked_at"] = datetime.now(timezone.utc).isoformat()
+    artifact["message"] = "Certificado revocado permanentemente según Cláusula 4."
+    
+    return {"message": "Artefacto revocado irreversiblemente (Estado ROJO_1)", "artifact": artifact}
