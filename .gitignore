@@ -24,3 +24,9 @@ COTIZACION-TEMPLATE.md
 node_modules/
 .pedido-puesto.txt
 
+
+# Archivos locales de ejecucion
+.victoria_11_22
+fix_readme.py
+pedido-puesto.txt
+arkhe-zero-agent/
