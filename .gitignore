@@ -17,3 +17,10 @@ __pycache__/
 *.pyc
 *.b64
 *.tar.gz
+
+.watermark
+COTIZACION-TEMPLATE.md
+*.log
+node_modules/
+.pedido-puesto.txt
+
