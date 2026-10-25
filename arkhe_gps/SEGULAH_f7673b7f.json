@@ -1,0 +1,22 @@
+{
+  "egregor": "GOTOS",
+  "kamea_version": "Shaddai 314",
+  "target_hash_original": "f7673b7fb8bf006ff2b73c9b59cd478f59700fe5cdd15f33368cb7eb32eed271",
+  "gematria_ancla": 314,
+  "matriz_magica_suma": 15,
+  "merkle_path_sephirot": [
+    "53a546d5",
+    "b87e5cda",
+    "9758229d",
+    "d62b0939",
+    "856ef303",
+    "d23fff9e",
+    "57bdcf2c",
+    "426ed83e",
+    "afb3b17a",
+    "12f39657"
+  ],
+  "sello_segulah_final": "73e241552696f5454fb8446ba6953efd9a64329d3e424cc9346591af95af1e52496edec62b1927fffe25e446b6e14c46a0aa8b294869d80ce3270a4e7ba09186",
+  "timestamp_utc": "2026-10-23T13:42:55.837544+00:00",
+  "adr_referencia": "ADR-0003_PROTECCION_SHADDAI"
+}

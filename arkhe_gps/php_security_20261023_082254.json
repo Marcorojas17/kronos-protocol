@@ -1,0 +1,10 @@
+{
+    "nodo": "YHDRYH-92CE",
+    "agente": "OBSERVER-49",
+    "componente": "PHP",
+    "version": "8.5.1",
+    "php_ini": "        \"\/data\/data\/com.termux\/files\/usr\/lib\/php.ini\"",
+    "disable_functions": "exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,pcntl_exec,pcntl_fork,pcntl_signal",
+    "expose_php": "OFF",
+    "timestamp": "2026-10-23T14:22:54+00:00"
+}

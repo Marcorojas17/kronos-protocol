@@ -1,32 +1,30 @@
-# ARKHE - no subir binarios gigantes de nuevo
-*.b64
+# ==== ARCHIVOS PELIGROSOS O SENSIBLES ====
+.env
+.env.*
+*.key
+*.secret
+*.pem
+*secret*
+sueños.db.json
+sentinels_ledger.jsonl
+server.log
+
+# ==== ARCHIVOS MUY PESADOS ====
+*.zip
 *.tar.gz
-/tmp/
+*.tgz
+*.7z
+*.mp4
 *.wav
-ARKHE-BACKUP-PART-*
-ARKHE-PART-*
-ARKHE-RESTAURADO.tar.gz
-/sdcard/
-
-__pycache__/
-*.pyc
-*.pyo
-_ERRORES_TEMP/
-
-__pycache__/
-*.pyc
-*.b64
-*.tar.gz
-
-.watermark
-COTIZACION-TEMPLATE.md
-*.log
+*.iso
 node_modules/
-.pedido-puesto.txt
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
 
-
-# Archivos locales de ejecucion
-.victoria_11_22
-fix_readme.py
-pedido-puesto.txt
-arkhe-zero-agent/
+# ==== ARCHIVOS TEMPORALES ====
+*.tmp
+*.bak
+*.swp
+.DS_Store

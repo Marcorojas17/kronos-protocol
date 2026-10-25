@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ARKHÉ GPS · Optimizador de Rutas</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; display: flex; height: 100vh; background: #0f0f13; color: #fff;}
+        #sidebar { width: 350px; padding: 20px; background: #1a1a24; border-right: 2px solid #333; z-index: 1000;}
+        #map { flex-grow: 1; height: 100%; }
+        h2 { font-size: 1.2rem; color: #00f2fe; text-transform: uppercase;}
+        p { font-size: 0.9rem; color: #888; }
+        input[type="file"] { display: none; }
+        .btn { display: block; width: 100%; padding: 15px; background: #00f2fe; color: #000; text-align: center; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 20px; transition: 0.3s;}
+        .btn:hover { background: #00b8c4; }
+        .instructions { margin-top: 20px; background: #2a2a35; padding: 15px; border-radius: 8px; font-size: 0.85rem; }
+        .number-icon { background: #00f2fe; color: #000; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid #fff; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>ARKHÉ GPS</h2>
+        <p>Optimizador de rutas de paquetería.</p>
+        
+        <label for="excelFile" class="btn">Subir Excel de Entregas</label>
+        <input type="file" id="excelFile" accept=".xlsx, .xls">
+
+        <div class="instructions">
+            <strong>Formato requerido:</strong><br>
+            El Excel debe tener una columna llamada:<br>
+            <code>Direccion</code>
+        </div>
+        
+        <div id="status" style="margin-top: 15px; font-size: 0.9rem;"></div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Iniciar mapa en Toluca
+        var map = L.map('map').setView([19.2826, -99.6556], 12);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        var routeLayer = L.featureGroup().addTo(map);
+
+        document.getElementById('excelFile').addEventListener('change', async function(e) {
+            var file = e.target.files[0];
+            if (!file) return;
+
+            document.getElementById('status').innerHTML = "⏳ Procesando y calculando ruta óptima...";
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                let response = await fetch('/optimizar', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                let data = await response.json();
+                
+                if(data.error) {
+                    document.getElementById('status').innerHTML = "❌ Error: " + data.error;
+                    return;
+                }
+
+                // Limpiar mapa anterior
+                routeLayer.clearLayers();
+
+                // Dibujar la ruta
+                var latlngs = [];
+                data.ruta.forEach(function(punto, index) {
+                    latlngs.push([punto.lat, punto.lng]);
+                    
+                    // Crear icono numerado
+                    var icon = L.divIcon({
+                        className: '',
+                        html: '<div class="number-icon">' + index + '</div>',
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15]
+                    });
+
+                    // Poner marcador
+                    L.marker([punto.lat, punto.lng], {icon: icon})
+                        .bindPopup("<b>Parada " + index + "</b><br>" + punto.nombre)
+                        .addTo(routeLayer);
+                });
+
+                // Dibujar la línea de la ruta
+                L.polyline(latlngs, {color: '#00f2fe', weight: 4, dashArray: '10, 10'}).addTo(routeLayer);
+
+                // Centrar mapa en la ruta
+                map.fitBounds(routeLayer.getBounds(), {padding: [50, 50]});
+                
+                document.getElementById('status').innerHTML = "✅ Ruta optimizada con " + (data.ruta.length - 2) + " paradas.";
+
+            } catch (error) {
+                document.getElementById('status').innerHTML = "❌ Error de conexión con el servidor.";
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

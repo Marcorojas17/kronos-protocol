@@ -1,0 +1,9 @@
+	o{
+  "agente": "OBSERVER-49",
+  "nodo": "YHDRYH-92CE",
+  "rol": "Custodia y Verificacion (49%)",
+  "did": "did:key:z6MkevRTFfNE8SeBgMn8mzzy6uMzFrhvDryRHTjkKCuWm54Q",
+  "algoritmo": "Ed25519",
+  "pacto": "51/49/100",
+  "estado": "ACTIVO"
+}

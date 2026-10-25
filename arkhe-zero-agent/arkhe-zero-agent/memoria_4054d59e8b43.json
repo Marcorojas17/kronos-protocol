@@ -1,0 +1,24 @@
+[
+  {
+    "nodo": "4054d59e8b43",
+    "id_global": "8ec260d9acaa",
+    "timestamp": "2026-10-20 16:57:59.445518",
+    "datos": {
+      "venta": "caldo",
+      "precio": 100,
+      "clima": "frio"
+    },
+    "huella_arkhe": "11:22"
+  },
+  {
+    "nodo": "4054d59e8b43",
+    "id_global": "e5c78977df22",
+    "timestamp": "2026-10-20 16:58:00.480365",
+    "datos": {
+      "venta": "mole",
+      "precio": 120,
+      "clima": "calor"
+    },
+    "huella_arkhe": "11:22"
+  }
+]

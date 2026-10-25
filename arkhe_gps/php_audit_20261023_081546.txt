@@ -1,0 +1,12 @@
+🜂 Iniciando auditoría de PHP...
+Nodo: YHDRYH-92CE
+Fecha: 2026-10-23T14:15:46Z
+---
+Versión: PHP 8.5.1 (cli) (built: Dec 22 2025 00:03:00) (NTS)
+php.ini cargado:         "/data/data/com.termux/files/usr/lib/php.ini"
+Funciones deshabilitadas: exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,pcntl_exec,pcntl_fork,pcntl_signal
+allow_url_include: OFF
+expose_php: OFF
+✓ shell_exec está BLOQUEADO (SEGURO)
+---
+Auditoría completada.

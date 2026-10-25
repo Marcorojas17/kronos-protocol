@@ -1,0 +1,12 @@
+🜂 Iniciando auditoría de PHP...
+Nodo: YHDRYH-92CE
+Fecha: 2026-10-23T14:14:24Z
+---
+Versión: PHP 8.5.1 (cli) (built: Dec 22 2025 00:03:00) (NTS)
+php.ini cargado:         (none)
+Funciones deshabilitadas: 
+allow_url_include: OFF
+expose_php: ON
+✓ shell_exec está BLOQUEADO (SEGURO)
+---
+Auditoría completada.

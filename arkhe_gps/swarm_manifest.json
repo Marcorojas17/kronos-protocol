@@ -1,0 +1,20 @@
+{
+  "nodo": "YHDRYH-92CE",
+  "agente": "OBSERVER-49",
+  "merkle_root": "7976909c79e81848ab06ecf43be5b3d8ccb597043aa19ed91df7986c3b2a4a75",
+  "total_manifiestos": 11,
+  "archivos": [
+    "doc_ed25519.txt.manifest_v5.json",
+    "php_audit_20261023_081424.txt.manifest_v5.json",
+    "php_audit_20261023_081546.txt.manifest_v5.json",
+    "php_security_20261023_082816.json.manifest_v5.json",
+    "snapshot_net_4fff3733.manifest_v5.json",
+    "snapshot_net_5a394caa.manifest_v5.json",
+    "snapshot_net_84ff0e21.manifest_v5.json",
+    "snapshot_net_b5a289f2.manifest_v5.json",
+    "snapshot_net_f2905ae6.manifest_v5.json",
+    "snapshot_net_fd511156.manifest_v5.json",
+    "test_oficial.txt.manifest_v5.json"
+  ],
+  "timestamp": "2026-10-23T15:23:00.235720+00:00"
+}
