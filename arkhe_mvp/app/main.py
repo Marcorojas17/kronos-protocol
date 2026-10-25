@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Header, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional
@@ -14,8 +15,8 @@ app = FastAPI(
 # 1. BÓVEDA DE LLAVES Y VERIFICACIÓN DE IDENTIDAD
 # ==========================================
 VALID_API_KEYS = {
-    "***REMOVED-COMPROMETIDA-2026-10-25***": "marcorojas17", 
-    "***REMOVED-COMPROMETIDA-2026-10-25***": "marcorojas17"
+    os.environ.get("ARKHE_API_KEY", ""): "marcorojas17",
+    os.environ.get("ARKHE_PROD_API_KEY", ""): "marcorojas17",
 }
 
 def verify_api_key(x_api_key: str = Header(...)) -> str:
