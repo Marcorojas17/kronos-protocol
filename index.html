@@ -1,10 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta http-equiv="refresh" content="0; url=./experiments_and_lore/web/index.html" />
-    <title>Redirigiendo a ARKHÉ ZERO...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKHE ZERO — Certificados de autoría verificables</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #060a0a; color: #b0f0b0;
+  font-family: 'Courier New', monospace;
+  padding: 2rem 1.2rem; min-height: 100vh;
+}
+.container { max-width: 900px; margin: 0 auto; }
+.hero {
+  text-align: center; padding: 4rem 1rem 3rem;
+  border-bottom: 1px solid #1a3a2a; margin-bottom: 3rem;
+}
+.hero h1 {
+  font-size: 2.4rem; color: #00ff88;
+  text-shadow: 0 0 30px #00ff8844; letter-spacing: 4px;
+  margin-bottom: 1rem;
+}
+.hero .tagline {
+  font-size: 1.1rem; color: #7fbf8f;
+  max-width: 600px; margin: 0 auto;
+  line-height: 1.6;
+}
+.hero .tagline strong { color: #00ff88; }
+.badges {
+  display: flex; justify-content: center; gap: 1rem;
+  margin-top: 2rem; flex-wrap: wrap;
+}
+.badge {
+  background: #0a1a12; border: 1px solid #2a6a4a;
+  color: #00ff88; padding: 0.4rem 1rem;
+  border-radius: 20px; font-size: 0.75rem;
+  letter-spacing: 2px;
+}
+.section { margin-bottom: 3rem; }
+.section h2 {
+  font-size: 1.4rem; color: #00ff88;
+  margin-bottom: 1.5rem; letter-spacing: 2px;
+  text-align: center;
+}
+.cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #0a1212; border: 1px solid #1a3a2a;
+  border-radius: 12px; padding: 1.5rem;
+  transition: 0.2s;
+}
+.card:hover { border-color: #00ff88; box-shadow: 0 0 30px #00ff8822; }
+.card h3 { color: #00ff88; margin-bottom: 0.8rem; font-size: 1rem; }
+.card p { color: #7fbf8f; font-size: 0.85rem; line-height: 1.6; }
+.code-block {
+  background: #0a1212; border: 1px solid #1a3a2a;
+  border-radius: 12px; padding: 1.5rem;
+  font-size: 0.8rem; color: #7fbf8f;
+  overflow-x: auto; margin-bottom: 1rem;
+}
+.code-block .comment { color: #4a7a5a; }
+.code-block .cmd { color: #00ff88; }
+.code-block .output { color: #ffcc66; }
+.pricing {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.price-card {
+  background: #0a1212; border: 1px solid #1a3a2a;
+  border-radius: 12px; padding: 1.5rem; text-align: center;
+}
+.price-card.featured { border-color: #00ff88; box-shadow: 0 0 30px #00ff8822; }
+.price-card h4 { color: #00ff88; margin-bottom: 0.5rem; }
+.price-card .amount {
+  font-size: 1.8rem; color: #b0f0b0;
+  margin: 0.5rem 0; font-weight: bold;
+}
+.price-card .amount small { font-size: 0.7rem; color: #7fbf8f; }
+.price-card ul {
+  list-style: none; text-align: left; margin-top: 1rem;
+  font-size: 0.8rem; color: #7fbf8f;
+}
+.price-card li { padding: 0.3rem 0; }
+.price-card li::before { content: "✓ "; color: #00ff88; }
+.cta {
+  text-align: center; padding: 3rem 1rem;
+  background: #0a1212; border-radius: 16px;
+  border: 1px solid #1a3a2a;
+}
+.cta h2 { margin-bottom: 1rem; }
+.cta p { color: #7fbf8f; margin-bottom: 2rem; }
+.cta-button {
+  display: inline-block; padding: 1rem 2.5rem;
+  background: #0a1a12; border: 1px solid #00ff88;
+  color: #00ff88; text-decoration: none;
+  border-radius: 30px; letter-spacing: 2px;
+  font-weight: bold; transition: 0.2s;
+}
+.cta-button:hover {
+  background: #00ff88; color: #060a0a;
+  box-shadow: 0 0 40px #00ff8866;
+}
+.legal {
+  text-align: center; font-size: 0.65rem;
+  color: #3a6a4a; padding: 2rem 0;
+  border-top: 1px solid #1a3a2a; margin-top: 3rem;
+  line-height: 1.8;
+}
+</style>
 </head>
 <body>
-    <p>Redirigiendo a la interfaz principal de ARKHÉ ZERO... Si no eres redirigido, <a href="./experiments_and_lore/web/index.html">haz clic aquí</a>.</p>
+<div class="container">
+
+  <div class="hero">
+    <h1>⬡ ARKHE ZERO</h1>
+    <p class="tagline">
+      Certificados de autoría <strong>verificables matemáticamente</strong>.<br>
+      Firmados con GPG. Encadenados con SHA-256.<br>
+      Sin la llave privada, no se pueden falsificar.
+    </p>
+    <div class="badges">
+      <span class="badge">SHA-256</span>
+      <span class="badge">HMAC</span>
+      <span class="badge">GPG</span>
+      <span class="badge">HASH CHAIN</span>
+      <span class="badge">100% OFFLINE</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>El problema</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Documentos perdidos</h3>
+        <p>Las empresas pierden $1 billón USD anuales por falta de trazabilidad. Actas extraviadas, contratos alterados, auditorías sin prueba.</p>
+      </div>
+      <div class="card">
+        <h3>Autoría disputada</h3>
+        <p>Freelancers, periodistas y devs no pueden probar cuándo entregaron qué. Sin timestamp firmado, no hay defensa legal.</p>
+      </div>
+      <div class="card">
+        <h3>IA que miente</h3>
+        <p>Los modelos generan contenido sin prueba de quién lo creó. ARKHE firma el resultado con matemática, no con confianza.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Verificación en 3 comandos</h2>
+    <div class="code-block">
+      <span class="comment"># 1. Verificar firma individual</span><br>
+      <span class="cmd">gpg --verify sellos/sello_MI-LEAD.json.asc sellos/sello_MI-LEAD.json</span><br>
+      <span class="output">→ Good signature from "Marco Antonio Rojas Valdovinos"</span><br><br>
+
+      <span class="comment"># 2. Verificar la cadena completa</span><br>
+      <span class="cmd">python3 hashchain.py verify</span><br>
+      <span class="output">✅ Firma GPG de chain.log válida</span><br>
+      <span class="output">✅ Cadena íntegra: 3 sellos verificados</span><br><br>
+
+      <span class="comment"># 3. Ver el historial</span><br>
+      <span class="cmd">python3 hashchain.py list</span><br>
+      <span class="output">SEQ  LEAD_ID     CHAIN_HASH         TIMESTAMP</span><br>
+      <span class="output">1    CHAIN-A     c96c6826...        2026-10-25T19:48</span><br>
+      <span class="output">2    CHAIN-B     531077e8...        2026-10-25T19:49</span><br>
+      <span class="output">3    CHAIN-C     9d9ce6b8...        2026-10-25T19:50</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Precios justos</h2>
+    <div class="pricing">
+      <div class="price-card">
+        <h4>Gratis</h4>
+        <div class="amount">$0 <small>/mes</small></div>
+        <ul>
+          <li>10 sellos/mes</li>
+          <li>Verificación pública</li>
+          <li>Sin tarjeta</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h4>Starter</h4>
+        <div class="amount">$29 <small>USD/mes</small></div>
+        <ul>
+          <li>100 sellos/mes</li>
+          <li>API REST</li>
+          <li>Soporte email</li>
+          <li>Verificación pública</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h4>Business</h4>
+        <div class="amount">$99 <small>USD/mes</small></div>
+        <ul>
+          <li>1,000 sellos/mes</li>
+          <li>API REST + Webhooks</li>
+          <li>Soporte prioritario</li>
+          <li>Anclaje Ethereum</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Prueba ARKHE hoy</h2>
+    <p>Certifica tu primer archivo en menos de 5 minutos.</p>
+    <a href="https://wa.me/527225862335" class="cta-button">CONTACTAR POR WHATSAPP</a>
+  </div>
+
+  <div class="legal">
+    Entidad privada no gubernamental. No emite documentos oficiales (INE, CURP, Pasaporte).<br>
+    Constancias de membresía privada interna. Registro Safe Creative + Anclaje Ethereum.<br>
+    Arquitectura Jurídica Activa · ARKHE ZERO 2099
+  </div>
+
+</div>
 </body>
 </html>
