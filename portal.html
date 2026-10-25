@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKHE ZERO — Portal de Operaciones</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Courier New',monospace;background:#0a0a0f;color:#e0e0e0;min-height:100vh;padding:2rem 1rem;background-image:radial-gradient(circle at 20% 20%,rgba(0,243,255,.1) 0,transparent 50%),radial-gradient(circle at 80% 80%,rgba(255,0,234,.1) 0,transparent 50%)}
+.c{max-width:900px;margin:0 auto}
+h1{color:#00f3ff;text-shadow:0 0 20px rgba(0,243,255,.6);text-align:center;font-size:clamp(1.5rem,5vw,2.5rem);letter-spacing:2px;margin-bottom:.5rem}
+.sub{color:#ff00ea;text-align:center;font-size:.9rem;letter-spacing:1px;margin-bottom:2rem}
+.g{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:600px){.g{grid-template-columns:1fr 1fr}}
+.card{background:rgba(10,10,20,.8);border:1px solid #00f3ff;border-radius:8px;padding:1.5rem;text-decoration:none;color:#e0e0e0;transition:all .3s;display:block}
+.card:hover{border-color:#ff00ea;box-shadow:0 0 20px rgba(255,0,234,.4);transform:translateY(-2px)}
+.i{font-size:2rem;margin-bottom:.5rem}
+.card h3{color:#00f3ff;font-size:1rem;text-transform:uppercase;margin-bottom:.5rem}
+.card p{color:#999;font-size:.85rem;line-height:1.5}
+.st{margin-top:2rem;padding:1rem;border:1px solid rgba(0,255,100,.3);background:rgba(0,255,100,.05);border-radius:8px;font-size:.85rem;text-align:center}
+.f{margin-top:3rem;padding-top:1rem;border-top:1px solid #333;text-align:center;color:#666;font-size:.75rem}
+</style>
+</head>
+<body>
+<div class="c">
+  <h1>🛡️ ARKHE ZERO</h1>
+  <p class="sub">PORTAL DE OPERACIONES · Toluca · 51/49 · v1.0.0</p>
+  <div class="g">
+    <a href="https://arkhe-auth.onrender.com/app/" class="card"><div class="i">🛡️</div><h3>ARKHE SENTINEL</h3><p>API forense en producción · HMAC + Hash Chain</p></a>
+    <a href="https://github.com/Marcorojas17/arkhe-skills" class="card"><div class="i">🧠</div><h3>ARKHE SKILLS</h3><p>Skills forenses para Claude, Gemini, Cursor</p></a>
+    <a href="https://github.com/Marcorojas17/kronos-protocol" class="card"><div class="i">🌌</div><h3>KRONOS PROTOCOL</h3><p>Ecosistema de 1330+ archivos con PQC</p></a>
+    <a href="https://github.com/Marcorojas17/kronos-business/blob/main/docs/01_pitch_y_propuesta.md" class="card"><div class="i">💼</div><h3>PITCH COMERCIAL</h3><p>Propuesta de $5,000 MXN para tu primer cliente</p></a>
+    <a href="https://github.com/Marcorojas17/kronos-business/blob/main/docs/02_manual_piloto_pzt.md" class="card"><div class="i">📜</div><h3>MANUAL PZT</h3><p>Guía del piloto de losa piezoeléctrica</p></a>
+    <a href="https://github.com/Marcorojas17" class="card"><div class="i">👤</div><h3>PERFIL DEL FUNDADOR</h3><p>Marco Antonio Rojas Valdovinos</p></a>
+  </div>
+  <div class="st" id="s">⏳ Verificando API...</div>
+  <div class="f">
+    <p><em>"No confíes en lo que dice la IA. Confía en la matemática."</em></p>
+    <p style="margin-top:.5rem">GPG: CAF27EEF961625B4BB9D9A596B1E7825552648D3</p>
+  </div>
+</div>
+<script>
+fetch('https://arkhe-auth.onrender.com/v1/health').then(r=>r.json()).then(d=>{const e=document.getElementById('s');e.style.color='#0f0';e.textContent='✅ API EN LÍNEA · Defensa activa: '+d.active_defense}).catch(()=>{const e=document.getElementById('s');e.style.color='#f80';e.textContent='⚠️ API dormida (Render free) · se activa al primer request'})
+</script>
+</body>
+</html>
