@@ -1,0 +1,23 @@
+title = "ARKHE / KRONOS — allowlist"
+
+[extend]
+useDefault = true
+
+[allowlist]
+regexes = [
+  '''-----BEGIN RSA PRIVATE KEY-----''',
+  '''did:key:z6Mk[A-Za-z0-9]+''',
+  '''Ed25519PrivateKey''',
+  '''build_signed_message''',
+]
+
+paths = [
+  '''MASTER_ARCHITECTURE\.md$''',
+  '''atribucion/guards/vault/policies\.yaml$''',
+  '''\.env\.example$''',
+  '''\.env\.sample$''',
+  '''runtime/fix_paths\.py$''',
+  '''src/kronos360/crypto/signatures\.py$''',
+  '''docs-deploy/src/kronos360/crypto/signatures\.py$''',
+  '''arkhe_gps/\.agent/identity\.json$''',
+]
