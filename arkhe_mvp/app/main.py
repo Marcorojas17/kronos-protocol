@@ -14,9 +14,10 @@ app = FastAPI(
 # ==========================================
 # 1. BÓVEDA DE LLAVES Y VERIFICACIÓN DE IDENTIDAD
 # ==========================================
+ARKHE_USER = "marcorojas17"  # username público, no secreto
 VALID_API_KEYS = {
-    os.environ.get("ARKHE_API_KEY", ""): "marcorojas17",
-    os.environ.get("ARKHE_PROD_API_KEY", ""): "marcorojas17",
+    os.environ.get("ARKHE_API_KEY", ""): ARKHE_USER,
+    os.environ.get("ARKHE_PROD_API_KEY", ""): ARKHE_USER,
 }
 
 def verify_api_key(x_api_key: str = Header(...)) -> str:

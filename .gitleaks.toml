@@ -21,3 +21,9 @@ paths = [
   '''docs-deploy/src/kronos360/crypto/signatures\.py$''',
   '''arkhe_gps/\.agent/identity\.json$''',
 ]
+
+# Username del dueño, no es secreto (pero gitleaks lo confunde con API key)
+[[rules]]
+id = "generic-api-key"
+[rules.allowlist]
+regexes = ['''"marcorojas17"''']
